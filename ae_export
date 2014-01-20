@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "./save_game"
+require "./localization"
 
 def each_diplomatic_relation(country_data)
   country_data.each do |node|
@@ -25,6 +26,7 @@ end
 
 save_path = ARGV[0]
 tag = ARGV[1].to_sym
+ae = []
 
 SaveGame.new(save_path).parse do |x|
   if x[:countries]
@@ -34,8 +36,10 @@ SaveGame.new(save_path).parse do |x|
         next unless r[:opinion]
         r = r[:opinion].inject(&:merge)
         next unless r[:modifier] == "aggressive_expansion"
-        puts [source, r[:current_opinion]].join("\t")
+        ae << ["#{localization[source.to_s]} (#{source})", r[:current_opinion]]
       end
     end
   end
 end
+
+ae.sort_by{|k,v| [v, k]}.each{|k,v| puts [k,v].join("\t")}

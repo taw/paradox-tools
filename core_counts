@@ -1,17 +1,7 @@
 #!/usr/bin/env ruby
 
 require "pathname"
-require "yaml"
-
-def localization
-  unless @localization
-    @localization = {}
-    (@eu4_dir+"localisation").each_child do |path|
-      @localization.merge! YAML.load(path.read) if path.to_s =~ /_l_english\.yml\z/
-    end
-  end
-  @localization
-end
+require "./localization"
 
 unless ARGV.size == 1 or ARGV.size == 2
   STDERR.puts "Usage: #{$0} <save_game_file> [<eu4_directory>]"
@@ -21,7 +11,7 @@ unless ARGV.size == 1 or ARGV.size == 2
 end
 
 save_path = Pathname(ARGV[0])
-@eu4_dir = Pathname(ARGV[1] || "#{ENV['HOME']}/Library/Application Support/Steam/SteamApps/common/Europa Universalis IV")
+@eu4_dir = Pathname(ARGV[1]) if ARGV[1]
 save_file = save_path.read.encode("UTF-8", "ISO-8859-1")
 
 owned_by_country = Hash.new(0)
