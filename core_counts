@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+require "yaml"
+
+def localization
+  unless @localization
+    @localization = {}
+    (@eu4_dir+"localisation").each_child do |path|
+      @localization.merge! YAML.load(path.read) if path.to_s =~ /_l_english\.yml\z/
+    end
+  end
+  @localization
+end
+
+unless ARGV.size == 1 or ARGV.size == 2
+  STDERR.puts "Usage: #{$0} <save_game_file> [<eu4_directory>]"
+  STDERR.puts "(default OSX EU4 directory used if ommitted)"
+  STDERR.puts "(if your mod overrited world map, try path to your mod instead)"
+  exit 1
+end
+
+save_path = Pathname(ARGV[0])
+@eu4_dir = Pathname(ARGV[1] || "#{ENV['HOME']}/Library/Application Support/Steam/SteamApps/common/Europa Universalis IV")
+save_file = save_path.read.encode("UTF-8", "ISO-8859-1")
+
+cores_by_country = Hash.new
+save_file.scan(/^-(\d+)=(.*?)history=/m).each do |province, description|
+  name = description[/name="(.*?)"/, 1]
+  cores = description.scan(/core="(\w+)"/).flatten.map{|tag| localization[tag] or tag}
+  cores.each do |core|
+    cores_by_country[core] ||= []
+    cores_by_country[core] << name
+  end
+end
+
+cores_by_country.sort_by{|country, cores| [-cores.size, country]}.each{|country, cores|
+  puts "#{country} - #{cores.size} (#{cores.join(', ')})"
+}
