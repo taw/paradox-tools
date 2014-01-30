@@ -1,5 +1,25 @@
 require "strscan"
 
+class Node
+  attr_reader :key, :content
+  def initialize(key, content)
+    @key = key
+    @content = content
+  end
+  def [](key)
+    @content.each do |n|
+      return n if n.is_a?(Node) and n.key == key
+    end
+    nil
+  end
+  def inspect
+    "Node(#{key}: #{content.inspect})"
+  end
+  def to_s
+    "Node(#{key})"
+  end
+end
+
 class SaveGame
   def initialize(path)
     @path = path
@@ -66,7 +86,7 @@ class SaveGame
   end
 
   def parse_error!
-raise "Parse error: #{token(0).inspect} #{token(1).inspect} #{token(2).inspect}..."
+    raise "Parse error: #{token(0).inspect} #{token(1).inspect} #{token(2).inspect}..."
   end
 
   def parse_value
@@ -74,7 +94,7 @@ raise "Parse error: #{token(0).inspect} #{token(1).inspect} #{token(2).inspect}.
       key = token(0)[1]
       shift(2)
       val = parse_value
-      {key => val}
+      Node.new(key, val)
     elsif token_type(0) == :value
       val = token(0)[1]
       shift
@@ -96,5 +116,12 @@ raise "Parse error: #{token(0).inspect} #{token(1).inspect} #{token(2).inspect}.
     until eof?
       yield parse_value
     end
+  end
+
+  def [](key)
+    parse do |n|
+      return n if n.key == key
+    end
+    nil
   end
 end

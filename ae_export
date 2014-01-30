@@ -3,41 +3,24 @@
 require "./save_game"
 require "./localization"
 
-def each_diplomatic_relation(country_data)
-  country_data.each do |node|
-    key, = node.keys
-    val, = node.values
-    val.each do |entry|
-      if entry[:active_relations]
-        entry[:active_relations].each do |node2|
-          key2, = node2.keys
-          val2, = node2.values
-          yield(key, key2, val2)
-        end
-      end
-    end
-  end
-end
-
 unless ARGV.size == 1 or ARGV.size == 2
   STDERR.puts "Usage: #{$0} <file.sav> [<tag>]"
   exit 1
 end
 
 save_path = ARGV[0]
-tag = ARGV[1] ? ARGV[1].to_sym : nil
+target_tag = ARGV[1] ? ARGV[1].to_sym : nil
 ae = []
 
-SaveGame.new(save_path).parse do |x|
-  if x[:countries]
-    each_diplomatic_relation(x[:countries]) do |source, target, rel|
-      next unless target == tag if tag
-      rel.each do |r|
-        next unless r[:opinion]
-        r = r[:opinion].inject(&:merge)
-        next unless r[:modifier] == "aggressive_expansion"
-        ae << ["#{localization[source.to_s]} (#{source} vs #{target})", r[:current_opinion]]
-      end
+SaveGame.new(save_path)[:countries].content.each do |country_data|
+  source = country_data.key
+  country_data[:active_relations].content.each do |relation|
+    target = relation.key
+    next unless target == target_tag if target_tag
+    relation.content.each do |node|
+      next unless node.key == :opinion
+      next unless node[:modifier].content == "aggressive_expansion"
+      ae << ["#{Localization[source]} (#{source} vs #{target})",  node[:current_opinion].content]
     end
   end
 end
