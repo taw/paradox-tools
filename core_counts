@@ -11,22 +11,19 @@ unless ARGV.size == 1 or ARGV.size == 2
 end
 
 save_path = Pathname(ARGV[0])
-@eu4_dir = Pathname(ARGV[1]) if ARGV[1]
+Localization.eu4_dir = Pathname(ARGV[1]) if ARGV[1]
 save_file = save_path.read.encode("UTF-8", "ISO-8859-1")
 
 owned_by_country = Hash.new(0)
-cores_by_country = Hash.new
+cores_by_country = Hash.new{|ht,k| ht[k] = []}
 save_file.scan(/^-(\d+)=(.*?)history=/m).each do |province, description|
   name  = description[/name="(.*?)"/, 1]
   owner = description[/owner="(.*?)"/, 1]
-  cores = description.scan(/core="(\w+)"/).flatten.map{|tag| localization[tag] or tag}
+  cores = description.scan(/core="(\w+)"/).flatten.map{|tag| Localization[tag]}
   cores.each do |core|
-    cores_by_country[core] ||= []
     cores_by_country[core] << name
   end
-  if owner
-    owned_by_country[localization[owner] || owner] += 1
-  end
+  owned_by_country[Localization[owner]] += 1 if owner
 end
 
 cores_by_country.sort_by{|country, cores| [-cores.size, country]}.each{|country, cores|
