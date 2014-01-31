@@ -12,9 +12,9 @@ save_path = ARGV[0]
 target_tag = ARGV[1] ? ARGV[1].to_sym : nil
 ae = []
 
-SaveGame.new(save_path)[:countries].content.each do |country_data|
+SaveGame.new(save_path)[:countries].each do |country_data|
   source = country_data.key
-  country_data[:active_relations].content.each do |relation|
+  country_data[:active_relations].each do |relation|
     target = relation.key
     next unless target == target_tag if target_tag
     relation.content.each do |node|

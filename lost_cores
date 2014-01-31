@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require "./save_game"
+require "./localization"
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <file.sav>"
+  exit 1
+end
+
+save_path = ARGV[0]
+
+SaveGame.new(save_path)[:provinces].each do |node|
+  next unless node[:history]
+  cores = node[:history].map{|x| x.select{|n| n.key == :remove_core}}.flatten.map(&:content)
+  unless cores.empty?
+    puts [node.key, *cores].join("\t")
+  end
+end

@@ -10,7 +10,7 @@ end
 
 save_path = ARGV[0]
 
-SaveGame.new(save_path)[:countries].content.each do |country_data|
+SaveGame.new(save_path)[:countries].each do |country_data|
   country_name = Localization[country_data.key]
   tech_group = country_data[:technology_group]
   tech_group &&= tech_group.content

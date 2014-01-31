@@ -1,12 +1,14 @@
 require "strscan"
 
 class Node
+  include Enumerable
   attr_reader :key, :content
   def initialize(key, content)
     @key = key
     @content = content
   end
   def [](key)
+    return nil unless @content.is_a?(Array)
     @content.each do |n|
       return n if n.is_a?(Node) and n.key == key
     end
@@ -14,6 +16,10 @@ class Node
   end
   def inspect
     "Node(#{key}: #{content.inspect})"
+  end
+  def each(&blk)
+    content.each(&blk) if content.is_a?(Array)
+    self
   end
   def to_s
     "Node(#{key})"
