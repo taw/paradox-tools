@@ -4,7 +4,7 @@ require "./save_game"
 require "./localization"
 
 unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} <file.sav>"
+  STDERR.puts "Usage: #{$0} <file.eu4>"
   exit 1
 end
 
