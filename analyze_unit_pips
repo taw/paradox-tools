@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "csv"
 require "pp"
 require "pathname"
 
@@ -85,15 +86,21 @@ unless ARGV[0]
   exit 1
 end
 
-eu4 = EU4.new(ARGV[0])
-
-pp eu4.units
-pp eu4.mil_tech
-
-eu4.mil_tech.each_with_index do |tech, i|
-  puts "#{i}"
-  eu4.unit_tech_groups.each do |tg|
-    best_infantry = eu4.best_unit(i, 'infantry', tg)
-    puts "* #{best_infantry.inspect}"
+def generate_report_for_best_units(eu4, type)
+  CSV.open("#{type}.csv", "wb") do |csv|
+    csv << ["Tech", *eu4.unit_tech_groups]
+    eu4.mil_tech.each_with_index do |tech, i|
+      csv << [i,
+        *eu4.unit_tech_groups.map{|tg|
+          unit = eu4.best_unit(i, type, tg)
+          unit && unit["total_pips"]
+        }
+      ]
+    end
   end
 end
+
+eu4 = EU4.new(ARGV[0])
+generate_report_for_best_units eu4, "infantry"
+generate_report_for_best_units eu4, "cavalry"
+generate_report_for_best_units eu4, "artillery"
