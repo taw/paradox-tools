@@ -84,11 +84,12 @@ class ParadoxModFile
   private
 
   def each_token
-    data = @data.dup
-    data.gsub!(/#.*\n/, "\n")
+    data = @data.gsub("\r\n", "\n")
     until data.empty?
       if data.sub!(/\A\s+/, "")
         # next
+      elsif data.sub!(/\A#.*$/, "\n")
+        next
       elsif data.sub!(/\A(\d+)\.(\d+)\.(\d+)\b/, "")
         date = Date.new($1.to_i, $2.to_i, $3.to_i)
         yield date
@@ -110,7 +111,7 @@ class ParadoxModFile
         # Is there ever any weird escaping here?
         yield $1
       else
-        raise "Tokenizer error in #{path}: #{data[0, 100]}..."
+        raise "Tokenizer error in #{path}: #{data[0, 100].inspect}..."
       end
     end
   end
