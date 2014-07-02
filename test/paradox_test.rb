@@ -2,9 +2,13 @@ require "minitest/autorun"
 require_relative "../lib/paradox"
 
 class Test < MiniTest::Test
+  def assert_parse_tree(number, expected)
+    parsed = ParadoxModFile.new("#{__dir__}/sample_#{number}.txt").parse_file
+    assert_equal parsed, expected
+  end
+
   def test_sample_1
-    parsed = ParadoxModFile.new("#{__dir__}/sample_1.txt").parse_file
-    assert_equal parsed, PropertyList[
+    assert_parse_tree 1, PropertyList[
       "country_decisions", PropertyList[
         "partial_westernization", PropertyList[
           "major", true,
@@ -52,8 +56,7 @@ class Test < MiniTest::Test
   end
 
   def test_sample_2
-    parsed = ParadoxModFile.new("#{__dir__}/sample_2.txt").parse_file
-    assert_equal parsed, PropertyList[
+    assert_parse_tree 2, PropertyList[
       "decisions", PropertyList[
         "commit_suicide", PropertyList[
           "potential", PropertyList["age", 16],
@@ -92,8 +95,7 @@ class Test < MiniTest::Test
   end
 
   def test_sample_3
-    parsed = ParadoxModFile.new("#{__dir__}/sample_3.txt").parse_file
-    assert_equal parsed,  PropertyList[
+    assert_parse_tree 3,  PropertyList[
       "title", "c_cagliari",
       "max_settlements", 4,
       "b_cagliari", "castle",
