@@ -86,7 +86,7 @@ class ParadoxModFile
   def each_token
     data = @data.gsub("\r\n", "\n")
     until data.empty?
-      if data.sub!(/\A\s+/, "")
+      if data.sub!(/\A(\p{Space})+/, "")
         # next
       elsif data.sub!(/\A#.*$/, "\n")
         next
@@ -100,8 +100,7 @@ class ParadoxModFile
       elsif data.sub!(/\A([=\{\}])/, "")
         yield({"{" => :open, "}" => :close, "=" => :eq}[$1])
       elsif data.sub!(/\A(
-                          (?:_|\.|\-|'|’|\p{Letter})
-                          (?:_|\.|\-|'|’|\p{Letter}|\p{Digit})*
+                          (?:_|\.|\-|'|’|\p{Letter}|\p{Digit})+
                          )/x, "")
         if $1 == "yes"
           yield true

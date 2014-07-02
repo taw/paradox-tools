@@ -27,7 +27,7 @@ ARGV.each do |root|
     sz += path.size
     if file.valid?
       oks += 1
-      puts "OK   #{path}"
+      # puts "OK   #{path}"
     else
       fails += 1
       puts "FAIL #{path}"
