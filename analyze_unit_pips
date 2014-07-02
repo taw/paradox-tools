@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "pp"
 require "pathname"
 
 class EU4
@@ -7,6 +8,33 @@ class EU4
     @path = Pathname(path)
     raise "#{@path} doesn't exist" unless @path.exist?
     raise "#{@path} doesn't look like EU4 directory" unless (@path+"common").exist?
+  end
+
+  def units
+    unless @units
+      @units = {}
+      (@path + "common/units").children.each do |c|
+        @units[c.basename(".txt").to_s] = parse_unit_file(c)
+      end
+    end
+    @units
+  end
+
+  private
+
+  def parse_unit_file(path)
+    rv = {}
+    path.open("r:iso8859-1:utf-8").readlines.each do |line|
+      line.sub!(/#.*/, "")
+      next unless line =~ /\S/
+      line.strip!
+      if line =~ %r[\A(\S+)\s*=\s*(\S+)\z]
+        rv[$1] = $2
+      else
+        raise "Parse error in #{path}: #{line}"
+      end
+    end
+    rv
   end
 end
 
@@ -16,3 +44,5 @@ unless ARGV[0]
 end
 
 eu4 = EU4.new(ARGV[0])
+
+pp eu4.units
