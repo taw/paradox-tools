@@ -1,0 +1,26 @@
+government = administrative_republic
+#aristocracy_plutocracy = -3
+#centralization_decentralization = 4
+#innovative_narrowminded = 1
+mercantilism = 0.1
+#offensive_defensive = 0
+#land_naval = -1
+#quality_quantity = 0
+#serfdom_freesubjects = -4
+primary_culture = dutch
+religion = catholic
+technology_group = western
+capital = 100	# Groningen
+
+
+1399.1.1 = {
+	monarch = {
+		name = "Fryske frijheid"
+		adm = 3
+		dip = 3
+		mil = 3
+		regent = yes
+	}
+}
+
+1515.1.1 = { leader = { name = "Greate Pier" type = admiral rank = 0 fire = 1 shock = 1 manuever = 2 siege = 0 death_date = 1520.10.28 } }

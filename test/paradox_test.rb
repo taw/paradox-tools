@@ -95,7 +95,7 @@ class Test < MiniTest::Test
   end
 
   def test_sample_3
-    assert_parse_tree 3,  PropertyList[
+    assert_parse_tree 3, PropertyList[
       "title", "c_cagliari",
       "max_settlements", 4,
       "b_cagliari", "castle",
@@ -107,6 +107,37 @@ class Test < MiniTest::Test
       Date.new(867, 1, 1), PropertyList["b_cagliari", "ca_shipyard_1"],
       Date.new(1066, 1, 1), PropertyList["trade_post", "b_caetani"],
       Date.new(1285, 1, 1), PropertyList["trade_post", "b_grimaldi"],
+    ]
+  end
+  def test_sample_5
+    assert_parse_tree 5, PropertyList[
+      "government", "administrative_republic",
+      "mercantilism", 0,
+      "primary_culture", "dutch",
+      "religion", "catholic",
+      "technology_group", "western",
+      "capital", 100,
+      Date.new(1399, 1, 1), PropertyList["monarch",
+        PropertyList[
+          "name", "Fryske frijheid",
+          "adm", 3,
+          "dip", 3,
+          "mil", 3,
+          "regent", true,
+        ],
+      ],
+      Date.new(1515, 1, 1), PropertyList["leader",
+        PropertyList[
+          "name", "Greate Pier",
+          "type", "admiral",
+          "rank", 0,
+          "fire", 1,
+          "shock", 1,
+          "manuever", 2,
+          "siege", 0,
+          "death_date", Date.new(1520, 10, 28),
+        ],
+      ],
     ]
   end
 end
