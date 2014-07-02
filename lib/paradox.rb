@@ -1,5 +1,6 @@
 require "pp"
 require "date"
+require "pathname"
 
 class Date
   # Default inspect is just really stupid
@@ -62,8 +63,8 @@ end
 class ParadoxModFile
   attr_reader :path
   def initialize(path)
-    @path = path
-    @data = File.read(path)
+    @path = Pathname(path)
+    @data = @path.open("r:windows-1252:utf-8").read
     tokenize!
   end
 
@@ -143,9 +144,14 @@ class ParadoxModFile
     end
   end
 
-  # Pretty much every primitive can be a key
+  # Presumably every primitive can be a key
   def key_token_zero?
-    @tokens[0].is_a?(String) or @tokens[0].is_a?(Date)
+    case @tokens[0]
+    when String, Integer, Date
+      true
+    else
+      false
+    end
   end
 
   def parse_attr

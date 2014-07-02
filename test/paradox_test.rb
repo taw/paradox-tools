@@ -140,4 +140,31 @@ class Test < MiniTest::Test
       ],
     ]
   end
+
+  def test_sample_6
+    assert_parse_tree 6, PropertyList[
+       269, "Palenké",
+       270, "Trakai",
+       271, "Žemaitija",
+       272, "Vilnius",
+       277, "Brasta",
+      1936, "Kaunas",
+      1937, "Gardinas",
+        40, "Klaipéda",
+        41, "Karaliaucius",
+        42, "Varmé",
+        43, "Gdanskas",
+      1841, "Marienburgas",
+      1859, "Kulmas",
+        35, "Sarema",
+        36, "Talinas",
+        37, "Césis",
+        38, "Ryga",
+        39, "Kuršas",
+       273, "Daugpilis",
+      1834, "Tartu",
+      1842, "Narva",
+      1935, "Žiemgala",
+    ]
+  end
 end
