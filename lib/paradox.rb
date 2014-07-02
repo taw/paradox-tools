@@ -110,13 +110,13 @@ class ParadoxModFile
         # Is there ever any weird escaping here?
         yield $1
       else
-        raise "Parse error in #{path}: #{data[0, 100]}..."
+        raise "Tokenizer error in #{path}: #{data[0, 100]}..."
       end
     end
   end
 
   def parse_error!
-    raise "Parse error: #{@tokens.inspect}"
+    raise "Parse error in #{path}: #{@tokens.inspect}"
   end
 
   def tokenize!
@@ -140,6 +140,20 @@ class ParadoxModFile
     @tokens.shift
   end
 
+  def parse_array
+    rv = []
+    while @tokens[0] != :close
+      case @tokens[0]
+      when Integer, Float, String, Date, TrueClass, FalseClass
+        rv << @tokens.shift
+      else
+        parse_error!
+      end
+    end
+    @tokens.shift
+    rv
+  end
+
   def parse_val
     if @tokens[0] == :open
       @tokens.shift
@@ -147,12 +161,8 @@ class ParadoxModFile
         parse_obj.tap{
           parse_close
         }
-      # elsif @tokens[1] == :close
-      #   parse_primitive.tap{
-      #     parse_close
-      #   }
       else
-        parse_error!
+        parse_array
       end
     else
       parse_primitive

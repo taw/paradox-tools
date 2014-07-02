@@ -1,0 +1,39 @@
+# If you add religions, and use those tags, do not change them without changing everywhere they are used.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+christian = {
+	defender_of_faith = yes
+
+	catholic = {
+		color = { 0.8 0.8 0 }
+		icon = 1
+		allowed_conversion = {
+			reformed
+			protestant
+		}
+		country = {
+			tolerance_own = 1
+			tolerance_heretic = -1
+		}
+
+		on_convert = {
+			change_religion = catholic
+			add_prestige = -100
+
+			remove_country_modifier = the_test_act
+			remove_country_modifier = superintendent_office
+			remove_country_modifier = the_popery_act
+
+			add_country_modifier = {
+				name = "conversion_zeal"
+				duration = 3650
+			}
+
+		}
+
+		heretic = { BOGOMILIST WALDENSIAN FRATICELLI HUSSITE LOLLARD SOCINIAN }
+
+		papacy = yes	# Can play with papacy stuff...
+	}
+}

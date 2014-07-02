@@ -3,7 +3,7 @@ require_relative "../lib/paradox"
 
 class Test < MiniTest::Test
   def assert_parse_tree(number, expected)
-    parsed = ParadoxModFile.new("#{__dir__}/sample_#{number}.txt").parse_file
+    parsed = ParadoxModFile.new("#{__dir__}/sample_#{number}.txt").parse!
     assert_equal parsed, expected
   end
 
@@ -109,6 +109,31 @@ class Test < MiniTest::Test
       Date.new(1285, 1, 1), PropertyList["trade_post", "b_grimaldi"],
     ]
   end
+
+  def test_sample_4
+    assert_parse_tree 4, PropertyList[
+      "christian", PropertyList[
+        "defender_of_faith", true,
+        "catholic", PropertyList[
+          "color", [0.8, 0.8, 0],
+          "icon", 1,
+          "allowed_conversion", ["reformed", "protestant"],
+          "country", PropertyList["tolerance_own", 1, "tolerance_heretic", -1],
+          "on_convert", PropertyList[
+            "change_religion", "catholic",
+            "add_prestige", -100,
+            "remove_country_modifier", "the_test_act",
+            "remove_country_modifier", "superintendent_office",
+            "remove_country_modifier", "the_popery_act",
+            "add_country_modifier", PropertyList["name", "conversion_zeal", "duration", 3650],
+          ],
+          "heretic", ["BOGOMILIST", "WALDENSIAN", "FRATICELLI", "HUSSITE", "LOLLARD", "SOCINIAN"],
+          "papacy", true,
+        ],
+      ]
+    ]
+  end
+
   def test_sample_5
     assert_parse_tree 5, PropertyList[
       "government", "administrative_republic",
