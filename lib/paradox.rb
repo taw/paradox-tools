@@ -78,7 +78,7 @@ class ParadoxModFile
         date = Date.new($1.to_i, $2.to_i, $3.to_i)
         yield date
       elsif data.sub!(/\A(-?\d+\.\d+)(?!\S)/, "")
-        yield $1.to_i
+        yield $1.to_f
       elsif data.sub!(/\A(-?\d+)(?!\S)/, "")
         yield $1.to_i
       elsif data.sub!(/\A([=\{\}])/, "")

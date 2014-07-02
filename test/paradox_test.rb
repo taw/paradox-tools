@@ -112,7 +112,7 @@ class Test < MiniTest::Test
   def test_sample_5
     assert_parse_tree 5, PropertyList[
       "government", "administrative_republic",
-      "mercantilism", 0,
+      "mercantilism", 0.1,
       "primary_culture", "dutch",
       "religion", "catholic",
       "technology_group", "western",
