@@ -3,7 +3,9 @@ require "date"
 
 class Date
   # Default inspect is just really stupid
-  alias_method :inspect, :to_s
+  def inspect
+    "Date.new(#{year}, #{month}, #{day})"
+  end
 end
 
 class PropertyList
@@ -25,7 +27,35 @@ class PropertyList
   end
 
   def inspect
-    @list.inspect
+    case @list.size
+    when 0
+      "PropertyList[]"
+    when 1
+      k, v = @list[0]
+      "PropertyList[#{k.inspect}, #{v.inspect}]"
+    else
+      "PropertyList[\n" + @list.map{|k,v| "#{k.inspect}, #{v.inspect},\n"}.join + "]"
+    end
+  end
+
+  alias_method :to_s, :inspect
+
+  def to_json(*args)
+    @list.to_json(*args)
+  end
+
+  def ==(other)
+    return false unless other.is_a?(PropertyList)
+    @list == other.instance_eval{ @list }
+  end
+
+  def self.[](*args)
+    raise "Even number of arguments expected" unless args.size % 2 == 0
+    rv = PropertyList.new
+    until args.empty?
+      rv.add! args.shift, args.shift
+    end
+    rv
   end
 end
 
@@ -113,8 +143,13 @@ class ParadoxModFile
     end
   end
 
+  # Pretty much every primitive can be a key
+  def key_token_zero?
+    @tokens[0].is_a?(String) or @tokens[0].is_a?(Date)
+  end
+
   def parse_attr
-    if @tokens[0].is_a?(String) and @tokens[1] == :eq
+    if key_token_zero? and @tokens[1] == :eq
       key = @tokens.shift
       @tokens.shift
       val = parse_val
@@ -136,7 +171,7 @@ class ParadoxModFile
 
   def parse_file
     rv = parse_obj
-    raise "Parse error" unless @tokens.empty?
+    raise "Parse error - leftover tokens #{@tokens[0,30].inspect}..." unless @tokens.empty?
     rv
   end
 end
