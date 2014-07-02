@@ -1,4 +1,10 @@
 require "pp"
+require "date"
+
+class Date
+  # Default inspect is just really stupid
+  alias_method :inspect, :to_s
+end
 
 class PropertyList
   def initialize
@@ -37,9 +43,12 @@ class ParadoxModFile
     until data.empty?
       if data.sub!(/\A\s+/, "")
         # next
-      elsif data.sub!(/\A(-?\d+\.\d+)/, "")
+      elsif data.sub!(/\A(\d+)\.(\d+)\.(\d+)\b/, "")
+        date = Date.new($1.to_i, $2.to_i, $3.to_i)
+        yield date
+      elsif data.sub!(/\A(-?\d+\.\d+)(?!\S)/, "")
         yield $1.to_i
-      elsif data.sub!(/\A(-?\d+)/, "")
+      elsif data.sub!(/\A(-?\d+)(?!\S)/, "")
         yield $1.to_i
       elsif data.sub!(/\A([=\{\}])/, "")
         yield({"{" => :open, "}" => :close, "=" => :eq}[$1])
@@ -51,6 +60,9 @@ class ParadoxModFile
         else
           yield $1
         end
+      elsif data.sub!(/\A"([^"]*)"/, "")
+        # Is there ever any weird escaping here?
+        yield $1
       else
         raise "Parse error in #{path}: #{data[0, 100]}..."
       end
@@ -69,8 +81,8 @@ class ParadoxModFile
   end
 
   def parse_primitive
-    if @tokens[0].is_a?(Integer) or @tokens[0].is_a?(Float) or
-       @tokens[0].is_a?(String) or @tokens[0] == true or @tokens[0] == false
+    case @tokens[0]
+    when Integer, Float, String, Date, TrueClass, FalseClass
       @tokens.shift
     else
       parse_error!
