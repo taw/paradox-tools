@@ -20,21 +20,63 @@ class EU4
     @units
   end
 
+  # Super hacky, it would be nice to redo the full parser
+  def mil_tech
+    unless @mil_tech
+      @mil_tech = []
+      (@path + "common/technologies/mil.txt").open("r:iso8859-1:utf-8").readlines.each do |line|
+        if line =~ /technology/
+          @mil_tech << []
+        elsif line =~ /enable\s*=\s*(\w+)/
+          @mil_tech[-1] << [$1]
+        end
+      end
+    end
+    @mil_tech
+  end
+
+  def best_unit(tech_level, type, tech_group)
+    units_enabled_up_to_mil_tech(tech_level).select{|unit|
+      unit["type"] == type and unit["unit_type"] == tech_group
+    }.max_by{|unit| unit["total_pips"]}
+  end
+
+  def unit_tech_groups
+    @unit_tech_groups ||= units.values.map{|u| u["unit_type"]}.compact.uniq.sort
+  end
+
+  def units_enabled_up_to_mil_tech(tech_level)
+    mil_tech[0..tech_level].flatten.map{|name|
+      units[name]
+    }
+  end
+
   private
 
   def parse_unit_file(path)
-    rv = {}
+    unit = {}
     path.open("r:iso8859-1:utf-8").readlines.each do |line|
       line.sub!(/#.*/, "")
       next unless line =~ /\S/
       line.strip!
       if line =~ %r[\A(\S+)\s*=\s*(\S+)\z]
-        rv[$1] = $2
+        key = $1
+        val = $2
+        val = val.to_i if val =~ /\A\d+\z/
+        unit[key] = val
       else
         raise "Parse error in #{path}: #{line}"
       end
     end
-    rv
+    if %W[infantry cavalry artillery].include?(unit["type"])
+      unit["total_pips"] = unit["offensive_morale"] +
+                           unit["defensive_morale"] +
+                           unit["offensive_fire"] +
+                           unit["defensive_fire"] +
+                           unit["offensive_shock"] +
+                           unit["defensive_shock"]
+    end
+    unit
   end
 end
 
@@ -46,3 +88,12 @@ end
 eu4 = EU4.new(ARGV[0])
 
 pp eu4.units
+pp eu4.mil_tech
+
+eu4.mil_tech.each_with_index do |tech, i|
+  puts "#{i}"
+  eu4.unit_tech_groups.each do |tg|
+    best_infantry = eu4.best_unit(i, 'infantry', tg)
+    puts "* #{best_infantry.inspect}"
+  end
+end
