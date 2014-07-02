@@ -99,7 +99,10 @@ class ParadoxModFile
         yield $1.to_i
       elsif data.sub!(/\A([=\{\}])/, "")
         yield({"{" => :open, "}" => :close, "=" => :eq}[$1])
-      elsif data.sub!(/\A([a-zA-Z][a-zA-Z0-9_]*)/, "")
+      elsif data.sub!(/\A(
+                          (?:_|\.|\-|'|’|\p{Letter})
+                          (?:_|\.|\-|'|’|\p{Letter}|\p{Digit})*
+                         )/x, "")
         if $1 == "yes"
           yield true
         elsif $1 == "no"
