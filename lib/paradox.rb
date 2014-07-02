@@ -64,9 +64,24 @@ class ParadoxModFile
   attr_reader :path
   def initialize(path)
     @path = Pathname(path)
+  end
+
+  def valid?
+    parse!
+    true
+  rescue
+    false
+  end
+
+  def parse!
     @data = @path.open("r:windows-1252:utf-8").read
     tokenize!
+    rv = parse_obj
+    raise "Parse error - leftover tokens #{@tokens[0,30].inspect}..." unless @tokens.empty?
+    rv
   end
+
+  private
 
   def each_token
     data = @data.dup
@@ -132,10 +147,10 @@ class ParadoxModFile
         parse_obj.tap{
           parse_close
         }
-      elsif @tokens[1] == :close
-        parse_primitive.tap{
-          parse_close
-        }
+      # elsif @tokens[1] == :close
+      #   parse_primitive.tap{
+      #     parse_close
+      #   }
       else
         parse_error!
       end
@@ -172,12 +187,6 @@ class ParadoxModFile
       break unless a
       rv.add!(*a)
     end
-    rv
-  end
-
-  def parse_file
-    rv = parse_obj
-    raise "Parse error - leftover tokens #{@tokens[0,30].inspect}..." unless @tokens.empty?
     rv
   end
 end

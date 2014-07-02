@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require "digest"
+require "pathname"
+require "find"
+require_relative "lib/paradox"
+
+class Pathname
+  def md5
+    Digest::MD5.hexdigest(read)
+  end
+end
+
+seen = {}
+oks = 0
+fails = 0
+time = Time.now
+sz = 0
+ARGV.each do |root|
+  Pathname(root).find do |path|
+    next unless path.file? and path.extname == ".txt"
+    # No point checking identical file multiple times
+    hash = path.md5
+    next if seen[hash]
+    seen[hash] = true
+    file = ParadoxModFile.new(path)
+    sz += path.size
+    if file.valid?
+      oks += 1
+      puts "OK   #{path}"
+    else
+      fails += 1
+      puts "FAIL #{path}"
+    end
+  end
+end
+
+puts ""
+puts "Total: #{oks} OK, #{fails} FAIL"
+puts "Performance: #{Time.now - time}s / #{sz} bytes"
