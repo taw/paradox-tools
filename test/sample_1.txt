@@ -1,0 +1,46 @@
+country_decisions = {
+  partial_westernization = {
+    major = yes
+    potential = {
+      OR = {
+        technology_group = south_american
+        technology_group = mesoamerican
+        technology_group = north_american
+        technology_group = sub_saharan
+        # technology_group = nomad_group
+        technology_group = chinese
+        technology_group = indian
+      }
+      is_subject = no
+    }
+    allow = {
+      stability = 2
+      is_at_war = no
+      adm_power = 200
+      dip_power = 200
+      mil_power = 200
+      any_neighbor_country = {
+        OR = {
+          technology_group = muslim
+          technology_group = eastern
+          technology_group = ottoman
+          technology_group = western
+        }
+      }
+    }
+    effect = {
+      change_technology_group = muslim
+      add_stability = -5
+      add_adm_power = -200
+      add_dip_power = -200
+      add_mil_power = -200
+      add_country_modifier = {
+        name = "western_influences"
+        duration = 3650
+      }
+    }
+    ai_will_do = {
+      factor = 1
+    }
+  }
+}

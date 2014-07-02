@@ -1,0 +1,70 @@
+# Vassal decisions are listed for each courtier and direct vassal.
+# The ruler is  in the FROM scope.
+
+decisions = {
+  commit_suicide = {
+    potential = {
+      age = 16
+    }
+    allow = {
+      age = 16
+    }
+    effect = {
+      death = { death_reason = death_suicide }
+    }
+    revoke_allowed = {
+      always = no
+    }
+    ai_will_do = {
+      factor = 0
+    }
+  }
+}
+
+vassal_decisions = {
+  adopt_decision = {
+    from_potential = {
+      age = 16
+      is_female = no
+    } 
+    potential = {
+      NOT = { is_child_of = FROM }
+    }
+    allow = {
+      NOT = { is_child_of = FROM }
+      opinion = { who = FROM value = 50 }
+    }
+    effect = {
+      set_father = FROM
+      dynasty = FROM
+    }
+    revoke_allowed = {
+      always = no
+    }
+    ai_will_do = {
+      factor = 0
+    }
+  }
+
+  disinherit_decision = {
+    from_potential = {
+      age = 16
+      is_female = no
+    }
+    potential = {
+      is_child_of = FROM
+    }
+    allow = {
+      is_child_of = FROM
+    }
+    effect = {
+      set_father = 0
+    }
+    revoke_allowed = {
+      always = no
+    }
+    ai_will_do = {
+      factor = 0
+    }
+  }
+}
