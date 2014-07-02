@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+
+class EU4
+  def initialize(path)
+    @path = Pathname(path)
+    raise "#{@path} doesn't exist" unless @path.exist?
+    raise "#{@path} doesn't look like EU4 directory" unless (@path+"common").exist?
+  end
+end
+
+unless ARGV[0]
+  STDERR.puts "Usage: #{$0} /path/to/eu4"
+  exit 1
+end
+
+eu4 = EU4.new(ARGV[0])
