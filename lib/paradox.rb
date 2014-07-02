@@ -35,7 +35,7 @@ class PropertyList
       k, v = @list[0]
       "PropertyList[#{k.inspect}, #{v.inspect}]"
     else
-      "PropertyList[\n" + @list.map{|k,v| "#{k.inspect}, #{v.inspect},\n"}.join + "]"
+      "PropertyList[\n" + @list.map{|k,v| "#{k.inspect}, #{v.inspect},\n"}.join.gsub(/^/, "  ") + "]"
     end
   end
 
@@ -92,9 +92,9 @@ class ParadoxModFile
       elsif data.sub!(/\A(\d+)\.(\d+)\.(\d+)\b/, "")
         date = Date.new($1.to_i, $2.to_i, $3.to_i)
         yield date
-      elsif data.sub!(/\A(-?\d+\.\d+)(?!\S)/, "")
+      elsif data.sub!(/\A(-?\d+\.\d+)(?![^}=\s])/, "")
         yield $1.to_f
-      elsif data.sub!(/\A(-?\d+)(?!\S)/, "")
+      elsif data.sub!(/\A(-?\d+)(?![^}=\s])/, "")
         yield $1.to_i
       elsif data.sub!(/\A([=\{\}])/, "")
         yield({"{" => :open, "}" => :close, "=" => :eq}[$1])
