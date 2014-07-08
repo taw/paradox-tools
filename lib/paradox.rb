@@ -27,6 +27,22 @@ class PropertyList
     @list.each(&blk)
   end
 
+  def to_h
+    rv = {}
+    cast_to_array = {}
+    @list.each do |k,v|
+      if cast_to_array[k]
+        rv[k] << v
+      elsif rv.has_key?(k)
+        cast_to_array[k] = true
+        rv[k] = [rv[k], v]
+      else
+        rv[k] = v
+      end
+    end
+    rv
+  end
+
   def inspect
     case @list.size
     when 0

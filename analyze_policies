@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+require "csv"
+require "pp"
+require "pathname"
+require_relative "lib/paradox"
+
+class EU4
+  def initialize(path)
+    @path = Pathname(path)
+    raise "#{@path} doesn't exist" unless @path.exist?
+    raise "#{@path} doesn't look like EU4 directory" unless (@path+"common").exist?
+  end
+
+  def each_policy
+    (@path + "common/policies").children.each do |fn|
+      ParadoxModFile.new(fn).parse!.each do |policy|
+        yield(policy)
+      end
+    end
+  end
+
+  def policies
+    each_policy do |name, policy|
+      policy = policy.to_h
+      policy.delete("potential")
+      policy.delete("monarch_power")
+      policy.delete("ai_will_do")
+      requirements = policy.delete("allow").to_h["full_idea_group"].map{|i| i.sub("_ideas", "")}
+      p [name, *requirements, policy]
+    end
+  end
+end
+
+eu4 = EU4.new(ARGV[0])
+eu4.policies
