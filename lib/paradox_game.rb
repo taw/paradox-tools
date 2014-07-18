@@ -1,3 +1,5 @@
+require "yaml"
+
 class Pathname
   def glob(pattern)
     Dir.chdir(self){ Pathname::glob(pattern) }
@@ -26,5 +28,15 @@ class ParadoxGame
     @roots.map{|root|
       root.glob(pattern).select{|p| (root+p).file?}
     }.flatten.uniq.sort
+  end
+
+  def localization_data
+    @localization_data ||= glob("localisation/*_l_english.yml").map{|path|
+      YAML.load(resolve(path).read)
+    }.inject({}, &:merge)
+  end
+
+  def localization(key)
+    localization_data[key.to_s] || key
   end
 end

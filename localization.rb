@@ -1,20 +1,17 @@
+# Temporary wrapper API
+
+require_relative "lib/paradox_game"
 require "pathname"
 require "yaml"
 
 module Localization
   class << self
     attr_accessor :eu4_dir
-    def [](key)
-      localization_data[key.to_s] || key
+    def eu4
+      @eu4 ||= ParadoxGame.new(@eu4_dir)
     end
-    def localization_data
-      unless @localization_data
-        @localization_data = {}
-        (eu4_dir+"localisation").each_child do |path|
-          @localization_data.merge! YAML.load(path.read) if path.to_s =~ /_l_english\.yml\z/
-        end
-      end
-      @localization_data
+    def [](key)
+      eu4.localization(key)
     end
   end
 end
