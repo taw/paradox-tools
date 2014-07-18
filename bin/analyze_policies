@@ -1,26 +1,19 @@
 #!/usr/bin/env ruby
 
-require "csv"
 require "pp"
 require "pathname"
-require_relative "lib/paradox"
+require_relative "../lib/paradox"
 
-class EU4
-  def initialize(path)
-    @path = Pathname(path)
-    raise "#{@path} doesn't exist" unless @path.exist?
-    raise "#{@path} doesn't look like EU4 directory" unless (@path+"common").exist?
-  end
-
+class AnalyzePolicies < ParadoxGame
   def each_policy
-    (@path + "common/policies").children.each do |fn|
-      ParadoxModFile.new(fn).parse!.each do |policy|
+    glob("common/policies/*").each do |path|
+      parse(path).each do |policy|
         yield(policy)
       end
     end
   end
 
-  def policies
+  def analyze_policies!
     each_policy do |name, policy|
       policy = policy.to_h
       policy.delete("potential")
@@ -32,5 +25,4 @@ class EU4
   end
 end
 
-eu4 = EU4.new(ARGV[0])
-eu4.policies
+AnalyzePolicies.new(*ARGV).analyze_policies!
