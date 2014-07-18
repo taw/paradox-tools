@@ -1,7 +1,13 @@
 class ParadoxModFile
   attr_reader :path
-  def initialize(path)
-    @path = Pathname(path)
+  def initialize(string: nil, path: nil)
+    if path
+      @path = Pathname(path)
+    elsif string
+      @data = string
+    else
+      raise "You must pass eithier path: or string: argument"
+    end
   end
 
   def valid?
@@ -12,7 +18,9 @@ class ParadoxModFile
   end
 
   def parse!
-    @data = @path.open("r:windows-1252:utf-8").read
+    if @path
+      @data = @path.open("r:windows-1252:utf-8").read
+    end
     tokenize!
     rv = parse_obj
     raise "Parse error - leftover tokens #{@tokens[0,30].inspect}..." unless @tokens.empty?
