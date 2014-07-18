@@ -59,13 +59,13 @@ class ParadoxModFile
         # Is there ever any weird escaping here?
         yield $1
       else
-        raise "Tokenizer error in #{path}: #{data[0, 100].inspect}..."
+        raise "Tokenizer error in #{path || 'passed string'}: #{data[0, 100].inspect}..."
       end
     end
   end
 
   def parse_error!
-    raise "Parse error in #{path}: #{@tokens.inspect}"
+    raise "Parse error in #{path || 'passed string'}: #{@tokens.inspect}"
   end
 
   def tokenize!
