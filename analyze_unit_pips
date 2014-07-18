@@ -3,18 +3,13 @@
 require "csv"
 require "pp"
 require "pathname"
+require_relative "lib/paradox"
 
-class EU4
-  def initialize(path)
-    @path = Pathname(path)
-    raise "#{@path} doesn't exist" unless @path.exist?
-    raise "#{@path} doesn't look like EU4 directory" unless (@path+"common").exist?
-  end
-
+class AnalyzeUnitPips < ParadoxGame
   def units
     unless @units
       @units = {}
-      (@path + "common/units").children.each do |c|
+      glob("common/units/*.txt").each do |c|
         @units[c.basename(".txt").to_s] = parse_unit_file(c)
       end
     end
@@ -25,7 +20,7 @@ class EU4
   def mil_tech
     unless @mil_tech
       @mil_tech = []
-      (@path + "common/technologies/mil.txt").open("r:iso8859-1:utf-8").readlines.each do |line|
+      resolve("common/technologies/mil.txt").open("r:iso8859-1:utf-8").readlines.each do |line|
         if line =~ /technology/
           @mil_tech << []
         elsif line =~ /enable\s*=\s*(\w+)/
@@ -90,7 +85,7 @@ def generate_report_for_best_units(eu4, type)
   relevant_tech_groups = [nil, *eu4.unit_tech_groups].select{|tg|
     !!eu4.best_unit(999, type, tg)
   }
-  CSV.open("#{type}.csv", "wb") do |csv|
+  CSV.open("out/#{type}.csv", "wb") do |csv|
     csv << ["Tech", *relevant_tech_groups]
     eu4.mil_tech.each_with_index do |tech, i|
       csv << [i,
@@ -103,7 +98,7 @@ def generate_report_for_best_units(eu4, type)
   end
 end
 
-eu4 = EU4.new(ARGV[0])
+eu4 = AnalyzeUnitPips.new(*ARGV)
 generate_report_for_best_units eu4, "infantry"
 generate_report_for_best_units eu4, "cavalry"
 generate_report_for_best_units eu4, "artillery"
