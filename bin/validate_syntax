@@ -3,7 +3,7 @@
 require "digest"
 require "pathname"
 require "find"
-require_relative "lib/paradox"
+require_relative "../lib/paradox"
 
 class Pathname
   def md5
@@ -23,7 +23,7 @@ ARGV.each do |root|
     hash = path.md5
     next if seen[hash]
     seen[hash] = true
-    file = ParadoxModFile.new(path)
+    file = ParadoxModFile.new(path: path)
     sz += path.size
     if file.valid?
       oks += 1
