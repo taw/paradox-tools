@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+ARGV.each do |path|
+  p ParadoxModFile.new(path: path).parse!
+end
