@@ -3,7 +3,7 @@
 require "minitest/autorun"
 require_relative "../lib/paradox"
 
-class Test < MiniTest::Test
+class ParadoxModFileTest < MiniTest::Test
   def assert_parse_tree(number, expected)
     parsed = ParadoxModFile.new("#{__dir__}/sample_#{number}.txt").parse!
     assert_equal parsed, expected
