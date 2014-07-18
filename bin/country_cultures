@@ -2,18 +2,11 @@
 
 require "pp"
 require "pathname"
-require_relative "lib/paradox"
+require_relative "../lib/paradox"
 
-class EU4
-  def initialize(path)
-    @path = Pathname(path)
-    raise "#{@path} doesn't exist" unless @path.exist?
-    raise "#{@path} doesn't look like EU4 directory" unless (@path+"common").exist?
-  end
-
+class CountryPrimaryCultures < ParadoxGame
   def each_country_primary_culture
-    cultures = ParadoxModFile.new(@path + "common/cultures/00_cultures.txt").parse!
-    cultures.each do |group_name, group|
+    parse("common/cultures/00_cultures.txt").each do |group_name, group|
       group = group.to_h
       group.delete "graphical_culture"
       group.delete "dynasty_names"
@@ -28,8 +21,7 @@ class EU4
 end
 
 if $0 == __FILE__
-  eu4 = EU4.new(ARGV[0])
-  eu4.each_country_primary_culture do |culture_name, primary_tag|
+  CountryPrimaryCultures.new(*ARGV).each_country_primary_culture do |culture_name, primary_tag|
     puts [primary_tag, culture_name].join("\t")
   end
 end

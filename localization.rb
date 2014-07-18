@@ -1,8 +1,7 @@
-# Temporary wrapper API
+warn "This is obsolete API"
 
 require_relative "lib/paradox_game"
 require "pathname"
-require "yaml"
 
 module Localization
   class << self
