@@ -15,7 +15,7 @@ class ParadoxGame
   end
 
   def parse(path)
-    ParadoxModFile(path: resolve(path)).parse!
+    ParadoxModFile.new(path: resolve(path)).parse!
   end
 
   def resolve(path)
@@ -25,8 +25,6 @@ class ParadoxGame
   def glob(pattern)
     @roots.map{|root|
       root.glob(pattern).select{|p| (root+p).file?}
-    }.flatten.uniq.sort.map{|path|
-      resolve(path)
-    }
+    }.flatten.uniq.sort
   end
 end

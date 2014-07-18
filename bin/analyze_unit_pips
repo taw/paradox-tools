@@ -2,8 +2,7 @@
 
 require "csv"
 require "pp"
-require "pathname"
-require_relative "lib/paradox"
+require_relative "../lib/paradox"
 
 class AnalyzeUnitPips < ParadoxGame
   def units
@@ -16,16 +15,10 @@ class AnalyzeUnitPips < ParadoxGame
     @units
   end
 
-  # Super hacky, it would be nice to redo the full parser
   def mil_tech
     unless @mil_tech
-      @mil_tech = []
-      resolve("common/technologies/mil.txt").open("r:iso8859-1:utf-8").readlines.each do |line|
-        if line =~ /technology/
-          @mil_tech << []
-        elsif line =~ /enable\s*=\s*(\w+)/
-          @mil_tech[-1] << [$1]
-        end
+      @mil_tech = parse("common/technologies/mil.txt").find_all("technology").map do |tech|
+        tech.find_all("enable")
       end
     end
     @mil_tech
@@ -72,7 +65,7 @@ def generate_report_for_best_units(eu4, type)
   relevant_tech_groups = [nil, *eu4.unit_tech_groups].select{|tg|
     !!eu4.best_unit(999, type, tg)
   }
-  CSV.open("out/#{type}.csv", "wb") do |csv|
+  CSV.open("#{type}.csv", "wb") do |csv|
     csv << ["Tech", *relevant_tech_groups]
     eu4.mil_tech.each_with_index do |tech, i|
       csv << [i,

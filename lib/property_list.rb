@@ -16,6 +16,13 @@ class PropertyList
     @list.each(&blk)
   end
 
+  # Unlike .to_h[key] it reliably return an array, not nil/x/[x,y]
+  def find_all(key)
+    rv = []
+    @list.each{|k,v| rv << v if k == key}
+    rv
+  end
+
   def to_h
     rv = {}
     cast_to_array = {}
