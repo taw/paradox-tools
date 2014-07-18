@@ -50,20 +50,7 @@ class AnalyzeUnitPips < ParadoxGame
   private
 
   def parse_unit_file(path)
-    unit = {}
-    path.open("r:iso8859-1:utf-8").readlines.each do |line|
-      line.sub!(/#.*/, "")
-      next unless line =~ /\S/
-      line.strip!
-      if line =~ %r[\A(\S+)\s*=\s*(\S+)\z]
-        key = $1
-        val = $2
-        val = val.to_i if val =~ /\A\d+\z/
-        unit[key] = val
-      else
-        raise "Parse error in #{path}: #{line}"
-      end
-    end
+    unit = parse(path).to_h
     if %W[infantry cavalry artillery].include?(unit["type"])
       unit["total_pips"] = unit["offensive_morale"] +
                            unit["defensive_morale"] +
