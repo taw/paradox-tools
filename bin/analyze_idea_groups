@@ -635,9 +635,13 @@ class Bonuses
       when :may_explore
         total += v*2
       when :advisor_pool
-        total += 0.5
+        total += 0.5*v
       when :hostile_attrition
-        total += 1
+        total += 1*v
+      when :relations_decay_of_me
+        total += 2*v
+      when :ae_impact
+        total += 2*v
       else
         # warn "#{k} not scored"
       end
