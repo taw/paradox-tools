@@ -1,8 +1,13 @@
 #!/usr/bin/env ruby
 
+require "set"
 require "pp"
 require "pathname"
 require_relative "../lib/paradox"
+
+def new_bonus_hash
+  Hash.new(0)
+end
 
 class AnalyzeIdeaGroups < ParadoxGame
   def each_idea_group
@@ -21,7 +26,7 @@ class AnalyzeIdeaGroups < ParadoxGame
     idea_group.delete "free"
     idea_group.delete "important"
 
-    bonuses = {}
+    bonuses = new_bonus_hash
     idea_group.each do |_,idea|
       idea.each do |k,v|
         if bonuses.has_key?(k)
@@ -38,14 +43,97 @@ class AnalyzeIdeaGroups < ParadoxGame
     bonuses
   end
 
+  # 139 different bonuses, need to filter them down to manageable levels
+
+  # Facts:
+  # * 22400 points spent on ideas, or 5/month
+  # * 54000 base points spent on tech, or 12/month (actual differs, but modifier is applied to base not total)
+
+
+  def filter_bonuses(raw_bonuses)
+    bonuses = new_bonus_hash
+    raw_bonuses.each do |k,v|
+      case k
+      when "heir_chance"
+        # This is probbaly a net negative, since you're less likely to get random same dynasty with another country
+      when "diplomatic_reputation"
+        # This used to be amazing pre-1.6, now it does nothing
+      when "prestige", "prestige_decay", "prestige_from_land", "prestige_from_naval"
+        # Presitge is just so irrelevant let's not bother tracking it
+      when "interest"
+        # loans are basically irrelevant
+      when "global_ship_recruit_speed", "global_regiment_recruit_speed"
+        # unless you only own 1-2 ports, it's completely irrelevant
+      when "enemy_core_creation"
+        # if you have to worry about that, you're doing something wrong
+
+      # Assume provinces are 80% your religion, 5% heretic, 15% heathen
+      # Usually much higher your religion, but weighting critical times higher.
+      when "tolerance_own"
+        bonuses["global_revolt_risk"] -= v * 0.80
+      when "tolerance_heretic"
+        bonuses["global_revolt_risk"] -= v * 0.05
+      when "tolerance_heathen"
+        bonuses["global_revolt_risk"] -= v * 0.15
+
+      # Assume used 75% of the time
+      when "diplomatic_upkeep"
+        bonuses["monthly_monarch_points"] += 0.75 * v
+
+      # Hard cold facts
+      when "idea_cost"
+        bonuses["monthly_monarch_points"] -= 5 * v
+      when "technology_cost"
+        bonuses["monthly_monarch_points"] -= 12 * v
+      when "mil_tech_cost_modifier", "dip_tech_cost_modifier", "adm_tech_cost_modifier"
+        bonuses["monthly_monarch_points"] -= 4 * v
+
+      # Assume: 16 inf, 4 cav, 6 art stacks
+      # so upkeep is: 160 inf (35%) / 100 cav (25%) / 180 art (40%)
+      # However since infantry takes most beating, and they cost most reinforce costs by far,
+      # adjust that to: 50% inf, 20% cav, 30% art
+      # For combat ability assume the same except lower artillery since it's really siege unit for most of the game to:
+      # 50% inf, 30% cav, 20% art
+
+      when "infantry_cost"
+        bonuses["land_unit_cost"] -= 0.50 * v
+      when "cavalry_cost"
+        bonuses["land_unit_cost"] -= 0.20 * v
+      when "artillery_cost"
+        bonuses["land_unit_cost"] -= 0.30 * v
+      when "infantry_power"
+        bonuses["land_unit_power"] -= 0.50 * v
+      when "cavalry_power"
+        bonuses["land_unit_power"] -= 0.30 * v
+      when "artillery_power"
+        bonuses["land_unit_power"] -= 0.20 * v
+
+
+      else
+        bonuses[k] = v
+      end
+    end
+
+    # Just cleanup for display
+    bonuses.each do |k,v|
+      bonuses[k] = v.round(6) if v.is_a?(Float)
+    end
+
+    bonuses
+  end
+
   def analyze_idea_groups!
+    seen = Set[]
     each_idea_group do |name, idea_group|
       bonuses = list_of_bonuses(idea_group)
+      bonuses = filter_bonuses(bonuses)
 
+      seen += bonuses.keys
       pp name
       pp bonuses
       puts ""
     end
+    # pp seen.sort # 118 to go
   end
 end
 
