@@ -134,6 +134,15 @@ class Bonuses
     global_revolt_risk -v * 0.15
   end
 
+  # For most countries army tradition will be much higher than navy tradition
+  # Assume average 25% navy and 75% army tradition
+  def navy_tradition_decay(v)
+    navy_tradition -0.25*v
+  end
+  def army_tradition_decay(v)
+    army_tradition -0.75*v
+  end
+
   # Assume 2 diplomats, and diplomats spending 25% of their time fabricating, 25% improving relations
   # Since this is 1/(1-x) not 1+x (50% reduction means you get 200% work done, not 150% work)
   # I arbitrarily added 1.5x factor here, but it's really just ballpark.
@@ -403,6 +412,11 @@ class Bonuses
   def global_trade_income_modifier(v)
     trade_efficiency v
   end
+  # This is extremely hard. Inland nodes are often extremely competitive (HRE), so this bonus matter little
+  # Assume total 500 trade power in node, and that node would increase your trade income by 20% if fully controlled
+  def merchant_steering_to_inland(v)
+    trade_efficiency (v/500.0)*0.2
+  end
 
   # From a few simulations, ballpark figures for income of a typical country:
   # 30% tax, 30% production, 30% trade, 8% tariff, 1% gold, 1% vassal
@@ -475,6 +489,11 @@ class Bonuses
   def religious_unity(v)
     stability_cost_modifier v*0.5
     global_revolt_risk -2*v*0.5
+  end
+
+  # Assume it affects 10% of your provinces, and avearge -RR is -5
+  def years_of_nationalism(v)
+    global_revolt_risk -5*0.1*v
   end
 
   # Assume that on average 50% reduction will make 0.5 cultures accepted which would otherwise not be,
