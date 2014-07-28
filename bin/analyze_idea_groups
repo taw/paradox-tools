@@ -30,7 +30,7 @@ class Bonuses
   def method_missing(*args)
     if args.size == 2
       k, v = *args
-      if @ht.has_key?(v)
+      if @ht.has_key?(k)
         @ht[k] += v
       else
         @ht[k] = v
@@ -82,6 +82,9 @@ class Bonuses
 
     # Pretty close to irrelevant
     :global_garrison_growth,
+
+    # Completely irrelevant, even if you play merc game there are always enough
+    :possible_mercenaries,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -97,6 +100,9 @@ class Bonuses
     extra_minor_abilities 1
   end
   def may_force_march(v)
+    extra_minor_abilities 1
+  end
+  def reduced_stab_impacts(v)
     extra_minor_abilities 1
   end
 
@@ -184,24 +190,28 @@ class Bonuses
   # It's not uncommon to be at permanent +2/+3 due to events, but then you could be deep in negative territory
   # due to westernization etc.
   def stability_cost_modifier(v)
-    monthly_monarch_points (100.0 / 12 / 15) * -v
+    monthly_monarch_points (-v * 100.0 / 12 / 15)
   end
   # Assuming one reduce WE button press every 25 years
   # It's somewhat common early game, late game not really
   def war_exhaustion_cost(v)
-    monthly_monarch_points (75.0 / 12 / 25) * -v
+    monthly_monarch_points (-v * 75.0 / 12 / 25)
   end
   # Assuming reduce inflation button is used once / 50 years
   def inflation_action_cost(v)
-    monthly_monarch_points (75.0 / 12 / 50) * -v
+    monthly_monarch_points (-v * 75.0 / 12 / 50)
   end
   # Assume average of 1bt/year cored
   def core_creation(v)
-    monthly_monarch_points (20.0 * 1.0 / 12) * -v
+    monthly_monarch_points (-v * 20.0 * 1.0 / 12)
   end
   # Assume average of 1bt/year diploannexed
   def diplomatic_annexation_cost(v)
-    monthly_monarch_points (10.0 * 1.0 / 12) * -v
+    monthly_monarch_points (-v * 10.0 * 1.0 / 12)
+  end
+  # Assume 2 unjustified demand for base of 50 each every 10 years
+  def unjustified_demands(v)
+    monthly_monarch_points (-v * 50 * 2 / 120)
   end
 
   # Assume: 16 inf, 4 cav, 6 art stacks
@@ -412,6 +422,10 @@ class Bonuses
   def global_trade_income_modifier(v)
     trade_efficiency v
   end
+  # I'm just guessing here...
+  def global_trade_goods_size(v)
+    trade_efficiency v*0.5
+  end
   # This is extremely hard. Inland nodes are often extremely competitive (HRE), so this bonus matter little
   # Assume total 500 trade power in node, and that node would increase your trade income by 20% if fully controlled
   def merchant_steering_to_inland(v)
@@ -473,6 +487,10 @@ class Bonuses
     cardinals 0.5*20*12*v/(100.0-20.0)
   end
 
+  # Far too conditional
+  def monthly_fervor_increase(v)
+  end
+
   def cardinals(v)
     prestige 0.1*v
     legitimacy 0.2*v
@@ -491,9 +509,16 @@ class Bonuses
     global_revolt_risk -2*v*0.5
   end
 
-  # Assume it affects 10% of your provinces, and avearge -RR is -5
+  # Not sure how that works since it's unique USA thing
+  # I'm assuming it just removes intolerance. With average -4 intolerance and 20% wrong religion provinces
+  # that's what it amounts to
+  def no_religion_penalty(v)
+    revolt_risk -4*0.2
+  end
+
+  # Assume it affects 5% of your provinces, and avearge -RR is -2
   def years_of_nationalism(v)
-    global_revolt_risk -5*0.1*v
+    global_revolt_risk (2*0.05*v)
   end
 
   # Assume that on average 50% reduction will make 0.5 cultures accepted which would otherwise not be,
@@ -515,6 +540,57 @@ class Bonuses
   end
   def naval_unit_power(v)
     military_power 0.2*v
+  end
+
+  def score
+    total = 0
+    @ht.each do |k,v|
+      case k
+      # Base unit of value
+      when :monthly_monarch_points
+        total += v
+      when :colonists
+        total += 3*v
+      when :diplomats
+        total += 2*v
+      when :missionaries
+        total += 1*v
+      when :merchants
+        total += 1*v
+      when :global_missionary_strength
+        total += 2*v
+      when :global_revolt_risk
+        total -= v/0.5
+      when :money
+        # Doubling the money
+        total += v*10
+      when :military_power
+        # Doubling military power
+        total += v*10
+      when :global_manpower_modifier
+        # Doubling total manpower
+        total += v*5
+      when :global_colonial_growth
+        total += v/25.0
+      when :extra_minor_abilities
+        total += v*0.5
+      when :extra_cbs
+        total += v*2.0
+      when :legitimacy
+        total += v*0.5
+      when :republican_tradition
+        total += v*100.0 # value at 2x legitimacy, uses different scale
+      when :may_explore
+        total += v*2
+      when :advisor_pool
+        total += 0.5
+      when :hostile_attrition
+        total += 1
+      else
+        warn "#{k} not scored"
+      end
+    end
+    total.round(4)
   end
 end
 
@@ -551,7 +627,7 @@ class AnalyzeIdeaGroups < ParadoxGame
       # bonuses = filter_bonuses(bonuses)
 
       seen += bonuses.keys
-      pp name
+      puts "#{bonuses.score} #{name}"
       pp bonuses.to_h
       # pp idea_group
       puts ""
