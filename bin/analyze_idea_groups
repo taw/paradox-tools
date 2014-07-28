@@ -79,6 +79,9 @@ class Bonuses
 
     # Ignored because ridiculously underpowered
     :culture_conversion_cost,
+
+    # Pretty close to irrelevant
+    :global_garrison_growth,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -333,6 +336,18 @@ class Bonuses
     siege_ability v*0.17*0.30
   end
 
+  # I assume this adds to base of 15% (20% in home territory) not 100%
+  # I doesn't translate to anything, but let's just guess that army which instantly recovered
+  # morale every monttly tick would be 10% better. That's not as good as it sounds since it still
+  # won't matter during combat, or if combat happens same month as previous one.
+
+  def recover_army_morale_speed(v)
+    land_unit_power v*0.1
+  end
+  def recover_navy_morale_speed(v)
+    naval_unit_power v*0.1
+  end
+
 
   # These are somewhat relevant early game.
   # If you're over force limit, any force limit %X increase is basically %X maintenance reduction
@@ -436,7 +451,43 @@ class Bonuses
     calculated_land_cost -0.05
   end
 
+  # Assume 100 influence is what it usually needs to get a cardinal, and they live 20 years on average,
+  # repaying 20 of that in his lifetime
+  # Multiply by 50% chance that you're Catholic. This might be low for national ideas since only nations that start
+  # Catholic get them and most won't flip Protestant/Reformed, but it's too high for religious idea group which everybody can get
+  def papal_influence(v)
+    cardinals 0.5*20*12*v/(100.0-20.0)
+  end
 
+  def cardinals(v)
+    prestige 0.1*v
+    legitimacy 0.2*v
+    technology_cost -0.01*v
+    global_heretic_missionary_strength 0.1*v
+  end
+
+  # This is potentially useful, but it's so extremely conditional (only emperor) I'm not going to score it
+  def imperial_authority(v)
+  end
+
+  # Assume on aveareg you'll be using 50% of this bonus
+  # Utilization depends on bonus of course, +10% unity is good for everyone, +50% is probably a bit wasted
+  def religious_unity(v)
+    stability_cost_modifier v*0.5
+    global_revolt_risk -2*v*0.5
+  end
+
+  # Assume that on average 50% reduction will make 0.5 cultures accepted which would otherwise not be,
+  # and they'd be in a different culture group, and that it will affect 10% of provinces.
+  # I know these don't add up, but they're ballpark figures over a lot of scenarios.
+
+  def accepted_culture_threshold(v)
+    affected = 0.5 * 0.10 * (v/-0.5)
+    global_revolt_risk -2*affected
+    global_tax_modifier 0.33*affected
+    global_missionary_strength 0.02*affected
+    global_manpower_modifier 0.33*affected
+  end
 
   ### Higher level calculations ###
   # Assume strength of the military is 80% army 20% navy.
@@ -446,8 +497,6 @@ class Bonuses
   def naval_unit_power(v)
     military_power 0.2*v
   end
-
-
 end
 
 class AnalyzeIdeaGroups < ParadoxGame
