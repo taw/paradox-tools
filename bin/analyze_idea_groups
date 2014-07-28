@@ -67,6 +67,11 @@ class AnalyzeIdeaGroups < ParadoxGame
       when "enemy_core_creation"
         # if you have to worry about that, you're doing something wrong
 
+      # This generated some monthly increase, just without cap increase
+      # since it's so rare to be at cap, let's count it as 90% as good
+      when "manpower_recovery_speed"
+        bonuses["global_manpower_modifier"] += 0.90 * v
+
       # Assume provinces are 80% your religion, 5% heretic, 15% heathen
       # Usually much higher your religion, but weighting critical times higher.
       when "tolerance_own"
@@ -79,6 +84,8 @@ class AnalyzeIdeaGroups < ParadoxGame
       # Assume used 75% of the time
       when "diplomatic_upkeep"
         bonuses["monthly_monarch_points"] += 0.75 * v
+      when "free_leader_pool"
+        bonuses["monthly_monarch_points"] += 0.75 * v
 
       # Hard cold facts
       when "idea_cost"
@@ -88,25 +95,93 @@ class AnalyzeIdeaGroups < ParadoxGame
       when "mil_tech_cost_modifier", "dip_tech_cost_modifier", "adm_tech_cost_modifier"
         bonuses["monthly_monarch_points"] -= 4 * v
 
+      # Assuming +1 stab button / 15 years (base cost 100, mods apply to this not total)
+      # It's not uncommon to be at permanent +2/+3 due to events, but then you could be deep in negative territory
+      # due to westernization etc.
+      when "stability_cost_modifier"
+        bonuses["monthly_monarch_points"] -= (100.0 / 12 / 15) * v
+      # Assuming one reduce WE button press every 25 years
+      # It's somewhat common early game, late game not really
+      when "war_exhaustion_cost"
+        bonuses["monthly_monarch_points"] -= (75.0 / 12 / 25) * v
+      # Assuming reduce inflation button is used once / 50 years
+      when "inflation_reduction"
+        bonuses["monthly_monarch_points"] -= (75.0 / 12 / 50) * v
+
       # Assume: 16 inf, 4 cav, 6 art stacks
       # so upkeep is: 160 inf (35%) / 100 cav (25%) / 180 art (40%)
       # However since infantry takes most beating, and they cost most reinforce costs by far,
       # adjust that to: 50% inf, 20% cav, 30% art
       # For combat ability assume the same except lower artillery since it's really siege unit for most of the game to:
       # 50% inf, 30% cav, 20% art
+      # For land units cost and maintenance are proportional
 
+      # For navy it's harder to make good assumptions.
+      # First, ships need to be rebuilt and maintenance cost are not proportional to recruitment costs
+      # TCO over 40 years (when it will need to be rebuilt if not sunk yet):
+      # * heavy     - 250.16
+      # * light     -  59.84
+      # * galley    -  25.84
+      # * transport -  31.20
+      #
+      # Actual floot composition being extremely dependent on your circumstances,
+      # but decent ballpark figures are:
+      # 50% light ships, 10% heavy ships, 15% galleys, 25% transports
+      #
+      # So costs are:
+      # 45% light, 37% heavy, 6% galley, 12% transport
+      #
+      # Of course nations with big galley cost discounts might go full galley spam because of them,
+      # but then you get into naval force limit issues etc. It's too conditional to consider here
+      #
+      # As for power, by canons/hull strength we can sort of assume ballpark figures:
+      # 1 heavy = 3 lights or galleys = 6 transports
+      # so total power of your fleet would then be:
+      # 30% heavy, 45% light, 15% galley, 10% transport
+
+      # http://www.eu4wiki.com/Land_warfare#Comparison
       when "infantry_cost"
-        bonuses["land_unit_cost"] -= 0.50 * v
+        bonuses["global_regiment_cost"] -= 0.50 * v
       when "cavalry_cost"
-        bonuses["land_unit_cost"] -= 0.20 * v
+        bonuses["global_regiment_cost"] -= 0.20 * v
       when "artillery_cost"
-        bonuses["land_unit_cost"] -= 0.30 * v
+        bonuses["global_regiment_cost"] -= 0.30 * v
       when "infantry_power"
-        bonuses["land_unit_power"] -= 0.50 * v
+        bonuses["land_unit_power"] += 0.50 * v
       when "cavalry_power"
-        bonuses["land_unit_power"] -= 0.30 * v
+        bonuses["land_unit_power"] += 0.30 * v
       when "artillery_power"
-        bonuses["land_unit_power"] -= 0.20 * v
+        bonuses["land_unit_power"] += 0.20 * v
+
+
+      when "heavy_ship_cost" # not seen anywhere
+        bonuses["global_ship_cost"] += 0.37 * v
+      when "light_ship_cost"
+        bonuses["global_ship_cost"] += 0.45 * v
+      when "galley_cost"
+        bonuses["global_ship_cost"] += 0.06 * v
+      when "transport_cost" # not seen anywhere
+        bonuses["global_ship_cost"] += 0.12 * v
+
+      when "heavy_ship_power"
+        bonuses["naval_unit_power"] += 0.30 * v
+      when "light_ship_power"
+        bonuses["naval_unit_power"] += 0.45 * v
+      when "galley_power"
+        bonuses["naval_unit_power"] += 0.15 * v
+      when "transport_power"
+        bonuses["naval_unit_power"] += 0.10 * v
+
+      # Combat ability and discipline work the same multiplicatively:
+      # damage = (100% + combat ability) * (100% + discipline modifiers) * other stuff
+      when "discipline"
+        bonuses["land_unit_power"] += v
+      # Morale increases morale damage, and defense. Discipline does that and regular damage/defense,
+      # so morale is worth about half as much as discipline
+      when "land_morale"
+        bonuses["land_unit_power"] += 0.5 * v
+      when "naval_morale"
+        bonuses["naval_unit_power"] += 0.5 * v
 
 
       else
@@ -133,7 +208,7 @@ class AnalyzeIdeaGroups < ParadoxGame
       pp bonuses
       puts ""
     end
-    # pp seen.sort # 118 to go
+    puts "#{seen.size} different bonuses"
   end
 end
 
