@@ -134,11 +134,19 @@ class Bonuses
   # Assume 2 diplomats, and diplomats spending 25% of their time fabricating, 25% improving relations
   # Since this is 1/(1-x) not 1+x (50% reduction means you get 200% work done, not 150% work)
   # I arbitrarily added 1.5x factor here, but it's really just ballpark.
+  #
+  # Justifying trade conflicts may take 1% of your diplomat-time - likely far less but there's some extra value
+  # from time sensitivity here
+  #
+  # Signs opposite since it's time vs modifier
   def fabricate_claims_time(v)
     diplomats 2 * 1.5 * 0.25 * -v
   end
   def improve_relation_modifier(v)
     diplomats 2 * 1.5 * 0.25 * v
+  end
+  def justify_trade_conflict_time(v)
+    diplomats 2 * 1.5 * 0.01 * -v
   end
 
   # Hard cold facts:
@@ -200,12 +208,16 @@ class Bonuses
   # * galley    -  25.84
   # * transport -  31.20
   #
-  # Actual floot composition being extremely dependent on your circumstances,
+  # Actual fleet composition being extremely dependent on your circumstances,
   # but decent ballpark figures are:
   # 50% light ships, 10% heavy ships, 15% galleys, 25% transports
   #
   # So costs are:
   # 45% light, 37% heavy, 6% galley, 12% transport
+  #
+  # and maintenance is 70% of total cost
+  #
+  # Since land units last forever I assume maintenance is 90% of the cost
   #
   # Of course nations with big galley cost discounts might go full galley spam because of them,
   # but then you get into naval force limit issues etc. It's too conditional to consider here
@@ -224,6 +236,9 @@ class Bonuses
   end
   def artillery_cost(v)
     calculated_land_cost 0.30 * v
+  end
+  def global_regiment_cost(v)
+    calculated_land_cost v
   end
   def infantry_power(v)
     land_unit_power 0.50 * v
@@ -246,6 +261,16 @@ class Bonuses
   end
   def transport_cost(v) # not seen anywhere
     calculated_ship_cost 0.12 * v
+  end
+  def global_ship_cost(v)
+    calculated_ship_cost v
+  end
+
+  def naval_maintenance_modifier(v)
+    calculated_ship_cost 0.7*v
+  end
+  def land_maintenance_modifier(v)
+    calculated_land_cost 0.9*v
   end
 
   def heavy_ship_power(v)
@@ -302,14 +327,26 @@ class Bonuses
     global_missionary_strength 0.25 * v
   end
 
-    # These are somewhat relevant early game.
+  # Extra pip speeds up siege by about 17%
+  # Asssume 30% of sieges have leaders
+  def leader_siege(v)
+    siege_ability v*0.17*0.30
+  end
+
+
+  # These are somewhat relevant early game.
   # If you're over force limit, any force limit %X increase is basically %X maintenance reduction
   # (except light ships suffer square of that, as some cheap exploit prevention trick probably)
   #
   # Assuming you're going to be over your force limit 20% of the time
   # Actual number will be less, but it's weighted towards more desperate times
+  #
+  # Assume 10% of your land force limit comes from vassals, which is probably too much
   def land_forcelimit_modifier(v)
     calculated_land_cost -0.2*v
+  end
+  def vassal_forcelimit_bonus(v)
+    land_forcelimit_modifier 0.1*v
   end
   def naval_forcelimit_modifier(v)
     calculated_ship_cost -0.2*v
@@ -326,6 +363,88 @@ class Bonuses
   end
   def idea_claim_colonies(v)
     extra_cbs 1
+  end
+
+  # Assuming half of your trade power is spent on steering, and you capture half of the value of trade steered again
+  # 25% of your trade power in your home node, 75% abroad
+  # 50% of your total trade power from provinces (does that include buildings and province modifiers or just base???)
+  #
+  # These ratios are based on a lot of assumptions
+  def trade_steering(v)
+    global_trade_power 0.5*v
+  end
+  def global_prov_trade_power_modifier(v)
+    global_trade_power 0.5*v
+  end
+  def global_own_trade_power(v)
+    global_trade_power 0.25*v
+  end
+  def global_foreign_trade_power(v)
+    global_trade_power 0.75*v
+  end
+  def global_trade_power(v)
+    trade_efficiency 0.5*v
+  end
+  def global_trade_income_modifier(v)
+    trade_efficiency v
+  end
+
+  # From a few simulations, ballpark figures for income of a typical country:
+  # 30% tax, 30% production, 30% trade, 8% tariff, 1% gold, 1% vassal
+  #
+  # For costs:
+  # 25% advisors, 40% army, 10% navy, 25% balance (which I assume goes for 20% buildings, 5% other stuff)
+  # I'll assume of that army spending, 5% is mercs, 5% is reinforcement, 90% is regular maintenance
+  #
+  # This isn't really true, since incomes from simualion already come with many modifiers, mostly positive,
+  # and these idea bonuses apply to base not total, so for most part this is going to overestimate
+  # how much value you'll be getting.
+
+  def production_efficiency(v)
+    money 0.3*v
+  end
+  def trade_efficiency(v)
+    money 0.3*v
+  end
+  def global_tax_modifier(v)
+    money 0.3*v
+  end
+  def vassal_income(v)
+    money 0.01*v
+  end
+  def advisor_cost(v)
+    money 0.25*-v
+  end
+  def calculated_land_cost(v)
+    money 0.40*-v
+  end
+  def calculated_ship_cost(v)
+    money 0.10*-v
+  end
+  def build_cost(v)
+    money 0.20*-v
+  end
+  def mercenary_cost(v)
+    calculated_land_cost 0.05*v
+  end
+  def merc_maintenance_modifier(v)
+    # For mercs I put maintenance as 50% since they tend to be disbanded when no longer needed
+    mercenary_cost 0.5*v
+  end
+  def no_cost_for_reinforcing(v)
+    raise unless v == true
+    calculated_land_cost -0.05
+  end
+
+
+
+  ### Higher level calculations ###
+  # Assume strength of the military is 80% army 20% navy.
+  def land_unit_power(v)
+    military_power 0.8*v
+  end
+  def naval_unit_power(v)
+    military_power 0.2*v
   end
 
 
