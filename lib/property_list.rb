@@ -23,6 +23,12 @@ class PropertyList
     rv
   end
 
+  # What should it return?
+  def delete(key)
+    @list = @list.select{|k,v| k != key}
+    nil
+  end
+
   def to_h
     rv = {}
     cast_to_array = {}

@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+require "pp"
+require "pathname"
+require_relative "../lib/paradox"
+
+class AnalyzeIdeaGroups < ParadoxGame
+  def each_idea_group
+    glob("common/ideas/*").each do |path|
+      parse(path).each do |idea_group|
+        yield(idea_group)
+      end
+    end
+  end
+
+  def list_of_bonuses(idea_group)
+    idea_group = idea_group.to_h
+    idea_group.delete "category"
+    idea_group.delete "trigger"
+    idea_group.delete "ai_will_do"
+    idea_group.delete "free"
+    idea_group.delete "important"
+
+    bonuses = {}
+    idea_group.each do |_,idea|
+      idea.each do |k,v|
+        if bonuses.has_key?(k)
+          # This test is dumb, but it's usually both int or both float
+          raise "WTF" unless v.class == bonuses[k].class
+          bonuses[k] += v
+          # Just for display
+          bonuses[k] = bonuses[k].round(6) if bonuses[k].is_a?(Float)
+        else
+          bonuses[k] = v
+        end
+      end
+    end
+    bonuses
+  end
+
+  def analyze_idea_groups!
+    each_idea_group do |name, idea_group|
+      bonuses = list_of_bonuses(idea_group)
+
+      pp name
+      pp bonuses
+      puts ""
+    end
+  end
+end
+
+AnalyzeIdeaGroups.new(*ARGV).analyze_idea_groups!
