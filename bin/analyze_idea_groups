@@ -85,6 +85,9 @@ class Bonuses
 
     # Completely irrelevant, even if you play merc game there are always enough
     :possible_mercenaries,
+
+    # In 1.7 they're usually fast enough
+    :envoy_travel_time,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -367,6 +370,37 @@ class Bonuses
     naval_unit_power v*0.1
   end
 
+  # +1/year with 5% default decay makes it stabilize at 20 higher level
+  # This results in regular bonuses, and better leaders
+  #
+  # PIPs according to http://www.eu4wiki.com/Military_tradition#Military_leaders
+  def army_tradition(v)
+    level = 0.2 * v
+
+    land_morale 0.25*level
+    manpower_recovery_speed 0.1*level
+    recover_army_morale_speed 0.1*level
+    siege_ability 0.05*level
+
+    leader_siege 1.5*level
+    leader_land_fire 2.25*level
+    leader_land_shock 2.25*level
+    leader_land_manuever 2.25*level
+  end
+
+  def navy_tradition(v)
+    level = 0.2 * v
+
+    naval_morale 0.25*level
+    blockade_efficiency 1.0*level
+    trade_steering 1.0*level
+    recover_navy_morale_speed 0.1*level
+    privateer_efficiency 0.25*level
+
+    leader_naval_shock 2.25*level
+    leader_naval_fire 2.25*level
+    leader_naval_manuever 2.25*level
+  end
 
   # These are somewhat relevant early game.
   # If you're over force limit, any force limit %X increase is basically %X maintenance reduction
@@ -513,7 +547,7 @@ class Bonuses
   # I'm assuming it just removes intolerance. With average -4 intolerance and 20% wrong religion provinces
   # that's what it amounts to
   def no_religion_penalty(v)
-    revolt_risk -4*0.2
+    global_revolt_risk -4*0.2
   end
 
   # Assume it affects 5% of your provinces, and avearge -RR is -2
@@ -542,6 +576,15 @@ class Bonuses
     military_power 0.2*v
   end
 
+  # These are ballpark estimates how good this is
+  # Naval is much more important since it's also used for exploration
+  def leader_land_manuever(v)
+    land_unit_power 0.01*v
+  end
+  def leader_naval_manuever(v)
+    naval_unit_power 0.02*v
+  end
+
   def score
     total = 0
     @ht.each do |k,v|
@@ -564,6 +607,12 @@ class Bonuses
       when :money
         # Doubling the money
         total += v*10
+      when :siege_ability
+        # Doubling siege speed
+        total += v*5
+      when :defensiveness
+        # Slowing down enemy sieges x2
+        total += v*1
       when :military_power
         # Doubling military power
         total += v*10
