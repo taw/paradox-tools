@@ -639,7 +639,7 @@ class Bonuses
       when :hostile_attrition
         total += 1
       else
-        warn "#{k} not scored"
+        # warn "#{k} not scored"
       end
     end
     total.round(4)
@@ -679,7 +679,7 @@ class AnalyzeIdeaGroups < ParadoxGame
       # bonuses = filter_bonuses(bonuses)
 
       seen += bonuses.keys
-      puts "#{bonuses.score} #{name}"
+      puts "%.4f %s" % [bonuses.score, name]
       pp bonuses.to_h
       # pp idea_group
       puts ""
