@@ -486,6 +486,9 @@ class Bonuses
   def global_tax_modifier(v)
     money 0.3*v
   end
+  def global_tariffs(v)
+    money 0.08*v
+  end
   def vassal_income(v)
     money 0.01*v
   end
@@ -618,7 +621,7 @@ class Bonuses
         total += v*10
       when :global_manpower_modifier
         # Doubling total manpower
-        total += v*5
+        total += v*3
       when :global_colonial_growth
         total += v/25.0
       when :extra_minor_abilities
