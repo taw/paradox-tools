@@ -7,8 +7,328 @@ require_relative "../lib/paradox"
 
 
 # It starts with 139 different bonuses, need to filter them down to manageable levels
-def new_bonus_hash
-  Hash.new(0)
+class Bonuses
+  def initialize
+    @ht = Hash.new(0)
+  end
+
+  def round!
+    @ht.each do |k,v|
+      @ht[k] = v.round(6) if v.is_a?(Float)
+    end
+  end
+
+  def to_h
+    round!
+    @ht.dup
+  end
+
+  def keys
+    @ht.keys
+  end
+
+  def method_missing(*args)
+    if args.size == 2
+      k, v = *args
+      if @ht.has_key?(v)
+        @ht[k] += v
+      else
+        @ht[k] = v
+      end
+    else
+      super
+    end
+  end
+
+  ### Bonus conversions ###
+
+  [
+    # This is probbaly a net negative, since you're less likely to get random same dynasty with another country
+    :heir_chance,
+
+    # This used to be amazing pre-1.6, now it does nothing
+    :diplomatic_reputation,
+
+    # Presitge is just so irrelevant let's not bother tracking it
+    :prestige,
+    :prestige_decay,
+    :prestige_from_land,
+    :prestige_from_naval,
+
+    # loans are basically irrelevant
+    :interest,
+
+    # unless you only own 1-2 ports, it's completely irrelevant
+    :global_ship_recruit_speed,
+    :global_regiment_recruit_speed,
+
+    # if you have to worry about that, you're doing something wrong
+    :enemy_core_creation,
+
+    # These are so godawfully underpowered we might just as well ignore them
+    :rebel_support_efficiency,
+    :embargo_efficiency,
+    :privateer_efficiency,
+    :global_spy_defence,
+    :spy_offence,
+
+    # Since you always park a unit on your colony, and they never can kill your unit
+    # (unless you upgrade tech that same month and it goes to 0 morale or such nonsense)
+    # it never matters
+    :reduced_native_attacks,
+
+    # Ignored because ridiculously underpowered
+    :culture_conversion_cost,
+  ].each do |k|
+    define_method(k){|_| }
+  end
+
+   # They aren't worth the same, but very conditional and hard to judge value
+  def may_infiltrate_administration(v)
+    extra_minor_abilities 1
+  end
+  def may_sow_discontent(v)
+    extra_minor_abilities 1
+  end
+  def may_sabotage_reputation(v)
+    extra_minor_abilities 1
+  end
+  def may_force_march(v)
+    extra_minor_abilities 1
+  end
+
+  def may_explore(v)
+    @ht[:may_explore] += 1.0
+  end
+  def auto_explore_adjacent_to_colony(v)
+    # Very weak explore variant, might be good enough for some countries
+    may_explore 0.25
+  end
+
+  # Assume used 75% of the time
+  def diplomatic_upkeep(v)
+    monthly_monarch_points 0.75 * v
+  end
+  def free_leader_pool(v)
+    monthly_monarch_points 0.75 * v
+  end
+
+  # This generated some monthly increase, just without cap increase
+  # since it's so rare to be at cap, let's count it as 90% as good
+  def manpower_recovery_speed(v)
+    global_manpower_modifier 0.90 * v
+  end
+
+  # Assume provinces are 80% your religion, 5% heretic, 15% heathen
+  # Usually much higher your religion, but weighting critical times higher.
+  def tolerance_own(v)
+    global_revolt_risk -v * 0.80
+  end
+  def tolerance_heretic(v)
+    global_revolt_risk -v * 0.05
+  end
+  def tolerance_heathen(v)
+    global_revolt_risk -v * 0.15
+  end
+
+  # Assume 2 diplomats, and diplomats spending 25% of their time fabricating, 25% improving relations
+  # Since this is 1/(1-x) not 1+x (50% reduction means you get 200% work done, not 150% work)
+  # I arbitrarily added 1.5x factor here, but it's really just ballpark.
+  def fabricate_claims_time(v)
+    diplomats 2 * 1.5 * 0.25 * -v
+  end
+  def improve_relation_modifier(v)
+    diplomats 2 * 1.5 * 0.25 * v
+  end
+
+  # Hard cold facts:
+  # * 22400 points spent on ideas, or 5/month
+  # * 54000 base points spent on tech, or 12/month (actual differs, but modifier is applied to base not total)
+  def idea_cost(v)
+    monthly_monarch_points 5 * -v
+  end
+  def technology_cost(v)
+    monthly_monarch_points 12 * -v
+  end
+  def mil_tech_cost_modifier(v)
+    monthly_monarch_points 4 * -v
+  end
+  def dip_tech_cost_modifier(v)
+    monthly_monarch_points 4 * -v
+  end
+  def adm_tech_cost_modifier(v)
+    monthly_monarch_points 4 * -v
+  end
+
+  # Assuming +1 stab button / 15 years (base cost 100, mods apply to this not total)
+  # It's not uncommon to be at permanent +2/+3 due to events, but then you could be deep in negative territory
+  # due to westernization etc.
+  def stability_cost_modifier(v)
+    monthly_monarch_points (100.0 / 12 / 15) * -v
+  end
+  # Assuming one reduce WE button press every 25 years
+  # It's somewhat common early game, late game not really
+  def war_exhaustion_cost(v)
+    monthly_monarch_points (75.0 / 12 / 25) * -v
+  end
+  # Assuming reduce inflation button is used once / 50 years
+  def inflation_action_cost(v)
+    monthly_monarch_points (75.0 / 12 / 50) * -v
+  end
+  # Assume average of 1bt/year cored
+  def core_creation(v)
+    monthly_monarch_points (20.0 * 1.0 / 12) * -v
+  end
+  # Assume average of 1bt/year diploannexed
+  def diplomatic_annexation_cost(v)
+    monthly_monarch_points (10.0 * 1.0 / 12) * -v
+  end
+
+  # Assume: 16 inf, 4 cav, 6 art stacks
+  # so upkeep is: 160 inf (35%) / 100 cav (25%) / 180 art (40%)
+  # However since infantry takes most beating, and they cost most reinforce costs by far,
+  # adjust that to: 50% inf, 20% cav, 30% art
+  # For combat ability assume the same except lower artillery since it's really siege unit for most of the game to:
+  # 50% inf, 30% cav, 20% art
+  # For land units cost and maintenance are proportional
+
+  # For navy it's harder to make good assumptions.
+  # First, ships need to be rebuilt and maintenance cost are not proportional to recruitment costs
+  # TCO over 40 years (when it will need to be rebuilt if not sunk yet):
+  # * heavy     - 250.16
+  # * light     -  59.84
+  # * galley    -  25.84
+  # * transport -  31.20
+  #
+  # Actual floot composition being extremely dependent on your circumstances,
+  # but decent ballpark figures are:
+  # 50% light ships, 10% heavy ships, 15% galleys, 25% transports
+  #
+  # So costs are:
+  # 45% light, 37% heavy, 6% galley, 12% transport
+  #
+  # Of course nations with big galley cost discounts might go full galley spam because of them,
+  # but then you get into naval force limit issues etc. It's too conditional to consider here
+  #
+  # As for power, by canons/hull strength we can sort of assume ballpark figures:
+  # 1 heavy = 3 lights or galleys = 6 transports
+  # so total power of your fleet would then be:
+  # 30% heavy, 45% light, 15% galley, 10% transport
+
+  # http://www.eu4wiki.com/Land_warfare#Comparison
+  def infantry_cost(v)
+    calculated_land_cost 0.50 * v
+  end
+  def cavalry_cost(v)
+    calculated_land_cost 0.20 * v
+  end
+  def artillery_cost(v)
+    calculated_land_cost 0.30 * v
+  end
+  def infantry_power(v)
+    land_unit_power 0.50 * v
+  end
+  def cavalry_power(v)
+    land_unit_power 0.30 * v
+  end
+  def artillery_power(v)
+    land_unit_power 0.20 * v
+  end
+
+  def heavy_ship_cost(v) # not seen anywhere
+    calculated_ship_cost 0.37 * v
+  end
+  def light_ship_cost(v)
+    calculated_ship_cost 0.45 * v
+  end
+  def galley_cost(v)
+    calculated_ship_cost 0.06 * v
+  end
+  def transport_cost(v) # not seen anywhere
+    calculated_ship_cost 0.12 * v
+  end
+
+  def heavy_ship_power(v)
+    naval_unit_power 0.30 * v
+  end
+  def light_ship_power(v)
+    naval_unit_power 0.45 * v
+  end
+  def galley_power(v)
+    naval_unit_power 0.15 * v
+  end
+  def transport_power(v)
+    naval_unit_power 0.10 * v
+  end
+
+  # Combat ability and discipline work the same multiplicatively:
+  # damage = (100% + combat ability) * (100% + discipline modifiers) * other stuff
+  # (durability is naval equivalent of discipline)
+  def discipline(v)
+    land_unit_power v
+  end
+  def ship_durability(v)
+    naval_unit_power v
+  end
+  # Morale increases morale damage, and defense. Discipline does that and regular damage/defense,
+  # so morale is worth about half as much as discipline
+  def land_morale(v)
+    land_unit_power 0.5 * v
+  end
+  def naval_morale(v)
+    naval_unit_power 0.5 * v
+  end
+
+  # 1 fire pip is worth 20%/20%/0%/0% (fire dmg, fire morale dmg, shock dmg, shock morale dmg)
+  # 10% discipline is worth 10%/20%/10%/20% - and you won't always have leaders
+  # So let's say leader pip is worth 5% discipline
+  #
+  # For naval units you will very rarely have leaders, so half that value again
+  def leader_land_fire(v)
+    land_unit_power 0.05 * v
+  end
+  def leader_land_shock(v)
+    land_unit_power 0.05 * v
+  end
+  def leader_naval_fire(v)
+    naval_unit_power 0.025 * v
+  end
+  def leader_naval_shock(v)
+    naval_unit_power 0.025 * v
+  end
+
+  # Assume 25% heretic 75% heathen
+  def global_heretic_missionary_strength(v)
+    global_missionary_strength 0.25 * v
+  end
+
+    # These are somewhat relevant early game.
+  # If you're over force limit, any force limit %X increase is basically %X maintenance reduction
+  # (except light ships suffer square of that, as some cheap exploit prevention trick probably)
+  #
+  # Assuming you're going to be over your force limit 20% of the time
+  # Actual number will be less, but it's weighted towards more desperate times
+  def land_forcelimit_modifier(v)
+    calculated_land_cost -0.2*v
+  end
+  def naval_forcelimit_modifier(v)
+    calculated_ship_cost -0.2*v
+  end
+
+  def cb_on_primitives(v)
+    extra_cbs 1
+  end
+  def cb_on_overseas(v)
+    extra_cbs 1
+  end
+  def cb_on_religious_enemies(v)
+    extra_cbs 1
+  end
+  def idea_claim_colonies(v)
+    extra_cbs 1
+  end
+
+
 end
 
 class AnalyzeIdeaGroups < ParadoxGame
@@ -28,236 +348,12 @@ class AnalyzeIdeaGroups < ParadoxGame
     idea_group.delete "free"
     idea_group.delete "important"
 
-    bonuses = new_bonus_hash
+    bonuses = Bonuses.new
     idea_group.each do |_,idea|
       idea.each do |k,v|
-        if bonuses.has_key?(k)
-          # This test is dumb, but it's usually both int or both float
-          raise "WTF" unless v.class == bonuses[k].class
-          bonuses[k] += v
-          # Just for display
-          bonuses[k] = bonuses[k].round(6) if bonuses[k].is_a?(Float)
-        else
-          bonuses[k] = v
-        end
+        bonuses.send(k,v)
       end
     end
-    bonuses
-  end
-
-  # Facts:
-  # * 22400 points spent on ideas, or 5/month
-  # * 54000 base points spent on tech, or 12/month (actual differs, but modifier is applied to base not total)
-
-  def filter_bonuses(raw_bonuses)
-    bonuses = new_bonus_hash
-    raw_bonuses.each do |k,v|
-      case k
-      when "heir_chance"
-        # This is probbaly a net negative, since you're less likely to get random same dynasty with another country
-      when "diplomatic_reputation"
-        # This used to be amazing pre-1.6, now it does nothing
-      when "prestige", "prestige_decay", "prestige_from_land", "prestige_from_naval"
-        # Presitge is just so irrelevant let's not bother tracking it
-      when "interest"
-        # loans are basically irrelevant
-      when "global_ship_recruit_speed", "global_regiment_recruit_speed"
-        # unless you only own 1-2 ports, it's completely irrelevant
-      when "enemy_core_creation"
-        # if you have to worry about that, you're doing something wrong
-      when "rebel_support_efficiency", "embargo_efficiency", "privateer_efficiency", "global_spy_defence", "spy_offence"
-        # These are so godawfully underpowered we might just as well ignore them
-      when "reduced_native_attacks"
-        # Since you always park a unit on your colony, and they never can kill your unit
-        # (unless you upgrade tech that same month and it goes to 0 morale or such nonsense)
-        # it never matters
-      when "culture_conversion_cost"
-        # Ignored because ridiculously underpowered
-
-      # They aren't worth the same, but very conditional
-      when "may_infiltrate_administration", "may_sow_discontent", "may_sabotage_reputation", "may_force_march"
-        bonuses["extra_minor_abilities"] += 1
-
-      when "may_explore"
-        bonuses["may_explore"] += 1.0
-      when "auto_explore_adjacent_to_colony"
-        # Very weak explore variant, might be good enough for some countries
-        bonuses["may_explore"] += 0.25
-
-      # This generated some monthly increase, just without cap increase
-      # since it's so rare to be at cap, let's count it as 90% as good
-      when "manpower_recovery_speed"
-        bonuses["global_manpower_modifier"] += 0.90 * v
-
-      # Assume provinces are 80% your religion, 5% heretic, 15% heathen
-      # Usually much higher your religion, but weighting critical times higher.
-      when "tolerance_own"
-        bonuses["global_revolt_risk"] -= v * 0.80
-      when "tolerance_heretic"
-        bonuses["global_revolt_risk"] -= v * 0.05
-      when "tolerance_heathen"
-        bonuses["global_revolt_risk"] -= v * 0.15
-
-      # Assume used 75% of the time
-      when "diplomatic_upkeep"
-        bonuses["monthly_monarch_points"] += 0.75 * v
-      when "free_leader_pool"
-        bonuses["monthly_monarch_points"] += 0.75 * v
-
-      # Assume 2 diplomats, and diplomats spending 25% of their time fabricating, 25% improving relations
-      # Since this is 1/(1-x) not 1+x (50% reduction means you get 200% work done, not 150% work)
-      # I arbitrarily added 1.5x factor here, but it's really just ballpark.
-      when "fabricate_claims_time"
-        bonuses["diplomats"] -= 2 * 1.5 * 0.25 * v
-      when "improve_relation_modifier"
-        bonuses["diplomats"] += 2 * 1.5 * 0.25 * v
-
-      # Hard cold facts
-      when "idea_cost"
-        bonuses["monthly_monarch_points"] -= 5 * v
-      when "technology_cost"
-        bonuses["monthly_monarch_points"] -= 12 * v
-      when "mil_tech_cost_modifier", "dip_tech_cost_modifier", "adm_tech_cost_modifier"
-        bonuses["monthly_monarch_points"] -= 4 * v
-
-      # Assuming +1 stab button / 15 years (base cost 100, mods apply to this not total)
-      # It's not uncommon to be at permanent +2/+3 due to events, but then you could be deep in negative territory
-      # due to westernization etc.
-      when "stability_cost_modifier"
-        bonuses["monthly_monarch_points"] -= (100.0 / 12 / 15) * v
-      # Assuming one reduce WE button press every 25 years
-      # It's somewhat common early game, late game not really
-      when "war_exhaustion_cost"
-        bonuses["monthly_monarch_points"] -= (75.0 / 12 / 25) * v
-      # Assuming reduce inflation button is used once / 50 years
-      when "inflation_action_cost"
-        bonuses["monthly_monarch_points"] -= (75.0 / 12 / 50) * v
-
-      # Assume average of 1bt/year cored
-      when "core_creation"
-        bonuses["monthly_monarch_points"] -= (20.0 * 1.0 / 12) * v
-      # Assume average of 1bt/year diploannexed
-      when "diplomatic_annexation_cost"
-        bonuses["monthly_monarch_points"] -= (10.0 * 1.0 / 12) * v
-
-
-      # Assume: 16 inf, 4 cav, 6 art stacks
-      # so upkeep is: 160 inf (35%) / 100 cav (25%) / 180 art (40%)
-      # However since infantry takes most beating, and they cost most reinforce costs by far,
-      # adjust that to: 50% inf, 20% cav, 30% art
-      # For combat ability assume the same except lower artillery since it's really siege unit for most of the game to:
-      # 50% inf, 30% cav, 20% art
-      # For land units cost and maintenance are proportional
-
-      # For navy it's harder to make good assumptions.
-      # First, ships need to be rebuilt and maintenance cost are not proportional to recruitment costs
-      # TCO over 40 years (when it will need to be rebuilt if not sunk yet):
-      # * heavy     - 250.16
-      # * light     -  59.84
-      # * galley    -  25.84
-      # * transport -  31.20
-      #
-      # Actual floot composition being extremely dependent on your circumstances,
-      # but decent ballpark figures are:
-      # 50% light ships, 10% heavy ships, 15% galleys, 25% transports
-      #
-      # So costs are:
-      # 45% light, 37% heavy, 6% galley, 12% transport
-      #
-      # Of course nations with big galley cost discounts might go full galley spam because of them,
-      # but then you get into naval force limit issues etc. It's too conditional to consider here
-      #
-      # As for power, by canons/hull strength we can sort of assume ballpark figures:
-      # 1 heavy = 3 lights or galleys = 6 transports
-      # so total power of your fleet would then be:
-      # 30% heavy, 45% light, 15% galley, 10% transport
-
-      # http://www.eu4wiki.com/Land_warfare#Comparison
-      when "infantry_cost"
-        bonuses["calculated_land_cost"] += 0.50 * v
-      when "cavalry_cost"
-        bonuses["calculated_land_cost"] += 0.20 * v
-      when "artillery_cost"
-        bonuses["calculated_land_cost"] += 0.30 * v
-      when "infantry_power"
-        bonuses["land_unit_power"] += 0.50 * v
-      when "cavalry_power"
-        bonuses["land_unit_power"] += 0.30 * v
-      when "artillery_power"
-        bonuses["land_unit_power"] += 0.20 * v
-
-      when "heavy_ship_cost" # not seen anywhere
-        bonuses["calculated_ship_cost"] += 0.37 * v
-      when "light_ship_cost"
-        bonuses["calculated_ship_cost"] += 0.45 * v
-      when "galley_cost"
-        bonuses["calculated_ship_cost"] += 0.06 * v
-      when "transport_cost" # not seen anywhere
-        bonuses["calculated_ship_cost"] += 0.12 * v
-
-      when "heavy_ship_power"
-        bonuses["naval_unit_power"] += 0.30 * v
-      when "light_ship_power"
-        bonuses["naval_unit_power"] += 0.45 * v
-      when "galley_power"
-        bonuses["naval_unit_power"] += 0.15 * v
-      when "transport_power"
-        bonuses["naval_unit_power"] += 0.10 * v
-
-      # Combat ability and discipline work the same multiplicatively:
-      # damage = (100% + combat ability) * (100% + discipline modifiers) * other stuff
-      # (durability is naval equivalent of discipline)
-      when "discipline"
-        bonuses["land_unit_power"] += v
-      when "ship_durability"
-        bonuses["naval_unit_power"] += v
-      # Morale increases morale damage, and defense. Discipline does that and regular damage/defense,
-      # so morale is worth about half as much as discipline
-      when "land_morale"
-        bonuses["land_unit_power"] += 0.5 * v
-      when "naval_morale"
-        bonuses["naval_unit_power"] += 0.5 * v
-
-      # 1 fire pip is worth 20%/20%/0%/0% (fire dmg, fire morale dmg, shock dmg, shock morale dmg)
-      # 10% discipline is worth 10%/20%/10%/20% - and you won't always have leaders
-      # So let's say leader pip is worth 5% discipline
-      #
-      # For naval units you will very rarely have leaders, so half that value again
-      when "leader_land_fire", "leader_land_shock"
-        bonuses["land_unit_power"] += 0.05 * v
-      when "leader_naval_fire", "leader_naval_shock"
-        bonuses["naval_unit_power"] += 0.025 * v
-
-      # Assume 25% heretic 75% heathen
-      when "global_heretic_missionary_strength"
-        bonuses["global_missionary_strength"] = 0.25 * v
-
-
-      # These are somewhat relevant early game.
-      # If you're over force limit, any force limit %X increase is basically %X maintenance reduction
-      # (except light ships suffer square of that, as some cheap exploit prevention trick probably)
-      #
-      # Assuming you're going to be over your force limit 20% of the time
-      # Actual number will be less, but it's weighted towards more desperate times
-      when "land_forcelimit_modifier"
-        bonuses["calculated_land_cost"] -= 0.2 * v
-      when "naval_forcelimit_modifier"
-        bonuses["calculated_ship_cost"] -= 0.2 * v
-
-      when "cb_on_primitives", "cb_on_overseas", "cb_on_religious_enemies", "idea_claim_colonies"
-        raise unless v == true
-        bonuses["extra_cbs"] += 1
-
-      else
-        bonuses[k] = v
-      end
-    end
-
-    # Just cleanup for display
-    bonuses.each do |k,v|
-      bonuses[k] = v.round(6) if v.is_a?(Float)
-    end
-
     bonuses
   end
 
@@ -265,11 +361,12 @@ class AnalyzeIdeaGroups < ParadoxGame
     seen = Set[]
     each_idea_group do |name, idea_group|
       bonuses = list_of_bonuses(idea_group)
-      bonuses = filter_bonuses(bonuses)
+      # bonuses = filter_bonuses(bonuses)
 
       seen += bonuses.keys
       pp name
-      pp bonuses
+      pp bonuses.to_h
+      # pp idea_group
       puts ""
     end
     puts "#{seen.size} different bonuses"
