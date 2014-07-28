@@ -5,6 +5,8 @@ require "pp"
 require "pathname"
 require_relative "../lib/paradox"
 
+
+# It starts with 139 different bonuses, need to filter them down to manageable levels
 def new_bonus_hash
   Hash.new(0)
 end
@@ -43,12 +45,9 @@ class AnalyzeIdeaGroups < ParadoxGame
     bonuses
   end
 
-  # 139 different bonuses, need to filter them down to manageable levels
-
   # Facts:
   # * 22400 points spent on ideas, or 5/month
   # * 54000 base points spent on tech, or 12/month (actual differs, but modifier is applied to base not total)
-
 
   def filter_bonuses(raw_bonuses)
     bonuses = new_bonus_hash
@@ -66,6 +65,24 @@ class AnalyzeIdeaGroups < ParadoxGame
         # unless you only own 1-2 ports, it's completely irrelevant
       when "enemy_core_creation"
         # if you have to worry about that, you're doing something wrong
+      when "rebel_support_efficiency", "embargo_efficiency", "privateer_efficiency", "global_spy_defence", "spy_offence"
+        # These are so godawfully underpowered we might just as well ignore them
+      when "reduced_native_attacks"
+        # Since you always park a unit on your colony, and they never can kill your unit
+        # (unless you upgrade tech that same month and it goes to 0 morale or such nonsense)
+        # it never matters
+      when "culture_conversion_cost"
+        # Ignored because ridiculously underpowered
+
+      # They aren't worth the same, but very conditional
+      when "may_infiltrate_administration", "may_sow_discontent", "may_sabotage_reputation", "may_force_march"
+        bonuses["extra_minor_abilities"] += 1
+
+      when "may_explore"
+        bonuses["may_explore"] += 1.0
+      when "auto_explore_adjacent_to_colony"
+        # Very weak explore variant, might be good enough for some countries
+        bonuses["may_explore"] += 0.25
 
       # This generated some monthly increase, just without cap increase
       # since it's so rare to be at cap, let's count it as 90% as good
@@ -87,6 +104,14 @@ class AnalyzeIdeaGroups < ParadoxGame
       when "free_leader_pool"
         bonuses["monthly_monarch_points"] += 0.75 * v
 
+      # Assume 2 diplomats, and diplomats spending 25% of their time fabricating, 25% improving relations
+      # Since this is 1/(1-x) not 1+x (50% reduction means you get 200% work done, not 150% work)
+      # I arbitrarily added 1.5x factor here, but it's really just ballpark.
+      when "fabricate_claims_time"
+        bonuses["diplomats"] -= 2 * 1.5 * 0.25 * v
+      when "improve_relation_modifier"
+        bonuses["diplomats"] += 2 * 1.5 * 0.25 * v
+
       # Hard cold facts
       when "idea_cost"
         bonuses["monthly_monarch_points"] -= 5 * v
@@ -105,8 +130,16 @@ class AnalyzeIdeaGroups < ParadoxGame
       when "war_exhaustion_cost"
         bonuses["monthly_monarch_points"] -= (75.0 / 12 / 25) * v
       # Assuming reduce inflation button is used once / 50 years
-      when "inflation_reduction"
+      when "inflation_action_cost"
         bonuses["monthly_monarch_points"] -= (75.0 / 12 / 50) * v
+
+      # Assume average of 1bt/year cored
+      when "core_creation"
+        bonuses["monthly_monarch_points"] -= (20.0 * 1.0 / 12) * v
+      # Assume average of 1bt/year diploannexed
+      when "diplomatic_annexation_cost"
+        bonuses["monthly_monarch_points"] -= (10.0 * 1.0 / 12) * v
+
 
       # Assume: 16 inf, 4 cav, 6 art stacks
       # so upkeep is: 160 inf (35%) / 100 cav (25%) / 180 art (40%)
@@ -141,11 +174,11 @@ class AnalyzeIdeaGroups < ParadoxGame
 
       # http://www.eu4wiki.com/Land_warfare#Comparison
       when "infantry_cost"
-        bonuses["global_regiment_cost"] -= 0.50 * v
+        bonuses["calculated_land_cost"] += 0.50 * v
       when "cavalry_cost"
-        bonuses["global_regiment_cost"] -= 0.20 * v
+        bonuses["calculated_land_cost"] += 0.20 * v
       when "artillery_cost"
-        bonuses["global_regiment_cost"] -= 0.30 * v
+        bonuses["calculated_land_cost"] += 0.30 * v
       when "infantry_power"
         bonuses["land_unit_power"] += 0.50 * v
       when "cavalry_power"
@@ -153,15 +186,14 @@ class AnalyzeIdeaGroups < ParadoxGame
       when "artillery_power"
         bonuses["land_unit_power"] += 0.20 * v
 
-
       when "heavy_ship_cost" # not seen anywhere
-        bonuses["global_ship_cost"] += 0.37 * v
+        bonuses["calculated_ship_cost"] += 0.37 * v
       when "light_ship_cost"
-        bonuses["global_ship_cost"] += 0.45 * v
+        bonuses["calculated_ship_cost"] += 0.45 * v
       when "galley_cost"
-        bonuses["global_ship_cost"] += 0.06 * v
+        bonuses["calculated_ship_cost"] += 0.06 * v
       when "transport_cost" # not seen anywhere
-        bonuses["global_ship_cost"] += 0.12 * v
+        bonuses["calculated_ship_cost"] += 0.12 * v
 
       when "heavy_ship_power"
         bonuses["naval_unit_power"] += 0.30 * v
@@ -174,8 +206,11 @@ class AnalyzeIdeaGroups < ParadoxGame
 
       # Combat ability and discipline work the same multiplicatively:
       # damage = (100% + combat ability) * (100% + discipline modifiers) * other stuff
+      # (durability is naval equivalent of discipline)
       when "discipline"
         bonuses["land_unit_power"] += v
+      when "ship_durability"
+        bonuses["naval_unit_power"] += v
       # Morale increases morale damage, and defense. Discipline does that and regular damage/defense,
       # so morale is worth about half as much as discipline
       when "land_morale"
@@ -183,6 +218,35 @@ class AnalyzeIdeaGroups < ParadoxGame
       when "naval_morale"
         bonuses["naval_unit_power"] += 0.5 * v
 
+      # 1 fire pip is worth 20%/20%/0%/0% (fire dmg, fire morale dmg, shock dmg, shock morale dmg)
+      # 10% discipline is worth 10%/20%/10%/20% - and you won't always have leaders
+      # So let's say leader pip is worth 5% discipline
+      #
+      # For naval units you will very rarely have leaders, so half that value again
+      when "leader_land_fire", "leader_land_shock"
+        bonuses["land_unit_power"] += 0.05 * v
+      when "leader_naval_fire", "leader_naval_shock"
+        bonuses["naval_unit_power"] += 0.025 * v
+
+      # Assume 25% heretic 75% heathen
+      when "global_heretic_missionary_strength"
+        bonuses["global_missionary_strength"] = 0.25 * v
+
+
+      # These are somewhat relevant early game.
+      # If you're over force limit, any force limit %X increase is basically %X maintenance reduction
+      # (except light ships suffer square of that, as some cheap exploit prevention trick probably)
+      #
+      # Assuming you're going to be over your force limit 20% of the time
+      # Actual number will be less, but it's weighted towards more desperate times
+      when "land_forcelimit_modifier"
+        bonuses["calculated_land_cost"] -= 0.2 * v
+      when "naval_forcelimit_modifier"
+        bonuses["calculated_ship_cost"] -= 0.2 * v
+
+      when "cb_on_primitives", "cb_on_overseas", "cb_on_religious_enemies", "idea_claim_colonies"
+        raise unless v == true
+        bonuses["extra_cbs"] += 1
 
       else
         bonuses[k] = v
