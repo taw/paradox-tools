@@ -215,6 +215,10 @@ class Bonuses
   def unjustified_demands(v)
     monthly_dip_points (-v * 50 * 2 / 120)
   end
+  # Assume 5 buildings every 10 years
+  def build_power_cost(v)
+    monthly_dip_points (-v * 10 * 5 / 120)
+  end
 
   # Assume: 16 inf, 4 cav, 6 art stacks
   # so upkeep is: 160 inf (35%) / 100 cav (25%) / 180 art (40%)
@@ -652,7 +656,7 @@ class Bonuses
         # This used to be amazing pre-1.6, now it does very little
         total += 0*v
       else
-        # warn "#{k} not scored"
+        warn "#{k} not scored"
       end
     end
     total.round(4)
