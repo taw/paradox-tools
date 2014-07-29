@@ -46,9 +46,6 @@ class Bonuses
     # This is probbaly a net negative, since you're less likely to get random same dynasty with another country
     :heir_chance,
 
-    # This used to be amazing pre-1.6, now it does nothing
-    :diplomatic_reputation,
-
     # Presitge is just so irrelevant let's not bother tracking it
     :prestige,
     :prestige_decay,
@@ -119,10 +116,10 @@ class Bonuses
 
   # Assume used 75% of the time
   def diplomatic_upkeep(v)
-    monthly_monarch_points 0.75 * v
+    monthly_dip_points 0.75 * v
   end
   def free_leader_pool(v)
-    monthly_monarch_points 0.75 * v
+    monthly_mil_points 0.75 * v
   end
 
   # This generated some monthly increase, just without cap increase
@@ -174,47 +171,49 @@ class Bonuses
   # * 22400 points spent on ideas, or 5/month
   # * 54000 base points spent on tech, or 12/month (actual differs, but modifier is applied to base not total)
   def idea_cost(v)
-    monthly_monarch_points 5 * -v
+    monthly_mixed_monarch_points 5 * -v
   end
   def technology_cost(v)
-    monthly_monarch_points 12 * -v
+    monthly_adm_points 4 * -v
+    monthly_dip_points 4 * -v
+    monthly_mil_points 4 * -v
   end
   def mil_tech_cost_modifier(v)
-    monthly_monarch_points 4 * -v
+    monthly_mil_points 4 * -v
   end
   def dip_tech_cost_modifier(v)
-    monthly_monarch_points 4 * -v
+    monthly_dip_points 4 * -v
   end
   def adm_tech_cost_modifier(v)
-    monthly_monarch_points 4 * -v
+    monthly_adm_points 4 * -v
   end
 
   # Assuming +1 stab button / 15 years (base cost 100, mods apply to this not total)
   # It's not uncommon to be at permanent +2/+3 due to events, but then you could be deep in negative territory
   # due to westernization etc.
   def stability_cost_modifier(v)
-    monthly_monarch_points (-v * 100.0 / 12 / 15)
+    monthly_adm_points (-v * 100.0 / 12 / 15)
   end
   # Assuming one reduce WE button press every 25 years
   # It's somewhat common early game, late game not really
   def war_exhaustion_cost(v)
-    monthly_monarch_points (-v * 75.0 / 12 / 25)
+    monthly_dip_points (-v * 75.0 / 12 / 25)
   end
   # Assuming reduce inflation button is used once / 50 years
   def inflation_action_cost(v)
-    monthly_monarch_points (-v * 75.0 / 12 / 50)
+    monthly_adm_points (-v * 75.0 / 12 / 50)
   end
   # Assume average of 1bt/year cored
   def core_creation(v)
-    monthly_monarch_points (-v * 20.0 * 1.0 / 12)
+    monthly_adm_points (-v * 20.0 * 1.0 / 12)
   end
   # Assume average of 1bt/year diploannexed
   def diplomatic_annexation_cost(v)
-    monthly_monarch_points (-v * 10.0 * 1.0 / 12)
+    monthly_dip_points (-v * 10.0 * 1.0 / 12)
   end
   # Assume 2 unjustified demand for base of 50 each every 10 years
   def unjustified_demands(v)
-    monthly_monarch_points (-v * 50 * 2 / 120)
+    monthly_dip_points (-v * 50 * 2 / 120)
   end
 
   # Assume: 16 inf, 4 cav, 6 art stacks
@@ -593,8 +592,15 @@ class Bonuses
     @ht.each do |k,v|
       case k
       # Base unit of value
-      when :monthly_monarch_points
+      when :monthly_mixed_monarch_points
+        # This is meant for unpredictable mix, for 1/1/1 like all tech just use explicit values
         total += v
+      when :monthly_dip_points
+        total += v*1.1
+      when :monthly_adm_points
+        total += v*1.1
+      when :monthly_mil_points
+        total += v*0.8
       when :colonists
         total += 3*v
       when :diplomats
@@ -642,6 +648,9 @@ class Bonuses
         total += 2*v
       when :ae_impact
         total += 2*v
+      when :diplomatic_reputation
+        # This used to be amazing pre-1.6, now it does very little
+        total += 0*v
       else
         # warn "#{k} not scored"
       end
