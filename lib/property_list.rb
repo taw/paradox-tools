@@ -46,6 +46,11 @@ class PropertyList
     nil
   end
 
+  def delete_if
+    @list = @list.select{|k,v| !yield(k,v)}
+    nil
+  end
+
   def to_h
     rv = {}
     cast_to_array = {}

@@ -28,7 +28,7 @@ else
   f2.write(mod2out)
   f2.close
 
-  system *%W[diff -wu #{f1.path} #{f2.path}]
+  system *%W[diff -w -U10 #{f1.path} #{f2.path}]
   f1.unlink
   f2.unlink
 end

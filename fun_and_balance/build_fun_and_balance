@@ -94,6 +94,15 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       node["base_values"]["diplomatic_upkeep"] = 8
       node["base_values"]["global_missionary_strength"] = 0.01
       node["base_values"]["global_heretic_missionary_strength"] = 0.01
+      node["war"] = PropertyList[] if node["war"] == []
+      node["war"]["war_exhaustion_cost"] = 100
+      node["emperor"]["diplomatic_upkeep"] = 2
+      node["inverse_religious_unity"]["global_revolt_risk"] = 5
+      node["war_exhaustion"]["defensiveness"] = -0.02
+      node["war_exhaustion"]["land_morale"] = -0.02
+      node["war_exhaustion"]["naval_morale"] = -0.02
+      node["positive_stability"]["global_missionary_strength"] = 0.007
+      node["non_accepted_culture"]["local_revolt_risk"] = 4
     end
 
     patch_mod_file!("common/governments/00_governments.txt") do |node|
@@ -116,18 +125,38 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       node["improve_relations_mission"]["effect"]["FROM"]["add_dip_power"] = 25
     end
 
-    patch_mod_file!("common/technologies/dip.txt") do |node| end
+    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
+      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete_if do |k,v|
+        k == "NOT" and (v == PropertyList["tag", "HLR"] or v == PropertyList["tag", "TUR"])
+      end
+    end
+
+    patch_mod_file!("common/technologies/dip.txt") do |node|
+      node.find_all("technology").each_with_index do |tech,i|
+        if i == 0
+          tech["reduced_naval_attrition"] = true
+        else
+          tech.delete("reduced_naval_attrition")
+        end
+      end
+    end
+
+    patch_mod_file!("events/PeasantsWar.txt") do |node|
+      node.find_all("country_event").each do |event|
+        next unless event["id"] == "peasants_war.1"
+        event["trigger"] # apply fixes here
+      end
+    end
+
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node| end
     patch_mod_file!("common/religions/00_religion.txt") do |node| end
     patch_mod_file!("decisions/ManchuDecisions.txt") do |node| end
     patch_mod_file!("decisions/MughalNation.txt") do |node| end
     patch_mod_file!("decisions/PersianNation.txt") do |node| end
-    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node| end
     patch_mod_file!("decisions/Tribal.txt") do |node| end
     patch_mod_file!("events/Elections.txt") do |node| end
     # patch_mod_file!("events/FlavorBUR.txt") do |node| end
     patch_mod_file!("events/GenericOnActionEvents.txt") do |node| end
-    patch_mod_file!("events/PeasantsWar.txt") do |node| end
     patch_mod_file!("events/PurelyNasty.txt") do |node| end
     # patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node| end
 
