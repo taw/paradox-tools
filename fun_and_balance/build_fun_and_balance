@@ -1,5 +1,35 @@
 #!/usr/bin/env ruby
 
-source    = "fun_and_balance_baseline-1.7.0"
-target    = "fun_and_balance_auto-1.7.0"
-reference = "fun_and_balance-1.7.0"
+require "yaml"
+require "pathname"
+
+class ModBuilder
+  def initialize(source, target)
+    @source = Pathname(source)
+    @target = Pathname(target)
+    @localization = {}
+  end
+  def compare_with_reference!(reference)
+    system *%W[diff -ru #{@target} #{reference}]
+  end
+  def add_localization!(group, tag, name)
+    @localization[group] ||= {}
+    @localization[group][tag] = name
+  end
+  def build!
+    @target.mkpath
+  end
+end
+
+class FunAndBalanceModBuilder < ModBuilder
+end
+
+
+mb = FunAndBalanceModBuilder.new(
+  "fun_and_balance_baseline-1.7.3",
+  "fun_and_balance-1.7.3"
+)
+
+mb.build!
+
+mb.compare_with_reference!("fun_and_balance_reference-1.7.3")
