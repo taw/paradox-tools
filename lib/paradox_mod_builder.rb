@@ -1,5 +1,6 @@
 require "yaml"
 require "pathname"
+require "set"
 
 require_relative "paradox_game"
 
@@ -15,8 +16,22 @@ class ParadoxModBuilder
     @target = Pathname(target)
     @localization = {}
   end
+  def compare_file_with_reference!(rpath, tpath)
+    system *%W[diff -wu #{rpath} #{tpath}]
+  end
   def compare_with_reference!(reference)
-    system *%W[diff -wru #{reference} #{@target}]
+    reference = Pathname(reference)
+    files_in_reference = Set[*reference.find.select(&:file?).map{|f| f.relative_path_from(reference)}]
+    files_in_target    = Set[*@target.find.select(&:file?).map{|f| f.relative_path_from(@target)}]
+    (files_in_reference & files_in_target).each do |path|
+      compare_file_with_reference!(reference + path, @target + path)
+    end
+    (files_in_reference - files_in_target).each do |path|
+      puts "Only in #{reference}: #{path}"
+    end
+    (files_in_target - files_in_reference).each do |path|
+      puts "Only in #{@target}: #{path}"
+    end
   end
   def add_localization!(group, tag, name)
     @localization[group] ||= {}
