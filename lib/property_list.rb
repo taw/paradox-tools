@@ -27,6 +27,12 @@ class PropertyList
     @list.each(&blk)
   end
 
+  def each_value
+    @list.each do |k,v|
+      yield(v)
+    end
+  end
+
   # Unlike .to_h[key] it reliably return an array, not nil/x/[x,y]
   def find_all(key)
     rv = []

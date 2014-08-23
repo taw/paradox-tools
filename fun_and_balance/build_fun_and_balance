@@ -47,7 +47,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     end
 
     patch_mod_file!("common/buildings/00_buildings.txt") do |node|
-      node.each do |name, building|
+      node.each_value do |building|
         if building["spare_on_core"] == true
           building.delete "spare_on_core"
           building["destroy_on_conquest"] = false
@@ -62,21 +62,28 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       node["religious_center"]["local_missionary_strength"] = -0.02
     end
 
-    patch_mod_file!("common/policies/00_adm.txt") do |node|
-      node.each do |name, policy|
-        policy["potential"].delete("has_idea_group")
+    @game.glob("common/policies/*.txt").each do |policy_file|
+      patch_mod_file!(policy_file) do |node|
+        node.each_value do |policy|
+          policy["potential"].delete("has_idea_group")
+        end
       end
     end
 
-    patch_mod_file!("common/policies/00_dip.txt") do |node|
-      node.each do |name, policy|
-        policy["potential"].delete("has_idea_group")
-      end
-    end
-
-    patch_mod_file!("common/policies/00_mil.txt") do |node|
-      node.each do |name, policy|
-        policy["potential"].delete("has_idea_group")
+    @game.glob("common/ideas/*.txt").each do |ideas_file|
+      patch_mod_file!(ideas_file) do |node|
+          node.each do |group_name, idea_group|
+          idea_group.each do |name, idea|
+            next if %W[category trigger ai_will_do important free].include?(name)
+            next if idea == [] # Empty idea
+            if name == "siberian_frontier"
+              idea.delete "colonists"
+            end
+            if idea["diplomatic_upkeep"] == 1
+              idea["diplomatic_upkeep"] = 2
+            end
+          end
+        end
       end
     end
 
@@ -84,16 +91,31 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       unless node["base_values"]["global_missionary_strength"] == 0.02
         raise "Expect base missionary strength to equal 2%"
       end
+      node["base_values"]["diplomatic_upkeep"] = 8
       node["base_values"]["global_missionary_strength"] = 0.01
       node["base_values"]["global_heretic_missionary_strength"] = 0.01
     end
 
-    patch_mod_file!("common/governments/00_governments.txt") do |node| end
-    patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node| end
-    patch_mod_file!("common/ideas/00_country_ideas.txt") do |node| end
-    patch_mod_file!("common/ideas/zz_group_ideas.txt") do |node| end
-    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node| end
-    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node| end
+    patch_mod_file!("common/governments/00_governments.txt") do |node|
+      node["steppe_horde"]["global_manpower_modifier"] = 1.0
+      node["steppe_horde"]["land_forcelimit_modifier"] = 1.0
+      node["steppe_horde"]["land_maintenance_modifier"] = -0.5
+    end
+
+    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
+      node["on_hre_member_true_religion"]["events"] = [903]
+    end
+
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+      node["aggressive_expansion"]["yearly_decay"] = 4
+      node["opinion_annex_vassal"]["min"] = -100
+    end
+
+    patch_mod_file!("missions/Diplomatic_Missions.txt") do |node|
+      node["improve_relations_mission"]["effect"]["FROM"]["add_prestige"] = 10
+      node["improve_relations_mission"]["effect"]["FROM"]["add_dip_power"] = 25
+    end
+
     patch_mod_file!("common/technologies/dip.txt") do |node| end
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node| end
     patch_mod_file!("common/religions/00_religion.txt") do |node| end
@@ -108,7 +130,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     patch_mod_file!("events/PeasantsWar.txt") do |node| end
     patch_mod_file!("events/PurelyNasty.txt") do |node| end
     # patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node| end
-    patch_mod_file!("missions/Diplomatic_Missions.txt") do |node| end
+
   end
 end
 
