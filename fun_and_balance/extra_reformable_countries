@@ -1,0 +1,109 @@
+#!/usr/bin/env ruby
+
+load "/home/taw/github/paradox-tools/bin/country_cultures"
+
+class ExtraFormableCountries
+  def initialize
+    @loc = []
+    @decisions= []
+  end
+
+  def country_primary_cultures
+    unless @country_primary_cultures
+      @country_primary_cultures = []
+      @eu4 = CountryPrimaryCultures.new("/home/taw/Dropbox/games/eu4/1.7.0")
+      @eu4.each_country_primary_culture do |culture_name, primary_tag|
+        @country_primary_cultures << [primary_tag, culture_name]
+      end
+    end
+    @country_primary_cultures
+  end
+
+  def already_formable
+    # These countries have at least one way to change_tag to
+    %W[BRZ BUK BYZ CAM CAN CHL COL EGY ENG FRA GBR GER GRE HAB HAN HAT HIN IRE ITA JAP KUR LAP LOU MEX MSA MUG NED PER PEU PLC PRG PRU QNG QUE RMN RUS SCA SPA SPI USA VNZ WES]
+  end
+
+  def add_formation_decisions_for!(tag, culture)
+    # The following countries are primary in tehir culture, but are already formable in some ways:
+    # * Austria
+    # * England
+    # * France
+    # * Greece
+    # * Hannover
+    # * Ireland
+    # * Japan
+    # * Kurland
+    # * Netherlands
+    # * Persia
+    # * Prussia
+    # * USA
+    return if already_formable.include?(tag)
+
+    return if tag == "MOS" # Form Russia instead
+    return if tag == "CZH" or tag == "CSH" # Chinese minors can't be formed
+
+    cant_by_formed_by = %W[HLR PAP HIN MUG SPA FRA GER BYZ BUK ITA RUS SCA PER GBR PLC EGY VIJ]
+
+    # TODO: add random 1bt ?
+    decision = %Q[country_decisions = {
+  extra_formable_form_#{tag} = {
+    major = yes
+    potential = {
+      NOT = { exists = #{tag} }
+#{ cant_by_formed_by.map{|t|  "      NOT = { tag = #{t} }" }.join("\n") }
+      primary_culture = #{culture}
+    }
+    allow = {
+      adm_tech = 10
+      num_of_cities = 3
+      is_subject = no
+      is_at_war = no
+      is_tribal = no
+      NOT = {
+        any_province = {
+          culture = #{culture}
+          NOT = { owned_by = ROOT }
+          NOT = { is_core = ROOT }
+        }
+      }
+    }
+    effect = {
+      change_tag = #{tag}
+      add_country_modifier = {
+        name = "centralization_modifier"
+        duration = 7300
+      }
+      add_prestige = 25
+      swap_free_idea_group = yes # keep progress
+    }
+    ai_will_do = {
+      factor = 1
+    }
+  }
+}
+]
+    warn "Check if they even have their own ideas"
+    @loc << ["extra_formable_form_#{tag}_title", "Form #{@eu4.localization(tag)}"]
+    @loc << ["extra_formable_form_#{tag}_desc", "Our country is one true home of #{@eu4.localization(culture)} people, let's call it #{@eu4.localization(tag)}!"]
+    @decisions << decision
+
+    p [tag, culture, @eu4.localization(tag), @eu4.localization(culture)]
+  end
+
+  def run!
+    country_primary_cultures.each do |tag, culture|
+      add_formation_decisions_for!(tag, culture)
+    end
+    File.write("fun_and_balance-1.7.0/decisions/extra_formable_countries.txt", @decisions.join("\n"))
+    File.write("fun_and_balance-1.7.0/localisation/extra_formable_countries_l_english.yml", loc)
+  end
+
+  def loc
+    [0xEF, 0xBB, 0xBF].pack("C*") + # UTF-8 BOM, WTF?
+    "l_english:\n" +
+    @loc.map{|k,v| " #{k}: \"#{v}\"\n"}.join
+  end
+end
+
+ExtraFormableCountries.new.run!

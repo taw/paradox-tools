@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+require "fileutils"
+
+class RecreateBaseline
+  def initialize(old_baseline, new_baseline, game_dir)
+    @old  = Pathname(old_baseline)
+    @new  = Pathname(new_baseline)
+    @game = Pathname(game_dir)
+    raise unless @old.exist?
+    raise unless @game.exist?
+  end
+  def recreate!(path)
+    if (@old + path).directory?
+      (@new + path).mkpath
+    else
+      raise unless (@game + path).exist?
+      FileUtils.cp (@game + path), (@new + path), verbose: true
+    end
+  end
+  def run!
+    @old.find do |path|
+      recreate! path.relative_path_from(@old)
+    end
+  end
+end
+
+unless ARGV.size == 3
+  STDERR.puts "Usage: #{$0} old_baseline new_baseline new_game_dir"
+  exit 1
+end
+
+rb = RecreateBaseline.new(*ARGV)
+rb.run!

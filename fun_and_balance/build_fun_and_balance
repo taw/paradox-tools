@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+source    = "fun_and_balance_baseline-1.7.0"
+target    = "fun_and_balance_auto-1.7.0"
+reference = "fun_and_balance-1.7.0"
