@@ -1,3 +1,4 @@
+require "pathname"
 require_relative "property_list"
 
 class ParadoxModFile

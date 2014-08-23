@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require "tempfile"
+
+require_relative "../lib/paradox_mod_file_serializer"
+require_relative "../lib/paradox_mod_file"
+
+unless ARGV.size == 2
+  STDERR.puts "Usage: #{$0} <path1.txt> <path2.txt>"
+  exit 1
+end
+
+path1, path2 = *ARGV
+
+mod1 = ParadoxModFile.new(path: path1).parse!
+mod2 = ParadoxModFile.new(path: path2).parse!
+
+if mod1 == mod2
+  # OK
+else
+  mod1out = ParadoxModFileSerializer.serialize(mod1)
+  mod2out = ParadoxModFileSerializer.serialize(mod2)
+  f1 = Tempfile.new(File.basename(path1))
+  f1.write(mod1out)
+  f1.close
+
+  f2 = Tempfile.new(File.basename(path2))
+  f2.write(mod2out)
+  f2.close
+
+  system *%W[diff -wu #{f1.path} #{f2.path}]
+  f1.unlink
+  f2.unlink
+end
