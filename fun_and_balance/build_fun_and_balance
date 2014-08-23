@@ -3,6 +3,12 @@
 require "yaml"
 require "pathname"
 
+class Pathname
+  def write(content)
+    open("w"){|fh| fh.write(content)}
+  end
+end
+
 class ModBuilder
   def initialize(source, target)
     @source = Pathname(source)
@@ -10,20 +16,73 @@ class ModBuilder
     @localization = {}
   end
   def compare_with_reference!(reference)
-    system *%W[diff -ru #{@target} #{reference}]
+    system *%W[diff -wru #{@target} #{reference}]
   end
   def add_localization!(group, tag, name)
     @localization[group] ||= {}
     @localization[group][tag] = name
   end
+  def save_localization!
+    @localization.each do |group, data|
+      raise "NotImplementedYet"
+    end
+  end
   def build!
     @target.mkpath
+    build_mod_files!
+    save_localization!
+  end
+  def build_mod_files!
+    raise "SubclassResponsibility"
+  end
+  def patch_file!(name)
+    new_content = yield((@source + name).read)
+    (@target + name).parent.mkpath
+    (@target + name).write(new_content)
+  end
+  def patch_defines_lua!(changes)
+    patch_file!("common/defines.lua") do |content|
+      changes.each do |variable, orig, updated|
+        content.sub!(/^(\s+#{variable}\s*=\s*)(.*?)(\s*,)/) do
+          if $2 == orig.to_s
+            "#{$1}#{updated}#{$3}"
+          else
+            raise "Tried to change `#{variable}' from `#{orig}' to `#{updated}', but is it `#{$2}' instead"
+          end
+        end or raise("Tried to change `#{variable}' from `#{orig}' to `#{updated}', can't find it in the file")
+      end
+      content
+    end
   end
 end
 
 class FunAndBalanceModBuilder < ModBuilder
+  def build_mod_files!
+    patch_defines_lua!([
+      ["SCALED_TRUCE_YEARS", 10, 0],
+      ["ANNEX_DIP_COST_PER_BASE_TAX", 15, 1],
+      ["MAX_ACTIVE_POLICIES", 5, 10],
+      ["POLICY_COST", 1, 0],
+      ["FOREIGN_REBEL_SUPPORT", 4, 6],
+      ["WESTERN_POWER_TICK_REDUCTION_FACTOR", 15, 1000000],
+      ["ADVISOR_COST_INCREASE_PER_YEAR", 0.01,  0.005],
+      ["CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
+      ["POWER_MAX", 999, 1500],
+      ["PS_BUILD_BUILDING", 10, 5],
+      ["PS_MOVE_TRADE_PORT", 300, 100],
+      ["PS_CHANGE_CULTURE", 25, 10],
+      ["CLAIM_LOSE", 25, 50],
+      ["CORE_LOSE", 50, 100],
+      ["CORE_LOSE_CULTURE_GROUP", 150, 300],
+      ["CORE_TIME_SIZE_MODIFIER", 0.04, 0.0],
+      ["PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
+      ["PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
+      ["VASSAL_FABRICATE_CLAIMS", 0, 1],
+      ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 0, 50],
+      ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
+    ])
+  end
 end
-
 
 mb = FunAndBalanceModBuilder.new(
   "fun_and_balance_baseline-1.7.3",
