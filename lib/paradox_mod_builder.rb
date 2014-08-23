@@ -17,7 +17,12 @@ class ParadoxModBuilder
     @localization = {}
   end
   def compare_file_with_reference!(rpath, tpath)
-    system *%W[diff -wu #{rpath} #{tpath}]
+    if rpath.extname == ".txt"
+      diff_paradox = __dir__ + "/../bin/diff_paradox"
+      system *%W[#{diff_paradox} #{rpath} #{tpath}]
+    else
+      system *%W[diff -wu #{rpath} #{tpath}]
+    end
   end
   def compare_with_reference!(reference)
     reference = Pathname(reference)
