@@ -37,22 +37,66 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 0, 50],
       ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
     ])
-    patch_mod_file!("events/GenericOnActionEvents.txt") do |node| end
-    patch_mod_file!("common/buildings/00_buildings.txt") do |node| end
-    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node| end
+
+    patch_mod_file!("events/GenericOnActionEvents.txt") do |node|
+      node.find_all("country_event").each do |event|
+        if event["option"]["add_republican_tradition"]
+          event["option"]["add_republican_tradition"] = -0.03
+        end
+      end
+    end
+
+    patch_mod_file!("common/buildings/00_buildings.txt") do |node|
+      node.each do |name, building|
+        if building["spare_on_core"] == true
+          building.delete "spare_on_core"
+          building["destroy_on_conquest"] = false
+        end
+      end
+    end
+
+    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
+      unless node["religious_center"]["local_missionary_strength"] == -0.05
+        raise "Expected important missionary center to have -5% missionary strength"
+      end
+      node["religious_center"]["local_missionary_strength"] = -0.02
+    end
+
+    patch_mod_file!("common/policies/00_adm.txt") do |node|
+      node.each do |name, policy|
+        policy["potential"].delete("has_idea_group")
+      end
+    end
+
+    patch_mod_file!("common/policies/00_dip.txt") do |node|
+      node.each do |name, policy|
+        policy["potential"].delete("has_idea_group")
+      end
+    end
+
+    patch_mod_file!("common/policies/00_mil.txt") do |node|
+      node.each do |name, policy|
+        policy["potential"].delete("has_idea_group")
+      end
+    end
+
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      unless node["base_values"]["global_missionary_strength"] == 0.02
+        raise "Expect base missionary strength to equal 2%"
+      end
+      node["base_values"]["global_missionary_strength"] = 0.01
+      node["base_values"]["global_heretic_missionary_strength"] = 0.01
+    end
+
     patch_mod_file!("common/governments/00_governments.txt") do |node| end
     patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node| end
     patch_mod_file!("common/ideas/00_country_ideas.txt") do |node| end
     patch_mod_file!("common/ideas/zz_group_ideas.txt") do |node| end
     patch_mod_file!("common/on_actions/00_on_actions.txt") do |node| end
     patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node| end
-    patch_mod_file!("common/policies/00_adm.txt") do |node| end
-    patch_mod_file!("common/policies/00_dip.txt") do |node| end
-    patch_mod_file!("common/policies/00_mil.txt") do |node| end
-    patch_mod_file!("common/religions/00_religion.txt") do |node| end
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node| end
     patch_mod_file!("common/technologies/dip.txt") do |node| end
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node| end
+    patch_mod_file!("common/religions/00_religion.txt") do |node| end
     patch_mod_file!("decisions/ManchuDecisions.txt") do |node| end
     patch_mod_file!("decisions/MughalNation.txt") do |node| end
     patch_mod_file!("decisions/PersianNation.txt") do |node| end

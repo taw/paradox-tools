@@ -12,6 +12,17 @@ class PropertyList
     return nil
   end
 
+  def []=(key, val)
+    cnt = @list.count{|k,v| k == key}
+    if cnt == 1
+      @list.find{|k,v| k == key}[1] = val
+    elsif cnt == 0
+      @list << [key, val]
+    else
+      raise "Expected 0 or 1 property with value #{key}, found #{cnt}" unless cnt == 1
+    end
+  end
+
   def each(&blk)
     @list.each(&blk)
   end
