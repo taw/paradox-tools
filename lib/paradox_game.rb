@@ -1,4 +1,5 @@
 require "yaml"
+require_relative "paradox_mod_file"
 
 class Pathname
   def glob(pattern)

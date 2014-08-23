@@ -16,7 +16,7 @@ class ParadoxModBuilder
     @localization = {}
   end
   def compare_with_reference!(reference)
-    system *%W[diff -wru #{@target} #{reference}]
+    system *%W[diff -wru #{reference} #{@target}]
   end
   def add_localization!(group, tag, name)
     @localization[group] ||= {}

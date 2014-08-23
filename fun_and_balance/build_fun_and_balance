@@ -1,8 +1,18 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
+require_relative "../lib/paradox_mod_file_serializer"
 
 class FunAndBalanceModBuilder < ParadoxModBuilder
+  def patch_mod_file!(path)
+    patch_file!(path) do |content|
+      orig_node = ParadoxModFile.new(string: content).parse!
+      node = Marshal.load(Marshal.dump(orig_node)) # deep clone
+      yield(node)
+      ParadoxModFileSerializer.serialize(node, orig_node)
+    end
+  end
+
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
@@ -27,6 +37,34 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 0, 50],
       ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
     ])
+    patch_mod_file!("events/GenericOnActionEvents.txt") do |node| end
+    patch_mod_file!("common/buildings/00_buildings.txt") do |node| end
+    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node| end
+    patch_mod_file!("common/governments/00_governments.txt") do |node| end
+    patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node| end
+    patch_mod_file!("common/ideas/00_country_ideas.txt") do |node| end
+    patch_mod_file!("common/ideas/zz_group_ideas.txt") do |node| end
+    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node| end
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node| end
+    patch_mod_file!("common/policies/00_adm.txt") do |node| end
+    patch_mod_file!("common/policies/00_dip.txt") do |node| end
+    patch_mod_file!("common/policies/00_mil.txt") do |node| end
+    patch_mod_file!("common/religions/00_religion.txt") do |node| end
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node| end
+    patch_mod_file!("common/technologies/dip.txt") do |node| end
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node| end
+    patch_mod_file!("decisions/ManchuDecisions.txt") do |node| end
+    patch_mod_file!("decisions/MughalNation.txt") do |node| end
+    patch_mod_file!("decisions/PersianNation.txt") do |node| end
+    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node| end
+    patch_mod_file!("decisions/Tribal.txt") do |node| end
+    patch_mod_file!("events/Elections.txt") do |node| end
+    # patch_mod_file!("events/FlavorBUR.txt") do |node| end
+    patch_mod_file!("events/GenericOnActionEvents.txt") do |node| end
+    patch_mod_file!("events/PeasantsWar.txt") do |node| end
+    patch_mod_file!("events/PurelyNasty.txt") do |node| end
+    # patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node| end
+    patch_mod_file!("missions/Diplomatic_Missions.txt") do |node| end
   end
 end
 

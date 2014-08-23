@@ -1,3 +1,5 @@
+require_relative "property_list"
+
 class ParadoxModFile
   attr_reader :path
   def initialize(string: nil, path: nil)
