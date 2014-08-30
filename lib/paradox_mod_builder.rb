@@ -21,9 +21,11 @@ class ParadoxModBuilder
     diff_paradox = __dir__ + "/../bin/diff_paradox"
     system *%W[#{diff_paradox} #{reference} #{@target}]
   end
-  def add_localization!(group, tag, name)
+  def localization!(group, locs)
     @localization[group] ||= {}
-    @localization[group][tag] = name
+    locs.each do |tag, name|
+      @localization[group][tag] = name
+    end
   end
   def save_localization!
     # YAML is about as much a standard as CSV, use Paradox compatible output instead of yaml gem

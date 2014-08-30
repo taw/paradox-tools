@@ -97,8 +97,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
 
   def add_holy_site!(religion, site, n)
     trigger_name = "holy_sites_#{religion}_#{n}"
-    add_localization! "holy_sites", trigger_name, "#{site[:short_name]} is #{religion.to_s.capitalize}"
-    add_localization! "holy_sites", "desc_#{trigger_name}", "#{religion.to_s.capitalize} rulers control holy site #{site[:name]}"
+    localization! "holy_sites",
+      trigger_name => "#{site[:short_name]} is #{religion.to_s.capitalize}",
+      "desc_#{trigger_name}" => "#{religion.to_s.capitalize} rulers control holy site #{site[:name]}"
     [trigger_name, PropertyList[
       "potential", PropertyList["religion", religion],
       "trigger", PropertyList[site[:id], PropertyList["owner", PropertyList["religion", religion]]],
@@ -110,8 +111,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     # For sake of balance keep it at 0 or 5
     raise "Expected 0 or 5 sites, not #{sites.size}" unless sites.size == 5
     trigger_name = "holy_sites_#{religion}"
-    add_localization! "holy_sites", trigger_name, "All #{religion.to_s.capitalize} holy sites"
-    add_localization! "holy_sites", "desc_#{trigger_name}", "#{religion.to_s.capitalize} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
+    localization! "holy_sites",
+      trigger_name           => "All #{religion.to_s.capitalize} holy sites",
+      "desc_#{trigger_name}" => "#{religion.to_s.capitalize} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
     [trigger_name, PropertyList[
       "potential", PropertyList["religion", religion],
       "trigger", PropertyList[
@@ -125,8 +127,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   def add_holy_site_mission!(religion, site, n)
     id = site[:id]
     mission_name = "conquest_#{religion}_holy_site_#{n}"
-    add_localization! "holy_sites", "#{mission_name}_title", "Conquer Holy Sity #{site[:short_name]}"
-    add_localization! "holy_sites", "#{mission_name}_desc", "We must not allow infidels to hold our holy site #{site[:name]}!"
+    localization! "holy_sites",
+      "#{mission_name}_title" => "Conquer Holy Sity #{site[:short_name]}",
+      "#{mission_name}_desc" => "We must not allow infidels to hold our holy site #{site[:name]}!"
     [mission_name, PropertyList[
       "type", "country",
       "category", "MIL",
@@ -181,8 +184,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   end
 
   def feature_partial_westernization!
-    add_localization! "partial_westernization", "partial_westernization_title", "Reform The Government"
-    add_localization! "partial_westernization", "partial_westernization_desc", "Reform the government as much along Western lines as you currently can."
+    localization! "partial_westernization",
+      "partial_westernization_title" => "Reform The Government",
+      "partial_westernization_desc"  => "Reform the government as much along Western lines as you currently can."
     create_mod_file! "decisions/PartialWesternization.txt", PropertyList[
       "country_decisions", PropertyList[
         "partial_westernization", PropertyList[
@@ -235,10 +239,11 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     ]
   end
   def feature_return_vassal_cores!
-    add_localization! "return_vassal_cores", "return_vassal_cores", "Return Subject's Core"
-    add_localization! "return_vassal_cores", "return_vassal_cores_desc", "These provinces rightfully belong to your subject. Wargoal is to liberate them."
-    add_localization! "return_vassal_cores", "war_goal_take_vassal_core", "Take subject core $PROV$"
-    add_localization! "return_vassal_cores", "war_goal_take_vassal_core_desc", "War goal is to take subject's core $PROV$."
+    localization! "return_vassal_cores",
+      "return_vassal_cores"            => "Return Subject's Core",
+      "return_vassal_cores_desc"       => "These provinces rightfully belong to your subject. Wargoal is to liberate them.",
+      "war_goal_take_vassal_core"      =>  "Take subject core $PROV$",
+      "war_goal_take_vassal_core_desc" => "War goal is to take subject's core $PROV$."
     create_mod_file! "common/cb_types/return_vassal_cores_cb.txt", PropertyList[
       "return_vassal_cores", PropertyList[
         "prerequisites", PropertyList[
