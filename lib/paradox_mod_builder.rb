@@ -48,8 +48,9 @@ class ParadoxModBuilder
     (@target + name).write(content)
   end
   def patch_file!(name)
-    new_content = yield(@game.resolve(name).read)
-    create_file!(name, new_content)
+    content = @game.resolve(name).read
+    new_content = yield(content.dup)
+    create_file!(name, new_content) if content != new_content
   end
   def patch_defines_lua!(changes)
     patch_file!("common/defines.lua") do |content|
@@ -71,7 +72,11 @@ class ParadoxModBuilder
       orig_node = ParadoxModFile.new(string: content).parse!
       node = Marshal.load(Marshal.dump(orig_node)) # deep clone
       yield(node)
-      ParadoxModFileSerializer.serialize(node, orig_node).encode("windows-1252")
+      if node == orig_node
+        content
+      else
+        ParadoxModFileSerializer.serialize(node, orig_node).encode("windows-1252")
+      end
     end
   end
   def create_mod_file!(path, node)
