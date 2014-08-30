@@ -3,6 +3,7 @@
 require "tempfile"
 require "pathname"
 require "set"
+require "yaml"
 
 require_relative "../lib/paradox_mod_file_serializer"
 require_relative "../lib/paradox_mod_file"
@@ -54,9 +55,22 @@ class DiffParadox
       f2.unlink
     end
   end
+  def diff_yaml!(path1, path2)
+    data1 = YAML.load(path1.read)
+    data2 = YAML.load(path2.read)
+    if data1 == data2
+      # OK
+    else
+      require 'pry'; binding.pry
+      diff_command!(path1, path2)
+    end
+  end
   def diff_file!(path1, path2)
-    if path1.extname == ".txt"
+    case path1.extname
+    when ".txt"
       diff_paradox! path1, path2
+    when ".yml"
+      diff_yaml! path1, path2
     else
       diff_command! path1, path2
     end
