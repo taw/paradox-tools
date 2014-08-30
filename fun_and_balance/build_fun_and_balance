@@ -66,6 +66,134 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     end
   end
 
+  def holy_sites_by_religion
+    {
+      catholic:     ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      protestant:   ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      reformed:     ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      orthodox:     ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Macedonia / Mount Athos", "Kiev"],
+      coptic:       ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Alexandria", "Tigre / Ark of the Covenant"],
+
+      sunni:        ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
+      shiite:       ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
+      ibadi:        ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
+
+      # Varanasi, Chidambaram, Angkor Wat - Hindu
+      # Palitana - Jain
+      # Harmandir Sahib - Sikh
+      hinduism:     ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Gujarat / Palitana", "Siem Reap / Angkor Wat", "Punjab / Harmandir Sahib"],
+      sikhism:      ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Gujarat / Palitana", "Siem Reap / Angkor Wat", "Punjab / Harmandir Sahib"],
+
+      # TODO:
+      buddhism:     ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Shandong / Qufu", "Owari / Ise Jingu", "Gyeongsang / Bulguksa"],
+      confucianism: ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Shandong / Qufu", "Owari / Ise Jingu", "Gyeongsang / Bulguksa"],
+      shinto:       ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Shandong / Qufu", "Owari / Ise Jingu", "Gyeongsang / Bulguksa"],
+
+      # Not getting any ever
+      shamanism:    [],
+      animism:      [],
+      totemism:     [],
+    }
+  end
+
+  def province_id(province_name)
+    matches = @game.glob("history/provinces/* - #{province_name}.txt")
+    raise "No match for #{province_name}" unless matches.size == 1
+    matches[0].basename.to_s.to_i
+  end
+
+  def site_information(site)
+    province, name, id = site.split(/\s*\/\s*/)
+    id ||= province_id(province)
+    short_name = name || province
+    name = name ? "#{name} (#{province})" : "#{province}"
+    {province: province, name: name, short_name: short_name, id: id}
+  end
+
+  def add_holy_site!(religion, site, n)
+    trigger_name = "holy_sites_#{religion}_#{n}"
+    add_localization! "holy_sites", trigger_name, "#{site[:short_name]} is #{religion.to_s.capitalize}"
+    add_localization! "holy_sites", "desc_#{trigger_name}", "#{religion.to_s.capitalize} rulers control holy site #{site[:name]}"
+    [trigger_name, PropertyList[
+      "potential", PropertyList["religion", religion],
+      "trigger", PropertyList[site[:id], PropertyList["owner", PropertyList["religion", religion]]],
+      "global_missionary_strength", 0.002,
+    ]]
+  end
+
+  def add_holy_sites_all!(religion, sites)
+    # For sake of balance keep it at 0 or 5
+    raise "Expected 0 or 5 sites, not #{sites.size}" unless sites.size == 5
+    trigger_name = "holy_sites_#{religion}"
+    add_localization! "holy_sites", trigger_name, "All #{religion.to_s.capitalize} holy sites"
+    add_localization! "holy_sites", "desc_#{trigger_name}", "#{religion.to_s.capitalize} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
+    [trigger_name, PropertyList[
+      "potential", PropertyList["religion", religion],
+      "trigger", PropertyList[
+        *sites.map{|site| [site[:id], PropertyList["owner", PropertyList["religion", religion]]] }.flatten(1)
+      ],
+      "global_missionary_strength", 0.010,
+      "prestige", 1,
+    ]]
+  end
+
+  def add_holy_site_mission!(religion, site, n)
+    id = site[:id]
+    mission_name = "conquest_#{religion}_holy_site_#{n}"
+    add_localization! "holy_sites", "#{mission_name}_title", "Conquer Holy Sity #{site[:short_name]}"
+    add_localization! "holy_sites", "#{mission_name}_desc", "We must not allow infidels to hold our holy site #{site[:name]}!"
+    [mission_name, PropertyList[
+      "type", "country",
+      "category", "MIL",
+      "ai_mission", true,
+      "allow", PropertyList[
+        "religion", religion,
+        "OR", PropertyList[
+          id, PropertyList["owner", PropertyList["is_neighbor_of", "ROOT"]],
+          "has_idea", "deus_vult",
+        ],
+        "is_subject", false,
+        id, PropertyList[
+          "owner", PropertyList["NOT", PropertyList["religion", religion]],
+          "has_discovered", "ROOT",
+        ],
+      ],
+      "success", PropertyList[
+        id, PropertyList["owner" , PropertyList["religion", religion]],
+      ],
+      "abort", PropertyList[
+        "OR", PropertyList[
+          "is_subject", true,
+          "NOT", PropertyList["religion", religion],
+        ]
+      ],
+      "immediate", PropertyList["add_claim", id],
+      "abort_effect", PropertyList["remove_claim", id],
+      "chance", PropertyList[
+        "factor", 1000,
+        "modifier", PropertyList["factor", 10, "is_neighbor_of", "ROOT"],
+        "modifier", PropertyList["factor", 2, "has_idea", "deus_vult"]
+      ],
+      "effect", PropertyList["add_adm_power", 200],
+    ]]
+  end
+
+  def feature_holy_sites!
+    missions = []
+    triggers = []
+    holy_sites_by_religion.each do |religion, sites|
+      next if sites.empty?
+      sites = sites.map{|s| site_information(s)}
+      sites.each_with_index do |s,i|
+        triggers << add_holy_site!(religion, s, i+1)
+        missions << add_holy_site_mission!(religion, s, i+1)
+      end
+      triggers << add_holy_sites_all!(religion, sites)
+    end
+
+    create_mod_file! "common/triggered_modifiers/holy_sites.txt", PropertyList[*triggers.flatten(1)]
+    create_mod_file! "missions/Holy_Sites_Missions.txt", PropertyList[*missions.flatten(1)]
+  end
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
@@ -273,6 +401,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     end
 
     patch_religion!
+    feature_holy_sites!
   end
 end
 
