@@ -13,6 +13,54 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     end
   end
 
+  def allowed_conversions(group_name, name)
+    if group_name == "christian"
+      ["catholic", "coptic", "orthodox", "protestant", "reformed"] - [name]
+    elsif group_name == "muslim"
+      ["sunni", "shiite", "ibadi"] - [name]
+    elsif name == "buddhism"
+       ["hinduism", "confucianism", "shinto"]
+    elsif name == "hinduism"
+      ["sikhism", "buddhism"]
+    elsif group_name == "eastern"
+       ["buddhism", "confucianism", "shinto"] - [name]
+    elsif group_name == "dharmic"
+      ["hinduism", "sikhism"] - [name]
+    else
+      nil
+    end
+  end
+
+  def eu3_style_elections!(node)
+    node.delete("change_adm")
+    node.delete("change_dip")
+    node.delete("change_mil")
+    node["add_scaled_republican_tradition"] *= 0.3 if node["add_scaled_republican_tradition"]
+    node["define_ruler"].delete("fixed") if node["define_ruler"]
+    eu3_style_elections! node["FROM"] if node["FROM"]
+    eu3_style_elections! node["tooltip"] if node["tooltip"]
+  end
+
+  def patch_religion!
+    patch_mod_file!("common/religions/00_religion.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |name, religion|
+          next if name == "crusade_name" or name == "defender_of_faith"
+          if conversions = allowed_conversions(group_name, name)
+            religion["allowed_conversion"] = conversions
+          end
+
+          if group_name == "pagan"
+            religion["country"]["enemy_core_creation"] = -0.5
+            religion["province"]["local_missionary_strength"] = 0.03
+          else
+            religion["province"].delete("local_missionary_strength") if religion["province"]
+          end
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
@@ -148,18 +196,71 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       end
     end
 
-    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node| end
-    patch_mod_file!("common/religions/00_religion.txt") do |node| end
-    patch_mod_file!("decisions/ManchuDecisions.txt") do |node| end
-    patch_mod_file!("decisions/MughalNation.txt") do |node| end
-    patch_mod_file!("decisions/PersianNation.txt") do |node| end
-    patch_mod_file!("decisions/Tribal.txt") do |node| end
-    patch_mod_file!("events/Elections.txt") do |node| end
-    # patch_mod_file!("events/FlavorBUR.txt") do |node| end
-    patch_mod_file!("events/GenericOnActionEvents.txt") do |node| end
-    patch_mod_file!("events/PurelyNasty.txt") do |node| end
-    # patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node| end
+    patch_mod_file!("events/Elections.txt") do |node|
+      node.find_all("country_event").each do |event|
+        event.find_all("option").each do |option|
+          eu3_style_elections!(option)
+        end
+      end
+    end
 
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
+      node["take_province_ban"]["badboy_factor"] = 0.1
+      node["superiority_heretic"].delete("allowed_provinces")
+      node["superiority_heretic"]["peace_cost_factor"] = 0.25
+      node["superiority_heretic"].delete("po_demand_provinces")
+    end
+
+    patch_mod_file!("events/GenericOnActionEvents.txt") do |node|
+      node.find_all("country_event").each do |event|
+        if event["id"] == 610 # integrating vassal
+          event["option"]["add_republican_tradition"] *= 0.3
+        end
+      end
+    end
+
+    patch_mod_file!("decisions/ManchuDecisions.txt") do |node|
+      node["country_decisions"]["form_manchu_dynasty"]["allow"].delete("is_tribal")
+      node["country_decisions"]["form_manchu_dynasty"]["effect"]["if"]["change_government"] = "despotic_monarchy"
+    end
+
+    patch_mod_file!("decisions/MughalNation.txt") do |node|
+      node["country_decisions"]["mughal_nation"]["allow"].delete("is_tribal")
+      node["country_decisions"]["mughal_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
+    end
+
+    patch_mod_file!("decisions/PersianNation.txt") do |node|
+      node["country_decisions"]["persian_nation"]["allow"].delete("is_tribal")
+      node["country_decisions"]["persian_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
+    end
+
+    patch_mod_file!("decisions/Tribal.txt") do |node|
+      node["country_decisions"].each_value do |decision|
+        decision["allow"]["stability"] = 2
+        decision["allow"].add! "OR", PropertyList["stability", 3, "adm_tech", 8]
+        decision["allow"].delete_if do |*kv|
+          kv == ["OR", PropertyList["full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
+        end
+        decision["potential"].delete_if do |*kv|
+          kv == ["OR", PropertyList["ai", false, "full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
+        end
+      end
+    end
+
+    patch_mod_file!("events/PurelyNasty.txt") do |node|
+      node.find_all("province_event").each do |event|
+        mtth = event["mean_time_to_happen"]
+        mtth["months"] *= 4
+        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 3.0]]
+        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 4.0]]
+        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 5.0]]
+      end
+    end
+
+    patch_religion!
+
+    # patch_mod_file!("events/FlavorBUR.txt") do |node| end
+    # patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node| end
   end
 end
 
