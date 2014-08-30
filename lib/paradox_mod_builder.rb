@@ -17,7 +17,7 @@ class ParadoxModBuilder
     @localization = {}
   end
   def compare_file_with_reference!(rpath, tpath)
-    if rpath.extname == ".txt"
+    if rpath.extname == ".txt" or rpath.extname == ".yml"
       diff_paradox = __dir__ + "/../bin/diff_paradox"
       system *%W[#{diff_paradox} #{rpath} #{tpath}]
     else
