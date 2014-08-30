@@ -234,6 +234,52 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ]
     ]
   end
+  def feature_return_vassal_cores!
+    add_localization! "return_vassal_cores", "return_vassal_cores", "Return Subject's Core"
+    add_localization! "return_vassal_cores", "return_vassal_cores_desc", "These provinces rightfully belong to your subject. Wargoal is to liberate them."
+    add_localization! "return_vassal_cores", "war_goal_take_vassal_core", "Take subject core $PROV$"
+    add_localization! "return_vassal_cores", "war_goal_take_vassal_core_desc", "War goal is to take subject's core $PROV$."
+    create_mod_file! "common/cb_types/return_vassal_cores_cb.txt", PropertyList[
+      "return_vassal_cores", PropertyList[
+        "prerequisites", PropertyList[
+          "FROM", PropertyList[
+            "NOT", PropertyList["is_subject_of", "ROOT"],
+            "any_owned_province", PropertyList[
+              "any_country", PropertyList[
+                "is_subject_of", "ROOT",
+                "is_core", "PREV",
+              ],
+            ],
+          ],
+        ],
+        "war_goal", "take_vassal_core",
+      ]
+    ]
+    create_mod_file! "common/wargoal_types/return_vassal_cores_wargoal.txt", PropertyList[
+      "take_vassal_core", PropertyList[
+        "type", "take_province",
+        "po_release_vassals", true,
+        "po_release_annexed", true,
+        "po_return_cores", true,
+        "po_revoke_cores", true,
+        "po_gold", true,
+        "po_concede_defeat", true,
+        "badboy_factor", 1,
+        "prestige_factor", 1,
+        "peace_cost_factor", 1,
+        "po_annex", true,
+        "allowed_provinces", PropertyList[
+          "any_country", PropertyList[
+            "is_subject_of", "ROOT",
+            "is_core", "PREV",
+          ],
+        ],
+        "allow_leader_change", true,
+        "war_name", "LIBERATION_WAR_NAME",
+      ]
+    ]
+  end
+
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
@@ -443,6 +489,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     patch_religion!
     feature_holy_sites!
     feature_partial_westernization!
+    feature_return_vassal_cores!
   end
 end
 
