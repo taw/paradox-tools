@@ -19,7 +19,7 @@ class ParadoxModBuilder
   end
   def compare_with_reference!(reference)
     diff_paradox = __dir__ + "/../bin/diff_paradox"
-    system *%W[#{diff_paradox} #{reference} #{@target}]
+    system *%W[#{diff_paradox} --normalize #{reference} #{@target}]
   end
   def localization!(group, locs)
     @localization[group] ||= {}

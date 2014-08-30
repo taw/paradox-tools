@@ -9,11 +9,12 @@ require_relative "../lib/paradox_mod_file_serializer"
 require_relative "../lib/paradox_mod_file"
 
 class DiffParadox
-  def initialize(a, b, diff_options)
+  def initialize(a, b, diff_options, normalize)
     @a = Pathname(a)
     @b = Pathname(b)
     @diff_options = diff_options
     @diff_options = ["-w", "-U3"] if @diff_options.empty?
+    @normalize = normalize
   end
   def files_in_a
     @files_in_a ||= Set[*@a.find.select(&:file?).map{|f| f.relative_path_from(@a)}]
@@ -33,11 +34,16 @@ class DiffParadox
   def diff_command!(path1, path2)
     system("diff", *@diff_options, path1.to_s, path2.to_s)
   end
+  def normalized_same?(mod1, mod2)
+    mod1.normalize == mod2.normalize
+  end
   def diff_paradox!(path1, path2)
     mod1 = ParadoxModFile.new(path: path1).parse!
     mod2 = ParadoxModFile.new(path: path2).parse!
     if mod1 == mod2
       # OK
+    elsif @normalize and normalized_same?(mod1, mod2)
+      # Still OK
     else
       mod1out = ParadoxModFileSerializer.serialize(mod1)
       mod2out = ParadoxModFileSerializer.serialize(mod2)
@@ -89,11 +95,13 @@ class DiffParadox
 end
 
 unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} [--diff-options] <path1.txt> <path2.txt>"
+  STDERR.puts "Usage: #{$0} [--normalize] [--diff-options] <path1.txt> <path2.txt>"
+  STDERR.puts "--normalize ignores order within Paradox mod files, which is not always correct"
   STDERR.puts "Diff options default to -w -U3 unless explicitly given."
   exit 1
 end
 
 *diff_options, path1, path2 = *ARGV
+normalize = !!diff_options.delete("--normalize")
 
-DiffParadox.new(path1, path2, diff_options).run!
+dp = DiffParadox.new(path1, path2, diff_options, normalize).run!

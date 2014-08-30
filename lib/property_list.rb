@@ -67,6 +67,16 @@ class PropertyList
     rv
   end
 
+  def normalize
+    new_list = @list.map do |k,v|
+      v = v.normalize if v.is_a? PropertyList
+      v = v.sort if v.is_a? Array
+      [k, v]
+    end
+    new_list.sort_by!{|k,v| [k.class.to_s, k, v.class.to_s, v] }
+    PropertyList[*new_list.flatten(1)]
+  end
+
   def inspect
     case @list.size
     when 0
@@ -98,4 +108,10 @@ class PropertyList
     end
     rv
   end
+
+  def <=>(other)
+    return nil unless other.is_a?(PropertyList)
+    @list <=> other.instance_eval{ @list }
+  end
+  include Comparable
 end
