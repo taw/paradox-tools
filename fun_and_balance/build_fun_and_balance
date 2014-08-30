@@ -1,23 +1,8 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
-require_relative "../lib/paradox_mod_file_serializer"
 
 class FunAndBalanceModBuilder < ParadoxModBuilder
-  def patch_mod_file!(path)
-    patch_file!(path) do |content|
-      content = content.force_encoding("windows-1252").encode("UTF-8")
-      orig_node = ParadoxModFile.new(string: content).parse!
-      node = Marshal.load(Marshal.dump(orig_node)) # deep clone
-      yield(node)
-      ParadoxModFileSerializer.serialize(node, orig_node).encode("windows-1252")
-    end
-  end
-
-  def create_mod_file!(path, node)
-    create_file! path, ParadoxModFileSerializer.serialize(node).encode("windows-1252")
-  end
-
   def allowed_conversions(group_name, name)
     if group_name == "christian"
       ["catholic", "coptic", "orthodox", "protestant", "reformed"] - [name]

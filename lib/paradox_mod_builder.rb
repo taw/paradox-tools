@@ -3,6 +3,7 @@ require "pathname"
 require "set"
 
 require_relative "paradox_game"
+require_relative "paradox_mod_file_serializer"
 
 class Pathname
   def write(content)
@@ -16,27 +17,9 @@ class ParadoxModBuilder
     @target = Pathname(target)
     @localization = {}
   end
-  def compare_file_with_reference!(rpath, tpath)
-    if rpath.extname == ".txt" or rpath.extname == ".yml"
-      diff_paradox = __dir__ + "/../bin/diff_paradox"
-      system *%W[#{diff_paradox} #{rpath} #{tpath}]
-    else
-      system *%W[diff -wu #{rpath} #{tpath}]
-    end
-  end
   def compare_with_reference!(reference)
-    reference = Pathname(reference)
-    files_in_reference = Set[*reference.find.select(&:file?).map{|f| f.relative_path_from(reference)}]
-    files_in_target    = Set[*@target.find.select(&:file?).map{|f| f.relative_path_from(@target)}]
-    (files_in_reference & files_in_target).each do |path|
-      compare_file_with_reference!(reference + path, @target + path)
-    end
-    (files_in_reference - files_in_target).each do |path|
-      puts "Only in #{reference}: #{path}"
-    end
-    (files_in_target - files_in_reference).each do |path|
-      puts "Only in #{@target}: #{path}"
-    end
+    diff_paradox = __dir__ + "/../bin/diff_paradox"
+    system *%W[#{diff_paradox} #{reference} #{@target}]
   end
   def add_localization!(group, tag, name)
     @localization[group] ||= {}
@@ -81,5 +64,17 @@ class ParadoxModBuilder
       end
       content
     end
+  end
+  def patch_mod_file!(path)
+    patch_file!(path) do |content|
+      content = content.force_encoding("windows-1252").encode("UTF-8")
+      orig_node = ParadoxModFile.new(string: content).parse!
+      node = Marshal.load(Marshal.dump(orig_node)) # deep clone
+      yield(node)
+      ParadoxModFileSerializer.serialize(node, orig_node).encode("windows-1252")
+    end
+  end
+  def create_mod_file!(path, node)
+    create_file! path, ParadoxModFileSerializer.serialize(node).encode("windows-1252")
   end
 end
