@@ -11,7 +11,7 @@ class ParadoxModFileSerializer
 
   def primitive?(val)
     case val
-    when TrueClass, FalseClass, Numeric, String, Date
+    when TrueClass, FalseClass, Numeric, String, Date, Symbol
       true
     else
       false
@@ -28,6 +28,8 @@ class ParadoxModFileSerializer
       val.to_s
     when Date
       "%d.%d.%d" % [val.year, val.month, val.day]
+    when Symbol
+      serialize_primitive(val.to_s)
     when /\A[A-Za-z0-9_\.]+\z/
       val
     when /\A(\p{Alpha}|\p{Number}|[_\. ])*\z/
