@@ -34,32 +34,32 @@ class DiffParadox
   def diff_command!(path1, path2)
     system("diff", *@diff_options, path1.to_s, path2.to_s)
   end
-  def normalized_same?(mod1, mod2)
-    mod1.normalize == mod2.normalize
+  def diff_serialized!(mod1, path1, mod2, path2)
+    mod1out = ParadoxModFileSerializer.serialize(mod1)
+    mod2out = ParadoxModFileSerializer.serialize(mod2)
+    f1 = Tempfile.new(File.basename(path1))
+    f1.write(mod1out)
+    f1.close
+
+    f2 = Tempfile.new(File.basename(path2))
+    f2.write(mod2out)
+    f2.close
+
+    diff_command!(f1.path, f2.path)
+
+    f1.unlink
+    f2.unlink
   end
   def diff_paradox!(path1, path2)
     mod1 = ParadoxModFile.new(path: path1).parse!
     mod2 = ParadoxModFile.new(path: path2).parse!
-    if mod1 == mod2
-      # OK
-    elsif @normalize and normalized_same?(mod1, mod2)
-      # Still OK
-    else
-      mod1out = ParadoxModFileSerializer.serialize(mod1)
-      mod2out = ParadoxModFileSerializer.serialize(mod2)
-      f1 = Tempfile.new(File.basename(path1))
-      f1.write(mod1out)
-      f1.close
-
-      f2 = Tempfile.new(File.basename(path2))
-      f2.write(mod2out)
-      f2.close
-
-      diff_command!(f1.path, f2.path)
-
-      f1.unlink
-      f2.unlink
+    return if mod1 == mod2 # OK
+    if @normalize
+      mod1 = mod1.normalize
+      mod2 = mod2.normalize
+      return if mod1 == mod2 # OK enough
     end
+    diff_serialized!(mod1, path1, mod2, path2)
   end
   def diff_yaml!(path1, path2)
     data1 = YAML.load(path1.read.gsub("\ufeff", ""))
