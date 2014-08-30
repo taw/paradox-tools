@@ -179,6 +179,61 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     create_mod_file! "common/triggered_modifiers/holy_sites.txt", PropertyList[*triggers.flatten(1)]
     create_mod_file! "missions/Holy_Sites_Missions.txt", PropertyList[*missions.flatten(1)]
   end
+
+  def feature_partial_westernization!
+    add_localization! "partial_westernization", "partial_westernization_title", "Reform The Government"
+    add_localization! "partial_westernization", "partial_westernization_desc", "Reform the government as much along Western lines as you currently can."
+    create_mod_file! "decisions/PartialWesternization.txt", PropertyList[
+      "country_decisions", PropertyList[
+        "partial_westernization", PropertyList[
+          "major", true,
+          "potential", PropertyList[
+            "OR", PropertyList[
+              "technology_group", "south_american",
+              "technology_group", "mesoamerican",
+              "technology_group", "north_american",
+              "technology_group", "sub_saharan",
+              "technology_group", "chinese",
+              "technology_group", "indian",
+            ],
+            "is_subject", false,
+          ],
+          "allow", PropertyList[
+            "stability", 2,
+            "OR", PropertyList[
+              "stability", 3,
+              "adm_tech", 8,
+            ],
+            "is_at_war", false,
+            "NOT", PropertyList["num_of_revolts", 1],
+            "adm_power", 250,
+            "dip_power", 250,
+            "mil_power", 250,
+            "any_neighbor_country", PropertyList[
+              "OR", PropertyList[
+                "technology_group", "muslim",
+                "technology_group", "eastern",
+                "technology_group", "ottoman",
+                "technology_group", "western",
+              ],
+            ],
+          ],
+          "effect", PropertyList[
+            "change_technology_group", "muslim",
+            "add_stability", -5,
+            "add_adm_power", -250,
+            "add_dip_power", -250,
+            "add_mil_power", -250,
+            "add_country_modifier", PropertyList[
+              "name", "western_influences",
+              "duration", 3650,
+            ],
+          ],
+          "ai_will_do", PropertyList["factor", 1],
+        ]
+      ]
+    ]
+  end
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
@@ -387,6 +442,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
 
     patch_religion!
     feature_holy_sites!
+    feature_partial_westernization!
   end
 end
 
