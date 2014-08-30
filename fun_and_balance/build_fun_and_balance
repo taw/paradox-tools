@@ -6,10 +6,11 @@ require_relative "../lib/paradox_mod_file_serializer"
 class FunAndBalanceModBuilder < ParadoxModBuilder
   def patch_mod_file!(path)
     patch_file!(path) do |content|
+      content = content.force_encoding("windows-1252").encode("UTF-8")
       orig_node = ParadoxModFile.new(string: content).parse!
       node = Marshal.load(Marshal.dump(orig_node)) # deep clone
       yield(node)
-      ParadoxModFileSerializer.serialize(node, orig_node)
+      ParadoxModFileSerializer.serialize(node, orig_node).encode("windows-1252")
     end
   end
 
@@ -257,10 +258,17 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       end
     end
 
-    patch_religion!
+    patch_mod_file!("events/FlavorBUR.txt") do |node|
+      node.delete_if do |key, val|
+        key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|3|4|5|6|7|19)\z/
+      end
+    end
 
-    # patch_mod_file!("events/FlavorBUR.txt") do |node| end
-    # patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node| end
+    patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node|
+      node["capital"] = 193
+    end
+
+    patch_religion!
   end
 end
 
