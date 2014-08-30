@@ -43,8 +43,13 @@ class ParadoxModBuilder
     @localization[group][tag] = name
   end
   def save_localization!
+    # YAML is about as much a standard as CSV, use Paradox compatible output instead of yaml gem
     @localization.each do |group, data|
-      raise "NotImplementedYet"
+      create_file!("localisation/#{group}_l_english.yml",
+        [0xEF, 0xBB, 0xBF].pack("C*") + # UTF-8 BOM, WTF?
+        "l_english:\n" +
+        data.map{|k,v| " #{k}: \"#{v}\"\n"}.join
+      )
     end
   end
   def build!
@@ -55,10 +60,13 @@ class ParadoxModBuilder
   def build_mod_files!
     raise "SubclassResponsibility"
   end
+  def create_file!(name, content)
+    (@target + name).parent.mkpath
+    (@target + name).write(content)
+  end
   def patch_file!(name)
     new_content = yield(@game.resolve(name).read)
-    (@target + name).parent.mkpath
-    (@target + name).write(new_content)
+    create_file!(name, new_content)
   end
   def patch_defines_lua!(changes)
     patch_file!("common/defines.lua") do |content|

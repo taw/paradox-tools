@@ -14,6 +14,10 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     end
   end
 
+  def create_mod_file!(path, node)
+    create_file! path, ParadoxModFileSerializer.serialize(node).encode("windows-1252")
+  end
+
   def allowed_conversions(group_name, name)
     if group_name == "christian"
       ["catholic", "coptic", "orthodox", "protestant", "reformed"] - [name]
@@ -272,12 +276,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   end
 end
 
-game = ParadoxGame.new("fun_and_balance_baseline-1.7.3")
 mb = FunAndBalanceModBuilder.new(
-  game,
+  ParadoxGame.new("eu4"),
   "fun_and_balance-1.7.3"
 )
-
 mb.build!
-
 mb.compare_with_reference!("fun_and_balance_reference-1.7.3")
