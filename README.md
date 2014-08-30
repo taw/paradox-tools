@@ -18,5 +18,4 @@ Contents
 * `lib/` - public API
 * `test/` - tests
 * `fun_and_balance/` - Fun & Balance mod automatic build system (unfinished)
-* files directly in the root directory of the repository are mostly old scripts which should be ported to the snew system at some point
-
+* `save_game_scripts/` - various script for analyzing and editing save game files not ported to new API

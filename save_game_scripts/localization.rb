@@ -1,6 +1,6 @@
 warn "This is obsolete API"
 
-require_relative "lib/paradox_game"
+require_relative "../lib/paradox_game"
 require "pathname"
 
 module Localization
