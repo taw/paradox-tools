@@ -557,7 +557,18 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     patch_mod_file!("events/PeasantsWar.txt") do |node|
       node.find_all("country_event").each do |event|
         next unless event["id"] == "peasants_war.1"
-        event["trigger"] # apply fixes here
+
+        cond = event["trigger"].find_all("OR")[0]
+        cond["war_exhaustion"] = 5
+        cond["overextension_percentage"] = 1.01
+        cond["num_of_loans"] = 5
+        cond["NOT"]["legitimacy"] = 40 # This is really weird...
+        cond.add! "NOT", PropertyList["stability", 0]
+
+        event["mean_time_to_happen"].find_all("modifier").each do |mod|
+          mod["factor"] = 1.5 if mod["stability"]
+          mod["factor"] = 0.7 if mod["NOT"] && mod["NOT"]["stability"] # weirdness again
+        end
       end
     end
 
