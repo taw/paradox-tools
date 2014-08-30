@@ -56,8 +56,8 @@ class DiffParadox
     end
   end
   def diff_yaml!(path1, path2)
-    data1 = YAML.load(path1.read)
-    data2 = YAML.load(path2.read)
+    data1 = YAML.load(path1.read.gsub("\ufeff", ""))
+    data2 = YAML.load(path2.read.gsub("\ufeff", ""))
     if data1 == data2
       # OK
     else
