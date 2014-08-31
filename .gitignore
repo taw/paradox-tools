@@ -1,1 +1,5 @@
 *.eu4
+/eu4
+/fun_and_balance_*
+/ExtendedTimeline*
+/fun_and_balance-*

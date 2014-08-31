@@ -459,11 +459,13 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       end
     end
 
-    patch_mod_file!("common/buildings/00_buildings.txt") do |node|
-      node.each_value do |building|
-        if building["spare_on_core"] == true
-          building.delete "spare_on_core"
-          building["destroy_on_conquest"] = false
+    @game.glob("common/buildings/*.txt").each do |path|
+      patch_mod_file!(path) do |node|
+        node.each_value do |building|
+          if building["spare_on_core"] == true
+            building.delete "spare_on_core"
+            building["destroy_on_conquest"] = false
+          end
         end
       end
     end
