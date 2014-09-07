@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
+require_relative "./fun_and_balance_common"
 
 class FunAndBalanceModBuilder < ParadoxModBuilder
+  include FunAndBalanceCommon
+
   def allowed_conversions(group_name, name)
     if group_name == "christian"
       ["protestant", "catholic",  "reformed", "orthodox", "coptic"] - [name]
@@ -19,16 +22,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     else
       nil
     end
-  end
-
-  def eu3_style_elections!(node)
-    node.delete("change_adm")
-    node.delete("change_dip")
-    node.delete("change_mil")
-    node["add_scaled_republican_tradition"] *= 0.3 if node["add_scaled_republican_tradition"]
-    node["define_ruler"].delete("fixed") if node["define_ruler"]
-    eu3_style_elections! node["FROM"] if node["FROM"]
-    eu3_style_elections! node["tooltip"] if node["tooltip"]
   end
 
   def on_convert(religion, *extras)
@@ -148,11 +141,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     }
   end
 
-  def province_id(province_name)
-    matches = @game.glob("history/provinces/* - #{province_name}.txt")
-    raise "No match for #{province_name}" unless matches.size == 1
-    matches[0].basename.to_s.to_i
-  end
 
   def site_information(site)
     province, name, id = site.split(/\s*\/\s*/)
@@ -379,104 +367,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     ]
   end
 
-  def feature_return_vassal_cores!
-    localization! "return_vassal_cores",
-      "return_vassal_cores"            => "Return Subject's Core",
-      "return_vassal_cores_desc"       => "These provinces rightfully belong to your subject. Wargoal is to liberate them.",
-      "war_goal_take_vassal_core"      =>  "Take subject core $PROV$",
-      "war_goal_take_vassal_core_desc" => "War goal is to take subject's core $PROV$."
-    create_mod_file! "common/cb_types/return_vassal_cores_cb.txt", PropertyList[
-      "return_vassal_cores", PropertyList[
-        "prerequisites", PropertyList[
-          "FROM", PropertyList[
-            "NOT", PropertyList["is_subject_of", "ROOT"],
-            "any_owned_province", PropertyList[
-              "any_country", PropertyList[
-                "is_subject_of", "ROOT",
-                "is_core", "PREV",
-              ],
-            ],
-          ],
-        ],
-        "war_goal", "take_vassal_core",
-      ]
-    ]
-    create_mod_file! "common/wargoal_types/return_vassal_cores_wargoal.txt", PropertyList[
-      "take_vassal_core", PropertyList[
-        "type", "take_province",
-        "po_release_vassals", true,
-        "po_release_annexed", true,
-        "po_return_cores", true,
-        "po_revoke_cores", true,
-        "po_gold", true,
-        "po_concede_defeat", true,
-        "badboy_factor", 1,
-        "prestige_factor", 1,
-        "peace_cost_factor", 1,
-        "po_annex", true,
-        "allowed_provinces", PropertyList[
-          "any_country", PropertyList[
-            "is_subject_of", "ROOT",
-            "is_core", "PREV",
-          ],
-        ],
-        "allow_leader_change", true,
-        "war_name", "LIBERATION_WAR_NAME",
-      ]
-    ]
-  end
-
-  def build_mod_files!
-    patch_defines_lua!([
-      ["SCALED_TRUCE_YEARS", 10, 0],
-      ["ANNEX_DIP_COST_PER_BASE_TAX", 15, 1],
-      ["MAX_ACTIVE_POLICIES", 5, 10],
-      ["POLICY_COST", 1, 0],
-      ["FOREIGN_REBEL_SUPPORT", 4, 6],
-      ["WESTERN_POWER_TICK_REDUCTION_FACTOR", 15, 1000000],
-      ["ADVISOR_COST_INCREASE_PER_YEAR", 0.01,  0.005],
-      ["CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
-      ["POWER_MAX", 999, 1500],
-      ["PS_BUILD_BUILDING", 10, 5],
-      ["PS_MOVE_TRADE_PORT", 300, 100],
-      ["PS_CHANGE_CULTURE", 25, 10],
-      ["CLAIM_LOSE", 25, 50],
-      ["CORE_LOSE", 50, 100],
-      ["CORE_LOSE_CULTURE_GROUP", 150, 300],
-      ["CORE_TIME_SIZE_MODIFIER", 0.04, 0.0],
-      ["PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
-      ["PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
-      ["VASSAL_FABRICATE_CLAIMS", 0, 1],
-      ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 0, 50],
-      ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
-    ])
-
-    patch_mod_file!("events/GenericOnActionEvents.txt") do |node|
-      node.find_all("country_event").each do |event|
-        if event["option"]["add_republican_tradition"]
-          event["option"]["add_republican_tradition"] = -0.03
-        end
-      end
-    end
-
-    @game.glob("common/buildings/*.txt").each do |path|
-      patch_mod_file!(path) do |node|
-        node.each_value do |building|
-          if building["spare_on_core"] == true
-            building.delete "spare_on_core"
-            building["destroy_on_conquest"] = false
-          end
-        end
-      end
-    end
-
-    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
-      unless node["religious_center"]["local_missionary_strength"] == -0.05
-        raise "Expected important missionary center to have -5% missionary strength"
-      end
-      node["religious_center"]["local_missionary_strength"] = -0.02
-    end
-
+  def always_display_policies!
     @game.glob("common/policies/*.txt").each do |policy_file|
       patch_mod_file!(policy_file) do |node|
         node.each_value do |policy|
@@ -484,119 +375,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
         end
       end
     end
+  end
 
-    @game.glob("common/ideas/*.txt").each do |ideas_file|
-      patch_mod_file!(ideas_file) do |node|
-          node.each do |group_name, idea_group|
-          idea_group.each do |name, idea|
-            next if %W[category trigger ai_will_do important free].include?(name)
-            next if idea == [] # Empty idea
-            if name == "siberian_frontier"
-              idea.delete "colonists"
-            end
-            if idea["diplomatic_upkeep"] == 1
-              idea["diplomatic_upkeep"] = 2
-            end
-          end
-        end
-      end
-    end
-
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      unless node["base_values"]["global_missionary_strength"] == 0.02
-        raise "Expect base missionary strength to equal 2%"
-      end
-      node["base_values"]["diplomatic_upkeep"] = 8
-      node["base_values"]["global_missionary_strength"] = 0.01
-      node["base_values"]["global_heretic_missionary_strength"] = 0.01
-      node["war"] = PropertyList[] if node["war"] == []
-      node["war"]["war_exhaustion_cost"] = 100
-      node["emperor"]["diplomatic_upkeep"] = 2
-      node["inverse_religious_unity"]["global_revolt_risk"] = 5
-      node["war_exhaustion"]["defensiveness"] = -0.02
-      node["war_exhaustion"]["land_morale"] = -0.02
-      node["war_exhaustion"]["naval_morale"] = -0.02
-      node["positive_stability"]["global_missionary_strength"] = 0.007
-      node["non_accepted_culture"]["local_revolt_risk"] = 4
-    end
-
-    patch_mod_file!("common/governments/00_governments.txt") do |node|
-      node["steppe_horde"]["global_manpower_modifier"] = 1.0
-      node["steppe_horde"]["land_forcelimit_modifier"] = 1.0
-      node["steppe_horde"]["land_maintenance_modifier"] = -0.5
-    end
-
-    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
-      node["on_hre_member_true_religion"]["events"] = [903]
-    end
-
-    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
-      node["aggressive_expansion"]["yearly_decay"] = 4
-      node["opinion_annex_vassal"]["min"] = -100
-    end
-
-    patch_mod_file!("missions/Diplomatic_Missions.txt") do |node|
-      node["improve_relations_mission"]["effect"]["FROM"]["add_prestige"] = 10
-      node["improve_relations_mission"]["effect"]["FROM"]["add_dip_power"] = 25
-    end
-
-    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
-      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete_if do |k,v|
-        k == "NOT" and (v == PropertyList["tag", "HLR"] or v == PropertyList["tag", "TUR"])
-      end
-    end
-
-    patch_mod_file!("common/technologies/dip.txt") do |node|
-      node.find_all("technology").each_with_index do |tech,i|
-        if i == 0
-          tech["reduced_naval_attrition"] = true
-        else
-          tech.delete("reduced_naval_attrition")
-        end
-      end
-    end
-
-    patch_mod_file!("events/PeasantsWar.txt") do |node|
-      node.find_all("country_event").each do |event|
-        next unless event["id"] == "peasants_war.1"
-
-        cond = event["trigger"].find_all("OR")[0]
-        cond["war_exhaustion"] = 5
-        cond["overextension_percentage"] = 1.01
-        cond["num_of_loans"] = 5
-        cond["NOT"]["legitimacy"] = 40 # This is really weird...
-        cond.add! "NOT", PropertyList["stability", 0]
-
-        event["mean_time_to_happen"].find_all("modifier").each do |mod|
-          mod["factor"] = 1.5 if mod["stability"]
-          mod["factor"] = 0.7 if mod["NOT"] && mod["NOT"]["stability"] # weirdness again
-        end
-      end
-    end
-
-    patch_mod_file!("events/Elections.txt") do |node|
-      node.find_all("country_event").each do |event|
-        event.find_all("option").each do |option|
-          eu3_style_elections!(option)
-        end
-      end
-    end
-
-    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
-      node["take_province_ban"]["badboy_factor"] = 0.1
-      node["superiority_heretic"].delete("allowed_provinces")
-      node["superiority_heretic"]["peace_cost_factor"] = 0.25
-      node["superiority_heretic"].delete("po_demand_provinces")
-    end
-
-    patch_mod_file!("events/GenericOnActionEvents.txt") do |node|
-      node.find_all("country_event").each do |event|
-        if event["id"] == 610 # integrating vassal
-          event["option"]["add_republican_tradition"] *= 0.3
-        end
-      end
-    end
-
+  def reverse_horde_nerfs!
     patch_mod_file!("decisions/ManchuDecisions.txt") do |node|
       node["country_decisions"]["form_manchu_dynasty"]["allow"].delete("is_tribal")
       node["country_decisions"]["form_manchu_dynasty"]["effect"]["if"]["change_government"] = "despotic_monarchy"
@@ -625,31 +406,84 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       end
     end
 
-    patch_mod_file!("events/PurelyNasty.txt") do |node|
-      node.find_all("province_event").each do |event|
-        mtth = event["mean_time_to_happen"]
-        mtth["months"] *= 4
-        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 3.0]]
-        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 4.0]]
-        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 5.0]]
+    patch_mod_file!("common/governments/00_governments.txt") do |node|
+      node["steppe_horde"]["global_manpower_modifier"] = 1.0
+      node["steppe_horde"]["land_forcelimit_modifier"] = 1.0
+      node["steppe_horde"]["land_maintenance_modifier"] = -0.5
+    end
+  end
+
+  def anyone_can_form_byzantium!
+    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
+      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete_if do |k,v|
+        k == "NOT" and (v == PropertyList["tag", "HLR"] or v == PropertyList["tag", "TUR"])
       end
     end
+  end
 
-    patch_mod_file!("events/FlavorBUR.txt") do |node|
-      node.delete_if do |key, val|
-        key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|3|4|5|6|7|19)\z/
+  def build_mod_files!
+    patch_defines_lua!([
+      ["SCALED_TRUCE_YEARS", 10, 0],
+      ["ANNEX_DIP_COST_PER_BASE_TAX", 15, 1],
+      ["MAX_ACTIVE_POLICIES", 5, 10],
+      ["POLICY_COST", 1, 0],
+      ["FOREIGN_REBEL_SUPPORT", 4, 6],
+      ["WESTERN_POWER_TICK_REDUCTION_FACTOR", 15, 1000000],
+      ["ADVISOR_COST_INCREASE_PER_YEAR", 0.01,  0.005],
+      ["CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
+      ["POWER_MAX", 999, 1500],
+      ["PS_BUILD_BUILDING", 10, 5],
+      ["PS_MOVE_TRADE_PORT", 300, 100],
+      ["PS_CHANGE_CULTURE", 25, 10],
+      ["CLAIM_LOSE", 25, 50],
+      ["CORE_LOSE", 50, 100],
+      ["CORE_LOSE_CULTURE_GROUP", 150, 300],
+      ["CORE_TIME_SIZE_MODIFIER", 0.04, 0.0],
+      ["PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
+      ["PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
+      ["VASSAL_FABRICATE_CLAIMS", 0, 1],
+      ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 0, 50],
+      ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
+    ])
+
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      unless node["base_values"]["global_missionary_strength"] == 0.02
+        raise "Expect base missionary strength to equal 2%"
       end
+      node["base_values"]["diplomatic_upkeep"] = 8
+      node["base_values"]["global_missionary_strength"] = 0.01
+      node["base_values"]["global_heretic_missionary_strength"] = 0.01
+      node["war"] = PropertyList[] if node["war"] == []
+      node["war"]["war_exhaustion_cost"] = 100
+      node["emperor"]["diplomatic_upkeep"] = 2
+      node["inverse_religious_unity"]["global_revolt_risk"] = 5
+      node["war_exhaustion"]["defensiveness"] = -0.02
+      node["war_exhaustion"]["land_morale"] = -0.02
+      node["war_exhaustion"]["naval_morale"] = -0.02
+      node["positive_stability"]["global_missionary_strength"] = 0.007
+      node["non_accepted_culture"]["local_revolt_risk"] = 4
     end
 
-    patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node|
-      node["capital"] = 193
-    end
-
-    patch_religion!
+    always_display_policies!
+    anyone_can_form_byzantium!
+    change_elections_to_eu3_style!
+    dont_destroy_buildings_on_conquest!
+    double_diplo_rel_limit_from_ideas!
+    feature_extra_formable_countries!
     feature_holy_sites!
     feature_partial_westernization!
-    feature_extra_formable_countries!
     feature_return_vassal_cores!
+    fix_opinions!
+    fix_peasant_war!
+    fix_wargoals!
+    make_improve_relations_mission_relevant!
+    no_naval_attrition!
+    patch_religion!
+    reduce_religious_center_penalty!
+    restore_hre_ia_on_prince_religion_change!
+    reverse_burgundy_nerfs!
+    reverse_horde_nerfs!
+    smooth_oe_scaling!
   end
 end
 
@@ -658,4 +492,3 @@ mb = FunAndBalanceModBuilder.new(
   "fun_and_balance-1.7.3"
 )
 mb.build!
-# mb.compare_with_reference!("fun_and_balance_reference-1.7.3")
