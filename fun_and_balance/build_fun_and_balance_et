@@ -58,6 +58,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     no_naval_attrition!
     reduce_religious_center_penalty!
     restore_hre_ia_on_prince_religion_change!
+    reverse_burgundy_nerfs!
     smooth_oe_scaling!
   end
 end
