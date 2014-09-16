@@ -186,13 +186,15 @@ module FunAndBalanceCommon
     end
   end
 
-  def reverse_burgundy_nerfs!
+  def remove_burgundy_inheritance!
     patch_mod_file!("events/FlavorBUR.txt") do |node|
       node.delete_if do |key, val|
         key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|3|4|5|6|7|19)\z/
       end
     end
+  end
 
+  def move_burgundy_capital_to_hre!
     patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node|
       node["capital"] = 193
     end

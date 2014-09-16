@@ -3,7 +3,7 @@
 require_relative "../lib/paradox_mod_builder"
 require_relative "./fun_and_balance_common"
 
-class FunAndBalanceModBuilder < ParadoxModBuilder
+class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
   def allowed_conversions(group_name, name)
@@ -482,14 +482,13 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     reduce_religious_center_penalty!
     restore_hre_ia_on_prince_religion_change!
     remove_burgundy_inheritance!
-    move_burgundy_capital_to_hre!
     reverse_horde_nerfs!
     smooth_oe_scaling!
   end
 end
 
-mb = FunAndBalanceModBuilder.new(
-  ParadoxGame.new("eu4"),
-  "fun_and_balance-1.7.3"
+mb = FunAndBalanceShatteredEuropeModBuilder.new(
+  ParadoxGame.new("eu4", "ShatteredEurope/ShatteredEurope"),
+  "fun_and_balance_shattered_europe"
 )
 mb.build!
