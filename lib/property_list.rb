@@ -100,6 +100,15 @@ class PropertyList
     @list == other.instance_eval{ @list }
   end
 
+  def eql?(other)
+    return false unless other.is_a?(PropertyList)
+    @list.eql?(other.instance_eval{ @list })
+  end
+
+  def hash
+    [self.class, @list].hash
+  end
+
   def self.[](*args)
     raise "Even number of arguments expected" unless args.size % 2 == 0
     rv = PropertyList.new
