@@ -490,7 +490,7 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
 end
 
 mb = FunAndBalanceShatteredEuropeModBuilder.new(
-  ParadoxGame.new("eu4", "ShatteredEurope/ShatteredEurope"),
-  "fun_and_balance_shattered_europe"
+  ParadoxGame.new("eu4", "source/ShatteredEurope/ShatteredEurope"),
+  "output/fun_and_balance_shattered_europe"
 )
 mb.build!

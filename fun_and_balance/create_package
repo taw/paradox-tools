@@ -9,7 +9,7 @@ Pathname("build").mkpath
 Pathname("build/fun_and_balance").mkpath
 
 system "cp fun_and_balance/fun_and_balance.mod build/"
-system "cp -a fun_and_balance-1.7.0/* build/fun_and_balance/"
+system "cp -a output/fun_and_balance-1.7.0/* build/fun_and_balance/"
 Dir.chdir("build") do
   system "7za a fun_and_balance_0.10_for_eu4_1.7.3.7z"
 end

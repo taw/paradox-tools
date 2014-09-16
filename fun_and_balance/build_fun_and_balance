@@ -492,6 +492,6 @@ end
 
 mb = FunAndBalanceModBuilder.new(
   ParadoxGame.new("eu4"),
-  "fun_and_balance-1.7.3"
+  "output/fun_and_balance-1.7.3"
 )
 mb.build!
