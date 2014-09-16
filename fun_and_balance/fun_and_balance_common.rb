@@ -146,18 +146,16 @@ module FunAndBalanceCommon
   end
 
   def double_diplo_rel_limit_from_ideas!
-    @game.glob("common/ideas/*.txt").each do |ideas_file|
-      patch_mod_file!(ideas_file) do |node|
-          node.each do |group_name, idea_group|
-          idea_group.each do |name, idea|
-            next if %W[category trigger ai_will_do important free].include?(name)
-            next if idea == [] # Empty idea
-            if name == "siberian_frontier"
-              idea.delete "colonists"
-            end
-            if idea["diplomatic_upkeep"] == 1
-              idea["diplomatic_upkeep"] = 2
-            end
+    patch_mod_files!("common/ideas/*.txt") do |node|
+      node.each do |group_name, idea_group|
+        idea_group.each do |name, idea|
+          next if %W[category trigger ai_will_do important free].include?(name)
+          next if idea == [] # Empty idea
+          if name == "siberian_frontier"
+            idea.delete "colonists"
+          end
+          if idea["diplomatic_upkeep"] == 1
+            idea["diplomatic_upkeep"] = 2
           end
         end
       end
@@ -165,13 +163,11 @@ module FunAndBalanceCommon
   end
 
   def dont_destroy_buildings_on_conquest!
-    @game.glob("common/buildings/*.txt").each do |path|
-      patch_mod_file!(path) do |node|
-        node.each_value do |building|
-          if building["spare_on_core"] == true
-            building.delete "spare_on_core"
-            building["destroy_on_conquest"] = false
-          end
+    patch_mod_files!("common/buildings/*.txt") do |node|
+      node.each_value do |building|
+        if building["spare_on_core"] == true
+          building.delete "spare_on_core"
+          building["destroy_on_conquest"] = false
         end
       end
     end
@@ -386,11 +382,9 @@ module FunAndBalanceCommon
   end
 
   def always_display_policies!
-    @game.glob("common/policies/*.txt").each do |policy_file|
-      patch_mod_file!(policy_file) do |node|
-        node.each_value do |policy|
-          policy["potential"].delete("has_idea_group")
-        end
+    patch_mod_files!("common/policies/*.txt") do |node|
+      node.each_value do |policy|
+        policy["potential"].delete("has_idea_group")
       end
     end
   end

@@ -68,6 +68,13 @@ class ParadoxModBuilder
       content
     end
   end
+  def patch_mod_files!(pattern, &blk)
+    matches = @game.glob(pattern)
+    raise "No matches found for `#{pattern}'" if matches.size == 0
+    matches.each do |path|
+      patch_mod_file!(path, &blk)
+    end
+  end
   def patch_mod_file!(path)
     patch_file!(path) do |content|
       content = content.force_encoding("windows-1252").encode("UTF-8")
