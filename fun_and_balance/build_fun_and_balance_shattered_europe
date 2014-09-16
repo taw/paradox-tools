@@ -56,7 +56,6 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
 
   def build_mod_files!
     fix_syntax!
-    return
 
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
