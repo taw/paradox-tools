@@ -265,7 +265,7 @@ module FunAndBalanceCommon
       "ai_mission", true,
       "allow", PropertyList[
         "religion", religion,
-        "OR", PropertyList[
+        Property::OR[
           id, PropertyList["owner", PropertyList["is_neighbor_of", "ROOT"]],
           "has_idea", "deus_vult",
         ],
@@ -279,7 +279,7 @@ module FunAndBalanceCommon
         id, PropertyList["owner" , PropertyList["religion", religion]],
       ],
       "abort", PropertyList[
-        "OR", PropertyList[
+        Property::OR[
           "is_subject", true,
           Property::NOT["religion", religion],
         ]
@@ -414,7 +414,7 @@ module FunAndBalanceCommon
     patch_mod_file!("decisions/Tribal.txt") do |node|
       node["country_decisions"].each_value do |decision|
         decision["allow"]["stability"] = 2
-        decision["allow"].add! "OR", PropertyList["stability", 3, "adm_tech", 8]
+        decision["allow"].add! Property::OR["stability", 3, "adm_tech", 8]
         decision["allow"].delete_if do |*kv|
           kv == ["OR", PropertyList["full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
         end
@@ -583,7 +583,7 @@ module FunAndBalanceCommon
         "partial_westernization", PropertyList[
           "major", true,
           "potential", PropertyList[
-            "OR", PropertyList[
+            Property::OR[
               "technology_group", "south_american",
               "technology_group", "mesoamerican",
               "technology_group", "north_american",
@@ -595,7 +595,7 @@ module FunAndBalanceCommon
           ],
           "allow", PropertyList[
             "stability", 2,
-            "OR", PropertyList[
+            Property::OR[
               "stability", 3,
               "adm_tech", 8,
             ],
@@ -605,7 +605,7 @@ module FunAndBalanceCommon
             "dip_power", 250,
             "mil_power", 250,
             "any_neighbor_country", PropertyList[
-              "OR", PropertyList[
+              Property::OR[
                 "technology_group", "muslim",
                 "technology_group", "eastern",
                 "technology_group", "ottoman",
