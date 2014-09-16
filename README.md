@@ -8,6 +8,7 @@ Contents
 --------
 
 * `bin/analyze_idea_group` - score idea groups by value
+* `bin/analyze_missions` - print some statistics about available missions
 * `bin/analyze_policies` - print bonuses by policy
 * `bin/analyze_unit_pips` - analyze unit pips by tech group and tech level and save to CSV files
 * `bin/country_cultures` - print primary country tag for each culture
