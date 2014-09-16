@@ -1,10 +1,54 @@
+class Property
+  attr_reader :key, :val
+  def initialize(key, val)
+    @key = key
+    @val = val
+  end
+
+  def self.[](key, val)
+    new(key, val)
+  end
+
+  def eql?(other)
+    other.is_a?(Property) and key == other.key and val == other.val
+  end
+
+  def hash
+    [self.class, key, val].hash
+  end
+
+  module OR
+    def self.[](*args)
+      Property["OR", PropertyList[*args]]
+    end
+  end
+
+  module AND
+    def self.[](*args)
+      Property["AND", PropertyList[*args]]
+    end
+  end
+
+  module NOT
+    def self.[](*args)
+      Property["NOT", PropertyList[*args]]
+    end
+  end
+end
+
 class PropertyList
   def initialize
     @list = []
   end
 
-  def add!(key, val)
-    @list << [key, val]
+  def add!(key, val=nil)
+    if key.is_a?(Property) and val == nil
+      @list << [key.key, key.val]
+    elsif val == nil or key.is_a?(Property) and val.is_a?(Property)
+      raise ArgumentError, "Wrong use of #add! interface"
+    else
+      @list << [key, val]
+    end
   end
 
   def [](key)
@@ -110,10 +154,17 @@ class PropertyList
   end
 
   def self.[](*args)
-    raise "Even number of arguments expected" unless args.size % 2 == 0
     rv = PropertyList.new
     until args.empty?
-      rv.add! args.shift, args.shift
+      if args[0].is_a?(Property)
+        rv.add! args.shift
+      elsif args.size == 1
+        raise "Even number of non-Property arguments expected"
+      elsif args[1].is_a?(Property)
+        raise "Property argument in unexpected location"
+      else
+        rv.add! args.shift, args.shift
+      end
     end
     rv
   end

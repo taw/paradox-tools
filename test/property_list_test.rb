@@ -78,4 +78,51 @@ class ParadoxModFileTest < MiniTest::Test
       PropertyList["what", true, "is", PropertyList["that", 15]],
     ], set.to_a)
   end
+
+  def test_property
+    cant_by_formed_by = ["MUS", "HLR", "MNG"]
+    long = PropertyList[
+      "NOT", PropertyList["exists", "BYZ"],
+      *cant_by_formed_by.map{|ct| ["NOT", PropertyList["tag", ct]] }.flatten(1),
+      "primary_culture", "croatian",
+      "is_at_war", false,
+    ]
+    short = PropertyList[
+      Property::NOT["exists", "BYZ"],
+      *cant_by_formed_by.map{|ct| Property::NOT["tag", ct] },
+      "primary_culture", "croatian",
+      Property["is_at_war", false],
+    ]
+    assert_equal(long, short)
+  end
+
+  def test_property_or
+    long = PropertyList[
+      "OR", PropertyList[
+        "technology_group", "south_american",
+        "technology_group", "mesoamerican",
+        "technology_group", "north_american",
+      ],
+      "is_subject", false,
+    ]
+    short = PropertyList[
+      Property::OR[
+        "technology_group", "south_american",
+        "technology_group", "mesoamerican",
+        "technology_group", "north_american",
+      ],
+      "is_subject", false,
+    ]
+    assert_equal(long, short)
+  end
+
+  def test_add
+    a = PropertyList[]
+    a.add! "test", "foo"
+    a.add! Property::NOT["another", "bar"]
+    assert_equal(PropertyList[
+      "test", "foo",
+      "NOT", PropertyList["another", "bar"],
+    ], a)
+  end
 end
