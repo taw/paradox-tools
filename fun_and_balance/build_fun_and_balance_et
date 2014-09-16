@@ -46,7 +46,6 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       node["war_exhaustion"]["defensiveness"] = -0.02
       node["war_exhaustion"]["land_morale"] = -0.02
       node["war_exhaustion"]["naval_morale"] = -0.02
-      node["positive_stability"]["global_missionary_strength"] = 0.007
       node["non_accepted_culture"]["local_revolt_risk"] = 4
     end
 
