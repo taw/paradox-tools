@@ -6,7 +6,58 @@ require_relative "./fun_and_balance_common"
 class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
+  # Many files in ShatteredEurope are broken
+  def fix_syntax!
+    # This edit happens on same line as } far too often, breaking files
+    [
+      "history/provinces/169 - Armor.txt",
+      "history/provinces/170 - Finistere.txt",
+      "history/provinces/171 - Morbihan.txt",
+      "history/provinces/172 - Vendee.txt",
+      "history/provinces/1861 - Derby.txt",
+      "history/provinces/233 - Cornwall.txt",
+      "history/provinces/234 - Wessex.txt",
+      "history/provinces/239 - Gloucestershire.txt",
+      "history/provinces/240 - Marches.txt",
+      "history/provinces/241 - Glamorgan.txt",
+      "history/provinces/242 - Gwynedd.txt",
+      "history/provinces/243 - lincoln.txt",
+      "history/provinces/245 - Yorkshire.txt",
+      "history/provinces/246 - Northumberland.txt",
+      "history/provinces/247 - Cumbria.txt",
+      "history/provinces/249 - Ayrshire.txt",
+      "history/provinces/252 - Highlands.txt",
+      "history/provinces/253 - Western Isles.txt",
+      "history/provinces/372 - ulster.txt",
+      "history/provinces/373 - meath.txt",
+      "history/provinces/374 - leinster.txt",
+      "history/provinces/375 - munster.txt",
+      "history/provinces/376 - connaught.txt",
+    ].each do |name|
+      patch_file!(name, force_create: true, reencode: true) do |content|
+        content.gsub("#Possibly druidic in future, mass edit", "")
+      end
+    end
+    patch_file!("history/provinces/378 - beirut.txt", force_create: true, reencode: true) do |content|
+      content.sub("remove_core = KOJ", "remove_core = KOJ }")
+    end
+    # Weird encoding issues, best to just force ASCII
+    patch_file!("common/countries/AlAndalus.txt", force_create: true) do |content|
+      content.encode("UTF-8-MAC").gsub(/[^\000-\177]/, "")
+    end
+    patch_file!("history/countries/NOR - Norway.txt", force_create: true) do |content|
+      content.encode("UTF-8-MAC").gsub(/[^\000-\177]/, "")
+    end
+    patch_file!("missions/iberian_missions.txt", force_create: true, reencode: true) do |content|
+      # What is that even trying to do...
+      content.gsub(/\bnot\b/, "NOT").gsub(/\bthis\b/i, "ROOT").gsub(/\bally\b/, "any_ally")
+    end
+  end
+
   def build_mod_files!
+    fix_syntax!
+    return
+
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
       ["ANNEX_DIP_COST_PER_BASE_TAX", 15, 1],
