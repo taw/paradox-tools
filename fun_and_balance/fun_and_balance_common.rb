@@ -123,14 +123,6 @@ module FunAndBalanceCommon
         end
       end
     end
-
-    patch_mod_file!("events/GenericOnActionEvents.txt") do |node|
-      node.find_all("country_event").each do |event|
-        if event["id"] == 610 # integrating vassal
-          event["option"]["add_republican_tradition"] *= 0.3
-        end
-      end
-    end
   end
 
   def smooth_oe_scaling!

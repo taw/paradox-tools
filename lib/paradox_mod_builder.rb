@@ -38,19 +38,31 @@ class ParadoxModBuilder
     end
   end
   def build!
-    @target.mkpath
+    ensure_target_clear!
     build_mod_files!
     save_localization!
   end
+  def ensure_target_clear!
+    system "trash", @target.to_s
+    @target.mkpath
+  end
   def build_mod_files!
     raise "SubclassResponsibility"
+  end
+  # This is so you can apply multiple patches to same file
+  def resolve(name)
+    if (@target + name).exist?
+      @target + name
+    else
+      @game.resolve(name)
+    end
   end
   def create_file!(name, content)
     (@target + name).parent.mkpath
     (@target + name).write(content)
   end
   def patch_file!(name, force_create: false, reencode: false)
-    content = @game.resolve(name).read
+    content = resolve(name).read
     content = content.force_encoding("windows-1252").encode("UTF-8") if reencode
     new_content = yield(content.dup)
     new_content = new_content.encode("windows-1252") if reencode
