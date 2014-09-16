@@ -29,6 +29,9 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["VASSAL_FABRICATE_CLAIMS", 0, 1],
       ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 0, 50],
       ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
+      ["GREAT_POWER_ALLIANCE_PENALTY", 50, 25],
+      ["PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
+      ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.5],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
@@ -58,7 +61,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     no_naval_attrition!
     reduce_religious_center_penalty!
     restore_hre_ia_on_prince_religion_change!
-    reverse_burgundy_nerfs!
+    remove_burgundy_inheritance!
+    move_burgundy_capital_to_hre!
     smooth_oe_scaling!
   end
 end
