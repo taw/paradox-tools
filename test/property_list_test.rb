@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "set"
 require "minitest/autorun"
 require_relative "../lib/paradox"
 
@@ -56,5 +57,25 @@ class ParadoxModFileTest < MiniTest::Test
     ").parse!
     assert(str1 != str2)
     assert_equal(str1.normalize, str2.normalize)
+  end
+
+  def test_work_as_part_of_set
+    set = Set[]
+    set << PropertyList["test", 2.0]
+    set << PropertyList["test", 2]
+    set << PropertyList["test", 2.0]
+    set << PropertyList[]
+    set << PropertyList["what", 10, "is", "this"]
+    set << PropertyList["what", true, "is", PropertyList["this", 15]]
+    set << PropertyList["what", true, "is", PropertyList["this", 15]]
+    set << PropertyList["what", true, "is", PropertyList["that", 15]]
+    assert_equal([
+      PropertyList["test", 2.0],
+      PropertyList["test", 2],
+      PropertyList[],
+      PropertyList["what", 10, "is", "this"],
+      PropertyList["what", true, "is", PropertyList["this", 15]],
+      PropertyList["what", true, "is", PropertyList["that", 15]],
+    ], set.to_a)
   end
 end
