@@ -684,7 +684,7 @@ module FunAndBalanceCommon
     tags_seen = Set[]
     mission.each do |key, node|
       next if key == "type" or key == "category" or key == "ai_mission"
-      if %W[abort success chance immediate abort_effect effect].include?(key)
+      if %W[abort success chance immediate abort_effect effect target_provinces].include?(key)
         tags_seen += change_tag_references_to_root_references_in_node!(node, tag)
       elsif key == "allow"
         tags_seen += change_tag_references_to_root_references_in_allow_node!(node, tag)
@@ -705,11 +705,17 @@ module FunAndBalanceCommon
       alt_cond = Property::AND[*alt]
     end
 
-    mission["allow"].delete("tag")
-    mission["allow"].add! Property::OR[
-      "tag", tag,
-      alt_cond,
-    ]
+
+    mission["allow"].map! do |key, val|
+      if key == "tag"
+        ["OR", PropertyList[
+          "tag", tag,
+          alt_cond,
+        ]]
+      else
+        [key, val]
+      end
+    end
   end
 
   def make_missions_not_tag_specific!
@@ -722,11 +728,18 @@ module FunAndBalanceCommon
         case tags
         when ["VEN"]
           make_mission_not_tag_specific!(mission, "VEN", Property["owns", 112])
+        when ["GEN"]
+          # Most of them require you to be merchant republic as well
+          make_mission_not_tag_specific!(mission, "GEN", Property["owns", 101])
+        when ["USA"]
+          next if name == "defend_the_american_colonies"
+          make_mission_not_tag_specific!(mission, "USA", Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
+        when ["ARA"]
+          next if name == "become_king_of_gonder" or name == "defeat_saruhan"
+          # puts name, allow, ""
         else
           # p tags
-          # puts name
-          # puts allow
-          # puts ""
+          # puts name, allow, ""
         end
       end
     end
