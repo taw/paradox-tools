@@ -41,11 +41,31 @@ class ParadoxModFileSerializer
     end
   end
 
+  def serialize_key(key)
+    case key
+    when TrueClass
+      "yes"
+    when FalseClass
+      "no"
+    when Numeric
+      key.to_s
+    when Date
+      "%d.%d.%d" % [key.year, key.month, key.day]
+    when Symbol
+      serialize_key(key.to_s)
+    when /\A[A-Za-z0-9_\.]+\z/
+      key
+    else
+      # Can keys be quoted?
+      require 'pry'; binding.pry
+    end
+  end
+
   def print_property_list!(node)
     raise "No idea how to print this" unless node.is_a?(PropertyList)
     node.each do |key,val|
       if val.is_a?(PropertyList)
-        line! "#{key} = {"
+        line! "#{serialize_key(key)} = {"
         @indent += 2
         print_property_list! val
         @indent -= 2
