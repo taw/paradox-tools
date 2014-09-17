@@ -924,6 +924,8 @@ module FunAndBalanceCommon
         when ["MOS", "RUS"], ["RUS"]
           # Moskva and Novgorod
           make_mission_not_tag_specific!(mission, tags, Property["owns", 295], Property["owns", 310],  Property["num_of_cities", 20])
+        when ["JAP"]
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 1020], Property["num_of_cities", 20], Property::NOT["exists", "JAP"])
         when []
           # fortify_the_eastern_border is Sweden-specific, but it's not a big deal it's out of the set
           if mission_rewards_totally_awful?(mission)
