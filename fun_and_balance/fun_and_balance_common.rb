@@ -750,7 +750,7 @@ module FunAndBalanceCommon
     end
   end
 
-  def mission_rewards_not_totally_awful?(mission)
+  def mission_rewards_totally_awful?(mission)
     good_rewards = %W[
       add_mil_power add_adm_power add_dip_power
       add_army_tradition add_navy_tradition
@@ -774,12 +774,12 @@ module FunAndBalanceCommon
     effect.merge!(effect.delete("ROOT").to_h)
     effect.merge!(effect.delete("owner").to_h) if mission["type"] == "our_provinces"
     # Getting points of good kind
-    return true if !(effect.keys & good_rewards).empty?
+    return false if !(effect.keys & good_rewards).empty?
     # Getting free CBs
-    return true if immediate["add_claim"] or immediate.values.map(&:to_h).inject({}, &:merge)["add_claim"]
+    return false if immediate["add_claim"] or immediate.values.map(&:to_h).inject({}, &:merge)["add_claim"]
     # This is legitimately awful
-    return false if immediate.empty? and effect.keys == ["add_prestige"]
-    return false if immediate.empty? and effect.keys == ["define_advisor"]
+    return true if immediate.empty? and effect.keys == ["add_prestige"]
+    return true if immediate.empty? and effect.keys == ["define_advisor"]
     # Check manually
     require 'pry'; binding.pry
   end
@@ -860,32 +860,12 @@ module FunAndBalanceCommon
         when ["MOS", "RUS"], ["RUS"]
           # Moskva and Novgorod
           make_mission_not_tag_specific!(mission, tags, Property["owns", 295], Property["owns", 310],  Property["num_of_cities", 20])
+
+
         when []
-          other_mentioned_tags = change_tag_references_to_root_references!(mission, "XXXXXX").to_a
-          if other_mentioned_tags.empty? and mission_rewards_not_totally_awful?(mission)
-            # OK
-          else
+          # fortify_the_eastern_border is Sweden-specific, but it's not a big deal it's out of the set
+          if mission_rewards_totally_awful?(mission)
           end
-
-          # The following missions mention specific tags, need to be double checked:
-
-          # ["take_from_rival_culture", [], ["PAP"]]
-          # ["discover_mission", [], ["POR", "SPA", "CAS", "ENG", "GBR", "FRA"]]
-          # ["establish_colony_mission", [], ["POR", "SPA", "CAS", "ENG", "GBR", "FRA"]]
-          # ["annex_minor_mission", [], ["PAP", "JAP"]]
-          # ["conquer_a_port", [], ["PAP"]]
-          # ["conquer_neighbour", [], ["PAP", "JAP"]]
-          # ["conquer_core", [], ["JAP"]]
-          # ["protect_cultural_minority", [], ["PAP"]]
-          # ["attack_prestigous_rival", [], ["JAP"]]
-          # ["attack_weaker_rival", [], ["JAP"]]
-          # ["sankin_kotai", [], ["JAP"]]
-          # ["connect_the_prussian_lands", [], ["BRA", "PRU"]]
-          # ["restore_holy_see", [], ["PAP", "SPA"]]
-          # ["solidify_our_papal_relations", [], ["PAP"]]
-          # ["control_the_pope", [], ["PAP"]]
-          # ["fortify_the_eastern_border", [], ["SWE", "MOS", "RUS"]]
-
         else
           # p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
           # puts name, allow, ""
