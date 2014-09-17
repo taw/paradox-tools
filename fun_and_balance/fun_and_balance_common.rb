@@ -912,6 +912,9 @@ module FunAndBalanceCommon
           end
         when ["ENG", "GBR"]
           make_mission_not_tag_specific!(mission, tags, Property["owns", 236], Property["num_of_cities", 20])
+        when ["ENG"]
+          # All missions here are specific to Hundred Years War, everything that's geographically meaningful is tagged ENG or GBR, not ENG only
+          # OK
         when ["CAS", "SPA"], ["SPA"]
           # Valladolid, Castilla La Vieja, Madrid, and Toledo are all historical capitals
           # Is Castile excluded from SPA-only missions on purpose, or just out of silliness?
