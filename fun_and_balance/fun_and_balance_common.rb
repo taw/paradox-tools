@@ -750,6 +750,8 @@ module FunAndBalanceCommon
           make_mission_not_tag_specific!(mission, tags, Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["BYZ"]
           # Pretty much all these missions make sense only as Byzantine missions, form Byzantium if you want them
+          # However, we allow them if you're HLR and own Rome and Constantinople!
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 118], Property["owns", 151], Property["tag", "HLR"])
         when ["ARA"]
           next if name == "become_king_of_gonder" or name == "defeat_saruhan" # joke missions should stay a joke
           # Barcelona and Valencia
@@ -783,6 +785,8 @@ module FunAndBalanceCommon
           if name == "end_sound_toll"
             # You have to be merchant republic for this as well
             make_mission_not_tag_specific!(mission, tags, Property["owns", 45], Property::NOT["tag", "DAN"])
+          else
+            warn "Unknown HSA mission"
           end
         when ["HUN"]
           # Pressburg and Buda
@@ -800,6 +804,8 @@ module FunAndBalanceCommon
           # Valladolid, Castilla La Vieja, Madrid, and Toledo are all historical capitals
           # Is Castile excluded from SPA-only missions on purpose, or just out of silliness?
           make_mission_not_tag_specific!(mission, tags, Property["owns", 214], Property["owns", 215], Property["owns", 217], Property["owns", 219], Property["num_of_cities", 20])
+        when ["FRA", "RFR"], ["FRA"]
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 183], Property["num_of_cities", 20])
         when []
           # p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
 
