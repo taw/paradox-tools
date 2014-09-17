@@ -711,7 +711,24 @@ module FunAndBalanceCommon
     tags_seen
   end
 
+  # For some mission, ROOT is country getting it
+  # For others, FROM is country getting it, ROOT is the target
+  # We only really care about country getting it, so we simplify things here
+  def mission_type(mission)
+    case mission["type"]
+    when /\A(neighbor|our|empty)_provinces\z/, /\A(threat|rival|neighbor|elector)_countries\z/, /\A(rivals|threats)_rivals\z/
+      "FROM"
+    when "country"
+      "ROOT"
+    else
+      raise "Unknown mission type #{mission["type"]}"
+    end
+  end
+
   def make_mission_not_tag_specific!(mission, tags, *alt)
+    type = mission_type(mission)
+    raise "That's not going to work" unless type == "ROOT"
+
     tags_seen = change_tag_references_to_root_references!(mission, tags)
     alt += tags_seen.map{|seen| Property::NOT["tag", seen]}
 
