@@ -750,6 +750,40 @@ module FunAndBalanceCommon
     end
   end
 
+  def mission_rewards_not_totally_awful?(mission)
+    good_rewards = %W[
+      add_mil_power add_adm_power add_dip_power
+      add_army_tradition add_navy_tradition
+      add_base_tax add_province_manpower
+      add_country_modifier
+      add_stability
+      add_inflation
+      add_legitimacy
+      add_years_of_income
+      add_papal_influence
+      add_mercantilism
+    ]
+    # The problem with add_legitimacy is that republics won't benefit from it at all, but it's useful for most countries
+    # The problem with add_papal_influence is that it only matters for catholic countries
+    type = mission_type(mission)
+    immediate = mission["immediate"].to_h
+    effect    = mission["effect"].to_h
+    # I'm extremely confused by this. Maybe missions have bugs here?
+    # Is neighbor_countries scoped FROM or ROOT as I've seen both?
+    effect.merge!(effect.delete("FROM").to_h)
+    effect.merge!(effect.delete("ROOT").to_h)
+    effect.merge!(effect.delete("owner").to_h) if mission["type"] == "our_provinces"
+    # Getting points of good kind
+    return true if !(effect.keys & good_rewards).empty?
+    # Getting free CBs
+    return true if immediate["add_claim"] or immediate.values.map(&:to_h).inject({}, &:merge)["add_claim"]
+    # This is legitimately awful
+    return false if immediate.empty? and effect.keys == ["add_prestige"]
+    return false if immediate.empty? and effect.keys == ["define_advisor"]
+    # Check manually
+    require 'pry'; binding.pry
+  end
+
   def make_missions_not_tag_specific!
     patch_mod_files!("missions/*.txt") do |node|
       node.each do |name, mission|
@@ -827,7 +861,11 @@ module FunAndBalanceCommon
           # Moskva and Novgorod
           make_mission_not_tag_specific!(mission, tags, Property["owns", 295], Property["owns", 310],  Property["num_of_cities", 20])
         when []
-          # p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
+          other_mentioned_tags = change_tag_references_to_root_references!(mission, "XXXXXX").to_a
+          if other_mentioned_tags.empty? and mission_rewards_not_totally_awful?(mission)
+            # OK
+          else
+          end
 
           # The following missions mention specific tags, need to be double checked:
 
