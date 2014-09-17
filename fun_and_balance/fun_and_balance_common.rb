@@ -935,15 +935,41 @@ module FunAndBalanceCommon
           # This makes sense only for these missions, not in general
           make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
         when ["MNG"]
-          # This is extremely unlikely to trigger for anybody except Ming
-          next if name == "china_discovers_india"
-          p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
+          if name == "china_discovers_india"
+            make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
+          else
+            # This is a huge region, unlikely to trigger ever
+            make_mission_not_tag_specific!(mission, tags, Property["chinese_region", PropertyList["type", "all", "owned_by", "ROOT"]])
+          end
+        when ["MCH"]
+          # This includes 2 originally uncolonized provinces, so it's maybe not super useful
+          make_mission_not_tag_specific!(mission, tags, Property["manchu_region", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["TIM"]
           # Samarkand and Kabul
           make_mission_not_tag_specific!(mission, tags, Property["owns", 454], Property["owns", 451], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
         when ["MUG"]
           # Kabul and Delhi
           make_mission_not_tag_specific!(mission, tags, Property["owns", 451], Property["owns", 522], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
+        when ["BRA"]
+          next if name == "brandenburg_breaks_free_from_poland" # Far too specific for one scenario
+          raise "Unknown Brandenburg mission" unless name == "annex_prussia" or name == "vassalize_prussia" or name == "brandenburg_prussia_relations" or name == "connect_brandenburg_and_prussia"
+          # Berlin
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 50], Property::NOT["exists", "BRA"])
+        when ["PRU"]
+          next if name == "prussia_breaks_free_from_poland" # Far too specific for one scenario
+          if name == "subjugate_westphalia" or name == "prussia_partitions_poland"
+            # Berlin, Konigsberg
+            make_mission_not_tag_specific!(mission, tags, Property["owns", 50], Property["owns", 41], Property::NOT["exists", "PRU"], Property::NOT["exists", "BRA"])
+          elsif name == "prussia_brandenburg_relations" or name == "conquer_warmia_pru"
+            # Konigsberg
+            make_mission_not_tag_specific!(mission, tags, Property["owns", 41], Property::NOT["exists", "PRU"])
+          else
+            raise "Unknown Prussia mission"
+          end
+        when ["PRU", "BRA"], ["BRA", "PRU"]
+          # Berlin
+          raise "Unknown Prussia/Brandenburg mission" unless name == "conquer_ratibor" or name == "conquer_silesia" or name == "conquer_hinterpommern" or name == "conquer_swedish_pomerania"
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 50], Property::NOT["exists", "PRU"], Property::NOT["exists", "BRA"])
         when []
           # fortify_the_eastern_border is Sweden-specific, but it's not a big deal it's out of the set
           if mission_rewards_totally_awful?(mission)
@@ -951,7 +977,7 @@ module FunAndBalanceCommon
           end
         else
           p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
-          # puts name, mission, ""
+          puts name, mission, ""
         end
       end
     end
