@@ -619,23 +619,29 @@ module FunAndBalanceCommon
   end
 
   ### Missions feature ###
+  def tag_requirements_for_mission(mission)
+    allow = mission["allow"]
+    return [allow["tag"]] if allow["tag"]
+    [allow["tag"], allow["OR"] && allow["OR"].find_all("tag")].flatten.compact
+  end
+
   def nation_tag?(key)
     # Horrible hack...
     key.is_a?(String) and key =~ /\A[A-Z]{3}\z/ and !%W[AND NOT MIL DIP ADM].include?(key)
   end
 
-  def change_tag_references_to_root_references_in_node!(node, tag)
+  def change_tag_references_to_root_references_in_node!(node, tags)
     tags_seen = Set[]
     node.map! do |key, val|
       if nation_tag?(key)
-        if key == tag
+        if tags.include?(key)
           key = "ROOT"
         else
           tags_seen << key
         end
       end
       if nation_tag?(val)
-        if val == tag
+        if tags.include?(val)
           val = "ROOT"
         else
           tags_seen << val
@@ -643,7 +649,11 @@ module FunAndBalanceCommon
       end
 
       if val.is_a?(PropertyList)
-        tags_seen += change_tag_references_to_root_references_in_node!(val, tag)
+        tags_seen += change_tag_references_to_root_references_in_node!(val, tags)
+        if key == "OR"
+          val.uniq!
+          key, val = val.each.to_a[0]
+        end
       end
 
       [key, val]
@@ -651,20 +661,20 @@ module FunAndBalanceCommon
     tags_seen
   end
 
-  def change_tag_references_to_root_references_in_allow_node!(node, tag)
+  def change_tag_references_to_root_references_in_allow_node!(node, tags)
     tags_seen = Set[]
     node.map! do |key, val|
       next [key, val] if key == "tag"
 
       if nation_tag?(key)
-        if key == tag
+        if tags.include?(key)
           key = "ROOT"
         else
           tags_seen << key
         end
       end
       if nation_tag?(val)
-        if val == tag
+        if tags.include?(val)
           val = "ROOT"
         else
           tags_seen << val
@@ -672,7 +682,15 @@ module FunAndBalanceCommon
       end
 
       if val.is_a?(PropertyList)
-        tags_seen += change_tag_references_to_root_references_in_node!(val, tag)
+        if key == "OR"
+          tags_seen += change_tag_references_to_root_references_in_allow_node!(val, tags)
+          val.uniq!
+          if val.size == 1
+            key, val = val.each.to_a[0]
+          end
+        else
+          tags_seen += change_tag_references_to_root_references_in_node!(val, tags)
+        end
       end
 
       [key, val]
@@ -680,14 +698,14 @@ module FunAndBalanceCommon
     tags_seen
   end
 
-  def change_tag_references_to_root_references!(mission, tag)
+  def change_tag_references_to_root_references!(mission, tags)
     tags_seen = Set[]
     mission.each do |key, node|
       next if key == "type" or key == "category" or key == "ai_mission"
       if %W[abort success chance immediate abort_effect effect target_provinces].include?(key)
-        tags_seen += change_tag_references_to_root_references_in_node!(node, tag)
+        tags_seen += change_tag_references_to_root_references_in_node!(node, tags)
       elsif key == "allow"
-        tags_seen += change_tag_references_to_root_references_in_allow_node!(node, tag)
+        tags_seen += change_tag_references_to_root_references_in_allow_node!(node, tags)
       else
         require 'pry'; binding.pry
       end
@@ -695,8 +713,9 @@ module FunAndBalanceCommon
     tags_seen
   end
 
-  def make_mission_not_tag_specific!(mission, tag, *alt)
-    tags_seen = change_tag_references_to_root_references!(mission, tag)
+  def make_mission_not_tag_specific!(mission, tags, *alt)
+    tags = [tags].flatten
+    tags_seen = change_tag_references_to_root_references!(mission, tags)
     alt += tags_seen.map{|seen| Property::NOT["tag", seen]}
 
     if alt.size == 1
@@ -705,11 +724,10 @@ module FunAndBalanceCommon
       alt_cond = Property::AND[*alt]
     end
 
-
     mission["allow"].map! do |key, val|
       if key == "tag" or (key == "OR" and val["tag"])
         ["OR", PropertyList[
-          key, val,
+          *tags.map{|t| Property["tag", t]},
           alt_cond,
         ]]
       else
@@ -722,7 +740,7 @@ module FunAndBalanceCommon
     patch_mod_files!("missions/*.txt") do |node|
       node.each do |name, mission|
         allow = mission["allow"]
-        tags = [allow["tag"], allow["OR"] && allow["OR"].find_all("tag")].flatten.compact
+        tags = tag_requirements_for_mission(mission)
 
         case tags
         when ["VEN"]
@@ -778,6 +796,8 @@ module FunAndBalanceCommon
           else
             make_mission_not_tag_specific!(mission, "TUR", Property["owns", 149], Property["owns", 151], Property["num_of_cities", 20])
           end
+        when ["ENG", "GBR"]
+          make_mission_not_tag_specific!(mission, ["ENG", "GBR"], Property["owns", 236], Property["num_of_cities", 20])
         when []
           # p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
 

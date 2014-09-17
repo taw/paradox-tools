@@ -180,4 +180,12 @@ class PropertyList
       @list[i] = yield(*@list[i])
     end
   end
+
+  def uniq!
+    @list = @list.uniq
+  end
+
+  def size
+    @list.size
+  end
 end
