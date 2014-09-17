@@ -732,11 +732,14 @@ module FunAndBalanceCommon
           # Most of them require you to be merchant republic as well
           make_mission_not_tag_specific!(mission, "GEN", Property["owns", 101])
         when ["USA"]
-          next if name == "defend_the_american_colonies"
+          next if name == "defend_the_american_colonies" # alt condition is impossible with this prereq
           make_mission_not_tag_specific!(mission, "USA", Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
-        when ["ARA"]
-          next if name == "become_king_of_gonder" or name == "defeat_saruhan"
+        when ["BYZ"]
+          # Pretty much all these missions make sense only as Byzantine missions, form Byzantium if you want them
           # puts name, allow, ""
+        when ["ARA"]
+          next if name == "become_king_of_gonder" or name == "defeat_saruhan" # joke missions should stay a joke
+          make_mission_not_tag_specific!(mission, "GEN", Property["owns", 220])
         else
           # p tags
           # puts name, allow, ""
