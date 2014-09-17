@@ -68,15 +68,6 @@ module FunAndBalanceCommon
     end
   end
 
-  def make_improve_relations_mission_relevant!
-    patch_mod_file!("missions/Diplomatic_Missions.txt") do |node|
-      node["improve_relations_mission"]["effect"]["FROM"]["add_prestige"] = 10
-    end
-    patch_mod_file!("missions/Diplomatic_Missions.txt") do |node|
-      node["improve_relations_mission"]["effect"]["FROM"]["add_dip_power"] = 25
-    end
-  end
-
   def no_naval_attrition!
     patch_mod_file!("common/technologies/dip.txt") do |node|
       node.find_all("technology").each_with_index do |tech,i|
@@ -784,6 +775,76 @@ module FunAndBalanceCommon
     require 'pry'; binding.pry
   end
 
+  def fix_mission_rewards!(name, mission)
+    case name
+    when "make_base_on_spice_islands"
+      mission["effect"]["add_country_modifier"] = PropertyList["name", "colonial_enthusiasm", "duration", 1875]
+    when "conquer_core"
+      mission["effect"]["FROM"]["add_prestige"] = 20
+      mission["effect"]["FROM"]["add_legitimacy"] = 10
+      mission["effect"]["FROM"]["add_republican_tradition"] = 10
+    when "keep_rival_out_of_italy"
+      mission["effect"]["FROM"]["add_prestige"] = 10
+      mission["effect"]["FROM"]["add_mil_power"] = 25
+    when "attack_prestigous_rival"
+      mission["effect"]["FROM"]["add_prestige"] = 10
+      mission["effect"]["FROM"]["add_mil_power"] = 25
+    when "attack_weaker_rival"
+      mission["effect"]["FROM"]["add_mil_power"] = 25
+    when "italian_ambition"
+      mission["effect"]["add_adm_power"] = 25
+    when "build_refinery", "build_wharf"
+      mission["effect"]["owner"]["add_dip_power"] = 25
+      mission["effect"]["add_base_tax"] = 1
+    when "build_weapons"
+      mission["effect"]["owner"]["add_mil_power"] = 25
+      mission["effect"]["add_province_manpower"] = 1
+    when "build_textile"
+      mission["effect"]["owner"]["add_adm_power"] = 25
+      mission["effect"]["add_base_tax"] = 1
+    when "build_fine_arts_academy"
+      mission["effect"]["owner"]["add_base_tax"] = 1
+      mission["effect"]["add_stability"] = 1
+    when "build_university"
+      mission["effect"]["owner"]["add_adm_power"] = 25
+      mission["effect"]["owner"]["add_dip_power"] = 25
+      mission["effect"]["owner"]["add_mil_power"] = 25
+      mission["effect"]["add_stability"] = 1
+    when "view_the_hanami"
+      # Daimyo only mission
+      mission["effect"]["add_legitimacy"] = 10
+    when "improve_relations_mission"
+      mission["effect"]["FROM"]["add_prestige"] = 10
+      mission["effect"]["FROM"]["add_dip_power"] = 25
+    when "improve_reputation_mission"
+      mission["effect"]["add_stability"] = 1
+      mission["effect"]["add_legitimacy"] = 10
+      mission["effect"]["add_republican_tradition"] = 10
+    when "get_minor_cash_reserve"
+      mission["effect"]["add_adm_power"] = 10
+    when "recover_negative_stability"
+      mission["effect"]["add_prestige"] = 10
+      mission["effect"]["add_legitimacy"] = 10
+      mission["effect"]["add_republican_tradition"] = 10
+    when "recover_from_warexhaustion"
+      mission["effect"]["add_dip_power"] = 25
+    when "convert_province_mission"
+      mission["effect"]["owner"]["add_adm_power"] = 25
+    when "solidify_our_papal_relations"
+      mission["effect"]["add_prestige"] = 10
+      mission["effect"]["add_dip_power"] = 25
+    when "control_the_pope"
+      mission["effect"]["add_prestige"] = 10
+      mission["effect"]["add_dip_power"] = 25
+    when "defeat_rebels_mission"
+      mission["effect"]["add_prestige"] = 10
+      mission["effect"]["add_legitimacy"] = 10
+      mission["effect"]["add_republican_tradition"] = 10
+    else
+      require 'pry'; binding.pry
+    end
+  end
+
   def make_missions_not_tag_specific!
     patch_mod_files!("missions/*.txt") do |node|
       node.each do |name, mission|
@@ -860,14 +921,13 @@ module FunAndBalanceCommon
         when ["MOS", "RUS"], ["RUS"]
           # Moskva and Novgorod
           make_mission_not_tag_specific!(mission, tags, Property["owns", 295], Property["owns", 310],  Property["num_of_cities", 20])
-
-
         when []
           # fortify_the_eastern_border is Sweden-specific, but it's not a big deal it's out of the set
           if mission_rewards_totally_awful?(mission)
+            fix_mission_rewards!(name, mission)
           end
         else
-          # p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
+          p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
           # puts name, allow, ""
           # puts name, mission, ""
         end

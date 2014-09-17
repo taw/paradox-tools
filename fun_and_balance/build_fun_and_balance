@@ -63,7 +63,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     fix_opinions!
     fix_peasant_war!
     fix_wargoals!
-    make_improve_relations_mission_relevant!
     no_naval_attrition!
     patch_religion!
     reduce_religious_center_penalty!

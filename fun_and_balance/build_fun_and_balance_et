@@ -56,7 +56,6 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     fix_opinions!
     fix_peasant_war!
     fix_wargoals!
-    make_improve_relations_mission_relevant!
     no_naval_attrition!
     reduce_religious_center_penalty!
     restore_hre_ia_on_prince_religion_change!
