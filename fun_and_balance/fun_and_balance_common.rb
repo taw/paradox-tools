@@ -652,7 +652,7 @@ module FunAndBalanceCommon
         tags_seen += change_tag_references_to_root_references_in_node!(val, tags)
         if key == "OR"
           val.uniq!
-          key, val = val.each.to_a[0]
+          key, val = *val.each.to_a[0] if val.size == 1
         end
       end
 
@@ -685,9 +685,7 @@ module FunAndBalanceCommon
         if key == "OR"
           tags_seen += change_tag_references_to_root_references_in_allow_node!(val, tags)
           val.uniq!
-          if val.size == 1
-            key, val = val.each.to_a[0]
-          end
+          key, val = *val.each.to_a[0] if val.size == 1
         else
           tags_seen += change_tag_references_to_root_references_in_node!(val, tags)
         end
@@ -714,7 +712,6 @@ module FunAndBalanceCommon
   end
 
   def make_mission_not_tag_specific!(mission, tags, *alt)
-    tags = [tags].flatten
     tags_seen = change_tag_references_to_root_references!(mission, tags)
     alt += tags_seen.map{|seen| Property::NOT["tag", seen]}
 
@@ -744,60 +741,65 @@ module FunAndBalanceCommon
 
         case tags
         when ["VEN"]
-          make_mission_not_tag_specific!(mission, "VEN", Property["owns", 112])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 112])
         when ["GEN"]
           # Most of them require you to be merchant republic as well
-          make_mission_not_tag_specific!(mission, "GEN", Property["owns", 101])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 101])
         when ["USA"]
           next if name == "defend_the_american_colonies" # alt condition is impossible with this prereq
-          make_mission_not_tag_specific!(mission, "USA", Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
+          make_mission_not_tag_specific!(mission, tags, Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["BYZ"]
           # Pretty much all these missions make sense only as Byzantine missions, form Byzantium if you want them
         when ["ARA"]
           next if name == "become_king_of_gonder" or name == "defeat_saruhan" # joke missions should stay a joke
-          make_mission_not_tag_specific!(mission, "ARA", Property["owns", 220])
+          # Barcelona and Valencia
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 213], Property["owns", 220])
         when ["LIT"]
-          make_mission_not_tag_specific!(mission, "LIT", Property["owns", 272])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 272])
         when ["KOR"]
-          make_mission_not_tag_specific!(mission, "KOR", Property["owns", 735])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 735])
         when ["BOH"]
-          make_mission_not_tag_specific!(mission, "BOH", Property["owns", 266])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 266])
         when ["BAV"]
-          make_mission_not_tag_specific!(mission, "BAV", Property["owns", 65])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 65])
         when ["HAB"]
-          make_mission_not_tag_specific!(mission, "HAB", Property["owns", 134])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 134])
         when ["POL"]
           # Krakow and Warsaw
-          make_mission_not_tag_specific!(mission, "POL", Property["owns", 262], Property["owns", 257])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 262], Property["owns", 257])
         when ["PAP"]
-          make_mission_not_tag_specific!(mission, "PAP", Property["owns", 118], Property["religion", "catholic"], Property["is_papal_controller", true])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 118], Property["religion", "catholic"], Property["is_papal_controller", true])
         when ["SCO"]
-          make_mission_not_tag_specific!(mission, "SCO", Property["owns", 248])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 248])
         when ["NED"]
-          make_mission_not_tag_specific!(mission, "NED", Property["owns", 97])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 97])
         when ["SWE"]
-          make_mission_not_tag_specific!(mission, "SWE", Property["owns", 1])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 1])
         when ["DAN"]
-          make_mission_not_tag_specific!(mission, "DAN", Property["owns", 12])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 12])
         when ["POR"]
-          make_mission_not_tag_specific!(mission, "POR", Property["owns", 227])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 227])
         when ["HSA"]
           if name == "end_sound_toll"
             # You have to be merchant republic for this as well
-            make_mission_not_tag_specific!(mission, "HSA", Property["owns", 45], Property::NOT["tag", "DAN"])
+            make_mission_not_tag_specific!(mission, tags, Property["owns", 45], Property::NOT["tag", "DAN"])
           end
         when ["HUN"]
           # Pressburg and Buda
-          make_mission_not_tag_specific!(mission, "POR", Property["owns", 153], Property["owns", 154])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 153], Property["owns", 154])
         when ["TUR"]
           # Edirne and Constantinople and 20 cities as these are very geographically ambitious goals
           if name == "muslim_asia_minor"
-            make_mission_not_tag_specific!(mission, "TUR", Property["owns", 149], Property["owns", 151], Property["num_of_cities", 20], Property["religion_group", "muslim"])
+            make_mission_not_tag_specific!(mission, tags, Property["owns", 149], Property["owns", 151], Property["num_of_cities", 20], Property["religion_group", "muslim"])
           else
-            make_mission_not_tag_specific!(mission, "TUR", Property["owns", 149], Property["owns", 151], Property["num_of_cities", 20])
+            make_mission_not_tag_specific!(mission, tags, Property["owns", 149], Property["owns", 151], Property["num_of_cities", 20])
           end
         when ["ENG", "GBR"]
-          make_mission_not_tag_specific!(mission, ["ENG", "GBR"], Property["owns", 236], Property["num_of_cities", 20])
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 236], Property["num_of_cities", 20])
+        when ["CAS", "SPA"], ["SPA"]
+          # Valladolid, Castilla La Vieja, Madrid, and Toledo are all historical capitals
+          # Is Castile excluded from SPA-only missions on purpose, or just out of silliness?
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 214], Property["owns", 215], Property["owns", 217], Property["owns", 219], Property["num_of_cities", 20])
         when []
           # p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
 
