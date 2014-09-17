@@ -71,6 +71,8 @@ module FunAndBalanceCommon
   def make_improve_relations_mission_relevant!
     patch_mod_file!("missions/Diplomatic_Missions.txt") do |node|
       node["improve_relations_mission"]["effect"]["FROM"]["add_prestige"] = 10
+    end
+    patch_mod_file!("missions/Diplomatic_Missions.txt") do |node|
       node["improve_relations_mission"]["effect"]["FROM"]["add_dip_power"] = 25
     end
   end
@@ -614,5 +616,119 @@ module FunAndBalanceCommon
         ]
       ]
     ]
+  end
+
+  ### Missions feature ###
+  def nation_tag?(key)
+    # Horrible hack...
+    key.is_a?(String) and key =~ /\A[A-Z]{3}\z/ and key != "AND" and key != "NOT"
+  end
+
+  def change_tag_references_to_root_references_in_node!(node, tag)
+    tags_seen = Set[]
+    node.map! do |key, val|
+      if nation_tag?(key)
+        if key == tag
+          key = "ROOT"
+        else
+          tags_seen << key
+        end
+      end
+      if nation_tag?(val)
+        if val == tag
+          val = "ROOT"
+        else
+          tags_seen << val
+        end
+      end
+
+      if val.is_a?(PropertyList)
+        tags_seen += change_tag_references_to_root_references_in_node!(val, tag)
+      end
+
+      [key, val]
+    end
+    tags_seen
+  end
+
+  def change_tag_references_to_root_references_in_allow_node!(node, tag)
+    tags_seen = Set[]
+    node.map! do |key, val|
+      next [key, val] if key == "tag"
+
+      if nation_tag?(key)
+        if key == tag
+          key = "ROOT"
+        else
+          tags_seen << key
+        end
+      end
+      if nation_tag?(val)
+        if val == tag
+          val = "ROOT"
+        else
+          tags_seen << val
+        end
+      end
+
+      if val.is_a?(PropertyList)
+        tags_seen += change_tag_references_to_root_references_in_node!(val, tag)
+      end
+
+      [key, val]
+    end
+    tags_seen
+  end
+
+  def change_tag_references_to_root_references!(mission, tag)
+    tags_seen = Set[]
+    mission.each do |key, node|
+      next if key == "type" or key == "category" or key == "ai_mission"
+      if %W[abort success chance immediate abort_effect effect].include?(key)
+        tags_seen += change_tag_references_to_root_references_in_node!(node, tag)
+      elsif key == "allow"
+        tags_seen += change_tag_references_to_root_references_in_allow_node!(node, tag)
+      else
+        require 'pry'; binding.pry
+      end
+    end
+    tags_seen
+  end
+
+  def make_mission_not_tag_specific!(mission, tag, *alt)
+    tags_seen = change_tag_references_to_root_references!(mission, tag)
+    alt += tags_seen.map{|seen| Property::NOT["tag", seen]}
+
+    if alt.size == 1
+      alt_cond = alt[0]
+    else
+      alt_cond = Property::AND[*alt]
+    end
+
+    mission["allow"].delete("tag")
+    mission["allow"].add! Property::OR[
+      "tag", tag,
+      alt_cond,
+    ]
+  end
+
+  def make_missions_not_tag_specific!
+    patch_mod_files!("missions/*.txt") do |node|
+      node.each do |name, mission|
+        allow = mission["allow"]
+        tags = [allow["tag"], allow["OR"] && allow["OR"].find_all("tag")].flatten.compact
+        next if tags.empty?
+
+        case tags
+        when ["VEN"]
+          make_mission_not_tag_specific!(mission, "VEN", Property["owns", 112])
+        else
+          # p tags
+          # puts name
+          # puts allow
+          # puts ""
+        end
+      end
+    end
   end
 end

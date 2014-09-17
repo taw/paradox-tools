@@ -43,7 +43,7 @@ class ParadoxModBuilder
     save_localization!
   end
   def ensure_target_clear!
-    system "trash", @target.to_s
+    system "trash", @target.to_s if @target.exist?
     @target.mkpath
   end
   def build_mod_files!

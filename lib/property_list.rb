@@ -174,4 +174,10 @@ class PropertyList
     @list <=> other.instance_eval{ @list }
   end
   include Comparable
+
+  def map!
+    @list.size.times do |i|
+      @list[i] = yield(*@list[i])
+    end
+  end
 end
