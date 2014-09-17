@@ -806,6 +806,9 @@ module FunAndBalanceCommon
           make_mission_not_tag_specific!(mission, tags, Property["owns", 214], Property["owns", 215], Property["owns", 217], Property["owns", 219], Property["num_of_cities", 20])
         when ["FRA", "RFR"], ["FRA"]
           make_mission_not_tag_specific!(mission, tags, Property["owns", 183], Property["num_of_cities", 20])
+        when ["MOS", "RUS"], ["RUS"]
+          # Moskva and Novgorod
+          make_mission_not_tag_specific!(mission, tags, Property["owns", 295], Property["owns", 310],  Property["num_of_cities", 20])
         when []
           # p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
 
