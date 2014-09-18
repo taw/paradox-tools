@@ -943,7 +943,7 @@ module FunAndBalanceCommon
           end
         when ["MCH"]
           # This includes 2 originally uncolonized provinces, so it's maybe not super useful
-          make_mission_not_tag_specific!(mission, tags, Property["manchu_region", PropertyList["type", "all", "owned_by", "ROOT"]])
+          make_mission_not_tag_specific!(mission, tags, Property["manchuria", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["TIM"]
           # Samarkand and Kabul
           make_mission_not_tag_specific!(mission, tags, Property["owns", 454], Property["owns", 451], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
