@@ -14,6 +14,7 @@ Contents
 * `bin/country_cultures` - print primary country tag for each culture
 * `bin/diff_paradox` - normalize two Paradox mod files (or directories of them) and diff them
 * `bin/find_redundant_files` - check for files in mod directory which are same as in vanilla and can be removed
+* `bin/mission_debugger` - create trigerred modifier for every mission so you can easily see which are in the pool
 * `bin/parse_paradox` - parse and print Paradox mod file as Ruby object
 * `bin/recreate_baseline` - for each mod file, copy corresponding base game file into baseline directory (usually to compare and fix your mod with newly released game patch)
 * `bin/validate_syntax` - validate syntax of Paradox mod file

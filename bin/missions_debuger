@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+
+class MissionsDebugger < ParadoxModBuilder
+  def build!
+    i = 0
+    patch_mod_files!("missions/*.txt") do |node|
+      node.each do |name, mission|
+        i += 1
+        zi = "%03d" % i
+        if mission["type"] == "country"
+          create_mod_file! "common/triggered_modifiers/#{zi}-#{name}.txt", PropertyList[
+            name, PropertyList[
+              "trigger", mission["allow"],
+              "prestige", i,
+            ]
+          ]
+        end
+      end
+    end
+  end
+end
+
+
+MissionsDebugger.new(
+  ParadoxGame.new("eu4", "output/fun_and_balance-1.7.3"),
+  "output/missions_debugger"
+).build!
