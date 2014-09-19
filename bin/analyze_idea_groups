@@ -65,14 +65,8 @@ class Bonuses
     # These are so godawfully underpowered we might just as well ignore them
     :rebel_support_efficiency,
     :embargo_efficiency,
-    :privateer_efficiency,
     :global_spy_defence,
     :spy_offence,
-
-    # Since you always park a unit on your colony, and they never can kill your unit
-    # (unless you upgrade tech that same month and it goes to 0 morale or such nonsense)
-    # it never matters
-    :reduced_native_attacks,
 
     # Ignored because ridiculously underpowered
     :culture_conversion_cost,
@@ -83,8 +77,11 @@ class Bonuses
     # Completely irrelevant, even if you play merc game there are always enough
     :possible_mercenaries,
 
-    # In 1.7 they're usually fast enough
-    :envoy_travel_time,
+    # Examples when it matters are extremely conditional
+    :trade_range_modifier,
+
+    # AI is completely immune to naval attrition, so this is extremely conditional (player only)
+    :naval_attrition,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -126,6 +123,12 @@ class Bonuses
   # since it's so rare to be at cap, let's count it as 90% as good
   def manpower_recovery_speed(v)
     global_manpower_modifier 0.90 * v
+  end
+
+  # Assume 20% of your armies are in attrition mode on average,
+  # and your army size is equal to your manpower pool size on average
+  def land_attrition(v)
+    global_manpower_modifier -0.2*v
   end
 
   # Assume provinces are 80% your religion, 5% heretic, 15% heathen
@@ -199,9 +202,21 @@ class Bonuses
   def war_exhaustion_cost(v)
     monthly_dip_points (-v * 75.0 / 12 / 25)
   end
+  # -2 WE is worth 75 dip
+  # Assume you are at positive-enough-to-care WE 50% of the time
+  # This is *monthly* number
+  def war_exhaustion(v)
+    monthly_dip_points -v*(75.0/2.0)*0.50
+  end
   # Assuming reduce inflation button is used once / 50 years
   def inflation_action_cost(v)
     monthly_adm_points (-v * 75.0 / 12 / 50)
+  end
+  # -2 inflation is worth 75 adm
+  # Assume you are at positive-enough-to-care inflation 25% of the time
+  # This is *annual* number
+  def inflation_reduction(v)
+    monthly_adm_points -v*(75.0/2.0/12)*0.25
   end
   # Assume average of 1bt/year cored
   def core_creation(v)
@@ -314,6 +329,27 @@ class Bonuses
     naval_unit_power 0.10 * v
   end
 
+  # Assume ships spend 20% of time in repairs
+  # And half of that could be avoided if they could reapir at sea
+  def sea_repair(v)
+    raise unless v == true
+    naval_unit_power 0.2*0.5
+  end
+  def global_ship_repair(v)
+    naval_unit_power v*0.2
+  end
+
+  # Assume your light ships spend 20% of their time blockading, so you need fewer if you have blockade efficiency
+  def blockade_efficiency(v)
+    light_ship_cost -v*0.20
+  end
+
+  # Assume your light ships spend 10% of their time privateering, so they hive you more money with privateer efficiency
+  # Assume you get 2x as much money as with trade steering on average in situations where you want to privateer
+  def privateer_efficiency(v)
+    trade_steering 2*v*0.1
+  end
+
   # Combat ability and discipline work the same multiplicatively:
   # damage = (100% + combat ability) * (100% + discipline modifiers) * other stuff
   # (durability is naval equivalent of discipline)
@@ -363,7 +399,7 @@ class Bonuses
 
   # I assume this adds to base of 15% (20% in home territory) not 100%
   # I doesn't translate to anything, but let's just guess that army which instantly recovered
-  # morale every monttly tick would be 10% better. That's not as good as it sounds since it still
+  # morale every monthly tick would be 10% better. That's not as good as it sounds since it still
   # won't matter during combat, or if combat happens same month as previous one.
 
   def recover_army_morale_speed(v)
@@ -371,6 +407,11 @@ class Bonuses
   end
   def recover_navy_morale_speed(v)
     naval_unit_power v*0.1
+  end
+
+  # Guestimate that 2x reinforcement speed would make land units 10% more effective
+  def reinforce_speed(v)
+    land_unit_power v*0.1
   end
 
   # +1/year with 5% default decay makes it stabilize at 20 higher level
@@ -429,8 +470,10 @@ class Bonuses
   def cb_on_overseas(v)
     extra_cbs 1
   end
+  # Holy War and Cleansing of Heresy are two great CBs
+  # Defender of the Faith not counted as it only gives you CB on people you already have good CBs on (one of two above)
   def cb_on_religious_enemies(v)
-    extra_cbs 1
+    extra_cbs 2
   end
   def idea_claim_colonies(v)
     extra_cbs 1
@@ -531,6 +574,16 @@ class Bonuses
   def monthly_fervor_increase(v)
   end
 
+  # Assumes:
+  #   2 diplomats - 25% time in travel
+  #   2 merchant  -  1% time in travel
+  #   1 colonist  - 10% time in travel
+  def envoy_travel_time(v)
+    diplomats -2*0.25*v
+    merchants -2*0.01*v
+    colonists -1*0.10*v
+  end
+
   def cardinals(v)
     prestige 0.1*v
     legitimacy 0.2*v
@@ -540,6 +593,18 @@ class Bonuses
 
   # This is potentially useful, but it's so extremely conditional (only emperor) I'm not going to score it
   def imperial_authority(v)
+  end
+
+  # Since you always park a unit on your colony, and they never can kill your unit
+  # (unless you upgrade tech that same month and it goes to 0 morale or such nonsense)
+  # it never matters
+  #
+  # However wiki says this also doubles native contribution to manpower and base tax
+  # which is actually relevant.
+  # Guesstimating this as 20% colonial growth at 2 colonists
+  def reduced_native_attacks(v)
+    raise unless v == true
+    colonists 2*0.2
   end
 
   # Assume on aveareg you'll be using 50% of this bonus
@@ -591,6 +656,16 @@ class Bonuses
     naval_unit_power 0.02*v
   end
 
+  # Assume 10% of AE comes from discovered actions
+  def discovered_relations_impact(v)
+    ae_impact 0.1*v
+  end
+
+  # Counting 200% range extension worth as much as extra colonist - it's extremely conditional
+  def range(v)
+    colonists 0.5*v
+  end
+
   def score
     total = 0
     @ht.each do |k,v|
@@ -616,7 +691,7 @@ class Bonuses
       when :global_missionary_strength
         total += 2*v
       when :global_revolt_risk
-        total -= v/0.5
+        total -= 0.5*v
       when :money
         # Doubling the money
         total += v*10
@@ -696,12 +771,12 @@ class AnalyzeIdeaGroups < ParadoxGame
       # bonuses = filter_bonuses(bonuses)
 
       seen += bonuses.keys
-      puts "%.4f %s" % [bonuses.score, name]
-      pp bonuses.to_h
+      puts "%.2f %s" % [bonuses.score, name]
+      # pp bonuses.to_h
       # pp idea_group
-      puts ""
+      # puts ""
     end
-    puts "#{seen.size} different bonuses"
+    # puts "#{seen.size} different bonuses"
   end
 end
 
