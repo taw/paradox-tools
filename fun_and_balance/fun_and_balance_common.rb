@@ -753,6 +753,7 @@ module FunAndBalanceCommon
       add_years_of_income
       add_papal_influence
       add_mercantilism
+      add_treasury
     ]
     # The problem with add_legitimacy is that republics won't benefit from it at all, but it's useful for most countries
     # The problem with add_papal_influence is that it only matters for catholic countries
@@ -975,6 +976,9 @@ module FunAndBalanceCommon
           if mission_rewards_totally_awful?(mission)
             fix_mission_rewards!(name, mission)
           end
+        # Shattered Europe Scenario - we don't want to change these
+        when  ["GRA", "ALU", "BDJ"], ["GRA", "ALU", "SEV"], ["GRA", "ALU", "BDJ", "SEV"], ["ALU"]
+          # OK
         else
           p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
           puts name, mission, ""

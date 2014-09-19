@@ -120,6 +120,7 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     remove_burgundy_inheritance!
     reverse_horde_nerfs!
     smooth_oe_scaling!
+    make_missions_not_tag_specific!
   end
 end
 
