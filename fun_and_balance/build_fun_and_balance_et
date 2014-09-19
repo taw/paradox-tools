@@ -32,6 +32,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["GREAT_POWER_ALLIANCE_PENALTY", 50, 25],
       ["PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
+      ["TECH_AHEAD_OF_TIME", 0.1, 0.05],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|

@@ -854,83 +854,83 @@ module FunAndBalanceCommon
 
         case tags
         when ["VEN"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 112])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 112])
         when ["GEN"]
           # Most of them require you to be merchant republic as well
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 101])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 101])
         when ["USA"]
           next if name == "defend_the_american_colonies" # alt condition is impossible with this prereq
           make_mission_not_tag_specific!(mission, tags, Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["BYZ"]
           # Pretty much all these missions make sense only as Byzantine missions, form Byzantium if you want them
           # However, we allow them if you're HLR and own Rome and Constantinople!
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 118], Property["owns", 151], Property["tag", "HLR"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 118], Property["owns_core_province", 151], Property["tag", "HLR"])
         when ["ARA"]
           next if name == "become_king_of_gonder" or name == "defeat_saruhan" # joke missions should stay a joke
           # Barcelona and Valencia
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 213], Property["owns", 220])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 213], Property["owns_core_province", 220])
         when ["LIT"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 272])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 272])
         when ["KOR"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 735])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 735])
         when ["BOH"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 266])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 266])
         when ["BAV"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 65])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 65])
         when ["HAB"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 134])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 134])
         when ["POL"]
           # Krakow and Warsaw
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 262], Property["owns", 257])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 262], Property["owns_core_province", 257])
         when ["PAP"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 118], Property["religion", "catholic"], Property["is_papal_controller", true])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 118], Property["religion", "catholic"], Property["is_papal_controller", true])
         when ["SCO"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 248])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 248])
         when ["NED"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 97])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 97])
         when ["SWE"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 1])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 1])
         when ["DAN"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 12])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 12])
         when ["POR"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 227])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 227])
         when ["HSA"]
           if name == "end_sound_toll"
             # You have to be merchant republic for this as well
-            make_mission_not_tag_specific!(mission, tags, Property["owns", 45], Property::NOT["tag", "DAN"])
+            make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 45], Property::NOT["tag", "DAN"])
           else
             warn "Unknown HSA mission"
           end
         when ["HUN"]
           # Pressburg and Buda
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 153], Property["owns", 154])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 153], Property["owns_core_province", 154])
         when ["TUR"]
           # Edirne and Constantinople and 20 cities as these are very geographically ambitious goals
           if name == "muslim_asia_minor"
-            make_mission_not_tag_specific!(mission, tags, Property["owns", 149], Property["owns", 151], Property["num_of_cities", 20], Property["religion_group", "muslim"])
+            make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 149], Property["owns_core_province", 151], Property["num_of_cities", 20], Property["religion_group", "muslim"])
           else
-            make_mission_not_tag_specific!(mission, tags, Property["owns", 149], Property["owns", 151], Property["num_of_cities", 20])
+            make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 149], Property["owns_core_province", 151], Property["num_of_cities", 20])
           end
         when ["ENG", "GBR"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 236], Property["num_of_cities", 20])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 236], Property["num_of_cities", 20])
         when ["ENG"]
           # All missions here are specific to Hundred Years War, everything that's geographically meaningful is tagged ENG or GBR, not ENG only
           # OK
         when ["CAS", "SPA"], ["SPA"]
           # Valladolid, Castilla La Vieja, Madrid, and Toledo are all historical capitals
           # Is Castile excluded from SPA-only missions on purpose, or just out of silliness?
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 214], Property["owns", 215], Property["owns", 217], Property["owns", 219], Property["num_of_cities", 20])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 214], Property["owns_core_province", 215], Property["owns_core_province", 217], Property["owns_core_province", 219], Property["num_of_cities", 20])
         when ["FRA", "RFR"], ["FRA"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 183], Property["num_of_cities", 20])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 183], Property["num_of_cities", 20])
         when ["MOS", "RUS"], ["RUS"]
           # Moskva and Novgorod
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 295], Property["owns", 310],  Property["num_of_cities", 20])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 295], Property["owns_core_province", 310],  Property["num_of_cities", 20])
         when ["JAP"]
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 1020], Property["num_of_cities", 20], Property::NOT["exists", "JAP"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 1020], Property["num_of_cities", 20], Property::NOT["exists", "JAP"])
         when ["BUR"]
           # This definition is not specific enough, as France can easily trigger it, but missions Burgundy gets (conquer / vassalize various HRE minors)
           # make sense for France as well, so it's fine
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 192], Property["owns", 193], Property["num_of_cities", 20], Property::NOT["exists", "BUR"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 192], Property["owns_core_province", 193], Property["num_of_cities", 20], Property::NOT["exists", "BUR"])
         when ["MNG", "MCH"]
           raise "Unknown Ming/Manchu missions" unless name == "colonize_taiwan" or name == "colonize_deren"
           # This makes sense only for these missions, not in general
@@ -947,30 +947,30 @@ module FunAndBalanceCommon
           make_mission_not_tag_specific!(mission, tags, Property["manchuria", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["TIM"]
           # Samarkand and Kabul
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 454], Property["owns", 451], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 454], Property["owns_core_province", 451], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
         when ["MUG"]
           # Kabul and Delhi
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 451], Property["owns", 522], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 451], Property["owns_core_province", 522], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
         when ["BRA"]
           next if name == "brandenburg_breaks_free_from_poland" # Far too specific for one scenario
           raise "Unknown Brandenburg mission" unless name == "annex_prussia" or name == "vassalize_prussia" or name == "brandenburg_prussia_relations" or name == "connect_brandenburg_and_prussia"
           # Berlin
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 50], Property::NOT["exists", "BRA"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 50], Property::NOT["exists", "BRA"])
         when ["PRU"]
           next if name == "prussia_breaks_free_from_poland" # Far too specific for one scenario
           if name == "subjugate_westphalia" or name == "prussia_partitions_poland"
             # Berlin, Konigsberg
-            make_mission_not_tag_specific!(mission, tags, Property["owns", 50], Property["owns", 41], Property::NOT["exists", "PRU"], Property::NOT["exists", "BRA"])
+            make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 50], Property["owns_core_province", 41], Property::NOT["exists", "PRU"], Property::NOT["exists", "BRA"])
           elsif name == "prussia_brandenburg_relations" or name == "conquer_warmia_pru"
             # Konigsberg
-            make_mission_not_tag_specific!(mission, tags, Property["owns", 41], Property::NOT["exists", "PRU"])
+            make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 41], Property::NOT["exists", "PRU"])
           else
             raise "Unknown Prussia mission"
           end
         when ["PRU", "BRA"], ["BRA", "PRU"]
           # Berlin
           raise "Unknown Prussia/Brandenburg mission" unless name == "conquer_ratibor" or name == "conquer_silesia" or name == "conquer_hinterpommern" or name == "conquer_swedish_pomerania"
-          make_mission_not_tag_specific!(mission, tags, Property["owns", 50], Property::NOT["exists", "PRU"], Property::NOT["exists", "BRA"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 50], Property::NOT["exists", "PRU"], Property::NOT["exists", "BRA"])
         when []
           # fortify_the_eastern_border is Sweden-specific, but it's not a big deal it's out of the set
           if mission_rewards_totally_awful?(mission)
@@ -983,6 +983,21 @@ module FunAndBalanceCommon
           p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
           puts name, mission, ""
         end
+      end
+    end
+  end
+
+  def rescale(val, range_a, range_b)
+    position_in_range = (val-range_a.begin).to_f /  range_a.size
+    (range_b.begin + position_in_range * range_b.size).round
+  end
+
+  def rescale_tech_times_to_1399_1820_timeframe!
+
+    patch_mod_files!("common/technologies/*.txt") do |node|
+      node.find_all("technology").each_with_index do |tech,i|
+        p [tech["year"], rescale(tech["year"], 1444..1820, 1399..1820)]
+        tech["year"] = rescale(tech["year"], 1444..1820, 1399..1820)
       end
     end
   end

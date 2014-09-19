@@ -1,7 +1,7 @@
 require "pathname"
 require "fileutils"
 
-VERSION = "0.13"
+VERSION = "0.14"
 
 def trash(path)
   if Pathname(path).exist?
