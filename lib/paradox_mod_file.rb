@@ -33,40 +33,6 @@ class ParadoxModFile
 
   private
 
-  def each_token
-    s = StringScanner.new(@data.gsub("\r\n", "\n").sub(/\AEU4txt/, ""))
-    until s.eos?
-      if s.scan(/(\p{Space})+/)
-        # next
-      elsif s.scan(/#.*$/)
-        next
-      elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
-        yield Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
-      elsif s.scan(/(-?\d+\.\d+)(?![^}=\s])/)
-        yield s[1].to_f
-      elsif s.scan(/(-?\d+)(?![^}=\s])/)
-        yield s[1].to_i
-      elsif s.scan(/([=\{\}])/)
-        yield({"{" => :open, "}" => :close, "=" => :eq}[s[1]])
-      elsif s.scan(/(
-                          (?:_|\.|\-|'|’|\p{Letter}|\p{Digit})+
-                         )/x)
-        if s[1] == "yes"
-          yield true
-        elsif s[1] == "no"
-          yield false
-        else
-          yield s[1]
-        end
-      elsif s.scan(/"([^"]*)"/)
-        # Is there ever any weird escaping here?
-        yield s[1]
-      else
-        raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}"
-      end
-    end
-  end
-
   def parse_error!
     raise "Parse error in #{path || 'passed string'}: #{@tokens[0,50].inspect}..."
   end
@@ -74,7 +40,35 @@ class ParadoxModFile
   def tokenize!
     unless @tokens
       @tokens = []
-      each_token{|tok| @tokens << tok}
+      s = StringScanner.new(@data.gsub("\r\n", "\n").sub(/\AEU4txt/, ""))
+      until s.eos?
+        if s.scan(/(\p{Space})+|#.*$/)
+          # next
+        elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
+          @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
+        elsif s.scan(/(-?\d+\.\d+)(?![^}=\s])/)
+          @tokens << s[1].to_f
+        elsif s.scan(/(-?\d+)(?![^}=\s])/)
+          @tokens << s[1].to_i
+        elsif s.scan(/([=\{\}])/)
+          @tokens << ({"{" => :open, "}" => :close, "=" => :eq}[s[1]])
+        elsif s.scan(/(
+                            (?:_|\.|\-|'|’|\p{Letter}|\p{Digit})+
+                           )/x)
+          if s[1] == "yes"
+            @tokens << true
+          elsif s[1] == "no"
+            @tokens << false
+          else
+            @tokens << s[1]
+          end
+        elsif s.scan(/"([^"]*)"/)
+          # Is there ever any weird escaping here?
+          @tokens << s[1]
+        else
+          raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}"
+        end
+      end
     end
   end
 
