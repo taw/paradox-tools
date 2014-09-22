@@ -14,7 +14,6 @@ class ProvinceState
 
   def command!(key, val)
     case key
-    when "KURWA NO"
     when "add_core"
       @state["cores"] |= [val]
     when "add_claim"
@@ -53,11 +52,11 @@ class WorldHistory
   end
 
   def start_date
-    @start_date ||= @data["start_date"]
+    @start_date ||= Date.new(*@data["start_date"].split(".").map(&:to_i), Date::JULIAN)
   end
 
   def current_date
-    @current_date ||= @data["date"]
+    @current_date ||= Date.new(*@data["date"].split(".").map(&:to_i), Date::JULIAN)
   end
 
   def player
@@ -67,7 +66,7 @@ class WorldHistory
   # State at the end if date is nil
   def province_state(id, date=nil)
     state = ProvinceState.new
-    provinces[id].each do |key, val|
+    provinces.fetch(id, {}).each do |key, val|
       if key.is_a?(Date)
         state.commands!(val) if date.nil? or key <= date
       else

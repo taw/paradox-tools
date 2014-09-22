@@ -42,5 +42,4 @@ module ImageGeneration
       }
     ]
   end
-
 end
