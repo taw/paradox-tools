@@ -3,26 +3,13 @@
 require "RMagick"
 require "pp"
 require_relative "../lib/paradox"
-
-# Some are [0..1], others are [0..255], we should probably standardize them here
+require_relative "image_generation"
 
 class Visualization < ParadoxGame
+  include ImageGeneration
+
   def provinces_image
     @provinces_image ||= Magick::Image.read(resolve("map/provinces.bmp")).first
-  end
-
-  def generate_map_image(color_map)
-    black = [0,0,0].pack("CCC")
-    pixels = provinces_image.export_pixels_to_str
-    (0...pixels.size).step(3) do |i|
-      current_color = pixels[i, 3]
-      new_color     = color_map[current_color] || black
-      pixels[i, 3]  = new_color
-    end
-    pixels
-    img = Magick::Image.new(provinces_image.columns, provinces_image.rows){|info| info.depth=8}
-    img.import_pixels(0, 0, img.columns, img.rows, "RGB", pixels)
-    img
   end
 
   def province_definitions
@@ -32,6 +19,22 @@ class Visualization < ParadoxGame
         defs[id.to_i] = [[r.to_i, g.to_i, b.to_i].pack("CCC"), name]
       end
       defs
+    end
+  end
+
+  def default_map
+    @default_map ||= parse("map/default.map")
+  end
+
+  def land_province_ids
+    @land_province_ids ||= begin
+      (1...default_map["max_provinces"]).to_a - sea_province_ids
+    end
+  end
+
+  def sea_province_ids
+    @sea_province_ids ||= begin
+      default_map["lakes"] | default_map["sea_starts"]
     end
   end
 
@@ -139,21 +142,22 @@ class Visualization < ParadoxGame
 
   def generate_map_by_continent!
     continent_colors = {
-      "europe"        => [181, 72, 106].pack("C*"),
-      "asia"          => [220, 138, 57].pack("C*"),
-      "africa"        => [63, 125, 214].pack("C*"),
-      "north_america" => [54, 167, 156].pack("C*"),
-      "south_america" => [219, 124, 139].pack("C*"),
-      "oceania"       => [57, 160, 101].pack("C*"),
-      nil             => [160, 160, 255].pack("C*"),
+      "europe"        => [181, 72, 106],
+      "asia"          => [220, 138, 57],
+      "africa"        => [63, 125, 214],
+      "north_america" => [54, 167, 156],
+      "south_america" => [219, 124, 139],
+      "oceania"       => [57, 160, 101],
+      nil             => [0, 0, 80],
     }
-    color_map = Hash[province_definitions.map{|id,(color,name)|
-      [
-        color,
-        continent_colors[(provinces_by_continent.find{|k,v| v.include?(id) }||[]).first],
-      ]
-    }]
-    img = generate_map_image(color_map)
+    province_map = Hash[
+      sea_province_ids.map{|id| [id, continent_colors[nil]]} +
+      land_province_ids.map{|id|
+        continent = provinces_by_continent.find{|k,v| v.include?(id) } || []
+        [id, continent_colors[continent.first]]
+      }
+    ]
+    img = generate_map_image(build_color_map(province_map))
     img.write("continents.png")
   end
 end
