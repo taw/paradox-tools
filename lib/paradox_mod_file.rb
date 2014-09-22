@@ -41,8 +41,7 @@ class ParadoxModFile
       elsif s.scan(/#.*$/)
         next
       elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
-        date = Date.new(s[1].to_i, s[2].to_i, s[3].to_i)
-        yield date
+        yield Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
       elsif s.scan(/(-?\d+\.\d+)(?![^}=\s])/)
         yield s[1].to_f
       elsif s.scan(/(-?\d+)(?![^}=\s])/)
