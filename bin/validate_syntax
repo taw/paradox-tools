@@ -18,7 +18,7 @@ time = Time.now
 sz = 0
 ARGV.each do |root|
   Pathname(root).find do |path|
-    next unless path.file? and path.extname == ".txt"
+    next unless path.file? and [".txt", ".eu4"].include?(path.extname)
     # No point checking identical file multiple times
     hash = path.md5
     next if seen[hash]

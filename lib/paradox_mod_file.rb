@@ -34,7 +34,7 @@ class ParadoxModFile
   private
 
   def each_token
-    s = StringScanner.new(@data.gsub("\r\n", "\n"))
+    s = StringScanner.new(@data.gsub("\r\n", "\n").sub(/\AEU4txt/, ""))
     until s.eos?
       if s.scan(/(\p{Space})+/)
         # next
@@ -68,7 +68,7 @@ class ParadoxModFile
   end
 
   def parse_error!
-    raise "Parse error in #{path || 'passed string'}: #{@tokens.inspect}"
+    raise "Parse error in #{path || 'passed string'}: #{@tokens[0,50].inspect}..."
   end
 
   def tokenize!
@@ -98,6 +98,9 @@ class ParadoxModFile
       case @tokens[0]
       when Integer, Float, String, Date, TrueClass, FalseClass
         rv << @tokens.shift
+      when :open
+        # Happens in save games with attachments=
+        rv << parse_val
       else
         parse_error!
       end
@@ -132,6 +135,12 @@ class ParadoxModFile
   end
 
   def parse_attr
+    # WTF is this? It happens in save files but it makes no sense. For now I'm skipping it, but that's probably invalid
+    while @tokens[0] == :open and @tokens[1] == :close
+      @tokens.shift
+      @tokens.shift
+    end
+
     if key_token_zero? and @tokens[1] == :eq
       key = @tokens.shift
       @tokens.shift
