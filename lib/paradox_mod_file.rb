@@ -34,36 +34,36 @@ class ParadoxModFile
   private
 
   def each_token
-    data = @data.gsub("\r\n", "\n")
-    until data.empty?
-      if data.sub!(/\A(\p{Space})+/, "")
+    s = StringScanner.new(@data.gsub("\r\n", "\n"))
+    until s.eos?
+      if s.scan(/(\p{Space})+/)
         # next
-      elsif data.sub!(/\A#.*$/, "\n")
+      elsif s.scan(/#.*$/)
         next
-      elsif data.sub!(/\A(\d+)\.(\d+)\.(\d+)\b/, "")
-        date = Date.new($1.to_i, $2.to_i, $3.to_i)
+      elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
+        date = Date.new(s[1].to_i, s[2].to_i, s[3].to_i)
         yield date
-      elsif data.sub!(/\A(-?\d+\.\d+)(?![^}=\s])/, "")
-        yield $1.to_f
-      elsif data.sub!(/\A(-?\d+)(?![^}=\s])/, "")
-        yield $1.to_i
-      elsif data.sub!(/\A([=\{\}])/, "")
-        yield({"{" => :open, "}" => :close, "=" => :eq}[$1])
-      elsif data.sub!(/\A(
+      elsif s.scan(/(-?\d+\.\d+)(?![^}=\s])/)
+        yield s[1].to_f
+      elsif s.scan(/(-?\d+)(?![^}=\s])/)
+        yield s[1].to_i
+      elsif s.scan(/([=\{\}])/)
+        yield({"{" => :open, "}" => :close, "=" => :eq}[s[1]])
+      elsif s.scan(/(
                           (?:_|\.|\-|'|’|\p{Letter}|\p{Digit})+
-                         )/x, "")
-        if $1 == "yes"
+                         )/x)
+        if s[1] == "yes"
           yield true
-        elsif $1 == "no"
+        elsif s[1] == "no"
           yield false
         else
-          yield $1
+          yield s[1]
         end
-      elsif data.sub!(/\A"([^"]*)"/, "")
+      elsif s.scan(/"([^"]*)"/)
         # Is there ever any weird escaping here?
-        yield $1
+        yield s[1]
       else
-        raise "Tokenizer error in #{path || 'passed string'}: #{data[0, 100].inspect}..."
+        raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}"
       end
     end
   end

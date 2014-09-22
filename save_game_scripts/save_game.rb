@@ -50,7 +50,7 @@ class SaveGame
       elsif s.scan(/(-?\d+\.\d+)/)
         yield([:value, s[0].to_f])
       elsif s.scan(/\b(yes|no)\b/)
-        yield([:value, $1 == "yes"])
+        yield([:value, s[0] == "yes"])
       elsif s.scan(/(-?\d+)/)
         yield([:value, s[0].to_i])
       elsif s.scan(/[a-zA-Z_\-][a-zA-Z_.0-9\-]*/)
