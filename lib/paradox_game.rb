@@ -1,4 +1,5 @@
 require "yaml"
+require "csv"
 require_relative "paradox_mod_file"
 
 class Pathname
@@ -19,6 +20,10 @@ class ParadoxGame
 
   def parse(path)
     ParadoxModFile.new(path: resolve(path)).parse!
+  end
+
+  def parse_csv(path)
+    CSV.parse(resolve(path).open("r:windows-1252:utf-8").read, col_sep: ";")
   end
 
   def resolve(path)

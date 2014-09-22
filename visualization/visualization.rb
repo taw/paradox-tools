@@ -1,11 +1,20 @@
 #!/usr/bin/env ruby
 
+require "RMagick"
 require "pp"
 require_relative "../lib/paradox"
 
 # Some are [0..1], others are [0..255], we should probably standardize them here
 
 class Visualization < ParadoxGame
+  def provinces_image
+    @provinces_image ||= Magick::Image.read(resolve("map/provinces.bmp")).first
+  end
+
+  def province_definitions
+    @province_definitions ||= parse_csv("map/definition.csv")
+  end
+
   def religion_colors
     @religion_colors ||= begin
       colors = {}
@@ -109,12 +118,15 @@ if __FILE__ == $0
 
   vis = Visualization.new(*ARGV)
 
-  pp vis.religion_colors
-  pp vis.region_colors
-  pp vis.country_colors
-  pp vis.natives_colors
-  pp vis.trade_companies_colors
-  pp vis.colonial_regions_colors
-  pp vis.trade_goods_colors
-  pp vis.trade_node_colors
+  # pp vis.religion_colors
+  # pp vis.region_colors
+  # pp vis.country_colors
+  # pp vis.natives_colors
+  # pp vis.trade_companies_colors
+  # pp vis.colonial_regions_colors
+  # pp vis.trade_goods_colors
+  # pp vis.trade_node_colors
+
+  pp vis.province_definitions
+  vis.provinces_image
 end
