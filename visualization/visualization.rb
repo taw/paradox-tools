@@ -42,6 +42,18 @@ class Visualization < ParadoxGame
     @provinces_by_continent ||= parse("map/continent.txt").to_h
   end
 
+  def provinces_by_colonial_region
+    @provinces_by_colonial_region ||= begin
+      map = {}
+      glob("common/colonial_regions/*.txt").each do |path|
+        parse(path).each do |region, details|
+          map[region] = details["provinces"]
+        end
+      end
+      map
+    end
+  end
+
   def religion_colors
     @religion_colors ||= begin
       colors = {}
@@ -140,6 +152,9 @@ class Visualization < ParadoxGame
     end
   end
 
+  #########################################################
+  # Public interface
+
   def generate_map_by_continent!
     continent_colors = {
       "europe"        => [181, 72, 106],
@@ -160,9 +175,25 @@ class Visualization < ParadoxGame
     img = generate_map_image(build_color_map(province_map))
     img.write("continents.png")
   end
+
+  def generate_map_by_colonial_regions!
+    sea_color = [0, 0, 80]
+    bg_color = [107, 66, 38]
+
+    province_map = Hash[
+      sea_province_ids.map{|id| [id, sea_color] } +
+      land_province_ids.map{|id|
+        colonial_region = provinces_by_colonial_region.find{|k,v| v.include?(id) } || []
+        [id, colonial_regions_colors[colonial_region.first] || bg_color]
+      }
+    ]
+    img = generate_map_image(build_color_map(province_map))
+    img.write("colonial_regions.png")
+  end
 end
 
 if __FILE__ == $0
   vis = Visualization.new(*ARGV)
-  vis.generate_map_by_continent!
+  # vis.generate_map_by_continent!
+  vis.generate_map_by_colonial_regions!
 end
