@@ -3,6 +3,7 @@ require "date"
 require "pathname"
 require_relative "paradox_game"
 require_relative "paradox_mod_file"
+require_relative "paradox_mod_builder"
 require_relative "property_list"
 
 class Date

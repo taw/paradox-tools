@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class NewWorldMappingHelper < ParadoxModBuilder
+
+
+  def religion_color(i)
+    r = 200
+    g = i / 256
+    b = i % 256
+    [r,g,b].map{|x| x / 255.0 } # Some assumptions about rounding here...
+  end
+
+  def run!(save_game)
+    province_ids = save_game["provinces"].keys.map{|i| -i}
+
+    create_mod_file! "common/religions/zz_new_world_mapping_helper.txt", PropertyList[
+      "new_world_mapping_religions", PropertyList[
+        *province_ids.map{|i|
+          Property["new_world_mapping_religion_#{i}", PropertyList[
+            "color", religion_color(i),
+            "icon", 1,
+          ]]
+        }
+      ]
+    ]
+    create_mod_file! "decisions/map_new_world.txt", PropertyList[
+      "country_decisions", PropertyList[
+        "map_new_world", PropertyList[
+          "major", true,
+          "allow", PropertyList["human", true],
+          "effect", PropertyList[
+            "hidden_effect", PropertyList[
+              *province_ids.map{|i|
+                Property[i, PropertyList["change_religion", "new_world_mapping_religion_#{i}"]]
+              }
+            ],
+            "prestige", 1,
+          ]
+        ]
+      ]
+    ]
+  end
+end
+
+if __FILE__ == $0
+  save_game = ParadoxModFile.new(path: ARGV[0]).parse!
+  nwmh = NewWorldMappingHelper.new(ParadoxGame.new("eu4"), "output/new_world_mapping_helper")
+  nwmh.run!(save_game)
+end
