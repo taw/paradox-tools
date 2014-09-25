@@ -3,8 +3,6 @@
 require_relative "../lib/paradox"
 
 class NewWorldMappingHelper < ParadoxModBuilder
-
-
   def religion_color(i)
     r = 200
     g = i / 256

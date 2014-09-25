@@ -43,7 +43,7 @@ class ParadoxModFile
       s = StringScanner.new(@data.gsub("\r\n", "\n").sub(/\AEU4txt/, ""))
       until s.eos?
         if s.scan(/(\p{Space})+|#.*$/)
-          # next
+          next
         elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
           @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
         elsif s.scan(/(-?\d+\.\d+)(?![^}=\s])/)
