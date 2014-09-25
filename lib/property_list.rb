@@ -41,6 +41,11 @@ class PropertyList
     @list = []
   end
 
+  # Still a bit dubious, deep copy way better...
+  def list
+    @list.dup
+  end
+
   def add!(key, val=nil)
     if key.is_a?(Property) and val == nil
       @list << [key.key, key.val]
@@ -191,5 +196,9 @@ class PropertyList
 
   def size
     @list.size
+  end
+
+  def empty?
+    @list.empty?
   end
 end

@@ -54,6 +54,77 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     end
   end
 
+  def remove_cot_tag!
+    patch_mod_files!("history/provinces/*.txt") do |node|
+      node.delete "cot"
+      node.each do |key, val|
+        if key.is_a?(Date) and val.is_a?(PropertyList)
+          val.delete "cot"
+        end
+      end
+      node.delete_if do |key, val|
+        key.is_a?(Date) and val.is_a?(PropertyList) and val.empty?
+      end
+    end
+  end
+
+  def add_missing_province_modifiers!
+    [
+      ["history/provinces/101 - Liguria.txt", "center_of_trade_modifier"],
+      ["history/provinces/112 - Venezia.txt", "center_of_trade_modifier"],
+      ["history/provinces/113 - Ferrara.txt", "po_estuary_modifier"],
+      ["history/provinces/118 - Roma.txt", "religious_center"],
+      ["history/provinces/134 - Wien.txt", "center_of_trade_modifier"],
+      ["history/provinces/137 - Ragusa.txt", "center_of_trade_modifier"],
+      ["history/provinces/151 - Thrace.txt", "center_of_trade_modifier", "bosphorous_sound_toll"],
+      ["history/provinces/167 - Caux.txt", "seine_estuary_modifier"],
+      ["history/provinces/172 - Vendee.txt", "loire_estuary_modifier"],
+      ["history/provinces/174 - Gascogne.txt", "gironde_estuary_modifier"],
+      ["history/provinces/1744 - Antwerpen.txt", "center_of_trade_modifier"],
+      ["history/provinces/1756 - Budjak.txt", "danube_estuary_modifier"],
+      ["history/provinces/183 - Ile-de-France.txt", "center_of_trade_modifier"],
+      ["history/provinces/1858 - Stettin.txt", "oder_estuary_modifier"],
+      ["history/provinces/1874 - Bremen.txt", "weser_estuary_modifier"],
+      ["history/provinces/1876 - Frankfurt.txt", "center_of_trade_modifier"],
+      ["history/provinces/201 - Provence.txt", "rhone_estuary_modifier", "center_of_trade_modifier"],
+      ["history/provinces/213 - Barcelona.txt", "ebro_estuary_modifier"],
+      ["history/provinces/220 - Valencia.txt", "center_of_trade_modifier"],
+      ["history/provinces/224 - Andalucia.txt", "guadiana_estuary_modifier", "center_of_trade_modifier"],
+      ["history/provinces/227 - Lisboa.txt", "tagus_estuary_modifier", "center_of_trade_modifier"],
+      ["history/provinces/231 - Porto.txt", "douro_estuary_modifier"],
+      ["history/provinces/236 - London.txt", "thames_estuary_modifier", "center_of_trade_modifier"],
+      ["history/provinces/262 - Krakow.txt", "center_of_trade_modifier"],
+      ["history/provinces/280 - Kiev.txt", "center_of_trade_modifier"],
+      ["history/provinces/282 - Yedisan.txt", "dnestr_estuary_modifier"],
+      ["history/provinces/285 - Kaffa.txt", "center_of_trade_modifier"],
+      ["history/provinces/286 - Azow.txt", "don_estuary_modifier"],
+      ["history/provinces/295 - Moskva.txt", "center_of_trade_modifier"],
+      ["history/provinces/310 - Novgorod.txt", "center_of_trade_modifier"],
+      ["history/provinces/313 - Archangelsk.txt", "center_of_trade_modifier"],
+      ["history/provinces/377 - Aleppo.txt", "center_of_trade_modifier"],
+      ["history/provinces/38 - Riga.txt", "daugava_estuary_modifier"],
+      ["history/provinces/41 - Ostpreussen.txt", "neman_estuary_modifier"],
+      ["history/provinces/43 - Danzig.txt", "vistula_estuary_modifier", "center_of_trade_modifier"],
+      ["history/provinces/44 - Hamburg.txt", "elbe_estuary_modifier", "center_of_trade_modifier"],
+      ["history/provinces/45 - Lubeck.txt", "center_of_trade_modifier"],
+      ["history/provinces/97 - Holland.txt", "center_of_trade_modifier", "rhine_estuary_modifier"],
+    ].each do |path, *mods|
+      patch_mod_file!(path) do |node|
+        d1000 = Date.new(1000, 1, 1, Date::JULIAN)
+        node[d1000] = PropertyList[
+          *mods.map{|mod|
+            Property[
+              "add_permanent_province_modifier", PropertyList[
+                "name", mod,
+                "duration", -1,
+              ]
+            ]
+          }
+        ]
+      end
+    end
+  end
+
   def build_mod_files!
     fix_syntax!
 
@@ -123,6 +194,8 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     smooth_oe_scaling!
     make_missions_not_tag_specific!
     rescale_tech_times_to_1399_1820_timeframe!
+    remove_cot_tag!
+    add_missing_province_modifiers!
   end
 end
 

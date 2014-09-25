@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+def cleanup_history_data(pl)
+  # I'm not totally sure if trade_good should be fixed or not
+  # cot is obsolete and needs to be removed from everything
+  history_fields = %W[
+    owner controller culture religion
+    manpower base_tax citysize
+    add_core remove_core discovered_by
+    capital
+    fort1 fort2 fort3 fort4 fort5 fort6
+    native_size native_ferocity native_hostileness  is_city
+    temple customs_house courthouse university tax_assessor workshop regimental_camp shipyard dock
+    constable marketplace textile wharf refinery fine_arts_academy spy_agency weapons trade_depot war_college
+    revolt_risk revolt
+    hre
+    trade_goods
+    decision
+  ]
+
+  pl.delete_if do |k,v|
+    history_fields.include?(k)
+  end
+end
+
+def cleanup_province(province)
+  cleanup_history_data(province)
+  province.each do |key, val|
+    cleanup_history_data(val) if key.is_a?(Date) and val.is_a?(PropertyList)
+  end
+  province.delete_if{|key, val| key.is_a?(Date) and val.is_a?(PropertyList) and val.size == 0}
+
+  d1000 = Date.new(1000, 1, 1, Date::JULIAN)
+
+  perm_mods = province[d1000]
+  if perm_mods
+    province.delete(d1000)
+    raise unless perm_mods.keys.uniq == ["add_permanent_province_modifier"]
+    perm_mods = perm_mods.find_all("add_permanent_province_modifier").map{|pm|
+      raise unless pm.keys == ["name", "duration"]
+      raise unless pm["duration"] == -1
+      pm["name"]
+    }
+    province["province_moadifiers"] = perm_mods
+  end
+end
+
+def province_difference(a, b)
+  cleanup_province(a)
+  cleanup_province(b)
+
+  common = a.list & b.list
+  a_diff = a.list - common
+  b_diff = b.list - common
+  [a_diff, b_diff]
+end
+
+# This is one-off scirpt for fixing scenarios
+
+base = ParadoxGame.new("eu4")
+se   = ParadoxGame.new("eu4", "source/ShatteredEurope/ShatteredEurope", "output/fun_and_balance_shattered_europe")
+
+base.glob("history/provinces/*.txt").each do |province|
+  # Assume same names
+  base_province = base.parse(province)
+  se_province   = se.parse(province)
+  next if base_province == se_province
+
+  base_diff, se_diff = province_difference(base_province, se_province)
+
+  next if base_diff.empty? and se_diff.empty?
+  raise unless se_diff.empty?
+
+  p [province.to_s, *base_diff.flatten]
+end

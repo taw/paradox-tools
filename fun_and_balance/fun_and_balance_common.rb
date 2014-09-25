@@ -993,10 +993,9 @@ module FunAndBalanceCommon
   end
 
   def rescale_tech_times_to_1399_1820_timeframe!
-
     patch_mod_files!("common/technologies/*.txt") do |node|
       node.find_all("technology").each_with_index do |tech,i|
-        p [tech["year"], rescale(tech["year"], 1444..1820, 1399..1820)]
+        # p [tech["year"], rescale(tech["year"], 1444..1820, 1399..1820)]
         tech["year"] = rescale(tech["year"], 1444..1820, 1399..1820)
       end
     end
