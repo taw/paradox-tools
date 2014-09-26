@@ -3,6 +3,7 @@
 require "pp"
 require "pathname"
 require_relative "../lib/paradox"
+require_relative "bonus_scoring"
 
 class AnalyzePolicies < ParadoxGame
   def each_policy
@@ -16,11 +17,18 @@ class AnalyzePolicies < ParadoxGame
   def analyze_policies!
     each_policy do |name, policy|
       policy = policy.to_h
+      point_type = policy["monarch_power"].downcase
       policy.delete("potential")
       policy.delete("monarch_power")
       policy.delete("ai_will_do")
       requirements = policy.delete("allow").to_h["full_idea_group"].map{|i| i.sub("_ideas", "")}
-      p [name, *requirements, policy]
+
+      bonuses = BonusScoring.new
+      bonuses.send("monthly_#{point_type}_points", -1.0)
+      policy.each do |k,v|
+        bonuses.send(k,v)
+      end
+      puts [bonuses.score, name, *requirements, point_type, policy.inspect].join("\ ")
     end
   end
 end
