@@ -74,6 +74,14 @@ class BonusScoring
 
     # AI is completely immune to naval attrition, so this is extremely conditional (player only)
     :naval_attrition,
+
+    # Influence matters but we have no idea which direction you care about
+    :mr_aristocrats_influence,
+    :mr_guilds_influence,
+    :mr_traders_influence,
+    :bureaucrats_influence,
+    :enuchs_influence,
+    :temples_influence,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -663,6 +671,15 @@ class BonusScoring
   # Counting 200% range extension worth as much as extra colonist - it's extremely conditional
   def range(v)
     colonists 0.5*v
+  end
+
+  # Guess base numbers of 50 land, 50 naval
+  def land_forcelimit(v)
+    land_forcelimit_modifier(v/50.0)
+  end
+
+  def naval_forcelimit(v)
+    naval_forcelimit_modifier(v/50.0)
   end
 
   def score

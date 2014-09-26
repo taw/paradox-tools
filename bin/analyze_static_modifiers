@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require "set"
+require "pp"
+require "pathname"
+require_relative "../lib/paradox"
+require_relative "bonus_scoring"
+
+class AnalyzeStaticModifiers < ParadoxGame
+  # These make no sense on scoring function
+  def province_modifiers
+    %W[
+      active_missionary arctic arid blockaded_base blockaded_scaled capital_city city coastal coastal_sea
+      colony_level core friendly_regiments harsh_treatment in_trade_company intolerance land_province
+      looted manpower mild_winter national_defense nationalism native_aggressiveness native_presence
+      no_adjacent_controlled non_accepted_culture non_accepted_culture_republic non_coastal non_core
+      normal_winter occupied overseas patriarch_authority_global patriarch_authority_local provincial_tax_income resource_depleted revolt_risk same_culture_group scorched_earth sea_zone severe_winter tolerance tropical under_siege
+    ]
+  end
+
+  def analyze!
+    parse("common/static_modifiers/00_static_modifiers.txt").each do |name, effects|
+      next if province_modifiers.include?(name)
+      next if name == "tutorial"
+      bonuses = BonusScoring.new
+      effects.each do |k,v|
+        bonuses.send(k,v)
+      end
+      puts [bonuses.score, name].join(" ")
+    end
+  end
+end
+
+AnalyzeStaticModifiers.new(*ARGV).analyze!
