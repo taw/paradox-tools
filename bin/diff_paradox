@@ -17,10 +17,10 @@ class DiffParadox
     @normalize = normalize
   end
   def files_in_a
-    @files_in_a ||= Set[*@a.find.select(&:file?).map{|f| f.relative_path_from(@a)}]
+    @files_in_a ||= Set[*@a.find.select(&:file?).map{|f| Pathname(f.relative_path_from(@a).to_s.downcase)}]
   end
   def files_in_b
-    @files_in_b ||= Set[*@b.find.select(&:file?).map{|f| f.relative_path_from(@b)}]
+    @files_in_b ||= Set[*@b.find.select(&:file?).map{|f| Pathname(f.relative_path_from(@b).to_s.downcase)}]
   end
   def only_in_a
     files_in_a - files_in_b
