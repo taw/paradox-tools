@@ -26,6 +26,12 @@ class TimelapseVisualization < ParadoxGame
     } + [@world.current_date]
   end
 
+  # Dynamic countries (colonial nations) have their color only in save file
+  # regular countries have it only in game data
+  def country_color_for(tag)
+    @world.country_color(tag) || country_colors[tag]
+  end
+
   def generate_maps_for_date!(date)
     # let's start with religions
     province_map = Hash[
@@ -40,7 +46,7 @@ class TimelapseVisualization < ParadoxGame
     province_map = Hash[
       land_province_ids.map{|id|
         owner = @world.province_state(id, date)["owner"]
-        [id, country_colors[owner]]
+        [id, country_color_for(owner)]
       }
     ]
     generate_map_image(build_color_map(province_map)).write("campaign/countries-#{date.year}-#{date.month}-#{date.day}.png")

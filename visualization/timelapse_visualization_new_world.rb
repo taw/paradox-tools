@@ -1,20 +1,11 @@
 #!/usr/bin/env ruby
 
-require "RMagick"
-require "pp"
-require_relative "../lib/paradox"
-require_relative "image_generation"
-require_relative "game_map"
-require_relative "world_history"
+require_relative "timelapse_visualization"
 
-class TimelapseVisualization < ParadoxGame
-  include ImageGeneration
-  include GameMap
-
+class TimelapseVisualizationNewWorld < TimelapseVisualization
   def initialize(save_game, new_world_base, *roots)
     @provinces_image = Magick::Image.read(new_world_base).first
-    @world = WorldHistory.new(save_game)
-    super(*roots)
+    super(save_game, *roots)
   end
 
   def new_world_religion_color(i)
@@ -22,16 +13,6 @@ class TimelapseVisualization < ParadoxGame
     g = i / 256
     b = i % 256
     [r,g,b]
-  end
-
-  def dates_to_generate(frequency=5)
-    (@world.start_date.year...@world.current_date.year).step(frequency).map{|year|
-      if year == @world.start_date.year
-        @world.start_date
-      else
-        Date.new(year, 1, 1, Date::JULIAN)
-      end
-    } + [@world.current_date]
   end
 
   # Only non-wasteland land provinces have any pixels, so we can ignore filtering
@@ -69,20 +50,14 @@ class TimelapseVisualization < ParadoxGame
     province_map = Hash[
       land_province_ids.map{|id|
         owner = @world.province_state(id, date)["owner"]
-        [id, country_colors[owner]]
+        [id, country_color_for(owner)]
       }
     ]
     generate_map_image(build_color_map_new_world(province_map)).write("campaign/countries-#{date.year}-#{date.month}-#{date.day}.png")
   end
-
-  def generate_maps!
-    dates_to_generate.each do |date|
-      generate_maps_for_date!(date)
-    end
-  end
 end
 
 if __FILE__ == $0
-  vis = TimelapseVisualization.new(*ARGV)
+  vis = TimelapseVisualizationNewWorld.new(*ARGV)
   vis.generate_maps!
 end

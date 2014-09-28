@@ -63,6 +63,10 @@ class WorldHistory
     @player ||= @data["player"]
   end
 
+  def country_color(tag)
+    (@data["countries"][tag] || {})["map_color"]
+  end
+
   # State at the end if date is nil
   def province_state(id, date=nil)
     state = ProvinceState.new
