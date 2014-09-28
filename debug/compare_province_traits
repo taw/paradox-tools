@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require 'json'
 require_relative "../lib/paradox"
 
 def cleanup_history_data(pl)
@@ -16,7 +17,6 @@ def cleanup_history_data(pl)
     constable marketplace textile wharf refinery fine_arts_academy spy_agency weapons trade_depot war_college
     revolt_risk revolt
     hre
-    trade_goods
     decision
   ]
 
@@ -71,7 +71,7 @@ base.glob("history/provinces/*.txt").each do |province|
   base_diff, se_diff = province_difference(base_province, se_province)
 
   next if base_diff.empty? and se_diff.empty?
-  raise unless se_diff.empty?
+  # raise unless se_diff.empty?
 
-  p [province.to_s, *base_diff.flatten]
+  puts({path: province.to_s, se: se_diff.flatten, base: base_diff.flatten}.to_json)
 end
