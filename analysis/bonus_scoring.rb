@@ -562,12 +562,18 @@ class BonusScoring
     calculated_land_cost -0.05
   end
 
-  # Assume 100 influence is what it usually needs to get a cardinal, and they live 20 years on average,
-  # repaying 20 of that in his lifetime
+  # Assume annual global generation of papal influence is about 500 points mid-game.
+  # Assume control over 7 cardinals and curia is randomly assigned based on papal influence share.
+  # In reality largest nations get disproportionate levels
+  #
   # Multiply by 50% chance that you're Catholic. This might be low for national ideas since only nations that start
   # Catholic get them and most won't flip Protestant/Reformed, but it's too high for religious idea group which everybody can get
+  #
+  # Cardinals and curia control also increase papal influence but we're not double counting here
   def papal_influence(v)
-    cardinals 0.5*20*12*v/(100.0-20.0)
+    papal_infulence_share = v/500.0
+    cardinals 0.5*7.0*papal_infulence_share
+    curia_control 0.5*papal_infulence_share
   end
 
   # Far too conditional
@@ -584,11 +590,23 @@ class BonusScoring
     colonists -1*0.10*v
   end
 
+  # not counting papal influence recursively
   def cardinals(v)
     prestige 0.1*v
     legitimacy 0.2*v
     technology_cost -0.01*v
     global_heretic_missionary_strength 0.1*v
+  end
+
+  # not counting papal influence recursively, v is estimated chance of control
+  def curia_control(v)
+    extra_cbs 2.0 # excommunicate and call for crusade
+    stability_cost_modifier -0.05*v
+    diplomats 1*v
+    prestige 0.25*v
+    advisor_pool 2*v
+    ae_impact -0.10*v
+    free_leader_pool 1*v
   end
 
   # This is potentially useful, but it's so extremely conditional (only emperor) I'm not going to score it
@@ -742,7 +760,7 @@ class BonusScoring
       when :relations_decay_of_me
         total += 2*v
       when :ae_impact
-        total += 2*v
+        total -= 2*v
       when :diplomatic_reputation
         # This used to be amazing pre-1.6, now it does very little
         total += 0*v
