@@ -142,6 +142,10 @@ class BonusScoring
   def tolerance_heathen(v)
     global_revolt_risk -v * 0.15
   end
+  # Assume they map 1:1 in value between 1.7 and 1.8
+  def global_unrest(v)
+    global_revolt_risk v
+  end
 
   # For most countries army tradition will be much higher than navy tradition
   # Assume average 25% navy and 75% army tradition
