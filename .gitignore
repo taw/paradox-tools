@@ -1,5 +1,5 @@
 *.eu4
 /eu4
-/source
+/source/*
 /output
 /build
