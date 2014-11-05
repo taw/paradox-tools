@@ -33,7 +33,7 @@ class ParadoxGame
   def glob(pattern)
     @roots.map{|root|
       root.glob(pattern).select{|p| (root+p).file?}
-    }.flatten.uniq.sort
+    }.flatten.uniq{|x| x.to_s.downcase}.sort
   end
 
   def localization_data
