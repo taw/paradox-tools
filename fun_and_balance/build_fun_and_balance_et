@@ -67,7 +67,10 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
 end
 
 mb = FunAndBalanceETModBuilder.new(
-  ParadoxGame.new("eu4", "source/ExtendedTimeline 0.10.0/ExtendedTimeline"),
+  ParadoxGame.new(
+    "source/eu4-1.7.0",
+    "source/ExtendedTimeline 0.10.0/ExtendedTimeline"
+  ),
   "output/fun_and_balance_et"
 )
 mb.build!
