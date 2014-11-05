@@ -37,7 +37,7 @@ class AnalyzeIdeaGroups < ParadoxGame
     each_idea_group do |name, idea_group|
       bonuses = list_of_bonuses(idea_group)
       seen += bonuses.keys
-      puts "%.2f %s" % [bonuses.score, name]
+      puts "%.2f %s" % [bonuses.score, localization(name)]
       # pp bonuses.to_h
       # pp idea_group
       # puts ""
