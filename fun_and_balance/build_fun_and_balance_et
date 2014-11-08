@@ -9,7 +9,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
-      ["ANNEX_DIP_COST_PER_BASE_TAX", 15, 1],
+      ["ANNEX_DIP_COST_PER_BASE_TAX", 10, 1],
       ["MAX_ACTIVE_POLICIES", 5, 10],
       ["POLICY_COST", 1, 0],
       ["FOREIGN_REBEL_SUPPORT", 4, 6],
@@ -23,11 +23,10 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["CLAIM_LOSE", 25, 50],
       ["CORE_LOSE", 50, 100],
       ["CORE_LOSE_CULTURE_GROUP", 150, 300],
-      ["CORE_TIME_SIZE_MODIFIER", 0.001, 0.0],
       ["PROTECTORATE_TECH_THRESHOLD", 0.25, 5.0],
       ["PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
-      ["VASSAL_FABRICATE_CLAIMS", 0, 1],
-      ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 0, 50],
+      ["VASSAL_FABRICATE_CLAIMS", 1, 1],
+      ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 50, 50],
       ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
       ["GREAT_POWER_ALLIANCE_PENALTY", 50, 25],
       ["PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
@@ -68,8 +67,8 @@ end
 
 mb = FunAndBalanceETModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.7.0",
-    "source/ExtendedTimeline 0.10.0/ExtendedTimeline"
+    "source/eu4-1.8.0",
+    "source/ExtendedTimeline 0.11.1/ExtendedTimeline"
   ),
   "output/fun_and_balance_et"
 )
