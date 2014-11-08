@@ -136,9 +136,9 @@ module FunAndBalanceCommon
         idea_group.each do |name, idea|
           next if %W[category trigger ai_will_do important free].include?(name)
           next if idea == [] # Empty idea
-          if name == "siberian_frontier"
-            idea.delete "colonists"
-          end
+          # if name == "siberian_frontier"
+          #   idea.delete "colonists"
+          # end
           if idea["diplomatic_upkeep"] == 1
             idea["diplomatic_upkeep"] = 2
           end
