@@ -306,16 +306,23 @@ module FunAndBalanceCommon
 
   def feature_extra_formable_countries!
     already_formable = %W[
-      BRZ BUK BYZ CAM CAN CHL COL EGY ENG FRA GBR GER GRE HAB HAN HAT HIN
-      IRE ITA JAP KUR LAP LOU MEX MSA MUG NED PER PEU PLC PRG PRU QNG QUE
-      RMN RUS SCA SPA SPI USA VNZ WES]
+      ALG ARB BRZ BUK BYZ CAM CAN CHL COL EGY ENG FRA GBR GER GRE HAB HAN
+      HAT HIN HLR INC IRE ITA JAP KOJ KUR LAP LOU MCH MEX MOR MSA MUG NED
+      PER PEU PLC PRG PRU QNG QUE RMN RUS SCA SPA SPI TIB TRP TUN UKR USA
+      VNZ WES
+    ]
     cant_by_formed_by = %W[HLR PAP HIN MUG SPA FRA GER BYZ BUK ITA RUS SCA PER GBR PLC EGY VIJ]
 
     decisions = []
     each_country_primary_culture do |culture, tag|
       next if already_formable.include?(tag)
       next if tag == "MOS" # Form Russia instead
-      next if tag == "CZH" or tag == "CSH" # Chinese minors can't be formed
+      # Big Chinese "minors" can't be formed
+      # Zhou would make sense if it didn't have crazy cores over half of China,
+      # just on stuff of (mostly) their culture
+      # Shun is primary culture of Han and we probably don't want them reformable
+      # Xi, Dali etc - are all fine
+      next if tag == "CZH" or tag == "CSH"
       decisions << "country_decisions"
       decisions << PropertyList[
         "extra_formable_form_#{tag}", PropertyList[
