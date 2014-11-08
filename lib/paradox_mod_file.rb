@@ -53,7 +53,7 @@ class ParadoxModFile
         elsif s.scan(/([=\{\}])/)
           @tokens << ({"{" => :open, "}" => :close, "=" => :eq}[s[1]])
         elsif s.scan(/(
-                            (?:_|\.|\-|'|’|\p{Letter}|\p{Digit})+
+                            (?:_|\.|\-|\–|'|’|\p{Letter}|\p{Digit})+
                            )/x)
           if s[1] == "yes"
             @tokens << true
