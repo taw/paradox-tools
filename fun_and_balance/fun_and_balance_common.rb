@@ -883,6 +883,8 @@ module FunAndBalanceCommon
           # Krakow and Warsaw
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 262], Property["owns_core_province", 257])
         when ["PAP"]
+          # It is impossible if you have academy elsewhere
+          next if name == "academy_in_rome"
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 118], Property["religion", "catholic"], Property["is_papal_controller", true])
         when ["SCO"]
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 248])
