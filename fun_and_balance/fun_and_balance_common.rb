@@ -257,11 +257,12 @@ module FunAndBalanceCommon
         ],
       ],
       "success", PropertyList[
-        id, PropertyList["owner" , PropertyList["religion", religion]],
+        id, PropertyList["owned_by", "ROOT"],
       ],
       "abort", PropertyList[
         Property::OR[
           "is_subject", true,
+          id, PropertyList["owner" , PropertyList["religion", religion]],
           Property::NOT["religion", religion],
         ]
       ],
@@ -269,10 +270,10 @@ module FunAndBalanceCommon
       "abort_effect", PropertyList["remove_claim", id],
       "chance", PropertyList[
         "factor", 1000,
-        "modifier", PropertyList["factor", 10, "is_neighbor_of", "ROOT"],
+        "modifier", PropertyList["factor", 2, "is_neighbor_of", "ROOT"],
         "modifier", PropertyList["factor", 2, "has_idea", "deus_vult"]
       ],
-      "effect", PropertyList["add_adm_power", 200],
+      "effect", PropertyList["add_adm_power", 200, "add_prestige", 40],
     ]]
   end
 
