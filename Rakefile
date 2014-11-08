@@ -1,7 +1,7 @@
 require "pathname"
 require "fileutils"
 
-VERSION = "0.14"
+VERSION = "0.15"
 
 def trash(*paths)
   paths.each do |path|
@@ -15,17 +15,20 @@ def create_package_from_build_directory!(archive_name)
   end
 end
 
+desc "Build all packages"
 task "package:all" => ["package:vanilla", "package:extended_timeline", "package:shattered_europe"]
 
+desc "Build Fun and Balance for vanilla package"
 task "package:vanilla" do
   trash "output", "build"
   Pathname("build/fun_and_balance").mkpath
   system "./fun_and_balance/build_fun_and_balance"
   system "cp fun_and_balance/fun_and_balance.mod build/"
-  system "cp -a output/fun_and_balance-1.7.3/* build/fun_and_balance/"
-  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.7.3.7z"
+  system "cp -a output/fun_and_balance-1.8.0/* build/fun_and_balance/"
+  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.8.0.7z"
 end
 
+desc "Build Fun and Balance for Extended Timeline package"
 task "package:extended_timeline" do
   trash "output", "build"
   Pathname("build/fun_and_balance_et").mkpath
@@ -35,6 +38,7 @@ task "package:extended_timeline" do
   create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.7.3_and_extended_timeline_0.10.7z"
 end
 
+desc "Build Fun and Balance for Shattered Europe package"
 task "package:shattered_europe" do
   trash "output", "build"
   Pathname("build/fun_and_balance_shattered_europe").mkpath
