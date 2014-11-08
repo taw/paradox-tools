@@ -182,6 +182,8 @@ module FunAndBalanceCommon
     patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
       node["aggressive_expansion"]["yearly_decay"] = 4
       node["opinion_annex_vassal"]["min"] = -100
+      node["broke_march"]["opinion"] = -100
+      node["broke_march"]["years"] = 10
     end
   end
 
