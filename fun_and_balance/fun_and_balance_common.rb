@@ -449,7 +449,7 @@ module FunAndBalanceCommon
     patch_mod_file!("common/religions/00_religion.txt") do |node|
       node.each do |group_name, group|
         group.each do |name, religion|
-          next if name == "crusade_name" or name == "defender_of_faith"
+          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion"].include?(name)
           if conversions = allowed_conversions(group_name, name)
             religion["allowed_conversion"] = conversions
           end
@@ -851,6 +851,8 @@ module FunAndBalanceCommon
       mission["effect"]["add_prestige"] = 10
       mission["effect"]["add_legitimacy"] = 10
       mission["effect"]["add_republican_tradition"] = 10
+    when "force_convert_mission"
+      mission["effect"]["add_dip_power"] = 100
     else
       require 'pry'; binding.pry
     end
@@ -988,6 +990,8 @@ module FunAndBalanceCommon
           if mission_rewards_totally_awful?(mission)
             fix_mission_rewards!(name, mission)
           end
+        when ["MJZ", "MHX", "KRC", "MYR"]
+          # Unite Manchu, fine to just let Manchu tribes do it
         # Shattered Europe Scenario - we don't want to change these
         when  ["GRA", "ALU", "BDJ"], ["GRA", "ALU", "SEV"], ["GRA", "ALU", "BDJ", "SEV"], ["ALU"]
           # OK
