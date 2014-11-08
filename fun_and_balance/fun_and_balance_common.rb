@@ -136,9 +136,6 @@ module FunAndBalanceCommon
         idea_group.each do |name, idea|
           next if %W[category trigger ai_will_do important free].include?(name)
           next if idea == [] # Empty idea
-          # if name == "siberian_frontier"
-          #   idea.delete "colonists"
-          # end
           if idea["diplomatic_upkeep"] == 1
             idea["diplomatic_upkeep"] = 2
           end
@@ -191,9 +188,6 @@ module FunAndBalanceCommon
   def fix_wargoals!
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       node["take_province_ban"]["badboy_factor"] = 0.1
-      node["superiority_heretic"].delete("allowed_provinces")
-      node["superiority_heretic"]["peace_cost_factor"] = 0.25
-      node["superiority_heretic"].delete("po_demand_provinces")
     end
   end
 

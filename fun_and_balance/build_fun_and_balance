@@ -46,11 +46,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       node["war"] = PropertyList[] if node["war"] == []
       node["war"]["war_exhaustion_cost"] = 100
       node["emperor"]["diplomatic_upkeep"] = 2
-      node["inverse_religious_unity"]["global_revolt_risk"] = 5
       node["war_exhaustion"]["defensiveness"] = -0.02
       node["war_exhaustion"]["land_morale"] = -0.02
       node["war_exhaustion"]["naval_morale"] = -0.02
-      node["non_accepted_culture"]["local_revolt_risk"] = 4
     end
 
     always_display_policies!
@@ -61,7 +59,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     feature_extra_formable_countries!
     feature_holy_sites!
     feature_partial_westernization!
-    feature_return_vassal_cores!
     fix_opinions!
     fix_peasant_war!
     fix_wargoals!
