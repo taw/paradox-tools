@@ -729,6 +729,12 @@ module FunAndBalanceCommon
       alt_cond = Property::AND[*alt]
     end
 
+    if tags.size == 1
+      not_orig_tags = Property::NOT["tag", tags[0]]
+    else
+      not_orig_tags = Property::AND[*tags.map{|t| Property::NOT["tag", t]}]
+    end
+
     mission["allow"].map! do |key, val|
       if key == "tag" or (key == "OR" and val["tag"])
         ["OR", PropertyList[
@@ -739,6 +745,9 @@ module FunAndBalanceCommon
         [key, val]
       end
     end
+
+    # Lower chance if not original tag
+    mission["chance"].add! "modifier", PropertyList["factor", 0.5, not_orig_tags]
   end
 
   def mission_rewards_totally_awful?(mission)
