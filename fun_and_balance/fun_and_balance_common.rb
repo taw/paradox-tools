@@ -526,26 +526,26 @@ module FunAndBalanceCommon
 
   def holy_sites_by_religion
     {
-      catholic:     ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      protestant:   ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      reformed:     ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      orthodox:     ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Macedonia / Mount Athos", "Kiev"],
-      coptic:       ["Roma", "Judea / Jerusalem", "Thrace / Constantinople", "Alexandria", "Tigre / Ark of the Covenant"],
+      catholic:     ["Roma", "Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      protestant:   ["Roma", "Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      reformed:     ["Roma", "Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      orthodox:     ["Roma", "Jerusalem", "Thrace / Constantinople", "Macedonia / Mount Athos", "Kiev"],
+      coptic:       ["Roma", "Jerusalem", "Thrace / Constantinople", "Alexandria", "Tigre / Ark of the Covenant"],
 
-      sunni:        ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
-      shiite:       ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
-      ibadi:        ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
+      sunni:        ["Mecca", "Jerusalem", "Thrace / Constantinople", "Cordoba", "Hillah / Karbala"],
+      shiite:       ["Mecca", "Jerusalem", "Thrace / Constantinople", "Cordoba", "Hillah / Karbala"],
+      ibadi:        ["Mecca", "Jerusalem", "Thrace / Constantinople", "Cordoba", "Hillah / Karbala"],
 
       # Varanasi, Chidambaram, Angkor Wat - Hindu
       # Palitana - Jain
       # Harmandir Sahib - Sikh
-      hinduism:     ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Gujarat / Palitana", "Siem Reap / Angkor Wat", "Punjab / Harmandir Sahib"],
-      sikhism:      ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Gujarat / Palitana", "Siem Reap / Angkor Wat", "Punjab / Harmandir Sahib"],
+      hinduism:     ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Angkor / Angkor Wat", "Lahore / Harmandir Sahib"],
+      sikhism:      ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Angkor / Angkor Wat", "Lahore / Harmandir Sahib"],
 
       # TODO:
-      buddhism:     ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Shandong / Qufu", "Owari / Ise Jingu", "Gyeongsang / Bulguksa"],
-      confucianism: ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Shandong / Qufu", "Owari / Ise Jingu", "Gyeongsang / Bulguksa"],
-      shinto:       ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Shandong / Qufu", "Owari / Ise Jingu", "Gyeongsang / Bulguksa"],
+      buddhism:     ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
+      confucianism: ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
+      shinto:       ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
 
       # Not getting any ever
       shamanism:    [],
