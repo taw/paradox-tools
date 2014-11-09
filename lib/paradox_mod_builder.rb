@@ -73,9 +73,9 @@ class ParadoxModBuilder
     create_file!(name, new_content) if orig_content != new_content or force_create
   end
   def patch_defines_lua!(changes)
-    patch_file!("common/defines.lua") do |content|
+    patch_file!("common/defines.lua", reencode: true) do |content|
       changes.each do |variable, orig, updated|
-        content.sub!(/^(\s+#{variable}\s*=\s*)(.*?)(\s*,)/) do
+        content.sub!(/^(\s+#{variable}\s*=\s*)(.*?)(\s*,|\s*$)/) do
           if $2 == orig.to_s
             "#{$1}#{updated}#{$3}"
           else
