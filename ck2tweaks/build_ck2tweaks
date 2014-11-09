@@ -1,0 +1,73 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+
+class CK2TweaksModBuilder < ParadoxModBuilder
+  def reset_ruler_designer!
+    patch_defines_lua!([
+      # Start at 0 if you want to go down
+      ["BASE_ATTRIB", 5, 0],
+      ["BASE_AGE", 16, 16],
+      # Make everything free
+      ["BASE_FERTILITY", 0.5, 0],
+      ["BASE_HEALTH", 5.0, 0],
+      ["COST_ATTRIB", 1.0, 0],
+      ["COST_SON", 3.0, 0],
+      ["COST_DAUGHTER", 2.0, 0],
+      ["COST_MARRIED", 2.0, 0],
+      ["COST_FERTILITY", 20.0, 0],
+      ["COST_HEALTH", 10.0, 0],
+      ["COST_MONTHLY_PRESTIGE", 10.0, 0],
+      ["COST_MONTHLY_PIETY", 20.0, 0],
+      ["COST_MONTHLY_WEALTH", 10.0, 0],
+      ["COST_GLOBAL_TAX", 50.0, 0],
+      ["COST_CHURCH_OPINION", 0.5, 0],
+      ["COST_SPOUCE_OPINION", 0.5, 0],
+      ["COST_SEXAPPEAL_OPINION", 0.5, 0],
+      ["COST_DYNASTY_OPINION", 0.5, 0],
+      ["COST_VASSAL_OPINION", 1.0, 0],
+      ["COST_LIEGE_OPINION", 0.0, 0],
+      ["COST_INFIDEL_OPINION", 0.0, 0],
+      ["COST_OPPOSITE_TRAIT_OPINION", 0.5, 0],
+      ["COST_SAME_TRAIT_OPINION", 0.5, 0],
+      ["COST_SAME_RELIGION_OPINION", 0.5, 0],
+      ["COST_AMBITION_OPINION", 0.0, 0],
+      ["COST_TRIBAL_OPINION", 0.0, 0],
+      ["COST_GENERAL_OPINION", 1.0, 0],
+      ["COST_MUSLIM_OPINION", 0.25, 0],
+      ["COST_JEWISH_OPINION", 0.25, 0],
+      ["COST_CHRISTIAN_OPINION", 0.25, 0],
+      ["COST_ZOROASTRIAN_OPINION", 0.25, 0],
+      ["COST_MORALE_OFFENCE", 50.0, 0],
+      ["COST_MORALE_DEFENCE", 50.0, 0],
+      ["COST_DEFENCE", 50.0, 0],
+      # Max age is irrelevant as all is now 16
+      ["MAX_AGE", 50, 50],
+    ])
+  end
+
+  def no_dynastic_country_names!
+    patch_mod_files!("common/cultures/*.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |culture_name, culture|
+          next if culture_name == "graphical_culture"
+          next if culture_name == "second_graphical_culture"
+          culture.delete("dynasty_title_names")
+        end
+      end
+    end
+  end
+
+  def build_mod_files!
+    reset_ruler_designer!
+    no_dynastic_country_names!
+  end
+end
+
+mb = CK2TweaksModBuilder.new(
+  ParadoxGame.new(
+    "source/ck2_2.2.0.6",
+  ),
+  "output/ck2tweaks"
+)
+mb.build!
