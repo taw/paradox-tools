@@ -8,9 +8,9 @@ class CK2TweaksModBuilder < ParadoxModBuilder
       # Start at 0 if you want to go down
       ["BASE_ATTRIB", 5, 0],
       ["BASE_AGE", 16, 16],
-      # Make everything free
       ["BASE_FERTILITY", 0.5, 0],
       ["BASE_HEALTH", 5.0, 0],
+      # Make everything free
       ["COST_ATTRIB", 1.0, 0],
       ["COST_SON", 3.0, 0],
       ["COST_DAUGHTER", 2.0, 0],
@@ -58,9 +58,25 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def allow_intermarriage!
+    patch_mod_file!("common/religions/00_religions.txt") do |node|
+      all_religions = node.values.map{|group| group.list.select{|_,r| r.is_a?(PropertyList)}.map(&:first)}.flatten
+      node.each do |group_name, group|
+        group.each do |religion_name, religion|
+          next unless religion.is_a?(PropertyList)
+          religion.delete("intermarry")
+          all_religions.each do |g|
+            religion.add! "intermarry", g unless g == religion_name
+          end
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     no_dynastic_country_names!
+    allow_intermarriage!
   end
 end
 

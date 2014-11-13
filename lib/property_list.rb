@@ -93,6 +93,10 @@ class PropertyList
     @list.map(&:first)
   end
 
+  def values
+    @list.map(&:last)
+  end
+
   # What should it return?
   def delete(key)
     @list = @list.select{|k,v| k != key}
