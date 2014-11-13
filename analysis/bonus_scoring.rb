@@ -566,18 +566,13 @@ class BonusScoring
     calculated_land_cost -0.05
   end
 
-  # Assume annual global generation of papal influence is about 500 points mid-game.
-  # Assume control over 7 cardinals and curia is randomly assigned based on papal influence share.
-  # In reality largest nations get disproportionate levels
-  #
   # Multiply by 50% chance that you're Catholic. This might be low for national ideas since only nations that start
-  # Catholic get them and most won't flip Protestant/Reformed, but it's too high for religious idea group which everybody can get
+  # Scale by 1/12 since it's annual number
   #
-  # Cardinals and curia control also increase papal influence but we're not double counting here
+  # After that it's reasonable estimate that each papal influence point
+  # is worth about as much as adm point as you can use 100 to buy +1 stability
   def papal_influence(v)
-    papal_infulence_share = v/500.0
-    cardinals 0.5*7.0*papal_infulence_share
-    curia_control 0.5*papal_infulence_share
+    monthly_adm_points(v * 0.5 / 12.0)
   end
 
   # Far too conditional
@@ -592,25 +587,6 @@ class BonusScoring
     diplomats -2*0.25*v
     merchants -2*0.01*v
     colonists -1*0.10*v
-  end
-
-  # not counting papal influence recursively
-  def cardinals(v)
-    prestige 0.1*v
-    legitimacy 0.2*v
-    technology_cost -0.01*v
-    global_heretic_missionary_strength 0.1*v
-  end
-
-  # not counting papal influence recursively, v is estimated chance of control
-  def curia_control(v)
-    extra_cbs 2.0 # excommunicate and call for crusade
-    stability_cost_modifier -0.05*v
-    diplomats 1*v
-    prestige 0.25*v
-    advisor_pool 2*v
-    ae_impact -0.10*v
-    free_leader_pool 1*v
   end
 
   # This is potentially useful, but it's so extremely conditional (only emperor) I'm not going to score it
@@ -727,9 +703,9 @@ class BonusScoring
       when :merchants
         total += 1*v
       when :global_missionary_strength
-        total += 2*v
+        total += 1.0*v
       when :global_revolt_risk
-        total -= 0.5*v
+        total -= 1.0*v
       when :money
         # Doubling the money
         total += v*10
