@@ -36,9 +36,16 @@ class ParadoxGame
     }.flatten.uniq{|x| x.to_s.downcase}.sort
   end
 
+  def parse_localization_from_path(path)
+    data = path.read
+    YAML.load(data.gsub(/\uFEFF/, ""))["l_english"].tap do |parsed|
+      raise "No Engish localization data in `#{path}'" unless parsed
+    end
+  end
+
   def localization_data
     @localization_data ||= glob("localisation/*_l_english.yml").map{|path|
-      YAML.load(resolve(path).read)
+      parse_localization_from_path(resolve(path))
     }.inject({}, &:merge)
   end
 
