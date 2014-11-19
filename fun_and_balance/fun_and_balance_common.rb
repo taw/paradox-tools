@@ -234,7 +234,7 @@ module FunAndBalanceCommon
     id = site[:id]
     mission_name = "conquest_#{religion}_holy_site_#{n}"
     localization! "holy_sites",
-      "#{mission_name}_title" => "Conquer Holy Sity #{site[:short_name]}",
+      "#{mission_name}_title" => "Conquer Holy Site #{site[:short_name]}",
       "#{mission_name}_desc" => "We must not allow infidels to hold our holy site #{site[:name]}!"
     Property[mission_name, PropertyList[
       "type", "country",
