@@ -33,4 +33,12 @@ Other:
 * `lib/` - public API
 * `test/` - tests
 * `fun_and_balance/` - Fun & Balance mod automatic build system
+* `ck2tweaks/` - Small tweaks for Crusader Kings 2 (not even a coherent minimod)
 * `save_game_scripts/` - various script for analyzing and editing save game files not ported to new API
+
+Links
+-----
+
+* Extended Timeline mod: http://steamcommunity.com/sharedfiles/filedetails/?id=217416366
+* Shattered Europe mod: http://steamcommunity.com/sharedfiles/filedetails/?id=305682089
+
