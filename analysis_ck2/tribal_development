@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+require "set"
+require_relative "../lib/paradox"
+
+class TribalDevelopmentAnalysis
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def valid_titles
+    @valid_titles ||= Set[*@data["title"].keys]
+  end
+
+  def top_realm_by_title(title)
+    title_data = @data["title"][title]
+    raise "No such title `#{title}'" unless title_data
+    if title_data["liege"]
+      top_realm_by_title(title_data["liege"]["title"])
+    else
+      title
+    end
+  end
+
+  def realm(id)
+    province = @data["provinces"][id]
+    province_titles = valid_titles & province.keys
+    top_realms = province_titles.map do |title|
+      top_realm_by_title(title)
+    end.uniq
+
+    top_realms.sort.join(" / ")
+  end
+
+  def run!
+    realms = {}
+    @data["provinces"].each do |id, province|
+      holding_names = valid_titles & province.keys
+      holding_names.each do |name|
+        realm = top_realm_by_title(name)
+        holding = province[name]
+        development_level = holding["type"]
+
+        if holding["type"] == "tribal"
+          (1..4).each do |i|
+            if holding["tb_hillfort_#{i}"]
+              development_level = "tribal (hillfort #{i})"
+            end
+          end
+        end
+        realms[realm] ||= Hash.new(0)
+        realms[realm][development_level] += 1
+      end
+    end
+    realms.sort_by{|name, data| [-data.values.inject(&:+), name]}.each do |name, data|
+      puts "#{name} #{data.inspect}"
+    end
+  end
+end
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+tda = TribalDevelopmentAnalysis.new(ARGV[0])
+tda.run!

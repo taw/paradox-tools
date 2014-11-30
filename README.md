@@ -25,6 +25,7 @@ Analysis scripts (EU4):
 Analysis scripts (CK2):
 
 * `analysis_ck2/province_tech` - print tech by province from (uncompressed) CK2 save game
+* `analysis_ck2/tribal_development` - report how far feudalization has gone so far
 
 Debugging helper scripts:
 
