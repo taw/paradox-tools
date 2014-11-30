@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "set"
 require_relative "../lib/paradox"
 
 class ProvinceTechAnalysis
@@ -8,11 +9,36 @@ class ProvinceTechAnalysis
     @data = ParadoxModFile.new(path: @path).parse!
   end
 
+  def valid_titles
+    @valid_titles ||= Set[*@data["title"].keys]
+  end
+
+  def top_realm_by_title(title)
+    title_data = @data["title"][title]
+    raise "No such title `#{title}'" unless title_data
+    if title_data["liege"]
+      top_realm_by_title(title_data["liege"]["title"])
+    else
+      title
+    end
+  end
+
+  def realm(id)
+    province = @data["provinces"][id]
+    province_titles = valid_titles & province.keys
+    top_realms = province_titles.map do |title|
+      top_realm_by_title(title)
+    end.uniq
+
+    top_realms.sort.join(" / ")
+  end
+
   def run!
     @data["provinces"].each do |id, province|
       name = province["name"]
       total_tech = province["technology"]["tech_levels"].inject(&:+).round(3)
-      puts "#{total_tech}\t#{name}\t#{id}"
+      province_realm = realm(id)
+      puts [total_tech, name, province_realm, id].join("\t")
     end
   end
 end
