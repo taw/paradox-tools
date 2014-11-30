@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class ProvinceTechAnalysis
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def run!
+    @data["provinces"].each do |id, province|
+      name = province["name"]
+      total_tech = province["technology"]["tech_levels"].inject(&:+).round(3)
+      puts "#{total_tech}\t#{name}\t#{id}"
+    end
+  end
+end
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+pta = ProvinceTechAnalysis.new(ARGV[0])
+pta.run!

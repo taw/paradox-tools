@@ -13,7 +13,7 @@ Tools:
 * `bin/recreate_baseline` - for each mod file, copy corresponding base game file into baseline directory (usually to compare and fix your mod with newly released game patch)
 * `bin/validate_syntax` - validate syntax of Paradox mod file
 
-Analysis scripts:
+Analysis scripts (EU4):
 
 * `analysis/analyze_idea_group` - score idea groups by value
 * `analysis/analyze_missions` - print some statistics about available missions
@@ -21,6 +21,10 @@ Analysis scripts:
 * `analysis/analyze_static_modifier` - print bonuses by static modifier
 * `analysis/analyze_unit_pips` - analyze unit pips by tech group and tech level and save to CSV files
 * `analysis/country_cultures` - print primary country tag for each culture
+
+Analysis scripts (CK2):
+
+* `analysis_ck2/province_tech` - print tech by province from (uncompressed) CK2 save game
 
 Debugging helper scripts:
 
