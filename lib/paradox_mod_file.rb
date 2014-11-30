@@ -40,7 +40,12 @@ class ParadoxModFile
   def tokenize!
     unless @tokens
       @tokens = []
-      s = StringScanner.new(@data.gsub("\r\n", "\n").sub(/\AEU4txt/, ""))
+      s = StringScanner.new(
+        @data
+          .gsub("\r\n", "\n")
+          .sub(/\AEU4txt/, "")
+          .sub(/\ACK2txt(.*)\}\s*\z/m){$1} # CK2 saves have unbalanced {}s
+      )
       until s.eos?
         if s.scan(/(\p{Space})+|#.*$/)
           next
