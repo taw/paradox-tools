@@ -1,0 +1,110 @@
+namespace = destabilize_everyone
+
+country_event = {
+  id = 4204201
+  title = "EVTNAME3021"
+  desc = "EVTDESC3021"
+  picture = ANGRY_MOB_eventPicture
+  major = yes
+
+  is_triggered_only = yes
+  trigger = { is_year = 1400 }
+  mean_time_to_happen = { days = 1 }
+
+  option = {
+    name = "EVTOPTA3021"      # Dire times are ahead of us
+    set_global_flag = destabilize_everyone
+  }
+}
+
+country_event = {
+  id = 4204202
+  title = "EVTNAME3026"
+  desc = "EVTDESC3026"
+  picture = ANGRY_MOB_eventPicture
+  major = yes
+
+  is_triggered_only = yes
+  trigger = { is_year = 1400 }
+  mean_time_to_happen = { days = 1 }
+
+  option = {
+    name = "EVTOPTA3026"      # Restore order
+    clr_global_flag = destabilize_everyone
+  }
+}
+
+country_event = {
+  id = 4204203
+  title = "EVTNAME3021"
+  desc = "EVTDESC3021"
+  picture = ANGRY_MOB_eventPicture
+  major = yes
+
+  trigger = {
+    has_global_flag = destabilize_everyone
+    NOT = { has_country_modifier = destabilize_country }
+  }
+  mean_time_to_happen = { days = 1 }
+  option = {
+    name = "EVTOPTA3021"      # Dire times are ahead of us
+    add_country_modifier = {
+      name = destabilize_country
+      duration = -1
+    }
+    add_stability = -6
+    add_legitimacy = -100
+    add_prestige = -200
+    add_republican_tradition = -1
+    country_event = { id = peasants_war.1 days = 1 }
+    every_owned_province = {
+      limit = { religion_group = christian }
+      random_list = {
+        40 = { }
+        15 = { change_religion = catholic }
+        15 = { change_religion = orthodox }
+        15 = { change_religion = coptic }
+        5 = { change_religion = sunni }
+        5 = { change_religion = shiite }
+        5 = { change_religion = ibadi }
+      }
+    }
+    every_owned_province = {
+      limit = { religion_group = muslim }
+      random_list = {
+        40 = { }
+        15 = { change_religion = sunni }
+        15 = { change_religion = shiite }
+        15 = { change_religion = ibadi }
+        5 = { change_religion = catholic }
+        5 = { change_religion = orthodox }
+        5 = { change_religion = coptic }
+      }
+    }
+  }
+}
+
+country_event = {
+  id = 4204204
+  title = "EVTNAME3026"
+  desc = "EVTDESC3026"
+  picture = ANGRY_MOB_eventPicture
+  major = yes
+
+  trigger = {
+    NOT = { has_global_flag = destabilize_everyone }
+    has_country_modifier = destabilize_country
+  }
+  mean_time_to_happen = { days = 1 }
+  option = {
+    name = "EVTOPTA3026"      # Restore order
+    remove_country_modifier = destabilize_country
+    add_stability = 3
+    add_legitimacy = 50
+    add_prestige = 100
+    add_republican_tradition = 0.5
+    every_owned_province = {
+      add_local_autonomy = -25
+    }
+  }
+}

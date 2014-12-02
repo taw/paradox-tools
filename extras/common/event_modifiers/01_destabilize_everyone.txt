@@ -1,0 +1,11 @@
+destabilize_country = {
+  global_missionary_strength = -0.05
+  global_unrest = 20
+  tolerance_own = -5
+  tolerance_heretic = -5
+  tolerance_heathen = -5
+  heir_chance = -1
+  stability_cost_modifier = 1
+  war_exhaustion_cost = 1
+  possible_mercenaries = -2
+}
