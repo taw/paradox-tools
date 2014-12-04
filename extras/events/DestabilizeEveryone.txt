@@ -56,7 +56,17 @@ country_event = {
     add_legitimacy = -100
     add_prestige = -200
     add_republican_tradition = -1
-    country_event = { id = peasants_war.1 days = 1 }
+    overlord = {
+      free_vassal = ROOT
+    }
+    every_owned_province = {
+      add_nationalism = 10
+    }
+    # every_owned_province = {
+    #   every_neighbor_province = {
+    #     add_core = ROOT
+    #   }
+    # }
     every_owned_province = {
       limit = { religion_group = christian }
       random_list = {
