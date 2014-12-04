@@ -34,6 +34,10 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ["TECH_AHEAD_OF_TIME", 0.1, 0.05],
       ["MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
       ["AUTONOMY_AT_DIPLO_ANNEX", 75, 50],
+      ["RANDOM_LUCKY_BASE_WEIGHT", 100, 100] ,
+      ["RANDOM_LUCKY_TAX_WEIGHT", 1, 0],
+      ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
+      ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
