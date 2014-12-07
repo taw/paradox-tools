@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require "pp"
+require "pathname"
+require_relative "../lib/paradox"
+
+class ValidateTradeNodes < ParadoxGame
+  def default_map
+    @default_map ||= parse("map/default.map")
+  end
+
+  def land_province_ids
+    @land_province_ids ||= begin
+      (1...default_map["max_provinces"]).to_a - sea_province_ids
+    end
+  end
+
+  def sea_province_ids
+    @sea_province_ids ||= begin
+      default_map["lakes"] | default_map["sea_starts"]
+    end
+  end
+
+  def province_names
+    @province_names ||= begin
+      Hash[
+        parse_csv("map/definition.csv")[1..-1]
+          .select{|row| row[0]}
+          .map{|row| [row[0].to_i, row[4]] }
+      ]
+    end
+  end
+
+  def trade_nodes
+    @trade_nodes ||= begin
+      rv = {}
+      glob("common/tradenodes/*.txt").each do |path|
+        parse(path).each do |name, node_data|
+          rv[name] = node_data["members"]
+        end
+      end
+      rv
+    end
+  end
+
+  def land_provinces_without_trade_node
+    @land_provinces_without_trade_node ||= begin
+      land_province_ids.select do |id|
+        not trade_nodes.any?{|node, members| members.include?(id)}
+      end
+    end
+  end
+
+  def validate_trade_nodes!
+    land_provinces_without_trade_node.each do |id|
+      puts [id, province_names[id]].join(" ")
+    end
+  end
+end
+
+if $0 == __FILE__
+  ValidateTradeNodes.new(*ARGV).validate_trade_nodes!
+end
