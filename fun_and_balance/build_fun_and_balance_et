@@ -6,6 +6,43 @@ require_relative "./fun_and_balance_common"
 class FunAndBalanceETModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
+  def create_extra_unit_types(base_unit_name)
+    # Other groups like sub_saharan exist in 1850s start, not sure if we want them too
+    # ET has 14 tech groups, and roman_ak47 feels silly
+    tech_groups = %W[western eastern ottoman muslim indian chinese]
+    tech_groups.map do |tech_group|
+      extra_unit_name = "zzz_#{tech_group}_#{base_unit_name}"
+      unit = @game.parse("common/units/#{base_unit_name}.txt")
+      unit.add! "unit_type", tech_group
+      create_mod_file! "common/units/#{extra_unit_name}.txt", unit
+      extra_unit_name
+    end
+  end
+
+  def unit_needs_forking?(unit_name)
+    unit = @game.parse("common/units/#{unit_name}.txt")
+    unit["unit_type"].nil? and (unit["type"] == "infantry" or unit["type"] == "cavalry")
+  end
+
+  def create_extra_unit_types_for_mercs!
+    # Sadly game engine does not support what ExtendedTimeline is trying to do
+
+    patch_mod_file!("common/technologies/mil.txt") do |node|
+      node.find_all("technology").each do |tech|
+        forkable_units = tech.find_all("enable").select{|unit_name| unit_needs_forking?(unit_name)}
+
+        forkable_units.each do |base_unit_name|
+          create_extra_unit_types(base_unit_name).each do |extra_unit_name|
+            tech.add!("enable", extra_unit_name)
+            localization! "extra_units",
+              "#{extra_unit_name}"      => @game.localization("#{base_unit_name}"),
+              "#{extra_unit_name}DESCR" => @game.localization("#{base_unit_name}DESCR")
+          end
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
@@ -63,6 +100,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     remove_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     smooth_oe_scaling!
+
+    create_extra_unit_types_for_mercs!
   end
 end
 
