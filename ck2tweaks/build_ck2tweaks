@@ -54,6 +54,26 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     ])
   end
 
+  def remove_levy_nerfs!
+    # This break feudal character of the game
+    patch_defines_lua!([
+      ["REBEL_LEADER_MINIMUM_LIEGE_LEVY_MULT",  1,     1],
+      ["CAPITAL_COUNTY_VASSAL_COUNT_LEVY_MULT", 1,     1],
+      ["CAPITAL_COUNTY_VASSAL_LEVY_MULT",       1.25,  1],
+      ["CAPITAL_COUNTY_LEVY_MULT",              1.5,   1],
+      ["CAPITAL_COUNTY_LIEGE_LEVY_MULT",        1,     1],
+      ["CAPITAL_DUCHY_VASSAL_LEVY_MULT",        1.15,  1],
+      ["CAPITAL_DUCHY_LEVY_MULT",               1.25,  1],
+      ["CAPITAL_DUCHY_LIEGE_LEVY_MULT",         0.75,  1],
+      ["CAPITAL_KINGDOM_LEVY_MULT",             1,     1],
+      ["CAPITAL_KINGDOM_LIEGE_LEVY_MULT",       0.5,   1],
+      ["CAPITAL_EMPIRE_LEVY_MULT",              1,     1],
+      ["CAPITAL_EMPIRE_LIEGE_LEVY_MULT",        0.35,  1],
+      ["OUTSIDE_LEVY_MULT",                     1,     1],
+      ["OUTSIDE_LIEGE_LEVY_MULT",               0.25,  1],
+    ])
+  end
+
   def no_dynastic_country_names!
     patch_mod_files!("common/cultures/*.txt") do |node|
       node.each do |group_name, group|
@@ -84,6 +104,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
+    remove_levy_nerfs!
     no_dynastic_country_names!
     allow_intermarriage!
   end
