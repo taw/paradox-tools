@@ -21,10 +21,18 @@ class ParadoxModFile
     false
   end
 
-  def parse!
-    if @path
-      @data = @path.open("r:windows-1252:utf-8").read
+  def load_data!
+    return if @data
+    raise "No path" unless @path
+    @data = @path.open("rb").read
+    if @data[0,4] == "PK\x03\x04"
+      raise "Compressed save games are not supported yet"
     end
+    @data = @data.force_encoding("windows-1252").encode("utf-8")
+  end
+
+  def parse!
+    load_data!
     tokenize!
     rv = parse_obj
     raise "Parse error - leftover tokens #{@tokens[0,30].inspect}..." unless @tokens.empty?
