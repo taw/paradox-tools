@@ -124,6 +124,23 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def more_banishment_reasons!
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+      %W[
+        opinion_traitor
+        opinion_rebel_traitor
+        opinion_regicide_traitor
+        opinion_witch
+        opinion_unfaithful_wife
+        opinion_cuckolded
+        opinion_charge_illegitimate
+        opinion_charge_traitor
+      ].each do |op|
+        node[op].add! "banish_reason", true
+      end
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -133,6 +150,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     allow_any_number_of_different_holding_types!
     allow_intermarriage!
     pagans_can_go_feudal!
+    more_banishment_reasons!
   end
 end
 
