@@ -54,6 +54,21 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     ])
   end
 
+  def allow_any_number_of_different_holding_types!
+    # A nerf without exploit
+    patch_defines_lua!([
+      ["MAX_REPUBLIC_COUNTIES_IN_REALM", 0.1, 1.0],
+      ["MAX_THEOCRACY_COUNTIES_IN_REALM", 0.1, 1.0],
+    ])
+  end
+
+  def take_money_from_banished_landed_characters!
+    # That's not even particularly gamey
+    patch_defines_lua!([
+      ["BANISH_TAKE_WEALTH_PERCENTAGE_LANDED", 0, 1],
+    ])
+  end
+
   def remove_levy_nerfs!
     # This break feudal character of the game
     patch_defines_lua!([
@@ -101,12 +116,23 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def pagans_can_go_feudal!
+    # Otherwise AI never will
+    patch_mod_file!("decisions/realm_decisions.txt") do |node|
+      node["decisions"]["adopt_feudalism"]["allow"].delete_if{|k,v| k == "custom_tooltip"}
+      node["decisions"]["adopt_republicanism"]["allow"].delete_if{|k,v| k == "custom_tooltip"}
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
     remove_levy_nerfs!
+    take_money_from_banished_landed_characters!
     no_dynastic_country_names!
+    allow_any_number_of_different_holding_types!
     allow_intermarriage!
+    pagans_can_go_feudal!
   end
 end
 
