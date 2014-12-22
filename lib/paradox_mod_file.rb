@@ -62,14 +62,14 @@ class ParadoxModFile
           next
         elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
           @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
-        elsif s.scan(/(-?\d+\.\d+)(?![^}=\s])/)
+        elsif s.scan(/([\-\+]?\d+\.\d+)(?![^}=\s])/)
           @tokens << s[1].to_f
-        elsif s.scan(/(-?\d+)(?![^}=\s])/)
+        elsif s.scan(/([\-\+]?\d+)(?![^}=\s])/)
           @tokens << s[1].to_i
         elsif s.scan(/([=\{\}])/)
           @tokens << ({"{" => :open, "}" => :close, "=" => :eq}[s[1]])
         elsif s.scan(/(
-                            (?:_|\.|\-|\–|'|’|\p{Letter}|\p{Digit})+
+                            (?:_|\.|\-|\–|'|’|\[|\]|<|>|:|\p{Letter}|\p{Digit})+
                            )/x)
           if s[1] == "yes"
             @tokens << true
@@ -82,7 +82,7 @@ class ParadoxModFile
           # Is there ever any weird escaping here?
           @tokens << s[1]
         else
-          raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}"
+          raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}: `#{s.rest[0,20]}...'"
         end
       end
     end
