@@ -64,7 +64,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     feature_holy_sites!
     feature_partial_westernization!
     fix_opinions!
-    fix_peasant_war!
     fix_wargoals!
     no_naval_attrition!
     patch_religion!
@@ -80,8 +79,8 @@ end
 
 mb = FunAndBalanceModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.8.0",
+    "source/eu4-1.9.2",
   ),
-  "output/fun_and_balance-1.8.0"
+  "output/fun_and_balance-1.9.2"
 )
 mb.build!

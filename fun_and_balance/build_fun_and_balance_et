@@ -139,7 +139,6 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     dont_destroy_buildings_on_conquest!
     double_diplo_rel_limit_from_ideas!
     fix_opinions!
-    fix_peasant_war!
     fix_wargoals!
     no_naval_attrition!
     reduce_religious_center_penalty!
@@ -156,8 +155,8 @@ end
 
 mb = FunAndBalanceETModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.8.0",
-    "source/ExtendedTimeline 0.11.1/ExtendedTimeline"
+    "source/eu4-1.9.2",
+    "source/ExtendedTimeline 0.11.6/ExtendedTimeline"
   ),
   "output/fun_and_balance_et"
 )

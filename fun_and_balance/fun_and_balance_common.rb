@@ -80,26 +80,6 @@ module FunAndBalanceCommon
     end
   end
 
-  def fix_peasant_war!
-    patch_mod_file!("events/PeasantsWar.txt") do |node|
-      node.find_all("country_event").each do |event|
-        next unless event["id"] == "peasants_war.1"
-
-        cond = event["trigger"].find_all("OR")[0]
-        cond["war_exhaustion"] = 5
-        cond["overextension_percentage"] = 1.01
-        cond["num_of_loans"] = 5
-        cond["NOT"]["legitimacy"] = 40 # This is really weird...
-        cond.add! Property::NOT["stability", 0]
-
-        event["mean_time_to_happen"].find_all("modifier").each do |mod|
-          mod["factor"] = 1.5 if mod["stability"]
-          mod["factor"] = 0.7 if mod["NOT"] && mod["NOT"]["stability"] # weirdness again
-        end
-      end
-    end
-  end
-
   def change_elections_to_eu3_style!
     patch_mod_file!("events/Elections.txt") do |node|
       node.find_all("country_event").each do |event|
@@ -379,11 +359,6 @@ module FunAndBalanceCommon
   end
 
   def reverse_horde_nerfs!
-    patch_mod_file!("decisions/ManchuDecisions.txt") do |node|
-      node["country_decisions"]["form_manchu_dynasty"]["allow"].delete("is_tribal")
-      node["country_decisions"]["form_manchu_dynasty"]["effect"]["if"]["change_government"] = "despotic_monarchy"
-    end
-
     patch_mod_file!("decisions/MughalNation.txt") do |node|
       node["country_decisions"]["mughal_nation"]["allow"].delete("is_tribal")
       node["country_decisions"]["mughal_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
