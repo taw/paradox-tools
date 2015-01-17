@@ -147,9 +147,9 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     remove_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     smooth_oe_scaling!
-
     fix_adopt_secularism_decision!
     hire_merc_company_decision!
+    easier_change_government_decisions!
     # create_extra_unit_types_for_mercs! # This fix doesn't seem to actually work :-(
   end
 end
