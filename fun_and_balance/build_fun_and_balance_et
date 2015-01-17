@@ -119,6 +119,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["RANDOM_LUCKY_TAX_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
+      ["DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
       ["PROVINCE_BUILDING_LEVEL_THRESHOLD", 5, 7], # For late game money sink
     ])
 
