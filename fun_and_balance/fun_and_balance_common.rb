@@ -896,13 +896,16 @@ module FunAndBalanceCommon
         when ["HUN"]
           # Pressburg and Buda
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 153], Property["owns_core_province", 154])
-        when ["TUR"]
-          # Edirne and Constantinople and 20 cities as these are very geographically ambitious goals
+        when ["TUR", "AYD", "CND", "DUL", "KAR", "SRU", "MEN", "RAM", "ERE", "GRM"]
           if name == "muslim_asia_minor"
             make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 149], Property["owns_core_province", 151], Property["num_of_cities", 20], Property["religion_group", "muslim"])
-          else
-            make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 149], Property["owns_core_province", 151], Property["num_of_cities", 20])
           end
+        when ["TUR", "AYD", "MEN"]
+          # Defeat the Knights
+          # OK
+        when ["TUR"]
+          # Edirne and Constantinople and 20 cities as these are very geographically ambitious goals
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 149], Property["owns_core_province", 151], Property["num_of_cities", 20])
         when ["ENG", "GBR"]
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 236], Property["num_of_cities", 20])
         when ["ENG"]
@@ -937,12 +940,11 @@ module FunAndBalanceCommon
         when ["MCH"]
           # This includes 2 originally uncolonized provinces, so it's maybe not super useful
           make_mission_not_tag_specific!(mission, tags, Property["manchuria", PropertyList["type", "all", "owned_by", "ROOT"]])
-        when ["TIM"]
+        when ["TIM"], ["MUG"], ["TIM", "MUG"]
           # Samarkand and Kabul
-          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 454], Property["owns_core_province", 451], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
-        when ["MUG"]
+          # Punjab
           # Kabul and Delhi
-          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 451], Property["owns_core_province", 522], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 454], Property["owns_core_province", 451], Property["owns_core_province", 522], Property["num_of_cities", 30], Property::NOT["exists", "TIM"], Property::NOT["exists", "MUG"])
         when ["BRA"]
           next if name == "brandenburg_breaks_free_from_poland" # Far too specific for one scenario
           raise "Unknown Brandenburg mission" unless name == "annex_prussia" or name == "vassalize_prussia" or name == "brandenburg_prussia_relations" or name == "connect_brandenburg_and_prussia"
@@ -963,12 +965,14 @@ module FunAndBalanceCommon
           # Berlin
           raise "Unknown Prussia/Brandenburg mission" unless name == "conquer_ratibor" or name == "conquer_silesia" or name == "conquer_hinterpommern" or name == "conquer_swedish_pomerania"
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 50], Property::NOT["exists", "PRU"], Property::NOT["exists", "BRA"])
+        when ["GUJ"], ["VIJ"], ["CSU"]
+          # TODO
         when []
           # fortify_the_eastern_border is Sweden-specific, but it's not a big deal it's out of the set
           if mission_rewards_totally_awful?(mission)
             fix_mission_rewards!(name, mission)
           end
-        when ["MJZ", "MHX", "KRC", "MYR"]
+        when ["MJZ", "MHX", "MYR"]
           # Unite Manchu, fine to just let Manchu tribes do it
         # Shattered Europe Scenario - we don't want to change these
         when  ["GRA", "ALU", "BDJ"], ["GRA", "ALU", "SEV"], ["GRA", "ALU", "BDJ", "SEV"], ["ALU"]
