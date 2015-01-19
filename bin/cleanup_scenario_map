@@ -1,0 +1,78 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "../visualization/world_history"
+
+class Hash
+  def hzip(other)
+    result = {}
+    each do |k,v|
+      result[k] ||= [nil, nil]
+      result[k][0] = v
+    end
+    other.each do |k,v|
+      result[k] ||= [nil, nil]
+      result[k][1] = v
+    end
+    result
+  end
+end
+
+class CleanupScenarioMap
+  def initialize(baseline_path, scenario_path, output_path)
+    @baseline = ParadoxGame.new(baseline_path)
+    @scenario = ParadoxGame.new(baseline_path, scenario_path)
+    @output_path = output_path
+    @scenario_date = Date.parse("1399-10-13")
+  end
+
+  def build_province_state(resolved_path, date=@scenario_date)
+    state = ProvinceState.new
+    data = ParadoxModFile.new(path: resolved_path).parse!
+    data.each do |key, val|
+      if key.is_a?(Date)
+        state.commands!(val) if date.nil? or key <= date
+      else
+        state.command!(key, val)
+      end
+    end
+    state.state
+  end
+
+  def sync_province!(path)
+    baseline_state = build_province_state(@baseline.resolve(path))
+    scenario_state = build_province_state(@scenario.resolve(path))
+
+    major_diff = (
+      scenario_state["religion"] != baseline_state["religion"] or
+          scenario_state["owner"] != baseline_state["owner"] or
+          scenario_state["cores"] != baseline_state["cores"] or
+          scenario_state["hre"] != baseline_state["hre"]
+    )
+    if scenario_state == baseline_state
+      puts "No difference, can be deleted: #{path}"
+    else
+      puts "#{major_diff ? 'Major' : 'Minor'} differences in #{path}"
+      baseline_state.hzip(scenario_state).each do |k, (b, s)|
+        next if b == s
+        puts "* #{k}: #{b.inspect} != #{s.inspect}"
+      end
+      puts ""
+    end
+  end
+
+  def run!
+    @scenario.glob("history/provinces/*").each do |path|
+      next if @scenario.resolve(path) == @baseline.resolve(path)
+      sync_province! path
+    end
+  end
+end
+
+cleanup = CleanupScenarioMap.new(
+  "source/eu4-1.9.2",
+  "source/ShatteredEurope-master/ShatteredEurope",
+  "output/cleaned_up_map_data"
+)
+
+cleanup.run!
