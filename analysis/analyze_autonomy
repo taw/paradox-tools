@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+
+module Enumerable
+  def sum
+    inject(0, &:+)
+  end
+end
+
+class AnalyzeAutonomy < ParadoxGame
+  def initialize(save_game, *roots)
+    super(*roots)
+    @data = ParadoxModFile.new(path: save_game).parse!
+  end
+
+  def report!
+    countries = {}
+    @data["provinces"].each do |id, data|
+      autonomy = data["local_autonomy"]
+      min_autonomy = data["min_autonomy"] || 0
+      bt       = data["base_tax"]
+      owner    = data["owner"]
+      next unless bt
+      next unless owner
+      countries[owner] ||= []
+      countries[owner] << [bt, [autonomy, min_autonomy].max]
+    end
+
+    countries.map do |tag, data|
+      max_bt = data.map{|bt,_| bt}.sum
+      lost_bt = data.map{|bt,a| bt*(a/100.0) }.sum
+      avg_autonomy = 100.0 * lost_bt / max_bt
+      name = localization(tag)
+      [name, avg_autonomy.round(2)]
+    end.sort.each do |name, avg_autonomy|
+      puts "#{name}\t#{avg_autonomy}"
+    end
+  end
+end
+
+if __FILE__ == $0
+  AnalyzeAutonomy.new(*ARGV).report!
+end
