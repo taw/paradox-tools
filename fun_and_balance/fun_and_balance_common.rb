@@ -383,9 +383,9 @@ module FunAndBalanceCommon
     end
 
     patch_mod_file!("common/governments/00_governments.txt") do |node|
-      node["steppe_horde"]["global_manpower_modifier"] = 1.0
-      node["steppe_horde"]["land_forcelimit_modifier"] = 1.0
-      node["steppe_horde"]["land_maintenance_modifier"] = -0.5
+      node["steppe_horde"]["global_manpower_modifier"] = 0.75
+      node["steppe_horde"]["land_forcelimit_modifier"] = 0.75
+      node["steppe_horde"]["land_maintenance_modifier"] = -0.4
     end
   end
 
