@@ -279,7 +279,7 @@ module FunAndBalanceCommon
         group.each do |culture_name, details|
           next if details.is_a?(Array)
           details = details.to_h
-          details.delete "dynasty_names"
+          next unless details["primary"]
           yield culture_name, details["primary"]
         end
       end
@@ -299,12 +299,7 @@ module FunAndBalanceCommon
     each_country_primary_culture do |culture, tag|
       next if already_formable.include?(tag)
       next if tag == "MOS" # Form Russia instead
-      # Big Chinese "minors" can't be formed
-      # Zhou would make sense if it didn't have crazy cores over half of China,
-      # just on stuff of (mostly) their culture
-      # Shun is primary culture of Han and we probably don't want them reformable
-      # Xi, Dali etc - are all fine
-      next if tag == "CZH" or tag == "CSH"
+
       decisions << "country_decisions"
       decisions << PropertyList[
         "extra_formable_form_#{tag}", PropertyList[
@@ -930,7 +925,7 @@ module FunAndBalanceCommon
           raise "Unknown Ming/Manchu missions" unless name == "colonize_taiwan" or name == "colonize_deren"
           # This makes sense only for these missions, not in general
           make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
-        when ["MNG"]
+        when ["MNG"], ["MNG", "QNG"]
           if name == "china_discovers_india"
             make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
           else

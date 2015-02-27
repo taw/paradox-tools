@@ -28,7 +28,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ["VASSAL_FABRICATE_CLAIMS", 1, 1],
       ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 50, 50],
       ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
-      ["GREAT_POWER_ALLIANCE_PENALTY", 50, 25],
+      ["GREAT_POWER_ALLIANCE_PENALTY", 0, 0],
       ["PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["TECH_AHEAD_OF_TIME", 0.1, 0.05],
@@ -81,8 +81,8 @@ end
 
 mb = FunAndBalanceModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.9.2",
+    "source/eu4-1.10.1",
   ),
-  "output/fun_and_balance-1.9.2"
+  "output/fun_and_balance-1.10.1",
 )
 mb.build!
