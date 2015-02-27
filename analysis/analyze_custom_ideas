@@ -1,0 +1,157 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class Array
+  def count_by
+    rv = {}
+    each do |k|
+      v = yield(k)
+      rv[v] ||= 0
+      rv[v] += 1
+    end
+    rv
+  end
+end
+
+class IdeaGroup
+  def initialize(name, node, aci)
+    @name = name
+    @node = node
+    @aci = aci
+
+    # This is really weird "uses ottoman ideas" trick for Karaman and Turkish minors
+    if @node["ghazi"] == []
+      @node["ghazi"] = PropertyList["manpower_recovery_speed", 0.2]
+    end
+
+    @total_cost = 0
+    @violations = []
+    @picks = []
+  end
+
+  def custom_ideas
+    @aci.custom_ideas
+  end
+
+  def bonuses
+    @bonuses ||= @node.values.map(&:to_h).map(&:to_a).flatten(1)
+  end
+
+  def group_shape
+    [
+      "start",
+      *(@node.keys - ["start", "bonus"]),
+      "bonus",
+    ].map{|k| @node[k].size}
+  end
+
+  def add_cost!(cost, position_mult)
+    @total_cost = (@total_cost + cost*position_mult).round(1)
+  end
+
+  def analyze_bonus!(bonus_key, bonus_val, position_mult)
+    custom_ideas.each do |idea_name, idea, levels|
+      next unless idea[bonus_key]
+      level_1_val = idea[bonus_key]
+      level = (bonus_val / level_1_val).round(2) # Cut to 2 digits to avoid float nonsense
+      if level.round == level and level <= levels.size
+        level = level.to_i
+        add_cost! levels[level.round-1], position_mult
+        @picks << "#{bonus_key} #{level}: #{bonus_val}"
+        return
+      end
+      if level.round <= levels.size
+        add_cost! levels[level.round-1], position_mult
+        @picks << "#{bonus_key} #{level.round.to_i} (#{level}): #{bonus_val}"
+        return
+      end
+
+      @violations << ["TODO #{bonus_key} #{level}: #{level_1_val} #{bonus_val}"]
+
+      return
+    end
+    @violations << ["No idea for #{bonus_key}"]
+  end
+
+  def analyze!
+    unless group_shape == [2] + [1]*8
+      @violations << "Unusual group shape (#{group_shape*' '})"
+    end
+
+    multiples = bonuses.map(&:first).count_by(&:itself).select{|n,c| c > 1}
+    unless multiples.empty?
+      @violations << "Contains multiples of same bonus (#{multiples.keys*' '})"
+    end
+
+    [
+      "start",
+      *(@node.keys - ["start", "bonus"]),
+      "bonus",
+    ].each_with_index do |position, i|
+      if i < 5
+        position_mult = 2.0 - i/5.0
+      else
+        position_mult = 1.0
+      end
+      @node[position].each do |key, val|
+        analyze_bonus! key, val, position_mult
+      end
+    end
+
+    # pp [@name, @total_cost, @violations, @picks]
+    # puts ""
+    # puts "XXX #{bonuses.count}"
+    p [@violations.size, @name, @total_cost, @violations]
+  end
+end
+
+class AnalyzeCustomIdeas < ParadoxGame
+  def each_national_idea_group
+    glob("common/ideas/*").each do |path|
+      parse(path).each do |group_name, idea_group|
+        next if idea_group["category"] # Not national ideas
+        raise "Not national ideas and not idea group?" unless idea_group["free"]
+        idea_group.delete "trigger"
+        idea_group.delete "free"
+        raise "WTF" unless idea_group.keys.size == 9 and
+                           idea_group.keys.include?("start") and
+                           idea_group.keys.include?("bonus")
+        yield(group_name, idea_group)
+      end
+    end
+  end
+
+  # from common/defines.lua
+  def default_custom_idea_costs
+    [0, 5, 15, 30]
+  end
+
+  def custom_ideas
+    unless @custom_ideas
+      @custom_ideas = []
+      glob("common/custom_ideas/*").each do |path|
+        parse(path).values[0].each do |idea_name, idea|
+          next if idea_name == "category"
+          idea = idea.to_h
+          idea.delete "default"
+          max_level = idea.delete("max_level") || 4
+          levels = max_level.times.map do |i|
+            idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+          end
+          @custom_ideas << [idea_name, idea, levels]
+        end
+      end
+    end
+    @custom_ideas
+  end
+
+  def analyze!
+    each_national_idea_group do |group_name, idea_group|
+      IdeaGroup.new(group_name, idea_group, self).analyze!
+    end
+  end
+end
+
+aci = AnalyzeCustomIdeas.new(*ARGV)
+aci.analyze!
