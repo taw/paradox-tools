@@ -66,7 +66,6 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     feature_extra_formable_countries!
     feature_holy_sites!
     feature_partial_westernization!
-    feature_return_vassal_cores!
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
