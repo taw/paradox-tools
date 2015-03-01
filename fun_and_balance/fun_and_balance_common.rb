@@ -1032,6 +1032,8 @@ module FunAndBalanceCommon
       "adm_tech_cost_modifier"             => [-0.05,  "adm"],
       "global_heretic_missionary_strength" => [ 0.01,  "adm"],
       "migration_cooldown"                 => [-0.2,   "adm", max_levels: 3],
+      "years_of_nationalism"               => [-2,     "adm"],
+      "monthly_fervor_increase"            => [ 0.25,  "adm"],
 
       "dip_tech_cost_modifier"             => [-0.05,  "dip"],
       "global_ship_cost"                   => [-0.05,  "dip"],
@@ -1040,35 +1042,95 @@ module FunAndBalanceCommon
       "caravan_power"                      => [ 0.1,   "dip"],
       "global_trade_income_modifier"       => [ 0.05,  "dip"],
       "improve_relation_modifier"          => [ 0.1,   "dip"],
-      "fabricate_claims_time"              => [-0.1,   "dip", max_levels: 5],
+      "fabricate_claims_time"              => [-0.1,   "dip", max_levels: 6],
       "imperial_authority"                 => [ 0.05,  "dip"],
       "naval_attrition"                    => [-0.05,  "dip"],
       "relations_decay_of_me"              => [ 0.1,   "dip"],
       "papal_influence"                    => [ 0.1,   "dip"],
       "rebel_support_efficiency"           => [ 0.2,   "dip"],
       "trade_range_modifier"               => [ 0.1,   "dip"],
-      "justify_trade_conflict_time"        => [-0.1,   "dip", max_levels: 5],
+      "justify_trade_conflict_time"        => [-0.1,   "dip", max_levels: 6],
       "global_own_trade_power"             => [ 0.1,   "dip"],
       "global_foreign_trade_power"         => [ 0.1,   "dip"],
-      "unjustified_demands"                => [-0.1,   "dip", max_levels: 5],
+      "unjustified_demands"                => [-0.1,   "dip", max_levels: 6],
       "recover_navy_morale_speed"          => [ 0.025, "dip"],
+      "discovered_relations_impact"        => [-0.2,   "dip", max_levels: 3],
+      "global_ship_recruit_speed"          => [-0.1,   "dip", max_levels: 6],
+      "province_warscore_cost"             => [-0.025, "dip"],
+      "global_spy_defence"                 => [ 0.1,   "dip"],
+      "global_ship_repair"                 => [ 0.1,   "dip"],
 
       "mil_tech_cost_modifier"             => [-0.05,  "mil"],
       "global_regiment_cost"               => [-0.05,  "mil"],
       "global_garrison_growth"             => [ 0.1,   "mil"],
       "land_attrition"                     => [-0.05,  "mil"],
       "recover_army_morale_speed"          => [ 0.025, "mil"],
+      "global_regiment_recruit_speed"      => [-0.1,   "mil", max_levels: 6],
+      "free_leader_pool"                   => [ 1,     "mil", levels: [15, 50]]
     }
 
     ["adm", "dip", "mil"].each do |category|
       patch_mod_file!("common/custom_ideas/#{category}_custom_ideas.txt") do |node|
         ideas = node.values[0]
+
+        # Support more more levels
+        ideas.each do |idea_name, idea|
+          next if idea_name == "category"
+          level_costs = idea.keys.grep(/\Alevel_cost_\d+\z/).sort.map{|k| [k[/\d+/].to_i, idea[k]] }
+          max_level   = idea["max_level"]
+          case [max_level, *level_costs]
+          when [nil]
+            # OK, scale up to 10 for greater good
+          when [nil, [2, 3], [3, 9], [4, 18]]
+            # 60% cost ideas, scole up to level 10
+            idea.add! "level_cost_5", 30
+            idea.add! "level_cost_6", 45
+            idea.add! "level_cost_7", 63
+            idea.add! "level_cost_8", 84
+            idea.add! "level_cost_9", 108
+            idea.add! "level_cost_10", 135
+          when [2, [1, 15], [2, 50]]
+            idea.add! "level_cost_3", 105
+            idea.add! "level_cost_4", 180
+            idea["max_levels"] = 4
+          when [2, [1, 5], [2, 30]]
+            idea.add! "level_cost_3", 75
+            idea.add! "level_cost_4", 140
+            idea.add! "level_cost_5", 225
+            idea["max_levels"] = 5
+          when [2, [1, 3], [2, 18]]
+            # 2n+1 * 60%, well, jusn following the formula
+            idea.add! "level_cost_3", 45
+            idea.add! "level_cost_4", 84
+            idea.add! "level_cost_5", 135
+            idea["max_levels"] = 5
+          when [2, [2, 15]]
+            idea.add! "level_cost_3", 50
+            idea.add! "level_cost_4", 105
+            idea.add! "level_cost_5", 180
+            idea["max_levels"] = 5
+          when [2, [1, 30], [2, 140]]
+            # Extrapolating it level 3 would cost at level 12 which is out of scale
+            # It's another issue if such high costs are really justified
+          else
+            idea.add! "max_levels", 4 unless max_level
+            p [idea_name, max_level, *level_costs]
+          end
+        end
+
+        # New ideas
         extra_custom_ideas.each do |key, (val, cat, options)|
           next unless cat == category
           options ||= {}
           idea = PropertyList[key, val]
           if options[:max_levels]
             idea.add! "max_levels", options[:max_levels]
+          end
+          if options[:levels]
+            idea.add! "max_levels", options[:levels].size
+            options[:levels].each_with_index do |cost, i|
+              idea.add! "level_cost_#{i+1}", cost
+            end
           end
           ideas.add! "custom_idea_#{key}", idea
         end
