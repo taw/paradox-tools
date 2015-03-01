@@ -1027,8 +1027,57 @@ module FunAndBalanceCommon
     end
   end
 
+  def fix_custom_idea_extra_ideas!
+    extra_custom_ideas = {
+      "adm_tech_cost_modifier"             => [-0.05,  "adm"],
+      "global_heretic_missionary_strength" => [ 0.01,  "adm"],
+      "migration_cooldown"                 => [-0.2,   "adm", max_levels: 3],
+
+      "dip_tech_cost_modifier"             => [-0.05,  "dip"],
+      "global_ship_cost"                   => [-0.05,  "dip"],
+      "global_trade_goods_size"            => [ 0.05,  "dip"],
+      "envoy_travel_time"                  => [-0.25,  "dip", max_levels: 2],
+      "caravan_power"                      => [ 0.1,   "dip"],
+      "global_trade_income_modifier"       => [ 0.05,  "dip"],
+      "improve_relation_modifier"          => [ 0.1,   "dip"],
+      "fabricate_claims_time"              => [-0.1,   "dip", max_levels: 5],
+      "imperial_authority"                 => [ 0.05,  "dip"],
+      "naval_attrition"                    => [-0.05,  "dip"],
+      "relations_decay_of_me"              => [ 0.1,   "dip"],
+      "papal_influence"                    => [ 0.1,   "dip"],
+      "rebel_support_efficiency"           => [ 0.2,   "dip"],
+      "trade_range_modifier"               => [ 0.1,   "dip"],
+      "justify_trade_conflict_time"        => [-0.1,   "dip", max_levels: 5],
+      "global_own_trade_power"             => [ 0.1,   "dip"],
+      "global_foreign_trade_power"         => [ 0.1,   "dip"],
+      "unjustified_demands"                => [-0.1,   "dip", max_levels: 5],
+      "recover_navy_morale_speed"          => [ 0.025, "dip"],
+
+      "mil_tech_cost_modifier"             => [-0.05,  "mil"],
+      "global_regiment_cost"               => [-0.05,  "mil"],
+      "global_garrison_growth"             => [ 0.1,   "mil"],
+      "land_attrition"                     => [-0.05,  "mil"],
+      "recover_army_morale_speed"          => [ 0.025, "mil"],
+    }
+
+    ["adm", "dip", "mil"].each do |category|
+      patch_mod_file!("common/custom_ideas/#{category}_custom_ideas.txt") do |node|
+        ideas = node.values[0]
+        extra_custom_ideas.each do |key, (val, cat, options)|
+          next unless cat == category
+          options ||= {}
+          idea = PropertyList[key, val]
+          if options[:max_levels]
+            idea.add! "max_levels", options[:max_levels]
+          end
+          ideas.add! "custom_idea_#{key}", idea
+        end
+      end
+    end
+  end
 
   def fix_custom_ideas!
     fix_custom_idea_extra_governments!
+    fix_custom_idea_extra_ideas!
   end
 end
