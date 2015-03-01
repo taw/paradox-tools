@@ -10,7 +10,9 @@ module FunAndBalanceCommon
   end
 
   def province_id(province_name)
-    matches = @game.glob("history/provinces/* - #{province_name}.txt")
+    matches = @game.glob("history/provinces/*.txt").select{|n|
+      n.basename(".txt").to_s.sub(/\A\d+[ -]*/, "").downcase == province_name.downcase
+    }
     raise "No match for #{province_name}" unless matches.size == 1
     matches[0].basename.to_s.to_i
   end
@@ -137,7 +139,7 @@ module FunAndBalanceCommon
   def add_holy_site!(religion, site, n)
     trigger_name = "holy_sites_#{religion}_#{n}"
     localization! "holy_sites",
-      trigger_name => "#{site[:short_name]} is #{religion.to_s.capitalize}",
+      trigger_name => "#{site[:short_name]} is #{@game.localization(religion)}",
       "desc_#{trigger_name}" => "#{religion.to_s.capitalize} rulers control holy site #{site[:name]}"
     Property[trigger_name, PropertyList[
       "potential", PropertyList["religion", religion],
@@ -151,8 +153,8 @@ module FunAndBalanceCommon
     raise "Expected 0 or 5 sites, not #{sites.size}" unless sites.size == 5
     trigger_name = "holy_sites_#{religion}"
     localization! "holy_sites",
-      trigger_name           => "All #{religion.to_s.capitalize} holy sites",
-      "desc_#{trigger_name}" => "#{religion.to_s.capitalize} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
+      trigger_name           => "All #{@game.localization(religion)} holy sites",
+      "desc_#{trigger_name}" => "#{@game.localization(religion)} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
     Property[trigger_name, PropertyList[
       "potential", PropertyList["religion", religion],
       "trigger", PropertyList[
@@ -473,10 +475,20 @@ module FunAndBalanceCommon
       confucianism: ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
       shinto:       ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
 
-      # Not getting any ever
+      # Adapted from CK2
+      norse_pagan_reformed:   ["Zeeland", "Hannover / Paderborn / 1758", "Sjaelland", "Trondelag", "Uppland / Uppsala"],
+      jewish:                 ["Jerusalem", "Sinai", "Damascus", "Hamadan", "Dhofar / Salahah"],
+
+
+      # Not getting any ever, these are generic groupings not real religions
       shamanism:    [],
       animism:      [],
       totemism:     [],
+
+      # Maybe someday
+      inti:                  [],
+      nahuatl:               [],
+      mesoamerican_religion: [],
     }
   end
 
@@ -1029,44 +1041,44 @@ module FunAndBalanceCommon
 
   def fix_custom_idea_extra_ideas!
     extra_custom_ideas = {
-      "adm_tech_cost_modifier"             => [-0.05,  "adm"],
-      "global_heretic_missionary_strength" => [ 0.01,  "adm"],
-      "migration_cooldown"                 => [-0.2,   "adm", max_level: 3],
-      "years_of_nationalism"               => [-2,     "adm"],
-      "monthly_fervor_increase"            => [ 0.25,  "adm"],
+      "adm_tech_cost_modifier"             => [-0.05,  "adm", loc: "Innovative Administration"],
+      "global_heretic_missionary_strength" => [ 0.01,  "adm", loc: "Witch Burning"],
+      "migration_cooldown"                 => [-0.2,   "adm", loc: "Restless Tribe", max_level: 3],
+      "years_of_nationalism"               => [-2,     "adm"], # Has loc
+      "monthly_fervor_increase"            => [ 0.25,  "adm", loc: "Religious Fervor"],
 
-      "dip_tech_cost_modifier"             => [-0.05,  "dip"],
-      "global_ship_cost"                   => [-0.05,  "dip"],
-      "global_trade_goods_size"            => [ 0.05,  "dip"],
-      "envoy_travel_time"                  => [-0.25,  "dip", max_level: 2],
-      "caravan_power"                      => [ 0.1,   "dip"],
-      "global_trade_income_modifier"       => [ 0.05,  "dip"],
-      "improve_relation_modifier"          => [ 0.1,   "dip"],
-      "fabricate_claims_time"              => [-0.1,   "dip", max_level: 6],
-      "imperial_authority"                 => [ 0.05,  "dip"],
-      "naval_attrition"                    => [-0.05,  "dip"],
-      "relations_decay_of_me"              => [ 0.1,   "dip"],
-      "papal_influence"                    => [ 0.1,   "dip"],
-      "rebel_support_efficiency"           => [ 0.2,   "dip"],
-      "trade_range_modifier"               => [ 0.1,   "dip"],
-      "justify_trade_conflict_time"        => [-0.1,   "dip", max_level: 6],
-      "global_own_trade_power"             => [ 0.1,   "dip"],
-      "global_foreign_trade_power"         => [ 0.1,   "dip"],
-      "unjustified_demands"                => [-0.1,   "dip", max_level: 6],
-      "recover_navy_morale_speed"          => [ 0.025, "dip"],
-      "discovered_relations_impact"        => [-0.2,   "dip", max_level: 3],
-      "global_ship_recruit_speed"          => [-0.1,   "dip", max_level: 6],
-      "province_warscore_cost"             => [-0.025, "dip"],
-      "global_spy_defence"                 => [ 0.1,   "dip"],
-      "global_ship_repair"                 => [ 0.1,   "dip"],
+      "dip_tech_cost_modifier"             => [-0.05,  "dip", loc: "Innovative Diplomacy"],
+      "global_ship_cost"                   => [-0.05,  "dip", loc: "Navy Provisioning"],
+      "global_trade_goods_size"            => [ 0.05,  "dip", loc: "Craftsmen Guild"],
+      "envoy_travel_time"                  => [-0.25,  "dip", loc: "Fast Envoys", max_level: 2],
+      "caravan_power"                      => [ 0.1,   "dip", loc: "Trade Caravans"],
+      "global_trade_income_modifier"       => [ 0.05,  "dip", loc: "Luxury Trade"],
+      "improve_relation_modifier"          => [ 0.1,   "dip", loc: "Charming Diplomats"],
+      "fabricate_claims_time"              => [-0.1,   "dip", loc: "Forgers Guild", max_level: 6],
+      "imperial_authority"                 => [ 0.05,  "dip", loc: "Imperial Ambitions"],
+      "naval_attrition"                    => [-0.05,  "dip", loc: "Naval Thriftiness"],
+      "relations_decay_of_me"              => [ 0.1,   "dip", loc: "Let Bygones Be Bygones"],
+      "papal_influence"                    => [ 0.1,   "dip", loc: "Papal Influence"],
+      "rebel_support_efficiency"           => [ 0.2,   "dip", loc: "Rebel Relations"],
+      "trade_range_modifier"               => [ 0.1,   "dip", loc: "Merchant Explorers"],
+      "justify_trade_conflict_time"        => [-0.1,   "dip", loc: "Querrelsome Merchants", max_level: 6],
+      "global_own_trade_power"             => [ 0.1,   "dip", loc: "Home Merchant Guild"],
+      "global_foreign_trade_power"         => [ 0.1,   "dip", loc: "Foreign Merchant Guild"],
+      "unjustified_demands"                => [-0.1,   "dip", loc: "Diplomatic Justifications", max_level: 6],
+      "recover_navy_morale_speed"          => [ 0.025, "dip", loc: "Naval Enthusiasm"],
+      "discovered_relations_impact"        => [-0.2,   "dip", loc: "Diplomatic Excuses", max_level: 3],
+      "global_ship_recruit_speed"          => [-0.1,   "dip", loc: "Efficient Shipyards", max_level: 6],
+      "province_warscore_cost"             => [-0.025, "dip", loc: "Persuasive Diplomats"],
+      "global_spy_defence"                 => [ 0.1,   "dip", loc: "Counterespionage Experts"],
+      "global_ship_repair"                 => [ 0.1,   "dip", loc: "Efficient Drydocks"],
 
-      "mil_tech_cost_modifier"             => [-0.05,  "mil"],
-      "global_regiment_cost"               => [-0.05,  "mil"],
-      "global_garrison_growth"             => [ 0.1,   "mil"],
-      "land_attrition"                     => [-0.05,  "mil"],
-      "recover_army_morale_speed"          => [ 0.025, "mil"],
-      "global_regiment_recruit_speed"      => [-0.1,   "mil", max_level: 6],
-      "free_leader_pool"                   => [ 1,     "mil", levels: [15, 50]]
+      "mil_tech_cost_modifier"             => [-0.05,  "mil", loc: "Innovative Military"],
+      "global_regiment_cost"               => [-0.05,  "mil", loc: "Army Provisioning"],
+      "global_garrison_growth"             => [ 0.1,   "mil", loc: "Draft for Garrison Duty"],
+      "land_attrition"                     => [-0.05,  "mil", loc: "Efficient Foraging"],
+      "recover_army_morale_speed"          => [ 0.025, "mil", loc: "Military Enthusiasm"],
+      "global_regiment_recruit_speed"      => [-0.1,   "mil", loc: "Fast Recruiters", max_level: 6],
+      "free_leader_pool"                   => [ 1,     "mil", loc: "Lower Class Officers", levels: [15, 50]],
     }
 
     ["adm", "dip", "mil"].each do |category|
@@ -1133,6 +1145,9 @@ module FunAndBalanceCommon
             end
           end
           ideas.add! "custom_idea_#{key}", idea
+          if options[:loc]
+            localization! "custom_ideas", "custom_idea_#{key}" => options[:loc], "custom_idea_#{key}_desc" => ""
+          end
         end
       end
     end
