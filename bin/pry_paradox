@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "pry"
+require_relative "../lib/paradox"
+
+$game = ParadoxGame.new(*ARGV)
+$game.instance_eval { binding.pry }
