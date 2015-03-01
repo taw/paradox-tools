@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "bonus_scoring"
+require "pp"
+
+class AnalyzeCustomIdeaBonuses < ParadoxGame
+  def analyze!
+    custom_ideas.each do |idea_name, idea, levels|
+      level_1_value = BonusScoring.new.tap{|bs| bs.send(*idea.to_a.flatten) }.score
+      # p [idea_name, level_1_value, idea, levels]
+      puts [level_1_value, idea.inspect, levels.inspect].join("\t")
+    end
+  end
+
+  def defines_lua
+    @defines_lua ||= resolve("common/defines.lua").read.gsub(/--.*/, "").scan(/^\s+([A-Z0-9_]+)\s*=\s*(.*?)(?:\s*,|\s*$)/).to_h
+  end
+
+  def default_max_level
+    @default_max_level ||= defines_lua["IDEAS_MAX_LEVEL"].to_i
+  end
+
+  def default_custom_idea_costs
+    @default_custom_idea_costs ||= (1..default_max_level).map{|i|
+      defines_lua["IDEAS_LEVEL_COST_#{i}"].to_i
+    }
+  end
+
+  def custom_ideas
+    unless @custom_ideas
+      @custom_ideas = []
+      glob("common/custom_ideas/*").each do |path|
+        parse(path).values[0].each do |idea_name, idea|
+          next if idea_name == "category"
+          idea = idea.to_h
+          idea.delete "default"
+          max_level = idea.delete("max_level") || default_max_level
+          levels = max_level.times.map do |i|
+            idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+          end
+          @custom_ideas << [idea_name, idea, levels]
+        end
+      end
+    end
+    @custom_ideas
+  end
+end
+
+acib = AnalyzeCustomIdeaBonuses.new(*ARGV)
+acib.analyze!

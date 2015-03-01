@@ -220,7 +220,7 @@ class BonusScoring
   # Assume you are at positive-enough-to-care inflation 25% of the time
   # This is *annual* number
   def inflation_reduction(v)
-    monthly_adm_points -v*(75.0/2.0/12)*0.25
+    monthly_adm_points v*(75.0/2.0/12)*0.25
   end
   # Assume average of 1bt/year cored
   def core_creation(v)
@@ -706,6 +706,8 @@ class BonusScoring
         total += 1.0*v
       when :global_revolt_risk
         total -= 1.0*v
+      when :global_autonomy
+        total += -10.0*v
       when :money
         # Doubling the money
         total += v*10
