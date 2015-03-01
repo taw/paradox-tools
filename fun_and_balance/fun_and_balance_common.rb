@@ -319,6 +319,19 @@ module FunAndBalanceCommon
       node["country_decisions"]["persian_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
     end
 
+    patch_mod_file!("decisions/ManchuDecisions.txt") do |node|
+      node["country_decisions"]["form_manchu_dynasty"]["allow"].delete("is_tribal")
+      node["country_decisions"]["form_manchu_dynasty"]["effect"].add! "if", PropertyList[
+        "limit", PropertyList["technology_group", "nomad_group"],
+        "change_technology_group",  "chinese",
+        "change_unit_type", "chinese",
+      ]
+      node["country_decisions"]["form_manchu_dynasty"]["effect"].add! "if", PropertyList[
+        "limit", PropertyList["government", "steppe_horde"],
+        "change_government", "despotic_monarchy",
+      ]
+    end
+
     patch_mod_file!("decisions/Tribal.txt") do |node|
       node["country_decisions"].each_value do |decision|
         decision["allow"]["stability"] = 2
