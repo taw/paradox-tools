@@ -35,7 +35,7 @@ task "package:extended_timeline" do
   system "./fun_and_balance/build_fun_and_balance_et"
   system "cp fun_and_balance/fun_and_balance_et.mod build/"
   system "cp -a output/fun_and_balance_et/* build/fun_and_balance_et/"
-  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.9.2_and_extended_timeline_0.11.6.7z"
+  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.10.1_and_extended_timeline_0.12.0.7z"
 end
 
 desc "Build Fun and Balance for Shattered Europe package"
@@ -48,6 +48,7 @@ task "package:shattered_europe" do
   create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.9.2_and_shattered_europe.7z"
 end
 
+desc "Remove build files"
 task "clean" do
   trash "output", "build", "stackprof.dump"
 end

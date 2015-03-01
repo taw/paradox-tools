@@ -995,4 +995,40 @@ module FunAndBalanceCommon
       "theocratic_administration_title" => "Adopt Theocratic Administration",
       "theocratic_administration_desc"  => "Kings only rule by divine right, so why not skip the middleman and put priests directly in control?"
   end
+
+  def fix_custom_idea_extra_governments!
+    extra_government_costs = {
+      # Generally sensible:
+      "administrative_monarchy" => 20,
+      "absolute_monarchy" => 30,
+      "constitutional_monarchy" => 30,
+      "enlightened_despotism" => 50,
+      "revolutionary_empire" => 50,
+      "administrative_republic" => 20,
+      "republican_dictatorship" => 30,
+      "constitutional_republic" => 40,
+      "bureaucratic_despotism" => 50,
+      "revolutionary_republic" => 50,
+      "archduchy" => 10,
+      # Use at your own risk:
+      "siberian_native_council" => 20,
+      "colonial_government" => 20,
+      "american_republic" => 50,
+      "federal_republic" => 50,
+      # Not available:
+      # "papal_government",
+      # "celestial_empire",
+    }
+    patch_mod_file!("common/governments/00_governments.txt") do |node|
+      extra_government_costs.each do |gov, cost|
+        node[gov]["valid_for_nation_designer"] = true
+        node[gov]["nation_designer_cost"] = cost
+      end
+    end
+  end
+
+
+  def fix_custom_ideas!
+    fix_custom_idea_extra_governments!
+  end
 end

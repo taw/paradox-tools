@@ -39,6 +39,10 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
       ["DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
+      ["MAX_DISTANCE_TO_OWNER_AREA", 200, 1000],
+      ["RULER_BASE_SKILL", 2, 3],
+      ["IDEAS_MAX_LEVEL", 4, 10],
+      ["IDEAS_PERCENTAGE_LIMIT", 50, 100],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
@@ -76,6 +80,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     smooth_oe_scaling!
     make_missions_not_tag_specific!
     easier_change_government_decisions!
+    fix_custom_ideas!
   end
 end
 
