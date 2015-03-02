@@ -2,15 +2,76 @@
 
 require_relative "../lib/paradox"
 require_relative "bonus_scoring"
+require "simplex"
 require "pp"
 
 class AnalyzeCustomIdeaBonuses < ParadoxGame
   def analyze!
-    custom_ideas.each do |idea_name, idea, levels|
-      level_1_value = BonusScoring.new.tap{|bs| bs.send(*idea.to_a.flatten) }.score
-      # p [idea_name, level_1_value, idea, levels]
-      puts [level_1_value, idea.inspect, levels.inspect].join("\t")
+    print_scores!
+    [50, 100, 150, 200, 300, 400, 600].each do |max_cost|
+     puts ""
+      puts "Simplex for cost=#{max_cost}"
+      run_simplex!(max_cost)
     end
+  end
+
+  def print_scores!
+    custom_ideas.each do |idea_name, idea, idea_score, levels|
+      puts [idea_score, idea.inspect, levels.inspect].join("\t")
+    end
+  end
+
+  def run_simplex!(max_cost)
+    ideas_to_consider = custom_ideas[0,30]
+    max_ideas = 10
+
+    values  = []
+    weights = []
+    labels  = []
+    index_ranges = []
+
+    objective = []
+    lhs = []
+    rhs = []
+
+    ideas_to_consider.each do |idea_name, idea, idea_score, levels|
+      index_ranges << (objective.size...objective.size + levels.size)
+      levels.each_with_index do |level_cost, level_i|
+        objective    << (idea_score * (level_i+1)).round(3)
+        weights      << level_cost
+        labels       << "#{idea_name} #{level_i+1}"
+      end
+    end
+
+    # Max picks
+    lhs << [1] * objective.size
+    rhs << max_ideas
+
+    # Max cost
+    lhs << weights
+    rhs << max_cost
+
+    # Can't pick anything > 1
+    labels.size.times do |i|
+      lhs << (0...labels.size).map{|u| u == i ? 1 : 0}
+      rhs << 1
+    end
+
+    # Can't pick multiple choices from same bonus
+    # TODO
+    index_ranges.each do |range|
+      lhs << (0...labels.size).map{|u| range.include?(u) ? 1 : 0}
+      rhs << 1
+    end
+
+    simplex = Simplex.new(objective, lhs, rhs)
+    solution = simplex.solution
+
+    # Print solution, might not be integery
+    solution_full = solution.zip(labels).zip(weights).zip(objective).map(&:flatten).select{|c,| c > 0}
+    pp solution_full.map{|u,*x| [u.to_i == u ? u.to_i : u, *x]}
+    puts "Total cost: #{solution_full.map{|u|u[2]*u[0]}.inject(&:+)}"
+    puts "Total value: #{solution_full.map{|u|u[3]*u[0]}.inject(&:+).round(3)}"
   end
 
   def defines_lua
@@ -27,6 +88,10 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
     }
   end
 
+  def idea_score(idea)
+    BonusScoring.new.tap{|bs| bs.send(*idea.to_a.flatten) }.score
+  end
+
   def custom_ideas
     unless @custom_ideas
       @custom_ideas = []
@@ -39,9 +104,10 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
           levels = max_level.times.map do |i|
             idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
           end
-          @custom_ideas << [idea_name, idea, levels]
+          @custom_ideas << [idea_name, idea, idea_score(idea), levels]
         end
       end
+      @custom_ideas.sort_by!{|u| -u[2]}
     end
     @custom_ideas
   end
