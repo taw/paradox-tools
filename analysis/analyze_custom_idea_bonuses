@@ -35,6 +35,10 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
     rhs = []
 
     ideas_to_consider.each do |idea_name, idea, idea_score, levels|
+      # Manually force max 1 diplomat as extra ones rapidly lose value
+      if idea_name == "custom_idea_diplomats"
+        levels = levels[0,1]
+      end
       index_ranges << (objective.size...objective.size + levels.size)
       levels.each_with_index do |level_cost, level_i|
         objective    << (idea_score * (level_i+1)).round(3)

@@ -703,7 +703,7 @@ class BonusScoring
       when :merchants
         total += 1*v
       when :global_missionary_strength
-        total += 1.0*v
+        total += 100.0*v
       when :global_revolt_risk
         total -= 1.0*v
       when :global_autonomy
