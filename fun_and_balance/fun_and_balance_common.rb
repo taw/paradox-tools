@@ -1080,9 +1080,7 @@ module FunAndBalanceCommon
       "unjustified_demands"                => [-0.1,   "dip", loc: "Diplomatic Justifications", max_level: 6],
       "recover_navy_morale_speed"          => [ 0.025, "dip", loc: "Naval Enthusiasm"],
       "discovered_relations_impact"        => [-0.2,   "dip", loc: "Diplomatic Excuses", max_level: 3],
-      "global_ship_recruit_speed"          => [-0.1,   "dip", loc: "Efficient Shipyards", max_level: 6],
       "province_warscore_cost"             => [-0.025, "dip", loc: "Persuasive Diplomats"],
-      "global_spy_defence"                 => [ 0.1,   "dip", loc: "Counterespionage Experts"],
       "global_ship_repair"                 => [ 0.1,   "dip", loc: "Efficient Drydocks"],
 
       "mil_tech_cost_modifier"             => [-0.05,  "mil", loc: "Innovative Military"],
@@ -1090,7 +1088,6 @@ module FunAndBalanceCommon
       "global_garrison_growth"             => [ 0.1,   "mil", loc: "Draft for Garrison Duty"],
       "land_attrition"                     => [-0.05,  "mil", loc: "Efficient Foraging"],
       "recover_army_morale_speed"          => [ 0.025, "mil", loc: "Military Enthusiasm"],
-      "global_regiment_recruit_speed"      => [-0.1,   "mil", loc: "Fast Recruiters", max_level: 6],
       "free_leader_pool"                   => [ 1,     "mil", loc: "Lower Class Officers", levels: [15, 50]],
     }
 
