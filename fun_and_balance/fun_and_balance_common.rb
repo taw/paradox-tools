@@ -390,7 +390,7 @@ module FunAndBalanceCommon
     patch_mod_file!("common/religions/00_religion.txt") do |node|
       node.each do |group_name, group|
         group.each do |name, religion|
-          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion"].include?(name)
+          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range"].include?(name)
           if conversions = allowed_conversions(group_name, name)
             religion["allowed_conversion"] = conversions
           end
@@ -455,7 +455,6 @@ module FunAndBalanceCommon
           end
 
           if group_name == "pagan"
-            religion["country"]["enemy_core_creation"] = -0.5
             religion["province"]["local_missionary_strength"] = 0.03
           else
             religion["province"].delete("local_missionary_strength") if religion["province"]
@@ -744,7 +743,7 @@ module FunAndBalanceCommon
     when "conquer_core"
       mission["effect"]["FROM"]["add_prestige"] = 20
       mission["effect"]["FROM"]["add_legitimacy"] = 10
-      mission["effect"]["FROM"]["add_republican_tradition"] = 10
+      mission["effect"]["FROM"]["add_republican_tradition"] = 0.1
     when "keep_rival_out_of_italy"
       mission["effect"]["FROM"]["add_prestige"] = 10
       mission["effect"]["FROM"]["add_mil_power"] = 25
@@ -787,7 +786,7 @@ module FunAndBalanceCommon
     when "recover_negative_stability"
       mission["effect"]["add_prestige"] = 10
       mission["effect"]["add_legitimacy"] = 10
-      mission["effect"]["add_republican_tradition"] = 10
+      mission["effect"]["add_republican_tradition"] = 0.1
     when "recover_from_warexhaustion"
       mission["effect"]["add_dip_power"] = 25
     when "convert_province_mission"
@@ -801,7 +800,7 @@ module FunAndBalanceCommon
     when "defeat_rebels_mission"
       mission["effect"]["add_prestige"] = 10
       mission["effect"]["add_legitimacy"] = 10
-      mission["effect"]["add_republican_tradition"] = 10
+      mission["effect"]["add_republican_tradition"] = 0.1
     when "force_convert_mission"
       mission["effect"]["add_dip_power"] = 100
     else
@@ -1057,7 +1056,6 @@ module FunAndBalanceCommon
       "adm_tech_cost_modifier"             => [-0.05,  "adm", loc: "Innovative Administration"],
       "global_heretic_missionary_strength" => [ 0.01,  "adm", loc: "Witch Burning"],
       "migration_cooldown"                 => [-0.2,   "adm", loc: "Restless Tribe", max_level: 3],
-      "years_of_nationalism"               => [-2,     "adm"], # Has loc
       "monthly_fervor_increase"            => [ 0.25,  "adm", loc: "Religious Fervor"],
 
       "dip_tech_cost_modifier"             => [-0.05,  "dip", loc: "Innovative Diplomacy"],
@@ -1092,7 +1090,7 @@ module FunAndBalanceCommon
     }
 
     ["adm", "dip", "mil"].each do |category|
-      patch_mod_file!("common/custom_ideas/#{category}_custom_ideas.txt") do |node|
+      patch_mod_file!("common/custom_ideas/00_#{category}_custom_ideas.txt") do |node|
         ideas = node.values[0]
 
         # Support more more levels

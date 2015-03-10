@@ -1,3 +1,3 @@
 name="Fun and Balance"
 path="mod/fun_and_balance"
-supported_version="1.10"
+supported_version="1.11"
