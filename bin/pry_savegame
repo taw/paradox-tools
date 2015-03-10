@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require "pry"
+require_relative "../lib/paradox"
+
+$save = ParadoxModFile.new(path: ARGV[0]).parse!
+$save.instance_eval { binding.pry }
