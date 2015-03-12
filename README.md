@@ -21,6 +21,7 @@ Analysis scripts (EU4):
 * `analysis/analyze_missions` - print some statistics about available missions
 * `analysis/analyze_policies` - print bonuses by policy
 * `analysis/analyze_static_modifier` - print bonuses by static modifier
+* `analysis/analyze_trust` - extract trust data from save game
 * `analysis/analyze_unit_pips` - analyze unit pips by tech group and tech level and save to CSV files
 * `analysis/country_cultures` - print primary country tag for each culture
 * `analysis/validate_trade_nodes` - find provinces without trade node
