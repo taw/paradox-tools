@@ -45,6 +45,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ["IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["OVERSEAS_DISTANCE", 150, 400],
+      ["SEA_EXPLORE_SPEED", 5, 5],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
@@ -88,7 +89,7 @@ end
 
 mb = FunAndBalanceModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.11.0",
+    "source/eu4-1.11.1",
   ),
   "output/fun_and_balance",
 )
