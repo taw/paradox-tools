@@ -93,13 +93,6 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       content.sub(/top_five_in_literacy\s*$/, "top_five_in_literacy = {")
     end
 
-    # Temporary 1.11.1 compatibilty fix, ET is still on 1.11.0
-    patch_file!("common/defines.lua", force_create: true) do |content|
-      content.sub(/(PRESTIGE_FROM_NAVAL.*?\n)/){
-        $1 + "    SEA_EXPLORE_SPEED = 5, -- Can to some extent determine exploration speed of seas and coasts by specifying how long a ship pauses between exploration targets."
-      }
-    end
-
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
       ["ANNEX_DIP_COST_PER_BASE_TAX", 10, 1],
@@ -175,8 +168,8 @@ end
 
 mb = FunAndBalanceETModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.11.0",
-    "source/ExtendedTimeline 0.12.1/ExtendedTimeline"
+    "source/eu4-1.11.1",
+    "source/ExtendedTimeline 0.12.2/ExtendedTimeline"
   ),
   "output/fun_and_balance_et"
 )

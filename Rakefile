@@ -1,7 +1,7 @@
 require "pathname"
 require "fileutils"
 
-VERSION = "0.19"
+VERSION = "0.20"
 
 def trash(*paths)
   paths.each do |path|
@@ -25,7 +25,7 @@ task "package:vanilla" do
   system "./fun_and_balance/build_fun_and_balance" or raise "BUILD FAIL"
   system "cp fun_and_balance/fun_and_balance.mod build/"
   system "cp -a output/fun_and_balance/* build/fun_and_balance/"
-  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.11.1.7z"
+  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.11.2.7z"
 end
 
 desc "Build Fun and Balance for Extended Timeline package"
@@ -35,7 +35,7 @@ task "package:extended_timeline" do
   system "./fun_and_balance/build_fun_and_balance_et" or raise "BUILD FAIL"
   system "cp fun_and_balance/fun_and_balance_et.mod build/"
   system "cp -a output/fun_and_balance_et/* build/fun_and_balance_et/"
-  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.11.0_and_extended_timeline_0.12.1.7z"
+  create_package_from_build_directory! "fun_and_balance_#{VERSION}_for_eu4_1.11.2_and_extended_timeline_0.12.2.7z"
 end
 
 desc "Build Fun and Balance for Shattered Europe package"
