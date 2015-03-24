@@ -1,0 +1,141 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+
+class AnalyzeWarsBattles
+  def initialize(save_game)
+    @data = ParadoxModFile.new(path: save_game).parse!
+    @wars = []
+  end
+
+  # Old save games use String not real Date
+  def convert_date(date)
+    if date.is_a?(Date)
+      date
+    elsif date.is_a?(String) and date =~ /\A(\d+)\.(\d+)\.(\d+)\z/
+      Date.new($1.to_i, $2.to_i, $3.to_i)
+    else
+      raise "Expected Date or String, got `#{date.inspect}'"
+    end
+  end
+
+  def start_date
+    @start_date ||= convert_date(@data["start_date"])
+  end
+
+  def current_date
+    @current_date ||= convert_date(@data["date"])
+  end
+
+  def battle_type(battle)
+    naval_units = ["light_ship", "heavy_ship", "transport", "galley"]
+    land_units = ["cavalry", "artillery", "infantry"]
+    keys = battle["attacker"].keys +  battle["defender"].keys
+    has_naval = !(keys & naval_units).empty?
+    has_land = !(keys & land_units).empty?
+    return :land if has_land and not has_naval
+    return :naval if has_naval and not has_land
+    raise "Both naval and land units present" if has_land and has_naval
+    raise "Neither naval nor land units present"
+  end
+
+  def ensure_attackers_defenders_match!(battle, attackers, defenders)
+    a = tag_to_country_name(battle["attacker"]["country"])
+    d = tag_to_country_name(battle["defender"]["country"])
+    return if attackers.include?(a) and defenders.include?(d)
+    raise "Attackers / defenders for battle do not match ongoing war"
+  end
+
+  def add_war!(war, war_start, war_end=nil)
+    attackers = []
+    defenders = []
+    attacker_losses = 0
+    defender_losses = 0
+    attacker_losses_ships = 0
+    defender_losses_ships = 0
+    battles = []
+    war["history"].each do |date, event|
+      # There is like weird stuff for historical wars
+      next unless date.is_a?(Date)
+      event.each do |event_type, event_details|
+        case event_type
+        when "add_attacker"
+          attackers << tag_to_country_name(event_details)
+        when "add_defender"
+          defenders << tag_to_country_name(event_details)
+        when "battle"
+          type = battle_type(event_details)
+          ensure_attackers_defenders_match!(event_details, attackers, defenders)
+          if type == :land
+            attacker_losses += event_details["attacker"]["losses"]
+            defender_losses += event_details["defender"]["losses"]
+          else
+            attacker_losses_ships += event_details["attacker"]["losses"]
+            defender_losses_ships += event_details["defender"]["losses"]
+          end
+        when "rem_attacker", "rem_defender"
+          # Ignore
+        else
+          raise "Unknown event type `#{event_type}'"
+        end
+      end
+    end
+
+    @wars << {
+      name: war["name"],
+      start_date: war_start.to_s,
+      end_date: war_end ? war_end.to_s : "ongoing",
+      attackers: attackers,
+      defenders: defenders,
+      attacker_troops: attacker_losses,
+      defender_troops: defender_losses,
+      attacker_ships: attacker_losses_ships,
+      defender_ships: defender_losses_ships,
+    }
+  end
+
+  def tag_to_country_name(tag)
+    @data["countries"][tag]["name"] || @data["countries"][tag]["custom_name"] || tag
+  rescue
+    tag
+  end
+
+  def add_active_war!(war)
+    return if war["history"].empty?
+    add_war! war,
+             war["history"].keys.grep(Date).min
+  end
+
+  def add_previous_war!(war)
+    return if war["history"].empty?
+    add_war! war,
+             war["history"].keys.grep(Date).min,
+             war["history"].keys.grep(Date).max
+  end
+
+  def analyze_wars!
+    @data.find_all("active_war").each do |active_war|
+      add_active_war! active_war
+    end
+    @data.find_all("previous_war").each do |previous_war|
+      add_previous_war! previous_war
+    end
+  end
+
+  def report!
+    analyze_wars!
+    @wars.each do |war|
+      p war
+      # puts [war[:name], war[:start_date], war[:end_date], war[:attackers].join(","), war[:defenders].join(","), war[:attacker_losses], war[:defender_losses]].join("\t")
+    end
+  end
+end
+
+if __FILE__ == $0
+  unless ARGV.size == 1
+    STDERR.puts "Usage: #{$0} save_game.eu4"
+    exit 1
+  end
+
+  AnalyzeWarsBattles.new(*ARGV).report!
+end
