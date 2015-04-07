@@ -28,7 +28,7 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
       ["VASSAL_FABRICATE_CLAIMS", 1, 1],
       ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 50, 50],
       ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
-      ["GREAT_POWER_ALLIANCE_PENALTY", 50, 25],
+      ["GREAT_POWER_ALLIANCE_PENALTY", 0, 25],
       ["PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["TECH_AHEAD_OF_TIME", 0.1, 0.05],
@@ -39,6 +39,13 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
       ["DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
+      ["MAX_DISTANCE_TO_OWNER_AREA", 200, 1000],
+      ["RULER_BASE_SKILL", 2, 3],
+      ["IDEAS_MAX_LEVEL", 4, 10],
+      ["IDEAS_PERCENTAGE_LIMIT", 50, 100],
+      ["MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
+      ["OVERSEAS_DISTANCE", 150, 400],
+      ["SEA_EXPLORE_SPEED", 5, 5],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
@@ -77,12 +84,13 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     smooth_oe_scaling!
     make_missions_not_tag_specific!
     easier_change_government_decisions!
+    fix_custom_ideas!
   end
 end
 
 mb = FunAndBalanceShatteredEuropeModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.9.2",
+    "source/eu4-1.11.1",
     "source/ShatteredEurope-forked/ShatteredEurope",
   ),
   "output/fun_and_balance_shattered_europe"
