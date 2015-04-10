@@ -1,7 +1,7 @@
 require "pathname"
 require "fileutils"
 
-VERSION = "0.20"
+VERSION = "0.20a"
 
 def trash(*paths)
   paths.each do |path|

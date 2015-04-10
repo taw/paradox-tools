@@ -1165,4 +1165,13 @@ module FunAndBalanceCommon
     fix_custom_idea_extra_governments!
     fix_custom_idea_extra_ideas!
   end
+
+  def power_projection_tweaks!
+    patch_mod_file!("common/powerprojection/00_static.txt") do |node|
+      raise unless node["eclipsed_rival"]["power"] == 5
+      raise unless node["eclipsed_rival"]["max"] == 30
+      node["eclipsed_rival"]["power"] = 30
+      node["eclipsed_rival"]["max"] = 100
+    end
+  end
 end

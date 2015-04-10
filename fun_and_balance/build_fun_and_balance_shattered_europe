@@ -62,7 +62,7 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
       node["war_exhaustion"]["defensiveness"] = -0.02
       node["war_exhaustion"]["land_morale"] = -0.02
       node["war_exhaustion"]["naval_morale"] = -0.02
-      node["non_accepted_culture"]["local_revolt_risk"] = 4
+      node["num_of_marriages"]["heir_change"] = 0.03
     end
 
     always_display_policies!
@@ -85,6 +85,7 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     make_missions_not_tag_specific!
     easier_change_government_decisions!
     fix_custom_ideas!
+    power_projection_tweaks!
   end
 end
 
