@@ -72,13 +72,14 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     patch_religion!
     reduce_religious_center_penalty!
     restore_hre_ia_on_prince_religion_change!
-    remove_burgundy_inheritance!
+    disable_burgundy_inheritance!
     reverse_horde_nerfs!
     smooth_oe_scaling!
     make_missions_not_tag_specific!
     easier_change_government_decisions!
     fix_custom_ideas!
     power_projection_tweaks!
+    build_mod_config_menu_for_vanilla!
   end
 end
 
