@@ -6,6 +6,81 @@ require_relative "./fun_and_balance_common"
 class FunAndBalanceModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
+  def mod_config_menu!
+    # fun_and_balance_config.disable_holy_sites
+    # fun_and_balance_config.disable_extra_missions
+    # fun_and_balance_config.disable_partial_westernization
+    # fun_and_balance_config.disable_extra_formable_countries
+    # fun_and_balance_config.disable_eu3_style_elections
+    # fun_and_balance_config.enable_burgundy_inheritance
+
+    # FEATURE FLAG for Reformed and Orthodox HRE heretics
+
+    options = []
+    options << PropertyList[
+      "name", "fun_and_balance_menu.set_disable_holy_sites",
+      "trigger", PropertyList["NOT", PropertyList["has_global_flag", "fun_and_balance_config.disable_holy_sites"]],
+      "set_global_flag", "fun_and_balance_config.disable_holy_sites",
+      "add_prestige", 1,
+    ]
+    options << PropertyList[
+      "name", "fun_and_balance_menu.clr_disable_holy_sites",
+      "trigger", PropertyList["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
+      "clr_global_flag", "fun_and_balance_config.disable_holy_sites",
+      "add_prestige", 2,
+    ]
+    options << PropertyList[
+      "name", "fun_and_balance_menu.set_disable_partial_westernization",
+      "trigger", PropertyList["NOT", PropertyList["has_global_flag", "fun_and_balance_config.disable_partial_westernization"]],
+      "set_global_flag", "fun_and_balance_config.disable_partial_westernization",
+      "add_prestige", 3,
+    ]
+    options << PropertyList[
+      "name", "fun_and_balance_menu.clr_disable_partial_westernization",
+      "trigger", PropertyList["has_global_flag", "fun_and_balance_config.disable_partial_westernization"],
+      "clr_global_flag", "fun_and_balance_config.disable_holy_sites",
+      "add_prestige", 4,
+    ]
+    localization! "fun_and_balance_menu",
+      "fun_and_balance_menu.set_disable_holy_sites" => "Disable Holy Sites",
+      "fun_and_balance_menu.clr_disable_holy_sites" => "Enable Holy Sites",
+      "fun_and_balance_menu.set_disable_partial_westernization" => "Disable Partial Westernization",
+      "fun_and_balance_menu.clr_disable_partial_westernization" => "Enable Partial Westernization"
+
+    create_mod_file! "decisions/fun_and_balance_menu.txt", PropertyList[
+      "country_decisions", PropertyList[
+        "fun_and_balance_display_menu", PropertyList[
+          "major", "yes",
+          "potential", PropertyList["ai", false],
+          "allow", PropertyList["ai", false],
+          "effect", PropertyList[
+            "country_event", PropertyList["id", "fun_and_balance_menu.show_menu"],
+          ],
+        ],
+      ],
+    ]
+    localization! "fun_and_balance_menu",
+      "fun_and_balance_display_menu_title"   => "Change Fun and Balance configuration",
+      "fun_and_balance_display_menu_desc"    => "Display menu to change various features",
+      "fun_and_balance_menu.show_menu_title" => "Fun and Balance configuration",
+      "fun_and_balance_menu.show_menu_desc"  => "These settings should generally be changed at start of campaign."
+
+    create_mod_file! "events/fun_and_balance_menu.txt", PropertyList[
+      "namespace", "fun_and_balance_menu",
+      "country_event", PropertyList[
+        "id", "fun_and_balance_menu.show_menu",
+        "title", "fun_and_balance_menu.show_menu_title",
+        "desc", "fun_and_balance_menu.show_menu_desc",
+        "is_triggered_only", true,
+        "trigger", PropertyList["ai", false],
+        *options.map{|option|
+          Property["option", option]
+        },
+      ],
+    ]
+
+  end
+
   def build_mod_files!
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
@@ -58,6 +133,8 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       node["war_exhaustion"]["naval_morale"] = -0.02
       node["num_of_marriages"]["heir_change"] = 0.03
     end
+
+    mod_config_menu!
 
     anyone_can_form_byzantium!
     change_elections_to_eu3_style!
