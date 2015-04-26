@@ -10,7 +10,7 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
       ["ANNEX_DIP_COST_PER_BASE_TAX", 10, 1],
-      ["MAX_ACTIVE_POLICIES", 5, 10],
+      ["INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["POLICY_COST", 1, 0],
       ["FOREIGN_REBEL_SUPPORT", 4, 6],
       ["WESTERN_POWER_TICK_REDUCTION_FACTOR", 15, 1000000],
@@ -59,7 +59,6 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
       node["num_of_marriages"]["heir_change"] = 0.03
     end
 
-    always_display_policies!
     anyone_can_form_byzantium!
     change_elections_to_eu3_style!
     dont_destroy_buildings_on_conquest!

@@ -45,13 +45,13 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ]
     ]
     localization! "private_military_company",
-      "recently_hired_mercs" => "Recently hired private military company",
-      "hire_merc_company_title"   => "Employ private military company",
-      "hire_merc_company_desc"    => "Private military companies can supplement your manpower"
+      "recently_hired_mercs"    => "Recently hired private military company",
+      "hire_merc_company_title" => "Employ private military company",
+      "hire_merc_company_desc"  => "Private military companies can supplement your manpower"
   end
 
   def build_mod_files!
-    # Syntax errors
+    # Fix syntax errors
     patch_file!("common/ideas/et_country_ideas.txt", force_create: true) do |content|
       content.sub(/top_five_in_literacy\s*$/, "top_five_in_literacy = {")
     end
@@ -59,7 +59,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
       ["ANNEX_DIP_COST_PER_BASE_TAX", 10, 1],
-      ["MAX_ACTIVE_POLICIES", 5, 10],
+      ["INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["POLICY_COST", 1, 0],
       ["FOREIGN_REBEL_SUPPORT", 4, 6],
       ["WESTERN_POWER_TICK_REDUCTION_FACTOR", 15, 1000000],
