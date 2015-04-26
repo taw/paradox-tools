@@ -99,10 +99,13 @@ module FunAndBalanceCommon
     end
   end
 
-  def remove_burgundy_inheritance!
+  def disable_burgundy_inheritance!
     patch_mod_file!("events/FlavorBUR.txt") do |node|
-      node.delete_if do |key, val|
-        key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|3|4|5|6|7|19)\z/
+      node.each do |key, val|
+        # Events: flavor_bur.(3|4|5|6|19)
+        # are part of the chain but trigger from other events within it so they don't need the fix
+        next unless key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|7)\z/
+        val["trigger"].add! Property["has_global_flag", "fun_and_balance_config.enable_burgundian_succession_crisis"]
       end
     end
   end
@@ -141,11 +144,16 @@ module FunAndBalanceCommon
     localization! "holy_sites",
       trigger_name => "#{site[:short_name]} is #{@game.localization(religion)}",
       "desc_#{trigger_name}" => "#{religion.to_s.capitalize} rulers control holy site #{site[:name]}"
-    Property[trigger_name, PropertyList[
-      "potential", PropertyList["religion", religion],
-      "trigger", PropertyList[site[:id], PropertyList["owner", PropertyList["religion", religion]]],
-      "global_missionary_strength", 0.002,
-    ]]
+    Property[
+      trigger_name, PropertyList[
+        "potential", PropertyList[
+          "religion", religion,
+          Property::NOT["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
+        ],
+        "trigger", PropertyList[site[:id], PropertyList["owner", PropertyList["religion", religion]]],
+        "global_missionary_strength", 0.002,
+      ]
+    ]
   end
 
   def add_holy_sites_all!(religion, sites)
@@ -156,7 +164,10 @@ module FunAndBalanceCommon
       trigger_name           => "All #{@game.localization(religion)} holy sites",
       "desc_#{trigger_name}" => "#{@game.localization(religion)} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
     Property[trigger_name, PropertyList[
-      "potential", PropertyList["religion", religion],
+      "potential", PropertyList[
+        "religion", religion,
+        Property::NOT["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
+      ],
       "trigger", PropertyList[
         *sites.map{|site| Property[site[:id], PropertyList["owner", PropertyList["religion", religion]]] }
       ],
@@ -177,6 +188,7 @@ module FunAndBalanceCommon
       "ai_mission", true,
       "allow", PropertyList[
         "religion", religion,
+        Property::NOT["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
         Property::OR[
           id, PropertyList["owner", PropertyList["is_neighbor_of", "ROOT"]],
           "has_idea", "deus_vult",
@@ -260,6 +272,7 @@ module FunAndBalanceCommon
         "extra_formable_form_#{tag}", PropertyList[
           "major", true,
           "potential", PropertyList[
+            Property::NOT["has_global_flag", "fun_and_balance_config.disable_extra_formable_countries"],
             Property::NOT["exists", tag],
             *cant_by_formed_by.map{|ct| Property::NOT["tag", ct] },
             "primary_culture", culture,
@@ -513,6 +526,7 @@ module FunAndBalanceCommon
         "partial_westernization", PropertyList[
           "major", true,
           "potential", PropertyList[
+            Property::NOT["has_global_flag", "fun_and_balance_config.disable_partial_westernization"],
             Property::OR[
               "technology_group", "south_american",
               "technology_group", "mesoamerican",
@@ -673,6 +687,7 @@ module FunAndBalanceCommon
 
     tags_seen = change_tag_references_to_root_references!(mission, tags)
     alt += tags_seen.map{|seen| Property::NOT["tag", seen]}
+    alt << Property::NOT["has_global_flag", "fun_and_balance_config.disable_extra_missions"]
 
     if alt.size == 1
       alt_cond = alt[0]

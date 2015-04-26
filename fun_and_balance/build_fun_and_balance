@@ -10,7 +10,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     create_mod_file! "decisions/fun_and_balance_menu.txt", PropertyList[
       "country_decisions", PropertyList[
         "fun_and_balance_display_menu", PropertyList[
-          "major", "yes",
           "potential", PropertyList["ai", false],
           "allow", PropertyList["ai", false],
           "effect", PropertyList[
@@ -98,7 +97,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ]
     )
     localization! "fun_and_balance_menu",
-      "fun_and_balance_menu.make_protesant_primary_hre_heretics" => "Make Protestant primary HRE heretics",
+      "fun_and_balance_menu.make_protestant_primary_hre_heretics" => "Make Protestant primary HRE heretics",
       "fun_and_balance_menu.make_reformed_primary_hre_heretics" => "Make Reformed primary HRE heretics",
       "fun_and_balance_menu.make_orthodox_primary_hre_heretics" => "Make Orthodox primary HRE heretics",
       "fun_and_balance_menu.make_coptic_primary_hre_heretics" => "Make Coptic primary HRE heretics",
@@ -171,7 +170,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     patch_religion!
     reduce_religious_center_penalty!
     restore_hre_ia_on_prince_religion_change!
-    remove_burgundy_inheritance!
+    disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     reverse_horde_nerfs!
     smooth_oe_scaling!
