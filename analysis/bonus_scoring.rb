@@ -354,6 +354,11 @@ class BonusScoring
     trade_steering 2*v*0.1
   end
 
+  # Assume 25% of nodes are inland, so this bonus is worth 25% of trade steering bonus
+  def caravan_power(v)
+    trade_steering 0.25*v
+  end
+
   # Combat ability and discipline work the same multiplicatively:
   # damage = (100% + combat ability) * (100% + discipline modifiers) * other stuff
   # (durability is naval equivalent of discipline)
@@ -517,7 +522,7 @@ class BonusScoring
   end
 
   # From a few simulations, ballpark figures for income of a typical country:
-  # 30% tax, 30% production, 30% trade, 8% tariff, 1% gold, 1% vassal
+  # 25% tax, 30% production, 35% trade, 8% tariff, 1% gold, 1% vassal
   #
   # For costs:
   # 25% advisors, 40% army, 10% navy, 25% balance (which I assume goes for 20% buildings, 5% other stuff)
@@ -528,13 +533,13 @@ class BonusScoring
   # how much value you'll be getting.
 
   def production_efficiency(v)
-    money 0.3*v
+    money 0.30*v
   end
   def trade_efficiency(v)
-    money 0.3*v
+    money 0.35*v
   end
   def global_tax_modifier(v)
-    money 0.3*v
+    money 0.25*v
   end
   def global_tariffs(v)
     money 0.08*v
@@ -682,6 +687,7 @@ class BonusScoring
 
   def score
     total = 0
+    require 'pry'; binding.pry
     @ht.each do |k,v|
       case k
       # Base unit of value
@@ -708,6 +714,9 @@ class BonusScoring
         total -= 1.0*v
       when :global_autonomy
         total += -10.0*v
+      when :province_warscore_cost
+        # 20% discount would be worth 2 mp
+        total -= 10.0*v
       when :money
         # Doubling the money
         total += v*10
@@ -744,8 +753,10 @@ class BonusScoring
       when :ae_impact
         total -= 2*v
       when :diplomatic_reputation
-        # This used to be amazing pre-1.6, now it does very little
-        total += 0*v
+        # This is back to being good
+        total += v
+      when :migration_cooldown
+        # Extremely situational
       else
         warn "#{k} not scored"
       end
