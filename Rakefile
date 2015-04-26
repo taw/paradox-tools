@@ -5,7 +5,10 @@ VERSION = "0.20a"
 
 def trash(*paths)
   paths.each do |path|
-    system "trash", path.to_s if Pathname(path).exist?
+    next unless Pathname(path).exist?
+    system "trash", path.to_s
+    ds_store = Pathname(path).parent + ".DS_Store"
+    ds_store.unlink if ds_store.exist?
   end
 end
 
