@@ -205,4 +205,8 @@ class PropertyList
   def empty?
     @list.empty?
   end
+
+  def deep_copy
+    Marshal.load(Marshal.dump(self))
+  end
 end

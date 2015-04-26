@@ -13,7 +13,12 @@ module FunAndBalanceCommon
     patch_mod_file!("events/Elections.txt") do |node|
       node.find_all("country_event").each do |event|
         event.find_all("option").each do |option|
-          eu3_style_elections!(option)
+          eu3_option = option.deep_copy
+          eu3_option.add! "trigger", PropertyList[Property::NOT["has_global_flag", "fun_and_balance_config.disable_eu3_style_elections"]]
+          eu3_style_elections!(eu3_option)
+          event.add! "option", eu3_option
+
+          option.add! "trigger", PropertyList["has_global_flag", "fun_and_balance_config.disable_eu3_style_elections"]
         end
       end
     end
