@@ -9,6 +9,16 @@ module FunAndBalanceCommon
     eu3_style_elections! node["tooltip"] if node["tooltip"]
   end
 
+  def change_elections_to_eu3_style!
+    patch_mod_file!("events/Elections.txt") do |node|
+      node.find_all("country_event").each do |event|
+        event.find_all("option").each do |option|
+          eu3_style_elections!(option)
+        end
+      end
+    end
+  end
+
   def province_id(province_name)
     matches = @game.glob("history/provinces/*.txt").select{|n|
       n.basename(".txt").to_s.sub(/\A\d+[ -]*/, "").downcase == province_name.downcase
@@ -30,24 +40,6 @@ module FunAndBalanceCommon
           tech["reduced_naval_attrition"] = true
         else
           tech.delete("reduced_naval_attrition")
-        end
-      end
-    end
-  end
-
-  def change_elections_to_eu3_style!
-    patch_mod_file!("events/Elections.txt") do |node|
-      node.find_all("country_event").each do |event|
-        event.find_all("option").each do |option|
-          eu3_style_elections!(option)
-        end
-      end
-    end
-
-    patch_mod_file!("events/GenericOnActionEvents.txt") do |node|
-      node.find_all("country_event").each do |event|
-        if event["option"]["add_republican_tradition"]
-          event["option"]["add_republican_tradition"] = -0.03
         end
       end
     end
