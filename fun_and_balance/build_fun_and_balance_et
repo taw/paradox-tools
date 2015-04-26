@@ -6,43 +6,6 @@ require_relative "./fun_and_balance_common"
 class FunAndBalanceETModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
-  def create_extra_unit_types(base_unit_name)
-    # Other groups like sub_saharan exist in 1850s start, not sure if we want them too
-    # ET has 14 tech groups, and roman_ak47 feels silly
-    tech_groups = %W[western eastern ottoman muslim indian chinese]
-    tech_groups.map do |tech_group|
-      extra_unit_name = "zzz_#{tech_group}_#{base_unit_name}"
-      unit = @game.parse("common/units/#{base_unit_name}.txt")
-      unit.add! "unit_type", tech_group
-      create_mod_file! "common/units/#{extra_unit_name}.txt", unit
-      extra_unit_name
-    end
-  end
-
-  def unit_needs_forking?(unit_name)
-    unit = @game.parse("common/units/#{unit_name}.txt")
-    unit["unit_type"].nil? and (unit["type"] == "infantry" or unit["type"] == "cavalry")
-  end
-
-  def create_extra_unit_types_for_mercs!
-    # Sadly game engine does not support what ExtendedTimeline is trying to do
-
-    patch_mod_file!("common/technologies/mil.txt") do |node|
-      node.find_all("technology").each do |tech|
-        forkable_units = tech.find_all("enable").select{|unit_name| unit_needs_forking?(unit_name)}
-
-        forkable_units.each do |base_unit_name|
-          create_extra_unit_types(base_unit_name).each do |extra_unit_name|
-            tech.add!("enable", extra_unit_name)
-            localization! "extra_units",
-              "#{extra_unit_name}"      => @game.localization("#{base_unit_name}") + " (merc)",
-              "#{extra_unit_name}DESCR" => @game.localization("#{base_unit_name}DESCR")
-          end
-        end
-      end
-    end
-  end
-
   def fix_adopt_secularism_decision!
     patch_mod_file!("decisions/et_conversion_decisions.txt") do |node|
       node["religion_decisions"]["adopt_secularism"]["allow"].add! "is_subject", false
@@ -114,13 +77,11 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["VASSAL_FABRICATE_CLAIMS", 1, 1],
       ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 50, 50],
       ["VASSALIZE_BASE_TAX_CAP", 40, 10000],
-      ["GREAT_POWER_ALLIANCE_PENALTY", 0, 0],
       ["PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["TECH_AHEAD_OF_TIME", 0.1, 0.05],
       ["MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
       ["AUTONOMY_AT_DIPLO_ANNEX", 75, 50],
-      ["RANDOM_LUCKY_BASE_WEIGHT", 100, 100] ,
       ["RANDOM_LUCKY_TAX_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
@@ -132,7 +93,6 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["OVERSEAS_DISTANCE", 150, 400],
-      ["SEA_EXPLORE_SPEED", 5, 5],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
