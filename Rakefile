@@ -20,7 +20,7 @@ task "package:all" => ["package:vanilla", "package:extended_timeline", "package:
 
 desc "Build Fun and Balance for vanilla package"
 task "package:vanilla" do
-  trash "output", "build"
+  trash "output", "build/fun_and_balance"
   Pathname("build/fun_and_balance").mkpath
   system "./fun_and_balance/build_fun_and_balance" or raise "BUILD FAIL"
   system "cp fun_and_balance/fun_and_balance.mod build/"
@@ -30,7 +30,7 @@ end
 
 desc "Build Fun and Balance for Extended Timeline package"
 task "package:extended_timeline" do
-  trash "output", "build"
+  trash "output", "build/fun_and_balance_et"
   Pathname("build/fun_and_balance_et").mkpath
   system "./fun_and_balance/build_fun_and_balance_et" or raise "BUILD FAIL"
   system "cp fun_and_balance/fun_and_balance_et.mod build/"
@@ -40,7 +40,7 @@ end
 
 desc "Build Fun and Balance for Shattered Europe package"
 task "package:shattered_europe" do
-  trash "output", "build"
+  trash "output", "build/fun_and_balance_shattered_europe"
   Pathname("build/fun_and_balance_shattered_europe").mkpath
   system "./fun_and_balance/build_fun_and_balance_shattered_europe" or raise "BUILD FAIL"
   system "cp fun_and_balance/fun_and_balance_shattered_europe.mod build/"
