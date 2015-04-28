@@ -72,7 +72,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     no_naval_attrition!
     patch_religion!
     reduce_religious_center_penalty!
-    restore_hre_ia_on_prince_religion_change!
     disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     reverse_horde_nerfs!

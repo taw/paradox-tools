@@ -71,7 +71,6 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
     no_naval_attrition!
     patch_religion!
     reduce_religious_center_penalty!
-    restore_hre_ia_on_prince_religion_change!
     disable_burgundy_inheritance!
     reverse_horde_nerfs!
     smooth_oe_scaling!

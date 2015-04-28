@@ -32,12 +32,6 @@ module FunAndBalanceCommon
     matches[0].basename.to_s.to_i
   end
 
-  def restore_hre_ia_on_prince_religion_change!
-    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
-      node["on_hre_member_true_religion"]["events"] = [903]
-    end
-  end
-
   def no_naval_attrition!
     patch_mod_file!("common/technologies/dip.txt") do |node|
       node.find_all("technology").each_with_index do |tech,i|
