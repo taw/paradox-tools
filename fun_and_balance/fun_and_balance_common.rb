@@ -14,8 +14,11 @@ module FunAndBalanceCommon
       node.find_all("country_event").each do |event|
         event.find_all("option").each do |option|
           eu3_option = option.deep_copy
-          eu3_option.add! "trigger", PropertyList[Property::NOT["has_global_flag", "fun_and_balance_config.disable_eu3_style_elections"]]
           eu3_style_elections!(eu3_option)
+
+          next if option == eu3_option
+
+          eu3_option.add! "trigger", PropertyList[Property::NOT["has_global_flag", "fun_and_balance_config.disable_eu3_style_elections"]]
           event.add! "option", eu3_option
 
           option.add! "trigger", PropertyList["has_global_flag", "fun_and_balance_config.disable_eu3_style_elections"]
