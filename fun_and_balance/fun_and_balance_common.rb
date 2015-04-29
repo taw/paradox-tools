@@ -1221,6 +1221,11 @@ def build_mod_config_menu!(*options)
       "fun_and_balance_menu.done" => "Done"
   end
 
+  # Event numbers:
+  # 10x - x emperor won
+  # 20x - y diet
+  # 3xy - victory in x-vs-y war
+
   def more_options_for_religious_leagues!
     patch_mod_file! "common/triggered_modifiers/00_triggered_modifiers.txt" do |node|
       node["hre_dominant_catholic"]["potential"].delete("OR")
@@ -1246,9 +1251,9 @@ def build_mod_config_menu!(*options)
       end
     end
     patch_mod_file!("events/ReligiousLeagues.txt") do |node|
-      ["reformed", "orthodox", "coptic"].each do |religion|
+      ["reformed", "orthodox", "coptic"].each_with_index do |religion, i|
         node.add! "country_event", PropertyList[
-          "id", "religious_leagues.1.#{religion}",
+          "id", "religious_leagues.10#{i+3}",
           "title", "religious_leagues.1.t",
           "desc", "religious_leagues.1.d.#{religion}",
           "picture", "RELIGIOUS_WARS_eventPicture",
@@ -1264,9 +1269,8 @@ def build_mod_config_menu!(*options)
             "tooltip", PropertyList["set_hre_religion_locked", true],
           ],
         ]
-
         node.add! "country_event", PropertyList[
-          "id", "religious_leagues.diet.#{religion}",
+          "id", "religious_leagues.20#{i+3}",
           "title", "religious_leagues.6.t",
           "desc", "religious_leagues.diet.#{religion}",
           "picture", "RELIGIOUS_WARS_eventPicture",
@@ -1307,6 +1311,50 @@ def build_mod_config_menu!(*options)
             "set_hre_religion_locked", true,
           ],
         ]
+
+        node.delete_if{|k,v| k == "country_event" and v["id"] == "religious_leagues.2"}
+        node.delete_if{|k,v| k == "country_event" and v["id"] == "religious_leagues.3"}
+
+        ["catholic", "protestant", "reformed", "orthodox", "coptic"].each_with_index do |hre_religion,i|
+          ["catholic", "protestant", "reformed", "orthodox", "coptic"].each_with_index do |heretic_religion,j|
+            next if hre_religion == heretic_religion
+
+            node.add! "country_event", PropertyList[
+              "id", "religious_leagues.3#{i+1}#{j+1}",
+              "title", "religious_leagues.warwon.t.#{hre_religion}",
+              "desc", "religious_leagues.warwon.d.#{hre_religion}",
+              "picture", "RELIGIOUS_WARS_eventPicture",
+              "major", true,
+              "is_triggered_only", true,
+              "trigger", PropertyList[
+                "has_dlc", "Art of War",
+                "hre_religion", heretic_religion,
+                "hre_heretic_religion", hre_religion,
+                "OR", PropertyList[
+                  "NOT", PropertyList["has_country_flag", "hre_religion_changed"],
+                  "had_country_flag", PropertyList[
+                    "flag", "hre_religion_changed",
+                    "days", 30,
+                  ],
+                ],
+              ],
+              "immediate", PropertyList[
+                "set_country_flag", "hre_religion_changed",
+                "hidden_effect", PropertyList[
+                  "set_hre_heretic_religion", heretic_religion,
+                  "set_hre_religion", hre_religion,
+                ],
+              ],
+              "option", PropertyList[
+                "name", "religious_leagues.2.a",
+                "tooltip", PropertyList[
+                  "set_hre_heretic_religion", heretic_religion,
+                  "set_hre_religion", hre_religion,
+                ],
+              ],
+            ]
+          end
+        end
       end
 
       # This code is seriously dumb and fragile
@@ -1321,7 +1369,13 @@ def build_mod_config_menu!(*options)
     end
 
     patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
-      node["on_lock_hre_religion"]["events"] += ["religious_leagues.1.reformed", "religious_leagues.1.orthodox", "religious_leagues.1.coptic"]
+      node["on_lock_hre_religion"]["events"] += ["religious_leagues.103", "religious_leagues.104", "religious_leagues.105"]
+
+      node["on_change_hre_religion"]["events"] = (1..5).map do |i|
+        (1..5).map do |j|
+          "religious_leagues.3#{i}#{j}" unless i == j
+        end
+      end.flatten.compact
     end
 
     localization!("fun_and_balance_religious_leagues",
@@ -1339,6 +1393,12 @@ def build_mod_config_menu!(*options)
       "religious_leagues.diet.reformed" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Reformed as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Reformed unity within the Empire.",
       "religious_leagues.diet.orthodox" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Orthodoxy as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Orthodox unity within the Empire.",
       "religious_leagues.diet.coptic" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Coptic as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Coptic unity within the Empire.",
+      "religious_leagues.warwon.t.reformed" => "The Reformed League is Victorious",
+      "religious_leagues.warwon.t.orthodox" => "The Orthodox League is Victorious",
+      "religious_leagues.warwon.t.coptic"   => "The Coptic League is Victorious",
+      "religious_leagues.warwon.d.reformed" => "The War of Religion in the Empire has ended in victory for the Reformed Union. The Emperor has been forced to abdicate and Reformed is now the dominant faith in the Empire.",
+      "religious_leagues.warwon.d.orthodox" => "The War of Religion in the Empire has ended in victory for the Orthodox Union. The Emperor has been forced to abdicate and Orthodoxy is now the dominant faith in the Empire.",
+      "religious_leagues.warwon.d.coptic"   => "The War of Religion in the Empire has ended in victory for the Coptic Union. The Emperor has been forced to abdicate and Coptic is now the dominant faith in the Empire.",
      )
    end
 end
