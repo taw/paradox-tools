@@ -82,6 +82,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     fix_custom_ideas!
     power_projection_tweaks!
     build_mod_config_menu_for_vanilla!
+    more_options_for_religious_leagues!
   end
 end
 

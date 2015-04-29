@@ -1268,4 +1268,39 @@ def build_mod_config_menu!(*options)
       "fun_and_balance_menu.make_coptic_primary_hre_heretics" => "Make Coptic primary HRE heretics",
       "fun_and_balance_menu.done" => "Done"
   end
+
+  def more_options_for_religious_leagues!
+    patch_mod_file! "common/triggered_modifiers/00_triggered_modifiers.txt" do |node|
+      node["hre_dominant_catholic"]["potential"].delete("OR")
+      node["hre_dominant_catholic"]["potential"].add! "religion_group", "christian"
+      node["hre_dominant_protestant"]["potential"].delete("OR")
+      node["hre_dominant_protestant"]["potential"].add! "religion_group", "christian"
+      ["reformed", "orthodox", "coptic"].each do |religion|
+        node.add! "hre_dominant_#{religion}", PropertyList[
+          "potential", PropertyList[
+            "capital_scope", PropertyList["continent", "europe"],
+            "religion_group", "christian",
+          ],
+          "trigger", PropertyList[
+            "religion", religion,
+            "hre_religion", religion,
+            "hre_religion_locked", true,
+          ],
+          "legitimacy", 0.25,
+          "tolerance_own", 1,
+          "global_missionary_strength", 0.01,
+          "imperial_authority", 0.25,
+        ]
+      end
+    end
+    localization! "fun_and_balance_religious_leagues",
+      "hre_dominant_reformed" => "Reformed Empire",
+      "desc_hre_dominant_reformed" => "The Reformed faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy.",
+      "hre_dominant_orthodox" => "Orthodox Empire",
+      "desc_hre_dominant_orthodox" => "The Orthodox faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy.",
+      "hre_dominant_coptic" => "Coptic Empire",
+      "desc_hre_dominant_coptic" => "The Coptic faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy."
+
+
+   end
 end
