@@ -1223,8 +1223,9 @@ def build_mod_config_menu!(*options)
 
   # Event numbers:
   # 10x - x emperor won
-  # 20x - y diet
+  # 20x - x diet
   # 3xy - victory in x-vs-y war
+  # 40x - x league starts
 
   def more_options_for_religious_leagues!
     patch_mod_file! "common/triggered_modifiers/00_triggered_modifiers.txt" do |node|
@@ -1355,6 +1356,95 @@ def build_mod_config_menu!(*options)
             ]
           end
         end
+
+        protestant_league = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.5"}
+        protestant_league["option"].add! "set_hre_heretic_religion", "protestant"
+
+        node.add! "country_event", PropertyList[
+          "id", "religious_leagues.403",
+          "title", "religious_leagues.403.t",
+          "desc", "religious_leagues.403.d",
+          "picture", "RELIGIOUS_WARS_eventPicture",
+          "major", true,
+          "fire_only_once", true,
+          "trigger", PropertyList[
+            "has_dlc", "Art of War",
+            "NOT", PropertyList["has_global_flag", "evangelical_union_happened"],
+            "hre_leagues_enabled", false,
+            "hre_religion_locked", false,
+            "hre_religion_treaty", false,
+            "is_emperor", true,
+            "is_year", 1550,
+            "religion", "catholic",
+            "has_global_flag", "counter_reformation",
+            "any_known_country", PropertyList[
+              "is_elector", true,
+              "religion", "reformed",
+              "is_subject", false,
+            ],
+            "NOT", PropertyList["hre_reform_level", 6],
+          ],
+          "mean_time_to_happen", PropertyList[
+            "months", 120,
+            "modifier", PropertyList[
+              "factor", 0.5,
+              "is_year", 1575,
+            ],
+            "modifier", PropertyList[
+              "factor", 0.1,
+              "is_year", 1600,
+            ],
+          ],
+          "option", PropertyList[
+            "name", "religious_leagues.5.a",
+            "enable_hre_leagues", true,
+            "set_global_flag", "evangelical_union_happened",
+            "set_hre_heretic_religion", "reformed",
+          ],
+        ]
+        [["orthodox", 404], ["coptic", 405]].each do |religion, id|
+          # Does not depend on 1550 and counterreformation
+          node.add! "country_event", PropertyList[
+            "id", "religious_leagues.#{id}",
+            "title", "religious_leagues.#{id}.t",
+            "desc", "religious_leagues.#{id}.d",
+            "picture", "RELIGIOUS_WARS_eventPicture",
+            "major", true,
+            "fire_only_once", true,
+            "trigger", PropertyList[
+              "has_dlc", "Art of War",
+              "NOT", PropertyList["has_global_flag", "evangelical_union_happened"],
+              "hre_leagues_enabled", false,
+              "hre_religion_locked", false,
+              "hre_religion_treaty", false,
+              "is_emperor", true,
+              "religion", "catholic",
+              "any_known_country", PropertyList[
+                "is_elector", true,
+                "religion", religion,
+                "is_subject", false,
+              ],
+              "NOT", PropertyList["hre_reform_level", 6],
+            ],
+            "mean_time_to_happen", PropertyList[
+              "months", 120,
+              "modifier", PropertyList[
+                "factor", 0.5,
+                "is_year", 1575,
+              ],
+              "modifier", PropertyList[
+                "factor", 0.1,
+                "is_year", 1600,
+              ],
+            ],
+            "option", PropertyList[
+              "name", "religious_leagues.5.a",
+              "enable_hre_leagues", true,
+              "set_global_flag", "evangelical_union_happened",
+              "set_hre_heretic_religion", religion,
+            ],
+          ]
+        end
       end
 
       # This code is seriously dumb and fragile
@@ -1399,6 +1489,12 @@ def build_mod_config_menu!(*options)
       "religious_leagues.warwon.d.reformed" => "The War of Religion in the Empire has ended in victory for the Reformed Union. The Emperor has been forced to abdicate and Reformed is now the dominant faith in the Empire.",
       "religious_leagues.warwon.d.orthodox" => "The War of Religion in the Empire has ended in victory for the Orthodox Union. The Emperor has been forced to abdicate and Orthodoxy is now the dominant faith in the Empire.",
       "religious_leagues.warwon.d.coptic"   => "The War of Religion in the Empire has ended in victory for the Coptic Union. The Emperor has been forced to abdicate and Coptic is now the dominant faith in the Empire.",
+      "religious_leagues.403.t" => "The Reformed Union",
+      "religious_leagues.404.t" => "The Orthodox Union",
+      "religious_leagues.405.t" => "The Coptic Union",
+      "religious_leagues.403.d" => "After Emperor $MONARCH$ rejected the Reformed confessional positions at the Imperial Parliament, the Reformed Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad. The German Catholic states, feeling threatened by this new alliance, have regrouped into a Catholic League. The stage is set for religious conflict in the Empire.",
+      "religious_leagues.404.d" => "After Emperor $MONARCH$ rejected the Orthodox confessional positions at the Imperial Parliament, the Orthodox Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad. The German Catholic states, feeling threatened by this new alliance, have regrouped into a Catholic League. The stage is set for religious conflict in the Empire.",
+      "religious_leagues.405.d" => "After Emperor $MONARCH$ rejected the Coptic confessional positions at the Imperial Parliament, the Coptic Imperial estates formed the League of Schmalkalden, with a joint army and treasury and seeking ties abroad. The German Catholic states, feeling threatened by this new alliance, have regrouped into a Catholic League. The stage is set for religious conflict in the Empire.",
      )
    end
 end
