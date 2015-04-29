@@ -368,100 +368,11 @@ module FunAndBalanceCommon
     end
   end
 
-  def allowed_conversions(group_name, name)
-    if group_name == "christian"
-      ["protestant", "catholic",  "reformed", "orthodox", "coptic"] - [name]
-    elsif group_name == "muslim"
-      ["sunni", "shiite", "ibadi"] - [name]
-    elsif name == "buddhism"
-       ["hinduism", "confucianism", "shinto"]
-    elsif name == "hinduism"
-      ["sikhism", "buddhism"]
-    elsif group_name == "eastern"
-       ["buddhism", "confucianism", "shinto"] - [name]
-    elsif group_name == "dharmic"
-      ["hinduism", "sikhism"] - [name]
-    else
-      nil
-    end
-  end
-
-  def on_convert(religion, *extras)
-    PropertyList[
-      "change_religion", religion,
-      *extras,
-      "add_country_modifier", PropertyList["name", "conversion_zeal", "duration", 3650],
-    ]
-  end
-
   def patch_religion!
     patch_mod_file!("common/religions/00_religion.txt") do |node|
       node.each do |group_name, group|
         group.each do |name, religion|
           next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range"].include?(name)
-          if conversions = allowed_conversions(group_name, name)
-            religion["allowed_conversion"] = conversions
-          end
-
-          if group_name == "muslim"
-            religion["on_convert"] = on_convert(
-              name,
-              "add_stability", -2,
-              "add_piety", -1,
-            )
-          end
-
-          if name == "shinto"
-            religion["on_convert"] = on_convert(
-              name,
-              "add_prestige", -100,
-              "remove_country_modifier", "monastic_education_system",
-              "remove_country_modifier", "neo_confucianism",
-              "remove_country_modifier", "denounce_taoism",
-            )
-          end
-
-          if name == "buddhism"
-            religion["on_convert"] = on_convert(
-              name,
-              "add_prestige", -100,
-              "remove_country_modifier", "the_haridasa_movement",
-              "remove_country_modifier", "the_advaita_movement",
-              "remove_country_modifier", "religious_sect_tolerance",
-              "remove_country_modifier", "neo_confucianism",
-              "remove_country_modifier", "denounce_taoism",
-            )
-          end
-
-          if name == "confucianism"
-            religion["on_convert"] = on_convert(
-              name,
-              "add_prestige", -100,
-              "remove_country_modifier", "monastic_education_system",
-            )
-          end
-
-          if name == "hinduism"
-            religion["on_convert"].add! "remove_country_modifier", "monastic_education_system"
-          end
-
-          if name == "orthodox" or name == "coptic"
-            religion["on_convert"] = on_convert(
-              name,
-              "add_prestige", -100,
-              "remove_country_modifier", "the_test_act",
-              "remove_country_modifier", "superintendent_office",
-              "remove_country_modifier", "the_popery_act",
-              "remove_country_modifier", "counter_reformation",
-              "remove_country_modifier", "the_statue_in_restraint_of_appeals",
-              "remove_country_modifier", "bavarian_jesuits",
-              "remove_country_modifier", "the_societas_jesu",
-              "remove_country_modifier", "the_declaration_of_indulgence",
-              "remove_country_modifier", "de_heretico_comburendo",
-              "remove_country_modifier", "the_conventicle_act",
-            )
-          end
-
           if group_name == "pagan"
             religion["province"]["local_missionary_strength"] = 0.03
           else
@@ -469,6 +380,43 @@ module FunAndBalanceCommon
           end
         end
       end
+
+    localization! "religious_shift",
+      "religious_shift_title" => "Accept Religious Shift",
+      "religious_shift_desc"  => "Religious beliefs of the ruling elite are shifting, as our $COUNTRY_RELIGION$ heritage is gradually losing ground to the religion of $CAPITAL$."
+    end
+
+    create_mod_file! "decisions/ReligiousShift.txt", PropertyList[
+      "country_decisions", PropertyList[
+        "religious_shift", PropertyList[
+          "potential", PropertyList[
+            "capital_scope", PropertyList[
+              "NOT", PropertyList["religion", "ROOT"],
+            ],
+            "NOT", PropertyList["tag", "PAP"],
+          ],
+          "allow", PropertyList[
+            "stability", 1,
+            "is_at_war", false,
+            "is_subject", false,
+          ],
+          "effect", PropertyList[
+            "change_religion", "capital",
+            "add_stability", -2,
+            "add_country_modifier", PropertyList["name", "conversion_zeal", "duration", 3650],
+          ],
+          "ai_will_do", PropertyList["factor", 0],
+        ]
+      ]
+    ]
+
+    # Because Orthodox Ottomans are a thing now
+    patch_mod_file!("decisions/Ottoman.txt") do |node|
+      constantinople_decision = node["country_decisions"]["make_constantinople_capital"]
+      constantinople_decision["allow"].delete("primary_culture")
+      constantinople_decision["allow"].delete("religion")
+      constantinople_decision["effect"][151]["change_culture"] = "ROOT"
+      constantinople_decision["effect"][151]["change_religion"] = "ROOT"
     end
   end
 

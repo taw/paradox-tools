@@ -18,6 +18,7 @@ class FunAndBalanceShatteredEuropeModBuilder < ParadoxModBuilder
       ["CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
       ["POWER_MAX", 999, 1500],
       ["PS_BUILD_BUILDING", 10, 5],
+      ["PS_MOVE_CAPITAL", 200, 100],
       ["PS_MOVE_TRADE_PORT", 300, 100],
       ["PS_CHANGE_CULTURE", 25, 10],
       ["CLAIM_LOSE", 25, 50],
