@@ -1264,7 +1264,60 @@ def build_mod_config_menu!(*options)
             "tooltip", PropertyList["set_hre_religion_locked", true],
           ],
         ]
+
+        node.add! "country_event", PropertyList[
+          "id", "religious_leagues.diet.#{religion}",
+          "title", "religious_leagues.6.t",
+          "desc", "religious_leagues.diet.#{religion}",
+          "picture", "RELIGIOUS_WARS_eventPicture",
+          "major", true,
+          "fire_only_once", true,
+          "trigger", PropertyList[
+            "has_dlc", "Art of War",
+            "is_emperor", true,
+            "is_at_war", false,
+            "NOT", PropertyList["any_known_country", PropertyList["is_in_league_war", true]],
+            "has_regency", false,
+            "hre_religion_locked", false,
+            "hre_religion_treaty", false,
+            "religion", religion,
+            "OR", PropertyList[
+              "AND", PropertyList[
+                "hre_leagues_enabled", true,
+                "had_global_flag", PropertyList[
+                  "flag", "evangelical_union_happened",
+                  "days", 10950,
+                ],
+                "NOT", PropertyList["any_known_country", PropertyList[
+                  "is_elector", true,
+                  "is_league_enemy", "ROOT",
+                  "truce_with", "ROOT",
+                  "NOT", PropertyList["religion", religion],
+                ]],
+              ],
+              "AND", PropertyList[
+                "NOT", PropertyList["has_global_flag", "evangelical_union_happened"],
+                "is_year", 1625,
+              ],
+            ],
+          ],
+          "mean_time_to_happen", PropertyList["months", 60],
+          "option", PropertyList[
+            "name", "religious_leagues.6.a",
+            "set_hre_religion_locked", true,
+          ],
+        ]
       end
+
+      # This code is seriously dumb and fragile
+      catholic_diet = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.7"}
+      catholic_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete "religion"
+      catholic_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].add! "NOT", PropertyList["religion", "catholic"]
+      catholic_diet["desc"] = "religious_leagues.diet.catholic"
+      protestant_diet = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.7"}
+      protestant_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete "religion"
+      protestant_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].add! "NOT", PropertyList["religion", "protestant"]
+      protestant_diet["desc"] = "religious_leagues.diet.protestant"
     end
 
     patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
@@ -1281,6 +1334,11 @@ def build_mod_config_menu!(*options)
       "religious_leagues.1.d.reformed" => "The War of Religion in the Empire has ended in total victory for the Emperor and the Imperial Parliament has convened in a Diet to proclaim Reformed as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Reformed unity within the Empire.",
       "religious_leagues.1.d.orthodox" => "The War of Religion in the Empire has ended in total victory for the Emperor and the Imperial Parliament has convened in a Diet to proclaim Orthodoxy as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Orthodox unity within the Empire.",
       "religious_leagues.1.d.coptic" => "The War of Religion in the Empire has ended in total victory for the Emperor and the Imperial Parliament has convened in a Diet to proclaim Coptic as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Coptic unity within the Empire.",
+      "religious_leagues.diet.catholic" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Catholicism as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Catholic unity within the Empire.",
+      "religious_leagues.diet.protestant" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Protestantism as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Protestant unity within the Empire.",
+      "religious_leagues.diet.reformed" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Reformed as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Reformed unity within the Empire.",
+      "religious_leagues.diet.orthodox" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Orthodoxy as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Orthodox unity within the Empire.",
+      "religious_leagues.diet.coptic" => "With the failure of the heretic league to successfully challenge the Emperor, the Imperial Parliament has convened in a Diet to proclaim Coptic as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Coptic unity within the Empire.",
      )
    end
 end
