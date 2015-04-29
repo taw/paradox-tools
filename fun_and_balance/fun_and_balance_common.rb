@@ -1200,34 +1200,10 @@ def build_mod_config_menu!(*options)
       menu_set_flag_option("enable_burgundian_succession_crisis", "Enable Burgundian Successian Crisis"),
       menu_clr_flag_option("enable_burgundian_succession_crisis", "Disable Burgundian Successian Crisis"),
       PropertyList[
-        "name", "fun_and_balance_menu.make_protestant_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "protestant"]],
-        "set_hre_heretic_religion", "protestant",
-      ],
-      PropertyList[
-        "name", "fun_and_balance_menu.make_reformed_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "reformed"]],
-        "set_hre_heretic_religion", "reformed",
-      ],
-      PropertyList[
-        "name", "fun_and_balance_menu.make_orthodox_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "orthodox"]],
-        "set_hre_heretic_religion", "orthodox",
-      ],
-      PropertyList[
-        "name", "fun_and_balance_menu.make_coptic_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "coptic"]],
-        "set_hre_heretic_religion", "coptic",
-      ],
-      PropertyList[
         "name", "fun_and_balance_menu.done",
       ],
     )
     localization! "fun_and_balance_menu",
-      "fun_and_balance_menu.make_protestant_primary_hre_heretics" => "Make Protestant primary HRE heretics",
-      "fun_and_balance_menu.make_reformed_primary_hre_heretics" => "Make Reformed primary HRE heretics",
-      "fun_and_balance_menu.make_orthodox_primary_hre_heretics" => "Make Orthodox primary HRE heretics",
-      "fun_and_balance_menu.make_coptic_primary_hre_heretics" => "Make Coptic primary HRE heretics",
       "fun_and_balance_menu.done" => "Done"
   end
 
@@ -1238,34 +1214,10 @@ def build_mod_config_menu!(*options)
       menu_set_flag_option("enable_burgundian_succession_crisis", "Enable Burgundian Successian Crisis"),
       menu_clr_flag_option("enable_burgundian_succession_crisis", "Disable Burgundian Successian Crisis"),
       PropertyList[
-        "name", "fun_and_balance_menu.make_protestant_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "protestant"]],
-        "set_hre_heretic_religion", "protestant",
-      ],
-      PropertyList[
-        "name", "fun_and_balance_menu.make_reformed_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "reformed"]],
-        "set_hre_heretic_religion", "reformed",
-      ],
-      PropertyList[
-        "name", "fun_and_balance_menu.make_orthodox_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "orthodox"]],
-        "set_hre_heretic_religion", "orthodox",
-      ],
-      PropertyList[
-        "name", "fun_and_balance_menu.make_coptic_primary_hre_heretics",
-        "trigger", PropertyList["NOT", PropertyList["hre_heretic_religion", "coptic"]],
-        "set_hre_heretic_religion", "coptic",
-      ],
-      PropertyList[
         "name", "fun_and_balance_menu.done",
       ],
     )
     localization! "fun_and_balance_menu",
-      "fun_and_balance_menu.make_protestant_primary_hre_heretics" => "Make Protestant primary HRE heretics",
-      "fun_and_balance_menu.make_reformed_primary_hre_heretics" => "Make Reformed primary HRE heretics",
-      "fun_and_balance_menu.make_orthodox_primary_hre_heretics" => "Make Orthodox primary HRE heretics",
-      "fun_and_balance_menu.make_coptic_primary_hre_heretics" => "Make Coptic primary HRE heretics",
       "fun_and_balance_menu.done" => "Done"
   end
 
@@ -1293,14 +1245,42 @@ def build_mod_config_menu!(*options)
         ]
       end
     end
-    localization! "fun_and_balance_religious_leagues",
+    patch_mod_file!("events/ReligiousLeagues.txt") do |node|
+      ["reformed", "orthodox", "coptic"].each do |religion|
+        node.add! "country_event", PropertyList[
+          "id", "religious_leagues.1.#{religion}",
+          "title", "religious_leagues.1.t",
+          "desc", "religious_leagues.1.d.#{religion}",
+          "picture", "RELIGIOUS_WARS_eventPicture",
+          "major", true,
+          "is_triggered_only", true,
+          "trigger", PropertyList[
+            "has_dlc", "Art of War",
+            "hre_religion", religion,
+          ],
+          "immediate", PropertyList["hidden_effect", PropertyList["set_hre_religion_locked", true]],
+          "option", PropertyList[
+            "name", "religious_leagues.1.a",
+            "tooltip", PropertyList["set_hre_religion_locked", true],
+          ],
+        ]
+      end
+    end
+
+    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
+      node["on_lock_hre_religion"]["events"] += ["religious_leagues.1.reformed", "religious_leagues.1.orthodox", "religious_leagues.1.coptic"]
+    end
+
+    localization!("fun_and_balance_religious_leagues",
       "hre_dominant_reformed" => "Reformed Empire",
-      "desc_hre_dominant_reformed" => "The Reformed faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy.",
       "hre_dominant_orthodox" => "Orthodox Empire",
-      "desc_hre_dominant_orthodox" => "The Orthodox faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy.",
       "hre_dominant_coptic" => "Coptic Empire",
-      "desc_hre_dominant_coptic" => "The Coptic faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy."
-
-
+      "desc_hre_dominant_reformed" => "The Reformed faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy.",
+      "desc_hre_dominant_orthodox" => "The Orthodox faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy.",
+      "desc_hre_dominant_coptic" => "The Coptic faith is the official religion of the Holy Roman Empire. Following this faith grants our nation a certain moral legitimacy.",
+      "religious_leagues.1.d.reformed" => "The War of Religion in the Empire has ended in total victory for the Emperor and the Imperial Parliament has convened in a Diet to proclaim Reformed as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Reformed unity within the Empire.",
+      "religious_leagues.1.d.orthodox" => "The War of Religion in the Empire has ended in total victory for the Emperor and the Imperial Parliament has convened in a Diet to proclaim Orthodoxy as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Orthodox unity within the Empire.",
+      "religious_leagues.1.d.coptic" => "The War of Religion in the Empire has ended in total victory for the Emperor and the Imperial Parliament has convened in a Diet to proclaim Coptic as the sole confessional faith of the Holy Roman Empire. Electors who follow a different confession will be stripped of their privileges, and the Emperor is given broad authority to enforce Coptic unity within the Empire.",
+     )
    end
 end
