@@ -3,20 +3,53 @@
 require_relative "../lib/paradox_mod_builder"
 
 class MissionsDebugger < ParadoxModBuilder
+  def from_to_root(value)
+    if value.is_a?(PropertyList)
+      PropertyList[*value.list.map{|k,v|
+        Property[from_to_root(k), from_to_root(v)]
+      }]
+    elsif value.is_a?(String) and value == "FROM"
+      "ROOT"
+    else
+      value
+    end
+  end
+
   def build!
     i = 0
     patch_mod_files!("missions/*.txt") do |node|
       node.each do |name, mission|
         i += 1
         zi = "%03d" % i
-        if mission["type"] == "country"
-          create_mod_file! "common/triggered_modifiers/#{zi}-#{name}.txt", PropertyList[
-            name, PropertyList[
-              "trigger", mission["allow"],
-              "prestige", i,
-            ]
-          ]
+        debug_name = [mission["category"], name, mission["type"]].compact.join("_")
+
+        allow = mission["allow"]
+
+        case mission["type"]
+        when "country"
+          mission_trigger = allow
+
+        # Presumably FROM should be replaced by ROOT in those,
+        # but game just crashes with most of those
+        else
+          next
+        # when "neighbor_provinces"
+        #   mission_trigger = PropertyList["any_neighbor_province", allow]
+        # when "our_provinces"
+        #   mission_trigger = PropertyList["any_owned_province", allow]
+        # when "rival_countries"
+        #   mission_trigger = PropertyList["any_rival_country", allow]
+        # when "neighbor_countries"
+        #   mission_trigger = PropertyList["any_neighbor_country", allow]
+        # when "rivals_rivals", "threats_rivals", "threat_countries", "empty_provinces", "elector_countries"
+        #   next
         end
+        create_mod_file! "common/triggered_modifiers/#{zi}-#{name}.txt", PropertyList[
+          debug_name, PropertyList[
+            "trigger", mission_trigger,
+            "prestige", i,
+          ]
+        ]
       end
     end
   end
@@ -24,6 +57,6 @@ end
 
 
 MissionsDebugger.new(
-  ParadoxGame.new("eu4", "output/fun_and_balance-1.7.3"),
+  ParadoxGame.new("source/eu4-1.11.1", "output/fun_and_balance"),
   "output/missions_debugger"
 ).build!
