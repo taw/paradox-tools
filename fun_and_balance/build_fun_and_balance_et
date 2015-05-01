@@ -70,7 +70,6 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["PS_MOVE_CAPITAL", 200, 100],
       ["PS_MOVE_TRADE_PORT", 300, 100],
       ["PS_CHANGE_CULTURE", 40, 15],
-      ["CLAIM_LOSE", 25, 50],
       ["CORE_LOSE", 50, 100],
       ["CORE_LOSE_CULTURE_GROUP", 150, 300],
       ["PROTECTORATE_TECH_THRESHOLD", 0.25, 5.0],
