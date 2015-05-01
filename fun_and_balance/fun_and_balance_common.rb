@@ -1,4 +1,12 @@
 module FunAndBalanceCommon
+  def modify_node!(node, *modifications)
+    modifications.each do |*path, expected, modified|
+      actual = path.inject(node){|n,p| n ? n[p] : nil}
+      raise "Node[#{path.join('/')}] expected `#{expected}', got `#{actual}'" unless actual == expected
+      path[0..-2].inject(node){|n,p| n[p]}[path[-1]] = modified
+    end
+  end
+
   def eu3_style_elections!(node)
     node.delete("change_adm")
     node.delete("change_dip")
@@ -112,16 +120,17 @@ module FunAndBalanceCommon
 
   def fix_opinions!
     patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
-      node["aggressive_expansion"]["yearly_decay"] = 4
-      node["opinion_annex_vassal"]["min"] = -100
-      node["broke_march"]["opinion"] = -100
-      node["broke_march"]["years"] = 10
+      modify_node! node,
+        ["opinion_annex_vassal", "min", nil, -100],
+        ["broke_march", "opinion", -200, -100],
+        ["broke_march", "years", nil, 10]
     end
   end
 
   def fix_wargoals!
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
-      node["take_province_ban"]["badboy_factor"] = 0.1
+      modify_node! node,
+        ["take_province_ban", "badboy_factor", 1.0, 0.1]
     end
   end
 
@@ -1126,10 +1135,15 @@ module FunAndBalanceCommon
 
   def power_projection_tweaks!
     patch_mod_file!("common/powerprojection/00_static.txt") do |node|
-      raise unless node["eclipsed_rival"]["power"] == 5
-      raise unless node["eclipsed_rival"]["max"] == 30
-      node["eclipsed_rival"]["power"] = 30
-      node["eclipsed_rival"]["max"] = 100
+      modify_node! node,
+        ["eclipsed_rival",            "power",          5,  30],
+        ["eclipsed_rival",            "max",           30, 100],
+        ["declared_war_at_rival",     "yearly_decay",   1, 0.5],
+        ["joined_war_against_rival",  "yearly_decay",   1, 0.5],
+        ["refused_war_against_rival", "yearly_decay",   1, 0.5],
+        ["vassalized_rival",          "yearly_decay",   1, 0.5],
+        ["took_province_from_rival",  "yearly_decay",   1, 0.5],
+        ["rival_lost_province",       "yearly_decay",   1, 0.5]
     end
   end
 
