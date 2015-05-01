@@ -125,6 +125,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     power_projection_tweaks!
     build_mod_config_menu_for_et!
     more_options_for_religious_leagues!
+    improve_mission_pool!
   end
 end
 
