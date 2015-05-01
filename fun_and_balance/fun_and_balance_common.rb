@@ -1523,7 +1523,6 @@ def build_mod_config_menu!(*options)
           mission["abort_effect"] = PropertyList[]
         end
         mission["abort_effect"].add! "FROM", PropertyList[
-          "add_prestige", -10, # Test
           "add_country_modifier", PropertyList[
             "name", flag_name,
             "duration", 365*25,
