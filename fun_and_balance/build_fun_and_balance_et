@@ -131,7 +131,7 @@ end
 mb = FunAndBalanceETModBuilder.new(
   ParadoxGame.new(
     "source/eu4-1.11.1",
-    "source/ExtendedTimeline 0.12.2/ExtendedTimeline"
+    "source/ExtendedTimeline 0.12.3/ExtendedTimeline"
   ),
   "output/fun_and_balance_et"
 )
