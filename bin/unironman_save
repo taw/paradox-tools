@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+
+# This doesn't actually work, it's just an investigative script
+
+require_relative "../lib/paradox"
+
+class ParadoxBinarySaveFile
+  def initialize(path)
+    @path = path
+    @data = open(@path, "rb", &:read)
+    @ofs  = 0
+  end
+
+  def bytes_left
+    @data.size - @ofs
+  end
+
+  def get(n)
+    raise "Trying to read past end of file" if n + @ofs > @data.size
+    rv = @data[@ofs, n]
+    @ofs += n
+    rv
+  end
+
+  def get_flt
+    get(4).unpack("f")[0]
+  end
+
+  def get_u4
+    get(4).unpack("V")[0]
+  end
+
+  def get_u2
+    get(2).unpack("v")[0]
+  end
+
+  def get_u1
+    get(1).unpack("C")[0]
+  end
+
+  def pretty_ofs
+    "#{@ofs} / #{'%x' % @ofs}"
+  end
+
+  def get_bool
+    c = get_u1
+    return false if c == 0
+    return true if c == 1
+    raise "Incorrect boolean value #{c}"
+  end
+
+  # Well, Windows-1252 really
+  def get_ascii
+    get(get_u2)
+  end
+
+  def tokenize!
+    raise "Uncompressed ironman save expected, but `#{@path}' does not look like one" unless get(6) == "EU4bin"
+    @tokens = []
+    while bytes_left > 0
+      token_type = get_u2
+      case token_type
+      when 1
+        @tokens << :equal
+      when 3
+        @tokens << :open
+      when 4
+        @tokens << :close
+      when 12, 20 # most likely one of them is signed and the other unsigned
+        @tokens << get_u4
+      when 15, 23 # no idea why multiple typpes
+        @tokens << [:ascii, get_ascii]
+      when 14
+        @tokens << get_bool
+      when 13
+        @tokens << get_flt
+      when 11
+        @tokens << :mysterious_token_11
+      else
+        if token_type <= 25
+          puts "At offset: #{pretty_ofs}"
+          require 'pry'; binding.pry
+        end
+        @tokens << [:special, token_type]
+      end
+    end
+    @tokens.each do |token|
+      p token
+    end
+  end
+end
+
+unless ARGV.size == 2
+  STDERR.puts "Usage: #{$0} ironman_save.eu4 normal_save.eu4"
+  exit 1
+end
+
+sav = ParadoxBinarySaveFile.new(ARGV[0])
+sav.tokenize!
