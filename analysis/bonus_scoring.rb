@@ -687,7 +687,6 @@ class BonusScoring
 
   def score
     total = 0
-    require 'pry'; binding.pry
     @ht.each do |k,v|
       case k
       # Base unit of value

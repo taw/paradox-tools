@@ -9,8 +9,13 @@ require_relative "bonus_scoring"
 class AnalyzeIdeaGroups < ParadoxGame
   def each_idea_group
     glob("common/ideas/*").each do |path|
-      parse(path).each do |idea_group|
-        yield(idea_group)
+      parse(path).each do |name, idea_group|
+        if @ideas == "national"
+          next if idea_group["category"]
+        elsif @ideas == "basic"
+          next unless idea_group["category"]
+        end
+        yield(name, idea_group)
       end
     end
   end
@@ -33,17 +38,26 @@ class AnalyzeIdeaGroups < ParadoxGame
   end
 
   def analyze_idea_groups!
-    seen = Set[]
+    output = []
     each_idea_group do |name, idea_group|
       bonuses = list_of_bonuses(idea_group)
-      seen += bonuses.keys
-      puts "%.2f %s" % [bonuses.score, localization(name)]
-      # pp bonuses.to_h
-      # pp idea_group
-      # puts ""
+      output << [bonuses.score, localization(name)]
     end
-    # puts "#{seen.size} different bonuses"
+    output.sort_by{|s,n| [-s,n]}.each do |score, name|
+      puts "%.2f %s" % [score, name]
+    end
+  end
+
+  def initialize(ideas, *paths)
+    @ideas = ideas
+    super(*paths)
   end
 end
 
-AnalyzeIdeaGroups.new(*ARGV).analyze_idea_groups!
+ideas = "all"
+if ARGV[0] =~ /\A--(.*)/
+  ideas = $1
+  ARGV.shift
+end
+
+AnalyzeIdeaGroups.new(ideas, *ARGV).analyze_idea_groups!
