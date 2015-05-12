@@ -128,6 +128,28 @@ module FunAndBalanceCommon
   end
 
   def fix_wargoals!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      node["cb_crusade"]["prerequisites"].delete "is_neighbor_of"
+      node["cb_crusade"]["prerequisites"].prepend! Property::OR[
+        "is_neighbor_of", "FROM",
+        "any_country", PropertyList[
+          "is_subject_of", "ROOT",
+          "religion_group", "ROOT",
+          "is_neighbor_of", "FROM",
+          "cb_on_religious_enemies", true,
+        ],
+      ]
+      node["cb_heretic"]["prerequisites"].delete "is_neighbor_of"
+      node["cb_heretic"]["prerequisites"].prepend! Property::OR[
+        "is_neighbor_of", "FROM",
+        "any_country", PropertyList[
+          "is_subject_of", "ROOT",
+          "religion", "ROOT",
+          "is_neighbor_of", "FROM",
+          "cb_on_religious_enemies", true,
+        ],
+      ]
+    end
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       modify_node! node,
         ["take_province_ban", "badboy_factor", 1.0, 0.1]

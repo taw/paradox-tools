@@ -46,6 +46,16 @@ class PropertyList
     @list.dup
   end
 
+  def prepend!(key, val=nil)
+    if key.is_a?(Property) and val == nil
+      @list[0,0] = [[key.key, key.val]]
+    elsif val == nil or key.is_a?(Property) and val.is_a?(Property)
+      raise ArgumentError, "Wrong use of #add! interface"
+    else
+      @list[0,0] = [[key, val]]
+    end
+  end
+
   def add!(key, val=nil)
     if key.is_a?(Property) and val == nil
       @list << [key.key, key.val]
