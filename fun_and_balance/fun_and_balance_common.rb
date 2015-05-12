@@ -264,7 +264,7 @@ module FunAndBalanceCommon
       VNZ WES
       AUS CRO MAY POL SOK SST
     ]
-    cant_by_formed_by = %W[HLR PAP HIN MUG SPA FRA GER BYZ BUK ITA RUS SCA PER GBR PLC EGY VIJ]
+    cant_by_formed_by = %W[HLR PAP HIN MUG SPA FRA GER BYZ BUK ITA RUS SCA PER GBR PLC EGY VIJ INC]
 
     decisions = []
     each_country_primary_culture do |culture, tag|
