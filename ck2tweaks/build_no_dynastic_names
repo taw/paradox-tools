@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+
+class NoDynasticNamesModBuilder < ParadoxModBuilder
+ def no_dynastic_country_names!
+    patch_mod_files!("common/cultures/*.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |culture_name, culture|
+          next if culture_name == "graphical_culture"
+          next if culture_name == "second_graphical_culture"
+          culture.delete("dynasty_title_names")
+        end
+      end
+    end
+  end
+
+  def build_mod_files!
+    no_dynastic_country_names!
+  end
+end
+
+mb = NoDynasticNamesModBuilder.new(
+  ParadoxGame.new(
+    "source/ck2_2.3.4",
+  ),
+  "output/no_dynastic_names"
+)
+mb.build!
