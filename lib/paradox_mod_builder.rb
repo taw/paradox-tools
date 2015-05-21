@@ -64,12 +64,14 @@ class ParadoxModBuilder
   def patch_file!(name, force_create: false, reencode: false)
     orig_content = resolve(name).read
     if reencode
-      content = orig_content.force_encoding("windows-1252").encode("UTF-8")
+      encoding = "windows-1252"
+      encoding = reencode if reencode != true
+      content = orig_content.force_encoding(encoding).encode("UTF-8")
     else
       content = orig_content.dup
     end
     new_content = yield(content)
-    new_content = new_content.encode("windows-1252") if reencode
+    new_content = new_content.encode(encoding) if reencode
     create_file!(name, new_content) if orig_content != new_content or force_create
   end
   def patch_defines_lua!(changes)

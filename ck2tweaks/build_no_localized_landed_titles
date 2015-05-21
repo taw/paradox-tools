@@ -3,62 +3,12 @@
 require_relative "../lib/paradox_mod_builder"
 
 class NoLocalizedTitlesModBuilder < ParadoxModBuilder
+  def cultures
+    cultures = ["north_germanic", "central_germanic", "west_germanic", "latin", "iberian", "byzantine", "celtic", "finno_ugric", "baltic", "altaic", "arabic", "east_slavic", "west_slavic", "south_slavic", "magyar", "iranian", "east_african", "west_african", "mesoamerican", "israelite", "indo_aryan_group", "dravidian_group", "norse", "swedish", "norwegian", "danish", "german", "lombard", "old_frankish", "suebi", "english", "saxon", "old_saxon", "frisian", "dutch", "frankish", "norman", "italian", "occitan", "roman", "basque", "castillan", "catalan", "portuguese", "visigothic", "armenian", "greek", "alan", "georgian", "irish", "scottish", "pictish", "welsh", "breton", "finnish", "lappish", "ugricbaltic", "komi", "khanty", "samoyed", "mordvin", "lettigallish", "lithuanian", "prussian", "turkish", "pecheneg", "cuman", "khazar", "bolghar", "avar", "karluk", "kirghiz", "mongol", "bedouin_arabic", "maghreb_arabic", "levantine_arabic", "egyptian_arabic", "andalusian_arabic", "russian", "ilmenian", "severian", "volhynian", "pommeranian", "bohemian", "polish", "croatian", "serbian", "romanian", "bulgarian", "hungarian", "persian", "kurdish", "afghan", "baloch", "ethiopian", "somali", "nubian", "manden", "nahuatl", "ashkenazi", "sephardi", "bengali", "oriya", "assamese", "hindustani", "gujurati", "panjabi", "rajput", "sindhi", "marathi", "sinhala", "tamil", "telugu", "kannada"]
+  end
+
   def no_localized_landed_titles!(node)
-    %W[
-      alan
-      andalusian_arabic
-      armenian
-      avar
-      bedouin_arabic
-      bohemian
-      breton
-      bulgarian
-      croatian
-      cuman
-      danish
-      egyptian_arabic
-      english
-      finnish
-      frankish
-      georgian
-      german
-      greek
-      hungarian
-      ilmenian
-      irish
-      italian
-      khanty
-      komi
-      kurdish
-      lappish
-      lettigallish
-      levantine_arabic
-      lithuanian
-      maghreb_arabic
-      mongol
-      mordvin
-      norman
-      norse
-      norwegian
-      pecheneg
-      persian
-      pictish
-      polish
-      pommeranian
-      prussian
-      romanian
-      russian
-      samoyed
-      saxon
-      scottish
-      serbian
-      severian
-      swedish
-      tamil
-      turkish
-      ugricbaltic
-      welsh
-    ].each do |culture|
+    cultures.each do |culture|
       node.delete(culture)
     end
 
@@ -72,7 +22,6 @@ class NoLocalizedTitlesModBuilder < ParadoxModBuilder
         foa controls_religion religion allow mercenary_type coat_of_arms
         male_names pagan_coa gain_effect graphical_culture
       ]
-
         # OK
       when *%W[]
       else
@@ -87,6 +36,8 @@ class NoLocalizedTitlesModBuilder < ParadoxModBuilder
         no_localized_landed_titles!(title_node)
       end
     end
+    # There's also localization like d_york_adj_norse
+    # but it doesn't seem to be used if we cleanup landed titles
   end
 end
 
