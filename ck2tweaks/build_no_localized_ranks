@@ -1,0 +1,121 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+
+class NoLocalizedRanksModBuilder < ParadoxModBuilder
+  def cultures
+    cultures = ["north_germanic", "central_germanic", "west_germanic", "latin", "iberian", "byzantine", "celtic", "finno_ugric", "baltic", "altaic", "arabic", "east_slavic", "west_slavic", "south_slavic", "magyar", "iranian", "east_african", "west_african", "mesoamerican", "israelite", "indo_aryan_group", "dravidian_group", "norse", "swedish", "norwegian", "danish", "german", "lombard", "old_frankish", "suebi", "english", "saxon", "old_saxon", "frisian", "dutch", "frankish", "norman", "italian", "occitan", "roman", "basque", "castillan", "catalan", "portuguese", "visigothic", "armenian", "greek", "alan", "georgian", "irish", "scottish", "pictish", "welsh", "breton", "finnish", "lappish", "ugricbaltic", "komi", "khanty", "samoyed", "mordvin", "lettigallish", "lithuanian", "prussian", "turkish", "pecheneg", "cuman", "khazar", "bolghar", "avar", "karluk", "kirghiz", "mongol", "bedouin_arabic", "maghreb_arabic", "levantine_arabic", "egyptian_arabic", "andalusian_arabic", "russian", "ilmenian", "severian", "volhynian", "pommeranian", "bohemian", "polish", "croatian", "serbian", "romanian", "bulgarian", "hungarian", "persian", "kurdish", "afghan", "baloch", "ethiopian", "somali", "nubian", "manden", "nahuatl", "ashkenazi", "sephardi", "bengali", "oriya", "assamese", "hindustani", "gujurati", "panjabi", "rajput", "sindhi", "marathi", "sinhala", "tamil", "telugu", "kannada"]
+  end
+
+  def patch_localization!
+    @game.glob("localisation*/*.csv").each do |path|
+      patch_file!(path, reencode: "iso-8859-1") do |content|
+        content.split("\n").map do |line|
+          yield(line)
+        end.compact.map{|line| line+"\n"}.join
+      end
+    end
+  end
+
+  def build_mod_files!
+    ranks = %W[
+      baron_
+      baron_female_
+      barony_
+      barony_of_
+      city_duke_
+      city_job_chancellor_
+      city_job_marshal_
+      city_job_spymaster_
+      city_job_treasurer_
+      city_king_
+      city_kingdom_
+      city_kingdom_of_
+      count_
+      count_female_
+      county_
+      county_of_
+      duchy_
+      duchy_of_
+      duke_
+      duke_female_
+      emperor_
+      emperor_female_
+      emperor_title_queen_mother_female_
+      empire_
+      empire_of_
+      job_chancellor_
+      job_marshal_
+      job_spymaster_
+      job_treasurer_
+      king_
+      king_female_
+      kingdom_
+      kingdom_of_
+      title_prince_
+      title_prince_female_
+      tribal_baron_
+      tribal_baron_female_
+      tribal_barony_
+      tribal_barony_of_
+      tribal_count_
+      tribal_count_female_
+      tribal_county_
+      tribal_county_of_
+      tribal_duchy_
+      tribal_duchy_of_
+      tribal_duchy_of_old_
+      tribal_duke_
+      tribal_duke_female_
+      tribal_duke_female_old_
+      tribal_duke_old_
+      tribal_emperor_
+      tribal_emperor_female_
+      tribal_empire_of_
+      tribal_king_
+      tribal_king_female_
+      tribal_king_female_old_
+      tribal_king_old_
+      tribal_kingdom_
+      tribal_kingdom_of_
+      tribal_kingdom_of_old_
+      tribal_title_prince_
+      tribal_title_prince_female_
+      vice_royalty_duchy_of_
+      vice_royalty_duke_
+      vice_royalty_duke_female_
+      vice_royalty_emperor_
+      vice_royalty_empire_of_
+      vice_royalty_king_
+      vice_royalty_king_female_
+      vice_royalty_kingdom_of_
+    ]
+
+    rx = Regexp.new("\\A(" + ranks.join("|") + ")(" + cultures.join("|") + ")\\z")
+
+
+    patch_localization! do |line|
+      key, *fields = line.split(";")
+      if cultures.any?{|c| key.end_with?("_adj_#{c}")}
+        # No localized titles handles thoes
+        line
+      elsif key =~ rx # cultures.any?{|c| ranks.any?{|r| key == r + c }}
+        puts [key, fields[0]].join(" ; ")
+        nil
+      elsif cultures.any?{|c| key.end_with?("_#{c}")}
+        # These are unrelated things like "convertto_swedish" "k_cuman" "region_baltic" etc.
+        line
+      else
+        line
+      end
+    end
+  end
+end
+
+mb = NoLocalizedRanksModBuilder.new(
+  ParadoxGame.new(
+    "source/ck2_2.3.4",
+  ),
+  "output/no_localized_ranks",
+)
+mb.build!
