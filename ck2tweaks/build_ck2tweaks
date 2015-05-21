@@ -6,10 +6,10 @@ class CK2TweaksModBuilder < ParadoxModBuilder
   def reset_ruler_designer!
     patch_defines_lua!([
       # Start at 0 if you want to go down
-      ["BASE_ATTRIB", 5, 0],
+      ["BASE_ATTRIB", 5, 5],
       ["BASE_AGE", 16, 16],
-      ["BASE_FERTILITY", 0.5, 0],
-      ["BASE_HEALTH", 5.0, 0],
+      ["BASE_FERTILITY", 0.5, 0.5],
+      ["BASE_HEALTH", 5.0, 5.0],
       # Make everything free
       ["COST_ATTRIB", 1.0, 0],
       ["COST_SON", 3.0, 0],
@@ -144,7 +144,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
-    remove_levy_nerfs!
+    # remove_levy_nerfs!
     take_money_from_banished_landed_characters!
     no_dynastic_country_names!
     allow_any_number_of_different_holding_types!
@@ -156,7 +156,7 @@ end
 
 mb = CK2TweaksModBuilder.new(
   ParadoxGame.new(
-    "source/ck2_2.3.0",
+    "source/ck2_2.3.4",
   ),
   "output/ck2tweaks"
 )
