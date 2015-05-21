@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+
+class NoLocalizedTitlesModBuilder < ParadoxModBuilder
+  def no_localized_landed_titles!(node)
+    %W[
+      alan
+      andalusian_arabic
+      armenian
+      avar
+      bedouin_arabic
+      bohemian
+      breton
+      bulgarian
+      croatian
+      cuman
+      danish
+      egyptian_arabic
+      english
+      finnish
+      frankish
+      georgian
+      german
+      greek
+      hungarian
+      ilmenian
+      irish
+      italian
+      khanty
+      komi
+      kurdish
+      lappish
+      lettigallish
+      levantine_arabic
+      lithuanian
+      maghreb_arabic
+      mongol
+      mordvin
+      norman
+      norse
+      norwegian
+      pecheneg
+      persian
+      pictish
+      polish
+      pommeranian
+      prussian
+      romanian
+      russian
+      samoyed
+      saxon
+      scottish
+      serbian
+      severian
+      swedish
+      tamil
+      turkish
+      ugricbaltic
+      welsh
+    ].each do |culture|
+      node.delete(culture)
+    end
+
+    node.each do |key, val|
+      next if val.is_a?(Numeric) or val == true or val == false
+      case key
+      when /\A[ekdcb]_/
+        no_localized_landed_titles!(val)
+      when *%W[
+        color color2 dignity culture capital title title_female tribe holy_site
+        foa controls_religion religion allow mercenary_type coat_of_arms
+        male_names pagan_coa gain_effect graphical_culture
+      ]
+
+        # OK
+      when *%W[]
+      else
+        puts "Unknown node: #{key} #{val.class} #{val}"
+      end
+    end
+  end
+
+  def build_mod_files!
+    patch_mod_files!("common/landed_titles/*.txt") do |node|
+      node.each do |title_name, title_node|
+        no_localized_landed_titles!(title_node)
+      end
+    end
+  end
+end
+
+mb = NoLocalizedTitlesModBuilder.new(
+  ParadoxGame.new(
+    "source/ck2_2.3.4",
+  ),
+  "output/no_localized_landed_titles",
+)
+mb.build!
