@@ -1,8 +1,6 @@
 require "pathname"
 require "fileutils"
 
-FUN_AND_BALANCE_VERSION = "0.21a"
-
 def trash(*paths)
   paths.each do |path|
     next unless Pathname(path).exist?
@@ -12,59 +10,89 @@ def trash(*paths)
   end
 end
 
-def create_package_from_build_directory!(archive_name)
-  Dir.chdir("build") do
-    system "7za a '../#{archive_name}'"
+class ModBuilder
+  attr_reader :category, :name, :archive_name
+  def initialize(category, name, archive_name)
+    @category = category
+    @name = name
+    @archive_name = archive_name
+  end
+
+  def mod_descriptor
+    Pathname("#{category}/#{name}.mod")
+  end
+
+  def mod_picture
+    Pathname("#{category}/#{name}.png")
+  end
+
+  def build_dir
+    Pathname("build/#{name}")
+  end
+
+  def build!
+    trash "output/#{name}", "build"
+    Pathname("build/#{name}").mkpath
+    system "./#{category}/build_#{name}" or raise "Build failed"
+    system "cp #{mod_descriptor} build/"
+    system "cp -a output/#{name}/* #{build_dir}/"
+    system "cp #{mod_picture} #{build_dir}/" if mod_picture.exist?
+    Dir.chdir("build") do
+      system "7za a '../#{archive_name}'"
+    end
   end
 end
+
+####
+
+FUN_AND_BALANCE_VERSION = "0.21a"
+
+desc "Build all packages"
+task "package:all" => ["package:ck2", "package:eu4"]
 
 desc "Build all CK2 packages"
 task "package:ck2" => ["package:no_dynastic_names"]
 
-desc "Build CK2 No Dynastic Names package"
-task "package:no_dynastic_names" do
-  trash "output/no_dynastic_names", "build"
-  Pathname("build/no_dynastic_names").mkpath
-  system "./ck2_mods/build_no_dynastic_names" or raise "Build failed"
-  system "cp ck2_mods/no_dynastic_names.mod build/"
-  system "cp -a output/no_dynastic_names/* build/no_dynastic_names/"
-  system "cp ck2_mods/no_dynastic_names.png build/no_dynastic_names/"
-end
-
 desc "Build all EU4 packages"
 task "package:eu4" => ["package:vanilla", "package:extended_timeline", "package:shattered_europe"]
 
+desc "Build CK2 No Dynastic Names package"
+task "package:no_dynastic_names" do
+  ModBuilder.new(
+    "ck2_mods",
+    "no_dynastic_names",
+    "ck2_no_dynastic_names.7z",
+  ).build!
+end
+
 desc "Build Fun and Balance for vanilla package"
 task "package:vanilla" do
-  trash "output/fun_and_balance", "build"
-  Pathname("build/fun_and_balance").mkpath
-  system "./fun_and_balance/build_fun_and_balance" or raise "Build failed"
-  system "cp fun_and_balance/fun_and_balance.mod build/"
-  system "cp -a output/fun_and_balance/* build/fun_and_balance/"
-  create_package_from_build_directory! "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.11.4.7z"
+  ModBuilder.new(
+    "fun_and_balance",
+    "fun_and_balance",
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.11.4.7z",
+  ).build!
 end
 
 desc "Build Fun and Balance for Extended Timeline package"
 task "package:extended_timeline" do
-  trash "output/fun_and_balance_et", "build"
-  Pathname("build/fun_and_balance_et").mkpath
-  system "./fun_and_balance/build_fun_and_balance_et" or raise "Build failed"
-  system "cp fun_and_balance/fun_and_balance_et.mod build/"
-  system "cp -a output/fun_and_balance_et/* build/fun_and_balance_et/"
-  create_package_from_build_directory! "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.11.4_and_extended_timeline_0.12.3.7z"
+  ModBuilder.new(
+    "fun_and_balance",
+    "fun_and_balance_et",
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.11.4_and_extended_timeline_0.12.3.7z"
+  ).build!
 end
 
 desc "Build Fun and Balance for Shattered Europe package"
 task "package:shattered_europe" do
-  trash "output/fun_and_balance_shattered_europe", "build"
-  Pathname("build/fun_and_balance_shattered_europe").mkpath
-  system "./fun_and_balance/build_fun_and_balance_shattered_europe" or raise "Build failed"
-  system "cp fun_and_balance/fun_and_balance_shattered_europe.mod build/"
-  system "cp -a output/fun_and_balance_shattered_europe/* build/fun_and_balance_shattered_europe/"
-  create_package_from_build_directory! "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.11.4_and_shattered_europe.7z"
+  ModBuilder.new(
+    "fun_and_balance",
+    "fun_and_balance_shattered_europe",
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.11.4_and_shattered_europe.7z",
+  ).build!
 end
 
 desc "Remove build files"
 task "clean" do
-  trash "output", "build", "stackprof.dump"
+  trash "output", "build"
 end
