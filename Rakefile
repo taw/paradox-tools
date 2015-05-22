@@ -48,16 +48,16 @@ end
 FUN_AND_BALANCE_VERSION = "0.21a"
 
 desc "Build all packages"
-task "package:all" => ["package:ck2", "package:eu4"]
+task "all" => ["ck2", "eu4"]
 
 desc "Build all CK2 packages"
-task "package:ck2" => ["package:no_dynastic_names"]
+task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles"]
 
 desc "Build all EU4 packages"
-task "package:eu4" => ["package:vanilla", "package:extended_timeline", "package:shattered_europe"]
+task "eu4" => ["vanilla", "extended_timeline", "shattered_europe"]
 
-desc "Build CK2 No Dynastic Names package"
-task "package:no_dynastic_names" do
+desc "Build CK2 No Dynastic Names"
+task "no_dynastic_names" do
   ModBuilder.new(
     "ck2_mods",
     "no_dynastic_names",
@@ -65,8 +65,26 @@ task "package:no_dynastic_names" do
   ).build!
 end
 
-desc "Build Fun and Balance for vanilla package"
-task "package:vanilla" do
+desc "Build CK2 No Localized Landed Titles"
+task "no_localized_landed_titles" do
+  ModBuilder.new(
+    "ck2_mods",
+    "no_localized_landed_titles",
+    "ck2_no_localized_landed_titles.7z",
+  ).build!
+end
+
+desc "Build CK2 No Localized Ranks"
+task "no_localized_ranks" do
+  ModBuilder.new(
+    "ck2_mods",
+    "no_localized_ranks",
+    "ck2_no_localized_ranks.7z",
+  ).build!
+end
+
+desc "Build Fun and Balance for vanilla"
+task "vanilla" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance",
@@ -74,8 +92,8 @@ task "package:vanilla" do
   ).build!
 end
 
-desc "Build Fun and Balance for Extended Timeline package"
-task "package:extended_timeline" do
+desc "Build Fun and Balance for Extended Timeline"
+task "extended_timeline" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance_et",
@@ -83,8 +101,8 @@ task "package:extended_timeline" do
   ).build!
 end
 
-desc "Build Fun and Balance for Shattered Europe package"
-task "package:shattered_europe" do
+desc "Build Fun and Balance for Shattered Europe"
+task "shattered_europe" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance_shattered_europe",

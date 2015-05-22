@@ -100,7 +100,7 @@ class NoLocalizedRanksModBuilder < ParadoxModBuilder
         # No localized titles handles thoes
         line
       elsif key =~ rx # cultures.any?{|c| ranks.any?{|r| key == r + c }}
-        puts [key, fields[0]].join(" ; ")
+        # puts [key, fields[0]].join(" ; ")
         nil
       elsif cultures.any?{|c| key.end_with?("_#{c}")}
         # These are unrelated things like "convertto_swedish" "k_cuman" "region_baltic" etc.
