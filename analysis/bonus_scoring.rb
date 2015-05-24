@@ -66,9 +66,6 @@ class BonusScoring
     # Pretty close to irrelevant
     :global_garrison_growth,
 
-    # Completely irrelevant, even if you play merc game there are always enough
-    :possible_mercenaries,
-
     # Examples when it matters are extremely conditional
     :trade_range_modifier,
 
@@ -86,7 +83,15 @@ class BonusScoring
     define_method(k){|_| }
   end
 
-   # They aren't worth the same, but very conditional and hard to judge value
+  # Bonus itself is completely irrelevant, even if you play merc game there are always enough
+  # This bonus (12/100%) is actually converted further to relative bonus assuming base force limit 50
+  # so +25% possible mercenaries (+3 absolute force limit) is assumed to translate to
+  # 6% land force limit
+  def possible_mercenaries(v)
+    land_forcelimit(12*v)
+  end
+
+  # They aren't worth the same, but very conditional and hard to judge value
   def may_infiltrate_administration(v)
     extra_minor_abilities 1
   end
@@ -359,14 +364,16 @@ class BonusScoring
     trade_steering 0.25*v
   end
 
-  # Combat ability and discipline work the same multiplicatively:
-  # damage = (100% + combat ability) * (100% + discipline modifiers) * other stuff
+  # Discipline is twice as powerful as combat ability as it affects
+  # both damage dealt (like combat ability) and damage taken:
+  # damage dealt = (100% + combat ability) * (100% + discipline modifiers) * other stuff
+  # damage taken =                           (100% - discipline modifiers) * other stuff
   # (durability is naval equivalent of discipline)
   def discipline(v)
-    land_unit_power v
+    land_unit_power(2*v)
   end
   def ship_durability(v)
-    naval_unit_power v
+    naval_unit_power(2*v)
   end
   # Morale increases morale damage, and defense. Discipline does that and regular damage/defense,
   # so morale is worth about half as much as discipline
@@ -702,10 +709,12 @@ class BonusScoring
       when :colonists
         total += 3*v
       when :diplomats
-        total += 2*v
+        # 3rd diplomat is arguably worth more, but it falls down fast
+        total += 1.5*v
       when :missionaries
         total += 1*v
       when :merchants
+        # This also provides +5 naval force limit per merchant beyond 2nd, not counted separately
         total += 1*v
       when :global_missionary_strength
         total += 100.0*v
