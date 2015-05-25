@@ -64,21 +64,15 @@ class NoLocalizedRanksModBuilder < ParadoxModBuilder
       tribal_county_of_
       tribal_duchy_
       tribal_duchy_of_
-      tribal_duchy_of_old_
       tribal_duke_
       tribal_duke_female_
-      tribal_duke_female_old_
-      tribal_duke_old_
       tribal_emperor_
       tribal_emperor_female_
       tribal_empire_of_
       tribal_king_
       tribal_king_female_
-      tribal_king_female_old_
-      tribal_king_old_
       tribal_kingdom_
       tribal_kingdom_of_
-      tribal_kingdom_of_old_
       tribal_title_prince_
       tribal_title_prince_female_
       vice_royalty_duchy_of_
