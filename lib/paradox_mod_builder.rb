@@ -111,3 +111,13 @@ class ParadoxModBuilder
     create_file! path, ParadoxModFileSerializer.serialize(node).encode("windows-1252")
   end
 end
+
+class ParadoxModBuilder::CK2 < ParadoxModBuilder
+  def save_localization!
+    @localization.each do |group, data|
+      create_file!("localisation/#{group}.csv",
+        data.map{|k,v| "#{k};#{v};;;;;;;;;;;;;x\n" }.join
+      )
+    end
+  end
+end
