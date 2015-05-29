@@ -195,16 +195,41 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
         "revoke_allowed", PropertyList["always", false],
         "ai_will_do", PropertyList["factor", 0],
       ],
+      "educate_kin", PropertyList[
+        "filter", "dynasty",
+        "ai_target_filter", "dynasty",
+        "from_potential", PropertyList["age", 16],
+        "potential", PropertyList[
+          "age", 6,
+          Property::NOT["age", 16],
+        ],
+        # "allow", PropertyList[
+          # "is_close_relative", "ROOT",
+          # Property::NOT["guardian", "ROOT"],
+        # ],
+        "effect", PropertyList["set_guardian", "FROM"],
+        "revoke_allowed", PropertyList["always", false],
+        "ai_will_do", PropertyList["factor", 0],
+      ]
     ]
 
     create_mod_file! "decisions/dynastic_decisions.txt", PropertyList["targetted_decisions", decisions]
-    localization! "dynastic_decisions",
+    localization!("dynastic_decisions",
       "switch_to_spouse_dynasty" => "Swich to spouse's dynasty",
       "switch_to_spouse_dynasty_desc" => "Abandon your current family name, become part of spouse's dynasty",
       "make_marriage_regular" => "Make marriage regular",
       "make_marriage_regular_desc" => "All children will by of father's dynasty",
       "make_marriage_matrilineal" => "Make marriage matrilineal",
-      "make_marriage_matrilineal_desc" => "All children will by of mother's dynasty"
+      "make_marriage_matrilineal_desc" => "All children will by of mother's dynasty",
+      "educate_kin" => "Educate close kin",
+      "educate_kin_desc" => "Can use even if beyond education limit",
+    )
+  end
+
+  def cognatic_for_most_cultures!
+    patch_mod_file!("decisions/succession_laws.txt") do |node|
+      node["gender_laws"]["true_cognatic_succession"].delete("allow")
+    end
   end
 
   def build_mod_files!
@@ -220,6 +245,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     more_banishment_reasons!
     add_dynastic_decisions!
     fix_gavelkind!
+    cognatic_for_most_cultures!
   end
 end
 
