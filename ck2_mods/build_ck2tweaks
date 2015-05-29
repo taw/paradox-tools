@@ -232,6 +232,12 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def dont_mark_conscript_ships_important!
+    patch_mod_file!("decisions/unit_decisions.txt") do |node|
+      node["decisions"]["conscript_merchant_ships"].delete "is_high_prio"
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -246,6 +252,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     add_dynastic_decisions!
     fix_gavelkind!
     cognatic_for_most_cultures!
+    dont_mark_conscript_ships_important!
   end
 end
 
