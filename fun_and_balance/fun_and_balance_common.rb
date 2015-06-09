@@ -405,6 +405,7 @@ module FunAndBalanceCommon
         group.each do |name, religion|
           next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range"].include?(name)
           if group_name == "pagan"
+            religion["province"] ||= PropertyList[]
             religion["province"]["local_missionary_strength"] = 0.03
           else
             religion["province"].delete("local_missionary_strength") if religion["province"]
@@ -453,15 +454,15 @@ module FunAndBalanceCommon
 
   def holy_sites_by_religion
     {
-      catholic:     ["Roma", "Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      protestant:   ["Roma", "Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      reformed:     ["Roma", "Jerusalem", "Thrace / Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      orthodox:     ["Roma", "Jerusalem", "Thrace / Constantinople", "Macedonia / Mount Athos", "Kiev"],
-      coptic:       ["Roma", "Jerusalem", "Thrace / Constantinople", "Alexandria", "Tigre / Ark of the Covenant"],
+      catholic:     ["Roma", "Jerusalem", "Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      protestant:   ["Roma", "Jerusalem", "Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      reformed:     ["Roma", "Jerusalem", "Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+      orthodox:     ["Roma", "Jerusalem", "Constantinople", "Thessaloniki / Mount Athos", "Kiev"],
+      coptic:       ["Roma", "Jerusalem", "Constantinople", "Alexandria", "Tigre / Ark of the Covenant"],
 
-      sunni:        ["Mecca", "Jerusalem", "Thrace / Constantinople", "Cordoba", "Hillah / Karbala"],
-      shiite:       ["Mecca", "Jerusalem", "Thrace / Constantinople", "Cordoba", "Hillah / Karbala"],
-      ibadi:        ["Mecca", "Jerusalem", "Thrace / Constantinople", "Cordoba", "Hillah / Karbala"],
+      sunni:        ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
+      shiite:       ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
+      ibadi:        ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
 
       # Varanasi, Chidambaram, Angkor Wat - Hindu
       # Palitana - Jain
@@ -703,6 +704,8 @@ module FunAndBalanceCommon
       add_papal_influence
       add_mercantilism
       add_treasury
+      every_owned_province
+      add_ruler_modifier
     ]
     # The problem with add_legitimacy is that republics won't benefit from it at all, but it's useful for most countries
     # The problem with add_papal_influence is that it only matters for catholic countries
@@ -714,10 +717,16 @@ module FunAndBalanceCommon
     effect.merge!(effect.delete("FROM").to_h)
     effect.merge!(effect.delete("ROOT").to_h)
     effect.merge!(effect.delete("owner").to_h) if mission["type"] == "our_provinces"
+    effect.delete("if").each do |cond|
+      effect.merge!(cond.to_h)
+    end if effect["if"]
+    effect.delete("limit")
     # Getting points of good kind
     return false if !(effect.keys & good_rewards).empty?
     # Getting free CBs
     return false if immediate["add_claim"] or immediate.values.map(&:to_h).inject({}, &:merge)["add_claim"]
+    # These are used mostly to ensure mission can't be taken too many times in a row
+    effect.delete("set_country_flag")
     # This is legitimately awful
     return true if immediate.empty? and effect.keys == ["add_prestige"]
     return true if immediate.empty? and effect.keys == ["define_advisor"]
@@ -725,73 +734,26 @@ module FunAndBalanceCommon
     require 'pry'; binding.pry
   end
 
+  # Vanilla made rewards less shitty in 1.12, at least that's what they say
   def fix_mission_rewards!(name, mission)
     case name
-    when "make_base_on_spice_islands"
-      mission["effect"]["add_country_modifier"] = PropertyList["name", "colonial_enthusiasm", "duration", 1875]
-    when "conquer_core"
-      mission["effect"]["FROM"]["add_prestige"] = 20
-      mission["effect"]["FROM"]["add_legitimacy"] = 10
-      mission["effect"]["FROM"]["add_republican_tradition"] = 0.1
-    when "keep_rival_out_of_italy"
-      mission["effect"]["FROM"]["add_prestige"] = 10
-      mission["effect"]["FROM"]["add_mil_power"] = 25
-    when "attack_prestigous_rival"
-      mission["effect"]["FROM"]["add_prestige"] = 10
-      mission["effect"]["FROM"]["add_mil_power"] = 25
-    when "attack_weaker_rival"
-      mission["effect"]["FROM"]["add_mil_power"] = 25
-    when "italian_ambition"
-      mission["effect"]["add_adm_power"] = 25
-    when "build_refinery", "build_wharf"
-      mission["effect"]["owner"]["add_dip_power"] = 25
-      mission["effect"]["add_base_tax"] = 1
-    when "build_weapons"
-      mission["effect"]["owner"]["add_mil_power"] = 25
-      mission["effect"]["add_province_manpower"] = 1
-    when "build_textile"
-      mission["effect"]["owner"]["add_adm_power"] = 25
-      mission["effect"]["add_base_tax"] = 1
-    when "build_fine_arts_academy"
-      mission["effect"]["owner"]["add_base_tax"] = 1
-      mission["effect"]["add_stability"] = 1
-    when "build_university"
-      mission["effect"]["owner"]["add_adm_power"] = 25
-      mission["effect"]["owner"]["add_dip_power"] = 25
-      mission["effect"]["owner"]["add_mil_power"] = 25
-      mission["effect"]["add_stability"] = 1
     when "view_the_hanami"
       # Daimyo only mission
       mission["effect"]["add_legitimacy"] = 10
-    when "improve_relations_mission"
-      mission["effect"]["FROM"]["add_prestige"] = 10
-      mission["effect"]["FROM"]["add_dip_power"] = 25
     when "improve_reputation_mission"
       mission["effect"]["add_stability"] = 1
       mission["effect"]["add_legitimacy"] = 10
-      mission["effect"]["add_republican_tradition"] = 10
+      mission["effect"]["add_republican_tradition"] = 0.1
     when "get_minor_cash_reserve"
       mission["effect"]["add_adm_power"] = 10
     when "recover_negative_stability"
       mission["effect"]["add_prestige"] = 10
       mission["effect"]["add_legitimacy"] = 10
       mission["effect"]["add_republican_tradition"] = 0.1
-    when "recover_from_warexhaustion"
-      mission["effect"]["add_dip_power"] = 25
-    when "convert_province_mission"
-      mission["effect"]["owner"]["add_adm_power"] = 25
-    when "solidify_our_papal_relations"
-      mission["effect"]["add_prestige"] = 10
-      mission["effect"]["add_dip_power"] = 25
-    when "control_the_pope"
-      mission["effect"]["add_prestige"] = 10
-      mission["effect"]["add_dip_power"] = 25
     when "defeat_rebels_mission"
       mission["effect"]["add_prestige"] = 10
       mission["effect"]["add_legitimacy"] = 10
       mission["effect"]["add_republican_tradition"] = 0.1
-    when "force_convert_mission"
-      mission["effect"]["add_dip_power"] = 100
     else
       require 'pry'; binding.pry
     end
@@ -830,7 +792,7 @@ module FunAndBalanceCommon
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 65])
         when ["HAB"]
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 134])
-        when ["POL"]
+        when ["POL"], ["POL", "PLC"]
           # Krakow and Warsaw
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 262], Property["owns_core_province", 257])
         when ["PAP"]
@@ -1009,25 +971,12 @@ module FunAndBalanceCommon
       "theocratic_administration_desc"  => "Kings only rule by divine right, so why not skip the middleman and put priests directly in control?"
   end
 
+  # Patch 1.12 incorporated most of that into vanilla
   def fix_custom_idea_extra_governments!
     extra_government_costs = {
-      # Generally sensible:
-      "administrative_monarchy" => 20,
-      "absolute_monarchy" => 30,
-      "constitutional_monarchy" => 30,
-      "enlightened_despotism" => 50,
-      "revolutionary_empire" => 50,
-      "administrative_republic" => 20,
-      "republican_dictatorship" => 30,
-      "constitutional_republic" => 40,
-      "bureaucratic_despotism" => 50,
-      "revolutionary_republic" => 50,
-      "archduchy" => 10,
       # Use at your own risk:
-      "siberian_native_council" => 20,
+      "siberian_native_council" => 0,
       "colonial_government" => 20,
-      "american_republic" => 50,
-      "federal_republic" => 50,
       # Not available:
       # "papal_government",
       # "celestial_empire",

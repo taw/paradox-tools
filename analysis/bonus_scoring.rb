@@ -79,6 +79,10 @@ class BonusScoring
     :bureaucrats_influence,
     :enuchs_influence,
     :temples_influence,
+
+    # Far too conditional
+    :devotion,
+    :church_power_modifier,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -227,13 +231,15 @@ class BonusScoring
   def inflation_reduction(v)
     monthly_adm_points v*(75.0/2.0/12)*0.25
   end
-  # Assume average of 1bt/year cored
+  # Assume average of 3dev/year cored before efficiency unlocks,
+  # proportionally more after efficiency
   def core_creation(v)
-    monthly_adm_points (-v * 20.0 * 1.0 / 12)
+    monthly_adm_points (-v * 10.0 * 3.0 / 12)
   end
-  # Assume average of 1bt/year diploannexed
+  # Assume average of 3dev/year diploannexed before efficiency unlocks,
+  # proportionally more after efficiency
   def diplomatic_annexation_cost(v)
-    monthly_dip_points (-v * 10.0 * 1.0 / 12)
+    monthly_dip_points (-v * 10.0 * 3.0 / 12)
   end
   # Assume 2 unjustified demand for base of 50 each every 10 years
   def unjustified_demands(v)
@@ -710,7 +716,8 @@ class BonusScoring
         total += 3*v
       when :diplomats
         # 3rd diplomat is arguably worth more, but it falls down fast
-        total += 1.5*v
+        # Diplomats became more important in 1.12 as you only have 2 not 3 after embassy got removed
+        total += 2*v
       when :missionaries
         total += 1*v
       when :merchants
