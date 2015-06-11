@@ -66,6 +66,11 @@ module FunAndBalanceFeatureHolySites
     end
   end
 
+  def universal_province_id(site)
+    province, name, id = site.split(/\s*\/\s*/)
+    id || province_id(province)
+  end
+
   def site_information(site)
     province, name, id = site.split(/\s*\/\s*/)
     id ||= province_id(province)
@@ -161,6 +166,7 @@ module FunAndBalanceFeatureHolySites
     by_religion = {}
     by_province = {}
     province_modifiers = {}
+    init_script = PropertyList[]
 
     each_religion do |group_name, religion_name, info|
       subgroup = holy_site_info[:groups][religion_name.to_sym]
@@ -196,8 +202,13 @@ module FunAndBalanceFeatureHolySites
       triggers << add_holy_sites_all!(religion, sites)
     end
 
-    by_province.each do |site, groups|
-      p [site, groups]
+    by_province.each do |site, mods|
+      id = universal_province_id(site)
+      init_script.add! id, PropertyList[
+        *mods.map{|mod|
+          Property["add_province_modifier", PropertyList["name", mod, "duration", -1]]
+        }
+      ]
     end
     province_modifiers.each do |mod, (title, dsc)|
       localization! "holy_sites",
@@ -206,6 +217,9 @@ module FunAndBalanceFeatureHolySites
     end
     create_mod_file! "common/event_modifiers/10_holy_sites.txt", PropertyList[
       *province_modifiers.keys.map{|mod| Property[mod, PropertyList[]]}
+    ]
+    create_mod_file! "common/on_actions/10_holy_sites.txt", PropertyList[
+      "on_startup", init_script,
     ]
     create_mod_file! "common/triggered_modifiers/holy_sites.txt", PropertyList[*triggers]
     create_mod_file! "missions/Holy_Sites_Missions.txt", PropertyList[*missions]
