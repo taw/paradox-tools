@@ -67,7 +67,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     dont_destroy_buildings_on_conquest!
     double_diplo_rel_limit_from_ideas!
     feature_extra_formable_countries!
-    feature_holy_sites!
+    feature_holy_sites!(holy_site_info_vanilla)
     feature_partial_westernization!
     fix_opinions!
     fix_wargoals!

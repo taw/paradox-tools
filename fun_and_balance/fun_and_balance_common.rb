@@ -36,7 +36,8 @@ module FunAndBalanceCommon
   end
 
   def province_id(province_name)
-    matches = @game.glob("history/provinces/*.txt").select{|n|
+    @province_ids ||= @game.glob("history/provinces/*.txt")
+    matches = @province_ids.select{|n|
       n.basename(".txt").to_s.sub(/\A\d+[ -]*/, "").downcase == province_name.downcase
     }
     raise "No match for #{province_name}" unless matches.size == 1
@@ -245,10 +246,45 @@ module FunAndBalanceCommon
     ]]
   end
 
-  def feature_holy_sites!
-    missions = []
-    triggers = []
-    holy_sites_by_religion.each do |religion, sites|
+  def each_religion
+    @game.glob("common/religions/*.txt").each do |path|
+      @game.parse(path).each do |group_name, group|
+        group.each do |religion_name, religion|
+          next unless religion.is_a?(PropertyList)
+          yield(group_name, religion_name, religion)
+        end
+      end
+    end
+  end
+
+  def feature_holy_sites!(holy_site_info)
+    missions    = []
+    triggers    = []
+    by_religion = {}
+    by_province = {}
+
+    p [:a, Time.now]
+    each_religion do |group_name, religion_name, info|
+      subgroup = holy_site_info[:groups][religion_name.to_sym]
+      holy_sites = [
+        holy_site_info[:sites][group_name.to_sym],
+        (holy_site_info[:sites][subgroup] if subgroup),
+        holy_site_info[:sites][religion_name.to_sym],
+      ].compact.inject(&:+)
+      p [group_name, religion_name, holy_sites]
+      by_religion[religion_name] =  holy_sites
+    end
+    holy_site_info[:sites].each do |group, sites|
+      name = @game.localization(group)
+      if name.is_a?(Symbol)
+        name = name.to_s.split("_").map(&:capitalize).join(" ")
+      end
+      sites.each do |site|
+        (by_province[site] ||= []) << name
+      end
+    end
+
+    by_religion.each do |religion, sites|
       next if sites.empty?
       sites = sites.map{|s| site_information(s)}
       sites.each_with_index do |s,i|
@@ -258,8 +294,13 @@ module FunAndBalanceCommon
       triggers << add_holy_sites_all!(religion, sites)
     end
 
+    by_province.each do |site, groups|
+      p [site, groups]
+    end
+
     create_mod_file! "common/triggered_modifiers/holy_sites.txt", PropertyList[*triggers]
     create_mod_file! "missions/Holy_Sites_Missions.txt", PropertyList[*missions]
+    p [:b, Time.now]
   end
 
   def each_country_primary_culture
@@ -452,43 +493,50 @@ module FunAndBalanceCommon
     end
   end
 
-  def holy_sites_by_religion
+  # Based on history, CK2 precedence, and gameplay considerations
+  # Many CK2 locations mapped to vaguely similar EU4 provinces as map correspondence is not very high
+  # Better suggestions welcome
+  # Protestant/Reformed set to same as Catholic because we don't know where they'll trigger
+  def holy_site_info_vanilla
     {
-      catholic:     ["Roma", "Jerusalem", "Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      protestant:   ["Roma", "Jerusalem", "Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      reformed:     ["Roma", "Jerusalem", "Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-      orthodox:     ["Roma", "Jerusalem", "Constantinople", "Thessaloniki / Mount Athos", "Kiev"],
-      coptic:       ["Roma", "Jerusalem", "Constantinople", "Alexandria", "Tigre / Ark of the Covenant"],
+      groups: {
+        catholic:              :western_christian,
+        protestant:            :western_christian,
+        reformed:              :western_christian,
+        inti:                  :new_world,
+        nahuatl:               :new_world,
+        mesoamerican_religion: :new_world,
+      },
+      sites: {
+        christian:    ["Roma", "Jerusalem", "Constantinople"],
+        western_christian: ["Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+        orthodox:     ["Thessaloniki / Mount Athos", "Kiev"],
+        coptic:       ["Alexandria", "Tigre / Ark of the Covenant"],
 
-      sunni:        ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
-      shiite:       ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
-      ibadi:        ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
+        muslim:       ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
+        # Varanasi, Chidambaram, Angkor Wat - Hindu
+        # Palitana - Jain
+        # Harmandir Sahib - Sikh
+        dharmic:     ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Angkor / Angkor Wat", "Lahore / Harmandir Sahib"],
 
-      # Varanasi, Chidambaram, Angkor Wat - Hindu
-      # Palitana - Jain
-      # Harmandir Sahib - Sikh
-      hinduism:     ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Angkor / Angkor Wat", "Lahore / Harmandir Sahib"],
-      sikhism:      ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Angkor / Angkor Wat", "Lahore / Harmandir Sahib"],
+        # These are not amazing, but they'll have to do:
+        eastern:     ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
 
-      # TODO:
-      buddhism:     ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
-      confucianism: ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
-      shinto:       ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
+        # Adapted from CK2
+        norse_pagan_reformed:   ["Zeeland", "Hannover / Paderborn / 1758", "Sjaelland", "Trondelag", "Uppland / Uppsala"],
+        jewish:                 ["Jerusalem", "Sinai", "Damascus", "Hamadan", "Dhofar / Salahah"],
 
-      # Adapted from CK2
-      norse_pagan_reformed:   ["Zeeland", "Hannover / Paderborn / 1758", "Sjaelland", "Trondelag", "Uppland / Uppsala"],
-      jewish:                 ["Jerusalem", "Sinai", "Damascus", "Hamadan", "Dhofar / Salahah"],
-
-
-      # Not getting any ever, these are generic groupings not real religions
-      shamanism:    [],
-      animism:      [],
-      totemism:     [],
-
-      # Maybe someday
-      inti:                  [],
-      nahuatl:               [],
-      mesoamerican_religion: [],
+        # One site moved way east as EU4 map has more Tengri land
+        tengri_pagan_reformed: ["Pest", "Crimea", "Astrakhan", "Alty-Kuduk", "Barguzinsky"],
+        zoroastrian: ["Zanjan", "Bushehr", "Bojnord", "Bam", "Balkh"],
+        # Old world sites are Sunset Invasion siliness
+        # New world sites are one per religion so they have reason to fight each other
+        new_world: ["London", "Ile-de-France / Paris", "Mexico", "Belize", "Cuzco"],
+        # Not getting any ever, these are generic groupings not real religions
+        shamanism:    [],
+        animism:      [],
+        totemism:     [],
+      }
     }
   end
 
@@ -501,7 +549,7 @@ module FunAndBalanceCommon
         "partial_westernization", PropertyList[
           "major", true,
           "potential", PropertyList[
-            Property::NOT["has_global_flag", "fun_and_balance_config.disable_partial_westernization"],
+            "has_global_flag", "fun_and_balance_config.enable_partial_westernization",
             Property::OR[
               "technology_group", "south_american",
               "technology_group", "mesoamerican",
@@ -1178,8 +1226,8 @@ def build_mod_config_menu!(*options)
       menu_clr_flag_option("disable_extra_missions", "Enable extra missions"),
       menu_set_flag_option("disable_extra_formable_countries", "Disable extra formable countries"),
       menu_clr_flag_option("disable_extra_formable_countries", "Enable extra formable countries"),
-      menu_set_flag_option("disable_partial_westernization", "Disable partial westernization"),
-      menu_clr_flag_option("disable_partial_westernization", "Enable partial westernization"),
+      menu_set_flag_option("enable_partial_westernization", "Enable partial westernization"),
+      menu_clr_flag_option("enable_partial_westernization", "Disable partial westernization"),
       menu_set_flag_option("disable_eu3_style_elections", "Disable EU3 style elections"),
       menu_clr_flag_option("disable_eu3_style_elections", "Enable EU3 style elections"),
       menu_set_flag_option("enable_burgundian_succession_crisis", "Enable Burgundian Successian Crisis"),
