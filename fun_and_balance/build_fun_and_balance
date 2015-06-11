@@ -64,7 +64,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
 
     anyone_can_form_byzantium!
     change_elections_to_eu3_style!
-    dont_destroy_buildings_on_conquest!
     double_diplo_rel_limit_from_ideas!
     feature_extra_formable_countries!
     feature_holy_sites!(holy_site_info_vanilla)
