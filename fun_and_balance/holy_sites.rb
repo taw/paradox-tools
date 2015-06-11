@@ -167,8 +167,10 @@ module FunAndBalanceFeatureHolySites
     by_province = {}
     province_modifiers = {}
     init_script = PropertyList[]
+    use_singular = {}
 
     each_religion do |group_name, religion_name, info|
+      use_singular[religion_name] = true
       subgroup = holy_site_info[:groups][religion_name.to_sym]
       holy_sites = [
         holy_site_info[:sites][group_name.to_sym],
@@ -179,6 +181,13 @@ module FunAndBalanceFeatureHolySites
     end
     holy_site_info[:sites].each do |group, sites|
       name = @game.localization(group)
+
+      if use_singular[group.to_s]
+        name_religion = "#{name} religion"
+      else
+        name_religion = "#{name} religions"
+      end
+
       mod = "#{group}_holy_site_modifier"
       if name.is_a?(Symbol)
         name = name.to_s.split("_").map(&:capitalize).join(" ")
@@ -188,7 +197,7 @@ module FunAndBalanceFeatureHolySites
       end
       province_modifiers[mod] ||= [
         "#{name} Holy Site",
-        "This province is considered a holy site by #{name} religion. It gives a bonus to all #{name} countries if it is held by a country of same religion.",
+        "This province is considered a holy site by #{name_religion}. It gives a bonus to all #{name} countries if it is held by a country of same religion.",
       ]
     end
 
