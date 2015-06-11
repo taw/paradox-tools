@@ -160,6 +160,7 @@ module FunAndBalanceFeatureHolySites
     triggers    = []
     by_religion = {}
     by_province = {}
+    province_modifiers = {}
 
     each_religion do |group_name, religion_name, info|
       subgroup = holy_site_info[:groups][religion_name.to_sym]
@@ -168,17 +169,21 @@ module FunAndBalanceFeatureHolySites
         (holy_site_info[:sites][subgroup] if subgroup),
         holy_site_info[:sites][religion_name.to_sym],
       ].compact.inject(&:+)
-      p [group_name, religion_name, holy_sites]
       by_religion[religion_name] =  holy_sites
     end
     holy_site_info[:sites].each do |group, sites|
       name = @game.localization(group)
+      mod = "#{group}_holy_site_modifier"
       if name.is_a?(Symbol)
         name = name.to_s.split("_").map(&:capitalize).join(" ")
       end
       sites.each do |site|
-        (by_province[site] ||= []) << name
+        (by_province[site] ||= []) << mod
       end
+      province_modifiers[mod] ||= [
+        "#{name} Holy Site",
+        "This province is considered a holy site by #{name} religion. It gives a bonus to all #{name} countries if it is held by a country of same religion.",
+      ]
     end
 
     by_religion.each do |religion, sites|
@@ -194,7 +199,14 @@ module FunAndBalanceFeatureHolySites
     by_province.each do |site, groups|
       p [site, groups]
     end
-
+    province_modifiers.each do |mod, (title, dsc)|
+      localization! "holy_sites",
+        "#{mod}" => title,
+        "desc_#{mod}" => dsc
+    end
+    create_mod_file! "common/event_modifiers/10_holy_sites.txt", PropertyList[
+      *province_modifiers.keys.map{|mod| Property[mod, PropertyList[]]}
+    ]
     create_mod_file! "common/triggered_modifiers/holy_sites.txt", PropertyList[*triggers]
     create_mod_file! "missions/Holy_Sites_Missions.txt", PropertyList[*missions]
   end
