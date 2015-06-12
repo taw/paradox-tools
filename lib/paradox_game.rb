@@ -9,6 +9,7 @@ class Pathname
 end
 
 class ParadoxGame
+  attr_reader :roots
   def initialize(*roots)
     raise "At least one root necessary" if roots.empty?
     @roots = roots.map{|r| Pathname(r)}.reverse

@@ -1,3 +1,8 @@
+# TODO: This entire file is a huge mess:
+#    * ParadoxGame needs to handle folder shadowing
+#    * province_id needs to be separated
+#    * sites need to be first class
+
 module FunAndBalanceFeatureHolySites
   # Based on history, CK2 precedence, and gameplay considerations
   # Many CK2 locations mapped to vaguely similar EU4 provinces as map correspondence is not very high
@@ -46,12 +51,78 @@ module FunAndBalanceFeatureHolySites
     }
   end
 
-  def province_id(province_name)
+  def holy_site_info_et
+    # TODO:
+    # ["hellenic", "hellenism"]
+    # ["hellenic", "zamolxism"]
+    # ["hellenic", "nabataean"]
+    # ["celtic_pagan", "druidism"]
+    # ["slavic_pagan", "romuva"]
+    # ["slavic_pagan", "slavic"]
+    # ["finnic_pagan", "suomenusko"]
+    # ["african_pagan", "egyptian"]
+    # ["african_pagan", "african"] - not getting any
+    # ["mesopotamian", "ashurism"]
+    # ["mesopotamian", "south_arabian"]
+    #
+    # and fix early Christian religions
+    {
+      groups: {
+        catholic:              :western_christian,
+        protestant:            :western_christian,
+        reformed:              :western_christian,
+        orthodox:              :eastern_christian,
+        nestorian:             :eastern_christian,
+        arianism:              :eastern_christian,
+        chalcedonism:          :eastern_christian,
+        inti:                  :new_world,
+        nahuatl:               :new_world,
+        mesoamerican_religion: :new_world,
+      },
+      sites: {
+        # All 8 Christian churches want 3 obvious holy sites
+        # I can't think of good assignment for the last two
+        # Making Arian/Nostorian/Chalcedonian use Orthodox sites is really just a temporary solution
+        christian:         ["Roma", "Judea / Jerusalem", "Thrace / Constantinople"],
+        western_christian: ["Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+        eastern_christian: ["Salonica / Mount Athos / 2007", "Kiev"],
+        coptic:            ["Alexandria", "Tigre / Ark of the Covenant"],
+
+        muslim:                ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
+        tengri_pagan_reformed: holy_site_info_vanilla[:sites][:tengri_pagan_reformed],
+        dharmic:               ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Siem Reap / Angkor Wat", "Punjab / Harmandir Sahib"],
+        jewish:                ["Judea / Jerusalem", "Sinai", "Damascus", "Hamadan", "Dhofar / Salahah"],
+        german_pagan:          holy_site_info_vanilla[:sites][:norse_pagan_reformed],
+        # These are one group in vanilla, ET splits them, they're getting same sites anyway
+        eastern:               ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
+        buddhic:               ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
+        # There's american_pagan grouping, but I don't want it for totemism/south_american
+        new_world:             holy_site_info_vanilla[:sites][:new_world],
+        iranian:               ["Zanjan", "Rushehr / Bushehr", "Bojnord", "Bam", "Balkh"],
+
+        # Not getting any ever, these are generic groupings not real religions
+        shamanism:      [],
+        animism:        [],
+        totemism:       [],
+        south_american: [],
+        african:        [],
+        # Obviously
+        selular:        [],
+      }
+    }
+  end
+
+  # Overridden by ET
+  def province_ids
     @province_ids ||= @game.glob("history/provinces/*.txt")
-    matches = @province_ids.select{|n|
+  end
+
+  def province_id(province_name)
+    matches = province_ids.select{|n|
       n.basename(".txt").to_s.sub(/\A\d+[ -]*/, "").downcase == province_name.downcase
     }
-    raise "No match for #{province_name}" unless matches.size == 1
+    raise "No match for #{province_name}" if matches.size == 0
+    raise "Multiple matches for #{province_name}" if matches.size >= 2
     matches[0].basename.to_s.to_i
   end
 
@@ -202,7 +273,7 @@ module FunAndBalanceFeatureHolySites
     end
 
     by_religion.each do |religion, sites|
-      next if sites.empty?
+      next if sites.nil? or sites.empty?
       sites = sites.map{|s| site_information(s)}
       sites.each_with_index do |s,i|
         triggers << add_holy_site!(religion, s, i+1)

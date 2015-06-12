@@ -6,6 +6,14 @@ require_relative "./fun_and_balance_common"
 class FunAndBalanceETModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
+  # Hack because ParadoxGame doesn't support folder replacements
+  def province_ids
+    @province_ids ||= begin
+      @game.glob("history/provinces/*.txt")
+           .select{|path| @game.resolve(path).to_s.start_with? @game.roots[0].to_s }
+    end
+  end
+
   def fix_adopt_secularism_decision!
     patch_mod_file!("decisions/et_conversion_decisions.txt") do |node|
       node["religion_decisions"]["adopt_secularism"]["allow"].add! "is_subject", false
@@ -51,10 +59,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   end
 
   def build_mod_files!
-    # Fix syntax errors
-    # patch_file!("common/ideas/et_country_ideas.txt", force_create: true) do |content|
-    #   content.sub(/top_five_in_literacy\s*$/, "top_five_in_literacy = {")
-    # end
+    # It's been a while since this kind of blatant syntax error in vanilla
     patch_file!("missions/French_Missions.txt", force_create: true) do |content|
       content.sub(/duration 1825/, "duration = 1825")
     end
@@ -96,6 +101,16 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       ["OVERSEAS_DISTANCE", 150, 400],
     ])
 
+    # Extended timeline diplomatic relations per era:
+    # classical   3-2   -> 6-4
+    # medieval    3-1   -> 6-2
+    # (default)   3     -> 6
+    # industrial  3+3   -> 6+4
+    # modern      3+6   -> 6+8
+    #
+    # It's much less calibrated than vanilla.
+    # Bonuses from ideas etc. doubled
+
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["war"] = PropertyList[] if node["war"] == []
       modify_node! node,
@@ -107,25 +122,38 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
         ["war_exhaustion", "naval_morale", nil, -0.02],
         ["num_of_marriages", "heir_chance", 0.05, 0.03]
     end
+    patch_mod_file!("common/triggered_modifiers/et_triggered_modifiers.txt") do |node|
+      node["classical_era"]["diplomatic_upkeep"]  = -4
+      node["medieval_era"]["diplomatic_upkeep"]   = -2
+      node["industrial_era"]["diplomatic_upkeep"] = 4
+      node["modern_times"]["diplomatic_upkeep"]   = 8
+    end
 
-    # add +2 relations per era, not +1
+    anyone_can_form_byzantium!
     change_elections_to_eu3_style!
     double_diplo_rel_limit_from_ideas!
+    # No extra foramble countries, makes little sense it this mod
+    feature_holy_sites!(holy_site_info_et) # TODO
+    # No partial westernization - it is disabled by default these days anyway
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
+    # patch_religion! - TODO
     reduce_religious_center_penalty!
     disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
+    # reverse_horde_nerfs! - do I want it here?
     smooth_oe_scaling!
-    fix_adopt_secularism_decision!
-    hire_merc_company_decision!
+    # make_missions_not_tag_specific! - it could get ported to ET eventually
     easier_change_government_decisions!
     fix_custom_ideas!
     power_projection_tweaks!
     build_mod_config_menu_for_et!
     more_options_for_religious_leagues!
     improve_mission_pool!
+
+    fix_adopt_secularism_decision!
+    hire_merc_company_decision!
   end
 end
 
