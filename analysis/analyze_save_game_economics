@@ -5,6 +5,15 @@
 
 require_relative "../lib/paradox_game"
 
+module Enumerable
+  def sum
+    inject(0, &:+)
+  end
+  def avg
+    sum/size.to_f
+  end
+end
+
 class AnalyzeSaveGameEconomics
   def initialize(save_game)
     @data = ParadoxModFile.new(path: save_game).parse!
@@ -66,8 +75,22 @@ class AnalyzeSaveGameEconomics
     @great_powers ||= countries.keys.sort_by{|tag| -countries[tag]["development"]}[0,25]
   end
 
+  def total_development
+    @data["provinces"].values.map{|x| x["improve_count"] || 0}.sum
+  end
+
+  def average_base_development_cost
+    @data["provinces"].values.map{|x| x["improve_count"]||0 }.map{|i| (0...i).map{|x| 50+x*5} }.flatten.avg
+  end
+
+  def number_of_countries
+    countries.values.select{|x| x["development"] > 0}.size
+  end
+
   def report!
-    p @data["provinces"][-183]["improve_count"]
+    puts "Total development: #{total_development}"
+    puts "Average base dev: #{average_base_development_cost}"
+    puts "Number of countries: #{number_of_countries}"
     great_powers.each do |tag|
       puts tag
       p income_for_country(tag)
