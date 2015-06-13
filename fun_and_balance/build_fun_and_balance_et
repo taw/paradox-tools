@@ -128,6 +128,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     # No extra foramble countries, makes little sense it this mod
     feature_holy_sites!(holy_site_info_et) # TODO
     # No partial westernization - it is disabled by default these days anyway
+    # No achievements - map would need too many fixes
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!

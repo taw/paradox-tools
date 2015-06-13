@@ -6,7 +6,6 @@ require_relative "./fun_and_balance_common"
 class FunAndBalanceModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
-
   def build_mod_files!
     # It's been a while since this kind of blatant syntax error in vanilla
     patch_file!("missions/French_Missions.txt", force_create: true) do |content|
@@ -68,6 +67,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     feature_extra_formable_countries!
     feature_holy_sites!(holy_site_info_vanilla)
     feature_partial_westernization!
+    feature_achievements!
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
