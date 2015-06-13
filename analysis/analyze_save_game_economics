@@ -1,0 +1,86 @@
+#!/usr/bin/env ruby
+
+# This script runs some savegame analysis for better idea what's going on with
+# game economics. Primarily to calibrace bonus_scoring function
+
+require_relative "../lib/paradox_game"
+
+class AnalyzeSaveGameEconomics
+  def initialize(save_game)
+    @data = ParadoxModFile.new(path: save_game).parse!
+  end
+
+  def countries
+    @data["countries"]
+  end
+
+  # Old save games use String not real Date
+  def convert_date(date)
+    if date.is_a?(Date)
+      date
+    elsif date.is_a?(String) and date =~ /\A(\d+)\.(\d+)\.(\d+)\z/
+      Date.new($1.to_i, $2.to_i, $3.to_i)
+    else
+      raise "Expected Date or String, got `#{date.inspect}'"
+    end
+  end
+
+  def start_date
+    @start_date ||= convert_date(@data["start_date"])
+  end
+
+  def current_date
+    @current_date ||= convert_date(@data["date"])
+  end
+
+  def army_for_country(tag)
+    countries["FRA"].find_all("army").map{|n| n.find_all("regiment")}.flatten(1).map{|r| [r["type"], r["mercenary"]]}
+  end
+
+  def navy_for_country(tag)
+    countries["FRA"].find_all("navy").map{|n| n.find_all("ship")}.flatten(1).map{|s| s["type"]}
+  end
+
+  def expense_for_country(tag)
+    %W[
+      advisor_upkeep interest harbor_fees subsidies war_reparations
+      army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
+      army_build fleet_build fort_build buildings rebel_support
+      repaid_loans gift advisor_recruit event peace
+      vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
+    ].zip(countries[tag]["ledger"]["lastyearexpense"])
+  end
+
+  def income_for_country(tag)
+    %W[
+      trade production trade gold tariffs vassals
+      harbor_fees subsidies war_reparations interest gift
+      events spoils_of_war treasure_fleet siphon_income
+    ].zip(countries[tag]["ledger"]["lastyearincome"])
+  end
+
+  # In-game ranking like score are ridiculous, so doing this instead
+  # Player will be great power in 50 years, that is pretty much guaranteed,
+  # so these are relevant comparison point
+  def great_powers
+    @great_powers ||= countries.keys.sort_by{|tag| -countries[tag]["development"]}[0,25]
+  end
+
+  def report!
+    p @data["provinces"][-183]["improve_count"]
+    great_powers.each do |tag|
+      puts tag
+      p income_for_country(tag)
+      p expense_for_country(tag)
+    end
+  end
+end
+
+if __FILE__ == $0
+  unless ARGV.size == 1
+    STDERR.puts "Usage: #{$0} save_game.eu4"
+    exit 1
+  end
+
+  AnalyzeSaveGameEconomics.new(*ARGV).report!
+end
