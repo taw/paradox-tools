@@ -293,7 +293,7 @@ module FunAndBalanceFeatureHolySites
         "desc_#{mod}" => dsc
     end
     create_mod_file! "common/event_modifiers/10_holy_sites.txt", PropertyList[
-      *province_modifiers.keys.map{|mod| Property[mod, PropertyList[]]}
+      *province_modifiers.keys.map{|mod| Property[mod, PropertyList["picture", "tolerance_own"]]}
     ]
     create_mod_file! "common/on_actions/10_holy_sites.txt", PropertyList[
       "on_startup", init_script,
