@@ -650,6 +650,8 @@ def build_mod_config_menu!(*options)
 
    def build_mod_config_menu_for_vanilla!
     build_mod_config_menu!(
+      menu_set_flag_option("enable_achievements", "Enable Achievements"),
+      menu_clr_flag_option("enable_achievements", "Disable Achievements"),
       menu_set_flag_option("disable_holy_sites", "Disable Holy Sites"),
       menu_clr_flag_option("disable_holy_sites", "Enable Holy Sites"),
       menu_set_flag_option("disable_extra_missions", "Disable extra missions"),

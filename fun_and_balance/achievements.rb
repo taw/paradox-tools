@@ -37,7 +37,7 @@ module FunAndBalanceFeatureAchievements
         "potential", PropertyList[
           Property::AND[
             "has_global_flag", "achievement_possible_#{id}",
-            Property::NOT["has_global_flag", "fun_and_balance_config.disable_achievements"],
+            "has_global_flag", "fun_and_balance_config.enable_achievements",
           ],
         ],
         "trigger", PropertyList[happened],
