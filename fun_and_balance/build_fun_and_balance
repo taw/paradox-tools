@@ -14,7 +14,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
 
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
-      ["ANNEX_DIP_COST_PER_DEVELOPMENT", 10, 1],
+      ["ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 1],
       ["INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["POLICY_COST", 1, 0],
       ["FOREIGN_REBEL_SUPPORT", 4, 6],
@@ -34,7 +34,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["TECH_AHEAD_OF_TIME", 0.1, 0.05],
       ["MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
-      ["AUTONOMY_AT_DIPLO_ANNEX", 75, 50],
+      ["AUTONOMY_AT_DIPLO_ANNEX", 60, 50], # Not a huge difference
       ["RANDOM_LUCKY_DEVELOPMENT_WEIGHT", 0.4, 0],
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
@@ -89,7 +89,7 @@ end
 
 mb = FunAndBalanceModBuilder.new(
   ParadoxGame.new(
-    "source/eu4-1.12.0",
+    "source/eu4-1.12.1",
   ),
   "output/fun_and_balance",
 )
