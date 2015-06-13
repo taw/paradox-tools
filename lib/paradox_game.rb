@@ -70,8 +70,8 @@ class ParadoxGame
     }.inject({}, &:merge)
   end
 
-  def localization(key)
-    localization_data[key.to_s] || key
+  def localization(key, default=key)
+    localization_data[key.to_s] || default
   end
 
   private
