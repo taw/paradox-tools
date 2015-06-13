@@ -115,10 +115,11 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
         ["num_of_marriages", "heir_chance", 0.05, 0.03]
     end
     patch_mod_file!("common/triggered_modifiers/et_triggered_modifiers.txt") do |node|
-      node["classical_era"]["diplomatic_upkeep"]  = -4
-      node["medieval_era"]["diplomatic_upkeep"]   = -2
-      node["industrial_era"]["diplomatic_upkeep"] = 4
-      node["modern_times"]["diplomatic_upkeep"]   = 8
+      modify_node! node,
+        ["classical_era",  "diplomatic_upkeep", -2, -4],
+        ["medieval_era",   "diplomatic_upkeep", -1, -2],
+        ["industrial_era", "diplomatic_upkeep",  3,  4],
+        ["modern_times",   "diplomatic_upkeep",  6,  8]
     end
 
     anyone_can_form_byzantium!

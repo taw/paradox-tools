@@ -1,6 +1,4 @@
 # TODO: This entire file is a huge mess:
-#    * ParadoxGame needs to handle folder shadowing
-#    * province_id needs to be separated
 #    * sites need to be first class
 
 module FunAndBalanceFeatureHolySites
@@ -112,7 +110,6 @@ module FunAndBalanceFeatureHolySites
     }
   end
 
-  # Overridden by ET
   def province_ids
     @province_ids ||= @game.glob("history/provinces/*.txt")
   end
