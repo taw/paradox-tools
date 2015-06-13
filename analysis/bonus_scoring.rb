@@ -231,23 +231,29 @@ class BonusScoring
   def inflation_reduction(v)
     monthly_adm_points v*(75.0/2.0/12)*0.25
   end
-  # Assume average of 3dev/year cored before efficiency unlocks,
+  # Assume average of 6dev/year cored before efficiency unlocks,
   # proportionally more after efficiency
   def core_creation(v)
-    monthly_adm_points (-v * 10.0 * 3.0 / 12)
+    monthly_adm_points (-v * 10.0 * 6.0 / 12)
   end
-  # Assume average of 3dev/year diploannexed before efficiency unlocks,
+  # Assume average of 6dev/year diploannexed before efficiency unlocks,
   # proportionally more after efficiency
   def diplomatic_annexation_cost(v)
-    monthly_dip_points (-v * 10.0 * 3.0 / 12)
+    monthly_dip_points (-v * 10.0 * 6.0 / 12)
   end
   # Assume 2 unjustified demand for base of 50 each every 10 years
   def unjustified_demands(v)
     monthly_dip_points (-v * 50 * 2 / 120)
   end
-  # Assume 5 buildings every 10 years
-  def build_power_cost(v)
-    monthly_dip_points (-v * 10 * 5 / 120)
+
+  # Based on simulations average AI country presses the button 28 times during the game
+  # and average base cost is 65 (= mean number of times it was used before on same province is 3)
+  # This means average monthly development spending is 0.4
+  #
+  # Big assumption is that humans are same as AI here
+  def development_cost(v)
+    buttons_per_month = 28.0/(1820-1444)/12
+    monthly_mixed_monarch_points (buttons_per_month * 65 * -v)
   end
 
   # Assume: 16 inf, 4 cav, 6 art stacks
@@ -713,18 +719,22 @@ class BonusScoring
       when :monthly_mil_points
         total += v*0.8
       when :colonists
+        # Definitely the most important agent type by huge margin
         total += 3*v
       when :diplomats
         # 3rd diplomat is arguably worth more, but it falls down fast
         # Diplomats became more important in 1.12 as you only have 2 not 3 after embassy got removed
-        total += 2*v
+        # Then 1.12.1 gave them back for free for every kingdom/empire, so we're back to lewer value
+        total += 1.5*v
       when :missionaries
-        total += 1*v
+        total += 0.75*v
       when :merchants
         # This also provides +5 naval force limit per merchant beyond 2nd, not counted separately
-        total += 1*v
+        # They became less relevant as you can get them from CNs and trade companies, at least
+        # if you're western tech
+        total += 0.75*v
       when :global_missionary_strength
-        total += 100.0*v
+        total += 75.0*v
       when :global_revolt_risk
         total -= 1.0*v
       when :global_autonomy
@@ -760,7 +770,8 @@ class BonusScoring
       when :may_explore
         total += v*2
       when :advisor_pool
-        total += 0.5*v
+        # This is far less valuable now that you can just buy it for small amount of money
+        total += 0.25*v
       when :hostile_attrition
         total += 1*v
       when :relations_decay_of_me
