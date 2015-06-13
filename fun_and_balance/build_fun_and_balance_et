@@ -6,14 +6,6 @@ require_relative "./fun_and_balance_common"
 class FunAndBalanceETModBuilder < ParadoxModBuilder
   include FunAndBalanceCommon
 
-  # Hack because ParadoxGame doesn't support folder replacements
-  def province_ids
-    @province_ids ||= begin
-      @game.glob("history/provinces/*.txt")
-           .select{|path| @game.resolve(path).to_s.start_with? @game.roots[0].to_s }
-    end
-  end
-
   def fix_adopt_secularism_decision!
     patch_mod_file!("decisions/et_conversion_decisions.txt") do |node|
       node["religion_decisions"]["adopt_secularism"]["allow"].add! "is_subject", false
@@ -160,7 +152,7 @@ end
 mb = FunAndBalanceETModBuilder.new(
   ParadoxGame.new(
     "source/eu4-1.12.0",
-    "source/ExtendedTimeline 0.13.0/ExtendedTimeline"
+    "source/ExtendedTimeline 0.13.0/ExtendedTimeline.mod"
   ),
   "output/fun_and_balance_et"
 )
