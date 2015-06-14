@@ -148,6 +148,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
 
     fix_adopt_secularism_decision!
     hire_merc_company_decision!
+
+    # ET already distributes development efficiency and admin efficiency between levels
   end
 end
 

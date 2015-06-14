@@ -724,8 +724,8 @@ class BonusScoring
       when :diplomats
         # 3rd diplomat is arguably worth more, but it falls down fast
         # Diplomats became more important in 1.12 as you only have 2 not 3 after embassy got removed
-        # Then 1.12.1 gave them back for free for every kingdom/empire, so we're back to lewer value
-        total += 1.5*v
+        # 1.12.1 code implies that kingdom/empire will get 1 free diplomat, but that doesn't work yet
+        total += 2*v
       when :missionaries
         total += 0.75*v
       when :merchants
