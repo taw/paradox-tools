@@ -45,7 +45,7 @@ end
 
 ####
 
-FUN_AND_BALANCE_VERSION = "0.22pre1"
+FUN_AND_BALANCE_VERSION = "0.23"
 
 desc "Build all packages"
 task "all" => ["ck2", "eu4"]

@@ -93,10 +93,10 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
         tech.delete "administrative_efficiency" # 24, 28, with 0.25 each
       end
       [9, 14, 19, 24, 29].each do |level|
-        tech[i].add! "development_efficiency", 0.1
+        techs[level].add! "development_efficiency", 0.1
       end
       [8, 13, 18, 23, 28].each do |level|
-        tech[i].add! "administrative_efficiency", 0.1
+        techs[level].add! "administrative_efficiency", 0.1
       end
     end
   end
