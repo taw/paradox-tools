@@ -63,8 +63,9 @@ class BonusScoring
     # Ignored because ridiculously underpowered
     :culture_conversion_cost,
 
-    # Pretty close to irrelevant
+    # Was pretty close to irrelevant, not sure how much it matters post 1.12
     :global_garrison_growth,
+    :garrison_size,
 
     # Examples when it matters are extremely conditional
     :trade_range_modifier,
@@ -531,7 +532,7 @@ class BonusScoring
     trade_efficiency v
   end
   # I'm just guessing here...
-  def global_trade_goods_size(v)
+  def global_trade_goods_size_modifier(v)
     trade_efficiency v*0.5
   end
   # This is extremely hard. Inland nodes are often extremely competitive (HRE), so this bonus matter little
@@ -540,11 +541,18 @@ class BonusScoring
     trade_efficiency (v/500.0)*0.2
   end
 
-  # From a few simulations, ballpark figures for income of a typical country:
-  # 25% tax, 30% production, 35% trade, 8% tariff, 1% gold, 1% vassal
+  # Numbers based on AI games, 1.12.0, typical medium-big countries, ~1625 or so.
+  #
+  # From a few simulations, ballpark figures for income of a typical medium-big country:
+  # 30% tax, 20% production, 40% trade, 5% gold, 2% tariff, 2% vassal, 1% loot
+  # But these are *totals*, and we're modifying base numbers:
+  # Typical modifiers mid-game are:
+  # +25% tax, +50% production, +50% trade, +25% vassal, +25% tariff, +0% loot
+  # Since these bonuses are additive not multiplicative we need to go back to base numbers
+  # before adding bonus
   #
   # For costs:
-  # 25% advisors, 40% army, 10% navy, 25% balance (which I assume goes for 20% buildings, 5% other stuff)
+  # 25% army, 25% fort, 20% advisors, 10% navy, 30% balance (which I assume goes for 20% buildings, 10% other stuff)
   # I'll assume of that army spending, 5% is mercs, 5% is reinforcement, 90% is regular maintenance
   #
   # This isn't really true, since incomes from simualion already come with many modifiers, mostly positive,
@@ -552,25 +560,31 @@ class BonusScoring
   # how much value you'll be getting.
 
   def production_efficiency(v)
-    money 0.30*v
+    money (0.20/1.50)*v
   end
   def trade_efficiency(v)
-    money 0.35*v
+    money (0.40/1.50)*v
   end
   def global_tax_modifier(v)
-    money 0.25*v
+    money (0.30/1.25)*v
   end
   def global_tariffs(v)
-    money 0.08*v
+    money (0.02/1.25)*v
   end
   def vassal_income(v)
+    money (0.02/1.25)*v
+  end
+  def loot_amount(v)
     money 0.01*v
+  end
+  def fort_maintenance_modifier(v)
+    money 0.25*-v
   end
   def advisor_cost(v)
     money 0.25*-v
   end
   def calculated_land_cost(v)
-    money 0.40*-v
+    money 0.25*-v
   end
   def calculated_ship_cost(v)
     money 0.10*-v
