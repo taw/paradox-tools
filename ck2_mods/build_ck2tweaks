@@ -279,6 +279,13 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def fast_de_jure_drift!
+    patch_defines_lua!([
+      ["DE_JURE_ASSIMILATION_YEARS", 100, 25],
+      ["EMPIRE_DE_JURE_ASSIMILATION_YEARS", 100, 25],
+    ])
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -297,6 +304,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     preserve_culture_buildings!
     tribal_buildings_for_prestige!
     faster_culture_conversion!
+    fast_de_jure_drift!
   end
 end
 
