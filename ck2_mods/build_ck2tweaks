@@ -238,6 +238,23 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def preserve_culture_buildings!
+    patch_mod_files!("common/buildings/*.txt") do |node|
+      node.each do |category, buildings|
+        buildings.each do |name, building|
+          next unless building["potential"] and building["potential"]["FROM"].to_s =~ /culture/
+          culture_rules = building["potential"]["FROM"]
+          building["potential"].delete "FROM"
+          building["potential"].add! Property::OR[
+            "FROM", culture_rules,
+            *culture_rules.list.flatten(1), # This is some awkward code...
+            "FROMFROM", PropertyList["has_building", name],
+          ]
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -253,6 +270,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     fix_gavelkind!
     cognatic_for_most_cultures!
     dont_mark_conscript_ships_important!
+    preserve_culture_buildings!
   end
 end
 
