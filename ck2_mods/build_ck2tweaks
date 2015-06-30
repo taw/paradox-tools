@@ -253,18 +253,28 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
         end
       end
     end
+  end
 
-    def tribal_buildings_for_prestige!
-      patch_mod_files!("common/buildings/*.txt") do |node|
-        node.each do |category, buildings|
-          next unless category == "tribal"
-          buildings.each do |name, building|
-            if building["gold_cost"] and not building["port"]
-              building.add! "prestige_cost", building["gold_cost"] * 5
-              building.delete "gold_cost"
-            end
+  def tribal_buildings_for_prestige!
+    patch_mod_files!("common/buildings/*.txt") do |node|
+      node.each do |category, buildings|
+        next unless category == "tribal"
+        buildings.each do |name, building|
+          if building["gold_cost"] and not building["port"]
+            building.add! "prestige_cost", building["gold_cost"] * 5
+            building.delete "gold_cost"
           end
         end
+      end
+    end
+  end
+
+  # It is just ridiculously slow. This is probably too much, but worth trying.
+  def faster_culture_conversion!
+    patch_mod_file!("events/culture_conversion_events.txt") do |node|
+      node.find_all("province_event").each do |event|
+        next unless event["id"] == 55000 or event["id"] == 55001
+        event["mean_time_to_happen"]["months"] /= 10
       end
     end
   end
@@ -286,6 +296,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     dont_mark_conscript_ships_important!
     preserve_culture_buildings!
     tribal_buildings_for_prestige!
+    faster_culture_conversion!
   end
 end
 
