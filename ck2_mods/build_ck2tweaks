@@ -292,6 +292,79 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  # Crashes the game, would be interesting to debug
+  def create_hunie_events!
+    # All hunies are attractive
+    # All hunies >16 are lustful
+    create_mod_file! "events/hunie_events.txt", PropertyList[
+      "character_event", PropertyList[
+        "id", "hunie.001",
+        "desc", "hunie.001desc",
+        "picture", "GFX_evt_lovers",
+        "border", "GFX_event_normal_frame_intrigue",
+        "trigger", PropertyList[
+          "trait", "hunie",
+          "NOT", PropertyList["trait", "fair"],
+        ],
+        "mean_time_to_happen", PropertyList["months", 0],
+        "option", PropertyList[
+          "name", "hunie.001a",
+          "add_trait", "fair",
+        ],
+      ],
+      "character_event", PropertyList[
+        "id", "hunie.002",
+        "desc", "hunie.002desc",
+        "picture", "GFX_evt_lovers",
+        "border", "GFX_event_normal_frame_intrigue",
+        "trigger", PropertyList[
+          "trait", "hunie",
+          "age", 16,
+          "NOT", PropertyList["trait", "lustful"],
+        ],
+        "mean_time_to_happen", PropertyList["months", 0],
+        "option", PropertyList[
+          "name", "hunie.002a",
+          "add_trait", "lustful",
+        ],
+      ],
+    ]
+    localization!("hunie_events",
+      "hunie.001" => "Hunies are all cute",
+      "hunie.001desc" => "You can't be a Hunie if you're not cute",
+      "hunie.001a" => "So I'll be cute",
+      "hunie.002" => "Hunies are all lustful",
+      "hunie.002desc" => "You can't be a Hunie if you're not lustful",
+      "hunie.002a" => "So I'll be lustful",
+    )
+  end
+
+  def create_hunie_trait!
+    create_mod_file! "common/traits/99_hunie_traits.txt", PropertyList[
+      "hunie", PropertyList[
+        "cannot_marry", true,
+        "fertility", 0.5,
+        "sex_appeal_opinion", 30,
+        "inherit_chance", 100,
+      ],
+    ]
+    create_mod_file! "interface/hunie.gfx", PropertyList[
+      "spriteTypes", PropertyList[
+        "spriteType", PropertyList[
+          "name", "GFX_trait_hunie",
+          "texturefile", "gfx/traits/seductress.tga",
+          "noOfFrames", 1,
+          "norefcount", true,
+          "effectFile", "gfx/FX/buttonstate.lua",
+        ],
+      ],
+    ]
+    localization!("hunie_trait",
+      "hunie" => "Hunie",
+      "hunie_desc" => "The character cannot marry and will forever date casually instead",
+    )
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -312,6 +385,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     faster_culture_conversion!
     fast_de_jure_drift!
     seduce_any_religion!
+    create_hunie_trait!
   end
 end
 
