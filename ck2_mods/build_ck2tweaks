@@ -286,6 +286,12 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     ])
   end
 
+  def seduce_any_religion!
+    patch_mod_file!("decisions/way_of_life_decisions.txt") do |node|
+      node["targetted_decisions"]["seduce_decision"]["allow"].delete "religion_group"
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -305,6 +311,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     tribal_buildings_for_prestige!
     faster_culture_conversion!
     fast_de_jure_drift!
+    seduce_any_religion!
   end
 end
 
