@@ -407,6 +407,12 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
       end
     end
   end
+
+  def no_russian!
+    # Keep 3 separate East Slavic cultures
+    patch_mod_file!("events/cm_culture_conversion_events.txt") do |node|
+      node.delete_if{|key, val| key == "province_event" and val["id"] == "CM.11"}
+    end
   end
 
   def build_mod_files!
@@ -430,6 +436,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     fast_de_jure_drift!
     seduce_any_religion!
     create_hunie_trait!
+    no_russian!
   end
 end
 
