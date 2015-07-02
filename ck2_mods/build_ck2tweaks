@@ -339,6 +339,25 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     )
   end
 
+  def hunie_can_always_seduce!(node)
+    fix_node = false # Do this after fixing children
+    node.each do |key, val|
+      if key == "has_focus" and val == "focus_seduction"
+        fix_node = true
+      end
+      hunie_can_always_seduce!(val) if val.is_a?(PropertyList)
+    end
+    if fix_node
+      # More complex patching but generates better looking diffs
+      # Maybe this should get API too?
+      i = node.list.index{|key,val| key == "has_focus" and val == "focus_seduction"}
+      node.instance_eval{@list}[i] = ["OR", PropertyList[
+        "has_focus", "focus_seduction",
+        "trait", "hunie",
+      ]]
+    end
+  end
+
   def create_hunie_trait!
     create_mod_file! "common/traits/99_hunie_traits.txt", PropertyList[
       "hunie", PropertyList[
@@ -363,6 +382,31 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
       "hunie" => "Hunie",
       "hunie_desc" => "The character cannot marry and will forever date casually instead",
     )
+    # Hunies can't marry, so being pregnant while not married is just fine
+    patch_mod_file!("events/birth_events.txt") do |node|
+      event = node.find_all("character_event").find{|ev| ev["id"] == 401}
+      #event["trigger"].add! "NOT", PropertyList["trait", "hunie"]
+      event["option"].delete "piety"
+      event["option"].delete "prestige"
+      event["option"].add! "if", PropertyList[
+        "limit", PropertyList["NOT", PropertyList["trait", "hunie"]],
+        "piety", -50,
+        "prestige", -50,
+      ]
+    end
+    # Hunies can seduce by their nature, so they can focus on anything they want
+    # It could just mod everything in decisions/* and events/*
+    %W[
+      decisions/way_of_life_decisions.txt
+      events/birth_events.txt
+      events/wol_lover_events.txt
+      events/wol_seduction_events.txt
+    ].each do |path|
+      patch_mod_file!(path) do |node|
+        hunie_can_always_seduce!(node)
+      end
+    end
+  end
   end
 
   def build_mod_files!
