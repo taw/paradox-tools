@@ -261,8 +261,10 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
         next unless category == "tribal"
         buildings.each do |name, building|
           if building["gold_cost"] and not building["port"]
-            building.add! "prestige_cost", building["gold_cost"] * 5
+            building.add! "prestige_cost", building["gold_cost"] * 2
             building.delete "gold_cost"
+          elsif building["prestige_cost"]
+            building["prestige_cost"] /= 2
           end
         end
       end
@@ -361,8 +363,8 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
   def create_hunie_trait!
     create_mod_file! "common/traits/99_hunie_traits.txt", PropertyList[
       "hunie", PropertyList[
-        "cannot_marry", true,
-        "fertility", 0.5,
+        # "cannot_marry", true,
+        # "fertility", 0.5,
         "sex_appeal_opinion", 30,
         "inherit_chance", 100,
       ],
@@ -415,6 +417,13 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  # Better fix would be make it something that happens sometimes, not every damn time
+  def disable_abandon_iconoclasm_for_ai!
+    patch_mod_file!("decisions/conversion_decisions.txt") do |node|
+      node["decisions"]["renounce_iconoclasm"]["ai_will_do"]["factor"] = 0
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -437,6 +446,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     seduce_any_religion!
     create_hunie_trait!
     no_russian!
+    disable_abandon_iconoclasm_for_ai!
   end
 end
 
