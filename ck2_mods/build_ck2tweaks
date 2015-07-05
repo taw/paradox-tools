@@ -232,10 +232,31 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
-  def dont_mark_conscript_ships_important!
-    patch_mod_file!("decisions/unit_decisions.txt") do |node|
-      node["decisions"]["conscript_merchant_ships"].delete "is_high_prio"
+  def setup_sensible_imporatnt_decisions_list!
+    patch_mod_files!("decisions/*.txt") do |node|
+      node.each do |category, decisions|
+        next unless category == "decisions"
+        decisions.each do |name, decision|
+          time_specific  = !!(decision["allow"].to_s =~ /month|war/)
+          focus_specific = !!(decision["potential"].to_s =~ /has_focus/)
+
+          if ["ask_help_to_manage_titles", "conscript_merchant_ships"].include?(name)
+            decision.delete "is_high_prio"
+          elsif ["welcome_jews", "expel_jews", "borrow_money_jews"].include?(name) or
+                time_specific or focus_specific
+            decision.add! "is_high_prio", true
+          elsif decision["is_high_prio"]
+            # The rest are OK
+          else
+            # The rest are OK
+          end
+        end
+      end
     end
+
+    # patch_mod_file!("decisions/unit_decisions.txt") do |node|
+    #   node["decisions"]["conscript_merchant_ships"].delete "is_high_prio"
+    # end
   end
 
   def preserve_culture_buildings!
@@ -438,7 +459,6 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     add_dynastic_decisions!
     fix_gavelkind!
     cognatic_for_most_cultures!
-    dont_mark_conscript_ships_important!
     preserve_culture_buildings!
     tribal_buildings_for_prestige!
     faster_culture_conversion!
@@ -447,6 +467,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     create_hunie_trait!
     no_russian!
     disable_abandon_iconoclasm_for_ai!
+    setup_sensible_imporatnt_decisions_list!
   end
 end
 
