@@ -253,10 +253,6 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
         end
       end
     end
-
-    # patch_mod_file!("decisions/unit_decisions.txt") do |node|
-    #   node["decisions"]["conscript_merchant_ships"].delete "is_high_prio"
-    # end
   end
 
   def preserve_culture_buildings!
@@ -445,6 +441,75 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def king_level_titles
+    @king_level_titles ||= begin
+      titles  = @game.parse("common/landed_titles/landed_titles.txt")
+      empires = titles.keys.grep(/\Ae_/)
+      [titles, *empires.map{|e| titles[e]}].map(&:keys).flatten(1).grep(/\Ak_/).sort
+    end
+  end
+
+  # Transferring vassal dukes under vassal kings is broken
+  # Don't setup any other transfers as that's unnecessary
+  # Can't handle custom titles etc.
+  def setup_vassal_transfer!
+    decisions = []
+    # FROM - emperor
+    # ROOT - duke vassal
+    # PREV - king vassal (within holder_scope)
+    king_level_titles.each do |k_title|
+      # Oops, localization system doesn't support CK2 yet, just EU4 :-/
+      # Anyway, there's probably some way to make it work with %codes% instead
+      k_title_loc = k_title.sub(/\Ak_/, "").split("_").map(&:capitalize).join(" ")
+
+      decisions << Property[
+        "transfer_vassal_under_#{k_title}", PropertyList[
+          "filter", "vassals",
+          "ai_target_filter", "vassals",
+          "from_potential", PropertyList[
+            "tier", "emperor",
+            "any_vassal", PropertyList["has_landed_title", k_title],
+          ],
+          "potential", PropertyList[
+            "tier", "duke",
+          ],
+          "allow", PropertyList[
+            "tier", "duke",
+            # Neighbouring vassal king
+            # "any_realm_province", PropertyList[
+            #   "any_neighbor_province", PropertyList[
+            #     "has_owner", true,
+            #     # criteria ???
+            #   ],
+            # ],
+          ],
+          "effect", PropertyList[
+            k_title, PropertyList[
+              "holder_scope", PropertyList[
+                "ROOT", PropertyList[
+                  "set_defacto_liege", "PREV",
+                ],
+                "opinion", PropertyList[
+                  "modifier", "opinion_vassal_transfer",
+                  "who", "liege",
+                  "months", 120,
+                ],
+              ],
+            ],
+          ],
+          "revoke_allowed", PropertyList["always", false],
+          "ai_will_do", PropertyList["factor", 0],
+        ],
+      ]
+      localization!("vassal_transfer_decisions",
+        "transfer_vassal_under_#{k_title}" => "Transfer under #{k_title_loc}",
+        "transfer_vassal_under_#{k_title}_desc" => "Make duke vassal of #{k_title_loc} instead of you directly",
+      )
+    end
+
+    create_mod_file! "decisions/vassal_transfer_decisions.txt", PropertyList["targetted_decisions", PropertyList[*decisions]]
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -468,6 +533,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     no_russian!
     disable_abandon_iconoclasm_for_ai!
     setup_sensible_imporatnt_decisions_list!
+    setup_vassal_transfer!
   end
 end
 
