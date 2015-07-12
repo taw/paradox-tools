@@ -476,12 +476,17 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
           "allow", PropertyList[
             "tier", "duke",
             # Neighbouring vassal king
-            # "any_realm_province", PropertyList[
-            #   "any_neighbor_province", PropertyList[
-            #     "has_owner", true,
-            #     # criteria ???
-            #   ],
-            # ],
+            "any_realm_province", PropertyList[
+              "any_neighbor_province", PropertyList[
+                "has_owner", true,
+                "holder_scope", PropertyList[
+                  "OR", PropertyList[
+                    "has_landed_title", k_title,
+                    "any_liege", PropertyList["has_landed_title", k_title],
+                  ],
+                ],
+              ],
+            ],
           ],
           "effect", PropertyList[
             k_title, PropertyList[
