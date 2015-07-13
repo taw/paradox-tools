@@ -475,6 +475,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
           ],
           "allow", PropertyList[
             "tier", "duke",
+            "liege", PropertyList["character", "FROM"],
             # Neighbouring vassal king
             "any_realm_province", PropertyList[
               "any_neighbor_province", PropertyList[
