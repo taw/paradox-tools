@@ -516,6 +516,39 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     create_mod_file! "decisions/vassal_transfer_decisions.txt", PropertyList["targetted_decisions", PropertyList[*decisions]]
   end
 
+  # As high as allowed by your technology
+  def setup_sensible_ai_for_demesne_laws!
+    patch_mod_file!("decisions/demesne_laws.txt") do |node|
+      laws_to_fix = %W[
+        feudal_contract
+        feudal_tax
+        city_contract
+        city_tax
+        temple_contract
+        temple_tax
+        iqta_contract
+        iqta_tax
+      ]
+      laws_to_fix.each do |law|
+        node["laws"]["#{law}_0"]["ai_will_do"] = PropertyList[
+          "factor", 0,
+        ]
+        node["laws"]["#{law}_1"]["ai_will_do"] = PropertyList[
+          "factor", 1,
+          "modifier", PropertyList["factor", 0, "has_law", "#{law}_2"],
+          "modifier", PropertyList["factor", 0, "has_law", "#{law}_3"],
+        ]
+        node["laws"]["#{law}_2"]["ai_will_do"] = PropertyList[
+          "factor", 1,
+          "modifier", PropertyList["factor", 0, "has_law", "#{law}_3"],
+        ]
+        node["laws"]["#{law}_3"]["ai_will_do"] = PropertyList[
+          "factor", 1,
+        ]
+      end
+    end
+  end
+
   def build_mod_files!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -540,6 +573,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     disable_abandon_iconoclasm_for_ai!
     setup_sensible_imporatnt_decisions_list!
     setup_vassal_transfer!
+    setup_sensible_ai_for_demesne_laws!
   end
 end
 
