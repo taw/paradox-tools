@@ -554,6 +554,17 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def allow_everyone_river_access!
+    patch_mod_file!("common/religions/00_religions.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |religion_name, religion|
+          next unless religion.is_a?(PropertyList)
+          religion["allow_rivermovement"] = true
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -572,6 +583,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     setup_vassal_transfer!
     setup_sensible_ai_for_demesne_laws!
     fast_de_jure_drift!
+    allow_everyone_river_access!
 
     ### Specific things for specific campaign, kept for reference:
     # create_hunie_trait!
