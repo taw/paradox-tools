@@ -4,7 +4,11 @@ require_relative "../lib/paradox_mod_builder"
 
 class NoLocalizedRanksModBuilder < ParadoxModBuilder
   def cultures
-    cultures = ["north_germanic", "central_germanic", "west_germanic", "latin", "iberian", "byzantine", "celtic", "finno_ugric", "baltic", "altaic", "arabic", "east_slavic", "west_slavic", "south_slavic", "magyar", "iranian", "east_african", "west_african", "mesoamerican", "israelite", "indo_aryan_group", "dravidian_group", "norse", "swedish", "norwegian", "danish", "german", "lombard", "old_frankish", "suebi", "english", "saxon", "old_saxon", "frisian", "dutch", "frankish", "norman", "italian", "occitan", "roman", "basque", "castillan", "catalan", "portuguese", "visigothic", "armenian", "greek", "alan", "georgian", "irish", "scottish", "pictish", "welsh", "breton", "finnish", "lappish", "ugricbaltic", "komi", "khanty", "samoyed", "mordvin", "lettigallish", "lithuanian", "prussian", "turkish", "pecheneg", "cuman", "khazar", "bolghar", "avar", "karluk", "kirghiz", "mongol", "bedouin_arabic", "maghreb_arabic", "levantine_arabic", "egyptian_arabic", "andalusian_arabic", "russian", "ilmenian", "severian", "volhynian", "pommeranian", "bohemian", "polish", "croatian", "serbian", "romanian", "bulgarian", "hungarian", "persian", "kurdish", "afghan", "baloch", "ethiopian", "somali", "nubian", "manden", "nahuatl", "ashkenazi", "sephardi", "bengali", "oriya", "assamese", "hindustani", "gujurati", "panjabi", "rajput", "sindhi", "marathi", "sinhala", "tamil", "telugu", "kannada"]
+    @cultures ||= begin
+      culture_data = @game.parse("common/cultures/00_cultures.txt")
+      culture_data.keys +
+      culture_data.values.map{|vs| vs.list.map{|k,v| k if v.is_a?(PropertyList)}.compact}.flatten
+    end
   end
 
   def patch_localization!
