@@ -22,7 +22,7 @@ end
 
 mb = NoDynasticNamesModBuilder.new(
   ParadoxGame.new(
-    "source/ck2_2.3.4",
+    "source/ck2_2.4.1",
   ),
   "output/no_dynastic_names"
 )
