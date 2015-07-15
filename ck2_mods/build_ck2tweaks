@@ -565,6 +565,14 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def disable_fucking_hints!
+    patch_mod_file!("common/hints.txt") do |node|
+      node.each do |name, hint|
+        hint.delete "sticky"
+      end
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -584,6 +592,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     setup_sensible_ai_for_demesne_laws!
     fast_de_jure_drift!
     allow_everyone_river_access!
+    disable_fucking_hints!
 
     ### Specific things for specific campaign, kept for reference:
     # create_hunie_trait!
