@@ -139,8 +139,13 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
   def pagans_can_go_feudal!
     # Otherwise AI never will
     patch_mod_file!("decisions/realm_decisions.txt") do |node|
-      node["decisions"]["adopt_feudalism"]["allow"].delete_if{|k,v| k == "custom_tooltip"}
-      node["decisions"]["adopt_republicanism"]["allow"].delete_if{|k,v| k == "custom_tooltip"}
+      %W[
+        convert_to_feudalism_indep
+        convert_to_feudalism_vassal
+        convert_to_republic_indep
+      ].each do |decision|
+        node["decisions"][decision]["allow"].delete_if{|k,v| k == "custom_tooltip"}
+      end
     end
   end
 
@@ -227,7 +232,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
   end
 
   def cognatic_for_most_cultures!
-    patch_mod_file!("decisions/succession_laws.txt") do |node|
+    patch_mod_file!("common/laws/succession_laws.txt") do |node|
       node["gender_laws"]["true_cognatic_succession"].delete("allow")
     end
   end
@@ -300,8 +305,8 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
 
   def fast_de_jure_drift!
     patch_defines_lua!([
-      ["DE_JURE_ASSIMILATION_YEARS", 100, 25],
-      ["EMPIRE_DE_JURE_ASSIMILATION_YEARS", 100, 25],
+      ["DE_JURE_ASSIMILATION_YEARS", 100, 50],
+      ["EMPIRE_DE_JURE_ASSIMILATION_YEARS", 100, 20],
     ])
   end
 
@@ -518,7 +523,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
 
   # As high as allowed by your technology
   def setup_sensible_ai_for_demesne_laws!
-    patch_mod_file!("decisions/demesne_laws.txt") do |node|
+    patch_mod_file!("common/laws/demesne_laws.txt") do |node|
       laws_to_fix = %W[
         feudal_contract
         feudal_tax
@@ -550,36 +555,43 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
   end
 
   def build_mod_files!
-    reset_ruler_designer!
-    reduce_wrong_gov_type_penalties!
-    # remove_levy_nerfs!
-    take_money_from_banished_landed_characters!
+    ### General fixes:
     no_dynastic_country_names!
     allow_any_number_of_different_holding_types!
     allow_intermarriage!
     allow_heir_designation!
-    pagans_can_go_feudal!
-    more_banishment_reasons!
-    add_dynastic_decisions!
     fix_gavelkind!
+    reset_ruler_designer!
+    reduce_wrong_gov_type_penalties!
+    seduce_any_religion!
     cognatic_for_most_cultures!
     preserve_culture_buildings!
-    tribal_buildings_for_prestige!
-    faster_culture_conversion!
-    fast_de_jure_drift!
-    seduce_any_religion!
-    create_hunie_trait!
-    no_russian!
-    disable_abandon_iconoclasm_for_ai!
+    pagans_can_go_feudal!
+    add_dynastic_decisions!
     setup_sensible_imporatnt_decisions_list!
     setup_vassal_transfer!
     setup_sensible_ai_for_demesne_laws!
+    fast_de_jure_drift!
+
+    ### Specific things for specific campaign, kept for reference:
+    # create_hunie_trait!
+    # no_russian!
+    # disable_abandon_iconoclasm_for_ai!
+    # faster_culture_conversion!
+
+    # remove_levy_nerfs!
+
+    ### Completely obsolete in new patch
+    ### (not sure if new banishment system is good or bad)
+    # tribal_buildings_for_prestige!
+    # take_money_from_banished_landed_characters!
+    # more_banishment_reasons!
   end
 end
 
 mb = CK2TweaksModBuilder.new(
   ParadoxGame.new(
-    "source/ck2_2.3.4",
+    "source/ck2_2.4.1",
   ),
   "output/ck2tweaks"
 )
