@@ -1,0 +1,36 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: Paradox
+scopeName: source.paradox
+fileTypes: [txt]
+uuid: ac3e3123-a3f4-4281-93aa-3b40351ce18b
+
+patterns:
+- match: \b(OR|AND|NOT|NAND|NOR)\b
+  name: keyword.operator.logical.paradox
+- match: \b(ROOT|(?:FROM)+|(?:PREV)+)\b
+  name: keyword.operator.paradox
+- match: \#.*$\n?
+  name: comment.line.percent-sign
+- match: \b(yes|no)\b
+  name: constant.language.paradox
+- match: "="
+  name: keyword.operator.paradox
+- match: \"(.*?)\"
+  name: string.double.paradox
+- match: \b\d+\.\d+\.\d+\b
+  name: constant.numeric.date
+- match: -?\b[0-9]+(?:\.[0-9]+)?\b
+  name: constant.numeric
+- match: \{
+  name: keyword.operator.paradox
+  push: brackets
+- match: \}
+  name: keyword.operator.paradox
+  scope: invalid.illegal.stray-bracket-end
+
+brackets:
+  - match: \}
+    name: keyword.operator.paradox
+    pop: true
+  - include: main
