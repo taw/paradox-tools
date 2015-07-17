@@ -127,13 +127,13 @@ class CK2TweaksModBuilder < ParadoxModBuilder
 
   def allow_intermarriage!
     patch_mod_file!("common/religions/00_religions.txt") do |node|
-      all_religions = node.values.map{|group| group.list.select{|_,r| r.is_a?(PropertyList)}.map(&:first)}.flatten
+      religion_groups = node.keys
       node.each do |group_name, group|
         group.each do |religion_name, religion|
           next unless religion.is_a?(PropertyList)
           religion.delete("intermarry")
-          all_religions.each do |g|
-            religion.add! "intermarry", g unless g == religion_name
+          religion_groups.each do |g|
+            religion.add! "intermarry", g
           end
         end
       end
