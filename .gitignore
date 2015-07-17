@@ -5,3 +5,4 @@
 /build
 *.7z
 .DS_Store
+/reference*

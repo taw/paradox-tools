@@ -114,3 +114,16 @@ desc "Remove build files"
 task "clean" do
   trash "output", "build"
 end
+
+desc "Generate reference for refactoring"
+task "reference" do
+  trash "output", "build", "reference"
+  system "ck2_mods/build_ck2tweaks"
+  system "ck2_mods/build_no_dynastic_names"
+  system "ck2_mods/build_no_localized_landed_titles"
+  system "ck2_mods/build_no_localized_ranks"
+  system "fun_and_balance/build_fun_and_balance"
+  system "fun_and_balance/build_fun_and_balance_et"
+  # system "fun_and_balance/build_fun_and_balance_shattered_europe" # not updated to recent version
+  FileUtils.mv "output", "reference"
+end
