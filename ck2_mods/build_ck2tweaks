@@ -593,6 +593,12 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def divine_blood_full_fertility!
+    patch_defines_lua!([
+      ["DIVINE_BLOOD_FERTILITY_MULT", 0.25, 1.0],
+    ])
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -620,6 +626,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     # no_russian!
     # disable_abandon_iconoclasm_for_ai!
     # faster_culture_conversion!
+    divine_blood_full_fertility!
 
     # remove_levy_nerfs!
 
