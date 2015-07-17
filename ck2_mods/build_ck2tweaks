@@ -3,98 +3,103 @@
 require_relative "../lib/paradox_mod_builder"
 
 class CK2TweaksModBuilder < ParadoxModBuilder
+  # Move to base?
+  def override_defines_lua!(name, overrides)
+    create_file!(
+      "common/defines/#{name}.lua",
+      overrides.map{|key, val| "NDefines.#{key} = #{val}\n"}.join
+    )
+  end
+
   def reset_ruler_designer!
-    patch_defines_lua!([
-      # Start at 0 if you want to go down
-      ["BASE_ATTRIB", 5, 5],
-      ["BASE_AGE", 16, 16],
-      ["BASE_FERTILITY", 0.5, 0.5],
-      ["BASE_HEALTH", 5.0, 5.0],
-      # Make everything free
-      ["COST_ATTRIB", 1.0, 0],
-      ["COST_SON", 3.0, 0],
-      ["COST_DAUGHTER", 2.0, 0],
-      ["COST_MARRIED", 2.0, 0],
-      ["COST_FERTILITY", 20.0, 0],
-      ["COST_HEALTH", 10.0, 0],
-      ["COST_MONTHLY_PRESTIGE", 10.0, 0],
-      ["COST_MONTHLY_PIETY", 20.0, 0],
-      ["COST_MONTHLY_WEALTH", 10.0, 0],
-      ["COST_GLOBAL_TAX", 50.0, 0],
-      ["COST_CHURCH_OPINION", 0.5, 0],
-      ["COST_SPOUCE_OPINION", 0.5, 0],
-      ["COST_SEXAPPEAL_OPINION", 0.5, 0],
-      ["COST_DYNASTY_OPINION", 0.5, 0],
-      ["COST_VASSAL_OPINION", 1.0, 0],
-      ["COST_LIEGE_OPINION", 0.0, 0],
-      ["COST_INFIDEL_OPINION", 0.0, 0],
-      ["COST_OPPOSITE_TRAIT_OPINION", 0.5, 0],
-      ["COST_SAME_TRAIT_OPINION", 0.5, 0],
-      ["COST_SAME_RELIGION_OPINION", 0.5, 0],
-      ["COST_AMBITION_OPINION", 0.0, 0],
-      ["COST_TRIBAL_OPINION", 0.0, 0],
-      ["COST_GENERAL_OPINION", 1.0, 0],
-      ["COST_MUSLIM_OPINION", 0.25, 0],
-      ["COST_JEWISH_OPINION", 0.25, 0],
-      ["COST_CHRISTIAN_OPINION", 0.25, 0],
-      ["COST_ZOROASTRIAN_OPINION", 0.25, 0],
-      ["COST_MORALE_OFFENCE", 50.0, 0],
-      ["COST_MORALE_DEFENCE", 50.0, 0],
-      ["COST_DEFENCE", 50.0, 0],
-      # Max age is irrelevant as all is now 16
-      ["MAX_AGE", 50, 50],
-    ])
+    keys  = %W[
+      COST_ATTRIB
+      COST_SON
+      COST_DAUGHTER
+      COST_MARRIED
+      COST_FERTILITY
+      COST_HEALTH
+      COST_MONTHLY_PRESTIGE
+      COST_MONTHLY_PIETY
+      COST_MONTHLY_WEALTH
+      COST_GLOBAL_TAX
+      COST_CHURCH_OPINION
+      COST_SPOUCE_OPINION
+      COST_SEXAPPEAL_OPINION
+      COST_DYNASTY_OPINION
+      COST_VASSAL_OPINION
+      COST_LIEGE_OPINION
+      COST_INFIDEL_OPINION
+      COST_OPPOSITE_TRAIT_OPINION
+      COST_SAME_TRAIT_OPINION
+      COST_SAME_RELIGION_OPINION
+      COST_AMBITION_OPINION
+      COST_TRIBAL_OPINION
+      COST_UNREFORMED_TRIBAL_OPINION
+      COST_GENERAL_OPINION
+      COST_MUSLIM_OPINION
+      COST_JEWISH_OPINION
+      COST_CHRISTIAN_OPINION
+      COST_ZOROASTRIAN_OPINION
+      COST_MORALE_OFFENCE
+      COST_MORALE_DEFENCE
+      COST_DEFENCE
+    ]
+    # Keep BASE_*, MAX_AGE
+    override_defines_lua!("ruler_designer",
+      Hash[keys.map{|key| ["NRulerDesigner.#{key}", 0] }]
+    )
   end
 
   def fix_gavelkind!
     # Bonus is not applied correctly and is far less than 30% claimed
     # Increase it to balance things out a bit
-    patch_defines_lua!([
-      ["GAVELKIND_MAX_SIZE_BONUS", "0.30", "0.50"],
-    ])
+    override_defines_lua!("gavelkind",
+      "NDiplomacy.GAVELKIND_MAX_SIZE_BONUS" => "0.50"
+    )
   end
 
   def reduce_wrong_gov_type_penalties!
     # This punishes feudalizing tribals way too much
-    patch_defines_lua!([
-      ["WRONG_GOV_FORM_TAX_MOD", -0.75, -0.50],
-      ["WRONG_GOV_FORM_LEVY_MOD", -0.75, -0.50],
-    ])
+    override_defines_lua!("wrong_gov_type",
+      "NCharacter.WRONG_GOV_FORM_TAX_MOD"  => -0.50,
+      "NCharacter.WRONG_GOV_FORM_LEVY_MOD" => -0.50,
+    )
   end
 
   def allow_any_number_of_different_holding_types!
     # A nerf without exploit
-    patch_defines_lua!([
-      ["MAX_REPUBLIC_COUNTIES_IN_REALM", 0.1, 1.0],
-      ["MAX_THEOCRACY_COUNTIES_IN_REALM", 0.1, 1.0],
-    ])
+    override_defines_lua!("max_counties_in_realm",
+      "NTitle.MAX_REPUBLIC_COUNTIES_IN_REALM"  => 1.0,
+      "NTitle.MAX_THEOCRACY_COUNTIES_IN_REALM" => 1.0,
+    )
   end
 
   def take_money_from_banished_landed_characters!
     # That's not even particularly gamey
-    patch_defines_lua!([
-      ["BANISH_TAKE_WEALTH_PERCENTAGE_LANDED", 0, 1],
-    ])
+    override_defines_lua!("banish_take_wealth",
+      "NDiplomacy.BANISH_TAKE_WEALTH_PERCENTAGE_LANDED" => 1,
+    )
   end
 
   def remove_levy_nerfs!
     # This break feudal character of the game
-    patch_defines_lua!([
-      ["REBEL_LEADER_MINIMUM_LIEGE_LEVY_MULT",  1,     1],
-      ["CAPITAL_COUNTY_VASSAL_COUNT_LEVY_MULT", 1,     1],
-      ["CAPITAL_COUNTY_VASSAL_LEVY_MULT",       1.25,  1],
-      ["CAPITAL_COUNTY_LEVY_MULT",              1.5,   1],
-      ["CAPITAL_COUNTY_LIEGE_LEVY_MULT",        1,     1],
-      ["CAPITAL_DUCHY_VASSAL_LEVY_MULT",        1.15,  1],
-      ["CAPITAL_DUCHY_LEVY_MULT",               1.25,  1],
-      ["CAPITAL_DUCHY_LIEGE_LEVY_MULT",         0.75,  1],
-      ["CAPITAL_KINGDOM_LEVY_MULT",             1,     1],
-      ["CAPITAL_KINGDOM_LIEGE_LEVY_MULT",       0.5,   1],
-      ["CAPITAL_EMPIRE_LEVY_MULT",              1,     1],
-      ["CAPITAL_EMPIRE_LIEGE_LEVY_MULT",        0.35,  1],
-      ["OUTSIDE_LEVY_MULT",                     1,     1],
-      ["OUTSIDE_LIEGE_LEVY_MULT",               0.25,  1],
-    ])
+    override_defines_lua!("levy_nerf",
+      "NMilitary.REBEL_LEADER_MINIMUM_LIEGE_LEVY_MULT"  => 1,
+      "NMilitary.CAPITAL_COUNTY_VASSAL_COUNT_LEVY_MULT" => 1,
+      "NMilitary.CAPITAL_COUNTY_VASSAL_LEVY_MULT"       => 1,
+      "NMilitary.CAPITAL_COUNTY_LEVY_MULT"              => 1,
+      "NMilitary.CAPITAL_COUNTY_LIEGE_LEVY_MULT"        => 1,
+      "NMilitary.CAPITAL_DUCHY_VASSAL_LEVY_MULT"        => 1,
+      "NMilitary.CAPITAL_DUCHY_LEVY_MULT"               => 1,
+      "NMilitary.CAPITAL_DUCHY_LIEGE_LEVY_MULT"         => 1,
+      "NMilitary.CAPITAL_KINGDOM_LEVY_MULT"             => 1,
+      "NMilitary.CAPITAL_KINGDOM_LIEGE_LEVY_MULT"       => 1,
+      "NMilitary.CAPITAL_EMPIRE_LEVY_MULT"              => 1,
+      "NMilitary.CAPITAL_EMPIRE_LIEGE_LEVY_MULT"        => 1,
+      "NMilitary.OUTSIDE_LEVY_MULT"                     => 1,
+      "NMilitary.OUTSIDE_LIEGE_LEVY_MULT"               => 1,
+    )
   end
 
   def no_dynastic_country_names!
@@ -304,10 +309,10 @@ class CK2TweaksModBuilder < ParadoxModBuilder
   end
 
   def fast_de_jure_drift!
-    patch_defines_lua!([
-      ["DE_JURE_ASSIMILATION_YEARS", 100, 50],
-      ["EMPIRE_DE_JURE_ASSIMILATION_YEARS", 100, 20],
-    ])
+    override_defines_lua!("de_jure_drift",
+      "NTitle.DE_JURE_ASSIMILATION_YEARS" => 50,
+      "NTitle.EMPIRE_DE_JURE_ASSIMILATION_YEARS" => 20,
+    )
   end
 
   def seduce_any_religion!
@@ -616,9 +621,9 @@ class CK2TweaksModBuilder < ParadoxModBuilder
   end
 
   def divine_blood_full_fertility!
-    patch_defines_lua!([
-      ["DIVINE_BLOOD_FERTILITY_MULT", 0.25, 1.0],
-    ])
+    override_defines_lua!("divine_blood",
+      "NReligion.DIVINE_BLOOD_FERTILITY_MULT" => 1.0,
+    )
   end
 
   def build_mod_files!
