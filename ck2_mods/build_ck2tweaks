@@ -49,6 +49,11 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     override_defines_lua!("ruler_designer",
       Hash[keys.map{|key| ["NRulerDesigner.#{key}", 0] }]
     )
+    patch_mod_files!("common/traits/*.txt") do |node|
+      node.each do |name, trait|
+        trait.delete "ruler_designer_cost"
+      end
+    end
   end
 
   def fix_gavelkind!
