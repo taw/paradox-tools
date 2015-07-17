@@ -593,6 +593,16 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  def universal_hate!
+    patch_mod_file!("common/traits/00_traits.txt") do |node|
+      node.each do |name, trait|
+        if trait["education"]
+          trait["general_opinion"] = -1000
+        end
+      end
+    end
+  end
+
   def divine_blood_full_fertility!
     patch_defines_lua!([
       ["DIVINE_BLOOD_FERTILITY_MULT", 0.25, 1.0],
@@ -626,6 +636,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     # no_russian!
     # disable_abandon_iconoclasm_for_ai!
     # faster_culture_conversion!
+    # universal_hate!
     divine_blood_full_fertility!
 
     # remove_levy_nerfs!
