@@ -87,6 +87,12 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     )
   end
 
+  def disable_diplomatic_range_limit!
+    override_defines_lua!("diplomatic_distance",
+      "NDiplomacy.MAX_DIPLO_DISTANCE" => 10000,
+    )
+  end
+
   def remove_levy_nerfs!
     # This break feudal character of the game
     override_defines_lua!("levy_nerf",
@@ -652,6 +658,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     allow_everyone_river_access!
     disable_fucking_hints!
     suez_canal!
+    disable_diplomatic_range_limit!
 
     ### Specific things for specific campaign, kept for reference:
     # create_hunie_trait!
