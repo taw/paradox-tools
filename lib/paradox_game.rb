@@ -57,21 +57,33 @@ class ParadoxGame
     found.uniq{|file| file.to_s.downcase}.sort
   end
 
-  def parse_localization_from_path(path)
-    data = path.read
-    YAML.load(data.gsub(/\uFEFF/, ""))["l_english"].tap do |parsed|
-      raise "No Engish localization data in `#{path}'" unless parsed
-    end
-  end
-
-  def localization_data
-    @localization_data ||= glob("localisation/*_l_english.yml").map{|path|
-      parse_localization_from_path(resolve(path))
-    }.inject({}, &:merge)
-  end
-
   def localization(key, default=key)
     localization_data[key.to_s] || default
+  end
+
+  def localization_type
+    eu4 = !glob("localisation/*_l_english.yml").empty?
+    ck2 = !glob("localisation/*.csv").empty?
+    return :both if eu4 and ck2
+    return :eu4 if eu4
+    return :ck2 if ck2
+    return :none
+  end
+
+  # If something is defined in multiple locations
+  # for now we don't have any special handling
+  def localization_data
+    unless @localization_data
+      @localization_data = {}
+      glob("localisation/*_l_english.yml").each do |path|
+        @localization_data.merge! parse_localization_from_path_eu4(resolve(path))
+      end
+      glob("localisation/*.csv").each do |path|
+        require 'pry'; binding.pry
+        @localization_data.merge! parse_localization_from_path_ck2(resolve(path))
+      end
+    end
+    @localization_data
   end
 
   private
@@ -87,5 +99,23 @@ class ParadoxGame
       raise ".mod file and directory for it must be in same folder" unless dir_path.directory?
       @roots.unshift(path: dir_path, replace: replaces)
     end
+  end
+
+  def parse_localization_from_path_eu4(path)
+    data = path.read
+    YAML.load(data.gsub(/\uFEFF/, ""))["l_english"].tap do |parsed|
+      raise "No Engish localization data in `#{path}'" unless parsed
+    end
+  end
+
+  def parse_localization_from_path_ck2(path)
+    # No idea WTF but some are UTF8 and some are not
+    # WTF are files which are not UTF8? Sometimes they look iso-8859-1, sometimes windows-1252
+    # It's all that miserable
+    data = path.read
+    unless data.valid_encoding?
+      data = data.force_encoding("iso-8859-1").encode("UTF-8")
+    end
+    Hash[data.split("\n").grep(/\A[^#]/).map{|line| line.split(";")[0,2] }]
   end
 end

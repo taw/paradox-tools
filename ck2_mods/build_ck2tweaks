@@ -2,7 +2,7 @@
 
 require_relative "../lib/paradox_mod_builder"
 
-class CK2TweaksModBuilder < ParadoxModBuilder::CK2
+class CK2TweaksModBuilder < ParadoxModBuilder
   def reset_ruler_designer!
     patch_defines_lua!([
       # Start at 0 if you want to go down

@@ -27,7 +27,30 @@ class ParadoxModBuilder
       @localization[group][tag] = name
     end
   end
+  def build!
+    ensure_target_clear!
+    build_mod_files!
+    save_localization!
+  end
   def save_localization!
+    return if @localization.empty?
+    case @game.localization_type
+    when :ck2
+      save_localization_ck2!
+    when :eu4
+      save_localization_eu4!
+    else
+      raise "No idea how to save localization"
+    end
+  end
+  def save_localization_ck2!
+    @localization.each do |group, data|
+      create_file!("localisation/#{group}.csv",
+        data.map{|k,v| "#{k};#{v};;;;;;;;;;;;;x\n" }.join
+      )
+    end
+  end
+  def save_localization_eu4!
     # YAML is about as much a standard as CSV, use Paradox compatible output instead of yaml gem
     @localization.each do |group, data|
       create_file!("localisation/#{group}_l_english.yml",
@@ -36,11 +59,6 @@ class ParadoxModBuilder
         data.map{|k,v| " #{k}: \"#{v}\"\n"}.join
       )
     end
-  end
-  def build!
-    ensure_target_clear!
-    build_mod_files!
-    save_localization!
   end
   def ensure_target_clear!
     system "trash", @target.to_s if @target.exist?
@@ -112,12 +130,3 @@ class ParadoxModBuilder
   end
 end
 
-class ParadoxModBuilder::CK2 < ParadoxModBuilder
-  def save_localization!
-    @localization.each do |group, data|
-      create_file!("localisation/#{group}.csv",
-        data.map{|k,v| "#{k};#{v};;;;;;;;;;;;;x\n" }.join
-      )
-    end
-  end
-end
