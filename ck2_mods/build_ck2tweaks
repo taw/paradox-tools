@@ -593,6 +593,18 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     end
   end
 
+  # Experimental, but this should allow cheap nomad->tribal->feudal transition
+  # instead of paying ridiculous amounts of money for direct nomad->feudal
+  def everyone_can_build_tribes!
+    patch_mod_files!("common/governments/*.txt") do |node|
+      node.each do |_, govs|
+        govs.each do |name, gov|
+          gov["can_build_tribal"] = true unless name == "nomadic_government"
+        end
+      end
+    end
+  end
+
   def universal_hate!
     patch_mod_file!("common/traits/00_traits.txt") do |node|
       node.each do |name, trait|
@@ -637,6 +649,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder::CK2
     # disable_abandon_iconoclasm_for_ai!
     # faster_culture_conversion!
     # universal_hate!
+    everyone_can_build_tribes!
     divine_blood_full_fertility!
 
     # remove_levy_nerfs!
