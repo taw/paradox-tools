@@ -20,6 +20,7 @@
 	<key>fileTypes</key>
 	<array>
 		<string>txt</string>
+		<string>mod</string>
 	</array>
 	<key>name</key>
 	<string>Paradox</string>
