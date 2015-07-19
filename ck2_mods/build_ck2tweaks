@@ -637,6 +637,13 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     )
   end
 
+  # If this had a timeout it would be fine, but it's ridiculous lasting forever
+  def no_foreign_conqueror_penalty!
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+      node["opinion_foreign_conqueror"].delete "opinion"
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -659,6 +666,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     disable_fucking_hints!
     suez_canal!
     disable_diplomatic_range_limit!
+    no_foreign_conqueror_penalty!
 
     ### Specific things for specific campaign, kept for reference:
     # create_hunie_trait!
