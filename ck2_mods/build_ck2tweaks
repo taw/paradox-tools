@@ -667,6 +667,19 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def increase_vassal_limit!
+    # The entire mechanic is dumb - it either does nothing
+    # (short of preventing North Korea mode)
+    # or is ridiculously punishing - and unlike with demesne limit
+    # there's no reasonable workaround
+    override_defines_lua!("vassal_limit",
+      "NDiplomacy.VASSAL_LIMIT_DUKE_MULT" => 25.0,
+      "NDiplomacy.VASSAL_LIMIT_KING_MULT" => 50.0,
+      "NDiplomacy.VASSAL_LIMIT_EMPEROR_MULT" => 100.0,
+      "NDiplomacy.VASSAL_LIMIT_GREAT_DUKE_BONUS" => 15.0,
+    )
+  end
+
   def show_all_wars_on_map!
     patch_mod_files!("common/cb_types/*.txt") do |node|
       node.each do |name, cb|
@@ -698,6 +711,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     suez_canal!
     disable_diplomatic_range_limit!
     no_foreign_conqueror_penalty!
+    increase_vassal_limit!
     show_all_wars_on_map!
     # TODO: de jure drift by title_decisions
 
