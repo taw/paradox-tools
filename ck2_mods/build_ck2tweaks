@@ -695,6 +695,69 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def allow_feasts_at_minor_wars!
+    # Optimal way would be to allow them in case of minor wars
+    # (like being secondary partner, or peasant revolt)
+    # but no major war, but for now let's just do this
+    #
+    # Hard to say in how many other places this needs to be updated
+    # Diwali events seem to be checking if vassals are at war,
+    # and if we are then all of them will be etc.
+    # Oh well
+
+    feasts = [
+      "feast_0",
+      "summer_fair",
+      "hold_grand_hunt",
+      "hold_tiger_hunt",
+      "catholic_pilgrimage",
+      "go_on_hajj",
+      "observe_ramadan",
+      "hold_nerge",
+      "hold_blot",
+      "hold_ukon_juhla",
+      "hold_uzgavenes",
+      "hold_jarilo",
+      "celebrate_passover",
+      "hold_diwali_feast_hindu",
+      "hold_diwali_feast_buddhist",
+      "hold_diwali_feast_jain",
+      "hold_diwali_feast_kali_puja",
+      "hold_zun_feast",
+      "hold_a_epic_tournament",
+      "hold_a_furusiyya",
+      "hold_nomad_wargames",
+    ]
+
+    patch_mod_files!("decisions/*.txt") do |node|
+      node.each do |category, decisions|
+        next unless category == "decisions"
+        decisions.each do |name, decision|
+          next unless feasts.include?(name)
+          next unless decision["allow"]["war"] == false
+          decision["allow"].delete_if{|k,v| [k,v] == ["war", false]}
+        end
+      end
+    end
+
+    patch_mod_files!("events/*.txt") do |node|
+      node.each do |category, event|
+        next unless event["trigger"]
+        next unless event["trigger"]["has_character_modifier"] == "holding_large_feast" or
+                    event["trigger"]["has_character_modifier"] == "holding_grand_hunt"
+
+        if event["trigger"]["war"] == false
+          event["trigger"].delete_if{|k,v| [k,v] == ["war", false]}
+        elsif event["trigger"]["war"] == true
+          raise unless event["id"] == 72112 or event["id"] == 36089
+        end
+      end
+      # 72112 - cancel feast because war
+      # 36089 - cancel hunt because war
+      node.delete_if{|c,e| e["id"] == 72112 or e["id"] == 36089}
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -720,6 +783,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     no_foreign_conqueror_penalty!
     increase_vassal_limit!
     show_all_wars_on_map!
+    allow_feasts_at_minor_wars!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
