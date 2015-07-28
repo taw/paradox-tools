@@ -282,10 +282,17 @@ class CK2TweaksModBuilder < ParadoxModBuilder
         buildings.each do |name, building|
           next unless building["potential"] and building["potential"]["FROM"].to_s =~ /culture/
           culture_rules = building["potential"]["FROM"]
+
+          if culture_rules.size == 1
+            province_rule = Property[*culture_rules.list[0]]
+          else
+            province_rule = Property::AND[*culture_rules.list.flatten(1)]
+          end
+
           building["potential"].delete "FROM"
           building["potential"].add! Property::OR[
             "FROM", culture_rules,
-            *culture_rules.list.flatten(1), # This is some awkward code...
+            province_rule,
             "FROMFROM", PropertyList["has_building", name],
           ]
         end
