@@ -667,6 +667,14 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def show_all_wars_on_map!
+    patch_mod_files!("common/cb_types/*.txt") do |node|
+      node.each do |name, cb|
+        cb.delete("display_on_map")
+      end
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -690,6 +698,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     suez_canal!
     disable_diplomatic_range_limit!
     no_foreign_conqueror_penalty!
+    show_all_wars_on_map!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
@@ -704,7 +713,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     create_minimal_hunie_trait!
 
     ### Completely obsolete in new patch
-    ### (not sure if new banishment system is good or bad)
+    ### (sadly new banishment system is completely broken, and this fix doesn't restore previous behaviour)
     # tribal_buildings_for_prestige!
     # take_money_from_banished_landed_characters!
     # more_banishment_reasons!
