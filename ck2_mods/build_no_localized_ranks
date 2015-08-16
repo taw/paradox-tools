@@ -88,7 +88,7 @@ end
 
 mb = NoLocalizedRanksModBuilder.new(
   ParadoxGame.new(
-    "source/ck2_2.4.2",
+    "source/ck2_2.4.3",
   ),
   "output/no_localized_ranks",
 )
