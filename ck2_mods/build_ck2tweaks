@@ -796,8 +796,10 @@ class CK2TweaksModBuilder < ParadoxModBuilder
               "make_capital_holding", true,
             ],
             "FROM", PropertyList[
+              "capital", "PREV",
               "create_family_palace", true,
               "set_government_type", "merchant_republic_government",
+              "wealth", 500,
             ],
           ],
           "revoke_allowed", PropertyList["always", false],
@@ -842,6 +844,20 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def more_plots!
+    # More republican plots for start
+    # Should do more fun plots later
+    patch_mod_file!("common/objectives/00_plots.txt") do |node|
+      node["plot_seize_trade_post"]["allow"]["trade_post_owner"].delete Property[
+        "num_of_trade_post_diff",
+        PropertyList[ "character", "FROM", "value", 1],
+      ]
+      node["plot_seize_trade_post"]["potential"].delete "is_merchant_republic"
+      # require 'pry'; binding.pry
+      node["plot_seize_trade_post"]["allow"]["trade_post_owner"]["OR"].add! "de_facto_liege", "FROM"
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -871,6 +887,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     allow_feasts_at_minor_wars!
     become_republic_decision!
     no_multiple_empires!
+    more_plots!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:

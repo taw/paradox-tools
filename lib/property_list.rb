@@ -109,12 +109,17 @@ class PropertyList
 
   # What should it return?
   def delete(key)
-    @list = @list.select{|k,v| k != key}
+    if key.is_a?(Property)
+      key, val = key.key, key.val
+      @list = @list.reject{|k,v| k == key and v == val }
+    else
+      @list = @list.reject{|k,v| k == key}
+    end
     nil
   end
 
   def delete_if
-    @list = @list.select{|k,v| !yield(k,v)}
+    @list = @list.reject{|k,v| yield(k,v) }
     nil
   end
 
