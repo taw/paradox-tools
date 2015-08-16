@@ -263,8 +263,9 @@ class CK2TweaksModBuilder < ParadoxModBuilder
 
           if ["ask_help_to_manage_titles", "conscript_merchant_ships"].include?(name)
             decision.delete "is_high_prio"
-          elsif ["welcome_jews", "expel_jews", "borrow_money_jews"].include?(name) or
-                time_specific or focus_specific
+          # expel_jews/borrow_money_jews are available all time and no longer that OP
+          # welcome_jews is time specific
+          elsif ["welcome_jews"].include?(name) or time_specific or focus_specific
             decision.add! "is_high_prio", true
           elsif decision["is_high_prio"]
             # The rest are OK
