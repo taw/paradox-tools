@@ -64,6 +64,13 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     )
   end
 
+  def no_multiple_empires!
+    # This is AI dumb
+    override_defines_lua!("no_multiple_empire",
+      "NAI.MAX_EMPIRE_TITLES_TO_CREATE" => 1,
+    )
+  end
+
   def reduce_wrong_gov_type_penalties!
     # This punishes feudalizing tribals way too much
     override_defines_lua!("wrong_gov_type",
@@ -77,13 +84,6 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     override_defines_lua!("max_counties_in_realm",
       "NTitle.MAX_REPUBLIC_COUNTIES_IN_REALM"  => 1.0,
       "NTitle.MAX_THEOCRACY_COUNTIES_IN_REALM" => 1.0,
-    )
-  end
-
-  def take_money_from_banished_landed_characters!
-    # That's not even particularly gamey
-    override_defines_lua!("banish_take_wealth",
-      "NDiplomacy.BANISH_TAKE_WEALTH_PERCENTAGE_LANDED" => 1,
     )
   end
 
@@ -295,22 +295,6 @@ class CK2TweaksModBuilder < ParadoxModBuilder
             province_rule,
             "FROMFROM", PropertyList["has_building", name],
           ]
-        end
-      end
-    end
-  end
-
-  def tribal_buildings_for_prestige!
-    patch_mod_files!("common/buildings/*.txt") do |node|
-      node.each do |category, buildings|
-        next unless category == "tribal"
-        buildings.each do |name, building|
-          if building["gold_cost"] and not building["port"]
-            building.add! "prestige_cost", building["gold_cost"] * 2
-            building.delete "gold_cost"
-          elsif building["prestige_cost"]
-            building["prestige_cost"] /= 2
-          end
         end
       end
     end
@@ -822,6 +806,41 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     ]
   end
 
+  # This is very speculative, no idea if it does anything or not
+  # (unlike let's say law changes which are pretty proven)
+  def rebalance_faction_priorities!
+    # AI faction choices drastically affect how things develop.
+    # Rebalancing faction priorities can lead to much more interesting choices
+    patch_mod_file!("common/objectives/00_factions.txt") do |node|
+      # Not allowed unless Germanic culture
+      # It would probably be better to disallow this succession type otherwise
+      node["faction_succ_feudal_elective"]["potential"].add! Property::OR[
+        "culture_group", "north_germanic",
+        "culture_group", "central_germanic",
+        "culture_group", "west_germanic",
+      ]
+      # Allow elective->gavelkind.
+      # I hate elective all over the place, create some counterbalance to it
+      node["faction_succ_gavelkind"]["chance"].delete_if do |k,v|
+        k == "modifier" and v["has_law"] == "succ_feudal_elective"
+      end
+      # Make nomads a more eager to split
+      node["faction_independence"]["membership"].add! "modifier", PropertyList[
+        "factor", 10,
+        "is_nomadic", true,
+      ]
+    end
+  end
+
+  def allow_joining_all_wars!
+    # Maybe it's ridiculous, maybe it's great, no way to tell except by testing
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      node.each do |name, cb|
+        cb["can_ask_to_join_war"] = true
+      end
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -850,6 +869,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     show_all_wars_on_map!
     allow_feasts_at_minor_wars!
     become_republic_decision!
+    no_multiple_empires!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
@@ -863,11 +883,11 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     # divine_blood_full_fertility!
     create_minimal_hunie_trait!
     # allow_heir_designation!
+    rebalance_faction_priorities!
+    allow_joining_all_wars!
 
     ### Completely obsolete in new patch
     ### (sadly new banishment system is completely broken, and this fix doesn't restore previous behaviour)
-    # tribal_buildings_for_prestige!
-    # take_money_from_banished_landed_characters!
     # more_banishment_reasons!
   end
 end

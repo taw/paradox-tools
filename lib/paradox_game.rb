@@ -79,7 +79,6 @@ class ParadoxGame
         @localization_data.merge! parse_localization_from_path_eu4(resolve(path))
       end
       glob("localisation/*.csv").each do |path|
-        require 'pry'; binding.pry
         @localization_data.merge! parse_localization_from_path_ck2(resolve(path))
       end
     end
