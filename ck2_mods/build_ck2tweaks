@@ -687,6 +687,19 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     )
   end
 
+  def increase_trade_post_limit!
+    # Retinues and mercs got nerfed hard, why not keep at least this high?
+    patch_mod_files!("common/buildings/00_buildings.txt") do |node|
+      node["family_palace"]["fp_mansion_1"]["max_tradeposts"] = 10
+      node["family_palace"]["fp_mansion_2"]["max_tradeposts"] = 10
+      node["family_palace"]["fp_mansion_3"]["max_tradeposts"] = 10
+      node["family_palace"]["fp_mansion_4"]["max_tradeposts"] = 10
+    end
+    override_defines_lua!("trade_posts",
+      "NEconomy.MAX_TRADE_POSTS_BASE" => 10,
+    )
+  end
+
   def show_all_wars_on_map!
     patch_mod_files!("common/cb_types/*.txt") do |node|
       node.each do |name, cb|
@@ -758,12 +771,63 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def become_republic_decision!
+    create_mod_file! "decisions/feudal_to_republic.txt", PropertyList[
+       "settlement_decisions", PropertyList[
+        "feudal_adopt_republicanism", PropertyList[
+          "filter", "sub_realm_owned",
+          "ai_target_filter", "sub_realm_owned",
+          "from_potential", PropertyList[
+            "ai", false,
+            "is_feudal", true,
+            "is_female", false,
+          ],
+          "potential", PropertyList[
+            "holding_type", "city",
+            "capital_scope", PropertyList["port", true],
+            "holder_scope", PropertyList["OR", PropertyList[
+              "character", "FROM",
+              "AND", PropertyList["any_liege", PropertyList["character", "FROM"]],
+            ]],
+          ],
+          "allow", PropertyList[
+            "OR", PropertyList[
+              "is_capital", true,
+              "capital_scope", PropertyList["holder_scope", PropertyList["character", "FROM"]],
+            ],
+            "has_siege", false,
+            "FROM", PropertyList[
+              # "independent", true,
+              "war", false,
+            ],
+          ],
+          "effect", PropertyList[
+            "if", PropertyList[
+              "limit", PropertyList["NOT", PropertyList["holder", "FROM"]],
+              "usurp_title", "FROM",
+            ],
+            "if", PropertyList[
+              "limit", PropertyList["is_capital", false],
+              "make_capital_holding", true,
+            ],
+            "FROM", PropertyList[
+              "create_family_palace", true,
+              "set_government_type", "merchant_republic_government",
+            ],
+          ],
+          "revoke_allowed", PropertyList["always", false],
+          "ai_will_do", PropertyList["factor", 0],
+        ]
+      ]
+    ]
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
     allow_any_number_of_different_holding_types!
     allow_intermarriage!
-    allow_heir_designation!
+
     fix_gavelkind!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -782,8 +846,10 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     disable_diplomatic_range_limit!
     no_foreign_conqueror_penalty!
     increase_vassal_limit!
+    increase_trade_post_limit!
     show_all_wars_on_map!
     allow_feasts_at_minor_wars!
+    become_republic_decision!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
@@ -793,9 +859,10 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     # faster_culture_conversion!
     # universal_hate!
     # remove_levy_nerfs!
-    everyone_can_build_tribes!
-    divine_blood_full_fertility!
+    # everyone_can_build_tribes!
+    # divine_blood_full_fertility!
     create_minimal_hunie_trait!
+    # allow_heir_designation!
 
     ### Completely obsolete in new patch
     ### (sadly new banishment system is completely broken, and this fix doesn't restore previous behaviour)
@@ -807,7 +874,7 @@ end
 
 mb = CK2TweaksModBuilder.new(
   ParadoxGame.new(
-    "source/ck2_2.4.2",
+    "source/ck2_2.4.3",
   ),
   "output/ck2tweaks"
 )
