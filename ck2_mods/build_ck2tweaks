@@ -858,6 +858,17 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  def dont_call_duke_kings_ever!
+    # There's also a setting in common/governments/* but it doesn't seem to work
+    patch_mod_files!("common/cultures/00_cultures.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |name, culture|
+          culture.delete "dukes_called_kings"
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -888,6 +899,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     become_republic_decision!
     no_multiple_empires!
     more_plots!
+    dont_call_duke_kings_ever!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
