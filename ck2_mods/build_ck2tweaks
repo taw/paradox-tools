@@ -869,6 +869,14 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  # Start dates in extended timeline are bugged as hell,
+  # but it's still better than nothing
+  def extend_timeline!
+    patch_mod_file!("common/defines.txt") do |node|
+      node["start_date"] = Date.parse("769.1.1")
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -900,6 +908,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     no_multiple_empires!
     more_plots!
     dont_call_duke_kings_ever!
+    extend_timeline!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
