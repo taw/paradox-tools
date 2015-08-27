@@ -943,6 +943,18 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     )
   end
 
+  # Vanilla map is really really dumb
+  # It would take a lot of work to make it sensible, so just some easy code
+  def fix_de_jure_map!
+    # patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
+    #   require 'pry'; binding.pry
+    # end
+    patch_mod_file!("history/titles/k_italy.txt") do |node|
+      node[Date.parse("867.1.1")] = PropertyList["de_jure_liege", "e_hre"]
+      node.instance_eval{ @list.sort! }
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -976,6 +988,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     dont_call_duke_kings_ever!
     extend_timeline!
     old_style_banishment_decision!
+    fix_de_jure_map!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
