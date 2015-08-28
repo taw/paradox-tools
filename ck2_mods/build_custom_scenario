@@ -3,7 +3,19 @@
 require_relative "../lib/paradox_mod_builder"
 
 class CK2CustomScenario < ParadoxModBuilder
+  def no_kingdoms_and_empires!
+    @game.glob("history/titles/[ek]_*.txt").each do |path|
+      case path.basename(".txt").to_s
+      when "k_papal_state", "k_orthodox"
+        # Don't delete religious heads (all others are duke level)
+      else
+        patch_file!(path) { "" }
+      end
+    end
+  end
+
   def build_mod_files!
+    no_kingdoms_and_empires!
     # Do all the fun things
   end
 end
