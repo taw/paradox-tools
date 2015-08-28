@@ -3,6 +3,18 @@
 require_relative "../lib/paradox_mod_builder"
 
 class CK2CustomScenario < ParadoxModBuilder
+  def remove_all_nomads!
+    @game.glob("history/titles/*.txt").each do |path|
+      # Could those games decide which damn encoding they even use?
+      next unless resolve(path).open("rb", &:read) =~ /historical_nomad/
+      patch_mod_file!(path) do |node|
+        node.each do |date, attrs|
+          attrs.delete "historical_nomad"
+        end
+      end
+    end
+  end
+
   def no_kingdoms_and_empires!
     @game.glob("history/titles/[ek]_*.txt").each do |path|
       case path.basename(".txt").to_s
@@ -16,6 +28,7 @@ class CK2CustomScenario < ParadoxModBuilder
 
   def build_mod_files!
     no_kingdoms_and_empires!
+    remove_all_nomads!
     # Do all the fun things
   end
 end
