@@ -3,27 +3,33 @@
 require_relative "../lib/paradox_mod_builder"
 
 class CK2CustomScenario < ParadoxModBuilder
-  def remove_all_nomads!
-    @game.glob("history/titles/*.txt").each do |path|
-      # Could those games decide which damn encoding they even use?
-      next unless resolve(path).open("rb", &:read) =~ /historical_nomad/
-      patch_mod_file!(path) do |node|
-        node.each do |date, attrs|
-          attrs.delete "historical_nomad"
-        end
-      end
-    end
+  def titles_to_clean_up
+    @titles_to_clean_up ||= Set[*begin
+      @game.glob("history/titles/[ek]_*.txt").map{|path|
+        path.basename(".txt").to_s
+      } - ["k_papal_state", "k_orthodox"]
+    end]
   end
 
-  def no_kingdoms_and_empires!
-    @game.glob("history/titles/[ek]_*.txt").each do |path|
-      case path.basename(".txt").to_s
-      when "k_papal_state", "k_orthodox"
-        # Don't delete religious heads (all others are duke level)
-      else
+  def no_kingdoms_empires_and_nomads!
+    @game.glob("history/titles/*.txt").each do |path|
+      title = path.basename(".txt").to_s
+      if titles_to_clean_up.include?(title)
         patch_mod_file!(path) do |node|
           node.each do |date, attrs|
             attrs.delete "holder"
+            attrs.delete "historical_nomad"
+            attrs.delete "liege"
+          end
+          node.delete_if{|k,v| v.empty?}
+        end
+      else
+        patch_mod_file!(path) do |node|
+          node.each do |date, attrs|
+            attrs.delete "historical_nomad"
+            attrs.delete_if do |k,v|
+              k == "liege" and titles_to_clean_up.include?(v)
+            end
           end
           node.delete_if{|k,v| v.empty?}
         end
@@ -32,8 +38,7 @@ class CK2CustomScenario < ParadoxModBuilder
   end
 
   def build_mod_files!
-    no_kingdoms_and_empires!
-    remove_all_nomads!
+    no_kingdoms_empires_and_nomads!
     # Do all the fun things
   end
 end

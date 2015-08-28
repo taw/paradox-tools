@@ -84,12 +84,12 @@ class ParadoxModBuilder
     if reencode
       encoding = "windows-1252"
       encoding = reencode if reencode != true
-      content = orig_content.force_encoding(encoding).encode("UTF-8")
+      content = orig_content.force_encoding(encoding).encode("UTF-8", undef: :replace)
     else
       content = orig_content.dup
     end
     new_content = yield(content)
-    new_content = new_content.encode(encoding) if reencode
+    new_content = new_content.encode(encoding, undef: :replace) if reencode
     create_file!(name, new_content) if orig_content != new_content or force_create
   end
   def patch_defines_lua!(changes)
