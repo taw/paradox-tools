@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+
+class CK2CustomScenario < ParadoxModBuilder
+  def build_mod_files!
+    # Do all the fun things
+  end
+end
+
+mb = CK2CustomScenario.new(
+  ParadoxGame.new(
+    "source/ck2_2.4.3",
+  ),
+  "output/custom_scenario"
+)
+mb.build!
