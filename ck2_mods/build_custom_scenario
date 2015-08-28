@@ -43,9 +43,54 @@ class CK2CustomScenario < ParadoxModBuilder
     end
   end
 
+  def deep_search(node, path=[], &blk)
+    node.each do |key, val|
+      if val.is_a?(PropertyList)
+        deep_search(val, [*path, key], &blk)
+      end
+      yield(node, [*path, key])
+    end
+  end
+
+  def landed_titles_lookup
+    unless @landed_titles_lookup
+      @landed_titles_lookup = {}
+      landed_titles = @game.parse("common/landed_titles/landed_titles.txt")
+      deep_search(landed_titles) do |node, path|
+        next unless path[-1] =~ /\Ac_/
+        @landed_titles_lookup[path[-1]] = path.reverse
+      end
+    end
+    @landed_titles_lookup
+  end
+
+  def setup_fun_province_religions!
+    religion_map = {
+      "e_britannia" => "lollard", # TODO: Powys needs special handling
+      "k_persia" => "zoroastrian",
+      "k_afghanistan" => "zun_pagan",
+      "k_jerusalem" => "jewish",
+      "k_portugal" => "cathar",
+      "k_andalusia" => "cathar",
+    }
+
+    patch_mod_files!("history/provinces/*.txt") do |node|
+      titles = landed_titles_lookup[node["title"]]
+      religion = titles.map{|t| religion_map[t] }.find(&:itself)
+      next unless religion
+
+      node["religion"] = religion
+      node.each do |key, val|
+        next unless key.is_a?(Date)
+        val.delete "religion"
+      end
+    end
+  end
+
   def build_mod_files!
     no_kingdoms_empires_and_nomads!
     no_wars!
+    setup_fun_province_religions!
     # Do all the fun things
   end
 end
