@@ -21,7 +21,12 @@ class CK2CustomScenario < ParadoxModBuilder
       when "k_papal_state", "k_orthodox"
         # Don't delete religious heads (all others are duke level)
       else
-        patch_file!(path) { "" }
+        patch_mod_file!(path) do |node|
+          node.each do |date, attrs|
+            attrs.delete "holder"
+          end
+          node.delete_if{|k,v| v.empty?}
+        end
       end
     end
   end
