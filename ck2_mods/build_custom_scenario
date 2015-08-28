@@ -37,8 +37,15 @@ class CK2CustomScenario < ParadoxModBuilder
     end
   end
 
+  def no_wars!
+    patch_mod_files!("history/wars/*.txt") do |node|
+      node.delete_if{true}
+    end
+  end
+
   def build_mod_files!
     no_kingdoms_empires_and_nomads!
+    no_wars!
     # Do all the fun things
   end
 end
