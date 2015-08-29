@@ -248,11 +248,20 @@ class CK2CustomScenario < ParadoxModBuilder
     end
   end
 
+  def adjust_character_religions!
+    patch_file!("history/characters/serbian.txt", force_create: true) do |content|
+      content.sub("841.1.1.=", "841.1.1=")
+    end
+
+    patch_mod_files!("history/characters/*.txt") do |node|
+    end
+  end
   def build_mod_files!
     no_kingdoms_empires_and_nomads!
     no_wars!
     setup_fun_province_religions!
     more_merchant_republics!
+    adjust_character_religions!
   end
 end
 
