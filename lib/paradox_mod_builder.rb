@@ -75,6 +75,10 @@ class ParadoxModBuilder
       @game.resolve(name)
     end
   end
+  # This is not game parse as it will return modded file if it already exists
+  def parse(path)
+    ParadoxModFile.new(path: resolve(path)).parse!
+  end
   def create_file!(name, content)
     (@target + name).parent.mkpath
     (@target + name).write(content)

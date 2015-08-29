@@ -57,7 +57,7 @@ class CK2CustomScenario < ParadoxModBuilder
   def landed_titles_lookup
     unless @landed_titles_lookup
       @landed_titles_lookup = {}
-      landed_titles = @game.parse("common/landed_titles/landed_titles.txt")
+      landed_titles = parse("common/landed_titles/landed_titles.txt")
       deep_search(landed_titles) do |node, path|
         next unless path[-1] =~ /\A[cb]_/
         @landed_titles_lookup[path[-1]] = path.reverse
@@ -266,7 +266,7 @@ class CK2CustomScenario < ParadoxModBuilder
       character_religion = {}
       @game.glob("history/titles/*.txt").each do |path|
         title = path.basename(".txt").to_s
-        node = @game.parse(path)
+        node = parse(path)
         religion = @title_religion[title]
 
         unless religion
@@ -294,20 +294,93 @@ class CK2CustomScenario < ParadoxModBuilder
     @title_based_character_religion
   end
 
+  def relations_to_hash(relations)
+    ht = {}
+    relations.each do |r1,r2,a,b|
+      ht[a] ||= Hash.new(0)
+      ht[a][b] += r1
+      ht[b] ||= Hash.new(0)
+      ht[b][a] += r2
+    end
+    ht
+  end
+
+  def relation_based_character_religion
+    unless @relation_based_character_religion
+      dynasties = {}
+      relations = []
+      @relation_based_character_religion = @title_based_character_religion.dup
+      characters = []
+
+      # Order of inference
+      # * children from fathers
+      # * children from mothers
+      # * parents from children
+      # * spouses
+      # * employees
+      @game.glob("history/characters/*.txt").each do |path|
+        node = parse(path)
+        node.each do |id, character|
+          characters << id
+          if character["dynasty"]
+            (dynasties[character["dynasty"]] ||= []) << id
+          end
+          relations << [10000, 100, id, character["father"]] if character["father"]
+          relations << [1000, 100, id, character["mother"]] if character["mother"]
+          character.each do |key, val|
+            next unless val.is_a?(PropertyList)
+            relations << [10, 10, id, val["add_spouse"]] if val["add_spouse"]
+            relations << [1, 0, id, val["employer"]] if val["employer"]
+          end
+        end
+      end
+
+      relations = relations_to_hash(relations)
+
+      # Propagation time
+      while true
+        todo = characters - @relation_based_character_religion.keys
+        changed = false
+        puts "Iteration: #{todo.size}"
+        todo.each do |id|
+          next unless relations[id]
+          religion_inference = Hash.new(0)
+          relations[id].each do |id2, rel|
+            religion2 = @relation_based_character_religion[id2]
+            next unless religion2
+            religion_inference[religion2] += rel
+          end
+          next if religion_inference.empty?
+          best_match = religion_inference.keys.min_by{|k| [-religion_inference[k],k] }
+          @relation_based_character_religion[id] = best_match
+          changed = true
+        end
+        break unless changed
+      end
+    end
+    @relation_based_character_religion
+  end
+
   def adjust_character_religions!
     patch_file!("history/characters/serbian.txt", force_create: true) do |content|
       content.sub("841.1.1.=", "841.1.1=")
     end
 
-    title_based_character_religion # precompute for easier debugging
+    # precompute for easier debugging
+    title_based_character_religion
+    relation_based_character_religion
 
     religions = Hash.new(0)
     patch_mod_files!("history/characters/*.txt") do |node|
       node.each do |id, character|
-        if title_based_character_religion[id]
-          character["religion"] = title_based_character_religion[id]
+        if relation_based_character_religion[id]
+          character["religion"] = relation_based_character_religion[id]
         else
           character["religion"] = "aztec"
+        end
+        character.each do |key, val|
+          next unless val.is_a?(PropertyList)
+          val.delete "religion"
         end
         religions[character["religion"]] += 1
       end
