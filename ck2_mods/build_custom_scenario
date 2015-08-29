@@ -4,10 +4,12 @@ require_relative "../lib/paradox_mod_builder"
 
 class CK2CustomScenario < ParadoxModBuilder
   def titles_to_clean_up
+    # Do not destory papacy/patriarchy as they are important for game to function
+    # Destroy caliphates as they are overly territorial and can be recreated quite easily
     @titles_to_clean_up ||= Set[*begin
       @game.glob("history/titles/[ek]_*.txt").map{|path|
         path.basename(".txt").to_s
-      } - ["k_papal_state", "k_orthodox"]
+      } - ["k_papal_state", "k_orthodox"] + ["d_sunni", "d_shiite"]
     end]
   end
 
