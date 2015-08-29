@@ -73,7 +73,7 @@ class ParadoxModFileSerializer
       elsif val.is_a?(Array)
         # Empty Array is indistinguishable from empty PropertyList
         if val.all?{|v| primitive?(v)}
-          line! "#{key} = {"
+          line! "#{serialize_key(key)} = {"
           @indent += 2
           val.each do |v|
             line! serialize_primitive(v)
