@@ -210,10 +210,49 @@ class CK2CustomScenario < ParadoxModBuilder
     end
   end
 
+  def more_merchant_republics!
+    # These will become cities, not all of them will become merchant republics,
+    # only few of them with duke level holder
+    provinces = [
+      "802 - Alexandria",
+      "468 - Ragusa",
+      "858 - Aden",
+      "868 - Muscat",
+      "641 - Hormuz",
+      "649 - Basra",
+      "1297 - Debul",
+      "1127 - Navasarika",
+      "1114 - Mahoyadapuram",
+      "1221 - Vijayawada",
+      "1236 - Candradvipa",
+      "158 - Porto",
+      "78 - Brugge",
+      "80 - Holland"
+      # Would be nice, but not feudal:
+      # "368 - Danzig",
+      # "596 - Tana",
+    ]
+    provinces.each do |path|
+      patch_mod_file!("history/provinces/#{path}.txt") do |node|
+        # This is terribly hacky
+        node.instance_eval do
+          first_settlement = @list.index{|k,v| k=~/\Ab_/ }
+          first_city       = @list.index{|k,v| k=~/\Ab_/ and v == "city"}
+          first_castle     = @list.index{|k,v| k=~/\Ab_/ and v == "castle"}
+          raise unless first_city and first_settlement == first_castle
+          city = @list[first_city,1]
+          @list[first_city,1]   = []
+          @list[first_castle,0] = city
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     no_kingdoms_empires_and_nomads!
     no_wars!
     setup_fun_province_religions!
+    more_merchant_republics!
   end
 end
 
