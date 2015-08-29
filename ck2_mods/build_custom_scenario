@@ -341,7 +341,7 @@ class CK2CustomScenario < ParadoxModBuilder
       while true
         todo = characters - @relation_based_character_religion.keys
         changed = false
-        puts "Iteration: #{todo.size}"
+        # puts "Iteration: #{todo.size}"
         todo.each do |id|
           next unless relations[id]
           religion_inference = Hash.new(0)
@@ -357,6 +357,23 @@ class CK2CustomScenario < ParadoxModBuilder
         end
         break unless changed
       end
+
+      # That does much less than expected
+      dynasties.each do |_, dynasty|
+        religion_inference = Hash.new(0)
+        dynasty.each do |id|
+          if @relation_based_character_religion[id]
+            religion_inference[@relation_based_character_religion[id]] += 1
+          end
+        end
+        next if religion_inference.empty?
+        best_match = religion_inference.keys.min_by{|k| [-religion_inference[k],k] }
+        dynasty.each do |id|
+          @relation_based_character_religion[id] ||= best_match
+        end
+      end
+      todo = characters - @relation_based_character_religion.keys
+      # puts "Dynastic inference down to: #{todo.size}"
     end
     @relation_based_character_religion
   end
@@ -373,20 +390,18 @@ class CK2CustomScenario < ParadoxModBuilder
     religions = Hash.new(0)
     patch_mod_files!("history/characters/*.txt") do |node|
       node.each do |id, character|
+        # If we have nothing, just leave it as is. It's pobably semi-reasonable anyway
         if relation_based_character_religion[id]
           character["religion"] = relation_based_character_religion[id]
-        else
-          character["religion"] = "aztec"
-        end
-        character.each do |key, val|
-          next unless val.is_a?(PropertyList)
-          val.delete "religion"
+          character.each do |key, val|
+            next unless val.is_a?(PropertyList)
+            val.delete "religion"
+          end
         end
         religions[character["religion"]] += 1
       end
     end
-
-    p religions
+    # p religions
   end
 
   def build_mod_files!
