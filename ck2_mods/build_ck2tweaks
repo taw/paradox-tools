@@ -976,12 +976,51 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  # yields parent of node
+  def deep_search(node, path=[], &blk)
+    node.each do |key, val|
+      if val.is_a?(PropertyList)
+        deep_search(val, [*path, key], &blk)
+      end
+      yield(node, [*path, key])
+    end
+  end
+
+  def easier_title_creation!
+    patch_mod_file!("common/landed_titles/landed_titles.txt") do |titles|
+      # No idea what it even does, other than screwing with setting up vassal Hungary
+      # when it gets accidentally destroyed
+      titles["e_carpathia"]["k_hungary"]["allow"] = PropertyList["always", true]
+
+      deep_search(titles) do |node, path|
+        next unless path[-1] == "allow"
+        allow = node["allow"]
+        title = path[-2]
+        # These are generally sensible
+        next if allow == PropertyList["always", false]
+        next if allow == PropertyList["always", true]
+        next if allow == PropertyList["is_republic", true]
+        next if node["controls_religion"]
+        next if node["mercenary"]
+
+        # AI not being allowed to create title is really silly
+        # especially in shattered world style games
+        if allow["hidden_tooltip"] and
+           allow["hidden_tooltip"]["OR"] and
+           allow["hidden_tooltip"]["OR"]["ai"] == false
+          allow.delete "hidden_tooltip"
+          node["allow"] = PropertyList["always", true] if allow.empty?
+          next
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
     allow_any_number_of_different_holding_types!
     allow_intermarriage!
-
     fix_gavelkind!
     reset_ruler_designer!
     reduce_wrong_gov_type_penalties!
@@ -1011,6 +1050,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     old_style_banishment_decision!
     fix_de_jure_map!
     easier_culture_conversion!
+    easier_title_creation!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:

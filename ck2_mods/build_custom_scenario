@@ -45,6 +45,7 @@ class CK2CustomScenario < ParadoxModBuilder
     end
   end
 
+  # This method seems to be totally confused by one level, and yet it works...
   def deep_search(node, path=[], &blk)
     node.each do |key, val|
       if val.is_a?(PropertyList)
