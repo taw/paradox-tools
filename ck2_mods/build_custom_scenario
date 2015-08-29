@@ -129,9 +129,10 @@ class CK2CustomScenario < ParadoxModBuilder
 
       # Africa
       "k_egypt"          => "miaphysite",
-      "k_africa"         => "catholic",
+      "k_africa"         => "sunni",
       "d_tlemcen"        => "kharijite",
       "d_alger"          => "kharijite",
+      "d_kabylia"        => "kharijite",
       "e_mali"           => "west_african_pagan",
       "d_semien"         => "jewish",
       "d_harer"          => "hurufi",
@@ -141,6 +142,7 @@ class CK2CustomScenario < ParadoxModBuilder
       "d_fes"            => "yazidi",
       "d_marrakech"      => "zikri",
       "d_tangiers"       => "sunni",
+      "d_cyrenaica"      => "monothelite",
 
       # Middle East
       "k_jerusalem"      => "jewish",
