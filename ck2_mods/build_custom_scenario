@@ -103,7 +103,7 @@ class CK2CustomScenario < ParadoxModBuilder
       # Central Europe
       "k_bohemia"        => "waldensian",
       "d_bavaria"        => "waldensian",
-      "d_austria"        => "waldensian",
+      "d_osterreich"     => "waldensian",
       "k_lithuania"      => "baltic_pagan",
       "k_hungary"        => "tengri_pagan",
       "k_croatia"        => "catholic",
@@ -188,6 +188,7 @@ class CK2CustomScenario < ParadoxModBuilder
     # * iconoclast (orthodox)
     # * messalian (nestorian)
     # * mazdaki (zoroastrian)
+    # On the other hand they could just spawn via theology focus eventually
 
     patch_mod_files!("history/provinces/*.txt") do |node|
       titles = landed_titles_lookup[node["title"]]
@@ -213,7 +214,6 @@ class CK2CustomScenario < ParadoxModBuilder
     no_kingdoms_empires_and_nomads!
     no_wars!
     setup_fun_province_religions!
-    # Do all the fun things
   end
 end
 
