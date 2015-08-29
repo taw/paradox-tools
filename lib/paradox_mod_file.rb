@@ -28,7 +28,7 @@ class ParadoxModFile
     if @data[0,4] == "PK\x03\x04"
       raise "Compressed save games are not supported yet"
     end
-    @data = @data.force_encoding("windows-1252").encode("utf-8")
+    @data = @data.force_encoding("windows-1252").encode("utf-8", undef: :replace)
   end
 
   def parse!

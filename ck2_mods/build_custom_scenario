@@ -57,7 +57,7 @@ class CK2CustomScenario < ParadoxModBuilder
       @landed_titles_lookup = {}
       landed_titles = @game.parse("common/landed_titles/landed_titles.txt")
       deep_search(landed_titles) do |node, path|
-        next unless path[-1] =~ /\Ac_/
+        next unless path[-1] =~ /\A[cb]_/
         @landed_titles_lookup[path[-1]] = path.reverse
       end
     end
@@ -65,6 +65,7 @@ class CK2CustomScenario < ParadoxModBuilder
   end
 
   def setup_fun_province_religions!
+    @title_religion = {}
     religion_map = {
       # Western Europe
       "e_spain"          => "catholic",
@@ -192,6 +193,7 @@ class CK2CustomScenario < ParadoxModBuilder
 
     patch_mod_files!("history/provinces/*.txt") do |node|
       titles = landed_titles_lookup[node["title"]]
+
       religion = titles.map{|t| religion_map[t] }.find(&:itself)
       unless religion
         actual = [node["religion"], *node.keys.grep(Date).map{|k| node[k]["religion"]}.compact]
@@ -200,9 +202,18 @@ class CK2CustomScenario < ParadoxModBuilder
       end
 
       # restore means just rollback to 769 whatever it was originally
-      if religion != "restore"
-        node["religion"] = religion
+      religion = node["religion"] if religion == "restore"
+
+      holdings = [
+        node["title"],
+        *[node.keys + node.values.grep(PropertyList).map(&:keys)].flatten.grep(/\Ab_/),
+      ]
+
+      holdings.each do |h|
+        @title_religion[h] = religion
       end
+
+      node["religion"] = religion
       node.each do |key, val|
         next unless key.is_a?(Date)
         val.delete "religion"
@@ -248,14 +259,61 @@ class CK2CustomScenario < ParadoxModBuilder
     end
   end
 
+  def title_based_character_religion
+    unless @title_based_character_religion
+      character_religion = {}
+      @game.glob("history/titles/*.txt").each do |path|
+        title = path.basename(".txt").to_s
+        node = @game.parse(path)
+        religion = @title_religion[title]
+
+        unless religion
+          # warn "Can't determine religion of title: #{title}"
+          next
+        end
+
+        node.each do |date, events|
+          next if events.empty?
+          if events["holder"] and events["holder"] != 0
+            id = events["holder"]
+            character_religion[id] ||= Hash.new(0)
+            character_religion[id][religion] += 1
+          end
+        end
+      end
+
+      @title_based_character_religion = {}
+      character_religion.each do |id,stats|
+        # Tie breaker by alphabet
+        best_match = stats.keys.min_by{|k| [-stats[k], k]}
+        @title_based_character_religion[id] = best_match
+      end
+    end
+    @title_based_character_religion
+  end
+
   def adjust_character_religions!
     patch_file!("history/characters/serbian.txt", force_create: true) do |content|
       content.sub("841.1.1.=", "841.1.1=")
     end
 
+    title_based_character_religion # precompute for easier debugging
+
+    religions = Hash.new(0)
     patch_mod_files!("history/characters/*.txt") do |node|
+      node.each do |id, character|
+        if title_based_character_religion[id]
+          character["religion"] = title_based_character_religion[id]
+        else
+          character["religion"] = "aztec"
+        end
+        religions[character["religion"]] += 1
+      end
     end
+
+    p religions
   end
+
   def build_mod_files!
     no_kingdoms_empires_and_nomads!
     no_wars!
