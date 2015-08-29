@@ -301,16 +301,6 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
-  # It is just ridiculously slow. This is probably too much, but worth trying.
-  def faster_culture_conversion!
-    patch_mod_file!("events/culture_conversion_events.txt") do |node|
-      node.find_all("province_event").each do |event|
-        next unless event["id"] == 55000 or event["id"] == 55001
-        event["mean_time_to_happen"]["months"] /= 10
-      end
-    end
-  end
-
   def fast_de_jure_drift!
     override_defines_lua!("de_jure_drift",
       "NTitle.DE_JURE_ASSIMILATION_YEARS" => 50,
@@ -955,6 +945,37 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  # Culture conversion has extremely strict restrictions,
+  # enable it even when they're not met, at lower chance
+  # This will increase total rate by a lot, as one silly province will bloke
+  # conversion futher down
+  def easier_culture_conversion!
+    patch_mod_file!("events/culture_conversion_events.txt") do |node|
+      node.find_all("province_event").each do |event|
+        if event["id"] == 55000
+          event["trigger"].delete_if{|k,v| k == "any_neighbor_province"}
+          # Speed it up by 2x base
+          event["mean_time_to_happen"]["months"] /= 2
+          event["mean_time_to_happen"].add! "modifier", PropertyList[
+            "factor", 4.0,
+            # Convert only if same culture as neighbouring province and its owner
+            # This was hard requirement, make it just 4x slower if not met
+            "NOT", PropertyList[
+              "any_neighbor_province", PropertyList[
+                "has_owner", true,
+                "ROOT", PropertyList["owner", PropertyList["culture", "PREVPREV"]],
+                "owner", PropertyList["ROOT", PropertyList["owner", PropertyList["culture", "PREVPREV"]]],
+              ],
+            ],
+          ]
+        elsif event["id"] == 55001
+          # Conquest culture capital conversion. Just speed it up a bit.
+          event["mean_time_to_happen"]["months"] /= 2
+        end
+      end
+    end
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -989,13 +1010,13 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     extend_timeline!
     old_style_banishment_decision!
     fix_de_jure_map!
+    easier_culture_conversion!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
     # create_hunie_trait!
     # no_russian!
     # disable_abandon_iconoclasm_for_ai!
-    # faster_culture_conversion!
     # universal_hate!
     # remove_levy_nerfs!
     # everyone_can_build_tribes!
