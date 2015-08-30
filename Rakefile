@@ -23,7 +23,7 @@ class ModBuilder
   end
 
   def mod_picture
-    Pathname("#{category}/#{name}.png")
+    Pathname("pictures/#{name}.png")
   end
 
   def build_dir
@@ -119,6 +119,7 @@ desc "Generate reference for refactoring"
 task "reference" do
   trash "output", "build", "reference"
   system "ck2_mods/build_ck2tweaks"
+  system "ck2_mods/build_custom_scenario"
   system "ck2_mods/build_no_dynastic_names"
   system "ck2_mods/build_no_localized_landed_titles"
   system "ck2_mods/build_no_localized_ranks"
