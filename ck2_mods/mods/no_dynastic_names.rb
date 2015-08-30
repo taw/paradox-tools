@@ -1,7 +1,7 @@
 require_relative "base"
 
 class NoDynasticNamesGameModification < CK2GameModification
-  def no_dynastic_country_names!
+  def apply!
     patch_mod_files!("common/cultures/*.txt") do |node|
       node.each do |group_name, group|
         group.each do |culture_name, culture|
@@ -12,9 +12,5 @@ class NoDynasticNamesGameModification < CK2GameModification
         end
       end
     end
-  end
-
-  def apply!
-    no_dynastic_country_names!
   end
 end

@@ -25,4 +25,11 @@ class CK2GameModification < ParadoxGameModification
       yield parse(path)
     end
   end
+
+  def override_defines_lua!(name, overrides)
+    create_file!(
+      "common/defines/#{name}.lua",
+      overrides.map{|key, val| "NDefines.#{key} = #{val}\n"}.join
+    )
+  end
 end
