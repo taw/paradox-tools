@@ -18,4 +18,11 @@ class CK2GameModification < ParadoxGameModification
       end
     end
   end
+
+  # read only version of patch_mod_files!
+  def iterate_mod_files!(pattern)
+    glob(pattern).each do |path|
+      yield parse(path)
+    end
+  end
 end
