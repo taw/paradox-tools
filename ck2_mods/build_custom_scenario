@@ -2,19 +2,19 @@
 
 require_relative "../lib/paradox_mod_builder"
 
-class CK2CustomScenario < ParadoxModBuilder
+class CK2CustomScenarioGameModification < ParadoxGameModification
   def titles_to_clean_up
     # Do not destory papacy/patriarchy as they are important for game to function
     # Destroy caliphates as they are overly territorial and can be recreated quite easily
     @titles_to_clean_up ||= Set[*begin
-      @game.glob("history/titles/[ek]_*.txt").map{|path|
+      glob("history/titles/[ek]_*.txt").map{|path|
         path.basename(".txt").to_s
       } - ["k_papal_state", "k_orthodox"] + ["d_sunni", "d_shiite"]
     end]
   end
 
   def no_kingdoms_empires_and_nomads!
-    @game.glob("history/titles/*.txt").each do |path|
+    glob("history/titles/*.txt").each do |path|
       title = path.basename(".txt").to_s
       if titles_to_clean_up.include?(title)
         patch_mod_file!(path) do |node|
@@ -267,7 +267,7 @@ class CK2CustomScenario < ParadoxModBuilder
   def title_based_character_religion
     unless @title_based_character_religion
       character_religion = {}
-      @game.glob("history/titles/*.txt").each do |path|
+      glob("history/titles/*.txt").each do |path|
         title = path.basename(".txt").to_s
         node = parse(path)
         religion = @title_religion[title]
@@ -321,7 +321,7 @@ class CK2CustomScenario < ParadoxModBuilder
       # * parents from children
       # * spouses
       # * employees
-      @game.glob("history/characters/*.txt").each do |path|
+      glob("history/characters/*.txt").each do |path|
         node = parse(path)
         node.each do |id, character|
           characters << id
@@ -407,7 +407,7 @@ class CK2CustomScenario < ParadoxModBuilder
     # p religions
   end
 
-  def build_mod_files!
+  def apply!
     no_kingdoms_empires_and_nomads!
     no_wars!
     setup_fun_province_religions!
@@ -416,10 +416,24 @@ class CK2CustomScenario < ParadoxModBuilder
   end
 end
 
-mb = CK2CustomScenario.new(
-  ParadoxGame.new(
-    "source/ck2_2.4.3",
-  ),
-  "output/custom_scenario"
-)
-mb.build!
+class CK2CustomScenarioModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.4.3",
+      ),
+      "output/custom_scenario",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! CK2CustomScenarioGameModification
+    create_mod_descriptor!(
+      name: "Custom Scenario",
+      path: "mod/custom_scenario",
+    )
+  end
+end
+
+if __FILE__ == $0
+  CK2CustomScenarioModBuilder.new.build!
+end
