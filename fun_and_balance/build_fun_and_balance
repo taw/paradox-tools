@@ -73,7 +73,6 @@ class FunAndBalanceGameModification < ParadoxGameModification
     move_burgundy_capital_to_hre!
     reverse_horde_nerfs!
     smooth_oe_scaling!
-    easier_change_government_decisions!
     power_projection_tweaks!
 
     # Redistribute adm/dev efficiency
@@ -113,7 +112,8 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          EU3StyleElectionsGameModification,
                          ImproveMissionsGameModification,
                          HideCancelledMissionsGameModification,
-                         ConfigMenuVanillaGameModification
+                         ConfigMenuVanillaGameModification,
+                         ChangeGovernmentGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
