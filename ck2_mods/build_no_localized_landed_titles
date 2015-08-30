@@ -2,10 +2,10 @@
 
 require_relative "../lib/paradox_mod_builder"
 
-class NoLocalizedTitlesModBuilder < ParadoxModBuilder
+class NoLocalizedTitlesGameModification < ParadoxGameModification
   def cultures
     @cultures ||= begin
-      culture_data = @game.parse("common/cultures/00_cultures.txt")
+      culture_data = parse("common/cultures/00_cultures.txt")
       culture_data.keys +
       culture_data.values.map{|vs| vs.list.map{|k,v| k if v.is_a?(PropertyList)}.compact}.flatten
     end
@@ -34,7 +34,7 @@ class NoLocalizedTitlesModBuilder < ParadoxModBuilder
     end
   end
 
-  def build_mod_files!
+  def apply!
     patch_mod_files!("common/landed_titles/*.txt") do |node|
       node.each do |title_name, title_node|
         no_localized_landed_titles!(title_node)
@@ -45,10 +45,25 @@ class NoLocalizedTitlesModBuilder < ParadoxModBuilder
   end
 end
 
-mb = NoLocalizedTitlesModBuilder.new(
-  ParadoxGame.new(
-    "source/ck2_2.4.3",
-  ),
-  "output/no_localized_landed_titles",
-)
-mb.build!
+class NoLocalizedTitlesModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.4.3",
+      ),
+      "output/no_localized_landed_titles",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! NoLocalizedTitlesGameModification
+    create_mod_descriptor!(
+      name: "No Localized Landed Titles",
+      path: "mod/no_localized_landed_titles",
+      picture: "no_localized_landed_titles.png",
+    )
+  end
+end
+
+if __FILE__ == $0
+  NoLocalizedTitlesModBuilder.new.build!
+end
