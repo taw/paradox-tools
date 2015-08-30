@@ -1,12 +1,11 @@
 require_relative "holy_sites"
 require_relative "missions"
-require_relative "achievements"
 
 module FunAndBalanceCommon
   # This is seriously horrible, code started blobbing like France
   include FunAndBalanceFeatureHolySites
   include FunAndBalanceFeatureMissions
-  include FunAndBalanceFeatureAchievements
+
 
   def modify_node!(node, *modifications)
     modifications.each do |*path, expected, modified|

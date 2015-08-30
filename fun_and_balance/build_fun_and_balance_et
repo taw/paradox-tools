@@ -2,8 +2,7 @@
 
 require_relative "../lib/paradox_mod_builder"
 require_relative "fun_and_balance_common"
-require_relative "mods/religious_leagues"
-require_relative "mods/nation_customizer"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
 class FunAndBalanceETGameModification < ParadoxGameModification
   include FunAndBalanceCommon
@@ -129,8 +128,6 @@ class FunAndBalanceETGameModification < ParadoxGameModification
     double_diplo_rel_limit_from_ideas!
     # No extra foramble countries, makes little sense it this mod
     feature_holy_sites!(holy_site_info_et) # TODO
-
-    # No achievements - map would need too many fixes
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
@@ -168,6 +165,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
                          ReligiousLeaguesGameModification,
                          # No partial westernization - it is disabled by default these days anyway
                          NationCustomizerGameModification
+                         # No achievements - map would need too many fixes
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"
       name: " Fun and Balance for Extended Timeline",

@@ -2,9 +2,7 @@
 
 require_relative "../lib/paradox_mod_builder"
 require_relative "fun_and_balance_common"
-require_relative "mods/religious_leagues"
-require_relative "mods/partial_westernization"
-require_relative "mods/nation_customizer"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
 class FunAndBalanceGameModification < ParadoxGameModification
   include FunAndBalanceCommon
@@ -69,7 +67,6 @@ class FunAndBalanceGameModification < ParadoxGameModification
     double_diplo_rel_limit_from_ideas!
     feature_extra_formable_countries!
     feature_holy_sites!(holy_site_info_vanilla)
-    feature_achievements!
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
@@ -115,7 +112,8 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     apply_modifications! FunAndBalanceGameModification,
                          ReligiousLeaguesGameModification,
                          PartialWesternizationGameModification,
-                         NationCustomizerGameModification
+                         NationCustomizerGameModification,
+                         AchievementsGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
