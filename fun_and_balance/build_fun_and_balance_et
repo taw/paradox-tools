@@ -126,7 +126,6 @@ class FunAndBalanceETGameModification < ParadoxGameModification
     anyone_can_form_byzantium!
     change_elections_to_eu3_style!
     double_diplo_rel_limit_from_ideas!
-    # No extra foramble countries, makes little sense it this mod
     feature_holy_sites!(holy_site_info_et) # TODO
     fix_opinions!
     fix_wargoals!
@@ -166,6 +165,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
                          # No partial westernization - it is disabled by default these days anyway
                          NationCustomizerGameModification
                          # No achievements - map would need too many fixes
+                         # No extra foramble countries, makes little sense it this mod
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"
       name: " Fun and Balance for Extended Timeline",

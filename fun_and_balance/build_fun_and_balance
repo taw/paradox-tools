@@ -65,7 +65,6 @@ class FunAndBalanceGameModification < ParadoxGameModification
     anyone_can_form_byzantium!
     change_elections_to_eu3_style!
     double_diplo_rel_limit_from_ideas!
-    feature_extra_formable_countries!
     feature_holy_sites!(holy_site_info_vanilla)
     fix_opinions!
     fix_wargoals!
@@ -113,7 +112,8 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          ReligiousLeaguesGameModification,
                          PartialWesternizationGameModification,
                          NationCustomizerGameModification,
-                         AchievementsGameModification
+                         AchievementsGameModification,
+                         ExtraFormableCountriesGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
