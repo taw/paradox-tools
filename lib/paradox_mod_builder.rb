@@ -4,6 +4,7 @@ require "set"
 
 require_relative "paradox_game"
 require_relative "paradox_mod_file_serializer"
+require_relative "paradox_game_modification"
 
 class Pathname
   def write(content)
@@ -132,5 +133,12 @@ class ParadoxModBuilder
   def create_mod_file!(path, node)
     create_file! path, ParadoxModFileSerializer.serialize(node).encode("windows-1252")
   end
+  def apply_modifications!(*modifications)
+    modifications.each do |modification|
+      modification.new(self).apply!
+    end
+  end
+  def create_mod_descriptor!(dsc)
+    create_mod_file! "../#{@target.basename}.mod", PropertyList[*dsc.to_a.flatten(1)]
+  end
 end
-

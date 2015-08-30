@@ -2,7 +2,7 @@
 
 require_relative "../lib/paradox_mod_builder"
 
-class NoDynasticNamesModBuilder < ParadoxModBuilder
+class NoDynasticNamesGameModification < ParadoxGameModification
  def no_dynastic_country_names!
     patch_mod_files!("common/cultures/*.txt") do |node|
       node.each do |group_name, group|
@@ -16,15 +16,31 @@ class NoDynasticNamesModBuilder < ParadoxModBuilder
     end
   end
 
-  def build_mod_files!
+  def apply!
     no_dynastic_country_names!
   end
 end
 
-mb = NoDynasticNamesModBuilder.new(
-  ParadoxGame.new(
-    "source/ck2_2.4.3",
-  ),
-  "output/no_dynastic_names"
-)
-mb.build!
+class NoDynasticNamesModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.4.3",
+      ),
+      "output/no_dynastic_names"
+    )
+  end
+
+  def build_mod_files!
+    apply_modifications! NoDynasticNamesGameModification
+    create_mod_descriptor!(
+      name: "No Dynastic Names",
+      path: "mod/no_dynastic_names",
+      picture: "no_dynastic_names.png",
+    )
+  end
+end
+
+if __FILE__ == $0
+  NoDynasticNamesModBuilder.new.build!
+end
