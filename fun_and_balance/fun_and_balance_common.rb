@@ -1,9 +1,4 @@
-require_relative "holy_sites"
-
 module FunAndBalanceCommon
-  # This is seriously horrible, code started blobbing like France
-  include FunAndBalanceFeatureHolySites
-
   def modify_node!(node, *modifications)
     modifications.each do |*path, expected, modified|
       actual = path.inject(node){|n,p| n ? n[p] : nil}
@@ -348,7 +343,7 @@ def build_mod_config_menu!(*options)
     ]
   end
 
-   def build_mod_config_menu_for_vanilla!
+  def build_mod_config_menu_for_vanilla!
     build_mod_config_menu!(
       menu_set_flag_option("enable_achievements", "Enable Achievements"),
       menu_clr_flag_option("enable_achievements", "Disable Achievements"),
@@ -372,7 +367,7 @@ def build_mod_config_menu!(*options)
       "fun_and_balance_menu.done" => "Done"
   end
 
-   def build_mod_config_menu_for_et!
+  def build_mod_config_menu_for_et!
     build_mod_config_menu!(
       menu_set_flag_option("disable_eu3_style_elections", "Disable EU3 style elections"),
       menu_clr_flag_option("disable_eu3_style_elections", "Enable EU3 style elections"),

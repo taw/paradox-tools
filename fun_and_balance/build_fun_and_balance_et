@@ -125,7 +125,6 @@ class FunAndBalanceETGameModification < ParadoxGameModification
 
     anyone_can_form_byzantium!
     double_diplo_rel_limit_from_ideas!
-    feature_holy_sites!(holy_site_info_et) # TODO
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
@@ -158,6 +157,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   end
   def build_mod_files!
     apply_modifications! FunAndBalanceETGameModification,
+                         HolySitesETGameModification,
                          ReligiousLeaguesGameModification,
                          # No partial westernization - it is disabled by default these days anyway
                          NationCustomizerGameModification,

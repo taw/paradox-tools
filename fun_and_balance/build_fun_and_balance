@@ -64,7 +64,6 @@ class FunAndBalanceGameModification < ParadoxGameModification
 
     anyone_can_form_byzantium!
     double_diplo_rel_limit_from_ideas!
-    feature_holy_sites!(holy_site_info_vanilla)
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
@@ -106,6 +105,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   end
   def build_mod_files!
     apply_modifications! FunAndBalanceGameModification,
+                         HolySitesVanillaGameModification,
                          ReligiousLeaguesGameModification,
                          PartialWesternizationGameModification,
                          NationCustomizerGameModification,

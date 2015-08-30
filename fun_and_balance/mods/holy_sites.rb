@@ -1,115 +1,7 @@
-# TODO: This entire file is a huge mess:
-#    * sites need to be first class
+require_relative "base"
 
-module FunAndBalanceFeatureHolySites
-  # Based on history, CK2 precedence, and gameplay considerations
-  # Many CK2 locations mapped to vaguely similar EU4 provinces as map correspondence is not very high
-  # Better suggestions welcome
-  # Protestant/Reformed set to same as Catholic because we don't know where they'll trigger
-  def holy_site_info_vanilla
-    {
-      groups: {
-        catholic:              :western_christian,
-        protestant:            :western_christian,
-        reformed:              :western_christian,
-        inti:                  :new_world,
-        nahuatl:               :new_world,
-        mesoamerican_religion: :new_world,
-      },
-      sites: {
-        christian:    ["Roma", "Jerusalem", "Constantinople"],
-        western_christian: ["Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-        orthodox:     ["Thessaloniki / Mount Athos", "Kiev"],
-        coptic:       ["Alexandria", "Tigre / Ark of the Covenant"],
-
-        muslim:       ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
-        # Varanasi, Chidambaram, Angkor Wat - Hindu
-        # Palitana - Jain
-        # Harmandir Sahib - Sikh
-        dharmic:     ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Angkor / Angkor Wat", "Lahore / Harmandir Sahib"],
-
-        # These are not amazing, but they'll have to do:
-        eastern:     ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
-
-        # Adapted from CK2
-        norse_pagan_reformed:   ["Zeeland", "Hannover / Paderborn / 1758", "Sjaelland", "Trondelag", "Uppland / Uppsala"],
-        jewish:                 ["Jerusalem", "Sinai", "Damascus", "Hamadan", "Dhofar / Salahah"],
-
-        # One site moved way east as EU4 map has more Tengri land
-        tengri_pagan_reformed: ["Pest", "Crimea", "Astrakhan", "Alty-Kuduk", "Barguzinsky"],
-        zoroastrian: ["Zanjan", "Bushehr", "Bojnord", "Bam", "Balkh"],
-        # Old world sites are Sunset Invasion siliness
-        # New world sites are one per religion so they have reason to fight each other
-        new_world: ["London", "Ile-de-France / Paris", "Mexico", "Belize", "Cuzco"],
-        # Not getting any ever, these are generic groupings not real religions
-        shamanism:    [],
-        animism:      [],
-        totemism:     [],
-      }
-    }
-  end
-
-  def holy_site_info_et
-    # TODO:
-    # ["hellenic", "hellenism"]
-    # ["hellenic", "zamolxism"]
-    # ["hellenic", "nabataean"]
-    # ["celtic_pagan", "druidism"]
-    # ["slavic_pagan", "romuva"]
-    # ["slavic_pagan", "slavic"]
-    # ["finnic_pagan", "suomenusko"]
-    # ["african_pagan", "egyptian"]
-    # ["african_pagan", "african"] - not getting any
-    # ["mesopotamian", "ashurism"]
-    # ["mesopotamian", "south_arabian"]
-    #
-    # and fix early Christian religions
-    {
-      groups: {
-        catholic:              :western_christian,
-        protestant:            :western_christian,
-        reformed:              :western_christian,
-        orthodox:              :eastern_christian,
-        nestorian:             :eastern_christian,
-        arianism:              :eastern_christian,
-        chalcedonism:          :eastern_christian,
-        inti:                  :new_world,
-        nahuatl:               :new_world,
-        mesoamerican_religion: :new_world,
-      },
-      sites: {
-        # All 8 Christian churches want 3 obvious holy sites
-        # I can't think of good assignment for the last two
-        # Making Arian/Nostorian/Chalcedonian use Orthodox sites is really just a temporary solution
-        christian:         ["Roma", "Judea / Jerusalem", "Thrace / Constantinople"],
-        western_christian: ["Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-        eastern_christian: ["Salonica / Mount Athos / 2007", "Kiev"],
-        coptic:            ["Alexandria", "Tigre / Ark of the Covenant"],
-
-        muslim:                ["Mecca", "Judea / Jerusalem", "Thrace / Constantinople", "Cordoba", "Karbala"],
-        tengri_pagan_reformed: holy_site_info_vanilla[:sites][:tengri_pagan_reformed],
-        dharmic:               ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Siem Reap / Angkor Wat", "Punjab / Harmandir Sahib"],
-        jewish:                ["Judea / Jerusalem", "Sinai", "Damascus", "Hamadan", "Dhofar / Salahah"],
-        german_pagan:          holy_site_info_vanilla[:sites][:norse_pagan_reformed],
-        # These are one group in vanilla, ET splits them, they're getting same sites anyway
-        eastern:               ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
-        buddhic:               ["Bihar / Bodhgaya / 558", "Siem Reap / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
-        # There's american_pagan grouping, but I don't want it for totemism/south_american
-        new_world:             holy_site_info_vanilla[:sites][:new_world],
-        iranian:               ["Zanjan", "Rushehr / Bushehr", "Bojnord", "Bam", "Balkh"],
-
-        # Not getting any ever, these are generic groupings not real religions
-        shamanism:      [],
-        animism:        [],
-        totemism:       [],
-        south_american: [],
-        african:        [],
-        # Obviously
-        selular:        [],
-      }
-    }
-  end
-
+# sites in subclasses should probably be first class somehow
+class HolySitesGameModification < EU4GameModification
   def province_ids
     @province_ids ||= glob("history/provinces/*.txt")
   end
@@ -228,7 +120,11 @@ module FunAndBalanceFeatureHolySites
     ]]
   end
 
-  def feature_holy_sites!(holy_site_info)
+  def holy_site_info
+    raise "SubclassResponsibility"
+  end
+
+  def apply!
     missions    = []
     triggers    = []
     by_religion = {}
