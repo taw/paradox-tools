@@ -822,6 +822,8 @@ class CK2TweaksModBuilder < ParadoxModBuilder
         "factor", 10,
         "is_nomadic", true,
       ]
+      # Nomads OP, forcing them to go independent instead will weaken them
+      node["faction_overthrow"]["potential"] = PropertyList["always", false]
     end
   end
 
@@ -1016,6 +1018,15 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     end
   end
 
+  # They are just way too silly, slowing down their reinforcements
+  # will at least let them be weak sometimes instead of instantly rebounding
+  # to full strength
+  def nerf_nomads!
+    override_defines_lua!("nerf_nomads",
+      "NNomad.HORDE_REINFORCE_MULTIPLIER" => 1,
+    )
+  end
+
   def build_mod_files!
     ### General fixes:
     no_dynastic_country_names!
@@ -1065,7 +1076,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     # allow_heir_designation!
     rebalance_faction_priorities!
     allow_joining_all_wars!
-
+    nerf_nomads!
 
     ### Completely obsolete in new patch
     ### (sadly new banishment system is completely broken, and this fix doesn't restore previous behaviour)
