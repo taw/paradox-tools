@@ -76,6 +76,13 @@ class ParadoxModBuilder
       @game.resolve(name)
     end
   end
+  # Also return created files
+  # Don't return file twice if it changed case between base game and mod
+  # or more likely: - vanilla/foo.txt extended_timeline/Foo.txt target/foo.txt
+  # we don't want to rely on knowing if @game returns foo.txt or Foo.txt
+  def glob(pattern)
+    (@target.glob(pattern) + @game.glob(pattern)).uniq{|file| file.to_s.downcase}.sort
+  end
   # This is not game parse as it will return modded file if it already exists
   def parse(path)
     ParadoxModFile.new(path: resolve(path)).parse!
