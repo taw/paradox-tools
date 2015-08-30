@@ -4,7 +4,7 @@ module FunAndBalanceFeatureAchievements
     triggers = []
     init_script = PropertyList[]
 
-    @game.parse("common/achievements.txt").each do |name, achievement|
+    parse("common/achievements.txt").each do |name, achievement|
       id = achievement["id"]
       flag_name = "achievement_#{id}_#{name}"
 
@@ -43,7 +43,7 @@ module FunAndBalanceFeatureAchievements
         "trigger", PropertyList[happened],
         "prestige", 0.001, # There's no good way to change pic, so add tiny amount of prestige
       ]]
-      loc_name = @game.localization(name, name.split("_").map(&:capitalize).join(" "))
+      loc_name = localization(name, name.split("_").map(&:capitalize).join(" "))
 
       localization! "fun_and_balance_achievements",
         "#{flag_name}"      => "Achievement #{loc_name}",

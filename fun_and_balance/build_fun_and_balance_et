@@ -3,7 +3,7 @@
 require_relative "../lib/paradox_mod_builder"
 require_relative "./fun_and_balance_common"
 
-class FunAndBalanceETModBuilder < ParadoxModBuilder
+class FunAndBalanceETGameModification < ParadoxGameModification
   include FunAndBalanceCommon
 
   def fix_adopt_secularism_decision!
@@ -50,7 +50,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       "hire_merc_company_desc"  => "Private military companies can supplement your manpower"
   end
 
-  def build_mod_files!
+  def apply!
     # It's been a while since this kind of blatant syntax error in vanilla
     patch_file!("missions/French_Missions.txt", force_create: true) do |content|
       content.sub(/duration 1825/, "duration = 1825")
@@ -153,11 +153,27 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   end
 end
 
-mb = FunAndBalanceETModBuilder.new(
-  ParadoxGame.new(
-    "source/eu4-1.12.1",
-    "source/ExtendedTimeline 0.13.1/ExtendedTimeline.mod"
-  ),
-  "output/fun_and_balance_et"
-)
-mb.build!
+class FunAndBalanceETModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/eu4-1.12.1",
+        "source/ExtendedTimeline 0.13.1/ExtendedTimeline.mod"
+      ),
+      "output/fun_and_balance_et"
+    )
+  end
+  def build_mod_files!
+    apply_modifications! FunAndBalanceETGameModification
+    create_mod_descriptor!(
+      # name starts with space to make sure it is alphabetically before "Extended Timeline"
+      name: " Fun and Balance for Extended Timeline",
+      path: "mod/fun_and_balance_et",
+      supported_version: "1.12",
+    )
+  end
+end
+
+if __FILE__ == $0
+  FunAndBalanceETModBuilder.new.build!
+end

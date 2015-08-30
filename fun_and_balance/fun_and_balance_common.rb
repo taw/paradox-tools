@@ -147,8 +147,8 @@ module FunAndBalanceCommon
   end
 
   def each_country_primary_culture
-    @game.glob("common/cultures/*.txt").each do |path|
-      @game.parse(path).each do |group_name, group|
+    glob("common/cultures/*.txt").each do |path|
+      parse(path).each do |group_name, group|
         group = group.to_h
         group.delete "graphical_culture"
         group.delete "dynasty_names"
@@ -212,8 +212,8 @@ module FunAndBalanceCommon
         ],
       ]
 
-      loc_tag = @game.localization(tag)
-      loc_culture = @game.localization(culture)
+      loc_tag = localization(tag)
+      loc_culture = localization(culture)
       localization! "extra_formable_countries",
         "extra_formable_form_#{tag}_title" => "Form #{loc_tag}",
         "extra_formable_form_#{tag}_desc"  => "Our country is one true home of #{loc_culture} people, let's call it #{loc_tag}!"

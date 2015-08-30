@@ -3,10 +3,10 @@
 require_relative "../lib/paradox_mod_builder"
 require_relative "./fun_and_balance_common"
 
-class FunAndBalanceModBuilder < ParadoxModBuilder
+class FunAndBalanceGameModification < ParadoxGameModification
   include FunAndBalanceCommon
 
-  def build_mod_files!
+  def apply!
     # It's been a while since this kind of blatant syntax error in vanilla
     patch_file!("missions/French_Missions.txt", force_create: true) do |content|
       content.sub(/duration 1825/, "duration = 1825")
@@ -102,10 +102,25 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   end
 end
 
-mb = FunAndBalanceModBuilder.new(
-  ParadoxGame.new(
-    "source/eu4-1.12.1",
-  ),
-  "output/fun_and_balance",
-)
-mb.build!
+class FunAndBalanceModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/eu4-1.12.1",
+      ),
+      "output/fun_and_balance",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! FunAndBalanceGameModification
+    create_mod_descriptor!(
+      name: "Fun and Balance",
+      path: "mod/fun_and_balance",
+      supported_version: "1.12",
+    )
+  end
+end
+
+if __FILE__ == $0
+  FunAndBalanceModBuilder.new.build!
+end

@@ -111,7 +111,7 @@ module FunAndBalanceFeatureHolySites
   end
 
   def province_ids
-    @province_ids ||= @game.glob("history/provinces/*.txt")
+    @province_ids ||= glob("history/provinces/*.txt")
   end
 
   def province_id(province_name)
@@ -124,8 +124,8 @@ module FunAndBalanceFeatureHolySites
   end
 
   def each_religion
-    @game.glob("common/religions/*.txt").each do |path|
-      @game.parse(path).each do |group_name, group|
+    glob("common/religions/*.txt").each do |path|
+      parse(path).each do |group_name, group|
         group.each do |religion_name, religion|
           next unless religion.is_a?(PropertyList)
           yield(group_name, religion_name, religion)
@@ -150,7 +150,7 @@ module FunAndBalanceFeatureHolySites
   def add_holy_site!(religion, site, n)
     trigger_name = "holy_sites_#{religion}_#{n}"
     localization! "holy_sites",
-      trigger_name => "#{site[:short_name]} is #{@game.localization(religion)}",
+      trigger_name => "#{site[:short_name]} is #{localization(religion)}",
       "desc_#{trigger_name}" => "#{religion.to_s.capitalize} rulers control holy site #{site[:name]}"
     Property[
       trigger_name, PropertyList[
@@ -169,8 +169,8 @@ module FunAndBalanceFeatureHolySites
     raise "Expected 0 or 5 sites, not #{sites.size}" unless sites.size == 5
     trigger_name = "holy_sites_#{religion}"
     localization! "holy_sites",
-      trigger_name           => "All #{@game.localization(religion)} holy sites",
-      "desc_#{trigger_name}" => "#{@game.localization(religion)} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
+      trigger_name           => "All #{localization(religion)} holy sites",
+      "desc_#{trigger_name}" => "#{localization(religion)} controls all its holy sites #{ sites.map{|x| x[:name]}.join(", ") }."
     Property[trigger_name, PropertyList[
       "potential", PropertyList[
         "religion", religion,
@@ -248,7 +248,7 @@ module FunAndBalanceFeatureHolySites
       by_religion[religion_name] =  holy_sites
     end
     holy_site_info[:sites].each do |group, sites|
-      name = @game.localization(group)
+      name = localization(group)
 
       if use_singular[group.to_s]
         name_religion = "#{name} religion"
