@@ -1,7 +1,10 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
-require_relative "./fun_and_balance_common"
+require_relative "fun_and_balance_common"
+require_relative "mods/religious_leagues"
+require_relative "mods/partial_westernization"
+require_relative "mods/nation_customizer"
 
 class FunAndBalanceGameModification < ParadoxGameModification
   include FunAndBalanceCommon
@@ -66,7 +69,6 @@ class FunAndBalanceGameModification < ParadoxGameModification
     double_diplo_rel_limit_from_ideas!
     feature_extra_formable_countries!
     feature_holy_sites!(holy_site_info_vanilla)
-    feature_partial_westernization!
     feature_achievements!
     fix_opinions!
     fix_wargoals!
@@ -79,10 +81,8 @@ class FunAndBalanceGameModification < ParadoxGameModification
     smooth_oe_scaling!
     make_missions_not_tag_specific!
     easier_change_government_decisions!
-    fix_custom_ideas!
     power_projection_tweaks!
     build_mod_config_menu_for_vanilla!
-    more_options_for_religious_leagues!
     improve_mission_pool!
 
     # Redistribute adm/dev efficiency
@@ -112,7 +112,10 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     )
   end
   def build_mod_files!
-    apply_modifications! FunAndBalanceGameModification
+    apply_modifications! FunAndBalanceGameModification,
+                         ReligiousLeaguesGameModification,
+                         PartialWesternizationGameModification,
+                         NationCustomizerGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
