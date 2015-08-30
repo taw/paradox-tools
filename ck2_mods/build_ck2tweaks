@@ -2,7 +2,7 @@
 
 require_relative "../lib/paradox_mod_builder"
 
-class CK2TweaksModBuilder < ParadoxModBuilder
+class CK2TweaksGameModification < ParadoxGameModification
   # Move to base?
   def override_defines_lua!(name, overrides)
     create_file!(
@@ -469,7 +469,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
 
   def king_level_titles
     @king_level_titles ||= begin
-      titles  = @game.parse("common/landed_titles/landed_titles.txt")
+      titles  = parse("common/landed_titles/landed_titles.txt")
       empires = titles.keys.grep(/\Ae_/)
       [titles, *empires.map{|e| titles[e]}].map(&:keys).flatten(1).grep(/\Ak_/).sort
     end
@@ -1027,7 +1027,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     )
   end
 
-  def build_mod_files!
+  def apply!
     ### General fixes:
     no_dynastic_country_names!
     allow_any_number_of_different_holding_types!
@@ -1084,10 +1084,24 @@ class CK2TweaksModBuilder < ParadoxModBuilder
   end
 end
 
-mb = CK2TweaksModBuilder.new(
-  ParadoxGame.new(
-    "source/ck2_2.4.3",
-  ),
-  "output/ck2tweaks"
-)
-mb.build!
+class CK2TweaksModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.4.3",
+      ),
+      "output/ck2tweaks",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! CK2TweaksGameModification
+    create_mod_descriptor!(
+      name: "CK2 Tweaks",
+      path: "mod/ck2tweaks",
+    )
+  end
+end
+
+if __FILE__ == $0
+  CK2TweaksModBuilder.new.build!
+end
