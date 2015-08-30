@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+
+class ModConflictDetector
+  def initialize(*mods)
+    @mods = mods.map{|path| Pathname(path)}
+  end
+
+  def run!
+    files = Hash.new{|ht,k| ht[k] = []}
+    @mods.each do |mod|
+      raise "#{mod} does not exist" unless mod.exist?
+      raise "#{mod} is not a directory" unless mod.directory?
+      mod.find.each do |path|
+        next unless path.file?
+        file = path.relative_path_from(mod).to_s
+        files[file.downcase] << [mod, file]
+      end
+    end
+    files.each do |key, instances|
+      next if instances.size == 1
+      puts "Conflict in file #{key}: #{instances.map{|m,f| m}.join(" ") }"
+    end
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} path/to/mod1 path/to/mod2 ..."
+  exit 1
+end
+
+ModConflictDetector.new(*ARGV).run!
