@@ -75,7 +75,6 @@ class FunAndBalanceGameModification < ParadoxGameModification
     smooth_oe_scaling!
     easier_change_government_decisions!
     power_projection_tweaks!
-    build_mod_config_menu_for_vanilla!
 
     # Redistribute adm/dev efficiency
     patch_mod_file!("common/technologies/adm.txt") do |node|
@@ -113,7 +112,8 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          ExtraFormableCountriesGameModification,
                          EU3StyleElectionsGameModification,
                          ImproveMissionsGameModification,
-                         HideCancelledMissionsGameModification
+                         HideCancelledMissionsGameModification,
+                         ConfigMenuVanillaGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
       path: "mod/fun_and_balance",

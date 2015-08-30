@@ -98,7 +98,7 @@ class FunAndBalanceETGameModification < ParadoxGameModification
     smooth_oe_scaling!
     easier_change_government_decisions!
     power_projection_tweaks!
-    build_mod_config_menu_for_et!
+
 
     fix_adopt_secularism_decision!
 
@@ -127,7 +127,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
                          EU3StyleElectionsGameModification,
                          # ImproveMissionsGameModification - it could get ported to ET eventually
                          HideCancelledMissionsGameModification,
-                         HireMercCompanyGameModification
+                         HireMercCompanyGameModification,
+                         ConfigMenuETGameModification
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"
       name: " Fun and Balance for Extended Timeline",
