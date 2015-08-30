@@ -1,25 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
-
-class NoDynasticNamesGameModification < ParadoxGameModification
- def no_dynastic_country_names!
-    patch_mod_files!("common/cultures/*.txt") do |node|
-      node.each do |group_name, group|
-        group.each do |culture_name, culture|
-          next if culture_name == "graphical_culture"
-          next if culture_name == "second_graphical_culture"
-          next if culture_name == "graphical_cultures"
-          culture.delete("dynasty_title_names")
-        end
-      end
-    end
-  end
-
-  def apply!
-    no_dynastic_country_names!
-  end
-end
+require_relative "mods/no_dynastic_names"
 
 class NoDynasticNamesModBuilder < ParadoxModBuilder
   def initialize
@@ -30,7 +12,6 @@ class NoDynasticNamesModBuilder < ParadoxModBuilder
       "output/no_dynastic_names"
     )
   end
-
   def build_mod_files!
     apply_modifications! NoDynasticNamesGameModification
     create_mod_descriptor!(
@@ -41,6 +22,4 @@ class NoDynasticNamesModBuilder < ParadoxModBuilder
   end
 end
 
-if __FILE__ == $0
-  NoDynasticNamesModBuilder.new.build!
-end
+NoDynasticNamesModBuilder.new.build!
