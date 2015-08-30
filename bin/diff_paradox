@@ -73,7 +73,7 @@ class DiffParadox
   end
   def diff_file!(path1, path2)
     case path1.extname
-    when ".txt"
+    when ".txt", ".mod"
       diff_paradox! path1, path2
     when ".yml"
       diff_yaml! path1, path2
