@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 
+# This doesn't currently build, and won't build until Shattered Europe is upgraded to 1.12
+# No point fixing it until then
+# For old versions that work, just get them from git history, or get working mod version from dropbox
+
 require_relative "../lib/paradox_mod_builder"
 require_relative "./fun_and_balance_common"
 
