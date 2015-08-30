@@ -1,10 +1,8 @@
 require_relative "holy_sites"
-require_relative "missions"
 
 module FunAndBalanceCommon
   # This is seriously horrible, code started blobbing like France
   include FunAndBalanceFeatureHolySites
-  include FunAndBalanceFeatureMissions
 
   def modify_node!(node, *modifications)
     modifications.each do |*path, expected, modified|
@@ -386,33 +384,5 @@ def build_mod_config_menu!(*options)
     )
     localization! "fun_and_balance_menu",
       "fun_and_balance_menu.done" => "Done"
-  end
-
-  # Run after all other mission modifications
-  def improve_mission_pool!
-    modifiers = []
-    patch_mod_files!("missions/*.txt") do |node|
-      node.each do |name, mission|
-        flag_name = "recently_cancelled_#{name}"
-        modifiers << flag_name
-        if mission["abort_effect"] == nil or mission["abort_effect"] == []
-          mission["abort_effect"] = PropertyList[]
-        end
-        mission["abort_effect"].add! "FROM", PropertyList[
-          "add_country_modifier", PropertyList[
-            "name", flag_name,
-            "duration", 365*25,
-            "hidden", true,
-          ],
-        ]
-        mission["chance"].add! "modifier", PropertyList[
-          "factor", 0.01,
-          "has_country_modifier", flag_name,
-        ]
-      end
-    end
-    create_mod_file! "common/event_modifiers/10_mission_pool.txt", PropertyList[
-      *modifiers.map{|name| Property[name, PropertyList[]]},
-    ]
   end
 end

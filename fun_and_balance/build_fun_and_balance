@@ -74,11 +74,9 @@ class FunAndBalanceGameModification < ParadoxGameModification
     move_burgundy_capital_to_hre!
     reverse_horde_nerfs!
     smooth_oe_scaling!
-    make_missions_not_tag_specific!
     easier_change_government_decisions!
     power_projection_tweaks!
     build_mod_config_menu_for_vanilla!
-    improve_mission_pool!
 
     # Redistribute adm/dev efficiency
     patch_mod_file!("common/technologies/adm.txt") do |node|
@@ -113,7 +111,9 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          NationCustomizerGameModification,
                          AchievementsGameModification,
                          ExtraFormableCountriesGameModification,
-                         EU3StyleElectionsGameModification
+                         EU3StyleElectionsGameModification,
+                         ImproveMissionsGameModification,
+                         HideCancelledMissionsGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
       path: "mod/fun_and_balance",

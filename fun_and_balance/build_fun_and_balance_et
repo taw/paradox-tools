@@ -135,11 +135,9 @@ class FunAndBalanceETGameModification < ParadoxGameModification
     move_burgundy_capital_to_hre!
     # reverse_horde_nerfs! - do I want it here?
     smooth_oe_scaling!
-    # make_missions_not_tag_specific! - it could get ported to ET eventually
     easier_change_government_decisions!
     power_projection_tweaks!
     build_mod_config_menu_for_et!
-    improve_mission_pool!
 
     fix_adopt_secularism_decision!
     hire_merc_company_decision!
@@ -165,7 +163,9 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
                          NationCustomizerGameModification,
                          # No achievements - map would need too many fixes
                          # No extra foramble countries, makes little sense it this mod
-                         EU3StyleElectionsGameModification
+                         EU3StyleElectionsGameModification,
+                         # ImproveMissionsGameModification - it could get ported to ET eventually
+                         HideCancelledMissionsGameModification
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"
       name: " Fun and Balance for Extended Timeline",

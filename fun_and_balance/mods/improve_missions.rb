@@ -1,4 +1,9 @@
-module FunAndBalanceFeatureMissions
+require_relative "base"
+
+# This gives tag-specific missions alternative conditions
+# and improves rewards for really awful missions (much less applicable since 1.12)
+
+class ImproveMissionsGameModification < EU4GameModification
   def tag_requirements_for_mission(mission)
     allow = mission["allow"]
     return [allow["tag"]] if allow["tag"]
@@ -208,7 +213,7 @@ module FunAndBalanceFeatureMissions
     end
   end
 
-  def make_missions_not_tag_specific!
+  def apply!
     patch_mod_files!("missions/*.txt") do |node|
       node.each do |name, mission|
         allow = mission["allow"]
