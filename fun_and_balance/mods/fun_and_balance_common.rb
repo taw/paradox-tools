@@ -1,4 +1,7 @@
-module FunAndBalanceCommon
+require_relative "base"
+
+# This file is still a bit too big, but no longer insanely so
+class FunAndBalanceCommonGameModification < EU4GameModification
   def modify_node!(node, *modifications)
     modifications.each do |*path, expected, modified|
       actual = path.inject(node){|n,p| n ? n[p] : nil}
