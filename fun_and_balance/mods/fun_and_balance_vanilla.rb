@@ -2,11 +2,6 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
-    # It's been a while since this kind of blatant syntax error in vanilla
-    patch_file!("missions/French_Missions.txt", force_create: true) do |content|
-      content.sub(/duration 1825/, "duration = 1825")
-    end
-
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
       ["ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 1],
@@ -14,7 +9,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["POLICY_COST", 1, 0],
       ["FOREIGN_REBEL_SUPPORT", 4, 6],
       ["WESTERN_POWER_TICK_REDUCTION_FACTOR", 100, 1000000],
-      ["ADVISOR_COST_INCREASE_PER_YEAR", 0.01,  0.005],
+      ["ADVISOR_COST_INCREASE_PER_YEAR", 0.005,  0.005], # Vanilla is now following F&B
       ["CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
       ["POWER_MAX", 999, 1500],
       ["PS_MOVE_CAPITAL", 200, 100],
@@ -83,35 +78,5 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
         techs[level].add! "administrative_efficiency", 0.1
       end
     end
-  end
-end
-
-class FunAndBalanceModBuilder < ParadoxModBuilder
-  def initialize
-    super(
-      ParadoxGame.new(
-        "source/eu4-1.12.1",
-      ),
-      "output/fun_and_balance",
-    )
-  end
-  def build_mod_files!
-    apply_modifications! FunAndBalanceGameModification,
-                         HolySitesVanillaGameModification,
-                         ReligiousLeaguesGameModification,
-                         PartialWesternizationGameModification,
-                         NationCustomizerGameModification,
-                         AchievementsGameModification,
-                         ExtraFormableCountriesGameModification,
-                         EU3StyleElectionsGameModification,
-                         ImproveMissionsGameModification,
-                         HideCancelledMissionsGameModification,
-                         ConfigMenuVanillaGameModification,
-                         ChangeGovernmentGameModification
-    create_mod_descriptor!(
-      name: "Fun and Balance",
-      path: "mod/fun_and_balance",
-      supported_version: "1.12",
-    )
   end
 end

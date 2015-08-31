@@ -8,27 +8,26 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
   end
 
   def apply!
-    # It's been a while since this kind of blatant syntax error in vanilla
-    patch_file!("missions/French_Missions.txt", force_create: true) do |content|
-      content.sub(/duration 1825/, "duration = 1825")
+    patch_file!("common/ideas/et_country_ideas.txt", force_create: true) do |content|
+      content.sub("defence_from_crusades - {", "defence_from_crusades = {")
     end
 
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
-      ["ANNEX_DIP_COST_PER_DEVELOPMENT", 10, 1], # 8 in vanilla 1.12.1 hotfix
+      ["ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 1],
       ["INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["POLICY_COST", 1, 0],
       ["FOREIGN_REBEL_SUPPORT", 4, 6],
       ["WESTERN_POWER_TICK_REDUCTION_FACTOR", 100, 1000000],
-      ["ADVISOR_COST_INCREASE_PER_YEAR", 0.0005,  0.0005],
+      ["ADVISOR_COST_INCREASE_PER_YEAR", 0.005,  0.0005],
       ["CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
       ["POWER_MAX", 999, 1500],
       ["PS_MOVE_CAPITAL", 200, 100],
       ["PS_MOVE_TRADE_PORT", 200, 100],
-      ["PS_CHANGE_CULTURE", 40, 15],
+      ["PS_CHANGE_CULTURE", 10, 5],
       ["CORE_LOSE", 50, 100],
       ["CORE_LOSE_CULTURE_GROUP", 150, 300],
-      ["PROTECTORATE_TECH_THRESHOLD", 0.25, 5.0],
+      ["PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
       ["PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
       ["VASSAL_FABRICATE_CLAIMS", 1, 1],
       ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 50, 50],
@@ -37,7 +36,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["TECH_AHEAD_OF_TIME", 0.1, 0.05],
       ["MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
-      ["AUTONOMY_AT_DIPLO_ANNEX", 75, 50], # 60 in vanilla 1.12.1 hotfix
+      ["AUTONOMY_AT_DIPLO_ANNEX", 60, 50],
       ["RANDOM_LUCKY_DEVELOPMENT_WEIGHT", 0.4, 0],
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],

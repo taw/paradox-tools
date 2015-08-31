@@ -166,10 +166,16 @@ class ImproveMissionsGameModification < EU4GameModification
     type = mission_type(mission)
     immediate = mission["immediate"].to_h
     effect    = mission["effect"].to_h
+
+    # Unlike CK2 this is just label, real deal is in hidden_effect
+    effect.delete("custom_tooltip")
+    effect.merge!(effect.delete("hidden_effect").to_h)
+
     # I'm extremely confused by this. Maybe missions have bugs here?
     # Is neighbor_countries scoped FROM or ROOT as I've seen both?
     effect.merge!(effect.delete("FROM").to_h)
     effect.merge!(effect.delete("ROOT").to_h)
+
     effect.merge!(effect.delete("owner").to_h) if mission["type"] == "our_provinces"
     effect.delete("if").each do |cond|
       effect.merge!(cond.to_h)

@@ -3,6 +3,36 @@
 require_relative "../lib/paradox_mod_builder"
 Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
+class FunAndBalanceModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/eu4-1.13.0",
+      ),
+      "output/fun_and_balance",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! FunAndBalanceGameModification,
+                         HolySitesVanillaGameModification,
+                         ReligiousLeaguesGameModification,
+                         PartialWesternizationGameModification,
+                         NationCustomizerGameModification,
+                         AchievementsGameModification,
+                         ExtraFormableCountriesGameModification,
+                         EU3StyleElectionsGameModification,
+                         ImproveMissionsGameModification,
+                         HideCancelledMissionsGameModification,
+                         ConfigMenuVanillaGameModification,
+                         ChangeGovernmentGameModification
+    create_mod_descriptor!(
+      name: "Fun and Balance",
+      path: "mod/fun_and_balance",
+      supported_version: "1.13",
+    )
+  end
+end
+
 if __FILE__ == $0
   FunAndBalanceModBuilder.new.build!
 end
