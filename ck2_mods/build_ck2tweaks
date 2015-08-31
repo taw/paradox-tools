@@ -1,15 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
-require_relative "mods/ck2_tweaks"
-require_relative "mods/become_republic"
-require_relative "mods/no_dynastic_names"
-require_relative "mods/no_localized_ranks"
-require_relative "mods/no_localized_landed_titles"
-require_relative "mods/vassal_transfer"
-require_relative "mods/dynastic_decisions"
-require_relative "mods/ruler_designer_reset"
-require_relative "mods/old_style_banishment"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
 class CK2TweaksModBuilder < ParadoxModBuilder
   def initialize

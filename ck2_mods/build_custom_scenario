@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
-require_relative "mods/ck2_custom_scenario"
-require_relative "mods/adjust_province_religion"
-require_relative "mods/adjust_character_religion"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
 class CK2CustomScenarioModBuilder < ParadoxModBuilder
   def initialize
@@ -15,7 +13,18 @@ class CK2CustomScenarioModBuilder < ParadoxModBuilder
     )
   end
   def build_mod_files!
-    apply_modifications! CK2CustomScenarioGameModification,
+                         # All the tweaks
+    apply_modifications! CK2TweaksGameModification,
+                         BecomeRepublicGameModification,
+                         NoDynasticNamesGameModification,
+                         NoLocalizedRanksGameModification,
+                         NoLocalizedTitlesGameModification,
+                         VassalTransferGameModification,
+                         DynasticDecisionsGameModification,
+                         RulerDesignerResetGameModification,
+                         OldStyleBanishmentGameModification,
+                         # Custom scenario
+                         CK2CustomScenarioGameModification,
                          AdjustProvinceReligionGameModification,
                          AdjustCharacterReligionGameModification
     create_mod_descriptor!(
