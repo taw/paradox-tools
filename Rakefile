@@ -19,7 +19,7 @@ class ModBuilder
   end
 
   def mod_descriptor
-    Pathname("#{category}/#{name}.mod")
+    Pathname("output/#{name}.mod")
   end
 
   def mod_picture
@@ -31,6 +31,7 @@ class ModBuilder
   end
 
   def build!
+    # Half of this should probably be done by ModBuilder
     trash "output/#{name}", "build"
     Pathname("build/#{name}").mkpath
     system "./#{category}/build_#{name}" or raise "Build failed"
@@ -51,7 +52,7 @@ desc "Build all packages"
 task "all" => ["ck2", "eu4"]
 
 desc "Build all CK2 packages"
-task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles"]
+task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal"]
 
 desc "Build all EU4 packages"
 task "eu4" => ["vanilla", "extended_timeline", "shattered_europe"]
@@ -80,6 +81,15 @@ task "no_localized_ranks" do
     "ck2_mods",
     "no_localized_ranks",
     "ck2_no_localized_ranks.7z",
+  ).build!
+end
+
+desc "Build CK2 Suez Canal"
+task "suez_canal" do
+  ModBuilder.new(
+    "ck2_mods",
+    "suez_canal",
+    "ck2_suez_canal.7z",
   ).build!
 end
 

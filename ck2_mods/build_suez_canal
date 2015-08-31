@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+require_relative "mods/suez_canal"
+
+class SuezCanalModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.4.3",
+      ),
+      "output/suez_canal",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! SuezCanalGameModification
+    create_mod_descriptor!(
+      name: "Suez Canal",
+      path: "mod/suez_canal",
+    )
+  end
+end
+
+SuezCanalModBuilder.new.build!
