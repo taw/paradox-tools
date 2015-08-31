@@ -23,6 +23,7 @@ class CK2CustomScenarioModBuilder < ParadoxModBuilder
                          DynasticDecisionsGameModification,
                          RulerDesignerResetGameModification,
                          OldStyleBanishmentGameModification,
+                         SuezCanalGameModification,
                          # Custom scenario
                          CK2CustomScenarioGameModification,
                          AdjustProvinceReligionGameModification,

@@ -21,7 +21,8 @@ class CK2TweaksModBuilder < ParadoxModBuilder
                          VassalTransferGameModification,
                          DynasticDecisionsGameModification,
                          RulerDesignerResetGameModification,
-                         OldStyleBanishmentGameModification
+                         OldStyleBanishmentGameModification,
+                         SuezCanalGameModification
     create_mod_descriptor!(
       name: "CK2 Tweaks",
       path: "mod/ck2tweaks",
