@@ -17,6 +17,7 @@ class SuezCanalModBuilder < ParadoxModBuilder
     create_mod_descriptor!(
       name: "Suez Canal",
       path: "mod/suez_canal",
+      picture: "suez_canal.png",
     )
   end
 end
