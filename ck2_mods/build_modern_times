@@ -42,6 +42,7 @@ module ModernTimes
     end_ww1: "1918.11.11",
     end_ww2: "1945.5.8",
     german_reunification: "1990.9.29",
+    silesian_uprising: "1922.5.15", # actually Geneva conversion for Upper Silesia
 
     annexation_latvia: "1940.8.5",
     annexation_lithuania: "1940.8.3",
@@ -199,6 +200,11 @@ module ModernTimes
       religion: :catholic,
       capital: :c_oberbayern, # temporary
     },
+    c_danzig: {
+      culture: :german,
+      religion: :catholic,
+      holders: {end_ww1: {}, end_ww2: nil},
+    },
     k_saxony: {
       culture: :german,
       religion: :catholic,
@@ -332,6 +338,11 @@ module ModernTimes
       religion: :waldensian,
       capital: :c_zemigalians,
     },
+    k_poland: {
+      culture: :polish,
+      religion: :catholic,
+      capital: :c_plock, # Not Krakow
+    }
   }
 
   LAND = {
@@ -391,17 +402,22 @@ module ModernTimes
     d_khiva:     { start: "e_russia", fall_soviet_union: "k_khiva" },
     c_aral:      { start: "e_russia", fall_soviet_union: "k_khiva" },
 
+    d_turkestan: { start: "e_russia", fall_soviet_union: "k_cuman" },
     d_itil:      { start: "e_russia", fall_soviet_union: "k_cuman" },
     d_kipchak:   { start: "e_russia", fall_soviet_union: "k_cuman" },
     d_kimak:     { start: "e_russia", fall_soviet_union: "k_cuman" },
     d_zhetysu:   { start: "e_russia", fall_soviet_union: "k_cuman" },
     d_kirghiz:   { start: "e_russia", fall_soviet_union: "k_cuman" },
+    d_yaik:      { start: "e_russia", fall_soviet_union: "k_cuman" },
+    d_sibir:     { start: "e_russia", fall_soviet_union: "k_cuman" },
+    d_syr_darya: { start: "e_russia", fall_soviet_union: "k_cuman" },
+    c_bashkirs:  { start: "e_russia" },
+    c_sibir:     { start: "e_russia" },
 
     # Xinjiang in China
     k_khotan:     { start: "k_khotan" },
     c_dunkheger:  { start: "k_khotan" },
     c_altay:      { start: "k_khotan" },
-
 
     c_maldives:   { start: "e_britannia", maldives_independence: "c_maldives" },
     k_lanka:      { start: "e_britannia", sri_lanka_independence: "k_lanka" },
@@ -432,11 +448,14 @@ module ModernTimes
     c_derbent:    { start: "e_russia" },
     k_volga_bulgaria: { start: "e_russia" },
     d_kola:       { start: "e_russia" },
-    d_karelia:   { start: "e_russia" },
+    d_karelia:    { start: "e_russia" },
     c_tmutarakan: { start: "e_russia" },
-    d_azov:        { start: "e_russia" },
+    d_azov:       { start: "e_russia" },
 
     c_luxembourg: { start: "d_luxembourg"},
+    c_julich:     { start: "e_germany" },
+    c_loon:       { start: "k_frisia" },
+    c_liege:      { start: "d_flanders" },
 
     d_flanders:   { start: "d_flanders" },
     d_brabant:    { start: "d_flanders" },
@@ -463,7 +482,23 @@ module ModernTimes
 
     c_stettin:      { start: "e_germany", end_ww2: "k_poland"},
     c_slupsk:       { start: "e_germany", end_ww2: "k_poland"},
+    c_danzig:       { start: "e_germany", end_ww1: "c_danzig", end_ww2: "k_poland"},
+    d_prussia:      { start: "e_germany", end_ww2: "k_poland"},
     c_sambia:       { start: "e_germany", end_ww2: "e_russia"},
+
+    d_lesser_poland:     { start: "e_carpathia", end_ww1: "k_poland" },
+    c_vladimir_volynsky: { start: "e_carpathia", end_ww1: "k_poland" },
+    c_peremyshl:         { start: "e_carpathia", end_ww1: "k_poland" },
+    d_galich:            { start: "e_carpathia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
+
+    c_beresty: { start: "e_russia", end_ww1: "k_poland" },
+    d_mazovia: { start: "e_russia", end_ww1: "k_poland" },
+    d_kuyavia: { start: "e_russia", end_ww1: "k_poland" },
+    c_kalisz:  { start: "e_russia", end_ww1: "k_poland" },
+
+    d_greater_poland: {start: "e_germany", end_ww1: "k_poland"},
+    d_silesia: {start: "e_germany", end_ww2: "k_poland"},
+    c_cieszyn: {start: "e_germany", silesian_uprising: "k_poland"},
 
     k_bohemia:      { start: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
     d_nyitra:       { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_slovakia" },
@@ -476,6 +511,15 @@ module ModernTimes
     d_tyrol:        { start: "e_carpathia", anschluss: "e_germany", end_ww2: "e_carpathia" },
     c_salzburg:     { start: "e_carpathia", anschluss: "e_germany", end_ww2: "e_carpathia" },
     # c_steiermark -> slovenia
+
+    # More or less Alsace-Lorraine
+    d_alsace:       { start: "e_germany", end_ww1: "e_france"},
+    c_lorraine:     { start: "e_germany", end_ww1: "e_france"},
+    c_metz:         { start: "e_germany", end_ww1: "e_france"},
+
+    d_upper_lorraine: { start: "e_france" },
+    c_verdun:         { start: "e_france" },
+    d_lower_lorraine: { start: "e_germany" },
 
     d_savoie:         { start: "k_burgundy" },
     d_upper_burgundy: { start: "k_burgundy" },
@@ -701,6 +745,8 @@ class ModernTimesGameModification < CK2GameModification
       title    = title.to_s
       if data[:capital]
         capital = data[:capital].to_s
+      elsif title =~ /\Ac_/
+        capital = title
       else
         capital = title_capitals[title] or raise "Can't autodetect capital for #{title}"
       end
