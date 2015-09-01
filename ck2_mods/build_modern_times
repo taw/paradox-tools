@@ -22,6 +22,7 @@ module ModernTimes
     czechoslovakia_dissolution: "1993.1.1",
     south_tirol_annexation: "1920.10.10",
     anschluss: "1938.3.12",
+    north_cyprus_invasion: "1974.8.18",
 
     # north_spanish_morocco_end: "1958.4.1",
     # south_spanish_morocco_end: "1956.4.7",
@@ -30,11 +31,13 @@ module ModernTimes
     tunisia_independence: "1956.3.20",
     libya_italian: "1912.10.18", # First Treaty of Lausanne
     libya_independence: "1951.12.24",
+    egypt_independence: "1922.2.28",
 
     treaty_of_london: "1913.5.30", # First Balkan Wars
     treaty_of_bucharest: "1913.10.10", # Second Balkan Wars
 
     kuwait_independence: "1961.6.19",
+    bahrain_independence: "1971.8.15",
     british_iraq: "1920.4.25",
     iraq_independence: "1932.10.3",
 
@@ -47,7 +50,15 @@ module ModernTimes
     annexation_latvia: "1940.8.5",
     annexation_lithuania: "1940.8.3",
     annexation_estonia: "1940.8.6",
+    annexation_armenia: "1920.12.2",
+    annexation_azerbaijan: "1920.5.11",
+    annexation_georgia: "1921.3.17",
     fall_soviet_union: "1991.12.26",
+    crimea_invasion: "2014.4.17",
+
+    treaty_of_sevres: "1920.8.10",
+    treaty_of_ankara: "1921.10.20",
+    treaty_of_lausanne: "1923.7.24",
   }
 
   TITLES = {
@@ -129,7 +140,7 @@ module ModernTimes
     d_cyprus: {
       culture: :greek,
       religion: :orthodox,
-      capital: :c_famagusta,
+      capital: :c_limisol,
       holders: {cyprus_independence: {}},
     },
     c_malta: {
@@ -259,7 +270,6 @@ module ModernTimes
     # d_marrakech:
     #   culture: :berber,
     #   religion: :sunni,
-    #   capital: :c_marrakech,
     #   holders: {morocco_independence: {}},
     # },
     d_krete: {
@@ -294,7 +304,10 @@ module ModernTimes
     c_kuwait: {
       culture: :bedouin,
       religion: :sunni,
-      capital: :c_kuwait,
+    },
+    c_bahrain: {
+      culture: :bedouin,
+      religion: :sunni,
     },
     e_persia: {
       culture: :persian,
@@ -310,6 +323,7 @@ module ModernTimes
     d_dihistan: {
       culture: :turkish, # ???
       religion: :sunni,
+      holders: {fall_soviet_union: {}},
     },
     k_cuman: {
       culture: :turkish, # ???
@@ -318,6 +332,7 @@ module ModernTimes
     k_khiva: {
       culture: :cuman, # ???
       religion: :sunni,
+      holders: {fall_soviet_union: {}},
     },
     k_khotan: {
       culture: :tocharian, # Chinese
@@ -342,6 +357,40 @@ module ModernTimes
       culture: :polish,
       religion: :catholic,
       capital: :c_plock, # Not Krakow
+    },
+    d_azerbaijan: {
+      culture: :persian, # close enough
+      religion: :sunni,
+      holders: {end_ww1: {}, annexation_azerbaijan: nil, fall_soviet_union: {}},
+    },
+    d_armenia: {
+      culture: :armenian,
+      religion: :orthodox,
+      holders: {end_ww1: {}, annexation_armenia: nil, fall_soviet_union: {}},
+    },
+    k_egypt: {
+      culture: :egyptian_arabic,
+      religion: :sunni,
+      holders: {egypt_independence: {}},
+    },
+    k_arabia: {
+      culture: :bedouin,
+      religion: :sunni,
+    },
+    k_hungary: {
+      culture: :hungarian,
+      religion: :catholic,
+      holders: {end_ww1: {}},
+    },
+    k_georgia: {
+      culture: :georgian,
+      religion: :orthodox,
+      holders: {end_ww1: {}, annexation_georgia: nil, fall_soviet_union: {}},
+    },
+    k_ruthenia: {
+      culture: :volhynian,
+      religion: :orthodox,
+      holders: {fall_soviet_union: {}},
     }
   }
 
@@ -367,6 +416,7 @@ module ModernTimes
     c_roma:       { start: "k_papacy" },
     c_corsica:    { start: "e_france" },
     d_cyprus:     { start: "e_britannia", cyprus_independence: "d_cyprus" },
+    c_famagusta:  { start: "e_britannia", cyprus_independence: "d_cyprus", north_cyprus_invasion: "e_seljuk_turks" },
     c_malta:      { start: "e_britannia", malta_independence: "c_malta" },
     e_italy:      { start: "e_italy" },
     k_sicily:     { start: "e_italy" },
@@ -491,6 +541,9 @@ module ModernTimes
     c_peremyshl:         { start: "e_carpathia", end_ww1: "k_poland" },
     d_galich:            { start: "e_carpathia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
 
+    d_cherson: { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
+    c_crimea:  { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
+
     c_beresty: { start: "e_russia", end_ww1: "k_poland" },
     d_mazovia: { start: "e_russia", end_ww1: "k_poland" },
     d_kuyavia: { start: "e_russia", end_ww1: "k_poland" },
@@ -542,8 +595,10 @@ module ModernTimes
     c_mesembria:    { start: "k_bulgaria" },
     c_karvuna:      { start: "k_bulgaria" },
 
-    # c_suenik:     { d_armenia }
-    # d_azerbaijan: { start: "d_azerbaijan" },
+    c_suenik:       { start: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
+    d_armenia:      { start: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
+    d_azerbaijan:   { start: "e_russia", end_ww1: "d_azerbaijan", annexation_azerbaijan: "e_russia", fall_soviet_union: "d_azerbaijan" },
+    k_georgia:   { start: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
     k_persia:       { start: "e_persia" },
     d_sistan:       { start: "e_persia" },
     d_kermanshah:   { start: "e_persia" },
@@ -554,13 +609,29 @@ module ModernTimes
     d_nikaea:      { start: "e_seljuk_turks" },
     c_byzantion:   { start: "e_seljuk_turks" },
     d_armeniacon:  { start: "e_seljuk_turks" },
-    # d_cibyrrhaeot: { start: "e_seljuk_turks" }, # not rhodos
     d_thracesia:   { start: "e_seljuk_turks" },
     d_anatolia:    { start: "e_seljuk_turks" },
     d_charsianon:  { start: "e_seljuk_turks" },
     d_trebizond:   { start: "e_seljuk_turks" },
     d_paphlagonia: { start: "e_seljuk_turks" },
     c_abydos:      { start: "e_seljuk_turks" },
+    d_cibyrrhaeot: { start: "e_seljuk_turks" },
+    d_mesopotamia: { start: "e_seljuk_turks" },
+    d_coloneia:      { start: "e_seljuk_turks" },
+    d_armenia_minor:{ start: "e_seljuk_turks" },
+    c_ani:          { start: "e_seljuk_turks" },
+    c_vaspurakan:   { start: "e_seljuk_turks" },
+    c_tao:          { start: "e_seljuk_turks" },
+
+    d_thrace:      { start: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
+    c_adrianopolis:{ start: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
+
+    c_teluch:      { start: "e_seljuk_turks", treaty_of_sevres: "e_france", treaty_of_ankara: "e_seljuk_turks" },
+    c_antioch:     { start: "e_seljuk_turks", treaty_of_sevres: "e_france", treaty_of_ankara: "e_seljuk_turks" },
+    c_alexandretta:{ start: "e_seljuk_turks", treaty_of_sevres: "e_france", treaty_of_ankara: "e_seljuk_turks" },
+
+    # Given to Greece September 15, 1947
+    c_rhodos:      { start: "e_seljuk_turks", libya_italian: "e_italy", end_ww2: "k_byzantium"},
 
     d_baluchistan: { start: "e_britannia", india_independence: "k_baluchistan" },
     d_sauvira:     { start: "e_britannia", india_independence: "k_baluchistan" },
@@ -580,9 +651,24 @@ module ModernTimes
     d_baghdad: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
     d_tigris:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
     d_basra:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+    c_az_zarqa:{ start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+    c_mosul:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+    c_suwaida: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+    c_druz:    { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
 
     c_kuwait:  { start: "e_britannia", kuwait_independence: "c_kuwait" },
-    # c_bahrain
+    c_bahrain: { start: "e_britannia", bahrain_independence: "c_bahrain" },
+
+    d_alexandria: { start: "e_britannia", egypt_independence: "k_egypt" },
+    d_cairo: { start: "e_britannia", egypt_independence: "k_egypt" },
+    d_aswan: { start: "e_britannia", egypt_independence: "k_egypt" },
+    d_damietta: { start: "e_britannia", egypt_independence: "k_egypt" },
+
+    d_nefoud: { start: "k_arabia" },
+    d_medina: { start: "e_seljuk_turks" },
+    d_amman:  { start: "e_seljuk_turks" },
+
+    d_esztergom: { start: "e_carpathia", end_ww1: "k_hungary" },
 
     # d_marrakech:
   }
@@ -671,6 +757,7 @@ class ModernTimesGameModification < CK2GameModification
 
     unless land
       # This is really a bug, warn here once we get nontrivial amount of land covered
+      puts "No idea what to do with #{landed_titles_lookup[title].reverse.join(" / ")}"
       return
     end
 
