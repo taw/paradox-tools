@@ -3,6 +3,83 @@
 require_relative "../lib/paradox_mod_builder"
 Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
+module ModernTimes
+  # Easy dates
+  DATES = {
+    start: "1900.1.1",
+    irish_independence: "1921.12.6",
+  }
+
+  TITLES = {
+    e_britannia: {
+      culture: :english,
+      religion: :waldensian,
+      capital: :c_middlesex,
+      holders: {
+        "1837.6.20" => {
+          birth: "1819.5.24",
+          death: "1901.1.22",
+          name: "Victoria",
+          female: true,
+        },
+        "1901.1.22" => {
+          birth: "1841.11.9",
+          death: "1910.5.6",
+          name: "Edward",
+        },
+        "1910.5.6" => {
+          birth: "1865.6.3",
+          death: "1936.1.20",
+          name: "George",
+        },
+        "1936.1.20" => {
+          birth: "1894.6.23",
+          death: "1972.5.28",
+          name: "Edward"
+        },
+        "1936.12.11" => {
+          birth: "1895.12.14",
+          death: "1952.2.6",
+          name: "George",
+        },
+        "1952.2.6" => {
+          birth: "1926.4.21",
+          name: "Elizabeth",
+          female: true,
+        }
+      }
+    },
+    k_ireland: {
+      culture: :irish,
+      religion: :catholic,
+      capital: :c_dublin,
+      holders: {irish_independence: {}},
+    },
+    d_iceland: {
+      culture: :norwegian,
+      religion: :waldensian,
+      capital: :c_vestisland,
+      holders: {start: {}},
+    },
+    k_portugal: {
+      culture: :portuguese,
+      religion: :catholic,
+      capital: :c_lisboa,
+      holders: {start: {}},
+    },
+  }
+
+  LAND = {
+    e_britannia:  { start: "e_britannia" },
+    k_ireland:    { start: "e_britannia", irish_independence: "k_ireland" },
+    d_ulster:     { start: "e_britannia" },
+    c_tyrconnell: { start: "e_britannia", irish_independence: "k_ireland" },
+    d_iceland:    { start: "d_iceland" },
+    c_algeciras:  { start: "e_britannia" },
+    k_portugal:   { start: "k_portugal" },
+  }
+end
+
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
   def deep_search(node, path=[], &blk)
@@ -27,15 +104,45 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def new_throwaway_character
-    id = @characters.size + 10_000_000
-    @characters << Property[id, PropertyList[
+    id = @characters_throwaway.size + 10_000_000
+    @characters_throwaway.add! id, PropertyList[
       "name", "Bob",
       "religion", "cathar",
       "culture", "bohemian",
       Date.parse("1700.1.1"), PropertyList["birth", Date.parse("1700.1.1")],
       Date.parse("1701.1.1"), PropertyList["death", Date.parse("1701.1.1")],
-    ]]
+    ]
     id
+  end
+
+  def add_holders!(node, holders)
+    holders.each do |date, id|
+      node.add! date, PropertyList["holder", id]
+    end
+  end
+
+  def setup_county_history!(title, node)
+    node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
+    node.add! Date.parse("1500.1.1"), PropertyList["holder", new_throwaway_character]
+
+    land = landed_titles_lookup[title].map{|t| @land[t]}.find(&:itself)
+
+    # Assume capital is always the same - silly, but will have to do for now
+    if @capitals[title]
+      add_holders! node, @holders[@capitals[title]]
+    elsif land
+      land.each do |date, liege|
+        node.add! date, PropertyList["liege", liege]
+      end
+    else
+      # This is really a bug, warn here once we get nontrivial amount of land covered
+    end
+  end
+
+  def setup_major_title_history!(title, node)
+    node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
+    node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
+    add_holders! node, @holders[title] if @holders[title]
   end
 
   def setup_province_history!
@@ -46,28 +153,83 @@ class ModernTimesGameModification < CK2GameModification
           # Baronies not belonging to counties like partician houses can be ignored
           county = landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
           if county
-            node.add! Date.parse("1700.1.1"), PropertyList["liege", county]
+            node.add! Date.parse("1500.1.1"), PropertyList["liege", county]
           else
-            node.add! Date.parse("1700.1.1"), PropertyList["liege", 0]
+            node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
           end
-          node.add! Date.parse("1700.1.1"), PropertyList["holder", 0]
+          node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
           next
         end
-
         if title =~ /\Ac_/
-          node.add! Date.parse("1700.1.1"), PropertyList["liege", 0]
-          node.add! Date.parse("1700.1.1"), PropertyList["holder", new_throwaway_character]
+          setup_county_history!(title, node)
         else
-          node.add! Date.parse("1700.1.1"), PropertyList["liege", 0]
-          node.add! Date.parse("1700.1.1"), PropertyList["holder", 0]
+          setup_major_title_history!(title, node)
+          @seen_title[title] = true
         end
       end
     end
-
+    @holders.each do |title, holders|
+      node = PropertyList[]
+      add_holders!(node, holders)
+      create_mod_file!("history/titles/#{title}.txt", node)
+    end
   end
 
   def save_characters!
-    create_mod_file! "history/characters/modern_times_throwaways.txt", PropertyList[*@characters]
+    create_mod_file! "history/characters/modern_times_throwaways.txt", @characters_throwaway
+    create_mod_file! "history/characters/modern_times.txt", @characters
+  end
+
+  def resolve_date(date)
+    return nil unless date
+    if date.is_a?(Symbol)
+      raise "No date #{date.inspect}" unless ModernTimes::DATES[date]
+      date = ModernTimes::DATES[date]
+    end
+    Date.parse(date)
+  end
+
+  def preprocess_data!
+    # ModernTimes module holds data in format convenient for human writing,
+    # it needs to be converted to something sensibler
+    @land   = {}
+    ModernTimes::LAND.each do |title, ownership|
+      @land[title.to_s] = ownership.map{|k,v| [resolve_date(k),v] }
+    end
+    @capitals = {}
+    @holders  = {}
+    ModernTimes::TITLES.each do |title, data|
+      title    = title.to_s
+      capital  = data[:capital].to_s
+      culture  = data[:culture].to_s
+      religion = data[:religion].to_s
+
+      @capitals[capital] = title
+      @holders[title] = []
+      @seen_title = {}
+      data[:holders].each do |date, holder|
+        date  = resolve_date(date)
+        birth = resolve_date(holder[:birth]) || (date << 12*40)
+        death = resolve_date(holder[:death])
+        culture = (holder[:culture] || culture).to_s
+        religion = (holder[:religion] || religion).to_s
+        name = holder[:name] || "Bob"
+        character = PropertyList[
+          "name", name,
+          "religion", religion,
+          "culture", culture,
+          birth, PropertyList["birth", birth],
+        ]
+        if death
+          character.add! death, PropertyList["death", death]
+        end
+
+        id = @characters.size + 11_000_000
+        @characters.add! id, character
+
+        @holders[title] << [date, id]
+      end
+    end
   end
 
   def apply!
@@ -80,7 +242,9 @@ class ModernTimesGameModification < CK2GameModification
     #
     # Merge back all manual files
 
-    @characters = []
+    @characters_throwaway = PropertyList[]
+    @characters = PropertyList[]
+    preprocess_data!
     setup_province_history!
     save_characters!
   end
