@@ -8,6 +8,12 @@ module ModernTimes
   DATES = {
     start: "1900.1.1",
     irish_independence: "1921.12.6",
+    cyprus_independence: "1960.10.1",
+    malta_independence: "1964.9.21",
+    sri_lanka_independence: "1948.2.4",
+    maldives_independence: "1965.7.26",
+    india_independence: "1947.8.15",
+    goa_annexation: "1961.12.19",
   }
 
   TITLES = {
@@ -67,6 +73,96 @@ module ModernTimes
       capital: :c_lisboa,
       holders: {start: {}},
     },
+    e_spain: {
+      culture: :castillan,
+      religion: :catholic,
+      capital: :c_toledo,
+      holders: {start: {}},
+    },
+    e_france: {
+      culture: :frankish,
+      religion: :catholic,
+      capital: :c_ile_de_france,
+      holders: {start: {}},
+    },
+    k_papacy: {
+      culture: :italian,
+      religion: :catholic,
+      capital: :c_roma,
+      holders: {start: {}},
+    },
+    e_italy: {
+      culture: :italian,
+      religion: :catholic,
+      capital: :c_orvieto,
+      holders: {start: {}},
+    },
+    d_tunis: {
+      culture: :berber,
+      religion: :sunni,
+      capital: :c_tunis,
+      holders: {start: {}},
+    },
+    d_cyprus: {
+      culture: :greek,
+      religion: :orthodox,
+      capital: :c_famagusta,
+      holders: {cyprus_independence: {}},
+    },
+    c_malta: {
+      culture: :italian, # not really
+      religion: :catholic,
+      capital: :c_malta,
+      holders: {malta_independence: {}},
+    },
+    k_denmark: {
+      culture: :danish,
+      religion: :waldensian,
+      capital: :c_sjaelland,
+      holders: {start: {}},
+    },
+    k_sweden: {
+      culture: :swedish,
+      religion: :waldensian,
+      capital: :c_uppland,
+      holders: {start: {}},
+    },
+    k_norway: {
+      culture: :norwegian,
+      religion: :waldensian,
+      capital: :c_bergenshus,
+      holders: {start: {}},
+    },
+    k_finland: {
+      culture: :finnish,
+      religion: :waldensian,
+      capital: :c_finland,
+      holders: {start: {}},
+    },
+    d_courland: {
+      culture: :lettigallish,
+      religion: :waldensian,
+      capital: :c_zemigalians,
+      holders: {start: {}},
+    },
+    c_maldives: {
+      culture: :tamil,
+      religion: :sunni,
+      capital: :c_maldives,
+      holders: {start: {}},
+    },
+    k_lanka: {
+      culture: :sinhala,
+      religion: :buddhist,
+      capital: :c_dakhina_desa,
+      holders: {start: {}},
+    },
+    e_india: {
+      culture: :hindustani,
+      religion: :hindu,
+      capital: :c_delhi,
+      holders: {start: {}},
+    },
   }
 
   LAND = {
@@ -77,6 +173,43 @@ module ModernTimes
     d_iceland:    { start: "d_iceland" },
     c_algeciras:  { start: "e_britannia" },
     k_portugal:   { start: "k_portugal" },
+    e_spain:      { start: "e_spain" },
+    k_france:     { start: "e_france" },
+    d_provence:   { start: "e_france" },
+    d_dauphie:    { start: "e_france" },
+    d_burgundy:   { start: "e_france" },
+    k_aquitaine:  { start: "e_france" },
+    k_brittany:   { start: "e_france" },
+    c_roma:       { start: "k_papacy" },
+    c_corsica:    { start: "e_france" },
+    d_tunis:      { start: "d_tunis" },
+    d_cyprus:     { start: "e_britannia", cyprus_independence: "d_cyprus" },
+    c_malta:      { start: "e_britannia", malta_independence: "c_malta" },
+    e_italy:      { start: "e_italy" },
+    k_sicily:     { start: "e_italy" },
+    k_venice:     { start: "e_italy" },
+    c_canarias:   { start: "e_spain" },
+    d_sjaelland:  { start: "k_denmark" },
+    d_slesvig:    { start: "k_denmark" },
+    c_bornholm:   { start: "k_denmark" },
+    d_skane:      { start: "k_sweden" },
+    c_aland:      { start: "k_finland" },
+    d_finland:    { start: "k_finland" },
+    c_kemi:       { start: "k_finland" },
+    k_sweden:     { start: "k_sweden" },
+    d_jamtland:   { start: "k_sweden" },
+    d_ostlandet:  { start: "k_norway" },
+    d_vestlandet: { start: "k_norway" },
+    d_trondelag:  { start: "k_norway" },
+    d_courland:   { start: "d_courland" },
+    c_maldives:   { start: "e_britannia", maldives_independence: "c_maldives" },
+    k_lanka:      { start: "e_britannia", sri_lanka_independence: "k_lanka" },
+    e_deccan:     { start: "e_britannia", india_independence: "e_india" },
+    c_goa:        { start: "k_portugal", goa_annexation: "e_india" },
+    k_orissa:     { start: "e_britannia", india_independence: "e_india" },
+    k_malwa:      { start: "e_britannia", india_independence: "e_india" },
+    k_gujarat:    { start: "e_britannia", india_independence: "e_india" },
+    k_delhi:      { start: "e_britannia", india_independence: "e_india" },
   }
 end
 
@@ -130,6 +263,7 @@ class ModernTimesGameModification < CK2GameModification
     # Assume capital is always the same - silly, but will have to do for now
     if @capitals[title]
       add_holders! node, @holders[@capitals[title]]
+      # FIXME: capitals are broken before independence day
     elsif land
       land.each do |date, liege|
         node.add! date, PropertyList["liege", liege]
@@ -220,9 +354,8 @@ class ModernTimesGameModification < CK2GameModification
           "culture", culture,
           birth, PropertyList["birth", birth],
         ]
-        if death
-          character.add! death, PropertyList["death", death]
-        end
+        character.add! death, PropertyList["death", death] if death
+        character.add! "female", true if holder[:female]
 
         id = @characters.size + 11_000_000
         @characters.add! id, character
