@@ -1,0 +1,108 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
+
+# No idea if anything will ever come out of this
+class ModernTimesGameModification < CK2GameModification
+  def deep_search(node, path=[], &blk)
+    node.each do |key, val|
+      if val.is_a?(PropertyList)
+        deep_search(val, [*path, key], &blk)
+      end
+      yield(node, [*path, key])
+    end
+  end
+
+  def landed_titles_lookup
+    unless @landed_titles_lookup
+      @landed_titles_lookup = {}
+      landed_titles = parse("common/landed_titles/landed_titles.txt")
+      deep_search(landed_titles) do |node, path|
+        next unless path[-1] =~ /\A[cb]_/
+        @landed_titles_lookup[path[-1]] = path.reverse
+      end
+    end
+    @landed_titles_lookup
+  end
+
+  def new_throwaway_character
+    id = @characters.size + 10_000_000
+    @characters << Property[id, PropertyList[
+      "name", "Bob",
+      "religion", "cathar",
+      "culture", "bohemian",
+      Date.parse("1700.1.1"), PropertyList["birth", Date.parse("1700.1.1")],
+      Date.parse("1701.1.1"), PropertyList["death", Date.parse("1701.1.1")],
+    ]]
+    id
+  end
+
+  def setup_province_history!
+    glob("history/titles/*.txt").each do |path|
+      title = path.basename(".txt").to_s
+      patch_mod_file!(path) do |node|
+        if title =~ /\Ab_/
+          # Baronies not belonging to counties like partician houses can be ignored
+          county = landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
+          if county
+            node.add! Date.parse("1700.1.1"), PropertyList["liege", county]
+          else
+            node.add! Date.parse("1700.1.1"), PropertyList["liege", 0]
+          end
+          node.add! Date.parse("1700.1.1"), PropertyList["holder", 0]
+          next
+        end
+
+        if title =~ /\Ac_/
+          node.add! Date.parse("1700.1.1"), PropertyList["liege", 0]
+          node.add! Date.parse("1700.1.1"), PropertyList["holder", new_throwaway_character]
+        else
+          node.add! Date.parse("1700.1.1"), PropertyList["liege", 0]
+          node.add! Date.parse("1700.1.1"), PropertyList["holder", 0]
+        end
+      end
+    end
+
+  end
+
+  def save_characters!
+    create_mod_file! "history/characters/modern_times_throwaways.txt", PropertyList[*@characters]
+  end
+
+  def apply!
+    # TODO:
+    # - province religions
+    # - province cultures
+    # - characters leading major empires
+    # - capitals
+    # - etc.
+    #
+    # Merge back all manual files
+
+    @characters = []
+    setup_province_history!
+    save_characters!
+  end
+end
+
+class ModernTimesModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.4.3",
+      ),
+      "output/modern_times",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! SuezCanalGameModification,
+                         ModernTimesGameModification
+    create_mod_descriptor!(
+      name: "Modern Times",
+      path: "mod/modern_times",
+    )
+  end
+end
+
+ModernTimesModBuilder.new.build!
