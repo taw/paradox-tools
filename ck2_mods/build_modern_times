@@ -7,13 +7,39 @@ module ModernTimes
   # Easy dates
   DATES = {
     start: "1900.1.1",
-    irish_independence: "1921.12.6",
+    ireland_independence: "1921.12.6",
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",
     sri_lanka_independence: "1948.2.4",
     maldives_independence: "1965.7.26",
     india_independence: "1947.8.15",
     goa_annexation: "1961.12.19",
+    iceland_independence: "1944.6.17",
+    norway_independence: "1905.6.7",
+    finland_independence: "1917.12.6",
+    czechoslovakia_independence: "1918.10.28",
+    czechoslovakia_dissolution: "1993.1.1",
+    south_tirol_annexation: "1920.10.10",
+
+    # north_spanish_morocco_end: "1958.4.1",
+    # south_spanish_morocco_end: "1956.4.7",
+    # french_morocco_independence: "1956.10.29",
+    algeria_indepnedence: "1962.4.8",
+    tunisia_independence: "1956.3.20",
+    libya_italian: "1912.10.18", # First Treaty of Lausanne
+    libya_independence: "1951.12.24",
+
+    treaty_of_london: "1913.5.30", # First Balkan Wars
+    treaty_of_bucharest: "1913.10.10", # Second Balkan Wars
+
+    kuwait_independence: "1961.6.19",
+    british_iraq: "1920.4.25",
+    iraq_independence: "1932.10.3",
+
+    # There were a lot of peace treaties but it's better to just do it in one go, at least for now
+    end_ww1: "1918.11.11",
+    end_ww2: "1945.5.8",
+    german_reunification: "1990.9.29",
   }
 
   TITLES = {
@@ -59,49 +85,38 @@ module ModernTimes
       culture: :irish,
       religion: :catholic,
       capital: :c_dublin,
-      holders: {irish_independence: {}},
+      holders: {ireland_independence: {}},
     },
     d_iceland: {
       culture: :norwegian,
       religion: :waldensian,
       capital: :c_vestisland,
-      holders: {start: {}},
+      holders: {iceland_independence: {}},
     },
     k_portugal: {
       culture: :portuguese,
       religion: :catholic,
       capital: :c_lisboa,
-      holders: {start: {}},
     },
     e_spain: {
       culture: :castillan,
       religion: :catholic,
       capital: :c_toledo,
-      holders: {start: {}},
     },
     e_france: {
       culture: :frankish,
       religion: :catholic,
       capital: :c_ile_de_france,
-      holders: {start: {}},
     },
     k_papacy: {
       culture: :italian,
       religion: :catholic,
       capital: :c_roma,
-      holders: {start: {}},
     },
     e_italy: {
       culture: :italian,
       religion: :catholic,
       capital: :c_orvieto,
-      holders: {start: {}},
-    },
-    d_tunis: {
-      culture: :berber,
-      religion: :sunni,
-      capital: :c_tunis,
-      holders: {start: {}},
     },
     d_cyprus: {
       culture: :greek,
@@ -119,70 +134,190 @@ module ModernTimes
       culture: :danish,
       religion: :waldensian,
       capital: :c_sjaelland,
-      holders: {start: {}},
     },
     k_sweden: {
       culture: :swedish,
       religion: :waldensian,
       capital: :c_uppland,
-      holders: {start: {}},
     },
     k_norway: {
       culture: :norwegian,
       religion: :waldensian,
       capital: :c_bergenshus,
-      holders: {start: {}},
+      holders: {norway_independence: {}},
     },
     k_finland: {
       culture: :finnish,
       religion: :waldensian,
       capital: :c_finland,
-      holders: {start: {}},
     },
     d_courland: {
       culture: :lettigallish,
       religion: :waldensian,
       capital: :c_zemigalians,
-      holders: {start: {}},
     },
     c_maldives: {
       culture: :tamil,
       religion: :sunni,
       capital: :c_maldives,
-      holders: {start: {}},
     },
     k_lanka: {
       culture: :sinhala,
       religion: :buddhist,
       capital: :c_dakhina_desa,
-      holders: {start: {}},
     },
     e_india: {
       culture: :hindustani,
       religion: :hindu,
       capital: :c_delhi,
-      holders: {start: {}},
+    },
+    d_luxembourg: {
+      culture: :dutch,
+      religion: :catholic,
+      capital: :c_luxembourg,
+    },
+    e_russia: {
+      culture: :russian,
+      religion: :orthodox,
+      capital: :c_moskva,
+    },
+    d_flanders: {
+      culture: :dutch,
+      religion: :catholic,
+      capital: :c_brabant,
+    },
+    k_frisia: {
+      culture: :dutch,
+      religion: :waldensian,
+      capital: :c_breda,
+    },
+    e_carpathia: {
+      culture: :german,
+      religion: :catholic,
+      capital: :c_osterreich,
+    },
+    e_germany: {
+      culture: :german,
+      religion: :catholic,
+      capital: :c_oberbayern, # temporary
+    },
+    k_saxony: {
+      culture: :german,
+      religion: :catholic,
+      capital: :c_brandenburg,
+    },
+    k_bohemia: {
+      culture: :bohemian,
+      religion: :catholic,
+      capital: :c_praha,
+      holders: {czechoslovakia_independence: {}},
+    },
+    d_slovakia: {
+      culture: :bohemian,
+      religion: :catholic,
+      capital: :c_pressburg,
+      holders: {czechoslovakia_dissolution: {}},
+    },
+    k_burgundy: {
+      culture: :german,
+      religion: :catholic,
+      capital: :c_bern,
+    },
+    e_seljuk_turks: {
+      culture: :turkish,
+      religion: :sunni,
+      capital: :c_byzantion,
+    },
+    d_sunni: {
+      culture: :turkish,
+      religion: :sunni,
+      capital: :c_byzantion,
+    },
+    d_tunis: {
+      culture: :berber,
+      religion: :sunni,
+      capital: :c_tunis,
+      holders: {tunisia_independence: {}},
+    },
+    d_tripolitania: {
+      culture: :berber,
+      religion: :sunni,
+      capital: :c_tripolitana,
+      holders: {libya_independence: {}},
+    },
+    d_alger: {
+      culture: :berber,
+      religion: :sunni,
+      capital: :c_al_djazair,
+      holders: {algeria_indepnedence: {}},
+    },
+    # d_marrakech:
+    #   culture: :berber,
+    #   religion: :sunni,
+    #   capital: :c_marrakech,
+    #   holders: {morocco_independence: {}},
+    # },
+    d_krete: {
+      culture: :greek,
+      religion: :orthodox,
+    },
+    k_byzantium: {
+      culture: :greek,
+      religion: :orthodox,
+      capital: :c_atheniai,
+    },
+    k_bulgaria: {
+      culture: :bulgarian,
+      religion: :orthodox,
+    },
+    k_baluchistan: {
+      culture: :sindhi,
+      religion: :sunni,
+      capital: :c_makran,
+    },
+    k_afghanistan: {
+      culture: :afghan,
+      religion: :sunni,
+      capital: :c_kabul,
+    },
+    k_mesopotamia: {
+      culture: :bedouin,
+      religion: :shiite,
+      capital: :c_baghdad,
+    },
+    c_kuwait: {
+      culture: :bedouin,
+      religion: :sunni,
+      capital: :c_kuwait,
+    },
+    e_persia: {
+      culture: :persian,
+      religion: :shiite,
+      capital: :c_esfahan,
     },
   }
 
   LAND = {
     e_britannia:  { start: "e_britannia" },
-    k_ireland:    { start: "e_britannia", irish_independence: "k_ireland" },
+    k_ireland:    { start: "e_britannia", ireland_independence: "k_ireland" },
     d_ulster:     { start: "e_britannia" },
-    c_tyrconnell: { start: "e_britannia", irish_independence: "k_ireland" },
-    d_iceland:    { start: "d_iceland" },
+    c_tyrconnell: { start: "e_britannia", ireland_independence: "k_ireland" },
+    c_orkney:     { start: "e_britannia" },
+    c_shetland:   { start: "e_britannia" },
+    d_iceland:    { start: "k_denmark", iceland_independence: "d_iceland" },
     c_algeciras:  { start: "e_britannia" },
     k_portugal:   { start: "k_portugal" },
     e_spain:      { start: "e_spain" },
     k_france:     { start: "e_france" },
     d_provence:   { start: "e_france" },
-    d_dauphie:    { start: "e_france" },
+    d_dauphine:   { start: "e_france" },
     d_burgundy:   { start: "e_france" },
     k_aquitaine:  { start: "e_france" },
     k_brittany:   { start: "e_france" },
+    c_boulogne:   { start: "e_france" },
+    c_besancon:   { start: "e_france" },
     c_roma:       { start: "k_papacy" },
     c_corsica:    { start: "e_france" },
-    d_tunis:      { start: "d_tunis" },
     d_cyprus:     { start: "e_britannia", cyprus_independence: "d_cyprus" },
     c_malta:      { start: "e_britannia", malta_independence: "c_malta" },
     e_italy:      { start: "e_italy" },
@@ -193,23 +328,148 @@ module ModernTimes
     d_slesvig:    { start: "k_denmark" },
     c_bornholm:   { start: "k_denmark" },
     d_skane:      { start: "k_sweden" },
-    c_aland:      { start: "k_finland" },
-    d_finland:    { start: "k_finland" },
-    c_kemi:       { start: "k_finland" },
+    c_aland:      { start: "e_russia", finland_independence: "k_finland" },
+    d_finland:    { start: "e_russia", finland_independence: "k_finland" },
+    c_kemi:       { start: "e_russia", finland_independence: "k_finland" },
+    c_savolaks:   { start: "e_russia", finland_independence: "k_finland" },
+    c_kexholm:    { start: "e_russia", finland_independence: "k_finland" },
     k_sweden:     { start: "k_sweden" },
     d_jamtland:   { start: "k_sweden" },
-    d_ostlandet:  { start: "k_norway" },
-    d_vestlandet: { start: "k_norway" },
-    d_trondelag:  { start: "k_norway" },
+    c_faereyar:   { start: "k_sweden", norway_independence: "k_norway" },
+    d_ostlandet:  { start: "k_sweden", norway_independence: "k_norway" },
+    d_vestlandet: { start: "k_sweden", norway_independence: "k_norway" },
+    d_trondelag:  { start: "k_sweden", norway_independence: "k_norway" },
     d_courland:   { start: "d_courland" },
     c_maldives:   { start: "e_britannia", maldives_independence: "c_maldives" },
     k_lanka:      { start: "e_britannia", sri_lanka_independence: "k_lanka" },
+
     e_deccan:     { start: "e_britannia", india_independence: "e_india" },
     c_goa:        { start: "k_portugal", goa_annexation: "e_india" },
     k_orissa:     { start: "e_britannia", india_independence: "e_india" },
     k_malwa:      { start: "e_britannia", india_independence: "e_india" },
     k_gujarat:    { start: "e_britannia", india_independence: "e_india" },
     k_delhi:      { start: "e_britannia", india_independence: "e_india" },
+    k_rajputana:  { start: "e_britannia", india_independence: "e_india" },
+    c_trigarta:  { start: "e_britannia", india_independence: "e_india" },
+    c_sakala:  { start: "e_britannia", india_independence: "e_india" },
+
+
+    k_rus:        { start: "e_russia" },
+    k_alania:     { start: "e_russia" },
+    k_perm:       { start: "e_russia" },
+    c_vodi:       { start: "e_russia" },
+    c_semender:   { start: "e_russia" },
+    c_derbent:    { start: "e_russia" },
+    k_volga_bulgaria: { start: "e_russia" },
+    d_kola:       { start: "e_russia" },
+    d_karelia:   { start: "e_russia" },
+    c_tmutarakan: { start: "e_russia" },
+    d_azov:        { start: "e_russia" },
+
+    c_luxembourg: { start: "d_luxembourg"},
+
+    d_flanders:   { start: "d_flanders" },
+    d_brabant:    { start: "d_flanders" },
+
+    c_breda:      { start: "k_frisia" },
+    d_holland:    { start: "k_frisia" },
+    d_gelre:      { start: "k_frisia" },
+
+    c_ostfriesland: { start: "e_germany" },
+    d_holstein:     { start: "e_germany" },
+    d_brunswick:    { start: "e_germany" },
+    d_thuringia:    { start: "e_germany" },
+    d_koln:         { start: "e_germany" },
+    d_baden:        { start: "e_germany" },
+    d_swabia:       { start: "e_germany" },
+    d_bavaria:      { start: "e_germany" },
+    d_franconia:    { start: "e_germany" },
+    c_thuringen:    { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+    d_meissen:      { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+    d_brandenburg:  { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+    d_mecklemburg:  { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+    c_wolgast:      { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+    d_saxony:       { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+
+    c_stettin:      { start: "e_germany", end_ww2: "k_poland"},
+    c_slupsk:       { start: "e_germany", end_ww2: "k_poland"},
+    c_sambia:       { start: "e_germany", end_ww2: "e_russia"},
+
+    k_bohemia:      { start: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
+    d_nyitra:       { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_slovakia" },
+    c_pressburg:    { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_slovakia" },
+    c_saris:        { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_slovakia" },
+
+    c_trent:        { start: "e_carpathia", south_tirol_annexation: "e_italy" },
+
+    # anschluss...
+    d_osterreich:   { start: "e_carpathia" },
+    d_tyrol:        { start: "e_carpathia" },
+    c_salzburg:     { start: "e_carpathia" },
+    # c_steiermark -> slovenia
+
+    d_savoie:         { start: "k_burgundy" },
+    d_upper_burgundy: { start: "k_burgundy" },
+
+    d_tunis:        { start: "e_france", tunisia_independence: "d_tunis" },
+
+    d_tripolitania: { start: "e_seljuk_turks", libya_italian: "e_italy", libya_independence: "d_tripolitania"},
+    d_cyrenaica:    { start: "e_seljuk_turks", libya_italian: "e_italy", libya_independence: "d_tripolitania"},
+
+    d_alger:        { start: "e_france", algeria_indepnedence: "d_alger" },
+    d_kabylia:      { start: "e_france", algeria_indepnedence: "d_alger" },
+    d_tlemcen:      { start: "e_france", algeria_indepnedence: "d_alger" },
+
+    d_athens:      { start: "k_byzantium" },
+    d_achaia:      { start: "k_byzantium" },
+    d_krete:       { start: "d_krete", treaty_of_london: "k_byzantium" }, # De facto Greek in 1908
+    d_thessalonika:{ start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
+
+    d_moesia:      { start: "k_bulgaria" },
+
+    # c_suenik:     { d_armenia }
+    # d_azerbaijan: { start: "d_azerbaijan" },
+    k_persia:       { start: "e_persia" },
+    d_sistan:       { start: "e_persia" },
+    d_kermanshah:   { start: "e_persia" },
+    c_herat:        { start: "e_persia" },
+    c_zaranj:       { start: "e_persia" },
+    c_farrah:       { start: "e_persia" },
+
+    d_nikaea:      { start: "e_seljuk_turks" },
+    c_byzantion:   { start: "e_seljuk_turks" },
+    d_armeniacon:  { start: "e_seljuk_turks" },
+    d_cibyrrhaeot: { start: "e_seljuk_turks" },
+    d_thracesia:   { start: "e_seljuk_turks" },
+    d_anatolia:    { start: "e_seljuk_turks" },
+    d_charsianon:  { start: "e_seljuk_turks" },
+    d_trebizond:   { start: "e_seljuk_turks" },
+    d_paphlagonia: { start: "e_seljuk_turks" },
+    c_abydos:      { start: "e_seljuk_turks" },
+
+    d_baluchistan: { start: "e_britannia", india_independence: "k_baluchistan" },
+    d_sauvira:     { start: "e_britannia", india_independence: "k_baluchistan" },
+    d_bhakkar:     { start: "e_britannia", india_independence: "k_baluchistan" },
+    c_vijnot:      { start: "e_britannia", india_independence: "k_baluchistan" },
+    k_punjab:      { start: "e_britannia", india_independence: "k_baluchistan" },
+
+    d_kabul:       { start: "k_afghanistan" },
+    c_udabhanda:   { start: "k_afghanistan" },
+    c_purushapura: { start: "k_afghanistan" },
+    c_maymana:     { start: "k_afghanistan" },
+    c_balkh:       { start: "k_afghanistan" },
+    c_bost:        { start: "k_afghanistan" },
+    c_mandesh:     { start: "k_afghanistan" },
+
+    c_oromieh: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+    d_baghdad: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+    d_tigris:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+    d_basra:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+
+    c_kuwait:  { start: "e_britannia", kuwait_independence: "c_kuwait" },
+    # c_bahrain
+
+    # d_marrakech:
   }
 end
 
@@ -337,11 +597,12 @@ class ModernTimesGameModification < CK2GameModification
       capital  = data[:capital].to_s
       culture  = data[:culture].to_s
       religion = data[:religion].to_s
+      holders  = data[:holders] || {start: {}}
 
       @capitals[capital] = title
       @holders[title] = []
       @seen_title = {}
-      data[:holders].each do |date, holder|
+      holders.each do |date, holder|
         date  = resolve_date(date)
         birth = resolve_date(holder[:birth]) || (date << 12*40)
         death = resolve_date(holder[:death])
@@ -370,7 +631,6 @@ class ModernTimesGameModification < CK2GameModification
     # - province religions
     # - province cultures
     # - characters leading major empires
-    # - capitals
     # - etc.
     #
     # Merge back all manual files
