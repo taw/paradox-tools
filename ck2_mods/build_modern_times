@@ -13,6 +13,7 @@ module ModernTimes
     sri_lanka_independence: "1948.2.4",
     maldives_independence: "1965.7.26",
     india_independence: "1947.8.15",
+    bangladesh_independence: "1971.12.16",
     goa_annexation: "1961.12.19",
     iceland_independence: "1944.6.17",
     norway_independence: "1905.6.7",
@@ -20,6 +21,7 @@ module ModernTimes
     czechoslovakia_independence: "1918.10.28",
     czechoslovakia_dissolution: "1993.1.1",
     south_tirol_annexation: "1920.10.10",
+    anschluss: "1938.3.12",
 
     # north_spanish_morocco_end: "1958.4.1",
     # south_spanish_morocco_end: "1956.4.7",
@@ -40,6 +42,11 @@ module ModernTimes
     end_ww1: "1918.11.11",
     end_ww2: "1945.5.8",
     german_reunification: "1990.9.29",
+
+    annexation_latvia: "1940.8.5",
+    annexation_lithuania: "1940.8.3",
+    annexation_estonia: "1940.8.6",
+    fall_soviet_union: "1991.12.26",
   }
 
   TITLES = {
@@ -146,16 +153,6 @@ module ModernTimes
       capital: :c_bergenshus,
       holders: {norway_independence: {}},
     },
-    k_finland: {
-      culture: :finnish,
-      religion: :waldensian,
-      capital: :c_finland,
-    },
-    d_courland: {
-      culture: :lettigallish,
-      religion: :waldensian,
-      capital: :c_zemigalians,
-    },
     c_maldives: {
       culture: :tamil,
       religion: :sunni,
@@ -195,6 +192,7 @@ module ModernTimes
       culture: :german,
       religion: :catholic,
       capital: :c_osterreich,
+      holders: {start: {}, anschluss: nil, end_ww2: {}}
     },
     e_germany: {
       culture: :german,
@@ -205,6 +203,7 @@ module ModernTimes
       culture: :german,
       religion: :catholic,
       capital: :c_brandenburg,
+      holders: {end_ww2: {}, german_reunification: nil},
     },
     k_bohemia: {
       culture: :bohemian,
@@ -260,6 +259,7 @@ module ModernTimes
     d_krete: {
       culture: :greek,
       religion: :orthodox,
+      holders: {start: {}, treaty_of_london: nil}
     },
     k_byzantium: {
       culture: :greek,
@@ -294,6 +294,43 @@ module ModernTimes
       culture: :persian,
       religion: :shiite,
       capital: :c_esfahan,
+    },
+    k_bengal: {
+      culture: :bengali,
+      religion: :sunni,
+      capital: :c_bikrampur,
+      holders: {bangladesh_independence: {}}
+    },
+    d_dihistan: {
+      culture: :turkish, # ???
+      religion: :sunni,
+    },
+    k_cuman: {
+      culture: :turkish, # ???
+      religion: :sunni,
+    },
+    k_khiva: {
+      culture: :cuman, # ???
+      religion: :sunni,
+    },
+    k_khotan: {
+      culture: :tocharian, # Chinese
+      religion: :buddhist,
+    },
+    d_esthonia: {
+      culture: :ugricbaltic,
+      religion: :waldensian,
+    },
+    k_finland: {
+      culture: :finnish,
+      religion: :waldensian,
+      capital: :c_finland,
+      holders: {end_ww1: {}},
+    },
+    d_courland: {
+      culture: :lettigallish,
+      religion: :waldensian,
+      capital: :c_zemigalians,
     },
   }
 
@@ -339,20 +376,53 @@ module ModernTimes
     d_ostlandet:  { start: "k_sweden", norway_independence: "k_norway" },
     d_vestlandet: { start: "k_sweden", norway_independence: "k_norway" },
     d_trondelag:  { start: "k_sweden", norway_independence: "k_norway" },
-    d_courland:   { start: "d_courland" },
+
+    d_courland:    { start: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
+    c_lettigalians:{ start: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
+    c_west_dvina:  { start: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
+    d_esthonia:    { start: "e_russia", end_ww1: "d_esthonia", annexation_estonia: "e_russia", fall_soviet_union: "d_esthonia" },
+    d_livonia:     { start: "e_russia", end_ww1: "d_esthonia", annexation_estonia: "e_russia", fall_soviet_union: "d_esthonia" },
+
+
+    d_dihistan:  { start: "e_russia", fall_soviet_union: "d_dihistan" },
+    c_merv:      { start: "e_russia", fall_soviet_union: "d_dihistan" },
+
+    d_samarkand: { start: "e_russia", fall_soviet_union: "k_khiva" },
+    d_khiva:     { start: "e_russia", fall_soviet_union: "k_khiva" },
+    c_aral:      { start: "e_russia", fall_soviet_union: "k_khiva" },
+
+    d_itil:      { start: "e_russia", fall_soviet_union: "k_cuman" },
+    d_kipchak:   { start: "e_russia", fall_soviet_union: "k_cuman" },
+    d_kimak:     { start: "e_russia", fall_soviet_union: "k_cuman" },
+    d_zhetysu:   { start: "e_russia", fall_soviet_union: "k_cuman" },
+    d_kirghiz:   { start: "e_russia", fall_soviet_union: "k_cuman" },
+
+    # Xinjiang in China
+    k_khotan:     { start: "k_khotan" },
+    c_dunkheger:  { start: "k_khotan" },
+    c_altay:      { start: "k_khotan" },
+
+
     c_maldives:   { start: "e_britannia", maldives_independence: "c_maldives" },
     k_lanka:      { start: "e_britannia", sri_lanka_independence: "k_lanka" },
 
     e_deccan:     { start: "e_britannia", india_independence: "e_india" },
-    c_goa:        { start: "k_portugal", goa_annexation: "e_india" },
+    c_goa:        { start: "k_portugal",  goa_annexation: "e_india" },
     k_orissa:     { start: "e_britannia", india_independence: "e_india" },
     k_malwa:      { start: "e_britannia", india_independence: "e_india" },
     k_gujarat:    { start: "e_britannia", india_independence: "e_india" },
     k_delhi:      { start: "e_britannia", india_independence: "e_india" },
     k_rajputana:  { start: "e_britannia", india_independence: "e_india" },
-    c_trigarta:  { start: "e_britannia", india_independence: "e_india" },
-    c_sakala:  { start: "e_britannia", india_independence: "e_india" },
+    k_kosala:     { start: "e_britannia", india_independence: "e_india" },
+    c_trigarta:   { start: "e_britannia", india_independence: "e_india" },
+    c_sakala:     { start: "e_britannia", india_independence: "e_india" },
+    e_bengal:     { start: "e_britannia", india_independence: "e_india" },
 
+    # Names on CK2 map have very little correlation with names on real map
+    # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
+    # c_suvarnagram might be part of India
+    d_vanga:      { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
+    d_varendra:   { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
 
     k_rus:        { start: "e_russia" },
     k_alania:     { start: "e_russia" },
@@ -402,10 +472,9 @@ module ModernTimes
 
     c_trent:        { start: "e_carpathia", south_tirol_annexation: "e_italy" },
 
-    # anschluss...
-    d_osterreich:   { start: "e_carpathia" },
-    d_tyrol:        { start: "e_carpathia" },
-    c_salzburg:     { start: "e_carpathia" },
+    d_osterreich:   { start: "e_carpathia", anschluss: "e_germany", end_ww2: "e_carpathia" },
+    d_tyrol:        { start: "e_carpathia", anschluss: "e_germany", end_ww2: "e_carpathia" },
+    c_salzburg:     { start: "e_carpathia", anschluss: "e_germany", end_ww2: "e_carpathia" },
     # c_steiermark -> slovenia
 
     d_savoie:         { start: "k_burgundy" },
@@ -425,7 +494,9 @@ module ModernTimes
     d_krete:       { start: "d_krete", treaty_of_london: "k_byzantium" }, # De facto Greek in 1908
     d_thessalonika:{ start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
 
-    d_moesia:      { start: "k_bulgaria" },
+    d_turnovo:      { start: "k_bulgaria" },
+    c_mesembria:    { start: "k_bulgaria" },
+    c_karvuna:      { start: "k_bulgaria" },
 
     # c_suenik:     { d_armenia }
     # d_azerbaijan: { start: "d_azerbaijan" },
@@ -439,7 +510,7 @@ module ModernTimes
     d_nikaea:      { start: "e_seljuk_turks" },
     c_byzantion:   { start: "e_seljuk_turks" },
     d_armeniacon:  { start: "e_seljuk_turks" },
-    d_cibyrrhaeot: { start: "e_seljuk_turks" },
+    # d_cibyrrhaeot: { start: "e_seljuk_turks" }, # not rhodos
     d_thracesia:   { start: "e_seljuk_turks" },
     d_anatolia:    { start: "e_seljuk_turks" },
     d_charsianon:  { start: "e_seljuk_turks" },
@@ -496,6 +567,40 @@ class ModernTimesGameModification < CK2GameModification
     @landed_titles_lookup
   end
 
+  def deep_search_direct(node, path=[], &blk)
+    node.each do |key, val|
+      subpath =  [*path, key]
+      if val.is_a?(PropertyList)
+        deep_search_direct(val, subpath, &blk)
+      end
+      yield(val, subpath)
+    end
+  end
+
+  def province_id_to_title
+    unless @province_id_to_title
+      @province_id_to_title = Hash.new do |ht,k|
+        paths = glob("history/provinces/#{k} *.txt")
+        raise unless paths.size == 1
+        ht[k] = parse(paths[0])["title"]
+      end
+    end
+    @province_id_to_title
+  end
+
+  def title_capitals
+    unless @title_capitals
+      @title_capitals = {}
+      landed_titles = parse("common/landed_titles/landed_titles.txt")
+      deep_search_direct(landed_titles) do |node, path|
+        next unless path[-1] == "capital"
+        title = path[-2]
+        @title_capitals[title] = province_id_to_title[node]
+      end
+    end
+    @title_capitals
+  end
+
   def new_throwaway_character
     id = @characters_throwaway.size + 10_000_000
     @characters_throwaway.add! id, PropertyList[
@@ -520,16 +625,16 @@ class ModernTimesGameModification < CK2GameModification
 
     land = landed_titles_lookup[title].map{|t| @land[t]}.find(&:itself)
 
-    # Assume capital is always the same - silly, but will have to do for now
-    if @capitals[title]
-      add_holders! node, @holders[@capitals[title]]
-      # FIXME: capitals are broken before independence day
-    elsif land
-      land.each do |date, liege|
-        node.add! date, PropertyList["liege", liege]
-      end
-    else
+    unless land
       # This is really a bug, warn here once we get nontrivial amount of land covered
+      return
+    end
+
+    land.each do |date, liege|
+      if liege == @capitals[title]
+        add_holders! node, @holders[@capitals[title]]
+      end
+      node.add! date, PropertyList["liege", liege]
     end
   end
 
@@ -594,7 +699,11 @@ class ModernTimesGameModification < CK2GameModification
     @holders  = {}
     ModernTimes::TITLES.each do |title, data|
       title    = title.to_s
-      capital  = data[:capital].to_s
+      if data[:capital]
+        capital = data[:capital].to_s
+      else
+        capital = title_capitals[title] or raise "Can't autodetect capital for #{title}"
+      end
       culture  = data[:culture].to_s
       religion = data[:religion].to_s
       holders  = data[:holders] || {start: {}}
@@ -604,6 +713,10 @@ class ModernTimesGameModification < CK2GameModification
       @seen_title = {}
       holders.each do |date, holder|
         date  = resolve_date(date)
+        if holder.nil?
+          @holders[title] << [date, 0]
+          next
+        end
         birth = resolve_date(holder[:birth]) || (date << 12*40)
         death = resolve_date(holder[:death])
         culture = (holder[:culture] || culture).to_s
