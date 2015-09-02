@@ -7,6 +7,7 @@ module ModernTimes
   # Easy dates
   DATES = {
     start: "1900.1.1",
+    end_of_times: "9999.12.31", # Just for some calculations, not used in the mod itself
     ireland_independence: "1921.12.6",
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",
@@ -118,13 +119,11 @@ module ModernTimes
       culture: :irish,
       religion: :catholic,
       capital: :c_dublin,
-      holders: {ireland_independence: {}},
     },
     d_iceland: {
       culture: :norwegian,
       religion: :waldensian,
       capital: :c_vestisland,
-      holders: {iceland_independence: {}},
     },
     k_portugal: {
       culture: :portuguese,
@@ -155,13 +154,11 @@ module ModernTimes
       culture: :greek,
       religion: :orthodox,
       capital: :c_limisol,
-      holders: {cyprus_independence: {}},
     },
     c_malta: {
       culture: :italian, # not really
       religion: :catholic,
       capital: :c_malta,
-      holders: {malta_independence: {}},
     },
     k_denmark: {
       culture: :danish,
@@ -177,7 +174,6 @@ module ModernTimes
       culture: :norwegian,
       religion: :waldensian,
       capital: :c_bergenshus,
-      holders: {norway_independence: {}},
     },
     c_maldives: {
       culture: :tamil,
@@ -218,7 +214,6 @@ module ModernTimes
       culture: :german,
       religion: :catholic,
       capital: :c_osterreich,
-      holders: {start: {}, anschluss: nil, end_ww2: {}}
     },
     e_germany: {
       culture: :german,
@@ -229,25 +224,22 @@ module ModernTimes
       culture: :german,
       religion: :catholic,
       capital: :c_danzig,
-      holders: {end_ww1: {}, end_ww2: nil},
     },
     k_saxony: {
       culture: :german,
       religion: :catholic,
       capital: :c_brandenburg,
-      holders: {end_ww2: {}, german_reunification: nil},
+
     },
     k_bohemia: {
       culture: :bohemian,
       religion: :catholic,
       capital: :c_praha,
-      holders: {czechoslovakia_independence: {}},
     },
     d_slovakia: {
       culture: :bohemian,
       religion: :catholic,
       capital: :c_pressburg,
-      holders: {czechoslovakia_dissolution: {}},
     },
     k_burgundy: {
       culture: :german,
@@ -259,38 +251,34 @@ module ModernTimes
       religion: :sunni,
       capital: :c_byzantion,
     },
-    d_sunni: {
-      culture: :turkish,
-      religion: :sunni,
-      capital: :c_byzantion,
-    },
+    # TODO: Ottoman caliphate (or maybe ISIS caliphate even)
+    # d_sunni: {
+    #   culture: :turkish,
+    #   religion: :sunni,
+    #   capital: :c_byzantion,
+    # },
     d_tunis: {
       culture: :berber,
       religion: :sunni,
       capital: :c_tunis,
-      holders: {tunisia_independence: {}},
     },
     d_tripolitania: {
       culture: :berber,
       religion: :sunni,
       capital: :c_tripolitana,
-      holders: {libya_independence: {}},
     },
     d_alger: {
       culture: :berber,
       religion: :sunni,
       capital: :c_al_djazair,
-      holders: {algeria_indepnedence: {}},
     },
     # d_marrakech:
     #   culture: :berber,
     #   religion: :sunni,
-    #   holders: {morocco_independence: {}},
     # },
     d_krete: {
       culture: :greek,
       religion: :orthodox,
-      holders: {start: {}, treaty_of_london: nil}
     },
     k_byzantium: {
       culture: :greek,
@@ -333,12 +321,10 @@ module ModernTimes
       culture: :bengali,
       religion: :sunni,
       capital: :c_bikrampur,
-      holders: {bangladesh_independence: {}}
     },
     d_dihistan: {
       culture: :turkish, # ???
       religion: :sunni,
-      holders: {fall_soviet_union: {}},
     },
     k_cuman: {
       culture: :turkish, # ???
@@ -347,7 +333,6 @@ module ModernTimes
     k_khiva: {
       culture: :cuman, # ???
       religion: :sunni,
-      holders: {fall_soviet_union: {}},
     },
     k_khotan: {
       culture: :tocharian, # Chinese
@@ -365,7 +350,6 @@ module ModernTimes
       culture: :finnish,
       religion: :waldensian,
       capital: :c_finland,
-      holders: {finland_independence: {}},
     },
     d_courland: {
       culture: :lettigallish,
@@ -380,17 +364,14 @@ module ModernTimes
     d_azerbaijan: {
       culture: :persian, # close enough
       religion: :sunni,
-      holders: {end_ww1: {}, annexation_azerbaijan: nil, fall_soviet_union: {}},
     },
     d_armenia: {
       culture: :armenian,
       religion: :orthodox,
-      holders: {end_ww1: {}, annexation_armenia: nil, fall_soviet_union: {}},
     },
     k_egypt: {
       culture: :egyptian_arabic,
       religion: :sunni,
-      holders: {egypt_independence: {}},
     },
     k_arabia: {
       culture: :bedouin_arabic,
@@ -399,43 +380,35 @@ module ModernTimes
     k_hungary: {
       culture: :hungarian,
       religion: :catholic,
-      holders: {end_ww1: {}},
     },
     k_georgia: {
       culture: :georgian,
       religion: :orthodox,
-      holders: {end_ww1: {}, annexation_georgia: nil, fall_soviet_union: {}},
     },
     k_ruthenia: {
       culture: :volhynian,
       religion: :orthodox,
-      holders: {fall_soviet_union: {}},
     },
     d_minsk: {
       culture: :severian,
       religion: :orthodox,
       capital: :c_minsk,
-      holders: {fall_soviet_union: {}},
     },
     k_mongolia: {
       culture: :mongol,
       religion: :sunni,
-      holders: {mongolia_independence: {}},
     },
     d_carinthia: {
       culture: :croatian,
       religion: :catholic,
-      holders: {croatia_independence: {}},
     },
     k_croatia: {
       culture: :croatian,
       religion: :catholic,
-      holders: {croatia_independence: {}},
     },
     d_bosnia: {
       culture: :croatian,
       religion: :sunni,
-      holders: {croatia_independence: {}},
     },
     k_serbia: {
       culture: :serbian,
@@ -444,23 +417,19 @@ module ModernTimes
     k_syria: {
       culture: :levantine_arabic,
       religion: :shiite,
-      holders: {syria_independence: {}},
     },
     d_galilee: {
       culture: :levantine_arabic,
       religion: :sunni,
-      holders: {lebanon_independence: {}},
     },
     d_oultrejourdain: {
       culture: :levantine_arabic,
       religion: :sunni,
-      holders: {jordan_independence: {}},
     },
     k_israel: {
       culture: :ashkenazi,
       religion: :jewish,
       capital: :c_acre,
-      holders: {israel_independence: {}},
     },
   }
 
@@ -957,6 +926,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def resolve_date(date)
     return nil unless date
+    return date if date.is_a?(Date)
     if date.is_a?(Symbol)
       raise "No date #{date.inspect}" unless ModernTimes::DATES[date]
       date = ModernTimes::DATES[date]
@@ -964,13 +934,61 @@ class ModernTimesGameModification < CK2GameModification
     Date.parse(date)
   end
 
-  def preprocess_data!
-    # ModernTimes module holds data in format convenient for human writing,
-    # it needs to be converted to something sensibler
-    @land   = {}
+  def preprocess_land_mapping!
+    @land = {}
     ModernTimes::LAND.each do |title, ownership|
       @land[title.to_s] = ownership.map{|k,v| [resolve_date(k),v] }
     end
+  end
+
+  def merge_time_ranges(ranges)
+    ranges = ranges.map{|s,e| [s,e||resolve_date(:end_of_times)]}
+
+    # Premerge - simplifies things, but algorithm doesn't really care anyway
+    # ranges = ranges.group_by(&:first).map{|s,rr| [s, rr.map(&:last).max] }.sort
+    # ranges = ranges.group_by(&:last).map{|e,rr| [rr.map(&:first).min,e] }.sort
+
+    dates = ranges.map{|s,e| [[s,1], [e,-1]]}.flatten(1).group_by(&:first)
+                  .map{|d,vs| [d, vs.map(&:last).inject(&:+)]}.sort
+
+    cut_dates = []
+    cover = 0
+    ranges.map{|s,e| [[s,1], [e,-1]]}.flatten(1).sort.each do |day,diff|
+      cut_dates << day if cover == 0
+      cover += diff
+      cut_dates << day if cover == 0
+      raise if cover < 0
+    end
+
+    cut_dates.map{|d| d == resolve_date(:end_of_times) ? nil : d}.each_slice(2).map(&:itself)
+  end
+
+  def preprocess_time_active!
+    @time_active = {}
+    # We don't care what they own, just when they own nonzero amount of land
+    # Assume all titles actually resolve, and aren't shadowed by lower level titles or anything like that
+    @land.each do |area, ownership|
+      ownership.size.times do |i|
+        start_date, start_owner = ownership[i]
+        @time_active[start_owner] ||= []
+        if i == ownership.size - 1
+          @time_active[start_owner] << [start_date, nil]
+        else
+          @time_active[start_owner] << [start_date, ownership[i+1][0]]
+        end
+      end
+    end
+    @time_active.each do |title, ranges|
+      @time_active[title] = merge_time_ranges(ranges)
+    end
+  end
+
+  def preprocess_data!
+    # ModernTimes module holds data in format convenient for human writing,
+    # it needs to be converted to something sensibler
+    preprocess_land_mapping!
+    preprocess_time_active!
+
     @capitals = {}
     @holders  = {}
     ModernTimes::TITLES.each do |title, data|
@@ -984,7 +1002,16 @@ class ModernTimesGameModification < CK2GameModification
       end
       culture  = data[:culture].to_s
       religion = data[:religion].to_s
-      holders  = data[:holders] || {start: {}}
+      holders  = data[:holders]
+      unless holders
+        holders = Hash[*@time_active[title].map do |s,e|
+          if e
+            [s, {}, e, nil]
+          else
+            [s, {}]
+          end
+        end.flatten(1)]
+      end
 
       @capitals[capital] = title
       @holders[title] = []
