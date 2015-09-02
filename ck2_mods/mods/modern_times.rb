@@ -259,6 +259,63 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def setup_bookmarks!
+    bookmarks = [
+      "1900.1.1",   # earliest date
+      "1914.6.28",  # assassination of archduke Franz Ferdinand
+      "1920.8.10",  # treaty of Sevres
+      "1938.3.12",  # aschluss of Austria
+      "1945.5.8",   # cold war begins
+      "1967.6.10",  # six day war
+      "1991.12.26", # fall of Soviet Union
+      "2015.9.1",   # toady
+
+      # two more slots maybe ?
+    ]
+
+    # Bookmark tags are unfortunately magical
+    patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
+      node.each do |_, bookmark|
+        bookmark.delete "character"
+        bookmark["date"] = Date.parse(bookmarks.shift) unless bookmarks.empty?
+      end
+    end
+  end
+
+  def setup_defines!
+    patch_mod_file!("common/defines.txt") do |node|
+      node["start_date"]      = Date.parse("1900.1.1")
+      node["last_start_date"] = Date.parse("2015.12.31")
+      node["end_date"]        = Date.parse("2999.12.31")
+    end
+  end
+
+  def setup_technology!
+    # Smarter assignment later, for now just something not totally silly
+    patch_mod_files!("history/technology/*.txt") do |node|
+      node.each do |_, techs|
+        techs.delete 769
+        techs.delete 1337
+        techs.add! 1900, PropertyList[
+          "military", 4.0,
+          "economy", 4.0,
+          "culture", 4.0,
+        ]
+        techs.add! 2015, PropertyList[
+          "military", 7.0,
+          "economy", 7.0,
+          "culture", 7.0,
+        ]
+      end
+    end
+    override_defines_lua!("modern_times",
+      "NTechnology.DONT_EXECUTE_TECH_BEFORE" => 1900,
+      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_YEAR" => 1900,
+      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_MONTH" => 1,
+      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_DAY" => 1,
+    )
+  end
+
   def apply!
     # TODO:
     # - province religions
@@ -273,5 +330,8 @@ class ModernTimesGameModification < CK2GameModification
     preprocess_data!
     setup_province_history!
     save_characters!
+    setup_defines!
+    setup_bookmarks!
+    setup_technology!
   end
 end
