@@ -199,6 +199,23 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def culture_names
+    unless @culture_names
+      @culture_names = {}
+      parse("common/cultures/00_cultures.txt").each do |group_name, group|
+        group.each do |name, culture|
+          next unless culture.is_a?(PropertyList)
+          @culture_names[name] = culture["male_names"]
+        end
+      end
+    end
+    @culture_names
+  end
+
+  def culture_specific_name(culture)
+    culture_names[culture][0]
+  end
+
   def preprocess_data!
     # ModernTimes module holds data in format convenient for human writing,
     # it needs to be converted to something sensibler
@@ -249,7 +266,7 @@ class ModernTimesGameModification < CK2GameModification
         death = resolve_date(holder[:death])
         culture = (holder[:culture] || culture).to_s
         religion = (holder[:religion] || religion).to_s
-        name = holder[:name] || "Bob"
+        name = holder[:name] || culture_specific_name(culture)
         character = PropertyList[
           "name", name,
           "religion", religion,

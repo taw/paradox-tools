@@ -279,22 +279,22 @@ module ModernTimes
     #   capital: :c_byzantion,
     # },
     d_tunis: {
-      culture: :berber,
+      culture: :maghreb_arabic,
       religion: :sunni,
       capital: :c_tunis,
     },
     d_tripolitania: {
-      culture: :berber,
+      culture: :maghreb_arabic,
       religion: :sunni,
       capital: :c_tripolitana,
     },
     d_alger: {
-      culture: :berber,
+      culture: :maghreb_arabic,
       religion: :sunni,
       capital: :c_al_djazair,
     },
     k_mauretania: {
-      culture: :berber,
+      culture: :maghreb_arabic,
       religion: :sunni,
     },
     d_krete: {
