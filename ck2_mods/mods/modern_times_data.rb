@@ -54,6 +54,7 @@ module ModernTimes
     annexation_armenia: "1920.12.2",
     annexation_azerbaijan: "1920.5.11",
     annexation_georgia: "1921.3.17",
+    soviet_partition_of_romania: "1940.7.4",
     fall_soviet_union: "1991.12.26",
     crimea_invasion: "2014.4.17",
 
@@ -64,7 +65,11 @@ module ModernTimes
     slovenia_independence: "1991.7.7",
     croatia_independence: "1991.10.8",
     bosnia_independence: "1993.3.3",
+    montenegro_serbian: "1918.12.1",
     montenegro_independence: "2006.6.3",
+
+    albania_italian: "1939.4.12",
+    macedonia_independence: "1991.9.8",
 
     mongolia_independence: "1924.11.26",
 
@@ -83,9 +88,10 @@ module ModernTimes
     somalia_independence: "1960.7.1",
 
     morocco_protectorate: "1912.3.30", # sp/fr
-    # north_spanish_morocco_end: "1958.4.1",
-    # south_spanish_morocco_end: "1956.4.7",
-    # french_morocco_independence: "1956.10.29",
+    north_spanish_morocco_end: "1958.4.1",
+    # south_spanish_morocco_end: "1956.4.7", # Too small to matter on the map probably
+    french_morocco_independence: "1956.10.29",
+    madrid_accords: "1975.11.14",
 
     oman_independence: "1970.7.23", # Not sure this is corrrect date
   }
@@ -286,10 +292,10 @@ module ModernTimes
       religion: :sunni,
       capital: :c_al_djazair,
     },
-    # d_marrakech:
-    #   culture: :berber,
-    #   religion: :sunni,
-    # },
+    k_mauretania: {
+      culture: :berber,
+      religion: :sunni,
+    },
     d_krete: {
       culture: :greek,
       religion: :orthodox,
@@ -429,6 +435,11 @@ module ModernTimes
       religion: :orthodox,
       capital: :c_belgrade,
     },
+    d_dyrrachion: {
+      culture: :serbian,
+      religion: :orthodox,
+      capital: :c_ochrid,
+    },
     k_syria: {
       culture: :levantine_arabic,
       religion: :shiite,
@@ -490,6 +501,21 @@ module ModernTimes
       culture: :romanian,
       religion: :orthodox,
       capital: :c_turnu,
+    },
+    d_moldau: {
+      culture: :romanian,
+      religion: :orthodox,
+      capital: :c_torki,
+    },
+    # Albania, seriously...
+    d_dioclea: {
+      culture: :serbian,
+      religion: :sunni,
+      capital: :c_zeta,
+    },
+    c_ragusa: {
+      culture: :serbian,
+      religion: :orthodox,
     },
     d_oman: {
       culture: :bedouin_arabic,
@@ -867,6 +893,10 @@ module ModernTimes
     c_abauj:        { start: "e_carpathia", end_ww1: "k_hungary" },
     d_transylvania: { start: "e_carpathia", end_ww1: "k_dacia" },
     c_marmaros:     { start: "e_carpathia", end_ww1: "k_dacia" },
+    c_torki:        { start: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
+    c_birlad:       { start: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
+    c_galaz:        { start: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "k_ruthenia"},
+    d_moldau:       { start: "e_russia", fall_soviet_union: "k_ruthenia"},
 
     k_mongolia: { start: "k_khotan", mongolia_independence: "k_mongolia" },
 
@@ -886,10 +916,10 @@ module ModernTimes
     c_busaso:    { start: "e_italy", somalia_independence: "d_harer"  },
 
     d_songhay:    { start: "e_france", mali_independence: "d_songhay" },
-    d_mali:       { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
-    d_timbuktu:   { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
-    c_ghana:      { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
-    c_aoudaghost: { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    d_mali:       { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    d_timbuktu:   { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    c_ghana:      { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    c_aoudaghost: { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
     k_nubia:      { start: "e_britannia", sudan_independence: "k_nubia" },
 
     c_severin:    { start: "k_dacia" },
@@ -897,7 +927,26 @@ module ModernTimes
     c_turnu:      { start: "k_dacia" },
     c_constantia: { start: "k_dacia" },
 
+    # "It was the capital of the Kingdom of Hungary's Bereg County up until 1919 and between 1938-1944. From 1919 until 1938 it was part of Czechoslovakia."
+    c_bereg:    { start: "e_carpathia", end_ww1: "k_bohemia", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
+
     c_dhu_zabi: { start: "e_britannia", oman_independence: "c_dhu_zabi" },
     d_oman:     { start: "e_britannia", oman_independence: "d_oman" },
+
+    k_mauretania: { start: "k_mauretania", morocco_protectorate: "e_france", french_morocco_independence: "k_mauretania" },
+    c_cebta:     { start: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
+    c_tangiers:  { start: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
+    c_el_rif:    { start: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
+    c_idjil:     { start: "e_spain", madrid_accords: "k_mauretania" },
+    c_ouadane:   { start: "e_spain", madrid_accords: "k_mauretania" },
+    c_tharasset: { start: "e_spain", madrid_accords: "k_mauretania" },
+
+    c_strymon:  { start: "e_seljuk_turks", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion" },
+    c_ochrid:   { start: "e_seljuk_turks", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion" },
+
+    c_zeta:       { start: "e_seljuk_turks", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea" },
+    c_dyrrachion: { start: "e_seljuk_turks", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea" },
+
+    c_ragusa:     { start: "c_ragusa", montenegro_serbian: "k_serbia", montenegro_independence: "c_ragusa" },
   }
 end

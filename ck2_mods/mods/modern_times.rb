@@ -91,7 +91,11 @@ class ModernTimesGameModification < CK2GameModification
       if liege == @capitals[title]
         add_holders! node, @holders[@capitals[title]]
       end
-      node.add! date, PropertyList["liege", liege]
+      if liege =~ /\Ac_/
+        node.add! date, PropertyList["liege", 0]
+      else
+        node.add! date, PropertyList["liege", liege]
+      end
     end
   end
 
@@ -267,10 +271,10 @@ class ModernTimesGameModification < CK2GameModification
       "1938.3.12",  # aschluss of Austria
       "1945.5.8",   # cold war begins
       "1967.6.10",  # six day war
+      "1975.1.1",   # nothing special
       "1991.12.26", # fall of Soviet Union
-      "2015.9.1",   # toady
-
-      # two more slots maybe ?
+      "1999.12.31", # nothing special
+      "2015.9.1",   # today
     ]
 
     # Bookmark tags are unfortunately magical
