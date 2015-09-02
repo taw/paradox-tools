@@ -79,6 +79,7 @@ module ModernTimes
     mali_independence: "1960.6.20",
     mauritania_french: "1903.5.12", # Was under French influence earlier
     mauritania_independence: "1960.11.28",
+    sudan_independence: "1956.1.1",
 
     eritrea_british: "1941.4.1", # Battle of Keren; or I could make it formal at end of WW2
     eritrea_ethiopian: "1950.12.2",
@@ -482,6 +483,10 @@ module ModernTimes
       culture: :manden,
       religion: :sunni,
     },
+    k_nubia: {
+      culture: :nubian,
+      religion: :sunni,
+    },
   }
 
   LAND = {
@@ -857,6 +862,7 @@ module ModernTimes
     d_timbuktu:   { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
     c_ghana:      { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
     c_aoudaghost: { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    k_nubia:      { start: "e_britannia", sudan_independence: "k_nubia" },
   }
 end
 
