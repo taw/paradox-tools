@@ -2,6 +2,7 @@ module ModernTimes
   # Easy dates
   DATES = {
     start: "1900.1.1",
+    title_holders_until: "2020.12.31", # how far to generate title holders
     end_of_times: "9999.12.31", # Just for some calculations, not used in the mod itself
     ireland_independence: "1921.12.6",
     cyprus_independence: "1960.10.1",

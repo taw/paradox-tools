@@ -223,13 +223,17 @@ class ModernTimesGameModification < CK2GameModification
         unless @time_active[title]
           raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
         end
-        holders = Hash[*@time_active[title].map do |s,e|
-          if e
-            [s, {}, e, nil]
-          else
-            [s, {}]
+        holders = []
+        # We need to break long strethes of time into 20 year fragments
+        @time_active[title].each do |s,e|
+          xe = e || resolve_date(:title_holders_until)
+          while true
+            holders << [s, {}]
+            s >>= (12*15)       # 40..55 years
+            break if s >= xe
           end
-        end.flatten(1)]
+          holders << [e, nil] if e
+        end
       end
 
       @capitals[capital] = title
@@ -241,7 +245,7 @@ class ModernTimesGameModification < CK2GameModification
           @holders[title] << [date, 0]
           next
         end
-        birth = resolve_date(holder[:birth]) || (date << 12*40)
+        birth = resolve_date(holder[:birth]) || (date << 12*35)
         death = resolve_date(holder[:death])
         culture = (holder[:culture] || culture).to_s
         religion = (holder[:religion] || religion).to_s
