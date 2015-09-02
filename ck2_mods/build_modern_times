@@ -32,6 +32,7 @@ module ModernTimes
     libya_italian: "1912.10.18", # First Treaty of Lausanne
     libya_independence: "1951.12.24",
     egypt_independence: "1922.2.28",
+    jordan_independence: "1946.6.17",
 
     treaty_of_london: "1913.5.30", # First Balkan Wars
     treaty_of_bucharest: "1913.10.10", # Second Balkan Wars
@@ -297,16 +298,16 @@ module ModernTimes
       capital: :c_kabul,
     },
     k_mesopotamia: {
-      culture: :bedouin,
+      culture: :bedouin_arabic,
       religion: :shiite,
       capital: :c_baghdad,
     },
     c_kuwait: {
-      culture: :bedouin,
+      culture: :bedouin_arabic,
       religion: :sunni,
     },
     c_bahrain: {
-      culture: :bedouin,
+      culture: :bedouin_arabic,
       religion: :sunni,
     },
     e_persia: {
@@ -373,8 +374,12 @@ module ModernTimes
       religion: :sunni,
       holders: {egypt_independence: {}},
     },
+    d_oultrejourdain: {
+      culture: :levantine_arabic,
+      religion: :sunni,
+    },
     k_arabia: {
-      culture: :bedouin,
+      culture: :bedouin_arabic,
       religion: :sunni,
     },
     k_hungary: {
@@ -391,7 +396,13 @@ module ModernTimes
       culture: :volhynian,
       religion: :orthodox,
       holders: {fall_soviet_union: {}},
-    }
+    },
+    d_minks: {
+      culture: :severian,
+      religion: :orthodox,
+      capital: :c_minsk,
+      holders: {fall_soviet_union: {}},
+    },
   }
 
   LAND = {
@@ -501,6 +512,8 @@ module ModernTimes
     d_karelia:    { start: "e_russia" },
     c_tmutarakan: { start: "e_russia" },
     d_azov:       { start: "e_russia" },
+    d_ryazan:     { start: "e_russia" },
+    d_sarkel:     { start: "e_russia" },
 
     c_luxembourg: { start: "d_luxembourg"},
     c_julich:     { start: "e_germany" },
@@ -543,7 +556,19 @@ module ModernTimes
 
     d_cherson: { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
     c_crimea:  { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
+    d_kiev:      { start: "e_russia", fall_soviet_union: "k_ruthenia"},
+    d_pereyaslavl: { start: "e_russia", fall_soviet_union: "k_ruthenia"},
+    d_chernigov:   { start: "e_russia", fall_soviet_union: "k_ruthenia"},
+    d_crimea:      { start: "e_russia", fall_soviet_union: "k_ruthenia"},
+    c_sharukan: { start: "e_russia", fall_soviet_union: "k_ruthenia"},
+    c_novgorod_seversky: { start: "e_russia", fall_soviet_union: "k_ruthenia"},
+    :"c_desht-i-kipchak" => { start: "e_russia", fall_soviet_union: "k_ruthenia"},
 
+    d_vitebsk: { start: "e_russia", fall_soviet_union: "d_minks"},
+    d_polotsk: { start: "e_russia", fall_soviet_union: "d_minks"},
+
+    c_grodno:  { start: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_minks" },
+    c_podlasie:{ start: "e_russia", end_ww1: "k_poland" },
     c_beresty: { start: "e_russia", end_ww1: "k_poland" },
     d_mazovia: { start: "e_russia", end_ww1: "k_poland" },
     d_kuyavia: { start: "e_russia", end_ww1: "k_poland" },
