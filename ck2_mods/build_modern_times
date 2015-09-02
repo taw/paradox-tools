@@ -25,9 +25,6 @@ module ModernTimes
     anschluss: "1938.3.12",
     north_cyprus_invasion: "1974.8.18",
 
-    # north_spanish_morocco_end: "1958.4.1",
-    # south_spanish_morocco_end: "1956.4.7",
-    # french_morocco_independence: "1956.10.29",
     algeria_indepnedence: "1962.4.8",
     tunisia_independence: "1956.3.20",
     libya_italian: "1912.10.18", # First Treaty of Lausanne
@@ -49,11 +46,11 @@ module ModernTimes
     british_iraq: "1920.4.25",
     iraq_independence: "1932.10.3",
 
-    # There were a lot of peace treaties but it's better to just do it in one go, at least for now
+    # There were a lot of peace treaties but it's easier to just do it in one go, at least for now
     end_ww1: "1918.11.11",
     end_ww2: "1945.5.8",
     german_reunification: "1990.9.29",
-    silesian_uprising: "1922.5.15", # actually Geneva conversion for Upper Silesia
+    silesian_uprising: "1922.5.15", # actually Geneva convension for Upper Silesia
 
     annexation_latvia: "1940.8.5",
     annexation_lithuania: "1940.8.3",
@@ -74,6 +71,24 @@ module ModernTimes
     montenegro_independence: "2006.6.3",
 
     mongolia_independence: "1924.11.26",
+
+    north_yemen_independence: "1918.10.30",
+    south_yemen_independence: "1967.11.30",
+    yemen_unification: "1990.5.22",
+    djibouti_independence: "1977.6.27",
+    mali_independence: "1960.6.20",
+    mauritania_french: "1903.5.12", # Was under French influence earlier
+    mauritania_independence: "1960.11.28",
+
+    eritrea_british: "1941.4.1", # Battle of Keren; or I could make it formal at end of WW2
+    eritrea_ethiopian: "1950.12.2",
+    eritrea_independence: "1993.5.24",
+    somalia_independence: "1960.7.1",
+
+    morocco_protectorate: "1912.3.30", # sp/fr
+    # north_spanish_morocco_end: "1958.4.1",
+    # south_spanish_morocco_end: "1956.4.7",
+    # french_morocco_independence: "1956.10.29",
   }
 
   TITLES = {
@@ -431,6 +446,42 @@ module ModernTimes
       religion: :jewish,
       capital: :c_acre,
     },
+    d_sanaa: {
+      culture: :bedouin_arabic,
+      religion: :sunni,
+      capital: :c_aden,
+    },
+    d_arabia_felix: {
+      culture: :bedouin_arabic,
+      religion: :sunni,
+      capital: :c_sanaa,
+    },
+    d_afar: {
+      culture: :somali,
+      religion: :sunni,
+      capital: :c_tadjoura,
+    },
+    d_hayya: {
+      culture: :nubian,
+      religion: :sunni,
+      capital: :c_massawa,
+    },
+    d_harer: {
+      culture: :somali,
+      religion: :sunni,
+    },
+    k_abyssinia:  {
+      culture: :ethiopian,
+      religion: :miaphytise,
+    },
+    d_songhay: {
+      culture: :manden,
+      religion: :sunni,
+    },
+    k_mali: {
+      culture: :manden,
+      religion: :sunni,
+    },
   }
 
   LAND = {
@@ -785,6 +836,27 @@ module ModernTimes
     d_pecs:      { start: "e_carpathia", end_ww1: "k_hungary" },
 
     k_mongolia: { start: "k_khotan", mongolia_independence: "k_mongolia" },
+
+    c_taizz: { start: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
+    c_sanaa: { start: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
+    d_sanaa: { start: "e_britannia", south_yemen_independence: "d_sanaa" },
+
+    c_trinkitat:{ start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
+    c_hayya:    { start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
+    c_assab:    { start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
+    c_massawa:  { start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
+    c_tadjoura: { start: "e_france", djibouti_independence: "d_afar" },
+
+    c_kassala:   { start: "k_abyssinia" },
+    k_abyssinia: { start: "k_abyssinia" },
+    d_harer:     { start: "e_britannia", somalia_independence: "d_harer" },
+    c_busaso:    { start: "e_italy", somalia_independence: "d_harer"  },
+
+    d_songhay:    { start: "e_france", mali_independence: "d_songhay" },
+    d_mali:       { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    d_timbuktu:   { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    c_ghana:      { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+    c_aoudaghost: { start: "e_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
   }
 end
 
@@ -1004,6 +1076,9 @@ class ModernTimesGameModification < CK2GameModification
       religion = data[:religion].to_s
       holders  = data[:holders]
       unless holders
+        unless @time_active[title]
+          raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
+        end
         holders = Hash[*@time_active[title].map do |s,e|
           if e
             [s, {}, e, nil]
