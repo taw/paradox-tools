@@ -108,7 +108,8 @@ class ModernTimesGameModification < CK2GameModification
   def setup_province_history!
     glob("history/titles/*.txt").each do |path|
       title = path.basename(".txt").to_s
-      patch_mod_file!(path) do |node|
+
+        patch_mod_file!(path) do |node|
         if title =~ /\Ab_/
           # Baronies not belonging to counties like partician houses can be ignored
           county = landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
@@ -118,9 +119,7 @@ class ModernTimesGameModification < CK2GameModification
             node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
           end
           node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
-          next
-        end
-        if title =~ /\Ac_/
+        elsif title =~ /\Ac_/
           setup_county_history!(title, node)
         else
           setup_major_title_history!(title, node)
@@ -128,8 +127,13 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
     end
+    # This is a silly trick of creating node if it doesn't exist, reusing it otherwise
     @holders.each do |title, holders|
-      node = PropertyList[]
+      begin
+        node = parse("history/titles/#{title}.txt")
+      rescue
+        node = PropertyList[]
+      end
       add_holders!(node, holders)
       create_mod_file!("history/titles/#{title}.txt", node)
     end
@@ -205,7 +209,7 @@ class ModernTimesGameModification < CK2GameModification
       parse("common/cultures/00_cultures.txt").each do |group_name, group|
         group.each do |name, culture|
           next unless culture.is_a?(PropertyList)
-          @culture_names[name] = culture["male_names"]
+          @culture_names[name] = culture["male_names"].map{|n| n.sub(/_.*/, "")}
         end
       end
     end
