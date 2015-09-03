@@ -1,4 +1,76 @@
+require "digest"
+
 Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
+
+class CharacterManager
+  def initialize(builder, namespace)
+    @builder = builder
+    @characters = {}
+    @namespace = namespace
+  end
+
+  def name_pool(culture, female)
+    if female
+      @builder.culture_names[culture][:male]
+    else
+      @builder.culture_names[culture][:female]
+    end
+  end
+
+  def allocate_id(id)
+    id += 1 while @characters.has_key?(id)
+    id
+  end
+
+  def add_reset(title)
+    id = allocate_id(@namespace + Digest::MD5.hexdigest(title).to_i(16) % 5_000_000)
+    @characters[id] = PropertyList[
+      "name", "Bob",
+      "religion", "cathar",
+      "culture", "bohemian",
+      Date.parse("1700.1.1"), PropertyList["birth", Date.parse("1700.1.1")],
+      Date.parse("1701.1.1"), PropertyList["death", Date.parse("1701.1.1")],
+    ]
+    id
+  end
+
+  def add_ruler(**args)
+    crowning = args[:key][:crowning]
+    id = allocate_id(@namespace + ((args[:key][:crowning] - Date.parse("1900.1.1")) * 100).to_i)
+    rng = Random.new(id)
+
+    culture  = args[:culture].to_s
+    religion = args[:religion].to_s
+    female = args[:female]
+    female = (rng.rand < 0.05) if female == :maybe # Less for Muslims?
+    birth = args[:birth] || (crowning << 12*35)
+    death = args[:death]
+
+    names_pool = name_pool(culture, female)
+    name = args[:name] || names_pool[rng.rand(names_pool.size)]
+    # We need to setup dynasty too here
+
+    character = PropertyList[
+      "name", name,
+      "religion", religion,
+      "culture", culture,
+    ]
+    character.add! "female", true if female
+    character.add! birth, PropertyList["birth", birth]
+    character.add! death, PropertyList["death", death] if death
+
+    @characters[id] = character
+    id
+  end
+
+  def to_plist
+    result = PropertyList[]
+    @characters.sort.each do |k,v|
+      result.add! k, v
+    end
+    result
+  end
+end
 
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
@@ -58,16 +130,8 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   # This might be no longer necessary now that all provinces are some character's
-  def new_throwaway_character
-    id = @characters_throwaway.size + 10_000_000
-    @characters_throwaway.add! id, PropertyList[
-      "name", "Bob",
-      "religion", "cathar",
-      "culture", "bohemian",
-      Date.parse("1700.1.1"), PropertyList["birth", Date.parse("1700.1.1")],
-      Date.parse("1701.1.1"), PropertyList["death", Date.parse("1701.1.1")],
-    ]
-    id
+  def new_throwaway_character(title)
+    @characters_reset.add_reset(title)
   end
 
   def add_holders!(node, holders)
@@ -78,7 +142,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_county_history!(title, node)
     node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
-    node.add! Date.parse("1500.1.1"), PropertyList["holder", new_throwaway_character]
+    node.add! Date.parse("1500.1.1"), PropertyList["holder", new_throwaway_character(title)]
 
     land = landed_titles_lookup[title].map{|t| @land[t]}.find(&:itself)
 
@@ -141,8 +205,8 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def save_characters!
-    create_mod_file! "history/characters/modern_times_throwaways.txt", @characters_throwaway
-    create_mod_file! "history/characters/modern_times.txt", @characters
+    create_mod_file! "history/characters/modern_times_throwaways.txt", @characters_reset.to_plist
+    create_mod_file! "history/characters/modern_times.txt", @characters.to_plist
   end
 
   def resolve_date(date)
@@ -204,7 +268,10 @@ class ModernTimesGameModification < CK2GameModification
       parse("common/cultures/00_cultures.txt").each do |group_name, group|
         group.each do |name, culture|
           next unless culture.is_a?(PropertyList)
-          @culture_names[name] = culture["male_names"].map{|n| n.sub(/_.*/, "")}
+          @culture_names[name] = {
+            male:   culture["male_names"].map{|n| n.sub(/_.*/, "")},
+            female: culture["male_names"].map{|n| n.sub(/_.*/, "")},
+          }
         end
       end
     end
@@ -259,26 +326,22 @@ class ModernTimesGameModification < CK2GameModification
         date  = resolve_date(date)
         if holder.nil?
           @holders[title] << [date, 0]
-          next
+        else
+          id = @characters.add_ruler(
+            culture: holder.fetch(:culture, culture),
+            religion: holder.fetch(:religion, religion),
+            female: holder.fetch(:female, :maybe),
+            birth: resolve_date(holder[:birth]),
+            death: resolve_date(holder[:death]),
+            name: holder[:name],
+            dynasty: holder[:dynasty],
+            key: {
+              crowning: date,
+              title: title,
+            },
+          )
+          @holders[title] << [date, id]
         end
-        birth = resolve_date(holder[:birth]) || (date << 12*35)
-        death = resolve_date(holder[:death])
-        culture = (holder[:culture] || culture).to_s
-        religion = (holder[:religion] || religion).to_s
-        name = holder[:name] || culture_specific_name(culture)
-        character = PropertyList[
-          "name", name,
-          "religion", religion,
-          "culture", culture,
-          birth, PropertyList["birth", birth],
-        ]
-        character.add! death, PropertyList["death", death] if death
-        character.add! "female", true if holder[:female]
-
-        id = @characters.size + 11_000_000
-        @characters.add! id, character
-
-        @holders[title] << [date, id]
       end
     end
   end
@@ -349,8 +412,8 @@ class ModernTimesGameModification < CK2GameModification
     #
     # Merge back all manual files
 
-    @characters_throwaway = PropertyList[]
-    @characters = PropertyList[]
+    @characters_reset = CharacterManager.new(self, 100_000_000)
+    @characters       = CharacterManager.new(self, 110_000_000)
     preprocess_data!
     setup_province_history!
     save_characters!

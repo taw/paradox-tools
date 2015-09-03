@@ -225,3 +225,13 @@ class PropertyList
     Marshal.load(Marshal.dump(self))
   end
 end
+
+class Hash
+  def to_plist
+    result = PropertyList[]
+    each do |k,v|
+      result.add! k, v
+    end
+    result
+  end
+end
