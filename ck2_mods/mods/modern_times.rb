@@ -167,13 +167,11 @@ class ModernTimesGameModification < CK2GameModification
   def setup_major_title_history!(title, node)
     node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
     node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
-    add_holders! node, @holders[title] if @holders[title]
   end
 
   def setup_province_history!
     glob("history/titles/*.txt").each do |path|
       title = path.basename(".txt").to_s
-
         patch_mod_file!(path) do |node|
         if title =~ /\Ab_/
           # Baronies not belonging to counties like partician houses can be ignored
@@ -290,6 +288,7 @@ class ModernTimesGameModification < CK2GameModification
 
     @capitals = {}
     @holders  = {}
+    @title_names = {}
     ModernTimes::TITLES.each do |title, data|
       title    = title.to_s
       if data[:capital]
@@ -317,6 +316,11 @@ class ModernTimesGameModification < CK2GameModification
           end
           holders << [e, nil] if e
         end
+      end
+
+      if data[:name]
+        data[:name] = {:start => data[:name]} if data[:name].is_a?(String)
+        @title_names[title] = data[:name].map{|d,n| [resolve_date(d), n] }
       end
 
       @capitals[capital] = title
@@ -403,6 +407,24 @@ class ModernTimesGameModification < CK2GameModification
     )
   end
 
+  def setup_title_names!
+    @title_names.each do |title, names|
+      patch_mod_file!("history/titles/#{title}.txt") do |node|
+        names.each do |date, name_adj|
+          if name_adj
+            name, adj = name_adj.split(" / ")
+            node.add!(date, PropertyList["name", name, "adjective", adj])
+          else
+            node.add!(date, PropertyList["reset_name", true, "reset_adjective", true])
+          end
+        end
+        # Presumably not needed but for sake of convention
+        raise unless node.keys.all?{|k| k.is_a?(Date)}
+        node.instance_eval{ @list.sort! }
+      end
+    end
+  end
+
   def apply!
     # TODO:
     # - province religions
@@ -416,6 +438,7 @@ class ModernTimesGameModification < CK2GameModification
     @characters       = CharacterManager.new(self, 110_000_000)
     preprocess_data!
     setup_province_history!
+    setup_title_names!
     save_characters!
     setup_defines!
     setup_bookmarks!

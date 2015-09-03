@@ -18,7 +18,7 @@ module ModernTimes
     k_brittany:   { start: "e_france" },
     c_boulogne:   { start: "e_france" },
     c_besancon:   { start: "e_france" },
-    c_roma:       { start: "k_papacy" },
+    c_roma:       { start: "k_papal_state" },
     c_corsica:    { start: "e_france" },
     d_cyprus:     { start: "e_britannia", cyprus_independence: "d_cyprus" },
     c_famagusta:  { start: "e_britannia", cyprus_independence: "d_cyprus", north_cyprus_invasion: "e_seljuk_turks" },
@@ -318,7 +318,7 @@ module ModernTimes
     c_druz:    { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
     c_sinjar:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
 
-    c_kuwait:  { start: "e_britannia", kuwait_independence: "d_basra" },
+    c_kuwait:  { start: "e_britannia", kuwait_independence: "c_kuwait" },
     c_bahrein: { start: "e_britannia", bahrain_independence: "c_bahrein" },
 
     d_alexandria: { start: "e_britannia", egypt_independence: "k_egypt" },
