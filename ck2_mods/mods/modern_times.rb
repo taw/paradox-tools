@@ -1,4 +1,4 @@
-require_relative "modern_times_data.rb"
+Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
 
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
@@ -57,6 +57,7 @@ class ModernTimesGameModification < CK2GameModification
     @title_capitals
   end
 
+  # This might be no longer necessary now that all provinces are some character's
   def new_throwaway_character
     id = @characters_throwaway.size + 10_000_000
     @characters_throwaway.add! id, PropertyList[
@@ -145,13 +146,7 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def resolve_date(date)
-    return nil unless date
-    return date if date.is_a?(Date)
-    if date.is_a?(Symbol)
-      raise "No date #{date.inspect}" unless ModernTimes::DATES[date]
-      date = ModernTimes::DATES[date]
-    end
-    Date.parse(date)
+    ModernTimes::Dates[date]
   end
 
   def preprocess_land_mapping!
@@ -239,7 +234,7 @@ class ModernTimesGameModification < CK2GameModification
       end
       culture  = data[:culture].to_s
       religion = data[:religion].to_s
-      holders  = data[:holders]
+      holders  = ModernTimes::HOLDERS[title.to_sym]
       unless holders
         unless @time_active[title]
           raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
