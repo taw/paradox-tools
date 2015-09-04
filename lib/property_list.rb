@@ -34,6 +34,12 @@ class Property
       Property["NOT", PropertyList[*args]]
     end
   end
+
+  def <=>(other)
+    return nil unless other.is_a?(Property)
+    [key, val] <=> [other.key, other.val]
+  end
+  include Comparable
 end
 
 class PropertyList

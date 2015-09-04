@@ -141,7 +141,7 @@ module ModernTimes
       },
       "1964.10.14" => {
         name: "Leonid",
-        dynasyt: "Brezhnev",
+        dynasty: "Brezhnev",
       },
       "1982.10.12" => {
         name: "Yuri",

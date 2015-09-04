@@ -2,6 +2,12 @@ require "digest"
 
 Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
 
+class Random
+  def sample(ary)
+    ary[rand(ary.size)]
+  end
+end
+
 class CharacterManager
   def initialize(builder, namespace)
     @builder = builder
@@ -15,6 +21,10 @@ class CharacterManager
     else
       @builder.culture_names[culture][:female]
     end
+  end
+
+  def dynasty_pool(culture)
+    @builder.culture_names[culture][:dynasties]
   end
 
   def allocate_id(id)
@@ -56,14 +66,19 @@ class CharacterManager
       raise
     end
 
-    names_pool = name_pool(culture, female)
-    name = args[:name] || names_pool[rng.rand(names_pool.size)]
-    # We need to setup dynasty too here
+    name = args[:name] || rng.sample(name_pool(culture, female))
+
+    if args[:dynasty]
+      dynasty = @builder.new_dynasty(args[:dynasty], culture)
+    else
+      dynasty = rng.sample(dynasty_pool(culture))
+    end
 
     character = PropertyList[
       "name", name,
       "religion", religion,
       "culture", culture,
+      "dynasty", dynasty,
     ]
     character.add! "female", true if female
     character.add! birth, PropertyList["birth", birth]
@@ -142,6 +157,16 @@ class ModernTimesGameModification < CK2GameModification
   # This might be no longer necessary now that all provinces are some character's
   def new_throwaway_character(title)
     @characters_reset.add_reset(title)
+  end
+
+  # Assume same name in different cultures are separate dynasties
+  def new_dynasty(name, culture)
+    key = [name, culture]
+    unless @dynasties[key]
+      id = 100_000_000 + @dynasties.size
+      @dynasties[key] = {name: name, culture: culture, id: id}
+    end
+    @dynasties[key][:id]
   end
 
   def add_holders!(node, holders)
@@ -279,8 +304,13 @@ class ModernTimesGameModification < CK2GameModification
           @culture_names[name] = {
             male:   culture["male_names"].map{|n| n.sub(/_.*/, "")},
             female: culture["male_names"].map{|n| n.sub(/_.*/, "")},
+            dynasties: [],
           }
         end
+      end
+      parse("common/dynasties/00_dynasties.txt").each do |id, dynasty|
+        culture = dynasty["culture"] or next
+        @culture_names[culture][:dynasties] << id
       end
     end
     @culture_names
@@ -453,6 +483,14 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def save_dynasties!
+    create_mod_file!("common/dynasties/01_modern_times.txt", PropertyList[
+      *@dynasties.values.map{|d|
+        Property[d[:id], PropertyList["name", d[:name], "culture", d[:culture]]]
+      }.sort
+    ])
+  end
+
   def apply!
     # TODO:
     # - province religions
@@ -462,6 +500,7 @@ class ModernTimesGameModification < CK2GameModification
 
     @characters_reset = CharacterManager.new(self, 100_000_000)
     @characters       = CharacterManager.new(self, 110_000_000)
+    @dynasties        = {}
     preprocess_data!
     setup_province_history!
     setup_title_names!
@@ -470,5 +509,6 @@ class ModernTimesGameModification < CK2GameModification
     setup_defines!
     setup_bookmarks!
     setup_technology!
+    save_dynasties!
   end
 end
