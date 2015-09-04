@@ -562,15 +562,37 @@ class ModernTimesGameModification < CK2GameModification
   def setup_title_laws!
     patch_mod_files!("history/titles/[dke]_*.txt") do |node|
       node.add! resolve_date(:start), PropertyList[
-        # Unfortunately this makes Muslim titles Primogeniture instead of Turkish :-/
-        # "law", "succ_primogeniture",
         "law", "investiture_law_0",
         "law", "cognatic_succession",
-        # Unfortunately this seems to apply relationship penalty to Muslims even though they don't actually use it
-        # "law", "feudal_tax_1",
+        "law", "centralization_2",
       ]
       cleanup_history_node!(node)
     end
+    create_mod_file! "common/on_actions/10_modern_times.txt", PropertyList[
+      "on_startup", PropertyList[
+        "events", ["modern_times_setup.1"],
+      ],
+    ]
+    create_mod_file! "events/modern_times_setup.txt", PropertyList[
+      "namespace", "modern_times_setup",
+      "character_event", PropertyList[
+        "id", "modern_times_setup.1",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList[
+          "is_feudal", true,
+          "NOT", PropertyList["religion_group", "muslim"],
+        ],
+        "immediate", PropertyList[
+          "wealth", 4000,
+          "primary_title", PropertyList[
+            "add_law", "succ_primogeniture",
+            "add_law", "feudal_tax_2",
+          ],
+        ],
+      ],
+    ]
   end
 
   def save_dynasties!
