@@ -585,9 +585,8 @@ class ModernTimesGameModification < CK2GameModification
           "NOT", PropertyList["religion_group", "muslim"],
         ],
         "immediate", PropertyList[
-          "wealth", 4000,
           "primary_title", PropertyList[
-            "add_law", "succ_primogeniture",
+            "succession", "primogeniture",
             "add_law", "feudal_tax_2",
           ],
         ],

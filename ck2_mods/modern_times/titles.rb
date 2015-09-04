@@ -153,7 +153,7 @@ module ModernTimes
     },
     k_burgundy: {
       culture: :german,
-      religion: :catholic,
+      religion: :waldensian,
       capital: :c_bern,
       name: "Switzerland / Swiss",
     },
@@ -403,7 +403,7 @@ module ModernTimes
     },
     k_abyssinia:  {
       culture: :ethiopian,
-      religion: :miaphytise,
+      religion: :miaphysite,
       name: "Ethiopia / Ethiopian",
     },
     d_songhay: {
