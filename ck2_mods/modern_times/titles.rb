@@ -330,6 +330,7 @@ module ModernTimes
     k_croatia: {
       culture: :croatian,
       religion: :catholic,
+      capital: :c_zagreb,
     },
     d_bosnia: {
       culture: :croatian,

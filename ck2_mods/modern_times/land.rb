@@ -200,10 +200,9 @@ module ModernTimes
 
     d_carinthia:    { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
     c_zadar:        { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
-    c_varadzin:     { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+    d_slavonia:     { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
     d_croatia:      { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
 
-    d_slavonia:     { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
     c_zachlumia:    { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
     c_split:        { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
     c_usora:        { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },

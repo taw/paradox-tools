@@ -189,7 +189,12 @@ class ModernTimesGameModification < CK2GameModification
     @dynasties[key][:id]
   end
 
-  def add_holders!(node, holders)
+  def add_holders!(node, holders, min_date=nil, max_date=nil)
+    # max date is time when next country gets it so strict <
+    holders = holders.select{|d,id| d < max_date} if max_date
+    # min date is when this country gets it so >=
+    # If multiple characters with same date (due to date compression, take the last one)
+    holders = holders.map{|d,id| [[d,min_date].max, id]}.reverse.uniq(&:first).reverse if min_date
     holders.each do |date, id|
       node.add! date, PropertyList["holder", id]
     end
@@ -207,14 +212,26 @@ class ModernTimesGameModification < CK2GameModification
       return
     end
 
-    land.each do |date, liege|
-      if liege == @capitals[title]
-        add_holders! node, @holders[@capitals[title]]
-      end
-      if liege =~ /\Ac_/
-        node.add! date, PropertyList["liege", 0]
+    land.size.times do |i|
+      start_date, liege = land[i]
+      end_date = land[i+1] && land[i+1][0]
+
+      case liege
+      when /\A[cd]_/
+        # Counts and dukes hold all land directly
+        node.add! start_date, PropertyList["liege", 0]
+        add_holders! node, @holders[liege], start_date, end_date
       else
-        node.add! date, PropertyList["liege", liege]
+        capital_duchy = landed_titles_lookup[@capitals[liege]].find{|t| t =~ /\Ad_/ }
+        this_duchy    = landed_titles_lookup[title].find{|t| t =~ /\Ad_/ }
+
+        if capital_duchy == this_duchy
+          add_holders! node, @holders[liege], start_date, end_date
+        else
+          # TODO: Hand it over to someone local vassal...
+          node.add! start_date, PropertyList["holder", 0]
+        end
+        node.add! start_date, PropertyList["liege", liege]
       end
     end
   end
@@ -379,7 +396,7 @@ class ModernTimesGameModification < CK2GameModification
         @title_names[title] = data[:name].map{|d,n| [resolve_date(d), n] }
       end
 
-      @capitals[capital] = title
+      @capitals[title] = capital
       @holders[title] = []
       @seen_title = {}
       holders.each do |date, holder|
