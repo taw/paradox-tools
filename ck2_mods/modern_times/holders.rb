@@ -241,5 +241,37 @@ module ModernTimes
         father: "Gustaf Adolf 1882.11.11",
       },
     },
+    e_persia: {
+      "1896.5.1" => {
+        name: "Mozaffar al-Din",
+        dynasty: "Qajar",
+      },
+      "1907.1.3" => {
+        name: "Mohammad Ali",
+        dynasty: "Qajar",
+      },
+      "1909.6.16" => {
+        name: "Ahmad",
+        dynasty: "Qajar",
+      },
+      "1925.12.15" => {
+        name: "Reza",
+        dynasty: "Pahlavi",
+      },
+      "1941.9.16" => {
+        name: "Mohammad Reza",
+        dynasty: "Pahlavi",
+      },
+      "1979.2.11" => {
+        name: "Ruhollah",
+        dynasty: "Khomeini",
+        birth: "1902.9.22",
+      },
+      "1989.6.4" => {
+        name: "Ali",
+        dynasty: "Khamenei",
+        birth: "1939.7.17",
+      },
+    },
   }
 end
