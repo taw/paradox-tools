@@ -407,6 +407,13 @@ class ModernTimesGameModification < CK2GameModification
     )
   end
 
+  def cleanup_history_node!(node)
+    # Presumably not needed but for sake of convention
+    # Maybe merge nodes with same date?
+    raise unless node.keys.all?{|k| k.is_a?(Date)}
+    node.instance_eval{ @list = @list.select{|k,v| v != [] }.sort }
+  end
+
   def setup_title_names!
     @title_names.each do |title, names|
       patch_mod_file!("history/titles/#{title}.txt") do |node|
@@ -418,10 +425,21 @@ class ModernTimesGameModification < CK2GameModification
             node.add!(date, PropertyList["reset_name", true, "reset_adjective", true])
           end
         end
-        # Presumably not needed but for sake of convention
-        raise unless node.keys.all?{|k| k.is_a?(Date)}
-        node.instance_eval{ @list.sort! }
+        cleanup_history_node!(node)
       end
+    end
+  end
+
+  # Some sensible baseline for everyone
+  def setup_title_laws!
+    patch_mod_files!("history/titles/[dke]_*.txt") do |node|
+      node.add! resolve_date(:start), PropertyList[
+        "law", "succ_primogeniture",
+        "law", "investiture_law_0",
+        "law", "cognatic_succession",
+        "law", "feudal_tax_1",
+      ]
+      cleanup_history_node!(node)
     end
   end
 
@@ -431,14 +449,13 @@ class ModernTimesGameModification < CK2GameModification
     # - province cultures
     # - characters leading major empires
     # - etc.
-    #
-    # Merge back all manual files
 
     @characters_reset = CharacterManager.new(self, 100_000_000)
     @characters       = CharacterManager.new(self, 110_000_000)
     preprocess_data!
     setup_province_history!
     setup_title_names!
+    setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
     save_characters!
     setup_defines!
     setup_bookmarks!
