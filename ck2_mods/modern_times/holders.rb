@@ -57,14 +57,17 @@ module ModernTimes
       "1925.5.12" => {
         name: "Paul",
         dynasty: "von Hindenburg",
+        death: "1934.8.2",
       },
       "1934.8.2" => {
         name: "Adolf",
         dynasty: "Hitler",
+        death: "1945.4.30",
       },
       "1945.4.30" => {
         name: "Karl",
-        dynasty: "Donitz",
+        dynasty: "Doenitz",
+        death: "1980.12.24",
       },
       # Now this is bullshit on so many levels...
       # German "presidents" do nothing, so choosing chancellor as much more prominent person
