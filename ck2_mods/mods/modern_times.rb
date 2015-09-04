@@ -2,12 +2,6 @@ require "digest"
 
 Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
 
-class Date
-  def to_s_px
-    "%d.%d.%d" % [year, month, day]
-  end
-end
-
 class Random
   def sample(ary)
     ary[rand(ary.size)]
@@ -342,10 +336,6 @@ class ModernTimesGameModification < CK2GameModification
     @culture_names
   end
 
-  def culture_specific_name(culture)
-    culture_names[culture][0]
-  end
-
   def preprocess_data!
     # ModernTimes module holds data in format convenient for human writing,
     # it needs to be converted to something sensibler
@@ -372,7 +362,7 @@ class ModernTimesGameModification < CK2GameModification
           raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
         end
         holders = []
-        # We need to break long strethes of time into 20 year fragments
+        # We need to break long stretches of time into 15 year fragments
         @time_active[title].each do |s,e|
           xe = e || resolve_date(:title_holders_until)
           while true

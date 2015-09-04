@@ -1,3 +1,5 @@
+require_relative "paradox"
+
 class ParadoxGameModification
   def initialize(builder)
     @builder = builder

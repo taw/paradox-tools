@@ -1,15 +1,19 @@
 require "pp"
 require "date"
 require "pathname"
+require_relative "property_list"
 require_relative "paradox_game"
 require_relative "paradox_mod_file"
 require_relative "paradox_mod_builder"
-require_relative "property_list"
 
 class Date
   # Default inspect is just really stupid
   def inspect
     "Date.new(#{year}, #{month}, #{day})"
+  end
+
+  def to_s_px
+    "%d.%d.%d" % [year, month, day]
   end
 end
 
