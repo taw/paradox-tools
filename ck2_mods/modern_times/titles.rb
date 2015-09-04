@@ -121,7 +121,11 @@ module ModernTimes
     e_germany: {
       culture: :german,
       religion: :catholic,
-      capital: :c_oberbayern, # temporary
+      # This is silly, but we want to have:
+      # * no capitals outside country (as Berlin was 1945-1990)
+      # * no bishoprics in capital duchy (Koln/Munich)
+      # * no cities in capital duchy (Hamburg)
+      capital: :c_nassau,
       name: {start: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" }
     },
     d_pomeralia: {
@@ -326,6 +330,7 @@ module ModernTimes
       culture: :croatian,
       religion: :catholic,
       name: "Slovenia / Slovenian",
+      capital: :c_steimark,
     },
     k_croatia: {
       culture: :croatian,
