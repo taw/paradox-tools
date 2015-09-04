@@ -14,24 +14,28 @@ module ModernTimes
         death: "1910.5.6",
         name: "Edward",
         dynasty: "Windsor",
+        mother: "Victoria 1819.5.24",
       },
       "1910.5.6" => {
         birth: "1865.6.3",
         death: "1936.1.20",
         name: "George",
         dynasty: "Windsor",
+        father: "Edward 1841.11.9",
       },
       "1936.1.20" => {
         birth: "1894.6.23",
         death: "1972.5.28",
         name: "Edward",
         dynasty: "Windsor",
+        father: "George 1865.6.3",
       },
       "1936.12.11" => {
         birth: "1895.12.14",
         death: "1952.2.6",
         name: "George",
         dynasty: "Windsor",
+        father: "George 1865.6.3",
       },
       "1952.2.6" => {
         birth: "1926.4.21",
@@ -39,6 +43,7 @@ module ModernTimes
         name: "Elizabeth",
         dynasty: "Windsor",
         female: true,
+        father: "George 1895.12.14",
       },
     },
     e_germany: {

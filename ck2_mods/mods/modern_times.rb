@@ -2,6 +2,12 @@ require "digest"
 
 Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
 
+class Date
+  def to_s_px
+    "%d.%d.%d" % [year, month, day]
+  end
+end
+
 class Random
   def sample(ary)
     ary[rand(ary.size)]
@@ -12,6 +18,7 @@ class CharacterManager
   def initialize(builder, namespace)
     @builder = builder
     @characters = {}
+    @by_description = {}
     @namespace = namespace
   end
 
@@ -44,6 +51,17 @@ class CharacterManager
     id
   end
 
+  def lookup_character_id(description)
+    if description.is_a?(Integer)
+      description
+    else
+      id = @by_description[description]
+      raise "Can't find character `#{description}'" unless id
+      raise "Can't find character `#{description}'" if id == :ambiguous
+      id
+    end
+  end
+
   def add_ruler(**args)
     crowning = args[:key][:crowning]
     id = allocate_id(@namespace + ((args[:key][:crowning] - Date.parse("1900.1.1")) * 100).to_i)
@@ -67,6 +85,7 @@ class CharacterManager
     end
 
     name = args[:name] || rng.sample(name_pool(culture, female))
+    description = "#{name} #{birth.to_s_px}"
 
     if args[:dynasty]
       dynasty = @builder.new_dynasty(args[:dynasty], culture)
@@ -81,10 +100,17 @@ class CharacterManager
       "dynasty", dynasty,
     ]
     character.add! "female", true if female
+    character.add! "father", lookup_character_id(args[:father]) if args[:father]
+    character.add! "mother", lookup_character_id(args[:mother]) if args[:mother]
     character.add! birth, PropertyList["birth", birth]
     character.add! death, PropertyList["death", death] if death
 
     @characters[id] = character
+    if @by_description[description]
+      @by_description[description] = :ambiguous
+    else
+      @by_description[description] = id
+    end
     id
   end
 
@@ -379,6 +405,8 @@ class ModernTimesGameModification < CK2GameModification
             death: resolve_date(holder[:death]),
             name: holder[:name],
             dynasty: holder[:dynasty],
+            father: holder[:father],
+            mother: holder[:mother],
             key: {
               crowning: date,
               title: title,
