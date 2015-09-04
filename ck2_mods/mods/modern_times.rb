@@ -510,21 +510,45 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_technology!
-    # Smarter assignment later, for now just something not totally silly
-    patch_mod_files!("history/technology/*.txt") do |node|
-      node.each do |_, techs|
-        techs.delete 769
-        techs.delete 1337
-        techs.add! 1900, PropertyList[
-          "military", 4.0,
-          "economy", 4.0,
-          "culture", 4.0,
-        ]
-        techs.add! 2015, PropertyList[
-          "military", 7.0,
-          "economy", 7.0,
-          "culture", 7.0,
-        ]
+    tech_levels = {
+      ["africa", 0]         => [2,3], # Ethiopia
+      ["africa", 1]         => [3,4], # Egypt
+      ["africa", 2]         => [3,4], # Tunis
+      ["africa", 3]         => [2,3], # West Africa
+      ["byzantium", 0]      => [4,5], # Byzantium
+      ["byzantium", 1]      => [4,5], # Thrace
+      ["eastern_europe", 0] => [4,5],
+      ["india", 0]          => [2,3],
+      ["middle_east", 0]    => [3,4],
+      ["scandinavia", 0]    => [5,6],
+      ["the_steppes", 0]    => [2,3],
+      ["the_steppes", 1]    => [2,3],
+      ["the_steppes", 2]    => [2,3],
+      ["western_europe", 0] => [5,7], # France / Germany - catch up with UK
+      ["western_europe", 1] => [5,6], # Italy
+      ["western_europe", 2] => [6,7], # UK
+      ["western_europe", 3] => [5,6], # North Spain
+      ["western_europe", 4] => [5,6], # South Spain
+    }
+    glob("history/technology/*.txt").each do |path|
+      group = path.basename(".txt").to_s
+      patch_mod_file!(path) do |node|
+        node.find_all("technology").each_with_index do |techs, i|
+          (a, b) = tech_levels.fetch([group, i])
+          # p node
+          techs.delete 769
+          techs.delete 1337
+          techs.add! 1900, PropertyList[
+            "military", a,
+            "economy", a,
+            "culture", a,
+          ]
+          techs.add! 2015, PropertyList[
+            "military", b,
+            "economy", b,
+            "culture", b,
+          ]
+        end
       end
     end
     override_defines_lua!("modern_times",
