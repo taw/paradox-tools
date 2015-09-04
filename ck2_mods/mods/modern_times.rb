@@ -155,13 +155,17 @@ class ModernTimesGameModification < CK2GameModification
 
   def province_id_to_title
     unless @province_id_to_title
-      @province_id_to_title = Hash.new do |ht,k|
-        paths = glob("history/provinces/#{k} *.txt")
-        raise unless paths.size == 1
-        ht[k] = parse(paths[0])["title"]
+      @province_id_to_title = {}
+      glob("history/provinces/*.txt").each do |path|
+        id = path.basename.to_s.to_i
+        @province_id_to_title[id] = parse(path)["title"]
       end
     end
     @province_id_to_title
+  end
+
+  def title_to_province_id
+    @title_to_province_id ||= Hash[province_id_to_title.map(&:reverse)]
   end
 
   def title_capitals
@@ -229,6 +233,37 @@ class ModernTimesGameModification < CK2GameModification
     merge_time_ranges(ranges)
   end
 
+  def culture_in_county
+    unless @culture_in_county
+      @culture_in_county = Hash.new do |ht,county|
+        id = title_to_province_id[county]
+        paths = glob("history/provinces/#{id} *.txt")
+        raise "Lookup for #{id}/#{county} failed" unless paths.size == 1
+        node = parse(paths[0])
+        ht[county] = [node["culture"], *node.list.map{|k,v| v["culture"] if v.is_a?(PropertyList)}].compact.last
+      end
+    end
+    @culture_in_county
+  end
+
+  # If no dominant culture, choose liege_culture, or else just largest one
+  #
+  # TODO:
+  # This should maybe choose liege culture anyway in some cases of conflicts,
+  # like if duchy is next to one with liege's culture
+  # So Wales would be ruled by Englishmen, but English colonies in India wouldn't
+  # It's messier query to check neighbouring duchies, so it should only be done
+  # once map manager of some kind is refactored out of this blob of code
+  def dominant_culture_in_duchy(duchy, liege_culture)
+    cultures = counties_in_duchy[duchy].map{|c| culture_in_county[c]}
+    # If duchy is one culture, choose it
+    return cultures[0] if cultures.uniq.size == 1
+    # If liege's culture is in the duchy even as minority, choose it
+    return liege_culture if cultures.include?(liege_culture)
+    # Else choose dominant culture
+    cultures.group_by(&:itself).map{|c,xx| [-xx.size, c]}.sort[0][1]
+  end
+
   def regional_vassals(liege, duchy)
     unless @regional_vassals[[liege, duchy]]
       @regional_vassals[[liege, duchy]] = []
@@ -236,9 +271,11 @@ class ModernTimesGameModification < CK2GameModification
       liege_has_land_in_active(liege, duchy).each do |s,e|
         xe = e || resolve_date(:title_holders_until)
         while true
+          # Always liege religion but could be local culture
+          culture = dominant_culture_in_duchy(duchy, ModernTimes::TITLES[liege.to_sym][:culture].to_s)
           id = @characters.add_ruler(
-            culture: ModernTimes::TITLES[liege.to_sym][:culture],
-            religion: ModernTimes::TITLES[liege.to_sym][:religion],
+            culture: culture,
+            religion: ModernTimes::TITLES[liege.to_sym][:religion].to_s,
             key: {
               crowning: s,
               title: duchy,
