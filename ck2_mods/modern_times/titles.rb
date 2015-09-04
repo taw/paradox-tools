@@ -217,7 +217,7 @@ module ModernTimes
       capital: :c_kabul,
     },
     k_mesopotamia: {
-      culture: :bedouin_arabic,
+      culture: :levantine_arabic,
       religion: :shiite,
       capital: :c_baghdad,
       name: "Iraq / Iraqi",
@@ -258,7 +258,7 @@ module ModernTimes
       name: "Uzbekisan / Uzkekistani",
     },
     k_khotan: {
-      culture: :tocharian, # Chinese
+      culture: :uyghur, # Chinese ?
       religion: :buddhist,
       name: "Xinjiang / Xinjiang",
     },
@@ -312,12 +312,12 @@ module ModernTimes
       religion: :orthodox,
     },
     k_ruthenia: {
-      culture: :volhynian,
+      culture: :russian, # :volhynian but it would autoconvert anyway
       religion: :orthodox,
       name: "Ukraine / Ukrainian",
     },
     d_minsk: {
-      culture: :severian,
+      culture: :russian, # :severian but it would autoconvert anyway
       religion: :orthodox,
       capital: :c_minsk,
       name: "Belarus / Belarussian",
