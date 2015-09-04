@@ -35,6 +35,7 @@ module ModernTimes
       },
       "1952.2.6" => {
         birth: "1926.4.21",
+        death: :never,
         name: "Elizabeth",
         dynasty: "Windsor",
         female: true,

@@ -44,7 +44,17 @@ class CharacterManager
     female = args[:female]
     female = (rng.rand < 0.05) if female == :maybe # Less for Muslims?
     birth = args[:birth] || (crowning << 12*35)
-    death = args[:death]
+    case args[:death]
+    when :never
+      death = nil
+    when Date
+      death = args[:death]
+    when nil
+      # Random rulers all die at age of 90
+      death = (birth >> 12*90)
+    else
+      raise
+    end
 
     names_pool = name_pool(culture, female)
     name = args[:name] || names_pool[rng.rand(names_pool.size)]

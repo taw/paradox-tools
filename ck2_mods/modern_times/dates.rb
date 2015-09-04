@@ -104,6 +104,8 @@ module ModernTimes
       case date
       when nil
         nil
+      when :never
+        :never # Magic placeholder, maybe fix them someday
       when Date
         date
       when String
