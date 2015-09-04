@@ -312,11 +312,11 @@ module ModernTimes
     d_baghdad: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
     d_tigris:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
     d_basra:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-    c_az_zarqa:{ start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-    c_mosul:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-    c_suwaida: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-    c_druz:    { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-    c_sinjar:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+
+    c_mosul:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+    c_suwaida: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+    c_druz:    { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+    c_sinjar:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
 
     c_kuwait:  { start: "e_britannia", kuwait_independence: "c_kuwait" },
     c_bahrein: { start: "e_britannia", bahrain_independence: "c_bahrein" },
@@ -343,15 +343,19 @@ module ModernTimes
 
     c_tiberias: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", six_day_war: "k_israel" },
     c_safed: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
-    c_tell_bashir: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
+    c_tell_bashir: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"  },
     k_syria: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
     d_jazira: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
 
+    d_syria:   { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
+    c_palmyra: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
+    c_asas:    { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
 
     d_oultrejourdain: { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-    c_petra: { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-    c_maan: { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-    c_amman: { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+    c_petra:   { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+    c_maan:    { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+    c_amman:   { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+    c_az_zarqa:{ start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
 
     d_nefoud: { start: "k_arabia" },
     d_medina: { start: "e_seljuk_turks", end_ww1: "k_arabia" },

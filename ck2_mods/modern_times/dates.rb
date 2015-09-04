@@ -96,6 +96,8 @@ module ModernTimes
       madrid_accords: "1975.11.14",
 
       oman_independence: "1970.7.23", # Not sure this is corrrect date
+
+      caliphate_reborn: "2014.6.29",
     }
 
     def self.[](date)
@@ -105,7 +107,11 @@ module ModernTimes
       when Date
         date
       when String
-        Date.parse(date)
+        if date =~ /\A\d{4}\z/
+          Date.parse("#{date}.1.1")
+        else
+          Date.parse(date)
+        end
       when Symbol
         raise "No date #{date.inspect}" unless @dates[date]
         Date.parse(@dates[date])

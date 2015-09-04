@@ -160,11 +160,11 @@ module ModernTimes
       name: { start: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
     },
     # TODO: Ottoman caliphate (or maybe ISIS caliphate even)
-    # d_sunni: {
-    #   culture: :turkish,
-    #   religion: :sunni,
-    #   capital: :c_byzantion,
-    # },
+    d_sunni: {
+      culture: :levantine_arabic,
+      religion: :sunni,
+      capital: :c_mosul, # not true
+    },
     d_tunis: {
       culture: :maghreb_arabic,
       religion: :sunni,
