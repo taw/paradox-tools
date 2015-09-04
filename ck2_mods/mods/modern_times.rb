@@ -119,79 +119,6 @@ end
 
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
-  def landed_titles
-    @landed_titles ||= parse("common/landed_titles/landed_titles.txt")
-  end
-
-  def deep_search(node, path=[], &blk)
-    node.each do |key, val|
-      if val.is_a?(PropertyList)
-        deep_search(val, [*path, key], &blk)
-      end
-      yield(node, [*path, key])
-    end
-  end
-
-  def landed_titles_lookup
-    unless @landed_titles_lookup
-      @landed_titles_lookup = {}
-      deep_search(landed_titles) do |node, path|
-        next unless path[-1] =~ /\A[cb]_/
-        @landed_titles_lookup[path[-1]] = path.reverse
-      end
-    end
-    @landed_titles_lookup
-  end
-
-  def deep_search_direct(node, path=[], &blk)
-    node.each do |key, val|
-      subpath =  [*path, key]
-      if val.is_a?(PropertyList)
-        deep_search_direct(val, subpath, &blk)
-      end
-      yield(val, subpath)
-    end
-  end
-
-  def province_id_to_title
-    unless @province_id_to_title
-      @province_id_to_title = {}
-      glob("history/provinces/*.txt").each do |path|
-        id = path.basename.to_s.to_i
-        @province_id_to_title[id] = parse(path)["title"]
-      end
-    end
-    @province_id_to_title
-  end
-
-  def title_to_province_id
-    @title_to_province_id ||= Hash[province_id_to_title.map(&:reverse)]
-  end
-
-  def title_capitals
-    unless @title_capitals
-      @title_capitals = {}
-      deep_search_direct(landed_titles) do |node, path|
-        next unless path[-1] == "capital"
-        title = path[-2]
-        @title_capitals[title] = province_id_to_title[node]
-      end
-    end
-    @title_capitals
-  end
-
-  def counties_in_duchy
-    unless @counties_in_duchy
-      @counties_in_duchy = {}
-      deep_search_direct(landed_titles) do |node, path|
-        next unless path[-1] =~ /\Ac_/
-        duchy, county = path[-2], path[-1]
-        (@counties_in_duchy[duchy] ||= []) << county
-      end
-    end
-    @counties_in_duchy
-  end
-
   # This might be no longer necessary now that all provinces are some character's
   def new_throwaway_character(title)
     @characters_reset.add_reset(title)
@@ -220,8 +147,8 @@ class ModernTimesGameModification < CK2GameModification
 
   def liege_has_land_in_active(liege, duchy)
     ranges = []
-    counties_in_duchy[duchy].each do |county|
-      land = landed_titles_lookup[county].map{|t| @land[t]}.find(&:itself)
+    @map.counties_in_duchy[duchy].each do |county|
+      land = @map.landed_titles_lookup[county].map{|t| @land[t]}.find(&:itself)
       land.size.times do |i|
         start_date, owner = land[i]
         end_date = land[i+1] && land[i+1][0]
@@ -233,19 +160,6 @@ class ModernTimesGameModification < CK2GameModification
     merge_time_ranges(ranges)
   end
 
-  def culture_in_county
-    unless @culture_in_county
-      @culture_in_county = Hash.new do |ht,county|
-        id = title_to_province_id[county]
-        paths = glob("history/provinces/#{id} *.txt")
-        raise "Lookup for #{id}/#{county} failed" unless paths.size == 1
-        node = parse(paths[0])
-        ht[county] = [node["culture"], *node.list.map{|k,v| v["culture"] if v.is_a?(PropertyList)}].compact.last
-      end
-    end
-    @culture_in_county
-  end
-
   # If no dominant culture, choose liege_culture, or else just largest one
   #
   # TODO:
@@ -254,8 +168,13 @@ class ModernTimesGameModification < CK2GameModification
   # So Wales would be ruled by Englishmen, but English colonies in India wouldn't
   # It's messier query to check neighbouring duchies, so it should only be done
   # once map manager of some kind is refactored out of this blob of code
+  #
+  # FIXME:
+  # This checks cultures in whole duchy, but we're only interested in part of the duchy
+  # in actual realm. Might be problematic in case of border changes,
+  # as we don't replace vassal on border change.
   def dominant_culture_in_duchy(duchy, liege_culture)
-    cultures = counties_in_duchy[duchy].map{|c| culture_in_county[c]}
+    cultures = @map.cultures_in_duchy(duchy)
     # If duchy is one culture, choose it
     return cultures[0] if cultures.uniq.size == 1
     # If liege's culture is in the duchy even as minority, choose it
@@ -295,11 +214,11 @@ class ModernTimesGameModification < CK2GameModification
     node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
     node.add! Date.parse("1500.1.1"), PropertyList["holder", new_throwaway_character(title)]
 
-    land = landed_titles_lookup[title].map{|t| @land[t]}.find(&:itself)
+    land = @map.landed_titles_lookup[title].map{|t| @land[t]}.find(&:itself)
 
     unless land
       # This is really a bug, warn here once we get nontrivial amount of land covered
-      puts "No idea what to do with #{landed_titles_lookup[title].reverse.join(" / ")}"
+      puts "No idea what to do with #{@map.landed_titles_lookup[title].reverse.join(" / ")}"
       return
     end
 
@@ -313,8 +232,8 @@ class ModernTimesGameModification < CK2GameModification
         node.add! start_date, PropertyList["liege", 0]
         add_holders! node, @holders[liege], start_date, end_date
       else
-        capital_duchy = landed_titles_lookup[@capitals[liege]].find{|t| t =~ /\Ad_/ }
-        this_duchy    = landed_titles_lookup[title].find{|t| t =~ /\Ad_/ }
+        capital_duchy = @map.landed_titles_lookup[@capitals[liege]].find{|t| t =~ /\Ad_/ }
+        this_duchy    = @map.landed_titles_lookup[title].find{|t| t =~ /\Ad_/ }
 
         if capital_duchy == this_duchy
           add_holders! node, @holders[liege], start_date, end_date
@@ -337,7 +256,7 @@ class ModernTimesGameModification < CK2GameModification
         patch_mod_file!(path) do |node|
         if title =~ /\Ab_/
           # Baronies not belonging to counties like partician houses can be ignored
-          county = landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
+          county = @map.landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
           if county
             node.add! Date.parse("1500.1.1"), PropertyList["liege", county]
           else
@@ -459,7 +378,7 @@ class ModernTimesGameModification < CK2GameModification
       elsif title =~ /\Ac_/
         capital = title
       else
-        capital = title_capitals[title] or raise "Can't autodetect capital for #{title}"
+        capital = @map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
       end
       culture  = data[:culture].to_s
       religion = data[:religion].to_s
@@ -669,6 +588,7 @@ class ModernTimesGameModification < CK2GameModification
     # - province cultures
     # - characters leading major empires
     # - etc.
+    @map = MapManager.new(self)
 
     @characters_reset = CharacterManager.new(self, 100_000_000)
     @characters       = CharacterManager.new(self, 110_000_000)
