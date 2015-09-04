@@ -176,5 +176,70 @@ module ModernTimes
         dynasty: "Putin",
       },
     },
+    k_denmark: {
+      "1863.11.29" => {
+        name: "Christian",
+        dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+        birth: "1818.4.8",
+        death: "1906.1.29",
+      },
+      "1906.1.29" => {
+        name: "Frederick",
+        dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+        birth: "1843.6.3",
+        death: "1912.5.14",
+        father: "Christian 1818.4.8",
+      },
+      "1912.5.14" => {
+        name: "Christian",
+        dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+        birth: "1870.9.26",
+        death: "1947.4.20",
+        father: "Frederick 1843.6.3"
+      },
+      "1947.4.20" => {
+        name: "Frederick",
+        dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+        birth: "1899.3.11",
+        death: "1972.1.14",
+        father: "Christian 1870.9.26",
+      },
+      "1972.1.14" => {
+        name: "Margrethe",
+        dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+        female: true,
+        birth: "1940.4.16",
+        death: :never,
+        father: "Frederick 1899.3.11",
+      }
+    },
+    k_sweden: {
+      "1872.9.18" => {
+        name: "Oscar",
+        dynasty: "Bernadotte",
+        birth: "1829.1.21",
+        death: "1907.12.8",
+      },
+      "1907.12.8" => {
+        name: "Gustaf",
+        dynasty: "Bernadotte",
+        birth: "1858.6.16",
+        death: "1950.10.29",
+        father: "Oscar 1829.1.21",
+      },
+      "1950.10.29" => {
+        name: "Gustaf Adolf",
+        dynasty: "Bernadotte",
+        birth: "1882.11.11",
+        death: "1973.9.15",
+        father: "Gustaf 1858.6.16",
+      },
+      "1973.9.15" => {
+        name: "Carl Gustaf",
+        dynasty: "Bernadotte",
+        birth: "1946.4.30",
+        father: "Gustaf Adolf 1882.11.11",
+      },
+    },
   }
 end
