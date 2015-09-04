@@ -119,6 +119,10 @@ end
 
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
+  def landed_titles
+    @landed_titles ||= parse("common/landed_titles/landed_titles.txt")
+  end
+
   def deep_search(node, path=[], &blk)
     node.each do |key, val|
       if val.is_a?(PropertyList)
@@ -131,7 +135,6 @@ class ModernTimesGameModification < CK2GameModification
   def landed_titles_lookup
     unless @landed_titles_lookup
       @landed_titles_lookup = {}
-      landed_titles = parse("common/landed_titles/landed_titles.txt")
       deep_search(landed_titles) do |node, path|
         next unless path[-1] =~ /\A[cb]_/
         @landed_titles_lookup[path[-1]] = path.reverse
@@ -164,7 +167,6 @@ class ModernTimesGameModification < CK2GameModification
   def title_capitals
     unless @title_capitals
       @title_capitals = {}
-      landed_titles = parse("common/landed_titles/landed_titles.txt")
       deep_search_direct(landed_titles) do |node, path|
         next unless path[-1] == "capital"
         title = path[-2]
@@ -172,6 +174,18 @@ class ModernTimesGameModification < CK2GameModification
       end
     end
     @title_capitals
+  end
+
+  def counties_in_duchy
+    unless @counties_in_duchy
+      @counties_in_duchy = {}
+      deep_search_direct(landed_titles) do |node, path|
+        next unless path[-1] =~ /\Ac_/
+        duchy, county = path[-2], path[-1]
+        (@counties_in_duchy[duchy] ||= []) << county
+      end
+    end
+    @counties_in_duchy
   end
 
   # This might be no longer necessary now that all provinces are some character's
@@ -198,6 +212,46 @@ class ModernTimesGameModification < CK2GameModification
     holders.each do |date, id|
       node.add! date, PropertyList["holder", id]
     end
+  end
+
+  def liege_has_land_in_active(liege, duchy)
+    ranges = []
+    counties_in_duchy[duchy].each do |county|
+      land = landed_titles_lookup[county].map{|t| @land[t]}.find(&:itself)
+      land.size.times do |i|
+        start_date, owner = land[i]
+        end_date = land[i+1] && land[i+1][0]
+        if owner == liege
+          ranges << [start_date, end_date]
+        end
+      end
+    end
+    merge_time_ranges(ranges)
+  end
+
+  def regional_vassals(liege, duchy)
+    unless @regional_vassals[[liege, duchy]]
+      @regional_vassals[[liege, duchy]] = []
+      # We need to break long stretches of time into 15 year fragments
+      liege_has_land_in_active(liege, duchy).each do |s,e|
+        xe = e || resolve_date(:title_holders_until)
+        while true
+          id = @characters.add_ruler(
+            culture: ModernTimes::TITLES[liege.to_sym][:culture],
+            religion: ModernTimes::TITLES[liege.to_sym][:religion],
+            key: {
+              crowning: s,
+              title: duchy,
+            },
+          )
+          @regional_vassals[[liege, duchy]] << [s, id]
+          s >>= (12*15)  # 40..55 years
+          break if s >= xe
+        end
+        @regional_vassals[[liege, duchy]] << [e, 0] if e
+      end
+    end
+    @regional_vassals[[liege, duchy]]
   end
 
   def setup_county_history!(title, node)
@@ -228,8 +282,7 @@ class ModernTimesGameModification < CK2GameModification
         if capital_duchy == this_duchy
           add_holders! node, @holders[liege], start_date, end_date
         else
-          # TODO: Hand it over to someone local vassal...
-          node.add! start_date, PropertyList["holder", 0]
+          add_holders! node, regional_vassals(liege, this_duchy), start_date, end_date
         end
         node.add! start_date, PropertyList["liege", liege]
       end
@@ -509,10 +562,12 @@ class ModernTimesGameModification < CK2GameModification
   def setup_title_laws!
     patch_mod_files!("history/titles/[dke]_*.txt") do |node|
       node.add! resolve_date(:start), PropertyList[
-        "law", "succ_primogeniture",
+        # Unfortunately this makes Muslim titles Primogeniture instead of Turkish :-/
+        # "law", "succ_primogeniture",
         "law", "investiture_law_0",
         "law", "cognatic_succession",
-        "law", "feudal_tax_1",
+        # Unfortunately this seems to apply relationship penalty to Muslims even though they don't actually use it
+        # "law", "feudal_tax_1",
       ]
       cleanup_history_node!(node)
     end
@@ -535,6 +590,7 @@ class ModernTimesGameModification < CK2GameModification
 
     @characters_reset = CharacterManager.new(self, 100_000_000)
     @characters       = CharacterManager.new(self, 110_000_000)
+    @regional_vassals = {}
     @dynasties        = {}
     preprocess_data!
     setup_province_history!
