@@ -143,12 +143,13 @@ ModernTimesDatabase::TITLES = {
     culture: :bohemian,
     religion: :catholic,
     capital: :c_praha,
-    name: { czechoslovakia_independence: "Czechoslovakia / Czechoslovakia",  czechoslovakia_dissolution: nil}
+    name: { czechoslovakia_independence: "Czechoslovakia / Czechoslovak",  czechoslovakia_dissolution: nil}
   },
-  d_slovakia: {
+  d_nyitra: {
     culture: :bohemian,
     religion: :catholic,
     capital: :c_pressburg,
+    name: "Slovakia / Slovak",
   },
   k_burgundy: {
     culture: :german,

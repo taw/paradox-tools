@@ -182,9 +182,9 @@ ModernTimesDatabase::LAND = {
   c_cieszyn: {start: "e_germany", silesian_uprising: "k_poland"},
 
   k_bohemia:      { start: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
-  d_nyitra:       { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_slovakia" },
-  c_pressburg:    { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_slovakia" },
-  c_saris:        { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_slovakia" },
+  d_nyitra:       { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
+  c_pressburg:    { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
+  c_saris:        { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
 
   c_trent:        { start: "e_carpathia", south_tirol_annexation: "e_italy" },
 
