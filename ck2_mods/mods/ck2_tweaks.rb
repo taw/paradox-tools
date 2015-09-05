@@ -535,8 +535,8 @@ class CK2TweaksGameModification < CK2GameModification
     no_multiple_empires!
     more_plots!
     dont_call_duke_kings_ever!
-    extend_timeline!
-    fix_de_jure_map!
+    # extend_timeline!
+    # fix_de_jure_map!
     easier_culture_conversion!
     easier_title_creation!
     # TODO: de jure drift by title_decisions

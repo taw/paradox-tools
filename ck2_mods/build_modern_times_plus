@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
+
+class ModernTimesPlusModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.4.3",
+      ),
+      "output/modern_times_plus",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! SuezCanalGameModification,
+                         NoDynasticNamesGameModification,
+                         ModernTimesGameModification,
+                         CK2TweaksGameModification,
+                         BecomeRepublicGameModification,
+                         NoDynasticNamesGameModification,
+                         NoLocalizedRanksGameModification,
+                         NoLocalizedTitlesGameModification,
+                         VassalTransferGameModification,
+                         DynasticDecisionsGameModification,
+                         RulerDesignerResetGameModification,
+                         OldStyleBanishmentGameModification
+    create_mod_descriptor!(
+      name: "Modern Times Plus",
+      path: "mod/modern_times_plus",
+    )
+  end
+end
+
+ModernTimesPlusModBuilder.new.build!
