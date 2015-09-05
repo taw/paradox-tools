@@ -3,7 +3,6 @@ class MapManager
 
   def initialize(builder)
     @builder = builder
-    @culture_in_county    = {}
     @province_id_to_title = {}
     @landed_titles_lookup = {}
     @title_capitals       = {}
@@ -14,8 +13,6 @@ class MapManager
       node = @builder.parse(path)
       title = node["title"]
       @province_id_to_title[id] = title
-      cultures =  [node["culture"], *node.list.map{|_,v| v["culture"] if v.is_a?(PropertyList)}].compact
-      @culture_in_county[title] = cultures.last
     end
 
     deep_search_direct(landed_titles) do |node, path|
@@ -33,8 +30,21 @@ class MapManager
     end
   end
 
+  def culture_in_county
+    unless @culture_in_county
+      @culture_in_county = {}
+      @builder.glob("history/provinces/*.txt").each do |path|
+        node = @builder.parse(path)
+        title = node["title"]
+        cultures =  [node["culture"], *node.list.map{|_,v| v["culture"] if v.is_a?(PropertyList)}].compact
+        @culture_in_county[title] = cultures.last
+      end
+    end
+    @culture_in_county
+  end
+
   def cultures_in_duchy(duchy)
-    @counties_in_duchy[duchy].map{|c| @culture_in_county[c]}
+    @counties_in_duchy[duchy].map{|c| culture_in_county[c]}
   end
 
   def duchy_for_county(county)

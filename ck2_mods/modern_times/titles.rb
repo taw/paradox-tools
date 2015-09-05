@@ -242,22 +242,22 @@ ModernTimesDatabase::TITLES = {
     name: "Bangladesh / Bangladeshi",
   },
   d_dihistan: {
-    culture: :turkish, # ???
+    culture: :turkish,
     religion: :sunni,
     name: "Turkmenistan / Turkmenistani",
   },
   k_cuman: {
-    culture: :mongol, # not really, but it is so on the map
+    culture: :cuman,
     religion: :sunni,
     name: "Kazakhstan / Kazakh"
   },
   k_khiva: {
-    culture: :mongol, # not really, but it is so on the map
+    culture: :karluk,
     religion: :sunni,
     name: "Uzbekisan / Uzkekistani",
   },
   k_khotan: {
-    culture: :uyghur, # Chinese ?
+    culture: :uyghur, # China, but autonomous region is mostly Uyghur
     religion: :buddhist,
     name: "Xinjiang / Xinjiang",
   },
@@ -288,7 +288,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_azerbaijan: {
     culture: :persian, # close enough
-    religion: :sunni,
+    religion: :shiite,
   },
   d_armenia: {
     culture: :armenian,

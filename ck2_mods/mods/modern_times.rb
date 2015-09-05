@@ -491,6 +491,82 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  # 14th century map is mostly reasonable, but there's a bit of crazy we need to fix
+  #
+  # current dynastic conflict count is 6441, that's silly
+  def setup_province_population!
+    # https://en.wikipedia.org/wiki/Karluk_languages
+    # https://en.wikipedia.org/wiki/Kipchak_languages
+    # uzbeks -> karluk
+    # kazakhs -> cuman
+    # tatars -> bolghar
+
+    # k_persia -> shiite
+    patch_mod_files!("history/provinces/*.txt") do |node|
+      title = node["title"]
+      orig_culture  = culture  = [node["culture"], *node.list.map{|_,v| v["culture"] if v.is_a?(PropertyList)}].compact.last
+      orig_religion = religion = [node["religion"], *node.list.map{|_,v| v["religion"] if v.is_a?(PropertyList)}].compact.last
+      county, duchy, kingdom, empire = @map.landed_titles_lookup[title]
+
+      if empire == "e_persia" or ["d_basra", "d_tigris", "d_baghdad", "c_kermanshah", "d_tripoli"].include?(duchy)
+        religion = "shiite"
+      end
+      if culture == "mongol"
+        if kingdom == "k_mongolia"
+          # Mongols in Mongolia are OK
+        elsif kingdom == "k_taurica" or kingdom == "k_ruthenia"
+          culture = "bolghar"
+        elsif kingdom == "k_khiva"
+          culture = "karluk"
+        elsif kingdom == "k_alania"
+          culture = "alan"
+        else
+          # Too many
+          culture = "cuman"
+        end
+      end
+      if duchy == "k_khiva"
+        culture = "karluk"
+      end
+      if duchy == "d_nyitra" or county == "c_pressburg"
+        culture = "bohemian"
+      end
+      if duchy == "d_carinthia" or county == "c_steiermark"
+        culture = "croatian"
+      end
+      if duchy == "d_armenia"
+        culture = "armenian"
+      end
+      if kingdom == "k_england"
+        religion = "fraticelli"
+      end
+      if duchy == "d_holland" or duchy == "d_gelre"
+        religion = "waldensian"
+      end
+      if culture == "andalusian_arabic"
+        if county == "c_algeciras"
+          culture = "english"
+        else
+          culture = "castillan"
+        end
+      end
+      if duchy == "d_ascalon"
+        culture = "ashkenazi"
+        religion = "jewish"
+      end
+
+      # p [title, {orig_culture => culture}, {orig_religion => religion}, @map.landed_titles_lookup[title]]
+      if culture != orig_culture
+        node.add! @db.resolve_date(:start), PropertyList["culture", culture]
+        # p [title, {orig_culture => culture}, orig_religion, @map.landed_titles_lookup[title]]
+      end
+      if religion != orig_religion
+        node.add! @db.resolve_date(:start), PropertyList["religion", religion]
+        # p [title, orig_culture, {orig_religion => religion}, @map.landed_titles_lookup[title]]
+      end
+    end
+  end
+
   def setup_nomad_flag!
     patch_mod_file!("history/titles/d_moldau.txt") do |node|
       node.add! @db.resolve_date(:start), PropertyList["historical_nomad", false]
@@ -522,7 +598,6 @@ class ModernTimesGameModification < CK2GameModification
     pp conflicts.values.inject(&:+)
     pp conflicts.sort_by{|k,v| -v}
 
-
     cultures = {}
     @builder.parse("common/cultures/00_cultures.txt").each do |group_name, group|
       group.each do |name, culture|
@@ -539,24 +614,24 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def apply!
-    # TODO:
-    # - province religions
-    # - province cultures
-    # - characters leading major empires
-    # - etc.
+    # Order of transformations matters
+
+    setup_defines!
+    setup_bookmarks!
+    setup_technology!
+
     @map = MapManager.new(self)
-    @cultures = CultureManager.new(self)
     @db = ModernTimesDatabase.new(self)
 
+    setup_province_holdings!
+    setup_province_population!
+    setup_nomad_flag!
+
+    @cultures = CultureManager.new(self)
     @characters_reset = CharacterManager.new(self, 100_000_000)
     @characters       = CharacterManager.new(self, 110_000_000)
     @regional_vassals = {}
     @dynasties        = {}
-    setup_defines!
-    setup_bookmarks!
-    setup_technology!
-    setup_province_holdings!
-    setup_nomad_flag!
     setup_province_history!
     setup_title_names!
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
