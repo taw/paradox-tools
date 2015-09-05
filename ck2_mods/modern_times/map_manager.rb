@@ -7,6 +7,7 @@ class MapManager
     @landed_titles_lookup = {}
     @title_capitals       = {}
     @counties_in_duchy    = {}
+    @landless = {}
 
     @builder.glob("history/provinces/*.txt").each do |path|
       id = path.basename.to_s.to_i
@@ -22,6 +23,9 @@ class MapManager
       if path[-1] == "capital"
         title = path[-2]
         @title_capitals[title] = @province_id_to_title[node]
+      end
+      if path[-1] == "landless"
+        @landless[path[-2]] = true
       end
       if path[-1] =~ /\Ac_/
         duchy, county = path[-2], path[-1]
@@ -49,6 +53,10 @@ class MapManager
 
   def duchy_for_county(county)
     landed_titles_lookup[county].find{|t| t =~ /\Ad_/ }
+  end
+
+  def landless_title?(title)
+    @landless[title]
   end
 
 private

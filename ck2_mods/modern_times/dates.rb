@@ -42,6 +42,7 @@ module ModernTimesDatabase::Dates
     bahrain_independence: "1971.8.15",
     british_iraq: "1920.4.25",
     iraq_independence: "1932.10.3",
+    iranian_revolution: "1979.4.1",
 
     # There were a lot of peace treaties but it's easier to just do it in one go, at least for now
     end_ww1: "1918.11.11",

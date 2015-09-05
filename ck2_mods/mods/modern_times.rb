@@ -226,8 +226,43 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_major_title_history!(title, node)
-    node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
-    node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
+    if @map.landless_title?(title)
+      case title
+      when "e_golden_horde", "e_il-khanate"
+        node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
+        node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
+      when "d_zealots"
+        # Israel restores Zealots
+        node.add! @db.resolve_date(:israel_independence), PropertyList[
+          "active", true,
+          "liege", "k_israel"
+        ]
+        node.add! @db.resolve_date(:israel_independence), PropertyList[]
+      when "d_hashshashin"
+        # We really want to resurrect assassins, dated at Iranian Revolution
+        node.add! @db.resolve_date(:iranian_revolution), PropertyList[
+          "active", true,
+          "liege", "e_persia",
+          "clr_global_flag", "assassins_destroyed",
+        ]
+      when "d_knights_templar"
+        # Every conspiracy site will tell you templars were never really destroyed
+        node.list[-1][1].delete "active"
+        node.list[-1][1].delete "holder"
+      else
+        # info = parse("common/landed_titles/landed_titles.txt")[title]
+        # active = node.values.map{|v| v["active"]}.compact.last
+        # p [:landless_title, title, active]
+        # puts info
+        # puts node
+        # puts ""
+
+        # OK
+      end
+    else
+      node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
+      node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
+    end
   end
 
   def setup_province_history!
