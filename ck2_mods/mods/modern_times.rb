@@ -200,13 +200,13 @@ class ModernTimesGameModification < CK2GameModification
       when /\A[cd]_/
         # Counts and dukes hold all land directly
         node.add! start_date, PropertyList["liege", 0]
-        add_holders! node, @holders[liege], start_date, end_date
+        add_holders! node, holders[liege], start_date, end_date
       else
         capital_duchy = @db.capital_duchy(liege)
         this_duchy    = @map.duchy_for_county(title)
 
         if capital_duchy == this_duchy
-          add_holders! node, @holders[liege], start_date, end_date
+          add_holders! node, holders[liege], start_date, end_date
         else
           add_holders! node, regional_vassals(liege, this_duchy), start_date, end_date
         end
@@ -241,7 +241,7 @@ class ModernTimesGameModification < CK2GameModification
       end
     end
     # This is a silly trick of creating node if it doesn't exist, reusing it otherwise
-    @holders.each do |title, holders|
+    holders.each do |title, holders|
       begin
         node = parse("history/titles/#{title}.txt")
       rescue
@@ -258,52 +258,55 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   # TODO: move most of it to Database class
-  def preprocess_data!
-    @holders  = {}
-    @db.titles.each do |title, data|
-      title    = title
-      holders  = @db.holders[title]
-      unless holders
-        unless @db.time_active[title]
-          raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
-        end
-        holders = []
-        # We need to break long stretches of time into 15 year fragments
-        @db.time_active[title].each do |s,e|
-          xe = e || @db.resolve_date(:title_holders_until)
-          while true
-            holders << [s, {}]
-            s >>= (12*15)       # 40..55 years
-            break if s >= xe
+  def holders
+    unless @holders
+      @holders  = {}
+      @db.titles.each do |title, data|
+        title    = title
+        holders  = @db.holders[title]
+        unless holders
+          unless @db.time_active[title]
+            raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
           end
-          holders << [e, nil] if e
+          holders = []
+          # We need to break long stretches of time into 15 year fragments
+          @db.time_active[title].each do |s,e|
+            xe = e || @db.resolve_date(:title_holders_until)
+            while true
+              holders << [s, {}]
+              s >>= (12*15)       # 35..50 years
+              break if s >= xe
+            end
+            holders << [e, nil] if e
+          end
         end
-      end
 
-      @holders[title] = []
-      holders.each do |date, holder|
-        if holder.nil?
-          @holders[title] << [date, 0]
-        else
-          id = @characters.add_ruler(
-            culture: holder[:culture] || data[:culture],
-            religion: holder[:religion] || data[:religion],
-            female: holder.fetch(:female, :maybe), # Historical rulers always have it set by db
-            birth: holder[:birth],
-            death: holder[:death],
-            name: holder[:name],
-            dynasty: holder[:dynasty],
-            father: holder[:father],
-            mother: holder[:mother],
-            key: {
-              crowning: date,
-              title: title,
-            },
-          )
-          @holders[title] << [date, id]
+        @holders[title] = []
+        holders.each do |date, holder|
+          if holder.nil?
+            @holders[title] << [date, 0]
+          else
+            id = @characters.add_ruler(
+              culture: holder[:culture] || data[:culture],
+              religion: holder[:religion] || data[:religion],
+              female: holder.fetch(:female, :maybe), # Historical rulers always have it set by db
+              birth: holder[:birth],
+              death: holder[:death],
+              name: holder[:name],
+              dynasty: holder[:dynasty],
+              father: holder[:father],
+              mother: holder[:mother],
+              key: {
+                crowning: date,
+                title: title,
+              },
+            )
+            @holders[title] << [date, id]
+          end
         end
       end
     end
+    @holders
   end
 
   def setup_bookmarks!
@@ -469,7 +472,6 @@ class ModernTimesGameModification < CK2GameModification
     @characters       = CharacterManager.new(self, 110_000_000)
     @regional_vassals = {}
     @dynasties        = {}
-    preprocess_data!
     setup_province_history!
     setup_title_names!
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
