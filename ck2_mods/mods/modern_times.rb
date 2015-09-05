@@ -450,6 +450,53 @@ class ModernTimesGameModification < CK2GameModification
     ]
   end
 
+  # We need to remove county-level bishops as game will make them duchy-level bishops
+  # with current automatic vassal creation system
+  # Might get them back if we switch to a different system
+  def setup_province_holdings!
+    patch_mod_files!("history/provinces/*.txt") do |node|
+      title = node["title"]
+      holdings = {}
+      capital = nil
+      node.each do |k, v|
+        if k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
+          holdings[k] = v
+          capital ||= k
+        end
+        raise if k == "capital"
+        if k.is_a?(Date)
+          v.each do |kk, vv|
+            holdings[kk] = vv if kk =~ /\Ab_/ and vv =~ /\A(city|castle|temple|tribal)\z/
+            capital = vv if kk == "capital"
+          end
+        end
+      end
+      case holdings[capital]
+      when "castle", "city"
+        # OK
+      when "temple"
+        next if title == "c_roma"
+        first_castle = holdings.keys.find{|c| holdings[c] == "castle"}
+        unless first_castle
+          # warn "No castle in #{title}"
+          next
+        end
+        node.add! @db.resolve_date(:start), PropertyList["capital", first_castle]
+        # p [title, holdings[capital], capital, holdings]
+      when "tribal"
+        # p [title, holdings[capital], capital, holdings, @map.landed_titles_lookup[title]]
+      else
+        raise
+      end
+    end
+  end
+
+  def setup_nomad_flag!
+    patch_mod_file!("history/titles/d_moldau.txt") do |node|
+      node.add! @db.resolve_date(:start), PropertyList["historical_nomad", false]
+    end
+  end
+
   def save_dynasties!
     create_mod_file!("common/dynasties/01_modern_times.txt", PropertyList[
       *@dynasties.values.map{|d|
@@ -472,13 +519,15 @@ class ModernTimesGameModification < CK2GameModification
     @characters       = CharacterManager.new(self, 110_000_000)
     @regional_vassals = {}
     @dynasties        = {}
+    setup_defines!
+    setup_bookmarks!
+    setup_technology!
+    setup_province_holdings!
+    setup_nomad_flag!
     setup_province_history!
     setup_title_names!
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
     save_characters!
-    setup_defines!
-    setup_bookmarks!
-    setup_technology!
     save_dynasties!
   end
 end

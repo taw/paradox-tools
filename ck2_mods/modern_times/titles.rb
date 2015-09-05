@@ -247,12 +247,12 @@ ModernTimesDatabase::TITLES = {
     name: "Turkmenistan / Turkmenistani",
   },
   k_cuman: {
-    culture: :turkish, # ???
+    culture: :mongol, # not really, but it is so on the map
     religion: :sunni,
     name: "Kazakhstan / Kazakh"
   },
   k_khiva: {
-    culture: :cuman, # ???
+    culture: :mongol, # not really, but it is so on the map
     religion: :sunni,
     name: "Uzbekisan / Uzkekistani",
   },
@@ -315,7 +315,7 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     name: "Ukraine / Ukrainian",
   },
-  d_minsk: {
+  d_vitebsk: {
     culture: :russian, # :severian but it would autoconvert anyway
     religion: :orthodox,
     capital: :c_minsk,
