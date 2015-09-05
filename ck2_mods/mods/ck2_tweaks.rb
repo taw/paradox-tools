@@ -545,7 +545,7 @@ class CK2TweaksGameModification < CK2GameModification
     # remove_levy_nerfs!
     # divine_blood_full_fertility!
     create_minimal_hunie_trait!
-    # allow_heir_designation!
+    allow_heir_designation!
     rebalance_faction_priorities!
     allow_joining_all_wars!
     nerf_nomads!

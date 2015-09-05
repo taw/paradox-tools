@@ -52,7 +52,7 @@ desc "Build all packages"
 task "all" => ["ck2", "eu4"]
 
 desc "Build all CK2 packages"
-task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal"]
+task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal", "modern_times"]
 
 desc "Build all EU4 packages"
 task "eu4" => ["vanilla", "extended_timeline", "shattered_europe"]
@@ -90,6 +90,15 @@ task "suez_canal" do
     "ck2_mods",
     "suez_canal",
     "ck2_suez_canal.7z",
+  ).build!
+end
+
+desc "Build CK2 Modern Times"
+task "modern_times" do
+  ModBuilder.new(
+    "ck2_mods",
+    "modern_times",
+    "ck2_modern_times.7z",
   ).build!
 end
 
