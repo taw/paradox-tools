@@ -398,7 +398,7 @@ class ModernTimesGameModification < CK2GameModification
                 title: title,
               },
             )
-            @characters.generate_family!(id)
+            @characters.generate_family!(id) unless title == "k_papal_state"
             @holders[title] << [date, id]
           end
         end
