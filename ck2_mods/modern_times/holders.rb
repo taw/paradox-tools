@@ -272,4 +272,51 @@ ModernTimesDatabase::HOLDERS = {
       birth: "1939.7.17",
     },
   },
+  d_sunni: {
+    caliphate_reborn: {
+      name: "Abu Bakr",
+      dynasty: "al-Baghdadi",
+      birth: "1971.7.28",
+      traits: ["cruel", "zealous"],
+      events: {
+        caliphate_reborn: PropertyList[
+          "effect", PropertyList[
+            "spawn_unit", PropertyList[
+              "province", 711, # Sinjar
+              "owner", "ROOT",
+              "troops", PropertyList[
+                "light_infantry", [1385, 1385],
+                "heavy_infantry", [1220, 1220],
+                "archers", [610, 610],
+                "light_cavalry", [270, 270],
+              ],
+              "attrition", 0.5,
+            ],
+            "spawn_unit", PropertyList[
+              "province", 711, # Sinjar
+              "owner", "ROOT",
+              "troops", PropertyList[
+                "light_infantry", [1385, 1385],
+                "heavy_infantry", [1220, 1220],
+                "archers", [610, 610],
+                "light_cavalry", [270, 270],
+              ],
+              "attrition", 0.5,
+            ],
+            "spawn_unit", PropertyList[
+              "province", 711, # Sinjar
+              "owner", "ROOT",
+              "troops", PropertyList[
+                "light_infantry", [1385, 1385],
+                "heavy_infantry", [1220, 1220],
+                "archers", [610, 610],
+                "light_cavalry", [270, 270],
+              ],
+              "attrition", 0.5,
+            ],
+          ],
+        ],
+      },
+    },
+  },
 }

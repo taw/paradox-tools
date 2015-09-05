@@ -84,7 +84,17 @@ class CharacterManager
     character.add! "female", true if female
     character.add! "father", lookup_character_id(args[:father]) if args[:father]
     character.add! "mother", lookup_character_id(args[:mother]) if args[:mother]
+    if args[:traits]
+      args[:traits].each do |t|
+        character.add! "trait", t
+      end
+    end
     character.add! birth, PropertyList["birth", birth]
+    if args[:events]
+      args[:events].each do |date, ev|
+        character.add! date, ev
+      end
+    end
     character.add! death, PropertyList["death", death] if death
 
     @characters[id] = character
@@ -296,6 +306,8 @@ class ModernTimesGameModification < CK2GameModification
               dynasty: holder[:dynasty],
               father: holder[:father],
               mother: holder[:mother],
+              traits: holder[:traits],
+              events: holder[:events],
               key: {
                 crowning: date,
                 title: title,
@@ -638,6 +650,6 @@ class ModernTimesGameModification < CK2GameModification
     save_characters!
     save_dynasties!
 
-    report_dynasty_conflict_stats!
+    # report_dynasty_conflict_stats!
   end
 end
