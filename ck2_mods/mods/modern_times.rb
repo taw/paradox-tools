@@ -119,11 +119,6 @@ end
 
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
-  # This might be no longer necessary now that all provinces are some character's
-  def new_throwaway_character(title)
-    @characters_reset.add_reset(title)
-  end
-
   # Assume same name in different cultures are separate dynasties
   def new_dynasty(name, culture)
     key = [name, culture]
@@ -212,7 +207,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_county_history!(title, node)
     node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
-    node.add! Date.parse("1500.1.1"), PropertyList["holder", new_throwaway_character(title)]
+    node.add! Date.parse("1500.1.1"), PropertyList["holder", @characters_reset.add_reset(title)]
 
     land = @map.landed_titles_lookup[title].map{|t| @land[t]}.find(&:itself)
 
