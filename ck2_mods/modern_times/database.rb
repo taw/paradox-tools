@@ -48,6 +48,7 @@ class ModernTimesDatabase
         date = resolve_date(date)
         raise unless (holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother]).empty?
         holder = holder.dup
+        holder[:female] = !!holder[:female]
         holder[:birth] = resolve_date(holder[:birth]) if holder[:birth]
         holder[:death] = resolve_date(holder[:death]) if holder[:death]
         @holders[title][date] = holder

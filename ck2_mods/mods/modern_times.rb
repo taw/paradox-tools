@@ -46,7 +46,13 @@ class CharacterManager
     culture  = args[:culture]
     religion = args[:religion]
     female = args[:female]
-    female = (rng.rand < 0.05) if female == :maybe # Less for Muslims?
+    if female == :maybe
+      if religion == "sunni" or religion == "shiite" or args[:key][:title] == "k_papal_state"
+        female = false
+      else
+        female = (rng.rand < 0.2)
+      end
+    end
     birth = args[:birth] || (crowning << 12*35)
     case args[:death]
     when :never
@@ -282,7 +288,7 @@ class ModernTimesGameModification < CK2GameModification
           id = @characters.add_ruler(
             culture: holder[:culture] || data[:culture],
             religion: holder[:religion] || data[:religion],
-            female: holder.fetch(:female, :maybe), # FIXME: is this totally broken assuming 5% chance for historical males ?
+            female: holder.fetch(:female, :maybe), # Historical rulers always have it set by db
             birth: holder[:birth],
             death: holder[:death],
             name: holder[:name],
