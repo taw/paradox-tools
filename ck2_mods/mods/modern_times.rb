@@ -43,8 +43,8 @@ class CharacterManager
     id = allocate_id(@namespace + ((args[:key][:crowning] - Date.parse("1900.1.1")) * 100).to_i)
     rng = Random.new(id)
 
-    culture  = args[:culture].to_s
-    religion = args[:religion].to_s
+    culture  = args[:culture]
+    religion = args[:religion]
     female = args[:female]
     female = (rng.rand < 0.05) if female == :maybe # Less for Muslims?
     birth = args[:birth] || (crowning << 12*35)
@@ -101,6 +101,8 @@ end
 
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
+  attr_reader :map
+
   # Assume same name in different cultures are separate dynasties
   def new_dynasty(name, culture)
     key = [name, culture]
@@ -125,7 +127,7 @@ class ModernTimesGameModification < CK2GameModification
   def liege_has_land_in_active(liege, duchy)
     ranges = []
     @map.counties_in_duchy[duchy].each do |county|
-      land = @map.landed_titles_lookup[county].map{|t| @land[t]}.find(&:itself)
+      land = @db.county_ownership(county)
       land.size.times do |i|
         start_date, owner = land[i]
         end_date = land[i+1] && land[i+1][0]
@@ -165,13 +167,13 @@ class ModernTimesGameModification < CK2GameModification
       @regional_vassals[[liege, duchy]] = []
       # We need to break long stretches of time into 15 year fragments
       liege_has_land_in_active(liege, duchy).each do |s,e|
-        xe = e || resolve_date(:title_holders_until)
+        xe = e || @db.resolve_date(:title_holders_until)
         while true
           # Always liege religion but could be local culture
-          culture = dominant_culture_in_duchy(duchy, ModernTimes::TITLES[liege.to_sym][:culture].to_s)
+          culture = dominant_culture_in_duchy(duchy, @db.titles[liege][:culture])
           id = @characters.add_ruler(
             culture: culture,
-            religion: ModernTimes::TITLES[liege.to_sym][:religion].to_s,
+            religion: @db.titles[liege][:religion],
             key: {
               crowning: s,
               title: duchy,
@@ -191,7 +193,7 @@ class ModernTimesGameModification < CK2GameModification
     node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
     node.add! Date.parse("1500.1.1"), PropertyList["holder", @characters_reset.add_reset(title)]
 
-    land = @map.landed_titles_lookup[title].map{|t| @land[t]}.find(&:itself)
+    land = @db.county_ownership(title)
 
     unless land
       # This is really a bug, warn here once we get nontrivial amount of land covered
@@ -265,19 +267,8 @@ class ModernTimesGameModification < CK2GameModification
     create_mod_file! "history/characters/modern_times.txt", @characters.to_plist
   end
 
-  def resolve_date(date)
-    ModernTimes::Dates[date]
-  end
-
-  def preprocess_land_mapping!
-    @land = {}
-    ModernTimes::LAND.each do |title, ownership|
-      @land[title.to_s] = ownership.map{|k,v| [resolve_date(k),v] }
-    end
-  end
-
   def merge_time_ranges(ranges)
-    ranges = ranges.map{|s,e| [s,e||resolve_date(:end_of_times)]}
+    ranges = ranges.map{|s,e| [s,e||@db.resolve_date(:end_of_times)]}
 
     # Premerge - simplifies things, but algorithm doesn't really care anyway
     # ranges = ranges.group_by(&:first).map{|s,rr| [s, rr.map(&:last).max] }.sort
@@ -295,14 +286,14 @@ class ModernTimesGameModification < CK2GameModification
       raise if cover < 0
     end
 
-    cut_dates.map{|d| d == resolve_date(:end_of_times) ? nil : d}.each_slice(2).map(&:itself)
+    cut_dates.map{|d| d == @db.resolve_date(:end_of_times) ? nil : d}.each_slice(2).map(&:itself)
   end
 
   def preprocess_time_active!
     @time_active = {}
     # We don't care what they own, just when they own nonzero amount of land
     # Assume all titles actually resolve, and aren't shadowed by lower level titles or anything like that
-    @land.each do |area, ownership|
+    @db.land.each do |area, ownership|
       ownership.size.times do |i|
         start_date, start_owner = ownership[i]
         @time_active[start_owner] ||= []
@@ -318,27 +309,18 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  # TODO: move most of it to Database class
   def preprocess_data!
-    # ModernTimes module holds data in format convenient for human writing,
-    # it needs to be converted to something sensibler
-    preprocess_land_mapping!
     preprocess_time_active!
 
     @capitals = {}
     @holders  = {}
-    @title_names = {}
-    ModernTimes::TITLES.each do |title, data|
-      title    = title.to_s
-      if data[:capital]
-        capital = data[:capital].to_s
-      elsif title =~ /\Ac_/
-        capital = title
-      else
-        capital = @map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
-      end
-      culture  = data[:culture].to_s
-      religion = data[:religion].to_s
-      holders  = ModernTimes::HOLDERS[title.to_sym]
+    @db.titles.each do |title, data|
+      title    = title
+      capital  = data[:capital]
+      culture  = data[:culture]
+      religion = data[:religion]
+      holders  = @db.holders[title]
       unless holders
         unless @time_active[title]
           raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
@@ -346,7 +328,7 @@ class ModernTimesGameModification < CK2GameModification
         holders = []
         # We need to break long stretches of time into 15 year fragments
         @time_active[title].each do |s,e|
-          xe = e || resolve_date(:title_holders_until)
+          xe = e || @db.resolve_date(:title_holders_until)
           while true
             holders << [s, {}]
             s >>= (12*15)       # 40..55 years
@@ -356,16 +338,10 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
 
-      if data[:name]
-        data[:name] = {:start => data[:name]} if data[:name].is_a?(String)
-        @title_names[title] = data[:name].map{|d,n| [resolve_date(d), n] }
-      end
-
       @capitals[title] = capital
       @holders[title] = []
       @seen_title = {}
       holders.each do |date, holder|
-        date  = resolve_date(date)
         if holder.nil?
           @holders[title] << [date, 0]
         else
@@ -373,8 +349,8 @@ class ModernTimesGameModification < CK2GameModification
             culture: holder.fetch(:culture, culture),
             religion: holder.fetch(:religion, religion),
             female: holder.fetch(:female, :maybe),
-            birth: resolve_date(holder[:birth]),
-            death: resolve_date(holder[:death]),
+            birth: holder[:birth],
+            death: holder[:death],
             name: holder[:name],
             dynasty: holder[:dynasty],
             father: holder[:father],
@@ -479,9 +455,10 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_title_names!
-    @title_names.each do |title, names|
+    @db.titles.each do |title, data|
+      next unless data[:name]
       patch_mod_file!("history/titles/#{title}.txt") do |node|
-        names.each do |date, name_adj|
+        data[:name].each do |date, name_adj|
           if name_adj
             name, adj = name_adj.split(" / ")
             node.add!(date, PropertyList["name", name, "adjective", adj])
@@ -497,7 +474,7 @@ class ModernTimesGameModification < CK2GameModification
   # Some sensible baseline for everyone
   def setup_title_laws!
     patch_mod_files!("history/titles/[dke]_*.txt") do |node|
-      node.add! resolve_date(:start), PropertyList[
+      node.add! @db.resolve_date(:start), PropertyList[
         "law", "investiture_law_0",
         "law", "cognatic_succession",
         "law", "centralization_2",
@@ -546,6 +523,7 @@ class ModernTimesGameModification < CK2GameModification
     # - etc.
     @map = MapManager.new(self)
     @cultures = CultureManager.new(self)
+    @db = ModernTimesDatabase.new(self)
 
     @characters_reset = CharacterManager.new(self, 100_000_000)
     @characters       = CharacterManager.new(self, 110_000_000)
