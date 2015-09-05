@@ -11,7 +11,11 @@ class CharacterManager
   end
 
   def allocate_id(id)
-    id += 1 while @characters.has_key?(id)
+    raise unless id.is_a?(Integer)
+    while @characters.has_key?(id)
+      id += 1
+    end
+    @characters[id] = :placeholder
     id
   end
 
@@ -106,12 +110,57 @@ class CharacterManager
     id
   end
 
+  # The game is much more fun if dynastic games start right away
+  def generate_family!(id)
+    parent = @characters[id]
+    rng = Random.new(Digest::MD5.hexdigest("family-#{id}").to_i(16))
+    birth = parent.keys.grep(Date).find{|k| parent[k]["birth"]}
+    death = parent.keys.grep(Date).find{|k| parent[k]["death"]}
+
+    # 10 20% shots, 15 10% shots, for EV=3.5
+    (20..44).each do |age|
+      child_birth = birth >> (12*age)
+      break if death and child_birth > death
+      fertility = 0.2
+      fertility = 0.1 if age >= 30
+      if rng.rand < fertility
+        add_child!(id, child_birth)
+      end
+    end
+  end
+
   def to_plist
     result = PropertyList[]
     @characters.sort.each do |k,v|
       result.add! k, v
     end
     result
+  end
+
+private
+
+  def add_child!(parent_id, birth)
+    parent = @characters[parent_id]
+    id = allocate_id((@namespace + (birth - Date.parse("1900.1.1")) * 100).to_i)
+    rng = Random.new(id)
+    female = (rng.rand < 0.5)
+    death = birth >> (90*12)
+    if parent["female"] == true
+      parent_type = "mother"
+    else
+      parent_type = "father"
+    end
+    character = PropertyList[
+      "name", @builder.cultures.random_name(parent["culture"], female, rng),
+      "religion", parent["religion"],
+      "culture", parent["culture"],
+      "dynasty", parent["dynasty"],
+      parent_type, parent_id,
+    ]
+    character.add! "female", true if female
+    character.add! birth, PropertyList["birth", birth]
+    character.add! death, PropertyList["death", death]
+    @characters[id] = character
   end
 end
 
@@ -180,6 +229,7 @@ class ModernTimesGameModification < CK2GameModification
               title: duchy,
             },
           )
+          @characters.generate_family!(id)
           @regional_vassals[[liege, duchy]] << [s, id]
           s >>= (12*15)  # 40..55 years
           break if s >= xe
@@ -348,6 +398,7 @@ class ModernTimesGameModification < CK2GameModification
                 title: title,
               },
             )
+            @characters.generate_family!(id)
             @holders[title] << [date, id]
           end
         end
