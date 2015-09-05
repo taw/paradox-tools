@@ -124,21 +124,6 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
-  def liege_has_land_in_active(liege, duchy)
-    ranges = []
-    @map.counties_in_duchy[duchy].each do |county|
-      land = @db.county_ownership(county)
-      land.size.times do |i|
-        start_date, owner = land[i]
-        end_date = land[i+1] && land[i+1][0]
-        if owner == liege
-          ranges << [start_date, end_date]
-        end
-      end
-    end
-    merge_time_ranges(ranges)
-  end
-
   # If no dominant culture, choose liege_culture, or else just largest one
   #
   # TODO:
@@ -166,7 +151,7 @@ class ModernTimesGameModification < CK2GameModification
     unless @regional_vassals[[liege, duchy]]
       @regional_vassals[[liege, duchy]] = []
       # We need to break long stretches of time into 15 year fragments
-      liege_has_land_in_active(liege, duchy).each do |s,e|
+      @db.liege_has_land_in_active(liege, duchy).each do |s,e|
         xe = e || @db.resolve_date(:title_holders_until)
         while true
           # Always liege religion but could be local culture
@@ -267,67 +252,20 @@ class ModernTimesGameModification < CK2GameModification
     create_mod_file! "history/characters/modern_times.txt", @characters.to_plist
   end
 
-  def merge_time_ranges(ranges)
-    ranges = ranges.map{|s,e| [s,e||@db.resolve_date(:end_of_times)]}
-
-    # Premerge - simplifies things, but algorithm doesn't really care anyway
-    # ranges = ranges.group_by(&:first).map{|s,rr| [s, rr.map(&:last).max] }.sort
-    # ranges = ranges.group_by(&:last).map{|e,rr| [rr.map(&:first).min,e] }.sort
-
-    dates = ranges.map{|s,e| [[s,1], [e,-1]]}.flatten(1).group_by(&:first)
-                  .map{|d,vs| [d, vs.map(&:last).inject(&:+)]}.sort
-
-    cut_dates = []
-    cover = 0
-    ranges.map{|s,e| [[s,1], [e,-1]]}.flatten(1).sort.each do |day,diff|
-      cut_dates << day if cover == 0
-      cover += diff
-      cut_dates << day if cover == 0
-      raise if cover < 0
-    end
-
-    cut_dates.map{|d| d == @db.resolve_date(:end_of_times) ? nil : d}.each_slice(2).map(&:itself)
-  end
-
-  def preprocess_time_active!
-    @time_active = {}
-    # We don't care what they own, just when they own nonzero amount of land
-    # Assume all titles actually resolve, and aren't shadowed by lower level titles or anything like that
-    @db.land.each do |area, ownership|
-      ownership.size.times do |i|
-        start_date, start_owner = ownership[i]
-        @time_active[start_owner] ||= []
-        if i == ownership.size - 1
-          @time_active[start_owner] << [start_date, nil]
-        else
-          @time_active[start_owner] << [start_date, ownership[i+1][0]]
-        end
-      end
-    end
-    @time_active.each do |title, ranges|
-      @time_active[title] = merge_time_ranges(ranges)
-    end
-  end
-
   # TODO: move most of it to Database class
   def preprocess_data!
-    preprocess_time_active!
-
     @capitals = {}
     @holders  = {}
     @db.titles.each do |title, data|
       title    = title
-      capital  = data[:capital]
-      culture  = data[:culture]
-      religion = data[:religion]
       holders  = @db.holders[title]
       unless holders
-        unless @time_active[title]
+        unless @db.time_active[title]
           raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
         end
         holders = []
         # We need to break long stretches of time into 15 year fragments
-        @time_active[title].each do |s,e|
+        @db.time_active[title].each do |s,e|
           xe = e || @db.resolve_date(:title_holders_until)
           while true
             holders << [s, {}]
@@ -338,7 +276,7 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
 
-      @capitals[title] = capital
+      @capitals[title] = data[:capital]
       @holders[title] = []
       @seen_title = {}
       holders.each do |date, holder|
@@ -346,9 +284,9 @@ class ModernTimesGameModification < CK2GameModification
           @holders[title] << [date, 0]
         else
           id = @characters.add_ruler(
-            culture: holder.fetch(:culture, culture),
-            religion: holder.fetch(:religion, religion),
-            female: holder.fetch(:female, :maybe),
+            culture: holder[:culture] || data[:culture],
+            religion: holder[:religion] || data[:religion],
+            female: holder.fetch(:female, :maybe), # FIXME: is this totally broken assuming 5% chance for historical males ?
             birth: holder[:birth],
             death: holder[:death],
             name: holder[:name],

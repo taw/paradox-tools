@@ -1,7 +1,7 @@
 # TODO: Make this smart class, not just dumping ground for to_s/to_sym
 # TODO: in particular make it resolve mother/father
 class ModernTimesDatabase
-  attr_reader :land, :titles, :holders
+  attr_reader :land, :titles, :holders, :time_active
 
   # builder currently used read only to get to MapManager
   def initialize(builder)
@@ -53,15 +53,78 @@ class ModernTimesDatabase
         @holders[title][date] = holder
       end
     end
+
+    @time_active = {}
+    # We don't care what they own, just when they own nonzero amount of land
+    # Assume all titles actually resolve, and aren't shadowed by lower level titles or anything like that
+    @land.each do |area, ownership|
+      ownership.size.times do |i|
+        start_date, start_owner = ownership[i]
+        @time_active[start_owner] ||= []
+        if i == ownership.size - 1
+          @time_active[start_owner] << [start_date, nil]
+        else
+          @time_active[start_owner] << [start_date, ownership[i+1][0]]
+        end
+      end
+    end
+    @time_active.each do |title, ranges|
+      @time_active[title] = merge_time_ranges(ranges)
+    end
+  end
+
+  def liege_has_land_in_active(liege, duchy)
+    ranges = []
+    @builder.map.counties_in_duchy[duchy].each do |county|
+      land = county_ownership(county)
+      land.size.times do |i|
+        start_date, owner = land[i]
+        end_date = land[i+1] && land[i+1][0]
+        if owner == liege
+          ranges << [start_date, end_date]
+        end
+      end
+    end
+    merge_time_ranges(ranges)
   end
 
   def county_ownership(county)
     @builder.map.landed_titles_lookup[county].map{|t| @land[t] }.find(&:itself)
   end
 
-# private
-
+  # This should sort of be private except magic constants use same system:
+  # - start
+  # - title_holders_until
+  # - end_of_times  (this one is seriously silly and TODO remove it)
   def resolve_date(date)
     ModernTimesDatabase::Dates[date]
+  end
+
+private
+
+  def end_of_times
+    @end_of_times ||= resolve_date(:end_of_times)
+  end
+
+  def merge_time_ranges(ranges)
+    ranges = ranges.map{|s,e| [s, e || end_of_times]}
+
+    # Premerge - simplifies things, but algorithm doesn't really care anyway
+    # ranges = ranges.group_by(&:first).map{|s,rr| [s, rr.map(&:last).max] }.sort
+    # ranges = ranges.group_by(&:last).map{|e,rr| [rr.map(&:first).min,e] }.sort
+
+    dates = ranges.map{|s,e| [[s,1], [e,-1]]}.flatten(1).group_by(&:first)
+                  .map{|d,vs| [d, vs.map(&:last).inject(&:+)]}.sort
+
+    cut_dates = []
+    cover = 0
+    ranges.map{|s,e| [[s,1], [e,-1]]}.flatten(1).sort.each do |day,diff|
+      cut_dates << day if cover == 0
+      cover += diff
+      cut_dates << day if cover == 0
+      raise if cover < 0
+    end
+
+    cut_dates.map{|d| d == @end_of_times ? nil : d}.each_slice(2).map(&:itself)
   end
 end
