@@ -452,4 +452,9 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
   },
+  # special Holy Order
+  d_hashshashin: {
+    culture: :persian,
+    religion: :shiite,
+  },
 }

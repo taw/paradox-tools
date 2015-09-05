@@ -257,6 +257,7 @@ ModernTimesDatabase::LAND = {
   c_herat:        { start: "e_persia" },
   c_zaranj:       { start: "e_persia" },
   c_farrah:       { start: "e_persia" },
+  c_dailam:       { start: "e_persia", iranian_revolution: "d_hashshashin" },
 
   d_nikaea:       { start: "e_seljuk_turks" },
   c_byzantion:    { start: "e_seljuk_turks" },
