@@ -1,4 +1,3 @@
-# Not sure what to name this class...
 class MapManager
   attr_reader :title_capitals, :counties_in_duchy, :landed_titles_lookup
 

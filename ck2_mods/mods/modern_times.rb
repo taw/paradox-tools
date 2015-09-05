@@ -2,30 +2,12 @@ require "digest"
 
 Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
 
-class Random
-  def sample(ary)
-    ary[rand(ary.size)]
-  end
-end
-
 class CharacterManager
   def initialize(builder, namespace)
     @builder = builder
     @characters = {}
     @by_description = {}
     @namespace = namespace
-  end
-
-  def name_pool(culture, female)
-    if female
-      @builder.culture_names[culture][:male]
-    else
-      @builder.culture_names[culture][:female]
-    end
-  end
-
-  def dynasty_pool(culture)
-    @builder.culture_names[culture][:dynasties]
   end
 
   def allocate_id(id)
@@ -78,13 +60,13 @@ class CharacterManager
       raise
     end
 
-    name = args[:name] || rng.sample(name_pool(culture, female))
+    name = args[:name] || @builder.cultures.random_name(culture, female, rng)
     description = "#{name} #{birth.to_s_px}"
 
     if args[:dynasty]
       dynasty = @builder.new_dynasty(args[:dynasty], culture)
     else
-      dynasty = rng.sample(dynasty_pool(culture))
+      dynasty = @builder.cultures.random_dynasty(culture, rng)
     end
 
     character = PropertyList[
@@ -336,27 +318,6 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
-  def culture_names
-    unless @culture_names
-      @culture_names = {}
-      parse("common/cultures/00_cultures.txt").each do |group_name, group|
-        group.each do |name, culture|
-          next unless culture.is_a?(PropertyList)
-          @culture_names[name] = {
-            male:   culture["male_names"].map{|n| n.sub(/_.*/, "")},
-            female: culture["male_names"].map{|n| n.sub(/_.*/, "")},
-            dynasties: [],
-          }
-        end
-      end
-      parse("common/dynasties/00_dynasties.txt").each do |id, dynasty|
-        culture = dynasty["culture"] or next
-        @culture_names[culture][:dynasties] << id
-      end
-    end
-    @culture_names
-  end
-
   def preprocess_data!
     # ModernTimes module holds data in format convenient for human writing,
     # it needs to be converted to something sensibler
@@ -584,6 +545,7 @@ class ModernTimesGameModification < CK2GameModification
     # - characters leading major empires
     # - etc.
     @map = MapManager.new(self)
+    @cultures = CultureManager.new(self)
 
     @characters_reset = CharacterManager.new(self, 100_000_000)
     @characters       = CharacterManager.new(self, 110_000_000)
