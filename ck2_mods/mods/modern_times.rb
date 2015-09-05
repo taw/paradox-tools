@@ -2,6 +2,12 @@ require "digest"
 
 Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
 
+class Random
+  def self.keyed(key)
+    new(Digest::MD5.hexdigest(key).to_i(16))
+  end
+end
+
 class CharacterManager
   def initialize(builder, namespace)
     @builder = builder
@@ -10,17 +16,21 @@ class CharacterManager
     @namespace = namespace
   end
 
-  def allocate_id(id)
-    raise unless id.is_a?(Integer)
+  def allocate_id(key)
+    space_size = 10_000_000
+    base_shift = Digest::MD5.hexdigest(key).to_i(16)
+    id = @namespace + (base_shift % space_size)
     while @characters.has_key?(id)
-      id += 1
+      base_shift += 1
+      id = @namespace + (base_shift % space_size)
     end
     @characters[id] = :placeholder
-    id
+    rng = Random.keyed("#{key}-#{id}")
+    [id, rng]
   end
 
   def add_reset(title)
-    id = allocate_id(@namespace + Digest::MD5.hexdigest(title).to_i(16) % 5_000_000)
+    id, rng = allocate_id("reset-#{title}")
     @characters[id] = PropertyList[
       "name", "Bob",
       "religion", "cathar",
@@ -31,6 +41,7 @@ class CharacterManager
     id
   end
 
+  # FIXME: This is horribly and in wrong class, only historical data cares about it anyway
   def lookup_character_id(description)
     if description.is_a?(Integer)
       description
@@ -44,8 +55,7 @@ class CharacterManager
 
   def add_ruler(**args)
     crowning = args[:key][:crowning]
-    id = allocate_id(@namespace + ((args[:key][:crowning] - Date.parse("1900.1.1")) * 100).to_i)
-    rng = Random.new(id)
+    id, rng = allocate_id("ruler-#{args[:key][:title]}-#{args[:key][:crowning].to_s_px}")
 
     culture  = args[:culture]
     religion = args[:religion]
@@ -113,7 +123,7 @@ class CharacterManager
   # The game is much more fun if dynastic games start right away
   def generate_family!(id)
     parent = @characters[id]
-    rng = Random.new(Digest::MD5.hexdigest("family-#{id}").to_i(16))
+    rng = Random.keyed("family-#{id}")
     birth = parent.keys.grep(Date).find{|k| parent[k]["birth"]}
     death = parent.keys.grep(Date).find{|k| parent[k]["death"]}
 
@@ -141,8 +151,7 @@ private
 
   def add_child!(parent_id, birth)
     parent = @characters[parent_id]
-    id = allocate_id((@namespace + (birth - Date.parse("1900.1.1")) * 100).to_i)
-    rng = Random.new(id)
+    id, rng = allocate_id("child-#{parent_id}-#{birth.to_s_px}")
     female = (rng.rand < 0.5)
     death = birth >> (90*12)
     if parent["female"] == true
