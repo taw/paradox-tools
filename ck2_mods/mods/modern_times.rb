@@ -196,8 +196,8 @@ class ModernTimesGameModification < CK2GameModification
         node.add! start_date, PropertyList["liege", 0]
         add_holders! node, @holders[liege], start_date, end_date
       else
-        capital_duchy = @map.landed_titles_lookup[@capitals[liege]].find{|t| t =~ /\Ad_/ }
-        this_duchy    = @map.landed_titles_lookup[title].find{|t| t =~ /\Ad_/ }
+        capital_duchy = @db.capital_duchy(liege)
+        this_duchy    = @map.duchy_for_county(title)
 
         if capital_duchy == this_duchy
           add_holders! node, @holders[liege], start_date, end_date
@@ -231,7 +231,6 @@ class ModernTimesGameModification < CK2GameModification
           setup_county_history!(title, node)
         else
           setup_major_title_history!(title, node)
-          @seen_title[title] = true
         end
       end
     end
@@ -254,7 +253,6 @@ class ModernTimesGameModification < CK2GameModification
 
   # TODO: move most of it to Database class
   def preprocess_data!
-    @capitals = {}
     @holders  = {}
     @db.titles.each do |title, data|
       title    = title
@@ -276,9 +274,7 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
 
-      @capitals[title] = data[:capital]
       @holders[title] = []
-      @seen_title = {}
       holders.each do |date, holder|
         if holder.nil?
           @holders[title] << [date, 0]

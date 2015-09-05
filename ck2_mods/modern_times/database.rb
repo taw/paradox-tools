@@ -1,5 +1,5 @@
-# TODO: Make this smart class, not just dumping ground for to_s/to_sym
-# TODO: in particular make it resolve mother/father
+# TODO: Make this class resolve mother/father from holders
+# TODO: Make sure historical characters don't go to female roulette
 class ModernTimesDatabase
   attr_reader :land, :titles, :holders, :time_active
 
@@ -28,7 +28,7 @@ class ModernTimesDatabase
       elsif title =~ /\Ac_/
         @titles[title][:capital] = title
       else
-        @titles[title][:capital] = @builder.map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
+        @titles[title][:capital] = map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
       end
       if data[:name]
         if data[:name].is_a?(String)
@@ -75,7 +75,7 @@ class ModernTimesDatabase
 
   def liege_has_land_in_active(liege, duchy)
     ranges = []
-    @builder.map.counties_in_duchy[duchy].each do |county|
+    map.counties_in_duchy[duchy].each do |county|
       land = county_ownership(county)
       land.size.times do |i|
         start_date, owner = land[i]
@@ -89,7 +89,7 @@ class ModernTimesDatabase
   end
 
   def county_ownership(county)
-    @builder.map.landed_titles_lookup[county].map{|t| @land[t] }.find(&:itself)
+    map.landed_titles_lookup[county].map{|t| @land[t] }.find(&:itself)
   end
 
   # This should sort of be private except magic constants use same system:
@@ -100,7 +100,15 @@ class ModernTimesDatabase
     ModernTimesDatabase::Dates[date]
   end
 
+  def capital_duchy(title)
+    map.duchy_for_county(@titles[title][:capital])
+  end
+
 private
+
+  def map
+    @builder.map
+  end
 
   def end_of_times
     @end_of_times ||= resolve_date(:end_of_times)

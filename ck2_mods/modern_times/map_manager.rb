@@ -37,6 +37,10 @@ class MapManager
     @counties_in_duchy[duchy].map{|c| @culture_in_county[c]}
   end
 
+  def duchy_for_county(county)
+    landed_titles_lookup[county].find{|t| t =~ /\Ad_/ }
+  end
+
 private
 
   def landed_titles
