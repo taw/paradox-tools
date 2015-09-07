@@ -52,7 +52,7 @@ desc "Build all packages"
 task "all" => ["ck2", "eu4"]
 
 desc "Build all CK2 packages"
-task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal", "modern_times"]
+task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal", "modern_times", "modern_times_plus"]
 
 desc "Build all EU4 packages"
 task "eu4" => ["vanilla", "extended_timeline", "shattered_europe"]
@@ -102,6 +102,15 @@ task "modern_times" do
   ).build!
 end
 
+desc "Build CK2 Modern Times Plus"
+task "modern_times" do
+  ModBuilder.new(
+    "ck2_mods",
+    "modern_times_plus",
+    "ck2_modern_times_plus.7z",
+  ).build!
+end
+
 desc "Build Fun and Balance for vanilla"
 task "vanilla" do
   ModBuilder.new(
@@ -142,6 +151,8 @@ task "reference" do
   system "ck2_mods/build_no_dynastic_names"
   system "ck2_mods/build_no_localized_landed_titles"
   system "ck2_mods/build_no_localized_ranks"
+  system "ck2_mods/build_modern_times"
+  system "ck2_mods/build_modern_times_plus"
   system "fun_and_balance/build_fun_and_balance"
   system "fun_and_balance/build_fun_and_balance_et"
   # system "fun_and_balance/build_fun_and_balance_shattered_europe" # not updated to recent version
