@@ -221,6 +221,9 @@ class CK2TweaksGameModification < CK2GameModification
   end
 
   def allow_everyone_river_access!
+    override_defines_lua!("major_rivers",
+      "NMilitary.MAX_RIVER_MOVEMENT_FORT_LEVEL" => 1000.0,
+    )
     patch_mod_file!("common/religions/00_religions.txt") do |node|
       node.each do |group_name, group|
         group.each do |religion_name, religion|
