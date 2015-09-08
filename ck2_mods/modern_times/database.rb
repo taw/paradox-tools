@@ -1,5 +1,5 @@
-# TODO: Make this class resolve mother/father from holders
-# TODO: Make sure historical characters don't go to female roulette
+# TODO: Perhaps this class should manage ID allocation?
+#       Characters already need to refer to other character at this point
 class ModernTimesDatabase
   attr_reader :land, :titles, :holders, :time_active
 
@@ -41,6 +41,7 @@ class ModernTimesDatabase
     end
 
     @holders = {}
+    ruler_counts = Hash.new(0)
     ModernTimesDatabase::HOLDERS.each do |title, data|
       title = title.to_s
       @holders[title] = {}
@@ -48,10 +49,16 @@ class ModernTimesDatabase
         date = resolve_date(date)
         raise unless (holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events]).empty?
         holder = holder.dup
+        holder[:culture]  ||= @titles[title][:culture]
+        holder[:religion] ||= @titles[title][:religion]
         holder[:female] = !!holder[:female]
         holder[:birth] = resolve_date(holder[:birth]) if holder[:birth]
         holder[:death] = resolve_date(holder[:death]) if holder[:death]
         holder[:events] = holder[:events].map{|d,e| [resolve_date(d), e]} if holder[:events]
+        holder[:mother] = fully_quality_reference(title, holder[:mother])
+        holder[:father] = fully_quality_reference(title, holder[:father])
+        i = (ruler_counts[[title, holder[:name]]] += 1)
+        holder[:historical_id] = [title, holder[:name], i].join(" ")
         @holders[title][date] = holder
       end
     end
@@ -73,6 +80,13 @@ class ModernTimesDatabase
     @time_active.each do |title, ranges|
       @time_active[title] = merge_time_ranges(ranges)
     end
+  end
+
+  # FIXME: This system is nearly as awful a previous one...
+  def fully_quality_reference(title, desc)
+    return nil if desc.nil?
+    desc += " 1" unless desc =~ /\d+\z/
+    "#{title} #{desc}"
   end
 
   def liege_has_land_in_active(liege, duchy)

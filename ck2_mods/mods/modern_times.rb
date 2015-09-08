@@ -12,8 +12,8 @@ class CharacterManager
   def initialize(builder, namespace)
     @builder = builder
     @characters = {}
-    @by_description = {}
     @namespace = namespace
+    @historical = {}
   end
 
   def allocate_id(key)
@@ -41,24 +41,18 @@ class CharacterManager
     id
   end
 
-  # FIXME: This is horribly and in wrong class, only historical data cares about it anyway
+  # FIXME: This is fairly silly leftover
   def lookup_character_id(description)
-    if description.is_a?(Integer)
-      description
-    else
-      id = @by_description[description]
-      raise "Can't find character `#{description}'" unless id
-      raise "Can't find character `#{description}'" if id == :ambiguous
-      id
-    end
+    return description if description.is_a?(Integer)
+    @historical.fetch(description)
   end
 
   def add_ruler(**args)
     crowning = args[:key][:crowning]
     id, rng = allocate_id("ruler-#{args[:key][:title]}-#{args[:key][:crowning].to_s_px}")
 
-    culture  = args[:culture]
-    religion = args[:religion]
+    culture  = args[:culture] or raise
+    religion = args[:religion] or raise
     female = args[:female]
     if female == :maybe
       if religion == "sunni" or religion == "shiite" or args[:key][:title] == "k_papal_state"
@@ -81,7 +75,6 @@ class CharacterManager
     end
 
     name = args[:name] || @builder.cultures.random_name(culture, female, rng)
-    description = "#{name} #{birth.to_s_px}"
 
     if args[:dynasty]
       dynasty = @builder.new_dynasty(args[:dynasty], culture)
@@ -111,12 +104,8 @@ class CharacterManager
     end
     character.add! death, PropertyList["death", death] if death
 
+    @historical[args[:historical_id]] = id if args[:historical_id]
     @characters[id] = character
-    if @by_description[description]
-      @by_description[description] = :ambiguous
-    else
-      @by_description[description] = id
-    end
     id
   end
 
@@ -377,8 +366,12 @@ class ModernTimesGameModification < CK2GameModification
           @db.time_active[title].each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true
-              holders << [s, {}]
-              s >>= (12*15)       # 35..50 years
+              holders << [s, {
+                culture: data[:culture],
+                religion: data[:religion],
+                female: :maybe,
+              }]
+              s >>= (12*15) # 35..50 years
               break if s >= xe
             end
             holders << [e, nil] if e
@@ -390,23 +383,10 @@ class ModernTimesGameModification < CK2GameModification
           if holder.nil?
             @holders[title] << [date, 0]
           else
-            id = @characters.add_ruler(
-              culture: holder[:culture] || data[:culture],
-              religion: holder[:religion] || data[:religion],
-              female: holder.fetch(:female, :maybe), # Historical rulers always have it set by db
-              birth: holder[:birth],
-              death: holder[:death],
-              name: holder[:name],
-              dynasty: holder[:dynasty],
-              father: holder[:father],
-              mother: holder[:mother],
-              traits: holder[:traits],
-              events: holder[:events],
-              key: {
-                crowning: date,
-                title: title,
-              },
-            )
+            id = @characters.add_ruler(holder.merge(key: {
+              crowning: date,
+              title: title,
+            }))
             @characters.generate_family!(id) unless title == "k_papal_state"
             @holders[title] << [date, id]
           end
