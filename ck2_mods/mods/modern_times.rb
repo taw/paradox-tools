@@ -480,13 +480,17 @@ class ModernTimesGameModification < CK2GameModification
 
   # Some sensible baseline for everyone
   def setup_title_laws!
-    patch_mod_files!("history/titles/[dke]_*.txt") do |node|
-      node.add! @db.resolve_date(:start), PropertyList[
-        "law", "investiture_law_0",
-        "law", "cognatic_succession",
-        "law", "centralization_2",
-      ]
-      cleanup_history_node!(node)
+    glob("history/titles/[dke]_*.txt").each do |path|
+      title = path.basename(".txt").to_s
+      patch_mod_file!(path) do |node|
+        node.add! @db.resolve_date(:start), PropertyList[
+          "law", "investiture_law_0",
+          "law", "cognatic_succession",
+          # Empire start decentralized, lower titles at medium
+          "law", (title =~ /\Ae_/ ? "centralization_0" : "centralization_2"),
+        ]
+        cleanup_history_node!(node)
+      end
     end
     create_mod_file! "common/on_actions/10_modern_times.txt", PropertyList[
       "on_startup", PropertyList[
