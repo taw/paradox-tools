@@ -16,8 +16,8 @@ class ModernTimesDatabase
     ModernTimesDatabase::TITLES.each do |title, data|
       title = title.to_s
       @titles[title] = {}
-      raise unless (data.keys - [:culture, :religion, :capital, :name]).empty?
-
+      extra_keys = data.keys - [:culture, :religion, :capital, :name]
+      raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
       raise "Culture must be specified for every title: #{title}" unless data[:culture]
       raise "Religion must be specified for every title: #{title}" unless data[:religion]
 
@@ -47,7 +47,8 @@ class ModernTimesDatabase
       @holders[title] = {}
       data.each do |date, holder|
         date = resolve_date(date)
-        raise unless (holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events]).empty?
+        extra_keys = holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events]
+        raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
         holder = holder.dup
         holder[:culture]  ||= @titles[title][:culture]
         holder[:religion] ||= @titles[title][:religion]

@@ -429,6 +429,36 @@ ModernTimesDatabase::HOLDERS = {
     },
 
   },
+  e_france: {
+    # 3rd Republic
+    "31 August 1871" =>  {:name=>"Adolphe", :dynasty=>"Thiers", :birth=>"1797", :death=>"1877"},
+    "24 May 1873" =>  {:name=>"Patrice", :dynasty=>"de Mac-Mahon", :birth=>"1808", :death=>"1893"},
+    "30 January 1879" =>  {:name=>"Jules", :dynasty=>"Grévy", :birth=>"1807", :death=>"1891"},
+    "3 December 1887" =>  {:name=>"Marie François Sadi", :dynasty=>"Carnot", :birth=>"1837", :death=>"1894"},
+    "27 June 1894" =>  {:name=>"Jean", :dynasty=>"Casimir-Perier", :birth=>"1847", :death=>"1907"},
+    "17 January 1895" =>  {:name=>"Félix", :dynasty=>"Faure", :birth=>"1841", :death=>"1899"},
+    "18 February 1899" =>  {:name=>"Émile", :dynasty=>"Loubet", :birth=>"1838", :death=>"1929"},
+    "18 February 1906" =>  {:name=>"Armand", :dynasty=>"Fallières", :birth=>"1841", :death=>"1931"},
+    "18 February 1913" =>  {:name=>"Raymond", :dynasty=>"Poincaré", :birth=>"1860", :death=>"1934"},
+    "18 February 1920" =>  {:name=>"Paul", :dynasty=>"Deschanel", :birth=>"1855", :death=>"1922"},
+    "23 September 1920" =>  {:name=>"Alexandre", :dynasty=>"Millerand", :birth=>"1859", :death=>"1943"},
+    "13 June 1924" =>  {:name=>"Gaston", :dynasty=>"Doumergue", :birth=>"1863", :death=>"1937"},
+    "13 June 1931" =>  {:name=>"Paul", :dynasty=>"Doumer", :birth=>"1857", :death=>"1932"},
+    "10 May 1932" =>  {:name=>"Albert", :dynasty=>"Lebrun", :birth=>"1871", :death=>"1950"},
+    # Vichy
+    "11 July 1940"=>{:name=>"Philippe", :dynasty=>"Pétain", :birth=>"1856", :death=>"1951"},
+    # 4th Republic
+    "16 January 1947"=>{:name=>"Vincent", :dynasty=>"Auriol", :birth=>"1884", :death=>"1966"},
+    "16 January 1954"=>{:name=>"René", :dynasty=>"Coty", :birth=>"1882", :death=>"1962"},
+    # 5th Republic
+    "8 January 1959"=>{:name=>"Charles", :dynasty=>"de Gaulle", :birth=>"1890", :death=>"1970"},
+    "20 June 1969"=>{:name=>"Georges", :dynasty=>"Pompidou", :birth=>"1911", :death=>"1974"},
+    "27 May 1974"=>{:name=>"Valéry Giscard", :dynasty=>"d'Estaing", :birth=>"1926"},
+    "21 May 1981"=>{:name=>"François", :dynasty=>"Mitterrand", :birth=>"1916", :death=>"1996"},
+    "17 May 1995"=>{:name=>"Jacques", :dynasty=>"Chirac", :birth=>"1932"},
+    "16 May 2007"=>{:name=>"Nicolas", :dynasty=>"Sarkozy", :birth=>"1955"},
+    "15 May 2012"=>{:name=>"François", :dynasty=>"Hollande", :birth=>"1954"},
+  },
   d_sunni: {
     caliphate_reborn: {
       name: "Abu Bakr",
