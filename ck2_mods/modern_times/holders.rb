@@ -482,7 +482,41 @@ ModernTimesDatabase::HOLDERS = {
     "22 May 2004"     => {name: "Manmohan", dynasty: "Singh", birth: "1932", death: :never},
     "26 May 2014"     => {name: "Narendra", dynasty: "Modi", birth: "1950", death: :never},
   },
-
+  e_spain: {
+    "16 November 1870" => {name: "Amadeo", dynasty: "Savoy", birth: "30 May 1845", death: "18 January 1890"},
+    "29 December 1874" => {name: "Alfonso", dynasty: "Bourbon", birth: "28 November 1857", death: "25 November 1885"},
+    "17 May 1886"      => {name: "Alfonso", dynasty: "Bourbon", birth: "17 May 1886", death: "28 February 1941"},
+    # Simplify republic
+    "14 April 1931"    => {name: "Niceto", dynasty: "Alcalá-Zamora", birth: "6 July 1877", death: "18 February 1949"},
+    "1 October 1936"   => {name: "Francisco", dynasty: "Franco", birth: "December 4, 1892", death: "November 20, 1975"},
+    "22 November 1975" => {name: "Juan Carlos", dynasty: "Bourbon", birth: "5 January 1938", death: :never},
+    "19 June 2014"     => {name: "Felipe", dynasty: "Bourbon", birth: "30 January 1968", death: :never},
+  },
+  e_carpathia: {
+    "11 August 1804" => {name: "Francis", dynasty: "Habsburg", birth: "12 February 1768", death: "2 March 1835"},
+    "2 March 1835"   => {name: "Ferdinand", dynasty: "Habsburg", birth: "19 April 1793", death: "29 June 1875"},
+    # Can't find day date, just month
+    "1 December 1848" => {name: "Francis Joseph", dynasty: "Habsburg", birth: "18 August 1830", death: "21 November 1916"},
+    "21 November 1916" => {name: "Charles", dynasty: "Habsburg", birth: "21 October 1911", death: "1 April 1922"},
+    # Backfill
+    "12 November 1918" => {name: "Karl", dynasty: "Seitz"},
+    "9 December 1920"  => {name: "Michael", dynasty: "Hainisch"},
+    "10 December 1928" => {name: "Wilhelm", dynasty: "Miklas"},
+    anschluss: nil,
+    end_ww2: {name: "Karl", dynasty: "Renner", death: "31 December 1950"},
+    # Backfill, predecessor died in office
+    "31 December 1950" => {name: "Theodor", dynasty: "Körner", death: "4 January 1957"},
+    # Backfill, predecessor died in office
+    "4 January 1957" => {name: "Adolf", dynasty: "Schärf", death: "28 February 1965"},
+    # Backfill, predecessor died in office
+    "28 February 1965" => {name: "Fratz", dynasty: "Jonas"},
+    # Backfill, predecessor died in office
+    "8 July 1974" => {name: "Rudolf", dynasty: "Kirchschläger"},
+    "8 July 1986" => {name: "Kurt", dynasty: "Waldheim"},
+    "8 July 1992" => {name: "Thomas", dynasty: "Klestil"},
+    # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
+    "8 July 2004" => {name: "Heinz", dynasty: "Fischer"},
+  },
   d_sunni: {
     "31 August 1876" => { use: "e_seljuk_turks Abdulhamid 1" },
     "27 April 1909" => { use: "e_seljuk_turks Mehmed 1" },
