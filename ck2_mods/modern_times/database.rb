@@ -47,20 +47,26 @@ class ModernTimesDatabase
       @holders[title] = {}
       data.each do |date, holder|
         date = resolve_date(date)
-        extra_keys = holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events]
-        raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
-        holder = holder.dup
-        holder[:culture]  ||= @titles[title][:culture]
-        holder[:religion] ||= @titles[title][:religion]
-        holder[:female] = !!holder[:female]
-        holder[:birth] = resolve_date(holder[:birth]) if holder[:birth]
-        holder[:death] = resolve_date(holder[:death]) if holder[:death]
-        holder[:events] = holder[:events].map{|d,e| [resolve_date(d), e]} if holder[:events]
-        holder[:mother] = fully_quality_reference(title, holder[:mother])
-        holder[:father] = fully_quality_reference(title, holder[:father])
-        i = (ruler_counts[[title, holder[:name]]] += 1)
-        holder[:historical_id] = [title, holder[:name], i].join(" ")
-        @holders[title][date] = holder
+        if holder.nil?
+          @holders[title][date] = nil
+        elsif holder.keys == [:use]
+          @holders[title][date] = {use: fully_quality_reference(title, holder[:use])}
+        else
+          extra_keys = holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events]
+          raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
+          holder = holder.dup
+          holder[:culture]  ||= @titles[title][:culture]
+          holder[:religion] ||= @titles[title][:religion]
+          holder[:female] = !!holder[:female]
+          holder[:birth] = resolve_date(holder[:birth]) if holder[:birth]
+          holder[:death] = resolve_date(holder[:death]) if holder[:death]
+          holder[:events] = holder[:events].map{|d,e| [resolve_date(d), e]} if holder[:events]
+          holder[:mother] = fully_quality_reference(title, holder[:mother])
+          holder[:father] = fully_quality_reference(title, holder[:father])
+          i = (ruler_counts[[title, holder[:name]]] += 1)
+          holder[:historical_id] = [title, holder[:name], i].join(" ")
+          @holders[title][date] = holder
+        end
       end
     end
 
@@ -86,8 +92,9 @@ class ModernTimesDatabase
   # FIXME: This system is nearly as awful a previous one...
   def fully_quality_reference(title, desc)
     return nil if desc.nil?
-    desc += " 1" unless desc =~ /\d+\z/
-    "#{title} #{desc}"
+    desc = "#{desc} 1" unless desc =~ /\d+\z/
+    desc = "#{title} #{desc}" unless desc =~ /\A[bcdke]_/
+    desc
   end
 
   def liege_has_land_in_active(liege, duchy)

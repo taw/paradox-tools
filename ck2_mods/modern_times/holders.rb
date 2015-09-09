@@ -169,11 +169,17 @@ ModernTimesDatabase::HOLDERS = {
       birth: "1931.2.1",
       death: "2007.4.23",
     },
-    # Putin -> Medvedev -> Putin, but script doesn't support it yet
     "1999.12.31" => {
       name: "Vladimir",
       dynasty: "Putin",
+      birth: "1952",
     },
+    "2008.5.7" => {
+      name: "Dmitry",
+      dynasty: "Medvedev",
+      birth: "1965",
+    },
+    "2012.5.7" => { use: "Vladimir 2" },
   },
   k_denmark: {
     "1863.11.29" => {
@@ -427,7 +433,6 @@ ModernTimesDatabase::HOLDERS = {
       name: "Sergio",
       dynasty: "Mattarella",
     },
-
   },
   e_france: {
     # 3rd Republic
@@ -459,7 +464,30 @@ ModernTimesDatabase::HOLDERS = {
     "16 May 2007"=>{:name=>"Nicolas", :dynasty=>"Sarkozy", :birth=>"1955"},
     "15 May 2012"=>{:name=>"François", :dynasty=>"Hollande", :birth=>"1954"},
   },
+  e_india: {
+    "15 August 1947"  => {name: "Jawharlal", dynasty: "Nehru", birth: "1889", death: "1964"},
+    "9 June 1964"     => {name: "Lal Bahadur", dynasty: "Shatri", birth: "1904", death: "1966"},
+    "24 January 1966" => {name: "Indira", dynasty: "Gandhi", birth: "1917", death: "1984", female: true},
+    "24 March 1977"   => {name: "Morarji", dynasty: "Desai", birth: "1896", death: "1995"},
+    "28 July 1979"    => {name: "Charan", dynasty: "Singh", birth: "1902", death: "1987"},
+    "14 January 1980" => {use: "Indira 1"},
+    "31 October 1984" => {name: "Rajiv", dynasty: "Gandhi", birth: "1944", death: "1991"},
+    "2 December 1989" => {name: "Vishwanath Pratap", dynasty: "Singh", birth: "25 June 1931", death: "27 November 2008"},
+    "10 November 1990"=> {name: "Chandra", dynasty: "Shekhar", birth: "1927", death: "2007"},
+    "21 June 1991"    => {name: "Pamulaparti Venkata Narasimha", dynasty: "Rao", birth: "1921", death: "2004"},
+    "16 May 1996"     => {name: "Atal Bihari", dynasty: "Vajpayee", birth: "1924", death: :never},
+    "1 June 1996"     => {name: "Haradanahalli Doddegowda Deve", dynasty: "Gowda", birth: "18 May 1933", death: :never},
+    "21 April 1997"   => {name: "Inder Kumar", dynasty: "Gujral", birth: "4 December 1919", death: "30 November 2012"},
+    "19 March 1998"   => {use: "Atal Bihari 1"},
+    "22 May 2004"     => {name: "Manmohan", dynasty: "Singh", birth: "1932", death: :never},
+    "26 May 2014"     => {name: "Narendra", dynasty: "Modi", birth: "1950", death: :never},
+  },
+
   d_sunni: {
+    "31 August 1876" => { use: "e_seljuk_turks Abdulhamid 1" },
+    "27 April 1909" => { use: "e_seljuk_turks Mehmed 1" },
+    "4 July 1918" => { use: "e_seljuk_turks Mehmed 2" },
+    "1 November 1922" => nil,
     caliphate_reborn: {
       name: "Abu Bakr",
       dynasty: "al-Baghdadi",

@@ -386,6 +386,9 @@ class ModernTimesGameModification < CK2GameModification
         holders.each do |date, holder|
           if holder.nil?
             @holders[title] << [date, 0]
+          elsif holder[:use]
+            id = @characters.lookup_character_id(holder[:use])
+            @holders[title] << [date, id]
           else
             id = @characters.add_ruler(holder.merge(key: {
               crowning: date,
@@ -759,8 +762,6 @@ class ModernTimesGameModification < CK2GameModification
       "LATE_MED_INFO"   => "",
     )
   end
-
-
 
   def apply!
     # Order of transformations matters
