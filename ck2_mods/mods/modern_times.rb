@@ -396,29 +396,6 @@ class ModernTimesGameModification < CK2GameModification
     @holders
   end
 
-  def setup_bookmarks!
-    bookmarks = [
-      "1900.1.1",   # earliest date
-      "1914.6.28",  # assassination of archduke Franz Ferdinand
-      "1920.8.10",  # treaty of Sevres
-      "1938.3.12",  # aschluss of Austria
-      "1945.5.8",   # cold war begins
-      "1967.6.10",  # six day war
-      "1975.1.1",   # nothing special
-      "1991.12.26", # fall of Soviet Union
-      "1999.12.31", # nothing special
-      "2015.9.1",   # today
-    ]
-
-    # Bookmark tags are unfortunately magical
-    patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
-      node.each do |_, bookmark|
-        bookmark.delete "character"
-        bookmark["date"] = Date.parse(bookmarks.shift) unless bookmarks.empty?
-      end
-    end
-  end
-
   def setup_defines!
     patch_mod_file!("common/defines.txt") do |node|
       node["start_date"]      = Date.parse("1900.1.1")
@@ -700,9 +677,83 @@ class ModernTimesGameModification < CK2GameModification
     pp cultures.sort_by{|k,v| -v}
   end
 
+  def setup_bookmarks!
+    bookmarks = [
+      "1900.1.1",   # earliest date
+      "1914.6.28",  # assassination of archduke Franz Ferdinand
+      "1920.8.10",  # treaty of Sevres
+      "1938.3.12",  # aschluss of Austria
+      "1945.5.8",   # cold war begins
+      "1967.6.10",  # six day war
+      "1975.1.1",   # nothing special
+      "1991.12.26", # fall of Soviet Union
+      "1999.12.31", # nothing special
+      "2015.9.1",   # today
+    ]
+    # Bookmark tags are unfortunately magical
+    patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
+      node.each do |_, bookmark|
+        bookmark.delete "character"
+        bookmark["date"] = Date.parse(bookmarks.shift) unless bookmarks.empty?
+      end
+    end
+  end
+
+  # Hopefully adding out own will work so we don't need to rewrite all files
+  # This way is much more compatible
+  #
+  # Note: BM_BM_ is vanilla issue
+  def change_localization!
+    localization!("ZZ vanilla overrides",
+      "romanian" => "Romanian", # Not Vlach
+
+      "BM_CHARLEMAGNE"       => "New Century",
+      "BM_THE_OLD_GODS"      => "The Great War",
+      "BM_FATE_OF_ENGLAND"   => "Treaty of Sevres",
+      "BM_NORMAN_CONQUEST"   => "Anschlus of Austria",
+      "BM_KOMNENOS_DYNASTY"  => "The Cold War",
+      "BM_THIRD_CRUSADE"     => "Six Day War",
+      "BM_THE_LATIN_EMPIRE"  => "Decolonization",
+      "BM_THE_MONGOLS"       => "Fall of Soviet Union",
+      "BM_RISE_OF_THE_HANSA" => "Y2K Crisis",
+      "BM_100_YEARS_WAR"     => "Modern Times",
+
+      "BM_BM_CHARLEMAGNE_DESC"    => "",
+      "BM_THE_OLD_GODS_DESC"      => "",
+      "BM_FATE_OF_ENGLAND_DESC"   => "",
+      "BM_NORMAN_CONQUEST_DESC"   => "",
+      "BM_KOMNENOS_DYNASTY_DESC"  => "",
+      "BM_THIRD_CRUSADE_DESC"     => "",
+      "BM_THE_LATIN_EMPIRE_DESC"  => "",
+      "BM_THE_MONGOLS_DESC"       => "",
+      "BM_RISE_OF_THE_HANSA_DESC" => "",
+      "BM_100_YEARS_WAR_DESC"     => "",
+
+      # FIXME: It would be way better to set key ones as:
+      # * 1914
+      # * 1920
+      # * 1945
+      # * 1991
+      #
+      # But we abolutely need 1900 and 2015, so maybe skip 1991?
+      # Anyway, something to consider much later
+      "DARK_AGES"  => "New Century",
+      "VIKING_ERA" => "The Great War",
+      "EARLY_MED"  => "Treaty of Sevres",
+      "HIGH_MED"   => "Fall of Soviet Union",
+      "LATE_MED"   => "Modern Times",
+      "DARK_AGES_INFO"  => "",
+      "VIKING_ERA_INFO" => "",
+      "EARLY_MED_INFO"  => "",
+      "HIGH_MED_INFO"   => "",
+      "LATE_MED_INFO"   => "",
+    )
+  end
+
+
+
   def apply!
     # Order of transformations matters
-
     setup_defines!
     setup_bookmarks!
     setup_technology!
@@ -724,6 +775,7 @@ class ModernTimesGameModification < CK2GameModification
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
     save_characters!
     save_dynasties!
+    change_localization!
 
     # report_dynasty_conflict_stats!
   end
