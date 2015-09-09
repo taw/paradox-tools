@@ -483,6 +483,10 @@ class ModernTimesGameModification < CK2GameModification
         cleanup_history_node!(node)
       end
     end
+    # d_sunni is supposed to have priority over d_syria etc. (dignity=100) but it doesn't work.
+    # Setting d_sunni as primary=true would completely ban creation of any high level titles
+    # which is wrong as caliphs held kingdoms and empires.
+    # So we'll just need to live with this bug.
   end
 
   # Some sensible baseline for everyone
