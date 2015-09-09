@@ -502,6 +502,7 @@ class ModernTimesGameModification < CK2GameModification
         "only_rulers", true,
         "trigger", PropertyList[
           "is_feudal", true,
+          "holy_order", false,
           "NOT", PropertyList["religion_group", "muslim"],
         ],
         "immediate", PropertyList[
