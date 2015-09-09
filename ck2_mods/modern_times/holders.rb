@@ -272,6 +272,163 @@ ModernTimesDatabase::HOLDERS = {
       birth: "1939.7.17",
     },
   },
+  e_seljuk_turks: {
+    "31 August 1876" => {
+      name: "Abdulhamid",
+      dynasty: "Ottoman",
+      death: "10 February 1918",
+    },
+    "27 April 1909" => {
+      name: "Mehmed",
+      dynasty: "Ottoman",
+    },
+    "4 July 1918" => {
+      name: "Mehmed",
+      dynasty: "Ottoman",
+      death: "16 May 1926",
+    },
+    # There was a caliph Abdulmecid II for 1922-1924, consider maybe?
+    # Dates are changed to fill the gaps
+    "1 November 1922" => {
+      name: "Mustafa Kemal",
+      dynasty: "Ataturk",
+    },
+    "11 November 1938" => {
+      name: "Ismet",
+      dynasty: "Inonu",
+    },
+    "22 May 1950" => {
+      name: "Celal",
+      dynasty: "Bayar",
+    },
+    # Skipping National Unity Committee
+    "10 October 1961" => {
+      name: "Cemal",
+      dynasty: "Gursel",
+    },
+    "28 March 1966" => {
+      name: "Cevdet",
+      dynasty: "Sunay",
+    },
+    "6 April 1973" => {
+      name: "Fahri",
+      dynasty: "Koruturk",
+    },
+    # Skipping National ecurity Council
+    "9 November 1982" => {
+      name: "Kenan",
+      dynasty: "Evren",
+      birth: "1917",
+      death: "2015",
+    },
+    "9 November 1989" => {
+      name: "Torgut",
+      dynasty: "Ozal",
+      birth: "1927",
+      death: "1993",
+    },
+    "16 May 1993" => {
+      name: "Suleyman",
+      dynasty: "Demirel",
+      birth: "1924",
+      death: "2015",
+    },
+    "16 May 2000" => {
+      name: "Ahmet Necdet",
+      dynasty: "Sezer",
+      birth: "1941",
+    },
+    "28 August 2007" => {
+      name: "Abdullah",
+      dynasty: "Gul",
+      birth: "1950",
+    },
+    "28 August 2014"  => {
+      name: "Recep Tayyip",
+      dynasty: "Erdogan",
+      birth: "1954",
+    },
+  },
+  e_italy: {
+    # Title created
+    "17 March 1861" => {
+      name: "Victor Emmanuel",
+      dynasty: "Savoy",
+      birth: "14 March 1820",
+      death: "9 January 1878",
+    },
+    "9 January 1878" => {
+      name: "Umberto",
+      dynasty: "Savoy",
+      father: "Victor Emmanuel 1",
+      birth: "14 March 1844",
+      death: "29 July 1900",
+    },
+    "29 July 1900" => {
+      name: "Victor Emmanuel",
+      dynasty: "Savoy",
+      father: "Umberto",
+      birth: "11 November 1869",
+      death: "28 December 1947",
+    },
+    "9 May 1946" => {
+      name: "Umberto",
+      dynasty: "Savoy",
+      father: "Victor Emmanuel 2",
+      birth: "15 September 1904",
+      death: "18 March 1983",
+    },
+    # Preidents
+    "12 June 1946" => {
+      name: "Enrico",
+      dynasty:  "De Nicola",
+    },
+    "12 May 1948" => {
+      name: "Luigi",
+      dynasty: "Einaudi",
+    },
+    "11 May 1955" => {
+      name: "Giovanni",
+      dynasty: "Gronchi",
+    },
+    "11 May 1962" => {
+      name: "Antonio",
+      dynasty: "Segni",
+    },
+    "29 December 1964" => {
+      name: "Giuseppe",
+      dynasty: "Saragat",
+    },
+    "29 December 1971" => {
+      name: "Giovanni",
+      dynasty: "Leone",
+    },
+    "9 July 1978" => {
+      name: "Sandro",
+      dynasty: "Pertini",
+    },
+    "3 July 1985" => {
+      name: "Francesco",
+      dynasty: "Cosiga",
+    },
+    "28 May 1992" => {
+      name: "Oscar Luigi",
+      dynasty: "Scalfaro",
+    },
+    "18 May 1999" => {
+      name: "Carlo Azeglio",
+      dynasty: "Ciampi",
+    },
+    "15 May 2006" => {
+      name: "Giorgio",
+      dynasty: "Napolitano",
+    },
+    "3 February 2015" => {
+      name: "Sergio",
+      dynasty: "Mattarella",
+    },
+
+  },
   d_sunni: {
     caliphate_reborn: {
       name: "Abu Bakr",
