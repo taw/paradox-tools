@@ -184,34 +184,34 @@ ModernTimesDatabase::HOLDERS = {
   k_denmark: {
     "1863.11.29" => {
       name: "Christian",
-      dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+      dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
       birth: "1818.4.8",
       death: "1906.1.29",
     },
     "1906.1.29" => {
       name: "Frederick",
-      dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+      dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
       birth: "1843.6.3",
       death: "1912.5.14",
       father: "Christian 1",
     },
     "1912.5.14" => {
       name: "Christian",
-      dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+      dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
       birth: "1870.9.26",
       death: "1947.4.20",
       father: "Frederick 1",
     },
     "1947.4.20" => {
       name: "Frederick",
-      dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+      dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
       birth: "1899.3.11",
       death: "1972.1.14",
       father: "Christian 2",
     },
     "1972.1.14" => {
       name: "Margrethe",
-      dynasty: "Schleswig-Holstein-Sonderburg-Glucksburg",
+      dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
       female: true,
       birth: "1940.4.16",
       death: :never,
@@ -574,11 +574,22 @@ ModernTimesDatabase::HOLDERS = {
     "9 August 1993" => {name: "Albert", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 3", birth: "6 June 1934", death: :never},
     "21 July 2013" => {name: "Philippe", dynasty: "Saxe-Coburg and Gotha", father: "Albert 2", birth: "15 April 1960"},
   },
-
-
-
-
-
+  k_norway: {
+    norway_independence: {name: "Haakon", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", birth: "3 August 1872", death: "21 September 1957"},
+    "21 September 1957" => {name: "Olav", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Haakon 1", birth: "2 July 1903", death: "17 January 1991"},
+    "17 January 1991" => {name: "Harald", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", birth: "21 February 1937", death: :never},
+  },
+  k_arabia: {
+    # "Emirate of Nejd and Hasa" etc., maybe I should differentiate those titles
+    # It's total bullshit backdating before "13 January 1902" when he got first duchy
+    start: {name: "Abdulaziz", dynasty: "Saud", birth: "26 November 1876", death: "9 November 1953"},
+    "9 November 1953" => {name: "Saud", dynasty: "Saud", father: "Abdulaziz 1", birth: "12 January 1902", death: "23 February 1969"},
+    "2 November 1964" => {name: "Faisal", dynasty: "Saud", father: "Abdulaziz 1", birth: "14 April 1906", death: "25 March 1975"},
+    "25 March 1975" => {name: "Khalid", dynasty: "Saud", father: "Abdulaziz 1", birth: "13 February 1913", death: "13 June 1982"},
+    "13 June 1982" => {name: "Fahd", dynasty: "Saud", father: "Abdulaziz 1", birth: "16 March 1921", death: "1 August 2005"},
+    "1 August 2005" => {name: "Abdullah", dynasty: "Saud", father: "Abdulaziz 1", birth: "1 August 1924", death: "23 January 2015"},
+    "23 January 2015" => {name: "Salman", dynasty: "Saud", father: "Abdulaziz 1", birth: "31 December 1935", death: :never},
+  },
 
   d_sunni: {
     "31 August 1876" => { use: "e_seljuk_turks Abdulhamid 1" },
