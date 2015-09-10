@@ -103,7 +103,7 @@ task "modern_times" do
 end
 
 desc "Build CK2 Modern Times Plus"
-task "modern_times" do
+task "modern_times_plus" do
   ModBuilder.new(
     "ck2_mods",
     "modern_times_plus",
