@@ -250,7 +250,8 @@ ModernTimesDatabase::TITLES = {
   k_cuman: {
     culture: :cuman,
     religion: :sunni,
-    name: "Kazakhstan / Kazakh"
+    name: "Kazakhstan / Kazakh",
+    capital: "c_kimak",
   },
   k_khiva: {
     culture: :karluk,

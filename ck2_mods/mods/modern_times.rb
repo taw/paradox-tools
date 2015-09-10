@@ -587,7 +587,7 @@ class ModernTimesGameModification < CK2GameModification
       orig_religion = religion = [node["religion"], *node.list.map{|_,v| v["religion"] if v.is_a?(PropertyList)}].compact.last
       county, duchy, kingdom, empire = @map.landed_titles_lookup[title]
 
-      if empire == "e_persia" or ["d_basra", "d_tigris", "d_baghdad", "c_kermanshah", "d_tripoli"].include?(duchy)
+      if kingdom == "k_persia" or ["d_basra", "d_tigris", "d_baghdad", "d_kermanshah", "d_tripoli"].include?(duchy)
         religion = "shiite"
       end
       if culture == "mongol"
@@ -619,8 +619,15 @@ class ModernTimesGameModification < CK2GameModification
       if kingdom == "k_england"
         religion = "fraticelli"
       end
-      if duchy == "d_holland" or duchy == "d_gelre"
+      if duchy == "d_holland" or duchy == "d_gelre" or empire == "e_scandinavia"
         religion = "waldensian"
+      end
+      if duchy == "d_crimea"
+        religion = "orthodox"
+        culture = "russian"
+      end
+      if duchy == "d_armenia"
+        religion = "orthodox"
       end
       if culture == "andalusian_arabic"
         if county == "c_algeciras"
@@ -628,6 +635,7 @@ class ModernTimesGameModification < CK2GameModification
         else
           culture = "castillan"
         end
+        religion = "catholic"
       end
       if duchy == "d_ascalon"
         culture = "ashkenazi"
