@@ -58,8 +58,8 @@ class ModernTimesDatabase
           holder[:culture]  ||= @titles[title][:culture]
           holder[:religion] ||= @titles[title][:religion]
           holder[:female] = !!holder[:female]
-          holder[:birth] = resolve_date(holder[:birth]) if holder[:birth]
-          holder[:death] = resolve_date(holder[:death]) if holder[:death]
+          holder[:birth] = resolve_start_date(holder[:birth]) if holder[:birth]
+          holder[:death] = resolve_end_date(holder[:death]) if holder[:death]
           holder[:events] = holder[:events].map{|d,e| [resolve_date(d), e]} if holder[:events]
           holder[:mother] = fully_quality_reference(title, holder[:mother])
           holder[:father] = fully_quality_reference(title, holder[:father])
@@ -116,6 +116,10 @@ class ModernTimesDatabase
     map.landed_titles_lookup[county].map{|t| @land[t] }.find(&:itself)
   end
 
+  def capital_duchy(title)
+    map.duchy_for_county(@titles[title][:capital])
+  end
+
   # This should sort of be private except magic constants use same system:
   # - start
   # - title_holders_until
@@ -124,11 +128,19 @@ class ModernTimesDatabase
     ModernTimesDatabase::Dates[date]
   end
 
-  def capital_duchy(title)
-    map.duchy_for_county(@titles[title][:capital])
+private
+
+  def resolve_start_date(date)
+    date = date.to_s if date.is_a?(Integer)
+    return Date.parse("#{date}.1.1") if date =~ /\A\d{4}\z/
+    ModernTimesDatabase::Dates[date]
   end
 
-private
+  def resolve_end_date(date)
+    date = date.to_s if date.is_a?(Integer)
+    return Date.parse("#{date}.12.31") if date =~ /\A\d{4}\z/
+    ModernTimesDatabase::Dates[date]
+  end
 
   def map
     @builder.map

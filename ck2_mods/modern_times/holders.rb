@@ -80,34 +80,34 @@ ModernTimesDatabase::HOLDERS = {
       name: "Konrad",
       dynasty: "Adenauer",
     },
-    "1963" => {
+    "17 October 1963" => {
       name: "Ludwig",
       dynasty: "Erhard",
     },
-    "1966" => {
+    "1 December 1966" => {
       name: "Kurt Georg",
       dynasty: "Kiesinger",
     },
-    "1969" => {
+    "22 October 1969" => {
       name: "Willy",
       dynasty: "Brandt",
     },
-    "1974" => {
+    "16 May 1974" => {
       name: "Helmut",
       dynasty: "Schmidt",
       birth: "1918.12.23",
     },
-    "1982" => {
+    "1 October 1982" => {
       name: "Helmut",
       dynasty: "Kohl",
       birth: "1930.4.3",
     },
-    "1998" => {
+    "27 October 1998" => {
       name: "Gerhard",
       dynasty: "Schroeder",
       birth: "1944.4.7",
     },
-    "2005" => {
+    "22 November 2005" => {
       name: "Angela",
       dynasty: "Merkel",
       female: true,
@@ -590,7 +590,13 @@ ModernTimesDatabase::HOLDERS = {
     "1 August 2005" => {name: "Abdullah", dynasty: "Saud", father: "Abdulaziz 1", birth: "1 August 1924", death: "23 January 2015"},
     "23 January 2015" => {name: "Salman", dynasty: "Saud", father: "Abdulaziz 1", birth: "31 December 1935", death: :never},
   },
-
+  c_kuwait: {
+    kuwait_independence: {name: "Abdullah Salem Al-Mubarak", dynasty: "Al-Sabah", birth: "1895", death: "1965"},
+    "24 November 1965" => {name: "Sabah Salem Al-Mubarak", dynasty: "Al-Sabah", birth: "1913", death: "1977"},
+    "31 December 1977" => {name: "Jaber Al-Ahmad Al-Jaber", dynasty: "Al-Sabah", birth: "1926", death: "2006"},
+    "15 January 2006" => {name: "Saad Abdullah Al-Salem", dynasty: "Al-Sabah", birth: "1930", death: "2008"},
+    "29 January 2006" => {name: "Sabah Al-Ahmad Al-Jaber", dynasty: "Al-Sabah", birth: "1929", death: :never},
+  },
   d_sunni: {
     "31 August 1876" => { use: "e_seljuk_turks Abdulhamid 1" },
     "27 April 1909" => { use: "e_seljuk_turks Mehmed 1" },
