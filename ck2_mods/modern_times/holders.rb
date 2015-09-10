@@ -517,6 +517,47 @@ ModernTimesDatabase::HOLDERS = {
     # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
     "8 July 2004" => {name: "Heinz", dynasty: "Fischer"},
   },
+  k_lanka: {
+    # Prime Ministers
+    # Supposedly started 1947.9.24, postdating to 1948.2.4
+    :sri_lanka_independence => {name: "Don Stephen", dynasty: "Senanayake", birth: "1884", death: "1952"},
+    "26 March 1952" => {name: "Dudley", dynasty: "Senanayake", birth: "1911", death: "1973"},
+    "12 October 1953" => {name: "John", dynasty: "Kotelawala", birth: "1897", death: "1980"},
+    "12 April 1956" => {name: "Solomon", dynasty: "Bandaranaike", birth: 1899, death: 1959},
+    "26 September 1959" => {name: "Wijeyananda", dynasty: "Dahanayake", birth: "1902", death: "1997"},
+    "21 March 1960" => {use: "Dudley 1"},
+    "21 July 1960" => {name: "Sirimavo", dynasty: "Bandaranaike", birth: "1916", death: "2000", female: true},
+    "25 March 1965" => {use: "Dudley 1"},
+    "29 May 1970" => {use: "Sirimavo 1"}, # She continues next term after presidency established as prime minister, but that no longer matters
+    # Presidency established
+    "22 May 1972" => {name: "William", dynasty: "Gopallawa", birth: 1897, death: 1981},
+    "4 February 1978" => {name: "Junius Richard", dynasty: "Jayewardene", birth: 1906, death: 1996},
+    "2 January 1989" => {name: "Ranasinghe", dynasty: "Premadasa", birth: 1924, death: 1993},
+    "1 May 1993" => { name: "Dingiri Banda", dynasty: "Wijetunga", birth: "1916", death: "2008" },
+    "12 November 1994" => {name: "Chandrika", dynasty: "Kumaratunga", birth: "1945", female: true },
+    "19 November 2005" => {name: "Mahinda", dynasty: "Rajapaksa", birth: "1945" },
+    "9 January 2015" => {name: "Maithripala", dynasty: "Sirisena", birth: "1951" },
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   d_sunni: {
     "31 August 1876" => { use: "e_seljuk_turks Abdulhamid 1" },
     "27 April 1909" => { use: "e_seljuk_turks Mehmed 1" },

@@ -108,6 +108,10 @@ module ModernTimesDatabase::Dates
       :never # Magic placeholder, maybe fix them someday
     when Date
       date
+    when Integer
+      # Silly sanity check
+      raise unless date >= 1800 and date <= 2100
+      Date.parse("#{date}.1.1")
     when String
       if date =~ /\A\d{4}\z/
         Date.parse("#{date}.1.1")
