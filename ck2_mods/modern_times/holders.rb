@@ -538,8 +538,13 @@ ModernTimesDatabase::HOLDERS = {
     "19 November 2005" => {name: "Mahinda", dynasty: "Rajapaksa", birth: "1945" },
     "9 January 2015" => {name: "Maithripala", dynasty: "Sirisena", birth: "1951" },
   },
-
-
+  k_croatia: {
+    croatia_independence: {name: "Franjo", dynasty: "Tudman", birth: "1922", death: "1999"},
+    # Backdated from 18 February 2000, skipping two active presidents
+    "10 December 1999" => {name: "Stjepan", dynasty: "Mesic", birth: "1934" },
+    "19 February 2010" => {name: "Ivo", dynasty: "Josipovic", birth: "1957" },
+    "19 February 2015" => {name: "Kolinda", dynasty: "Grabar-Kitarovic", female: true, birth: 1968},
+  },
 
 
 
