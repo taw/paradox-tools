@@ -361,10 +361,8 @@ class ModernTimesGameModification < CK2GameModification
           unless @db.time_active[title]
             raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
           end
-          # At least empires should
-          if title =~ /\A[ek]_/
-            warn "Title #{title} has automatically generated holders only"
-          end
+          # We need holders for all independent titles
+          warn "Needs holders: #{title} #{@db.time_active[title].map{|ds| ds.map{|d| d ? d.to_s_px : "" }.join("..")}.join(" ")}"
           holders = []
           # We need to break long stretches of time into 15 year fragments
           @db.time_active[title].each do |s,e|

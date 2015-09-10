@@ -545,18 +545,35 @@ ModernTimesDatabase::HOLDERS = {
     "19 February 2010" => {name: "Ivo", dynasty: "Josipovic", birth: "1957" },
     "19 February 2015" => {name: "Kolinda", dynasty: "Grabar-Kitarovic", female: true, birth: 1968},
   },
-
-
-
-
-
-
-
-
-
-
-
-
+  k_cuman: {
+    fall_soviet_union: {name: "Nursultan", dynasty: "Nazarbayev", birth: "6 July 1940"},
+  },
+  k_khiva: {
+    fall_soviet_union: {name: "Islam", dynasty: "Karimov", birth: "January 30, 1938"},
+  },
+  d_dihistan: {
+    fall_soviet_union: {name: "Saparmurat", dynasty: "Niyazov", birth: "19 February 1940", death: "21 December 2006"},
+    "2006.12.21" => {name: "Gurbanguly", dynasty: "Berdimuhamedow", birth: "June 29, 1957"},
+  },
+  k_frisia: {
+    "16 March 1815" => {name: "William", dynasty: "Orange-Nassau", birth: "24 August 1772", death: "12 December 1843"},
+    "7 October 1840" => {name: "William", dynasty: "Orange-Nassau", father: "William 1", birth: "6 December 1792", death: "17 March 1849"},
+    "17 March 1849" => {name: "William", dynasty: "Orange-Nassau", father: "William 2", birth: "19 February 1817", death: "23 November 1890"},
+    "23 November 1890" => {name: "Wilhelmina", dynasty: "Orange-Nassau", father: "William 3", female: true, birth: "31 August 1880", death: "28 November 1962"},
+    "4 September 1948" => {name: "Juliana", dynasty: "Orange-Nassau", mother: "Wilhelmina 1", female: true, birth: "30 April 1909", death: "20 March 2004"},
+    "30 April 1980" => {name: "Beatrix", dynasty: "Orange-Nassau", mother: "Juliana 1", female: true, birth: "31 January 1938", death: :never},
+    "30 April 2013" => {name: "William-Alexander", dynasty: "Orange-Nassau", mother: "Beatrix 1", birth: "27 April 1967"},
+  },
+  d_flanders: {
+    "21 July 1831" => {name: "Leopold", dynasty: "Saxe-Coburg and Gotha", birth: "16 December 1790", death: "10 December 1865"},
+    "10 December 1865" => {name: "Leopold", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 1", birth: "9 April 1835", death: "17 December 1909"},
+    # nephew of Leopold 2, can't model that yet
+    "17 December 1909" => {name: "Albert", dynasty: "Saxe-Coburg and Gotha", birth: "8 April 1875", death: "17 February 1934"},
+    "17 February 1934" => {name: "Leopold", dynasty: "Saxe-Coburg and Gotha", father: "Albert 1", birth: "3 November 1901", death: "25 September 1983"},
+    "17 July 1951" => {name: "Baudouin", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 3", birth: "7 September 1930", death: "31 July 1993"},
+    "9 August 1993" => {name: "Albert", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 3", birth: "6 June 1934", death: :never},
+    "21 July 2013" => {name: "Philippe", dynasty: "Saxe-Coburg and Gotha", father: "Albert 2", birth: "15 April 1960"},
+  },
 
 
 
