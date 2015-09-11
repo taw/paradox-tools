@@ -71,11 +71,11 @@ class ModernTimesDatabase
           elsif holder.keys == [:use]
             @holders[title][date] = {use: fully_quality_reference(title, holder[:use])}
           else
-            extra_keys = holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events]
+            extra_keys = holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events, :culture, :religion]
             raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
             holder = holder.dup
-            holder[:culture]  ||= titles[title][:culture]
-            holder[:religion] ||= titles[title][:religion]
+            holder[:culture]  = (holder[:culture]  || titles[title][:culture]).to_s
+            holder[:religion] = (holder[:religion] || titles[title][:religion]).to_s
             holder[:female] = !!holder[:female]
             holder[:birth] = resolve_start_date(holder[:birth]) if holder[:birth]
             holder[:death] = resolve_end_date(holder[:death]) if holder[:death]

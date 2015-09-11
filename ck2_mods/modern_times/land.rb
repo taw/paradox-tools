@@ -129,10 +129,10 @@ ModernTimesDatabase::LAND = {
   c_luxembourg: { start: "d_luxembourg"},
   c_julich:     { start: "e_germany" },
   c_loon:       { start: "k_frisia" },
-  c_liege:      { start: "d_flanders" },
 
-  d_flanders:   { start: "d_flanders" },
-  d_brabant:    { start: "d_flanders" },
+  c_liege:      { belgium_independence: "d_flanders" },
+  d_flanders:   { belgium_independence: "d_flanders" },
+  d_brabant:    { belgium_independence: "d_flanders" },
 
   c_breda:      { start: "k_frisia" },
   d_holland:    { start: "k_frisia" },

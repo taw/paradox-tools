@@ -563,7 +563,7 @@ class ModernTimesGameModification < CK2GameModification
           # warn "No castle in #{title}"
           next
         end
-        node.add! @db.resolve_date(:start), PropertyList["capital", first_castle]
+        node.add! @db.resolve_date(:forever_ago), PropertyList["capital", first_castle]
         # p [title, holdings[capital], capital, holdings]
       when "tribal"
         # p [title, holdings[capital], capital, holdings, @map.landed_titles_lookup[title]]

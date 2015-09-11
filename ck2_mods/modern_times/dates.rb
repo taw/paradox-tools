@@ -7,6 +7,8 @@ module ModernTimesDatabase::Dates
 
     treaty_of_utrech: "1713.4.1", # "March and April 1713"
 
+    belgium_independence: "1831.7.21", # Actually crowning of Leopold
+
     ireland_independence: "1921.12.6",
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",

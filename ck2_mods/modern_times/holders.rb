@@ -1,12 +1,61 @@
 ModernTimesDatabase::HOLDERS = {
   # Dynasty changed names twice, but whatever
   e_britannia: {
+    "13 February 1689" => {
+      name: "William",
+      dynasty: "Stuart",
+      birth: "4 November 1650",
+      death: "8 March 1702",
+    },
+    # From 1 May 1707 as UK, but let's not pretend Scotland mattered before
+    "8 March 1702" => {
+      name: "Anne",
+      dynasty: "Stuart",
+      birth: "6 February 1665",
+      death: "1 August 1714",
+      female: true,
+    },
+    "1 August 1714" => {
+      name: "George",
+      dynasty: "Windsor",
+      birth: "28 May 1660",
+      death: "11 June 1727",
+    },
+    "11 June 1727" => {
+      name: "George",
+      dynasty: "Windsor",
+      father: "George 1",
+      birth: "30 October 1683",
+      death: "25 October 1760",
+    },
+    "25 October 1760" => {
+      name: "George",
+      dynasty: "Windsor",
+      # grandfather: "George 2",
+      birth: "4 June 1738",
+      death: "29 January 1820",
+    },
+    "29 January 1820" => {
+      name: "George",
+      dynasty: "Windsor",
+      father: "George 3",
+      birth: "12 August 1762",
+      death: "26 June 1830",
+    },
+    "26 June 1830" => {
+      name: "William",
+      dynasty: "Windsor",
+      birth: "21 August 1765",
+      death: "20 June 1837",
+      father: "George 3",
+    },
     "1837.6.20" => {
       birth: "1819.5.24",
       death: "1901.1.22",
       name: "Victoria",
       female: true,
       dynasty: "Windsor",
+      # granddaughter of George 3
     },
     "1901.1.22" => {
       birth: "1841.11.9",
@@ -27,14 +76,14 @@ ModernTimesDatabase::HOLDERS = {
       death: "1972.5.28",
       name: "Edward",
       dynasty: "Windsor",
-      father: "George 1",
+      father: "George 5",
     },
     "1936.12.11" => {
       birth: "1895.12.14",
       death: "1952.2.6",
       name: "George",
       dynasty: "Windsor",
-      father: "George 1",
+      father: "George 5",
     },
     "1952.2.6" => {
       birth: "1926.4.21",
@@ -42,7 +91,7 @@ ModernTimesDatabase::HOLDERS = {
       name: "Elizabeth",
       dynasty: "Windsor",
       female: true,
-      father: "George 2",
+      father: "George 6",
     },
   },
   e_germany: {
@@ -219,18 +268,41 @@ ModernTimesDatabase::HOLDERS = {
     }
   },
   k_sweden: {
+    "5 February 1818" => {
+      name: "Charles John",
+      dynasty: "Bernadotte",
+      birth: "26 January 1763",
+      death: "8 March 1844",
+      culture: :frankish,
+      # Went Church of Sweden from Catholic
+    },
+    "8 March 1844" => {
+      name: "Oscar",
+      dynasty: "Bernadotte",
+      birth: "26 January 1763",
+      death: "8 March 1844",
+      father: "Charles John",
+    },
+    "8 July 1859" => {
+      name: "Charles",
+      dynasty: "Bernadotte",
+      birth: "May 1826",
+      death: "8 September 1872",
+      father: "Oscar 1"
+    },
     "1872.9.18" => {
       name: "Oscar",
       dynasty: "Bernadotte",
       birth: "1829.1.21",
       death: "1907.12.8",
+      father: "Oscar 1"
     },
     "1907.12.8" => {
       name: "Gustaf",
       dynasty: "Bernadotte",
       birth: "1858.6.16",
       death: "1950.10.29",
-      father: "Oscar",
+      father: "Oscar 2",
     },
     "1950.10.29" => {
       name: "Gustaf Adolf",
@@ -483,6 +555,17 @@ ModernTimesDatabase::HOLDERS = {
     "26 May 2014"     => {name: "Narendra", dynasty: "Modi", birth: "1950", death: :never},
   },
   e_spain: {
+    "17 September 1665" => {name: "Charles", dynasty: "Habsburg", birth: "6 November 1661", death: "1 November 1700"},
+    "16 November 1700"  => {name: "Philip", dynasty: "Bourbon"},
+    "14 January 1724"   => {name: "Louis", dynasty: "Bourbon", father: "Philip 1"},
+    "6 September 1724"  => {use: "Philip 1"},
+    "9 July 1746"       => {name: "Ferdinand", dynasty: "Bourbon", father: "Philip 1"},
+    "10 August 1759"    => {name: "Charles", dynasty: "Bourbon", father: "Philip 1"},
+    "14 December 1788"  => {name: "Charles", dynasty: "Bourbon", father: "Charles 2"},
+    "19 March 1808"     => {name: "Ferdinand", dynasty: "Bourbon", father: "Charles 3"},
+    "6 June 1808"       => {name: "Joseph", dynasty: "Bonaparte"},
+    "11 December 1813"  => {use: "Ferdinand 2"},
+    "29 September 1833" => {name: "Isabella", dynasty: "Bourbon", female: true, father: "Ferdinand 2"},
     "16 November 1870" => {name: "Amadeo", dynasty: "Savoy", birth: "30 May 1845", death: "18 January 1890"},
     "29 December 1874" => {name: "Alfonso", dynasty: "Bourbon", birth: "28 November 1857", death: "25 November 1885"},
     "17 May 1886"      => {name: "Alfonso", dynasty: "Bourbon", birth: "17 May 1886", death: "28 February 1941"},
@@ -565,7 +648,7 @@ ModernTimesDatabase::HOLDERS = {
     "30 April 2013" => {name: "William-Alexander", dynasty: "Orange-Nassau", mother: "Beatrix 1", birth: "27 April 1967"},
   },
   d_flanders: {
-    "21 July 1831" => {name: "Leopold", dynasty: "Saxe-Coburg and Gotha", birth: "16 December 1790", death: "10 December 1865"},
+    belgium_independence: {name: "Leopold", dynasty: "Saxe-Coburg and Gotha", birth: "16 December 1790", death: "10 December 1865"},
     "10 December 1865" => {name: "Leopold", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 1", birth: "9 April 1835", death: "17 December 1909"},
     # nephew of Leopold 2, can't model that yet
     "17 December 1909" => {name: "Albert", dynasty: "Saxe-Coburg and Gotha", birth: "8 April 1875", death: "17 February 1934"},
