@@ -214,7 +214,7 @@ class ModernTimesGameModification < CK2GameModification
     unless @regional_vassals[[liege, duchy]]
       @regional_vassals[[liege, duchy]] = []
       # We need to break long stretches of time into 15 year fragments
-      @db.liege_has_land_in_active(liege, duchy).each do |s,e|
+      @db.liege_has_land_in_active(liege, duchy).to_list.each do |s,e|
         xe = e || @db.resolve_date(:title_holders_until)
         while true
           # Always liege religion but could be local culture
@@ -362,10 +362,10 @@ class ModernTimesGameModification < CK2GameModification
             raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
           end
           # We need holders for all independent titles
-          warn "Needs holders: #{title} #{@db.time_active[title].map{|ds| ds.map{|d| d ? d.to_s_px : "" }.join("..")}.join(" ")}"
+          warn "Needs holders: #{title} #{@db.time_active[title]}"
           holders = []
           # We need to break long stretches of time into 15 year fragments
-          @db.time_active[title].each do |s,e|
+          @db.time_active[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true
               holders << [s, {
@@ -403,6 +403,9 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_defines!
     patch_mod_file!("common/defines.txt") do |node|
+      ### History testing
+      # node["start_date"]      = Date.parse("1700.1.1")
+      ### Actual start
       node["start_date"]      = Date.parse("1900.1.1")
       node["last_start_date"] = Date.parse("2015.12.31")
       node["end_date"]        = Date.parse("2999.12.31")
@@ -702,6 +705,20 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_bookmarks!
     bookmarks = [
+      ### History files testing:
+
+      # "1700.1.1",
+      # "1750.1.1",
+      # "1780.1.1",
+      # "1820.1.1",
+      # "1850.1.1",
+      # "1890.1.1",
+      # "1900.1.1",
+      # "1920.8.10",
+      # "1945.5.8",
+      # "2015.9.1",
+
+      ### Actual bookmarks
       "1900.1.1",   # earliest date
       "1914.6.28",  # assassination of archduke Franz Ferdinand
       "1920.8.10",  # treaty of Sevres

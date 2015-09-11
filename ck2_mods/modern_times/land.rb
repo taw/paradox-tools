@@ -22,13 +22,14 @@ ModernTimesDatabase::LAND = {
 
   d_savoie:         { forever_ago: "k_burgundy" },
   d_upper_burgundy: { forever_ago: "k_burgundy" },
+  k_france:     { forever_ago: "e_france" },
+  k_aquitaine:  { forever_ago: "e_france" },
 
   # FIXME: Everything that uses start: needs fixing
   # FIXME: Avignon was Papal for a while, also Savoy etc.
   # FIXME: British Minorca
+  # TODO: Polish Vilnius, Memel crisis, Munich agreement / Sudetenland
 
-  k_france:     { start: "e_france" },
-  k_aquitaine:  { start: "e_france" },
   d_provence:   { start: "e_france" },
   d_dauphine:   { start: "e_france" },
   d_burgundy:   { start: "e_france" },
@@ -60,7 +61,6 @@ ModernTimesDatabase::LAND = {
   d_esthonia:    { start: "e_russia", end_ww1: "d_esthonia", annexation_estonia: "e_russia", fall_soviet_union: "d_esthonia" },
   d_livonia:     { start: "e_russia", end_ww1: "d_esthonia", annexation_estonia: "e_russia", fall_soviet_union: "d_esthonia" },
 
-  # TODO: Polish Vilnius, Memel crisis
   d_lithuanians: { start: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
   c_zhmud:     { start: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
   c_memel:     { start: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
