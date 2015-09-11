@@ -35,7 +35,16 @@ class MultiRange
   end
   def -(other)
     other = other.to_multi_range
-    raise "NotImplementedYet"
+    MultiRange.new do |points|
+      to_list.each do |s,e|
+        points << [s ? 0 : -1, s,  1]
+        points << [e ? 0 :  1, e, -1]
+      end
+      other.to_list.each do |s,e|
+        points << [s ? 0 : -1, s, -1]
+        points << [e ? 0 :  1, e,  1]
+      end
+    end
   end
 
   # This only works for finite values
@@ -74,9 +83,9 @@ private
     end
     point_totals.sort.each do |(c,v), diff|
       next if diff == 0
-      cuts << [c,v] if cover == 0 and diff > 0
+      cuts << [c,v] if diff > 0 and cover <= 0 and cover + diff >  0
+      cuts << [c,v] if diff < 0 and cover >  0 and cover + diff <= 0
       cover += diff
-      cuts << [c,v] if diff < 0 and cover == 0
     end
     @points = cuts.map{|(_,v)| v}
   end
