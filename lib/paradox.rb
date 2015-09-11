@@ -5,6 +5,7 @@ require_relative "property_list"
 require_relative "paradox_game"
 require_relative "paradox_mod_file"
 require_relative "paradox_mod_builder"
+require_relative "multi_range"
 
 class Date
   # Default inspect is just really stupid
