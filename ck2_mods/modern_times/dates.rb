@@ -1,7 +1,14 @@
 module ModernTimesDatabase::Dates
   # Easy dates
   @dates = {
-    start: "1900.1.1",
+    forever_ago: "1700.1.1", # No plans to go back earlier than this
+    start: "1900.1.1", # This value will go back in time eventually, avoid using it
+
+
+    treaty_of_utrech: "1713.4.1", # "March and April 1713"
+
+
+
     title_holders_until: "2020.12.31", # how far to generate title holders
     end_of_times: "9999.12.31", # Just for some calculations, not used in the mod itself
     ireland_independence: "1921.12.6",

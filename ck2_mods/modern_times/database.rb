@@ -8,8 +8,10 @@ class ModernTimesDatabase
     @builder = builder
 
     @land = {}
+    min_date = resolve_date(:start)
     ModernTimesDatabase::LAND.each do |title, ownership|
-      @land[title.to_s] = ownership.map{|k,v| [resolve_date(k), v.to_s] }
+      ownership = ownership.map{|k,v| [[min_date, resolve_date(k)].max, v.to_s] }
+      @land[title.to_s] = ownership.reverse.uniq(&:first).reverse
     end
 
     @titles = {}
