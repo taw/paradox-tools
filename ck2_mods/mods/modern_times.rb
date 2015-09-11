@@ -35,8 +35,8 @@ class CharacterManager
       "name", "Bob",
       "religion", "cathar",
       "culture", "bohemian",
-      Date.parse("1700.1.1"), PropertyList["birth", Date.parse("1700.1.1")],
-      Date.parse("1701.1.1"), PropertyList["death", Date.parse("1701.1.1")],
+      Date.parse("1600.1.1"), PropertyList["birth", Date.parse("1600.1.1")],
+      Date.parse("1601.1.1"), PropertyList["death", Date.parse("1601.1.1")],
     ]
     id
   end
