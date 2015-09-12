@@ -13,7 +13,16 @@ module ModernTimesDatabase::Dates
     cyprus_convention: "1878.6.4",
     british_egypt: "1882.9.1",
 
+    fall_dzungar: "1758.1.1",
     belgium_independence: "1831.7.21", # Actually crowning of Leopold
+
+    german_unification: "18 January 1871",
+    italy_unification: "17 March 1861",
+    poland_1_partition: "September 22, 1772",
+    poland_2_partition: "January 23, 1793",
+    poland_3_partition: "October 24, 1795",
+    silesia_prussian: "July 28, 1742",
+    treaty_of_nystad: "10 September 1721",
 
     ireland_independence: "1921.12.6",
     cyprus_independence: "1960.10.1",
@@ -32,7 +41,9 @@ module ModernTimesDatabase::Dates
     anschluss: "1938.3.12",
     north_cyprus_invasion: "1974.8.18",
 
+    algeria_french: "1830.7.5",
     algeria_indepnedence: "1962.4.8",
+    tunisia_french: "1881.5.12",
     tunisia_independence: "1956.3.20",
     libya_italian: "1912.10.18", # First Treaty of Lausanne
     libya_independence: "1951.12.24",

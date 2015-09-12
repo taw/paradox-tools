@@ -261,7 +261,8 @@ ModernTimesDatabase::TITLES = {
   k_khotan: {
     culture: :uyghur, # China, but autonomous region is mostly Uyghur
     religion: :buddhist,
-    name: "Xinjiang / Xinjiang",
+    # Qing conquest
+    name: {forever_ago: "Dzungar / Dzungarian", fall_dzungar: "Xinjiang / Xinjiang"},
   },
   d_esthonia: {
     culture: :ugricbaltic,
@@ -458,4 +459,14 @@ ModernTimesDatabase::TITLES = {
     culture: :persian,
     religion: :shiite,
   },
+  k_pomerania: {
+    culture: :german,
+    religion: :waldensian,
+    name: "Prussia / Prussian",
+  },
+  e_wendish_empire: {
+    culture: :polish,
+    religion: :catholic,
+    name: "Commonwealth / Commonwealth",
+  }
 }
