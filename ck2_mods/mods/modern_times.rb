@@ -243,11 +243,15 @@ class ModernTimesGameModification < CK2GameModification
     node.add! Date.parse("1500.1.1"), PropertyList["holder", @characters_reset.add_reset(title)]
 
     land = @db.county_ownership(title)
+    land_start = land && land[0][0]
 
     unless land
       # This is really a bug, warn here once we get nontrivial amount of land covered
-      puts "No idea what to do with #{@map.landed_titles_lookup[title].reverse.join(" / ")}"
+      @warnings << "No idea what to do with #{@map.landed_titles_lookup[title].reverse.join(" / ")}"
       return
+    end
+    if land_start > @db.min_date
+      @warnings << "History for #{@map.landed_titles_lookup[title].reverse.join(" / ")} only from #{land_start.to_s_px}"
     end
 
     land.size.times do |i|
@@ -358,7 +362,7 @@ class ModernTimesGameModification < CK2GameModification
         title    = title
         holders  = @db.holders[title] || {}
         unless @db.title_needs_extra_holders[title].empty?
-          warn "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
+          @warnings << "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
           @db.title_needs_extra_holders[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true
@@ -376,7 +380,6 @@ class ModernTimesGameModification < CK2GameModification
             holders[e] ||= nil if e
           end
         end
-
         @holders[title] = []
         holders.sort.each do |date, holder|
           if holder.nil?
@@ -400,10 +403,13 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_defines!
     patch_mod_file!("common/defines.txt") do |node|
-      ### History testing
-      # node["start_date"]      = Date.parse("1700.1.1")
-      ### Actual start
-      node["start_date"]      = Date.parse("1900.1.1")
+      if ENV["DEBUG_HISTORY"]
+        ### History testing
+        node["start_date"]      = Date.parse("1700.1.1")
+      else
+        ### Actual start
+        node["start_date"]      = Date.parse("1900.1.1")
+      end
       node["last_start_date"] = Date.parse("2015.12.31")
       node["end_date"]        = Date.parse("2999.12.31")
     end
@@ -727,12 +733,12 @@ class ModernTimesGameModification < CK2GameModification
 
     bookmarks = [
       ### History files testing:
-      # ["1700.1.1", "Test 1700"],
-      # ["1750.1.1", "Test 1750"],
-      # ["1780.1.1", "Test 1780"],
-      # ["1820.1.1", "Test 1820"],
-      # ["1850.1.1", "Test 1850"],
-      # ["1890.1.1", "Test 1890"],
+      ["1700.1.1", "Test 1700"],
+      ["1750.1.1", "Test 1750"],
+      ["1780.1.1", "Test 1780"],
+      ["1820.1.1", "Test 1820"],
+      ["1850.1.1", "Test 1850"],
+      ["1890.1.1", "Test 1890"],
 
       ### Actual bookmarks, must have 5 key bookmarks
       ["1900.1.1",   "New Century", true],
@@ -749,6 +755,7 @@ class ModernTimesGameModification < CK2GameModification
       node.delete_if{true}
       bookmarks.each do |date, name, key|
         date = Date.parse(date)
+        next unless ENV["DEBUG_HISTORY"] or date >= Date.parse("1900.1.1")
         if key
           bm_code, splash_code = key_bookmarks.shift
         else
@@ -780,7 +787,13 @@ class ModernTimesGameModification < CK2GameModification
       )
   end
 
+  def warning(msg)
+    @warnings << msg
+  end
+
   def apply!
+    @warnings = []
+
     # Order of transformations matters
     setup_defines!
     setup_bookmarks!
@@ -807,5 +820,6 @@ class ModernTimesGameModification < CK2GameModification
     change_localization!
 
     # report_dynasty_conflict_stats!
+    puts @warnings.sort
   end
 end

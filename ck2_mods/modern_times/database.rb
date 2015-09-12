@@ -7,10 +7,11 @@ class ModernTimesDatabase
   end
 
   def min_date
-    # DEBUG
-    # @min_date ||= resolve_date(:forever_ago)
-    # RELEASE
-    @min_date ||= resolve_date(:start)
+    if ENV["DEBUG_HISTORY"]
+      @min_date ||= resolve_date(:forever_ago)
+    else
+      @min_date ||= resolve_date(:start)
+    end
   end
 
   def land
@@ -176,7 +177,9 @@ class ModernTimesDatabase
     unless @title_needs_extra_holders
       time_limit = MultiRange.new([min_date, nil])
       @title_needs_extra_holders = Hash.new do |ht,title|
-        ht[title] = (title_has_land[title] - (title_has_holder[title] || MultiRange.new)) & time_limit
+        has_land = (title_has_land[title] || MultiRange.new)
+        has_holder = (title_has_holder[title] || MultiRange.new)
+        ht[title] = (has_land - has_holder) & time_limit
       end
     end
     @title_needs_extra_holders
