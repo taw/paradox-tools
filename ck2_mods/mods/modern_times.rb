@@ -716,90 +716,68 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_bookmarks!
+    # Sadly can't be modded and first two are DLC-locked
+    key_bookmarks = [
+      "BM_CHARLEMAGNE", "DARK_AGES",
+      "BM_THE_OLD_GODS", "VIKING_ERA",
+      "BM_FATE_OF_ENGLAND", "EARLY_MED_INFO",
+      "BM_THE_MONGOLS", "HIGH_MED",
+      "BM_100_YEARS_WAR", "LATE_MED",
+    ]
+
     bookmarks = [
       ### History files testing:
+      # ["1700.1.1", "Test 1700"],
+      # ["1750.1.1", "Test 1750"],
+      # ["1780.1.1", "Test 1780"],
+      # ["1820.1.1", "Test 1820"],
+      # ["1850.1.1", "Test 1850"],
+      # ["1890.1.1", "Test 1890"],
 
-      # "1700.1.1",
-      # "1750.1.1",
-      # "1780.1.1",
-      # "1820.1.1",
-      # "1850.1.1",
-      # "1890.1.1",
-      # "1900.1.1",
-      # "1920.8.10",
-      # "1945.5.8",
-      # "2015.9.1",
-
-      ### Actual bookmarks
-      "1900.1.1",   # earliest date
-      "1914.6.28",  # assassination of archduke Franz Ferdinand
-      "1920.8.10",  # treaty of Sevres
-      "1938.3.12",  # aschluss of Austria
-      "1945.5.8",   # cold war begins
-      "1967.6.10",  # six day war
-      "1975.1.1",   # nothing special
-      "1991.12.26", # fall of Soviet Union
-      "1999.12.31", # nothing special
-      "2015.9.1",   # today
+      ### Actual bookmarks, must have 5 key bookmarks
+      ["1900.1.1",   "New Century", true],
+      ["1914.6.28",  "The Great War"],
+      ["1920.8.10",  "Treaty of Sevres", true],
+      ["1938.3.12",  "Anschluss of Austria"],
+      ["1945.5.8",   "Cold War", true],
+      ["1975.1.1",   "Decolonization", true],
+      ["1991.12.26", "Fall of Soviet Union"],
+      ["2015.9.1",   "Modern Times", true],
     ]
     # Bookmark tags are unfortunately magical
     patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
-      node.each do |_, bookmark|
-        bookmark.delete "character"
-        bookmark["date"] = Date.parse(bookmarks.shift) unless bookmarks.empty?
+      node.delete_if{true}
+      bookmarks.each do |date, name, key|
+        date = Date.parse(date)
+        if key
+          bm_code, splash_code = key_bookmarks.shift
+        else
+          bm_code, splash_code = date.strftime("BM_%Y_%m_%d"), nil
+        end
+        bm_desc = "#{bm_code}_DESC"
+        node.add! "bookmark", PropertyList[
+          "name", bm_code,
+          "desc", bm_desc,
+          "date", date,
+        ]
+        localization!("ZZ vanilla overrides",
+          bm_code => name,
+          bm_desc => "",
+        )
+        if splash_code
+          localization!("ZZ vanilla overrides",
+            splash_code => name,
+            "#{splash_code}_INFO" => "",
+          )
+        end
       end
     end
   end
 
-  # Hopefully adding out own will work so we don't need to rewrite all files
-  # This way is much more compatible
-  #
-  # Note: BM_BM_ is vanilla issue
   def change_localization!
     localization!("ZZ vanilla overrides",
       "romanian" => "Romanian", # Not Vlach
-
-      "BM_CHARLEMAGNE"       => "New Century",
-      "BM_THE_OLD_GODS"      => "The Great War",
-      "BM_FATE_OF_ENGLAND"   => "Treaty of Sevres",
-      "BM_NORMAN_CONQUEST"   => "Anschlus of Austria",
-      "BM_KOMNENOS_DYNASTY"  => "The Cold War",
-      "BM_THIRD_CRUSADE"     => "Six Day War",
-      "BM_THE_LATIN_EMPIRE"  => "Decolonization",
-      "BM_THE_MONGOLS"       => "Fall of Soviet Union",
-      "BM_RISE_OF_THE_HANSA" => "Y2K Crisis",
-      "BM_100_YEARS_WAR"     => "Modern Times",
-
-      "BM_BM_CHARLEMAGNE_DESC"    => "",
-      "BM_THE_OLD_GODS_DESC"      => "",
-      "BM_FATE_OF_ENGLAND_DESC"   => "",
-      "BM_NORMAN_CONQUEST_DESC"   => "",
-      "BM_KOMNENOS_DYNASTY_DESC"  => "",
-      "BM_THIRD_CRUSADE_DESC"     => "",
-      "BM_THE_LATIN_EMPIRE_DESC"  => "",
-      "BM_THE_MONGOLS_DESC"       => "",
-      "BM_RISE_OF_THE_HANSA_DESC" => "",
-      "BM_100_YEARS_WAR_DESC"     => "",
-
-      # FIXME: It would be way better to set key ones as:
-      # * 1914
-      # * 1920
-      # * 1945
-      # * 1991
-      #
-      # But we abolutely need 1900 and 2015, so maybe skip 1991?
-      # Anyway, something to consider much later
-      "DARK_AGES"  => "New Century",
-      "VIKING_ERA" => "The Great War",
-      "EARLY_MED"  => "Treaty of Sevres",
-      "HIGH_MED"   => "Fall of Soviet Union",
-      "LATE_MED"   => "Modern Times",
-      "DARK_AGES_INFO"  => "",
-      "VIKING_ERA_INFO" => "",
-      "EARLY_MED_INFO"  => "",
-      "HIGH_MED_INFO"   => "",
-      "LATE_MED_INFO"   => "",
-    )
+      )
   end
 
   def apply!

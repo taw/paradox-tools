@@ -167,7 +167,7 @@ ModernTimesDatabase::LAND = {
   d_silesia: {forever_ago: "e_carpathia", silesia_prussian: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
   c_cieszyn: {forever_ago: "e_carpathia", silesia_prussian: "k_pomerania", german_unification: "e_germany", silesian_uprising: "k_poland"},
 
-  c_marienburg:   { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany"},
+  c_marienburg:   { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
   d_prussia:      { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
   c_scalovia:     { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
   c_sambia:       { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
@@ -191,10 +191,10 @@ ModernTimesDatabase::LAND = {
 
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
-  # FIXME: Avignon was Papal for a while, also Savoy etc.
+  # FIXME: Avignon was Papal for a while, also do Savoy etc.
   # FIXME: British Minorca
   # TODO: Polish Vilnius, Memel crisis, Munich agreement / Sudetenland
-  # FIXME: Cieszyn should be AUstrian
+  # FIXME: Cieszyn should be Austrian
 
   d_provence:   { start: "e_france" },
   d_dauphine:   { start: "e_france" },
