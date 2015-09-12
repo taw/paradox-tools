@@ -358,14 +358,14 @@ class ModernTimesGameModification < CK2GameModification
         title    = title
         holders  = @db.holders[title]
         unless holders
-          unless @db.time_active[title]
+          unless @db.title_has_land[title]
             raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
           end
           # We need holders for all independent titles
-          warn "Needs holders: #{title} #{@db.time_active[title]}"
+          warn "Needs holders: #{title} #{@db.title_has_land[title]}"
           holders = []
           # We need to break long stretches of time into 15 year fragments
-          @db.time_active[title].to_list.each do |s,e|
+          @db.title_has_land[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true
               holders << [s, {

@@ -93,27 +93,27 @@ class ModernTimesDatabase
     @holders
   end
 
-  def time_active
-    unless @time_active
-      @time_active = {}
+  def title_has_land
+    unless @title_has_land
+      @title_has_land = {}
       # We don't care what they own, just when they own nonzero amount of land
       # Assume all titles actually resolve, and aren't shadowed by lower level titles or anything like that
       land.each do |area, ownership|
         ownership.size.times do |i|
           start_date, start_owner = ownership[i]
-          @time_active[start_owner] ||= []
+          @title_has_land[start_owner] ||= []
           if i == ownership.size - 1
-            @time_active[start_owner] << [start_date, nil]
+            @title_has_land[start_owner] << [start_date, nil]
           else
-            @time_active[start_owner] << [start_date, ownership[i+1][0]]
+            @title_has_land[start_owner] << [start_date, ownership[i+1][0]]
           end
         end
       end
-      @time_active.each do |title, ranges|
-        @time_active[title] = MultiRange.new(*ranges)
+      @title_has_land.each do |title, ranges|
+        @title_has_land[title] = MultiRange.new(*ranges)
       end
     end
-    @time_active
+    @title_has_land
   end
 
   # FIXME: This system is nearly as awful a previous one...
@@ -154,22 +154,31 @@ class ModernTimesDatabase
     ModernTimesDatabase::Dates[date]
   end
 
+  def title_has_holder
+    unless @title_has_holder
+      @title_has_holder = {}
+      holders.keys.each do |title|
+        # After writing MultiRange library, I'd have hoped for better API than this...
+        holder_times = holders[title].map{|d,h| [d,!!h]}
+        @title_has_holder[title] = MultiRange.new(
+          *holder_times.size.times.map{|i|
+            d0, active0 = holder_times[i]
+            d1, _       = holder_times[i+1]
+            [d0, d1] if active0
+          }.select(&:itself)
+        )
+      end
+    end
+    @title_has_holder
+  end
+
 private
 
   def validate_holders!
     holders.keys.each do |title|
       time_limit = MultiRange.new([min_date, nil])
-
-      has_land = time_active[title] & time_limit
-      # After writing MultiRange library, I'd have hoped for better API than this...
-      holder_times = holders[title].map{|d,h| [d,!!h]}
-      has_holder = MultiRange.new(
-        *holder_times.size.times.map{|i|
-          d0, active0 = holder_times[i]
-          d1, _       = holder_times[i+1]
-          [d0, d1] if active0
-        }.select(&:itself)
-      ) & time_limit
+      has_land   = title_has_land[title] & time_limit
+      has_holder = title_has_holder[title] & time_limit
       # d_sunni is one such title as it is territorial for ISIS, but non-territorial for Ottoman caliphate
       if has_land != has_holder
         warn "Title #{title} has_land: #{has_land} != has_holder #{has_holder}"
