@@ -12,6 +12,8 @@ module ModernTimesDatabase::Dates
     eastern_rumelia_unification: "1885.9.18",
     cyprus_convention: "1878.6.4",
     british_egypt: "1882.9.1",
+    treaty_of_passarowitz: "21 July 1718",
+    greece_independence: "7 May 1832",
 
     fall_dzungar: "1758.1.1",
     belgium_independence: "1831.7.21", # Actually crowning of Leopold
@@ -21,12 +23,22 @@ module ModernTimesDatabase::Dates
     poland_1_partition: "September 22, 1772",
     poland_2_partition: "January 23, 1793",
     poland_3_partition: "October 24, 1795",
+    duchy_warsaw: "22 July, 1807",
+    duchy_warsaw_expansion: "14 October 1809",
+    congress_of_vienna: "9 June, 1815",
+    avignon_annexation: "19 February 1797", # Treaty of Tolentino, de facto 12 September 1791
     silesia_prussian: "July 28, 1742",
     treaty_of_nystad: "10 September 1721",
+    malta_british: "4 September 1800",
+    french_corsica: "May 15, 1768",
+    crete_independence: "13 December 1898",
+    convention_of_constantinople: "2 July 1881",
 
     ireland_independence: "1921.12.6",
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",
+
+    sri_lanka_british: "8 February 1795",
     sri_lanka_independence: "1948.2.4",
     maldives_independence: "1965.7.26",
     india_independence: "1947.8.15",

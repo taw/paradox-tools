@@ -280,7 +280,7 @@ ModernTimesDatabase::HOLDERS = {
       name: "Oscar",
       dynasty: "Bernadotte",
       birth: "26 January 1763",
-      death: "8 March 1844",
+      death: "8 July 1859",
       father: "Charles John",
     },
     "8 July 1859" => {
