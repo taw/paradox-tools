@@ -661,17 +661,17 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_de_jure_map!
-    patch_mod_file!("history/titles/k_venice.txt") do |node|
-      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "e_italy"]
-    end
-    patch_mod_file!("history/titles/k_sicily.txt") do |node|
-      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "e_italy"]
-    end
-    patch_mod_file!("history/titles/d_aragon.txt") do |node|
-      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "k_aragon"]
-    end
-    patch_mod_file!("history/titles/d_granada.txt") do |node|
-      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "k_castille"]
+    {
+      "k_venice" => "e_italy",
+      "k_sicily" => "e_italy",
+      "d_aragon" => "k_aragon",
+      "d_granada" => "k_castille",
+      "d_brandenburg" => "k_pomerania",
+      "d_prussia" => "k_pomerania",
+    }.each do |title, liege|
+      patch_mod_file!("history/titles/#{title}.txt") do |node|
+        node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", liege]
+      end
     end
   end
 
