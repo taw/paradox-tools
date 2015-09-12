@@ -356,32 +356,29 @@ class ModernTimesGameModification < CK2GameModification
       @holders  = {}
       @db.titles.each do |title, data|
         title    = title
-        holders  = @db.holders[title]
-        unless holders
-          unless @db.title_has_land[title]
-            raise "Title #{title} is not active in any era. You need to specify its holders manually in such case"
-          end
-          # We need holders for all independent titles
-          warn "Needs holders: #{title} #{@db.title_has_land[title]}"
-          holders = []
-          # We need to break long stretches of time into 15 year fragments
-          @db.title_has_land[title].to_list.each do |s,e|
+        holders  = @db.holders[title] || {}
+        unless @db.title_needs_extra_holders[title].empty?
+          warn "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
+          @db.title_needs_extra_holders[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true
-              holders << [s, {
+              holders[s] = {
                 culture: data[:culture],
                 religion: data[:religion],
                 female: :maybe,
-              }]
+              }
               s >>= (12*15) # 35..50 years
               break if s >= xe
             end
-            holders << [e, nil] if e
+            # This can mean two things:
+            # * title ends (set to nil)
+            # * historical rulers begin (don't set to nil)
+            holders[e] ||= nil if e
           end
         end
 
         @holders[title] = []
-        holders.each do |date, holder|
+        holders.sort.each do |date, holder|
           if holder.nil?
             @holders[title] << [date, 0]
           elsif holder[:use]

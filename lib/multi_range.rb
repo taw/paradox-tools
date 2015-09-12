@@ -65,6 +65,10 @@ class MultiRange
     to_list == other.to_list
   end
 
+  def empty?
+    @points.empty?
+  end
+
   def to_s
     to_list.map{|a,b| "#{a}..#{b}"}.join(" ")
   end

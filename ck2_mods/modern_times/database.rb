@@ -172,6 +172,16 @@ class ModernTimesDatabase
     @title_has_holder
   end
 
+  def title_needs_extra_holders
+    unless @title_needs_extra_holders
+      time_limit = MultiRange.new([min_date, nil])
+      @title_needs_extra_holders = Hash.new do |ht,title|
+        ht[title] = (title_has_land[title] - (title_has_holder[title] || MultiRange.new)) & time_limit
+      end
+    end
+    @title_needs_extra_holders
+  end
+
 private
 
   def validate_holders!
@@ -180,9 +190,9 @@ private
       has_land   = title_has_land[title] & time_limit
       has_holder = title_has_holder[title] & time_limit
       # d_sunni is one such title as it is territorial for ISIS, but non-territorial for Ottoman caliphate
-      if has_land != has_holder
-        warn "Title #{title} has_land: #{has_land} != has_holder #{has_holder}"
-      end
+      # if has_land != has_holder
+      #   warn "Title #{title} has_land: #{has_land} != has_holder #{has_holder}"
+      # end
     end
   end
 
