@@ -9,6 +9,7 @@ ModernTimesDatabase::LAND = {
   c_roma:       { forever_ago: "k_papal_state" },
   c_algeciras:  { forever_ago: "e_spain", treaty_of_utrech: "e_britannia" },
   k_portugal:   { forever_ago: "k_portugal" },
+  c_goa:        { forever_ago: "k_portugal",  goa_annexation: "e_india" }, # 1505 or so
   e_spain:      { forever_ago: "e_spain" },
   c_canarias:   { forever_ago: "e_spain" },
   d_sjaelland:  { forever_ago: "k_denmark" },
@@ -22,9 +23,119 @@ ModernTimesDatabase::LAND = {
 
   d_savoie:         { forever_ago: "k_burgundy" },
   d_upper_burgundy: { forever_ago: "k_burgundy" },
-  k_france:     { forever_ago: "e_france" },
-  k_aquitaine:  { forever_ago: "e_france" },
+  k_france:         { forever_ago: "e_france" },
+  k_aquitaine:      { forever_ago: "e_france" },
+  c_boulogne:       { forever_ago: "e_france" },
+  c_artois:         { forever_ago: "e_france" },
+  c_guines:         { forever_ago: "e_france" },
 
+  c_faereyar:   { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
+  d_ostlandet:  { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
+  d_vestlandet: { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
+  d_trondelag:  { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
+
+  k_bohemia:      { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
+
+  d_nikaea:       { forever_ago: "e_seljuk_turks" },
+  c_byzantion:    { forever_ago: "e_seljuk_turks" },
+  d_armeniacon:   { forever_ago: "e_seljuk_turks" },
+  d_thracesia:    { forever_ago: "e_seljuk_turks" },
+  d_anatolia:     { forever_ago: "e_seljuk_turks" },
+  d_charsianon:   { forever_ago: "e_seljuk_turks" },
+  d_trebizond:    { forever_ago: "e_seljuk_turks" },
+  d_paphlagonia:  { forever_ago: "e_seljuk_turks" },
+  c_abydos:       { forever_ago: "e_seljuk_turks" },
+  d_cibyrrhaeot:  { forever_ago: "e_seljuk_turks" },
+  d_mesopotamia:  { forever_ago: "e_seljuk_turks" },
+  d_coloneia:     { forever_ago: "e_seljuk_turks" },
+  d_armenia_minor:{ forever_ago: "e_seljuk_turks" },
+  c_ani:          { forever_ago: "e_seljuk_turks" },
+  c_vaspurakan:   { forever_ago: "e_seljuk_turks" },
+  c_tao:          { forever_ago: "e_seljuk_turks" },
+  d_samos:        { forever_ago: "e_seljuk_turks" },
+  d_edessa:       { forever_ago: "e_seljuk_turks"},
+  c_amida:        { forever_ago: "e_seljuk_turks"},
+  c_kurdistan:    { forever_ago: "e_seljuk_turks"}, # Maybe Iraq, but then Turkey wouldn't border Iran any more
+  d_thrace:       { forever_ago: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
+
+  c_aland:      { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
+  d_finland:    { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
+  c_kemi:       { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
+
+  k_mauretania:{ forever_ago: "k_mauretania", morocco_protectorate: "e_france", french_morocco_independence: "k_mauretania" },
+  c_cebta:     { forever_ago: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
+  c_tangiers:  { forever_ago: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
+  c_el_rif:    { forever_ago: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
+
+  k_perm:           { forever_ago: "e_russia" },
+  k_volga_bulgaria: { forever_ago: "e_russia" },
+  k_rus:            { forever_ago: "e_russia" },
+  d_alania:         { forever_ago: "e_russia" },
+
+  c_severin:    { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_dacia" },
+  c_tirgoviste: { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_dacia" },
+  c_turnu:      { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_dacia" },
+  c_constantia: { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_dacia" },
+
+  c_strymon:  { forever_ago: "e_seljuk_turks", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion" },
+  c_ochrid:   { forever_ago: "e_seljuk_turks", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion" },
+  c_belgrade: { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_serbia" },
+  d_rashka:   { forever_ago: "e_seljuk_turks", treaty_of_london: "k_serbia" },
+  c_rama:     { forever_ago: "e_seljuk_turks", treaty_of_london: "k_serbia" },
+  c_naissus:  { forever_ago: "e_seljuk_turks", treaty_of_london: "k_serbia" },
+
+  d_turnovo:      { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_bulgaria" },
+  c_karvuna:      { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_bulgaria" },
+  c_vidin:        { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_bulgaria" },
+  c_tyrnovo:      { forever_ago: "e_seljuk_turks", eastern_rumelia_unification: "k_bulgaria" },
+  c_mesembria:    { forever_ago: "e_seljuk_turks", eastern_rumelia_unification: "k_bulgaria" },
+
+  d_cyprus:     { forever_ago: "e_seljuk_turks", cyprus_convention: "e_britannia", cyprus_independence: "d_cyprus" },
+
+  d_alexandria: { forever_ago: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
+  d_cairo: { forever_ago: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
+  d_aswan: { forever_ago: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
+  d_damietta: { forever_ago: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
+
+  c_sinai: { forever_ago: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
+  c_farama: { forever_ago: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
+  :"c_el-arish"=> { forever_ago: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
+
+  c_beirut: { forever_ago: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
+  c_tyrus:  { forever_ago: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
+
+  c_eilat:   { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
+  c_negev:   { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
+  d_ascalon: { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
+  c_acre:    { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
+
+  c_hebron:    { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
+  c_jerusalem: { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
+
+  c_oromieh: { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+  d_baghdad: { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+  d_tigris:  { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+  d_basra:   { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+
+  c_mosul:   { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_suwaida: { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_druz:    { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_sinjar:  { forever_ago: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_tiberias:    { forever_ago: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", six_day_war: "k_israel" },
+  c_safed:       { forever_ago: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
+  c_tell_bashir: { forever_ago: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"  },
+  k_syria:       { forever_ago: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
+  d_jazira:      { forever_ago: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
+
+  k_persia:       { forever_ago: "e_persia" },
+  d_sistan:       { forever_ago: "e_persia" },
+  d_kermanshah:   { forever_ago: "e_persia" },
+  c_herat:        { forever_ago: "e_persia" },
+  c_zaranj:       { forever_ago: "e_persia" },
+  c_farrah:       { forever_ago: "e_persia" },
+  c_dailam:       { forever_ago: "e_persia", iranian_revolution: "d_hashshashin" },
+
+  ###########################################################################
   # FIXME: Everything that uses start: needs fixing
   # FIXME: Avignon was Papal for a while, also Savoy etc.
   # FIXME: British Minorca
@@ -33,27 +144,17 @@ ModernTimesDatabase::LAND = {
   d_provence:   { start: "e_france" },
   d_dauphine:   { start: "e_france" },
   d_burgundy:   { start: "e_france" },
-  c_boulogne:   { start: "e_france" },
-  c_artois:     { start: "e_france" },
-  c_guines:     { start: "e_france" },
   c_besancon:   { start: "e_france" },
 
   c_corsica:    { start: "e_france" },
-  d_cyprus:     { start: "e_britannia", cyprus_independence: "d_cyprus" },
   c_famagusta:  { start: "e_britannia", cyprus_independence: "d_cyprus", north_cyprus_invasion: "e_seljuk_turks" },
   c_malta:      { start: "e_britannia", malta_independence: "c_malta" },
   e_italy:      { start: "e_italy" },
   k_sicily:     { start: "e_italy" },
   k_venice:     { start: "e_italy" },
-  c_aland:      { start: "e_russia", finland_independence: "k_finland" },
-  d_finland:    { start: "e_russia", finland_independence: "k_finland" },
-  c_kemi:       { start: "e_russia", finland_independence: "k_finland" },
+
   c_savolaks:   { start: "e_russia", finland_independence: "k_finland" },
   c_kexholm:    { start: "e_russia", finland_independence: "k_finland" },
-  c_faereyar:   { start: "k_sweden", norway_independence: "k_norway" },
-  d_ostlandet:  { start: "k_sweden", norway_independence: "k_norway" },
-  d_vestlandet: { start: "k_sweden", norway_independence: "k_norway" },
-  d_trondelag:  { start: "k_sweden", norway_independence: "k_norway" },
 
   d_courland:    { start: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
   c_lettigalians:{ start: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
@@ -93,7 +194,6 @@ ModernTimesDatabase::LAND = {
   k_lanka:      { start: "e_britannia", sri_lanka_independence: "k_lanka" },
 
   e_deccan:     { start: "e_britannia", india_independence: "e_india" },
-  c_goa:        { start: "k_portugal",  goa_annexation: "e_india" },
   k_orissa:     { start: "e_britannia", india_independence: "e_india" },
   k_malwa:      { start: "e_britannia", india_independence: "e_india" },
   k_gujarat:    { start: "e_britannia", india_independence: "e_india" },
@@ -110,13 +210,11 @@ ModernTimesDatabase::LAND = {
   d_vanga:      { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
   d_varendra:   { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
 
-  k_rus:        { start: "e_russia" },
-  k_alania:     { start: "e_russia" },
-  k_perm:       { start: "e_russia" },
+  c_zaozerye:       { start: "e_russia" },
+  c_bezhetsky_verh: { start: "e_russia" },
   c_vodi:       { start: "e_russia" },
   c_semender:   { start: "e_russia" },
   c_derbent:    { start: "e_russia" },
-  k_volga_bulgaria: { start: "e_russia" },
   d_kola:       { start: "e_russia" },
   d_karelia:    { start: "e_russia" },
   c_tmutarakan: { start: "e_russia" },
@@ -193,7 +291,6 @@ ModernTimesDatabase::LAND = {
   d_silesia: {start: "e_germany", end_ww2: "k_poland"},
   c_cieszyn: {start: "e_germany", silesian_uprising: "k_poland"},
 
-  k_bohemia:      { start: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
   d_nyitra:       { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
   c_pressburg:    { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
   c_saris:        { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
@@ -215,11 +312,6 @@ ModernTimesDatabase::LAND = {
   c_zachlumia:    { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
   c_split:        { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
   c_usora:        { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
-
-  c_belgrade:     { start: "k_serbia" },
-  d_rashka:       { start: "e_seljuk_turks", treaty_of_london: "k_serbia" },
-  c_rama:         { start: "e_seljuk_turks", treaty_of_london: "k_serbia" },
-  c_naissus:      { start: "e_seljuk_turks", treaty_of_london: "k_serbia" },
 
   # More or less Alsace-Lorraine
   d_alsace:       { start: "e_germany", end_ww1: "e_france"},
@@ -245,51 +337,19 @@ ModernTimesDatabase::LAND = {
   c_euboia:      { start: "k_byzantium" },
   c_cephalonia:  { start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
   d_krete:       { start: "d_krete", treaty_of_london: "k_byzantium" }, # De facto Greek in 1908
+
   d_thessalonika:{ start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
   d_epirus:      { start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
   c_philippopolis:{ start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
   c_lesbos:       { start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
   c_chios:        { start: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
 
-  d_turnovo:      { start: "k_bulgaria" },
-  c_mesembria:    { start: "k_bulgaria" },
-  c_karvuna:      { start: "k_bulgaria" },
-  c_vidin:        { start: "k_bulgaria" },
 
   c_suenik:       { start: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
   d_armenia:      { start: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
   d_azerbaijan:   { start: "e_russia", end_ww1: "d_azerbaijan", annexation_azerbaijan: "e_russia", fall_soviet_union: "d_azerbaijan" },
   k_georgia:      { start: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
-  k_persia:       { start: "e_persia" },
-  d_sistan:       { start: "e_persia" },
-  d_kermanshah:   { start: "e_persia" },
-  c_herat:        { start: "e_persia" },
-  c_zaranj:       { start: "e_persia" },
-  c_farrah:       { start: "e_persia" },
-  c_dailam:       { start: "e_persia", iranian_revolution: "d_hashshashin" },
 
-  d_nikaea:       { start: "e_seljuk_turks" },
-  c_byzantion:    { start: "e_seljuk_turks" },
-  d_armeniacon:   { start: "e_seljuk_turks" },
-  d_thracesia:    { start: "e_seljuk_turks" },
-  d_anatolia:     { start: "e_seljuk_turks" },
-  d_charsianon:   { start: "e_seljuk_turks" },
-  d_trebizond:    { start: "e_seljuk_turks" },
-  d_paphlagonia:  { start: "e_seljuk_turks" },
-  c_abydos:       { start: "e_seljuk_turks" },
-  d_cibyrrhaeot:  { start: "e_seljuk_turks" },
-  d_mesopotamia:  { start: "e_seljuk_turks" },
-  d_coloneia:     { start: "e_seljuk_turks" },
-  d_armenia_minor:{ start: "e_seljuk_turks" },
-  c_ani:          { start: "e_seljuk_turks" },
-  c_vaspurakan:   { start: "e_seljuk_turks" },
-  c_tao:          { start: "e_seljuk_turks" },
-  d_samos:        { start: "e_seljuk_turks" },
-  d_edessa:       { start: "e_seljuk_turks"},
-  c_amida:        { start: "e_seljuk_turks"},
-  c_kurdistan:    { start: "e_seljuk_turks"}, # Maybe Iraq, but then Turkey wouldn't border Iran any more
-
-  d_thrace:      { start: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
   c_adrianopolis:{ start: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
   c_smyrna:      { start: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
 
@@ -314,50 +374,16 @@ ModernTimesDatabase::LAND = {
   c_bost:        { start: "k_afghanistan" },
   c_mandesh:     { start: "k_afghanistan" },
 
-  c_oromieh: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-  d_baghdad: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-  d_tigris:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-  d_basra:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-
-  c_mosul:   { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_suwaida: { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_druz:    { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_sinjar:  { start: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-
   c_kuwait:  { start: "e_britannia", kuwait_independence: "c_kuwait" },
   c_bahrein: { start: "e_britannia", bahrain_independence: "c_bahrein" },
 
-  d_alexandria: { start: "e_britannia", egypt_independence: "k_egypt" },
-  d_cairo: { start: "e_britannia", egypt_independence: "k_egypt" },
-  d_aswan: { start: "e_britannia", egypt_independence: "k_egypt" },
-  d_damietta: { start: "e_britannia", egypt_independence: "k_egypt" },
 
-  c_sinai: { start: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
-  c_farama: { start: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
-  :"c_el-arish"=> { start: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
-
-  c_beirut: { start: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
-  c_tyrus:  { start: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
-
-  c_eilat:   { start: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
-  c_negev:   { start: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
-  d_ascalon: { start: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
-  c_acre:    { start: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
-
-  c_hebron:    { start: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
-  c_jerusalem: { start: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
-
-  c_tiberias: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", six_day_war: "k_israel" },
-  c_safed: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
-  c_tell_bashir: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"  },
-  k_syria: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
-  d_jazira: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
-
-  d_syria:   { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
-  c_palmyra: { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
-  c_asas:    { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
+  d_syria:       { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
+  c_palmyra:     { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
+  c_asas:        { start: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
 
   d_oultrejourdain: { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+
   c_petra:   { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
   c_maan:    { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
   c_amman:   { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
@@ -404,10 +430,6 @@ ModernTimesDatabase::LAND = {
   c_aoudaghost: { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
   k_nubia:      { start: "e_britannia", sudan_independence: "k_nubia" },
 
-  c_severin:    { start: "k_dacia" },
-  c_tirgoviste: { start: "k_dacia" },
-  c_turnu:      { start: "k_dacia" },
-  c_constantia: { start: "k_dacia" },
 
   # "It was the capital of the Kingdom of Hungary's Bereg County up until 1919 and between 1938-1944. From 1919 until 1938 it was part of Czechoslovakia."
   c_bereg:    { start: "e_carpathia", end_ww1: "k_bohemia", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
@@ -415,16 +437,10 @@ ModernTimesDatabase::LAND = {
   c_dhu_zabi: { start: "e_britannia", oman_independence: "c_dhu_zabi" },
   d_oman:     { start: "e_britannia", oman_independence: "d_oman" },
 
-  k_mauretania: { start: "k_mauretania", morocco_protectorate: "e_france", french_morocco_independence: "k_mauretania" },
-  c_cebta:     { start: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
-  c_tangiers:  { start: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
-  c_el_rif:    { start: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
   c_idjil:     { start: "e_spain", madrid_accords: "k_mauretania" },
   c_ouadane:   { start: "e_spain", madrid_accords: "k_mauretania" },
   c_tharasset: { start: "e_spain", madrid_accords: "k_mauretania" },
 
-  c_strymon:  { start: "e_seljuk_turks", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion" },
-  c_ochrid:   { start: "e_seljuk_turks", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion" },
 
   c_zeta:       { start: "e_seljuk_turks", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea" },
   c_dyrrachion: { start: "e_seljuk_turks", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea" },

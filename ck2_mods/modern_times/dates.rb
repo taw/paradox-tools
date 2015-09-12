@@ -6,6 +6,12 @@ module ModernTimesDatabase::Dates
     title_holders_until: "2020.12.31", # how far to generate title holders
 
     treaty_of_utrech: "1713.4.1", # "March and April 1713"
+    end_of_danish_norway: "1814.5.17",
+    end_of_swedish_finland: "1809.9.17",
+    treaty_of_berlin: "13 July 1878",
+    eastern_rumelia_unification: "1885.9.18",
+    cyprus_convention: "1878.6.4",
+    british_egypt: "1882.9.1",
 
     belgium_independence: "1831.7.21", # Actually crowning of Leopold
 

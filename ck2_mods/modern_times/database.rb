@@ -46,7 +46,7 @@ class ModernTimesDatabase
         end
         if data[:name]
           if data[:name].is_a?(String)
-            names = {:start => data[:name]}
+            names = {:forever_ago => data[:name]}
           else
             names = data[:name]
           end

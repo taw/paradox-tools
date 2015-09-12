@@ -125,7 +125,7 @@ ModernTimesDatabase::TITLES = {
     # * no bishoprics in capital duchy (Koln/Munich)
     # * no cities in capital duchy (Hamburg)
     capital: :c_nassau,
-    name: {start: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" }
+    name: {forever_ago: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" }
   },
   d_pomeralia: {
     culture: :german,
@@ -161,7 +161,7 @@ ModernTimesDatabase::TITLES = {
     culture: :turkish,
     religion: :sunni,
     capital: :c_byzantion,
-    name: { start: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
+    name: { forever_ago: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
   },
   # TODO: Ottoman caliphate (or maybe ISIS caliphate even)
   d_sunni: {
@@ -346,7 +346,7 @@ ModernTimesDatabase::TITLES = {
     culture: :serbian,
     religion: :orthodox,
     capital: :c_belgrade,
-    name: { start: nil, end_ww1: "Yugoslavia / Yugoslavian", montenegro_independence: nil}
+    name: { forever_ago: nil, end_ww1: "Yugoslavia / Yugoslavian", montenegro_independence: nil}
   },
   d_dyrrachion: {
     culture: :serbian,
@@ -377,7 +377,7 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
     capital: :c_aden,
-    name: { start: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni" },
+    name: { forever_ago: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni" },
   },
   d_arabia_felix: {
     culture: :bedouin_arabic,

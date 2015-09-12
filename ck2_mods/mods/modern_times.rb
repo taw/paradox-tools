@@ -492,7 +492,7 @@ class ModernTimesGameModification < CK2GameModification
     glob("history/titles/[dke]_*.txt").each do |path|
       title = path.basename(".txt").to_s
       patch_mod_file!(path) do |node|
-        node.add! @db.resolve_date(:start), PropertyList[
+        node.add! @db.resolve_date(:forever_ago), PropertyList[
           "law", "investiture_law_0",
           "law", "cognatic_succession",
           # Empire start decentralized, lower titles at medium
@@ -644,11 +644,11 @@ class ModernTimesGameModification < CK2GameModification
 
       # p [title, {orig_culture => culture}, {orig_religion => religion}, @map.landed_titles_lookup[title]]
       if culture != orig_culture
-        node.add! @db.resolve_date(:start), PropertyList["culture", culture]
+        node.add! @db.resolve_date(:forever_ago), PropertyList["culture", culture]
         # p [title, {orig_culture => culture}, orig_religion, @map.landed_titles_lookup[title]]
       end
       if religion != orig_religion
-        node.add! @db.resolve_date(:start), PropertyList["religion", religion]
+        node.add! @db.resolve_date(:forever_ago), PropertyList["religion", religion]
         # p [title, orig_culture, {orig_religion => religion}, @map.landed_titles_lookup[title]]
       end
     end
@@ -656,7 +656,22 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_nomad_flag!
     patch_mod_file!("history/titles/d_moldau.txt") do |node|
-      node.add! @db.resolve_date(:start), PropertyList["historical_nomad", false]
+      node.add! @db.resolve_date(:forever_ago), PropertyList["historical_nomad", false]
+    end
+  end
+
+  def setup_de_jure_map!
+    patch_mod_file!("history/titles/k_venice.txt") do |node|
+      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "e_italy"]
+    end
+    patch_mod_file!("history/titles/k_sicily.txt") do |node|
+      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "e_italy"]
+    end
+    patch_mod_file!("history/titles/d_aragon.txt") do |node|
+      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "k_aragon"]
+    end
+    patch_mod_file!("history/titles/d_granada.txt") do |node|
+      node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", "k_castille"]
     end
   end
 
@@ -799,6 +814,7 @@ class ModernTimesGameModification < CK2GameModification
     setup_province_holdings!
     setup_province_population!
     setup_nomad_flag!
+    setup_de_jure_map!
 
     @cultures = CultureManager.new(self)
     @characters_reset = CharacterManager.new(self, 100_000_000)
