@@ -18,6 +18,13 @@ module ModernTimesDatabase::Dates
     fall_dzungar: "1758.1.1",
     belgium_independence: "1831.7.21", # Actually crowning of Leopold
 
+    mantua_austrian: "5 July 1708",
+    treaty_of_zurich: "November 10, 1859",
+    treaty_of_vienna_1866: "12 October 1866",
+    end_of_lucca: "17 December 1847", # There was also a bit of extra Napoleonic complexity here
+    capture_of_rome: "20 September 1870",
+    st_petersburg_founding: "May 12 1703", # They literally moved their capital there before peace deal gave them Ingria
+
     german_unification: "1871.1.18",
     italy_unification: "1861.3.17",
     poland_1_partition: "September 22, 1772",

@@ -478,4 +478,28 @@ ModernTimesDatabase::TITLES = {
     culture: :italian,
     religion: :catholic,
   },
+  c_parma: {
+    culture: :italian,
+    religion: :catholic,
+  },
+  c_modena: {
+    culture: :italian,
+    religion: :catholic,
+  },
+  c_mantua: {
+    culture: :italian,
+    religion: :catholic,
+  },
+  d_toscana: {
+    culture: :italian,
+    religion: :catholic,
+  },
+  k_sicily: {
+    culture: :italian,
+    religion: :catholic,
+  },
+  c_lucca: {
+    culture: :italian,
+    religion: :catholic,
+  },
 }

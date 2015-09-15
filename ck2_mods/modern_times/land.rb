@@ -6,7 +6,6 @@ ModernTimesDatabase::LAND = {
   c_orkney:     { forever_ago: "e_britannia" },
   c_shetland:   { forever_ago: "e_britannia" },
   d_iceland:    { forever_ago: "k_denmark", iceland_independence: "d_iceland" },
-  c_roma:       { forever_ago: "k_papal_state" },
   c_algeciras:  { forever_ago: "e_spain", treaty_of_utrech: "e_britannia" },
   k_portugal:   { forever_ago: "k_portugal" },
   c_goa:        { forever_ago: "k_portugal",  goa_annexation: "e_india" }, # 1505 or so
@@ -245,10 +244,53 @@ ModernTimesDatabase::LAND = {
   c_venaissin:   { forever_ago: "k_papal_state", avignon_annexation: "e_france" },
 
   k_lanka:       { forever_ago: "k_frisia", sri_lanka_british: "e_britannia", sri_lanka_independence: "k_lanka" },
+  c_maldives:    { forever_ago: "k_frisia", sri_lanka_british: "e_britannia", maldives_independence: "c_maldives" },
 
   c_breda:      { forever_ago: "k_frisia" },
   d_holland:    { forever_ago: "k_frisia" },
   d_gelre:      { forever_ago: "k_frisia" },
+
+  d_ferrara:    { forever_ago: "k_papal_state", treaty_of_zurich: "e_italy" },
+  d_ancona:     { forever_ago: "k_papal_state", treaty_of_zurich: "e_italy" },
+  c_spoleto:    { forever_ago: "k_papal_state", treaty_of_zurich: "e_italy" },
+  c_mantua:     { forever_ago: "c_mantua", mantua_austrian: "e_carpathia", treaty_of_zurich: "e_italy"},
+
+  c_lucca:      { forever_ago: "c_lucca", end_of_lucca: "d_toscana", treaty_of_zurich: "e_italy" },
+  d_toscana:    { forever_ago: "d_toscana", treaty_of_zurich: "e_italy" },
+  d_pisa:       { forever_ago: "d_toscana", treaty_of_zurich: "e_italy" },
+
+  c_parma:      { forever_ago: "c_parma", treaty_of_zurich: "e_italy" },
+  c_modena:     { forever_ago: "c_modena", treaty_of_zurich: "e_italy" },
+
+  c_roma:       { forever_ago: "k_papal_state" },
+  d_latium:     { forever_ago: "k_papal_state", capture_of_rome: "e_italy" },
+
+  d_lithuanians: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
+  c_zhmud:      { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
+  c_jacwiez:  { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
+  c_podlasie: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia",  fall_soviet_union: "d_vitebsk"},
+  c_bryansk:    { forever_ago: "e_russia" },
+  c_chernigov:   { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
+  c_lyubech:     { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
+  c_vodi:       { forever_ago: "k_sweden", st_petersburg_founding: "e_russia" },
+
+  ##########################
+  # Half done
+
+  c_aprutium:   { treaty_of_zurich: "e_italy" },
+  k_sicily:     { treaty_of_zurich: "e_italy" },
+  d_sicily:     { treaty_of_zurich: "e_italy" },
+
+  d_verona:     { treaty_of_vienna_1866: "e_italy" },
+  d_venice:     { treaty_of_vienna_1866: "e_italy" },
+
+  d_sardinia:   { treaty_of_zurich: "e_italy" }, # Much earlier
+  d_lombardia:  { treaty_of_zurich: "e_italy" }, # Much earlier
+  d_susa:       { treaty_of_zurich: "e_italy" }, # Much earlier
+  d_genoa:      { treaty_of_zurich: "e_italy" }, # Much earlier
+
+  c_savoie:     { treaty_of_zurich: "e_france" },
+  c_nice:       { treaty_of_zurich: "e_france" },
 
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
@@ -256,16 +298,8 @@ ModernTimesDatabase::LAND = {
   # FIXME: British Minorca
   # TODO: Polish Vilnius, Memel crisis, Munich agreement / Sudetenland
   # FIXME: Cieszyn should be Austrian
-
-  c_savoie:      { start: "e_france" },
-  c_nice:       { start: "e_france" },
-
-  k_italy:      { start: "e_italy" },
-  k_sicily:     { start: "e_italy" },
-  k_venice:     { start: "e_italy" },
-
-  d_lithuanians: { start: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
-  c_zhmud:     { start: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
+  # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled
+  # FIXME: Saudi Arabia should not start as kingdom in 1900
 
   d_dihistan:  { start: "e_russia", fall_soviet_union: "d_dihistan" },
   c_merv:      { start: "e_russia", fall_soviet_union: "d_dihistan" },
@@ -286,8 +320,6 @@ ModernTimesDatabase::LAND = {
   c_bashkirs:  { start: "e_russia" },
   c_sibir:     { start: "e_russia" },
 
-  c_maldives:   { start: "e_britannia", maldives_independence: "c_maldives" },
-
   e_deccan:     { start: "e_britannia", india_independence: "e_india" },
   k_orissa:     { start: "e_britannia", india_independence: "e_india" },
   k_malwa:      { start: "e_britannia", india_independence: "e_india" },
@@ -305,12 +337,11 @@ ModernTimesDatabase::LAND = {
   d_vanga:      { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
   d_varendra:   { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
 
-  c_vodi:       { start: "e_russia" },
+
   c_semender:   { start: "e_russia" },
   c_derbent:    { start: "e_russia" },
   c_tmutarakan: { start: "e_russia" },
   d_azov:       { start: "e_russia" },
-  c_bryansk:    { start: "e_russia" },
   d_smolensk:   { start: "e_russia" },
 
   c_luxembourg: { start: "d_luxembourg"},
@@ -343,7 +374,6 @@ ModernTimesDatabase::LAND = {
   c_turov:             { start: "e_russia", fall_soviet_union: "k_ruthenia"},
   d_cherson: { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
   c_crimea:  { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
-  d_chernigov:   { start: "e_russia", fall_soviet_union: "k_ruthenia"},
   d_crimea:      { start: "e_russia", fall_soviet_union: "k_ruthenia"},
   c_novgorod_seversky: { start: "e_russia", fall_soviet_union: "k_ruthenia"},
 
@@ -354,8 +384,6 @@ ModernTimesDatabase::LAND = {
   c_mstislavl:{ start: "e_russia", fall_soviet_union: "d_vitebsk"},
   c_pinsk:    { start: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
 
-  c_jacwiez:  { start: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_podlasie: { start: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia",  fall_soviet_union: "d_vitebsk"},
   d_mazovia:  { start: "e_russia", end_ww1: "k_poland" },
 
 
@@ -460,7 +488,6 @@ ModernTimesDatabase::LAND = {
   c_idjil:     { start: "e_spain", madrid_accords: "k_mauretania" },
   c_ouadane:   { start: "e_spain", madrid_accords: "k_mauretania" },
   c_tharasset: { start: "e_spain", madrid_accords: "k_mauretania" },
-
 
   c_zeta:       { start: "e_seljuk_turks", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea" },
   c_dyrrachion: { start: "e_seljuk_turks", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea" },
