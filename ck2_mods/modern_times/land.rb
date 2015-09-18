@@ -8,7 +8,7 @@ ModernTimesDatabase::LAND = {
   d_iceland:    { forever_ago: "k_denmark", iceland_independence: "d_iceland" },
   c_algeciras:  { forever_ago: "e_spain", treaty_of_utrech: "e_britannia" },
   k_portugal:   { forever_ago: "k_portugal" },
-  c_goa:        { forever_ago: "k_portugal",  goa_annexation: "e_india" }, # 1505 or so
+  c_goa:        { forever_ago: "k_portugal", goa_annexation: "e_india" }, # 1505 or so
   e_spain:      { forever_ago: "e_spain" },
   c_canarias:   { forever_ago: "e_spain" },
   d_sjaelland:  { forever_ago: "k_denmark" },
@@ -70,6 +70,8 @@ ModernTimesDatabase::LAND = {
   k_volga_bulgaria: { forever_ago: "e_russia" },
   k_rus:            { forever_ago: "e_russia" },
   d_alania:         { forever_ago: "e_russia" },
+  c_kuban:          { forever_ago: "e_russia" },
+  c_sarpa:          { forever_ago: "e_russia" },
 
   c_severin:    { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_dacia" },
   c_tirgoviste: { forever_ago: "e_seljuk_turks", treaty_of_berlin: "k_dacia" },
@@ -266,6 +268,7 @@ ModernTimesDatabase::LAND = {
   d_latium:     { forever_ago: "k_papal_state", capture_of_rome: "e_italy" },
 
   d_lithuanians: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
+  c_aukshayts:   { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_lithuanians" },
   c_zhmud:      { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
   c_jacwiez:  { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
   c_podlasie: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia",  fall_soviet_union: "d_vitebsk"},
@@ -273,6 +276,21 @@ ModernTimesDatabase::LAND = {
   c_chernigov:   { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
   c_lyubech:     { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
   c_vodi:       { forever_ago: "k_sweden", st_petersburg_founding: "e_russia" },
+
+  d_itil:      { forever_ago: "e_russia", fall_soviet_union: "k_cuman" }, # GeaCron says it was Russian in 1700, other sources not so sure
+  c_novgorod_seversky: { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
+
+  d_smolensk:   { forever_ago: "e_russia" },
+
+  c_mstislavl:{ forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
+  c_vitebsk:    { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
+  d_vitebsk:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
+  c_polotsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
+  c_lepiel:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
+  c_pinsk:    { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
+
+  k_abyssinia: { forever_ago: "k_abyssinia" },
+  c_kassala:   { forever_ago: "k_abyssinia" },
 
   ##########################
   # Half done
@@ -292,14 +310,26 @@ ModernTimesDatabase::LAND = {
   c_savoie:     { treaty_of_zurich: "e_france" },
   c_nice:       { treaty_of_zurich: "e_france" },
 
+  e_deccan:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  k_orissa:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  k_malwa:       { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  k_gujarat:     { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  k_delhi:       { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  k_rajputana:   { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  k_kosala:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  c_trigarta:    { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  c_sakala:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  e_bengal:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
+
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
   # FIXME: Avignon was Papal for a while, also do Savoy etc.
   # FIXME: British Minorca
-  # TODO: Polish Vilnius, Memel crisis, Munich agreement / Sudetenland
+  # TODO: Memel crisis, Munich agreement / Sudetenland
   # FIXME: Cieszyn should be Austrian
   # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled
   # FIXME: Saudi Arabia should not start as kingdom in 1900
+  # TODO: Terebovl Russian?
 
   d_dihistan:  { start: "e_russia", fall_soviet_union: "d_dihistan" },
   c_merv:      { start: "e_russia", fall_soviet_union: "d_dihistan" },
@@ -309,7 +339,7 @@ ModernTimesDatabase::LAND = {
   c_aral:      { start: "e_russia", fall_soviet_union: "k_khiva" },
 
   d_turkestan: { start: "e_russia", fall_soviet_union: "k_cuman" },
-  d_itil:      { start: "e_russia", fall_soviet_union: "k_cuman" },
+
   d_kipchak:   { start: "e_russia", fall_soviet_union: "k_cuman" },
   d_kimak:     { start: "e_russia", fall_soviet_union: "k_cuman" },
   d_zhetysu:   { start: "e_russia", fall_soviet_union: "k_cuman" },
@@ -320,16 +350,11 @@ ModernTimesDatabase::LAND = {
   c_bashkirs:  { start: "e_russia" },
   c_sibir:     { start: "e_russia" },
 
-  e_deccan:     { start: "e_britannia", india_independence: "e_india" },
-  k_orissa:     { start: "e_britannia", india_independence: "e_india" },
-  k_malwa:      { start: "e_britannia", india_independence: "e_india" },
-  k_gujarat:    { start: "e_britannia", india_independence: "e_india" },
-  k_delhi:      { start: "e_britannia", india_independence: "e_india" },
-  k_rajputana:  { start: "e_britannia", india_independence: "e_india" },
-  k_kosala:     { start: "e_britannia", india_independence: "e_india" },
-  c_trigarta:   { start: "e_britannia", india_independence: "e_india" },
-  c_sakala:     { start: "e_britannia", india_independence: "e_india" },
-  e_bengal:     { start: "e_britannia", india_independence: "e_india" },
+  d_baluchistan: { start: "e_britannia", india_independence: "k_baluchistan" },
+  d_sauvira:     { start: "e_britannia", india_independence: "k_baluchistan" },
+  d_bhakkar:     { start: "e_britannia", india_independence: "k_baluchistan" },
+  c_vijnot:      { start: "e_britannia", india_independence: "k_baluchistan" },
+  k_punjab:      { start: "e_britannia", india_independence: "k_baluchistan" },
 
   # Names on CK2 map have very little correlation with names on real map
   # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
@@ -337,12 +362,10 @@ ModernTimesDatabase::LAND = {
   d_vanga:      { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
   d_varendra:   { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
 
-
   c_semender:   { start: "e_russia" },
   c_derbent:    { start: "e_russia" },
   c_tmutarakan: { start: "e_russia" },
   d_azov:       { start: "e_russia" },
-  d_smolensk:   { start: "e_russia" },
 
   c_luxembourg: { start: "d_luxembourg"},
   c_julich:     { start: "e_germany" },
@@ -375,14 +398,8 @@ ModernTimesDatabase::LAND = {
   d_cherson: { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
   c_crimea:  { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
   d_crimea:      { start: "e_russia", fall_soviet_union: "k_ruthenia"},
-  c_novgorod_seversky: { start: "e_russia", fall_soviet_union: "k_ruthenia"},
 
   d_volhynia:          { start: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
-
-  d_vitebsk:  { start: "e_russia", fall_soviet_union: "d_vitebsk"},
-  d_polotsk:  { start: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_mstislavl:{ start: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_pinsk:    { start: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
 
   d_mazovia:  { start: "e_russia", end_ww1: "k_poland" },
 
@@ -423,13 +440,6 @@ ModernTimesDatabase::LAND = {
   d_azerbaijan:   { start: "e_russia", end_ww1: "d_azerbaijan", annexation_azerbaijan: "e_russia", fall_soviet_union: "d_azerbaijan" },
   k_georgia:      { start: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
 
-
-  d_baluchistan: { start: "e_britannia", india_independence: "k_baluchistan" },
-  d_sauvira:     { start: "e_britannia", india_independence: "k_baluchistan" },
-  d_bhakkar:     { start: "e_britannia", india_independence: "k_baluchistan" },
-  c_vijnot:      { start: "e_britannia", india_independence: "k_baluchistan" },
-  k_punjab:      { start: "e_britannia", india_independence: "k_baluchistan" },
-
   d_kabul:       { start: "k_afghanistan" },
   c_udabhanda:   { start: "k_afghanistan" },
   c_purushapura: { start: "k_afghanistan" },
@@ -466,8 +476,6 @@ ModernTimesDatabase::LAND = {
   c_massawa:  { start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
   c_tadjoura: { start: "e_france", djibouti_independence: "d_afar" },
 
-  c_kassala:   { start: "k_abyssinia" },
-  k_abyssinia: { start: "k_abyssinia" },
   d_harer:     { start: "e_britannia", somalia_independence: "d_harer" },
   c_busaso:    { start: "e_italy", somalia_independence: "d_harer"  },
 
@@ -477,7 +485,6 @@ ModernTimesDatabase::LAND = {
   c_ghana:      { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
   c_aoudaghost: { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
   k_nubia:      { start: "e_britannia", sudan_independence: "k_nubia" },
-
 
   # "It was the capital of the Kingdom of Hungary's Bereg County up until 1919 and between 1938-1944. From 1919 until 1938 it was part of Czechoslovakia."
   c_bereg:    { start: "e_carpathia", end_ww1: "k_bohemia", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },

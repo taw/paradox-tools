@@ -115,6 +115,12 @@ ModernTimesDatabase::TITLES = {
     culture: :german,
     religion: :catholic,
     capital: :c_osterreich,
+    name: "Austria-Hungary / Austro-Hungarian",
+  },
+  k_bavaria: {
+    culture: :german,
+    religion: :catholic,
+    capital: :c_osterreich,
     name: "Austria / Austrian",
   },
   e_germany: {

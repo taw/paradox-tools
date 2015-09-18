@@ -674,9 +674,28 @@ class ModernTimesGameModification < CK2GameModification
       "d_granada" => "k_castille",
       "d_brandenburg" => "k_pomerania",
       "d_prussia" => "k_pomerania",
+      "k_ruthenia" => "e_wendish_empire",
+      "k_croatia" => "e_carpathia",
+      "d_ryazan"  => "k_rus",
+      "k_prussia"   => {hre_disbanded: "e_germany" },
+      "k_frisia"    => {hre_disbanded: "e_germany" },
+      "k_germania"  => {hre_disbanded: "e_germany" },
+      "k_bavaria"   => {hre_disbanded: "e_carpathia" },
+      "k_bohemia"   => {hre_disbanded: "e_carpathia" },
     }.each do |title, liege|
-      patch_mod_file!("history/titles/#{title}.txt") do |node|
-        node.add! @db.resolve_date(:forever_ago), PropertyList["de_jure_liege", liege]
+      # FIXME: This is horrible hack
+      path = "history/titles/#{title}.txt"
+      if glob(path) == []
+        create_mod_file!(path, PropertyList[])
+      end
+
+      patch_mod_file!(path) do |node|
+        if liege.is_a?(String)
+          liege = {:forever_ago => liege}
+        end
+        liege.each do |date, title|
+          node.add! @db.resolve_date(date), PropertyList["de_jure_liege", title]
+        end
       end
     end
   end

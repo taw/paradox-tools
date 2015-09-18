@@ -15,6 +15,9 @@ module ModernTimesDatabase::Dates
     treaty_of_passarowitz: "1718.7.21",
     greece_independence: "1832.5.7",
 
+    hre_disbanded: "6 August 1806",
+    third_maratha_war: "3 June 1818",
+
     fall_dzungar: "1758.1.1",
     belgium_independence: "1831.7.21", # Actually crowning of Leopold
 
