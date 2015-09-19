@@ -22,6 +22,8 @@ module ModernTimesDatabase::Dates
 
     treaty_of_campo_formio: "18 October 1797",
 
+    end_1_saudi_state: "1 April 1818", # approximate
+
     hre_disbanded: "6 August 1806",
     third_maratha_war: "3 June 1818",
 
@@ -35,6 +37,8 @@ module ModernTimesDatabase::Dates
     end_of_lucca: "17 December 1847", # There was also a bit of extra Napoleonic complexity here
     capture_of_rome: "20 September 1870",
     st_petersburg_founding: "May 12 1703", # They literally moved their capital there before peace deal gave them Ingria
+
+    sudan_turkish: "1.1.1821", # approximate
 
     german_unification: "1871.1.18",
     italy_unification: "1861.3.17",

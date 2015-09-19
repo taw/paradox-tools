@@ -662,16 +662,19 @@ ModernTimesDatabase::HOLDERS = {
     "1957.9.21" => {name: "Olav", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Haakon 1", birth: "1903.7.2", death: "1991.1.17"},
     "1991.1.17" => {name: "Harald", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", birth: "1937.2.21", death: :never},
   },
+  d_nefoud: {
+    start: {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},
+  },
   k_arabia: {
     # "Emirate of Nejd and Hasa" etc., maybe I should differentiate those titles
     # It's total bullshit backdating before "1902.1.13" when he got first duchy
-    start: {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},
-    "1953.11.9" => {name: "Saud", dynasty: "Saud", father: "Abdulaziz 1", birth: "1902.1.12", death: "1969.2.23"},
-    "1964.11.2" => {name: "Faisal", dynasty: "Saud", father: "Abdulaziz 1", birth: "1906.4.14", death: "1975.3.25"},
-    "1975.3.25" => {name: "Khalid", dynasty: "Saud", father: "Abdulaziz 1", birth: "1913.2.13", death: "1982.6.13"},
-    "1982.6.13" => {name: "Fahd", dynasty: "Saud", father: "Abdulaziz 1", birth: "1921.3.16", death: "2005.8.1"},
-    "2005.8.1" => {name: "Abdullah", dynasty: "Saud", father: "Abdulaziz 1", birth: "1924.8.1", death: "2015.1.23"},
-    "2015.1.23" => {name: "Salman", dynasty: "Saud", father: "Abdulaziz 1", birth: "1935.12.31", death: :never},
+    end_ww1: {use: "d_nefoud Abdulaziz 1" },
+    "1953.11.9" => {name: "Saud", dynasty: "Saud", father: "d_nefoud Abdulaziz 1", birth: "1902.1.12", death: "1969.2.23"},
+    "1964.11.2" => {name: "Faisal", dynasty: "Saud", father: "d_nefoud Abdulaziz 1", birth: "1906.4.14", death: "1975.3.25"},
+    "1975.3.25" => {name: "Khalid", dynasty: "Saud", father: "d_nefoud Abdulaziz 1", birth: "1913.2.13", death: "1982.6.13"},
+    "1982.6.13" => {name: "Fahd", dynasty: "Saud", father: "d_nefoud Abdulaziz 1", birth: "1921.3.16", death: "2005.8.1"},
+    "2005.8.1" => {name: "Abdullah", dynasty: "Saud", father: "d_nefoud Abdulaziz 1", birth: "1924.8.1", death: "2015.1.23"},
+    "2015.1.23" => {name: "Salman", dynasty: "Saud", father: "d_nefoud Abdulaziz 1", birth: "1935.12.31", death: :never},
   },
   c_kuwait: {
     kuwait_independence: {name: "Abdullah Salem Al-Mubarak", dynasty: "Al-Sabah", birth: "1895", death: "1965"},

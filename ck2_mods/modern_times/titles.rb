@@ -307,6 +307,10 @@ ModernTimesDatabase::TITLES = {
     culture: :egyptian_arabic,
     religion: :sunni,
   },
+  d_nefoud: {
+    culture: :bedouin_arabic,
+    religion: :sunni,
+  },
   k_arabia: {
     culture: :bedouin_arabic,
     religion: :sunni,
