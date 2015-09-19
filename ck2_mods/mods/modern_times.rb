@@ -680,6 +680,7 @@ class ModernTimesGameModification < CK2GameModification
       "k_prussia"   => { hre_disbanded: "e_germany" },
       "k_frisia"    => { hre_disbanded: "e_germany" },
       "k_germany"   => { hre_disbanded: "e_germany" },
+      "k_lotharingia" => { hre_disbanded: "e_germany" },
       "k_bavaria"   => { hre_disbanded: "e_carpathia" },
       "k_bohemia"   => { hre_disbanded: "e_carpathia" },
     }.each do |title, liege|

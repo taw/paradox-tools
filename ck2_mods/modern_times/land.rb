@@ -157,9 +157,9 @@ ModernTimesDatabase::LAND = {
 
   d_oultrejourdain: { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
 
-  c_trent:        { forever_ago: "e_carpathia", south_tirol_annexation: "e_italy" },
-  d_osterreich:   { forever_ago: "e_carpathia", anschluss: "e_germany", end_ww2: "k_bavaria" },
-  d_tyrol:        { forever_ago: "e_carpathia", anschluss: "e_germany", end_ww2: "k_bavaria" },
+  c_trent:        { forever_ago: "e_carpathia", end_ww1: "k_bavaria", south_tirol_annexation: "e_italy" },
+  d_osterreich:   { forever_ago: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
+  d_tyrol:        { forever_ago: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
 
   c_teluch:      { forever_ago: "e_seljuk_turks", treaty_of_sevres: "e_france", treaty_of_ankara: "e_seljuk_turks" },
   c_antiocheia:  { forever_ago: "e_seljuk_turks", treaty_of_sevres: "e_france", treaty_of_ankara: "e_seljuk_turks" },
@@ -224,7 +224,7 @@ ModernTimesDatabase::LAND = {
   c_temes:        { forever_ago: "e_seljuk_turks", treaty_of_passarowitz: "e_carpathia", end_ww1: "k_dacia" },
   c_pressburg:    { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
 
-  c_gnieznienskie: { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland", },
+  c_gnieznienskie: { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland" },
   c_kujawy:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", duchy_warsaw: "k_poland", congress_of_vienna: "e_russia", end_ww1: "k_poland" },
 
   d_pereyaslavl: { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
@@ -293,7 +293,7 @@ ModernTimesDatabase::LAND = {
   k_abyssinia: { forever_ago: "k_abyssinia" },
   c_kassala:   { forever_ago: "k_abyssinia" },
 
-  c_salzburg:     { forever_ago: "c_salzburg", peace_of_pressburg: "e_carpathia", treaty_of_shoenbrunn: "d_bavaria", congress_of_vienna: "e_carpathia", anschluss: "e_germany", end_ww2: "k_bavaria" },
+  c_salzburg:     { forever_ago: "c_salzburg", peace_of_pressburg: "e_carpathia", treaty_of_shoenbrunn: "d_bavaria", congress_of_vienna: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
 
   d_azov:    { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia"},
   d_cherson: { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
@@ -318,7 +318,7 @@ ModernTimesDatabase::LAND = {
   d_croatia:      { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
   c_zachlumia:    { forever_ago: "e_seljuk_turks", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
   c_usora:        { forever_ago: "e_seljuk_turks", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
-  c_terebovl:          { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia"},
+  c_terebovl:          { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
 
   d_upper_lorraine: { forever_ago: "e_france" },
   c_verdun:         { forever_ago: "e_france" },
@@ -327,6 +327,7 @@ ModernTimesDatabase::LAND = {
   c_dyrrachion: { forever_ago: "e_seljuk_turks", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea" },
 
   c_ragusa:   { forever_ago: "e_seljuk_turks", treaty_of_berlin: "c_ragusa", montenegro_serbian: "k_serbia", montenegro_independence: "c_ragusa" },
+  # "It was the capital of the Kingdom of Hungary's Bereg County up until 1919 and between 1938-1944. From 1919 until 1938 it was part of Czechoslovakia."
   c_bereg:  { forever_ago: "e_carpathia", end_ww1: "k_bohemia", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
 
   # Not really unified
@@ -340,6 +341,11 @@ ModernTimesDatabase::LAND = {
 
   d_medina: { forever_ago: "e_seljuk_turks", end_ww1: "k_arabia" }, # Saudi occupation was just rebels
   c_holstein:     { forever_ago: "k_denmark", treaty_of_vienna_1864: "k_pomerania", german_unification: "e_germany" },
+
+  c_trinkitat:{ forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
+  c_hayya:    { forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
+  c_assab:    { forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
+  c_massawa:  { forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
 
   ##########################
   # Half done
@@ -409,6 +415,13 @@ ModernTimesDatabase::LAND = {
   c_julich:     { german_unification: "e_germany" },
   c_loon:       { german_unification: "k_frisia" },
 
+  d_lesser_poland:     { congress_of_vienna: "e_carpathia", end_ww1: "k_poland" },
+  d_mazovia:  { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
+  :"c_sieradzko-leczyckie" => { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
+  c_kalisz:   { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
+  c_poznanskie:    { congress_of_vienna: "e_germany", end_ww1: "k_poland"},
+  c_kaliskie:      { congress_of_vienna: "e_germany", end_ww1: "k_poland"},
+
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
   # FIXME: Avignon was Papal for a while, also do Savoy etc.
@@ -454,15 +467,6 @@ ModernTimesDatabase::LAND = {
   c_vijnot:      { start: "e_britannia", india_independence: "k_baluchistan" },
   k_punjab:      { start: "e_britannia", india_independence: "k_baluchistan" },
 
-  d_lesser_poland:     { start: "e_carpathia", end_ww1: "k_poland" },
-
-  d_mazovia:  { start: "e_russia", end_ww1: "k_poland" },
-  :"c_sieradzko-leczyckie" => { start: "e_russia", end_ww1: "k_poland" },
-  c_kalisz:   { start: "e_russia", end_ww1: "k_poland" },
-
-  c_poznanskie:    {start: "e_germany", end_ww2: "k_poland"},
-  c_kaliskie:      {start: "e_germany", end_ww2: "k_poland"},
-
   d_kabul:       { start: "k_afghanistan" },
   c_udabhanda:   { start: "k_afghanistan" },
   c_purushapura: { start: "k_afghanistan" },
@@ -471,17 +475,13 @@ ModernTimesDatabase::LAND = {
   c_bost:        { start: "k_afghanistan" },
   c_mandesh:     { start: "k_afghanistan" },
 
-  c_kuwait:  { start: "e_britannia", kuwait_independence: "c_kuwait" },
-  c_bahrein: { start: "e_britannia", bahrain_independence: "c_bahrein" },
+  c_kuwait:  { kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
+  c_bahrein: { bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
 
   c_taizz: { start: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
   c_sanaa: { start: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
   d_sanaa: { start: "e_britannia", south_yemen_independence: "d_sanaa" },
 
-  c_trinkitat:{ start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
-  c_hayya:    { start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
-  c_assab:    { start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
-  c_massawa:  { start: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
   c_tadjoura: { start: "e_france", djibouti_independence: "d_afar" },
 
   d_harer:     { start: "e_britannia", somalia_independence: "d_harer" },
@@ -492,8 +492,6 @@ ModernTimesDatabase::LAND = {
   d_timbuktu:   { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
   c_ghana:      { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
   c_aoudaghost: { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
-
-  # "It was the capital of the Kingdom of Hungary's Bereg County up until 1919 and between 1938-1944. From 1919 until 1938 it was part of Czechoslovakia."
 
   c_dhu_zabi: { start: "e_britannia", oman_independence: "c_dhu_zabi" },
   d_oman:     { start: "e_britannia", oman_independence: "d_oman" },

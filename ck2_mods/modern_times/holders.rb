@@ -678,6 +678,8 @@ ModernTimesDatabase::HOLDERS = {
     "1848.12.1" => {name: "Francis Joseph", dynasty: "Habsburg", birth: "1830.8.18", death: "1916.11.21"},
     "1916.11.21" => {name: "Charles", dynasty: "Habsburg", birth: "1911.10.21", death: "1922.4.1"},
     # Backfill
+  },
+  k_bavaria: {
     "1918.11.12" => {name: "Karl", dynasty: "Seitz"},
     "1920.12.9"  => {name: "Michael", dynasty: "Hainisch"},
     "1928.12.10" => {name: "Wilhelm", dynasty: "Miklas"},

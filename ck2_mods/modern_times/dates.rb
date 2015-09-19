@@ -64,6 +64,9 @@ module ModernTimesDatabase::Dates
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",
 
+    bahrain_british: "22 December 1880", # Gradual process, date for British foreign policy veto
+    kuwait_british: "November 23, 1899", # Gradual process, date for British foreign policy veto
+
     sri_lanka_british: "1795.2.8",
     sri_lanka_independence: "1948.2.4",
     maldives_independence: "1965.7.26",
@@ -144,6 +147,7 @@ module ModernTimesDatabase::Dates
     mauritania_independence: "1960.11.28",
     sudan_independence: "1956.1.1",
 
+    eritrea_italian: "10 March 1889",
     eritrea_british: "1941.4.1", # Battle of Keren; or I could make it formal at end of WW2
     eritrea_ethiopian: "1950.12.2",
     eritrea_independence: "1993.5.24",
