@@ -347,6 +347,24 @@ ModernTimesDatabase::LAND = {
   c_assab:    { forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
   c_massawa:  { forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
 
+  d_arabia_petrae: { forever_ago: "e_seljuk_turks", end_ww1: "k_arabia" },
+  d_amman:   { forever_ago: "e_seljuk_turks", end_ww1: "k_arabia", },
+  c_petra:   { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+  c_maan:    { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+  c_amman:   { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+  c_az_zarqa:{ forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+
+  c_bashkirs:  { forever_ago: "e_russia" },
+  c_sibir:     { forever_ago: "e_russia" },
+
+  d_kabul:       { forever_ago: "k_afghanistan" },
+  c_udabhanda:   { forever_ago: "k_afghanistan" },
+  c_purushapura: { forever_ago: "k_afghanistan" },
+  c_maymana:     { forever_ago: "k_afghanistan" },
+  c_balkh:       { forever_ago: "k_afghanistan" },
+  c_bost:        { forever_ago: "k_afghanistan" },
+  c_mandesh:     { forever_ago: "k_afghanistan" },
+
   ##########################
   # Half done
 
@@ -422,6 +440,26 @@ ModernTimesDatabase::LAND = {
   c_poznanskie:    { congress_of_vienna: "e_germany", end_ww1: "k_poland"},
   c_kaliskie:      { congress_of_vienna: "e_germany", end_ww1: "k_poland"},
 
+  d_dihistan:  { "July 11, 1867" => "e_russia", fall_soviet_union: "d_dihistan" },
+  c_merv:      { "July 11, 1867" => "e_russia", fall_soviet_union: "d_dihistan" },
+  d_samarkand: { "July 11, 1867" => "e_russia", fall_soviet_union: "k_khiva" },
+  d_khiva:     { "July 11, 1867" => "e_russia", fall_soviet_union: "k_khiva" },
+  c_aral:      { "July 11, 1867" => "e_russia", fall_soviet_union: "k_khiva" },
+  d_turkestan: { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+  d_kipchak:   { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+  d_kimak:     { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+  d_zhetysu:   { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+  d_kirghiz:   { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+  d_yaik:      { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+  d_sibir:     { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+  d_syr_darya: { "July 11, 1867" => "e_russia", fall_soviet_union: "k_cuman" },
+
+  d_baluchistan: { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+  d_sauvira:     { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+  d_bhakkar:     { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+  c_vijnot:      { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+  k_punjab:      { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
   # FIXME: Avignon was Papal for a while, also do Savoy etc.
@@ -433,47 +471,11 @@ ModernTimesDatabase::LAND = {
   # FIXME: Hungary / Romania / Serbia border is crap
   # FIXME: Romania / Moldova border is crap
   # FIXME: Chechnya
+  # FIXME: Central Asian and Caucasus history are a bit bullshit
+  # FIXME: Free Krakow, Free Gdansk (Napoleonic)
 
   d_nefoud: { start: "d_nefoud", end_ww1: "k_arabia" },
-  d_arabia_petrae: { start: "e_seljuk_turks", end_ww1: "k_arabia" },
-  d_amman:  { start: "e_seljuk_turks", end_ww1: "k_arabia", },
-  c_petra:   { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-  c_maan:    { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-  c_amman:   { start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-  c_az_zarqa:{ start: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
 
-  d_dihistan:  { start: "e_russia", fall_soviet_union: "d_dihistan" },
-  c_merv:      { start: "e_russia", fall_soviet_union: "d_dihistan" },
-
-  d_samarkand: { start: "e_russia", fall_soviet_union: "k_khiva" },
-  d_khiva:     { start: "e_russia", fall_soviet_union: "k_khiva" },
-  c_aral:      { start: "e_russia", fall_soviet_union: "k_khiva" },
-
-  d_turkestan: { start: "e_russia", fall_soviet_union: "k_cuman" },
-
-  d_kipchak:   { start: "e_russia", fall_soviet_union: "k_cuman" },
-  d_kimak:     { start: "e_russia", fall_soviet_union: "k_cuman" },
-  d_zhetysu:   { start: "e_russia", fall_soviet_union: "k_cuman" },
-  d_kirghiz:   { start: "e_russia", fall_soviet_union: "k_cuman" },
-  d_yaik:      { start: "e_russia", fall_soviet_union: "k_cuman" },
-  d_sibir:     { start: "e_russia", fall_soviet_union: "k_cuman" },
-  d_syr_darya: { start: "e_russia", fall_soviet_union: "k_cuman" },
-  c_bashkirs:  { start: "e_russia" },
-  c_sibir:     { start: "e_russia" },
-
-  d_baluchistan: { start: "e_britannia", india_independence: "k_baluchistan" },
-  d_sauvira:     { start: "e_britannia", india_independence: "k_baluchistan" },
-  d_bhakkar:     { start: "e_britannia", india_independence: "k_baluchistan" },
-  c_vijnot:      { start: "e_britannia", india_independence: "k_baluchistan" },
-  k_punjab:      { start: "e_britannia", india_independence: "k_baluchistan" },
-
-  d_kabul:       { start: "k_afghanistan" },
-  c_udabhanda:   { start: "k_afghanistan" },
-  c_purushapura: { start: "k_afghanistan" },
-  c_maymana:     { start: "k_afghanistan" },
-  c_balkh:       { start: "k_afghanistan" },
-  c_bost:        { start: "k_afghanistan" },
-  c_mandesh:     { start: "k_afghanistan" },
 
   c_kuwait:  { kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
   c_bahrein: { bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },

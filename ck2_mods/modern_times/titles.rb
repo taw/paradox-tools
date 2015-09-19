@@ -175,6 +175,12 @@ ModernTimesDatabase::TITLES = {
     religion: :sunni,
     capital: :c_mosul, # not true
   },
+  # Avoids silliness of ISIS making this primary and two Syrias on the map
+  d_syria: {
+    culture: :levantine_arabic,
+    religion: :sunni,
+    name: "East Syria / East Syrian",
+  },
   d_tunis: {
     culture: :maghreb_arabic,
     religion: :sunni,

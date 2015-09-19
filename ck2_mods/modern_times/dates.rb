@@ -26,6 +26,7 @@ module ModernTimesDatabase::Dates
 
     hre_disbanded: "6 August 1806",
     third_maratha_war: "3 June 1818",
+    second_sikh_war: "29 March 1849",
 
     fall_dzungar: "1758.1.1",
     belgium_independence: "1831.7.21", # Actually crowning of Leopold

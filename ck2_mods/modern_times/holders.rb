@@ -415,6 +415,30 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_persia: {
+    "18 February 1785" => {
+      name: "Jafar",
+      dynasty: "Zand",
+    },
+    "23 January 1789" => {
+      name: "Lotf Ali",
+      dynasty: "Zand",
+    },
+    "20 March 1794" => {
+      name: "Mohammad",
+      dynasty: "Qajar",
+    },
+    "17 June 1797" => {
+      name: "Fat'h Ali",
+      dynasty: "Qajar",
+    },
+    "23 October 1834" => {
+      name: "Mohammad",
+      dynasty: "Qajar",
+    },
+    "5 September 1848" => {
+      name: "Naser al-Din",
+      dynasty: "Qajar",
+    },
     "1896.5.1" => {
       name: "Mozaffar al-Din",
       dynasty: "Qajar",
@@ -447,6 +471,54 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_seljuk_turks: {
+    "6 February 1695" => {
+      name: "Mustafa",
+      dynasty: "Ottoman",
+    },
+    "22 August 1703" => {
+      name: "Ahmed",
+      dynasty: "Ottoman",
+    },
+    "2 October 1730" => {
+      name: "Mahmud",
+      dynasty: "Ottoman",
+    },
+    "13 December 1754" => {
+      name: "Osman",
+      dynasty: "Ottoman",
+    },
+    "30 October 1757" => {
+      name: "Mustafa",
+      dynasty: "Ottoman",
+    },
+    "21 January 1774" => {
+      name: "Abdulhamid",
+      dynasty: "Ottoman",
+    },
+    "7 April 1789" => {
+      name: "Selim",
+      dynasty: "Ottoman",
+    },
+    "29 May 1807" => {
+      name: "Mustafa",
+      dynasty: "Ottoman",
+    },
+    "28 July 1808" => {
+      name: "Mahmud",
+      dynasty: "Ottoman",
+    },
+    "1 July 1839" => {
+      name: "Abdulmecid",
+      dynasty: "Ottoman",
+    },
+    "25 June 1861" => {
+      name: "Abdulaziz",
+      dynasty: "Ottoman",
+    },
+    "30 May 1876" => {
+      name: "Mehmed Murad",
+      dynasty: "Ottoman",
+    },
     "1876.8.31" => {
       name: "Abdulhamid",
       dynasty: "Ottoman",
@@ -603,8 +675,16 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_france: {
+    "10 November 1799" => {name: "Napoleon", dynasty: "Bonaparte", birth: "15 August 1769", death: "5 May 1821"},
+    # 7 July 1815, backdating to Congress of Vienna
+    "1815.6.9"          => {name: "Louis", dynasty: "Bourbon"},
+    "16 September 1824" => {name: "Charles", dynasty: "Bourbon"},
+    "9 August 1830"     => {name: "Louis Philippe", dynasty: "Orléans"},
+    # Second republic, second Empire from 1852.12.2
+    "24 February 1848" => {name: "Napoleon", dynasty: "Bonaparte", birth: "20 April 1808", death: "9 January 1873"},
     # 3rd Republic
-    "1871.8.31" =>  {name: "Adolphe", dynasty: "Thiers", birth: "1797", death: "1877"},
+    # Backdated, really 1871.8.31
+    "4 September 1870" =>  {name: "Adolphe", dynasty: "Thiers", birth: "1797", death: "1877"},
     "1873.5.24" =>  {name: "Patrice", dynasty: "de Mac-Mahon", birth: "1808", death: "1893"},
     "1879.1.30" =>  {name: "Jules", dynasty: "Grévy", birth: "1807", death: "1891"},
     "1887.12.3" =>  {name: "Marie François Sadi", dynasty: "Carnot", birth: "1837", death: "1894"},
@@ -680,7 +760,7 @@ ModernTimesDatabase::HOLDERS = {
     # Backfill
   },
   k_bavaria: {
-    "1918.11.12" => {name: "Karl", dynasty: "Seitz"},
+    "1918.11.11" => {name: "Karl", dynasty: "Seitz"},
     "1920.12.9"  => {name: "Michael", dynasty: "Hainisch"},
     "1928.12.10" => {name: "Wilhelm", dynasty: "Miklas"},
     anschluss: nil,
@@ -782,7 +862,19 @@ ModernTimesDatabase::HOLDERS = {
     "2006.1.29" => {name: "Sabah Al-Ahmad Al-Jaber", dynasty: "Al-Sabah", birth: "1929", death: :never},
   },
   d_sunni: {
-    "1876.8.31" => { use: "e_seljuk_turks Abdulhamid 1" },
+    "1695.2.6" => { use: "e_seljuk_turks Mustafa 1" },
+    "1703.8.22" => { use: "e_seljuk_turks Ahmed 1" },
+    "1730.10.2" => { use: "e_seljuk_turks Mahmud 1" },
+    "1754.12.13" => { use: "e_seljuk_turks Osman 1" },
+    "1757.10.30" => { use: "e_seljuk_turks Mustafa 2" },
+    "1774.1.21" => { use: "e_seljuk_turks Abdulhamid 1" },
+    "1789.4.7" => { use: "e_seljuk_turks Selim 1" },
+    "1807.5.29" => { use: "e_seljuk_turks Mustafa 3" },
+    "1808.7.28" => { use: "e_seljuk_turks Mahmud 2" },
+    "1839.7.1" => { use: "e_seljuk_turks Abdulmecid 1" },
+    "1861.6.25" => { use: "e_seljuk_turks Abdulaziz 1" },
+    "1876.5.30" => { use: "e_seljuk_turks Mehmed Murad 1" },
+    "1876.8.31" => { use: "e_seljuk_turks Abdulhamid 2" },
     "1909.4.27" => { use: "e_seljuk_turks Mehmed 1" },
     "1918.7.4" => { use: "e_seljuk_turks Mehmed 2" },
     "1922.11.1" => nil,
