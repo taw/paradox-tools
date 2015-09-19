@@ -95,11 +95,25 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_germany: {
+    "18 January 1871" => {
+      name: "Wilhelm",
+      dynasty: "Hohenzollern",
+      birth: "22 March 1797",
+      death: "9 March 1888",
+    },
+    "9 March 1888" => {
+      name: "Friedrich",
+      dynasty: "Hohenzollern",
+      birth: "18 October 1831",
+      death: "15 June 1888",
+      father: "Wilhelm 1",
+    },
     "1888.6.15" => {
       birth: "1859.1.27",
       death: "1941.6.4",
       name: "Wilhelm",
       dynasty: "Hohenzollern",
+      father: "Friedrich 1",
     },
     # Backdate, ignore interregnum
     "1918.11.28" => {
@@ -163,6 +177,88 @@ ModernTimesDatabase::HOLDERS = {
     }
   },
   e_russia: {
+    "2 June 1682" => {
+      name: "Peter",
+      dynasty: "Romanov",
+      birth: "9 June 1672",
+      death: "8 February 1725",
+    },
+    "8 February 1725" => {
+      name: "Catherine",
+      dynasty: "Romanov",
+      birth: "15 April 1684",
+      death: "17 May 1727",
+      female: true,
+    },
+    "17 May 1727" => {
+      name: "Peter",
+      dynasty: "Romanov",
+      birth: "23 October 1715",
+      death: "30 January 1730",
+    },
+    "30 January 1730" => {
+      name: "Anna",
+      dynasty: "Romanov",
+      birth: "7 February 1693",
+      death: "28 October 174",
+      female: true,
+    },
+    "28 October 1740" => {
+      name: "Ivan",
+      dynasty: "Romanov",
+      birth: "23 August 1740",
+      death: "16 July 1764",
+    },
+    "6 December 1741" => {
+      name: "Elizabeth",
+      dynasty: "Romanov",
+      birth: "29 December 1709",
+      death: "5 January 1762",
+      female: true,
+    },
+    "9 January 1762" => {
+      name: "Peter",
+      dynasty: "Romanov",
+      birth: "21 February 1728",
+      death: "17 July 1762",
+    },
+    "9 July 1762" => {
+      name: "Catherine",
+      dynasty: "Romanov",
+      birth: "2 May 1729",
+      death: "17 November 1796",
+      female: true,
+    },
+    "17 November 1796" => {
+      name: "Paul",
+      dynasty: "Romanov",
+      birth: "1 October 1754",
+      death: "23 March 1801",
+    },
+    "23 March 1801" => {
+      name: "Alexander",
+      dynasty: "Romanov",
+      birth: "23 December 1777",
+      death: "1 December 1825",
+    },
+    "1 December 1825" => {
+      name: "Nicholas",
+      dynasty: "Romanov",
+      birth: "6 July 1796",
+      death: "2 March 1855",
+    },
+    "2 March 1855" => {
+      name: "Alexander",
+      dynasty: "Romanov",
+      birth: "29 April 1818",
+      death: "13 March 1881",
+    },
+    "13 March 1881" => {
+      name: "Alexander",
+      dynasty: "Romanov",
+      birth: "10 March 1845",
+      death: "1 November 1894",
+    },
     "1894.11.1" => {
       name: "Nicholas",
       dynasty: "Romanov",
