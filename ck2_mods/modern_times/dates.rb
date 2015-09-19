@@ -15,6 +15,13 @@ module ModernTimesDatabase::Dates
     treaty_of_passarowitz: "1718.7.21",
     greece_independence: "1832.5.7",
 
+    treaty_of_kucuk_kaynarca: "July 21, 1774",
+    treaty_of_jassy: "9 January 1792",
+    treaty_of_bucharest_1812: "28 May 1812",
+    luxembourg_independence: "23 November 1890",
+
+    treaty_of_campo_formio: "18 October 1797",
+
     hre_disbanded: "6 August 1806",
     third_maratha_war: "3 June 1818",
 
@@ -23,6 +30,7 @@ module ModernTimesDatabase::Dates
 
     mantua_austrian: "5 July 1708",
     treaty_of_zurich: "November 10, 1859",
+    treaty_of_vienna_1864: "30 October 1864",
     treaty_of_vienna_1866: "12 October 1866",
     end_of_lucca: "17 December 1847", # There was also a bit of extra Napoleonic complexity here
     capture_of_rome: "20 September 1870",
@@ -35,7 +43,11 @@ module ModernTimesDatabase::Dates
     poland_3_partition: "October 24, 1795",
     duchy_warsaw: "1807.7.22",
     duchy_warsaw_expansion: "1809.10.14",
+
+    peace_of_pressburg: "December 26, 1805",
+    treaty_of_shoenbrunn: "14 October 1809",
     congress_of_vienna: "1815.6.9",
+
     avignon_annexation: "1797.2.19", # Treaty of Tolentino, de facto 12 September 1791
     silesia_prussian: "July 28, 1742",
     treaty_of_nystad: "1721.9.10",

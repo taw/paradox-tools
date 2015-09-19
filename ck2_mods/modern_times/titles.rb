@@ -470,6 +470,18 @@ ModernTimesDatabase::TITLES = {
     religion: :waldensian,
     name: "Prussia / Prussian",
   },
+  d_saxony: {
+    culture: :german,
+    religion: :catholic,
+  },
+  d_bavaria: {
+    culture: :german,
+    religion: :catholic,
+  },
+  c_salzburg: {
+    culture: :german,
+    religion: :catholic,
+  },
   e_wendish_empire: {
     culture: :polish,
     religion: :catholic,

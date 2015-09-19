@@ -405,10 +405,10 @@ class ModernTimesGameModification < CK2GameModification
     patch_mod_file!("common/defines.txt") do |node|
       if ENV["DEBUG_HISTORY"]
         ### History testing
-        node["start_date"]      = Date.parse("1700.1.1")
+        node["start_date"]    = Date.parse(ENV["DEBUG_HISTORY"])
       else
         ### Actual start
-        node["start_date"]      = Date.parse("1900.1.1")
+        node["start_date"]    = Date.parse("1900.1.1")
       end
       node["last_start_date"] = Date.parse("2015.12.31")
       node["end_date"]        = Date.parse("2999.12.31")
@@ -677,11 +677,11 @@ class ModernTimesGameModification < CK2GameModification
       "k_ruthenia" => "e_wendish_empire",
       "k_croatia" => "e_carpathia",
       "d_ryazan"  => "k_rus",
-      "k_prussia"   => {hre_disbanded: "e_germany" },
-      "k_frisia"    => {hre_disbanded: "e_germany" },
-      "k_germania"  => {hre_disbanded: "e_germany" },
-      "k_bavaria"   => {hre_disbanded: "e_carpathia" },
-      "k_bohemia"   => {hre_disbanded: "e_carpathia" },
+      "k_prussia"   => { hre_disbanded: "e_germany" },
+      "k_frisia"    => { hre_disbanded: "e_germany" },
+      "k_germany"   => { hre_disbanded: "e_germany" },
+      "k_bavaria"   => { hre_disbanded: "e_carpathia" },
+      "k_bohemia"   => { hre_disbanded: "e_carpathia" },
     }.each do |title, liege|
       # FIXME: This is horrible hack
       path = "history/titles/#{title}.txt"
@@ -757,6 +757,8 @@ class ModernTimesGameModification < CK2GameModification
       ["1780.1.1", "Test 1780"],
       ["1820.1.1", "Test 1820"],
       ["1850.1.1", "Test 1850"],
+      ["1861.3.17", "Kingdom of Italy"],
+      ["1871.1.18", "German Empire"],
       ["1890.1.1", "Test 1890"],
 
       ### Actual bookmarks, must have 5 key bookmarks
@@ -774,7 +776,7 @@ class ModernTimesGameModification < CK2GameModification
       node.delete_if{true}
       bookmarks.each do |date, name, key|
         date = Date.parse(date)
-        next unless ENV["DEBUG_HISTORY"] or date >= Date.parse("1900.1.1")
+        next unless date >= @db.min_date
         if key
           bm_code, splash_code = key_bookmarks.shift
         else
@@ -815,7 +817,6 @@ class ModernTimesGameModification < CK2GameModification
 
     # Order of transformations matters
     setup_defines!
-    setup_bookmarks!
     setup_technology!
 
     @map = MapManager.new(self)
@@ -840,5 +841,7 @@ class ModernTimesGameModification < CK2GameModification
 
     # report_dynasty_conflict_stats!
     puts @warnings.sort
+
+    setup_bookmarks!
   end
 end

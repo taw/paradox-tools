@@ -16,6 +16,14 @@ class ModernTimesModBuilder < ParadoxModBuilder
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
                          ModernTimesGameModification
+
+    # Fucking hack
+    patch_mod_file!("common/hints.txt") do |node|
+      node.each do |name, hint|
+        hint.delete "sticky"
+      end
+    end
+
     create_mod_descriptor!(
       name: "Modern Times",
       path: "mod/modern_times",

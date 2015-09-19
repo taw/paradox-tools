@@ -292,15 +292,39 @@ ModernTimesDatabase::LAND = {
   k_abyssinia: { forever_ago: "k_abyssinia" },
   c_kassala:   { forever_ago: "k_abyssinia" },
 
+  c_salzburg:     { forever_ago: "c_salzburg", peace_of_pressburg: "e_carpathia", treaty_of_shoenbrunn: "d_bavaria", congress_of_vienna: "e_carpathia", anschluss: "e_germany", end_ww2: "e_carpathia" },
+
+  d_azov:    { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia"},
+  d_cherson: { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
+  c_crimea:  { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
+  d_crimea:   { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", fall_soviet_union: "k_ruthenia"},
+  c_tmutarakan: { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia" },
+
+  # Maybe I sohuld just not have Moldova in the game.
+  c_torki:        { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
+  c_birlad:       { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
+  c_galaz:        { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "k_ruthenia"},
+  d_moldau:       { forever_ago: "e_seljuk_turks", treaty_of_jassy: "e_russia", fall_soviet_union: "k_ruthenia"},
+
+  d_verona:     { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
+  d_venice:     { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
+  c_zadar:        { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+  c_split:        { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
+  d_carinthia:    { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+  c_istria:       { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+
+  d_slavonia:     { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+  d_croatia:      { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+  c_zachlumia:    { forever_ago: "e_seljuk_turks", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
+  c_usora:        { forever_ago: "e_seljuk_turks", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
+  c_terebovl:          { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia"},
+
   ##########################
   # Half done
 
   c_aprutium:   { treaty_of_zurich: "e_italy" },
   k_sicily:     { treaty_of_zurich: "e_italy" },
   d_sicily:     { treaty_of_zurich: "e_italy" },
-
-  d_verona:     { treaty_of_vienna_1866: "e_italy" },
-  d_venice:     { treaty_of_vienna_1866: "e_italy" },
 
   d_sardinia:   { treaty_of_zurich: "e_italy" }, # Much earlier
   d_lombardia:  { treaty_of_zurich: "e_italy" }, # Much earlier
@@ -321,6 +345,32 @@ ModernTimesDatabase::LAND = {
   c_sakala:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
   e_bengal:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
 
+  # Names on CK2 map have very little correlation with names on real map
+  # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
+  # c_suvarnagram might be part of India
+  d_vanga:      { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
+  d_varendra:   { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
+
+  c_luxembourg:  { luxembourg_independence: "d_luxembourg"},
+  c_liege:       { belgium_independence: "d_flanders" },
+  d_flanders:    { belgium_independence: "d_flanders" },
+  d_brabant:     { belgium_independence: "d_flanders" },
+  c_ostfriesland: { german_unification: "e_germany" },
+  d_holstein:     { german_unification: "e_germany" },
+  c_holstein:     { forever_ago: "k_denmark", treaty_of_vienna_1864: "k_pomerania", german_unification: "e_germany" },
+  d_brunswick:    { german_unification: "e_germany" },
+  d_thuringia:    { german_unification: "e_germany" },
+  d_koln:         { german_unification: "e_germany" },
+  d_baden:        { german_unification: "e_germany" },
+  d_swabia:       { german_unification: "e_germany" },
+  d_bavaria:      { german_unification: "e_germany" },
+  d_franconia:    { german_unification: "e_germany" },
+  c_thuringen:    { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  d_meissen:      { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  d_mecklemburg:  { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  c_wolgast:      { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  d_saxony:       { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
   # FIXME: Avignon was Papal for a while, also do Savoy etc.
@@ -329,7 +379,9 @@ ModernTimesDatabase::LAND = {
   # FIXME: Cieszyn should be Austrian
   # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled
   # FIXME: Saudi Arabia should not start as kingdom in 1900
-  # TODO: Terebovl Russian?
+  # TODO: Serious modelling of 1938-1945 and Napoleonic Wars era
+  # FIXME: Hungary / Romania / Serbia border is crap
+  # FIXME: Romania / Moldova border is crap
 
   d_dihistan:  { start: "e_russia", fall_soviet_union: "d_dihistan" },
   c_merv:      { start: "e_russia", fall_soviet_union: "d_dihistan" },
@@ -356,53 +408,21 @@ ModernTimesDatabase::LAND = {
   c_vijnot:      { start: "e_britannia", india_independence: "k_baluchistan" },
   k_punjab:      { start: "e_britannia", india_independence: "k_baluchistan" },
 
-  # Names on CK2 map have very little correlation with names on real map
-  # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
-  # c_suvarnagram might be part of India
-  d_vanga:      { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
-  d_varendra:   { start: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
-
   c_semender:   { start: "e_russia" },
   c_derbent:    { start: "e_russia" },
-  c_tmutarakan: { start: "e_russia" },
-  d_azov:       { start: "e_russia" },
 
-  c_luxembourg: { start: "d_luxembourg"},
   c_julich:     { start: "e_germany" },
   c_loon:       { start: "k_frisia" },
-
-  c_liege:      { belgium_independence: "d_flanders" },
-  d_flanders:   { belgium_independence: "d_flanders" },
-  d_brabant:    { belgium_independence: "d_flanders" },
-
-  c_ostfriesland: { start: "e_germany" },
-  d_holstein:     { start: "e_germany" },
-  d_brunswick:    { start: "e_germany" },
-  d_thuringia:    { start: "e_germany" },
-  d_koln:         { start: "e_germany" },
-  d_baden:        { start: "e_germany" },
-  d_swabia:       { start: "e_germany" },
-  d_bavaria:      { start: "e_germany" },
-  d_franconia:    { start: "e_germany" },
-  c_thuringen:    { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  d_meissen:      { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  d_mecklemburg:  { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  c_wolgast:      { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  d_saxony:       { start: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
 
   d_lesser_poland:     { start: "e_carpathia", end_ww1: "k_poland" },
   c_peremyshl:         { start: "e_carpathia", end_ww1: "k_poland" },
   d_galich:            { start: "e_carpathia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
 
   c_turov:             { start: "e_russia", fall_soviet_union: "k_ruthenia"},
-  d_cherson: { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
-  c_crimea:  { start: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
-  d_crimea:      { start: "e_russia", fall_soviet_union: "k_ruthenia"},
 
   d_volhynia:          { start: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
 
   d_mazovia:  { start: "e_russia", end_ww1: "k_poland" },
-
 
   :"c_sieradzko-leczyckie" => { start: "e_russia", end_ww1: "k_poland" },
 
@@ -412,18 +432,6 @@ ModernTimesDatabase::LAND = {
   c_kaliskie:      {start: "e_germany", end_ww2: "k_poland"},
 
   c_saris:        { start: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
-
-  c_salzburg:     { start: "e_carpathia", anschluss: "e_germany", end_ww2: "e_carpathia" },
-
-
-  d_carinthia:    { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
-  c_zadar:        { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
-  d_slavonia:     { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
-  d_croatia:      { start: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
-
-  c_zachlumia:    { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
-  c_split:        { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
-  c_usora:        { start: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
 
   # More or less Alsace-Lorraine
   d_alsace:       { start: "e_germany", end_ww1: "e_france"},
@@ -460,11 +468,6 @@ ModernTimesDatabase::LAND = {
   d_medina: { start: "e_seljuk_turks", end_ww1: "k_arabia" },
   d_arabia_petrae: { start: "e_seljuk_turks", end_ww1: "k_arabia" },
   d_amman:  { start: "e_seljuk_turks", end_ww1: "k_arabia", },
-
-  c_torki:        { start: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
-  c_birlad:       { start: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
-  c_galaz:        { start: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "k_ruthenia"},
-  d_moldau:       { start: "e_russia", fall_soviet_union: "k_ruthenia"},
 
   c_taizz: { start: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
   c_sanaa: { start: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },

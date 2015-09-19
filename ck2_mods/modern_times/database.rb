@@ -8,7 +8,7 @@ class ModernTimesDatabase
 
   def min_date
     if ENV["DEBUG_HISTORY"]
-      @min_date ||= resolve_date(:forever_ago)
+      @min_date ||= Date.parse(ENV["DEBUG_HISTORY"])
     else
       @min_date ||= resolve_date(:start)
     end
