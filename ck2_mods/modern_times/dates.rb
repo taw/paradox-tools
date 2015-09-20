@@ -15,56 +15,56 @@ module ModernTimesDatabase::Dates
     treaty_of_passarowitz: "1718.7.21",
     greece_independence: "1832.5.7",
 
-    treaty_of_versailles: "20 January 1783", # Was multiple times, but this was actual peace treaty
+    treaty_of_versailles: "1783.1.20", # Was multiple times, but this was actual peace treaty
 
-    fall_krakow_uprising: "16 November 1846", # treaty signed between Russia and Austria
-    memel_german: "March 20, 1939",
-    munich_agreement: "30 September 1938",
+    fall_krakow_uprising: "1846.11.16", # treaty signed between Russia and Austria
+    memel_german: "1939.3.20",
+    munich_agreement: "1938.9.30",
 
-    fall_chechnya: "1 May 2000", # approximate
-    treaty_of_kucuk_kaynarca: "July 21, 1774",
-    treaty_of_jassy: "9 January 1792",
-    treaty_of_bucharest_1812: "28 May 1812",
-    luxembourg_independence: "23 November 1890",
+    fall_chechnya: "2000.5.1", # approximate
+    treaty_of_kucuk_kaynarca: "1774.7.21",
+    treaty_of_jassy: "1792.1.9",
+    treaty_of_bucharest_1812: "1812.5.28",
+    luxembourg_independence: "1890.11.23",
 
-    treaty_of_campo_formio: "18 October 1797",
+    treaty_of_campo_formio: "1797.10.18",
 
-    end_1_saudi_state: "1 April 1818", # approximate
+    end_1_saudi_state: "1818.4.1", # approximate
 
-    hre_disbanded: "6 August 1806",
-    third_maratha_war: "3 June 1818",
-    second_sikh_war: "29 March 1849",
+    hre_disbanded: "1806.8.6",
+    third_maratha_war: "1818.6.3",
+    second_sikh_war: "1849.3.29",
 
     fall_dzungar: "1758.1.1",
     belgium_independence: "1831.7.21", # Actually crowning of Leopold
 
-    mantua_austrian: "5 July 1708",
-    treaty_of_zurich: "November 10, 1859",
-    treaty_of_vienna_1864: "30 October 1864",
-    treaty_of_vienna_1866: "12 October 1866",
-    end_of_lucca: "17 December 1847", # There was also a bit of extra Napoleonic complexity here
-    capture_of_rome: "20 September 1870",
+    mantua_austrian: "1708.7.5",
+    treaty_of_zurich: "1859.11.10",
+    treaty_of_vienna_1864: "1864.10.30",
+    treaty_of_vienna_1866: "1866.10.12",
+    end_of_lucca: "1847.12.17", # There was also a bit of extra Napoleonic complexity here
+    capture_of_rome: "1870.9.20",
     st_petersburg_founding: "May 12 1703", # They literally moved their capital there before peace deal gave them Ingria
 
     sudan_turkish: "1.1.1821", # approximate
 
     german_unification: "1871.1.18",
     italy_unification: "1861.3.17",
-    poland_1_partition: "September 22, 1772",
-    poland_2_partition: "January 23, 1793",
-    poland_3_partition: "October 24, 1795",
+    poland_1_partition: "1772.9.22",
+    poland_2_partition: "1793.1.23",
+    poland_3_partition: "1795.10.24",
     duchy_warsaw: "1807.7.22",
     duchy_warsaw_expansion: "1809.10.14",
 
-    peace_of_pressburg: "December 26, 1805",
-    treaty_of_shoenbrunn: "14 October 1809",
+    peace_of_pressburg: "1805.12.26",
+    treaty_of_shoenbrunn: "1809.10.14",
     congress_of_vienna: "1815.6.9",
 
     avignon_annexation: "1797.2.19", # Treaty of Tolentino, de facto 12 September 1791
-    silesia_prussian: "July 28, 1742",
+    silesia_prussian: "1742.7.28",
     treaty_of_nystad: "1721.9.10",
     malta_british: "1800.9.4",
-    french_corsica: "May 15, 1768",
+    french_corsica: "1768.5.15",
     crete_independence: "1898.12.13",
     convention_of_constantinople: "1881.7.2",
 
@@ -72,8 +72,8 @@ module ModernTimesDatabase::Dates
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",
 
-    bahrain_british: "22 December 1880", # Gradual process, date for British foreign policy veto
-    kuwait_british: "November 23, 1899", # Gradual process, date for British foreign policy veto
+    bahrain_british: "1880.12.22", # Gradual process, date for British foreign policy veto
+    kuwait_british: "1899.11.23", # Gradual process, date for British foreign policy veto
 
     sri_lanka_british: "1795.2.8",
     sri_lanka_independence: "1948.2.4",
@@ -155,7 +155,7 @@ module ModernTimesDatabase::Dates
     mauritania_independence: "1960.11.28",
     sudan_independence: "1956.1.1",
 
-    eritrea_italian: "10 March 1889",
+    eritrea_italian: "1889.3.10",
     eritrea_british: "1941.4.1", # Battle of Keren; or I could make it formal at end of WW2
     eritrea_ethiopian: "1950.12.2",
     eritrea_independence: "1993.5.24",

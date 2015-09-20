@@ -95,17 +95,17 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_germany: {
-    "18 January 1871" => {
+    "1871.1.18" => {
       name: "Wilhelm",
       dynasty: "Hohenzollern",
-      birth: "22 March 1797",
-      death: "9 March 1888",
+      birth: "1797.3.22",
+      death: "1888.3.9",
     },
-    "9 March 1888" => {
+    "1888.3.9" => {
       name: "Friedrich",
       dynasty: "Hohenzollern",
-      birth: "18 October 1831",
-      death: "15 June 1888",
+      birth: "1831.10.18",
+      death: "1888.6.15",
       father: "Wilhelm 1",
     },
     "1888.6.15" => {
@@ -177,87 +177,87 @@ ModernTimesDatabase::HOLDERS = {
     }
   },
   e_russia: {
-    "2 June 1682" => {
+    "1682.6.2" => {
       name: "Peter",
       dynasty: "Romanov",
-      birth: "9 June 1672",
-      death: "8 February 1725",
+      birth: "1672.6.9",
+      death: "1725.2.8",
     },
-    "8 February 1725" => {
+    "1725.2.8" => {
       name: "Catherine",
       dynasty: "Romanov",
-      birth: "15 April 1684",
-      death: "17 May 1727",
+      birth: "1684.4.15",
+      death: "1727.5.17",
       female: true,
     },
-    "17 May 1727" => {
+    "1727.5.17" => {
       name: "Peter",
       dynasty: "Romanov",
-      birth: "23 October 1715",
-      death: "30 January 1730",
+      birth: "1715.10.23",
+      death: "1730.1.30",
     },
-    "30 January 1730" => {
+    "1730.1.30" => {
       name: "Anna",
       dynasty: "Romanov",
-      birth: "7 February 1693",
-      death: "28 October 174",
+      birth: "1693.2.7",
+      death: "174.10.28",
       female: true,
     },
-    "28 October 1740" => {
+    "1740.10.28" => {
       name: "Ivan",
       dynasty: "Romanov",
-      birth: "23 August 1740",
-      death: "16 July 1764",
+      birth: "1740.8.23",
+      death: "1764.7.16",
     },
-    "6 December 1741" => {
+    "1741.12.6" => {
       name: "Elizabeth",
       dynasty: "Romanov",
-      birth: "29 December 1709",
-      death: "5 January 1762",
+      birth: "1709.12.29",
+      death: "1762.1.5",
       female: true,
     },
-    "9 January 1762" => {
+    "1762.1.9" => {
       name: "Peter",
       dynasty: "Romanov",
-      birth: "21 February 1728",
-      death: "17 July 1762",
+      birth: "1728.2.21",
+      death: "1762.7.17",
     },
-    "9 July 1762" => {
+    "1762.7.9" => {
       name: "Catherine",
       dynasty: "Romanov",
-      birth: "2 May 1729",
-      death: "17 November 1796",
+      birth: "1729.5.2",
+      death: "1796.11.17",
       female: true,
     },
-    "17 November 1796" => {
+    "1796.11.17" => {
       name: "Paul",
       dynasty: "Romanov",
-      birth: "1 October 1754",
-      death: "23 March 1801",
+      birth: "1754.10.1",
+      death: "1801.3.23",
     },
-    "23 March 1801" => {
+    "1801.3.23" => {
       name: "Alexander",
       dynasty: "Romanov",
-      birth: "23 December 1777",
-      death: "1 December 1825",
+      birth: "1777.12.23",
+      death: "1825.12.1",
     },
-    "1 December 1825" => {
+    "1825.12.1" => {
       name: "Nicholas",
       dynasty: "Romanov",
-      birth: "6 July 1796",
-      death: "2 March 1855",
+      birth: "1796.7.6",
+      death: "1855.3.2",
     },
-    "2 March 1855" => {
+    "1855.3.2" => {
       name: "Alexander",
       dynasty: "Romanov",
-      birth: "29 April 1818",
-      death: "13 March 1881",
+      birth: "1818.4.29",
+      death: "1881.3.13",
     },
-    "13 March 1881" => {
+    "1881.3.13" => {
       name: "Alexander",
       dynasty: "Romanov",
-      birth: "10 March 1845",
-      death: "1 November 1894",
+      birth: "1845.3.10",
+      death: "1894.11.1",
     },
     "1894.11.1" => {
       name: "Nicholas",
@@ -415,27 +415,27 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_persia: {
-    "18 February 1785" => {
+    "1785.2.18" => {
       name: "Jafar",
       dynasty: "Zand",
     },
-    "23 January 1789" => {
+    "1789.1.23" => {
       name: "Lotf Ali",
       dynasty: "Zand",
     },
-    "20 March 1794" => {
+    "1794.3.20" => {
       name: "Mohammad",
       dynasty: "Qajar",
     },
-    "17 June 1797" => {
+    "1797.6.17" => {
       name: "Fat'h Ali",
       dynasty: "Qajar",
     },
-    "23 October 1834" => {
+    "1834.10.23" => {
       name: "Mohammad",
       dynasty: "Qajar",
     },
-    "5 September 1848" => {
+    "1848.9.5" => {
       name: "Naser al-Din",
       dynasty: "Qajar",
     },
@@ -471,51 +471,51 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_seljuk_turks: {
-    "6 February 1695" => {
+    "1695.2.6" => {
       name: "Mustafa",
       dynasty: "Ottoman",
     },
-    "22 August 1703" => {
+    "1703.8.22" => {
       name: "Ahmed",
       dynasty: "Ottoman",
     },
-    "2 October 1730" => {
+    "1730.10.2" => {
       name: "Mahmud",
       dynasty: "Ottoman",
     },
-    "13 December 1754" => {
+    "1754.12.13" => {
       name: "Osman",
       dynasty: "Ottoman",
     },
-    "30 October 1757" => {
+    "1757.10.30" => {
       name: "Mustafa",
       dynasty: "Ottoman",
     },
-    "21 January 1774" => {
+    "1774.1.21" => {
       name: "Abdulhamid",
       dynasty: "Ottoman",
     },
-    "7 April 1789" => {
+    "1789.4.7" => {
       name: "Selim",
       dynasty: "Ottoman",
     },
-    "29 May 1807" => {
+    "1807.5.29" => {
       name: "Mustafa",
       dynasty: "Ottoman",
     },
-    "28 July 1808" => {
+    "1808.7.28" => {
       name: "Mahmud",
       dynasty: "Ottoman",
     },
-    "1 July 1839" => {
+    "1839.7.1" => {
       name: "Abdulmecid",
       dynasty: "Ottoman",
     },
-    "25 June 1861" => {
+    "1861.6.25" => {
       name: "Abdulaziz",
       dynasty: "Ottoman",
     },
-    "30 May 1876" => {
+    "1876.5.30" => {
       name: "Mehmed Murad",
       dynasty: "Ottoman",
     },
@@ -675,16 +675,16 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   e_france: {
-    "10 November 1799" => {name: "Napoleon", dynasty: "Bonaparte", birth: "15 August 1769", death: "5 May 1821"},
+    "1799.11.10" => {name: "Napoleon", dynasty: "Bonaparte", birth: "1769.8.15", death: "1821.5.5"},
     # 7 July 1815, backdating to Congress of Vienna
     "1815.6.9"          => {name: "Louis", dynasty: "Bourbon"},
-    "16 September 1824" => {name: "Charles", dynasty: "Bourbon"},
-    "9 August 1830"     => {name: "Louis Philippe", dynasty: "Orléans"},
+    "1824.9.16" => {name: "Charles", dynasty: "Bourbon"},
+    "1830.8.9"     => {name: "Louis Philippe", dynasty: "Orléans"},
     # Second republic, second Empire from 1852.12.2
-    "24 February 1848" => {name: "Napoleon", dynasty: "Bonaparte", birth: "20 April 1808", death: "9 January 1873"},
+    "1848.2.24" => {name: "Napoleon", dynasty: "Bonaparte", birth: "1808.4.20", death: "1873.1.9"},
     # 3rd Republic
     # Backdated, really 1871.8.31
-    "4 September 1870" =>  {name: "Adolphe", dynasty: "Thiers", birth: "1797", death: "1877"},
+    "1870.9.4" =>  {name: "Adolphe", dynasty: "Thiers", birth: "1797", death: "1877"},
     "1873.5.24" =>  {name: "Patrice", dynasty: "de Mac-Mahon", birth: "1808", death: "1893"},
     "1879.1.30" =>  {name: "Jules", dynasty: "Grévy", birth: "1807", death: "1891"},
     "1887.12.3" =>  {name: "Marie François Sadi", dynasty: "Carnot", birth: "1837", death: "1894"},
@@ -747,7 +747,7 @@ ModernTimesDatabase::HOLDERS = {
     "1886.5.17"      => {name: "Alfonso", dynasty: "Bourbon", birth: "1886.5.17", death: "1941.2.28"},
     # Simplify republic
     "1931.4.14"    => {name: "Niceto", dynasty: "Alcalá-Zamora", birth: "1877.7.6", death: "1949.2.18"},
-    "1936.10.1"   => {name: "Francisco", dynasty: "Franco", birth: "December 4, 1892", death: "November 20, 1975"},
+    "1936.10.1"   => {name: "Francisco", dynasty: "Franco", birth: "1892.12.4", death: "1975.11.20"},
     "1975.11.22" => {name: "Juan Carlos", dynasty: "Bourbon", birth: "1938.1.5", death: :never},
     "2014.6.19"     => {name: "Felipe", dynasty: "Bourbon", birth: "1968.1.30", death: :never},
   },
@@ -810,11 +810,11 @@ ModernTimesDatabase::HOLDERS = {
     fall_soviet_union: {name: "Nursultan", dynasty: "Nazarbayev", birth: "1940.7.6"},
   },
   k_khiva: {
-    fall_soviet_union: {name: "Islam", dynasty: "Karimov", birth: "January 30, 1938"},
+    fall_soviet_union: {name: "Islam", dynasty: "Karimov", birth: "1938.1.30"},
   },
   d_dihistan: {
     fall_soviet_union: {name: "Saparmurat", dynasty: "Niyazov", birth: "1940.2.19", death: "2006.12.21"},
-    "2006.12.21" => {name: "Gurbanguly", dynasty: "Berdimuhamedow", birth: "June 29, 1957"},
+    "2006.12.21" => {name: "Gurbanguly", dynasty: "Berdimuhamedow", birth: "1957.6.29"},
   },
   k_frisia: {
     "1815.3.16" => {name: "William", dynasty: "Orange-Nassau", birth: "1772.8.24", death: "1843.12.12"},
@@ -864,90 +864,90 @@ ModernTimesDatabase::HOLDERS = {
   c_alania: {
     fall_soviet_union: {
       name: "Dzhokhar", dynasty: "Dudayev",
-      birth: "15 February 1944", death: "21 April 1996",
+      birth: "1944.2.15", death: "1996.4.21",
     },
-    "21 April 1996" => {
+    "1996.4.21" => {
       name: "Zelimkhan", dynasty: "Yandarbiyev",
-      birth: "September 12, 1952", death: "February 13, 2004",
+      birth: "1952.9.12", death: "2004.2.13",
     },
-    "February 12, 1997" => {
+    "1997.2.12" => {
       name: "Aslan", dynasty: "Maskhadov",
-      birth: "21 September 1951", death: "8 March 2005",
+      birth: "1951.9.21", death: "2005.3.8",
     },
   },
   k_ruthenia: {
     fall_soviet_union: {
       name: "Leonid", dynasty: "Kravchuk",
-      birth: "January 10, 1934", death: :never,
+      birth: "1934.1.10", death: :never,
     },
-    "19 July 1994" => {
+    "1994.7.19" => {
       name: "Leonid", dynasty: "Kuchma",
-      birth: "9 August 1938", death: :never,
+      birth: "1938.8.9", death: :never,
     },
-    "23 January 2005" => {
+    "2005.1.23" => {
       name: "Viktor", dynasty: "Yushchenko",
-      birth: "February 23, 1954", death: :never,
+      birth: "1954.2.23", death: :never,
     },
-    "25 February 2010" => {
+    "2010.2.25" => {
       name: "Viktor", dynasty: "Yanukovych",
-      birth: "9 July 1950", death: :never,
+      birth: "1950.7.9", death: :never,
     },
     # acting, but timing is pretty important
-    "23 February 2014" => {
+    "2014.2.23" => {
       name: "Oleksandr", dynasty: "Turchynov",
       birth: " 31 March 1964", death: :never,
     },
-    "7 June 2014" => {
+    "2014.6.7" => {
       name: "Petro", dynasty: "Poroshenko",
-      birth: "26 September 1965", death: :never,
+      birth: "1965.9.26", death: :never,
     },
   },
   d_vitebsk: {
     fall_soviet_union: {
       name: "Stanislav", dynasty: "Shushkevich",
-      birth: "December 15, 1934", death: :never,
+      birth: "1934.12.15", death: :never,
     },
     # Skipping two acting chairmen of supreme soviet, not backdating
-    "20 July 1994" => {
+    "1994.7.20" => {
       name: "Alexander",
       dynasty: "Lukashenko",
-      birth: "30 August 1954",
+      birth: "1954.8.30",
       death: :never,
     }
   },
   d_luxembourg: {
-    "23 November 1890" => {
+    "1890.11.23" => {
       name: "Adolphe",
-      birth: "24 July 1817",
-      death: "17 November 1905",
+      birth: "1817.7.24",
+      death: "1905.11.17",
     },
-    "17 November 1905" => {
+    "1905.11.17" => {
       name: "Guillaume",
-      birth: "22 April 1852",
-      death: "25 February 1912",
+      birth: "1852.4.22",
+      death: "1912.2.25",
       father: "Adolphe",
     },
-    "25 February 1912" => {
+    "1912.2.25" => {
       name: "Marie-Adelaide",
-      birth: "14 June 1894",
-      death: "24 January 1924",
+      birth: "1894.6.14",
+      death: "1924.1.24",
       female: true,
     },
-    "14 January 1919" => {
+    "1919.1.14" => {
       name: "Charlotte",
-      birth: "23 January 1896",
-      death: "9 July 1985",
+      birth: "1896.1.23",
+      death: "1985.7.9",
       female: true,
     },
-    "12 November 1964" => {
+    "1964.11.12" => {
       name: "Jean",
-      birth: "5 January 1921",
+      birth: "1921.1.5",
       death: :never,
       mother: "Charlotte",
     },
-    "7 October 2000" => {
+    "2000.10.7" => {
       name: "Henri",
-      birth: "16 April 1955",
+      birth: "1955.4.16",
       death: :never,
       father: "Jean",
     },
@@ -955,167 +955,167 @@ ModernTimesDatabase::HOLDERS = {
   d_lithuanians: {
     # From 11 March 1990, chairman of supreme soviet
     fall_soviet_union: {name: "Vytautas", dynasty: "Landsbergis"},
-    "25 February 1993" => {name: "Algirdas", dynasty: "Brazauskas"},
-    "26 February 1998" => {name: "Valdas", dynasty: "Adamkus"},
-    "26 February 2003" => {name: "Rolandas", dynasty: "Paksas"},
+    "1993.2.25" => {name: "Algirdas", dynasty: "Brazauskas"},
+    "1998.2.26" => {name: "Valdas", dynasty: "Adamkus"},
+    "2003.2.26" => {name: "Rolandas", dynasty: "Paksas"},
     # backdated to skip acting president
-    "6 April 2004" => {use: "Valdas 1"},
-    "12 July 2009" => {name: "Dalia", dynasty: "Grybauskaite", female: true},
+    "2004.4.6" => {use: "Valdas 1"},
+    "2009.7.12" => {name: "Dalia", dynasty: "Grybauskaite", female: true},
   },
   d_nyitra: {
     # 2 March 1993, backdating
     "1993.1.1" => {name: "Michal", dynasty: "Kovac"},
     # 15 June 1999, backdating
-    "March 2, 1998" => {name: "Rudolf", dynasty: "Schuster"},
-    "15 June 2004" => {name: "Ivan", dynasty: "Gasparovic"},
-    "15 June 2014" => {name: "Andrej", dynasty: "Kiska"},
+    "1998.3.2" => {name: "Rudolf", dynasty: "Schuster"},
+    "2004.6.15" => {name: "Ivan", dynasty: "Gasparovic"},
+    "2014.6.15" => {name: "Andrej", dynasty: "Kiska"},
   },
   k_georgia: {
     # A lot of backdating
-    fall_soviet_union: {name: "Eduard", dynasty: "Shevardnadze", birth: "25 January 1928", death: "7 July 2014"},
-    "23 November 2003" => {name: "Mikheil", dynasty: "Saakashvili", birth: "21 December 1967", death: :never},
-    "17 November 2013" => {name: "Giorgi", dynasty: "Margvelashvili", birth: "4 September 1969"}
+    fall_soviet_union: {name: "Eduard", dynasty: "Shevardnadze", birth: "1928.1.25", death: "2014.7.7"},
+    "2003.11.23" => {name: "Mikheil", dynasty: "Saakashvili", birth: "1967.12.21", death: :never},
+    "2013.11.17" => {name: "Giorgi", dynasty: "Margvelashvili", birth: "1969.9.4"}
   },
   d_azerbaijan: {
     # actually 28 May 1918
     end_ww1: {name: "Mammad Amin", dynasty: "Rasulzade"},
-    "7 December 1918" => {name: "Alimardan", dynasty: "Topchubashov"},
+    "1918.12.7" => {name: "Alimardan", dynasty: "Topchubashov"},
     # End date is somewhat dubious
     "1920.5.11" => nil,
     # 3 October 1993, backdating, but Heydar Aliyev was sort of leader of Azerbaijan since 1969
-    fall_soviet_union: { name: "Heydar", dynasty: "Aliyev", birth: "10 May 1923", death: "12 December 2003" },
-    "31 October 2003" => { name: "Ilham", dynasty: "Aliyev", father: "Heydar 1", birth: "24 December 1961" },
+    fall_soviet_union: { name: "Heydar", dynasty: "Aliyev", birth: "1923.5.10", death: "2003.12.12" },
+    "2003.10.31" => { name: "Ilham", dynasty: "Aliyev", father: "Heydar 1", birth: "1961.12.24" },
   },
   d_esthonia: {
     # 6 October 1992, backdating
     fall_soviet_union: {name: "Lennart Georg", dynasty: "Meri"},
-    "8 October 2001" => {name: "Arnold", dynasty: "Rüütel"},
-    "9 October 2006" => {name: "Toomas Hendrik", dynasty: "Ilves"},
+    "2001.10.8" => {name: "Arnold", dynasty: "Rüütel"},
+    "2006.10.9" => {name: "Toomas Hendrik", dynasty: "Ilves"},
   },
   k_poland: {
-    end_ww1: {name: "Jozef", dynasty: "Pilsudski", birth: "5 December 1867", death: "12 May 1935"},
-    "11 December 1922" => {name: "Gabriel", dynasty: "Narutowicz", birth: "17 March 1865", death: "16 December 1922"},
-    "16 December 1922" => {name: "Stanislaw", dynasty: "Wojciechowski", birth: "15 March 1869", death: "9 April 1953"},
+    end_ww1: {name: "Jozef", dynasty: "Pilsudski", birth: "1867.12.5", death: "1935.5.12"},
+    "1922.12.11" => {name: "Gabriel", dynasty: "Narutowicz", birth: "1865.3.17", death: "1922.12.16"},
+    "1922.12.16" => {name: "Stanislaw", dynasty: "Wojciechowski", birth: "1869.3.15", death: "1953.4.9"},
     # Not officially, but everybody knows who ruled
-    "14 May 1926" => {use: "Jozef 1"},
-    "12 May 1935" => {name: "Ignacy", dynasty: "Moscicki", birth: "1 December 1867", death: "2 October 1946"},
+    "1926.5.14" => {use: "Jozef 1"},
+    "1935.5.12" => {name: "Ignacy", dynasty: "Moscicki", birth: "1867.12.1", death: "1946.10.2"},
     # government in exile
-    "30 September 1939" => {name: "Wladyslaw", dynasty: "Raczkiewicz", birth: "28 January 1885", death: "6 June 1947"},
+    "1939.9.30" => {name: "Wladyslaw", dynasty: "Raczkiewicz", birth: "1885.1.28", death: "1947.6.6"},
 
     # Communist Poland had no clear head of state, by design
     # First secretaries, except Jaruzelski gets to keep his post during transition
     # December 22, 1948, backdating
-    end_ww2: {name: "Boleslaw", dynasty: "Bierut", birth: "18 April 1892", death: "12 March 1956"},
-    "March 20, 1956" => {name: "Edward", dynasty: "Ochab", birth: "1906.8.16", death: "1989.5.1"},
-    "October 21, 1956" => {name: "Wladyslaw", dynasty: "Gomulka", birth: "6 February 1905", death: "1 September 1982"},
-    "December 20, 1970" => {name: "Edward", dynasty: "Gierek", birth: "6 January 1913", death: "29 July 2001"},
-    "6 September 1980" => {name: "Stanislaw", dynasty: "Kania", birth: "8 March 1927", death: :never},
-    "October 18, 1981" => {name: "Wojciech", dynasty: "Jaruzelski", birth: "6 July 1923", death: "25 May 2014"},
-    "22 December 1990" => {name: "Lech", dynasty: "Walesa", birth: "29 September 1943", death: :never},
-    "23 December 1995" => {name: "Aleksander", dynasty: "Kwasniewski", birth: "15 November 1954", death: :never},
-    "23 December 2005" => {name: "Lech", dynasty: "Kaczynski", birth: "18 June 1949", death: "10 April 2010"},
+    end_ww2: {name: "Boleslaw", dynasty: "Bierut", birth: "1892.4.18", death: "1956.3.12"},
+    "1956.3.20" => {name: "Edward", dynasty: "Ochab", birth: "1906.8.16", death: "1989.5.1"},
+    "1956.10.21" => {name: "Wladyslaw", dynasty: "Gomulka", birth: "1905.2.6", death: "1982.9.1"},
+    "1970.12.20" => {name: "Edward", dynasty: "Gierek", birth: "1913.1.6", death: "2001.7.29"},
+    "1980.9.6" => {name: "Stanislaw", dynasty: "Kania", birth: "1927.3.8", death: :never},
+    "1981.10.18" => {name: "Wojciech", dynasty: "Jaruzelski", birth: "1923.7.6", death: "2014.5.25"},
+    "1990.12.22" => {name: "Lech", dynasty: "Walesa", birth: "1943.9.29", death: :never},
+    "1995.12.23" => {name: "Aleksander", dynasty: "Kwasniewski", birth: "1954.11.15", death: :never},
+    "2005.12.23" => {name: "Lech", dynasty: "Kaczynski", birth: "1949.6.18", death: "2010.4.10"},
     # acting, then actual, skipping other acting presidents
-    "10 April 2010" => {name: "Bronislaw", dynasty: "Komorowski", birth: "4 June 1952", death: :never},
-    "6 August 2015" => {name: "Andrzej", dynasty: "Duda", birth: "16 May 1972", death: :never},
+    "2010.4.10" => {name: "Bronislaw", dynasty: "Komorowski", birth: "1952.6.4", death: :never},
+    "2015.8.6" => {name: "Andrzej", dynasty: "Duda", birth: "1972.5.16", death: :never},
   },
   k_mesopotamia: {
-    "14 July 1958" => {name: "Muhammad Najib", dynasty: "ar-Ruba'i", birth: "1904", death: "1965"},
-    "8 February 1963" => {name: "Abdul Salam", dynasty: "Arif", birth: "21 March 1921", death: "13 April 1966"},
+    "1958.7.14" => {name: "Muhammad Najib", dynasty: "ar-Ruba'i", birth: "1904", death: "1965"},
+    "1963.2.8" => {name: "Abdul Salam", dynasty: "Arif", birth: "1921.3.21", death: "1966.4.13"},
     # brother of previous
-    "16 April 1966"=> {name: "Abdul Rahman", dynasty: "Arif", birth: "April 14, 1916", death: "August 24, 200"},
-    "17 July 1968" => {name: "Ahmed Hassan", dynasty: "al-Bakr", birth: "1 July 1914", death: "4 October 1982"},
-    "16 July 1979" => {name: "Saddam", dynasty: "Hussein", birth: "28 April 1937", death: "30 December 2006"},
+    "1966.4.16"=> {name: "Abdul Rahman", dynasty: "Arif", birth: "1916.4.14", death: "200.8.24"},
+    "1968.7.17" => {name: "Ahmed Hassan", dynasty: "al-Bakr", birth: "1914.7.1", death: "1982.10.4"},
+    "1979.7.16" => {name: "Saddam", dynasty: "Hussein", birth: "1937.4.28", death: "2006.12.30"},
     # Backdating hard
-    "9 April 2003" => {name: "Jalal", dynasty: "Talabani", birth: "12 November 1933"},
-    "24 July 2014" => {name: "Fuad", dynasty: "Masum", birth: "1 January 1938"},
+    "2003.4.9" => {name: "Jalal", dynasty: "Talabani", birth: "1933.11.12"},
+    "2014.7.24" => {name: "Fuad", dynasty: "Masum", birth: "1938.1.1"},
   },
   k_syria: {
-    "22 February 1971" => {name: "Hafez", dynasty: "al-Assad", birth: "6 October 1930", death: "10 June 2000"},
-    "10 June 2000" => {name: "Bashar", dynasty: "al-Assad", birth: "11 September 1965", father: "Hafez 1"},
+    "1971.2.22" => {name: "Hafez", dynasty: "al-Assad", birth: "1930.10.6", death: "2000.6.10"},
+    "2000.6.10" => {name: "Bashar", dynasty: "al-Assad", birth: "1965.9.11", father: "Hafez 1"},
   },
   # Backdating everybody to their predecessor's death / resignation
   k_papal_state: {
-    "29 August 1799" => {
+    "1799.8.29" => {
       name: "Pius", dynasty: "Chiaramonti",
-      birth: "14 August 1742",
-      death: "20 August 1823",
+      birth: "1742.8.14",
+      death: "1823.8.20",
     },
-    "20 August 1823" => {
+    "1823.8.20" => {
       name: "Leo", dynasty: "della Genga",
-      birth: "22 August 1760",
-      death: "10 February 1829",
+      birth: "1760.8.22",
+      death: "1829.2.10",
     },
-    "10 February 1829" => {
+    "1829.2.10" => {
       name: "Pius", dynasty: "Castiglioni",
-      birth: "20 November 1761",
-      death: "30 November 1830",
+      birth: "1761.11.20",
+      death: "1830.11.30",
     },
-    "30 November 1830" => {
+    "1830.11.30" => {
       name: "Gregory", dynasty: "Cappellari",
-      birth: "18 September 1765",
-      death: "1 June 1846",
+      birth: "1765.9.18",
+      death: "1846.6.1",
     },
-    "1 June 1846" => {
+    "1846.6.1" => {
       name: "Pius", dynasty: "Mastai-Ferretti",
-      birth: "13 May 1792",
-      death: "7 February 1878",
+      birth: "1792.5.13",
+      death: "1878.2.7",
     },
-    "7 February 1878" => {
+    "1878.2.7" => {
       name: "Leo", dynasty: "Pecci",
-      birth: "2 March 1810",
-      death: "20 July 1903",
+      birth: "1810.3.2",
+      death: "1903.7.20",
     },
-    "20 July 1903" => {
+    "1903.7.20" => {
       name: "Pius", dynasty: "Sarto",
-      birth: "2 June 1835",
-      death: "20 August 1914",
+      birth: "1835.6.2",
+      death: "1914.8.20",
     },
-    "20 August 1914" => {
+    "1914.8.20" => {
       name: "Benedict", dynasty: "della Chiesa",
-      birth: "21 November 1854",
-      death: "22 January 1922",
+      birth: "1854.11.21",
+      death: "1922.1.22",
     },
-    "22 January 1922" => {
+    "1922.1.22" => {
       name: "Pius", dynasty: "Ratti",
-      birth: "31 May 1857",
-      death: "10 February 1939",
+      birth: "1857.5.31",
+      death: "1939.2.10",
     },
-    "10 February 1939" => {
+    "1939.2.10" => {
       name: "Pius", dynasty: "Pacelli",
-      birth: "2 March 1876",
-      death: "9 October 1958",
+      birth: "1876.3.2",
+      death: "1958.10.9",
     },
-    "9 October 1958" => {
+    "1958.10.9" => {
       name: "John", dynasty: "Roncalli",
-      birth: "25 November 1881",
-      death: "3 June 1963",
+      birth: "1881.11.25",
+      death: "1963.6.3",
     },
-    "3 June 1963" => {
+    "1963.6.3" => {
       name: "Paul", dynasty: "Montini",
-      birth: "26 September 1897",
-      death: "6 August 1978",
+      birth: "1897.9.26",
+      death: "1978.8.6",
     },
-    "6 August 1978" => {
+    "1978.8.6" => {
       name: "John Paul", dynasty: "Luciani",
-      birth: "17 October 1912",
-      death: "28 September 1978",
+      birth: "1912.10.17",
+      death: "1978.9.28",
     },
-    "28 September 1978" => {
+    "1978.9.28" => {
       name: "John Paul", dynasty: "Wojtyla",
       culture: :polish,
-      birth: "18 May 1920",
-      death: "2 April 2005",
+      birth: "1920.5.18",
+      death: "2005.4.2",
     },
-    "2 April 2005" => {
+    "2005.4.2" => {
       name: "Benedict", dynasty: "Ratzinger",
       culture: :german,
-      birth: "16 April 1927",
+      birth: "1927.4.16",
       death: :never, # Popes, abdicating? WTF is this?
     },
-    "28 February 2013" => {
+    "2013.2.28" => {
       name: "Francis", dynasty: "Bergoglio",
       culture: :castillan,
-      birth: "17 December 1936",
+      birth: "1936.12.17",
       death: :never,
     },
   },
@@ -1125,14 +1125,14 @@ ModernTimesDatabase::HOLDERS = {
       # He's a royal but it was High Commissioner post
       name: "George",
       dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
-      birth: "24 June 1869",
-      death: "25 November 1957",
+      birth: "1869.6.24",
+      death: "1957.11.25",
     },
-    "1 October 1906" => {
+    "1906.10.1" => {
       name: "Alexandros",
       dynasty: "Zaimis",
-      birth: "9 November 1855",
-      death: "15 September 1936",
+      birth: "1855.11.9",
+      death: "1936.9.15",
     },
     "1913.5.30" => nil,
   },
