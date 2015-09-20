@@ -190,6 +190,8 @@ module ModernTimesDatabase::Dates
     spanish_sahara: "1884.12.26",
 
     caliphate_reborn: "2014.6.29",
+    free_danzig_napoleonic: "21 July 1807",
+    free_danzig_napoleonic_end: "2 January 1814",
   }
 
   def self.[](date)

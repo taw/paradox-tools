@@ -151,6 +151,48 @@ ModernTimesDatabase::TITLES = {
     capital: :c_brandenburg,
     name: "East Germany / East German",
   },
+  c_lubeck: {
+    culture: :german,
+    religion: :catholic,
+  },
+  c_oldenburg: {
+    culture: :german,
+    religion: :catholic,
+  },
+  c_bremen: {
+    culture: :german,
+    religion: :catholic,
+  },
+  c_hamburg: {
+    culture: :german,
+    religion: :catholic,
+  },
+  d_mecklemburg: {
+    culture: :german,
+    religion: :catholic,
+  },
+  d_baden: {
+    culture: :german,
+    religion: :catholic,
+  },
+  d_swabia: {
+    culture: :german,
+    religion: :catholic,
+    name: "Württemberg / Württembergian",
+  },
+  d_brunswick: {
+    culture: :german,
+    religion: :catholic,
+    name: "Hannover / Hannoverian",
+  },
+  c_weimar: {
+    culture: :german,
+    religion: :catholic,
+  },
+  c_anhalt: {
+    culture: :german,
+    religion: :catholic,
+  },
   k_bohemia: {
     culture: :bohemian,
     religion: :catholic,

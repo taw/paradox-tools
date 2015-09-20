@@ -751,6 +751,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_bookmarks!
     # Sadly can't be modded and first two are DLC-locked
+    # FIXME: All this went to shit somehow, wtf ?
     key_bookmarks = [
       "BM_CHARLEMAGNE", "DARK_AGES",
       "BM_THE_OLD_GODS", "VIKING_ERA",
@@ -769,7 +770,7 @@ class ModernTimesGameModification < CK2GameModification
       ["1861.3.17", "Kingdom of Italy"],
 
       ### Actual bookmarks, must have 5 key bookmarks
-      ["1871.1.18", "German Empire", true],
+      ["1871.1.18",  "German Empire", true],
       ["1900.1.1",   "New Century"],
       ["1914.6.28",  "The Great War"],
       ["1920.8.10",  "Treaty of Sevres", true],

@@ -1,14 +1,11 @@
 ###########################################################################
 # FIXME: Everything that uses temporary_start: needs fixing
-# FIXME: Cieszyn should maybe be Austrian
-# FIXME: Sandomierz should maybe not me Austrian ?
 # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled
 # TODO: Serious modelling of 1938-1945 and Napoleonic Wars era
 # TODO: Protectorate of Bohemia and Moravia
 # FIXME: Hungary / Romania / Serbia border is crap
 # FIXME: Romania / Moldova border is crap
 # FIXME: Central Asian and Caucasus history are a bit bullshit
-# FIXME: Free Gdansk (Napoleonic)
 # FIXME: Pakistan area history is totally wrong, it was Afghan/Iranian/British mix, not just all UK
 
 ModernTimesDatabase::LAND = {
@@ -189,8 +186,7 @@ ModernTimesDatabase::LAND = {
   c_scalovia:     { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
   c_sambia:       { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
   c_memel:        { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww1: "d_lithuanians", memel_german: "e_germany", end_ww2: "e_russia", fall_soviet_union: "d_lithuanians" },
-  c_danzig:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww1: "d_pomeralia", end_ww2: "k_poland"},
-
+  c_danzig:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", free_danzig_napoleonic: "d_pomeralia", free_danzig_napoleonic_end: "k_pomerania", german_unification: "e_germany", end_ww1: "d_pomeralia", end_ww2: "k_poland"},
   d_kiev:        {  forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
 
   d_ryazan:     { forever_ago: "e_russia" },
@@ -407,6 +403,9 @@ ModernTimesDatabase::LAND = {
   c_ouadane:    { forever_ago: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
   c_tharasset:  { forever_ago: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
 
+  c_plauen:     { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  d_meissen:    { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+
   #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
 
@@ -429,6 +428,7 @@ ModernTimesDatabase::LAND = {
   c_krakowskie:    { congress_of_vienna: "c_krakowskie", fall_krakow_uprising: "e_carpathia", end_ww1: "k_poland" },
   d_mazovia:       { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   "c_sieradzko-leczyckie": { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
+  c_sandomierskie: { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   c_kalisz:        { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   c_poznanskie:    { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
   c_kaliskie:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
@@ -437,9 +437,28 @@ ModernTimesDatabase::LAND = {
   d_alsace:         { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
   c_lorraine:       { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
   c_metz:           { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
-  d_lower_lorraine: { congress_of_vienna: "e_france", german_unification: "e_germany" },
 
   c_loon: { congress_of_vienna: "k_frisia" },
+
+  # FIXME: This ignores all changes 1815-1871, and it definitely shouldn't
+  c_lubeck:       { congress_of_vienna: "c_lubeck", german_unification: "e_germany" },
+  c_oldenburg:    { congress_of_vienna: "c_oldenburg", german_unification: "e_germany" },
+  c_bremen:       { congress_of_vienna: "c_bremen", german_unification: "e_germany" },
+  c_hamburg:      { congress_of_vienna: "c_hamburg", german_unification: "e_germany" },
+  c_rugen:        { congress_of_vienna: "k_pomerania", german_unification: "e_germany" },
+  d_mecklemburg:  { congress_of_vienna: "d_mecklemburg", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  d_baden:        { congress_of_vienna: "d_baden", german_unification: "e_germany" },
+  d_swabia:       { congress_of_vienna: "d_swabia", german_unification: "e_germany" },
+  # FIXME: UK holds Hannover for a while
+  c_ostfriesland: { congress_of_vienna: "d_brunswick", german_unification: "e_germany" },
+  d_brunswick:    { congress_of_vienna: "d_brunswick", german_unification: "e_germany" },
+  c_pfalz:        { congress_of_vienna: "d_bavaria", german_unification: "e_germany", end_ww1: "e_france"},
+  c_trier:        { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "e_france"},
+  c_bamberg:      { congress_of_vienna: "d_bavaria", german_unification: "e_germany" },
+  c_wurzburg:     { congress_of_vienna: "d_bavaria", german_unification: "e_germany" },
+  c_wolgast:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  c_weimar: { congress_of_vienna: "c_weimar", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  c_anhalt: { congress_of_vienna: "c_anhalt", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
 
   #########################################
   # READY FOR ITALIAN UNIFICATION BOOKMARK
@@ -491,22 +510,14 @@ ModernTimesDatabase::LAND = {
   d_sibir:     { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
   d_syr_darya: { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
 
-  c_ostfriesland: { german_unification: "e_germany" },
-  d_holstein:     { german_unification: "e_germany" },
-  d_brunswick:    { german_unification: "e_germany" },
   d_thuringia:    { german_unification: "e_germany" },
   d_koln:         { german_unification: "e_germany" },
-  d_baden:        { german_unification: "e_germany" },
-  d_swabia:       { german_unification: "e_germany" },
-  d_franconia:    { german_unification: "e_germany" },
+  c_mainz:        { german_unification: "e_germany" },
+  c_leiningen:    { german_unification: "e_germany" },
   c_thuringen:    { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  d_meissen:      { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  d_mecklemburg:  { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  c_wolgast:      { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-  d_saxony:       { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
 
-  d_sanaa: { aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
-  c_aden:  { aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
+  d_sanaa:    { aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
+  c_aden:     { aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_dhu_zabi: { general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
 
   #########################################
