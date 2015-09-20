@@ -767,7 +767,7 @@ class ModernTimesGameModification < CK2GameModification
       ["1900.1.1",   "New Century", true],
       ["1914.6.28",  "The Great War"],
       ["1920.8.10",  "Treaty of Sevres", true],
-      ["1938.3.12",  "Anschluss of Austria"],
+      ["1938.9.30",  "Munich Agreement"],
       ["1945.5.8",   "Cold War", true],
       ["1975.1.1",   "Decolonization", true],
       ["1991.12.26", "Fall of Soviet Union"],

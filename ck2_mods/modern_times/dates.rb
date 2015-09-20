@@ -18,6 +18,8 @@ module ModernTimesDatabase::Dates
     treaty_of_versailles: "20 January 1783", # Was multiple times, but this was actual peace treaty
 
     fall_krakow_uprising: "16 November 1846", # treaty signed between Russia and Austria
+    memel_german: "March 20, 1939",
+    munich_agreement: "30 September 1938",
 
     fall_chechnya: "1 May 2000", # approximate
     treaty_of_kucuk_kaynarca: "July 21, 1774",

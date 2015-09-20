@@ -33,7 +33,9 @@ ModernTimesDatabase::LAND = {
   d_vestlandet: { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
   d_trondelag:  { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
 
-  k_bohemia:      { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
+  k_bohemia:    { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
+  c_litomerice: { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", munich_agreement: "e_germany", end_ww2: "k_bohemia" },
+  c_plzen:      { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", munich_agreement: "e_germany", end_ww2: "k_bohemia" },
 
   d_nikaea:       { forever_ago: "e_seljuk_turks" },
   c_byzantion:    { forever_ago: "e_seljuk_turks" },
@@ -173,7 +175,7 @@ ModernTimesDatabase::LAND = {
   d_prussia:      { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
   c_scalovia:     { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
   c_sambia:       { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
-  c_memel:        { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
+  c_memel:        { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww1: "d_lithuanians", memel_german: "e_germany", end_ww2: "e_russia", fall_soviet_union: "d_lithuanians" },
   c_danzig:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww1: "d_pomeralia", end_ww2: "k_poland"},
 
   d_kiev:        {  forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
@@ -403,9 +405,9 @@ ModernTimesDatabase::LAND = {
   d_varendra:   { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
 
   c_luxembourg:  { congress_of_vienna: "k_frisia", luxembourg_independence: "d_luxembourg"},
-  c_liege:       { congress_of_vienna: "k_frisia",belgium_independence: "d_flanders" },
-  d_flanders:    { congress_of_vienna: "k_frisia",belgium_independence: "d_flanders" },
-  d_brabant:     { congress_of_vienna: "k_frisia",belgium_independence: "d_flanders" },
+  c_liege:       { congress_of_vienna: "k_frisia", belgium_independence: "d_flanders" },
+  d_flanders:    { congress_of_vienna: "k_frisia", belgium_independence: "d_flanders" },
+  d_brabant:     { congress_of_vienna: "k_frisia", belgium_independence: "d_flanders" },
   c_ostfriesland: { german_unification: "e_germany" },
   d_holstein:     { german_unification: "e_germany" },
   d_brunswick:    { german_unification: "e_germany" },
@@ -467,8 +469,6 @@ ModernTimesDatabase::LAND = {
 
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
-
-  # TODO: Memel crisis, Munich agreement / Sudetenland
   # FIXME: Cieszyn should maybe be Austrian
   # FIXME: Sandomierz should maybe not me Austrian ?
   # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled

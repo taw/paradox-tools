@@ -993,9 +993,19 @@ ModernTimesDatabase::HOLDERS = {
     "9 October 2006" => {name: "Toomas Hendrik", dynasty: "Ilves"},
   },
   k_poland: {
+    end_ww1: {name: "Jozef", dynasty: "Pilsudski", birth: "5 December 1867", death: "12 May 1935"},
+    "11 December 1922" => {name: "Gabriel", dynasty: "Narutowicz", birth: "17 March 1865", death: "16 December 1922"},
+    "16 December 1922" => {name: "Stanislaw", dynasty: "Wojciechowski", birth: "15 March 1869", death: "9 April 1953"},
+    # Not officially, but everybody knows who ruled
+    "14 May 1926" => {use: "Jozef 1"},
+    "12 May 1935" => {name: "Ignacy", dynasty: "Moscicki", birth: "1 December 1867", death: "2 October 1946"},
+    # government in exile
+    "30 September 1939" => {name: "Wladyslaw", dynasty: "Raczkiewicz", birth: "28 January 1885", death: "6 June 1947"},
+
     # Communist Poland had no clear head of state, by design
     # First secretaries, except Jaruzelski gets to keep his post during transition
-    "December 22, 1948" => {name: "Boleslaw", dynasty: "Bierut", birth: "18 April 1892", death: "12 March 1956"},
+    # December 22, 1948, backdating
+    end_ww2: {name: "Boleslaw", dynasty: "Bierut", birth: "18 April 1892", death: "12 March 1956"},
     "March 20, 1956" => {name: "Edward", dynasty: "Ochab", birth: "1906.8.16", death: "1989.5.1"},
     "October 21, 1956" => {name: "Wladyslaw", dynasty: "Gomulka", birth: "6 February 1905", death: "1 September 1982"},
     "December 20, 1970" => {name: "Edward", dynasty: "Gierek", birth: "6 January 1913", death: "29 July 2001"},
@@ -1008,8 +1018,53 @@ ModernTimesDatabase::HOLDERS = {
     "10 April 2010" => {name: "Bronislaw", dynasty: "Komorowski", birth: "4 June 1952", death: :never},
     "6 August 2015" => {name: "Andrzej", dynasty: "Duda", birth: "16 May 1972", death: :never},
   },
+  k_mesopotamia: {
+    "14 July 1958" => {name: "Muhammad Najib", dynasty: "ar-Ruba'i", birth: "1904", death: "1965"},
+    "8 February 1963" => {name: "Abdul Salam", dynasty: "Arif", birth: "21 March 1921", death: "13 April 1966"},
+    # brother of previous
+    "16 April 1966"=> {name: "Abdul Rahman", dynasty: "Arif", birth: "April 14, 1916", death: "August 24, 200"},
+    "17 July 1968" => {name: "Ahmed Hassan", dynasty: "al-Bakr", birth: "1 July 1914", death: "4 October 1982"},
+    "16 July 1979" => {name: "Saddam", dynasty: "Hussein", birth: "28 April 1937", death: "30 December 2006"},
+    # Backdating hard
+    "9 April 2003" => {name: "Jalal", dynasty: "Talabani", birth: "12 November 1933"},
+    "24 July 2014" => {name: "Fuad", dynasty: "Masum", birth: "1 January 1938"},
+  },
+  k_syria: {
+    "22 February 1971" => {name: "Hafez", dynasty: "al-Assad", birth: "6 October 1930", death: "10 June 2000"},
+    "10 June 2000" => {name: "Bashar", dynasty: "al-Assad", birth: "11 September 1965", father: "Hafez 1"},
+  },
   # Backdating everybody to their predecessor's death / resignation
   k_papal_state: {
+    "29 August 1799" => {
+      name: "Pius", dynasty: "Chiaramonti",
+      birth: "14 August 1742",
+      death: "20 August 1823",
+    },
+    "20 August 1823" => {
+      name: "Leo", dynasty: "della Genga",
+      birth: "22 August 1760",
+      death: "10 February 1829",
+    },
+    "10 February 1829" => {
+      name: "Pius", dynasty: "Castiglioni",
+      birth: "20 November 1761",
+      death: "30 November 1830",
+    },
+    "30 November 1830" => {
+      name: "Gregory", dynasty: "Cappellari",
+      birth: "18 September 1765",
+      death: "1 June 1846",
+    },
+    "1 June 1846" => {
+      name: "Pius", dynasty: "Mastai-Ferretti",
+      birth: "13 May 1792",
+      death: "7 February 1878",
+    },
+    "7 February 1878" => {
+      name: "Leo", dynasty: "Pecci",
+      birth: "2 March 1810",
+      death: "20 July 1903",
+    },
     "20 July 1903" => {
       name: "Pius", dynasty: "Sarto",
       birth: "2 June 1835",
