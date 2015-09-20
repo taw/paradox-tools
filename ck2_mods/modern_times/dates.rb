@@ -57,6 +57,7 @@ module ModernTimesDatabase::Dates
     treaty_of_zurich: "1859.11.10",
     treaty_of_vienna_1864: "1864.10.30",
     treaty_of_vienna_1866: "1866.10.12",
+    prussia_annexes_hannover: "23 August 1866",
     end_of_lucca: "1847.12.17", # There was also a bit of extra Napoleonic complexity here
     capture_of_rome: "1870.9.20",
     st_petersburg_founding: "May 12 1703", # They literally moved their capital there before peace deal gave them Ingria

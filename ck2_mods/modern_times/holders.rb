@@ -94,6 +94,14 @@ ModernTimesDatabase::HOLDERS = {
       father: "George 6",
     },
   },
+  d_brunswick: {
+    congress_of_vienna: {use: "e_britannia George 3"},
+    "1820.1.29" => {use: "e_britannia George 4"},
+    "1830.6.26" => {use: "e_britannia William 2"},
+    "20 June 1837" => {name: "Ernest Augustus", dynasty: "Windsor", birth: "5 June 1771", death: "18 November 1851", father: "e_britannia George 3"},
+    "18 November 1851" => {name: "George", dynasty: "Windson", birth: "27 May 1819", death: "12 June 1878", father: "Ernest Augustus 1"},
+    "20 September 1866" => nil,
+  },
   e_germany: {
     "1871.1.18" => {
       name: "Wilhelm",

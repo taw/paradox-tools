@@ -189,17 +189,10 @@ class ModernTimesGameModification < CK2GameModification
 
   # If no dominant culture, choose liege_culture, or else just largest one
   #
-  # TODO:
-  # This should maybe choose liege culture anyway in some cases of conflicts,
-  # like if duchy is next to one with liege's culture
-  # So Wales would be ruled by Englishmen, but English colonies in India wouldn't
-  # It's messier query to check neighbouring duchies, so it should only be done
-  # once map manager of some kind is refactored out of this blob of code
-  #
-  # FIXME:
-  # This checks cultures in whole duchy, but we're only interested in part of the duchy
-  # in actual realm. Might be problematic in case of border changes,
-  # as we don't replace vassal on border change.
+  # This could be a lot fancier, like maybe only checking parts of duchy owned
+  # by liege, not all of it, or it could enforce liege culture in duchies neighbouring
+  # land of liege's culture (like Englishmen running Wales)
+  # as that's how culture conversions happen. It's not high priority.
   def dominant_culture_in_duchy(duchy, liege_culture)
     cultures = @map.cultures_in_duchy(duchy)
     # If duchy is one culture, choose it
@@ -404,19 +397,12 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_defines!
     patch_mod_file!("common/defines.txt") do |node|
-      if ENV["DEBUG_HISTORY"]
-        ### History testing
-        node["start_date"]    = Date.parse(ENV["DEBUG_HISTORY"])
-      else
-        ### Actual start
-        node["start_date"]    = Date.parse("1900.1.1")
-      end
+      node["start_date"]      = @db.min_date
       node["last_start_date"] = Date.parse("2015.12.31")
       node["end_date"]        = Date.parse("2999.12.31")
     end
   end
 
-  # TODO: tech for 1700+
   def setup_technology!
     tech_levels = {
       ["africa", 0]         => [1,2,3], # Ethiopia
@@ -505,12 +491,23 @@ class ModernTimesGameModification < CK2GameModification
     glob("history/titles/[dke]_*.txt").each do |path|
       title = path.basename(".txt").to_s
       patch_mod_file!(path) do |node|
-        node.add! @db.resolve_date(:forever_ago), PropertyList[
+        laws = PropertyList[
           "law", "investiture_law_0",
           "law", "cognatic_succession",
-          # Empire start decentralized, lower titles at medium
-          "law", (title =~ /\Ae_/ ? "centralization_0" : "centralization_2"),
         ]
+        if title =~ /\A[ke]_/
+          laws.add! "law", "crown_authority_1"
+        end
+        # Empire start decentralized, lower titles at medium
+        if title =~ /\Ae_/
+          laws.add! "law", "centralization_0"
+        else
+          laws.add! "law", "centralization_2"
+        end
+        if title == "e_britannia"
+          laws.add! "law", "imperial_administration"
+        end
+        node.add! @db.resolve_date(:forever_ago), laws
         cleanup_history_node!(node)
       end
     end
@@ -751,13 +748,12 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_bookmarks!
     # Sadly can't be modded and first two are DLC-locked
-    # FIXME: All this went to shit somehow, wtf ?
     key_bookmarks = [
-      "BM_CHARLEMAGNE", "DARK_AGES",
-      "BM_THE_OLD_GODS", "VIKING_ERA",
-      "BM_FATE_OF_ENGLAND", "EARLY_MED_INFO",
-      "BM_THE_MONGOLS", "HIGH_MED",
-      "BM_100_YEARS_WAR", "LATE_MED",
+      ["BM_CHARLEMAGNE", "DARK_AGES"],
+      ["BM_THE_OLD_GODS", "VIKING_ERA"],
+      ["BM_FATE_OF_ENGLAND", "EARLY_MED_INFO"],
+      ["BM_THE_MONGOLS", "HIGH_MED"],
+      ["BM_100_YEARS_WAR", "LATE_MED"],
     ]
 
     bookmarks = [
@@ -766,7 +762,7 @@ class ModernTimesGameModification < CK2GameModification
       ["1750.1.1", "Test 1750"],
       ["1780.1.1", "Test 1780"],
       ["1815.6.9", "Congress of Vienna"],
-      ["1840.1.1", "Test 1840"],
+      ["1837.6.20", "Victorian Era"],
       ["1861.3.17", "Kingdom of Italy"],
 
       ### Actual bookmarks, must have 5 key bookmarks
@@ -814,7 +810,7 @@ class ModernTimesGameModification < CK2GameModification
   def change_localization!
     localization!("ZZ vanilla overrides",
       "romanian" => "Romanian", # Not Vlach
-      )
+     )
   end
 
   def warn(msg)
@@ -823,10 +819,6 @@ class ModernTimesGameModification < CK2GameModification
 
   def apply!
     @warnings = []
-
-    # Order of transformations matters
-    setup_defines!
-    setup_technology!
 
     @map = MapManager.new(self)
     @db = ModernTimesDatabase.new(self)
@@ -846,13 +838,16 @@ class ModernTimesGameModification < CK2GameModification
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
     save_characters!
     save_dynasties!
-    change_localization!
 
     # report_dynasty_conflict_stats!
     @warnings.sort.each_with_index do |w,i|
       puts "% 3d %s" % [i+1,w]
     end
 
+    # Order of transformations matters
+    setup_technology!
     setup_bookmarks!
+    setup_defines!
+    change_localization!
   end
 end

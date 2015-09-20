@@ -398,6 +398,10 @@ ModernTimesDatabase::LAND = {
   d_timbuktu:   { forever_ago: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
   c_ghana:      { forever_ago: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
   c_aoudaghost: { forever_ago: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
+  c_tadjoura:   { forever_ago: "d_harer", djibouti_french: "e_france", djibouti_independence: "d_afar" },
+  d_harer:      { forever_ago: "d_harer", british_somaliland: "e_britannia", somalia_independence: "d_harer" },
+  c_busaso:     { forever_ago: "d_harer", italian_somaliland: "e_italy", somalia_independence: "d_harer"  },
+
 
   c_idjil:      { forever_ago: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
   c_ouadane:    { forever_ago: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
@@ -440,7 +444,11 @@ ModernTimesDatabase::LAND = {
 
   c_loon: { congress_of_vienna: "k_frisia" },
 
+  c_julich:     { congress_of_vienna: "k_pomerania", german_unification: "e_germany" },
+  d_koln:       { congress_of_vienna: "k_pomerania", german_unification: "e_germany" },
+
   # FIXME: This ignores all changes 1815-1871, and it definitely shouldn't
+  # Peace of Prague Prussia annexes Hanover, Schleswig-Holstein, Electorate of Hesse, Frankfurt, Nassau, and parts of Hesse-Darmstadt
   c_lubeck:       { congress_of_vienna: "c_lubeck", german_unification: "e_germany" },
   c_oldenburg:    { congress_of_vienna: "c_oldenburg", german_unification: "e_germany" },
   c_bremen:       { congress_of_vienna: "c_bremen", german_unification: "e_germany" },
@@ -449,9 +457,8 @@ ModernTimesDatabase::LAND = {
   d_mecklemburg:  { congress_of_vienna: "d_mecklemburg", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   d_baden:        { congress_of_vienna: "d_baden", german_unification: "e_germany" },
   d_swabia:       { congress_of_vienna: "d_swabia", german_unification: "e_germany" },
-  # FIXME: UK holds Hannover for a while
-  c_ostfriesland: { congress_of_vienna: "d_brunswick", german_unification: "e_germany" },
-  d_brunswick:    { congress_of_vienna: "d_brunswick", german_unification: "e_germany" },
+  c_ostfriesland: { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
+  d_brunswick:    { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
   c_pfalz:        { congress_of_vienna: "d_bavaria", german_unification: "e_germany", end_ww1: "e_france"},
   c_trier:        { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "e_france"},
   c_bamberg:      { congress_of_vienna: "d_bavaria", german_unification: "e_germany" },
@@ -459,6 +466,10 @@ ModernTimesDatabase::LAND = {
   c_wolgast:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   c_weimar: { congress_of_vienna: "c_weimar", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   c_anhalt: { congress_of_vienna: "c_anhalt", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+
+  # Briefly got title of Ottoman governor, but that never seemed to matter
+  # Date is start of Kuwait dynasty, but it was independent before too
+  c_kuwait:     { "1752.12.31" => "c_kuwait", kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
 
   #########################################
   # READY FOR ITALIAN UNIFICATION BOOKMARK
@@ -494,8 +505,6 @@ ModernTimesDatabase::LAND = {
   c_semender:     { "1864.6.2" => "e_russia" },
   c_derbent:      { "1864.6.2" => "e_russia" },
 
-  c_julich:     { german_unification: "e_germany" },
-
   d_dihistan:  { "1867.7.11" => "e_russia", fall_soviet_union: "d_dihistan" },
   c_merv:      { "1867.7.11" => "e_russia", fall_soviet_union: "d_dihistan" },
   d_samarkand: { "1867.7.11" => "e_russia", fall_soviet_union: "k_khiva" },
@@ -511,7 +520,6 @@ ModernTimesDatabase::LAND = {
   d_syr_darya: { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
 
   d_thuringia:    { german_unification: "e_germany" },
-  d_koln:         { german_unification: "e_germany" },
   c_mainz:        { german_unification: "e_germany" },
   c_leiningen:    { german_unification: "e_germany" },
   c_thuringen:    { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
@@ -523,13 +531,7 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1900 BOOKMARK
 
-  c_kuwait:     { kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
   c_bahrein:    { bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
-
-  c_tadjoura:   { djibouti_french: "e_france", djibouti_independence: "d_afar" },
-
-  d_harer:      { british_somaliland: "e_britannia", somalia_independence: "d_harer" },
-  c_busaso:     { italian_somaliland: "e_italy", somalia_independence: "d_harer"  },
 
   d_baluchistan: { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
   d_sauvira:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
