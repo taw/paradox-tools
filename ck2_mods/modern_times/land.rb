@@ -70,6 +70,7 @@ ModernTimesDatabase::LAND = {
   k_volga_bulgaria: { forever_ago: "e_russia" },
   k_rus:            { forever_ago: "e_russia" },
   d_alania:         { forever_ago: "e_russia" },
+  c_alania:         { forever_ago: "e_russia",  fall_soviet_union: "c_alania", fall_chechnya: "e_russia"},
   c_kuban:          { forever_ago: "e_russia" },
   c_sarpa:          { forever_ago: "e_russia" },
 
@@ -365,6 +366,10 @@ ModernTimesDatabase::LAND = {
   c_bost:        { forever_ago: "k_afghanistan" },
   c_mandesh:     { forever_ago: "k_afghanistan" },
 
+  c_menorca: { forever_ago: "e_spain", treaty_of_utrech: "e_britannia", treaty_of_versailles: "e_spain" },
+
+  d_bavaria:      { forever_ago: "d_bavaria", german_unification: "e_germany" },
+
   ##########################
   # Half done
 
@@ -408,7 +413,6 @@ ModernTimesDatabase::LAND = {
   d_koln:         { german_unification: "e_germany" },
   d_baden:        { german_unification: "e_germany" },
   d_swabia:       { german_unification: "e_germany" },
-  d_bavaria:      { german_unification: "e_germany" },
   d_franconia:    { german_unification: "e_germany" },
   c_thuringen:    { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   d_meissen:      { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
@@ -433,12 +437,13 @@ ModernTimesDatabase::LAND = {
   c_julich:     { german_unification: "e_germany" },
   c_loon:       { german_unification: "k_frisia" },
 
-  d_lesser_poland:     { congress_of_vienna: "e_carpathia", end_ww1: "k_poland" },
+  d_lesser_poland: { congress_of_vienna: "e_carpathia", end_ww1: "k_poland" },
+  c_krakowskie:    { congress_of_vienna: "c_krakowskie", fall_krakow_uprising: "e_carpathia", end_ww1: "k_poland" },
   d_mazovia:  { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   :"c_sieradzko-leczyckie" => { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   c_kalisz:   { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
-  c_poznanskie:    { congress_of_vienna: "e_germany", end_ww1: "k_poland"},
-  c_kaliskie:      { congress_of_vienna: "e_germany", end_ww1: "k_poland"},
+  c_poznanskie:    { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
+  c_kaliskie:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
 
   d_dihistan:  { "July 11, 1867" => "e_russia", fall_soviet_union: "d_dihistan" },
   c_merv:      { "July 11, 1867" => "e_russia", fall_soviet_union: "d_dihistan" },
@@ -462,8 +467,7 @@ ModernTimesDatabase::LAND = {
 
   ###########################################################################
   # FIXME: Everything that uses start: needs fixing
-  # FIXME: Avignon was Papal for a while, also do Savoy etc.
-  # FIXME: British Minorca
+
   # TODO: Memel crisis, Munich agreement / Sudetenland
   # FIXME: Cieszyn should be Austrian
   # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled
@@ -473,9 +477,9 @@ ModernTimesDatabase::LAND = {
   # FIXME: Chechnya
   # FIXME: Central Asian and Caucasus history are a bit bullshit
   # FIXME: Free Krakow, Free Gdansk (Napoleonic)
+  # FIXME: Pakistan area history is totally wrong, it was Afghan/Iranian/British mix, not just all UK
 
   d_nefoud: { start: "d_nefoud", end_ww1: "k_arabia" },
-
 
   c_kuwait:  { kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
   c_bahrein: { bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },

@@ -668,15 +668,16 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_de_jure_map!
     {
-      "k_venice" => "e_italy",
-      "k_sicily" => "e_italy",
-      "d_aragon" => "k_aragon",
-      "d_granada" => "k_castille",
+      "k_venice"    => "e_italy",
+      "k_sicily"    => "e_italy",
+      "d_aragon"    => "k_aragon",
+      "d_granada"   => "k_castille",
       "d_brandenburg" => "k_pomerania",
-      "d_prussia" => "k_pomerania",
-      "k_ruthenia" => "e_wendish_empire",
-      "k_croatia" => "e_carpathia",
-      "d_ryazan"  => "k_rus",
+      "d_prussia"   => "k_pomerania",
+      "k_ruthenia"  => "e_wendish_empire",
+      "k_croatia"   => "e_carpathia",
+      "d_ryazan"    => "k_rus",
+      "d_livonia"   => "k_lithuania",
       "k_prussia"   => { hre_disbanded: "e_germany" },
       "k_frisia"    => { hre_disbanded: "e_germany" },
       "k_germany"   => { hre_disbanded: "e_germany" },
@@ -841,7 +842,9 @@ class ModernTimesGameModification < CK2GameModification
     change_localization!
 
     # report_dynasty_conflict_stats!
-    puts @warnings.sort
+    @warnings.sort.each_with_index do |w,i|
+      puts "% 3d %s" % [i+1,w]
+    end
 
     setup_bookmarks!
   end

@@ -530,4 +530,24 @@ ModernTimesDatabase::TITLES = {
     culture: :italian,
     religion: :catholic,
   },
+  c_krakowskie: {
+    culture: :polish,
+    religion: :catholic,
+  },
+  c_alania: {
+    culture: :alan,
+    religion: :sunni,
+    name: "Chechnya / Chechen",
+  },
+  ### Just renames, not actual countries
+  k_taurica: {
+    culture: :bolghar,
+    religion: :sunni,
+    name: "Crimea / Crimean",
+  },
+  k_rus: {
+    culture: :russian,
+    religion: :orthodox,
+    name: "Muscovy / Muscovite",
+  },
 }

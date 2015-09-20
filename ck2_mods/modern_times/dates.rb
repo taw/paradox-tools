@@ -15,6 +15,11 @@ module ModernTimesDatabase::Dates
     treaty_of_passarowitz: "1718.7.21",
     greece_independence: "1832.5.7",
 
+    treaty_of_versailles: "20 January 1783", # Was multiple times, but this was actual peace treaty
+
+    fall_krakow_uprising: "16 November 1846", # treaty signed between Russia and Austria
+
+    fall_chechnya: "1 May 2000", # approximate
     treaty_of_kucuk_kaynarca: "July 21, 1774",
     treaty_of_jassy: "9 January 1792",
     treaty_of_bucharest_1812: "28 May 1812",

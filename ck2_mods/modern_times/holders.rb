@@ -861,6 +861,116 @@ ModernTimesDatabase::HOLDERS = {
     "2006.1.15" => {name: "Saad Abdullah Al-Salem", dynasty: "Al-Sabah", birth: "1930", death: "2008"},
     "2006.1.29" => {name: "Sabah Al-Ahmad Al-Jaber", dynasty: "Al-Sabah", birth: "1929", death: :never},
   },
+  c_alania: {
+    fall_soviet_union: {
+      name: "Dzhokhar", dynasty: "Dudayev",
+      birth: "15 February 1944", death: "21 April 1996",
+    },
+    "21 April 1996" => {
+      name: "Zelimkhan", dynasty: "Yandarbiyev",
+      birth: "September 12, 1952", death: "February 13, 2004",
+    },
+    "February 12, 1997" => {
+      name: "Aslan", dynasty: "Maskhadov",
+      birth: "21 September 1951", death: "8 March 2005",
+    },
+  },
+  k_ruthenia: {
+    fall_soviet_union: {
+      name: "Leonid", dynasty: "Kravchuk",
+      birth: "January 10, 1934", death: :never,
+    },
+    "19 July 1994" => {
+      name: "Leonid", dynasty: "Kuchma",
+      birth: "9 August 1938", death: :never,
+    },
+    "23 January 2005" => {
+      name: "Viktor", dynasty: "Yushchenko",
+      birth: "February 23, 1954", death: :never,
+    },
+    "25 February 2010" => {
+      name: "Viktor", dynasty: "Yanukovych",
+      birth: "9 July 1950", death: :never,
+    },
+    # acting, but timing is pretty important
+    "23 February 2014" => {
+      name: "Oleksandr", dynasty: "Turchynov",
+      birth: " 31 March 1964", death: :never,
+    },
+    "7 June 2014" => {
+      name: "Petro", dynasty: "Poroshenko",
+      birth: "26 September 1965", death: :never,
+    },
+  },
+  d_vitebsk: {
+    fall_soviet_union: {
+      name: "Stanislav", dynasty: "Shushkevich",
+      birth: "December 15, 1934", death: :never,
+    },
+    # Skipping two acting chairmen of supreme soviet, not backdating
+    "20 July 1994" => {
+      name: "Alexander",
+      dynasty: "Lukashenko",
+      birth: "30 August 1954",
+      death: :never,
+    }
+  },
+  # Backdating everybody to their predecessor's death / resignation
+  k_papal_state: {
+    "20 July 1903" => {
+      name: "Pius", dynasty: "Sarto",
+      birth: "2 June 1835",
+      death: "20 August 1914",
+    },
+    "20 August 1914" => {
+      name: "Benedict", dynasty: "della Chiesa",
+      birth: "21 November 1854",
+      death: "22 January 1922",
+    },
+    "22 January 1922" => {
+      name: "Pius", dynasty: "Ratti",
+      birth: "31 May 1857",
+      death: "10 February 1939",
+    },
+    "10 February 1939" => {
+      name: "Pius", dynasty: "Pacelli",
+      birth: "2 March 1876",
+      death: "9 October 1958",
+    },
+    "9 October 1958" => {
+      name: "John", dynasty: "Roncalli",
+      birth: "25 November 1881",
+      death: "3 June 1963",
+    },
+    "3 June 1963" => {
+      name: "Paul", dynasty: "Montini",
+      birth: "26 September 1897",
+      death: "6 August 1978",
+    },
+    "6 August 1978" => {
+      name: "John Paul", dynasty: "Luciani",
+      birth: "17 October 1912",
+      death: "28 September 1978",
+    },
+    "28 September 1978" => {
+      name: "John Paul", dynasty: "Wojtyla",
+      culture: :polish,
+      birth: "18 May 1920",
+      death: "2 April 2005",
+    },
+    "2 April 2005" => {
+      name: "Benedict", dynasty: "Ratzinger",
+      culture: :german,
+      birth: "16 April 1927",
+      death: :never, # Popes, abdicating? WTF is this?
+    },
+    "28 February 2013" => {
+      name: "Francis", dynasty: "Bergoglio",
+      culture: :castillan,
+      birth: "17 December 1936",
+      death: :never,
+    },
+  },
   d_sunni: {
     "1695.2.6" => { use: "e_seljuk_turks Mustafa 1" },
     "1703.8.22" => { use: "e_seljuk_turks Ahmed 1" },
