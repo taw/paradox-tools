@@ -15,6 +15,14 @@ module ModernTimesDatabase::Dates
     treaty_of_passarowitz: "1718.7.21",
     greece_independence: "1832.5.7",
 
+    hejaz_saudi: "8 January 1926",
+
+    oman_persian: "1.1.1743", # can't find anything more than year
+    oman_not_persian: "1747.6.19", # death of Nader Shah
+
+    oman_british: "1892.3.13",
+    oman_independence: "1970.7.23", # GeaCron thinks so, there was supposedly some "1962: Great Britain declares Muscat and Oman an independent nation."
+
     treaty_of_versailles: "1783.1.20", # Was multiple times, but this was actual peace treaty
 
     fall_krakow_uprising: "1846.11.16", # treaty signed between Russia and Austria
@@ -167,8 +175,6 @@ module ModernTimesDatabase::Dates
     # south_spanish_morocco_end: "1956.4.7", # Too small to matter on the map probably
     french_morocco_independence: "1956.10.29",
     madrid_accords: "1975.11.14",
-
-    oman_independence: "1970.7.23", # Not sure this is corrrect date
 
     caliphate_reborn: "2014.6.29",
   }

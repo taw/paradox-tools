@@ -342,7 +342,6 @@ ModernTimesDatabase::LAND = {
   d_volhynia:          { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
   c_saris:        { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
 
-  d_medina: { forever_ago: "e_seljuk_turks", end_ww1: "k_arabia" }, # Saudi occupation was just rebels
   c_holstein:     { forever_ago: "k_denmark", treaty_of_vienna_1864: "k_pomerania", german_unification: "e_germany" },
 
   c_trinkitat:{ forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
@@ -350,8 +349,6 @@ ModernTimesDatabase::LAND = {
   c_assab:    { forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
   c_massawa:  { forever_ago: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
 
-  d_arabia_petrae: { forever_ago: "e_seljuk_turks", end_ww1: "k_arabia" },
-  d_amman:   { forever_ago: "e_seljuk_turks", end_ww1: "k_arabia", },
   c_petra:   { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
   c_maan:    { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
   c_amman:   { forever_ago: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
@@ -371,6 +368,17 @@ ModernTimesDatabase::LAND = {
   c_menorca: { forever_ago: "e_spain", treaty_of_utrech: "e_britannia", treaty_of_versailles: "e_spain" },
 
   d_bavaria:      { forever_ago: "d_bavaria", german_unification: "e_germany" },
+
+  c_ar_ar:  { forever_ago: "d_nefoud", end_ww1: "k_arabia" },
+  d_nefoud: { forever_ago: "d_nefoud", end_ww1: "k_arabia" },
+  # 1810s Saudi occupation was just rebels
+  d_medina: { forever_ago: "e_seljuk_turks", end_ww1: "d_medina", hejaz_saudi: "k_arabia" },
+  d_arabia_petrae: { forever_ago: "e_seljuk_turks", end_ww1: "d_medina", hejaz_saudi: "k_arabia" },
+  # Taken by Saudis 1913, but let's not make this official prematurely
+  d_amman:   { forever_ago: "e_seljuk_turks", end_ww1: "k_arabia" },
+
+  # Muscat and Oman
+  d_oman:     { forever_ago: "d_oman", oman_persian: "e_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
 
   ##########################
   # Half done
@@ -481,7 +489,6 @@ ModernTimesDatabase::LAND = {
   # FIXME: Free Gdansk (Napoleonic)
   # FIXME: Pakistan area history is totally wrong, it was Afghan/Iranian/British mix, not just all UK
 
-  d_nefoud: { start: "d_nefoud", end_ww1: "k_arabia" },
 
   c_kuwait:  { kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
   c_bahrein: { bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
@@ -502,7 +509,6 @@ ModernTimesDatabase::LAND = {
   c_aoudaghost: { start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
 
   c_dhu_zabi: { start: "e_britannia", oman_independence: "c_dhu_zabi" },
-  d_oman:     { start: "e_britannia", oman_independence: "d_oman" },
 
   c_idjil:     { start: "e_spain", madrid_accords: "k_mauretania" },
   c_ouadane:   { start: "e_spain", madrid_accords: "k_mauretania" },

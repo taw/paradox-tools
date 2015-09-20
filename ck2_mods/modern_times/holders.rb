@@ -929,7 +929,7 @@ ModernTimesDatabase::HOLDERS = {
     "1991.1.17"  => {name: "Harald", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", birth: "1937.2.21", death: :never},
   },
   d_nefoud: {
-    start: {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},
+    "13 January 1902" => {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},
     end_ww1: nil,
   },
   k_arabia: {

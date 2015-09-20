@@ -315,6 +315,10 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
   },
+  d_medina: {
+    culture: :bedouin_arabic,
+    religion: :sunni,
+  },
   k_arabia: {
     culture: :bedouin_arabic,
     religion: :sunni,
@@ -462,7 +466,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_oman: {
     culture: :bedouin_arabic,
-    religion: :sunni,
+    religion: :ibadi,
   },
   c_dhu_zabi: {
     culture: :bedouin_arabic,
