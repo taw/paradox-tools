@@ -216,7 +216,7 @@ ModernTimesDatabase::LAND = {
   # Given to Greece September 15, 1947
   c_rhodos:      { forever_ago: "e_seljuk_turks", libya_italian: "e_italy", end_ww2: "k_byzantium"},
   d_krete:       { forever_ago: "e_seljuk_turks", crete_independence: "d_krete", treaty_of_london: "k_byzantium" }, # De facto Greek in 1908
-  c_cephalonia:   { forever_ago: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
+  c_cephalonia:   { forever_ago: "d_venice", congress_of_vienna: "e_britannia", cephalonia_greek: "k_byzantium" },
   c_epeiros:      { forever_ago: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
   d_thessalonika: { forever_ago: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
   c_philippopolis:{ forever_ago: "e_seljuk_turks", treaty_of_london: "k_byzantium" },
@@ -410,6 +410,11 @@ ModernTimesDatabase::LAND = {
   c_plauen:     { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   d_meissen:    { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
 
+  d_khiva:      { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_khiva" },
+  c_kyzylkum:   { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_khiva" },
+
+  d_samarkand:  { forever_ago: "d_samarkand", bukhara_russian: "e_russia", fall_soviet_union: "k_khiva" },
+
   #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
 
@@ -471,6 +476,23 @@ ModernTimesDatabase::LAND = {
   # Date is start of Kuwait dynasty, but it was independent before too
   c_kuwait:     { "1752.12.31" => "c_kuwait", kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
 
+  d_yaik:       { junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_guryev:     { junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_tyumen:     { junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_itil:       { junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_turgay:     { junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_turkestan:  { junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_pecheneg:   { junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+
+  d_kimak:      { middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  d_kirghiz:    { middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  d_sibir:      { middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  d_kipchak:    { middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_otrar:      { middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+
+  #########################################
+  # READY FOR VICTORIAN ERA BOOKMARK
+
   #########################################
   # READY FOR ITALIAN UNIFICATION BOOKMARK
 
@@ -505,20 +527,6 @@ ModernTimesDatabase::LAND = {
   c_semender:     { "1864.6.2" => "e_russia" },
   c_derbent:      { "1864.6.2" => "e_russia" },
 
-  d_dihistan:  { "1867.7.11" => "e_russia", fall_soviet_union: "d_dihistan" },
-  c_merv:      { "1867.7.11" => "e_russia", fall_soviet_union: "d_dihistan" },
-  d_samarkand: { "1867.7.11" => "e_russia", fall_soviet_union: "k_khiva" },
-  d_khiva:     { "1867.7.11" => "e_russia", fall_soviet_union: "k_khiva" },
-  c_aral:      { "1867.7.11" => "e_russia", fall_soviet_union: "k_khiva" },
-  d_turkestan: { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-  d_kipchak:   { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-  d_kimak:     { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-  d_zhetysu:   { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-  d_kirghiz:   { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-  d_yaik:      { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-  d_sibir:     { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-  d_syr_darya: { "1867.7.11" => "e_russia", fall_soviet_union: "k_cuman" },
-
   d_thuringia:    { german_unification: "e_germany" },
   c_mainz:        { german_unification: "e_germany" },
   c_leiningen:    { german_unification: "e_germany" },
@@ -527,6 +535,8 @@ ModernTimesDatabase::LAND = {
   d_sanaa:    { aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_aden:     { aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_dhu_zabi: { general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
+
+  d_zhetysu:    { senior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
 
   #########################################
   # READY FOR 1900 BOOKMARK
@@ -537,4 +547,10 @@ ModernTimesDatabase::LAND = {
   d_sauvira:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
   d_bhakkar:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
   c_vijnot:      { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
+
+  d_dihistan:  { temporary_start: "e_russia", fall_soviet_union: "d_dihistan" },
+  c_merv:      { temporary_start: "e_russia", fall_soviet_union: "d_dihistan" },
+  d_syr_darya: { temporary_start: "e_russia", fall_soviet_union: "k_cuman" },
+  c_aral:      { temporary_start: "e_russia", fall_soviet_union: "k_khiva" },
+  d_turkestan: { temporary_start: "e_russia", fall_soviet_union: "k_cuman" },
 }

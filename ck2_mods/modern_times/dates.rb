@@ -1,9 +1,17 @@
+# "Treaty of X" naming is a bit silly, as there are frequent conflicts
 module ModernTimesDatabase::Dates
   # Easy dates
   @dates = {
     forever_ago: "1700.1.1", # No plans to go back earlier than this
     temporary_start: "1900.1.1", # This value will go back in time eventually, avoid using it
     title_holders_until: "2020.12.31", # how far to generate title holders
+    cephalonia_greek: "1864.3.29",
+
+    junior_juz_russian: "1.1.1731", # year date
+    middle_juz_russian: "1.1.1798", # year date
+    senior_juz_russian: "1.1.1824", # year date
+    khiva_russian: "12 August 1873",
+    bukhara_russian: "1873.1.1", # year date
 
     treaty_of_utrech: "1713.4.1", # "March and April 1713"
     end_of_danish_norway: "1814.5.17",

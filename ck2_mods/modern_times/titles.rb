@@ -600,6 +600,15 @@ ModernTimesDatabase::TITLES = {
     religion: :sunni,
     name: "Chechnya / Chechen",
   },
+  d_samarkand: {
+    culture: :karluk,
+    religion: :sunni,
+    name: "Bukhara / Bukharan",
+  },
+  d_khiva: {
+    culture: :karluk,
+    religion: :sunni,
+  },
   ### Just renames, not actual countries
   k_taurica: {
     culture: :bolghar,
