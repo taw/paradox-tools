@@ -21,6 +21,8 @@ module ModernTimesDatabase::Dates
     british_somaliland: "1.1.1884", # year only
     italian_somaliland: "1.1.1889", # year only
 
+    french_mali: "1.1.1892", # year only
+
     oman_persian: "1.1.1743", # can't find anything more than year
     oman_not_persian: "1747.6.19", # death of Nader Shah
 

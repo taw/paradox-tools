@@ -396,6 +396,17 @@ ModernTimesDatabase::LAND = {
   c_taizz:   { forever_ago: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
   c_sanaa:   { forever_ago: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
 
+  # GeaCron has no countries there so just shatter it into duchies before Europeans show up
+  d_songhay:    { forever_ago: "d_songhay", french_mali: "e_france", mali_independence: "k_mali" },
+  d_mali:       { forever_ago: "d_mali", french_mali: "e_france", mali_independence: "k_mali" },
+  d_timbuktu:   { forever_ago: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
+  c_ghana:      { forever_ago: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
+  c_aoudaghost: { forever_ago: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
+
+  c_idjil:      { forever_ago: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
+  c_ouadane:    { forever_ago: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
+  c_tharasset:  { forever_ago: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
+
   #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
 
@@ -450,10 +461,6 @@ ModernTimesDatabase::LAND = {
   d_vanga:       { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
   d_varendra:    { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
 
-  d_baluchistan: { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
-  d_sauvira:     { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
-  d_bhakkar:     { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
-  c_vijnot:      { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
   k_punjab:      { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
 
   #########################################
@@ -510,18 +517,11 @@ ModernTimesDatabase::LAND = {
 
   c_tadjoura:   { djibouti_french: "e_france", djibouti_independence: "d_afar" },
 
-  c_idjil:      { spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
-  c_ouadane:    { spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
-  c_tharasset:  { spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
-
   d_harer:      { british_somaliland: "e_britannia", somalia_independence: "d_harer" },
   c_busaso:     { italian_somaliland: "e_italy", somalia_independence: "d_harer"  },
 
-
-  d_songhay:    { temporary_start: "e_france", mali_independence: "d_songhay" },
-
-  d_mali:       { temporary_start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
-  d_timbuktu:   { temporary_start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
-  c_ghana:      { temporary_start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
-  c_aoudaghost: { temporary_start: "k_mali", mauritania_french: "e_france", mauritania_independence: "k_mali" },
+  d_baluchistan: { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
+  d_sauvira:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
+  d_bhakkar:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
+  c_vijnot:      { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
 }

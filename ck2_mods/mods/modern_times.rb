@@ -262,6 +262,7 @@ class ModernTimesGameModification < CK2GameModification
       when /\A[cd]_/
         # Counts and dukes hold all land directly
         node.add! start_date, PropertyList["liege", 0]
+        raise "No lieges for #{liege}" unless holders[liege]
         add_holders! node, holders[liege], start_date, end_date
       else
         capital_duchy = @db.capital_duchy(liege)

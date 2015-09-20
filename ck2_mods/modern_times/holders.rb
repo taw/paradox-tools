@@ -445,8 +445,8 @@ ModernTimesDatabase::HOLDERS = {
       dynasty: "Bernadotte",
       birth: "1763.1.26",
       death: "1844.3.8",
-      culture: :frankish,
-      # Went Church of Sweden from Catholic
+      # culture: :frankish,
+      # Went Church-of-Sweden from Catholic
     },
     "1844.3.8" => {
       name: "Oscar",

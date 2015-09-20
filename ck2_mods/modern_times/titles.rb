@@ -432,15 +432,26 @@ ModernTimesDatabase::TITLES = {
     religion: :miaphysite,
     name: "Ethiopia / Ethiopian",
   },
+  d_timbuktu: {
+    culture: :manden,
+    religion: :sunni,
+    name: "Mauritania / Mauritanian",
+  },
+  d_ghana: {
+    culture: :manden,
+    religion: :sunni,
+  },
   d_songhay: {
     culture: :manden,
     religion: :sunni,
-    name: "Mali / Malian",
+  },
+  d_mali: {
+    culture: :manden,
+    religion: :sunni,
   },
   k_mali: {
     culture: :manden,
     religion: :sunni,
-    name: "Mauritania / Mauritanian",
   },
   k_nubia: {
     culture: :nubian,
