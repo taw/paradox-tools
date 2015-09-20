@@ -2,7 +2,7 @@ module ModernTimesDatabase::Dates
   # Easy dates
   @dates = {
     forever_ago: "1700.1.1", # No plans to go back earlier than this
-    start: "1900.1.1", # This value will go back in time eventually, avoid using it
+    temporary_start: "1900.1.1", # This value will go back in time eventually, avoid using it
     title_holders_until: "2020.12.31", # how far to generate title holders
 
     treaty_of_utrech: "1713.4.1", # "March and April 1713"
@@ -16,6 +16,10 @@ module ModernTimesDatabase::Dates
     greece_independence: "1832.5.7",
 
     hejaz_saudi: "8 January 1926",
+
+    general_maritime_treaty: "8 January 1820",
+    british_somaliland: "1.1.1884", # year only
+    italian_somaliland: "1.1.1889", # year only
 
     oman_persian: "1.1.1743", # can't find anything more than year
     oman_not_persian: "1747.6.19", # death of Nader Shah
@@ -155,10 +159,16 @@ module ModernTimesDatabase::Dates
 
     mongolia_independence: "1924.11.26",
 
+    aden_city_british: "1.1.1839", # month date only
+    aden_protectorate: "1.1.1869", # year date only
+
     north_yemen_independence: "1918.10.30",
     south_yemen_independence: "1967.11.30",
     yemen_unification: "1990.5.22",
+
+    djibouti_french: "May 20, 1896",
     djibouti_independence: "1977.6.27",
+
     mali_independence: "1960.6.20",
     mauritania_french: "1903.5.12", # Was under French influence earlier
     mauritania_independence: "1960.11.28",
@@ -175,6 +185,7 @@ module ModernTimesDatabase::Dates
     # south_spanish_morocco_end: "1956.4.7", # Too small to matter on the map probably
     french_morocco_independence: "1956.10.29",
     madrid_accords: "1975.11.14",
+    spanish_sahara: "1884.12.26",
 
     caliphate_reborn: "2014.6.29",
   }

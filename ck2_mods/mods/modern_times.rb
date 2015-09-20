@@ -418,49 +418,54 @@ class ModernTimesGameModification < CK2GameModification
   # TODO: tech for 1700+
   def setup_technology!
     tech_levels = {
-      ["africa", 0]         => [2,3], # Ethiopia
-      ["africa", 1]         => [3,4], # Egypt
-      ["africa", 2]         => [3,4], # Tunis
-      ["africa", 3]         => [2,3], # West Africa
-      ["byzantium", 0]      => [4,5], # Byzantium
-      ["byzantium", 1]      => [4,5], # Thrace
-      ["eastern_europe", 0] => [4,5],
-      ["india", 0]          => [2,3],
-      ["middle_east", 0]    => [3,4],
-      ["scandinavia", 0]    => [5,6],
-      ["the_steppes", 0]    => [2,3],
-      ["the_steppes", 1]    => [2,3],
-      ["the_steppes", 2]    => [2,3],
-      ["western_europe", 0] => [5,7], # France / Germany - catch up with UK
-      ["western_europe", 1] => [5,6], # Italy
-      ["western_europe", 2] => [6,7], # UK
-      ["western_europe", 3] => [5,6], # North Spain
-      ["western_europe", 4] => [5,6], # South Spain
+      ["africa", 0]         => [1,2,3], # Ethiopia
+      ["africa", 1]         => [2,3,4], # Egypt
+      ["africa", 2]         => [2,3,4], # Tunis
+      ["africa", 3]         => [1,2,3], # West Africa
+      ["byzantium", 0]      => [3,4,5], # Byzantium
+      ["byzantium", 1]      => [3,4,5], # Thrace
+      ["eastern_europe", 0] => [3,4,5],
+      ["india", 0]          => [1,2,3],
+      ["middle_east", 0]    => [2,3,4],
+      ["scandinavia", 0]    => [4,5,6],
+      ["the_steppes", 0]    => [1,2,3],
+      ["the_steppes", 1]    => [1,2,3],
+      ["the_steppes", 2]    => [1,2,3],
+      ["western_europe", 0] => [4,5,7], # France / Germany - catch up with UK
+      ["western_europe", 1] => [4,5,6], # Italy
+      ["western_europe", 2] => [4,6,7], # UK
+      ["western_europe", 3] => [4,5,6], # North Spain
+      ["western_europe", 4] => [4,5,6], # South Spain
     }
     glob("history/technology/*.txt").each do |path|
       group = path.basename(".txt").to_s
       patch_mod_file!(path) do |node|
         node.find_all("technology").each_with_index do |techs, i|
-          (a, b) = tech_levels.fetch([group, i])
+          (a, b, c) = tech_levels.fetch([group, i])
           # p node
           techs.delete 769
           techs.delete 1337
-          techs.add! 1900, PropertyList[
+          techs.add! 1700, PropertyList[
             "military", a,
             "economy", a,
             "culture", a,
           ]
-          techs.add! 2015, PropertyList[
+          techs.add! 1900, PropertyList[
             "military", b,
             "economy", b,
             "culture", b,
+          ]
+          techs.add! 2015, PropertyList[
+            "military", c,
+            "economy", c,
+            "culture", c,
           ]
         end
       end
     end
     override_defines_lua!("modern_times",
-      "NTechnology.DONT_EXECUTE_TECH_BEFORE" => 1900,
-      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_YEAR" => 1900,
+      "NTechnology.DONT_EXECUTE_TECH_BEFORE" => 1700,
+      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_YEAR" => 1700,
       "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_MONTH" => 1,
       "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_DAY" => 1,
     )
@@ -761,11 +766,10 @@ class ModernTimesGameModification < CK2GameModification
       ["1815.6.9", "Congress of Vienna"],
       ["1840.1.1", "Test 1840"],
       ["1861.3.17", "Kingdom of Italy"],
-      ["1871.1.18", "German Empire"],
-      ["1890.1.1", "Test 1890"],
 
       ### Actual bookmarks, must have 5 key bookmarks
-      ["1900.1.1",   "New Century", true],
+      ["1871.1.18", "German Empire", true],
+      ["1900.1.1",   "New Century"],
       ["1914.6.28",  "The Great War"],
       ["1920.8.10",  "Treaty of Sevres", true],
       ["1939.8.31",  "The Greater War"],

@@ -10,7 +10,7 @@ class ModernTimesDatabase
     if ENV["DEBUG_HISTORY"]
       @min_date ||= Date.parse(ENV["DEBUG_HISTORY"])
     else
-      @min_date ||= resolve_date(:start)
+      @min_date ||= resolve_date("1871.1.18")
     end
   end
 

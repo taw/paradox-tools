@@ -671,18 +671,22 @@ ModernTimesDatabase::HOLDERS = {
       birth: "1954",
     },
   },
-  e_italy: {
-    # Title created
-    "1861.3.17" => {
+  k_italy: {
+    "23 March 1849" => {
       name: "Victor Emmanuel",
       dynasty: "Savoy",
       birth: "1820.3.14",
       death: "1878.1.9",
     },
+    "1861.3.17" => nil,
+  },
+  e_italy: {
+    # Title created
+    "1861.3.17" => { use: "k_italy Victor Emmanuel 1" },
     "1878.1.9" => {
       name: "Umberto",
       dynasty: "Savoy",
-      father: "Victor Emmanuel 1",
+      father: "k_italy Victor Emmanuel 1",
       birth: "1844.3.14",
       death: "1900.7.29",
     },
@@ -696,7 +700,7 @@ ModernTimesDatabase::HOLDERS = {
     "1946.5.9" => {
       name: "Umberto",
       dynasty: "Savoy",
-      father: "Victor Emmanuel 2",
+      father: "e_italy Victor Emmanuel 1",
       birth: "1904.9.15",
       death: "1983.3.18",
     },

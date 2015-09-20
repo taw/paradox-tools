@@ -39,6 +39,12 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
     capital: :c_roma,
   },
+  k_italy: {
+    culture: :italian,
+    religion: :catholic,
+    capital: :c_piemonte,
+    name: "Piedmont-Sardinia / Piedmontese-Sardinian"
+  },
   e_italy: {
     culture: :italian,
     religion: :catholic,
