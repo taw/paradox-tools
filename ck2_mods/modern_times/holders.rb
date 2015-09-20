@@ -200,7 +200,7 @@ ModernTimesDatabase::HOLDERS = {
       name: "Anna",
       dynasty: "Romanov",
       birth: "1693.2.7",
-      death: "174.10.28",
+      death: "1740.10.28",
       female: true,
     },
     "1740.10.28" => {
@@ -216,7 +216,7 @@ ModernTimesDatabase::HOLDERS = {
       death: "1762.1.5",
       female: true,
     },
-    "1762.1.9" => {
+    "1762.1.5" => {
       name: "Peter",
       dynasty: "Romanov",
       birth: "1728.2.21",
@@ -383,7 +383,7 @@ ModernTimesDatabase::HOLDERS = {
       name: "Charles",
       dynasty: "Bernadotte",
       birth: "May 1826",
-      death: "1872.9.8",
+      death: "1872.9.18",
       father: "Oscar 1"
     },
     "1872.9.18" => {
@@ -713,53 +713,55 @@ ModernTimesDatabase::HOLDERS = {
     "2012.5.15"=>{name: "François", dynasty: "Hollande", birth: "1954"},
   },
   e_india: {
-    "1947.8.15"  => {name: "Jawharlal", dynasty: "Nehru", birth: "1889", death: "1964"},
-    "1964.6.9"     => {name: "Lal Bahadur", dynasty: "Shatri", birth: "1904", death: "1966"},
-    "1966.1.24" => {name: "Indira", dynasty: "Gandhi", birth: "1917", death: "1984", female: true},
+    "1947.8.15"   => {name: "Jawharlal", dynasty: "Nehru", birth: "1889", death: "1964"},
+    "1964.6.9"    => {name: "Lal Bahadur", dynasty: "Shatri", birth: "1904", death: "1966"},
+    "1966.1.24"   => {name: "Indira", dynasty: "Gandhi", birth: "1917", death: "1984", female: true},
     "1977.3.24"   => {name: "Morarji", dynasty: "Desai", birth: "1896", death: "1995"},
-    "1979.7.28"    => {name: "Charan", dynasty: "Singh", birth: "1902", death: "1987"},
-    "1980.1.14" => {use: "Indira 1"},
-    "1984.10.31" => {name: "Rajiv", dynasty: "Gandhi", birth: "1944", death: "1991"},
-    "1989.12.2" => {name: "Vishwanath Pratap", dynasty: "Singh", birth: "1931.6.25", death: "2008.11.27"},
-    "1990.11.10"=> {name: "Chandra", dynasty: "Shekhar", birth: "1927", death: "2007"},
-    "1991.6.21"    => {name: "Pamulaparti Venkata Narasimha", dynasty: "Rao", birth: "1921", death: "2004"},
-    "1996.5.16"     => {name: "Atal Bihari", dynasty: "Vajpayee", birth: "1924", death: :never},
-    "1996.6.1"     => {name: "Haradanahalli Doddegowda Deve", dynasty: "Gowda", birth: "1933.5.18", death: :never},
+    "1979.7.28"   => {name: "Charan", dynasty: "Singh", birth: "1902", death: "1987"},
+    "1980.1.14"   => {use: "Indira 1"},
+    "1984.10.31"  => {name: "Rajiv", dynasty: "Gandhi", birth: "1944", death: "1991"},
+    "1989.12.2"   => {name: "Vishwanath Pratap", dynasty: "Singh", birth: "1931.6.25", death: "2008.11.27"},
+    "1990.11.10"  => {name: "Chandra", dynasty: "Shekhar", birth: "1927", death: "2007"},
+    "1991.6.21"   => {name: "Pamulaparti Venkata Narasimha", dynasty: "Rao", birth: "1921", death: "2004"},
+    "1996.5.16"   => {name: "Atal Bihari", dynasty: "Vajpayee", birth: "1924", death: :never},
+    "1996.6.1"    => {name: "Haradanahalli Doddegowda Deve", dynasty: "Gowda", birth: "1933.5.18", death: :never},
     "1997.4.21"   => {name: "Inder Kumar", dynasty: "Gujral", birth: "1919.12.4", death: "2012.11.30"},
     "1998.3.19"   => {use: "Atal Bihari 1"},
-    "2004.5.22"     => {name: "Manmohan", dynasty: "Singh", birth: "1932", death: :never},
-    "2014.5.26"     => {name: "Narendra", dynasty: "Modi", birth: "1950", death: :never},
+    "2004.5.22"   => {name: "Manmohan", dynasty: "Singh", birth: "1932", death: :never},
+    "2014.5.26"   => {name: "Narendra", dynasty: "Modi", birth: "1950", death: :never},
   },
   e_spain: {
-    "1665.9.17" => {name: "Charles", dynasty: "Habsburg", birth: "1661.11.6", death: "1700.11.1"},
-    "1700.11.16"  => {name: "Philip", dynasty: "Bourbon"},
+    "1665.9.17"   => {name: "Charles", dynasty: "Habsburg", birth: "1661.11.6", death: "1700.11.1"},
+    "1700.11.1"  => {name: "Philip", dynasty: "Bourbon"},
     "1724.1.14"   => {name: "Louis", dynasty: "Bourbon", father: "Philip 1"},
-    "1724.9.6"  => {use: "Philip 1"},
-    "1746.7.9"       => {name: "Ferdinand", dynasty: "Bourbon", father: "Philip 1"},
-    "1759.8.10"    => {name: "Charles", dynasty: "Bourbon", father: "Philip 1"},
+    "1724.9.6"    => {use: "Philip 1"},
+    "1746.7.9"    => {name: "Ferdinand", dynasty: "Bourbon", father: "Philip 1"},
+    "1759.8.10"   => {name: "Charles", dynasty: "Bourbon", father: "Philip 1"},
     "1788.12.14"  => {name: "Charles", dynasty: "Bourbon", father: "Charles 2"},
-    "1808.3.19"     => {name: "Ferdinand", dynasty: "Bourbon", father: "Charles 3"},
-    "1808.6.6"       => {name: "Joseph", dynasty: "Bonaparte"},
+    "1808.3.19"   => {name: "Ferdinand", dynasty: "Bourbon", father: "Charles 3"},
+    "1808.6.6"    => {name: "Joseph", dynasty: "Bonaparte"},
     "1813.12.11"  => {use: "Ferdinand 2"},
-    "1833.9.29" => {name: "Isabella", dynasty: "Bourbon", female: true, father: "Ferdinand 2"},
-    "1870.11.16" => {name: "Amadeo", dynasty: "Savoy", birth: "1845.5.30", death: "1890.1.18"},
-    "1874.12.29" => {name: "Alfonso", dynasty: "Bourbon", birth: "1857.11.28", death: "1885.11.25"},
-    "1886.5.17"      => {name: "Alfonso", dynasty: "Bourbon", birth: "1886.5.17", death: "1941.2.28"},
+    "1833.9.29"   => {name: "Isabella", dynasty: "Bourbon", female: true, father: "Ferdinand 2"},
+    "1870.11.16"  => {name: "Amadeo", dynasty: "Savoy", birth: "1845.5.30", death: "1890.1.18"},
+    "1874.12.29"  => {name: "Alfonso", dynasty: "Bourbon", birth: "1857.11.28", death: "1885.11.25"},
+    # Birth backdated hard as posthumous, actual 1886.5.17
+    "1885.11.25"  => {name: "Alfonso", dynasty: "Bourbon", birth: "1885.11.25", death: "1941.2.28"},
     # Simplify republic
-    "1931.4.14"    => {name: "Niceto", dynasty: "Alcalá-Zamora", birth: "1877.7.6", death: "1949.2.18"},
+    "1931.4.14"   => {name: "Niceto", dynasty: "Alcalá-Zamora", birth: "1877.7.6", death: "1949.2.18"},
     "1936.10.1"   => {name: "Francisco", dynasty: "Franco", birth: "1892.12.4", death: "1975.11.20"},
-    "1975.11.22" => {name: "Juan Carlos", dynasty: "Bourbon", birth: "1938.1.5", death: :never},
-    "2014.6.19"     => {name: "Felipe", dynasty: "Bourbon", birth: "1968.1.30", death: :never},
+    "1975.11.20"  => {name: "Juan Carlos", dynasty: "Bourbon", birth: "1938.1.5", death: :never},
+    "2014.6.19"   => {name: "Felipe", dynasty: "Bourbon", birth: "1968.1.30", death: :never},
   },
   e_carpathia: {
-    "1804.8.11" => {name: "Francis", dynasty: "Habsburg", birth: "1768.2.12", death: "1835.3.2"},
+    "1804.8.11"  => {name: "Francis", dynasty: "Habsburg", birth: "1768.2.12", death: "1835.3.2"},
     "1835.3.2"   => {name: "Ferdinand", dynasty: "Habsburg", birth: "1793.4.19", death: "1875.6.29"},
     # Can't find day date, just month
-    "1848.12.1" => {name: "Francis Joseph", dynasty: "Habsburg", birth: "1830.8.18", death: "1916.11.21"},
+    "1848.12.1"  => {name: "Francis Joseph", dynasty: "Habsburg", birth: "1830.8.18", death: "1916.11.21"},
     "1916.11.21" => {name: "Charles", dynasty: "Habsburg", birth: "1911.10.21", death: "1922.4.1"},
-    # Backfill
+    "1918.11.11" => nil,
   },
   k_bavaria: {
+    # Backfill
     "1918.11.11" => {name: "Karl", dynasty: "Seitz"},
     "1920.12.9"  => {name: "Michael", dynasty: "Hainisch"},
     "1928.12.10" => {name: "Wilhelm", dynasty: "Miklas"},
@@ -832,7 +834,7 @@ ModernTimesDatabase::HOLDERS = {
     "1909.12.17" => {name: "Albert", dynasty: "Saxe-Coburg and Gotha", birth: "1875.4.8", death: "1934.2.17"},
     "1934.2.17" => {name: "Leopold", dynasty: "Saxe-Coburg and Gotha", father: "Albert 1", birth: "1901.11.3", death: "1983.9.25"},
     "1951.7.17" => {name: "Baudouin", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 3", birth: "1930.9.7", death: "1993.7.31"},
-    "1993.8.9" => {name: "Albert", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 3", birth: "1934.6.6", death: :never},
+    "1993.7.31" => {name: "Albert", dynasty: "Saxe-Coburg and Gotha", father: "Leopold 3", birth: "1934.6.6", death: :never},
     "2013.7.21" => {name: "Philippe", dynasty: "Saxe-Coburg and Gotha", father: "Albert 2", birth: "1960.4.15"},
   },
   k_norway: {
@@ -842,6 +844,7 @@ ModernTimesDatabase::HOLDERS = {
   },
   d_nefoud: {
     start: {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},
+    end_ww1: nil,
   },
   k_arabia: {
     # "Emirate of Nejd and Hasa" etc., maybe I should differentiate those titles
@@ -874,6 +877,7 @@ ModernTimesDatabase::HOLDERS = {
       name: "Aslan", dynasty: "Maskhadov",
       birth: "1951.9.21", death: "2005.3.8",
     },
+    fall_chechnya: nil,
   },
   k_ruthenia: {
     fall_soviet_union: {
@@ -1006,7 +1010,7 @@ ModernTimesDatabase::HOLDERS = {
     # First secretaries, except Jaruzelski gets to keep his post during transition
     # December 22, 1948, backdating
     end_ww2: {name: "Boleslaw", dynasty: "Bierut", birth: "1892.4.18", death: "1956.3.12"},
-    "1956.3.20" => {name: "Edward", dynasty: "Ochab", birth: "1906.8.16", death: "1989.5.1"},
+    "1956.3.12" => {name: "Edward", dynasty: "Ochab", birth: "1906.8.16", death: "1989.5.1"},
     "1956.10.21" => {name: "Wladyslaw", dynasty: "Gomulka", birth: "1905.2.6", death: "1982.9.1"},
     "1970.12.20" => {name: "Edward", dynasty: "Gierek", birth: "1913.1.6", death: "2001.7.29"},
     "1980.9.6" => {name: "Stanislaw", dynasty: "Kania", birth: "1927.3.8", death: :never},
@@ -1022,7 +1026,7 @@ ModernTimesDatabase::HOLDERS = {
     "1958.7.14" => {name: "Muhammad Najib", dynasty: "ar-Ruba'i", birth: "1904", death: "1965"},
     "1963.2.8" => {name: "Abdul Salam", dynasty: "Arif", birth: "1921.3.21", death: "1966.4.13"},
     # brother of previous
-    "1966.4.16"=> {name: "Abdul Rahman", dynasty: "Arif", birth: "1916.4.14", death: "200.8.24"},
+    "1966.4.13"=> {name: "Abdul Rahman", dynasty: "Arif", birth: "1916.4.14", death: "2007.8.24"},
     "1968.7.17" => {name: "Ahmed Hassan", dynasty: "al-Bakr", birth: "1914.7.1", death: "1982.10.4"},
     "1979.7.16" => {name: "Saddam", dynasty: "Hussein", birth: "1937.4.28", death: "2006.12.30"},
     # Backdating hard

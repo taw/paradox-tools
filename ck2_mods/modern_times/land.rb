@@ -473,6 +473,7 @@ ModernTimesDatabase::LAND = {
   # FIXME: Sandomierz should maybe not me Austrian ?
   # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled
   # TODO: Serious modelling of 1938-1945 and Napoleonic Wars era
+  # TODO: Protectorate of Bohemia and Moravia
   # FIXME: Hungary / Romania / Serbia border is crap
   # FIXME: Romania / Moldova border is crap
   # FIXME: Central Asian and Caucasus history are a bit bullshit

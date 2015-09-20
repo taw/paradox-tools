@@ -247,11 +247,11 @@ class ModernTimesGameModification < CK2GameModification
 
     unless land
       # This is really a bug, warn here once we get nontrivial amount of land covered
-      @warnings << "No idea what to do with #{@map.landed_titles_lookup[title].reverse.join(" / ")}"
+      warn "No idea what to do with #{@map.landed_titles_lookup[title].reverse.join(" / ")}"
       return
     end
     if land_start > @db.min_date
-      @warnings << "History for #{@map.landed_titles_lookup[title].reverse.join(" / ")} only from #{land_start.to_s_px}"
+      warn "History for #{@map.landed_titles_lookup[title].reverse.join(" / ")} only from #{land_start.to_s_px}"
     end
 
     land.size.times do |i|
@@ -362,7 +362,7 @@ class ModernTimesGameModification < CK2GameModification
         title    = title
         holders  = @db.holders[title] || {}
         unless @db.title_needs_extra_holders[title].empty?
-          @warnings << "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
+          warn "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
           @db.title_needs_extra_holders[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true
@@ -415,6 +415,7 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  # TODO: tech for 1700+
   def setup_technology!
     tech_levels = {
       ["africa", 0]         => [2,3], # Ethiopia
@@ -767,7 +768,7 @@ class ModernTimesGameModification < CK2GameModification
       ["1900.1.1",   "New Century", true],
       ["1914.6.28",  "The Great War"],
       ["1920.8.10",  "Treaty of Sevres", true],
-      ["1938.9.30",  "Munich Agreement"],
+      ["1939.8.31",  "The Greater War"],
       ["1945.5.8",   "Cold War", true],
       ["1975.1.1",   "Decolonization", true],
       ["1991.12.26", "Fall of Soviet Union"],
@@ -810,7 +811,7 @@ class ModernTimesGameModification < CK2GameModification
       )
   end
 
-  def warning(msg)
+  def warn(msg)
     @warnings << msg
   end
 

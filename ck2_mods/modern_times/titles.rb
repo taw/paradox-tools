@@ -169,11 +169,9 @@ ModernTimesDatabase::TITLES = {
     capital: :c_byzantion,
     name: { forever_ago: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
   },
-  # TODO: Ottoman caliphate (or maybe ISIS caliphate even)
   d_sunni: {
     culture: :levantine_arabic,
     religion: :sunni,
-    capital: :c_mosul, # not true
   },
   # Avoids silliness of ISIS making this primary and two Syrias on the map
   d_syria: {
@@ -246,7 +244,7 @@ ModernTimesDatabase::TITLES = {
     culture: :persian,
     religion: :shiite,
     capital: :c_esfahan,
-    name: "Iran / Iranian",
+    name: {"1925.12.15" => "Iran / Iranian"},
   },
   k_bengal: {
     culture: :bengali,

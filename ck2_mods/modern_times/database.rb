@@ -188,6 +188,11 @@ class ModernTimesDatabase
 private
 
   def validate_holders!
+    # This is obviously error, but we can't fix it due to engine limitations
+    known_posthumous = [
+      "e_spain Alfonso 2",
+    ]
+
     holders.keys.each do |title|
       time_limit = MultiRange.new([min_date, nil])
       has_land   = title_has_land[title] & time_limit
@@ -196,6 +201,38 @@ private
       # if has_land != has_holder
       #   warn "Title #{title} has_land: #{has_land} != has_holder #{has_holder}"
       # end
+    end
+    holders.each do |title, characters|
+      characters = characters.map{|d,c| [d,c] }
+      characters.size.times do |i|
+        d0, c = characters[i]
+        d1,   = characters[i+1]
+        # If it's no-holder time, it's OK
+        next if c.nil? or c[:use]
+        # These will be autofilled this way later, TODO: move logic to this class?
+        id = c[:historical_id]
+        birth = c[:birth] || (d0 << 12*35)
+        death = c[:death] || (birth >> 12*90)
+        death = Date.parse("2020.1.1") if death == :never
+        d1 ||= Date.parse("2020.1.1")
+
+        # Correct
+        # birth < d0 < d1 <= death
+        unless birth < d0
+          # It's only == with posthumous backdated characters like Alfonso of Spain
+          unless birth == d0 and known_posthumous.include?(id)
+            @builder.warn "Character #{id} born while in charge #{birth} #{d0}"
+          end
+        end
+        unless d0 < d1
+          @builder.warn "Character #{id} rulership dates are wrong #{d0} #{d1}"
+        end
+        unless d1 <= death
+          @builder.warn "Character #{id} died while in charge #{death} #{d1}"
+        end
+        # The reason we'd like to validate age is so that characters won't autodie while in charge
+        # but check above detects that condition already
+      end
     end
   end
 
