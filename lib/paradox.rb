@@ -16,6 +16,10 @@ class Date
   def to_s_px
     "%d.%d.%d" % [year, month, day]
   end
+  # Default is dumb anyway
+  def to_s
+    to_s_px
+  end
 end
 
 class Pathname

@@ -915,6 +915,99 @@ ModernTimesDatabase::HOLDERS = {
       death: :never,
     }
   },
+  d_luxembourg: {
+    "23 November 1890" => {
+      name: "Adolphe",
+      birth: "24 July 1817",
+      death: "17 November 1905",
+    },
+    "17 November 1905" => {
+      name: "Guillaume",
+      birth: "22 April 1852",
+      death: "25 February 1912",
+      father: "Adolphe",
+    },
+    "25 February 1912" => {
+      name: "Marie-Adelaide",
+      birth: "14 June 1894",
+      death: "24 January 1924",
+      female: true,
+    },
+    "14 January 1919" => {
+      name: "Charlotte",
+      birth: "23 January 1896",
+      death: "9 July 1985",
+      female: true,
+    },
+    "12 November 1964" => {
+      name: "Jean",
+      birth: "5 January 1921",
+      death: :never,
+      mother: "Charlotte",
+    },
+    "7 October 2000" => {
+      name: "Henri",
+      birth: "16 April 1955",
+      death: :never,
+      father: "Jean",
+    },
+  },
+  d_lithuanians: {
+    # From 11 March 1990, chairman of supreme soviet
+    fall_soviet_union: {name: "Vytautas", dynasty: "Landsbergis"},
+    "25 February 1993" => {name: "Algirdas", dynasty: "Brazauskas"},
+    "26 February 1998" => {name: "Valdas", dynasty: "Adamkus"},
+    "26 February 2003" => {name: "Rolandas", dynasty: "Paksas"},
+    # backdated to skip acting president
+    "6 April 2004" => {use: "Valdas 1"},
+    "12 July 2009" => {name: "Dalia", dynasty: "Grybauskaite", female: true},
+  },
+  d_nyitra: {
+    # 2 March 1993, backdating
+    "1993.1.1" => {name: "Michal", dynasty: "Kovac"},
+    # 15 June 1999, backdating
+    "March 2, 1998" => {name: "Rudolf", dynasty: "Schuster"},
+    "15 June 2004" => {name: "Ivan", dynasty: "Gasparovic"},
+    "15 June 2014" => {name: "Andrej", dynasty: "Kiska"},
+  },
+  k_georgia: {
+    # A lot of backdating
+    fall_soviet_union: {name: "Eduard", dynasty: "Shevardnadze", birth: "25 January 1928", death: "7 July 2014"},
+    "23 November 2003" => {name: "Mikheil", dynasty: "Saakashvili", birth: "21 December 1967", death: :never},
+    "17 November 2013" => {name: "Giorgi", dynasty: "Margvelashvili", birth: "4 September 1969"}
+  },
+  d_azerbaijan: {
+    # actually 28 May 1918
+    end_ww1: {name: "Mammad Amin", dynasty: "Rasulzade"},
+    "7 December 1918" => {name: "Alimardan", dynasty: "Topchubashov"},
+    # End date is somewhat dubious
+    "1920.5.11" => nil,
+    # 3 October 1993, backdating, but Heydar Aliyev was sort of leader of Azerbaijan since 1969
+    fall_soviet_union: { name: "Heydar", dynasty: "Aliyev", birth: "10 May 1923", death: "12 December 2003" },
+    "31 October 2003" => { name: "Ilham", dynasty: "Aliyev", father: "Heydar 1", birth: "24 December 1961" },
+  },
+  d_esthonia: {
+    # 6 October 1992, backdating
+    fall_soviet_union: {name: "Lennart Georg", dynasty: "Meri"},
+    "8 October 2001" => {name: "Arnold", dynasty: "Rüütel"},
+    "9 October 2006" => {name: "Toomas Hendrik", dynasty: "Ilves"},
+  },
+  k_poland: {
+    # Communist Poland had no clear head of state, by design
+    # First secretaries, except Jaruzelski gets to keep his post during transition
+    "December 22, 1948" => {name: "Boleslaw", dynasty: "Bierut", birth: "18 April 1892", death: "12 March 1956"},
+    "March 20, 1956" => {name: "Edward", dynasty: "Ochab", birth: "1906.8.16", death: "1989.5.1"},
+    "October 21, 1956" => {name: "Wladyslaw", dynasty: "Gomulka", birth: "6 February 1905", death: "1 September 1982"},
+    "December 20, 1970" => {name: "Edward", dynasty: "Gierek", birth: "6 January 1913", death: "29 July 2001"},
+    "6 September 1980" => {name: "Stanislaw", dynasty: "Kania", birth: "8 March 1927", death: :never},
+    "October 18, 1981" => {name: "Wojciech", dynasty: "Jaruzelski", birth: "6 July 1923", death: "25 May 2014"},
+    "22 December 1990" => {name: "Lech", dynasty: "Walesa", birth: "29 September 1943", death: :never},
+    "23 December 1995" => {name: "Aleksander", dynasty: "Kwasniewski", birth: "15 November 1954", death: :never},
+    "23 December 2005" => {name: "Lech", dynasty: "Kaczynski", birth: "18 June 1949", death: "10 April 2010"},
+    # acting, then actual, skipping other acting presidents
+    "10 April 2010" => {name: "Bronislaw", dynasty: "Komorowski", birth: "4 June 1952", death: :never},
+    "6 August 2015" => {name: "Andrzej", dynasty: "Duda", birth: "16 May 1972", death: :never},
+  },
   # Backdating everybody to their predecessor's death / resignation
   k_papal_state: {
     "20 July 1903" => {
@@ -970,6 +1063,23 @@ ModernTimesDatabase::HOLDERS = {
       birth: "17 December 1936",
       death: :never,
     },
+  },
+  d_krete: {
+    # 21 December 1898, backdating to foundation
+    "1898.12.13" => {
+      # He's a royal but it was High Commissioner post
+      name: "George",
+      dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
+      birth: "24 June 1869",
+      death: "25 November 1957",
+    },
+    "1 October 1906" => {
+      name: "Alexandros",
+      dynasty: "Zaimis",
+      birth: "9 November 1855",
+      death: "15 September 1936",
+    },
+    "1913.5.30" => nil,
   },
   d_sunni: {
     "1695.2.6" => { use: "e_seljuk_turks Mustafa 1" },

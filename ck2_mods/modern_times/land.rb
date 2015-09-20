@@ -469,14 +469,14 @@ ModernTimesDatabase::LAND = {
   # FIXME: Everything that uses start: needs fixing
 
   # TODO: Memel crisis, Munich agreement / Sudetenland
-  # FIXME: Cieszyn should be Austrian
+  # FIXME: Cieszyn should maybe be Austrian
+  # FIXME: Sandomierz should maybe not me Austrian ?
   # FIXME: Silliness during Napoleonic wars / WW1 / WW2 is generally not modelled
   # TODO: Serious modelling of 1938-1945 and Napoleonic Wars era
   # FIXME: Hungary / Romania / Serbia border is crap
   # FIXME: Romania / Moldova border is crap
-  # FIXME: Chechnya
   # FIXME: Central Asian and Caucasus history are a bit bullshit
-  # FIXME: Free Krakow, Free Gdansk (Napoleonic)
+  # FIXME: Free Gdansk (Napoleonic)
   # FIXME: Pakistan area history is totally wrong, it was Afghan/Iranian/British mix, not just all UK
 
   d_nefoud: { start: "d_nefoud", end_ww1: "k_arabia" },
