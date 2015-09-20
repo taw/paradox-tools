@@ -35,8 +35,8 @@ class CharacterManager
       "name", "Bob",
       "religion", "cathar",
       "culture", "bohemian",
-      Date.parse("1600.1.1"), PropertyList["birth", Date.parse("1600.1.1")],
-      Date.parse("1601.1.1"), PropertyList["death", Date.parse("1601.1.1")],
+      Date.parse("1450.1.1"), PropertyList["birth", true],
+      Date.parse("1450.1.2"), PropertyList["death", true],
     ]
     id
   end
@@ -232,8 +232,8 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_county_history!(title, node)
-    node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
-    node.add! Date.parse("1500.1.1"), PropertyList["holder", @characters_reset.add_reset(title)]
+    node.add! Date.parse("1450.1.1"), PropertyList["liege", 0]
+    node.add! Date.parse("1450.1.1"), PropertyList["holder", @characters_reset.add_reset(title)]
 
     land = @db.county_ownership(title)
     land_start = land && land[0][0]
@@ -758,6 +758,8 @@ class ModernTimesGameModification < CK2GameModification
 
     bookmarks = [
       ### History files testing:
+      ["1600.1.1", "Test 1600"],
+      ["1648.10.24", "Peace of Westphalia"],
       ["1700.1.1", "Test 1700"],
       ["1750.1.1", "Test 1750"],
       ["1780.1.1", "Test 1780"],

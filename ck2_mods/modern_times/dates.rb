@@ -2,10 +2,21 @@
 module ModernTimesDatabase::Dates
   # Easy dates
   @dates = {
-    forever_ago: "1700.1.1", # No plans to go back earlier than this
-    temporary_start: "1900.1.1", # This value will go back in time eventually, avoid using it
+    ### Special tags
+    times_immemorial: "1600.1.1",
     title_holders_until: "2020.12.31", # how far to generate title holders
+
+    ### Special tags that need killing
+    forever_ago: "1700.1.1", # Few plans to go back earlier than this
+    temporary_start: "1900.1.1", # This value will go back in time eventually, avoid using it
+
+    ### Actual dates:
+    urbino_papal: "1626.1.1", # year only
+    peace_of_westphalia: "1648.10.24",
+
     cephalonia_greek: "1864.3.29",
+
+    protectorate_of_bohemia_and_moravia: "15 March 1939",
 
     junior_juz_russian: "1.1.1731", # year date
     middle_juz_russian: "1.1.1798", # year date
@@ -96,6 +107,7 @@ module ModernTimesDatabase::Dates
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",
 
+    bahrain_1783_invasion: "23 July 1783",
     bahrain_british: "1880.12.22", # Gradual process, date for British foreign policy veto
     kuwait_british: "1899.11.23", # Gradual process, date for British foreign policy veto
 

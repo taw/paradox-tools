@@ -575,6 +575,10 @@ ModernTimesDatabase::TITLES = {
     culture: :italian,
     religion: :catholic,
   },
+  c_urbino: {
+    culture: :italian,
+    religion: :catholic,
+  },
   c_mantua: {
     culture: :italian,
     religion: :catholic,
