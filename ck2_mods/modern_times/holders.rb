@@ -327,7 +327,49 @@ ModernTimesDatabase::HOLDERS = {
     "2012.5.7" => { use: "Vladimir 2" },
   },
   k_denmark: {
-    "1863.11.29" => {
+    "25 August 1699" => {
+      name: "Frederick",
+      dynasty: "Oldenburg",
+      birth: "11 October 1671",
+      death: "12 October 1730",
+    },
+    "12 October 1730" => {
+      name: "Christian",
+      dynasty: "Oldenburg",
+      birth: "30 November 1699",
+      death: "6 August 1746",
+    },
+    "6 August 1746" => {
+      name: "Frederick",
+      dynasty: "Oldenburg",
+      birth: "31 March 1723",
+      death: "14 January 1766",
+    },
+    "14 January 1766" => {
+      name: "Christian",
+      dynasty: "Oldenburg",
+      birth: "29 January 1749",
+      death: "13 March 1808",
+    },
+    "13 March 1808" => {
+      name: "Frederick",
+      dynasty: "Oldenburg",
+      birth: "28 January 1768",
+      death: "3 December 1839",
+    },
+    "3 December 1839" => {
+      name: "Christian",
+      dynasty: "Oldenburg",
+      birth: "18 September 1786",
+      death: "20 January 1848",
+    },
+    "20 January 1848" => {
+      name: "Frederick",
+      dynasty: "Oldenburg",
+      birth: "6 October 1808",
+      death: "15 November 1863",
+    },
+    "1863.11.15" => {
       name: "Christian",
       dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg",
       birth: "1818.4.8",
@@ -363,7 +405,41 @@ ModernTimesDatabase::HOLDERS = {
       father: "Frederick 2",
     }
   },
+  # Wikipedia uses these spellings, however inconsistent they are
   k_sweden: {
+    "24 March 1720" => {
+      name: "Frederick",
+      dynasty: "Hesse",
+      birth: "23 April 1676",
+      death: "25 March 1751",
+    },
+    "25 March 1751" => {
+      name: "Adolph Frederick",
+      dynasty: "Holstein-Gottorp",
+      birth: "14 May 1710",
+      death: "12 February 1771",
+    },
+    "12 February 1771" => {
+      name: "Gustav",
+      dynasty: "Holstein-Gottorp",
+      birth: "24 January 1746",
+      death: "29 March 1792",
+      father: "Adolph Frederick 1",
+    },
+    "29 March 1792" => {
+      name: "Gustav Adolf",
+      dynasty: "Holstein-Gottorp",
+      birth: "1 November 1778",
+      death: "7 February 1837",
+      father: "Gustav 1",
+    },
+    "6 June 1809" => {
+      name: "Charles",
+      dynasty: "Holstein-Gottorp",
+      birth: "7 October 1748",
+      death: "1818.2.5",
+      father: "Adolph Frederick 1",
+    },
     "1818.2.5" => {
       name: "Charles John",
       dynasty: "Bernadotte",
@@ -838,9 +914,19 @@ ModernTimesDatabase::HOLDERS = {
     "2013.7.21" => {name: "Philippe", dynasty: "Saxe-Coburg and Gotha", father: "Albert 2", birth: "1960.4.15"},
   },
   k_norway: {
-    norway_independence: {name: "Haakon", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", birth: "1872.8.3", death: "1957.9.21"},
-    "1957.9.21" => {name: "Olav", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Haakon 1", birth: "1903.7.2", death: "1991.1.17"},
-    "1991.1.17" => {name: "Harald", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", birth: "1937.2.21", death: :never},
+    "1699.8.25"  => {use: "k_denmark Frederick 1"},
+    "1730.10.12" => {use: "k_denmark Christian 1"},
+    "1746.8.6"   => {use: "k_denmark Frederick 2"},
+    "1766.1.14"  => {use: "k_denmark Christian 2"},
+    "1808.3.13"  => {use: "k_denmark Frederick 3"},
+    "1814.5.17"  => {use: "k_sweden Charles 1"},
+    "1818.2.5"   => {use: "k_sweden Charles John 1"},
+    "1844.3.8"   => {use: "k_sweden Oscar 1"},
+    "1859.7.8"   => {use: "k_sweden Charles 2"},
+    "1872.9.18"  => {use: "k_sweden Oscar 2"},
+    "1905.6.7"   => {name: "Haakon", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", birth: "1872.8.3", death: "1957.9.21"},
+    "1957.9.21"  => {name: "Olav", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Haakon 1", birth: "1903.7.2", death: "1991.1.17"},
+    "1991.1.17"  => {name: "Harald", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", birth: "1937.2.21", death: :never},
   },
   d_nefoud: {
     start: {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},

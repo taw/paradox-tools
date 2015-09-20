@@ -28,10 +28,10 @@ ModernTimesDatabase::LAND = {
   c_artois:         { forever_ago: "e_france" },
   c_guines:         { forever_ago: "e_france" },
 
-  c_faereyar:   { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
-  d_ostlandet:  { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
-  d_vestlandet: { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
-  d_trondelag:  { forever_ago: "k_denmark", end_of_danish_norway: "k_sweden", norway_independence: "k_norway" },
+  c_faereyar:   { forever_ago: "k_norway" },
+  d_ostlandet:  { forever_ago: "k_norway" },
+  d_vestlandet: { forever_ago: "k_norway" },
+  d_trondelag:  { forever_ago: "k_norway" },
 
   k_bohemia:    { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia" },
   c_litomerice: { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", munich_agreement: "e_germany", end_ww2: "k_bohemia" },
@@ -433,6 +433,7 @@ ModernTimesDatabase::LAND = {
   d_armenia:      { "1864.6.2"=> "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
   d_azerbaijan:   { "1864.6.2"=> "e_russia", end_ww1: "d_azerbaijan", annexation_azerbaijan: "e_russia", fall_soviet_union: "d_azerbaijan" },
   k_georgia:      { "1864.6.2"=> "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+  c_abkhazia:     { "1864.6.2"=> "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia", abkhazia_war: "e_russia" },
   c_semender:   { "1864.6.2" => "e_russia" },
   c_derbent:    { "1864.6.2" => "e_russia" },
 

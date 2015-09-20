@@ -20,6 +20,7 @@ module ModernTimesDatabase::Dates
     fall_krakow_uprising: "1846.11.16", # treaty signed between Russia and Austria
     memel_german: "1939.3.20",
     munich_agreement: "1938.9.30",
+    abkhazia_war: "1993.9.27",
 
     fall_chechnya: "2000.5.1", # approximate
     treaty_of_kucuk_kaynarca: "1774.7.21",
