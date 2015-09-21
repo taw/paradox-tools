@@ -106,7 +106,9 @@ class ModernTimesDatabase
           if i == ownership.size - 1
             @title_has_land[start_owner] << [start_date, nil]
           else
-            @title_has_land[start_owner] << [start_date, ownership[i+1][0]]
+            end_date = ownership[i+1][0]
+            raise unless start_date < end_date
+            @title_has_land[start_owner] << [start_date, end_date]
           end
         end
       end

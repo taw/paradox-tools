@@ -14,6 +14,8 @@ module ModernTimesDatabase::Dates
     urbino_papal: "1626.1.1", # year only
     peace_of_westphalia: "1648.10.24",
 
+    scotland_union: "24 March 1603",
+
     cephalonia_greek: "1864.3.29",
 
     protectorate_of_bohemia_and_moravia: "15 March 1939",

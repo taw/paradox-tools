@@ -613,6 +613,10 @@ ModernTimesDatabase::TITLES = {
     culture: :karluk,
     religion: :sunni,
   },
+  k_scotland: {
+    culture: :scottish,
+    religion: :catholic,
+  },
   ### Just renames, not actual countries
   k_taurica: {
     culture: :bolghar,
