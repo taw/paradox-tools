@@ -319,10 +319,10 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
-  def setup_province_history!
+  def setup_title_history!
     glob("history/titles/*.txt").each do |path|
       title = path.basename(".txt").to_s
-        patch_mod_file!(path) do |node|
+      patch_mod_file!(path) do |node|
         if title =~ /\Ab_/
           # Baronies not belonging to counties like partician houses can be ignored
           county = @map.landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
@@ -336,6 +336,11 @@ class ModernTimesGameModification < CK2GameModification
           setup_county_history!(title, node)
         else
           setup_major_title_history!(title, node)
+        end
+        if @db.titles[title] and @db.titles[title][:liege]
+          @db.titles[title][:liege].each do |date, liege|
+            node.add! date, PropertyList["liege", liege || 0]
+          end
         end
       end
     end
@@ -843,7 +848,7 @@ class ModernTimesGameModification < CK2GameModification
     @characters       = CharacterManager.new(self, 110_000_000)
     @regional_vassals = {}
     @dynasties        = {}
-    setup_province_history!
+    setup_title_history!
     setup_title_names!
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
     save_characters!

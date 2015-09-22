@@ -31,7 +31,7 @@ class ModernTimesDatabase
       ModernTimesDatabase::TITLES.each do |title, data|
         title = title.to_s
         @titles[title] = {}
-        extra_keys = data.keys - [:culture, :religion, :capital, :name]
+        extra_keys = data.keys - [:culture, :religion, :capital, :name, :liege]
         raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
         raise "Culture must be specified for every title: #{title}" unless data[:culture]
         raise "Religion must be specified for every title: #{title}" unless data[:religion]
@@ -44,6 +44,9 @@ class ModernTimesDatabase
           @titles[title][:capital] = title
         else
           @titles[title][:capital] = map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
+        end
+        if data[:liege]
+          @titles[title][:liege] = data[:liege].map{|d,n| [resolve_date(d), n] }
         end
         if data[:name]
           if data[:name].is_a?(String)

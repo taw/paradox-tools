@@ -340,10 +340,12 @@ ModernTimesDatabase::TITLES = {
   d_esthonia: {
     culture: :ugricbaltic,
     religion: :waldensian,
+    liege: {annexation_estonia: "e_russia", fall_soviet_union: nil},
   },
   d_lithuanians: {
     culture: :lithuanian,
     religion: :catholic,
+    liege: {annexation_lithuania: "e_russia", fall_soviet_union: nil},
   },
   k_finland: {
     culture: :finnish,
@@ -356,6 +358,7 @@ ModernTimesDatabase::TITLES = {
     religion: :waldensian,
     capital: :c_zemigalians,
     name: "Latvia / Latvian",
+    liege: {annexation_latvia: "e_russia", fall_soviet_union: nil},
   },
   k_poland: {
     culture: :polish,
@@ -365,10 +368,12 @@ ModernTimesDatabase::TITLES = {
   d_azerbaijan: {
     culture: :persian, # close enough
     religion: :shiite,
+    liege: { annexation_azerbaijan: "e_russia", fall_soviet_union: nil },
   },
   d_armenia: {
     culture: :armenian,
     religion: :orthodox,
+    liege: { annexation_armenia: "e_russia", fall_soviet_union: nil },
   },
   k_egypt: {
     culture: :egyptian_arabic,
@@ -393,6 +398,7 @@ ModernTimesDatabase::TITLES = {
   k_georgia: {
     culture: :georgian,
     religion: :orthodox,
+    liege: { annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
   },
   k_ruthenia: {
     culture: :russian, # :volhynian but it would autoconvert anyway

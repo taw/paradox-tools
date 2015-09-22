@@ -11,9 +11,9 @@ ModernTimesDatabase::LAND = {
   d_sanaa:        { times_immemorial: "e_seljuk_turks", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_aden:         { times_immemorial: "e_seljuk_turks",aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
 
-  c_abkhazia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia", abkhazia_war: "e_russia" },
-  c_guria:        { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
-  c_imeretia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+  c_abkhazia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", abkhazia_war: "e_russia" },
+  c_guria:        { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia" },
+  c_imeretia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia" },
 
   d_nikaea:       { times_immemorial: "e_seljuk_turks" },
   c_byzantion:    { times_immemorial: "e_seljuk_turks" },
@@ -259,15 +259,15 @@ ModernTimesDatabase::LAND = {
   d_ryazan:     { forever_ago: "e_russia" },
   d_sarkel:     { forever_ago: "e_russia" },
 
-  d_courland:    { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
+  d_courland:    { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_courland" },
 
-  d_esthonia:    { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia", annexation_estonia: "e_russia", fall_soviet_union: "d_esthonia" },
-  d_livonia:     { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia", annexation_estonia: "e_russia", fall_soviet_union: "d_esthonia" },
+  d_esthonia:    { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia" },
+  d_livonia:     { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia" },
   c_kexholm:    { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", finland_independence: "k_finland" },
   c_savolaks:   { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
 
-  c_lettigalians:{ forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
-  c_west_dvina:  { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland", annexation_latvia: "e_russia", fall_soviet_union: "d_courland" },
+  c_lettigalians:{ forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland" },
+  c_west_dvina:  { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland" },
 
   d_kola:       { forever_ago: "e_russia" },
   d_karelia:    { forever_ago: "e_russia" },
@@ -329,9 +329,9 @@ ModernTimesDatabase::LAND = {
   c_parma:      { forever_ago: "c_parma", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
   c_modena:     { forever_ago: "c_modena", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
 
-  d_lithuanians: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
-  c_aukshayts:   { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_lithuanians" },
-  c_zhmud:      { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians", annexation_lithuania: "e_russia", fall_soviet_union: "d_lithuanians" },
+  d_lithuanians: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians" },
+  c_aukshayts:   { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_lithuanians" },
+  c_zhmud:      { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians" },
   c_jacwiez:  { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
   c_podlasie: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia",  fall_soviet_union: "d_vitebsk"},
   c_bryansk:    { forever_ago: "e_russia" },
@@ -448,15 +448,15 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1750 BOOKMARK
 
-  d_azerbaijan:   { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_azerbaijan", annexation_azerbaijan: "e_russia", fall_soviet_union: "d_azerbaijan" },
+  d_azerbaijan:   { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_azerbaijan" },
   c_semender:     { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia" },
   c_derbent:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia" },
-  c_lori:         { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
-  c_suenik:       { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
-  c_dwin:         { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
-  c_albania:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
-  c_kartli:       { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
-  c_kakheti:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+  c_lori:         { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_armenia" },
+  c_suenik:       { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia" },
+  c_dwin:         { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia" },
+  c_albania:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
+  c_kartli:       { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
+  c_kakheti:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
 
   d_kabul:       { durrani_afghanistan: "k_afghanistan" },
   c_udabhanda:   { durrani_afghanistan: "k_afghanistan" },
