@@ -130,9 +130,9 @@ class ModernTimesDatabase
     desc
   end
 
-  def liege_has_land_in_active(liege, duchy)
+  def liege_has_land_in_active(liege, title)
     ranges = []
-    map.counties_in_duchy[duchy].each do |county|
+    map.counties_in[title].each do |county|
       land = county_ownership(county)
       land.size.times do |i|
         start_date, owner = land[i]

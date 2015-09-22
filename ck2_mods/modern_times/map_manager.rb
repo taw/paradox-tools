@@ -1,12 +1,12 @@
 class MapManager
-  attr_reader :title_capitals, :counties_in_duchy, :landed_titles_lookup
+  attr_reader :title_capitals, :counties_in, :landed_titles_lookup
 
   def initialize(builder)
     @builder = builder
     @province_id_to_title = {}
     @landed_titles_lookup = {}
     @title_capitals       = {}
-    @counties_in_duchy    = {}
+    @counties_in          = {}
     @landless = {}
 
     @builder.glob("history/provinces/*.txt").each do |path|
@@ -28,8 +28,10 @@ class MapManager
         @landless[path[-2]] = true
       end
       if path[-1] =~ /\Ac_/
-        duchy, county = path[-2], path[-1]
-        (@counties_in_duchy[duchy] ||= []) << county
+        county = path[-1]
+        path.each do |title|
+          (@counties_in[title] ||= []) << county
+        end
       end
     end
   end
@@ -47,8 +49,8 @@ class MapManager
     @culture_in_county
   end
 
-  def cultures_in_duchy(duchy)
-    @counties_in_duchy[duchy].map{|c| culture_in_county[c]}
+  def cultures_in(title)
+    @counties_in[title].map{|c| culture_in_county[c]}
   end
 
   def duchy_for_county(county)

@@ -201,8 +201,8 @@ class ModernTimesGameModification < CK2GameModification
   # by liege, not all of it, or it could enforce liege culture in duchies neighbouring
   # land of liege's culture (like Englishmen running Wales)
   # as that's how culture conversions happen. It's not high priority.
-  def dominant_culture_in_duchy(duchy, liege_culture)
-    cultures = @map.cultures_in_duchy(duchy)
+  def dominant_culture_in(duchy, liege_culture)
+    cultures = @map.cultures_in(duchy)
     # If duchy is one culture, choose it
     return cultures[0] if cultures.uniq.size == 1
     # If liege's culture is in the duchy even as minority, choose it
@@ -219,7 +219,7 @@ class ModernTimesGameModification < CK2GameModification
         xe = e || @db.resolve_date(:title_holders_until)
         while true
           # Always liege religion but could be local culture
-          culture = dominant_culture_in_duchy(duchy, @db.titles[liege][:culture])
+          culture = dominant_culture_in(duchy, @db.titles[liege][:culture])
           id = @characters.add_ruler(
             culture: culture,
             religion: @db.titles[liege][:religion],
@@ -239,6 +239,33 @@ class ModernTimesGameModification < CK2GameModification
     @regional_vassals[[liege, duchy]]
   end
 
+  def allocate_title!(title, node, liege, start_date, end_date)
+    case liege
+    when /\A[cd]_/
+      # Counts and dukes hold all land directly
+      # 0 works but it does weird on campaign map
+      node.add! start_date, PropertyList["liege", liege]
+      raise "No lieges for #{liege}" unless holders[liege]
+      add_holders! node, holders[liege], start_date, end_date
+    else
+      capital_duchy = @db.capital_duchy(liege)
+      this_duchy    = @map.duchy_for_county(title)
+      this_kingdom  = @map.landed_titles_lookup[title][-2]
+      this_empire   = @map.landed_titles_lookup[title][-1]
+
+      if capital_duchy == this_duchy
+        add_holders! node, holders[liege], start_date, end_date
+      elsif liege == "e_britannia" and ["e_rajastan", "e_bengal", "e_deccan"].include?(this_empire)
+        add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
+      elsif this_kingdom != "k_delhi" and liege == "e_india"
+        add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
+      else
+        add_holders! node, regional_vassals(liege, this_duchy), start_date, end_date
+      end
+      node.add! start_date, PropertyList["liege", liege]
+    end
+  end
+
   def setup_county_history!(title, node)
     node.add! reset_date, PropertyList["liege", 0]
     node.add! reset_date, PropertyList["holder", @characters_reset.add_reset(title)]
@@ -247,7 +274,6 @@ class ModernTimesGameModification < CK2GameModification
     land_start = land && land[0][0]
 
     unless land
-      # This is really a bug, warn here once we get nontrivial amount of land covered
       warn "No idea what to do with #{@map.landed_titles_lookup[title].reverse.join(" / ")}"
       return
     end
@@ -258,25 +284,7 @@ class ModernTimesGameModification < CK2GameModification
     land.size.times do |i|
       start_date, liege = land[i]
       end_date = land[i+1] && land[i+1][0]
-
-      case liege
-      when /\A[cd]_/
-        # Counts and dukes hold all land directly
-        # 0 works but it does weird on campaign map
-        node.add! start_date, PropertyList["liege", liege]
-        raise "No lieges for #{liege}" unless holders[liege]
-        add_holders! node, holders[liege], start_date, end_date
-      else
-        capital_duchy = @db.capital_duchy(liege)
-        this_duchy    = @map.duchy_for_county(title)
-
-        if capital_duchy == this_duchy
-          add_holders! node, holders[liege], start_date, end_date
-        else
-          add_holders! node, regional_vassals(liege, this_duchy), start_date, end_date
-        end
-        node.add! start_date, PropertyList["liege", liege]
-      end
+      allocate_title!(title, node, liege, start_date, end_date)
     end
   end
 
@@ -305,13 +313,6 @@ class ModernTimesGameModification < CK2GameModification
         node.list[-1][1].delete "active"
         node.list[-1][1].delete "holder"
       else
-        # info = parse("common/landed_titles/landed_titles.txt")[title]
-        # active = node.values.map{|v| v["active"]}.compact.last
-        # p [:landless_title, title, active]
-        # puts info
-        # puts node
-        # puts ""
-
         # OK
       end
     else
