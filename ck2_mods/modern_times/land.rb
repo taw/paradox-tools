@@ -208,9 +208,9 @@ ModernTimesDatabase::LAND = {
   c_litomerice: { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", munich_agreement: "e_germany", end_ww2: "k_bohemia" },
   c_plzen:      { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", munich_agreement: "e_germany", end_ww2: "k_bohemia" },
 
-  d_nyitra:       { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "e_germany", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
-  c_pressburg:    { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "e_germany", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
-  c_saris:        { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "e_germany", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
+  d_nyitra:       { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "d_nyitra", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
+  c_pressburg:    { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "d_nyitra", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
+  c_saris:        { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "d_nyitra", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
 
   c_aland:      { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
   d_finland:    { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },

@@ -44,7 +44,15 @@ class ModernTimesDatabase
             end
           end
         end
-        @title_de_facto_control[title] = county_counts_by_date_range
+        title_size = map.counties_in[title].size
+        control_ranges = {}
+        county_counts_by_date_range.each do |(sd,ed), ctl|
+          t,c = ctl.sort_by(&:last)[-1]
+          next unless c > title_size/2.0
+          control_ranges[t] ||= MultiRange.new
+          control_ranges[t] += MultiRange.new(sd..ed)
+        end
+        @title_de_facto_control[title] = control_ranges
       end
     end
     @title_de_facto_control

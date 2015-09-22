@@ -255,10 +255,10 @@ class ModernTimesGameModification < CK2GameModification
 
       if capital_duchy == this_duchy
         add_holders! node, holders[liege], start_date, end_date
-      elsif liege == "e_britannia" and ["e_rajastan", "e_bengal", "e_deccan"].include?(this_empire)
-        add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
-      elsif this_kingdom != "k_delhi" and liege == "e_india"
-        add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
+      # elsif liege == "e_britannia" and ["e_rajastan", "e_bengal", "e_deccan"].include?(this_empire)
+      #   add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
+      # elsif this_kingdom != "k_delhi" and liege == "e_india"
+      #   add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
       else
         add_holders! node, regional_vassals(liege, this_duchy), start_date, end_date
       end
@@ -798,6 +798,42 @@ class ModernTimesGameModification < CK2GameModification
     @warnings << msg
   end
 
+  def setup_vassal_dukes!
+    duchy_controllers = {}
+    @regional_vassals.each do |(liege, duchy), vassals|
+      # Don't use independent titles as vassals
+      # This awkwardly doesn't recognize titles outside timeframe like d_venice
+      next if @db.title_has_land[duchy]
+      liege_duchy_control = @db.title_de_facto_control[duchy][liege]
+      next unless liege_duchy_control
+      vassals.size.times do |i|
+        sd, sv = vassals[i]
+        ed, ev = vassals[i+1]
+        vassal_reign_dates = MultiRange.new([sd, ed])
+        vassal_gets_duchy = vassal_reign_dates & liege_duchy_control
+        next if vassal_gets_duchy.empty?
+        vassal_gets_duchy.to_list.each do |sd, ed|
+          duchy_controllers[duchy] ||= []
+          duchy_controllers[duchy] << [sd, sv, liege]
+          duchy_controllers[duchy] << [ed, 0, 0]
+        end
+      end
+    end
+    duchy_controllers.each do |title, vassals|
+      vassals = vassals.sort.reverse.uniq(&:first).reverse
+      # This silliness is repeating second time this file
+      begin
+        node = parse("history/titles/#{title}.txt")
+      rescue
+        node = PropertyList[]
+      end
+      vassals.each do |date, id, liege|
+        node.add! date, PropertyList["holder", id, "liege", liege]
+      end
+      create_mod_file!("history/titles/#{title}.txt", node)
+    end
+  end
+
   def apply!
     @warnings = []
 
@@ -817,6 +853,7 @@ class ModernTimesGameModification < CK2GameModification
     setup_title_history!
     setup_title_names!
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
+    setup_vassal_dukes!
     save_characters!
     save_dynasties!
 
