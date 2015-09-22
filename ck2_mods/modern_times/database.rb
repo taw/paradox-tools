@@ -14,6 +14,42 @@ class ModernTimesDatabase
     end
   end
 
+  def title_de_facto_control
+    unless @title_de_facto_control
+      @title_de_facto_control = {}
+      max_date = resolve_date(:title_holders_until)
+
+      control = {}
+      map.landed_titles_lookup.each do |county, path|
+        next unless county =~ /\Ac_/
+        ownership = county_ownership(county)
+        ownership.size.times do |i|
+          start_date, start_owner = ownership[i]
+          end_date, = ownership[i+1]
+          path[1..-1].each do |title|
+            (control[title] ||= []) << [start_owner, start_date, end_date || max_date]
+          end
+        end
+      end
+      control.each do |title, points|
+        dates = control[title].map{|t,s,e| [s,e]}.flatten(1).uniq.sort
+        county_counts_by_date_range = {}
+        (dates.size-1).times do |i|
+          start_date = dates[i]
+          end_date   = dates[i+1]
+          points.each do |liege, s, e|
+            if e > start_date and start_date >= s
+              county_counts_by_date_range[[start_date, end_date]] ||= Hash.new(0)
+              county_counts_by_date_range[[start_date, end_date]][liege] += 1
+            end
+          end
+        end
+        @title_de_facto_control[title] = county_counts_by_date_range
+      end
+    end
+    @title_de_facto_control
+  end
+
   def land
     unless @land
       @land = {}

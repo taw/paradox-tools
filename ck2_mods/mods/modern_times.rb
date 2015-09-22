@@ -596,16 +596,12 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   # 14th century map is mostly reasonable, but there's a bit of crazy we need to fix
-  #
-  # current dynastic conflict count is 6441, that's silly
   def setup_province_population!
     # https://en.wikipedia.org/wiki/Karluk_languages
     # https://en.wikipedia.org/wiki/Kipchak_languages
     # uzbeks -> karluk
     # kazakhs -> cuman
     # tatars -> bolghar
-
-    # k_persia -> shiite
     patch_mod_files!("history/provinces/*.txt") do |node|
       title = node["title"]
       orig_culture  = culture  = [node["culture"], *node.list.map{|_,v| v["culture"] if v.is_a?(PropertyList)}].compact.last
