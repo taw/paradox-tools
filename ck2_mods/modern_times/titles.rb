@@ -627,6 +627,23 @@ ModernTimesDatabase::TITLES = {
     culture: :scottish,
     religion: :catholic,
   },
+  d_abkhazia: {
+    culture: :georgian,
+    religion: :sunni,
+    name: { forever_ago: "Circassia / Circassian", russia_circassia_war: nil },
+  },
+  k_punjab: {
+    culture: :panjabi,
+    religion: :hindu, # actually Sikh
+  },
+  k_sindh: {
+    culture: :sindhi,
+    religion: :sunni,
+  },
+  d_baluchistan: {
+    culture: :baloch,
+    religion: :sunni,
+  },
   ### Just renames, not actual countries
   k_taurica: {
     culture: :bolghar,
@@ -637,10 +654,5 @@ ModernTimesDatabase::TITLES = {
     culture: :russian,
     religion: :orthodox,
     name: "Muscovy / Muscovite",
-  },
-  d_abkhazia: {
-    culture: :georgian,
-    religion: :sunni,
-    name: { forever_ago: "Circassia / Circassian", russia_circassia_war: nil },
   },
 }

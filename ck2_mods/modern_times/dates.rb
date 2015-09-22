@@ -18,11 +18,20 @@ module ModernTimesDatabase::Dates
     urbino_papal: "1626.1.1", # year only
     peace_of_westphalia: "1648.10.24",
 
+    sikh_empire_founded: "7 July 1799",
+
+    sindh_independent: "1762.1.1", # year date, and really it should probably be a tributary
+    conquest_of_sindh: "1 March 1843", # month date and fairly dubious at that
+
+    kalat_independent: "1817.1.1", # year date, total silliness either way
+    baluchistan_agency: "1877.1.1", # year date
+
     treaty_of_adrianople: "14 September 1829", # Ottomans "ceded" Circassia to Russia, but Circassians would have none of that
     russia_circassia_war: "2 June 1864",
     treaty_of_resht: "21 January 1732",
     treaty_of_gulistan: "1 January 1813",
     treaty_of_turkmenchai: "10 February 1828",
+    durrani_afghanistan: "1 October 1747", # month date
 
     scotland_union: "24 March 1603",
 

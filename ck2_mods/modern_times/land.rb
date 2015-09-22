@@ -7,6 +7,10 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1600 BOOKMARK
 
+  # Level of actualy Ottoman control was fairly minor
+  d_sanaa:        { times_immemorial: "e_seljuk_turks", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
+  c_aden:         { times_immemorial: "e_seljuk_turks",aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
+
   c_abkhazia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia", abkhazia_war: "e_russia" },
   c_guria:        { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
   c_imeretia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
@@ -223,9 +227,6 @@ ModernTimesDatabase::LAND = {
   k_persia:       { forever_ago: "e_persia" },
   d_sistan:       { forever_ago: "e_persia" },
   d_kermanshah:   { forever_ago: "e_persia" },
-  c_herat:        { forever_ago: "e_persia" },
-  c_zaranj:       { forever_ago: "e_persia" },
-  c_farrah:       { forever_ago: "e_persia" },
   c_dailam:       { forever_ago: "e_persia", iranian_revolution: "d_hashshashin" },
 
   # After 1758 Xinjiang in China. Before Dzungar Khanate
@@ -397,14 +398,6 @@ ModernTimesDatabase::LAND = {
   c_bashkirs:  { forever_ago: "e_russia" },
   c_sibir:     { forever_ago: "e_russia" },
 
-  d_kabul:       { forever_ago: "k_afghanistan" },
-  c_udabhanda:   { forever_ago: "k_afghanistan" },
-  c_purushapura: { forever_ago: "k_afghanistan" },
-  c_maymana:     { forever_ago: "k_afghanistan" },
-  c_balkh:       { forever_ago: "k_afghanistan" },
-  c_bost:        { forever_ago: "k_afghanistan" },
-  c_mandesh:     { forever_ago: "k_afghanistan" },
-
   c_menorca: { forever_ago: "e_spain", treaty_of_utrech: "e_britannia", treaty_of_versailles: "e_spain" },
 
   d_bavaria: { forever_ago: "d_bavaria", german_unification: "e_germany" },
@@ -419,6 +412,7 @@ ModernTimesDatabase::LAND = {
 
   # Muscat and Oman
   d_oman:     { forever_ago: "d_oman", oman_persian: "e_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
+  c_dhu_zabi:  { forever_ago: "d_oman", general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
 
   c_taizz:   { forever_ago: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
   c_sanaa:   { forever_ago: "e_seljuk_turks", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
@@ -464,8 +458,23 @@ ModernTimesDatabase::LAND = {
   c_kartli:       { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
   c_kakheti:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
 
+  d_kabul:       { durrani_afghanistan: "k_afghanistan" },
+  c_udabhanda:   { durrani_afghanistan: "k_afghanistan" },
+  c_purushapura: { durrani_afghanistan: "k_afghanistan" },
+  c_maymana:     { durrani_afghanistan: "k_afghanistan" },
+  c_balkh:       { durrani_afghanistan: "k_afghanistan" },
+  d_zabulistan:  { durrani_afghanistan: "k_afghanistan" },
+  c_herat:       { durrani_afghanistan: "k_afghanistan" },
+  d_baluchistan: { durrani_afghanistan: "k_afghanistan", kalat_independent: "d_baluchistan", baluchistan_agency: "e_britannia", india_independence: "k_baluchistan" },
+
   #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
+
+  k_sindh:       { sindh_independent: "k_sindh", conquest_of_sindh: "e_britannia", india_independence: "k_baluchistan" },
+
+  k_punjab:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+  c_trigarta:    { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india" },
+  c_sakala:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india" },
 
   c_luxembourg: { congress_of_vienna: "k_frisia", luxembourg_independence: "d_luxembourg"},
   c_liege:      { congress_of_vienna: "k_frisia", belgium_independence: "d_flanders" },
@@ -540,33 +549,12 @@ ModernTimesDatabase::LAND = {
   k_delhi:       { third_maratha_war: "e_britannia", india_independence: "e_india" },
   k_rajputana:   { third_maratha_war: "e_britannia", india_independence: "e_india" },
   k_kosala:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  c_trigarta:    { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  c_sakala:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
   e_bengal:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  c_vijnot:      { third_maratha_war: "e_britannia", india_independence: "k_baluchistan" },
 
   # Names on CK2 map have very little correlation with names on real map
   # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
   # c_suvarnagram might be part of India
   d_vanga:       { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
   d_varendra:    { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
-
-  #########################################
-  # READY FOR ITALIAN UNIFICATION BOOKMARK
-
-  k_punjab:      { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
-
-  #########################################
-  # READY FOR GERMAN UNIFICATION BOOKMARK
-
-  d_sanaa:        { aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
-  c_aden:         { aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
-  c_dhu_zabi:     { general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
-
-  #########################################
-  # READY FOR 1900 BOOKMARK
-
-  d_baluchistan: { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
-  d_sauvira:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
-  d_bhakkar:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
-  c_vijnot:      { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
 }
