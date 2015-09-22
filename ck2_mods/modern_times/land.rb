@@ -504,9 +504,6 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR VICTORIAN ERA BOOKMARK
 
-  #########################################
-  # READY FOR ITALIAN UNIFICATION BOOKMARK
-
   e_deccan:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
   k_orissa:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
   k_malwa:       { third_maratha_war: "e_britannia", india_independence: "e_india" },
@@ -523,6 +520,9 @@ ModernTimesDatabase::LAND = {
   # c_suvarnagram might be part of India
   d_vanga:       { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
   d_varendra:    { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
+
+  #########################################
+  # READY FOR ITALIAN UNIFICATION BOOKMARK
 
   k_punjab:      { second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
 

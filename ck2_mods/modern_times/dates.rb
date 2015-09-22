@@ -3,6 +3,10 @@ module ModernTimesDatabase::Dates
   # Easy dates
   @dates = {
     ### Special tags
+    reset_date: "1450.1.1",
+    today: "2015.9.1",
+    game_end: "2999.12.31",
+
     times_immemorial: "1600.1.1",
     title_holders_until: "2020.12.31", # how far to generate title holders
 

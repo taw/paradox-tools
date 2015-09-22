@@ -16,6 +16,10 @@ class CharacterManager
     @historical = {}
   end
 
+  def reset_date
+    @reset_date ||= @builder.reset_date
+  end
+
   def allocate_id(key)
     space_size = 10_000_000
     base_shift = Digest::MD5.hexdigest(key).to_i(16)
@@ -35,8 +39,8 @@ class CharacterManager
       "name", "Bob",
       "religion", "cathar",
       "culture", "bohemian",
-      Date.parse("1450.1.1"), PropertyList["birth", true],
-      Date.parse("1450.1.2"), PropertyList["death", true],
+      reset_date, PropertyList["birth", true],
+      reset_date, PropertyList["death", true],
     ]
     id
   end
@@ -166,6 +170,10 @@ end
 class ModernTimesGameModification < CK2GameModification
   attr_reader :map
 
+  def reset_date
+    @reset_date ||= @db.resolve_date(:reset_date)
+  end
+
   # Assume same name in different cultures are separate dynasties
   def new_dynasty(name, culture)
     key = [name, culture]
@@ -232,8 +240,8 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_county_history!(title, node)
-    node.add! Date.parse("1450.1.1"), PropertyList["liege", 0]
-    node.add! Date.parse("1450.1.1"), PropertyList["holder", @characters_reset.add_reset(title)]
+    node.add! reset_date, PropertyList["liege", 0]
+    node.add! reset_date, PropertyList["holder", @characters_reset.add_reset(title)]
 
     land = @db.county_ownership(title)
     land_start = land && land[0][0]
@@ -275,8 +283,8 @@ class ModernTimesGameModification < CK2GameModification
     if @map.landless_title?(title)
       case title
       when "e_golden_horde", "e_il-khanate"
-        node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
-        node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
+        node.add! reset_date, PropertyList["liege", 0]
+        node.add! reset_date, PropertyList["holder", 0]
       when "d_zealots"
         # Israel restores Zealots
         node.add! @db.resolve_date(:israel_independence), PropertyList[
@@ -306,8 +314,8 @@ class ModernTimesGameModification < CK2GameModification
         # OK
       end
     else
-      node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
-      node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
+      node.add! reset_date, PropertyList["liege", 0]
+      node.add! reset_date, PropertyList["holder", 0]
     end
   end
 
@@ -319,11 +327,11 @@ class ModernTimesGameModification < CK2GameModification
           # Baronies not belonging to counties like partician houses can be ignored
           county = @map.landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
           if county
-            node.add! Date.parse("1500.1.1"), PropertyList["liege", county]
+            node.add! reset_date, PropertyList["liege", county]
           else
-            node.add! Date.parse("1500.1.1"), PropertyList["liege", 0]
+            node.add! reset_date, PropertyList["liege", 0]
           end
-          node.add! Date.parse("1500.1.1"), PropertyList["holder", 0]
+          node.add! reset_date, PropertyList["holder", 0]
         elsif title =~ /\Ac_/
           setup_county_history!(title, node)
         else
@@ -398,8 +406,8 @@ class ModernTimesGameModification < CK2GameModification
   def setup_defines!
     patch_mod_file!("common/defines.txt") do |node|
       node["start_date"]      = @db.min_date
-      node["last_start_date"] = Date.parse("2015.12.31")
-      node["end_date"]        = Date.parse("2999.12.31")
+      node["last_start_date"] = @db.resolve_date(:today)
+      node["end_date"]        = @db.resolve_date(:game_end)
     end
   end
 
