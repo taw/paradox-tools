@@ -381,6 +381,7 @@ ModernTimesDatabase::TITLES = {
   k_egypt: {
     culture: :egyptian_arabic,
     religion: :sunni,
+    liege: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: nil },
   },
   d_nefoud: {
     culture: :bedouin_arabic,
@@ -401,7 +402,7 @@ ModernTimesDatabase::TITLES = {
   k_georgia: {
     culture: :georgian,
     religion: :orthodox,
-    liege: { annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+    liege: { annexation_georgia: "e_russia", fall_soviet_union: nil },
   },
   k_ruthenia: {
     culture: :russian, # :volhynian but it would autoconvert anyway
@@ -638,6 +639,7 @@ ModernTimesDatabase::TITLES = {
   k_scotland: {
     culture: :scottish,
     religion: :catholic,
+    liege: { scotland_devolution: "e_britannia" },
   },
   d_abkhazia: {
     culture: :georgian,

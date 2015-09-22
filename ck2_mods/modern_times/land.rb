@@ -37,14 +37,14 @@ ModernTimesDatabase::LAND = {
   c_kurdistan:    { times_immemorial: "e_seljuk_turks"}, # Maybe Iraq, but then Turkey wouldn't border Iran any more
   d_thrace:       { times_immemorial: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
 
-  d_alexandria: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
-  d_cairo: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
-  d_aswan: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
-  d_damietta: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt" },
+  d_alexandria: { times_immemorial: "k_egypt" },
+  d_cairo: { times_immemorial: "k_egypt" },
+  d_aswan: { times_immemorial: "k_egypt" },
+  d_damietta: { times_immemorial: "k_egypt" },
 
-  c_sinai: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
-  c_farama: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
-  :"c_el-arish"=> { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
+  c_sinai: { times_immemorial: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
+  c_farama: { times_immemorial: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
+  "c_el-arish": { times_immemorial: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt" },
 
   c_beirut: { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
   c_tyrus:  { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
@@ -160,7 +160,7 @@ ModernTimesDatabase::LAND = {
   k_ireland:    { times_immemorial: "e_britannia", ireland_independence: "k_ireland" },
   d_ulster:     { times_immemorial: "e_britannia" },
   c_tyrconnell: { times_immemorial: "e_britannia", ireland_independence: "k_ireland" },
-  k_scotland:   { times_immemorial: "k_scotland", scotland_union: "e_britannia" },
+  k_scotland:   { times_immemorial: "k_scotland", scotland_union: "e_britannia", scotland_devolution: "k_scotland" },
   c_orkney:     { times_immemorial: "k_scotland", scotland_union: "e_britannia" },
   c_shetland:   { times_immemorial: "k_scotland", scotland_union: "e_britannia" },
 

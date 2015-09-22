@@ -262,7 +262,8 @@ class ModernTimesGameModification < CK2GameModification
       case liege
       when /\A[cd]_/
         # Counts and dukes hold all land directly
-        node.add! start_date, PropertyList["liege", 0]
+        # 0 works but it does weird on campaign map
+        node.add! start_date, PropertyList["liege", liege]
         raise "No lieges for #{liege}" unless holders[liege]
         add_holders! node, holders[liege], start_date, end_date
       else
