@@ -172,10 +172,10 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1700 BOOKMARK
 
-  d_dihistan:  { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "d_dihistan" },
-  c_merv:      { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "d_dihistan" },
-  c_aral:      { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_khiva" },
-  d_turkestan: { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  d_dihistan:  { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
+  c_merv:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
+  c_aral:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
+  d_turkestan: { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_cuman" },
 
   d_iceland:    { forever_ago: "k_denmark", iceland_independence: "d_iceland" },
   c_algeciras:  { forever_ago: "e_spain", treaty_of_utrech: "e_britannia" },
@@ -220,7 +220,7 @@ ModernTimesDatabase::LAND = {
   k_volga_bulgaria: { forever_ago: "e_russia" },
   k_rus:            { forever_ago: "e_russia" },
   d_alania:         { forever_ago: "e_russia" },
-  c_alania:         { forever_ago: "e_russia",  fall_soviet_union: "c_alania", fall_chechnya: "e_russia"},
+  c_alania:         { forever_ago: "e_russia", fall_soviet_union: "c_alania", fall_chechnya: "e_russia"},
   c_kuban:          { forever_ago: "e_russia" },
   c_sarpa:          { forever_ago: "e_russia" },
 
@@ -252,9 +252,9 @@ ModernTimesDatabase::LAND = {
   d_prussia:      { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
   c_scalovia:     { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
   c_sambia:       { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
-  c_memel:        { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww1: "d_lithuanians", memel_german: "e_germany", end_ww2: "e_russia", fall_soviet_union: "d_lithuanians" },
+  c_memel:        { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww1: "d_lithuanians", memel_german: "e_germany", end_ww2: "d_lithuanians" },
   c_danzig:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", free_danzig_napoleonic: "d_pomeralia", free_danzig_napoleonic_end: "k_pomerania", german_unification: "e_germany", end_ww1: "d_pomeralia", end_ww2: "k_poland"},
-  d_kiev:        {  forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
+  d_kiev:        {  forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_ruthenia"},
 
   d_ryazan:     { forever_ago: "e_russia" },
   d_sarkel:     { forever_ago: "e_russia" },
@@ -295,9 +295,9 @@ ModernTimesDatabase::LAND = {
   c_gnieznienskie: { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland" },
   c_kujawy:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", duchy_warsaw: "k_poland", congress_of_vienna: "e_russia", end_ww1: "k_poland" },
 
-  d_pereyaslavl: { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
-  c_sharukan: { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
-  :"c_desht-i-kipchak" => { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
+  d_pereyaslavl: { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
+  c_sharukan: { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
+  :"c_desht-i-kipchak" => { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
 
   c_stettin:      { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
   c_slupsk:       { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
@@ -332,38 +332,38 @@ ModernTimesDatabase::LAND = {
   d_lithuanians: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians" },
   c_aukshayts:   { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_lithuanians" },
   c_zhmud:      { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians" },
-  c_jacwiez:  { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_podlasie: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia",  fall_soviet_union: "d_vitebsk"},
+  c_jacwiez:  { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_vitebsk"},
+  c_podlasie: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_vitebsk"},
   c_bryansk:    { forever_ago: "e_russia" },
-  c_chernigov:   { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
-  c_lyubech:     { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
+  c_chernigov:   { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
+  c_lyubech:     { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_ruthenia"},
   c_vodi:       { forever_ago: "k_sweden", st_petersburg_founding: "e_russia" },
 
-  d_itil:      { forever_ago: "e_russia", fall_soviet_union: "k_cuman" }, # GeaCron says it was Russian in 1700, other sources not so sure
-  c_novgorod_seversky: { forever_ago: "e_russia", fall_soviet_union: "k_ruthenia"},
+  d_itil:      { forever_ago: "e_russia", end_ww1: "k_cuman" }, # GeaCron says it was Russian in 1700, other sources not so sure
+  c_novgorod_seversky: { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
 
   d_smolensk:   { forever_ago: "e_russia" },
 
-  c_mstislavl:{ forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_vitebsk:    { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
-  d_vitebsk:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_polotsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_lepiel:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "d_vitebsk"},
-  c_pinsk:    { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "d_vitebsk"},
+  c_mstislavl:{ forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "d_vitebsk"},
+  c_vitebsk:    { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "d_vitebsk"},
+  d_vitebsk:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "d_vitebsk"},
+  c_polotsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "d_vitebsk"},
+  c_lepiel:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "d_vitebsk"},
+  c_pinsk:    { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_vitebsk"},
 
   c_salzburg:     { forever_ago: "c_salzburg", peace_of_pressburg: "e_carpathia", treaty_of_shoenbrunn: "d_bavaria", congress_of_vienna: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
 
   d_azov:    { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia"},
-  d_cherson: { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
-  c_crimea:  { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", fall_soviet_union: "k_ruthenia", crimea_invasion: "e_russia" },
-  d_crimea:   { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", fall_soviet_union: "k_ruthenia"},
+  d_cherson: { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", crimea_ukrainian: "k_ruthenia", crimea_invasion: "e_russia" },
+  c_crimea:  { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", crimea_ukrainian: "k_ruthenia", crimea_invasion: "e_russia" },
+  d_crimea:   { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia", end_ww1: "k_ruthenia"},
   c_tmutarakan: { forever_ago: "e_seljuk_turks", treaty_of_kucuk_kaynarca: "e_russia" },
 
   # Maybe I sohuld just not have Moldova in the game.
-  c_torki:        { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
-  c_birlad:       { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "d_moldau"},
-  c_galaz:        { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "e_russia", fall_soviet_union: "k_ruthenia"},
-  d_moldau:       { forever_ago: "e_seljuk_turks", treaty_of_jassy: "e_russia", fall_soviet_union: "k_ruthenia"},
+  c_torki:        { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
+  c_birlad:       { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
+  c_galaz:        { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "k_ruthenia"},
+  d_moldau:       { forever_ago: "e_seljuk_turks", treaty_of_jassy: "e_russia", end_ww1: "k_ruthenia"},
 
   d_verona:     { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
   d_venice:     { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
@@ -376,7 +376,7 @@ ModernTimesDatabase::LAND = {
   d_croatia:      { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
   c_zachlumia:    { forever_ago: "e_seljuk_turks", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
   c_usora:        { forever_ago: "e_seljuk_turks", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
-  c_terebovl:          { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
+  c_terebovl:          { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_ruthenia"},
 
   d_upper_lorraine: { forever_ago: "e_france" },
   c_verdun:         { forever_ago: "e_france" },
@@ -386,12 +386,12 @@ ModernTimesDatabase::LAND = {
 
   c_ragusa:   { forever_ago: "e_seljuk_turks", treaty_of_berlin: "c_ragusa", montenegro_serbian: "k_serbia", montenegro_independence: "c_ragusa" },
   # "It was the capital of the Kingdom of Hungary's Bereg County up until 1919 and between 1938-1944. From 1919 until 1938 it was part of Czechoslovakia."
-  c_bereg:  { forever_ago: "e_carpathia", end_ww1: "k_bohemia", protectorate_of_bohemia_and_moravia: "k_hungary", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
+  c_bereg:  { forever_ago: "e_carpathia", end_ww1: "k_bohemia", protectorate_of_bohemia_and_moravia: "k_hungary", end_ww2: "k_ruthenia" },
 
   c_peremyshl:         { forever_ago: "e_wendish_empire", poland_1_partition: "e_carpathia", end_ww1: "k_poland" },
-  c_galich:            { forever_ago: "e_wendish_empire", poland_1_partition: "e_carpathia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
-  c_turov:             { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", fall_soviet_union: "k_ruthenia"},
-  d_volhynia:          { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "e_russia", fall_soviet_union: "k_ruthenia" },
+  c_galich:            { forever_ago: "e_wendish_empire", poland_1_partition: "e_carpathia", end_ww1: "k_poland", end_ww2: "k_ruthenia" },
+  c_turov:             { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_ruthenia"},
+  d_volhynia:          { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_ruthenia" },
 
   c_holstein:     { forever_ago: "k_denmark", treaty_of_vienna_1864: "k_pomerania", german_unification: "e_germany" },
 
@@ -420,30 +420,30 @@ ModernTimesDatabase::LAND = {
   c_plauen:     { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   d_meissen:    { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
 
-  d_khiva:      { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_khiva" },
-  c_kyzylkum:   { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_khiva" },
+  d_khiva:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
+  c_kyzylkum:   { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
 
-  d_samarkand:  { forever_ago: "d_samarkand", bukhara_russian: "e_russia", fall_soviet_union: "k_khiva" },
+  d_samarkand:  { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "k_khiva" },
 
   c_bahrein:    { forever_ago: "e_persia", bahrain_1783_invasion: "c_bahrein", bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
 
-  d_yaik:       { forever_ago: "k_cuman", junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_guryev:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_tyumen:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_itil:       { forever_ago: "k_cuman", junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_turgay:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_turkestan:  { forever_ago: "k_cuman", junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_pecheneg:   { forever_ago: "k_cuman", junior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  d_yaik:       { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_guryev:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_tyumen:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_itil:       { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_turgay:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_turkestan:  { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_pecheneg:   { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
 
-  d_kimak:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  d_kirghiz:    { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  d_sibir:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  d_kipchak:    { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_otrar:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_chach:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
-  c_syr_darya:  { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  d_kimak:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  d_kirghiz:    { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  d_sibir:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  d_kipchak:    { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_otrar:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_chach:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  c_syr_darya:  { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
 
-  d_zhetysu:    { forever_ago: "k_cuman", senior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  d_zhetysu:    { forever_ago: "k_cuman", senior_juz_russian: "e_russia", end_ww1: "k_cuman" },
 
   #########################################
   # READY FOR 1750 BOOKMARK

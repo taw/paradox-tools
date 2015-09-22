@@ -319,17 +319,20 @@ ModernTimesDatabase::TITLES = {
     culture: :turkish,
     religion: :sunni,
     name: "Turkmenistan / Turkmenistani",
+    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
   },
   k_cuman: {
     culture: :cuman,
     religion: :sunni,
     name: "Kazakhstan / Kazakh",
     capital: "c_kimak",
+    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
   },
   k_khiva: {
     culture: :karluk,
     religion: :sunni,
     name: "Uzbekisan / Uzkekistani",
+    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
   },
   k_khotan: {
     culture: :uyghur, # China, but autonomous region is mostly Uyghur
@@ -404,12 +407,14 @@ ModernTimesDatabase::TITLES = {
     culture: :russian, # :volhynian but it would autoconvert anyway
     religion: :orthodox,
     name: "Ukraine / Ukrainian",
+    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
   },
   d_vitebsk: {
     culture: :russian, # :severian but it would autoconvert anyway
     religion: :orthodox,
     capital: :c_minsk,
     name: "Belarus / Belarussian",
+    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
   },
   k_mongolia: {
     culture: :mongol,
@@ -532,6 +537,7 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     capital: :c_torki,
     name: "Moldova / Moldovan",
+    liege: { soviet_partition_of_romania: "e_russia", fall_soviet_union: nil },
   },
   d_dioclea: {
     culture: :serbian,

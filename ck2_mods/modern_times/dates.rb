@@ -18,6 +18,7 @@ module ModernTimesDatabase::Dates
     urbino_papal: "1626.1.1", # year only
     peace_of_westphalia: "1648.10.24",
 
+    crimea_ukrainian: "19 February 1954",
     sikh_empire_founded: "7 July 1799",
 
     sindh_independent: "1762.1.1", # year date, and really it should probably be a tributary
