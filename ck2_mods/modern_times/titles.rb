@@ -129,15 +129,17 @@ ModernTimesDatabase::TITLES = {
     capital: :c_osterreich,
     name: "Austria / Austrian",
   },
+  k_pomerania: {
+    culture: :german,
+    religion: :waldensian,
+    name: "Prussia / Prussian",
+  },
   e_germany: {
     culture: :german,
     religion: :catholic,
-    # This is silly, but we want to have:
-    # * no capitals outside country (as Berlin was 1945-1990)
-    # * no bishoprics in capital duchy (Koln/Munich)
-    # * no cities in capital duchy (Hamburg)
+    # This is somewhat silly, but we want to have no capitals outside country (as Berlin was 1945-1990)
     capital: :c_nassau,
-    name: {forever_ago: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" }
+    name: {times_immemorial: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" }
   },
   d_pomeralia: {
     culture: :german,
@@ -154,6 +156,19 @@ ModernTimesDatabase::TITLES = {
   c_lubeck: {
     culture: :german,
     religion: :catholic,
+  },
+  c_nassau: {
+    culture: :german,
+    religion: :catholic,
+  },
+  c_thuringen: {
+    culture: :german,
+    religion: :catholic,
+  },
+  d_franconia: {
+    culture: :german,
+    religion: :catholic,
+    name: "Hesse / Hessian",
   },
   c_oldenburg: {
     culture: :german,
@@ -215,7 +230,7 @@ ModernTimesDatabase::TITLES = {
     culture: :turkish,
     religion: :sunni,
     capital: :c_byzantion,
-    name: { forever_ago: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
+    name: { times_immemorial: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
   },
   d_sunni: {
     culture: :levantine_arabic,
@@ -320,7 +335,7 @@ ModernTimesDatabase::TITLES = {
     culture: :uyghur, # China, but autonomous region is mostly Uyghur
     religion: :buddhist,
     # Qing conquest
-    name: {forever_ago: "Dzungar / Dzungarian", fall_dzungar: "Xinjiang / Xinjiang"},
+    name: {times_immemorial: "Dzungar / Dzungarian", fall_dzungar: "Xinjiang / Xinjiang"},
   },
   d_esthonia: {
     culture: :ugricbaltic,
@@ -413,7 +428,7 @@ ModernTimesDatabase::TITLES = {
     culture: :serbian,
     religion: :orthodox,
     capital: :c_belgrade,
-    name: { forever_ago: nil, end_ww1: "Yugoslavia / Yugoslavian", montenegro_independence: nil}
+    name: { end_ww1: "Yugoslavia / Yugoslavian", montenegro_independence: nil}
   },
   d_dyrrachion: {
     culture: :serbian,
@@ -444,7 +459,7 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
     capital: :c_aden,
-    name: { forever_ago: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni" },
+    name: { times_immemorial: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni" },
   },
   d_arabia_felix: {
     culture: :bedouin_arabic,
@@ -536,11 +551,6 @@ ModernTimesDatabase::TITLES = {
     culture: :persian,
     religion: :shiite,
   },
-  k_pomerania: {
-    culture: :german,
-    religion: :waldensian,
-    name: "Prussia / Prussian",
-  },
   d_saxony: {
     culture: :german,
     religion: :catholic,
@@ -627,5 +637,10 @@ ModernTimesDatabase::TITLES = {
     culture: :russian,
     religion: :orthodox,
     name: "Muscovy / Muscovite",
+  },
+  d_abkhazia: {
+    culture: :georgian,
+    religion: :sunni,
+    name: { forever_ago: "Circassia / Circassian", russia_circassia_war: nil },
   },
 }

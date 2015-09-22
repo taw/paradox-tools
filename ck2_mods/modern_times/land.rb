@@ -7,6 +7,10 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1600 BOOKMARK
 
+  c_abkhazia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia", abkhazia_war: "e_russia" },
+  c_guria:        { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+  c_imeretia:     { times_immemorial: "e_seljuk_turks", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+
   d_nikaea:       { times_immemorial: "e_seljuk_turks" },
   c_byzantion:    { times_immemorial: "e_seljuk_turks" },
   d_armeniacon:   { times_immemorial: "e_seljuk_turks" },
@@ -163,6 +167,11 @@ ModernTimesDatabase::LAND = {
 
   #########################################
   # READY FOR 1700 BOOKMARK
+
+  d_dihistan:  { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "d_dihistan" },
+  c_merv:      { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "d_dihistan" },
+  c_aral:      { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_khiva" },
+  d_turkestan: { forever_ago: "d_khiva", khiva_russian: "e_russia", fall_soviet_union: "k_cuman" },
 
   d_iceland:    { forever_ago: "k_denmark", iceland_independence: "d_iceland" },
   c_algeciras:  { forever_ago: "e_spain", treaty_of_utrech: "e_britannia" },
@@ -437,8 +446,23 @@ ModernTimesDatabase::LAND = {
   d_sibir:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
   d_kipchak:    { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
   c_otrar:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_chach:      { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+  c_syr_darya:  { forever_ago: "k_cuman", middle_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
 
   d_zhetysu:    { forever_ago: "k_cuman", senior_juz_russian: "e_russia", fall_soviet_union: "k_cuman" },
+
+  #########################################
+  # READY FOR 1750 BOOKMARK
+
+  d_azerbaijan:   { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_azerbaijan", annexation_azerbaijan: "e_russia", fall_soviet_union: "d_azerbaijan" },
+  c_semender:     { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia" },
+  c_derbent:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia" },
+  c_lori:         { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
+  c_suenik:       { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
+  c_dwin:         { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
+  c_albania:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+  c_kartli:       { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
+  c_kakheti:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
 
   #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
@@ -489,6 +513,7 @@ ModernTimesDatabase::LAND = {
   d_swabia:       { congress_of_vienna: "d_swabia", german_unification: "e_germany" },
   c_ostfriesland: { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
   d_brunswick:    { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
+  c_gottingen:    { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
   c_pfalz:        { congress_of_vienna: "d_bavaria", german_unification: "e_germany"},
   c_trier:        { congress_of_vienna: "k_pomerania", german_unification: "e_germany"},
   c_bamberg:      { congress_of_vienna: "d_bavaria", german_unification: "e_germany" },
@@ -496,6 +521,10 @@ ModernTimesDatabase::LAND = {
   c_wolgast:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   c_weimar: { congress_of_vienna: "c_weimar", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
   c_anhalt: { congress_of_vienna: "c_anhalt", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  c_thuringen:    { congress_of_vienna: "c_thuringen", german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
+  c_nassau:       { congress_of_vienna: "c_nassau", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
+  c_mainz:        { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
+  c_leiningen:    { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
 
   # Briefly got title of Ottoman governor, but that never seemed to matter
   # Date is start of Kuwait dynasty, but it was independent before too
@@ -529,20 +558,6 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR GERMAN UNIFICATION BOOKMARK
 
-  # Details needed, loads of wars with Persia and locals
-  c_suenik:       { "1864.6.2"=> "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
-  d_armenia:      { "1864.6.2"=> "e_russia", end_ww1: "d_armenia", annexation_armenia: "e_russia", fall_soviet_union: "d_armenia" },
-  d_azerbaijan:   { "1864.6.2"=> "e_russia", end_ww1: "d_azerbaijan", annexation_azerbaijan: "e_russia", fall_soviet_union: "d_azerbaijan" },
-  k_georgia:      { "1864.6.2"=> "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia" },
-  c_abkhazia:     { "1864.6.2"=> "e_russia", end_ww1: "k_georgia", annexation_georgia: "e_russia", fall_soviet_union: "k_georgia", abkhazia_war: "e_russia" },
-  c_semender:     { "1864.6.2" => "e_russia" },
-  c_derbent:      { "1864.6.2" => "e_russia" },
-
-  d_thuringia:    { german_unification: "e_germany" },
-  c_mainz:        { german_unification: "e_germany" },
-  c_leiningen:    { german_unification: "e_germany" },
-  c_thuringen:    { german_unification: "e_germany", end_ww2: "k_saxony", german_reunification: "e_germany"},
-
   d_sanaa:        { aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_aden:         { aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_dhu_zabi:     { general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
@@ -554,10 +569,4 @@ ModernTimesDatabase::LAND = {
   d_sauvira:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
   d_bhakkar:     { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
   c_vijnot:      { temporary_start: "e_britannia", india_independence: "k_baluchistan" },
-
-  d_dihistan:  { temporary_start: "e_russia", fall_soviet_union: "d_dihistan" },
-  c_merv:      { temporary_start: "e_russia", fall_soviet_union: "d_dihistan" },
-  d_syr_darya: { temporary_start: "e_russia", fall_soviet_union: "k_cuman" },
-  c_aral:      { temporary_start: "e_russia", fall_soviet_union: "k_khiva" },
-  d_turkestan: { temporary_start: "e_russia", fall_soviet_union: "k_cuman" },
 }

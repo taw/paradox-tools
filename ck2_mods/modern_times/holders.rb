@@ -102,19 +102,41 @@ ModernTimesDatabase::HOLDERS = {
     "18 November 1851" => {name: "George", dynasty: "Windson", birth: "27 May 1819", death: "12 June 1878", father: "Ernest Augustus 1"},
     "20 September 1866" => nil,
   },
-  e_germany: {
-    "1871.1.18" => {
+  k_pomerania: {
+    "17 August 1786" => {
+      name: "Frederick William",
+      dynasty: "Hohenzollern",
+      birth: "25 September 1744",
+      death: "16 November 1797",
+    },
+    "16 November 1797" => {
+      name: "Frederick William",
+      dynasty: "Hohenzollern",
+      birth: "3 July 1770",
+      death: "7 June 1840",
+    },
+    "7 June 1840" => {
+      name: "Frederick William",
+      dynasty: "Hohenzollern",
+      birth: "15 October 1795",
+      death: "2 January 1861",
+    },
+    "2 January 1861" => {
       name: "Wilhelm",
       dynasty: "Hohenzollern",
       birth: "1797.3.22",
       death: "1888.3.9",
     },
+    "1871.1.18" => nil,
+  },
+  e_germany: {
+    "1871.1.18" => { use: "k_pomerania Wilhelm 1" },
     "1888.3.9" => {
       name: "Friedrich",
       dynasty: "Hohenzollern",
       birth: "1831.10.18",
       death: "1888.6.15",
-      father: "Wilhelm 1",
+      father: "k_pomerania Wilhelm 1",
     },
     "1888.6.15" => {
       birth: "1859.1.27",

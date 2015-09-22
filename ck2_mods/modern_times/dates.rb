@@ -18,6 +18,12 @@ module ModernTimesDatabase::Dates
     urbino_papal: "1626.1.1", # year only
     peace_of_westphalia: "1648.10.24",
 
+    treaty_of_adrianople: "14 September 1829", # Ottomans "ceded" Circassia to Russia, but Circassians would have none of that
+    russia_circassia_war: "2 June 1864",
+    treaty_of_resht: "21 January 1732",
+    treaty_of_gulistan: "1 January 1813",
+    treaty_of_turkmenchai: "10 February 1828",
+
     scotland_union: "24 March 1603",
 
     cephalonia_greek: "1864.3.29",
