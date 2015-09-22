@@ -18,34 +18,34 @@ module ModernTimesDatabase::Dates
     urbino_papal: "1626.1.1", # year only
     peace_of_westphalia: "1648.10.24",
 
-    crimea_ukrainian: "19 February 1954",
-    scotland_devolution: "7 May 1999", # first first minister
+    crimea_ukrainian: "1954.2.19",
+    scotland_devolution: "1999.5.7", # first first minister
 
-    sikh_empire_founded: "7 July 1799",
+    sikh_empire_founded: "1799.7.7",
 
     sindh_independent: "1762.1.1", # year date, and really it should probably be a tributary
-    conquest_of_sindh: "1 March 1843", # month date and fairly dubious at that
+    conquest_of_sindh: "1843.3.1", # month date and fairly dubious at that
 
     kalat_independent: "1817.1.1", # year date, total silliness either way
     baluchistan_agency: "1877.1.1", # year date
 
-    treaty_of_adrianople: "14 September 1829", # Ottomans "ceded" Circassia to Russia, but Circassians would have none of that
-    russia_circassia_war: "2 June 1864",
-    treaty_of_resht: "21 January 1732",
-    treaty_of_gulistan: "1 January 1813",
-    treaty_of_turkmenchai: "10 February 1828",
-    durrani_afghanistan: "1 October 1747", # month date
+    treaty_of_adrianople: "1829.9.14", # Ottomans "ceded" Circassia to Russia, but Circassians would have none of that
+    russia_circassia_war: "1864.6.2",
+    treaty_of_resht: "1732.1.21",
+    treaty_of_gulistan: "1813.1.1",
+    treaty_of_turkmenchai: "1828.2.10",
+    durrani_afghanistan: "1747.10.1", # month date
 
-    scotland_union: "24 March 1603",
+    scotland_union: "1603.3.24",
 
     cephalonia_greek: "1864.3.29",
 
-    protectorate_of_bohemia_and_moravia: "15 March 1939",
+    protectorate_of_bohemia_and_moravia: "1939.3.15",
 
     junior_juz_russian: "1.1.1731", # year date
     middle_juz_russian: "1.1.1798", # year date
     senior_juz_russian: "1.1.1824", # year date
-    khiva_russian: "12 August 1873",
+    khiva_russian: "1873.8.12",
     bukhara_russian: "1873.1.1", # year date
 
     treaty_of_utrech: "1713.4.1", # "March and April 1713"
@@ -58,9 +58,9 @@ module ModernTimesDatabase::Dates
     treaty_of_passarowitz: "1718.7.21",
     greece_independence: "1832.5.7",
 
-    hejaz_saudi: "8 January 1926",
+    hejaz_saudi: "1926.1.8",
 
-    general_maritime_treaty: "8 January 1820",
+    general_maritime_treaty: "1820.1.8",
     british_somaliland: "1.1.1884", # year only
     italian_somaliland: "1.1.1889", # year only
 
@@ -100,7 +100,7 @@ module ModernTimesDatabase::Dates
     treaty_of_zurich: "1859.11.10",
     treaty_of_vienna_1864: "1864.10.30",
     treaty_of_vienna_1866: "1866.10.12",
-    prussia_annexes_hannover: "23 August 1866",
+    prussia_annexes_hannover: "1866.8.23",
     end_of_lucca: "1847.12.17", # There was also a bit of extra Napoleonic complexity here
     capture_of_rome: "1870.9.20",
     st_petersburg_founding: "May 12 1703", # They literally moved their capital there before peace deal gave them Ingria
@@ -131,7 +131,7 @@ module ModernTimesDatabase::Dates
     cyprus_independence: "1960.10.1",
     malta_independence: "1964.9.21",
 
-    bahrain_1783_invasion: "23 July 1783",
+    bahrain_1783_invasion: "1783.7.23",
     bahrain_british: "1880.12.22", # Gradual process, date for British foreign policy veto
     kuwait_british: "1899.11.23", # Gradual process, date for British foreign policy veto
 
@@ -213,7 +213,7 @@ module ModernTimesDatabase::Dates
     south_yemen_independence: "1967.11.30",
     yemen_unification: "1990.5.22",
 
-    djibouti_french: "May 20, 1896",
+    djibouti_french: "1896.5.20",
     djibouti_independence: "1977.6.27",
 
     mali_independence: "1960.6.20",
@@ -235,8 +235,8 @@ module ModernTimesDatabase::Dates
     spanish_sahara: "1884.12.26",
 
     caliphate_reborn: "2014.6.29",
-    free_danzig_napoleonic: "21 July 1807",
-    free_danzig_napoleonic_end: "2 January 1814",
+    free_danzig_napoleonic: "1807.7.21",
+    free_danzig_napoleonic_end: "1814.1.2",
   }
 
   def self.[](date)

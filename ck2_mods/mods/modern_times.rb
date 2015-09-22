@@ -728,38 +728,6 @@ class ModernTimesGameModification < CK2GameModification
     ])
   end
 
-  # Debug method until I figure out how to fix the issue
-  def report_dynasty_conflict_stats!
-    stats = {}
-    conflicts = Hash.new(0)
-    @characters.to_plist.each do |id, character|
-      c = character["culture"]
-      d = character["dynasty"]
-      (stats[[c,d]] ||= []) << id
-    end
-    stats.sort_by{|_, ids| -ids.size}.each do |(c,d),ids|
-      i = ids.size
-      # puts "#{c} #{d} - #{i}" if i > 1
-      conflicts[c] += (i+1)*i/2
-    end
-    pp conflicts.values.inject(&:+)
-    pp conflicts.sort_by{|k,v| -v}
-
-    cultures = {}
-    @builder.parse("common/cultures/00_cultures.txt").each do |group_name, group|
-      group.each do |name, culture|
-        next unless culture.is_a?(PropertyList)
-        cultures[name] = 0
-      end
-    end
-    @builder.glob("history/provinces/*.txt").each do |path|
-      node = @builder.parse(path)
-      culture =  [node["culture"], *node.list.map{|_,v| v["culture"] if v.is_a?(PropertyList)}].compact.last
-      cultures[culture] += 1
-    end
-    pp cultures.sort_by{|k,v| -v}
-  end
-
   def setup_bookmarks!
     # Sadly can't be modded and first two are DLC-locked
     key_bookmarks = [
@@ -855,7 +823,6 @@ class ModernTimesGameModification < CK2GameModification
     save_characters!
     save_dynasties!
 
-    # report_dynasty_conflict_stats!
     @warnings.sort.each_with_index do |w,i|
       puts "% 3d %s" % [i+1,w]
     end

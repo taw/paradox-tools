@@ -98,30 +98,30 @@ ModernTimesDatabase::HOLDERS = {
     congress_of_vienna: {use: "e_britannia George 3"},
     "1820.1.29" => {use: "e_britannia George 4"},
     "1830.6.26" => {use: "e_britannia William 2"},
-    "20 June 1837" => {name: "Ernest Augustus", dynasty: "Windsor", birth: "5 June 1771", death: "18 November 1851", father: "e_britannia George 3"},
-    "18 November 1851" => {name: "George", dynasty: "Windson", birth: "27 May 1819", death: "12 June 1878", father: "Ernest Augustus 1"},
-    "20 September 1866" => nil,
+    "1837.6.20" => {name: "Ernest Augustus", dynasty: "Windsor", birth: "1771.6.5", death: "1851.11.18", father: "e_britannia George 3"},
+    "1851.11.18" => {name: "George", dynasty: "Windson", birth: "1819.5.27", death: "1878.6.12", father: "Ernest Augustus 1"},
+    "1866.9.20" => nil,
   },
   k_pomerania: {
-    "17 August 1786" => {
+    "1786.8.17" => {
       name: "Frederick William",
       dynasty: "Hohenzollern",
-      birth: "25 September 1744",
-      death: "16 November 1797",
+      birth: "1744.9.25",
+      death: "1797.11.16",
     },
-    "16 November 1797" => {
+    "1797.11.16" => {
       name: "Frederick William",
       dynasty: "Hohenzollern",
-      birth: "3 July 1770",
-      death: "7 June 1840",
+      birth: "1770.7.3",
+      death: "1840.6.7",
     },
-    "7 June 1840" => {
+    "1840.6.7" => {
       name: "Frederick William",
       dynasty: "Hohenzollern",
-      birth: "15 October 1795",
-      death: "2 January 1861",
+      birth: "1795.10.15",
+      death: "1861.1.2",
     },
-    "2 January 1861" => {
+    "1861.1.2" => {
       name: "Wilhelm",
       dynasty: "Hohenzollern",
       birth: "1797.3.22",
@@ -357,47 +357,47 @@ ModernTimesDatabase::HOLDERS = {
     "2012.5.7" => { use: "Vladimir 2" },
   },
   k_denmark: {
-    "25 August 1699" => {
+    "1699.8.25" => {
       name: "Frederick",
       dynasty: "Oldenburg",
-      birth: "11 October 1671",
-      death: "12 October 1730",
+      birth: "1671.10.11",
+      death: "1730.10.12",
     },
-    "12 October 1730" => {
+    "1730.10.12" => {
       name: "Christian",
       dynasty: "Oldenburg",
-      birth: "30 November 1699",
-      death: "6 August 1746",
+      birth: "1699.11.30",
+      death: "1746.8.6",
     },
-    "6 August 1746" => {
+    "1746.8.6" => {
       name: "Frederick",
       dynasty: "Oldenburg",
-      birth: "31 March 1723",
-      death: "14 January 1766",
+      birth: "1723.3.31",
+      death: "1766.1.14",
     },
-    "14 January 1766" => {
+    "1766.1.14" => {
       name: "Christian",
       dynasty: "Oldenburg",
-      birth: "29 January 1749",
-      death: "13 March 1808",
+      birth: "1749.1.29",
+      death: "1808.3.13",
     },
-    "13 March 1808" => {
+    "1808.3.13" => {
       name: "Frederick",
       dynasty: "Oldenburg",
-      birth: "28 January 1768",
-      death: "3 December 1839",
+      birth: "1768.1.28",
+      death: "1839.12.3",
     },
-    "3 December 1839" => {
+    "1839.12.3" => {
       name: "Christian",
       dynasty: "Oldenburg",
-      birth: "18 September 1786",
-      death: "20 January 1848",
+      birth: "1786.9.18",
+      death: "1848.1.20",
     },
-    "20 January 1848" => {
+    "1848.1.20" => {
       name: "Frederick",
       dynasty: "Oldenburg",
-      birth: "6 October 1808",
-      death: "15 November 1863",
+      birth: "1808.10.6",
+      death: "1863.11.15",
     },
     "1863.11.15" => {
       name: "Christian",
@@ -437,36 +437,36 @@ ModernTimesDatabase::HOLDERS = {
   },
   # Wikipedia uses these spellings, however inconsistent they are
   k_sweden: {
-    "24 March 1720" => {
+    "1720.3.24" => {
       name: "Frederick",
       dynasty: "Hesse",
-      birth: "23 April 1676",
-      death: "25 March 1751",
+      birth: "1676.4.23",
+      death: "1751.3.25",
     },
-    "25 March 1751" => {
+    "1751.3.25" => {
       name: "Adolph Frederick",
       dynasty: "Holstein-Gottorp",
-      birth: "14 May 1710",
-      death: "12 February 1771",
+      birth: "1710.5.14",
+      death: "1771.2.12",
     },
-    "12 February 1771" => {
+    "1771.2.12" => {
       name: "Gustav",
       dynasty: "Holstein-Gottorp",
-      birth: "24 January 1746",
-      death: "29 March 1792",
+      birth: "1746.1.24",
+      death: "1792.3.29",
       father: "Adolph Frederick 1",
     },
-    "29 March 1792" => {
+    "1792.3.29" => {
       name: "Gustav Adolf",
       dynasty: "Holstein-Gottorp",
-      birth: "1 November 1778",
-      death: "7 February 1837",
+      birth: "1778.11.1",
+      death: "1837.2.7",
       father: "Gustav 1",
     },
-    "6 June 1809" => {
+    "1809.6.6" => {
       name: "Charles",
       dynasty: "Holstein-Gottorp",
-      birth: "7 October 1748",
+      birth: "1748.10.7",
       death: "1818.2.5",
       father: "Adolph Frederick 1",
     },
@@ -702,7 +702,7 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   k_italy: {
-    "23 March 1849" => {
+    "1849.3.23" => {
       name: "Victor Emmanuel",
       dynasty: "Savoy",
       birth: "1820.3.14",
@@ -963,7 +963,7 @@ ModernTimesDatabase::HOLDERS = {
     "1991.1.17"  => {name: "Harald", dynasty: "Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", birth: "1937.2.21", death: :never},
   },
   d_nefoud: {
-    "13 January 1902" => {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},
+    "1902.1.13" => {name: "Abdulaziz", dynasty: "Saud", birth: "1876.11.26", death: "1953.11.9"},
     end_ww1: nil,
   },
   k_arabia: {
