@@ -30,16 +30,16 @@ class CultureManager
   end
 
   def random_dynasty(culture, rng)
-    rng.sample(@dynasties[culture])
+    rng.sample(@dynasties.fetch(culture))
   end
 
 private
 
   def name_pool(culture, female)
     if female
-      @female_names[culture]
+      @female_names.fetch(culture)
     else
-      @male_names[culture]
+      @male_names.fetch(culture)
     end
   end
 end

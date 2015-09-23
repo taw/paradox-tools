@@ -322,6 +322,15 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_title_history!
+    # This is a silly trick of creating node if it doesn't exist, reusing it otherwise
+    @db.titles.keys.each do |title|
+      begin
+        parse("history/titles/#{title}.txt")
+      rescue
+        create_mod_file! "history/titles/#{title}.txt", PropertyList[]
+      end
+    end
+
     glob("history/titles/*.txt").each do |path|
       title = path.basename(".txt").to_s
       patch_mod_file!(path) do |node|
@@ -346,15 +355,10 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
     end
-    # This is a silly trick of creating node if it doesn't exist, reusing it otherwise
     holders.each do |title, holders|
-      begin
-        node = parse("history/titles/#{title}.txt")
-      rescue
-        node = PropertyList[]
+      patch_mod_file!("history/titles/#{title}.txt") do |node|
+        add_holders!(node, holders)
       end
-      add_holders!(node, holders)
-      create_mod_file!("history/titles/#{title}.txt", node)
     end
   end
 
@@ -502,6 +506,8 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   # Some sensible baseline for everyone
+  # TODO: Lower number of vassals India, UK, and Ottomans have so it's no longer necessary
+  #       to give them imperial administration
   def setup_title_laws!
     glob("history/titles/[dke]_*.txt").each do |path|
       title = path.basename(".txt").to_s

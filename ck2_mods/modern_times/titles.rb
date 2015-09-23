@@ -461,6 +461,7 @@ ModernTimesDatabase::TITLES = {
     culture: :levantine_arabic,
     religion: :sunni,
     name: "Jordan / Jordanian",
+    liege: {end_ww1: "e_britannia", jordan_independence: nil},
   },
   k_israel: {
     culture: :ashkenazi,
@@ -526,6 +527,7 @@ ModernTimesDatabase::TITLES = {
     culture: :nubian,
     religion: :sunni,
     name: "Sudan / Sudanese",
+    liege: { sudan_turkish: "e_seljuk_turks", british_egypt: "e_britannia", sudan_independence: nil},
   },
   k_dacia: {
     culture: :romanian,
@@ -658,6 +660,68 @@ ModernTimesDatabase::TITLES = {
     culture: :baloch,
     religion: :sunni,
   },
+  ### Just to deal with UK vassal limit issue
+  k_bihar: {
+    culture: :bengali,
+    religion: :buddhist,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_gondwana: {
+    culture: :hindustani,
+    religion: :hindu,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_kamarupa: {
+    culture: :assamese,
+    religion: :buddhist,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_andhra: {
+    culture: :telugu,
+    religion: :hindu,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_karnata: {
+    culture: :kannada,
+    religion: :jain,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_telingana: {
+    culture: :telugu,
+    religion: :hindu,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_tamilakam: {
+    culture: :tamil,
+    religion: :hindu,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_orissa: {
+    culture: :oriya,
+    religion: :hindu,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_malwa: {
+    culture: :english,
+    religion: :hindu,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_gujarat: {
+    culture: :gujurati,
+    religion: :jain,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_delhi: {
+    culture: :hindustani,
+    religion: :buddhist,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_kosala: {
+    culture: :hindustani,
+    religion: :buddhist,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+
   ### Just renames, not actual countries
   k_taurica: {
     culture: :bolghar,

@@ -1,5 +1,4 @@
 ###########################################################################
-# FIXME: Everything that uses temporary_start: needs fixing
 # TODO: k_england -> e_britannia / k_rus -> e_russia
 # FIXME: Hungary / Romania / Serbia border might need fixing
 
@@ -112,18 +111,18 @@ ModernTimesDatabase::LAND = {
   d_syria:       { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
   c_palmyra:     { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
   c_asas:        { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
-  d_oultrejourdain: { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
+
+  d_oultrejourdain: { times_immemorial: "e_seljuk_turks", end_ww1: "d_oultrejourdain" },
+  c_petra:   { times_immemorial: "e_seljuk_turks", end_ww1: "d_oultrejourdain" },
+  c_maan:    { times_immemorial: "e_seljuk_turks", end_ww1: "d_oultrejourdain" },
+  c_amman:   { times_immemorial: "e_seljuk_turks", end_ww1: "d_oultrejourdain" },
+  c_az_zarqa:{ times_immemorial: "e_seljuk_turks", end_ww1: "d_oultrejourdain" },
+
 
   k_mauretania:{ times_immemorial: "k_mauretania", morocco_protectorate: "e_france", french_morocco_independence: "k_mauretania" },
   c_cebta:     { times_immemorial: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
   c_tangiers:  { times_immemorial: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
   c_el_rif:    { times_immemorial: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
-
-  c_petra:   { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-  c_maan:    { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-  c_amman:   { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-  c_az_zarqa:{ times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", jordan_independence: "d_oultrejourdain" },
-
 
   # GeaCron has no countries there so just shatter it into duchies before Europeans show up
   d_songhay:    { times_immemorial: "d_songhay", french_mali: "e_france", mali_independence: "k_mali" },
@@ -154,7 +153,7 @@ ModernTimesDatabase::LAND = {
   c_massawa:  { times_immemorial: "k_abyssinia", eritrea_italian: "e_italy", eritrea_british: "e_britannia", eritrea_ethiopian: "k_abyssinia", eritrea_independence: "d_hayya"},
 
   # Not really unified
-  k_nubia:      { times_immemorial: "k_nubia", sudan_turkish: "e_seljuk_turks", british_egypt: "e_britannia", sudan_independence: "k_nubia" },
+  k_nubia:      { times_immemorial: "k_nubia" },
 
   e_britannia:  { times_immemorial: "e_britannia" },
   k_ireland:    { times_immemorial: "e_britannia", ireland_independence: "k_ireland" },
@@ -542,14 +541,23 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR VICTORIAN ERA BOOKMARK
 
-  e_deccan:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  k_orissa:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  k_malwa:       { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  k_gujarat:     { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  k_delhi:       { third_maratha_war: "e_britannia", india_independence: "e_india" },
+  k_bengal:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
+
+  k_bihar:       { third_maratha_war: "k_bihar", india_independence: "e_india" },
+  k_gondwana:    { third_maratha_war: "k_gondwana", india_independence: "e_india" },
+  k_kamarupa:    { third_maratha_war: "k_kamarupa", india_independence: "e_india" },
+  k_andhra:      { third_maratha_war: "k_andhra", india_independence: "e_india" },
+  k_karnata:     { third_maratha_war: "k_karnata", india_independence: "e_india" },
+  k_telingana:   { third_maratha_war: "k_telingana", india_independence: "e_india" },
+  k_tamilakam:   { third_maratha_war: "k_tamilakam", india_independence: "e_india" },
+  k_orissa:      { third_maratha_war: "k_orissa", india_independence: "e_india" },
+  k_malwa:       { third_maratha_war: "k_malwa", india_independence: "e_india" },
+  k_gujarat:     { third_maratha_war: "k_gujarat", india_independence: "e_india" },
+  k_delhi:       { third_maratha_war: "k_delhi", india_independence: "e_india" },
+  k_kosala:      { third_maratha_war: "k_kosala", india_independence: "e_india" },
+
+  k_maharastra:  { third_maratha_war: "e_britannia", india_independence: "e_india" },
   k_rajputana:   { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  k_kosala:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  e_bengal:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
   c_vijnot:      { third_maratha_war: "e_britannia", india_independence: "k_baluchistan" },
 
   # Names on CK2 map have very little correlation with names on real map

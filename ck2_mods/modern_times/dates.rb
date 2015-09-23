@@ -15,7 +15,6 @@ module ModernTimesDatabase::Dates
 
     ### Special tags that need killing
     forever_ago: "1700.1.1", # Few plans to go back earlier than this
-    temporary_start: "1900.1.1", # This value will go back in time eventually, avoid using it
 
     ### Actual dates:
     st_petersburg_founding: "1703.5.12", # They literally moved their capital there before peace deal gave them Ingria
