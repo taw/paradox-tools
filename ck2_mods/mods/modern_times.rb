@@ -507,6 +507,7 @@ class ModernTimesGameModification < CK2GameModification
       title = path.basename(".txt").to_s
       patch_mod_file!(path) do |node|
         laws = PropertyList[
+          "vice_royalty", false,
           "law", "investiture_law_0",
           "law", "cognatic_succession",
         ]
@@ -519,10 +520,17 @@ class ModernTimesGameModification < CK2GameModification
         else
           laws.add! "law", "centralization_2"
         end
-        if title == "e_britannia"
+        if title == "e_britannia" or title == "e_seljuk_turks" or title == "e_india"
           laws.add! "law", "imperial_administration"
+          laws.add! "law", "vice_royalty_0"
         end
         node.add! @db.resolve_date(:forever_ago), laws
+        if title == "e_britannia"
+          node.add! @db.resolve_date(:india_independence), PropertyList["law", "feudal_administration"]
+        end
+        if title == "e_seljuk_turks"
+          node.add! @db.resolve_date(:end_ww1), PropertyList["law", "feudal_administration"]
+        end
         cleanup_history_node!(node)
       end
     end
