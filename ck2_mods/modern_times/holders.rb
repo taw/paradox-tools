@@ -169,7 +169,7 @@ ModernTimesDatabase::HOLDERS = {
     # Now this is bullshit on so many levels...
     # German "presidents" do nothing, so choosing chancellor as much more prominent person
     # Backdating a lot
-    "1945.5.23" => {
+    end_ww2: {
       name: "Konrad",
       dynasty: "Adenauer",
     },
@@ -702,21 +702,40 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   k_italy: {
+    "4 June 1802" => {
+      name: "Victor Emmanuel",
+      dynasty: "Savoy",
+      birth: "24 July 1759",
+      death: "10 January 1824",
+    },
+    "12 March 1821" => {
+      name: "Charles Felix",
+      dynasty: "Savoy",
+      birth: "6 April 1765",
+      death: "27 April 1831",
+    },
+    "27 April 1831" => {
+      name: "Charles Albert",
+      dynasty: "Savoy",
+      birth: "2 October 1798",
+      death: "1849.3.23",
+    },
     "1849.3.23" => {
       name: "Victor Emmanuel",
       dynasty: "Savoy",
       birth: "1820.3.14",
       death: "1878.1.9",
+      father: "Charles Albert 1",
     },
     "1861.3.17" => nil,
   },
   e_italy: {
     # Title created
-    "1861.3.17" => { use: "k_italy Victor Emmanuel 1" },
+    "1861.3.17" => { use: "k_italy Victor Emmanuel 2" },
     "1878.1.9" => {
       name: "Umberto",
       dynasty: "Savoy",
-      father: "k_italy Victor Emmanuel 1",
+      father: "k_italy Victor Emmanuel 2",
       birth: "1844.3.14",
       death: "1900.7.29",
     },
@@ -811,7 +830,8 @@ ModernTimesDatabase::HOLDERS = {
     # Vichy
     "1940.7.11"=>{name: "Philippe", dynasty: "Pétain", birth: "1856", death: "1951"},
     # 4th Republic
-    "1947.1.16"=>{name: "Vincent", dynasty: "Auriol", birth: "1884", death: "1966"},
+    # 1947.1.16, backdated
+    end_ww2: {name: "Vincent", dynasty: "Auriol", birth: "1884", death: "1966"},
     "1954.1.16"=>{name: "René", dynasty: "Coty", birth: "1882", death: "1962"},
     # 5th Republic
     "1959.1.8"=>{name: "Charles", dynasty: "de Gaulle", birth: "1890", death: "1970"},

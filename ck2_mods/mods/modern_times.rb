@@ -743,17 +743,17 @@ class ModernTimesGameModification < CK2GameModification
       ["1750.1.1", "Test 1750"],
       ["1780.1.1", "Test 1780"],
       ["1815.6.9", "Congress of Vienna"],
-      ["1837.6.20", "Victorian Era"],
-      ["1861.3.17", "Kingdom of Italy"],
 
       ### Actual bookmarks, must have 5 key bookmarks
+      ["1837.6.20", "Victorian Era", true],
+      ["1861.3.17", "Kingdom of Italy"],
       ["1871.1.18",  "German Empire", true],
       ["1900.1.1",   "New Century"],
       ["1914.6.28",  "The Great War"],
       ["1920.8.10",  "Treaty of Sevres", true],
       ["1939.8.31",  "The Greater War"],
       ["1945.5.8",   "Cold War", true],
-      ["1975.1.1",   "Decolonization", true],
+      ["1975.1.1",   "Decolonization"],
       ["1991.12.26", "Fall of Soviet Union"],
       ["2015.9.1",   "Modern Times", true],
     ]
