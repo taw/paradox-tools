@@ -294,6 +294,7 @@ ModernTimesDatabase::TITLES = {
     religion: :shiite,
     capital: :c_baghdad,
     name: "Iraq / Iraqi",
+    liege: {british_iraq: "e_britannia", iraq_independence: nil},
   },
   c_kuwait: {
     culture: :bedouin_arabic,
@@ -720,6 +721,21 @@ ModernTimesDatabase::TITLES = {
     culture: :hindustani,
     religion: :buddhist,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_maharastra: {
+    culture: :marathi,
+    religion: :jain,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  k_rajputana: {
+    culture: :rajput,
+    religion: :jain,
+    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+  },
+  d_jerusalem: {
+    culture: :english,
+    religion: :fraticelli,
+    liege: {end_ww1: "e_britannia", israel_independence: nil},
   },
 
   ### Just renames, not actual countries

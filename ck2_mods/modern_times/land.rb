@@ -48,23 +48,24 @@ ModernTimesDatabase::LAND = {
   c_beirut: { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
   c_tyrus:  { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", lebanon_independence: "d_galilee" },
 
-  c_eilat:   { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
-  c_negev:   { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
-  d_ascalon: { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
-  c_acre:    { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "k_israel" },
+  c_eilat:   { times_immemorial: "e_seljuk_turks", end_ww1: "d_jerusalem", israel_independence: "k_israel" },
+  c_negev:   { times_immemorial: "e_seljuk_turks", end_ww1: "d_jerusalem", israel_independence: "k_israel" },
+  d_ascalon: { times_immemorial: "e_seljuk_turks", end_ww1: "d_jerusalem", israel_independence: "k_israel" },
+  c_acre:    { times_immemorial: "e_seljuk_turks", end_ww1: "d_jerusalem", israel_independence: "k_israel" },
 
-  c_hebron:    { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
-  c_jerusalem: { times_immemorial: "e_seljuk_turks", end_ww1: "e_britannia", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
+  c_hebron:    { times_immemorial: "e_seljuk_turks", end_ww1: "d_jerusalem", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
+  c_jerusalem: { times_immemorial: "e_seljuk_turks", end_ww1: "d_jerusalem", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
 
-  c_oromieh: { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-  d_baghdad: { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-  d_tigris:  { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
-  d_basra:   { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia"},
+  c_oromieh: { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia"},
+  d_baghdad: { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia"},
+  d_tigris:  { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia"},
+  d_basra:   { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia"},
 
-  c_mosul:   { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_suwaida: { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_druz:    { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_sinjar:  { times_immemorial: "e_seljuk_turks", british_iraq: "e_britannia", iraq_independence: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_mosul:   { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_suwaida: { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_druz:    { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_sinjar:  { times_immemorial: "e_seljuk_turks", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+
   c_tiberias:    { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", six_day_war: "k_israel" },
   c_safed:       { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria" },
   c_tell_bashir: { times_immemorial: "e_seljuk_turks", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"  },
@@ -555,9 +556,9 @@ ModernTimesDatabase::LAND = {
   k_gujarat:     { third_maratha_war: "k_gujarat", india_independence: "e_india" },
   k_delhi:       { third_maratha_war: "k_delhi", india_independence: "e_india" },
   k_kosala:      { third_maratha_war: "k_kosala", india_independence: "e_india" },
+  k_maharastra:  { third_maratha_war: "k_maharastra", india_independence: "e_india" },
+  k_rajputana:   { third_maratha_war: "k_rajputana", india_independence: "e_india" },
 
-  k_maharastra:  { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  k_rajputana:   { third_maratha_war: "e_britannia", india_independence: "e_india" },
   c_vijnot:      { third_maratha_war: "e_britannia", india_independence: "k_baluchistan" },
 
   # Names on CK2 map have very little correlation with names on real map
