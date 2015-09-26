@@ -20,6 +20,7 @@ class ModernTimesModBuilder < ParadoxModBuilder
     create_mod_descriptor!(
       name: "Modern Times",
       path: "mod/modern_times",
+      picture: "modern_times.png",
     )
   end
 end
