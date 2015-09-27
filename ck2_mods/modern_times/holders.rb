@@ -1280,6 +1280,204 @@ ModernTimesDatabase::HOLDERS = {
     },
     "1913.5.30" => nil,
   },
+  d_bavaria: {
+    "26 May 1679" => {
+      name: "Maximilian Emanuel",
+      dynasty: "Wittelsbach",
+    },
+    "26 February 1726" => {
+      name: "Charles Albert",
+      dynasty: "Wittelsbach",
+    },
+    "20 January 1745" => {
+      name: "Maximilian Joseph",
+      dynasty: "Wittelsbach",
+    },
+    "30 December 1777" => {
+      name: "Charles Theodore",
+      dynasty: "Wittelsbach",
+    },
+    "16 February 1799" => {
+      name: "Maximilian",
+      dynasty: "Wittelsbach",
+    },
+    "13 October 1825" => {
+      name: "Ludwig",
+      dynasty: "Wittelsbach",
+    },
+    "20 March 1848" => {
+      name: "Maximilian",
+      dynasty: "Wittelsbach",
+    },
+    "10 March 1864" => {
+      name: "Ludwig",
+      dynasty: "Wittelsbach",
+    },
+    german_unification: nil,
+    # They continued as German vassals until end of WW1
+  },
+  d_saxony: {
+    "17 December 1763" => {
+      name: "Frederick Augustus",
+      dynasty: "Wettin",
+      birth: "23 December 1750",
+      death: "5 May 1827",
+    },
+    "5 May 1827" => {
+      name: "Anthon",
+      dynasty: "Wettin",
+      birth: "27 December 1755",
+      death: "6 June 1836",
+    },
+    "6 June 1836" => {
+      name: "Frederick Augustus",
+      dynasty: "Wettin",
+      birth: "18 May 1797",
+      death: "9 August 1854",
+    },
+    "9 August 1854" => {
+      name: "John",
+      dynasty: "Wettin",
+      birth: "12 December 1801",
+      death: "29 October 1873",
+    },
+    german_unification: nil,
+    # They continued as German vassals until end of WW1
+  },
+  # There was actually Hesse-Kassel and Hesse-Darmstandt
+  d_franconia: {
+    "30 October 1813" => {
+      name: "William",
+      dynasty: "Hesse",
+      birth: "3 June 1743",
+      death: "27 February 1821",
+    },
+    "27 February 1821" => {
+      name: "William",
+      dynasty: "Hesse",
+      birth: "28 July 1777",
+      death: "20 November 1847",
+    },
+    "20 November 1847" => {
+      name: "Frederick William",
+      dynasty: "Hesse",
+      birth: "20 August 1802",
+      death: "6 January 1875",
+    },
+    prussia_annexes_hannover: nil,
+  },
+  k_sicily: {
+    "12 December 1816" => {
+      name: "Ferdinand",
+      dynasty: "Bourbon",
+      birth: "12 January 1751",
+      death: "4 January 1825",
+    },
+    "4 January 1825" => {
+      name: "Francis",
+      dynasty: "Bourbon",
+      birth: "14 August 1777",
+      death: "8 November 1830",
+      father: "Ferdinand 1",
+    },
+    "8 November 1830" => {
+      name: "Ferdinand",
+      dynasty: "Bourbon",
+      birth: "12 January 1810",
+      death: "22 May 1859",
+      father: "Francis 1",
+    },
+    "22 May 1859" => {
+      name: "Francis",
+      dynasty: "Bourbon",
+      birth: "16 January 1836",
+      death: "27 December 1894",
+      father: "Ferdinand 2",
+    },
+    italy_unification: nil,
+  },
+  c_parma: {
+    "11 April 1814" => {
+      name: "Marie Louise",
+      dynasty: "Habsburg",
+      birth: "12 December 1791",
+      death: "17 December 1847",
+      female: true,
+    },
+    "17 December 1847" => {
+      name: "Charles",
+      dynasty: "Bourbon",
+      birth: "22 December 1799",
+      death: "16 April 1883",
+      mother: "Marie Louise 1",
+    },
+    "17 May 1849" => {
+      name: "Charles",
+      dynasty: "Bourbon",
+      birth: "14 January 1823",
+      death: "27 March 1854",
+      father: "Charles 1",
+    },
+    "27 March 1854" => {
+      name: "Robert",
+      dynasty: "Bourbon",
+      birth: "9 July 1848",
+      death: "16 November 1907",
+      father: "Charles 1",
+    },
+    italy_unification: nil,
+  },
+  d_carinthia: {
+    # Backdating, actually 23 December 1991
+    "1991.7.7" => {
+      name: "Milan",
+      dynasty: "Kucan",
+    },
+    "22 December 2002" => {
+      name: "Janez",
+      dynasty: "Drnovsek",
+    },
+    "23 December 2007" => {
+      name: "Danilo",
+      dynasty: "Türk",
+    },
+    "22 December 2012" => {
+      name: "Borut",
+      dynasty: "Pahor",
+    },
+  },
+  d_oultrejourdain: {
+    "1 April 1921" => {
+      name: "Abdullah",
+      dynasty: "Hashemite",
+      birth: "1 February 1882",
+      death: "20 July 1951",
+      traits: ["sayyid"],
+    },
+    "20 July 1951" => {
+      name: "Talal",
+      dynasty: "Hashemite",
+      birth: "26 February 1909",
+      death: "7 July 1972",
+      father: "Abdullah 1",
+      traits: ["sayyid"],
+    },
+    "11 August 1952" => {
+      name: "Hussein",
+      dynasty: "Hashemite",
+      birth: "14 November 1935",
+      death: "7 February 1999",
+      father: "Talal 1",
+      traits: ["sayyid"],
+    },
+    "7 February 1999" => {
+      name: "Abdullah",
+      dynasty: "Hashemite",
+      birth: "30 January 1962",
+      father: "Hussein 1",
+      traits: ["sayyid"],
+    },
+  },
   d_sunni: {
     "1695.2.6" => { use: "e_seljuk_turks Mustafa 1" },
     "1703.8.22" => { use: "e_seljuk_turks Ahmed 1" },
