@@ -480,8 +480,23 @@ class ModernTimesGameModification < CK2GameModification
   def cleanup_history_node!(node)
     # Presumably not needed but for sake of convention
     # Maybe merge nodes with same date?
-    raise unless node.keys.all?{|k| k.is_a?(Date)}
-    node.instance_eval{ @list = @list.select{|k,v| v != [] }.sort }
+    unless node.keys.all?{|k| k.is_a?(Date)}
+      node.instance_eval do
+        @list = @list.map do |k,v|
+          case k
+          when Date
+            [k, v]
+          when "1127.12."
+            [Date.parse("1127.12.1"), v]
+          else
+            raise "Expected key to be a date, got: `#{k.inspect}'"
+          end
+        end
+      end
+    end
+    node.instance_eval do
+      @list = @list.select{|k,v| v != [] }.sort
+    end
   end
 
   def setup_title_names!
@@ -496,7 +511,6 @@ class ModernTimesGameModification < CK2GameModification
             node.add!(date, PropertyList["reset_name", true, "reset_adjective", true])
           end
         end
-        cleanup_history_node!(node)
       end
     end
     # d_sunni is supposed to have priority over d_syria etc. (dignity=100) but it doesn't work.
@@ -537,7 +551,6 @@ class ModernTimesGameModification < CK2GameModification
         if title == "e_seljuk_turks"
           node.add! @db.resolve_date(:end_ww1), PropertyList["law", "feudal_administration"]
         end
-        cleanup_history_node!(node)
       end
     end
     create_mod_file! "common/on_actions/10_modern_times.txt", PropertyList[
@@ -870,6 +883,9 @@ class ModernTimesGameModification < CK2GameModification
     setup_vassal_dukes!
     save_characters!
     save_dynasties!
+    patch_mod_files!("history/titles/*.txt") do |node|
+      cleanup_history_node!(node)
+    end
 
     @warnings.sort.each_with_index do |w,i|
       puts "% 3d %s" % [i+1,w]
