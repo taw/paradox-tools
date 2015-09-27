@@ -132,6 +132,7 @@ ModernTimesDatabase::TITLES = {
   k_pomerania: {
     culture: :german,
     religion: :waldensian,
+    capital: :c_brandenburg,
     name: "Prussia / Prussian",
   },
   e_germany: {

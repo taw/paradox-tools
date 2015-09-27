@@ -241,9 +241,13 @@ class ModernTimesGameModification < CK2GameModification
 
   def allocate_title!(title, node, liege, start_date, end_date)
     case liege
-    when /\A[cd]_/
-      # Counts and dukes hold all land directly
-      # 0 works but it does weird on campaign map
+    # Counts and dukes hold all land directly
+    # 0 works but it does weird on campaign map
+    when /\Ac_/
+      node.add! start_date, PropertyList["liege", 0]
+      raise "No lieges for #{liege}" unless holders[liege]
+      add_holders! node, holders[liege], start_date, end_date
+    when /\Ad_/
       node.add! start_date, PropertyList["liege", liege]
       raise "No lieges for #{liege}" unless holders[liege]
       add_holders! node, holders[liege], start_date, end_date
@@ -347,17 +351,13 @@ class ModernTimesGameModification < CK2GameModification
           setup_county_history!(title, node)
         else
           setup_major_title_history!(title, node)
+          add_holders!(node, holders[title]) if holders[title]
         end
         if @db.titles[title] and @db.titles[title][:liege]
           @db.titles[title][:liege].each do |date, liege|
             node.add! date, PropertyList["liege", liege || 0]
           end
         end
-      end
-    end
-    holders.each do |title, holders|
-      patch_mod_file!("history/titles/#{title}.txt") do |node|
-        add_holders!(node, holders)
       end
     end
   end
