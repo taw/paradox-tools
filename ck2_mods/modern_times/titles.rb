@@ -114,7 +114,7 @@ ModernTimesDatabase::TITLES = {
   k_frisia: {
     culture: :dutch,
     religion: :waldensian,
-    capital: :c_breda,
+    capital: :c_holland,
     name: "Netherlands / Dutch",
   },
   e_carpathia: {

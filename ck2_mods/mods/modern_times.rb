@@ -174,14 +174,32 @@ class ModernTimesGameModification < CK2GameModification
     @reset_date ||= @db.resolve_date(:reset_date)
   end
 
-  # Assume same name in different cultures are separate dynasties
   def new_dynasty(name, culture)
-    key = [name, culture]
-    unless @dynasties[key]
-      id = 100_000_000 + @dynasties.size
-      @dynasties[key] = {name: name, culture: culture, id: id}
+    # Cultural overrides, many European royal dynasties were cross-cultural
+    # I'm not even sure if it does anything
+    case name
+    when "Hesse", "Habsburg"
+      culture = "german"
+    when "Bonaparte", "Bourbon"
+      culture = "frankish"
+    when "Schleswig-Holstein-Sonderburg-Glücksburg"
+      culture = "danish"
+    when "Windsor"
+      culture = "english"
+    when "Savoy"
+      culture = "italian"
     end
-    @dynasties[key][:id]
+
+    if @dynasties[name]
+      existing_culture = @dynasties[name][:culture]
+      if culture != existing_culture
+        warn "Dynasty `#{name}' has multiple cultures #{culture}, #{existing_culture}"
+      end
+    else
+      id = 100_000_000 + @dynasties.size
+      @dynasties[name] = {name: name, culture: culture, id: id}
+    end
+    @dynasties[name][:id]
   end
 
   def add_holders!(node, holders, min_date=nil, max_date=nil)
