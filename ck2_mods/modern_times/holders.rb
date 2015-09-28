@@ -99,7 +99,7 @@ ModernTimesDatabase::HOLDERS = {
     "1820.1.29" => {use: "e_britannia George 4"},
     "1830.6.26" => {use: "e_britannia William 2"},
     "1837.6.20" => {name: "Ernest Augustus", dynasty: "Windsor", birth: "1771.6.5", death: "1851.11.18", father: "e_britannia George 3"},
-    "1851.11.18" => {name: "George", dynasty: "Windson", birth: "1819.5.27", death: "1878.6.12", father: "Ernest Augustus 1"},
+    "1851.11.18" => {name: "George", dynasty: "Windsor", birth: "1819.5.27", death: "1878.6.12", father: "Ernest Augustus 1"},
     "1866.9.20" => nil,
   },
   k_pomerania: {

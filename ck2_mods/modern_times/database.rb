@@ -75,13 +75,14 @@ class ModernTimesDatabase
       ModernTimesDatabase::TITLES.each do |title, data|
         title = title.to_s
         @titles[title] = {}
-        extra_keys = data.keys - [:culture, :religion, :capital, :name, :liege]
+        extra_keys = data.keys - %i[culture religion capital name liege autoholders]
         raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
         raise "Culture must be specified for every title: #{title}" unless data[:culture]
         raise "Religion must be specified for every title: #{title}" unless data[:religion]
 
         @titles[title][:culture] = data[:culture].to_s
         @titles[title][:religion] = data[:religion].to_s
+        @titles[title][:autoholders] = !!data[:autoholders]
         if data[:capital]
           @titles[title][:capital] = data[:capital].to_s
         elsif title =~ /\Ac_/

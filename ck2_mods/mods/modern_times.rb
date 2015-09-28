@@ -392,8 +392,14 @@ class ModernTimesGameModification < CK2GameModification
       @db.titles.each do |title, data|
         title    = title
         holders  = @db.holders[title] || {}
+        autoholders = @db.titles[title][:autoholders]
+        if autoholders and @db.holders[title]
+          warn "Title has holders but specified as automatic: #{title}"
+        end
         unless @db.title_needs_extra_holders[title].empty?
-          warn "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
+          unless autoholders
+            warn "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
+          end
           @db.title_needs_extra_holders[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true

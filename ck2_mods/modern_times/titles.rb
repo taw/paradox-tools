@@ -567,6 +567,7 @@ ModernTimesDatabase::TITLES = {
   d_hashshashin: {
     culture: :persian,
     religion: :shiite,
+    autoholders: true,
   },
   d_saxony: {
     culture: :german,
@@ -667,76 +668,91 @@ ModernTimesDatabase::TITLES = {
     culture: :bengali,
     religion: :buddhist,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_gondwana: {
     culture: :hindustani,
     religion: :hindu,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_kamarupa: {
     culture: :assamese,
     religion: :buddhist,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_andhra: {
     culture: :telugu,
     religion: :hindu,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_karnata: {
     culture: :kannada,
     religion: :jain,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_telingana: {
     culture: :telugu,
     religion: :hindu,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_tamilakam: {
     culture: :tamil,
     religion: :hindu,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_orissa: {
     culture: :oriya,
     religion: :hindu,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_malwa: {
     culture: :english,
     religion: :hindu,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_gujarat: {
     culture: :gujurati,
     religion: :jain,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_delhi: {
     culture: :hindustani,
     religion: :buddhist,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_kosala: {
     culture: :hindustani,
     religion: :buddhist,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_maharastra: {
     culture: :marathi,
     religion: :jain,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   k_rajputana: {
     culture: :rajput,
     religion: :jain,
     liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    autoholders: true,
   },
   d_jerusalem: {
     culture: :english,
     religion: :fraticelli,
     liege: {end_ww1: "e_britannia", israel_independence: nil},
+    autoholders: true,
   },
 
   ### Just renames, not actual countries
