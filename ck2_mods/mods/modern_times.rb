@@ -397,8 +397,12 @@ class ModernTimesGameModification < CK2GameModification
           warn "Title has holders but specified as automatic: #{title}"
         end
         unless @db.title_needs_extra_holders[title].empty?
-          unless autoholders
-            warn "Needs extra holders: #{title} #{@db.title_needs_extra_holders[title]}"
+          if autoholders
+            # OK
+          elsif @db.holders[title]
+            warn "Needs more holders: #{title} #{@db.title_needs_extra_holders[title]}"
+          else
+            warn "Needs holders: #{title} #{@db.title_needs_extra_holders[title]}"
           end
           @db.title_needs_extra_holders[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
@@ -794,6 +798,7 @@ class ModernTimesGameModification < CK2GameModification
       ["1750.1.1", "Test 1750"],
       ["1780.1.1", "Test 1780"],
       ["1815.6.9", "Congress of Vienna"],
+      ["1818.6.3", "Fall of Marathas"],
 
       ### Actual bookmarks, must have 5 key bookmarks
       ["1837.6.20", "Victorian Era", true],

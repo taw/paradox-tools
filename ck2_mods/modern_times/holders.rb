@@ -81,6 +81,13 @@ ModernTimesDatabase::HOLDERS = {
       father: "George 6",
     },
   },
+  k_scotland: {
+    "7 May 1999" => {name: "Donald", dynasty: "Dewar"},
+    "27 October 2000" => {name: "Henry", dynasty: "McLeish"},
+    "22 November 2001" => {name: "Jack", dynasty: "McConnell"},
+    "16 May 2007" => { name: "Alex", dynasty: "Salmond" },
+    "20 November 2014" => {name: "Nicola", dynasty: "Sturgeon", female: true},
+  },
   d_brunswick: {
     congress_of_vienna: {use: "e_britannia George 3"},
     "1820.1.29" => {use: "e_britannia George 4"},
@@ -111,6 +118,64 @@ ModernTimesDatabase::HOLDERS = {
       lived: "1797.3.22 - 1888.3.9",
     },
     "1871.1.18" => nil,
+  },
+  c_weimar: {
+    "28 May 1758" => {
+      name: "Charles Augustus",
+      dynasty: "Saxe-Weimar-Eisenach",
+      lived: "3 September 1757 – 14 June 1828"
+    },
+    "14 June 1828" => {
+      name: "Charles Frederick",
+      dynasty: "Saxe-Weimar-Eisenach",
+      lived: "2 February 1783 – 8 July 1853",
+    },
+    "8 July 1853" => {
+      name: "Charles Alexander",
+      dynasty: "Saxe-Weimar-Eisenach",
+      lived: "24 June 1818 – 5 January 1901",
+    },
+    german_unification: nil,
+  },
+  d_mecklemburg: {
+    "21 June 1692" => {
+      name: "Frederick William",
+      dynasty: "Mecklenburg-Schwerin",
+      lived: "28 March 1675 - 31 July 1713",
+    },
+    "31 July 1713" => {
+      name: "Karl Leopold",
+      dynasty: "Mecklenburg-Schwerin",
+      lived: "26 November 1678 - 28 November 1747",
+    },
+    "1.1.1728" => { # Amazingly whole internet doesn't know better than year date :-/
+      name: "Christian Ludwig",
+      dynasty: "Mecklenburg-Schwerin",
+      lived: "15 November 1683 - 30 May 1756",
+    },
+    "30 May 1756" => {
+      name: "Frederick",
+      dynasty: "Mecklenburg-Schwerin",
+      lived: "9 November 1717 - 24 April 1785",
+      father: "Christian Ludwig 1",
+    },
+    "24 April 1785" => {
+      name: "Frederick Francis",
+      dynasty: "Mecklenburg-Schwerin",
+      lived: "10 December 1756 - 1 February 1837",
+    },
+    "1 February 1837" => {
+      name: "Paul Frederick",
+      dynasty: "Mecklenburg-Schwerin",
+      lived: "15 September 1800 - 7 March 1842",
+    },
+    "7 March 1842" => {
+      name: "Frederick Francis",
+      dynasty: "Mecklenburg-Schwerin",
+      lived: "28 February 1823 - 15 April 1883",
+      father: "Paul Frederick 1",
+    },
+    german_unification: nil,
   },
   e_germany: {
     "1871.1.18" => { use: "k_pomerania Wilhelm 1" },
@@ -307,12 +372,12 @@ ModernTimesDatabase::HOLDERS = {
     "1999.12.31" => {
       name: "Vladimir",
       dynasty: "Putin",
-      lived: "1952 -",
+      lived: "7 October 1952 -",
     },
     "2008.5.7" => {
       name: "Dmitry",
       dynasty: "Medvedev",
-      lived: "1965 -",
+      lived: "14 September 1965 -",
     },
     "2012.5.7" => { use: "Vladimir 2" },
   },
@@ -505,9 +570,9 @@ ModernTimesDatabase::HOLDERS = {
     "1979.2.11" => {
       name: "Ruhollah",
       dynasty: "Khomeini",
-      lived: "1902.9.22 - 3 June 1989",
+      lived: "1902.9.22 - 1989.6.3",
     },
-    "1989.6.4" => {
+    "1989.6.3" => {
       name: "Ali",
       dynasty: "Khamenei",
       lived: "1939.7.17 -",
@@ -807,6 +872,43 @@ ModernTimesDatabase::HOLDERS = {
     "1975.11.20"  => {name: "Juan Carlos", dynasty: "Bourbon", lived: "1938.1.5 -"},
     "2014.6.19"   => {name: "Felipe", dynasty: "Bourbon", lived: "1968.1.30 -"},
   },
+  k_portugal: {
+    "1 December 1640" => {name: "John", dynasty: "Braganza", lived: "18 March 1603 – 6 November 1656"},
+    "6 November 1656" => {name: "Alphonse", dynasty: "Braganza", lived: "21 August 1643 – 12 September 1683", father: "John 1"},
+    "12 September 1683" => {name: "Peter", dynasty: "Braganza", lived: "26 April 1648 – 9 December 1706", father: "John 1"},
+    "9 December 1706" => {name: "John", dynasty: "Braganza", lived: "22 October 1689 – 31 July 1750", father: "Peter 1"},
+    "31 July 1750" => {name: "Joseph", dynasty: "Braganza", lived: "6 June 1714 – 24 February 1777", father: "John 2"},
+    "24 February 1777" => {name: "Mary", dynasty: "Braganza", lived: "17 December 1734 - 20 March 1816", father: "Joseph 1", female: true},
+    "20 March 1816" => {name: "John", dynasty: "Braganza", lived: "13 May 1767 – 10 March 1826", mother: "Mary 1"},
+    "10 March 1826" => {name: "Peter", dynasty: "Braganza", lived: "12 October 1798 – 24 September 1834", father: "John 3"},
+    "2 May 1826" => {name: "Mary", dynasty: "Braganza", lived: "4 April 1819 – 15 November 1853", father: "Peter 2"},
+    "15 November 1853" => {name: "Peter", dynasty: "Braganza", lived: "16 September 1837 – 11 November 1861", mother: "Mary 2"},
+    "11 November 1861" => {name: "Louis", dynasty: "Braganza", lived: "31 October 1838 – 19 October 1889", father: "Peter 3"},
+    "19 October 1889" => {name: "Charles", dynasty: "Braganza", lived: "28 September 1863 – 1 February 1908", father: "Louis 1"},
+    "1 February 1908" => {name: "Manuel", dynasty: "Braganza", lived: "15 November 1889 – 2 July 1932", father: "Charles 1"},
+    # Presidents
+    "5 October 1910"    => {name: "Teofilo", dynasty: "Braga"},
+    "August 24, 1911"   => {name: "Manuel", dynasty: "de Arriaga"},
+    "May 29, 1915"      => {use: "Teofilo 1"},
+    "October 5, 1915"   => {name: "Bernardino", dynasty: "Machado"},
+    "December 12, 1917" => {name: "Sidonio", dynasty: "Pais"},
+    "December 16, 1918" => {name: "Joao", dynasty: "do Canto e Castro"},
+    "October 5, 1919"   => {name: "António José de Almeida"},
+    "October 6, 1923"   => {name: "Manuel Teixeira Gomes"},
+    "December 11, 1925" => {use: "Bernardino 1"},
+    "May 31, 1926" => {name: "Jose Mendes", dynasty: "Cabecadas"},
+    "June 17, 1926" => {name: "Manuel Gomes", dynasty: "da Costa"},
+    "July 9, 1926" => {name: "Oscar", dynasty: "Carmona"},
+    "April 18, 1951" => {name: "Antonio de Oliveira", dynasty: "Salazar"},
+    "July 21, 1951" => {name: "Francisco Craveiro", dynasty: "Lopes"},
+    "August 9, 1958" => {name: "Americo", dynasty: "Tomas"},
+    "April 25, 1974" => {name: "Antonio", dynasty: "de Spinola"},
+    "September 30, 1974" => {name: "Francisco da Costa", dynasty: "Gomes"},
+    "July 14, 1976" => {name: "Antonio Ramalho", dynasty: "Eanes"},
+    "March 9, 1986" => {name: "Mario", dynasty: "Soares"},
+    "March 9, 1996" => {name: "Jorge", dynasty: "Sampaio"},
+    "March 9, 2006" => {name: "Aníbal Cavaco", dynasty: "Silva"},
+  },
   e_carpathia: {
     "1804.8.11"  => {name: "Francis", dynasty: "Habsburg", lived: "1768.2.12 - 1835.3.2"},
     "1835.3.2"   => {name: "Ferdinand", dynasty: "Habsburg", lived: "1793.4.19 - 1875.6.29"},
@@ -1079,6 +1181,13 @@ ModernTimesDatabase::HOLDERS = {
     # acting, then actual, skipping other acting presidents
     "2010.4.10" => {name: "Bronislaw", dynasty: "Komorowski", lived: "1952.6.4 -"},
     "2015.8.6" => {name: "Andrzej", dynasty: "Duda", lived: "1972.5.16 -"},
+  },
+  c_krakowskie: {
+    congress_of_vienna: { name: "Stanislaw", dynasty: "Wodzicki", lived: "1764.7.27 - 1843.3.14" },
+    "1833.3.24" => { name: "Kasper", dynasty: "Wieloglowski", lived: "- 1847" },
+    "1836.2.25" => { name: "Jozef", dynasty: "Haller", lived: "1783 - 1850.12.3" },
+    "1839.4.27" => { name: "Jan", dynasty: "Schindler", lived: "1802.9.3 - 1890.4.4" },
+    fall_krakow_uprising: nil,
   },
   k_mesopotamia: {
     "1958.7.14" => {name: "Muhammad Najib", dynasty: "ar-Ruba'i", lived: "1904 - 1965"},

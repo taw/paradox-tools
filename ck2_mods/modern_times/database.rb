@@ -133,13 +133,13 @@ class ModernTimesDatabase
               father:   fully_quality_reference(title, holder_data[:father]),
             }
             case holder_data[:lived]
-            when /\A(.*?)\s*-\s*\z/
+            when /\A(.*?)\s*(?:-|–)\s*\z/
               holder[:birth] = resolve_start_date($1)
               holder[:death] = resolve_end_date(:never)
-            when /\A\s*-\s*(.*)\z/
+            when /\A\s*(?:-|–)\s*(.*)\z/
               # holder[:birth] = nil
               holder[:death] = resolve_end_date($1)
-            when /\A(.*?)\s*-\s*(.*)\z/
+            when /\A(.*?)\s*(?:-|–)\s*(.*)\z/
               holder[:birth] = resolve_start_date($1)
               holder[:death] = resolve_end_date($2)
             when nil
