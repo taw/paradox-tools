@@ -113,26 +113,44 @@ class ModernTimesDatabase
       ModernTimesDatabase::HOLDERS.each do |title, data|
         title = title.to_s
         @holders[title] = {}
-        data.each do |date, holder|
+        data.each do |date, holder_data|
           date = resolve_date(date)
-          if holder.nil?
+          if holder_data.nil?
             @holders[title][date] = nil
-          elsif holder.keys == [:use]
-            @holders[title][date] = {use: fully_quality_reference(title, holder[:use])}
+          elsif holder_data.keys == [:use]
+            @holders[title][date] = {use: fully_quality_reference(title, holder_data[:use])}
           else
-            extra_keys = holder.keys - [:name, :dynasty, :birth, :death, :female, :father, :mother, :traits, :events, :culture, :religion]
+            extra_keys = holder_data.keys - %i[name dynasty lived female father mother traits events culture religion]
             raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
-            holder = holder.dup
-            holder[:culture]  = (holder[:culture]  || titles[title][:culture]).to_s
-            holder[:religion] = (holder[:religion] || titles[title][:religion]).to_s
-            holder[:female] = !!holder[:female]
-            holder[:birth] = resolve_start_date(holder[:birth]) if holder[:birth]
-            holder[:death] = resolve_end_date(holder[:death]) if holder[:death]
-            holder[:events] = holder[:events].map{|d,e| [resolve_date(d), e]} if holder[:events]
-            holder[:mother] = fully_quality_reference(title, holder[:mother])
-            holder[:father] = fully_quality_reference(title, holder[:father])
-            i = (ruler_counts[[title, holder[:name]]] += 1)
-            holder[:historical_id] = [title, holder[:name], i].join(" ")
+            holder = {
+              name:     holder_data[:name],
+              dynasty:  holder_data[:dynasty],
+              traits:   holder_data[:traits],
+              culture:  (holder_data[:culture]  || titles[title][:culture]).to_s,
+              religion: (holder_data[:religion] || titles[title][:religion]).to_s,
+              female:   !!holder_data[:female],
+              mother:   fully_quality_reference(title, holder_data[:mother]),
+              father:   fully_quality_reference(title, holder_data[:father]),
+            }
+            case holder_data[:lived]
+            when /\A(.*?)\s*-\s*\z/
+              holder[:birth] = resolve_start_date($1)
+              holder[:death] = resolve_end_date(:never)
+            when /\A\s*-\s*(.*)\z/
+              # holder[:birth] = nil
+              holder[:death] = resolve_end_date($1)
+            when /\A(.*?)\s*-\s*(.*)\z/
+              holder[:birth] = resolve_start_date($1)
+              holder[:death] = resolve_end_date($2)
+            when nil
+              # OK
+            else
+              raise "Parse error for lived: #{holder_data[:lived].inspect}"
+            end
+            holder[:events] = holder_data[:events].map{|d,e| [resolve_date(d), e]} if holder_data[:events]
+
+            i = (ruler_counts[[title, holder_data[:name]]] += 1)
+            holder[:historical_id] = [title, holder_data[:name], i].join(" ")
             @holders[title][date] = holder
           end
         end
