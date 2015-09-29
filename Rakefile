@@ -18,28 +18,20 @@ class ModBuilder
     @archive_name = archive_name
   end
 
+  def build_dir
+    Pathname("output/#{name}")
+  end
+
   def mod_descriptor
     Pathname("output/#{name}.mod")
   end
 
-  def mod_picture
-    Pathname("pictures/#{name}.png")
-  end
-
-  def build_dir
-    Pathname("build/#{name}")
-  end
-
   def build!
     # Half of this should probably be done by ModBuilder
-    trash "output/#{name}", "build"
-    Pathname("build/#{name}").mkpath
+    trash build_dir, mod_descriptor
     system "./#{category}/build_#{name}" or raise "Build failed"
-    system "cp #{mod_descriptor} build/"
-    system "cp -a output/#{name}/* #{build_dir}/"
-    system "cp #{mod_picture} #{build_dir}/" if mod_picture.exist?
-    Dir.chdir("build") do
-      system "7za a '../#{archive_name}'"
+    Dir.chdir("output") do
+      system "7za a '../#{archive_name}' '#{name}'/ '#{name}'.mod"
     end
   end
 end
@@ -55,7 +47,7 @@ desc "Build all CK2 packages"
 task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal", "modern_times", "modern_times_plus"]
 
 desc "Build all EU4 packages"
-task "eu4" => ["vanilla", "extended_timeline", "shattered_europe"]
+task "eu4" => ["vanilla", "extended_timeline"] # "shattered_europe"
 
 desc "Build CK2 No Dynastic Names"
 task "no_dynastic_names" do

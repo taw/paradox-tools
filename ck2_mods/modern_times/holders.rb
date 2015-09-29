@@ -1088,30 +1088,36 @@ ModernTimesDatabase::HOLDERS = {
   d_luxembourg: {
     "1890.11.23" => {
       name: "Adolphe",
+      dynasty: "Nassau-Weilburg",
       lived: "1817.7.24 - 1905.11.17",
     },
     "1905.11.17" => {
       name: "Guillaume",
+      dynasty: "Nassau-Weilburg",
       lived: "1852.4.22 - 1912.2.25",
       father: "Adolphe",
     },
     "1912.2.25" => {
       name: "Marie-Adelaide",
+      dynasty: "Nassau-Weilburg",
       lived: "1894.6.14 - 1924.1.24",
       female: true,
     },
     "1919.1.14" => {
       name: "Charlotte",
+      dynasty: "Nassau-Weilburg",
       lived: "1896.1.23 - 1985.7.9",
       female: true,
     },
     "1964.11.12" => {
       name: "Jean",
+      dynasty: "Nassau-Weilburg",
       lived: "1921.1.5 -",
       mother: "Charlotte",
     },
     "2000.10.7" => {
       name: "Henri",
+      dynasty: "Nassau-Weilburg",
       lived: "1955.4.16 -",
       father: "Jean",
     },
