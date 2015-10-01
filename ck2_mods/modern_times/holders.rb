@@ -97,6 +97,7 @@ ModernTimesDatabase::HOLDERS = {
     "1866.9.20" => nil,
   },
   k_pomerania: {
+    # There's one previous Frederick William here
     "1786.8.17" => {
       name: "Frederick William",
       dynasty: "Hohenzollern",
@@ -106,16 +107,19 @@ ModernTimesDatabase::HOLDERS = {
       name: "Frederick William",
       dynasty: "Hohenzollern",
       lived: "1770.7.3 - 1840.6.7",
+      father: "Frederick William 1",
     },
     "1840.6.7" => {
       name: "Frederick William",
       dynasty: "Hohenzollern",
       lived: "1795.10.15 - 1861.1.2",
+      father: "Frederick William 2",
     },
     "1861.1.2" => {
       name: "Wilhelm",
       dynasty: "Hohenzollern",
       lived: "1797.3.22 - 1888.3.9",
+      father: "Frederick William 2",
     },
     "1871.1.18" => nil,
   },

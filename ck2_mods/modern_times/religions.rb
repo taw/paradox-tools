@@ -37,4 +37,8 @@ ModernTimesDatabase::RELIGIONS = {
   "c_ulster"      => "protestant",
   "c_tyrone"      => "protestant",
   "c_nassau"      => "reformed",
+  "c_mainz"       => "protestant",
+  "c_leiningen"   => "protestant",
+  "c_wurttemberg" => "protestant",
+  "d_thuringia"   => "protestant",
 }

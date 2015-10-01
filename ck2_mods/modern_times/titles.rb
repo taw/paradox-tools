@@ -182,9 +182,10 @@ ModernTimesDatabase::TITLES = {
     culture: :german,
     religion: :reformed,
   },
+  # It's actually a composite of various minors
   c_thuringen: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   d_franconia: {
     culture: :german,
@@ -213,7 +214,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_swabia: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
     name: "Württemberg / Württembergian",
   },
   d_brunswick: {
@@ -254,6 +255,7 @@ ModernTimesDatabase::TITLES = {
     religion: :sunni,
     capital: :c_byzantion,
     name: { times_immemorial: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
+    demesne: ["d_paphlagonia"],
   },
   d_sunni: {
     culture: :levantine_arabic,

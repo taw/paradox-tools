@@ -38,9 +38,14 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def religion_groups
+    @religion_groups ||= glob("common/religions/*.txt").map do |path|
+      parse(path).keys
+    end.flatten
+  end
+
   def allow_intermarriage!
-    patch_mod_file!("common/religions/00_religions.txt") do |node|
-      religion_groups = node.keys
+    patch_mod_files!("common/religions/*.txt") do |node|
       node.each do |group_name, group|
         group.each do |religion_name, religion|
           next unless religion.is_a?(PropertyList)
@@ -54,7 +59,7 @@ class CK2TweaksGameModification < CK2GameModification
   end
 
   def allow_heir_designation!
-    patch_mod_file!("common/religions/00_religions.txt") do |node|
+    patch_mod_files!("common/religions/*.txt") do |node|
       node.each do |group_name, group|
         next if group_name == "muslim"
         group.each do |religion_name, religion|
@@ -224,7 +229,7 @@ class CK2TweaksGameModification < CK2GameModification
     override_defines_lua!("major_rivers",
       "NMilitary.MAX_RIVER_MOVEMENT_FORT_LEVEL" => 1000.0,
     )
-    patch_mod_file!("common/religions/00_religions.txt") do |node|
+    patch_mod_files!("common/religions/*.txt") do |node|
       node.each do |group_name, group|
         group.each do |religion_name, religion|
           next unless religion.is_a?(PropertyList)
