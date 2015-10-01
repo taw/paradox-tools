@@ -858,20 +858,14 @@ class ModernTimesGameModification < CK2GameModification
     end
     duchy_controllers.each do |title, vassals|
       vassals = vassals.sort.reverse.uniq(&:first).reverse
-      # This silliness is repeating second time this file
-      begin
-        node = parse("history/titles/#{title}.txt")
-      rescue
-        node = PropertyList[]
+      patch_mod_file!("history/titles/#{title}.txt", autocreate: true) do |node|
+        vassals.each do |date, id, liege|
+          node.add! date, PropertyList["holder", id, "liege", liege]
+        end
       end
-      vassals.each do |date, id, liege|
-        node.add! date, PropertyList["holder", id, "liege", liege]
-      end
-      create_mod_file!("history/titles/#{title}.txt", node)
     end
   end
 
-  # FIXME: This is a huge hack
   def setup_protestantism!
     %W[religion_icon_strip.dds religion_icon_strip_small.dds religion_icon_strip_big.dds].each do |name|
       create_file! "gfx/interface/#{name}", open("data/modern_times/#{name}", "rb", &:read)
@@ -964,6 +958,7 @@ class ModernTimesGameModification < CK2GameModification
     setup_province_population!
     setup_nomad_flag!
     setup_de_jure_map!
+    setup_protestantism!
 
     @cultures = CultureManager.new(self)
     @characters_reset = CharacterManager.new(self, 100_000_000)
@@ -989,7 +984,5 @@ class ModernTimesGameModification < CK2GameModification
     setup_bookmarks!
     setup_defines!
     change_localization!
-
-    setup_protestantism!
   end
 end
