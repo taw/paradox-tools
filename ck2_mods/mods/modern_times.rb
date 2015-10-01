@@ -692,11 +692,16 @@ class ModernTimesGameModification < CK2GameModification
       if duchy == "d_armenia"
         culture = "armenian"
       end
-      if kingdom == "k_england"
-        religion = "fraticelli"
+      if kingdom == "k_england" or duchy == "d_mecklemburg"
+        religion = "protestant"
       end
-      if duchy == "d_holland" or duchy == "d_gelre" or empire == "e_scandinavia"
-        religion = "waldensian"
+      if empire == "e_scandinavia" or duchy == "d_brandenburg" or duchy == "d_brunswick" or duchy == "d_courland"
+        if duchy != "d_kola" and duchy != "d_karelia"
+          religion = "protestant"
+        end
+      end
+      if duchy == "d_holland" or duchy == "d_gelre" or duchy == "d_upper_burgundy" or kingdom == "k_scotland"
+        religion = "reformed"
       end
       if duchy == "d_crimea"
         religion = "orthodox"
@@ -897,6 +902,79 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  # FIXME: This is a huge hack
+  # TODO: localization and icons
+  def setup_protestantism!
+    create_mod_file! "history/titles/d_protestant.txt", PropertyList[
+      Date.parse("20.1.1"), PropertyList["active", false],
+    ]
+    create_file! "common/landed_titles/modern_times.txt",
+    'd_protestant = {
+      color={ 180 137 97 }
+      color2={ 220 220 0 }
+      capital = 333 # Rome
+      title = "PROTESTANT_PRIMATE"
+      foa = "POPE_FOA"
+      short_name = yes
+      # Always exists
+      landless = yes
+      # Controls a religion
+      controls_religion = protestant
+      religion = protestant
+      # Cannot be held as a secondary title
+      primary = yes
+      dynasty_title_names = no # Will not be named "Seljuk", etc.
+    }'
+    create_mod_file! "common/religions/01_modern_times.txt", PropertyList[
+      "christian", PropertyList[
+        "protestant", PropertyList[
+          "graphical_culture", "westerngfx",
+          "icon", 53,
+          "heresy_icon", 54,
+          "color", [0.7, 0.7, 0.8],
+          "crusade_name", "CRUSADE",
+          "scripture_name", "THE_BIBLE",
+          "priest_title", "PRIEST",
+          "high_god_name", "GOD_GOD",
+          "god_names", ["GOD_GOD", "GOD_THE_LORD", "GOD_JESUS", "GOD_THE_BLESSED_VIRGIN"],
+          "evil_god_names", ["SATAN", "LUCIFER", "THE_DEVIL"],
+          "autocephaly", true,
+          "can_call_crusade", false,
+          "can_grant_divorce", true,
+          "priests_can_inherit", false,
+          "priests_can_marry", true,
+          "religious_clothing_head", 0,
+          "religious_clothing_priest", 1,
+        ],
+        "reformed", PropertyList[
+          "graphical_culture", "westerngfx",
+          "icon", 53,
+          "heresy_icon", 54,
+          "color", [0.6, 0.6, 0.7],
+          "crusade_name", "CRUSADE",
+          "scripture_name", "THE_BIBLE",
+          "priest_title", "PRIEST",
+          "high_god_name", "GOD_GOD",
+          "god_names", ["GOD_GOD", "GOD_THE_LORD", "GOD_JESUS", "GOD_THE_BLESSED_VIRGIN"],
+          "evil_god_names", ["SATAN", "LUCIFER", "THE_DEVIL"],
+          "priests_can_inherit", false,
+          "priests_can_marry", true,
+          "religious_clothing_head", 0,
+          "religious_clothing_priest", 1,
+          "parent", "protestant",
+        ],
+      ],
+    ]
+    localization! "modern_times_religions",
+      "protestant" => "Protestant",
+      "protestant_DESC" => "Lutheran/Anglican branch of Protestantism",
+      "d_protestant" => "Ecumenical Primacy",
+      "d_protestant_adj" => "Primatial",
+      "PROTESTANT_PRIMATE" => "Ecumenical Primate",
+      "reformed" => "Reformed",
+      "reformed_DESC" => "Reformed/Calvinist branch of Protestantism"
+  end
+
   def apply!
     @warnings = []
 
@@ -932,5 +1010,7 @@ class ModernTimesGameModification < CK2GameModification
     setup_bookmarks!
     setup_defines!
     change_localization!
+
+    setup_protestantism!
   end
 end

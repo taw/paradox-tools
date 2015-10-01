@@ -1,7 +1,7 @@
 ModernTimesDatabase::TITLES = {
   e_britannia: {
     culture: :english,
-    religion: :fraticelli,
+    religion: :protestant,
     capital: :c_middlesex,
     name: "United Kingdom / British",
   },
@@ -13,7 +13,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_iceland: {
     culture: :norwegian,
-    religion: :waldensian,
+    religion: :protestant,
     capital: :c_vestisland,
     name: "Iceland / Icelandic",
   },
@@ -63,18 +63,18 @@ ModernTimesDatabase::TITLES = {
   },
   k_denmark: {
     culture: :danish,
-    religion: :waldensian,
+    religion: :protestant,
     capital: :c_sjaelland,
     name: "Denmark / Danish",
   },
   k_sweden: {
     culture: :swedish,
-    religion: :waldensian,
+    religion: :protestant,
     capital: :c_uppland,
   },
   k_norway: {
     culture: :norwegian,
-    religion: :waldensian,
+    religion: :protestant,
     capital: :c_akershus,
     name: "Norway / Norwegian",
   },
@@ -113,7 +113,7 @@ ModernTimesDatabase::TITLES = {
   },
   k_frisia: {
     culture: :dutch,
-    religion: :waldensian,
+    religion: :reformed,
     capital: :c_holland,
     name: "Netherlands / Dutch",
   },
@@ -131,7 +131,7 @@ ModernTimesDatabase::TITLES = {
   },
   k_pomerania: {
     culture: :german,
-    religion: :waldensian,
+    religion: :protestant,
     capital: :c_brandenburg,
     name: "Prussia / Prussian",
   },
@@ -156,7 +156,7 @@ ModernTimesDatabase::TITLES = {
   },
   c_lubeck: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   c_nassau: {
     culture: :german,
@@ -173,19 +173,19 @@ ModernTimesDatabase::TITLES = {
   },
   c_oldenburg: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   c_bremen: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   c_hamburg: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   d_mecklemburg: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   d_baden: {
     culture: :german,
@@ -198,7 +198,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_brunswick: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
     name: "Hannover / Hannoverian",
   },
   c_weimar: {
@@ -223,7 +223,7 @@ ModernTimesDatabase::TITLES = {
   },
   k_burgundy: {
     culture: :german,
-    religion: :waldensian,
+    religion: :reformed,
     capital: :c_bern,
     name: "Switzerland / Swiss",
   },
@@ -344,7 +344,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_esthonia: {
     culture: :ugricbaltic,
-    religion: :waldensian,
+    religion: :protestant,
     liege: {annexation_estonia: "e_russia", fall_soviet_union: nil},
   },
   d_lithuanians: {
@@ -354,13 +354,13 @@ ModernTimesDatabase::TITLES = {
   },
   k_finland: {
     culture: :finnish,
-    religion: :waldensian,
+    religion: :protestant,
     capital: :c_finland,
     name: "Finland / Finnish",
   },
   d_courland: {
     culture: :lettigallish,
-    religion: :waldensian,
+    religion: :protestant,
     capital: :c_zemigalians,
     name: "Latvia / Latvian",
     liege: {annexation_latvia: "e_russia", fall_soviet_union: nil},
@@ -643,7 +643,7 @@ ModernTimesDatabase::TITLES = {
   },
   k_scotland: {
     culture: :scottish,
-    religion: :catholic,
+    religion: :reformed,
     liege: { scotland_devolution: "e_britannia" },
   },
   d_abkhazia: {
@@ -750,7 +750,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_jerusalem: {
     culture: :english,
-    religion: :fraticelli,
+    religion: :protestant,
     liege: {end_ww1: "e_britannia", israel_independence: nil},
     autoholders: true,
   },
