@@ -272,7 +272,7 @@ ModernTimesDatabase::LAND = {
   d_kola:       { forever_ago: "e_russia" },
   d_karelia:    { forever_ago: "e_russia" },
   c_malta:      { forever_ago: "c_malta", malta_british: "e_britannia", malta_independence: "c_malta" },
-  c_corsica:    { forever_ago: "d_genoa", french_corsica: "e_france" },
+  c_corsica:    { forever_ago: "k_genoa", french_corsica: "e_france" },
 
   c_steiermark:   { forever_ago: "e_carpathia", end_ww1: "k_serbia", slovenia_independence: "d_carinthia" },
   c_aquileia:     { forever_ago: "e_carpathia", end_ww1: "k_serbia", slovenia_independence: "d_carinthia" },
@@ -280,7 +280,7 @@ ModernTimesDatabase::LAND = {
   c_adrianopolis:{ forever_ago: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
   c_smyrna:      { forever_ago: "e_seljuk_turks", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "e_seljuk_turks" },
 
-  c_cephalonia:   { forever_ago: "d_venice", congress_of_vienna: "e_britannia", cephalonia_greek: "k_byzantium" },
+  c_cephalonia:   { forever_ago: "k_venice", congress_of_vienna: "e_britannia", cephalonia_greek: "k_byzantium" },
   d_krete:       { forever_ago: "e_seljuk_turks", crete_independence: "d_krete", treaty_of_london: "k_byzantium" }, # De facto Greek in 1908
 
   d_esztergom:    { forever_ago: "e_carpathia", end_ww1: "k_hungary" },
@@ -305,7 +305,7 @@ ModernTimesDatabase::LAND = {
   c_lubusz:       { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
 
   d_athens:      { forever_ago: "e_seljuk_turks", greece_independence: "k_byzantium" },
-  d_achaia:      { forever_ago: "d_venice", treaty_of_passarowitz: "e_seljuk_turks", greece_independence: "k_byzantium" },
+  d_achaia:      { forever_ago: "k_venice", treaty_of_passarowitz: "e_seljuk_turks", greece_independence: "k_byzantium" },
   c_naxos:       { forever_ago: "e_seljuk_turks", greece_independence: "k_byzantium" },
   c_euboia:      { forever_ago: "e_seljuk_turks", greece_independence: "k_byzantium" },
   d_burgundy:    { forever_ago: "e_france" },
@@ -365,12 +365,12 @@ ModernTimesDatabase::LAND = {
   c_galaz:        { forever_ago: "e_seljuk_turks", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "k_ruthenia"},
   d_moldau:       { forever_ago: "e_seljuk_turks", treaty_of_jassy: "e_russia", end_ww1: "k_ruthenia"},
 
-  d_verona:     { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
-  d_venice:     { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
-  c_zadar:        { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
-  c_split:        { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
+  d_verona:     { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
+  d_venice:     { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
+  c_zadar:        { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+  c_split:        { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
   d_carinthia:    { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
-  c_istria:       { forever_ago: "d_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+  c_istria:       { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
 
   d_slavonia:     { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
   d_croatia:      { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },

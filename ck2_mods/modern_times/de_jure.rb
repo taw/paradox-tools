@@ -13,6 +13,7 @@ ModernTimesDatabase::DE_JURE = {
   "d_nikaea"      => "k_anatolia",
   "d_provence"    => "k_aquitaine",
   "d_dauphine"    => "k_aquitaine",
+  "d_verona"      => "k_venice",
   "k_prussia"     => { hre_disbanded: "e_germany" },
   "k_frisia"      => { hre_disbanded: "e_germany" },
   "k_germany"     => { hre_disbanded: "e_germany" },

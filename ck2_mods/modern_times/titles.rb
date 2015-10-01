@@ -587,12 +587,11 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
     name: "Commonwealth / Commonwealth",
   },
-  # Make them king level maybe?
-  d_genoa: {
+  k_genoa: {
     culture: :italian,
     religion: :catholic,
   },
-  d_venice: {
+  k_venice: {
     culture: :italian,
     religion: :catholic,
   },
