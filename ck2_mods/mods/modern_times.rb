@@ -803,6 +803,28 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def add_holy_sites!(sites)
+    found = Set[]
+    add_sites = proc do |node|
+      node.each do |k,v|
+        if sites[k]
+          found << k
+          # This is nasty but produces better looking output that add!
+          v.instance_eval do
+            idx = @list.index{|a,| a == "color2" } or raise
+            @list[idx+1,0] = sites[k].map{|rel| ["holy_site", rel] }
+          end
+        elsif v.is_a?(PropertyList) and k =~ /\A[dke]/
+          add_sites[v]
+        end
+      end
+    end
+    patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
+      add_sites[node]
+    end
+    raise unless found == Set[*sites.keys]
+  end
+
   def setup_protestantism!
     %W[religion_icon_strip.dds religion_icon_strip_small.dds religion_icon_strip_big.dds].each do |name|
       create_file! "gfx/interface/#{name}", open("data/modern_times/#{name}", "rb", &:read)
@@ -885,6 +907,14 @@ class ModernTimesGameModification < CK2GameModification
       "PROTESTANT_PRIMATE" => "Ecumenical Primate",
       "reformed" => "Reformed",
       "reformed_DESC" => "Reformed/Calvinist branch of Protestantism"
+
+    add_holy_sites!(
+      "c_kent"      => ["protestant", "reformed"],
+      "c_roma"      => ["protestant", "reformed"],
+      "c_koln"      => ["protestant", "reformed"],
+      "c_jerusalem" => ["protestant", "reformed"],
+      "c_santiago"  => ["protestant", "reformed"],
+    )
   end
 
   def apply!
