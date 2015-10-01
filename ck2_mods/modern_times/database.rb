@@ -75,32 +75,42 @@ class ModernTimesDatabase
       ModernTimesDatabase::TITLES.each do |title, data|
         title = title.to_s
         @titles[title] = {}
-        extra_keys = data.keys - %i[culture religion capital name liege autoholders]
+        extra_keys = data.keys - %i[culture religion capital name liege autoholders demesne]
         raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
         raise "Culture must be specified for every title: #{title}" unless data[:culture]
         raise "Religion must be specified for every title: #{title}" unless data[:religion]
 
-        @titles[title][:culture] = data[:culture].to_s
-        @titles[title][:religion] = data[:religion].to_s
-        @titles[title][:autoholders] = !!data[:autoholders]
-        if data[:capital]
-          @titles[title][:capital] = data[:capital].to_s
+        capital = if data[:capital]
+          data[:capital].to_s
         elsif title =~ /\Ac_/
-          @titles[title][:capital] = title
+          title
         else
-          @titles[title][:capital] = map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
+          map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
         end
-        if data[:liege]
-          @titles[title][:liege] = data[:liege].map{|d,n| [resolve_date(d), n] }
+
+        if data[:demesne] and title !~ /\A[ke]_/
+          warn "Only king/emperor level titles should have demesne specified: #{title}"
         end
+
+        demesne = [map.duchy_for_county(capital)] + (data[:demesne] || []).map(&:to_s)
+
         if data[:name]
-          if data[:name].is_a?(String)
-            names = {:forever_ago => data[:name]}
-          else
-            names = data[:name]
-          end
-          @titles[title][:name] = names.map{|d,n| [resolve_date(d), n] }
+          names = data[:name]
+          names = {forever_ago: names} if names.is_a?(String)
+          names = names.map{|d,n| [resolve_date(d), n] }
+        else
+          names = nil
         end
+
+        @titles[title] = {
+          culture: data[:culture].to_s,
+          religion: data[:religion].to_s,
+          autoholders: !!data[:autoholders],
+          capital: capital,
+          demesne: demesne,
+          liege: data[:liege] && data[:liege].map{|d,n| [resolve_date(d), n] },
+          name: names,
+        }
       end
     end
     @titles
@@ -281,6 +291,11 @@ class ModernTimesDatabase
       end
     end
     @title_needs_extra_holders
+  end
+
+  def in_historical_demesne?(liege, county)
+    return true unless liege =~ /\A[ke]_/
+    !(map.landed_titles_lookup[county] & titles[liege][:demesne]).empty?
   end
 
 private

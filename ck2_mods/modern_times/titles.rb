@@ -4,12 +4,14 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     capital: :c_middlesex,
     name: "United Kingdom / British",
+    demesne: ["d_somerset"],
   },
   k_ireland: {
     culture: :irish,
     religion: :catholic,
     capital: :c_dublin,
     name: "Ireland / Irish",
+    demesne: ["d_leinster"]
   },
   d_iceland: {
     culture: :norwegian,
@@ -21,35 +23,41 @@ ModernTimesDatabase::TITLES = {
     culture: :portuguese,
     religion: :catholic,
     capital: :c_lisboa,
+    demesne: [], # 4 counties should be fine
   },
   e_spain: {
     culture: :castillan,
     religion: :catholic,
     capital: :c_toledo,
     name: "Spain / Spanish",
+    demesne: ["d_cordoba"],
   },
   e_france: {
     culture: :frankish,
     religion: :catholic,
     capital: :c_ile_de_france,
     name: "France / French",
+    demesne: ["d_champagne"],
   },
   k_papal_state: {
     culture: :italian,
     religion: :catholic,
     capital: :c_roma,
+    demesne: [], # Latium is OK
   },
   k_italy: {
     culture: :italian,
     religion: :catholic,
     capital: :c_piemonte,
-    name: "Piedmont-Sardinia / Piedmontese-Sardinian"
+    name: "Piedmont-Sardinia / Piedmontese-Sardinian",
+    demesne: ["d_sardinia"],
   },
   e_italy: {
     culture: :italian,
     religion: :catholic,
     capital: :c_orvieto,
     name: "Italy / Italian",
+    demesne: ["d_susa"],
   },
   d_cyprus: {
     culture: :greek,
@@ -66,17 +74,20 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     capital: :c_sjaelland,
     name: "Denmark / Danish",
+    demesne: ["d_slesvig"],
   },
   k_sweden: {
     culture: :swedish,
     religion: :protestant,
     capital: :c_uppland,
+    demesne: ["d_ostergotland"],
   },
   k_norway: {
     culture: :norwegian,
     religion: :protestant,
     capital: :c_akershus,
     name: "Norway / Norwegian",
+    demesne: [], # 4 counties is enough
   },
   c_maldives: {
     culture: :tamil,
@@ -88,11 +99,13 @@ ModernTimesDatabase::TITLES = {
     religion: :buddhist,
     capital: :c_dakhina_desa,
     name: "Sri Lanka / Sri Lankan",
+    demesne: ["d_sinhala"],
   },
   e_india: {
     culture: :hindustani,
     religion: :hindu,
     capital: :c_delhi,
+    demesne: ["d_haritanaka"],
   },
   d_luxembourg: {
     culture: :dutch,
@@ -104,6 +117,7 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     capital: :c_moskva,
     name: { end_ww1: "Soviet Union / Soviet", fall_soviet_union: nil},
+    demesne: ["d_tver", "c_ingria"],
   },
   d_flanders: {
     culture: :dutch,
@@ -116,31 +130,36 @@ ModernTimesDatabase::TITLES = {
     religion: :reformed,
     capital: :c_holland,
     name: "Netherlands / Dutch",
+    demesne: [], # Should be fine
   },
   e_carpathia: {
     culture: :german,
     religion: :catholic,
     capital: :c_osterreich,
     name: "Austria-Hungary / Austro-Hungarian",
+    demesne: ["d_tyrol"],
   },
   k_bavaria: {
     culture: :german,
     religion: :catholic,
     capital: :c_osterreich,
     name: "Austria / Austrian",
+    demesne: ["d_tyrol"],
   },
   k_pomerania: {
     culture: :german,
     religion: :protestant,
     capital: :c_brandenburg,
     name: "Prussia / Prussian",
+    demesne: ["d_prussia"],
   },
   e_germany: {
     culture: :german,
     religion: :catholic,
     # This is somewhat silly, but we want to have no capitals outside country (as Berlin was 1945-1990)
     capital: :c_nassau,
-    name: {times_immemorial: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" }
+    name: {times_immemorial: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" },
+    demesne: ["d_brandenburg"],
   },
   d_pomeralia: {
     culture: :german,
@@ -153,6 +172,7 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     capital: :c_brandenburg,
     name: "East Germany / East German",
+    demesne: ["d_saxony"],
   },
   c_lubeck: {
     culture: :german,
@@ -213,7 +233,8 @@ ModernTimesDatabase::TITLES = {
     culture: :bohemian,
     religion: :catholic,
     capital: :c_praha,
-    name: { czechoslovakia_independence: "Czechoslovakia / Czechoslovak",  czechoslovakia_dissolution: nil}
+    name: { czechoslovakia_independence: "Czechoslovakia / Czechoslovak",  czechoslovakia_dissolution: nil},
+    demesne: [], # 5 counties is enough
   },
   d_nyitra: {
     culture: :bohemian,
@@ -226,6 +247,7 @@ ModernTimesDatabase::TITLES = {
     religion: :reformed,
     capital: :c_bern,
     name: "Switzerland / Swiss",
+    demesne: [],
   },
   e_seljuk_turks: {
     culture: :turkish,
@@ -274,6 +296,7 @@ ModernTimesDatabase::TITLES = {
     culture: :greek,
     religion: :orthodox,
     capital: :c_atheniai,
+    demesne: ["d_thessalonika"],
   },
   k_bulgaria: {
     culture: :bulgarian,
@@ -369,6 +392,7 @@ ModernTimesDatabase::TITLES = {
     culture: :polish,
     religion: :catholic,
     capital: :c_plock, # Not Krakow
+    demesne: ["d_lesser_poland"],
   },
   d_azerbaijan: {
     culture: :persian, # close enough
@@ -384,6 +408,7 @@ ModernTimesDatabase::TITLES = {
     culture: :egyptian_arabic,
     religion: :sunni,
     liege: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: nil },
+    demesne: ["d_alexandria"],
   },
   d_nefoud: {
     culture: :bedouin_arabic,
@@ -400,6 +425,8 @@ ModernTimesDatabase::TITLES = {
   k_hungary: {
     culture: :hungarian,
     religion: :catholic,
+    capital: :c_pest,
+    demesne: ["d_esztergom"],
   },
   k_georgia: {
     culture: :georgian,
@@ -411,6 +438,7 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     name: "Ukraine / Ukrainian",
     liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    demesne: ["d_pereyaslavl"],
   },
   d_vitebsk: {
     culture: :russian, # :severian but it would autoconvert anyway
@@ -427,7 +455,7 @@ ModernTimesDatabase::TITLES = {
     culture: :croatian,
     religion: :catholic,
     name: "Slovenia / Slovenian",
-    capital: :c_steimark,
+    capital: :c_steiermark,
   },
   k_croatia: {
     culture: :croatian,
@@ -453,6 +481,7 @@ ModernTimesDatabase::TITLES = {
   k_syria: {
     culture: :levantine_arabic,
     religion: :shiite,
+    demesne: ["d_tripoli"], # traditional Alawite lands
   },
   d_galilee: {
     culture: :levantine_arabic,
@@ -503,6 +532,7 @@ ModernTimesDatabase::TITLES = {
     culture: :ethiopian,
     religion: :miaphysite,
     name: "Ethiopia / Ethiopian",
+    demesne: ["d_gojjam"],
   },
   d_timbuktu: {
     culture: :manden,
@@ -524,6 +554,7 @@ ModernTimesDatabase::TITLES = {
   k_mali: {
     culture: :manden,
     religion: :sunni,
+    capital: :c_mali,
   },
   k_nubia: {
     culture: :nubian,

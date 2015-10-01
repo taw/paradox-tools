@@ -269,17 +269,9 @@ class ModernTimesGameModification < CK2GameModification
       raise "No lieges for #{liege}" unless holders[liege]
       add_holders! node, holders[liege], start_date, end_date
     else
-      capital_duchy = @db.capital_duchy(liege)
       this_duchy    = @map.duchy_for_county(title)
-      this_kingdom  = @map.landed_titles_lookup[title][-2]
-      this_empire   = @map.landed_titles_lookup[title][-1]
-
-      if capital_duchy == this_duchy
+      if @db.in_historical_demesne?(liege, title)
         add_holders! node, holders[liege], start_date, end_date
-      # elsif liege == "e_britannia" and ["e_rajastan", "e_bengal", "e_deccan"].include?(this_empire)
-      #   add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
-      # elsif this_kingdom != "k_delhi" and liege == "e_india"
-      #   add_holders! node, regional_vassals(liege, this_kingdom), start_date, end_date
       else
         add_holders! node, regional_vassals(liege, this_duchy), start_date, end_date
       end
