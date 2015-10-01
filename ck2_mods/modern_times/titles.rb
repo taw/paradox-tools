@@ -150,7 +150,7 @@ ModernTimesDatabase::TITLES = {
   },
   k_saxony: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
     capital: :c_brandenburg,
     name: "East Germany / East German",
   },
@@ -160,7 +160,7 @@ ModernTimesDatabase::TITLES = {
   },
   c_nassau: {
     culture: :german,
-    religion: :catholic,
+    religion: :reformed,
   },
   c_thuringen: {
     culture: :german,
@@ -168,7 +168,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_franconia: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
     name: "Hesse / Hessian",
   },
   c_oldenburg: {
@@ -203,11 +203,11 @@ ModernTimesDatabase::TITLES = {
   },
   c_weimar: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   c_anhalt: {
     culture: :german,
-    religion: :catholic,
+    religion: :protestant,
   },
   k_bohemia: {
     culture: :bohemian,
@@ -569,6 +569,7 @@ ModernTimesDatabase::TITLES = {
     religion: :shiite,
     autoholders: true,
   },
+  # Yes, this is Catholic ruler and Protestant population
   d_saxony: {
     culture: :german,
     religion: :catholic,

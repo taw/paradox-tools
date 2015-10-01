@@ -9,10 +9,20 @@ ModernTimesDatabase::CULTURES = {
   "d_carinthia"  => "croatian",
   "c_steiermark" => "croatian",
   "d_armenia"    => "armenian",
+  "c_famagusta"  => "turkish",
+  "c_byzantion"  => "turkish",
+  "c_trent"      => "german",
+  "c_dublin"     => "irish",
 
   # Just remove mongols, all of these horde cultures feel temporary
   "k_cuman"      => "cuman",
   "k_turkestan"  => "cuman",
-  "k_khiva"      => "karluk",
   "k_alania"     => "alan",
+  "c_khopyor"    => "cuman",
+  "c_chortitza"  => "bolghar",
+  "c_dashhowuz"  => "karluk",
+  "c_ural"       => "cuman",
+  "d_samarkand"  => "karluk",
+  "c_bashkirs"   => :keep,
+  "c_mangyshlak" => :keep,
 }

@@ -25,7 +25,16 @@ ModernTimesDatabase::RELIGIONS = {
   "d_damietta"    => "sunni",
   "d_sevilla"     => "catholic",
   "d_granada"     => "catholic",
-
-  # UPDATES:
-  # "c_algeciras"   => "protestant",
+  "c_algeciras"   => "protestant",
+  "d_prussia"     => "protestant",
+  "d_meissen"     => "protestant",
+  "d_saxony"      => "protestant",
+  "c_famagusta"   => "sunni",
+  "c_byzantion"   => "sunni",
+  "d_lithuanians" => "catholic",
+  "d_yatviags"    => "catholic",
+  "c_dublin"      => "catholic",
+  "c_ulster"      => "protestant",
+  "c_tyrone"      => "protestant",
+  "c_nassau"      => "reformed",
 }

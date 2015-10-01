@@ -184,30 +184,36 @@ ModernTimesDatabase::HOLDERS = {
       dynasty: "Hohenzollern",
       lived: "1831.10.18 - 1888.6.15",
       father: "k_pomerania Wilhelm 1",
+      religion: :protestant,
     },
     "1888.6.15" => {
       lived: "1859.1.27 - 1941.6.4",
       name: "Wilhelm",
       dynasty: "Hohenzollern",
       father: "Friedrich 1",
+      religion: :protestant,
     },
     # Backdate, ignore interregnum
     "1918.11.28" => {
       name: "Friedrich",
       dynasty: "Ebert",
+      religion: :catholic,
     },
     # Ignore temporary ones
     "1925.5.12" => {
       name: "Paul",
       dynasty: "von Hindenburg", lived: "- 1934.8.2",
+      religion: :protestant,
     },
     "1934.8.2" => {
       name: "Adolf",
       dynasty: "Hitler", lived: "- 1945.4.30",
+      religion: :catholic,
     },
     "1945.4.30" => {
       name: "Karl",
       dynasty: "Doenitz", lived: "- 1980.12.24",
+      religion: :protestant,
     },
     # Now this is bullshit on so many levels...
     # German "presidents" do nothing, so choosing chancellor as much more prominent person
@@ -215,38 +221,46 @@ ModernTimesDatabase::HOLDERS = {
     end_ww2: {
       name: "Konrad",
       dynasty: "Adenauer",
+      religion: :catholic,
     },
     "1963.10.17" => {
       name: "Ludwig",
       dynasty: "Erhard",
+      religion: :protestant,
     },
     "1966.12.1" => {
       name: "Kurt Georg",
       dynasty: "Kiesinger",
+      religion: :catholic,
     },
     "1969.10.22" => {
       name: "Willy",
       dynasty: "Brandt",
+      religion: :protestant,
     },
     "1974.5.16" => {
       name: "Helmut",
       dynasty: "Schmidt",
       lived: "1918.12.23 -",
+      religion: :protestant,
     },
     "1982.10.1" => {
       name: "Helmut",
       dynasty: "Kohl",
       lived: "1930.4.3 -",
+      religion: :catholic,
     },
     "1998.10.27" => {
       name: "Gerhard",
       dynasty: "Schroeder",
       lived: "1944.4.7 -",
+      religion: :protestant,
     },
     "2005.11.22" => {
       name: "Angela",
       dynasty: "Merkel",
       female: true,
+      religion: :protestant,
     }
   },
   e_russia: {
@@ -1090,23 +1104,27 @@ ModernTimesDatabase::HOLDERS = {
       name: "Adolphe",
       dynasty: "Nassau-Weilburg",
       lived: "1817.7.24 - 1905.11.17",
+      religion: "reformed",
     },
     "1905.11.17" => {
       name: "Guillaume",
       dynasty: "Nassau-Weilburg",
       lived: "1852.4.22 - 1912.2.25",
       father: "Adolphe",
+      religion: "reformed",
     },
     "1912.2.25" => {
       name: "Marie-Adelaide",
       dynasty: "Nassau-Weilburg",
       lived: "1894.6.14 - 1924.1.24",
+      religion: "catholic",
       female: true,
     },
     "1919.1.14" => {
       name: "Charlotte",
       dynasty: "Nassau-Weilburg",
       lived: "1896.1.23 - 1985.7.9",
+      religion: "catholic",
       female: true,
     },
     "1964.11.12" => {
@@ -1114,12 +1132,14 @@ ModernTimesDatabase::HOLDERS = {
       dynasty: "Nassau-Weilburg",
       lived: "1921.1.5 -",
       mother: "Charlotte",
+      religion: "catholic",
     },
     "2000.10.7" => {
       name: "Henri",
       dynasty: "Nassau-Weilburg",
       lived: "1955.4.16 -",
       father: "Jean",
+      religion: "catholic",
     },
   },
   d_lithuanians: {
