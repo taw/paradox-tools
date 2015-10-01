@@ -1,6 +1,5 @@
 require "digest"
-
-Pathname(__dir__).glob("../modern_times/*.rb").each{|rb| require_relative rb}
+require_relative "../modern_times/database"
 
 class Random
   def self.keyed(key)
@@ -745,40 +744,10 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_de_jure_map!
-    {
-      "k_venice"    => "e_italy",
-      "k_sicily"    => "e_italy",
-      "d_aragon"    => "k_aragon",
-      "d_granada"   => "k_castille",
-      "d_brandenburg" => "k_pomerania",
-      "d_prussia"   => "k_pomerania",
-      "k_ruthenia"  => "e_wendish_empire",
-      "k_croatia"   => "e_carpathia",
-      "d_ryazan"    => "k_rus",
-      "d_livonia"   => "k_lithuania",
-      "d_iceland"   => "k_denmark",
-      "d_nikaea"    => "k_anatolia",
-      "d_provence"  => "k_aquitaine",
-      "d_dauphine"  => "k_aquitaine",
-      "k_prussia"   => { hre_disbanded: "e_germany" },
-      "k_frisia"    => { hre_disbanded: "e_germany" },
-      "k_germany"   => { hre_disbanded: "e_germany" },
-      "k_lotharingia" => { hre_disbanded: "e_germany" },
-      "k_bavaria"   => { hre_disbanded: "e_carpathia" },
-      "k_bohemia"   => { hre_disbanded: "e_carpathia" },
-    }.each do |title, liege|
-      # FIXME: This is horrible hack
-      path = "history/titles/#{title}.txt"
-      if glob(path) == []
-        create_mod_file!(path, PropertyList[])
-      end
-
-      patch_mod_file!(path) do |node|
-        if liege.is_a?(String)
-          liege = {:forever_ago => liege}
-        end
+    @db.de_jure.each do |title, liege|
+      patch_mod_file!("history/titles/#{title}.txt", autocreate: true) do |node|
         liege.each do |date, title|
-          node.add! @db.resolve_date(date), PropertyList["de_jure_liege", title]
+          node.add! date, PropertyList["de_jure_liege", title]
         end
       end
     end

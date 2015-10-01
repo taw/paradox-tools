@@ -91,8 +91,17 @@ class ParadoxModBuilder
     (@target + name).parent.mkpath
     (@target + name).write(content)
   end
-  def patch_file!(name, force_create: false, reencode: false)
-    orig_content = resolve(name).read
+  def patch_file!(name, force_create: false, reencode: false, autocreate: false)
+    if autocreate
+      begin
+        orig_content = resolve(name).read
+      rescue
+        force_create = true
+        orig_content = ""
+      end
+    else
+      orig_content = resolve(name).read
+    end
     if reencode
       encoding = "windows-1252"
       encoding = reencode if reencode != true
@@ -125,8 +134,8 @@ class ParadoxModBuilder
       patch_mod_file!(path, &blk)
     end
   end
-  def patch_mod_file!(path)
-    patch_file!(path, reencode: true) do |content|
+  def patch_mod_file!(path, **args)
+    patch_file!(path, reencode: true, **args) do |content|
       orig_node = ParadoxModFile.new(string: content).parse!
       node = Marshal.load(Marshal.dump(orig_node)) # deep clone
       yield(node)

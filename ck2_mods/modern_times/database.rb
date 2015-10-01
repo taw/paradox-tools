@@ -160,6 +160,20 @@ class ModernTimesDatabase
     @holders
   end
 
+  def de_jure
+    unless @de_jure
+      @de_jure = {}
+      ModernTimesDatabase::DE_JURE.each do |title, lieges|
+        title = title.to_s
+        lieges = {forever_ago: lieges} if lieges.is_a?(String)
+        @de_jure[title] = lieges.map do |date, liege|
+          [resolve_date(date), liege]
+        end
+      end
+    end
+    @de_jure
+  end
+
   def title_has_land
     unless @title_has_land
       @title_has_land = {}
@@ -320,3 +334,6 @@ private
     @builder.map
   end
 end
+
+# This is fairly silly. Load last so we have class loaded already
+Pathname(__dir__).glob("*.rb").each{|rb| require_relative rb}
