@@ -75,7 +75,7 @@ ModernTimesDatabase::TITLES = {
   k_norway: {
     culture: :norwegian,
     religion: :waldensian,
-    capital: :c_bergenshus,
+    capital: :c_akershus,
     name: "Norway / Norwegian",
   },
   c_maldives: {

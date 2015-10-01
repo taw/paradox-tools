@@ -717,6 +717,9 @@ class ModernTimesGameModification < CK2GameModification
         culture = "ashkenazi"
         religion = "jewish"
       end
+      if duchy == "d_alexandria" or duchy == "d_cairo" or duchy == "d_damietta"
+        religion = "sunni"
+      end
 
       # p [title, {orig_culture => culture}, {orig_religion => religion}, @map.landed_titles_lookup[title]]
       if culture != orig_culture
@@ -748,6 +751,10 @@ class ModernTimesGameModification < CK2GameModification
       "k_croatia"   => "e_carpathia",
       "d_ryazan"    => "k_rus",
       "d_livonia"   => "k_lithuania",
+      "d_iceland"   => "k_denmark",
+      "d_nikaea"    => "k_anatolia",
+      "d_provence"  => "k_aquitaine",
+      "d_dauphine"  => "k_aquitaine",
       "k_prussia"   => { hre_disbanded: "e_germany" },
       "k_frisia"    => { hre_disbanded: "e_germany" },
       "k_germany"   => { hre_disbanded: "e_germany" },
