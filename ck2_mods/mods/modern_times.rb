@@ -650,89 +650,26 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   # 14th century map is mostly reasonable, but there's a bit of crazy we need to fix
+  # https://en.wikipedia.org/wiki/Karluk_languages
+  # https://en.wikipedia.org/wiki/Kipchak_languages
+  # uzbeks -> karluk
+  # kazakhs -> cuman
+  # tatars -> bolghar
   def setup_province_population!
-    # https://en.wikipedia.org/wiki/Karluk_languages
-    # https://en.wikipedia.org/wiki/Kipchak_languages
-    # uzbeks -> karluk
-    # kazakhs -> cuman
-    # tatars -> bolghar
     patch_mod_files!("history/provinces/*.txt") do |node|
       title = node["title"]
-      orig_culture  = culture  = [node["culture"], *node.list.map{|_,v| v["culture"] if v.is_a?(PropertyList)}].compact.last
-      orig_religion = religion = [node["religion"], *node.list.map{|_,v| v["religion"] if v.is_a?(PropertyList)}].compact.last
-      county, duchy, kingdom, empire = @map.landed_titles_lookup[title]
+      changes = node.values.grep(PropertyList)
+      culture  = [node["culture"], *changes.map{|v| v["culture"] }].compact.last
+      religion = [node["religion"], *changes.map{|v| v["religion"] }].compact.last
 
-      if kingdom == "k_persia" or ["d_basra", "d_tigris", "d_baghdad", "d_kermanshah", "d_tripoli"].include?(duchy)
-        religion = "shiite"
-      end
-      if culture == "mongol"
-        if kingdom == "k_mongolia"
-          # Mongols in Mongolia are OK
-        elsif kingdom == "k_taurica" or kingdom == "k_ruthenia"
-          culture = "bolghar"
-        elsif kingdom == "k_khiva"
-          culture = "karluk"
-        elsif kingdom == "k_alania"
-          culture = "alan"
-        else
-          # Too many
-          culture = "cuman"
-        end
-      end
-      if duchy == "k_khiva"
-        culture = "karluk"
-      end
-      if duchy == "d_nyitra" or county == "c_pressburg"
-        culture = "bohemian"
-      end
-      if duchy == "d_carinthia" or county == "c_steiermark"
-        culture = "croatian"
-      end
-      if duchy == "d_armenia"
-        culture = "armenian"
-      end
-      if kingdom == "k_england" or duchy == "d_mecklemburg"
-        religion = "protestant"
-      end
-      if empire == "e_scandinavia" or duchy == "d_brandenburg" or duchy == "d_brunswick" or duchy == "d_courland"
-        if duchy != "d_kola" and duchy != "d_karelia"
-          religion = "protestant"
-        end
-      end
-      if duchy == "d_holland" or duchy == "d_gelre" or duchy == "d_upper_burgundy" or kingdom == "k_scotland"
-        religion = "reformed"
-      end
-      if duchy == "d_crimea"
-        religion = "orthodox"
-        culture = "russian"
-      end
-      if duchy == "d_armenia"
-        religion = "orthodox"
-      end
-      if culture == "andalusian_arabic"
-        if county == "c_algeciras"
-          culture = "english"
-        else
-          culture = "castillan"
-        end
-        religion = "catholic"
-      end
-      if duchy == "d_ascalon"
-        culture = "ashkenazi"
-        religion = "jewish"
-      end
-      if duchy == "d_alexandria" or duchy == "d_cairo" or duchy == "d_damietta"
-        religion = "sunni"
-      end
+      new_religion = @db.province_religion(title) || :keep
+      new_culture  = @db.province_culture(title) || :keep
 
-      # p [title, {orig_culture => culture}, {orig_religion => religion}, @map.landed_titles_lookup[title]]
-      if culture != orig_culture
-        node.add! @db.resolve_date(:forever_ago), PropertyList["culture", culture]
-        # p [title, {orig_culture => culture}, orig_religion, @map.landed_titles_lookup[title]]
+      if new_culture != culture and new_culture != :keep
+        node.add! @db.resolve_date(:forever_ago), PropertyList["culture", new_culture]
       end
-      if religion != orig_religion
-        node.add! @db.resolve_date(:forever_ago), PropertyList["religion", religion]
-        # p [title, orig_culture, {orig_religion => religion}, @map.landed_titles_lookup[title]]
+      if new_religion != religion and new_religion != :keep
+        node.add! @db.resolve_date(:forever_ago), PropertyList["religion", new_religion]
       end
     end
   end

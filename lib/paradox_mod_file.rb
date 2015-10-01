@@ -56,10 +56,7 @@ class ParadoxModFile
       )
       until s.eos?
         if s.scan(/(\p{Space})+|#.*$/)
-          next
-        elsif s.scan(/,/)
-          # Seen in some array defintions
-          next
+          # pass
         elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
           @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
         elsif s.scan(/([\-\+]?\d+\.\d+)(?![^}=\s])/)
@@ -81,6 +78,8 @@ class ParadoxModFile
         elsif s.scan(/"([^"]*)"/)
           # Is there ever any weird escaping here?
           @tokens << s[1]
+        elsif s.scan(/,/)
+          # Seen in some array defintions, pass
         else
           raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}: `#{s.rest[0,20]}...'"
         end

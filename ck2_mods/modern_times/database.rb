@@ -222,8 +222,24 @@ class ModernTimesDatabase
     MultiRange.new(*ranges)
   end
 
+  def cultures
+    ModernTimesDatabase::CULTURES
+  end
+
+  def religions
+    ModernTimesDatabase::RELIGIONS
+  end
+
   def county_ownership(county)
     map.landed_titles_lookup[county].map{|t| land[t] }.find(&:itself)
+  end
+
+  def province_religion(county)
+    map.landed_titles_lookup[county].map{|t| religions[t] }.find(&:itself)
+  end
+
+  def province_culture(county)
+    map.landed_titles_lookup[county].map{|t| cultures[t] }.find(&:itself)
   end
 
   def capital_duchy(title)
