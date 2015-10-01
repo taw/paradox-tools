@@ -903,10 +903,20 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   # FIXME: This is a huge hack
-  # TODO: localization and icons
   def setup_protestantism!
+    %W[religion_icon_strip.dds religion_icon_strip_small.dds religion_icon_strip_big.dds].each do |name|
+      create_file! "gfx/interface/#{name}", open("data/modern_times/#{name}", "rb", &:read)
+    end
+    generalstuff = ParadoxModFile.new(path: "data/vanilla/generalstuff.gfx").parse!
+    generalstuff["spriteTypes"].find_all("spriteType").each do |data|
+      next unless data["name"] =~ /\AGFX_religion_icon_strip/
+      raise unless data["noOfFrames"] = 52
+      data["noOfFrames"] = 54
+    end
+    create_mod_file! "interface/generalstuff.gfx", generalstuff
+
     create_mod_file! "history/titles/d_protestant.txt", PropertyList[
-      Date.parse("20.1.1"), PropertyList["active", false],
+      Date.parse("0020.1.1"), PropertyList["active", false],
     ]
     create_file! "common/landed_titles/modern_times.txt",
     'd_protestant = {
@@ -950,7 +960,7 @@ class ModernTimesGameModification < CK2GameModification
           "graphical_culture", "westerngfx",
           "icon", 53,
           "heresy_icon", 54,
-          "color", [0.6, 0.6, 0.7],
+          "color", [0.4, 0.4, 0.6],
           "crusade_name", "CRUSADE",
           "scripture_name", "THE_BIBLE",
           "priest_title", "PRIEST",
