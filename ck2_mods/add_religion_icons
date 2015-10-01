@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+require "rmagick"
+
+class AddReligionIcons
+  def run!
+    medium_path = Pathname("data/vanilla/religion_icon_strip.dds")
+    small_path  = Pathname("data/vanilla/religion_icon_strip_small.dds")
+    big_path    = Pathname("data/vanilla/religion_icon_strip_big.dds")
+
+    medium = Magick::ImageList.new(medium_path)[0]
+    small  = Magick::ImageList.new(small_path)[0]
+    big    = Magick::ImageList.new(big_path)[0]
+
+    Pathname("data/modern_times").mkpath
+    add_icons!(medium).write("data/modern_times/religion_icon_strip.dds")
+    add_icons!(small).write("data/modern_times/religion_icon_strip_small.dds")
+    add_icons!(big).write("data/modern_times/religion_icon_strip_big.dds")
+  end
+
+  def add_icons!(image)
+    x = image.columns
+    y = image.rows
+    icons = 52
+    raise unless x == y * icons
+
+    pixels = image.transpose.export_pixels(0, 0, y, x, "RGBA")
+    icon_catholic_pixels = pixels[0, pixels.size / icons]
+
+    icon = Magick::Image.new(y, y)
+    icon.import_pixels(0, 0, y, y, "RGBA", icon_catholic_pixels)
+
+    pixels += icon.modulate(1.0,1.0,0.1).export_pixels(0,0,y,y,"RGBA")
+    pixels += icon.modulate(1.0,1.0,0.5).export_pixels(0,0,y,y,"RGBA")
+    # pixels += icon.modulate(1.0,1.0,1.3).export_pixels(0,0,y,y,"RGBA")
+    new_image = Magick::Image.new(y, x+y*2)
+    new_image.import_pixels(0,0,new_image.columns,new_image.rows,"RGBA",pixels).transpose
+  end
+end
+
+AddReligionIcons.new.run!
