@@ -150,3 +150,8 @@ task "reference" do
   # system "fun_and_balance/build_fun_and_balance_shattered_europe" # not updated to recent version
   FileUtils.mv "output", "reference"
 end
+
+desc "Run tests"
+task "test" do
+  system %q[ruby -e 'Dir["test/*.rb"].each{|x| require "./#{x}"}']
+end
