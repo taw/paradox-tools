@@ -32,4 +32,16 @@ class CK2GameModification < ParadoxGameModification
       overrides.map{|key, val| "NDefines.#{key} = #{val}\n"}.join
     )
   end
+
+  def code_warnings!
+    base = Pathname(__dir__).parent
+    files = $LOADED_FEATURES.select{|path| path.start_with?(base.to_s) }
+    files.each do |path|
+      next if path == __FILE__ # Otherwise it will add line below, and that would be silly
+      Pathname(path).readlines.each_with_index do |line, i|
+        next unless line =~ /TODO|FIXME/
+        warn "#{Pathname(path).relative_path_from(base)}:#{i+1} #{line.strip}"
+      end
+    end
+  end
 end

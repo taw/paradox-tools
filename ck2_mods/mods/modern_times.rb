@@ -936,6 +936,7 @@ class ModernTimesGameModification < CK2GameModification
       cleanup_history_node!(node)
     end
 
+    code_warnings!
     @warnings.sort.each_with_index do |w,i|
       puts "% 3d %s" % [i+1,w]
     end
