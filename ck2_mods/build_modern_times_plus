@@ -25,7 +25,8 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          DynasticDecisionsGameModification,
                          RulerDesignerResetGameModification,
                          OldStyleBanishmentGameModification,
-                         FactionResistanceGameModification
+                         FactionResistanceGameModification,
+                         BiggerWarsBoxGameModification
     create_mod_descriptor!(
       name: "Modern Times Plus",
       path: "mod/modern_times_plus",

@@ -23,7 +23,8 @@ class CK2TweaksModBuilder < ParadoxModBuilder
                          RulerDesignerResetGameModification,
                          OldStyleBanishmentGameModification,
                          SuezCanalGameModification,
-                         FactionResistanceGameModification
+                         FactionResistanceGameModification,
+                         BiggerWarsBoxGameModification
     create_mod_descriptor!(
       name: "CK2 Tweaks",
       path: "mod/ck2tweaks",
