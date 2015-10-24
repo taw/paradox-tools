@@ -882,7 +882,7 @@ class ModernTimesGameModification < CK2GameModification
           "god_names", ["GOD_GOD", "GOD_THE_LORD", "GOD_JESUS", "GOD_THE_BLESSED_VIRGIN"],
           "evil_god_names", ["SATAN", "LUCIFER", "THE_DEVIL"],
           # Protestant Work Ethic
-          "character_modifier", PropertyList["stewardship", 2],
+          "character_modifier", PropertyList["stewardship", 4],
           "priests_can_inherit", false,
           "priests_can_marry", true,
           "religious_clothing_head", 0,
