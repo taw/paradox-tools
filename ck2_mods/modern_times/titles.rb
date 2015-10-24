@@ -157,10 +157,11 @@ ModernTimesDatabase::TITLES = {
   e_germany: {
     culture: :german,
     religion: :catholic,
-    # This is somewhat silly, but we want to have no capitals outside country (as Berlin was 1945-1990)
-    capital: :c_nassau,
+    # It was outside country (as Berlin was 1945-1990)
+    # b_bonn is non-existent barony in d_koln/c_koln
+    capital: :c_brandenburg,
     name: {times_immemorial: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" },
-    demesne: ["d_brandenburg"],
+    demesne: ["d_koln"],
   },
   c_danzig: {
     culture: :german,
@@ -309,6 +310,7 @@ ModernTimesDatabase::TITLES = {
   k_bulgaria: {
     culture: :bulgarian,
     religion: :orthodox,
+    capital: :c_serdica,
   },
   k_baluchistan: {
     culture: :sindhi,
@@ -796,7 +798,7 @@ ModernTimesDatabase::TITLES = {
     autoholders: true,
   },
 
-  ### Just renames, not actual countries
+  ### Just renames or capital moves, not actual countries
   k_taurica: {
     culture: :bolghar,
     religion: :sunni,
@@ -806,5 +808,10 @@ ModernTimesDatabase::TITLES = {
     culture: :russian,
     religion: :orthodox,
     name: "Muscovy / Muscovite",
+  },
+  d_holstein: {
+    culture: :german,
+    religion: :protestant,
+    capital: :c_hamburg,
   },
 }

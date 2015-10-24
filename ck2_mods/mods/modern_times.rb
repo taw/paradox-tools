@@ -314,6 +314,13 @@ class ModernTimesGameModification < CK2GameModification
           "liege", "k_israel"
         ]
         node.add! @db.resolve_date(:israel_independence), PropertyList[]
+      when "d_mamluks"
+        node.add! @db.resolve_date(:times_immemorial), PropertyList[
+          "liege", "e_arabia"
+        ]
+        node.add! @db.resolve_date(:end_of_ottoman_empire), PropertyList[
+          "liege", "k_egypt"
+        ]
       when "d_hashshashin"
         # We really want to resurrect assassins, dated at Iranian Revolution
         node.add! @db.resolve_date(:iranian_revolution), PropertyList[
@@ -563,12 +570,13 @@ class ModernTimesGameModification < CK2GameModification
           laws.add! "law", "imperial_administration"
           laws.add! "law", "vice_royalty_0"
         end
+        # Secondary same-level titles all need to go here :-/
+        if title == "e_india" or title == "k_norway"
+          laws.add! "law", "succ_primogeniture"
+        end
         node.add! @db.resolve_date(:forever_ago), laws
         if title == "e_britannia"
           node.add! @db.resolve_date(:india_independence), PropertyList["law", "feudal_administration"]
-        end
-        if title == "e_arabia"
-          node.add! @db.resolve_date(:end_ww1), PropertyList["law", "feudal_administration"]
         end
       end
     end
@@ -662,7 +670,7 @@ class ModernTimesGameModification < CK2GameModification
       else
         # warn "No castle in #{title}"
       end
-    elsif %W[c_provence c_hamburg c_danzig].include?(title)
+    elsif %W[c_provence c_hamburg c_danzig c_pisa c_gloucester].include?(title)
       if first_city
         node.add! @db.resolve_date(:forever_ago), PropertyList["capital", first_city]
       else
@@ -731,7 +739,7 @@ class ModernTimesGameModification < CK2GameModification
     key_bookmarks = [
       ["BM_CHARLEMAGNE", "DARK_AGES"],
       ["BM_THE_OLD_GODS", "VIKING_ERA"],
-      ["BM_FATE_OF_ENGLAND", "EARLY_MED_INFO"],
+      ["BM_FATE_OF_ENGLAND", "EARLY_MED"],
       ["BM_THE_MONGOLS", "HIGH_MED"],
       ["BM_100_YEARS_WAR", "LATE_MED"],
     ]
@@ -977,14 +985,14 @@ class ModernTimesGameModification < CK2GameModification
     @dynasties        = {}
     setup_title_history!
     setup_title_names!
-    setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
     setup_vassal_dukes!
     save_characters!
     save_dynasties!
+    move_de_jure_capitals!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
     end
-    move_de_jure_capitals!
+    setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
 
     code_warnings!
     @warnings.sort.each_with_index do |w,i|
