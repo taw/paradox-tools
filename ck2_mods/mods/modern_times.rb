@@ -966,6 +966,16 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def murican_invasion!
+    patch_mod_file!("events/sunset_invasion.txt") do |node|
+      # That's the only one that blocks it
+      explorer_event = node.find_all("province_event")[0]
+      explorer_event["trigger"]["year"] = 1890
+      explorer_event["trigger"]["NOT"]["year"] = 1990
+      explorer_event["mean_time_to_happen"]["modifier"]["year"] = 1940
+    end
+  end
+
   def apply!
     @warnings = []
 
@@ -989,6 +999,7 @@ class ModernTimesGameModification < CK2GameModification
     save_characters!
     save_dynasties!
     move_de_jure_capitals!
+    murican_invasion!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
     end
