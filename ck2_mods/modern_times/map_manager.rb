@@ -1,9 +1,11 @@
 class MapManager
   attr_reader :title_capitals, :counties_in, :landed_titles_lookup, :baronies_in
+  attr_reader :title_to_province_id
 
   def initialize(builder)
     @builder = builder
     @province_id_to_title = {}
+    @title_to_province_id = {}
     @landed_titles_lookup = {}
     @title_capitals       = {}
     @counties_in          = {}
@@ -15,6 +17,7 @@ class MapManager
       node = @builder.parse(path)
       title = node["title"]
       @province_id_to_title[id] = title
+      @title_to_province_id[title] = id
     end
 
     deep_search_direct(landed_titles) do |node, path|

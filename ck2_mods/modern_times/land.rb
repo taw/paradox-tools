@@ -223,10 +223,10 @@ ModernTimesDatabase::LAND = {
   c_kuban:          { forever_ago: "e_russia" },
   c_sarpa:          { forever_ago: "e_russia" },
 
-  k_persia:       { forever_ago: "e_persia" },
-  d_sistan:       { forever_ago: "e_persia" },
-  d_kermanshah:   { forever_ago: "e_persia" },
-  c_dailam:       { forever_ago: "e_persia", iranian_revolution: "d_hashshashin" },
+  k_persia:       { forever_ago: "k_persia" },
+  d_sistan:       { forever_ago: "k_persia" },
+  d_kermanshah:   { forever_ago: "k_persia" },
+  c_dailam:       { forever_ago: "k_persia", iranian_revolution: "d_hashshashin" },
 
   # After 1758 Xinjiang in China. Before Dzungar Khanate
   k_khotan:     { forever_ago: "k_khotan" },
@@ -410,7 +410,7 @@ ModernTimesDatabase::LAND = {
   d_amman:   { forever_ago: "e_arabia", end_ww1: "k_arabia" },
 
   # Muscat and Oman
-  d_oman:     { forever_ago: "d_oman", oman_persian: "e_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
+  d_oman:     { forever_ago: "d_oman", oman_persian: "k_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
   c_dhu_zabi:  { forever_ago: "d_oman", general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
 
   c_taizz:   { forever_ago: "e_arabia", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
@@ -424,7 +424,7 @@ ModernTimesDatabase::LAND = {
 
   d_samarkand:  { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "k_khiva" },
 
-  c_bahrein:    { forever_ago: "e_persia", bahrain_1783_invasion: "c_bahrein", bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
+  c_bahrein:    { forever_ago: "k_persia", bahrain_1783_invasion: "c_bahrein", bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
 
   d_yaik:       { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
   c_guryev:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
@@ -447,15 +447,15 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1750 BOOKMARK
 
-  d_azerbaijan:   { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_azerbaijan" },
-  c_semender:     { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia" },
-  c_derbent:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia" },
-  c_lori:         { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_armenia" },
-  c_suenik:       { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia" },
-  c_dwin:         { treaty_of_resht: "e_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia" },
-  c_albania:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
-  c_kartli:       { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
-  c_kakheti:      { treaty_of_resht: "e_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
+  d_azerbaijan:   { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_azerbaijan" },
+  c_semender:     { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia" },
+  c_derbent:      { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia" },
+  c_lori:         { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia", end_ww1: "d_armenia" },
+  c_suenik:       { treaty_of_resht: "k_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia" },
+  c_dwin:         { treaty_of_resht: "k_persia", treaty_of_turkmenchai: "e_russia", end_ww1: "d_armenia" },
+  c_albania:      { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
+  c_kartli:       { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
+  c_kakheti:      { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
 
   d_kabul:       { durrani_afghanistan: "k_afghanistan" },
   c_udabhanda:   { durrani_afghanistan: "k_afghanistan" },

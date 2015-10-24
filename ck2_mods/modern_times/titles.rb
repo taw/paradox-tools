@@ -336,11 +336,12 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
   },
-  e_persia: {
+  k_persia: {
     culture: :persian,
     religion: :shiite,
-    capital: :c_esfahan,
+    capital: :c_rayy,
     name: {"1925.12.15" => "Iran / Iranian"},
+    demesne: ["d_esfahan"],
   },
   k_bengal: {
     culture: :bengali,

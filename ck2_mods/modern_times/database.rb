@@ -172,7 +172,17 @@ class ModernTimesDatabase
             else
               raise "Parse error for lived: #{holder_data[:lived].inspect}"
             end
+
             holder[:events] = holder_data[:events].map{|d,e| [resolve_date(d), e]} if holder_data[:events]
+            # Unfortunately this doesn't seem to do anything.
+            # Does it simply choose primary title?
+            #
+            # Otherwise AI will choose deafult capital, which is perfectly fine
+            # if titles[title][:capital] != map.title_capitals[title]
+            #   holder[:events] ||= []
+            #   holder[:events] << [date, PropertyList["capital", titles[title][:capital]]]
+            # end
+            # holder[:events].sort! if holder[:events]
 
             i = (ruler_counts[[title, holder_data[:name]]] += 1)
             holder[:historical_id] = [title, holder_data[:name], i].join(" ")

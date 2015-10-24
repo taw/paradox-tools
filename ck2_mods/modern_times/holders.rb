@@ -540,7 +540,7 @@ ModernTimesDatabase::HOLDERS = {
       father: "Gustaf Adolf",
     },
   },
-  e_persia: {
+  k_persia: {
     "1785.2.18" => {
       name: "Jafar",
       dynasty: "Zand",

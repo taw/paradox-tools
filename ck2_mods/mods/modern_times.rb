@@ -318,7 +318,7 @@ class ModernTimesGameModification < CK2GameModification
         # We really want to resurrect assassins, dated at Iranian Revolution
         node.add! @db.resolve_date(:iranian_revolution), PropertyList[
           "active", true,
-          "liege", "e_persia",
+          "liege", "k_persia",
           "clr_global_flag", "assassins_destroyed",
         ]
       when "d_knights_templar"
@@ -946,6 +946,18 @@ class ModernTimesGameModification < CK2GameModification
     )
   end
 
+  def move_de_jure_capitals!
+    patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
+      @db.titles.each do |title, title_data|
+        actual_capital  = title_data[:capital]
+        de_jure_capital = map.title_capitals[title]
+        next if actual_capital == de_jure_capital
+        title_node = @map.landed_titles_lookup[title].reverse.inject(node){|n,t| n[t]}
+        title_node["capital"] = @map.title_to_province_id[actual_capital]
+      end
+    end
+  end
+
   def apply!
     @warnings = []
 
@@ -972,6 +984,7 @@ class ModernTimesGameModification < CK2GameModification
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
     end
+    move_de_jure_capitals!
 
     code_warnings!
     @warnings.sort.each_with_index do |w,i|
