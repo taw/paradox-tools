@@ -176,7 +176,7 @@ ModernTimesDatabase::LAND = {
   c_aral:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
   d_turkestan: { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_cuman" },
 
-  d_iceland:    { forever_ago: "k_denmark", iceland_independence: "d_iceland" },
+  d_iceland:    { forever_ago: "d_iceland" },
   c_algeciras:  { forever_ago: "e_spain", treaty_of_utrech: "e_britannia" },
   k_portugal:   { forever_ago: "k_portugal" },
   c_goa:        { forever_ago: "k_portugal", goa_annexation: "e_india" }, # 1505 or so
@@ -252,7 +252,7 @@ ModernTimesDatabase::LAND = {
   c_scalovia:     { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
   c_sambia:       { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "e_russia"},
   c_memel:        { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww1: "d_lithuanians", memel_german: "e_germany", end_ww2: "d_lithuanians" },
-  c_danzig:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", free_danzig_napoleonic: "d_pomeralia", free_danzig_napoleonic_end: "k_pomerania", german_unification: "e_germany", end_ww1: "d_pomeralia", end_ww2: "k_poland"},
+  c_danzig:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", free_danzig_napoleonic: "c_danzig", free_danzig_napoleonic_end: "k_pomerania", german_unification: "e_germany", end_ww1: "c_danzig", end_ww2: "k_poland"},
   d_kiev:        {  forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_ruthenia"},
 
   d_ryazan:     { forever_ago: "e_russia" },

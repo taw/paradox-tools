@@ -603,41 +603,77 @@ class ModernTimesGameModification < CK2GameModification
   # We need to remove county-level bishops as game will make them duchy-level bishops
   # with current automatic vassal creation system
   # Might get them back if we switch to a different system
-  def setup_province_holdings!
-    patch_mod_files!("history/provinces/*.txt") do |node|
-      title = node["title"]
-      holdings = {}
-      capital = nil
-      node.each do |k, v|
-        if k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
-          holdings[k] = v
-          capital ||= k
-        end
-        raise if k == "capital"
-        if k.is_a?(Date)
-          v.each do |kk, vv|
-            holdings[kk] = vv if kk =~ /\Ab_/ and vv =~ /\A(city|castle|temple|tribal)\z/
-            capital = vv if kk == "capital"
-          end
+  def setup_province_holdings!(node)
+    title = node["title"]
+    holdings = {}
+    capital = nil
+    node.each do |k, v|
+      if k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
+        holdings[k] = v
+        capital ||= k
+      end
+      raise if k == "capital"
+      if k.is_a?(Date)
+        v.each do |kk, vv|
+          holdings[kk] = vv if kk =~ /\Ab_/ and vv =~ /\A(city|castle|temple|tribal)\z/
+          capital = vv if kk == "capital"
+          holdings.delete(vv) if kk == "remove_settlement"
         end
       end
-      case holdings[capital]
-      when "castle", "city"
-        # OK
-      when "temple"
-        next if title == "c_roma"
-        first_castle = holdings.keys.find{|c| holdings[c] == "castle"}
-        unless first_castle
-          # warn "No castle in #{title}"
-          next
-        end
-        node.add! @db.resolve_date(:forever_ago), PropertyList["capital", first_castle]
-        # p [title, holdings[capital], capital, holdings]
-      when "tribal"
-        # p [title, holdings[capital], capital, holdings, @map.landed_titles_lookup[title]]
+    end
+
+    # If a tribe, we really don't care
+    return if holdings[capital] == "tribal"
+
+    add_me = node["max_settlements"] - holdings.size
+    if add_me < 0
+      # warn "#{title} has #{holdings.size} holdings but only #{node["max_settlements"]} slots"
+      holdings_to_add = []
+    else
+      holdings_to_add = (map.baronies_in[title] - holdings.keys)[0, add_me]
+    end
+
+    # optimal_order = ["castle", "city", "temple", "castle", "city", "castle", "city"]
+    until holdings_to_add.empty?
+      if holdings.values.count("castle") == 0
+        type = "castle"
+      elsif holdings.values.count("city") == 0
+        type = "city"
+      elsif holdings.values.count("temple") == 0
+        type = "temple"
+      elsif holdings.values.count("castle") > holdings.values.count("city")
+        type = "city"
       else
-        raise
+        type = "castle"
       end
+
+      barony = holdings_to_add.shift
+      node.add! @db.resolve_date(:forever_ago), PropertyList[barony, type]
+      holdings[barony] = type
+    end
+
+    return if title == "c_roma"
+    first_castle = holdings.keys.find{|c| holdings[c] == "castle"}
+    first_city   = holdings.keys.find{|c| holdings[c] == "city"}
+
+    if holdings[capital] == "temple" or ["c_pskov", "c_novgorod"].include?(title)
+      if first_castle
+        node.add! @db.resolve_date(:forever_ago), PropertyList["capital", first_castle]
+      else
+        # warn "No castle in #{title}"
+      end
+    elsif %W[c_provence c_hamburg c_danzig].include?(title)
+      if first_city
+        node.add! @db.resolve_date(:forever_ago), PropertyList["capital", first_city]
+      else
+        warn "No city in #{title}"
+      end
+    end
+  end
+
+  def setup_provinces_holdings!
+    patch_mod_files!("history/provinces/*.txt") do |node|
+      setup_province_holdings!(node)
     end
   end
 
@@ -647,7 +683,7 @@ class ModernTimesGameModification < CK2GameModification
   # uzbeks -> karluk
   # kazakhs -> cuman
   # tatars -> bolghar
-  def setup_province_population!
+  def setup_provinces_population!
     patch_mod_files!("history/provinces/*.txt") do |node|
       title = node["title"]
       changes = node.values.grep(PropertyList)
@@ -916,8 +952,8 @@ class ModernTimesGameModification < CK2GameModification
     @map = MapManager.new(self)
     @db = ModernTimesDatabase.new(self)
 
-    setup_province_holdings!
-    setup_province_population!
+    setup_provinces_holdings!
+    setup_provinces_population!
     setup_nomad_flag!
     setup_de_jure_map!
     setup_protestantism!

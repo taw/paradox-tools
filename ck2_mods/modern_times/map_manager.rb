@@ -1,5 +1,5 @@
 class MapManager
-  attr_reader :title_capitals, :counties_in, :landed_titles_lookup
+  attr_reader :title_capitals, :counties_in, :landed_titles_lookup, :baronies_in
 
   def initialize(builder)
     @builder = builder
@@ -7,6 +7,7 @@ class MapManager
     @landed_titles_lookup = {}
     @title_capitals       = {}
     @counties_in          = {}
+    @baronies_in          = {}
     @landless = {}
 
     @builder.glob("history/provinces/*.txt").each do |path|
@@ -31,6 +32,12 @@ class MapManager
         county = path[-1]
         path.each do |title|
           (@counties_in[title] ||= []) << county
+        end
+      end
+      if path[-1] =~ /\Ab_/
+        barony = path[-1]
+        path.each do |title|
+          (@baronies_in[title] ||= []) << barony
         end
       end
     end

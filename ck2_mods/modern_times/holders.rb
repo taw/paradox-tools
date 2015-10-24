@@ -854,6 +854,7 @@ ModernTimesDatabase::HOLDERS = {
     "2012.5.15"=>{name: "François", dynasty: "Hollande", lived: "1954 -"},
   },
   e_india: {
+    third_maratha_war: { use_all: "e_britannia" },
     "1947.8.15"   => {name: "Jawharlal", dynasty: "Nehru", lived: "1889 - 1964"},
     "1964.6.9"    => {name: "Lal Bahadur", dynasty: "Shatri", lived: "1904 - 1966"},
     "1966.1.24"   => {name: "Indira", dynasty: "Gandhi", lived: "1917 - 1984", female: true},

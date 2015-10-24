@@ -131,12 +131,19 @@ class ModernTimesDatabase
       ModernTimesDatabase::HOLDERS.each do |title, data|
         title = title.to_s
         @holders[title] = {}
-        data.each do |date, holder_data|
+        data = data.to_a
+        data.each_with_index do |(date, holder_data), i|
           date = resolve_date(date)
           if holder_data.nil?
             @holders[title][date] = nil
           elsif holder_data.keys == [:use]
             @holders[title][date] = {use: fully_quality_reference(title, holder_data[:use])}
+          elsif holder_data.keys == [:use_all]
+            next_date = data[i+1] && resolve_date(data[i+1][0])
+            @holders[holder_data[:use_all]].each do |copy_date, holder|
+              break if next_date and copy_date >= next_date
+              @holders[title][copy_date] = {use: holder[:historical_id]}
+            end
           else
             extra_keys = holder_data.keys - %i[name dynasty lived female father mother traits events culture religion]
             raise "Extra keys: #{extra_keys}" unless extra_keys.empty?

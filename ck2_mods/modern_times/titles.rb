@@ -18,6 +18,7 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     capital: :c_vestisland,
     name: "Iceland / Icelandic",
+    liege: { times_immemorial: "k_denmark", iceland_independence: nil },
   },
   k_portugal: {
     culture: :portuguese,
@@ -161,11 +162,9 @@ ModernTimesDatabase::TITLES = {
     name: {times_immemorial: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" },
     demesne: ["d_brandenburg"],
   },
-  d_pomeralia: {
+  c_danzig: {
     culture: :german,
     religion: :catholic,
-    capital: :c_danzig,
-    name: "Danzig / Danziger",
   },
   k_saxony: {
     culture: :german,
