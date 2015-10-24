@@ -250,12 +250,19 @@ ModernTimesDatabase::TITLES = {
     name: "Switzerland / Swiss",
     demesne: [],
   },
-  e_seljuk_turks: {
+  e_arabia: {
     culture: :turkish,
     religion: :sunni,
     capital: :c_byzantion,
-    name: { times_immemorial: "Ottoman Empire / Ottomans", end_ww1: "Turkey / Turkish" },
+    name: "Ottoman Empire / Ottoman",
     demesne: ["d_paphlagonia"],
+  },
+  k_anatolia: {
+    culture: :turkish,
+    religion: :sunni,
+    capital: :c_ankyra,
+    demesne: ["d_thrace"],
+    name: "Turkey / Turkish",
   },
   d_sunni: {
     culture: :levantine_arabic,
@@ -354,6 +361,7 @@ ModernTimesDatabase::TITLES = {
     name: "Kazakhstan / Kazakh",
     capital: "c_kimak",
     liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    demesne: ["d_zhetysu"],
   },
   k_khiva: {
     culture: :karluk,
@@ -409,7 +417,7 @@ ModernTimesDatabase::TITLES = {
   k_egypt: {
     culture: :egyptian_arabic,
     religion: :sunni,
-    liege: { times_immemorial: "e_seljuk_turks", british_egypt: "e_britannia", egypt_independence: nil },
+    liege: { times_immemorial: "e_arabia", british_egypt: "e_britannia", egypt_independence: nil },
     demesne: ["d_alexandria"],
   },
   d_nefoud: {
@@ -562,7 +570,7 @@ ModernTimesDatabase::TITLES = {
     culture: :nubian,
     religion: :sunni,
     name: "Sudan / Sudanese",
-    liege: { sudan_turkish: "e_seljuk_turks", british_egypt: "e_britannia", sudan_independence: nil},
+    liege: { sudan_turkish: "e_arabia", british_egypt: "e_britannia", sudan_independence: nil},
   },
   k_dacia: {
     culture: :romanian,

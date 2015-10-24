@@ -559,7 +559,7 @@ class ModernTimesGameModification < CK2GameModification
         else
           laws.add! "law", "centralization_2"
         end
-        if title == "e_britannia" or title == "e_seljuk_turks" or title == "e_india"
+        if title == "e_britannia" or title == "e_arabia" or title == "e_india"
           laws.add! "law", "imperial_administration"
           laws.add! "law", "vice_royalty_0"
         end
@@ -567,7 +567,7 @@ class ModernTimesGameModification < CK2GameModification
         if title == "e_britannia"
           node.add! @db.resolve_date(:india_independence), PropertyList["law", "feudal_administration"]
         end
-        if title == "e_seljuk_turks"
+        if title == "e_arabia"
           node.add! @db.resolve_date(:end_ww1), PropertyList["law", "feudal_administration"]
         end
       end
@@ -711,12 +711,13 @@ class ModernTimesGameModification < CK2GameModification
       ["1818.6.3", "Fall of Marathas"],
 
       ### Actual bookmarks, must have 5 key bookmarks
-      ["1837.6.20", "Victorian Era", true],
-      ["1861.3.17", "Kingdom of Italy"],
+      ["1837.6.20",  "Victorian Era", true],
+      ["1861.3.17",  "Kingdom of Italy"],
       ["1871.1.18",  "German Empire", true],
       ["1900.1.1",   "New Century"],
       ["1914.6.28",  "The Great War"],
-      ["1920.8.10",  "Treaty of Sevres", true],
+      ["1920.8.10",  "Treaty of Sevres"],
+      ["1922.11.1",  "Fall of Ottomans", true],
       ["1939.8.31",  "The Greater War"],
       ["1945.5.8",   "Cold War", true],
       ["1975.1.1",   "Decolonization"],

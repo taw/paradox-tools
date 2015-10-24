@@ -596,7 +596,7 @@ ModernTimesDatabase::HOLDERS = {
       lived: "1939.7.17 -",
     },
   },
-  e_seljuk_turks: {
+  e_arabia: {
     "1695.2.6" => {
       name: "Mustafa",
       dynasty: "Ottoman",
@@ -657,6 +657,9 @@ ModernTimesDatabase::HOLDERS = {
       name: "Mehmed",
       dynasty: "Ottoman", lived: "- 1926.5.16",
     },
+    "1922.11.1" => nil,
+  },
+  k_anatolia: {
     # There was a caliph Abdulmecid II for 1922-1924, consider maybe?
     # Dates are changed to fill the gaps
     "1922.11.1" => {
@@ -1500,21 +1503,21 @@ ModernTimesDatabase::HOLDERS = {
     },
   },
   d_sunni: {
-    "1695.2.6" => { use: "e_seljuk_turks Mustafa 1" },
-    "1703.8.22" => { use: "e_seljuk_turks Ahmed 1" },
-    "1730.10.2" => { use: "e_seljuk_turks Mahmud 1" },
-    "1754.12.13" => { use: "e_seljuk_turks Osman 1" },
-    "1757.10.30" => { use: "e_seljuk_turks Mustafa 2" },
-    "1774.1.21" => { use: "e_seljuk_turks Abdulhamid 1" },
-    "1789.4.7" => { use: "e_seljuk_turks Selim 1" },
-    "1807.5.29" => { use: "e_seljuk_turks Mustafa 3" },
-    "1808.7.28" => { use: "e_seljuk_turks Mahmud 2" },
-    "1839.7.1" => { use: "e_seljuk_turks Abdulmecid 1" },
-    "1861.6.25" => { use: "e_seljuk_turks Abdulaziz 1" },
-    "1876.5.30" => { use: "e_seljuk_turks Mehmed Murad 1" },
-    "1876.8.31" => { use: "e_seljuk_turks Abdulhamid 2" },
-    "1909.4.27" => { use: "e_seljuk_turks Mehmed 1" },
-    "1918.7.4" => { use: "e_seljuk_turks Mehmed 2" },
+    "1695.2.6" => { use: "e_arabia Mustafa 1" },
+    "1703.8.22" => { use: "e_arabia Ahmed 1" },
+    "1730.10.2" => { use: "e_arabia Mahmud 1" },
+    "1754.12.13" => { use: "e_arabia Osman 1" },
+    "1757.10.30" => { use: "e_arabia Mustafa 2" },
+    "1774.1.21" => { use: "e_arabia Abdulhamid 1" },
+    "1789.4.7" => { use: "e_arabia Selim 1" },
+    "1807.5.29" => { use: "e_arabia Mustafa 3" },
+    "1808.7.28" => { use: "e_arabia Mahmud 2" },
+    "1839.7.1" => { use: "e_arabia Abdulmecid 1" },
+    "1861.6.25" => { use: "e_arabia Abdulaziz 1" },
+    "1876.5.30" => { use: "e_arabia Mehmed Murad 1" },
+    "1876.8.31" => { use: "e_arabia Abdulhamid 2" },
+    "1909.4.27" => { use: "e_arabia Mehmed 1" },
+    "1918.7.4" => { use: "e_arabia Mehmed 2" },
     "1922.11.1" => nil,
     caliphate_reborn: {
       name: "Abu Bakr",

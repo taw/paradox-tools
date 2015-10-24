@@ -17,6 +17,7 @@ module ModernTimesDatabase::Dates
     forever_ago: "1700.1.1", # Few plans to go back earlier than this
 
     ### Actual dates:
+    end_of_ottoman_empire: "1922.11.1",
     st_petersburg_founding: "1703.5.12", # They literally moved their capital there before peace deal gave them Ingria
     junior_juz_russian: "1.1.1731", # year date
     oman_persian: "1.1.1743", # can't find anything more than year
