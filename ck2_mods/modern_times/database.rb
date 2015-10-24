@@ -63,6 +63,14 @@ class ModernTimesDatabase
       @land = {}
       ModernTimesDatabase::LAND.each do |title, ownership|
         ownership = ownership.map{|k,v| [[min_date, resolve_date(k)].max, v.to_s] }
+        # Strip changes which happened before start of game
+        while ownership.size >= 2 and ownership[1][0] == ownership[0][0] and ownership[0][0] == min_date
+          ownership.shift
+        end
+        # Anything else weird is a bug
+        unless ownership.map(&:first).each_cons(2).all?{|a,b| a < b}
+          raise "Ownership of #{title} is inconsistent"
+        end
         @land[title.to_s] = ownership.reverse.uniq(&:first).reverse
       end
     end
