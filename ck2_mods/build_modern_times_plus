@@ -24,7 +24,7 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          VassalTransferGameModification,
                          DynasticDecisionsGameModification,
                          RulerDesignerResetGameModification,
-                         OldStyleBanishmentGameModification,
+                         # OldStyleBanishmentGameModification,
                          FactionResistanceGameModification,
                          BiggerWarsBoxGameModification
     create_mod_descriptor!(

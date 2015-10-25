@@ -976,6 +976,13 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def fix_russia_colors!
+    # Empire of Russia has color of Ukraine, make it have color of Muscovy
+    patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
+      node["e_russia"]["color"] = node["e_russia"]["k_rus"]["color"]
+    end
+  end
+
   def apply!
     @warnings = []
 
@@ -1000,6 +1007,7 @@ class ModernTimesGameModification < CK2GameModification
     save_dynasties!
     move_de_jure_capitals!
     murican_invasion!
+    fix_russia_colors!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
     end
