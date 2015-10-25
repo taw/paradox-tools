@@ -94,6 +94,7 @@ class CharacterManager
     character.add! "female", true if female
     character.add! "father", lookup_character_id(args[:father]) if args[:father]
     character.add! "mother", lookup_character_id(args[:mother]) if args[:mother]
+    character.add! "health", args[:health] if args[:health]
     if args[:traits]
       args[:traits].each do |t|
         character.add! "trait", t
@@ -582,11 +583,12 @@ class ModernTimesGameModification < CK2GameModification
     end
     create_mod_file! "common/on_actions/10_modern_times.txt", PropertyList[
       "on_startup", PropertyList[
-        "events", ["modern_times_setup.1"],
+        "events", ["modern_times_setup.1", "modern_times_setup.2"],
       ],
     ]
     create_mod_file! "events/modern_times_setup.txt", PropertyList[
       "namespace", "modern_times_setup",
+      # Law setup
       "character_event", PropertyList[
         "id", "modern_times_setup.1",
         "hide_window", true,
@@ -603,6 +605,22 @@ class ModernTimesGameModification < CK2GameModification
             "add_law", "feudal_tax_2",
             "add_law", "city_tax_2",
           ],
+        ],
+      ],
+      # Indian vassals should be content by law of British Empire
+      # This just delays rebellion a generation, but that's exactly what we want
+      "character_event", PropertyList[
+        "id", "modern_times_setup.2",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList[
+          "tier", "KING",
+          "top_liege", PropertyList["primary_title", PropertyList["title", "e_britannia"]],
+        ],
+        "immediate", PropertyList[
+          "add_trait", "content",
+          "remove_trait", "zealous",
         ],
       ],
     ]

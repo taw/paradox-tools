@@ -145,11 +145,14 @@ class ModernTimesDatabase
               @holders[title][copy_date] = {use: holder[:historical_id]}
             end
           else
-            extra_keys = holder_data.keys - %i[name dynasty lived female father mother traits events culture religion]
+            extra_keys = holder_data.keys - %i[
+              name dynasty lived female father mother traits events culture religion health
+            ]
             raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
             holder = {
               name:     holder_data[:name],
               dynasty:  holder_data[:dynasty],
+              health:   holder_data[:health],
               traits:   holder_data[:traits],
               culture:  (holder_data[:culture]  || titles[title][:culture]).to_s,
               religion: (holder_data[:religion] || titles[title][:religion]).to_s,
@@ -173,7 +176,9 @@ class ModernTimesDatabase
               raise "Parse error for lived: #{holder_data[:lived].inspect}"
             end
 
-            holder[:events] = holder_data[:events].map{|d,e| [resolve_date(d), e]} if holder_data[:events]
+            holder[:events] = holder_data[:events].map{|d,e|
+              [(if d == :crowning then date else resolve_date(d) end), e]
+            } if holder_data[:events]
             # Unfortunately this doesn't seem to do anything.
             # Does it simply choose primary title?
             #

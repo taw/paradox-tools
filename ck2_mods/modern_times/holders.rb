@@ -29,24 +29,45 @@ ModernTimesDatabase::HOLDERS = {
       dynasty: "Windsor",
       # grandfather: "George 2",
       lived: "1738.6.4 - 1820.1.29",
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
     },
     "1820.1.29" => {
       name: "George",
       dynasty: "Windsor",
       father: "George 3",
       lived: "1762.8.12 - 1830.6.26",
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
     },
     "1830.6.26" => {
       name: "William",
       dynasty: "Windsor",
       lived: "1765.8.21 - 1837.6.20",
       father: "George 3",
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
     },
     "1837.6.20" => {
       lived: "1819.5.24 - 1901.1.22",
       name: "Victoria",
       female: true,
       dynasty: "Windsor",
+      health: 7,
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
       # granddaughter of George 3
     },
     "1901.1.22" => {
@@ -54,24 +75,44 @@ ModernTimesDatabase::HOLDERS = {
       name: "Edward",
       dynasty: "Windsor",
       mother: "Victoria",
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
     },
     "1910.5.6" => {
       lived: "1865.6.3 - 1936.1.20",
       name: "George",
       dynasty: "Windsor",
       father: "Edward",
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
     },
     "1936.1.20" => {
       lived: "1894.6.23 - 1972.5.28",
       name: "Edward",
       dynasty: "Windsor",
       father: "George 5",
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
     },
     "1936.12.11" => {
       lived: "1895.12.14 - 1952.2.6",
       name: "George",
       dynasty: "Windsor",
       father: "George 5",
+      events: {
+        crowning: PropertyList[
+          "prestige", 2000,
+        ],
+      },
     },
     "1952.2.6" => {
       lived: "1926.4.21 -",
@@ -206,13 +247,20 @@ ModernTimesDatabase::HOLDERS = {
     # Ignore temporary ones
     "1925.5.12" => {
       name: "Paul",
-      dynasty: "von Hindenburg", lived: "- 1934.8.2",
+      dynasty: "von Hindenburg", lived: "1847.10.2 - 1934.8.2",
       religion: :protestant,
     },
     "1934.8.2" => {
       name: "Adolf",
-      dynasty: "Hitler", lived: "- 1945.4.30",
+      dynasty: "Hitler", lived: "1889.4.20 - 1945.4.30",
       religion: :catholic,
+      health: 7,
+      events: {
+        crowning: PropertyList[
+          "effect", PropertyList["set_character_flag", "horde_invader"],
+          "prestige", 1000, # enough to start 2 wars
+        ],
+      },
     },
     "1945.4.30" => {
       name: "Karl",
@@ -351,11 +399,18 @@ ModernTimesDatabase::HOLDERS = {
     # Backdating
     "1918.6.12" => {
       name: "Vladimir",
-      dynasty: "Lenin", lived: "- 1924.1.21",
+      dynasty: "Lenin", lived: "April 22, 1870 - 1924.1.21",
     },
     "1924.1.21" => {
       name: "Joseph",
-      dynasty: "Stalin", lived: "- 1953.3.5",
+      dynasty: "Stalin", lived: "December 18, 1878 - 1953.3.5",
+      health: 7,
+      events: {
+        crowning: PropertyList[
+          "effect", PropertyList["set_character_flag", "horde_invader"],
+          "prestige", 1000, # enough to start 2 wars
+        ],
+      },
     },
     "1953.3.5" => {
       name: "Georgy",
@@ -1243,69 +1298,101 @@ ModernTimesDatabase::HOLDERS = {
     "1799.8.29" => {
       name: "Pius", dynasty: "Chiaramonti",
       lived: "1742.8.14 - 1823.8.20",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1823.8.20" => {
       name: "Leo", dynasty: "della Genga",
       lived: "1760.8.22 - 1829.2.10",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1829.2.10" => {
       name: "Pius", dynasty: "Castiglioni",
       lived: "1761.11.20 - 1830.11.30",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1830.11.30" => {
       name: "Gregory", dynasty: "Cappellari",
       lived: "1765.9.18 - 1846.6.1",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1846.6.1" => {
       name: "Pius", dynasty: "Mastai-Ferretti",
       lived: "1792.5.13 - 1878.2.7",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1878.2.7" => {
       name: "Leo", dynasty: "Pecci",
       lived: "1810.3.2 - 1903.7.20",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1903.7.20" => {
       name: "Pius", dynasty: "Sarto",
       lived: "1835.6.2 - 1914.8.20",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1914.8.20" => {
       name: "Benedict", dynasty: "della Chiesa",
       lived: "1854.11.21 - 1922.1.22",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1922.1.22" => {
       name: "Pius", dynasty: "Ratti",
       lived: "1857.5.31 - 1939.2.10",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1939.2.10" => {
       name: "Pius", dynasty: "Pacelli",
       lived: "1876.3.2 - 1958.10.9",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1958.10.9" => {
       name: "John", dynasty: "Roncalli",
       lived: "1881.11.25 - 1963.6.3",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1963.6.3" => {
       name: "Paul", dynasty: "Montini",
       lived: "1897.9.26 - 1978.8.6",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1978.8.6" => {
       name: "John Paul", dynasty: "Luciani",
       lived: "1912.10.17 - 1978.9.28",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "1978.9.28" => {
       name: "John Paul", dynasty: "Wojtyla",
       culture: :polish,
       lived: "1920.5.18 - 2005.4.2",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "2005.4.2" => {
       name: "Benedict", dynasty: "Ratzinger",
       culture: :german,
       lived: "1927.4.16 -", # Popes, abdicating? WTF is this?
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
     "2013.2.28" => {
       name: "Francis", dynasty: "Bergoglio",
       culture: :castillan,
       lived: "1936.12.17 -",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
     },
   },
   d_krete: {
