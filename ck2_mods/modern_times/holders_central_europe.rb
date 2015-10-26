@@ -83,4 +83,61 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "2010.2.19" => {name: "Ivo | Josipovic", lived: "1957-" },
     "2015.2.19" => {name: "Kolinda | Grabar-Kitarovic", female: true, lived: "1968-"},
   },
+  # Serbia/Yugoslavia. There was a lot of silliness about rulers of Serbia vs "Yugoslavia" or "Serbia and Montenegro"
+  # Just a simplified view here
+  #
+  # Pretty much all data here is crap quality
+  k_serbia: {
+    "1878.7.13" => {
+      name: "Milan | Obrenović",
+      lived: "August 22, 1854 – February 11, 1901",
+    },
+    "1889.3.6" => {
+      name: "Alexander | Obrenović",
+      lived: "August 14, 1876 – June 11, 1903",
+      father: "Milan 1",
+    },
+    "1903.6.11" => {
+      name: "Peter | Karađorđević",
+      lived: "29 June 1844 – 16 August 1921",
+    },
+    "16 August 1921" => {
+      name: "Alexander | Karađorđević",
+      lived: "16 December 1888 – 9 October 1934",
+      father: "Peter 1",
+    },
+    "9 October 1934" => {
+      name: "Peter | Karađorđević",
+      lived: "6 September 1923 – 3 November 1970",
+      father: "Alexander 2",
+    },
+    end_ww2: {
+      name: "Josip Broz | Tito",
+      lived: "7 May 1892 – 4 May 1980",
+    },
+    # Who the hell ruled between Tito and Milosevic?
+    # No matter which post I pick here, half of them were too insignificant to have wikipedia article
+    # So I'll just drop them and backdate Milošević hard
+    "4 May 1980" => {
+    # Reasonably true from "8 May 1989" onwards
+      name: "Slobodan Milošević",
+      lived: "20 August 1941 – 11 March 2006",
+    },
+    "7 October 2000" => {
+      name: "Vojislav Koštunica",
+      lived: "24 March 1944-",
+    },
+    "7 March 2003" => {
+      name: "Svetozar Marović",
+      lived: "31 March 1955 -",
+    },
+    "3 June 2006" => {
+      name: "Boris Tadić",
+      lived: "1958–",
+    },
+    "31 May 2012" => {
+      name: "Tomislav Nikolić",
+      lived: "1952–",
+    }
+  },
 }

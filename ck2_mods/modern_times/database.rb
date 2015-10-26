@@ -391,14 +391,21 @@ private
     end
   end
 
+  def parse_name(name)
+    name = name.tr("đć", "dc")
+    name, dynasty = name.split(/\s*\|\s*/, 2)
+    return [name, dynasty] if dynasty
+    words = name.split(/\s+/)
+    return words if words.size == 2
+    raise "No dynasty for #{name}"
+  end
+
   def parse_holder_data(crowning_date, holder_data, title)
     extra_keys = holder_data.keys - %i[
       name lived female father mother traits events culture religion health
     ]
     raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
-
-    name, dynasty = holder_data[:name].split(/\s*\|\s*/, 2)
-    raise "No dynasty for #{holder_data[:name]}" unless dynasty
+    name, dynasty = parse_name(holder_data[:name])
     holder = {
       name:          name,
       dynasty:       dynasty,

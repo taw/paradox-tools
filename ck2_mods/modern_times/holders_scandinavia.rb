@@ -131,4 +131,27 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     "1957.9.21"  => {name: "Olav | Schleswig-Holstein-Sonderburg-Glücksburg", father: "Haakon 1", lived: "1903.7.2 - 1991.1.17"},
     "1991.1.17"  => {name: "Harald | Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", lived: "1937.2.21 -"},
   },
+  d_iceland: {
+    "17 June 1944" => {
+      name: "Sveinn Björnsson",
+      lived: "1881–1952",
+    },
+    "1 August 1952" => {
+      name: "Ásgeir Ásgeirsson",
+      lived: "1894–1972",
+    },
+    "1 August 1968" => {
+      name: "Kristján Eldjárn",
+      lived: "1916–1982",
+      female: true,
+    },
+    "1 August 1980" => {
+      name: "Vigdís Finnbogadóttir",
+      lived: "1930–",
+    },
+    "1 August 1996" => {
+      name: "Ólafur Ragnar | Grímsson",
+      lived: "1943–",
+    },
+  },
 }

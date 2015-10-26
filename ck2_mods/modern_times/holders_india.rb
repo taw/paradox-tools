@@ -39,4 +39,59 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "2005.11.19" => {name: "Mahinda | Rajapaksa", lived: "1945-" },
     "2015.1.9" => {name: "Maithripala | Sirisena", lived: "1951-" },
   },
+  c_maldives: {
+    # 1953+ presidents and sultans under Britain
+    maldives_independence: {
+      name: "Muhammad Fareed | Didi",  # as sultan, others are presidents
+      lived: "1901–1969",
+    },
+    "11 November 1968" => {
+      name: "Ibrahim | Nasir",
+      lived: "1926–2008",
+    },
+    "11 November 1978" => {
+      name: "Maumoon Abdul | Gayoom",
+      lived: "1937–",
+    },
+    "11 November 2008" => {
+      name: "Mohamed | Nasheed",
+      lived: "1967–"
+    },
+    "7 February 2012" => {
+      name: "Mohammed Waheed | Hassan",
+      lived: "1953–",
+    },
+    "17 November 2013" => {
+      name: "Abdulla | Yameen",
+      lived: "1959–",
+    },
+  },
+  k_punjab: {
+    "12 April 1801" => {
+      name: "Ranjit Singh",
+      lived: "13 November 1780 – 27 June 1839",
+    },
+    "27 June 1839" => {
+      name: "Kharak Singh",
+      lived: "22 February 1801 – 5 November 1840",
+      father: "Ranjit 1",
+    },
+    "8 October 1839" => {
+      name: "Nau Nihal | Singh",
+      lived: "9 March 1821 – 6 November 1840",
+      father: "Kharak 1",
+    },
+    # Chand Kaur ruled as a regent for pregnant daugher, let's skip this stuff and backdate
+    "6 November 1840" => {
+      name: "Sher Singh",
+      lived: "4 December 1807 - 15 September 1843",
+      father: "Ranjit 1",
+    },
+    "15 September 1843" => {
+      name: "Duleep Singh",
+      lived: "6 September 1838 – 22 October 1893",
+      father: "Ranjit 1",
+    },
+    "1849.3.29" => nil,
+  },
 }
