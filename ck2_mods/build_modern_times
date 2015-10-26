@@ -15,6 +15,7 @@ class ModernTimesModBuilder < ParadoxModBuilder
   def build_mod_files!
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
+                         ProtestantismGameModification,
                          ModernTimesGameModification
 
     create_mod_descriptor!(

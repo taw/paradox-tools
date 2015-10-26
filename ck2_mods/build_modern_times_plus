@@ -15,6 +15,7 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
   def build_mod_files!
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
+                         ProtestantismGameModification,
                          ModernTimesGameModification,
                          CK2TweaksGameModification,
                          BecomeRepublicGameModification,
