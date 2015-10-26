@@ -7,168 +7,9 @@ class Random
   end
 end
 
-class CharacterManager
-  def initialize(builder, namespace)
-    @builder = builder
-    @characters = {}
-    @namespace = namespace
-    @historical = {}
-  end
-
-  def reset_date
-    @reset_date ||= @builder.reset_date
-  end
-
-  def allocate_id(key)
-    space_size = 10_000_000
-    base_shift = Digest::MD5.hexdigest(key).to_i(16)
-    id = @namespace + (base_shift % space_size)
-    while @characters.has_key?(id)
-      base_shift += 1
-      id = @namespace + (base_shift % space_size)
-    end
-    @characters[id] = :placeholder
-    rng = Random.keyed("#{key}-#{id}")
-    [id, rng]
-  end
-
-  def add_reset(title)
-    id, rng = allocate_id("reset-#{title}")
-    @characters[id] = PropertyList[
-      "name", "Bob",
-      "religion", "cathar",
-      "culture", "bohemian",
-      reset_date, PropertyList["birth", true],
-      reset_date, PropertyList["death", true],
-    ]
-    id
-  end
-
-  # FIXME: This is fairly silly leftover
-  def lookup_character_id(description)
-    return description if description.is_a?(Integer)
-    @historical.fetch(description)
-  end
-
-  def add_ruler(**args)
-    crowning = args[:key][:crowning]
-    id, rng = allocate_id("ruler-#{args[:key][:title]}-#{args[:key][:crowning].to_s_px}")
-
-    culture  = args[:culture] or raise
-    religion = args[:religion] or raise
-    female = args[:female]
-    if female == :maybe
-      if religion == "sunni" or religion == "shiite" or args[:key][:title] == "k_papal_state"
-        female = false
-      else
-        female = (rng.rand < 0.2)
-      end
-    end
-    birth = args[:birth] || (crowning << 12*35)
-    case args[:death]
-    when :never
-      death = nil
-    when Date
-      death = args[:death]
-    when nil
-      # Random rulers all die at age of 90
-      death = (birth >> 12*90)
-    else
-      raise
-    end
-
-    name = args[:name] || @builder.cultures.random_name(culture, female, rng)
-
-    if args[:dynasty]
-      dynasty = @builder.new_dynasty(args[:dynasty], culture)
-    else
-      dynasty = @builder.cultures.random_dynasty(culture, rng)
-    end
-
-    character = PropertyList[
-      "name", name,
-      "religion", religion,
-      "culture", culture,
-      "dynasty", dynasty,
-    ]
-    character.add! "female", true if female
-    character.add! "father", lookup_character_id(args[:father]) if args[:father]
-    character.add! "mother", lookup_character_id(args[:mother]) if args[:mother]
-    character.add! "health", args[:health] if args[:health]
-    if args[:traits]
-      args[:traits].each do |t|
-        character.add! "trait", t
-      end
-    end
-    character.add! birth, PropertyList["birth", birth]
-    if args[:events]
-      args[:events].each do |date, ev|
-        character.add! date, ev
-      end
-    end
-    character.add! death, PropertyList["death", death] if death
-
-    @historical[args[:historical_id]] = id if args[:historical_id]
-    @characters[id] = character
-    id
-  end
-
-  # The game is much more fun if dynastic games start right away
-  def generate_family!(id)
-    parent = @characters[id]
-    rng = Random.keyed("family-#{id}")
-    birth = parent.keys.grep(Date).find{|k| parent[k]["birth"]}
-    death = parent.keys.grep(Date).find{|k| parent[k]["death"]}
-
-    # 10 20% shots, 15 10% shots, for EV=3.5
-    (20..44).each do |age|
-      child_birth = birth >> (12*age)
-      break if death and child_birth > death
-      fertility = 0.2
-      fertility = 0.1 if age >= 30
-      if rng.rand < fertility
-        add_child!(id, child_birth)
-      end
-    end
-  end
-
-  def to_plist
-    result = PropertyList[]
-    @characters.sort.each do |k,v|
-      result.add! k, v
-    end
-    result
-  end
-
-private
-
-  def add_child!(parent_id, birth)
-    parent = @characters[parent_id]
-    id, rng = allocate_id("child-#{parent_id}-#{birth.to_s_px}")
-    female = (rng.rand < 0.5)
-    death = birth >> (90*12)
-    if parent["female"] == true
-      parent_type = "mother"
-    else
-      parent_type = "father"
-    end
-    character = PropertyList[
-      "name", @builder.cultures.random_name(parent["culture"], female, rng),
-      "religion", parent["religion"],
-      "culture", parent["culture"],
-      "dynasty", parent["dynasty"],
-      parent_type, parent_id,
-    ]
-    character.add! "female", true if female
-    character.add! birth, PropertyList["birth", birth]
-    character.add! death, PropertyList["death", death]
-    @characters[id] = character
-  end
-end
-
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
-  attr_reader :map
+  attr_reader :map, :character_manager
 
   def reset_date
     @reset_date ||= @db.resolve_date(:reset_date)
@@ -238,7 +79,7 @@ class ModernTimesGameModification < CK2GameModification
         while true
           # Always liege religion but could be local culture
           culture = dominant_culture_in(duchy, @db.titles[liege][:culture])
-          id = @characters.add_ruler(
+          id = @character_manager.add_ruler(
             culture: culture,
             religion: @db.titles[liege][:religion],
             key: {
@@ -246,7 +87,7 @@ class ModernTimesGameModification < CK2GameModification
               title: duchy,
             },
           )
-          @characters.generate_family!(id)
+          @character_manager.generate_family!(id)
           @regional_vassals[[liege, duchy]] << [s, id]
           s >>= (12*15)  # 40..55 years
           break if s >= xe
@@ -281,8 +122,9 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_county_history!(title, node)
+    reset_character = @character_manager.create_reset_character(title)
     node.add! reset_date, PropertyList["liege", 0]
-    node.add! reset_date, PropertyList["holder", @characters_reset.add_reset(title)]
+    node.add! reset_date, PropertyList["holder", reset_character]
 
     land = @db.county_ownership(title)
     land_start = land && land[0][0]
@@ -380,8 +222,8 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def save_characters!
-    create_mod_file! "history/characters/modern_times_throwaways.txt", @characters_reset.to_plist
-    create_mod_file! "history/characters/modern_times.txt", @characters.to_plist
+    create_mod_file! "history/characters/modern_times_throwaways.txt", @character_manager.reset_plist
+    create_mod_file! "history/characters/modern_times.txt", @character_manager.main_plist
   end
 
   # TODO: move most of it to Database class
@@ -425,14 +267,14 @@ class ModernTimesGameModification < CK2GameModification
           if holder.nil?
             @holders[title] << [date, 0]
           elsif holder[:use]
-            id = @characters.lookup_character_id(holder[:use])
+            id = @character_manager.lookup_character_id(holder[:use])
             @holders[title] << [date, id]
           else
-            id = @characters.add_ruler(holder.merge(key: {
+            id = @character_manager.add_ruler(holder.merge(key: {
               crowning: date,
               title: title,
             }))
-            @characters.generate_family!(id) unless title == "k_papal_state"
+            @character_manager.generate_family!(id) unless title == "k_papal_state"
             @holders[title] << [date, id]
           end
         end
@@ -999,8 +841,7 @@ class ModernTimesGameModification < CK2GameModification
     setup_protestantism!
 
     @cultures = CultureManager.new(self)
-    @characters_reset = CharacterManager.new(self, 100_000_000)
-    @characters       = CharacterManager.new(self, 110_000_000)
+    @character_manager = CharacterManager.new(self)
     @regional_vassals = {}
     @dynasties        = {}
     setup_title_history!

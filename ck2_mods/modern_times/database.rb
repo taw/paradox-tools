@@ -1,5 +1,3 @@
-# TODO: Perhaps this class should manage ID allocation?
-#       Characters already need to refer to other character at this point
 class ModernTimesDatabase
   # builder currently used read only to get to MapManager
   def initialize(builder)
@@ -127,7 +125,6 @@ class ModernTimesDatabase
   def holders
     unless @holders
       @holders = {}
-      ruler_counts = Hash.new(0)
       ModernTimesDatabase::HOLDERS.each do |title, data|
         title = title.to_s
         @holders[title] = {}
@@ -145,7 +142,7 @@ class ModernTimesDatabase
               @holders[title][copy_date] = {use: holder[:historical_id]}
             end
           else
-            @holders[title][date] = parse_holder_data(date, holder_data, title, ruler_counts)
+            @holders[title][date] = parse_holder_data(date, holder_data, title)
           end
         end
       end
@@ -373,6 +370,10 @@ private
     @builder.map
   end
 
+  def character_manager
+    @builder.character_manager
+  end
+
   def parse_lived(lived)
     case lived
     when /\A(.*?)\s*(?:-|–)\s*\z/
@@ -388,7 +389,7 @@ private
     end
   end
 
-  def parse_holder_data(crowning_date, holder_data, title, ruler_counts)
+  def parse_holder_data(crowning_date, holder_data, title)
     extra_keys = holder_data.keys - %i[
       name lived female father mother traits events culture religion health
     ]
@@ -397,23 +398,21 @@ private
     name, dynasty = holder_data[:name].split(/\s*\|\s*/, 2)
     raise "No dynasty for #{holder_data[:name]}" unless dynasty
     holder = {
-      name:     name,
-      dynasty:  dynasty,
-      health:   holder_data[:health],
-      traits:   holder_data[:traits],
-      culture:  (holder_data[:culture]  || titles[title][:culture]).to_s,
-      religion: (holder_data[:religion] || titles[title][:religion]).to_s,
-      female:   !!holder_data[:female],
-      mother:   fully_quality_reference(title, holder_data[:mother]),
-      father:   fully_quality_reference(title, holder_data[:father]),
+      name:          name,
+      dynasty:       dynasty,
+      health:        holder_data[:health],
+      traits:        holder_data[:traits],
+      culture:       (holder_data[:culture]  || titles[title][:culture]).to_s,
+      religion:      (holder_data[:religion] || titles[title][:religion]).to_s,
+      female:        !!holder_data[:female],
+      mother:        fully_quality_reference(title, holder_data[:mother]),
+      father:        fully_quality_reference(title, holder_data[:father]),
+      historical_id: character_manager.allocate_historical_id(title, name),
     }
     holder[:birth], holder[:death] = parse_lived(holder_data[:lived])
     holder[:events] = holder_data[:events].map do |d,e|
       [(if d == :crowning then crowning_date else resolve_date(d) end), e]
     end if holder_data[:events]
-
-    i = (ruler_counts[[title, name]] += 1)
-    holder[:historical_id] = [title, name, i].join(" ")
     holder
   end
 end
