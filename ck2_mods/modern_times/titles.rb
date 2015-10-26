@@ -807,4 +807,9 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     capital: :c_hamburg,
   },
+  k_volga_bulgaria: {
+    culture: :bolghar,
+    religion: :finnish_pagan,
+    name: "Volga / Volgan",
+  },
 }

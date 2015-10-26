@@ -8,6 +8,12 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1918.11.11" => nil,
   },
   d_nyitra: {
+    # Slovak State under Nazis
+    "1939.3.15" => {
+      name: "Jozef Tiso",
+      lived: "13 October 1887 – 18 April 1947",
+    },
+    "1945.5.8" => nil,
     # 2 March 1993, backdating
     "1993.1.1" => {name: "Michal | Kovac"},
     # 15 June 1999, backdating
@@ -172,5 +178,243 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
       name: "Nicos Anastasiades",
       lived: "1946–",
     },
-  }
+  },
+  k_bulgaria: {
+    # backdating
+    "1878.7.13" => {
+      name: "Alexander | Battenberg",
+      lived: "5 April 1857 – 23 October 1893",
+    },
+    # backdating
+    "7 September 1886" => {
+      name: "Ferdinand | Saxe-Coburg and Gotha",
+      lived: "26 February 1861 – 10 September 1948"
+    },
+    "3 October 1918" => {
+      name: "Boris | Saxe-Coburg and Gotha",
+      lived: "30 January 1894 – 28 August 1943",
+      father: "Ferdinand 1",
+    },
+    "28 August 1943" => {
+      name: "Simeon | Saxe-Coburg and Gotha",
+      lived: "16 June 1937-",
+      father: "Boris 1",
+    },
+    # Communists abolished monarchy, listing general secretaries
+    # backdating from december
+    "15 September 1946" => {
+      name: "Georgi Dimitrov",
+      lived: "June 18, 1882 – July 2, 1949",
+    },
+    "2 July 1949" => {
+      name: "Vulko Chervenkov",
+      lived: "1900–1980",
+    },
+    "4 March 1954" => {
+      name: "Todor Zhivkov",
+      lived: "1911–1998",
+    },
+    "10 November 1989" => {
+      name: "Petar Mladenov",
+      lived: "1936–2000",
+    },
+    # Post-Communist, backdating
+    "2 February 1990" => {
+      name: "Zhelyu Zhelev",
+      lived: "1935–2015",
+    },
+    "22 January 1997" => {
+      name: "Petar Stoyanov",
+      lived: "1952–",
+    },
+    "22 January 2002" => {
+      name: "Georgi Parvanov",
+      lived: "1957–",
+    },
+    "22 January 2012" => {
+      name: "Rosen Plevneliev",
+      lived: "1964–",
+    },
+  },
+  c_danzig: {
+    # Präsident des Senats
+    end_ww1: {
+      name: "Heinrich Sahm",
+      lived: "12 September 1877 – 3 October 1939",
+    },
+    "10 January 1931" => {
+      name: "Ernst Ziehm",
+      lived: "1 May 1867 - 7 July 1962",
+    },
+    "June 20, 1933" => {
+      name: "Hermann Rauschning",
+      lived: "7 August 1887 – February 8, 1982",
+    },
+    "23 November 1934" => {
+      name: "Arthur Greiser",
+      lived: "22 January 1897 – 21 July 1946",
+    },
+    end_ww2: nil,
+  },
+  k_hungary: {
+    # Backdating hard
+    end_ww1: {
+      name: "Miklós Horthy",
+      lived: "1868–1957",
+    },
+    # Government of National Unity all time
+    "15 October 1944" => {
+      name: "Ferenc Szálasi",
+      lived: "1897–1946",
+    },
+    # Communist,
+    # General Secretary since February, but only count after Ferenc Szálasi is gone
+    "28 March 1945" => {
+      name: "Mátyás Rákosi",
+      lived: "1892–1971",
+    },
+    "18 July 1956" => {
+      name: "Ernő Gerő",
+      lived: "1898–1980",
+    },
+    "25 October 1956" => {
+      name: "János Kádár",
+      lived: "1912–1989",
+    },
+    "27 May 1988" => {
+      name: "Károly Grósz",
+      lived: "1930–1996",
+    },
+    "26 June 1989" => {
+      name: "Rezső Nyers",
+      lived: "1923–",
+    },
+    # Post-Communist
+    # Provisional, backdated
+    "7 October 1989" => {
+      name: "Mátyás Szűrös",
+      lived: "1933–",
+    },
+    "2 May 1990" => {
+      name: "Árpád Göncz",
+      lived: "1922–2015",
+    },
+    "4 August 2000" => {
+      name: "Ferenc Mádl",
+      lived: "1931–2011",
+    },
+    "5 August 2005" => {
+      name: "László Sólyom",
+      lived: "1942–",
+    },
+    "6 August 2010" => {
+      name: "Pál Schmitt",
+      lived: "1942–",
+    },
+    # backdating from 10 April 2012
+    "2 April 2012" => {
+      name: "János Áder",
+      lived: "1959–",
+    },
+  },
+  k_byzantium: {
+    # backdating
+    "7 May 1832" => {
+      name: "Otto | Wittelsbach",
+      lived: "1 June 1815 – 26 July 1867",
+    },
+    # backdating, actually 30 March 1863
+    "23 October 1862" => {
+      name: "George | Glücksburg",
+      lived: "24 December 1845 – 18 March 1913",
+    },
+    "18 March 1913" => {
+      name: "Constantine | Glücksburg",
+      lived: "2 August 1868 – 11 January 1923",
+    },
+    "11 June 1917" => {
+      name: "Alexander | Glücksburg",
+      father: "Constantine 1",
+    },
+    # Backdating restoration
+    "25 October 1920" => {
+      use: "Constantine 1",
+    },
+    "27 September 1922" => {
+      name: "George | Glücksburg",
+      lived: "19 July 1890 – 1 April 1947",
+      father: "Constantine 1",
+    },
+    # second hellenic republic
+    "25 March 1924" => {
+      name: "Pavlos Kountouriotis",
+      lived: "1855–1935",
+    },
+    "6 April 1926" => {
+      name: "Theodoros Pangalos",
+      lived: "1878–1952",
+    },
+    "22 August 1926" => {
+      use: "Pavlos 1",
+    },
+    "10 December 1929" => {
+      name: "Alexandros Zaimis",
+      lived: "1855–1936",
+    },
+    # restored monarchy
+    "25 November 1935" => {
+      use: "George 1", # king restored
+    },
+    "1 April 1947" => {
+      name: "Paul | Glücksburg",
+      lived: "14 December 1901 – 6 March 1964",
+      father: "Constantine 1"
+    },
+    "6 March 1964" => {
+      name: "Constantine | Glücksburg",
+      lived: "1940–",
+      father: "Paul 1",
+    },
+    # junta
+    "1 June 1973" => {
+      name: "Georgios Papadopoulos",
+      lived: "1919–1999",
+    },
+    "25 November 1973" => {
+      name: "Phaedon Gizikis",
+      lived: "1917–1999",
+    },
+    # post-junta
+    # provisional
+    "18 December 1974" => {
+      name: "Michail Stasinopoulos",
+      lived: "1903–2002",
+    },
+    "19 July 1975" => {
+      name: "Konstantinos Tsatsos",
+      lived: "1899–1987",
+    },
+    "10 May 1980" => {
+      name: "Konstantinos Karamanlis", # 2
+      lived: "1907–1998",
+    },
+    # backdating from 30 March 1985
+    "10 March 1985" => {
+      name: "Christos Sartzetakis",
+      lived: "1929–",
+    },
+    "5 May 1990" => {use: "Konstantinos 2"}, # Konstantinos Karamanlis
+    "10 March 1995" => {
+      name: "Konstantinos Stephanopoulos", # 3
+      lived: "1926–",
+    },
+    "12 March 2005" => {
+      name: "Karolos Papoulias",
+      lived: "1929–",
+    },
+    "13 March 2015" => {
+      name: "Prokopis Pavlopoulos",
+      lived: "1950–",
+    },
+  },
 }

@@ -71,19 +71,47 @@ class DynasticDecisionsGameModification < CK2GameModification
         "effect", PropertyList["add_lover", "FROM"],
         "ai_will_do", PropertyList["factor", 0],
       ],
-    ]
-    title_decisions = PropertyList[
-      "trigger_revolt", PropertyList[
+      "trigger_revolt_peasant", PropertyList[
         "filter", "all",
-        "ai_target_filter", "capital",
-        "potential", PropertyList["tier", "COUNT", "ai", false],
+        "ai_target_filter", "court",
         "effect", PropertyList[
-          "wealth", 50,
-          "location", PropertyList["province_event", PropertyList["id", "TOG.1000"]],
+          "random_realm_province", PropertyList[
+            "province_event", PropertyList["id", "TOG.1000"],
+          ],
         ],
+        "ai_will_do", PropertyList["factor", 0],
+      ],
+      "trigger_revolt_heretic", PropertyList[
+        "filter", "all",
+        "ai_target_filter", "court",
+        "effect", PropertyList[
+          "random_realm_province", PropertyList[
+            "province_event", PropertyList["id", "TOG.1020"],
+          ],
+        ],
+        "ai_will_do", PropertyList["factor", 0],
+      ],
+      "trigger_revolt_nationalist", PropertyList[
+        "filter", "all",
+        "ai_target_filter", "court",
+        "effect", PropertyList[
+          "random_realm_province", PropertyList[
+            "province_event", PropertyList["id", "TOG.1040"],
+          ],
+        ],
+        "ai_will_do", PropertyList["factor", 0],
+      ],
+      "trigger_revolt_religious", PropertyList[
+        "filter", "all",
+        "ai_target_filter", "court",
+        "effect", PropertyList[
+          "random_realm_province", PropertyList[
+            "province_event", PropertyList["id", "TOG.1060"],
+          ],
+        ],
+        "ai_will_do", PropertyList["factor", 0],
       ],
     ]
-
 
     create_mod_file! "decisions/dynastic_decisions.txt", PropertyList[
       "targetted_decisions", targetted_decisions,

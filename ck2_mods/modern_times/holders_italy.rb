@@ -236,4 +236,38 @@ ModernTimesDatabase::HOLDERS_ITALY = {
       events: { crowning: PropertyList["piety", 500] },
     },
   },
+  # Prime Ministers
+  # Choosing presidents runs into problem of queen being one for quite long
+  # Ignoring all pre-independence ones
+  c_malta: {
+    "1964.9.21" => {
+      name: "Giorgio | Borg Olivier",
+      lived: "5 July 1911 – 29 October 1980",
+    },
+    "21 June 1971" => {
+      name: "Dom Mintoff",
+      lived: "6 August 1916 – 20 August 2012",
+    },
+    "22 December 1984" => {
+      name: "Karmenu | Mifsud Bonnici",
+      lived: "17 July 1933-",
+    },
+    "12 May 1987" => {
+      name: "Edward | Fenech Adami",
+      lived: "7 February 1934-",
+    },
+    "28 October 1996" => {
+      name: "Alfred Sant",
+      lived: "28 February 1948-",
+    },
+    "6 September 1998" => {use: "Edward 1"}, # Edward Fenech Adami
+    "23 March 2004" => {
+      name: "Lawrence Gonzi",
+      lived: "July 1, 1953-",
+    },
+    "11 March 2013" => {
+      name: "Joseph Muscat",
+      lived: "22 January 1974-",
+    },
+  },
 }
