@@ -125,24 +125,26 @@ class ModernTimesDatabase
   def holders
     unless @holders
       @holders = {}
-      ModernTimesDatabase::HOLDERS.each do |title, data|
-        title = title.to_s
-        @holders[title] = {}
-        data = data.to_a
-        data.each_with_index do |(date, holder_data), i|
-          date = resolve_date(date)
-          if holder_data.nil?
-            @holders[title][date] = nil
-          elsif holder_data.keys == [:use]
-            @holders[title][date] = {use: fully_quality_reference(title, holder_data[:use])}
-          elsif holder_data.keys == [:use_all]
-            next_date = data[i+1] && resolve_date(data[i+1][0])
-            @holders[holder_data[:use_all]].each do |copy_date, holder|
-              break if next_date and copy_date >= next_date
-              @holders[title][copy_date] = {use: holder[:historical_id]}
+      ModernTimesDatabase.constants.grep(/\AHOLDERS_/).each do |holder_group_key|
+        ModernTimesDatabase.const_get(holder_group_key).each do |title, data|
+          title = title.to_s
+          @holders[title] = {}
+          data = data.to_a
+          data.each_with_index do |(date, holder_data), i|
+            date = resolve_date(date)
+            if holder_data.nil?
+              @holders[title][date] = nil
+            elsif holder_data.keys == [:use]
+              @holders[title][date] = {use: fully_quality_reference(title, holder_data[:use])}
+            elsif holder_data.keys == [:use_all]
+              next_date = data[i+1] && resolve_date(data[i+1][0])
+              @holders[holder_data[:use_all]].each do |copy_date, holder|
+                break if next_date and copy_date >= next_date
+                @holders[title][copy_date] = {use: holder[:historical_id]}
+              end
+            else
+              @holders[title][date] = parse_holder_data(date, holder_data, title)
             end
-          else
-            @holders[title][date] = parse_holder_data(date, holder_data, title)
           end
         end
       end
