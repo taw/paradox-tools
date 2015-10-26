@@ -521,6 +521,17 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def stronger_claims_on_rebels!
+    # Regexp is actually more sensible than path expressions which would be needed here
+    patch_file!("common/cb_types/00_cb_types.txt") do |content|
+      content.gsub("add_weak_pressed_claim", "add_pressed_claim")
+    end
+
+    patch_file!("events/plot_events.txt") do |content|
+      content.gsub("add_weak_pressed_claim", "add_pressed_claim")
+    end
+  end
+
   def apply!
     ### General fixes:
     allow_any_number_of_different_holding_types!
@@ -545,6 +556,7 @@ class CK2TweaksGameModification < CK2GameModification
     no_multiple_empires!
     more_plots!
     dont_call_duke_kings_ever!
+    stronger_claims_on_rebels!
     # extend_timeline!
     # fix_de_jure_map!
     easier_culture_conversion!
