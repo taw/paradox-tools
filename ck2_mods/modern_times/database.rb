@@ -145,36 +145,7 @@ class ModernTimesDatabase
               @holders[title][copy_date] = {use: holder[:historical_id]}
             end
           else
-            extra_keys = holder_data.keys - %i[
-              name dynasty lived female father mother traits events culture religion health
-            ]
-            if holder_data[:dynasty]
-              name = holder_data[:name]
-              dynasty = holder_data[:dynasty]
-            else
-              name, dynasty = holder_data[:name].split(/\s*\|\s*/, 2)
-            end
-            raise "No dynasty for #{holder_data[:name]}" unless dynasty
-
-            raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
-            holder = {
-              name:     name,
-              dynasty:  dynasty,
-              health:   holder_data[:health],
-              traits:   holder_data[:traits],
-              culture:  (holder_data[:culture]  || titles[title][:culture]).to_s,
-              religion: (holder_data[:religion] || titles[title][:religion]).to_s,
-              female:   !!holder_data[:female],
-              mother:   fully_quality_reference(title, holder_data[:mother]),
-              father:   fully_quality_reference(title, holder_data[:father]),
-            }
-            holder[:birth], holder[:death] = parse_lived(holder_data[:lived])
-            holder[:events] = holder_data[:events].map do |d,e|
-              [(if d == :crowning then date else resolve_date(d) end), e]
-            end if holder_data[:events]
-            i = (ruler_counts[[title, holder_data[:name]]] += 1)
-            holder[:historical_id] = [title, holder_data[:name], i].join(" ")
-            @holders[title][date] = holder
+            @holders[title][date] = parse_holder_data(date, holder_data, title, ruler_counts)
           end
         end
       end
@@ -415,6 +386,35 @@ private
     else
       raise "Parse error for lived: #{lived.inspect}"
     end
+  end
+
+  def parse_holder_data(crowning_date, holder_data, title, ruler_counts)
+    extra_keys = holder_data.keys - %i[
+      name lived female father mother traits events culture religion health
+    ]
+    raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
+
+    name, dynasty = holder_data[:name].split(/\s*\|\s*/, 2)
+    raise "No dynasty for #{holder_data[:name]}" unless dynasty
+    holder = {
+      name:     name,
+      dynasty:  dynasty,
+      health:   holder_data[:health],
+      traits:   holder_data[:traits],
+      culture:  (holder_data[:culture]  || titles[title][:culture]).to_s,
+      religion: (holder_data[:religion] || titles[title][:religion]).to_s,
+      female:   !!holder_data[:female],
+      mother:   fully_quality_reference(title, holder_data[:mother]),
+      father:   fully_quality_reference(title, holder_data[:father]),
+    }
+    holder[:birth], holder[:death] = parse_lived(holder_data[:lived])
+    holder[:events] = holder_data[:events].map do |d,e|
+      [(if d == :crowning then crowning_date else resolve_date(d) end), e]
+    end if holder_data[:events]
+
+    i = (ruler_counts[[title, name]] += 1)
+    holder[:historical_id] = [title, name, i].join(" ")
+    holder
   end
 end
 
