@@ -151,7 +151,7 @@ ModernTimesDatabase::TITLES = {
     culture: :german,
     religion: :protestant,
     capital: :c_brandenburg,
-    name: "Prussia / Prussian",
+    name: { times_immemorial: "Prussia / Prussian", end_ww2: "East Germany / East German" },
     demesne: ["d_prussia"],
   },
   e_germany: {
@@ -166,13 +166,6 @@ ModernTimesDatabase::TITLES = {
   c_danzig: {
     culture: :german,
     religion: :catholic,
-  },
-  k_saxony: {
-    culture: :german,
-    religion: :protestant,
-    capital: :c_brandenburg,
-    name: "East Germany / East German",
-    demesne: ["d_saxony"],
   },
   c_lubeck: {
     culture: :german,

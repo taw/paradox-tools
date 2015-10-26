@@ -163,6 +163,24 @@ ModernTimesDatabase::HOLDERS = {
       father: "Frederick William 2",
     },
     "1871.1.18" => nil,
+    # Reboot as East Germany
+    end_ww2: {
+      name: "Wilhelm | Pieck",
+      lived: "1876–1960",
+    },
+    "25 July 1950" => {
+      name: "Walter | Ulbricht",
+      lived: "1893–1973",
+    },
+    "3 May 1971" => {
+      name: "Erich | Honecker",
+      lived: "1912–1994",
+    },
+    "18 October 1989" => {
+      name: "Egon | Krenz",
+      lived: "1937-",
+    },
+    german_reunification: nil,
   },
   c_weimar: {
     "28 May 1758" => {
@@ -970,8 +988,8 @@ ModernTimesDatabase::HOLDERS = {
     "October 5, 1915"   => {name: "Bernardino", dynasty: "Machado"},
     "December 12, 1917" => {name: "Sidonio", dynasty: "Pais"},
     "December 16, 1918" => {name: "Joao", dynasty: "do Canto e Castro"},
-    "October 5, 1919"   => {name: "António José de Almeida"},
-    "October 6, 1923"   => {name: "Manuel Teixeira Gomes"},
+    "October 5, 1919"   => {name: "António José | de Almeida"},
+    "October 6, 1923"   => {name: "Manuel Teixeira | Gomes"},
     "December 11, 1925" => {use: "Bernardino 1"},
     "May 31, 1926" => {name: "Jose Mendes", dynasty: "Cabecadas"},
     "June 17, 1926" => {name: "Manuel Gomes", dynasty: "da Costa"},

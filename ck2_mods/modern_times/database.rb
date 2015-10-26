@@ -148,10 +148,18 @@ class ModernTimesDatabase
             extra_keys = holder_data.keys - %i[
               name dynasty lived female father mother traits events culture religion health
             ]
+            if holder_data[:dynasty]
+              name = holder_data[:name]
+              dynasty = holder_data[:dynasty]
+            else
+              name, dynasty = holder_data[:name].split(/\s*\|\s*/, 2)
+            end
+            raise "No dynasty for #{holder_data[:name]}" unless dynasty
+
             raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
             holder = {
-              name:     holder_data[:name],
-              dynasty:  holder_data[:dynasty],
+              name:     name,
+              dynasty:  dynasty,
               health:   holder_data[:health],
               traits:   holder_data[:traits],
               culture:  (holder_data[:culture]  || titles[title][:culture]).to_s,
@@ -160,35 +168,10 @@ class ModernTimesDatabase
               mother:   fully_quality_reference(title, holder_data[:mother]),
               father:   fully_quality_reference(title, holder_data[:father]),
             }
-            case holder_data[:lived]
-            when /\A(.*?)\s*(?:-|–)\s*\z/
-              holder[:birth] = resolve_start_date($1)
-              holder[:death] = resolve_end_date(:never)
-            when /\A\s*(?:-|–)\s*(.*)\z/
-              # holder[:birth] = nil
-              holder[:death] = resolve_end_date($1)
-            when /\A(.*?)\s*(?:-|–)\s*(.*)\z/
-              holder[:birth] = resolve_start_date($1)
-              holder[:death] = resolve_end_date($2)
-            when nil
-              # OK
-            else
-              raise "Parse error for lived: #{holder_data[:lived].inspect}"
-            end
-
-            holder[:events] = holder_data[:events].map{|d,e|
+            holder[:birth], holder[:death] = parse_lived(holder_data[:lived])
+            holder[:events] = holder_data[:events].map do |d,e|
               [(if d == :crowning then date else resolve_date(d) end), e]
-            } if holder_data[:events]
-            # Unfortunately this doesn't seem to do anything.
-            # Does it simply choose primary title?
-            #
-            # Otherwise AI will choose deafult capital, which is perfectly fine
-            # if titles[title][:capital] != map.title_capitals[title]
-            #   holder[:events] ||= []
-            #   holder[:events] << [date, PropertyList["capital", titles[title][:capital]]]
-            # end
-            # holder[:events].sort! if holder[:events]
-
+            end if holder_data[:events]
             i = (ruler_counts[[title, holder_data[:name]]] += 1)
             holder[:historical_id] = [title, holder_data[:name], i].join(" ")
             @holders[title][date] = holder
@@ -417,6 +400,21 @@ private
 
   def map
     @builder.map
+  end
+
+  def parse_lived(lived)
+    case lived
+    when /\A(.*?)\s*(?:-|–)\s*\z/
+      [resolve_start_date($1), resolve_end_date(:never)]
+    when /\A\s*(?:-|–)\s*(.*)\z/
+      [nil, resolve_end_date($1)]
+    when /\A(.*?)\s*(?:-|–)\s*(.*)\z/
+      [resolve_start_date($1), resolve_end_date($2)]
+    when nil
+      [nil, nil]
+    else
+      raise "Parse error for lived: #{lived.inspect}"
+    end
   end
 end
 

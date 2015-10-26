@@ -4,7 +4,6 @@ ModernTimesDatabase::DE_JURE = {
   "d_aragon"         => "k_aragon",
   "d_granada"        => "k_castille",
   "d_brandenburg"    => "k_pomerania",
-  "d_prussia"        => "k_pomerania",
   "k_ruthenia"       => "e_wendish_empire",
   "k_croatia"        => "e_carpathia",
   "d_ryazan"         => "k_rus",
@@ -14,12 +13,6 @@ ModernTimesDatabase::DE_JURE = {
   "d_provence"       => "k_aquitaine",
   "d_dauphine"       => "k_aquitaine",
   "d_verona"         => "k_venice",
-  "k_prussia"        => { hre_disbanded: "e_germany" },
-  "k_frisia"         => { hre_disbanded: "e_germany" },
-  "k_germany"        => { hre_disbanded: "e_germany" },
-  "k_lotharingia"    => { hre_disbanded: "e_germany" },
-  "k_bavaria"        => { hre_disbanded: "e_carpathia" },
-  "k_bohemia"        => { hre_disbanded: "e_carpathia" },
   "k_anatolia"       => "e_arabia",
   "k_armenia"        => "e_arabia",
   "k_georgia"        => "e_persia",
@@ -47,4 +40,23 @@ ModernTimesDatabase::DE_JURE = {
   "k_andhra"         => "e_india",
   "k_telingana"      => "e_india",
   "k_lanka"          => "e_india",
+
+  # This region has 3 situations:
+  # - HRE (Prussia under Poland)
+  # - Germany Empire (Prussia under Germany, loses Gdansk to Poland)
+  # - after WW1 (Prussia becomes East Germany, moves West)
+
+  # While HRE exists Prussia is de jure vassal of Commonwealth
+  # After it falls apart it becomes part of empire of Germany - without Gdanks
+  # After WW2 it becomes East Germany
+  "d_prussia"        => { times_immemorial: "k_pomerania", end_ww2: "k_poland" },
+  "d_pomeralia"      => { hre_disbanded: "k_poland" },
+  "k_pomerania"      => { hre_disbanded: "e_germany" },
+  "k_frisia"         => { hre_disbanded: "e_germany" },
+  "k_germany"        => { hre_disbanded: "e_germany" },
+  "k_lotharingia"    => { hre_disbanded: "e_germany" },
+  "k_bavaria"        => { hre_disbanded: "e_carpathia" },
+  "k_bohemia"        => { hre_disbanded: "e_carpathia" },
+  "d_saxony"         => { end_ww2: "k_pomerania" },
+  "d_meissen"        => { end_ww2: "k_pomerania" },
 }

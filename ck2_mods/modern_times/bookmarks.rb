@@ -59,7 +59,7 @@ ModernTimesDatabase::BOOKMARKS = {
   "1945.5.8" => {
     name: "Cold War",
     key: true,
-    characters: ["e_britannia", "e_russia", "e_germany", "k_saxony"],
+    characters: ["e_britannia", "e_russia", "e_germany", "k_pomerania"],
   },
   # Delay it a bit to get Saddam in charge of Iraq
   "1979.7.16" => {
