@@ -450,52 +450,49 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_technology!
-    tech_levels = {
-      ["africa", 0]         => [1,2,3], # Ethiopia
-      ["africa", 1]         => [2,3,4], # Egypt
-      ["africa", 2]         => [2,3,4], # Tunis
-      ["africa", 3]         => [1,2,3], # West Africa
-      ["byzantium", 0]      => [3,4,5], # Byzantium
-      ["byzantium", 1]      => [3,4,5], # Thrace
-      ["eastern_europe", 0] => [3,4,5],
-      ["india", 0]          => [1,2,3],
-      ["middle_east", 0]    => [2,3,4],
-      ["scandinavia", 0]    => [4,5,6],
-      ["the_steppes", 0]    => [1,2,3],
-      ["the_steppes", 1]    => [1,2,3],
-      ["the_steppes", 2]    => [1,2,3],
-      ["western_europe", 0] => [4,5,7], # France / Germany - catch up with UK
-      ["western_europe", 1] => [4,5,6], # Italy
-      ["western_europe", 2] => [4,6,7], # UK
-      ["western_europe", 3] => [4,5,6], # North Spain
-      ["western_europe", 4] => [4,5,6], # South Spain
-    }
-    glob("history/technology/*.txt").each do |path|
-      group = path.basename(".txt").to_s
-      patch_mod_file!(path) do |node|
-        node.find_all("technology").each_with_index do |techs, i|
-          (a, b, c) = tech_levels.fetch([group, i])
-          # p node
-          techs.delete 769
-          techs.delete 1337
-          techs.add! 1700, PropertyList[
-            "military", a,
-            "economy", a,
-            "culture", a,
-          ]
-          techs.add! 1900, PropertyList[
-            "military", b,
-            "economy", b,
-            "culture", b,
-          ]
-          techs.add! 2015, PropertyList[
-            "military", c,
-            "economy", c,
-            "culture", c,
-          ]
-        end
+    duchies = []
+    patch_mod_files!("history/technology/*.txt") do |node|
+      # Could get them from map, just sanity check to get them here
+      duchies += node.find_all("technology").map{|x| x["titles"]}.flatten
+      node.delete_if{true}
+    end
+
+    tech_groups = {}
+
+    duchies.each do |title|
+      tech_levels = map.landed_titles_lookup[title].map{|t| @db.technology[t] }.find(&:itself)
+      if tech_levels
+        tech_groups[tech_levels] ||= []
+        tech_groups[tech_levels] << title
+      else
+        warn "No tech for #{title} - #{map.landed_titles_lookup[title]}"
       end
     end
+
+    plist = tech_groups.map do |(m1,e1,c1,m2,e2,c2,m3,e3,c3), titles|
+      Property["technology", PropertyList[
+          "titles", titles,
+          1700, PropertyList[
+            "military", m1,
+            "economy", e1,
+            "culture", c1,
+          ],
+          1900, PropertyList[
+            "military", m2,
+            "economy", e2,
+            "culture", c2,
+          ],
+          2015, PropertyList[
+            "military", m3,
+            "economy", e3,
+            "culture", c3,
+          ],
+        ]
+      ]
+    end
+
+    create_mod_file! "history/technology/modern_times.txt", PropertyList[*plist]
+
     override_defines_lua!("modern_times",
       "NTechnology.DONT_EXECUTE_TECH_BEFORE" => 1700,
       "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_YEAR" => 1700,

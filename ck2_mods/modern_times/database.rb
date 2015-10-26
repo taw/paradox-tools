@@ -214,6 +214,16 @@ class ModernTimesDatabase
     @de_jure
   end
 
+  def technology
+    unless @technology
+      @technology = {}
+      ModernTimesDatabase::TECHNOLOGY.each do |title, tech_levels|
+        @technology[title.to_s] = tech_levels
+      end
+    end
+    @technology
+  end
+
   def title_has_land
     unless @title_has_land
       @title_has_land = {}
