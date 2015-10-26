@@ -425,7 +425,7 @@ class ModernTimesGameModification < CK2GameModification
     end
     create_mod_file! "common/on_actions/10_modern_times.txt", PropertyList[
       "on_startup", PropertyList[
-        "events", ["modern_times_setup.1", "modern_times_setup.2"],
+        "events", ["modern_times_setup.1", "modern_times_setup.2", "modern_times_setup.3"],
       ],
     ]
     create_mod_file! "events/modern_times_setup.txt", PropertyList[
@@ -463,6 +463,25 @@ class ModernTimesGameModification < CK2GameModification
         "immediate", PropertyList[
           "add_trait", "content",
           "remove_trait", "zealous",
+        ],
+      ],
+      "character_event", PropertyList[
+        "id", "modern_times_setup.3",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList[
+          "independent", true,
+        ],
+        "immediate", PropertyList[
+          "if", PropertyList[
+            "limit", PropertyList["tier", "EMPEROR"],
+            "wealth", 2000,
+          ],
+          "if", PropertyList[
+            "limit", PropertyList["tier", "KING"],
+            "wealth", 1000,
+          ],
         ],
       ],
     ]
