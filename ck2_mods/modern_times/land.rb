@@ -467,6 +467,13 @@ ModernTimesDatabase::LAND = {
   d_baluchistan: { durrani_afghanistan: "k_afghanistan", kalat_independent: "d_baluchistan", baluchistan_agency: "e_britannia", india_independence: "k_baluchistan" },
 
   #########################################
+  # READY FOR FRENCH REVOLUTION BOOKMARK
+
+  # Briefly got title of Ottoman governor, but that never seemed to matter
+  # Date is start of Kuwait dynasty, but it was independent before too
+  c_kuwait:     { "1752.12.31" => "c_kuwait", kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
+
+  #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
 
   k_sindh:       { sindh_independent: "k_sindh", conquest_of_sindh: "e_britannia", india_independence: "k_baluchistan" },
@@ -530,10 +537,6 @@ ModernTimesDatabase::LAND = {
   c_nassau:       { congress_of_vienna: "c_nassau", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
   c_mainz:        { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
   c_leiningen:    { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany" },
-
-  # Briefly got title of Ottoman governor, but that never seemed to matter
-  # Date is start of Kuwait dynasty, but it was independent before too
-  c_kuwait:     { "1752.12.31" => "c_kuwait", kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
 
   #########################################
   # READY FOR VICTORIAN ERA BOOKMARK

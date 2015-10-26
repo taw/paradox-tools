@@ -390,6 +390,8 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
       node.each do |name, cb|
         cb["can_ask_to_join_war"] = true
+        cb["attacker_can_call_allies"] = true
+        cb["defender_can_call_allies"] = true
       end
     end
   end

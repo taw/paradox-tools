@@ -142,6 +142,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1921.4.1" => {
       name: "Abdullah | Hashemite",
       lived: "1882.2.1 - 1951.7.20",
+      father: "d_medina Hussein ibn Ali 1",
       traits: ["sayyid"],
     },
     "1951.7.20" => {
@@ -164,6 +165,8 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
   },
   k_mesopotamia: {
+    # First ruler is son of "d_medina Hussein ibn Ali 1"
+
     "1958.7.14" => {name: "Muhammad Najib | ar-Ruba'i", lived: "1904 - 1965"},
     "1963.2.8" => {name: "Abdul Salam | Arif", lived: "1921.3.21 - 1966.4.13"},
     # brother of previous
@@ -261,5 +264,77 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1977.12.31" => {name: "Jaber Al-Ahmad Al-Jaber | Al-Sabah", lived: "1926 - 2006"},
     "2006.1.15" => {name: "Saad Abdullah Al-Salem | Al-Sabah", lived: "1930 - 2008"},
     "2006.1.29" => {name: "Sabah Al-Ahmad Al-Jaber | Al-Sabah", lived: "1929 -"},
+  },
+  k_israel: {
+    "1948.5.14" => {
+      name: "David Ben-Gurion",
+      lived: "1886–1973",
+    },
+    "26 January 1954" => {
+      name: "Moshe Sharett",
+      lived: "1894–1965",
+    },
+    "3 November 1955" => {use: "David 1"},
+    "26 June 1963" => {
+      name: "Levi Eshkol",
+      lived: "1895–1969",
+    },
+    # skipping Yigal Allon, backdating
+    # actually started 17 March 1969
+    "26 February 1969" => {
+      name: "Golda Meir",
+      lived: "1898–1978",
+      female: true,
+    },
+    "3 June 1974" => {
+      name: "Yitzhak Rabin",
+      lived: "1922–1995",
+    },
+    "20 June 1977" => {
+      name: "Menachem Begin",
+      lived: "1913–1992",
+    },
+    "10 October 1983" => {
+      name: "Yitzhak Shamir", # Yitzhak 2
+      lived: "1915–2012",
+    },
+    "13 September 1984" => {
+      name: "Shimon Peres",
+      lived: "1923–",
+    },
+    "20 October 1986" => {use: "Yitzhak 2" }, # Shamir
+    "13 July 1992" => {use: "Yitzhak 1"}, # Rabin
+    "22 November 1995" => {use: "Shimon 1"},
+    "18 June 1996" => {
+      name: "Benjamin Netanyahu",
+      lived: "1949–",
+    },
+    "6 July 1999" => {
+      name: "Ehud Barak",
+      lived: "1942–",
+    },
+    "7 March 2001" => {
+      name: "Ariel Sharon",
+      lived: "1928–2014",
+    },
+    "14 April 2006" => {
+      name: "Ehud Olmert",
+      lived: "1945–",
+    },
+    "31 March 2009" => {use: "Benjamin 1"},
+  },
+  d_medina: {
+    "1918.11.11" => {
+      name: "Hussein ibn Ali | Hashemite",
+      lived: "1854 – 4 June 1931",
+      traits: ["sayyid"],
+    },
+    "3 October 1924" => {
+      name: "Ali bin Hussein | Hashemite",
+      lived: "1879–1935",
+      father: "Hussein ibn Ali 1",
+      traits: ["sayyid"],
+    },
+    "1926.1.8" => nil,
   },
 }

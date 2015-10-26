@@ -31,6 +31,8 @@ class ModernTimesGameModification < CK2GameModification
       culture = "italian"
     when "Singh"
       culture = "panjabi"
+    when "Hashemite"
+      culture = "bedouin_arabic"
     end
 
     if @dynasties[name]

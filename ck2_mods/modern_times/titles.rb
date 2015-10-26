@@ -247,7 +247,7 @@ ModernTimesDatabase::TITLES = {
     culture: :turkish,
     religion: :sunni,
     capital: :c_byzantion,
-    name: "Ottoman Empire / Ottoman",
+    name: { times_immemorial: "Ottoman Empire / Ottoman", end_of_ottoman_empire: nil},
     demesne: ["d_paphlagonia"],
   },
   k_anatolia: {
@@ -631,6 +631,10 @@ ModernTimesDatabase::TITLES = {
     culture: :italian,
     religion: :catholic,
   },
+  c_lucca: {
+    culture: :italian,
+    religion: :catholic,
+  },
   c_parma: {
     culture: :italian,
     religion: :catholic,
@@ -652,10 +656,6 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
   },
   k_sicily: {
-    culture: :italian,
-    religion: :catholic,
-  },
-  c_lucca: {
     culture: :italian,
     religion: :catholic,
   },

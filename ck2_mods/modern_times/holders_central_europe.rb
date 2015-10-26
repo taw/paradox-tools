@@ -140,4 +140,37 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
       lived: "1952–",
     }
   },
+  d_cyprus: {
+    # Actually "16 August 1960"
+    # skipping coup attempt etc.
+    # Makarios was archbishop, but can't play as such until theocracy DLC
+    cyprus_independence: {
+      name: "Makarios | Mouskos",
+      lived: "August 13, 1913 – August 3, 1977",
+    },
+    "3 August 1977" => {
+      name: "Spyros Kyprianou",
+      lived: "1932–2002",
+    },
+    "28 February 1988" => {
+      name: "George Vasiliou",
+      lived: "1931–",
+    },
+    "28 February 1993" => {
+      name: "Glafcos Clerides",
+      lived: "1919–2013",
+    },
+    "28 February 2003" => {
+      name: "Tassos Papadopoulos",
+      lived: "1934–2008",
+    },
+    "28 February 2008" => {
+      name: "Demetris Christofias",
+      lived: "1946–",
+    },
+    "28 February 2013" => {
+      name: "Nicos Anastasiades",
+      lived: "1946–",
+    },
+  }
 }

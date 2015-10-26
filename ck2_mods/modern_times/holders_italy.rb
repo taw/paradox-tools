@@ -97,6 +97,22 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     italy_unification: nil,
   },
+  # I'm really confused by Lucca / Parma situation
+  # Maria Louisa Bourbon != Marie Louise Habsburg
+  c_lucca: {
+    "9 June 1815" => {
+      name: "Maria Luisa | Bourbon",
+      lived: "6 July 1782 – 13 March 1824",
+      female: true,
+    },
+    "13 March 1824" => {
+      name: "Charles | Bourbon",
+      lived: "1799.12.22 - 1883.4.16",
+      mother: "Maria Luisa 1",
+    },
+    # Actually deposed two months earlier ???
+    "17 December 1847" => nil,
+  },
   c_parma: {
     "1814.4.11" => {
       name: "Marie Louise | Habsburg",
@@ -104,14 +120,12 @@ ModernTimesDatabase::HOLDERS_ITALY = {
       female: true,
     },
     "1847.12.17" => {
-      name: "Charles | Bourbon",
-      lived: "1799.12.22 - 1883.4.16",
-      mother: "Marie Louise 1",
+      use: "c_lucca Charles 1",
     },
     "1849.5.17" => {
       name: "Charles | Bourbon",
       lived: "1823.1.14 - 1854.3.27",
-      father: "Charles 1",
+      father: "c_lucca Charles 1",
     },
     "1854.3.27" => {
       name: "Robert | Bourbon",
