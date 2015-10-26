@@ -4,7 +4,9 @@ class DynasticDecisionsGameModification < CK2GameModification
   def apply!
     # All these should be filtered etc.
     # Extremely basic functionality only
-    decisions = PropertyList[
+    #
+    # These are meant for setting up scenarios, not for routine use
+    targetted_decisions = PropertyList[
       "switch_to_spouse_dynasty", PropertyList[
         "filter", "spouse",
         "ai_target_filter", "spouse",
@@ -50,10 +52,42 @@ class DynasticDecisionsGameModification < CK2GameModification
         "effect", PropertyList["set_guardian", "FROM"],
         "revoke_allowed", PropertyList["always", false],
         "ai_will_do", PropertyList["factor", 0],
-      ]
+      ],
+      "make_rival", PropertyList[
+        "filter", "all",
+        "ai_target_filter", "court",
+        "effect", PropertyList["add_rival", "FROM"],
+        "ai_will_do", PropertyList["factor", 0],
+      ],
+      "make_friend", PropertyList[
+        "filter", "all",
+        "ai_target_filter", "court",
+        "effect", PropertyList["add_friend", "FROM"],
+        "ai_will_do", PropertyList["factor", 0],
+      ],
+      "make_lover", PropertyList[
+        "filter", "all",
+        "ai_target_filter", "court",
+        "effect", PropertyList["add_lover", "FROM"],
+        "ai_will_do", PropertyList["factor", 0],
+      ],
+    ]
+    title_decisions = PropertyList[
+      "trigger_revolt", PropertyList[
+        "filter", "all",
+        "ai_target_filter", "capital",
+        "potential", PropertyList["tier", "COUNT", "ai", false],
+        "effect", PropertyList[
+          "wealth", 50,
+          "location", PropertyList["province_event", PropertyList["id", "TOG.1000"]],
+        ],
+      ],
     ]
 
-    create_mod_file! "decisions/dynastic_decisions.txt", PropertyList["targetted_decisions", decisions]
+
+    create_mod_file! "decisions/dynastic_decisions.txt", PropertyList[
+      "targetted_decisions", targetted_decisions,
+    ]
     localization!("dynastic_decisions",
       "switch_to_spouse_dynasty" => "Swich to spouse's dynasty",
       "switch_to_spouse_dynasty_desc" => "Abandon your current family name, become part of spouse's dynasty",
