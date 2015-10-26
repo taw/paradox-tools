@@ -224,6 +224,16 @@ class ModernTimesDatabase
     @technology
   end
 
+  def bookmarks
+    unless @bookmarks
+      @bookmarks = {}
+      ModernTimesDatabase::BOOKMARKS.each do |date, bookmark|
+        @bookmarks[resolve_date(date)] = bookmark
+      end
+    end
+    @bookmarks
+  end
+
   def title_has_land
     unless @title_has_land
       @title_has_land = {}
@@ -294,6 +304,10 @@ class ModernTimesDatabase
 
   def capital_duchy(title)
     map.duchy_for_county(titles[title][:capital])
+  end
+
+  def title_technology(title)
+    map.landed_titles_lookup[title].map{|t| technology[t] }.find(&:itself)
   end
 
   # This should sort of be private except magic constants use same system:

@@ -459,17 +459,16 @@ class ModernTimesGameModification < CK2GameModification
 
     tech_groups = {}
 
-    duchies.each do |title|
-      tech_levels = map.landed_titles_lookup[title].map{|t| @db.technology[t] }.find(&:itself)
+    duchies.sort.each do |title|
+      tech_levels = @db.title_technology(title)
       if tech_levels
-        tech_groups[tech_levels] ||= []
-        tech_groups[tech_levels] << title
+        (tech_groups[tech_levels] ||= []) << title
       else
         warn "No tech for #{title} - #{map.landed_titles_lookup[title]}"
       end
     end
 
-    plist = tech_groups.map do |(m1,e1,c1,m2,e2,c2,m3,e3,c3), titles|
+    plist = tech_groups.sort.map do |(m1,e1,c1,m2,e2,c2,m3,e3,c3), titles|
       Property["technology", PropertyList[
           "titles", titles,
           1700, PropertyList[
@@ -759,47 +758,36 @@ class ModernTimesGameModification < CK2GameModification
       ["BM_100_YEARS_WAR", "LATE_MED"],
     ]
 
-    bookmarks = [
-      ### History files testing:
-      ["1600.1.1", "Test 1600"],
-      ["1648.10.24", "Peace of Westphalia"],
-      ["1700.1.1", "Test 1700"],
-      ["1750.1.1", "Test 1750"],
-      ["1780.1.1", "Test 1780"],
-      ["1815.6.9", "Congress of Vienna"],
-      ["1818.6.3", "Fall of Marathas"],
-
-      ### Actual bookmarks, must have 5 key bookmarks
-      ["1837.6.20",  "Victorian Era", true],
-      ["1861.3.17",  "Kingdom of Italy"],
-      ["1871.1.18",  "German Empire", true],
-      ["1900.1.1",   "New Century"],
-      ["1914.6.28",  "The Great War"],
-      ["1920.8.10",  "Treaty of Sevres"],
-      ["1922.11.1",  "Fall of Ottomans", true],
-      ["1939.8.31",  "The Greater War"],
-      ["1945.5.8",   "Cold War", true],
-      ["1975.1.1",   "Decolonization"],
-      ["1991.12.26", "Fall of Soviet Union"],
-      ["2015.9.1",   "Modern Times", true],
-    ]
     # Bookmark tags are unfortunately magical
     patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
       node.delete_if{true}
-      bookmarks.each do |date, name, key|
-        date = Date.parse(date)
+      @db.bookmarks.each do |date, bookmark|
         next unless date >= @db.min_date
-        if key
+        name = bookmark[:name]
+        if bookmark[:key]
+          raise "Too many key bookmarks" if key_bookmarks.empty?
           bm_code, splash_code = key_bookmarks.shift
         else
           bm_code, splash_code = date.strftime("BM_%Y_%m_%d"), nil
         end
         bm_desc = "#{bm_code}_DESC"
-        node.add! "bookmark", PropertyList[
+        bookmark_node = PropertyList[
           "name", bm_code,
           "desc", bm_desc,
           "date", date,
         ]
+        if bookmark[:characters]
+          bookmark[:characters].each do |title|
+            _, ruler_id = @holders[title].select{|d,id| d<=date}[-1]
+            unless ruler_id
+              warn "No ruler of #{title} at #{date} but marked as key character"
+              require 'pry'; binding.pry
+            end
+            bookmark_node.add! "character", ruler_id
+          end
+        end
+        node.add! "bookmard", bookmark_node
+
         localization!("ZZ vanilla overrides",
           bm_code => name,
           bm_desc => "",
