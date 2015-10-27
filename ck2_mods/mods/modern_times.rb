@@ -88,6 +88,7 @@ class ModernTimesGameModification < CK2GameModification
           id = @character_manager.add_ruler(
             culture: culture,
             religion: @db.titles[liege][:religion],
+            female: :maybe,
             key: {
               crowning: s,
               title: duchy,
@@ -292,7 +293,7 @@ class ModernTimesGameModification < CK2GameModification
           if holder.nil?
             @holders[title] << [date, 0]
           elsif holder[:use]
-            id = @character_manager.lookup_character_id(holder[:use])
+            id = @character_manager.lookup_character_id(holder[:use]).id
             @holders[title] << [date, id]
           else
             id = @character_manager.add_ruler(holder.merge(key: {

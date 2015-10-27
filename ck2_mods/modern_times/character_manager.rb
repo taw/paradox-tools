@@ -33,14 +33,14 @@ class CharacterManager
 
   def create_reset_character(title)
     id, rng = allocate_id("reset-#{title}", true)
-    @characters[id] = PropertyList[
-      "name", "Bob",
-      "religion", "cathar",
-      "culture", "bohemian",
-      @reset_date, PropertyList["birth", true],
-      @reset_date, PropertyList["death", true],
-    ]
-    id
+    add_character! Character.new(
+      name: "Bob",
+      religion: "cathar",
+      culture: "bohemian",
+      birth: @reset_date,
+      death: @reset_date,
+      id: id,
+    )
   end
 
   # FIXME: This is fairly silly leftover
@@ -50,14 +50,15 @@ class CharacterManager
   end
 
   def add_ruler(**args)
-    crowning = args[:key][:crowning]
-    id, rng = allocate_id("ruler-#{args[:key][:title]}-#{args[:key][:crowning].to_s_px}")
+    key = args[:key]
+    crowning = key[:crowning]
+    id, rng = allocate_id("ruler-#{key[:title]}-#{key[:crowning].to_s_px}")
 
-    culture  = args[:culture] or raise
-    religion = args[:religion] or raise
+    culture  = args[:culture].to_s or raise
+    religion = args[:religion].to_s or raise
     female = args[:female]
     if female == :maybe
-      if %W[sunni shiite ibadi].include?(religion) or @builder.db.titles[args[:key][:title]][:male]
+      if muslim?(religion) or title_only_allows_males?(key[:title])
         female = false
       else
         female = (rng.rand < 0.2)
@@ -76,48 +77,39 @@ class CharacterManager
       raise
     end
 
-    name = args[:name] || @builder.cultures.random_name(culture, female, rng)
-
     if args[:dynasty]
       dynasty = @builder.new_dynasty(args[:dynasty], culture)
     else
       dynasty = @builder.cultures.random_dynasty(culture, rng)
     end
 
-    character = PropertyList[
-      "name", name,
-      "religion", religion,
-      "culture", culture,
-      "dynasty", dynasty,
-    ]
-    character.add! "female", true if female
-    character.add! "father", lookup_character_id(args[:father]) if args[:father]
-    character.add! "mother", lookup_character_id(args[:mother]) if args[:mother]
-    character.add! "health", args[:health] if args[:health]
-    if args[:traits]
-      args[:traits].each do |t|
-        character.add! "trait", t
-      end
-    end
-    character.add! birth, PropertyList["birth", birth]
-    if args[:events]
-      args[:events].each do |date, ev|
-        character.add! date, ev
-      end
-    end
-    character.add! death, PropertyList["death", death] if death
+    father = args[:father] && lookup_character_id(args[:father])
+    mother = args[:mother] && lookup_character_id(args[:mother])
 
-    @historical[args[:historical_id]] = id if args[:historical_id]
-    @characters[id] = character
-    id
+    add_character! Character.new(
+      name: args[:name] || @builder.cultures.random_name(culture, female, rng),
+      religion: religion,
+      culture: culture,
+      dynasty: dynasty,
+      female: female,
+      father: father,
+      mother: mother,
+      health: args[:health],
+      traits: args[:traits],
+      birth: birth,
+      events: args[:events],
+      death: death,
+      id: id,
+      historical_id: args[:historical_id],
+    )
   end
 
   # The game is much more fun if dynastic games start right away
   def generate_family!(id)
     parent = @characters[id]
     rng = Random.keyed("family-#{id}")
-    birth = parent.keys.grep(Date).find{|k| parent[k]["birth"]}
-    death = parent.keys.grep(Date).find{|k| parent[k]["death"]}
+    birth = parent.birth
+    death = parent.death
 
     # 10 20% shots, 15 10% shots, for EV=3.5
     (20..44).each do |age|
@@ -134,7 +126,7 @@ class CharacterManager
   def reset_plist
     result = PropertyList[]
     @characters.sort.each do |k,v|
-      result.add! k, v if k < @main_namespace
+      result.add! k, v.to_plist if k < @main_namespace
     end
     result
   end
@@ -142,7 +134,7 @@ class CharacterManager
   def main_plist
     result = PropertyList[]
     @characters.sort.each do |k,v|
-      result.add! k, v if k >= @main_namespace
+      result.add! k, v.to_plist if k >= @main_namespace
     end
     result
   end
@@ -150,25 +142,36 @@ class CharacterManager
 private
 
   def add_child!(parent_id, birth)
-    parent = @characters[parent_id]
+    parent = @characters.fetch(parent_id)
     id, rng = allocate_id("child-#{parent_id}-#{birth.to_s_px}")
     female = (rng.rand < 0.5)
     death = birth >> (90*12)
-    if parent["female"] == true
-      parent_type = "mother"
-    else
-      parent_type = "father"
-    end
-    character = PropertyList[
-      "name", @builder.cultures.random_name(parent["culture"], female, rng),
-      "religion", parent["religion"],
-      "culture", parent["culture"],
-      "dynasty", parent["dynasty"],
-      parent_type, parent_id,
-    ]
-    character.add! "female", true if female
-    character.add! birth, PropertyList["birth", birth]
-    character.add! death, PropertyList["death", death]
+    add_character! Character.new(
+      id: id,
+      name: @builder.cultures.random_name(parent.culture, female, rng),
+      religion: parent.religion,
+      culture: parent.culture,
+      dynasty: parent.dynasty,
+      parent: parent,
+      female: female,
+      birth: birth,
+      death: death,
+    )
+  end
+
+  def add_character!(character)
+    id = character.id
+    historical_id = character.historical_id
     @characters[id] = character
+    @historical[character.historical_id] = character if historical_id
+    id
+  end
+
+  def muslim?(religion)
+    %W[sunni shiite ibadi].include?(religion)
+  end
+
+  def title_only_allows_males?(title)
+    @builder.db.titles.fetch(title, {})[:male]
   end
 end
