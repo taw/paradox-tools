@@ -1,0 +1,2 @@
+ModernTimesDatabase::HOLDERS_AFRICA = {
+}

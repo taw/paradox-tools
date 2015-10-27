@@ -154,4 +154,56 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
       lived: "1943–",
     },
   },
+  k_finland: {
+    # Backdating from "26 July 1919"
+    "1917.12.6" => {
+      name: "Kaarlo Juho | Ståhlberg",
+      lived: "28 January 1865 - 22 September 1952",
+    },
+    "2 March 1925" => {
+      name: "Lauri Kristian | Relander",
+      lived: "31 May 1883 - 9 February 1942",
+    },
+    "2 March 1931" => {
+      name: "Pehr Evind | Svinhufvud",
+      lived: "15 December 1861 - 29 February 1944",
+    },
+    "1 March 1937" => {
+      name: "Kyösti Kallio",
+      lived: "10 April 1873 - 19 December 1940",
+    },
+    "19 December 1940" => {
+      name: "Risto Ryti",
+      lived: "3 February 1889 - 25 October 1956",
+    },
+    "4 August 1944" => {
+      name: "Carl Gustaf Emil | Mannerheim",
+      lived: "4 June 1867 - 27 January 1951",
+    },
+    "11 March 1946" => {
+      name: "Juho Kusti | Paasikivi",
+      lived: " 27 November 1870 - 14 December 1956",
+    },
+    "1 March 1956" => {
+      name: "Urho Kekkonen",
+      lived: "3 September 1900 - 31 August 1986",
+    },
+    "27 January 1982" => {
+      name: "Mauno Koivisto",
+      lived: "25 November 1923-"
+    },
+    "1 March 1994" => {
+      name: "Martti Ahtisaari",
+      lived: "23 June 1937-",
+    },
+    "1 March 2000" => {
+      name: "Tarja Halonen",
+      lived: "24 December 1943-",
+      female: true,
+    },
+    "1 March 2012" => {
+      name: "Sauli Niinistö",
+      lived: "24 August 1948-",
+    },
+  },
 }

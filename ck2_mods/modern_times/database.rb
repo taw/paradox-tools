@@ -411,7 +411,7 @@ private
   end
 
   def parse_name(name)
-    name = name.tr("đćűő", "dcuo")
+    name = name.tr("đćűőșă", "dcuosa")
     name, dynasty = name.split(/\s*\|\s*/, 2)
     return [name, dynasty] if dynasty
     words = name.split(/\s+/)

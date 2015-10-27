@@ -139,7 +139,8 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
   },
   d_oultrejourdain: {
-    "1921.4.1" => {
+    # Backdating hard from "1921.4.1"
+    "1918.11.11" => {
       name: "Abdullah | Hashemite",
       lived: "1882.2.1 - 1951.7.20",
       father: "d_medina Hussein ibn Ali 1",

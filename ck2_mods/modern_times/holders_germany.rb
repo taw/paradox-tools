@@ -259,4 +259,24 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
     "2004.7.8" => {name: "Heinz | Fischer"},
   },
+  # Württemberg
+  d_swabia: {
+    # as duke, elector, then king
+    "23 December 1797" => {
+      name: "Frederick | Württemberg",
+      lived: "6 November 1754 – 30 October 1816",
+    },
+    "30 October 1816" => {
+      name: "William | Württemberg",
+      lived: "27 September 1781 – 25 June 1864",
+      father: "Frederick 1",
+    },
+    "25 June 1864" => {
+      name: "Charles | Württemberg",
+      lived: "6 March 1823 in Stuttgart – 6 October 1891",
+      father: "William 1",
+    },
+    # still in charge, just under empire of Germany
+    "1871.1.18" => nil,
+  },
 }
