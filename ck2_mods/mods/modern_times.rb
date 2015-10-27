@@ -650,6 +650,7 @@ class ModernTimesGameModification < CK2GameModification
       @db.bookmarks.each do |date, bookmark|
         next unless date >= @db.min_date
         name = bookmark[:name]
+        desc = bookmark[:desc] || ""
         if bookmark[:key]
           raise "Too many key bookmarks" if key_bookmarks.empty?
           bm_code, splash_code = key_bookmarks.shift
@@ -676,12 +677,12 @@ class ModernTimesGameModification < CK2GameModification
 
         localization!("ZZ vanilla overrides",
           bm_code => name,
-          bm_desc => "",
+          bm_desc => desc,
         )
         if splash_code
           localization!("ZZ vanilla overrides",
             splash_code => name,
-            "#{splash_code}_INFO" => "",
+            "#{splash_code}_INFO" => desc,
           )
         end
       end

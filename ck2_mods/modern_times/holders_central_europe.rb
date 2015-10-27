@@ -3,7 +3,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1804.8.11"  => {name: "Francis | Habsburg", lived: "1768.2.12 - 1835.3.2"},
     "1835.3.2"   => {name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29"},
     # Can't find day date, just month
-    "1848.12.1"  => {name: "Francis Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21"},
+    "1848.12.1"  => {name: "Francis Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21", health: 6},
     "1916.11.21" => {name: "Charles | Habsburg", lived: "1911.10.21 - 1922.4.1"},
     "1918.11.11" => nil,
   },
@@ -83,7 +83,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "2014.6.15" => {name: "Andrej | Kiska"},
   },
   k_poland: {
-    end_ww1: {name: "Jozef | Pilsudski", lived: "1867.12.5 - 1935.5.12"},
+    end_ww1: {name: "Jozef | Pilsudski", lived: "1867.12.5 - 1935.5.12", health: 6},
     "1922.12.11" => {name: "Gabriel | Narutowicz", lived: "1865.3.17 - 1922.12.16"},
     "1922.12.16" => {name: "Stanislaw | Wojciechowski", lived: "1869.3.15 - 1953.4.9"},
     # Not officially, but everybody knows who ruled
@@ -101,7 +101,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1970.12.20" => {name: "Edward | Gierek", lived: "1913.1.6 - 2001.7.29"},
     "1980.9.6" => {name: "Stanislaw | Kania", lived: "1927.3.8 -"},
     "1981.10.18" => {name: "Wojciech | Jaruzelski", lived: "1923.7.6 - 2014.5.25"},
-    "1990.12.22" => {name: "Lech | Walesa", lived: "1943.9.29 -"},
+    "1990.12.22" => {name: "Lech | Walesa", lived: "1943.9.29 -", health: 6},
     "1995.12.23" => {name: "Aleksander | Kwasniewski", lived: "1954.11.15 -"},
     "2005.12.23" => {name: "Lech | Kaczynski", lived: "1949.6.18 - 2010.4.10"},
     # acting, then actual, skipping other acting presidents

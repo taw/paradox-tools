@@ -124,6 +124,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       name: "Adolf | Hitler", lived: "1889.4.20 - 1945.4.30",
       religion: :catholic,
       health: 7,
+      traits: ["ambitious", "wroth"],
       events: {
         crowning: PropertyList[
           "effect", PropertyList["set_character_flag", "horde_invader"],

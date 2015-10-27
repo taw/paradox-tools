@@ -36,10 +36,13 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1979.2.11" => {
       name: "Ruhollah | Khomeini",
       lived: "1902.9.22 - 1989.6.3",
+      traits: ["zealous"],
+      health: 7, # way too old to survive Iran-Iraq War otherwise
     },
     "1989.6.3" => {
       name: "Ali | Khamenei",
       lived: "1939.7.17 -",
+      traits: ["zealous"],
     },
   },
   e_arabia: {
@@ -95,6 +98,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     # Dates are changed to fill the gaps
     "1922.11.1" => {
       name: "Mustafa Kemal | Ataturk",
+      health: 6,
     },
     "1938.11.11" => {
       name: "Ismet | Inonu",
@@ -173,7 +177,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     # brother of previous
     "1966.4.13"=> {name: "Abdul Rahman | Arif", lived: "1916.4.14 - 2007.8.24"},
     "1968.7.17" => {name: "Ahmed Hassan | al-Bakr", lived: "1914.7.1 - 1982.10.4"},
-    "1979.7.16" => {name: "Saddam | Hussein", lived: "1937.4.28 - 2006.12.30"},
+    "1979.7.16" => {name: "Saddam | Hussein", lived: "1937.4.28 - 2006.12.30", traits: ["cynical", "paranoid"], health: 6},
     # Backdating hard
     "2003.4.9" => {name: "Jalal | Talabani", lived: "1933.11.12-"},
     "2014.7.24" => {name: "Fuad | Masum", lived: "1938.1.1-"},

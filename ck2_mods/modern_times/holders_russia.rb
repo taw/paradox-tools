@@ -68,10 +68,13 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # Backdating
     "1918.6.12" => {
       name: "Vladimir | Lenin", lived: "April 22, 1870 - 1924.1.21",
+      traits: ["cynical"],
+      health: 6,
     },
     "1924.1.21" => {
       name: "Joseph | Stalin", lived: "December 18, 1878 - 1953.3.5",
       health: 7,
+      traits: ["ambitious", "cynical"],
       events: {
         crowning: PropertyList[
           "effect", PropertyList["set_character_flag", "horde_invader"],
@@ -101,10 +104,13 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1991.12.25" => {
       name: "Boris | Yeltsin",
       lived: "1931.2.1 - 2007.4.23",
+      traits: ["drunkard"],
+      health: 6,
     },
     "1999.12.31" => {
       name: "Vladimir | Putin",
       lived: "7 October 1952 -",
+      health: 6,
     },
     "2008.5.7" => {
       name: "Dmitry | Medvedev",
@@ -116,6 +122,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     fall_soviet_union: {
       name: "Dzhokhar | Dudayev",
       lived: "1944.2.15 - 1996.4.21",
+      traits: ["brilliant_strategist"],
+      health: 6,
     },
     "1996.4.21" => {
       name: "Zelimkhan | Yandarbiyev",
@@ -148,10 +156,35 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2014.2.23" => {
       name: "Oleksandr | Turchynov",
       lived: "31 March 1964 -",
+      events: {
+        crimea_invasion: PropertyList[
+          "add_claim", "c_crimea",
+          "add_claim", "d_cherson",
+          "add_claim", "c_theodosia",
+          "add_claim", "c_cherson",
+          "add_claim", "c_korchev",
+        ],
+        "2014.6.7" => PropertyList[
+          "remove_claim", "c_crimea",
+          "remove_claim", "d_cherson",
+          "remove_claim", "c_theodosia",
+          "remove_claim", "c_cherson",
+          "remove_claim", "c_korchev",
+        ],
+      },
     },
     "2014.6.7" => {
       name: "Petro | Poroshenko",
       lived: "1965.9.26 -",
+      events: {
+        "2014.6.7" => PropertyList[
+          "add_claim", "c_crimea",
+          "add_claim", "d_cherson",
+          "add_claim", "c_theodosia",
+          "add_claim", "c_cherson",
+          "add_claim", "c_korchev",
+        ],
+      },
     },
   },
   d_vitebsk: {
