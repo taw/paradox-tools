@@ -599,12 +599,6 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
   },
-  # special Holy Order
-  d_hashshashin: {
-    culture: :persian,
-    religion: :shiite,
-    autoholders: true,
-  },
   # Yes, this is Catholic ruler and Protestant population
   d_saxony: {
     culture: :german,
@@ -790,6 +784,32 @@ ModernTimesDatabase::TITLES = {
     liege: {end_ww1: "e_britannia", israel_independence: nil},
     autoholders: true,
   },
+
+  ### Holy orders
+  # d_huitzilopochtli: { culture: :nahuatl, religion: :aztec_reformed, autoholders: true, male: true},
+  # d_chosen_perkunas: { culture: :lettigallish, religion: :baltic_pagan_reformed, autoholders: true, male: true},
+  d_ashokas_chosen: { culture: :marathi, religion: :buddhist, autoholders: true, male: true},
+  d_knights_santiago: { culture: :castillan, religion: :catholic, autoholders: true, male: true},
+  d_knights_hospitaler: { culture: :occitan, religion: :catholic, autoholders: true, male: true},
+  d_teutonic_order: { culture: :german, religion: :catholic, autoholders: true, male: true},
+  d_knights_templar: { culture: :frankish, religion: :catholic, autoholders: true, male: true},
+  d_knights_calatrava: { culture: :castillan, religion: :catholic, autoholders: true, male: true},
+  # d_sons_kaleva: { culture: :finnish, religion: :finnish_pagan_reformed, autoholders: true, male: true},
+  d_followers_arjuna: { culture: :hindustani, religion: :hindu, autoholders: true, male: true},
+  d_haruriyyah: { culture: :bedouin_arabic, religion: :ibadi, autoholders: true, male: true},
+  d_bulls_rishabha: { culture: :kannada, religion: :jain, autoholders: true, male: true},
+  d_zealots: { culture: :ashkenazi, religion: :jewish, autoholders: true, male: true},
+  d_saint_anthony: { culture: :ethiopian, religion: :miaphysite, autoholders: true, male: true},
+  d_saint_addai: { culture: :persian, religion: :nestorian, autoholders: true, male: true},
+  # d_jomsvikings: { culture: :norse, religion: :norse_pagan, autoholders: true, male: true},
+  d_holy_sepulchre: { culture: :greek, religion: :orthodox, autoholders: true, male: true},
+  d_hashshashin: { culture: :persian, religion: :shiite, autoholders: true, male: true},
+  # d_warriors_perun: { culture: :russian, religion: :slavic_pagan_reformed, autoholders: true, male: true},
+  d_bektashi: { culture: :persian, religion: :sunni, autoholders: true, male: true},
+  # d_sky_lords: { culture: :cuman, religion: :tengri_pagan_reformed, autoholders: true, male: true},
+  # d_spirit_guardians: { culture: :manden, religion: :west_african_pagan_reformed, autoholders: true, male: true},
+  # d_immortals: { culture: :persian, religion: :zoroastrian, autoholders: true, male: true},
+  # d_zun_warriors: { culture: :afghan, religion: :zun_pagan_reformed, autoholders: true, male: true},
 
   ### Just renames or capital moves, not actual countries
   k_taurica: {

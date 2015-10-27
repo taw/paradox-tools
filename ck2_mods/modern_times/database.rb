@@ -59,7 +59,7 @@ class ModernTimesDatabase
   def land
     unless @land
       @land = {}
-      ModernTimesDatabase::LAND.each do |title, ownership|
+      ModernTimesDatabase::LAND.merge(holy_orders).each do |title, ownership|
         ownership = ownership.map{|k,v| [[min_date, resolve_date(k)].max, v.to_s] }
         # Strip changes which happened before start of game
         while ownership.size >= 2 and ownership[1][0] == ownership[0][0] and ownership[0][0] == min_date
@@ -75,13 +75,31 @@ class ModernTimesDatabase
     @land
   end
 
+  # It's backwards compared with land, should it be?
+  def holy_orders
+    unless @holy_orders
+      @holy_orders = {}
+      ModernTimesDatabase::HOLY_ORDERS.each do |holy_order, counties|
+        if holy_order.is_a?(String)
+          holy_order = {times_immemorial: holy_order}
+        end
+        counties.each do |county|
+          capital, holdings = map.analyze_province_holdings(county)
+          first_minor_castle = holdings.keys.find{|barony| holdings[barony] == "castle" and barony != capital }
+          @holy_orders[first_minor_castle] = holy_order
+        end
+      end
+    end
+    @holy_orders
+  end
+
   def titles
     unless @titles
       @titles = {}
       ModernTimesDatabase::TITLES.each do |title, data|
         title = title.to_s
         @titles[title] = {}
-        extra_keys = data.keys - %i[culture religion capital name liege autoholders demesne]
+        extra_keys = data.keys - %i[culture religion capital name liege autoholders demesne male]
         raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
         raise "Culture must be specified for every title: #{title}" unless data[:culture]
         raise "Religion must be specified for every title: #{title}" unless data[:religion]
@@ -116,6 +134,7 @@ class ModernTimesDatabase
           demesne: demesne,
           liege: data[:liege] && data[:liege].map{|d,n| [resolve_date(d), n] },
           name: names,
+          male: !!data[:male],
         }
       end
     end

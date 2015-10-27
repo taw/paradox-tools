@@ -57,7 +57,7 @@ class CharacterManager
     religion = args[:religion] or raise
     female = args[:female]
     if female == :maybe
-      if religion == "sunni" or religion == "shiite" or args[:key][:title] == "k_papal_state"
+      if %W[sunni shiite ibadi].include?(religion) or @builder.db.titles[args[:key][:title]][:male]
         female = false
       else
         female = (rng.rand < 0.2)

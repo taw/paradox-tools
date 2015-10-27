@@ -71,6 +71,34 @@ class MapManager
     @landless[title]
   end
 
+  def analyze_province_holdings(title)
+    id = title_to_province_id[title]
+    paths = @builder.glob("history/provinces/#{id} - *.txt")
+    raise unless paths.size == 1
+    node = @builder.parse(paths[0])
+
+    raise unless node["title"] == title
+
+    holdings = {}
+    capital = nil
+    node.each do |k, v|
+      if k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
+        holdings[k] = v
+        capital ||= k
+      end
+      raise if k == "capital"
+      if k.is_a?(Date)
+        v.each do |kk, vv|
+          holdings[kk] = vv if kk =~ /\Ab_/ and vv =~ /\A(city|castle|temple|tribal)\z/
+          capital = vv if kk == "capital"
+          holdings.delete(vv) if kk == "remove_settlement"
+        end
+      end
+    end
+
+    [capital, holdings]
+  end
+
 private
 
   def landed_titles

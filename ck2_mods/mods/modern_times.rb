@@ -9,7 +9,7 @@ end
 
 # No idea if anything will ever come out of this
 class ModernTimesGameModification < CK2GameModification
-  attr_reader :map, :character_manager
+  attr_reader :map, :character_manager, :db
 
   def reset_date
     @reset_date ||= @db.resolve_date(:reset_date)
@@ -117,7 +117,7 @@ class ModernTimesGameModification < CK2GameModification
       raise "No lieges for #{liege}" unless holders[liege]
       add_holders! node, holders[liege], start_date, end_date
     else
-      this_duchy    = @map.duchy_for_county(title)
+      this_duchy = @map.duchy_for_county(title)
       if @db.in_historical_demesne?(liege, title)
         add_holders! node, holders[liege], start_date, end_date
       else
@@ -190,6 +190,32 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def setup_barony!(title, node)
+    county = @map.landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
+    # No actual holders, just set lieges and let game automatically fill in
+    node.add! reset_date, PropertyList["holder", 0]
+    if @db.land[title]
+      # Holy order baronies need to be setup
+      # But first, do a reset
+      node.add! reset_date, PropertyList["liege", county]
+      land = @db.land[title]
+      land.size.times do |i|
+        start_date, liege = land[i]
+        end_date = land[i+1] && land[i+1][0]
+        add_holders! node, holders[liege], start_date, end_date
+      end
+      # @db.land[title].each do |date, liege|
+      #   node.add! date, PropertyList["liege", liege || 0]
+      # end
+    elsif county
+      # Regular baronies are under county
+      node.add! reset_date, PropertyList["liege", county]
+    else
+      # Baronies not belonging to counties like partician houses can be ignored
+      node.add! reset_date, PropertyList["liege", 0]
+    end
+  end
+
   def setup_title_history!
     # This is a silly trick of creating node if it doesn't exist, reusing it otherwise
     @db.titles.keys.each do |title|
@@ -204,14 +230,7 @@ class ModernTimesGameModification < CK2GameModification
       title = path.basename(".txt").to_s
       patch_mod_file!(path) do |node|
         if title =~ /\Ab_/
-          # Baronies not belonging to counties like partician houses can be ignored
-          county = @map.landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
-          if county
-            node.add! reset_date, PropertyList["liege", county]
-          else
-            node.add! reset_date, PropertyList["liege", 0]
-          end
-          node.add! reset_date, PropertyList["holder", 0]
+          setup_barony!(title, node)
         elsif title =~ /\Ac_/
           setup_county_history!(title, node)
         else
@@ -739,6 +758,13 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def initialize_empty_title_histories!
+    @db.land.each do |title, _|
+      patch_mod_file!("history/titles/#{title}.txt", autocreate: true) do |node|
+      end
+    end
+  end
+
   def apply!
     @warnings = []
 
@@ -754,6 +780,7 @@ class ModernTimesGameModification < CK2GameModification
     @character_manager = CharacterManager.new(self)
     @regional_vassals = {}
     @dynasties        = {}
+    initialize_empty_title_histories!
     setup_title_history!
     setup_title_names!
     setup_vassal_dukes!

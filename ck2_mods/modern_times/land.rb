@@ -226,7 +226,7 @@ ModernTimesDatabase::LAND = {
   k_persia:       { forever_ago: "k_persia" },
   d_sistan:       { forever_ago: "k_persia" },
   d_kermanshah:   { forever_ago: "k_persia" },
-  c_dailam:       { forever_ago: "k_persia", iranian_revolution: "d_hashshashin" },
+  c_dailam:       { forever_ago: "k_persia" },
 
   # After 1758 Xinjiang in China. Before Dzungar Khanate
   k_khotan:     { forever_ago: "k_khotan" },
@@ -501,8 +501,10 @@ ModernTimesDatabase::LAND = {
   d_mazovia:       { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   "c_sieradzko-leczyckie": { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   c_sandomierskie: { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
-  c_kalisz:        { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
+
   c_poznanskie:    { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
+  # Not sure which version is correct...
+  # c_kaliskie:      { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
   c_kaliskie:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
 
   # More or less Alsace-Lorraine
