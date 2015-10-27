@@ -26,7 +26,7 @@ class Character
   def religion=(religion)
     @religion = religion.to_s
     if %W[hindu buddhist jain].include?(religion)
-      @traits << "vaishya"
+      @traits << "kshatriya"
     end
   end
 

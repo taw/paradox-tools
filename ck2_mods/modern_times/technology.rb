@@ -35,7 +35,6 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_byzantium"        => [3,3,3, 4,4,4, 5,5,5],
   "k_anatolia"         => [3,3,3, 4,4,4, 5,5,5],
   "k_armenia"          => [3,3,3, 4,4,4, 5,5,5],
-  "d_sarkel"           => [3,3,3, 4,4,4, 5,5,5],
   # Moscow gets +1 mil over its group
   "d_moskva"           => [4,3,3, 5,4,4, 6,5,5],
   # Rest of the world
@@ -49,6 +48,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_perm"             => [2,2,2, 3,3,3, 4,4,4],
   "k_georgia"          => [2,2,2, 3,3,3, 4,4,4],
   "k_alania"           => [2,2,2, 3,3,3, 4,4,4],
+  "d_sarkel"           => [2,2,2, 3,3,3, 4,4,4],
   "k_volga_bulgaria"   => [2,2,2, 3,3,3, 4,4,4],
   "k_khotan"           => [2,2,2, 3,3,3, 4,4,4],
   "k_mongolia"         => [2,2,2, 3,3,3, 4,4,4],
