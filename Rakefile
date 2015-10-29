@@ -1,5 +1,17 @@
 require "pathname"
 require "fileutils"
+require "date"
+
+class Date
+  # Default inspect is just really stupid
+  def inspect
+    "Date.new(#{year}, #{month}, #{day})"
+  end
+
+  def to_s
+    "%04d.%d.%d" % [year, month, day]
+  end
+end
 
 def trash(*paths)
   paths.each do |path|
@@ -154,4 +166,38 @@ end
 desc "Run tests"
 task "test" do
   system %q[ruby -e 'Dir["test/*.rb"].each{|x| require "./#{x}"}']
+end
+
+def fix_date(str)
+  case str
+  when /\A\d+\.\d+\.\d+\z/, /\A\d+ \S+ \d+\z/, /\A\S+ \d+, \d+\z/
+    Date.parse(str).to_s
+  else
+    str
+  end
+end
+
+desc "Fix code in modern times database"
+task "code:cleanup" do
+  Dir["ck2_mods/**/*.rb"].each do |path|
+    path = Pathname(path)
+    orig_content = path.read
+    content = orig_content.gsub(/"([^"\n]+)"/) do
+      m = $1
+      begin
+        if m =~ /(–|-)/
+          m = m.split(/(\s*-\s*)/, -1).each_slice(2).map{|d,s| [fix_date(d), s]}.join
+        else
+          m = fix_date(m)
+        end
+      rescue
+        # keep
+      end
+      %Q["#{m}"]
+    end
+    if content != orig_content
+      puts "#{path} changed"
+      File.write(path, content)
+    end
+  end
 end

@@ -14,56 +14,56 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
       lived: "1868–1957",
     },
     # Government of National Unity all time
-    "15 October 1944" => {
+    "1944.10.15" => {
       name: "Ferenc Szálasi",
       lived: "1897–1946",
     },
     # Communist,
     # General Secretary since February, but only count after Ferenc Szálasi is gone
-    "28 March 1945" => {
+    "1945.3.28" => {
       name: "Mátyás Rákosi",
       lived: "1892–1971",
     },
-    "18 July 1956" => {
+    "1956.7.18" => {
       name: "Ernő Gerő",
       lived: "1898–1980",
     },
-    "25 October 1956" => {
+    "1956.10.25" => {
       name: "János Kádár",
       lived: "1912–1989",
     },
-    "27 May 1988" => {
+    "1988.5.27" => {
       name: "Károly Grósz",
       lived: "1930–1996",
     },
-    "26 June 1989" => {
+    "1989.6.26" => {
       name: "Rezső Nyers",
       lived: "1923–",
     },
     # Post-Communist
     # Provisional, backdated
-    "7 October 1989" => {
+    "1989.10.7" => {
       name: "Mátyás Szűrös",
       lived: "1933–",
     },
-    "2 May 1990" => {
+    "1990.5.2" => {
       name: "Árpád Göncz",
       lived: "1922–2015",
     },
-    "4 August 2000" => {
+    "2000.8.4" => {
       name: "Ferenc Mádl",
       lived: "1931–2011",
     },
-    "5 August 2005" => {
+    "2005.8.5" => {
       name: "László Sólyom",
       lived: "1942–",
     },
-    "6 August 2010" => {
+    "2010.8.6" => {
       name: "Pál Schmitt",
       lived: "1942–",
     },
     # backdating from 10 April 2012
-    "2 April 2012" => {
+    "2012.4.2" => {
       name: "János Áder",
       lived: "1959–",
     },
@@ -76,11 +76,11 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     },
     "1945.5.8" => nil,
     # 2 March 1993, backdating
-    "1993.1.1" => {name: "Michal | Kovac", lived: "5 August 1930 -"},
+    "1993.1.1" => {name: "Michal | Kovac", lived: "1930.8.5 -"},
     # 15 June 1999, backdating
-    "1998.3.2" => {name: "Rudolf | Schuster", lived: "4 January 1934 -"},
-    "2004.6.15" => {name: "Ivan | Gasparovic", lived: "27 March 1941 -"},
-    "2014.6.15" => {name: "Andrej | Kiska", lived: "2 February 1963 -"},
+    "1998.3.2" => {name: "Rudolf | Schuster", lived: "1934.1.4 -"},
+    "2004.6.15" => {name: "Ivan | Gasparovic", lived: "1941.3.27 -"},
+    "2014.6.15" => {name: "Andrej | Kiska", lived: "1963.2.2 -"},
   },
   k_poland: {
     end_ww1: {name: "Jozef | Pilsudski", lived: "1867.12.5 - 1935.5.12", health: 6},
@@ -121,90 +121,90 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
       name: "Heinrich Sahm",
       lived: "12 September 1877 – 3 October 1939",
     },
-    "10 January 1931" => {
+    "1931.1.10" => {
       name: "Ernst Ziehm",
-      lived: "1 May 1867 - 7 July 1962",
+      lived: "1867.5.1 - 1962.7.7",
     },
-    "June 20, 1933" => {
+    "1933.6.20" => {
       name: "Hermann Rauschning",
       lived: "7 August 1887 – February 8, 1982",
     },
-    "23 November 1934" => {
+    "1934.11.23" => {
       name: "Arthur Greiser",
       lived: "22 January 1897 – 21 July 1946",
     },
     end_ww2: nil,
   },
   k_dacia: {
-    # actually "20 April 1866", ignore until he gets independent
+    # actually "1866.4.20", ignore until he gets independent
     treaty_of_berlin: {
       name: "Carol | Hohenzollern-Sigmaringen",
       lived: "20 April 1839 – 10 October 1914",
     },
     # nephew of Carol 1
-    "10 October 1914" => {
+    "1914.10.10" => {
       name: "Ferdinand | Hohenzollern-Sigmaringen",
       lived: "24 August 1865 – 20 July 1927",
     },
     # This is just dumb, Ferdinand's son Carol renounced right to throne
     # in favour of his son Michael, then decided to go back on it
     # DSL can't currently support this
-    "20 July 1927" => {
+    "1927.7.20" => {
       name: "Michael | Hohenzollern-Sigmaringen",
-      lived: "25 October 1921-",
+      lived: "1921.10.25-",
       # father: "Carol 2",
     },
-    "8 June 1930" => {
+    "1930.6.8" => {
       name: "Carol | Hohenzollern-Sigmaringen",
       lived: "15 October 1893 – 4 April 1953",
       father: "Ferdinand 1",
     },
-    "6 September 1940" => {
+    "1940.9.6" => {
       use: "Michael 1",
     },
     # Communists
-    "30 December 1947" => {
+    "1947.12.30" => {
       name: "Constantin Ion | Parhon",
       lived: "1874–1969",
     },
-    "12 June 1952" => {
+    "1952.6.12" => {
       name: "Petru Groza",
       lived: "1884–1958",
     },
     # Backdating from 1958.1.11
-    "7 January 1958" => {
+    "1958.1.7" => {
       name: "Ion Gheorghe | Maurer",
       lived: "1902–2000",
     },
-    "21 March 1961" => {
+    "1961.3.21" => {
       name: "Gheorghe Gheorghiu-Dej",
       lived: "November 8, 1901 – March 19, 1965",
     },
     # Backdating from 1965.3.24
-    "19 March 1965" => {
+    "1965.3.19" => {
       name: "Chivu Stoica",
       lived: "1908–1975",
     },
-    "9 December 1967" => {
+    "1967.12.9" => {
       name: "Nicolae Ceaușescu",
       lived: "26 January 1918 – 25 December 1989",
     },
     # Backdating from 1989.12.26
-    "22 December 1989" => {
+    "1989.12.22" => {
       name: "Ion Iliescu",
       lived: "1930–",
     },
-    "29 November 1996" => {
+    "1996.11.29" => {
       name: "Emil Constantinescu",
       lived: "1939–",
     },
-    "20 December 2000" => { use: "Ion 1" },
+    "2000.12.20" => { use: "Ion 1" },
     # Twice suspended by parliament, we don't care about that
-    "20 December 2004" => {
+    "2004.12.20" => {
       name: "Traian Băsescu",
       lived: "1951–",
     },
-    "21 December 2014" => {
+    "2014.12.21" => {
       name: "Klaus Iohannis",
       lived: "1959–",
     },

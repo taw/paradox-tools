@@ -76,15 +76,15 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     "1999.5.18" => {
       name: "Carlo Azeglio | Ciampi",
-      lived: "9 December 1920 -",
+      lived: "1920.12.9 -",
     },
     "2006.5.15" => {
       name: "Giorgio | Napolitano",
-      lived: "29 June 1925 -",
+      lived: "1925.6.29 -",
     },
     "2015.2.3" => {
       name: "Sergio | Mattarella",
-      lived: "23 July 1941 -",
+      lived: "1941.7.23 -",
     },
   },
   k_sicily: {
@@ -112,18 +112,18 @@ ModernTimesDatabase::HOLDERS_ITALY = {
   # I'm really confused by Lucca / Parma situation
   # Maria Louisa Bourbon != Marie Louise Habsburg
   c_lucca: {
-    "9 June 1815" => {
+    "1815.6.9" => {
       name: "Maria Luisa | Bourbon",
       lived: "6 July 1782 – 13 March 1824",
       female: true,
     },
-    "13 March 1824" => {
+    "1824.3.13" => {
       name: "Charles | Bourbon",
       lived: "1799.12.22 - 1883.4.16",
       mother: "Maria Luisa 1",
     },
     # Actually deposed two months earlier ???
-    "17 December 1847" => nil,
+    "1847.12.17" => nil,
   },
   c_parma: {
     "1814.4.11" => {
@@ -256,30 +256,30 @@ ModernTimesDatabase::HOLDERS_ITALY = {
       name: "Giorgio | Borg Olivier",
       lived: "5 July 1911 – 29 October 1980",
     },
-    "21 June 1971" => {
+    "1971.6.21" => {
       name: "Dom Mintoff",
       lived: "6 August 1916 – 20 August 2012",
     },
-    "22 December 1984" => {
+    "1984.12.22" => {
       name: "Karmenu | Mifsud Bonnici",
-      lived: "17 July 1933-",
+      lived: "1933.7.17-",
     },
-    "12 May 1987" => {
+    "1987.5.12" => {
       name: "Edward | Fenech Adami",
-      lived: "7 February 1934-",
+      lived: "1934.2.7-",
     },
-    "28 October 1996" => {
+    "1996.10.28" => {
       name: "Alfred Sant",
-      lived: "28 February 1948-",
+      lived: "1948.2.28-",
     },
-    "6 September 1998" => {use: "Edward 1"}, # Edward Fenech Adami
-    "23 March 2004" => {
+    "1998.9.6" => {use: "Edward 1"}, # Edward Fenech Adami
+    "2004.3.23" => {
       name: "Lawrence Gonzi",
-      lived: "July 1, 1953-",
+      lived: "1953.7.1-",
     },
-    "11 March 2013" => {
+    "2013.3.11" => {
       name: "Joseph Muscat",
-      lived: "22 January 1974-",
+      lived: "1974.1.22-",
     },
   },
 }

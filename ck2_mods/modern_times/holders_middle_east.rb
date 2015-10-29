@@ -2,13 +2,13 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
   k_persia: {
     "1785.2.18" => {
       name: "Jafar | Zand",
-      lived: "- 23 January, 1789", # wikipedia has no birth
-    },
-    "23 January 1789" => {
-      name: "Sayed Murad | Zand",
       lived: "- 1789.1.23", # wikipedia has no birth
     },
     "1789.1.23" => {
+    #   name: "Sayed Murad | Zand",
+    #   lived: "- 1789.5.10", # wikipedia has no birth
+    # },
+    # "1789.5.10" => {
       name: "Lotf Ali | Zand",
       lived: "1769 – 1794.3.20",
     },
@@ -139,7 +139,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
       lived: "3 August 1903 – 12 October 1987",
     },
     #  From "1982.11.9", before as chairman of National Security Council
-    "12 September 1980" => {
+    "1980.9.12" => {
       name: "Kenan | Evren",
       lived: "17 July 1917 – 9 May 2015",
     },
@@ -154,15 +154,15 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
     "2000.5.16" => {
       name: "Ahmet Necdet | Sezer",
-      lived: "September 13, 1941 -",
+      lived: "1941.9.13 -",
     },
     "2007.8.28" => {
       name: "Abdullah | Gul",
-      lived: "29 October 1950 -",
+      lived: "1950.10.29 -",
     },
     "2014.8.28"  => {
       name: "Recep Tayyip | Erdogan",
-      lived: "26 February 1954 -",
+      lived: "1954.2.26 -",
     },
   },
   d_oultrejourdain: {
@@ -284,58 +284,58 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
       name: "David Ben-Gurion",
       lived: "1886–1973",
     },
-    "26 January 1954" => {
+    "1954.1.26" => {
       name: "Moshe Sharett",
       lived: "1894–1965",
     },
-    "3 November 1955" => {use: "David 1"},
-    "26 June 1963" => {
+    "1955.11.3" => {use: "David 1"},
+    "1963.6.26" => {
       name: "Levi Eshkol",
       lived: "1895–1969",
     },
     # skipping Yigal Allon, backdating
     # actually started 17 March 1969
-    "26 February 1969" => {
+    "1969.2.26" => {
       name: "Golda Meir",
       lived: "1898–1978",
       female: true,
     },
-    "3 June 1974" => {
+    "1974.6.3" => {
       name: "Yitzhak Rabin",
       lived: "1922–1995",
     },
-    "20 June 1977" => {
+    "1977.6.20" => {
       name: "Menachem Begin",
       lived: "1913–1992",
     },
-    "10 October 1983" => {
+    "1983.10.10" => {
       name: "Yitzhak Shamir", # Yitzhak 2
       lived: "1915–2012",
     },
-    "13 September 1984" => {
+    "1984.9.13" => {
       name: "Shimon Peres",
       lived: "1923–",
     },
-    "20 October 1986" => {use: "Yitzhak 2" }, # Shamir
-    "13 July 1992" => {use: "Yitzhak 1"}, # Rabin
-    "22 November 1995" => {use: "Shimon 1"},
-    "18 June 1996" => {
+    "1986.10.20" => {use: "Yitzhak 2" }, # Shamir
+    "1992.7.13" => {use: "Yitzhak 1"}, # Rabin
+    "1995.11.22" => {use: "Shimon 1"},
+    "1996.6.18" => {
       name: "Benjamin Netanyahu",
       lived: "1949–",
     },
-    "6 July 1999" => {
+    "1999.7.6" => {
       name: "Ehud Barak",
       lived: "1942–",
     },
-    "7 March 2001" => {
+    "2001.3.7" => {
       name: "Ariel Sharon",
       lived: "1928–2014",
     },
-    "14 April 2006" => {
+    "2006.4.14" => {
       name: "Ehud Olmert",
       lived: "1945–",
     },
-    "31 March 2009" => {use: "Benjamin 1"},
+    "2009.3.31" => {use: "Benjamin 1"},
   },
   d_medina: {
     "1918.11.11" => {
@@ -343,7 +343,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
       lived: "1854 – 4 June 1931",
       traits: ["sayyid"],
     },
-    "3 October 1924" => {
+    "1924.10.3" => {
       name: "Ali bin Hussein | Hashemite",
       lived: "1879–1935",
       father: "Hussein ibn Ali 1",

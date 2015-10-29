@@ -67,12 +67,12 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     # Backdating
     "1918.6.12" => {
-      name: "Vladimir | Lenin", lived: "April 22, 1870 - 1924.1.21",
+      name: "Vladimir | Lenin", lived: "1870.4.22 - 1924.1.21",
       traits: ["cynical"],
       health: 6,
     },
     "1924.1.21" => {
-      name: "Joseph | Stalin", lived: "December 18, 1878 - 1953.3.5",
+      name: "Joseph | Stalin", lived: "1878.12.18 - 1953.3.5",
       health: 7,
       traits: ["ambitious", "cynical"],
       events: {
@@ -107,7 +107,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # backdating one day
     "1985.3.10" => {
       name: "Mikhail | Gorbachev",
-      lived: "2 March 1931 -",
+      lived: "1931.3.2 -",
     },
     "1991.12.25" => {
       name: "Boris | Yeltsin",
@@ -117,12 +117,12 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     "1999.12.31" => {
       name: "Vladimir | Putin",
-      lived: "7 October 1952 -",
+      lived: "1952.10.7 -",
       health: 6,
     },
     "2008.5.7" => {
       name: "Dmitry | Medvedev",
-      lived: "14 September 1965 -",
+      lived: "1965.9.14 -",
     },
     "2012.5.7" => { use: "Vladimir 2" },
   },
@@ -163,7 +163,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # acting, but timing is pretty important
     "2014.2.23" => {
       name: "Oleksandr | Turchynov",
-      lived: "31 March 1964 -",
+      lived: "1964.3.31 -",
       events: {
         crimea_invasion: PropertyList[
           "add_claim", "c_crimea",
@@ -214,62 +214,62 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   },
   d_azerbaijan: {
     # actually 28 May 1918
-    end_ww1: {name: "Mammad Amin | Rasulzade", lived: "January 31, 1884 - March 6, 1955"},
-    "1918.12.7" => {name: "Alimardan | Topchubashov", lived: "May 4, 1863 - November 8, 1934"},
+    end_ww1: {name: "Mammad Amin | Rasulzade", lived: "1884.1.31 - 1955.3.6"},
+    "1918.12.7" => {name: "Alimardan | Topchubashov", lived: "1863.5.4 - 1934.11.8"},
     # End date is somewhat dubious
     # Communists
     # Grigory Kaminsky started 24 October 1920, backdating a bit
-    "1920.5.11"  => { name: "Grigory Kaminsky", lived: "November 1, 1895 - February 10, 1938" },
-    "24 July 1921"     => { name: "Sergey Kirov", lived: "27 March 1886 - 1 December 1934" },
-    "5 January 1925"   => { name: "Ruhulla Akhundov", lived: "1 January 1897 - 21 April 1938" },
-    "21 January 1926"  => { name: "Levon Mirzoyan", lived: "December 1887 - February 26, 1939" },
-    "11 July 1929"     => { name: "Nikolay Gikalo", lived: "March 8, 1897 - April 25, 1938" },
-    "5 August 1930"    => { name: "Vladimir Polonsky", lived: "June 17, 1893 - October 30, 1937" },
-    "7 February 1933"  => { name: "Ruben Rubenov", lived: "1894 - November 27, 1937" },
-    "10 December 1933" => { name: "Mir Jafar | Baghirov", lived: "17 September 1896 - 7 May 1956" },
-    "6 April 1953"     => { name: "Mir Teymur | Yaqubov", lived: "November 6, 1904 - February 17, 1970" },
-    "17 February 1954" => { name: "Imam Mustafayev", lived: "February 25, 1910 - March 10, 1997" },
-    "10 July 1959"     => { name: "Vali Akhundov", lived: "May 14, 1916 - August 22, 1986" },
+    "1920.5.11"  => { name: "Grigory Kaminsky", lived: "1895.11.1 - 1938.2.10" },
+    "1921.7.24"     => { name: "Sergey Kirov", lived: "1886.3.27 - 1934.12.1" },
+    "1925.1.5"   => { name: "Ruhulla Akhundov", lived: "1897.1.1 - 1938.4.21" },
+    "1926.1.21"  => { name: "Levon Mirzoyan", lived: "December 1887 - 1939.2.26" },
+    "1929.7.11"     => { name: "Nikolay Gikalo", lived: "1897.3.8 - 1938.4.25" },
+    "1930.8.5"    => { name: "Vladimir Polonsky", lived: "1893.6.17 - 1937.10.30" },
+    "1933.2.7"  => { name: "Ruben Rubenov", lived: "1894 - 1937.11.27" },
+    "1933.12.10" => { name: "Mir Jafar | Baghirov", lived: "1896.9.17 - 1956.5.7" },
+    "1953.4.6"     => { name: "Mir Teymur | Yaqubov", lived: "1904.11.6 - 1970.2.17" },
+    "1954.2.17" => { name: "Imam Mustafayev", lived: "1910.2.25 - 1997.3.10" },
+    "1959.7.10"     => { name: "Vali Akhundov", lived: "1916.5.14 - 1986.8.22" },
 
-    "14 July 1969" => { name: "Heydar | Aliyev", lived: "1923.5.10 - 2003.12.12" },
-    "3 December 1982" => {name: "Kamran Baghirov", lived: "January 24, 1933 - October 25, 2000" },
-    "21 May 1988"     => {name: "Abdurrahman Vazirov", lived: "May 26, 1930 -" },
-    "25 January 1990" => {name: "Ayaz Mutallibov", lived: "12 May, 1938 -" },
+    "1969.7.14" => { name: "Heydar | Aliyev", lived: "1923.5.10 - 2003.12.12" },
+    "1982.12.3" => {name: "Kamran Baghirov", lived: "1933.1.24 - 2000.10.25" },
+    "1988.5.21"     => {name: "Abdurrahman Vazirov", lived: "1930.5.26 -" },
+    "1990.1.25" => {name: "Ayaz Mutallibov", lived: "1938.5.12 -" },
     # After Communism (but still same people mostly)
-    "16 June 1992" => { name: "Abulfaz Elchibey", lived: "24 June 1938 - 22 August 2000"},
-    "3 October 1993" => {use: "Heydar 1"},
+    "1992.6.16" => { name: "Abulfaz Elchibey", lived: "1938.6.24 - 2000.8.22"},
+    "1993.10.3" => {use: "Heydar 1"},
     "2003.10.31" => { name: "Ilham | Aliyev", father: "Heydar 1", lived: "1961.12.24-" },
   },
   d_esthonia: {
-    "21 October 1933" => {name: "Konstantin Päts", lived: "23 February 1874 – 18 January 1956"},
-    "23 July 1940" => nil,
+    "1933.10.21" => {name: "Konstantin Päts", lived: "23 February 1874 – 18 January 1956"},
+    "1940.7.23" => nil,
     # Communists
 
     # 6 October 1992, backdating
     fall_soviet_union: {name: "Lennart Georg | Meri", lived: "29 March 1929 – 14 March 2006"},
-    "2001.10.8" => {name: "Arnold | Rüütel", lived: "May 10, 1928 -"},
-    "2006.10.9" => {name: "Toomas Hendrik | Ilves", lived: "26 December 1953 -"},
+    "2001.10.8" => {name: "Arnold | Rüütel", lived: "1928.5.10 -"},
+    "2006.10.9" => {name: "Toomas Hendrik | Ilves", lived: "1953.12.26 -"},
   },
   d_lithuanians: {
     # Presidents
-    "4 April 1919" => { name: "Antanas Smetona", lived: "10 August 1874 - 9 January 1944" },
-    "19 June 1920" => { name: "Aleksandras Stulginskis", lived: "February 26, 1885 - September 22, 1969" },
-    "7 June 1926" => { name: "Kazys Grinius", lived: "17 December 1866 - 4 June 1950" },
+    "1919.4.4" => { name: "Antanas Smetona", lived: "1874.8.10 - 1944.1.9" },
+    "1920.6.19" => { name: "Aleksandras Stulginskis", lived: "1885.2.26 - 1969.9.22" },
+    "1926.6.7" => { name: "Kazys Grinius", lived: "1866.12.17 - 1950.6.4" },
     # Military
-    "19 December 1926" => { use: "Antanas 1" },
+    "1926.12.19" => { use: "Antanas 1" },
     # Communist First Secretaries, backdating
-    "15 June 1940" => { name: "Antanas Sniečkus", lived: "7 January 1903 - January 22, 1974" },
-    "January 22 1974" => { name: "Petras Griškevičius", lived: "July 19, 1924 - November 14, 1987" },
-    "November 14 1987" => { name: "Ringaudas Bronislovas | Songaila", lived: "March 20, 1929 -" },
-    "19 October 1988" => { name: "Algirdas Mykolas | Brazauskas", lived: "22 September 1932 - 26 June 2010" },
+    "1940.6.15" => { name: "Antanas Sniečkus", lived: "1903.1.7 - 1974.1.22" },
+    "January 22 1974" => { name: "Petras Griškevičius", lived: "1924.7.19 - 1987.11.14" },
+    "November 14 1987" => { name: "Ringaudas Bronislovas | Songaila", lived: "1929.3.20 -" },
+    "1988.10.19" => { name: "Algirdas Mykolas | Brazauskas", lived: "1932.9.22 - 2010.6.26" },
     # First as Chairman of supreme soviet, then all post-Communist
-    "11 March 1990" => {name: "Vytautas | Landsbergis", lived: "8 October 1932 -"},
-    "1993.2.25" => {name: "Algirdas | Brazauskas", lived: "22 September 1932 - 26 June 2010"},
-    "1998.2.26" => {name: "Valdas | Adamkus", lived: "3 November 1926 -"},
-    "2003.2.26" => {name: "Rolandas | Paksas", lived: "10 June 1956 -"},
+    "1990.3.11" => {name: "Vytautas | Landsbergis", lived: "1932.10.8 -"},
+    "1993.2.25" => {name: "Algirdas | Brazauskas", lived: "1932.9.22 - 2010.6.26"},
+    "1998.2.26" => {name: "Valdas | Adamkus", lived: "1926.11.3 -"},
+    "2003.2.26" => {name: "Rolandas | Paksas", lived: "1956.6.10 -"},
     # backdated to skip acting president
     "2004.4.6" => {use: "Valdas 1"},
-    "2009.7.12" => {name: "Dalia | Grybauskaite", female: true, lived: "1 March 1956 -"},
+    "2009.7.12" => {name: "Dalia | Grybauskaite", female: true, lived: "1956.3.1 -"},
   },
   k_cuman: {
     fall_soviet_union: {name: "Nursultan | Nazarbayev", lived: "1940.7.6-"},

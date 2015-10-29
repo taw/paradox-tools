@@ -425,7 +425,7 @@ class CK2TweaksGameModification < CK2GameModification
   # but it's still better than nothing
   def extend_timeline!
     patch_mod_file!("common/defines.txt") do |node|
-      node["start_date"] = Date.parse("769.1.1")
+      node["start_date"] = Date.parse("0769.1.1")
     end
   end
 
@@ -436,7 +436,7 @@ class CK2TweaksGameModification < CK2GameModification
     #   require 'pry'; binding.pry
     # end
     patch_mod_file!("history/titles/k_italy.txt") do |node|
-      node[Date.parse("867.1.1")] = PropertyList["de_jure_liege", "e_hre"]
+      node[Date.parse("0867.1.1")] = PropertyList["de_jure_liege", "e_hre"]
       node.instance_eval{ @list.sort! }
     end
   end

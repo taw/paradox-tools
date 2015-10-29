@@ -132,78 +132,78 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     "1991.1.17"  => {name: "Harald | Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", lived: "1937.2.21 -"},
   },
   d_iceland: {
-    "17 June 1944" => {
+    "1944.6.17" => {
       name: "Sveinn Björnsson",
       lived: "1881–1952",
     },
-    "1 August 1952" => {
+    "1952.8.1" => {
       name: "Ásgeir Ásgeirsson",
       lived: "1894–1972",
     },
-    "1 August 1968" => {
+    "1968.8.1" => {
       name: "Kristján Eldjárn",
       lived: "1916–1982",
       female: true,
     },
-    "1 August 1980" => {
+    "1980.8.1" => {
       name: "Vigdís Finnbogadóttir",
       lived: "1930–",
     },
-    "1 August 1996" => {
+    "1996.8.1" => {
       name: "Ólafur Ragnar | Grímsson",
       lived: "1943–",
     },
   },
   k_finland: {
-    # Backdating from "26 July 1919"
+    # Backdating from "1919.7.26"
     "1917.12.6" => {
       name: "Kaarlo Juho | Ståhlberg",
-      lived: "28 January 1865 - 22 September 1952",
+      lived: "1865.1.28 - 1952.9.22",
     },
-    "2 March 1925" => {
+    "1925.3.2" => {
       name: "Lauri Kristian | Relander",
-      lived: "31 May 1883 - 9 February 1942",
+      lived: "1883.5.31 - 1942.2.9",
     },
-    "2 March 1931" => {
+    "1931.3.2" => {
       name: "Pehr Evind | Svinhufvud",
-      lived: "15 December 1861 - 29 February 1944",
+      lived: "1861.12.15 - 1944.2.29",
     },
-    "1 March 1937" => {
+    "1937.3.1" => {
       name: "Kyösti Kallio",
-      lived: "10 April 1873 - 19 December 1940",
+      lived: "1873.4.10 - 1940.12.19",
     },
-    "19 December 1940" => {
+    "1940.12.19" => {
       name: "Risto Ryti",
-      lived: "3 February 1889 - 25 October 1956",
+      lived: "1889.2.3 - 1956.10.25",
     },
-    "4 August 1944" => {
+    "1944.8.4" => {
       name: "Carl Gustaf Emil | Mannerheim",
-      lived: "4 June 1867 - 27 January 1951",
+      lived: "1867.6.4 - 1951.1.27",
     },
-    "11 March 1946" => {
+    "1946.3.11" => {
       name: "Juho Kusti | Paasikivi",
-      lived: " 27 November 1870 - 14 December 1956",
+      lived: " 27 November 1870 - 1956.12.14",
     },
-    "1 March 1956" => {
+    "1956.3.1" => {
       name: "Urho Kekkonen",
-      lived: "3 September 1900 - 31 August 1986",
+      lived: "1900.9.3 - 1986.8.31",
     },
-    "27 January 1982" => {
+    "1982.1.27" => {
       name: "Mauno Koivisto",
-      lived: "25 November 1923-"
+      lived: "1923.11.25-"
     },
-    "1 March 1994" => {
+    "1994.3.1" => {
       name: "Martti Ahtisaari",
-      lived: "23 June 1937-",
+      lived: "1937.6.23-",
     },
-    "1 March 2000" => {
+    "2000.3.1" => {
       name: "Tarja Halonen",
-      lived: "24 December 1943-",
+      lived: "1943.12.24-",
       female: true,
     },
-    "1 March 2012" => {
+    "2012.3.1" => {
       name: "Sauli Niinistö",
-      lived: "24 August 1948-",
+      lived: "1948.8.24-",
     },
   },
 }

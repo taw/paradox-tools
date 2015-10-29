@@ -34,64 +34,64 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       name: "Wilhelm | Pieck",
       lived: "1876–1960",
     },
-    "25 July 1950" => {
+    "1950.7.25" => {
       name: "Walter | Ulbricht",
       lived: "1893–1973",
     },
-    "3 May 1971" => {
+    "1971.5.3" => {
       name: "Erich | Honecker",
       lived: "1912–1994",
     },
-    "18 October 1989" => {
+    "1989.10.18" => {
       name: "Egon | Krenz",
       lived: "1937-",
     },
     german_reunification: nil,
   },
   c_weimar: {
-    "28 May 1758" => {
+    "1758.5.28" => {
       name: "Charles Augustus | Saxe-Weimar-Eisenach",
       lived: "3 September 1757 – 14 June 1828"
     },
-    "14 June 1828" => {
+    "1828.6.14" => {
       name: "Charles Frederick | Saxe-Weimar-Eisenach",
       lived: "2 February 1783 – 8 July 1853",
     },
-    "8 July 1853" => {
+    "1853.7.8" => {
       name: "Charles Alexander | Saxe-Weimar-Eisenach",
       lived: "24 June 1818 – 5 January 1901",
     },
     german_unification: nil,
   },
   d_mecklemburg: {
-    "21 June 1692" => {
+    "1692.6.21" => {
       name: "Frederick William | Mecklenburg-Schwerin",
-      lived: "28 March 1675 - 31 July 1713",
+      lived: "1675.3.28 - 1713.7.31",
     },
-    "31 July 1713" => {
+    "1713.7.31" => {
       name: "Karl Leopold | Mecklenburg-Schwerin",
-      lived: "26 November 1678 - 28 November 1747",
+      lived: "1678.11.26 - 1747.11.28",
     },
-    "1.1.1728" => { # Amazingly whole internet doesn't know better than year date :-/
+    "1728.1.1" => { # Amazingly whole internet doesn't know better than year date :-/
       name: "Christian Ludwig | Mecklenburg-Schwerin",
-      lived: "15 November 1683 - 30 May 1756",
+      lived: "1683.11.15 - 1756.5.30",
     },
-    "30 May 1756" => {
+    "1756.5.30" => {
       name: "Frederick | Mecklenburg-Schwerin",
-      lived: "9 November 1717 - 24 April 1785",
+      lived: "1717.11.9 - 1785.4.24",
       father: "Christian Ludwig 1",
     },
-    "24 April 1785" => {
+    "1785.4.24" => {
       name: "Frederick Francis | Mecklenburg-Schwerin",
-      lived: "10 December 1756 - 1 February 1837",
+      lived: "1756.12.10 - 1837.2.1",
     },
-    "1 February 1837" => {
+    "1837.2.1" => {
       name: "Paul Frederick | Mecklenburg-Schwerin",
-      lived: "15 September 1800 - 7 March 1842",
+      lived: "1800.9.15 - 1842.3.7",
     },
-    "7 March 1842" => {
+    "1842.3.7" => {
       name: "Frederick Francis | Mecklenburg-Schwerin",
-      lived: "28 February 1823 - 15 April 1883",
+      lived: "1823.2.28 - 1883.4.15",
       father: "Paul Frederick 1",
     },
     german_unification: nil,
@@ -146,7 +146,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     },
     "2005.11.22" => {
       name: "Angela | Merkel",
-      lived: "17 July 1954 -",
+      lived: "1954.7.17 -",
       female: true,
       religion: :protestant,
     },
@@ -277,21 +277,21 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1986.7.8" => {name: "Kurt | Waldheim", lived: "21 December 1918 – 14 June 2007"},
     "1992.7.8" => {name: "Thomas | Klestil", lived: "4 November 1932 – 6 July 2004"},
     # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
-    "2004.7.6" => {name: "Heinz | Fischer", lived: "9 October 1938 -"},
+    "2004.7.6" => {name: "Heinz | Fischer", lived: "1938.10.9 -"},
   },
   # Württemberg
   d_swabia: {
     # as duke, elector, then king
-    "23 December 1797" => {
+    "1797.12.23" => {
       name: "Frederick | Württemberg",
       lived: "6 November 1754 – 30 October 1816",
     },
-    "30 October 1816" => {
+    "1816.10.30" => {
       name: "William | Württemberg",
       lived: "27 September 1781 – 25 June 1864",
       father: "Frederick 1",
     },
-    "25 June 1864" => {
+    "1864.6.25" => {
       name: "Charles | Württemberg",
       lived: "6 March 1823 in Stuttgart – 6 October 1891",
       father: "William 1",

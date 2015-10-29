@@ -62,82 +62,82 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
     "2014.6.19"   => {name: "Felipe | Bourbon", lived: "1968.1.30 -"},
   },
   k_portugal: {
-    "1 December 1640" => {name: "John | Braganza", lived: "18 March 1603 – 6 November 1656"},
-    "6 November 1656" => {name: "Alphonse | Braganza", lived: "21 August 1643 – 12 September 1683", father: "John 1"},
-    "12 September 1683" => {name: "Peter | Braganza", lived: "26 April 1648 – 9 December 1706", father: "John 1"},
-    "9 December 1706" => {name: "John | Braganza", lived: "22 October 1689 – 31 July 1750", father: "Peter 1"},
-    "31 July 1750" => {name: "Joseph | Braganza", lived: "6 June 1714 – 24 February 1777", father: "John 2"},
-    "24 February 1777" => {name: "Mary | Braganza", lived: "17 December 1734 - 20 March 1816", father: "Joseph 1", female: true},
-    "20 March 1816" => {name: "John | Braganza", lived: "13 May 1767 – 10 March 1826", mother: "Mary 1"},
-    "10 March 1826" => {name: "Peter | Braganza", lived: "12 October 1798 – 24 September 1834", father: "John 3"},
-    "2 May 1826" => {name: "Mary | Braganza", lived: "4 April 1819 – 15 November 1853", father: "Peter 2"},
-    "15 November 1853" => {name: "Peter | Braganza", lived: "16 September 1837 – 11 November 1861", mother: "Mary 2"},
-    "11 November 1861" => {name: "Louis | Braganza", lived: "31 October 1838 – 19 October 1889", father: "Peter 3"},
-    "19 October 1889" => {name: "Charles | Braganza", lived: "28 September 1863 – 1 February 1908", father: "Louis 1"},
-    "1 February 1908" => {name: "Manuel | Braganza", lived: "15 November 1889 – 2 July 1932", father: "Charles 1"},
+    "1640.12.1" => {name: "John | Braganza", lived: "18 March 1603 – 6 November 1656"},
+    "1656.11.6" => {name: "Alphonse | Braganza", lived: "21 August 1643 – 12 September 1683", father: "John 1"},
+    "1683.9.12" => {name: "Peter | Braganza", lived: "26 April 1648 – 9 December 1706", father: "John 1"},
+    "1706.12.9" => {name: "John | Braganza", lived: "22 October 1689 – 31 July 1750", father: "Peter 1"},
+    "1750.7.31" => {name: "Joseph | Braganza", lived: "6 June 1714 – 24 February 1777", father: "John 2"},
+    "1777.2.24" => {name: "Mary | Braganza", lived: "1734.12.17 - 1816.3.20", father: "Joseph 1", female: true},
+    "1816.3.20" => {name: "John | Braganza", lived: "13 May 1767 – 10 March 1826", mother: "Mary 1"},
+    "1826.3.10" => {name: "Peter | Braganza", lived: "12 October 1798 – 24 September 1834", father: "John 3"},
+    "1826.5.2" => {name: "Mary | Braganza", lived: "4 April 1819 – 15 November 1853", father: "Peter 2"},
+    "1853.11.15" => {name: "Peter | Braganza", lived: "16 September 1837 – 11 November 1861", mother: "Mary 2"},
+    "1861.11.11" => {name: "Louis | Braganza", lived: "31 October 1838 – 19 October 1889", father: "Peter 3"},
+    "1889.10.19" => {name: "Charles | Braganza", lived: "28 September 1863 – 1 February 1908", father: "Louis 1"},
+    "1908.2.1" => {name: "Manuel | Braganza", lived: "15 November 1889 – 2 July 1932", father: "Charles 1"},
     # Presidents
-    "5 October 1910" => {
+    "1910.10.5" => {
       name: "Teofilo | Braga", lived: "24 February 1843 – 28 January 1924",
     },
-    "August 24, 1911" => {
+    "1911.8.24" => {
       name: "Manuel | de Arriaga", lived: "July 8, 1840 – March 5, 1917",
     },
-    "May 29, 1915" => {
+    "1915.5.29" => {
       use: "Teofilo 1",
     },
-    "October 5, 1915" => {
+    "1915.10.5" => {
       name: "Bernardino | Machado", lived: "28 March 1851 – 29 April 1944",
     },
-    "December 12, 1917" => {
-      name: "Sidónio | Pais", lived: "1 May 1872 - 14 December 1918",
+    "1917.12.12" => {
+      name: "Sidónio | Pais", lived: "1872.5.1 - 1918.12.14",
     },
-    "December 14, 1918" => {
-      name: "Joao | do Canto e Castro", lived: "May 19, 1862 - March 14, 1934",
+    "1918.12.14" => {
+      name: "Joao | do Canto e Castro", lived: "1862.5.19 - 1934.3.14",
     },
-    "October 5, 1919" => {
+    "1919.10.5" => {
       name: "António José | de Almeida", lived: "27 July 1866 – 31 October 1929",
     },
-    "October 6, 1923" => {
+    "1923.10.6" => {
       name: "Manuel Teixeira | Gomes", lived: "May 27, 1860 – October 18, 1941",
     },
-    "December 11, 1925" => {
+    "1925.12.11" => {
       use: "Bernardino 1",
     },
-    "May 31, 1926" => {
+    "1926.5.31" => {
       name: "Jose Mendes | Cabecadas", lived: "August 19, 1883 – June 11, 1965",
     },
-    "June 17, 1926" => {
+    "1926.6.17" => {
       name: "Manuel Gomes | da Costa", lived: "January 14, 1863 – December 17, 1929",
     },
-    "July 9, 1926" => {
+    "1926.7.9" => {
       name: "Oscar | Carmona", lived: "24 November 1869 – 18 April 1951",
     },
-    "April 18, 1951" => {
+    "1951.4.18" => {
       name: "Antonio de Oliveira | Salazar", lived: "28 April 1889 – 27 July 1970",
     },
-    "July 21, 1951" => {
+    "1951.7.21" => {
       name: "Francisco Craveiro | Lopes", lived: "12 April 1894 – 2 September 1964",
     },
-    "August 9, 1958" => {
+    "1958.8.9" => {
       name: "Americo | Tomas", lived: "19 November 1894 – 18 September 1987",
     },
-    "April 25, 1974" => {
+    "1974.4.25" => {
       name: "Antonio | de Spinola", lived: "April 11, 1910 – August 13, 1996",
     },
-    "September 30, 1974" => {
+    "1974.9.30" => {
       name: "Francisco da Costa | Gomes", lived: "30 June 1914 – 31 July 2001",
     },
-    "July 14, 1976" => {
-      name: "Antonio Ramalho | Eanes", lived: "25 January 1935 -",
+    "1976.7.14" => {
+      name: "Antonio Ramalho | Eanes", lived: "1935.1.25 -",
     },
-    "March 9, 1986" => {
-      name: "Mario | Soares", lived: "7 December 1924 -",
+    "1986.3.9" => {
+      name: "Mario | Soares", lived: "1924.12.7 -",
     },
-    "March 9, 1996" => {
-      name: "Jorge | Sampaio", lived: "18 September 1939 -",
+    "1996.3.9" => {
+      name: "Jorge | Sampaio", lived: "1939.9.18 -",
     },
-    "March 9, 2006" => {
-      name: "Aníbal Cavaco | Silva", lived: "15 July 1939 -",
+    "2006.3.9" => {
+      name: "Aníbal Cavaco | Silva", lived: "1939.7.15 -",
     },
   },
   k_frisia: {

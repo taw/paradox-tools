@@ -19,16 +19,16 @@ module ModernTimesDatabase::Dates
     ### Actual dates:
     end_of_ottoman_empire: "1922.11.1",
     st_petersburg_founding: "1703.5.12", # They literally moved their capital there before peace deal gave them Ingria
-    junior_juz_russian: "1.1.1731", # year date
-    oman_persian: "1.1.1743", # can't find anything more than year
-    middle_juz_russian: "1.1.1798", # year date
-    sudan_turkish: "1.1.1821", # approximate
-    senior_juz_russian: "1.1.1824", # year date
-    aden_city_british: "1.1.1839", # month date only
-    aden_protectorate: "1.1.1869", # year date only
-    british_somaliland: "1.1.1884", # year only
-    italian_somaliland: "1.1.1889", # year only
-    french_mali: "1.1.1892", # year only
+    junior_juz_russian: "1731.1.1", # year date
+    oman_persian: "1743.1.1", # can't find anything more than year
+    middle_juz_russian: "1798.1.1", # year date
+    sudan_turkish: "1821.1.1", # approximate
+    senior_juz_russian: "1824.1.1", # year date
+    aden_city_british: "1839.1.1", # month date only
+    aden_protectorate: "1869.1.1", # year date only
+    british_somaliland: "1884.1.1", # year only
+    italian_somaliland: "1889.1.1", # year only
+    french_mali: "1892.1.1", # year only
     scotland_union: "1603.3.24",
     urbino_papal: "1626.1.1", # year only
     peace_of_westphalia: "1648.10.24",
