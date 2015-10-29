@@ -2,9 +2,9 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
   e_france: {
     "1799.11.10" => {name: "Napoleon | Bonaparte", lived: "1769.8.15 - 1821.5.5"},
     # 7 July 1815, backdating to Congress of Vienna
-    "1815.6.9"          => {name: "Louis | Bourbon"},
+    "1815.6.9"  => {name: "Louis | Bourbon"},
     "1824.9.16" => {name: "Charles | Bourbon"},
-    "1830.8.9"     => {name: "Louis Philippe | Orléans"},
+    "1830.8.9"  => {name: "Louis Philippe | Orléans"},
     # Second republic, second Empire from 1852.12.2
     "1848.2.24" => {name: "Napoleon | Bonaparte", lived: "1808.4.20 - 1873.1.9"},
     # 3rd Republic
@@ -75,27 +75,69 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
     "19 October 1889" => {name: "Charles | Braganza", lived: "28 September 1863 – 1 February 1908", father: "Louis 1"},
     "1 February 1908" => {name: "Manuel | Braganza", lived: "15 November 1889 – 2 July 1932", father: "Charles 1"},
     # Presidents
-    "5 October 1910"    => {name: "Teofilo | Braga"},
-    "August 24, 1911"   => {name: "Manuel | de Arriaga"},
-    "May 29, 1915"      => {use: "Teofilo 1"},
-    "October 5, 1915"   => {name: "Bernardino | Machado"},
-    "December 12, 1917" => {name: "Sidonio | Pais"},
-    "December 16, 1918" => {name: "Joao | do Canto e Castro"},
-    "October 5, 1919"   => {name: "António José | de Almeida"},
-    "October 6, 1923"   => {name: "Manuel Teixeira | Gomes"},
-    "December 11, 1925" => {use: "Bernardino 1"},
-    "May 31, 1926" => {name: "Jose Mendes | Cabecadas"},
-    "June 17, 1926" => {name: "Manuel Gomes | da Costa"},
-    "July 9, 1926" => {name: "Oscar | Carmona"},
-    "April 18, 1951" => {name: "Antonio de Oliveira | Salazar"},
-    "July 21, 1951" => {name: "Francisco Craveiro | Lopes"},
-    "August 9, 1958" => {name: "Americo | Tomas"},
-    "April 25, 1974" => {name: "Antonio | de Spinola"},
-    "September 30, 1974" => {name: "Francisco da Costa | Gomes"},
-    "July 14, 1976" => {name: "Antonio Ramalho | Eanes"},
-    "March 9, 1986" => {name: "Mario | Soares"},
-    "March 9, 1996" => {name: "Jorge | Sampaio"},
-    "March 9, 2006" => {name: "Aníbal Cavaco | Silva"},
+    "5 October 1910" => {
+      name: "Teofilo | Braga", lived: "24 February 1843 – 28 January 1924",
+    },
+    "August 24, 1911" => {
+      name: "Manuel | de Arriaga", lived: "July 8, 1840 – March 5, 1917",
+    },
+    "May 29, 1915" => {
+      use: "Teofilo 1",
+    },
+    "October 5, 1915" => {
+      name: "Bernardino | Machado", lived: "28 March 1851 – 29 April 1944",
+    },
+    "December 12, 1917" => {
+      name: "Sidónio | Pais", lived: "1 May 1872 - 14 December 1918",
+    },
+    "December 14, 1918" => {
+      name: "Joao | do Canto e Castro", lived: "May 19, 1862 - March 14, 1934",
+    },
+    "October 5, 1919" => {
+      name: "António José | de Almeida", lived: "27 July 1866 – 31 October 1929",
+    },
+    "October 6, 1923" => {
+      name: "Manuel Teixeira | Gomes", lived: "May 27, 1860 – October 18, 1941",
+    },
+    "December 11, 1925" => {
+      use: "Bernardino 1",
+    },
+    "May 31, 1926" => {
+      name: "Jose Mendes | Cabecadas", lived: "August 19, 1883 – June 11, 1965",
+    },
+    "June 17, 1926" => {
+      name: "Manuel Gomes | da Costa", lived: "January 14, 1863 – December 17, 1929",
+    },
+    "July 9, 1926" => {
+      name: "Oscar | Carmona", lived: "24 November 1869 – 18 April 1951",
+    },
+    "April 18, 1951" => {
+      name: "Antonio de Oliveira | Salazar", lived: "28 April 1889 – 27 July 1970",
+    },
+    "July 21, 1951" => {
+      name: "Francisco Craveiro | Lopes", lived: "12 April 1894 – 2 September 1964",
+    },
+    "August 9, 1958" => {
+      name: "Americo | Tomas", lived: "19 November 1894 – 18 September 1987",
+    },
+    "April 25, 1974" => {
+      name: "Antonio | de Spinola", lived: "April 11, 1910 – August 13, 1996",
+    },
+    "September 30, 1974" => {
+      name: "Francisco da Costa | Gomes", lived: "30 June 1914 – 31 July 2001",
+    },
+    "July 14, 1976" => {
+      name: "Antonio Ramalho | Eanes", lived: "25 January 1935 -",
+    },
+    "March 9, 1986" => {
+      name: "Mario | Soares", lived: "7 December 1924 -",
+    },
+    "March 9, 1996" => {
+      name: "Jorge | Sampaio", lived: "18 September 1939 -",
+    },
+    "March 9, 2006" => {
+      name: "Aníbal Cavaco | Silva", lived: "15 July 1939 -",
+    },
   },
   k_frisia: {
     "1815.3.16" => {name: "William | Orange-Nassau", lived: "1772.8.24 - 1843.12.12"},

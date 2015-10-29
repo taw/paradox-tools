@@ -236,7 +236,7 @@ class ModernTimesDatabase
     return nil if desc.nil?
     desc = "#{desc} 1" unless desc =~ /\d+\z/
     desc = "#{title} #{desc}" unless desc =~ /\A[bcdke]_/
-    desc
+    cleanup_unicode(desc)
   end
 
   def liege_has_land_in_active(liege, title)
@@ -411,7 +411,7 @@ private
   end
 
   def parse_name(name)
-    name = name.tr("đćűőșă", "dcuosa")
+    name = cleanup_unicode(name)
     name, dynasty = name.split(/\s*\|\s*/, 2)
     return [name, dynasty] if dynasty
     words = name.split(/\s+/)
@@ -438,10 +438,21 @@ private
       historical_id: character_manager.allocate_historical_id(title, name),
     }
     holder[:birth], holder[:death] = parse_lived(holder_data[:lived])
+    unless holder[:death]
+      warn "Historical characters should have lived specified: #{holder[:historical_id]}"
+    end
     holder[:events] = holder_data[:events].map do |d,e|
       [(if d == :crowning then crowning_date else resolve_date(d) end), e]
     end if holder_data[:events]
     holder
+  end
+
+  def warn(*args)
+    @builder.warn(*args)
+  end
+
+  def cleanup_unicode(name)
+    name.tr("đćűőșăč", "dcuosac")
   end
 end
 

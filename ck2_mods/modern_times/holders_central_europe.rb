@@ -76,11 +76,11 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     },
     "1945.5.8" => nil,
     # 2 March 1993, backdating
-    "1993.1.1" => {name: "Michal | Kovac"},
+    "1993.1.1" => {name: "Michal | Kovac", lived: "5 August 1930 -"},
     # 15 June 1999, backdating
-    "1998.3.2" => {name: "Rudolf | Schuster"},
-    "2004.6.15" => {name: "Ivan | Gasparovic"},
-    "2014.6.15" => {name: "Andrej | Kiska"},
+    "1998.3.2" => {name: "Rudolf | Schuster", lived: "4 January 1934 -"},
+    "2004.6.15" => {name: "Ivan | Gasparovic", lived: "27 March 1941 -"},
+    "2014.6.15" => {name: "Andrej | Kiska", lived: "2 February 1963 -"},
   },
   k_poland: {
     end_ww1: {name: "Jozef | Pilsudski", lived: "1867.12.5 - 1935.5.12", health: 6},

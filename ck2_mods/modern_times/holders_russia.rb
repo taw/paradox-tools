@@ -221,14 +221,25 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2006.10.9" => {name: "Toomas Hendrik | Ilves"},
   },
   d_lithuanians: {
-    # From 11 March 1990, chairman of supreme soviet
-    fall_soviet_union: {name: "Vytautas | Landsbergis"},
-    "1993.2.25" => {name: "Algirdas | Brazauskas"},
-    "1998.2.26" => {name: "Valdas | Adamkus"},
-    "2003.2.26" => {name: "Rolandas | Paksas"},
+    # Presidents
+    "4 April 1919" => { name: "Antanas Smetona", lived: "10 August 1874 – 9 January 1944" },
+    "19 June 1920" => { name: "Aleksandras Stulginskis", lived: "February 26, 1885 - September 22, 1969" },
+    "7 June 1926" => { name: "Kazys Grinius", lived: "17 December 1866 – 4 June 1950" },
+    # Military
+    "19 December 1926" => { use: "Antanas 1" },
+    # Communist First Secretaries, backdating
+    "15 June 1940" => { name: "Antanas Sniečkus", lived: "7 January 1903 – January 22, 1974" },
+    "January 22 1974" => { name: "Petras Griškevičius", lived: "July 19, 1924 – November 14, 1987" },
+    "November 14 1987" => { name: "Ringaudas Bronislovas | Songaila", lived: "March 20, 1929 -" },
+    "19 October 1988" => { name: "Algirdas Mykolas | Brazauskas", lived: "22 September 1932 – 26 June 2010" },
+    # First as Chairman of supreme soviet, then all post-Communist
+    "11 March 1990" => {name: "Vytautas | Landsbergis", lived: "8 October 1932 -"},
+    "1993.2.25" => {name: "Algirdas | Brazauskas", lived: "22 September 1932 – 26 June 2010"},
+    "1998.2.26" => {name: "Valdas | Adamkus", lived: "3 November 1926 -"},
+    "2003.2.26" => {name: "Rolandas | Paksas", lived: "10 June 1956 -"},
     # backdated to skip acting president
     "2004.4.6" => {use: "Valdas 1"},
-    "2009.7.12" => {name: "Dalia | Grybauskaite", female: true},
+    "2009.7.12" => {name: "Dalia | Grybauskaite", female: true, lived: "1 March 1956 -"},
   },
   k_cuman: {
     fall_soviet_union: {name: "Nursultan | Nazarbayev", lived: "1940.7.6-"},

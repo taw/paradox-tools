@@ -179,27 +179,35 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   d_bavaria: {
     "1679.5.26" => {
       name: "Maximilian Emanuel | Wittelsbach",
+      lived: "11 July 1662 – 26 February 1726",
     },
     "1726.2.26" => {
       name: "Charles Albert | Wittelsbach",
+      lived: "6 August 1697 – 20 January 1745",
     },
     "1745.1.20" => {
       name: "Maximilian Joseph | Wittelsbach",
+      lived: "28 March 1727 – 30 December 1777",
     },
     "1777.12.30" => {
       name: "Charles Theodore | Wittelsbach",
+      lived: "December 11, 1724 – February 16, 1799",
     },
     "1799.2.16" => {
       name: "Maximilian | Wittelsbach",
+      lived: "27 May 1756 – 13 October 1825",
     },
     "1825.10.13" => {
       name: "Ludwig | Wittelsbach",
+      lived: "25 August 1786 – 29 February 1868",
     },
     "1848.3.20" => {
       name: "Maximilian | Wittelsbach",
+      lived: "28 November 1811 – 10 March 1864",
     },
     "1864.3.10" => {
       name: "Ludwig | Wittelsbach",
+      lived: "25 August 1845 – 13 June 1886",
     },
     german_unification: nil,
     # They continued as German vassals until end of WW1
@@ -242,9 +250,9 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   },
   k_bavaria: {
     # Backfill
-    "1918.11.11" => {name: "Karl | Seitz"},
-    "1920.12.9"  => {name: "Michael | Hainisch"},
-    "1928.12.10" => {name: "Wilhelm | Miklas"},
+    "1918.11.11" => {name: "Karl | Seitz", lived: "September 4, 1869 – February 3, 1950"},
+    "1920.12.9"  => {name: "Michael | Hainisch", lived: "August 15, 1858 – February 26, 1940"},
+    "1928.12.10" => {name: "Wilhelm | Miklas", lived: "15 October 1872 – 20 March 1956"},
     anschluss: nil,
     end_ww2: {name: "Karl | Renner", lived: "- 1950.12.31"},
     # Backfill, predecessor died in office
@@ -252,13 +260,13 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backfill, predecessor died in office
     "1957.1.4" => {name: "Adolf | Schärf", lived: "- 1965.2.28"},
     # Backfill, predecessor died in office
-    "1965.2.28" => {name: "Fratz | Jonas"},
+    "1965.2.28" => {name: "Franz | Jonas", lived: "4 October 1899 – 24 April 1974"},
     # Backfill, predecessor died in office
-    "1974.7.8" => {name: "Rudolf | Kirchschläger"},
-    "1986.7.8" => {name: "Kurt | Waldheim"},
-    "1992.7.8" => {name: "Thomas | Klestil"},
+    "1974.4.24" => {name: "Rudolf | Kirchschläger", lived: "20 March 1915 – 30 March 2000"},
+    "1986.7.8" => {name: "Kurt | Waldheim", lived: "21 December 1918 – 14 June 2007"},
+    "1992.7.8" => {name: "Thomas | Klestil", lived: "4 November 1932 – 6 July 2004"},
     # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
-    "2004.7.8" => {name: "Heinz | Fischer"},
+    "2004.7.6" => {name: "Heinz | Fischer", lived: "9 October 1938 -"},
   },
   # Württemberg
   d_swabia: {

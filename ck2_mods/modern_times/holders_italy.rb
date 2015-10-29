@@ -40,39 +40,51 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     # Preidents
     "1946.6.12" => {
       name: "Enrico | De Nicola",
+      lived: "9 November 1877 – 1 October 1959",
     },
     "1948.5.12" => {
       name: "Luigi | Einaudi",
+      lived: "March 24, 1874 – October 30, 1961",
     },
     "1955.5.11" => {
       name: "Giovanni | Gronchi",
+      lived: "10 September 1887 – 17 October 1978",
     },
     "1962.5.11" => {
       name: "Antonio | Segni",
+      lived: "2 February 1891 – 1 December 1972",
     },
     "1964.12.29" => {
       name: "Giuseppe | Saragat",
+      lived: "19 September 1898 – 11 June 1988",
     },
     "1971.12.29" => {
       name: "Giovanni | Leone",
+      lived: "3 November 1908 – 9 November 2001",
     },
     "1978.7.9" => {
       name: "Sandro | Pertini",
+      lived: "25 September 1896 – 24 February 1990",
     },
     "1985.7.3" => {
       name: "Francesco | Cosiga",
+      lived: "July 26, 1928 – August 17, 2010",
     },
     "1992.5.28" => {
       name: "Oscar Luigi | Scalfaro",
+      lived: "9 September 1918 – 29 January 2012",
     },
     "1999.5.18" => {
       name: "Carlo Azeglio | Ciampi",
+      lived: "9 December 1920 -",
     },
     "2006.5.15" => {
       name: "Giorgio | Napolitano",
+      lived: "29 June 1925 -",
     },
     "2015.2.3" => {
       name: "Sergio | Mattarella",
+      lived: "23 July 1941 -",
     },
   },
   k_sicily: {

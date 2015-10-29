@@ -2,36 +2,51 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
   k_persia: {
     "1785.2.18" => {
       name: "Jafar | Zand",
+      lived: "- 23 January, 1789", # wikipedia has no birth
+    },
+    "23 January 1789" => {
+      name: "Sayed Murad | Zand",
+      lived: "- 1789.1.23", # wikipedia has no birth
     },
     "1789.1.23" => {
       name: "Lotf Ali | Zand",
+      lived: "1769 – 1794.3.20",
     },
     "1794.3.20" => {
       name: "Mohammad | Qajar",
+      lived: "1742 – 1797.6.17",
     },
     "1797.6.17" => {
       name: "Fat'h Ali | Qajar",
+      lived: "5 September 1772 – 23 October 1834",
     },
     "1834.10.23" => {
       name: "Mohammad | Qajar",
+      lived: "5 January 1808 – 5 September 1848",
     },
     "1848.9.5" => {
       name: "Naser al-Din | Qajar",
+      lived: "16 July 1831 – 1 May 1896",
     },
     "1896.5.1" => {
       name: "Mozaffar al-Din | Qajar",
+      lived: "23 March 1853 – 3 January 1907",
     },
     "1907.1.3" => {
       name: "Mohammad Ali | Qajar",
+      lived: "21 June 1872 – 5 April 1925",
     },
     "1909.6.16" => {
       name: "Ahmad | Qajar",
+      lived: "21 January 1898 – 21 February 1930",
     },
     "1925.12.15" => {
       name: "Reza | Pahlavi",
+      lived: "15 March 1878 – 26 July 1944",
     },
     "1941.9.16" => {
       name: "Mohammad Reza | Pahlavi",
+      lived: "26 October 1919 – 27 July 1980",
     },
     "1979.2.11" => {
       name: "Ruhollah | Khomeini",
@@ -46,50 +61,50 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
   },
   e_arabia: {
-    "1695.2.6" => {
-      name: "Mustafa | Ottoman",
+    "1695.2.6" => { # 1 (actually 2)
+      name: "Mustafa | Ottoman", lived: "February 6, 1664 – December 30, 1703", #  father: "Mehmed",
     },
     "1703.8.22" => {
-      name: "Ahmed | Ottoman",
+      name: "Ahmed | Ottoman", lived: "December 31, 1673 – July 1, 1736", # father: "Mehmed",
     },
-    "1730.10.2" => {
-      name: "Mahmud | Ottoman",
+    "1730.10.2" => { # 1
+      name: "Mahmud | Ottoman", lived: "2 August 1696  – 13 December 1754", father: "Mustafa 1",
     },
     "1754.12.13" => {
-      name: "Osman | Ottoman",
+      name: "Osman | Ottoman", lived: "3 January 1699 – 30 October 1757", father: "Mustafa 1",
     },
-    "1757.10.30" => {
-      name: "Mustafa | Ottoman",
+    "1757.10.30" => { # 2
+      name: "Mustafa | Ottoman", lived: "January 18, 1717 – January 21, 1774", father: "Ahmed 1",
     },
     "1774.1.21" => {
-      name: "Abdulhamid | Ottoman",
+      name: "Abdülhamid | Ottoman", lived: "20 March 1725 – 7 April 1789", father: "Ahmed 1",
     },
     "1789.4.7" => {
-      name: "Selim | Ottoman",
+      name: "Selim | Ottoman", lived: "24 December 1761 – 29 July 1808", father: "Mustafa 2",
     },
-    "1807.5.29" => {
-      name: "Mustafa | Ottoman",
+    "1807.5.29" => { # 3
+      name: "Mustafa | Ottoman", lived: "8 September 1779 – 16 November 1808", father: "Abdülhamid 1",
     },
-    "1808.7.28" => {
-      name: "Mahmud | Ottoman",
+    "1808.7.28" => { # 2
+      name: "Mahmud | Ottoman", lived: "20 July 1789 – 1 July 1839", father: "Abdülhamid 1",
     },
     "1839.7.1" => {
-      name: "Abdulmecid | Ottoman",
+      name: "Abdülmecid | Ottoman", lived: "25 April 1823 – 25 June 1861", father: "Mahmud 2",
     },
     "1861.6.25" => {
-      name: "Abdulaziz | Ottoman",
+      name: "Abdulaziz | Ottoman", lived: "18 February 1830 – 4 June 1876", father: "Mahmud 2",
     },
     "1876.5.30" => {
-      name: "Mehmed Murad | Ottoman",
+      name: "Mehmed Murad | Ottoman", lived: "21 September 1840 – 29 August 1904", father: "Abdülmecid 1",
     },
     "1876.8.31" => {
-      name: "Abdulhamid | Ottoman", lived: "- 1918.2.10",
+      name: "Abdulhamid | Ottoman", lived: "22 September 1842 – 10 February 1918", father: "Abdülmecid 1",
     },
     "1909.4.27" => {
-      name: "Mehmed | Ottoman",
+      name: "Mehmed | Ottoman", lived: "2 November 1844 – 3 July 1918", father: "Abdülmecid 1",
     },
-    "1918.7.4" => {
-      name: "Mehmed | Ottoman", lived: "- 1926.5.16",
+    "1918.7.3" => {
+      name: "Mehmed | Ottoman", lived: "14 January 1861 – 16 May 1926", father: "Abdülmecid 1",
     },
     "1922.11.1" => nil,
   },
@@ -187,21 +202,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "2000.6.10" => {name: "Bashar | al-Assad", lived: "1965.9.11-", father: "Hafez 1"},
   },
   d_sunni: {
-    "1695.2.6" => { use: "e_arabia Mustafa 1" },
-    "1703.8.22" => { use: "e_arabia Ahmed 1" },
-    "1730.10.2" => { use: "e_arabia Mahmud 1" },
-    "1754.12.13" => { use: "e_arabia Osman 1" },
-    "1757.10.30" => { use: "e_arabia Mustafa 2" },
-    "1774.1.21" => { use: "e_arabia Abdulhamid 1" },
-    "1789.4.7" => { use: "e_arabia Selim 1" },
-    "1807.5.29" => { use: "e_arabia Mustafa 3" },
-    "1808.7.28" => { use: "e_arabia Mahmud 2" },
-    "1839.7.1" => { use: "e_arabia Abdulmecid 1" },
-    "1861.6.25" => { use: "e_arabia Abdulaziz 1" },
-    "1876.5.30" => { use: "e_arabia Mehmed Murad 1" },
-    "1876.8.31" => { use: "e_arabia Abdulhamid 2" },
-    "1909.4.27" => { use: "e_arabia Mehmed 1" },
-    "1918.7.4" => { use: "e_arabia Mehmed 2" },
+    "1695.2.6" => { use_all: "e_arabia" },
     "1922.11.1" => nil,
     caliphate_reborn: {
       name: "Abu Bakr | al-Baghdadi",
