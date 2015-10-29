@@ -16,15 +16,19 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # Backdating, actually 23 December 1991
     "1991.7.7" => {
       name: "Milan | Kucan",
+      lived: "14 January 1941 -",
     },
     "2002.12.22" => {
       name: "Janez | Drnovsek",
+      lived: "17 May 1950 – 23 February 2008",
     },
     "2007.12.23" => {
       name: "Danilo | Türk",
+      lived: "19 February 1952 -",
     },
     "2012.12.22" => {
       name: "Borut | Pahor",
+      lived: "2 November 1963 -",
     },
   },
   k_croatia: {
@@ -198,6 +202,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "11 June 1917" => {
       name: "Alexander | Glücksburg",
+      lived: "1 August 1893 – 25 October 1920",
       father: "Constantine 1",
     },
     # Backdating restoration

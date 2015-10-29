@@ -2,9 +2,9 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
   e_france: {
     "1799.11.10" => {name: "Napoleon | Bonaparte", lived: "1769.8.15 - 1821.5.5"},
     # 7 July 1815, backdating to Congress of Vienna
-    "1815.6.9"  => {name: "Louis | Bourbon"},
-    "1824.9.16" => {name: "Charles | Bourbon"},
-    "1830.8.9"  => {name: "Louis Philippe | Orléans"},
+    "1815.6.9"  => {name: "Louis | Bourbon", lived: "17 November 1755 – 16 September 1824"},
+    "1824.9.16" => {name: "Charles | Bourbon", lived: "9 October 1757 – 6 November 1836"}, # younger brother of previous
+    "1830.8.9"  => {name: "Louis Philippe | Orléans", lived: "6 October 1773 – 26 August 1850"},
     # Second republic, second Empire from 1852.12.2
     "1848.2.24" => {name: "Napoleon | Bonaparte", lived: "1808.4.20 - 1873.1.9"},
     # 3rd Republic
@@ -40,16 +40,17 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
   },
   e_spain: {
     "1665.9.17"   => {name: "Charles | Habsburg", lived: "1661.11.6 - 1700.11.1"},
-    "1700.11.1"  => {name: "Philip | Bourbon"},
-    "1724.1.14"   => {name: "Louis | Bourbon", father: "Philip 1"},
-    "1724.9.6"    => {use: "Philip 1"},
-    "1746.7.9"    => {name: "Ferdinand | Bourbon", father: "Philip 1"},
-    "1759.8.10"   => {name: "Charles | Bourbon", father: "Philip 1"},
-    "1788.12.14"  => {name: "Charles | Bourbon", father: "Charles 2"},
-    "1808.3.19"   => {name: "Ferdinand | Bourbon", father: "Charles 3"},
-    "1808.6.6"    => {name: "Joseph | Bonaparte"},
+    "1700.11.1"  => {name: "Philip | Bourbon", lived: "19 December 1683 – 9 July 1746"},
+    "1724.1.14"   => {name: "Louis | Bourbon", father: "Philip 1", lived: "25 August 1707 – 31 August 1724"},
+    # backdating
+    "1724.8.31"    => {use: "Philip 1"},
+    "1746.7.9"    => {name: "Ferdinand | Bourbon", father: "Philip 1", lived: "23 September 1713 – 10 August 1759"},
+    "1759.8.10"   => {name: "Charles | Bourbon", father: "Philip 1", lived: "20 January 1716 – 14 December 1788"},
+    "1788.12.14"  => {name: "Charles | Bourbon", father: "Charles 2", lived: "11 November 1748 – 20 January 1819"},
+    "1808.3.19"   => {name: "Ferdinand | Bourbon", father: "Charles 3", lived: "14 October 1784 – 29 September 1833"},
+    "1808.6.6"    => {name: "Joseph | Bonaparte", lived: "7 January 1768 – 28 July 1844"},
     "1813.12.11"  => {use: "Ferdinand 2"},
-    "1833.9.29"   => {name: "Isabella | Bourbon", female: true, father: "Ferdinand 2"},
+    "1833.9.29"   => {name: "Isabella | Bourbon", female: true, father: "Ferdinand 2", lived: "10 October 1830 – 10 April 1904"},
     "1870.11.16"  => {name: "Amadeo | Savoy", lived: "1845.5.30 - 1890.1.18"},
     "1874.12.29"  => {name: "Alfonso | Bourbon", lived: "1857.11.28 - 1885.11.25"},
     # Birth backdated hard as posthumous, actual 1886.5.17

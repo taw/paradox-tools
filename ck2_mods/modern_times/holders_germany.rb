@@ -113,10 +113,11 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backdate, ignore interregnum
     "1918.11.28" => {
       name: "Friedrich | Ebert",
+      lived: "4 February 1871 – 28 February 1925",
       religion: :catholic,
     },
-    # Ignore temporary ones
-    "1925.5.12" => {
+    # Ignore temporary ones, backdating
+    "1925.2.28" => {
       name: "Paul | von Hindenburg", lived: "1847.10.2 - 1934.8.2",
       religion: :protestant,
     },
@@ -141,18 +142,22 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backdating a lot
     end_ww2: {
       name: "Konrad | Adenauer",
+      lived: "5 January 1876 – 19 April 1967",
       religion: :catholic,
     },
     "1963.10.17" => {
       name: "Ludwig | Erhard",
+      lived: "4 February 1897 – 5 May 1977",
       religion: :protestant,
     },
     "1966.12.1" => {
       name: "Kurt Georg | Kiesinger",
+      lived: "6 April 1904 – 9 March 1988",
       religion: :catholic,
     },
     "1969.10.22" => {
       name: "Willy | Brandt",
+      lived: "18 December 1913 – 8 October 1992",
       religion: :protestant,
     },
     "1974.5.16" => {
@@ -172,6 +177,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     },
     "2005.11.22" => {
       name: "Angela | Merkel",
+      lived: "17 July 1954 -",
       female: true,
       religion: :protestant,
     }

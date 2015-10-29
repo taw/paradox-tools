@@ -112,49 +112,57 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     # There was a caliph Abdulmecid II for 1922-1924, consider maybe?
     # Dates are changed to fill the gaps
     "1922.11.1" => {
-      name: "Mustafa Kemal | Ataturk",
+      name: "Mustafa Kemal | Atatürk",
+      lived: "19 May 1881 – 10 November 1938",
       health: 6,
     },
-    "1938.11.11" => {
+    # backtading
+    "1938.11.10" => {
       name: "Ismet | Inonu",
+      lived: "24 September 1884 – 25 December 1973",
     },
     "1950.5.22" => {
       name: "Celal | Bayar",
+      lived: "16 May 1883 – 22 August 1986",
     },
     # Skipping National Unity Committee
     "1961.10.10" => {
       name: "Cemal | Gursel",
+      lived: "1895 – September 14, 1966",
     },
     "1966.3.28" => {
       name: "Cevdet | Sunay",
+      lived: "10 February 1899 – 22 May 1982",
     },
     "1973.4.6" => {
       name: "Fahri | Koruturk",
+      lived: "3 August 1903 – 12 October 1987",
     },
-    # Skipping National ecurity Council
-    "1982.11.9" => {
+    #  From "1982.11.9", before as chairman of National Security Council
+    "12 September 1980" => {
       name: "Kenan | Evren",
-      lived: "1917 - 2015",
+      lived: "17 July 1917 – 9 May 2015",
     },
     "1989.11.9" => {
       name: "Torgut | Ozal",
-      lived: "1927 - 1993",
+      lived: "13 October 1927 – 17 April 1993",
     },
-    "1993.5.16" => {
+    # backdating
+    "1993.4.17" => {
       name: "Suleyman | Demirel",
-      lived: "1924 - 2015",
+      lived: "1 November 1924 – 17 June 2015",
     },
     "2000.5.16" => {
       name: "Ahmet Necdet | Sezer",
-      lived: "1941 -",
+      lived: "September 13, 1941 -",
     },
     "2007.8.28" => {
       name: "Abdullah | Gul",
-      lived: "1950 -",
+      lived: "29 October 1950 -",
     },
     "2014.8.28"  => {
       name: "Recep Tayyip | Erdogan",
-      lived: "1954 -",
+      lived: "26 February 1954 -",
     },
   },
   d_oultrejourdain: {

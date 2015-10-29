@@ -84,22 +84,30 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     "1953.3.5" => {
       name: "Georgy | Malenkov",
+      lived: "8 January 1902 – 14 January 1988",
     },
     "1955.2.8" => {
       name: "Nikita | Khrushchev",
+      lived: "April 15 1894 – September 11, 1971",
     },
     "1964.10.14" => {
       name: "Leonid | Brezhnev",
+      lived: "19 December 1906 – 10 November 1982",
     },
     "1982.10.12" => {
       name: "Yuri | Andropov",
+      lived: "15 June 1914 – 9 February 1984",
     },
-    "1984.2.13" => {
-      name: "Konstantin | Chernenko"
+    # backdating from 1984.2.13
+    "1984.2.9" => {
+      name: "Konstantin | Chernenko",
+      lived: "24 September 1911 – 10 March 1985",
     },
     # Skipping Gennady Yanayev 3-day plot silliness
-    "1985.3.11" => {
+    # backdating one day
+    "1985.3.10" => {
       name: "Mikhail | Gorbachev",
+      lived: "2 March 1931 -",
     },
     "1991.12.25" => {
       name: "Boris | Yeltsin",
@@ -206,35 +214,57 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   },
   d_azerbaijan: {
     # actually 28 May 1918
-    end_ww1: {name: "Mammad Amin | Rasulzade"},
-    "1918.12.7" => {name: "Alimardan | Topchubashov"},
+    end_ww1: {name: "Mammad Amin | Rasulzade", lived: "January 31, 1884 - March 6, 1955"},
+    "1918.12.7" => {name: "Alimardan | Topchubashov", lived: "May 4, 1863 - November 8, 1934"},
     # End date is somewhat dubious
-    "1920.5.11" => nil,
-    # 3 October 1993, backdating, but Heydar Aliyev was sort of leader of Azerbaijan since 1969
-    fall_soviet_union: { name: "Heydar | Aliyev", lived: "1923.5.10 - 2003.12.12" },
+    # Communists
+    # Grigory Kaminsky started 24 October 1920, backdating a bit
+    "1920.5.11"  => { name: "Grigory Kaminsky", lived: "November 1, 1895 - February 10, 1938" },
+    "24 July 1921"     => { name: "Sergey Kirov", lived: "27 March 1886 - 1 December 1934" },
+    "5 January 1925"   => { name: "Ruhulla Akhundov", lived: "1 January 1897 - 21 April 1938" },
+    "21 January 1926"  => { name: "Levon Mirzoyan", lived: "December 1887 - February 26, 1939" },
+    "11 July 1929"     => { name: "Nikolay Gikalo", lived: "March 8, 1897 - April 25, 1938" },
+    "5 August 1930"    => { name: "Vladimir Polonsky", lived: "June 17, 1893 - October 30, 1937" },
+    "7 February 1933"  => { name: "Ruben Rubenov", lived: "1894 - November 27, 1937" },
+    "10 December 1933" => { name: "Mir Jafar | Baghirov", lived: "17 September 1896 - 7 May 1956" },
+    "6 April 1953"     => { name: "Mir Teymur | Yaqubov", lived: "November 6, 1904 - February 17, 1970" },
+    "17 February 1954" => { name: "Imam Mustafayev", lived: "February 25, 1910 - March 10, 1997" },
+    "10 July 1959"     => { name: "Vali Akhundov", lived: "May 14, 1916 - August 22, 1986" },
+
+    "14 July 1969" => { name: "Heydar | Aliyev", lived: "1923.5.10 - 2003.12.12" },
+    "3 December 1982" => {name: "Kamran Baghirov", lived: "January 24, 1933 - October 25, 2000" },
+    "21 May 1988"     => {name: "Abdurrahman Vazirov", lived: "May 26, 1930 -" },
+    "25 January 1990" => {name: "Ayaz Mutallibov", lived: "12 May, 1938 -" },
+    # After Communism (but still same people mostly)
+    "16 June 1992" => { name: "Abulfaz Elchibey", lived: "24 June 1938 - 22 August 2000"},
+    "3 October 1993" => {use: "Heydar 1"},
     "2003.10.31" => { name: "Ilham | Aliyev", father: "Heydar 1", lived: "1961.12.24-" },
   },
   d_esthonia: {
+    "21 October 1933" => {name: "Konstantin Päts", lived: "23 February 1874 – 18 January 1956"},
+    "23 July 1940" => nil,
+    # Communists
+
     # 6 October 1992, backdating
-    fall_soviet_union: {name: "Lennart Georg | Meri"},
-    "2001.10.8" => {name: "Arnold | Rüütel"},
-    "2006.10.9" => {name: "Toomas Hendrik | Ilves"},
+    fall_soviet_union: {name: "Lennart Georg | Meri", lived: "29 March 1929 – 14 March 2006"},
+    "2001.10.8" => {name: "Arnold | Rüütel", lived: "May 10, 1928 -"},
+    "2006.10.9" => {name: "Toomas Hendrik | Ilves", lived: "26 December 1953 -"},
   },
   d_lithuanians: {
     # Presidents
-    "4 April 1919" => { name: "Antanas Smetona", lived: "10 August 1874 – 9 January 1944" },
+    "4 April 1919" => { name: "Antanas Smetona", lived: "10 August 1874 - 9 January 1944" },
     "19 June 1920" => { name: "Aleksandras Stulginskis", lived: "February 26, 1885 - September 22, 1969" },
-    "7 June 1926" => { name: "Kazys Grinius", lived: "17 December 1866 – 4 June 1950" },
+    "7 June 1926" => { name: "Kazys Grinius", lived: "17 December 1866 - 4 June 1950" },
     # Military
     "19 December 1926" => { use: "Antanas 1" },
     # Communist First Secretaries, backdating
-    "15 June 1940" => { name: "Antanas Sniečkus", lived: "7 January 1903 – January 22, 1974" },
-    "January 22 1974" => { name: "Petras Griškevičius", lived: "July 19, 1924 – November 14, 1987" },
+    "15 June 1940" => { name: "Antanas Sniečkus", lived: "7 January 1903 - January 22, 1974" },
+    "January 22 1974" => { name: "Petras Griškevičius", lived: "July 19, 1924 - November 14, 1987" },
     "November 14 1987" => { name: "Ringaudas Bronislovas | Songaila", lived: "March 20, 1929 -" },
-    "19 October 1988" => { name: "Algirdas Mykolas | Brazauskas", lived: "22 September 1932 – 26 June 2010" },
+    "19 October 1988" => { name: "Algirdas Mykolas | Brazauskas", lived: "22 September 1932 - 26 June 2010" },
     # First as Chairman of supreme soviet, then all post-Communist
     "11 March 1990" => {name: "Vytautas | Landsbergis", lived: "8 October 1932 -"},
-    "1993.2.25" => {name: "Algirdas | Brazauskas", lived: "22 September 1932 – 26 June 2010"},
+    "1993.2.25" => {name: "Algirdas | Brazauskas", lived: "22 September 1932 - 26 June 2010"},
     "1998.2.26" => {name: "Valdas | Adamkus", lived: "3 November 1926 -"},
     "2003.2.26" => {name: "Rolandas | Paksas", lived: "10 June 1956 -"},
     # backdated to skip acting president
