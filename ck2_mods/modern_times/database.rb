@@ -350,8 +350,9 @@ private
         next if c.nil? or c[:use]
         # These will be autofilled this way later, TODO: move logic to this class?
         id = c[:historical_id]
-        birth = c[:birth] || (d0 << 12*35)
-        death = c[:death] || (birth >> 12*90)
+        # This validator is problematic as actual numbers are random, used to be 35 and 90
+        birth = c[:birth] || (d0 << 12*35) # actual number is random 25-40
+        death = c[:death] || (birth >> 12*80) # actual number is random 80-90
         death = Date.parse("2020.1.1") if death == :never
         d1 ||= Date.parse("2020.1.1")
 

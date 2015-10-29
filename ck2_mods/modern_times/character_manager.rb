@@ -64,15 +64,20 @@ class CharacterManager
         female = (rng.rand < 0.2)
       end
     end
-    birth = args[:birth] || (crowning << 12*35)
+    if args[:birth]
+      birth = args[:birth]
+    else
+      # Any age from 25 to 40
+      birth = crowning - rng.rand(365*25..365*40)
+    end
     case args[:death]
     when :never
       death = nil
     when Date
       death = args[:death]
     when nil
-      # Random rulers all die at age of 90
-      death = (birth >> 12*90)
+      # Random rulers all die at age of 80 to 90
+      death = birth + rng.rand(365*80..365*90)
     else
       raise
     end
