@@ -137,6 +137,21 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       name: "Karl | Doenitz", lived: "- 1980.12.24",
       religion: :protestant,
     },
+    end_ww2: nil,
+    german_reunification: { use: "k_germany Helmut 2" },
+    "1998.10.27" => {
+      name: "Gerhard | Schroeder",
+      lived: "1944.4.7 -",
+      religion: :protestant,
+    },
+    "2005.11.22" => {
+      name: "Angela | Merkel",
+      lived: "17 July 1954 -",
+      female: true,
+      religion: :protestant,
+    },
+  },
+  k_germany: {
     # Now this is bullshit on so many levels...
     # German "presidents" do nothing, so choosing chancellor as much more prominent person
     # Backdating a lot
@@ -160,27 +175,17 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       lived: "18 December 1913 – 8 October 1992",
       religion: :protestant,
     },
-    "1974.5.16" => {
+    "1974.5.16" => { # 1
       name: "Helmut | Schmidt",
       lived: "1918.12.23 -",
       religion: :protestant,
     },
-    "1982.10.1" => {
+    "1982.10.1" => { # 2
       name: "Helmut | Kohl",
       lived: "1930.4.3 -",
       religion: :catholic,
     },
-    "1998.10.27" => {
-      name: "Gerhard | Schroeder",
-      lived: "1944.4.7 -",
-      religion: :protestant,
-    },
-    "2005.11.22" => {
-      name: "Angela | Merkel",
-      lived: "17 July 1954 -",
-      female: true,
-      religion: :protestant,
-    }
+    german_reunification: nil,
   },
   d_bavaria: {
     "1679.5.26" => {

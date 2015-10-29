@@ -16,10 +16,6 @@ ModernTimesDatabase::DE_JURE = {
   "k_anatolia"       => "e_arabia",
   "k_armenia"        => "e_arabia",
   "k_georgia"        => "e_persia",
-  "d_luxembourg"     => "k_frisia",
-  "d_lower_lorraine" => "k_germany",
-  "d_upper_lorraine" => "k_france",
-  "d_alsace"         => "k_germany",
   "d_sarkel"         => "k_alania",
   "k_volga_bulgaria" => "e_russia",
   "k_sindh"          => "e_india",
@@ -59,4 +55,10 @@ ModernTimesDatabase::DE_JURE = {
   "k_bohemia"        => { hre_disbanded: "e_carpathia" },
   "d_saxony"         => { end_ww2: "k_pomerania" },
   "d_meissen"        => { end_ww2: "k_pomerania" },
+
+  # Lotharingia divided, after WW2 France gets most of it
+  "d_luxembourg"     => "k_frisia",
+  "d_upper_lorraine" => "k_france",
+  "d_lower_lorraine" => {times_immemorial: "k_germany", end_ww2: "k_france"}, # This shape...
+  "d_alsace"         => {times_immemorial: "k_germany", end_ww2: "k_france"},
 }

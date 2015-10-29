@@ -154,6 +154,11 @@ ModernTimesDatabase::TITLES = {
     name: { times_immemorial: "Prussia / Prussian", end_ww2: "East Germany / East German" },
     demesne: ["d_prussia"],
   },
+  k_germany: {
+    culture: :german,
+    religion: :catholic,
+    name: { end_ww2: "West Germany / West Germany" },
+  },
   e_germany: {
     culture: :german,
     religion: :catholic,
