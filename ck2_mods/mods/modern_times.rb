@@ -257,6 +257,7 @@ class ModernTimesGameModification < CK2GameModification
     unless @holders
       @holders  = {}
       @db.titles.each do |title, data|
+        rng = Random.keyed("vassal terms: #{title}")
         title    = title
         holders  = @db.holders[title] || {}
         autoholders = @db.titles[title][:autoholders]
@@ -279,7 +280,7 @@ class ModernTimesGameModification < CK2GameModification
                 religion: data[:religion],
                 female: :maybe,
               }
-              s >>= (12*15) # 35..50 years
+              s += rng.rand(5*365..20*365) # start at 25..40, term 5..20, end at 30..60
               break if s >= xe
             end
             # This can mean two things:
