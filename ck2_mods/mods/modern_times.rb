@@ -571,12 +571,21 @@ class ModernTimesGameModification < CK2GameModification
       else
         # warn "No castle in #{title}"
       end
-    elsif %W[c_provence c_hamburg c_danzig c_pisa c_gloucester].include?(title)
+    elsif %W[c_firenze c_siena c_theodosia c_bologna c_schwyz c_methone].include?(title)
+      if first_castle
+        node.add! @db.resolve_date(:forever_ago), PropertyList["capital", first_castle]
+      else
+        warn "No castle in #{title}"
+      end
+    elsif %W[c_provence c_hamburg c_danzig c_pisa c_gloucester c_coruna].include?(title)
       if first_city
         node.add! @db.resolve_date(:forever_ago), PropertyList["capital", first_city]
       else
         warn "No city in #{title}"
       end
+    # Check and it's good
+    # elsif holdings[capital] == "city"
+    #   warn "#{@map.landed_titles_lookup[title].reverse.join(" / ")} is city, should it be?"
     end
   end
 

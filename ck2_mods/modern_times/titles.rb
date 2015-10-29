@@ -298,7 +298,7 @@ ModernTimesDatabase::TITLES = {
     culture: :greek,
     religion: :orthodox,
     capital: :c_atheniai,
-    demesne: ["d_thessalonika"],
+    demesne: ["d_aegean_islands"],
   },
   k_bulgaria: {
     culture: :bulgarian,
@@ -309,7 +309,7 @@ ModernTimesDatabase::TITLES = {
     culture: :sindhi,
     religion: :sunni,
     capital: :c_makran,
-    name: "Pakistan / Pakistani",
+    name: { india_independence: "Pakistan / Pakistani" },
   },
   k_afghanistan: {
     culture: :afghan,
@@ -342,7 +342,7 @@ ModernTimesDatabase::TITLES = {
     culture: :bengali,
     religion: :sunni,
     capital: :c_bikrampur,
-    name: "Bangladesh / Bangladeshi",
+    name: { india_independence: "Bangladesh / Bangladeshi" },
   },
   d_dihistan: {
     culture: :turkish,
