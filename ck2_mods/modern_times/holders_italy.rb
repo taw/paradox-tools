@@ -282,4 +282,10 @@ ModernTimesDatabase::HOLDERS_ITALY = {
       lived: "1974.1.22-",
     },
   },
+  d_toscana: {
+    "1814.4.27" => { name: "Ferdinando | Habsburg", lived: "1769.5.6 – 1824.6.18" },
+    "1824.6.18" => { name: "Leopoldo | Habsburg", lived: "1797.10.3 – 1870.1.29", father: "Ferdinando 1" },
+    "1859.7.21" => { name: "Ferdinando | Habsburg", lived: "1835.6.10 – 1908.1.17", father: "Leopoldo 1" },
+    "1859.11.10" => nil,
+  },
 }

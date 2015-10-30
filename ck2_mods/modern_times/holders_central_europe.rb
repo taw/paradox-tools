@@ -209,4 +209,26 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
       lived: "1959–",
     },
   },
+  k_bohemia: {
+    # backdating from "1918.11.14"
+    "1918.10.28" => { name: "Tomáš Garrigue | Masaryk", lived: "1850.3.7 – 1937.9.14" },
+    "1935.12.18" => { name: "Edvard Beneš", lived: "1884.5.17 – 1948.9.3" },
+    # backdating
+    "1938.10.5" => { name: "Emil Hácha", lived: "1872.7.12 – 1945.6.27" },
+    "1939.3.15" => nil,
+
+    # Communist
+    "1945.5.8" => { name: "Klement Gottwald", lived: "1896.11.23 – 1953.3.14" },
+    "1953.3.14" => { name: "Antonín Novotný", lived: "1904.12.10 – 1975.1.28" },
+    "1968.1.5" => { name: "Alexander Dubček", lived: "1921.11.27 – 1992.11.7" },
+    "1969.4.17" => { name: "Gustáv Husák", lived: "1913.1.10 – 1991.11.18" },
+    "1987.12.17" => { name: "Miloš Jakeš", lived: "1922.8.12 -" },
+    "1989.11.24" => { name: "Karel Urbánek", lived: "1941.3.22 -" },
+
+    # Post-Communist since 1989;
+    # Chech Republic from 1993
+    "1989.12.10" => { name: "Václav Havel", lived: "1936.10.5 – 2011.12.18" },
+    "2003.3.7" => { name: "Václav Klaus", lived: "1941.6.19 -" },
+    "2013.3.8" => { name: "Miloš Zeman", lived: "1944.9.28 -" },
+  },
 }

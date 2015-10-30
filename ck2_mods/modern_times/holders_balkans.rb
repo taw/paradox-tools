@@ -286,4 +286,16 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       lived: "1950–",
     },
   },
+  d_bosnia: {
+    # President
+    "1993.3.3"         => { name: "Alija Izetbegović", lived: "1925.8.8 – 2003.10.19" },
+    # High Representatives
+    "1995.12.14" => { name: "Carl Bildt", lived: "1949.7.15 -", culture: :swedish },
+    "1997.6.18"     => { name: "Carlos Westendorp", lived: "1937.1.7 -", culture: :castillan },
+    "1999.8.18"   => { name: "Wolfgang Petritsch", lived: "1947.8.26 -", culture: :german },
+    "2002.5.27"      => { name: "Paddy Ashdown", lived: "1941.2.27 -", culture: :english },
+    "2006.2.1"  => { name: "Christian Schwarz-Schilling", lived: "1930.11.19 -", culture: :german },
+    "2007.7.1"      => { name: "Miroslav Lajčák", lived: "1963.3.20 -", culture: :croatian },
+    "2009.3.1"     => { name: "Valentin Inzko", lived: "1949.5.22 -", culture: :german },
+  },
 }
