@@ -69,16 +69,16 @@ ModernTimesDatabase::HOLDERS_INDIA = {
   k_punjab: {
     "1801.4.12" => {
       name: "Ranjit Singh",
-      lived: "13 November 1780 – 27 June 1839",
+      lived: "1780.11.13 – 1839.6.27",
     },
     "1839.6.27" => {
       name: "Kharak Singh",
-      lived: "22 February 1801 – 5 November 1840",
+      lived: "1801.2.22 – 1840.11.5",
       father: "Ranjit 1",
     },
     "1839.10.8" => {
       name: "Nau Nihal | Singh",
-      lived: "9 March 1821 – 6 November 1840",
+      lived: "1821.3.9 – 1840.11.6",
       father: "Kharak 1",
     },
     # Chand Kaur ruled as a regent for pregnant daugher, let's skip this stuff and backdate
@@ -89,7 +89,7 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     },
     "1843.9.15" => {
       name: "Duleep Singh",
-      lived: "6 September 1838 – 22 October 1893",
+      lived: "1838.9.6 – 1893.10.22",
       father: "Ranjit 1",
     },
     "1849.3.29" => nil,

@@ -51,15 +51,15 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   c_weimar: {
     "1758.5.28" => {
       name: "Charles Augustus | Saxe-Weimar-Eisenach",
-      lived: "3 September 1757 – 14 June 1828"
+      lived: "1757.9.3 – 1828.6.14"
     },
     "1828.6.14" => {
       name: "Charles Frederick | Saxe-Weimar-Eisenach",
-      lived: "2 February 1783 – 8 July 1853",
+      lived: "1783.2.2 – 1853.7.8",
     },
     "1853.7.8" => {
       name: "Charles Alexander | Saxe-Weimar-Eisenach",
-      lived: "24 June 1818 – 5 January 1901",
+      lived: "1818.6.24 – 1901.1.5",
     },
     german_unification: nil,
   },
@@ -113,7 +113,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backdate, ignore interregnum
     "1918.11.28" => {
       name: "Friedrich | Ebert",
-      lived: "4 February 1871 – 28 February 1925",
+      lived: "1871.2.4 – 1925.2.28",
       religion: :catholic,
     },
     # Ignore temporary ones, backdating
@@ -157,22 +157,22 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backdating a lot
     end_ww2: {
       name: "Konrad | Adenauer",
-      lived: "5 January 1876 – 19 April 1967",
+      lived: "1876.1.5 – 1967.4.19",
       religion: :catholic,
     },
     "1963.10.17" => {
       name: "Ludwig | Erhard",
-      lived: "4 February 1897 – 5 May 1977",
+      lived: "1897.2.4 – 1977.5.5",
       religion: :protestant,
     },
     "1966.12.1" => {
       name: "Kurt Georg | Kiesinger",
-      lived: "6 April 1904 – 9 March 1988",
+      lived: "1904.4.6 – 1988.3.9",
       religion: :catholic,
     },
     "1969.10.22" => {
       name: "Willy | Brandt",
-      lived: "18 December 1913 – 8 October 1992",
+      lived: "1913.12.18 – 1992.10.8",
       religion: :protestant,
     },
     "1974.5.16" => { # 1
@@ -190,35 +190,35 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   d_bavaria: {
     "1679.5.26" => {
       name: "Maximilian Emanuel | Wittelsbach",
-      lived: "11 July 1662 – 26 February 1726",
+      lived: "1662.7.11 – 1726.2.26",
     },
     "1726.2.26" => {
       name: "Charles Albert | Wittelsbach",
-      lived: "6 August 1697 – 20 January 1745",
+      lived: "1697.8.6 – 1745.1.20",
     },
     "1745.1.20" => {
       name: "Maximilian Joseph | Wittelsbach",
-      lived: "28 March 1727 – 30 December 1777",
+      lived: "1727.3.28 – 1777.12.30",
     },
     "1777.12.30" => {
       name: "Charles Theodore | Wittelsbach",
-      lived: "December 11, 1724 – February 16, 1799",
+      lived: "1724.12.11 – 1799.2.16",
     },
     "1799.2.16" => {
       name: "Maximilian | Wittelsbach",
-      lived: "27 May 1756 – 13 October 1825",
+      lived: "1756.5.27 – 1825.10.13",
     },
     "1825.10.13" => {
       name: "Ludwig | Wittelsbach",
-      lived: "25 August 1786 – 29 February 1868",
+      lived: "1786.8.25 – 1868.2.29",
     },
     "1848.3.20" => {
       name: "Maximilian | Wittelsbach",
-      lived: "28 November 1811 – 10 March 1864",
+      lived: "1811.11.28 – 1864.3.10",
     },
     "1864.3.10" => {
       name: "Ludwig | Wittelsbach",
-      lived: "25 August 1845 – 13 June 1886",
+      lived: "1845.8.25 – 1886.6.13",
     },
     german_unification: nil,
     # They continued as German vassals until end of WW1
@@ -261,9 +261,9 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   },
   k_bavaria: {
     # Backfill
-    "1918.11.11" => {name: "Karl | Seitz", lived: "September 4, 1869 – February 3, 1950"},
-    "1920.12.9"  => {name: "Michael | Hainisch", lived: "August 15, 1858 – February 26, 1940"},
-    "1928.12.10" => {name: "Wilhelm | Miklas", lived: "15 October 1872 – 20 March 1956"},
+    "1918.11.11" => {name: "Karl | Seitz", lived: "1869.9.4 – 1950.2.3"},
+    "1920.12.9"  => {name: "Michael | Hainisch", lived: "1858.8.15 – 1940.2.26"},
+    "1928.12.10" => {name: "Wilhelm | Miklas", lived: "1872.10.15 – 1956.3.20"},
     anschluss: nil,
     end_ww2: {name: "Karl | Renner", lived: "- 1950.12.31"},
     # Backfill, predecessor died in office
@@ -271,11 +271,11 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backfill, predecessor died in office
     "1957.1.4" => {name: "Adolf | Schärf", lived: "- 1965.2.28"},
     # Backfill, predecessor died in office
-    "1965.2.28" => {name: "Franz | Jonas", lived: "4 October 1899 – 24 April 1974"},
+    "1965.2.28" => {name: "Franz | Jonas", lived: "1899.10.4 – 1974.4.24"},
     # Backfill, predecessor died in office
-    "1974.4.24" => {name: "Rudolf | Kirchschläger", lived: "20 March 1915 – 30 March 2000"},
-    "1986.7.8" => {name: "Kurt | Waldheim", lived: "21 December 1918 – 14 June 2007"},
-    "1992.7.8" => {name: "Thomas | Klestil", lived: "4 November 1932 – 6 July 2004"},
+    "1974.4.24" => {name: "Rudolf | Kirchschläger", lived: "1915.3.20 – 2000.3.30"},
+    "1986.7.8" => {name: "Kurt | Waldheim", lived: "1918.12.21 – 2007.6.14"},
+    "1992.7.8" => {name: "Thomas | Klestil", lived: "1932.11.4 – 2004.7.6"},
     # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
     "2004.7.6" => {name: "Heinz | Fischer", lived: "1938.10.9 -"},
   },
@@ -284,16 +284,16 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # as duke, elector, then king
     "1797.12.23" => {
       name: "Frederick | Württemberg",
-      lived: "6 November 1754 – 30 October 1816",
+      lived: "1754.11.6 – 1816.10.30",
     },
     "1816.10.30" => {
       name: "William | Württemberg",
-      lived: "27 September 1781 – 25 June 1864",
+      lived: "1781.9.27 – 1864.6.25",
       father: "Frederick 1",
     },
     "1864.6.25" => {
       name: "Charles | Württemberg",
-      lived: "6 March 1823 in Stuttgart – 6 October 1891",
+      lived: "6 March 1823 in Stuttgart – 1891.10.6",
       father: "William 1",
     },
     # still in charge, just under empire of Germany

@@ -2,41 +2,41 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
   k_mauretania: {
     "1757.11.10" => {
       name: "Mohammed | Alaouite", # 1
-      lived: "1710 – 9 April 1790",
+      lived: "1710 – 1790.4.9",
     },
     "1790.4.9" => {
       name: "Yazid | Alaouite",
-      lived: "1750 – 23 February 1792",
+      lived: "1750 – 1792.2.23",
       father: "Mohammed 1",
     },
     "1792.2.23" => {
       name: "Slimane | Alaouite",
-      lived: "1760 – 28 November 1822",
+      lived: "1760 – 1822.11.28",
       father: "Mohammed 1",
     },
     "1822.11.28" => {
       name: "Abd al-Rahman | Alaouite",
-      lived: "1778 – 24 August 1859",
+      lived: "1778 – 1859.8.24",
       # nephew of previous ruler
     },
     "1859.8.24" => {
       name: "Mohammed | Alaouite", # 2
-      lived: "1802 – 16 September 1873",
+      lived: "1802 – 1873.9.16",
       father: "Abd al-Rahman 1",
     },
     "1873.9.16" => {
       name: "Hassan | Alaouite", # 1
-      lived: "1836 – 7 June 1894",
+      lived: "1836 – 1894.6.7",
       father: "Mohammed 2",
     },
     "1894.6.7" => {
       name: "Abdelaziz | Alaouite",
-      lived: "24 February 1878 – 10 June 1943",
+      lived: "1878.2.24 – 1943.6.10",
       father: "Hassan 1",
     },
     "1908.1.4" => {
       name: "Abdelhafid | Alaouite",
-      lived: "24 February 1876 – 4 April 1937",
+      lived: "1876.2.24 – 1937.4.4",
       father: "Hassan 1",
     },
     # French protectorate, but royal line still formally active
@@ -44,27 +44,27 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Ignoring times when under foreign rule
     "1956.10.29" => { # 3
       name: "Mohammed | Alaouite",
-      lived: "17 November 1927 – 26 February 1961",
+      lived: "1927.11.17 – 1961.2.26",
     },
     "1961.2.26" => {
       name: "Hassan | Alaouite", # 2
-      lived: "9 July 1929 – 23 July 1999",
+      lived: "1929.7.9 – 1999.7.23",
       father: "Mohammed 3"
     },
     "1999.7.23" => { # 4
       name: "Mohammed | Alaouite",
-      lived: "21 August 1963 – ",
+      lived: "1963.8.21 – ",
       father: "Hassan 2",
     },
   },
   d_tripolitania: {
     "1951.12.24" => {
       name: "Idris | Senussi",
-      lived: "12 March 1889 – 25 May 1983",
+      lived: "1889.3.12 – 1983.5.25",
     },
     "1969.9.1" => {
       name: "Muammar Gaddafi",
-      lived: "1942 – 20 October 2011",
+      lived: "1942 – 2011.10.20",
     },
     # Claimant crowned himself much earlier, but counting from assassination
     "2011.10.20" => {
@@ -88,7 +88,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Backdating
     "1956.3.20" => {
       name: "Habib Bourguiba",
-      lived: "3 August 1903 – 6 April 2000",
+      lived: "1903.8.3 – 2000.4.6",
     },
     "1987.11.7" => {
       name: "Zine El Abidine | Ben Ali",
@@ -97,7 +97,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Backdating
     "2011.1.14" => {
       name: "Moncef Marzouki",
-      lived: "7 July 1945–",
+      lived: "1945.7.7–",
     },
     "2014.12.31" => {
       name: "Beji Caid | Essebsi",
@@ -109,27 +109,27 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Backdating
     "1962.4.8" => {
       name: "Abderrahmane Farès",
-      lived: "January 30, 1911 – May 13, 1991",
+      lived: "1911.1.30 – 1991.5.13",
     },
     "1962.9.25" => {
       name: "Ferhat Abbas",
-      lived: "24 October 1899 – 24 December 1985",
+      lived: "1899.10.24 – 1985.12.24",
     },
     "1963.9.15" => { # Official #1
       name: "Ahmed | Ben Bella",
-      lived: "25 December 1916 – 11 April 2012",
+      lived: "1916.12.25 – 2012.4.11",
     },
     "1965.6.19" => { # Official #2
       name: "Houari Boumediene",
-      lived: "23 August 1932 – 27 December 1978",
+      lived: "1932.8.23 – 1978.12.27",
     },
     "1978.12.27" => {
       name: "Rabah Bitat",
-      lived: "19 December 1925 – 10 April 2000",
+      lived: "1925.12.19 – 2000.4.10",
     },
     "1979.2.9" => { # Official #3
       name: "Chadli Bendjedid",
-      lived: "14 April 1929 – 6 October 2012",
+      lived: "1929.4.14 – 2012.10.6",
     },
     # Not sure there's a point including these one
     "1992.1.11" => {
@@ -138,12 +138,12 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     },
     "1992.1.14" => {
       name: "Mohamed Boudiaf",
-      lived: "23 June 1919 – 29 June 1992",
+      lived: "1919.6.23 – 1992.6.29",
     },
     # backdating
     "1992.6.29" => {
       name: "Ali Kafi",
-      lived: "7 October 1928 – 16 April 2013",
+      lived: "1928.10.7 – 2013.4.16",
     },
     "1994.1.31" => { # Official #4
       name: "Liamine Zéroual",
@@ -151,7 +151,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     },
     "1999.4.27" => { # Official #5
       name: "Abdelaziz Bouteflika",
-      lived: "2 March 1937–",
+      lived: "1937.3.2–",
     },
   },
 }

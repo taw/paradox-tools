@@ -84,24 +84,24 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     "1953.3.5" => {
       name: "Georgy | Malenkov",
-      lived: "8 January 1902 – 14 January 1988",
+      lived: "1902.1.8 – 1988.1.14",
     },
     "1955.2.8" => {
       name: "Nikita | Khrushchev",
-      lived: "April 15 1894 – September 11, 1971",
+      lived: "April 15 1894 – 1971.9.11",
     },
     "1964.10.14" => {
       name: "Leonid | Brezhnev",
-      lived: "19 December 1906 – 10 November 1982",
+      lived: "1906.12.19 – 1982.11.10",
     },
     "1982.10.12" => {
       name: "Yuri | Andropov",
-      lived: "15 June 1914 – 9 February 1984",
+      lived: "1914.6.15 – 1984.2.9",
     },
     # backdating from 1984.2.13
     "1984.2.9" => {
       name: "Konstantin | Chernenko",
-      lived: "24 September 1911 – 10 March 1985",
+      lived: "1911.9.24 – 1985.3.10",
     },
     # Skipping Gennady Yanayev 3-day plot silliness
     # backdating one day
@@ -241,12 +241,12 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2003.10.31" => { name: "Ilham | Aliyev", father: "Heydar 1", lived: "1961.12.24-" },
   },
   d_esthonia: {
-    "1933.10.21" => {name: "Konstantin Päts", lived: "23 February 1874 – 18 January 1956"},
+    "1933.10.21" => {name: "Konstantin Päts", lived: "1874.2.23 – 1956.1.18"},
     "1940.7.23" => nil,
     # Communists
 
     # 6 October 1992, backdating
-    fall_soviet_union: {name: "Lennart Georg | Meri", lived: "29 March 1929 – 14 March 2006"},
+    fall_soviet_union: {name: "Lennart Georg | Meri", lived: "1929.3.29 – 2006.3.14"},
     "2001.10.8" => {name: "Arnold | Rüütel", lived: "1928.5.10 -"},
     "2006.10.9" => {name: "Toomas Hendrik | Ilves", lived: "1953.12.26 -"},
   },

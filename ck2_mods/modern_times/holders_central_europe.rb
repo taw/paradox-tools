@@ -72,7 +72,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # Slovak State under Nazis
     "1939.3.15" => {
       name: "Jozef Tiso",
-      lived: "13 October 1887 – 18 April 1947",
+      lived: "1887.10.13 – 1947.4.18",
     },
     "1945.5.8" => nil,
     # 2 March 1993, backdating
@@ -119,7 +119,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # Präsident des Senats
     end_ww1: {
       name: "Heinrich Sahm",
-      lived: "12 September 1877 – 3 October 1939",
+      lived: "1877.9.12 – 1939.10.3",
     },
     "1931.1.10" => {
       name: "Ernst Ziehm",
@@ -127,11 +127,11 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     },
     "1933.6.20" => {
       name: "Hermann Rauschning",
-      lived: "7 August 1887 – February 8, 1982",
+      lived: "1887.8.7 – 1982.2.8",
     },
     "1934.11.23" => {
       name: "Arthur Greiser",
-      lived: "22 January 1897 – 21 July 1946",
+      lived: "1897.1.22 – 1946.7.21",
     },
     end_ww2: nil,
   },
@@ -139,12 +139,12 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # actually "1866.4.20", ignore until he gets independent
     treaty_of_berlin: {
       name: "Carol | Hohenzollern-Sigmaringen",
-      lived: "20 April 1839 – 10 October 1914",
+      lived: "1839.4.20 – 1914.10.10",
     },
     # nephew of Carol 1
     "1914.10.10" => {
       name: "Ferdinand | Hohenzollern-Sigmaringen",
-      lived: "24 August 1865 – 20 July 1927",
+      lived: "1865.8.24 – 1927.7.20",
     },
     # This is just dumb, Ferdinand's son Carol renounced right to throne
     # in favour of his son Michael, then decided to go back on it
@@ -156,7 +156,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     },
     "1930.6.8" => {
       name: "Carol | Hohenzollern-Sigmaringen",
-      lived: "15 October 1893 – 4 April 1953",
+      lived: "1893.10.15 – 1953.4.4",
       father: "Ferdinand 1",
     },
     "1940.9.6" => {
@@ -178,7 +178,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     },
     "1961.3.21" => {
       name: "Gheorghe Gheorghiu-Dej",
-      lived: "November 8, 1901 – March 19, 1965",
+      lived: "1901.11.8 – 1965.3.19",
     },
     # Backdating from 1965.3.24
     "1965.3.19" => {
@@ -187,7 +187,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     },
     "1967.12.9" => {
       name: "Nicolae Ceaușescu",
-      lived: "26 January 1918 – 25 December 1989",
+      lived: "1918.1.26 – 1989.12.25",
     },
     # Backdating from 1989.12.26
     "1989.12.22" => {

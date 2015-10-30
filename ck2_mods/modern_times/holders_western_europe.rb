@@ -2,9 +2,9 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
   e_france: {
     "1799.11.10" => {name: "Napoleon | Bonaparte", lived: "1769.8.15 - 1821.5.5"},
     # 7 July 1815, backdating to Congress of Vienna
-    "1815.6.9"  => {name: "Louis | Bourbon", lived: "17 November 1755 – 16 September 1824"},
-    "1824.9.16" => {name: "Charles | Bourbon", lived: "9 October 1757 – 6 November 1836"}, # younger brother of previous
-    "1830.8.9"  => {name: "Louis Philippe | Orléans", lived: "6 October 1773 – 26 August 1850"},
+    "1815.6.9"  => {name: "Louis | Bourbon", lived: "1755.11.17 – 1824.9.16"},
+    "1824.9.16" => {name: "Charles | Bourbon", lived: "1757.10.9 – 1836.11.6"}, # younger brother of previous
+    "1830.8.9"  => {name: "Louis Philippe | Orléans", lived: "1773.10.6 – 1850.8.26"},
     # Second republic, second Empire from 1852.12.2
     "1848.2.24" => {name: "Napoleon | Bonaparte", lived: "1808.4.20 - 1873.1.9"},
     # 3rd Republic
@@ -40,17 +40,17 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
   },
   e_spain: {
     "1665.9.17"   => {name: "Charles | Habsburg", lived: "1661.11.6 - 1700.11.1"},
-    "1700.11.1"  => {name: "Philip | Bourbon", lived: "19 December 1683 – 9 July 1746"},
-    "1724.1.14"   => {name: "Louis | Bourbon", father: "Philip 1", lived: "25 August 1707 – 31 August 1724"},
+    "1700.11.1"  => {name: "Philip | Bourbon", lived: "1683.12.19 – 1746.7.9"},
+    "1724.1.14"   => {name: "Louis | Bourbon", father: "Philip 1", lived: "1707.8.25 – 1724.8.31"},
     # backdating
     "1724.8.31"    => {use: "Philip 1"},
-    "1746.7.9"    => {name: "Ferdinand | Bourbon", father: "Philip 1", lived: "23 September 1713 – 10 August 1759"},
-    "1759.8.10"   => {name: "Charles | Bourbon", father: "Philip 1", lived: "20 January 1716 – 14 December 1788"},
-    "1788.12.14"  => {name: "Charles | Bourbon", father: "Charles 2", lived: "11 November 1748 – 20 January 1819"},
-    "1808.3.19"   => {name: "Ferdinand | Bourbon", father: "Charles 3", lived: "14 October 1784 – 29 September 1833"},
-    "1808.6.6"    => {name: "Joseph | Bonaparte", lived: "7 January 1768 – 28 July 1844"},
+    "1746.7.9"    => {name: "Ferdinand | Bourbon", father: "Philip 1", lived: "1713.9.23 – 1759.8.10"},
+    "1759.8.10"   => {name: "Charles | Bourbon", father: "Philip 1", lived: "1716.1.20 – 1788.12.14"},
+    "1788.12.14"  => {name: "Charles | Bourbon", father: "Charles 2", lived: "1748.11.11 – 1819.1.20"},
+    "1808.3.19"   => {name: "Ferdinand | Bourbon", father: "Charles 3", lived: "1784.10.14 – 1833.9.29"},
+    "1808.6.6"    => {name: "Joseph | Bonaparte", lived: "1768.1.7 – 1844.7.28"},
     "1813.12.11"  => {use: "Ferdinand 2"},
-    "1833.9.29"   => {name: "Isabella | Bourbon", female: true, father: "Ferdinand 2", lived: "10 October 1830 – 10 April 1904"},
+    "1833.9.29"   => {name: "Isabella | Bourbon", female: true, father: "Ferdinand 2", lived: "1830.10.10 – 1904.4.10"},
     "1870.11.16"  => {name: "Amadeo | Savoy", lived: "1845.5.30 - 1890.1.18"},
     "1874.12.29"  => {name: "Alfonso | Bourbon", lived: "1857.11.28 - 1885.11.25"},
     # Birth backdated hard as posthumous, actual 1886.5.17
@@ -62,31 +62,31 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
     "2014.6.19"   => {name: "Felipe | Bourbon", lived: "1968.1.30 -"},
   },
   k_portugal: {
-    "1640.12.1" => {name: "John | Braganza", lived: "18 March 1603 – 6 November 1656"},
-    "1656.11.6" => {name: "Alphonse | Braganza", lived: "21 August 1643 – 12 September 1683", father: "John 1"},
-    "1683.9.12" => {name: "Peter | Braganza", lived: "26 April 1648 – 9 December 1706", father: "John 1"},
-    "1706.12.9" => {name: "John | Braganza", lived: "22 October 1689 – 31 July 1750", father: "Peter 1"},
-    "1750.7.31" => {name: "Joseph | Braganza", lived: "6 June 1714 – 24 February 1777", father: "John 2"},
+    "1640.12.1" => {name: "John | Braganza", lived: "1603.3.18 – 1656.11.6"},
+    "1656.11.6" => {name: "Alphonse | Braganza", lived: "1643.8.21 – 1683.9.12", father: "John 1"},
+    "1683.9.12" => {name: "Peter | Braganza", lived: "1648.4.26 – 1706.12.9", father: "John 1"},
+    "1706.12.9" => {name: "John | Braganza", lived: "1689.10.22 – 1750.7.31", father: "Peter 1"},
+    "1750.7.31" => {name: "Joseph | Braganza", lived: "1714.6.6 – 1777.2.24", father: "John 2"},
     "1777.2.24" => {name: "Mary | Braganza", lived: "1734.12.17 - 1816.3.20", father: "Joseph 1", female: true},
-    "1816.3.20" => {name: "John | Braganza", lived: "13 May 1767 – 10 March 1826", mother: "Mary 1"},
-    "1826.3.10" => {name: "Peter | Braganza", lived: "12 October 1798 – 24 September 1834", father: "John 3"},
-    "1826.5.2" => {name: "Mary | Braganza", lived: "4 April 1819 – 15 November 1853", father: "Peter 2"},
-    "1853.11.15" => {name: "Peter | Braganza", lived: "16 September 1837 – 11 November 1861", mother: "Mary 2"},
-    "1861.11.11" => {name: "Louis | Braganza", lived: "31 October 1838 – 19 October 1889", father: "Peter 3"},
-    "1889.10.19" => {name: "Charles | Braganza", lived: "28 September 1863 – 1 February 1908", father: "Louis 1"},
-    "1908.2.1" => {name: "Manuel | Braganza", lived: "15 November 1889 – 2 July 1932", father: "Charles 1"},
+    "1816.3.20" => {name: "John | Braganza", lived: "1767.5.13 – 1826.3.10", mother: "Mary 1"},
+    "1826.3.10" => {name: "Peter | Braganza", lived: "1798.10.12 – 1834.9.24", father: "John 3"},
+    "1826.5.2" => {name: "Mary | Braganza", lived: "1819.4.4 – 1853.11.15", father: "Peter 2"},
+    "1853.11.15" => {name: "Peter | Braganza", lived: "1837.9.16 – 1861.11.11", mother: "Mary 2"},
+    "1861.11.11" => {name: "Louis | Braganza", lived: "1838.10.31 – 1889.10.19", father: "Peter 3"},
+    "1889.10.19" => {name: "Charles | Braganza", lived: "1863.9.28 – 1908.2.1", father: "Louis 1"},
+    "1908.2.1" => {name: "Manuel | Braganza", lived: "1889.11.15 – 1932.7.2", father: "Charles 1"},
     # Presidents
     "1910.10.5" => {
-      name: "Teofilo | Braga", lived: "24 February 1843 – 28 January 1924",
+      name: "Teofilo | Braga", lived: "1843.2.24 – 1924.1.28",
     },
     "1911.8.24" => {
-      name: "Manuel | de Arriaga", lived: "July 8, 1840 – March 5, 1917",
+      name: "Manuel | de Arriaga", lived: "1840.7.8 – 1917.3.5",
     },
     "1915.5.29" => {
       use: "Teofilo 1",
     },
     "1915.10.5" => {
-      name: "Bernardino | Machado", lived: "28 March 1851 – 29 April 1944",
+      name: "Bernardino | Machado", lived: "1851.3.28 – 1944.4.29",
     },
     "1917.12.12" => {
       name: "Sidónio | Pais", lived: "1872.5.1 - 1918.12.14",
@@ -95,37 +95,37 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
       name: "Joao | do Canto e Castro", lived: "1862.5.19 - 1934.3.14",
     },
     "1919.10.5" => {
-      name: "António José | de Almeida", lived: "27 July 1866 – 31 October 1929",
+      name: "António José | de Almeida", lived: "1866.7.27 – 1929.10.31",
     },
     "1923.10.6" => {
-      name: "Manuel Teixeira | Gomes", lived: "May 27, 1860 – October 18, 1941",
+      name: "Manuel Teixeira | Gomes", lived: "1860.5.27 – 1941.10.18",
     },
     "1925.12.11" => {
       use: "Bernardino 1",
     },
     "1926.5.31" => {
-      name: "Jose Mendes | Cabecadas", lived: "August 19, 1883 – June 11, 1965",
+      name: "Jose Mendes | Cabecadas", lived: "1883.8.19 – 1965.6.11",
     },
     "1926.6.17" => {
-      name: "Manuel Gomes | da Costa", lived: "January 14, 1863 – December 17, 1929",
+      name: "Manuel Gomes | da Costa", lived: "1863.1.14 – 1929.12.17",
     },
     "1926.7.9" => {
-      name: "Oscar | Carmona", lived: "24 November 1869 – 18 April 1951",
+      name: "Oscar | Carmona", lived: "1869.11.24 – 1951.4.18",
     },
     "1951.4.18" => {
-      name: "Antonio de Oliveira | Salazar", lived: "28 April 1889 – 27 July 1970",
+      name: "Antonio de Oliveira | Salazar", lived: "1889.4.28 – 1970.7.27",
     },
     "1951.7.21" => {
-      name: "Francisco Craveiro | Lopes", lived: "12 April 1894 – 2 September 1964",
+      name: "Francisco Craveiro | Lopes", lived: "1894.4.12 – 1964.9.2",
     },
     "1958.8.9" => {
-      name: "Americo | Tomas", lived: "19 November 1894 – 18 September 1987",
+      name: "Americo | Tomas", lived: "1894.11.19 – 1987.9.18",
     },
     "1974.4.25" => {
-      name: "Antonio | de Spinola", lived: "April 11, 1910 – August 13, 1996",
+      name: "Antonio | de Spinola", lived: "1910.4.11 – 1996.8.13",
     },
     "1974.9.30" => {
-      name: "Francisco da Costa | Gomes", lived: "30 June 1914 – 31 July 2001",
+      name: "Francisco da Costa | Gomes", lived: "1914.6.30 – 2001.7.31",
     },
     "1976.7.14" => {
       name: "Antonio Ramalho | Eanes", lived: "1935.1.25 -",

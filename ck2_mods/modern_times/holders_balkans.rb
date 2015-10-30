@@ -20,7 +20,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "2002.12.22" => {
       name: "Janez | Drnovsek",
-      lived: "17 May 1950 – 23 February 2008",
+      lived: "1950.5.17 – 2008.2.23",
     },
     "2007.12.23" => {
       name: "Danilo | Türk",
@@ -45,30 +45,30 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
   k_serbia: {
     "1878.7.13" => {
       name: "Milan | Obrenović",
-      lived: "August 22, 1854 – February 11, 1901",
+      lived: "1854.8.22 – 1901.2.11",
     },
     "1889.3.6" => {
       name: "Alexander | Obrenović",
-      lived: "August 14, 1876 – June 11, 1903",
+      lived: "1876.8.14 – 1903.6.11",
       father: "Milan 1",
     },
     "1903.6.11" => {
       name: "Peter | Karađorđević",
-      lived: "29 June 1844 – 16 August 1921",
+      lived: "1844.6.29 – 1921.8.16",
     },
     "1921.8.16" => {
       name: "Alexander | Karađorđević",
-      lived: "16 December 1888 – 9 October 1934",
+      lived: "1888.12.16 – 1934.10.9",
       father: "Peter 1",
     },
     "1934.10.9" => {
       name: "Peter | Karađorđević",
-      lived: "6 September 1923 – 3 November 1970",
+      lived: "1923.9.6 – 1970.11.3",
       father: "Alexander 2",
     },
     end_ww2: {
       name: "Josip Broz | Tito",
-      lived: "7 May 1892 – 4 May 1980",
+      lived: "1892.5.7 – 1980.5.4",
     },
     # Who the hell ruled between Tito and Milosevic?
     # No matter which post I pick here, half of them were too insignificant to have wikipedia article
@@ -76,7 +76,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1980.5.4" => {
     # Reasonably true from "1989.5.8" onwards
       name: "Slobodan Milošević",
-      lived: "20 August 1941 – 11 March 2006",
+      lived: "1941.8.20 – 2006.3.11",
     },
     "2000.10.7" => {
       name: "Vojislav Koštunica",
@@ -101,7 +101,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # Makarios was archbishop, but can't play as such until theocracy DLC
     cyprus_independence: {
       name: "Makarios | Mouskos",
-      lived: "August 13, 1913 – August 3, 1977",
+      lived: "1913.8.13 – 1977.8.3",
     },
     "1977.8.3" => {
       name: "Spyros Kyprianou",
@@ -132,16 +132,16 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # backdating
     "1878.7.13" => {
       name: "Alexander | Battenberg",
-      lived: "5 April 1857 – 23 October 1893",
+      lived: "1857.4.5 – 1893.10.23",
     },
     # backdating
     "1886.9.7" => {
       name: "Ferdinand | Saxe-Coburg and Gotha",
-      lived: "26 February 1861 – 10 September 1948"
+      lived: "1861.2.26 – 1948.9.10"
     },
     "1918.10.3" => {
       name: "Boris | Saxe-Coburg and Gotha",
-      lived: "30 January 1894 – 28 August 1943",
+      lived: "1894.1.30 – 1943.8.28",
       father: "Ferdinand 1",
     },
     "1943.8.28" => {
@@ -153,7 +153,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # backdating from december
     "1946.9.15" => {
       name: "Georgi Dimitrov",
-      lived: "June 18, 1882 – July 2, 1949",
+      lived: "1882.6.18 – 1949.7.2",
     },
     "1949.7.2" => {
       name: "Vulko Chervenkov",
@@ -189,20 +189,20 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # backdating
     "1832.5.7" => {
       name: "Otto | Wittelsbach",
-      lived: "1 June 1815 – 26 July 1867",
+      lived: "1815.6.1 – 1867.7.26",
     },
     # backdating, actually 30 March 1863
     "1862.10.23" => {
       name: "George | Glücksburg",
-      lived: "24 December 1845 – 18 March 1913",
+      lived: "1845.12.24 – 1913.3.18",
     },
     "1913.3.18" => {
       name: "Constantine | Glücksburg",
-      lived: "2 August 1868 – 11 January 1923",
+      lived: "1868.8.2 – 1923.1.11",
     },
     "1917.6.11" => {
       name: "Alexander | Glücksburg",
-      lived: "1 August 1893 – 25 October 1920",
+      lived: "1893.8.1 – 1920.10.25",
       father: "Constantine 1",
     },
     # Backdating restoration
@@ -211,7 +211,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "1922.9.27" => {
       name: "George | Glücksburg",
-      lived: "19 July 1890 – 1 April 1947",
+      lived: "1890.7.19 – 1947.4.1",
       father: "Constantine 1",
     },
     # second hellenic republic
@@ -236,7 +236,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "1947.4.1" => {
       name: "Paul | Glücksburg",
-      lived: "14 December 1901 – 6 March 1964",
+      lived: "1901.12.14 – 1964.3.6",
       father: "Constantine 1"
     },
     "1964.3.6" => {

@@ -135,11 +135,11 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
   k_ireland: {
     ireland_independence: {
       name: "Éamon | de Valera",
-      lived: "14 October 1882 – 29 August 1975",
+      lived: "1882.10.14 – 1975.8.29",
     },
     "1922.1.9" => {
       name: "Michael Collins",
-      lived: "16 October 1890 – 22 August 1922",
+      lived: "1890.10.16 – 1922.8.22",
     },
     # Before that it's a bit messy
     "1922.8.22" => {

@@ -185,8 +185,8 @@ task "code:cleanup" do
     content = orig_content.gsub(/"([^"\n]+)"/) do
       m = $1
       begin
-        if m =~ /(–|-)/
-          m = m.split(/(\s*-\s*)/, -1).each_slice(2).map{|d,s| [fix_date(d), s]}.join
+        if m =~ /(?:-|\u2013)/
+          m = m.split(/(\s*(?:-|\u2013)\s*)/, -1).each_slice(2).map{|d,s| [fix_date(d), s]}.join
         else
           m = fix_date(m)
         end
