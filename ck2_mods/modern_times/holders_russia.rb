@@ -252,7 +252,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   },
   d_lithuanians: {
     # Presidents
-    "1919.4.4" => { name: "Antanas Smetona", lived: "1874.8.10 - 1944.1.9" },
+    # backdating from "1919.4.4"
+    end_ww1: { name: "Antanas Smetona", lived: "1874.8.10 - 1944.1.9" },
     "1920.6.19" => { name: "Aleksandras Stulginskis", lived: "1885.2.26 - 1969.9.22" },
     "1926.6.7" => { name: "Kazys Grinius", lived: "1866.12.17 - 1950.6.4" },
     # Military

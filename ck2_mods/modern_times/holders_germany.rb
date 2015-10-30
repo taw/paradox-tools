@@ -299,4 +299,14 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # still in charge, just under empire of Germany
     "1871.1.18" => nil,
   },
+  d_baden: {
+    "1738.5.12" => { name: "Charles Frederick | Zähringen", lived: "1728.11.22 – 1811.6.10" },
+    "1811.6.10" => { name: "Charles | Zähringen", lived: "1786.7.8 – 1818.12.8" },
+    "1818.12.8" => { name: "Louis | Zähringen", lived: "1763.2.9 – 1830.3.30", father: "Charles Frederick 1" },
+    "1830.3.30" => { name: "Leopold | Zähringen", lived: "1790.8.29 – 1852.4.24", father: "Charles Frederick 1" },
+    "1852.4.24" => { name: "Louis | Zähringen", lived: "1824.8.15 – 1858.1.22", father: "Leopold 1" },
+    "1858.1.22" => { name: "Frederick | Zähringen", lived: "1826.9.9 – 1907.9.28", father: "Leopold 1" },
+    # continued as German vassals
+    "1871.1.18" => nil,
+  },
 }
