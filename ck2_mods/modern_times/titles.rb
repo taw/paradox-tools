@@ -302,8 +302,9 @@ ModernTimesDatabase::TITLES = {
   k_byzantium: {
     culture: :greek,
     religion: :orthodox,
-    capital: :c_atheniai,
-    demesne: ["d_aegean_islands"],
+    # This must remain traditional capital, even if it's never actually held
+    capital: :c_byzantion,
+    demesne: ["d_athens", "d_aegean_islands"],
   },
   k_bulgaria: {
     culture: :bulgarian,
