@@ -374,4 +374,27 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     # backdating
     "2013.7.3" => { name: "Abdel Fattah | el-Sisi", lived: "1954.11.19 -" },
   },
+  d_galilee: {
+    # Ignore all before independence
+    "1943.11.22" => { name: "Bechara Khoury", lived: "1890.8.10 – 1964.1.11" },
+    "1952.9.18"  => { name: "Fuad Chehab", lived: "1902.3.19 - 1973.4.25" },
+    "1952.9.23"  => { name: "Camille Chamoun", lived: "1900.4.3 – 1987.8.7" },
+    "1958.9.23"  => { use: "Fuad 1" },
+    "1964.9.23"  => { name: "Charles Helou", lived: "1913.9.25 – 2001.1.7" },
+    "1970.9.23"  => { name: "Suleiman Frangieh", lived: "1910.6.15 – 1992.7.23" },
+    "1976.9.23"  => { name: "Elias Sarkis", lived: "1924.7.20 – 1985.6.27" },
+    "1982.8.23"  => { name: "Bachir Gemayel", lived: "1947.11.10 – 1982.9.14" },
+    # backdating from 1982.9.23
+    # brother of Bachir Gemayel
+    "1982.9.14"  => { name: "Amine Gemayel", lived: "1942.1.22 -" },
+    # Ignoring Selim Hoss conflict here
+    "1988.9.22"  => { name: "Michel Aoun", lived: "1935.2.18 -" },
+    "1989.11.5"  => { name: "René Moawad", lived: "1925.4.17 – 1989.11.22" },
+    "1989.11.22" => { name: "Selim Hoss", lived: "1929.12.20 -" },
+    "1989.11.24" => { name: "Elias Hrawi", lived: "1926.9.4 - 2006.7.7" },
+    "1998.11.24" => { name: "Émile Lahoud", lived: "1936.1.12 -" },
+    "2007.11.24" => { name: "Fouad Siniora", lived: "1943.11.22 -" },
+    "2008.5.5"   => { name: "Michel Suleiman", lived: "1948.11.21 -" },
+    "2014.5.25"  => { name: "Tammam Salam", lived: "1945.5.13 -" },
+  },
 }

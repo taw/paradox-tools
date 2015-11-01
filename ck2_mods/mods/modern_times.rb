@@ -19,7 +19,7 @@ class ModernTimesGameModification < CK2GameModification
     # Cultural overrides, many European royal dynasties were cross-cultural
     # I'm not even sure if it does anything
     case name
-    when "Hesse", "Habsburg", "Wittelsbach"
+    when "Hesse", "Habsburg", "Wittelsbach", "Holstein-Gottorp"
       culture = "german"
     when "Bonaparte", "Bourbon"
       culture = "frankish"

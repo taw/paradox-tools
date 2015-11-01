@@ -309,4 +309,52 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # continued as German vassals
     "1871.1.18" => nil,
   },
+  c_anhalt: {
+    "1693.8.7" => {
+      name: "Leopold | Ascania", # 1
+      lived: "1676.7.3 – 1747.4.7",
+    },
+    "1747.4.7" => {
+      name: "Leopold | Ascania", # 2
+      lived: "1700.12.25 – 1751.12.16",
+      father: "Leopold 1",
+    },
+    "1751.12.16" => {
+      name: "Leopold | Ascania", # 3
+      lived: "1740.8.10 – 1817.8.9",
+      father: "Leopold 2",
+    },
+    # Anhalt-Dessau initially
+    # Anhalt-Dessau and Anhalt-Köthen from 1847
+    # Anhalt-Dessau-Köthen from 1853
+    # United Anhalt from 1863
+    # grandfather of previous
+    "1817.8.9" => {
+      name: "Leopold | Ascania", # 4
+      lived: "1794.10.1 – 1871.5.22"
+    },
+    german_unification: nil,
+  },
+  c_oldenburg: {
+    # 1810-1813 under France
+    congress_of_vienna: {
+      name: "Peter Frederick William | Holstein-Gottorp",
+      lived: "1754.1.3 - 1823.7.2",
+    },
+    "1823.7.2" => {
+      # cousin of previous, nephew of prevprev
+      name: "Peter Frederick Willia | Holstein-Gottorpm",
+      lived: "1755.1.17 - 1829.5.21",
+    },
+    "1829.5.21" => {
+      name: "Paul Frederick Augustus | Holstein-Gottorp",
+      lived: "1783.7.13 - 1853.2.27",
+    },
+    "1853.2.27" => {
+      name: "Nicholas Frederick Peter | Holstein-Gottorp",
+      lived: "1827.7.8 - 1900.6.13",
+      father: "Paul Frederick Augustus",
+    },
+    german_unification: nil,
+  },
 }
