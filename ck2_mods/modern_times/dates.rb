@@ -168,7 +168,7 @@ module ModernTimesDatabase::Dates
     maldives_independence: "1965.7.26",
     south_yemen_independence: "1967.11.30",
     six_day_war: "1967.6.10",
-    oman_independence: "1970.7.23", # GeaCron thinks so, there was supposedly some "1962: Great Britain declares Muscat and Oman an independent nation."
+    oman_independence: "1971.12.2", # GeaCron thinks so, there was supposedly some "1962: Great Britain declares Muscat and Oman an independent nation."
     bangladesh_independence: "1971.12.16",
     bahrain_independence: "1971.8.15",
     north_cyprus_invasion: "1974.8.18",

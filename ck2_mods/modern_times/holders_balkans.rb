@@ -302,4 +302,15 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
   c_ragusa: {
     "2006.6.3" => { name: "Filip Vujanović", lived: "1954.9.1 -" },
   },
+  # Macedonia
+  d_dyrrachion:  {
+    "1991.9.8"  => { name: "Kiro Gligorov", lived: "1917.5.3 – 2012.1.1" },
+    "1995.10.4"  => { name: "Stojan Andov", lived: "1935.11.30 -" },
+    "1995.11.17" => { use: "Kiro 1" },
+    "1999.11.19" => { name: "Savo Klimovski", lived: "1947-" },
+    "1999.12.15" => { name: "Boris Trajkovski", lived: "1956.6.25 – 2004.2.26" },
+    "2004.2.26"  => { name: "Ljupčo Jordanovski", lived: "1953.2.13 – 2010.10.7" },
+    "2004.5.12"  => { name: "Branko Crvenkovski", lived: "1962.10.2 -" },
+    "2009.5.12"  => { name: "Gjorge Ivanov", lived: "1960.5.2 -" },
+  },
 }

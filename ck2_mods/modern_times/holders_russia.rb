@@ -338,4 +338,10 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2011.7.8"  => { name: "Andris Bērziņš", lived: "1944.12.10 -" },
     "2015.7.8"  => { name: "Raimonds Vējonis", lived: "1966.6.15 -" },
   },
+  d_abkhazia: { # Circassia
+    # There weren't any real rulers, so just pick someone up instead of generating fully random one
+    # really lived 1777–1840 - https://en.wikipedia.org/wiki/Tuguzhuko_Kyzbech
+    "1829.9.14" => { name: "Kazbech Tuguzhoko", lived: "1800-1865" },
+    "1864.6.2"  => nil,
+  },
 }
