@@ -324,4 +324,18 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2010.12.30" => { name: "Marian Lupu", lived: "1966.6.20 -" },
     "2012.3.23"  => { name: "Nicolae Timofti", lived: "1948.12.22 -" },
   },
+  d_armenia: {
+    # From 11 November 1991 presidents
+    "1990.8.4" => { name: "Levon Ter-Petrossian", lived: "1945.1.9 -" },
+    "1998.2.4" => { name: "Robert Kocharyan", lived: "1954.8.31 -" },
+    "2008.4.9" => { name: "Serzh Sargsyan", lived: "1954.6.30 -" },
+  },
+  d_courland: { # Latvia
+    "1991.8.21" => { name: "Anatolijs Gorbunovs", lived: "1942.2.10 -" },
+    "1993.7.8"  => { name: "Guntis Ulmanis", lived: "1939.9.13 -" },
+    "1999.7.8"  => { name: "Vaira Vīķe-Freiberga", lived: "1937.12.1 -", female: true },
+    "2007.7.8"  => { name: "Valdis Zatlers", lived: "1955.3.22 -" },
+    "2011.7.8"  => { name: "Andris Bērziņš", lived: "1944.12.10 -" },
+    "2015.7.8"  => { name: "Raimonds Vējonis", lived: "1966.6.15 -" },
+  },
 }

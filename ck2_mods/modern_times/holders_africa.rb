@@ -154,4 +154,14 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
       lived: "1937.3.2–",
     },
   },
+  k_nubia: { # Sudan
+    # Simplifying Sovereignty Council situation
+    "1956.1.1"   => { name: "Ibrahim Abboud", lived: "1900.10.26 – 1983.9.8" },
+    "1964.11.16" => { name: "Sirr Al-Khatim | Al-Khalifa", lived: "1919.1.1 - 2006.2.18" },
+    "1964.12.3"  => { name: "Ismail al-Azhari", lived: "1900.10.20 – 1969.8.26" },
+    "1969.5.25"  => { name: "Gaafar Nimeiry", lived: "1930.1.1 – 2009.5.30" },
+    "1985.4.6"   => { name: "Abdel Rahman Swar | al-Dahab", lived: "1934 -" },
+    "1986.5.6"   => { name: "Ahmad Ali | Al-Mirghani", lived: "1941.8.16 - 2008.11.2" },
+    "1989.6.30"  => { name: "Omar al-Bashir", lived: "1944.1.1 -" },
+  },
 }

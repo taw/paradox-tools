@@ -460,7 +460,7 @@ private
   end
 
   def cleanup_unicode(name)
-    name.tr("đćűőșăč", "dcuosac")
+    name.tr("đćűőșăčīķēņ", "dcuosaciken")
   end
 end
 

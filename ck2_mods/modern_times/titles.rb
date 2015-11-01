@@ -573,6 +573,7 @@ ModernTimesDatabase::TITLES = {
     religion: :sunni,
     name: "Sudan / Sudanese",
     liege: { sudan_turkish: "e_arabia", british_egypt: "e_britannia", sudan_independence: nil},
+    autoholders: [:times_immemorial..:sudan_independence],
   },
   k_dacia: {
     culture: :romanian,
