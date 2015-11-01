@@ -31,7 +31,7 @@ class ModernTimesGameModification < CK2GameModification
       culture = "italian"
     when "Singh"
       culture = "panjabi"
-    when "Hashemite"
+    when "Hashemite", "Muhammad"
       culture = "bedouin_arabic"
     when "Saxe-Coburg and Gotha"
       culture = "dutch"

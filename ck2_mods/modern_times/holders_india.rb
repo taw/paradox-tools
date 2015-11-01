@@ -94,4 +94,27 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     },
     "1849.3.29" => nil,
   },
+  k_baluchistan: { # Pakistan
+    # Governor-Generals initially
+    "1947.8.15" => { name: "Muhammad Ali | Jinnah", lived: "1876.12.25 – 1948.9.11" },
+    # actually "1948.11.13", backdating
+    "1948.9.11" => { name: "Khawaja Nazimuddin", lived: "1894.7.19 – 1964.10.22" },
+    "1951.10.19"=> { name: "Ghulam Muhammad", lived: "1895.4.20 – 1956.9.12" },
+    # became presidents since 1956.3.23, presidents from that time on
+    "1955.8.7"  => { name: "Iskander Mirza", lived: "1899.11.13 – 1969.11.13" },
+    "1958.10.27" => { name: "Ayub Khan", lived: "1907.5.14 –1974.4.19" },
+    "1969.3.25"  => { name: "Yahya Khan", lived: "February 1917 – 1980.8.10" },
+    "1971.12.20" => { name: "Zulfikar Ali | Bhutto", lived: "1928.1.5 – 1979.4.4" },
+    "1973.8.14"  => { name: "Fazal Ilahi | Chaudhry", lived: "1904.1.1 – 1982.6.2" },
+    "1978.9.16"  => { name: "Muhammad Zia-ul-Haq", lived: "1924.8.12 – 1988.8.17" },
+    "1988.8.17"  => { name: "Ghulam Ishaq | Khan", lived: "1915.1.20 – 2006.10.27" },
+    "1993.7.18"  => { name: "Wasim Sajjad", lived: "1941.3.30 -" },
+    "1993.11.14" => { name: "Farooq Leghari", lived: "1940.5.29 – 2010.10.20" },
+    "1997.12.2"  => { use: "Wasim 1" },
+    "1998.1.1"   => { name: "Muhammad Rafiq | Tarar", lived: "1929.11.2 -" },
+    "2001.6.20"  => { name: "Pervez Musharraf", lived: "1943.8.11 -" },
+    "2008.8.18"  => { name: "Muhammad Mian | Soomro", lived: "1950.8.19 -" },
+    "2008.9.9"   => { name: "Asif Ali | Zardari", lived: "1955.7.26 -" },
+    "2013.9.9"   => { name: "Mamnoon Hussain", lived: "1940.12.23 -" },
+  },
 }

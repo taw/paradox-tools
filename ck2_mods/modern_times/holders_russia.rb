@@ -301,13 +301,27 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2009.7.12" => {name: "Dalia | Grybauskaite", female: true, lived: "1956.3.1 -"},
   },
   k_cuman: {
-    fall_soviet_union: {name: "Nursultan | Nazarbayev", lived: "1940.7.6-"},
+    "1990.2.22" => {name: "Nursultan | Nazarbayev", lived: "1940.7.6-"},
   },
-  k_khiva: {
-    fall_soviet_union: {name: "Islam | Karimov", lived: "1938.1.30-"},
+  k_khiva: { # Uzbekistan
+    "1989.6.23" => {name: "Islam | Karimov", lived: "1938.1.30-"},
   },
-  d_dihistan: {
-    fall_soviet_union: {name: "Saparmurat | Niyazov", lived: "1940.2.19 - 2006.12.21"},
-    "2006.12.21" => {name: "Gurbanguly | Berdimuhamedow", lived: "1957.6.29-"},
+  d_dihistan: { # Turkmenistan
+    "1958.12.14" => { name: "Dzhuma Durdy | Karayev", lived: "1910-1960.5.4" },
+    # backdating from "1960.6.13"
+    "1960.5.4"  => { name: "Balysh Ovezov", lived: "1915-1975" },
+    "1969.12.24" => { name: "Muhammetnazar Gapurow", lived: "1922.2.15 – 1999.7.13" },
+    "1985.12.21" => { name: "Saparmurat | Niyazov", lived: "1940.2.19 - 2006.12.21"},
+    "2006.12.21" => { name: "Gurbanguly | Berdimuhamedow", lived: "1957.6.29-"},
+  },
+  d_moldau: { # Moldova
+    "1990.4.27"  => { name: "Mircea Snegur", lived: "1940.1.17 -" },
+    "1997.1.15"  => { name: "Petru Lucinschi", lived: "1940.1.27 -" },
+    "2001.4.7"   => { name: "Vladimir Voronin", lived: "1941.5.25 -" },
+    # 3 acting presidents
+    "2009.9.11"  => { name: "Mihai Ghimpu", lived: "1951.11.19 -" },
+    "2010.12.28" => { name: "Vladimir Filat", lived: "1969.5.6 -" },
+    "2010.12.30" => { name: "Marian Lupu", lived: "1966.6.20 -" },
+    "2012.3.23"  => { name: "Nicolae Timofti", lived: "1948.12.22 -" },
   },
 }
