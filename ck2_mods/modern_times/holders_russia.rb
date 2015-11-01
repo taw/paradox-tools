@@ -196,7 +196,35 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
   },
   d_vitebsk: {
-    fall_soviet_union: {
+    # backdating from "1920.8.9"
+    "1918.11.11" => { name: "Vilgelm Knorinsh", lived: "1890-1939" },
+    # noby has better than year date, even Belarussian wikipedia, just picking some shit up
+    "1923.5.1" => { name: "Aleksandr Osatkin-Vladimirsky", lived: "1885-1937" },
+    "1924.5.13" => { name: "Aleksandr Krinitsky", lived: "1894-1937" },
+    # Spelled Nikolay on English wikipedia, use consistent spelling instead
+    "1925.12.22" => { name: "Nikolai Goloded", lived: "1894-1937" },
+    "1927.5.7" => { use: "Vilgelm 1" },
+    "1928.12.4" => { name: "Yakov Gamarnik", lived: "June 2 1894 – 1937.5.31" },
+    "1930.1.3" => { name: "Konstantin Gey", lived: "1896 - 1939.2.25" },
+    # FIXME: He was azerbaijak and uzbek SSR too, wtf?
+    "1932.1.18" => { name: "Nikolay Gikalo", lived: "1897.3.8 – 1938.4.25" },
+    "1937.3.18" => { name: "Vasily Sharangovich", lived: "1897–1938" },
+    "1937.7.27" => { name: "Yakov Yakovlev", lived: "1896.6.9 - 1938.7.29" },
+    "1937.8.11" => { name: "Aleksei Alekseyevich | Volkov", lived: "1890–1942" },
+    "1938.6.18" => { name: "Panteleimon Ponomarenko", lived: "1902.8.9 – 1984.1.18" },
+    "1947.3.7" => { name: "Nikolai Gusarov", lived: "1905.8.16 - 1985.3.17" },
+    "1950.5.31" => { name: "Nikolai Patolichev", lived: "1908.9.10 – 1989.12.1" },
+    "1953.3.8" => { name: "Mikhail Zimyanin", lived: "1914–1995" },
+    "1953.6.25" => { use:"Nikolai 3" },
+    "1956.7.28" => { name: "Kirill Mazurov", lived: "1914.3.25 – 1989.12.19" },
+    "1965.3.30" => { name: "Pyotr Masherov", lived: "February 26 1918 - 1980.10.4" },
+    # backdating from 1980.10.15
+    "1980.10.4" => { name: "Tikhon Kiselyov", lived: "1917.8.12 – 1983.1.11" },
+    # backdating from 1983.1.13
+    "1983.1.11" => { name: "Nikolay Slyunkov", lived: "1929-" },
+    "1987.2.6" => { name: "Yefrem Sokolov", lived: "1926.4.26-" },
+    "1990.11.30" => { name: "Anatoly Malofeyev", lived: "1933.5.14 -" },
+    "1991.8.15" => {
       name: "Stanislav | Shushkevich",
       lived: "1934.12.15 -",
     },

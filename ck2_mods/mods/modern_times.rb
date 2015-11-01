@@ -35,6 +35,9 @@ class ModernTimesGameModification < CK2GameModification
       culture = "bedouin_arabic"
     when "Saxe-Coburg and Gotha"
       culture = "dutch"
+    when "Gikalo"
+      # FIXME: This isn't even separate dynasties, just one vassal who got moved around Soviet Union a lot
+      culture = "russian"
     end
 
     if @dynasties[name]
