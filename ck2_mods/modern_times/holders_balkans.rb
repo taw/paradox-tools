@@ -313,4 +313,26 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "2004.5.12"  => { name: "Branko Crvenkovski", lived: "1962.10.2 -" },
     "2009.5.12"  => { name: "Gjorge Ivanov", lived: "1960.5.2 -" },
   },
+  # Albania
+  d_dioclea: {
+    # Chairmen of provisional/central government
+    "1913.5.30" => { name: "Ismail Qemali", lived: "1844.1.16 – 1919.1.24" },
+    "1914.1.22" => { name: "Fejzi Alizoti", lived: "1874.9.22 - 1945.4.14" },
+    # Prince, had pretty much zero power, and was in exile due to war and civil war most of the time,
+    # but whatever
+    "1914.3.7" => { name: "Vidi | Wied", lived: "1876.3.26 – 1945.4.18" },
+    # President, then king
+    "1925.2.1" => { name: "Zog | Zogu", lived: "1895.10.8 – 1961.4.9" },
+    # PU under Italy
+    "1939.4.12" => nil,
+    # Communist First Secretaries after WW2
+    "1945.5.8" => { name: "Enver Hoxha", lived: "1908.10.16 – 1985.4.11" },
+    "1985.4.11" => { name: "Ramiz Alia", lived: "1925.10.18 – 2011.10.7" },
+    # Post-Communist
+    "1992.4.9" => { name: "Sali Berisha", lived: "1944.10.15 -" },
+    "1997.7.24" => { name: "Rexhep Meidani", lived: "1944.8.17 -" },
+    "2002.7.24" => { name: "Alfred Moisiu", lived: "1929.12.1 -" },
+    "2007.7.24" => { name: "Bamir Topi", lived: "1957.4.24 -" },
+    "2012.7.24" => { name: "Bujar Nishani", lived: "1966.9.29 -" },
+  },
 }

@@ -271,4 +271,40 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
       },
     },
   },
+  k_afghanistan: {
+    # There's a lot of year dates, fixing them all at 1.1. arbitrarily
+    # Durrani Empire
+    "1747.1.1"  => { name: "Ahmad | Durrani", lived: "1722 – 1772.10.16" },
+    "1772.10.16" => { name: "Timur | Durrani", lived: "1748 – 1793.5.18", father: "Ahmad 1" },
+    "1793.5.18" => { name: "Zaman | Durrani", lived: "1770 – 1844" , father: "Timur 1" },
+    "1801.7.25" => { name: "Mahmud | Durrani", lived: "1769 – 1829.4.18", father: "Timur 1" },
+    "1803.7.13" => { name: "Shuja | Durrani", lived: "1785.11.4 – 1842.4.5", father: "Timur 1" },
+    "1809.5.3" => { use: "Mahmud 1" },
+    "1818.1.1" => { name: "Ali | Durrani", lived: "?", father: "Timur 1" }, # no life dates
+    "1819.1.1" => { name: "Ayub | Durrani", lived: "- 1837.10.1", father: "Timur 1" },
+    # emirs
+    "1823.1.1" => { name: "Dost Mohammad | Barakzai", lived: "1793.12.23 – 1863.6.9" },
+    "1839.8.2" => { use: "Shuja 1" },
+    "1842.4.5" => { name: "Akbar | Barakzai", lived: "1816–1845.1.1", father: "Dost Mohammad 1" },
+    "1845.1.1" => { use: "Dost Mohammad 1" },
+    "1863.6.9" => { name: "Sher Ali | Barakzai", lived: "1825 - 1879.2.21", father: "Dost Mohammad 1" },
+    # wikipedia only has year date
+    "1865.1.1" => { name: "Mohammad Afzal | Barakzai", lived: "1811 – 1867.10.7", father: "Dost Mohammad 1" },
+    "1867.10.7" => { name: "Mohammad Azam | Barakzai", lived: "- 1868.2.21", father: "Dost Mohammad 1" },
+    "21 February 1868" => { use: "Sher Ali 1" },
+    "1879.2.21" => { name: "Mohammad Yaqub | Barakzai", lived: "1849 – 1923.11.15", father: "Sher Ali 1" },
+    "1879.10.12" => { name: "Mohammad Ayub | Barakzai", lived: "1857 – 1914.4.7", father: "Sher Ali 1" },
+
+    "1880.5.31" => { name: "Abdur Rahman | Barakzai", lived: "1844 – 1901.10.1", father: "Mohammad Afzal 1" },
+    "1901.10.1" => { name: "Habibullah | Barakzai", lived: "1872.6.3 – 1919.2.20", father: "Abdur Rahman 1" },
+    "1919.2.20" => { name: "Nasrullah | Barakzai", lived: "1874–1920", father: "Abdur Rahman 1" },
+    # kings
+    "1919.2.28" => { name: "Amanullah | Barakzai", lived: "June 1892 – 1960.4.25", father: "Habibullah 1" },
+    "1929.1.14" => { name: "Inayatullah | Barakzai", lived: "1888.10.20 – 1946.8.12", father: "Habibullah 1" },
+    "1929.1.17" => { name: "Habibullah | Kalakani", lived: "1891.1.19 – 1929.11.1" }, # non-dynastic
+    "1929.10.16" => { name: "Mohammed Nadir | Barakzai", lived: "1883.4.9 – 1933.11.8" },
+    "1933.11.8" => { name: "Mohammed Zahir | Barakzai", lived: "1914.10.15 – 2007.7.23", father: "Mohammed Nadir 1" },
+    # republic
+    "1973.7.7" => nil,
+  },
 }

@@ -128,4 +128,30 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "2008.5.5"   => { name: "Michel Suleiman", lived: "1948.11.21 -" },
     "2014.5.25"  => { name: "Tammam Salam", lived: "1945.5.13 -" },
   },
+  c_bahrein: {
+    # Hakims of Bahrain until Britain took over, ignoring co-regents
+    # Wikipedia has only year dates and very little extra info
+    # death dates totally fictional
+    "1783.1.1" => { name: "Ahmed | Al Khalifa", lived: "- 1796.1.1" },
+    "1796.1.1" => { name: "Abdullah | Al Khalifa", lived: "- 1843.1.1" },
+    "1843.1.1" => { name: "Muhammad | Al Khalifa", lived: "- 1868.1.1" },
+    # No idea what happened with these 2 short rulers, Wikipedia got nothing
+    "1868.1.1" => { name: "Ali | Al Khalifa", lived: "- 1869.9.1" },
+    "1869.9.1" => { name: "Muhammad | Al Khalifa", lived: "- 1869.12.1" },
+    # real dates at least...
+    "1869.12.1" => { name: "Isa | Al Khalifa", lived: "1848 - 1932.12.9" },
+    # British protectorate
+    "1880.12.22" => nil,
+    # From "1961.11.2" sheik under Britain
+    "1971.8.15" => {
+      name: "Isa | Al Khalifa",
+      lived: "1933.6.3 – 1999.3.6",
+    },
+    # From 2002 as king
+    "1999.3.6" => {
+      name: "Hamad | Al Khalifa",
+      father: "Isa 1",
+      lived: "1950.1.28 -",
+    },
+  },
 }

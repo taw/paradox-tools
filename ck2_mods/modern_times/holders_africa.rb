@@ -77,7 +77,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     },
     "2013.6.25" => {
       name: "Nouri Abusahmai",
-      # wikipedia doesn't even know birth yeah...
+      lived: "?", # wikipedia doesn't even know birth yeah...
     },
     "2014.8.5" => {
       name: "Aguila Saleh | Issa",

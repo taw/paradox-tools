@@ -413,6 +413,8 @@ private
       [resolve_start_date($1), resolve_end_date($2)]
     when nil
       [nil, nil]
+    when "?" # This should be used when even Wikipedia doesn't htave any clue
+      [nil, nil]
     else
       raise "Parse error for lived: #{lived.inspect}"
     end
@@ -446,7 +448,7 @@ private
       historical_id: character_manager.allocate_historical_id(title, name),
     }
     holder[:birth], holder[:death] = parse_lived(holder_data[:lived])
-    unless holder[:death]
+    unless holder[:death] or holder_data[:lived] == "?"
       warn "Historical characters should have lived specified: #{holder[:historical_id]}"
     end
     holder[:events] = holder_data[:events].map do |d,e|
