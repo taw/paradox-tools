@@ -1,42 +1,15 @@
 class Character
-  attr_accessor :id, :historical_id, :name, :female, :birth, :death, :health,
-                :father, :mother, :dynasty, :events, :culture
-  attr_reader :religion, :culture, :traits, :events
+  attr_reader :id, :historical_id, :name, :female, :birth, :death, :health,
+              :father, :mother, :dynasty, :events, :culture,
+              :religion, :culture, :traits, :events
 
   def initialize(**args)
-    @traits = []
-    @events = []
     args.each do |k,v|
       send(:"#{k}=", v)
     end
-  end
-
-  def parent=(parent)
-    if parent.female
-      self.mother = parent
-    else
-      self.father = parent
-    end
-  end
-
-  def culture=(culture)
-    @culture = culture.to_s
-  end
-
-  def religion=(religion)
-    @religion = religion.to_s
-    if %W[hindu buddhist jain].include?(religion)
-      @traits << "kshatriya"
-    end
-  end
-
-  # This interface is pretty dreadful
-  def traits=(extra_traits)
-    @traits += extra_traits if extra_traits
-  end
-
-  def events=(extra_events)
-    @events += extra_events if extra_events
+    @traits = (@traits || []).to_set
+    @events ||= []
+    add_automatic_traits!
   end
 
   def to_plist
@@ -58,5 +31,32 @@ class Character
     end
     result.add! @death, PropertyList["death", true] if @death
     result
+  end
+
+  private
+
+  attr_writer :id, :historical_id, :name, :female, :birth, :death, :health,
+              :father, :mother, :dynasty, :events, :culture, :traits, :events
+
+  def add_automatic_traits!
+    if %W[hindu buddhist jain].include?(religion)
+      @traits << "kshatriya"
+    end
+  end
+
+  def parent=(parent)
+    if parent.female
+      self.mother = parent
+    else
+      self.father = parent
+    end
+  end
+
+  def culture=(culture)
+    @culture = culture.to_s
+  end
+
+  def religion=(religion)
+    @religion = religion.to_s
   end
 end
