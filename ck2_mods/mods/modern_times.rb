@@ -252,6 +252,34 @@ class ModernTimesGameModification < CK2GameModification
     create_mod_file! "history/characters/modern_times.txt", @character_manager.main_plist
   end
 
+  # This only generates warnings, it doesn't affect execution
+  def check_if_automatic_holders_ok!(title)
+    autoholders = @db.titles[title][:autoholders]
+    no_holders  = (@db.holders[title] || {}).empty?
+    has_holders         = autoholders & @db.title_has_holder[title]
+    needs_extra_holders = @db.title_needs_extra_holders[title]
+
+    case autoholders
+    when true
+      warn "Title has holders but specified as automatic: #{title}" unless no_holders
+    when false
+      unless needs_extra_holders.empty?
+        if no_holders
+          warn "Needs holders: #{title} #{needs_extra_holders}"
+        else
+          warn "Needs more holders: #{title} #{needs_extra_holders}"
+        end
+      end
+    else # Sometimes - generally for titles which was autovassal for a while, then became independent
+      unless (has_holders & autoholders).empty?
+        warn "Has holders where autoholders are specified: #{has_holders & autoholders}"
+      end
+      unless (needs_extra_holders - autoholders).empty?
+        warn "Needs extra holders outside autoholders range: #{needs_extra_holders - autoholders}"
+      end
+    end
+  end
+
   # TODO: move most of it to Database class
   def holders
     unless @holders
@@ -260,18 +288,8 @@ class ModernTimesGameModification < CK2GameModification
         rng = Random.keyed("vassal terms: #{title}")
         title    = title
         holders  = @db.holders[title] || {}
-        autoholders = @db.titles[title][:autoholders]
-        if autoholders and @db.holders[title]
-          warn "Title has holders but specified as automatic: #{title}"
-        end
+        check_if_automatic_holders_ok!(title)
         unless @db.title_needs_extra_holders[title].empty?
-          if autoholders
-            # OK
-          elsif @db.holders[title]
-            warn "Needs more holders: #{title} #{@db.title_needs_extra_holders[title]}"
-          else
-            warn "Needs holders: #{title} #{@db.title_needs_extra_holders[title]}"
-          end
           @db.title_needs_extra_holders[title].to_list.each do |s,e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true

@@ -19,6 +19,7 @@ ModernTimesDatabase::TITLES = {
     capital: :c_vestisland,
     name: "Iceland / Icelandic",
     liege: { times_immemorial: "k_denmark", iceland_independence: nil },
+    autoholders: [:times_immemorial..:iceland_independence],
   },
   k_portugal: {
     culture: :portuguese,

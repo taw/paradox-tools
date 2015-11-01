@@ -126,10 +126,17 @@ class ModernTimesDatabase
           names = nil
         end
 
+        autoholders = data[:autoholders]
+        if autoholders.is_a?(Array)
+          autoholders = MultiRange.new(*autoholders.map{|range| [resolve_date(range.begin), resolve_date(range.end)]})
+        else
+          autoholders = !!autoholders
+        end
+
         @titles[title] = {
           culture: data[:culture].to_s,
           religion: data[:religion].to_s,
-          autoholders: !!data[:autoholders],
+          autoholders: autoholders,
           capital: capital,
           demesne: demesne,
           liege: data[:liege] && data[:liege].map{|d,n| [resolve_date(d), n] },
