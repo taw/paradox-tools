@@ -397,4 +397,25 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "2008.5.5"   => { name: "Michel Suleiman", lived: "1948.11.21 -" },
     "2014.5.25"  => { name: "Tammam Salam", lived: "1945.5.13 -" },
   },
+  d_arabia_felix: {
+    # Yemen Arab Republic
+    "1962.9.27" => { name: "Abdullah as-Sallal", lived: "1917.1.9 – 1994.3.5" },
+    "1967.11.5" => { name: "Abdul Rahman | al-Iryani", lived: "1908 - 1998.3.14" },
+    "1974.6.13" => { name: "Ibrahim al-Hamdi", lived: "1943 - 1977.10.11" },
+    "1977.10.11"=> { name: "Ahmad al-Ghashmi", lived: "1938 – 1978.6.24" },
+    "1978.6.24" => { name: "Abdul Karim Abdullah | al-Arashi", lived: "1934.12.1 - 2006.6.10" },
+    "1978.7.18" => { name: "Ali Abdullah | Saleh", lived: "1942.3.21 -" },
+    "1990.5.22" => nil,
+  },
+  d_sanaa: {
+    "1967.11.30" => { name: "Qahtan Muhammad | al-Shaabi", lived: "1920–1981" },
+    "1969.6.23"  => { name: "Salim Rubai | Ali", lived: "1935 – 1978.6.26" },
+    "1978.6.26"  => { name: "Ali Nasir | Muhammad", lived: "1939 -" },
+    "1978.12.27" => { name: "Abdul Fattah | Ismail", lived: "1939 – 1986.1.13" },
+    "1980.4.26"  => { use: "Ali Nasir 1" },
+    "1986.1.24"  => { name: "Haidar Abu Bakr | al-Attas", lived: "1939.4.5 -" },
+    # Unification
+    "1990.5.22" => { use: "d_arabia_felix Ali Abdullah 1" },
+    "2012.2.27" => { name: "Abd Rabbuh Mansur | Hadi", lived: "1945.9.1 -" },
+  },
 }

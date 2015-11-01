@@ -511,17 +511,17 @@ ModernTimesDatabase::TITLES = {
     religion: :jewish,
     capital: :c_acre,
   },
-  d_sanaa: {
-    culture: :bedouin_arabic,
-    religion: :sunni,
-    capital: :c_aden,
-    name: { times_immemorial: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni" },
-  },
   d_arabia_felix: {
     culture: :bedouin_arabic,
     religion: :sunni,
     capital: :c_sanaa,
     name: "North Yemen / North Yemeni",
+  },
+  d_sanaa: {
+    culture: :bedouin_arabic,
+    religion: :sunni,
+    capital: :c_aden,
+    name: { times_immemorial: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni" },
   },
   d_afar: {
     culture: :somali,
