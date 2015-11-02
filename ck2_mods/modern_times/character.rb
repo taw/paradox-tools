@@ -38,9 +38,41 @@ class Character
   attr_writer :id, :historical_id, :name, :female, :birth, :death, :health,
               :father, :mother, :dynasty, :events, :culture, :traits, :events
 
+  # This is more just a test than any well thought out system
+  # This would be more fun with political traits like Communist etc.
   def add_automatic_traits!
-    if %W[hindu buddhist jain].include?(religion)
-      @traits << "kshatriya"
+    rng = Random.keyed("character-traits-#{@id}")
+    case religion
+    when *%W[hindu buddhist jain]
+      # 80% right caste
+      # 10% for each wrong caste
+      traits << (["brahmin", "vaishya"][rng.rand(10)] || "kshatriya")
+    when "jewish"
+      traits << "greedy" if rng.rand < 0.33
+    end
+    case culture
+    when "russian"
+      traits << "drunkard" if rng.rand < 0.33
+    when "finnish"
+      traits << "winter_soldier" if rng.rand < 0.10
+    when "polish"
+      traits << "brave" if rng.rand < 0.20
+    when "italian"
+      traits << "gregarious" if rng.rand < 0.20
+    when "frankish"
+      traits << "lustful" if rng.rand < 0.20
+    when "german"
+      traits << "diligent" if rng.rand < 0.20
+    when "bohemian"
+      traits << "content" if rng.rand < 0.20
+    when "greek"
+      traits << "proud" if rng.rand < 0.20
+    when "bedouin_arabic"
+      traits << "zealous" if rng.rand < 0.33
+    when "turkish"
+      traits << "wroth" if rng.rand < 0.20
+    when "swedish"
+      traits << "fair" if rng.rand < 0.20
     end
   end
 
