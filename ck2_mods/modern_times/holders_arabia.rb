@@ -21,8 +21,23 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "2006.1.15" => {name: "Saad Abdullah Al-Salem | Al-Sabah", lived: "1930 - 2008"},
     "2006.1.29" => {name: "Sabah Al-Ahmad Al-Jaber | Al-Sabah", lived: "1929 -"},
   },
-
   d_arabia_felix: {
+    #  Mutawakkilite Kingdom of Yemen, imams
+    # ruling from 4 June 1904
+    "1918.10.30" => {
+      name: "Yahya |  Rassid",
+      lived: "1869.6.18 - 1948.2.17"
+    },
+    "1948.2.17" => {
+      name: "Ahmad | Rassid",
+      lived: "1891.6.18 - 1962.9.18",
+      father: "Yahya 1"
+    },
+    "1962.9.18" => {
+      name: "Muhammad Al-Badr | Rassid",
+      lived: "1926.2.15 - 1996.8.6",
+      father: "Ahmad 1",
+    },
     # Yemen Arab Republic
     "1962.9.27" => { name: "Abdullah as-Sallal", lived: "1917.1.9 – 1994.3.5" },
     "1967.11.5" => { name: "Abdul Rahman | al-Iryani", lived: "1908 - 1998.3.14" },
