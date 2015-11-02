@@ -323,13 +323,6 @@ ModernTimesDatabase::TITLES = {
     religion: :sunni,
     capital: :c_kabul,
   },
-  k_mesopotamia: {
-    culture: :levantine_arabic,
-    religion: :shiite,
-    capital: :c_baghdad,
-    name: "Iraq / Iraqi",
-    liege: {british_iraq: "e_britannia", iraq_independence: nil},
-  },
   c_kuwait: {
     culture: :bedouin_arabic,
     religion: :sunni,
@@ -416,12 +409,6 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     liege: { annexation_armenia: "e_russia", fall_soviet_union: nil },
   },
-  k_egypt: {
-    culture: :egyptian_arabic,
-    religion: :sunni,
-    liege: { times_immemorial: "e_arabia", british_egypt: "e_britannia", egypt_independence: nil },
-    demesne: ["d_alexandria"],
-  },
   d_nefoud: {
     culture: :bedouin_arabic,
     religion: :sunni,
@@ -429,6 +416,13 @@ ModernTimesDatabase::TITLES = {
   d_medina: {
     culture: :bedouin_arabic,
     religion: :sunni,
+  },
+  k_mesopotamia: {
+    culture: :levantine_arabic,
+    religion: :shiite,
+    capital: :c_baghdad,
+    name: "Iraq / Iraqi",
+    liege: {british_iraq: "e_britannia", iraq_independence: nil},
   },
   k_arabia: {
     culture: :bedouin_arabic,
@@ -489,6 +483,12 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     capital: :c_ochrid,
     name: "Macedonia / Macedonian",
+  },
+  k_egypt: {
+    culture: :egyptian_arabic,
+    religion: :sunni,
+    liege: { times_immemorial: "e_arabia", british_egypt: "e_britannia", egypt_independence: nil },
+    demesne: ["d_alexandria"],
   },
   k_syria: {
     culture: :levantine_arabic,
@@ -554,6 +554,8 @@ ModernTimesDatabase::TITLES = {
   d_ghana: {
     culture: :manden,
     religion: :sunni,
+    # tribal region
+    autoholders: true, # 1818.6.3..1884.12.26
   },
   d_songhay: {
     culture: :manden,
@@ -562,6 +564,8 @@ ModernTimesDatabase::TITLES = {
   d_mali: {
     culture: :manden,
     religion: :sunni,
+    # tribal region
+    autoholders: true, # 1818.6.3..1892.1.1
   },
   k_mali: {
     culture: :manden,

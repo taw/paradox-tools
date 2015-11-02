@@ -44,8 +44,16 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "2012.2.27" => { name: "Abd Rabbuh Mansur | Hadi", lived: "1945.9.1 -" },
   },
   d_oman: {
+    "1806.9.14" => { name: "Said | al Said", lived: "1797.6.5 – 1856.10.19" },
+    "1856.10.19"=> { name: "Thuwaini | al Said", lived: "1821 - 1866.2.11", father: "Said 1" },
+    "1866.2.11" => { name: "Salim | al Said", lived: "- 1876.12.7", father: "Thuwaini 1" },
+    # distant relative, said killed in 1870, but next ruler from Jan 1871...
+    "1868.10.3" => { name: "Azzan | al Said", lived: "- 1871.1.30" },
+    "1871.1.30" => { name: "Turki | al Said", lived: "1832 – 1888.6.4", father: "Said 1" },
+    "1888.6.4"  => { name: "Faisal | al Said", lived: "1864 – 1913.10.4", father: "Turki 1" },
+    "1892.3.13" => nil,
     # from "1970.7.23", initially under UK
-    "1971.12.2" => { name: "Qaboos bin Said | al Said", lived: "1940.11.18 -" },
+    "1971.12.2" => { name: "Qaboos | al Said", lived: "1940.11.18 -" },
   },
   d_medina: {
     "1918.11.11" => {
@@ -89,7 +97,25 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     },
   },
   k_mesopotamia: {
-    # First ruler is son of "d_medina Hussein ibn Ali 1"
+    # Backdating
+    "1920.4.25" => {
+      name: "Faisal | Hashemite",
+      lived: "1885.5.20 – 1933.9.8",
+      father: "d_medina Hussein ibn Ali 1",
+      traits: ["sayyid"],
+    },
+    "1933.9.8" => {
+      name: "Ghazi | Hashemite",
+      lived: "1912.5.2 – 1939.4.4",
+      father: "Faisal 1",
+      traits: ["sayyid"],
+    },
+    "1939.4.4" => {
+      name: "Faisal | Hashemite",
+      lived: "1935.5.2 – 1958.7.14",
+      father: "Ghazi 1",
+      traits: ["sayyid"],
+    },
 
     "1958.7.14" => {name: "Muhammad Najib | ar-Ruba'i", lived: "1904 - 1965"},
     "1963.2.8" => {name: "Abdul Salam | Arif", lived: "1921.3.21 - 1966.4.13"},
@@ -102,8 +128,23 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "2014.7.24" => {name: "Fuad | Masum", lived: "1938.1.1-"},
   },
   k_syria: {
-    "1971.2.22" => {name: "Hafez | al-Assad", lived: "1930.10.6 - 2000.6.10"},
-    "2000.6.10" => {name: "Bashar | al-Assad", lived: "1965.9.11-", father: "Hafez 1"},
+    # a lot of one-day rulers, skipping them
+    "1946.4.17"  => { name: "Shukri al-Quwatli", lived: "1891 – 1967.6.30" },
+    "1949.3.30"  => { name: "Husni al-Za'im", lived: "1897 – 1949.8.14" },
+    "1949.8.14"  => { name: "Hashim al-Atassi", lived: "1875 – 1960.12.5" },
+    "1951.12.2"  => { name: "Fawzi Selu", lived: "1905–1972" },
+    "1953.7.11"  => { name: "Adib Shishakli", lived: "1909 - 1964.9.27" },
+    "1954.2.25"  => { name: "Hashim al-Atassi", lived: "1875 – 1960.12.5" },
+    "1958.2.22"  => { use: "k_egypt Gamal Abdel 1" },
+    "1961.9.29"  => { name: "Maamun al-Kuzbari", lived: "1914–1998" },
+    "1961.11.20" => { name: "Izzat al-Nuss", lived: "1900–1972" },
+    "1961.12.14" => { name: "Nazim al-Kudsi", lived: "1906.2.14 – 1998.2.6" },
+    "1963.3.9"   => { name: "Lu'ay al-Atassi", lived: "1926–November 2003" },
+    "1963.7.27"  => { name: "Amin al-Hafiz", lived: "1918 – 2009.12.17" },
+    "1966.2.25"  => { name: "Nureddin al-Atassi", lived: "1929 – 1992.12.3" },
+    "1970.11.18" => { name: "Ahmad al-Khatib", lived: "1933–1982" },
+    "1971.2.22"  => { name: "Hafez | al-Assad", lived: "1930.10.6 - 2000.6.10"},
+    "2000.6.10"  => { name: "Bashar | al-Assad", lived: "1965.9.11-", father: "Hafez 1"},
   },
   d_galilee: {
     # Ignore all before independence

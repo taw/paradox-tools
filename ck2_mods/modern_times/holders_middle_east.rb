@@ -291,7 +291,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     # wikipedia only has year date
     "1865.1.1" => { name: "Mohammad Afzal | Barakzai", lived: "1811 – 1867.10.7", father: "Dost Mohammad 1" },
     "1867.10.7" => { name: "Mohammad Azam | Barakzai", lived: "- 1868.2.21", father: "Dost Mohammad 1" },
-    "21 February 1868" => { use: "Sher Ali 1" },
+    "1868.2.21" => { use: "Sher Ali 1" },
     "1879.2.21" => { name: "Mohammad Yaqub | Barakzai", lived: "1849 – 1923.11.15", father: "Sher Ali 1" },
     "1879.10.12" => { name: "Mohammad Ayub | Barakzai", lived: "1857 – 1914.4.7", father: "Sher Ali 1" },
 
@@ -305,6 +305,23 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1929.10.16" => { name: "Mohammed Nadir | Barakzai", lived: "1883.4.9 – 1933.11.8" },
     "1933.11.8" => { name: "Mohammed Zahir | Barakzai", lived: "1914.10.15 – 2007.7.23", father: "Mohammed Nadir 1" },
     # republic
-    "1973.7.7" => nil,
+    # revolutionary council chairmen
+    "1973.7.7" => { name: "Mohammed Daoud", lived: "1909.7.18 – 1978.4.28" },
+    "1978.4.28" => { name: "Abdul Qadir", lived: "1944 – 2014.4.22" },
+    "1978.4.30" => { name: "Nur Muhammad | Taraki", lived: "1917.7.15 – 1979.9.14" },
+    "1979.9.14" => { name: "Hafizullah Amin", lived: "1929.8.1 – 1979.12.27" },
+    "1979.12.27" => { name: "Babrak Karmal", lived: "1929.1.6 – 1 or 3 December 1996" },
+    "1986.11.24" => { name: "Haji Mohammad | Chamkani", lived: "1947 -" },
+    # presidents
+    "1987.9.30" => { name: "Mohammad Najibullah", lived: "February 1947 – 1996.9.28" },
+    "1992.4.16" => { name: "Abdul Rahim | Hatif", lived: "1926.5.20 – 2013.8.19" },
+    # islamic state (Taliban)
+    "1992.4.28" => { name: "Sibghatullah Mojaddedi", lived: "1926 -" },
+    "1992.6.28" => { name: "Burhanuddin Rabbani", lived: "1940.9.20 – 2011.9.20" },
+    "1996.9.27" => { name: "Mohammed Omar", lived: "1962 – 2013.4.23" },
+    # transitional islamic state (non-Taliban)
+    "2001.11.13" => { use: "Burhanuddin 1" },
+    "2001.12.22" => { name: "Hamid Karzai", lived: "1957.12.24 -" },
+    "2014.9.29" => { name: "Mohammad Ashraf | Ghani", lived: "1949 -" },
   },
 }
