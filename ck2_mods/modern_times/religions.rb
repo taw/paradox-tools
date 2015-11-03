@@ -43,4 +43,7 @@ ModernTimesDatabase::RELIGIONS = {
   "d_thuringia"      => "protestant",
   "d_samos"          => "orthodox",
   "d_adrianopolis"   => "orthodox",
+  # Uniate
+  "d_galich"         => "catholic",
+  "d_volhynia"       => "catholic",
 }

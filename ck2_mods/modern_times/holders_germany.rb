@@ -82,7 +82,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       father: "Christian Ludwig 1",
     },
     "1785.4.24" => {
-      name: "Frederick Francis | Mecklenburg-Schwerin",
+      name: "Frederick Francis | Mecklenburg-Schwerin", # 1
       lived: "1756.12.10 - 1837.2.1",
     },
     "1837.2.1" => {
@@ -90,11 +90,21 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       lived: "1800.9.15 - 1842.3.7",
     },
     "1842.3.7" => {
-      name: "Frederick Francis | Mecklenburg-Schwerin",
+      name: "Frederick Francis | Mecklenburg-Schwerin", # 2
       lived: "1823.2.28 - 1883.4.15",
       father: "Paul Frederick 1",
     },
-    german_unification: nil,
+    "1883.4.15" => {
+      name: "Frederick Francis | Mecklenburg-Schwerin", # 3
+      lived: "1851.3.19 – 1897.4.10",
+      father: "Frederick Francis 2",
+    },
+    "1897.4.10" => {
+      name: "Frederick Francis | Mecklenburg-Schwerin", # 4
+      lived: "1882.4.9 – 1945.11.17",
+      father: "Frederick Francis 3",
+    },
+    end_ww1: nil,
   },
   e_germany: {
     "1871.1.18" => { use: "k_pomerania Wilhelm 1" },
@@ -205,23 +215,32 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       lived: "1724.12.11 – 1799.2.16",
     },
     "1799.2.16" => {
-      name: "Maximilian | Wittelsbach",
+      name: "Maximilian | Wittelsbach", # 1
       lived: "1756.5.27 – 1825.10.13",
     },
     "1825.10.13" => {
-      name: "Ludwig | Wittelsbach",
+      name: "Ludwig | Wittelsbach", # 1
       lived: "1786.8.25 – 1868.2.29",
     },
     "1848.3.20" => {
-      name: "Maximilian | Wittelsbach",
+      name: "Maximilian | Wittelsbach", # 2
       lived: "1811.11.28 – 1864.3.10",
     },
     "1864.3.10" => {
-      name: "Ludwig | Wittelsbach",
+      name: "Ludwig | Wittelsbach", # 2
       lived: "1845.8.25 – 1886.6.13",
+      father: "Maximilian 2",
     },
-    german_unification: nil,
-    # They continued as German vassals until end of WW1
+    "1886.6.13" => {
+      name: "Otto | Wittelsbach",
+      lived: "1848.4.27 – 1916.10.11",
+      father: "Maximilian 2",
+    },
+    "1913.11.5" => {
+      name: "Ludwig | Wittelsbach", # 3
+      lived: "1845.1.7 – 1921.10.18",
+    },
+    end_ww1: nil,
   },
   d_saxony: {
     "1763.12.17" => {
@@ -231,17 +250,34 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1827.5.5" => {
       name: "Anthon | Wettin",
       lived: "1755.12.27 - 1836.6.6",
+      # brother of previous
     },
     "1836.6.6" => {
       name: "Frederick Augustus | Wettin",
       lived: "1797.5.18 - 1854.8.9",
+      # nephew of previous
     },
     "1854.8.9" => {
       name: "John | Wettin",
       lived: "1801.12.12 - 1873.10.29",
+      # brother of previous
     },
-    german_unification: nil,
-    # They continued as German vassals until end of WW1
+    "1873.10.29" => {
+      name: "Albert | Wettin",
+      lived: "1828.4.23 – 1902.6.19",
+      father: "John 1",
+    },
+    "1902.6.19" => {
+      name: "George | Wettin",
+      lived: "1832.8.8 – 1904.10.15",
+      father: "John 1",
+    },
+    "1904.10.15" => {
+      name: "Frederick Augustus | Wettin",
+      lived: "1865.5.25 – 1932.2.18",
+      father: "George 1",
+    },
+    end_ww1: nil,
   },
   # There was actually Hesse-Kassel and Hesse-Darmstandt
   d_franconia: {
@@ -287,17 +323,21 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       lived: "1754.11.6 – 1816.10.30",
     },
     "1816.10.30" => {
-      name: "William | Württemberg",
+      name: "William | Württemberg", # 1
       lived: "1781.9.27 – 1864.6.25",
       father: "Frederick 1",
     },
     "1864.6.25" => {
       name: "Charles | Württemberg",
-      lived: "6 March 1823 in Stuttgart – 1891.10.6",
+      lived: "1823.3.6 – 1891.10.6",
       father: "William 1",
     },
-    # still in charge, just under empire of Germany
-    "1871.1.18" => nil,
+    "1891.10.6" => {
+      name: "William | Württemberg", # 2
+      lived: "1848.2.25 – 1921.10.2",
+      # nephew of previous
+    },
+    end_ww1: nil,
   },
   d_baden: {
     "1738.5.12" => { name: "Charles Frederick | Zähringen", lived: "1728.11.22 – 1811.6.10" },
@@ -306,8 +346,8 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1830.3.30" => { name: "Leopold | Zähringen", lived: "1790.8.29 – 1852.4.24", father: "Charles Frederick 1" },
     "1852.4.24" => { name: "Louis | Zähringen", lived: "1824.8.15 – 1858.1.22", father: "Leopold 1" },
     "1858.1.22" => { name: "Frederick | Zähringen", lived: "1826.9.9 – 1907.9.28", father: "Leopold 1" },
-    # continued as German vassals
-    "1871.1.18" => nil,
+    "1907.9.28" => { name: "Frederick | Zähringen", lived: "1857.7.9 – 1928.8.9", father: "Frederick 1" },
+    end_ww1: nil,
   },
   c_anhalt: {
     "1693.8.7" => {

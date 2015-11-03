@@ -206,15 +206,18 @@ ModernTimesDatabase::TITLES = {
   d_mecklemburg: {
     culture: :german,
     religion: :protestant,
+    liege: {german_unification: "e_germany", end_ww1: nil},
   },
   d_baden: {
     culture: :german,
     religion: :catholic,
+    liege: {german_unification: "e_germany", end_ww1: nil},
   },
   d_swabia: {
     culture: :german,
     religion: :protestant,
     name: "Württemberg / Württembergian",
+    liege: {german_unification: "e_germany", end_ww1: nil},
   },
   d_brunswick: {
     culture: :german,
@@ -385,6 +388,7 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     capital: :c_finland,
     name: "Finland / Finnish",
+    liege: { end_of_swedish_finland: "e_russia", end_ww1: nil },
   },
   d_courland: {
     culture: :lettigallish,
@@ -398,6 +402,7 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
     capital: :c_plock, # Not Krakow
     demesne: ["d_lesser_poland"],
+    liege: { congress_of_vienna: "e_russia", end_ww1: nil },
   },
   d_azerbaijan: {
     culture: :persian, # close enough
@@ -615,10 +620,12 @@ ModernTimesDatabase::TITLES = {
   d_saxony: {
     culture: :german,
     religion: :catholic,
+    liege: {german_unification: "e_germany", end_ww1: nil},
   },
   d_bavaria: {
     culture: :german,
     religion: :catholic,
+    liege: {german_unification: "e_germany", end_ww1: nil},
   },
   c_salzburg: {
     culture: :german,
@@ -709,7 +716,7 @@ ModernTimesDatabase::TITLES = {
   k_bihar: {
     culture: :bengali,
     religion: :buddhist,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: { battle_of_buxar: "e_britannia", india_independence: nil },
     autoholders: true,
   },
   k_gondwana: {
@@ -721,7 +728,8 @@ ModernTimesDatabase::TITLES = {
   k_kamarupa: {
     culture: :assamese,
     religion: :buddhist,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: { british_assam: "e_britannia", india_independence: nil },
+    name: "Assam / Assamese",
     autoholders: true,
   },
   k_andhra: {

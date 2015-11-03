@@ -3,7 +3,7 @@ class MultiRange
     points = []
     args.each do |arg|
       parse_arg(arg) do |s,e|
-        raise ArgumentError if s and e and s > e
+        raise ArgumentError, "MultiRange start #{s} > #{e}" if s and e and s > e
         next if s == e # Just fast skip, would get filtered later anyway
         points << [s ? 0 : -1, s,  1]
         points << [e ? 0 :  1, e, -1]

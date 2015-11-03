@@ -211,9 +211,9 @@ ModernTimesDatabase::LAND = {
   c_pressburg:    { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "d_nyitra", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
   c_saris:        { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "d_nyitra", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra" },
 
-  c_aland:      { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
-  d_finland:    { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
-  c_kemi:       { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
+  c_aland:      { forever_ago: "k_sweden", end_of_swedish_finland: "k_finland" },
+  d_finland:    { forever_ago: "k_sweden", end_of_swedish_finland: "k_finland" },
+  c_kemi:       { forever_ago: "k_sweden", end_of_swedish_finland: "k_finland" },
 
   k_perm:           { forever_ago: "e_russia" },
   k_volga_bulgaria: { forever_ago: "e_russia" },
@@ -245,7 +245,11 @@ ModernTimesDatabase::LAND = {
   c_alexandretta:{ forever_ago: "e_arabia", treaty_of_sevres: "e_france", treaty_of_ankara: "e_arabia", end_of_ottoman_empire: "k_anatolia" },
 
   d_silesia: {forever_ago: "e_carpathia", silesia_prussian: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
-  c_cieszyn: {forever_ago: "e_carpathia", silesia_prussian: "k_pomerania", german_unification: "e_germany", silesian_uprising: "k_poland"},
+  # This was _mostly_ Prussian, and only small part Austrian,
+  # but border gore is too big if I let Prussia keep it
+  # also giving it to Austria lowers Prussia to 8/17 Poland so they can't instantly usurp
+  # c_cieszyn: {forever_ago: "e_carpathia", silesia_prussian: "k_pomerania", german_unification: "e_germany", silesian_uprising: "k_poland"},
+  c_cieszyn: {forever_ago: "e_carpathia", end_ww1: "k_poland"},
 
   c_marienburg:   { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
   d_prussia:      { forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_poland"},
@@ -262,8 +266,8 @@ ModernTimesDatabase::LAND = {
 
   d_esthonia:    { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia" },
   d_livonia:     { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia" },
-  c_kexholm:    { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", finland_independence: "k_finland" },
-  c_savolaks:   { forever_ago: "k_sweden", end_of_swedish_finland: "e_russia", finland_independence: "k_finland" },
+  c_kexholm:    { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_of_swedish_finland: "k_finland", finland_independence: "k_finland" },
+  c_savolaks:   { forever_ago: "k_sweden", end_of_swedish_finland: "k_finland" },
 
   c_lettigalians:{ forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland" },
   c_west_dvina:  { forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland" },
@@ -292,7 +296,7 @@ ModernTimesDatabase::LAND = {
   c_temes:        { forever_ago: "e_arabia", treaty_of_passarowitz: "e_carpathia", end_ww1: "k_dacia" },
 
   c_gnieznienskie: { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland" },
-  c_kujawy:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", duchy_warsaw: "k_poland", congress_of_vienna: "e_russia", end_ww1: "k_poland" },
+  c_kujawy:       { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", duchy_warsaw: "k_poland", end_ww1: "k_poland" },
 
   d_pereyaslavl: { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
   c_sharukan: { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
@@ -399,7 +403,7 @@ ModernTimesDatabase::LAND = {
 
   c_menorca: { forever_ago: "e_spain", treaty_of_utrech: "e_britannia", treaty_of_versailles: "e_spain" },
 
-  d_bavaria: { forever_ago: "d_bavaria", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  d_bavaria: { forever_ago: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
 
   c_ar_ar:  { forever_ago: "d_nefoud", end_ww1: "k_arabia" },
   d_nefoud: { forever_ago: "d_nefoud", end_ww1: "k_arabia" },
@@ -416,8 +420,8 @@ ModernTimesDatabase::LAND = {
   c_taizz:   { forever_ago: "e_arabia", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
   c_sanaa:   { forever_ago: "e_arabia", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
 
-  c_plauen:     { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  d_meissen:    { forever_ago: "d_saxony", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
+  c_plauen:     { forever_ago: "d_saxony", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
+  d_meissen:    { forever_ago: "d_saxony", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
 
   d_khiva:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
   c_kyzylkum:   { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
@@ -472,6 +476,18 @@ ModernTimesDatabase::LAND = {
   # Briefly got title of Ottoman governor, but that never seemed to matter
   # Date is start of Kuwait dynasty, but it was independent before too
   c_kuwait:     { "1752.12.31" => "c_kuwait", kuwait_british: "e_britannia", kuwait_independence: "c_kuwait" },
+  k_bengal:      { battle_of_plessy: "e_britannia", india_independence: "e_india" },
+  k_kamarupa:    { british_assam: "k_kamarupa", india_independence: "e_india" },
+  k_bihar:       { battle_of_buxar: "k_bihar", india_independence: "e_india" },
+
+  c_kanchipuram: { madras_british: "e_britannia", india_independence: "e_india" }, # Madras
+
+  # Names on CK2 map have very little correlation with names on real map
+  # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
+  # c_suvarnagram might be part of India
+  d_vanga:       { battle_of_plessy: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
+  d_varendra:    { battle_of_plessy: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
+
 
   #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
@@ -498,14 +514,12 @@ ModernTimesDatabase::LAND = {
 
   d_lesser_poland: { congress_of_vienna: "e_carpathia", end_ww1: "k_poland" },
   c_krakowskie:    { congress_of_vienna: "c_krakowskie", fall_krakow_uprising: "e_carpathia", end_ww1: "k_poland" },
-  d_mazovia:       { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
-  "c_sieradzko-leczyckie": { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
-  c_sandomierskie: { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
+  d_mazovia:       { congress_of_vienna: "k_poland" },
+  "c_sieradzko-leczyckie": { congress_of_vienna: "k_poland" },
+  c_sandomierskie: { congress_of_vienna: "k_poland" },
 
   c_poznanskie:    { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
-  # Not sure which version is correct...
-  # c_kaliskie:      { congress_of_vienna: "e_russia", end_ww1: "k_poland" },
-  c_kaliskie:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland"},
+  c_kaliskie:      { congress_of_vienna: "k_poland"},
 
   # More or less Alsace-Lorraine
   d_alsace:         { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
@@ -522,16 +536,16 @@ ModernTimesDatabase::LAND = {
   c_bremen:       { congress_of_vienna: "c_bremen", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_hamburg:      { congress_of_vienna: "c_hamburg", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_rugen:        { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany" },
-  d_mecklemburg:  { congress_of_vienna: "d_mecklemburg", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  d_baden:        { congress_of_vienna: "d_baden", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
-  d_swabia:       { congress_of_vienna: "d_swabia", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  d_mecklemburg:  { congress_of_vienna: "d_mecklemburg", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
+  d_baden:        { congress_of_vienna: "d_baden", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  d_swabia:       { congress_of_vienna: "d_swabia", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_ostfriesland: { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   d_brunswick:    { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_gottingen:    { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
-  c_pfalz:        { congress_of_vienna: "d_bavaria", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  c_pfalz:        { congress_of_vienna: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_trier:        { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
-  c_bamberg:      { congress_of_vienna: "d_bavaria", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
-  c_wurzburg:     { congress_of_vienna: "d_bavaria", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  c_bamberg:      { congress_of_vienna: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  c_wurzburg:     { congress_of_vienna: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_wolgast:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_weimar: { congress_of_vienna: "c_weimar", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_anhalt: { congress_of_vienna: "c_anhalt", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
@@ -543,10 +557,7 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR VICTORIAN ERA BOOKMARK
 
-  k_bengal:      { third_maratha_war: "e_britannia", india_independence: "e_india" },
-  k_bihar:       { third_maratha_war: "k_bihar", india_independence: "e_india" },
   k_gondwana:    { third_maratha_war: "k_gondwana", india_independence: "e_india" },
-  k_kamarupa:    { third_maratha_war: "k_kamarupa", india_independence: "e_india" },
   k_andhra:      { third_maratha_war: "k_andhra", india_independence: "e_india" },
   k_karnata:     { third_maratha_war: "k_karnata", india_independence: "e_india" },
   k_telingana:   { third_maratha_war: "k_telingana", india_independence: "e_india" },
@@ -560,10 +571,4 @@ ModernTimesDatabase::LAND = {
   k_rajputana:   { third_maratha_war: "k_rajputana", india_independence: "e_india" },
 
   c_vijnot:      { third_maratha_war: "e_britannia", india_independence: "k_baluchistan" },
-
-  # Names on CK2 map have very little correlation with names on real map
-  # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
-  # c_suvarnagram might be part of India
-  d_vanga:       { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
-  d_varendra:    { third_maratha_war: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
 }
