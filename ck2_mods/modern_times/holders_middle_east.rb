@@ -63,12 +63,14 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
   e_arabia: {
     "1695.2.6" => { # 1 (actually 2)
       name: "Mustafa | Ottoman", lived: "1664.2.6 – 1703.12.30", #  father: "Mehmed",
+      events: { "1700.1.1" => PropertyList["decadence", 10]}, # 25 -> 35
     },
     "1703.8.22" => {
       name: "Ahmed | Ottoman", lived: "1673.12.31 – 1736.7.1", # father: "Mehmed",
     },
     "1730.10.2" => { # 1
       name: "Mahmud | Ottoman", lived: "1696.8.2  – 1754.12.13", father: "Mustafa 1",
+      events: { "1750.1.1" => PropertyList["decadence", 10]}, # 35 -> 45
     },
     "1754.12.13" => {
       name: "Osman | Ottoman", lived: "1699.1.3 – 1757.10.30", father: "Mustafa 1",
@@ -81,6 +83,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
     "1789.4.7" => {
       name: "Selim | Ottoman", lived: "1761.12.24 – 1808.7.29", father: "Mustafa 2",
+      events: { "1800.1.1" => PropertyList["decadence", 10]}, # 45 -> 55
     },
     "1807.5.29" => { # 3
       name: "Mustafa | Ottoman", lived: "1779.9.8 – 1808.11.16", father: "Abdülhamid 1",
@@ -90,6 +93,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
     "1839.7.1" => {
       name: "Abdülmecid | Ottoman", lived: "1823.4.25 – 1861.6.25", father: "Mahmud 2",
+      events: { "1850.1.1" => PropertyList["decadence", 20]}, # 55 -> 75
     },
     "1861.6.25" => {
       name: "Abdulaziz | Ottoman", lived: "1830.2.18 – 1876.6.4", father: "Mahmud 2",
@@ -99,6 +103,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
     "1876.8.31" => {
       name: "Abdulhamid | Ottoman", lived: "1842.9.22 – 1918.2.10", father: "Abdülmecid 1",
+      events: { "1900.1.1" => PropertyList["decadence", 20]}, # 75 -> 95, enjoy
     },
     "1909.4.27" => {
       name: "Mehmed | Ottoman", lived: "1844.11.2 – 1918.7.3", father: "Abdülmecid 1",
