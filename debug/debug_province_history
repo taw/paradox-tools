@@ -1,0 +1,133 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+
+class DebugProvinceHistoryGameModification < ParadoxGameModification
+  def start_date
+    @start_date ||= Date.parse("1444.11.11")
+  end
+
+  def add_province_ownership_change(id, date, tag)
+    return unless tag
+    date = start_date if date < start_date
+    @province_history ||= {}
+    @province_history[id] ||= {}
+    @province_history[id][date] = tag
+  end
+
+  def changes_by_time
+    unless @changes_by_time
+      @changes_by_time = {}
+      @province_history.each do |id, changes|
+        changes.each do |date, tag|
+          @changes_by_time[date] ||= {}
+          name = @names[id]
+          @changes_by_time[date][name] = tag
+        end
+      end
+    end
+    @changes_by_time
+  end
+
+  def analyze_province_ownership!
+    @names = {}
+    glob("history/provinces/*.txt").each do |path|
+      id = path.basename(".txt").to_s.to_i
+      name = path.basename(".txt").to_s.sub(/\A\d+\s*-\s*/, "")
+      @names[id] = name
+      node = parse(path)
+      add_province_ownership_change(id, start_date, node["owner"])
+      node.keys.grep(Date).each do |key|
+        next if node[key].empty?
+        add_province_ownership_change(id, key, node[key]["owner"])
+      end
+    end
+  end
+
+  def key_dates
+    # changes_by_time.sort_by{|k,v| -v.size}[0,25].map{|k,v| k}.sort
+    [
+      Date.new(1444, 11, 11),
+      Date.new(1449, 1, 1),
+      Date.new(1468, 1, 1),
+      Date.new(1469, 2, 4),
+      Date.new(1502, 1, 1),
+      Date.new(1503, 4, 1),
+      Date.new(1516, 1, 23),
+      Date.new(1517, 1, 1),
+      Date.new(1526, 4, 21),
+      Date.new(1533, 8, 29),
+      Date.new(1540, 1, 1),
+      Date.new(1569, 7, 1),
+      Date.new(1636, 5, 15),
+      Date.new(1650, 1, 1),
+      Date.new(1681, 10, 1),
+      Date.new(1707, 5, 12),
+      Date.new(1724, 1, 1),
+      Date.new(1755, 1, 1),
+      Date.new(1760, 1, 1),
+      Date.new(1763, 2, 10),
+      Date.new(1776, 7, 4),
+      Date.new(1807, 7, 9),
+      Date.new(1810, 9, 16),
+      Date.new(1814, 4, 11),
+      Date.new(1816, 7, 9),
+    ]
+  end
+
+  def set_history_for(date)
+    effect = PropertyList[]
+    @province_history.sort.each do |id, changes|
+      last_change, owner = changes.select{|k,v| k <= date }.max_by(&:first)
+      next unless owner # what about nil owner?
+      effect.add! id, PropertyList["cede_province", owner]
+    end
+    effect
+  end
+
+  def apply!
+    analyze_province_ownership!
+    key_dates.each do |key_date|
+      txt = key_date.to_s.tr(".", "_")
+      create_mod_file! "decisions/history_#{txt}.txt", PropertyList[
+        "country_decisions", PropertyList[
+          "history_#{txt}", PropertyList[
+            "major", true,
+            "potential", PropertyList[
+              "ai", false,
+            ],
+            "allow", PropertyList[
+              "ai", false,
+            ],
+            "effect", set_history_for(key_date),
+            "ai_will_do", PropertyList["factor", 0],
+          ]
+        ]
+      ]
+    end
+  end
+end
+
+
+class DebugProvinceHistoryModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/eu4-1.13.1",
+      ),
+      "output/debug_province_history",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! DebugProvinceHistoryGameModification
+    create_mod_descriptor!(
+      name: "Debug Province History",
+      path: "mod/debug_province_history",
+      supported_version: "1.13",
+    )
+  end
+end
+
+if __FILE__ == $0
+  DebugProvinceHistoryModBuilder.new.build!
+end
