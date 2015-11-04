@@ -17,6 +17,9 @@ module ModernTimesDatabase::Dates
     forever_ago: "1700.1.1", # Few plans to go back earlier than this
 
     ### Actual dates:
+
+    napoleon_north_germany_annexation: "1810.12.13", # http://www.napoleon-series.org/research/government/diplomatic/c_annexations.html
+
     british_assam: "1765.1.1", # strangely nothing better than year date
     battle_of_buxar: "1764.10.22",
     battle_of_plessy: "1757.6.23",
