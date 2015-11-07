@@ -148,29 +148,44 @@ class ModernTimesDatabase
     @titles
   end
 
+  # This helper is needed to order things correctly for use_refs
+  # It's all awful hack and I hope one day we'll be able to separate layers
+  # in a way which allows order-independent data
+  private def holders_raw_data
+    results = {}
+    ModernTimesDatabase.constants.grep(/\AHOLDERS_/).each do |holder_group_key|
+      ModernTimesDatabase.const_get(holder_group_key).each do |title, data|
+        raise if results[title]
+        results[title.to_s] = data.map{|date,holder_data| [resolve_date(date), holder_data]}
+      end
+    end
+    order = titles.keys
+    results.sort_by{|k,v| order.index(k)}
+  end
+
   def holders
     unless @holders
       @holders = {}
-      ModernTimesDatabase.constants.grep(/\AHOLDERS_/).each do |holder_group_key|
-        ModernTimesDatabase.const_get(holder_group_key).each do |title, data|
-          title = title.to_s
-          @holders[title] = {}
-          data = data.to_a
-          data.each_with_index do |(date, holder_data), i|
-            date = resolve_date(date)
-            if holder_data.nil?
-              @holders[title][date] = nil
-            elsif holder_data.keys == [:use]
-              @holders[title][date] = {use: fully_quality_reference(title, holder_data[:use])}
-            elsif holder_data.keys == [:use_all]
-              next_date = data[i+1] && resolve_date(data[i+1][0])
-              @holders[holder_data[:use_all]].each do |copy_date, holder|
-                break if next_date and copy_date >= next_date
+      holders_raw_data.each do |title, data|
+        @holders[title] = {}
+        data.each_with_index do |(date, holder_data), i|
+          if holder_data.nil?
+            @holders[title][date] = nil
+          elsif holder_data.keys == [:use]
+            @holders[title][date] = {use: fully_quality_reference(title, holder_data[:use])}
+          elsif holder_data.keys == [:use_all]
+            next_date = data[i+1] && resolve_date(data[i+1][0])
+            @holders[holder_data[:use_all]].each do |copy_date, holder|
+              break if next_date and copy_date >= next_date
+              if holder[:use]
+                # Double reference, for PUs with returning holders (like Sicily)
+                @holders[title][copy_date] = {use: holder[:use]}
+              else
                 @holders[title][copy_date] = {use: holder[:historical_id]}
               end
-            else
-              @holders[title][date] = parse_holder_data(date, holder_data, title)
             end
+          else
+            @holders[title][date] = parse_holder_data(date, holder_data, title)
           end
         end
       end

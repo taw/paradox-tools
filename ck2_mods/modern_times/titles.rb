@@ -397,13 +397,6 @@ ModernTimesDatabase::TITLES = {
     name: "Latvia / Latvian",
     liege: {annexation_latvia: "e_russia", fall_soviet_union: nil},
   },
-  k_poland: {
-    culture: :polish,
-    religion: :catholic,
-    capital: :c_plock, # Not Krakow
-    demesne: ["d_lesser_poland"],
-    liege: { congress_of_vienna: "e_russia", end_ww1: nil },
-  },
   d_azerbaijan: {
     culture: :persian, # close enough
     religion: :shiite,
@@ -622,6 +615,13 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
     liege: {german_unification: "e_germany", end_ww1: nil},
   },
+  k_poland: {
+    culture: :polish,
+    religion: :catholic,
+    capital: :c_plock, # Not Krakow
+    demesne: ["d_lesser_poland"],
+    liege: { congress_of_vienna: "e_russia", end_ww1: nil },
+  },
   d_bavaria: {
     culture: :german,
     religion: :catholic,
@@ -668,7 +668,11 @@ ModernTimesDatabase::TITLES = {
     culture: :italian,
     religion: :catholic,
   },
-  k_sicily: {
+  k_sicily: { # Kingdom of Sicily (Naples), then as Kingdom of Two Sicilies
+    culture: :italian,
+    religion: :catholic,
+  },
+  d_sicily: { # Kingdom of Sicily (island of Sicily)
     culture: :italian,
     religion: :catholic,
   },

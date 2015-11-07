@@ -192,6 +192,10 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1700 BOOKMARK
 
+  c_aprutium:   { forever_ago: "k_sicily", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
+  k_sicily:     { forever_ago: "k_sicily", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
+  d_sicily:     { forever_ago: "d_sicily", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
+
   d_dihistan:  { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_merv:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_aral:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
@@ -202,6 +206,7 @@ ModernTimesDatabase::LAND = {
   k_portugal:   { forever_ago: "k_portugal" },
   c_goa:        { forever_ago: "k_portugal", goa_annexation: "e_india" }, # 1505 or so
   e_spain:      { forever_ago: "e_spain" },
+  d_barcelona:  { forever_ago: "e_spain", napoleon_barcelona_annexation: "e_france", congress_of_vienna: "e_spain" },
   c_canarias:   { forever_ago: "e_spain" },
   d_sjaelland:  { forever_ago: "k_denmark" },
   d_slesvig:    { forever_ago: "k_denmark" },
@@ -519,9 +524,6 @@ ModernTimesDatabase::LAND = {
   d_flanders:   { congress_of_vienna: "k_frisia", belgium_independence: "d_flanders" },
   d_brabant:    { congress_of_vienna: "k_frisia", belgium_independence: "d_flanders" },
 
-  c_aprutium:   { congress_of_vienna: "k_sicily", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
-  k_sicily:     { congress_of_vienna: "k_sicily", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
-  d_sicily:     { congress_of_vienna: "k_sicily", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
   c_savoie:     { congress_of_vienna: "k_italy", treaty_of_zurich: "e_france" },
   c_nice:       { congress_of_vienna: "k_italy", treaty_of_zurich: "e_france" },
   d_sardinia:   { congress_of_vienna: "k_italy", italy_unification: "e_italy" },

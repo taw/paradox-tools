@@ -88,9 +88,25 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
   },
   k_sicily: {
-    "1816.12.12" => {
+    "2 June 1734" => {
+      name: "Charles | Bourbon",
+      lived: "20 January 1716 – 14 December 1788",
+    },
+    "6 October 1759" => {
       name: "Ferdinand | Bourbon",
       lived: "1751.1.12 - 1825.1.4",
+      father: "Charles 1",
+    },
+    "30 March 1806" => {
+      name: "Joseph | Bonaparte",
+      lived: "7 January 1768 – 28 July 1844",
+    },
+    "1 August 1808" => {
+      name: "Joachim | Murat",
+      lived: "25 March 1767 – 13 October 1815",
+    },
+    congress_of_vienna: {
+      use: "Ferdinand 1",
     },
     "1825.1.4" => {
       name: "Francis | Bourbon",
@@ -107,6 +123,12 @@ ModernTimesDatabase::HOLDERS_ITALY = {
       lived: "1836.1.16 - 1894.12.27",
       father: "Ferdinand 2",
     },
+    italy_unification: nil,
+  },
+  d_sicily: {
+    "2 June 1734" => { use_all: "k_sicily" },
+    "30 March 1806" => { use: "k_sicily Ferdinand 1" },
+    congress_of_vienna: { use_all: "k_sicily" },
     italy_unification: nil,
   },
   # I'm really confused by Lucca / Parma situation

@@ -83,6 +83,8 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "2014.6.15" => {name: "Andrej | Kiska", lived: "1963.2.2 -"},
   },
   k_poland: {
+    duchy_warsaw: { use_all: "d_saxony" },
+    congress_of_vienna: nil, # Generate
     end_ww1: {name: "Jozef | Pilsudski", lived: "1867.12.5 - 1935.5.12", health: 6},
     "1922.12.11" => {name: "Gabriel | Narutowicz", lived: "1865.3.17 - 1922.12.16"},
     "1922.12.16" => {name: "Stanislaw | Wojciechowski", lived: "1869.3.15 - 1953.4.9"},
