@@ -477,6 +477,9 @@ ModernTimesDatabase::LAND = {
 
   d_zhetysu:    { forever_ago: "k_cuman", senior_juz_russian: "e_russia", end_ww1: "k_cuman" },
 
+  k_delhi:       { forever_ago: "e_rajastan", third_maratha_war: "k_delhi", india_independence: "e_india" },
+  k_kosala:      { forever_ago: "e_rajastan", third_maratha_war: "k_kosala", india_independence: "e_india" },
+
   #########################################
   # READY FOR 1750 BOOKMARK
 
@@ -516,6 +519,13 @@ ModernTimesDatabase::LAND = {
   # c_suvarnagram might be part of India
   d_vanga:       { battle_of_plessy: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
   d_varendra:    { battle_of_plessy: "e_britannia", india_independence: "k_baluchistan", bangladesh_independence: "k_bengal" },
+
+  k_malwa:       { marathas_battle_of_delhi: "e_deccan", third_maratha_war: "k_malwa", india_independence: "e_india" },
+  k_maharastra:  { marathas_battle_of_delhi: "e_deccan", third_maratha_war: "k_maharastra", india_independence: "e_india" },
+  k_rajputana:   { marathas_battle_of_delhi: "e_deccan", third_maratha_war: "k_rajputana", india_independence: "e_india" },
+  c_vijnot:      { marathas_battle_of_delhi: "e_deccan", third_maratha_war: "e_britannia", india_independence: "k_baluchistan" },
+  k_gondwana:    { marathas_battle_of_delhi: "e_deccan", third_maratha_war: "k_gondwana", india_independence: "e_india" },
+  k_gujarat:     { marathas_battle_of_delhi: "e_deccan", third_maratha_war: "k_gujarat", india_independence: "e_india" },
 
   #########################################
   # READY FOR 1800 NAPOLEON BOOKMARK
@@ -564,21 +574,16 @@ ModernTimesDatabase::LAND = {
   c_mainz:        { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_leiningen:    { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
 
+  d_chera_nadu:  { travancore_british: "k_tamilakam", india_independence: "e_india" },
+
   #########################################
   # READY FOR VICTORIAN ERA BOOKMARK
 
-  k_gondwana:    { third_maratha_war: "k_gondwana", india_independence: "e_india" },
+
   k_andhra:      { third_maratha_war: "k_andhra", india_independence: "e_india" },
   k_karnata:     { third_maratha_war: "k_karnata", india_independence: "e_india" },
   k_telingana:   { third_maratha_war: "k_telingana", india_independence: "e_india" },
   k_tamilakam:   { third_maratha_war: "k_tamilakam", india_independence: "e_india" },
-  k_orissa:      { third_maratha_war: "k_orissa", india_independence: "e_india" },
-  k_malwa:       { third_maratha_war: "k_malwa", india_independence: "e_india" },
-  k_gujarat:     { third_maratha_war: "k_gujarat", india_independence: "e_india" },
-  k_delhi:       { third_maratha_war: "k_delhi", india_independence: "e_india" },
-  k_kosala:      { third_maratha_war: "k_kosala", india_independence: "e_india" },
-  k_maharastra:  { third_maratha_war: "k_maharastra", india_independence: "e_india" },
-  k_rajputana:   { third_maratha_war: "k_rajputana", india_independence: "e_india" },
 
-  c_vijnot:      { third_maratha_war: "e_britannia", india_independence: "k_baluchistan" },
+  k_orissa:      { third_maratha_war: "k_orissa", india_independence: "e_india" },
 }

@@ -18,6 +18,9 @@ module ModernTimesDatabase::Dates
 
     ### Actual dates:
 
+    travancore_british: "1795.1.1", # year only
+    marathas_battle_of_delhi: "1757.8.11",
+
     napoleon_north_germany_annexation: "1810.12.13", # http://www.napoleon-series.org/research/government/diplomatic/c_annexations.html
     napoleon_barcelona_annexation: "1812.1.26",
     free_hre_cities_mediatized: "1803.2.25",

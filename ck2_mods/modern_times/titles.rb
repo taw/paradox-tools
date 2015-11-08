@@ -109,6 +109,21 @@ ModernTimesDatabase::TITLES = {
     capital: :c_delhi,
     demesne: ["d_haritanaka"],
   },
+  e_rajastan: { # FIXME: name is hax
+    culture: :persian,
+    religion: :sunni,
+    name: "Mughals / Mughal",
+  },
+  e_deccan: { # FIXME: name is hax
+    culture: :persian,
+    religion: :hindu,
+    name: "Marathas / Maratha",
+  },
+  d_chera_nadu: { # Travancore
+    culture: :tamil,
+    religion: :hindu,
+  },
+  # TODO: make British India Company e_bengal ?
   d_luxembourg: {
     culture: :dutch,
     religion: :catholic,
@@ -769,7 +784,7 @@ ModernTimesDatabase::TITLES = {
   k_tamilakam: {
     culture: :tamil,
     religion: :hindu,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: { travancore_british: "e_britannia", india_independence: nil },
     autoholders: true,
   },
   k_orissa: {
