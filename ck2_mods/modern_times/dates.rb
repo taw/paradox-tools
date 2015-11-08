@@ -23,6 +23,7 @@ module ModernTimesDatabase::Dates
     andhra_british: "1792.1.1", # year only
     fourth_mysore_war: "1799.5.4",
     hyderabad_british: "1803.1.1", # year only
+    orissa_british: "1803.1.1", # year only
 
     napoleon_north_germany_annexation: "1810.12.13", # http://www.napoleon-series.org/research/government/diplomatic/c_annexations.html
     napoleon_barcelona_annexation: "1812.1.26",

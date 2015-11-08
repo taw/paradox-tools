@@ -19,10 +19,24 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "2014.5.26"   => {name: "Narendra | Modi", lived: "1950 -"},
   },
   e_rajastan: { # Mughals
-
+    "1806.11.19" => {
+      name: "Akbar | Timurid",
+      lived: "1760.4.22 – 1837.9.28",
+    },
+    # Demote them to king of Delhi or something? there's one more under Britain
+    third_maratha_war: nil,
   },
   e_deccan: { # Marathas
-
+    "11th December 1777" => {
+      name: "Shahu | Bhonsle",
+      lived: "1763 - 1808.5.3",
+    },
+    "1808.5.3" => {
+      name: "Pratap Singh | Bhonsle",
+      lived: "1793.1.18 - 1847.10.14",
+      father: "Shahu 1",
+    },
+    third_maratha_war: nil,
   },
   k_lanka: {
     # Prime Ministers

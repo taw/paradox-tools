@@ -550,9 +550,9 @@ ModernTimesDatabase::LAND = {
   d_lombardia:  { congress_of_vienna: "e_carpathia", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
 
   # More or less Alsace-Lorraine
-  d_alsace:         { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
-  c_lorraine:       { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
-  c_metz:           { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
+  d_alsace:     { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
+  c_lorraine:   { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
+  c_metz:       { congress_of_vienna: "e_france", german_unification: "e_germany", end_ww1: "e_france"},
 
   c_loon: { congress_of_vienna: "k_frisia" },
 
@@ -579,9 +579,5 @@ ModernTimesDatabase::LAND = {
   k_karnata:     { fourth_mysore_war: "k_karnata", india_independence: "e_india" },
   k_tamilakam:   { fourth_mysore_war: "k_tamilakam", india_independence: "e_india" },
   k_telingana:   { hyderabad_british: "k_telingana", india_independence: "e_india" },
-
-  #########################################
-  # READY FOR THIRD MARATHA WAR BOOKMARK
-
-  k_orissa:      { third_maratha_war: "k_orissa", india_independence: "e_india" },
+  k_orissa:      { orissa_british: "k_orissa", india_independence: "e_india" },
 }

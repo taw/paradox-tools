@@ -15,13 +15,15 @@ ModernTimesDatabase::BOOKMARKS = {
   "1780.1.1" => {
     name: "Test 1780",
   },
+  ### Actual bookmarks, must have 5 key bookmarks
   "1815.6.9" => {
     name: "Congress of Vienna",
+    desc: "Order in Europe is being restored after chaos of Napoleonic Wars. Meanwhile Britain, Mughals, and Marathas fight for control over India, but many local Indian rulers would much rather be independent.",
+    characters: ["e_deccan", "e_rajastan", "e_britannia"],
   },
-  ### Actual bookmarks, must have 5 key bookmarks
   "1818.6.3" => {
     name: "Fall of Marathas",
-    desc: "With fall of Napoleon in Europe and fall of Marathas in India, new order dominated by great empires emerged.",
+    desc: "With India conquered, Britain is the world's greatest empire, at least for now. Will anyone challenge their supremacy?",
     characters: ["c_krakowskie", "k_pomerania", "k_italy", "e_arabia"],
   },
   "1837.6.20" => {

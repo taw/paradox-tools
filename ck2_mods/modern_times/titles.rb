@@ -113,11 +113,15 @@ ModernTimesDatabase::TITLES = {
     culture: :hindustani, # persian ?
     religion: :sunni,
     name: "Mughals / Mughal",
+    capital: :c_delhi,
+    demesne: ["d_vodamayutja"],
   },
   e_deccan: { # FIXME: name is hax
     culture: :marathi,
     religion: :hindu,
     name: "Marathas / Maratha",
+    capital: :c_kondana,
+    demesne: ["d_devagiri"],
   },
   d_chera_nadu: { # Travancore
     culture: :tamil,
@@ -790,7 +794,7 @@ ModernTimesDatabase::TITLES = {
   k_orissa: {
     culture: :oriya,
     religion: :hindu,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: { orissa_british: "e_britannia", india_independence: nil },
     autoholders: true,
   },
   k_malwa: {
