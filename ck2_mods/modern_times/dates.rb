@@ -20,7 +20,8 @@ module ModernTimesDatabase::Dates
 
     napoleon_north_germany_annexation: "1810.12.13", # http://www.napoleon-series.org/research/government/diplomatic/c_annexations.html
     napoleon_barcelona_annexation: "1812.1.26",
-
+    free_hre_cities_mediatized: "1803.2.25",
+    ulm_to_wurttemberg: "1810.5.18",
     british_assam: "1765.1.1", # strangely nothing better than year date
     battle_of_buxar: "1764.10.22",
     battle_of_plessy: "1757.6.23",

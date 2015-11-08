@@ -213,11 +213,23 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
     liege: {german_unification: "e_germany", end_ww1: nil},
   },
+  c_breisgau: { # Fürstenberg
+    culture: :german,
+    religion: :catholic, # seemingly
+  },
   d_swabia: {
     culture: :german,
     religion: :protestant,
     name: "Württemberg / Württembergian",
     liege: {german_unification: "e_germany", end_ww1: nil},
+  },
+  c_ulm: {
+    culture: :german,
+    religion: "protestant",
+  },
+  c_schwaben: { # Duchy of Waldburg
+    culture: :german,
+    religion: "catholic", # no reliable information, it seems they were Catholic probably, unlike Wurttemberg
   },
   d_brunswick: {
     culture: :german,

@@ -186,6 +186,13 @@ ModernTimesDatabase::LAND = {
   c_bremen:  { times_immemorial: "c_bremen", napoleon_north_germany_annexation: "e_france", congress_of_vienna: "c_bremen", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_hamburg: { times_immemorial: "c_hamburg", napoleon_north_germany_annexation: "e_france", congress_of_vienna: "c_hamburg", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_weimar: { times_immemorial: "c_weimar", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"}, # 1572-
+  c_anhalt: { times_immemorial: "c_anhalt", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"}, # 1252 -, with internal gavelkinding
+  d_swabia:     { times_immemorial: "d_swabia", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  c_ulm:        { times_immemorial: "c_ulm", free_hre_cities_mediatized: "d_bavaria", ulm_to_wurttemberg: "d_swabia", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  c_schwaben:   { times_immemorial: "c_schwaben", hre_disbanded: "d_swabia", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+
+  d_baden:      { times_immemorial: "d_baden", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  c_breisgau:   { times_immemorial: "c_breisgau", hre_disbanded: "d_baden", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
 
   #########################################
   # READY FOR PEACE OF WESTPHALIA BOOKMARK
@@ -265,7 +272,7 @@ ModernTimesDatabase::LAND = {
 
   c_trent:        { forever_ago: "e_carpathia", end_ww1: "k_bavaria", south_tirol_annexation: "e_italy" },
   d_osterreich:   { forever_ago: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
-  d_tyrol:        { forever_ago: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
+  d_tyrol:        { forever_ago: "e_carpathia", free_hre_cities_mediatized: "d_bavaria", congress_of_vienna: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
 
   c_teluch:      { forever_ago: "e_arabia", treaty_of_sevres: "e_france", treaty_of_ankara: "e_arabia", end_of_ottoman_empire: "k_anatolia" },
   c_antiocheia:  { forever_ago: "e_arabia", treaty_of_sevres: "e_france", treaty_of_ankara: "e_arabia", end_of_ottoman_empire: "k_anatolia" },
@@ -544,8 +551,6 @@ ModernTimesDatabase::LAND = {
 
   c_oldenburg:    { congress_of_vienna: "c_oldenburg", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_rugen:        { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany" },
-  d_baden:        { congress_of_vienna: "d_baden", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
-  d_swabia:       { congress_of_vienna: "d_swabia", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_ostfriesland: { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   d_brunswick:    { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_gottingen:    { congress_of_vienna: "d_brunswick", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
@@ -554,7 +559,6 @@ ModernTimesDatabase::LAND = {
   c_bamberg:      { congress_of_vienna: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_wurzburg:     { congress_of_vienna: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_wolgast:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  c_anhalt: { congress_of_vienna: "c_anhalt", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_thuringen:    { congress_of_vienna: "c_thuringen", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_nassau:       { congress_of_vienna: "c_nassau", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_mainz:        { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },

@@ -60,7 +60,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     },
     "1758.5.28" => {
       name: "Charles Augustus | Saxe-Weimar-Eisenach",
-      lived: "1757.9.3 – 1828.6.14"
+      lived: "1757.9.3 – 1828.6.14",
       father: "Ernest Augustus 2",
     },
     "1828.6.14" => {
@@ -361,7 +361,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1907.9.28" => { name: "Frederick | Zähringen", lived: "1857.7.9 – 1928.8.9", father: "Frederick 1" },
     end_ww1: nil,
   },
-  c_anhalt: {
+  c_anhalt: { # There were like 5 gavelkinded Anhalts
     "1693.8.7" => {
       name: "Leopold | Ascania", # 1
       lived: "1676.7.3 – 1747.4.7",
@@ -383,7 +383,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # grandfather of previous
     "1817.8.9" => {
       name: "Leopold | Ascania", # 4
-      lived: "1794.10.1 – 1871.5.22"
+      lived: "1794.10.1 – 1871.5.22",
     },
     german_unification: nil,
   },
