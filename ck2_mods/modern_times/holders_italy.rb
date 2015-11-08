@@ -88,22 +88,22 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
   },
   k_sicily: {
-    "2 June 1734" => {
+    "1734.6.2" => {
       name: "Charles | Bourbon",
-      lived: "20 January 1716 – 14 December 1788",
+      lived: "1716.1.20 – 1788.12.14",
     },
-    "6 October 1759" => {
+    "1759.10.6" => {
       name: "Ferdinand | Bourbon",
       lived: "1751.1.12 - 1825.1.4",
       father: "Charles 1",
     },
-    "30 March 1806" => {
+    "1806.3.30" => {
       name: "Joseph | Bonaparte",
-      lived: "7 January 1768 – 28 July 1844",
+      lived: "1768.1.7 – 1844.7.28",
     },
-    "1 August 1808" => {
+    "1808.8.1" => {
       name: "Joachim | Murat",
-      lived: "25 March 1767 – 13 October 1815",
+      lived: "1767.3.25 – 1815.10.13",
     },
     congress_of_vienna: {
       use: "Ferdinand 1",
@@ -126,8 +126,8 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     italy_unification: nil,
   },
   d_sicily: {
-    "2 June 1734" => { use_all: "k_sicily" },
-    "30 March 1806" => { use: "k_sicily Ferdinand 1" },
+    "1734.6.2" => { use_all: "k_sicily" },
+    "1806.3.30" => { use: "k_sicily Ferdinand 1" },
     congress_of_vienna: { use_all: "k_sicily" },
     italy_unification: nil,
   },

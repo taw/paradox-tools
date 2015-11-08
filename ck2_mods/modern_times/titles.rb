@@ -224,7 +224,7 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     name: "Hannover / Hannoverian",
   },
-  c_weimar: {
+  c_weimar: { # Duchy of Saxe-Weimar-Eisenach
     culture: :german,
     religion: :protestant,
   },

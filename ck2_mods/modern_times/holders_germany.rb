@@ -49,17 +49,29 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     german_reunification: nil,
   },
   c_weimar: {
+    "1707.5.10" => {
+      name: "Ernest Augustus | Saxe-Weimar-Eisenach",
+      lived: "1688.4.19 – 1748.1.19",
+    },
+    "1748.1.19" => {
+      name: "Ernest Augustus | Saxe-Weimar-Eisenach",
+      lived: "1737.6.2 – 1758.5.28",
+      father: "Ernest Augustus 1",
+    },
     "1758.5.28" => {
       name: "Charles Augustus | Saxe-Weimar-Eisenach",
       lived: "1757.9.3 – 1828.6.14"
+      father: "Ernest Augustus 2",
     },
     "1828.6.14" => {
       name: "Charles Frederick | Saxe-Weimar-Eisenach",
       lived: "1783.2.2 – 1853.7.8",
+      father: "Charles Augustus 1",
     },
     "1853.7.8" => {
       name: "Charles Alexander | Saxe-Weimar-Eisenach",
       lived: "1818.6.24 – 1901.1.5",
+      father: "Charles Frederick 1",
     },
     german_unification: nil,
   },

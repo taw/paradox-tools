@@ -19,7 +19,7 @@ module ModernTimesDatabase::Dates
     ### Actual dates:
 
     napoleon_north_germany_annexation: "1810.12.13", # http://www.napoleon-series.org/research/government/diplomatic/c_annexations.html
-    napoleon_barcelona_annexation: "26 January 1812",
+    napoleon_barcelona_annexation: "1812.1.26",
 
     british_assam: "1765.1.1", # strangely nothing better than year date
     battle_of_buxar: "1764.10.22",

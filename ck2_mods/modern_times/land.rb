@@ -185,6 +185,7 @@ ModernTimesDatabase::LAND = {
   c_lubeck:  { times_immemorial: "c_lubeck", napoleon_north_germany_annexation: "e_france", congress_of_vienna: "c_lubeck", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_bremen:  { times_immemorial: "c_bremen", napoleon_north_germany_annexation: "e_france", congress_of_vienna: "c_bremen", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_hamburg: { times_immemorial: "c_hamburg", napoleon_north_germany_annexation: "e_france", congress_of_vienna: "c_hamburg", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
+  c_weimar: { times_immemorial: "c_weimar", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"}, # 1572-
 
   #########################################
   # READY FOR PEACE OF WESTPHALIA BOOKMARK
@@ -553,7 +554,6 @@ ModernTimesDatabase::LAND = {
   c_bamberg:      { congress_of_vienna: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_wurzburg:     { congress_of_vienna: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
   c_wolgast:      { congress_of_vienna: "k_pomerania", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  c_weimar: { congress_of_vienna: "c_weimar", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_anhalt: { congress_of_vienna: "c_anhalt", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_thuringen:    { congress_of_vienna: "c_thuringen", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_nassau:       { congress_of_vienna: "c_nassau", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
