@@ -18,6 +18,12 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "2004.5.22"   => {name: "Manmohan | Singh", lived: "1932 -"},
     "2014.5.26"   => {name: "Narendra | Modi", lived: "1950 -"},
   },
+  e_rajastan: { # Mughals
+
+  },
+  e_deccan: { # Marathas
+
+  },
   k_lanka: {
     # Prime Ministers
     # Supposedly started 1947.9.24, postdating to 1948.2.4

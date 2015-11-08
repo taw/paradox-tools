@@ -575,15 +575,13 @@ ModernTimesDatabase::LAND = {
   c_leiningen:    { congress_of_vienna: "d_franconia", prussia_annexes_hannover: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
 
   d_chera_nadu:  { travancore_british: "k_tamilakam", india_independence: "e_india" },
+  k_andhra:      { andhra_british: "k_andhra", india_independence: "e_india" },
+  k_karnata:     { fourth_mysore_war: "k_karnata", india_independence: "e_india" },
+  k_tamilakam:   { fourth_mysore_war: "k_tamilakam", india_independence: "e_india" },
+  k_telingana:   { hyderabad_british: "k_telingana", india_independence: "e_india" },
 
   #########################################
-  # READY FOR VICTORIAN ERA BOOKMARK
-
-
-  k_andhra:      { third_maratha_war: "k_andhra", india_independence: "e_india" },
-  k_karnata:     { third_maratha_war: "k_karnata", india_independence: "e_india" },
-  k_telingana:   { third_maratha_war: "k_telingana", india_independence: "e_india" },
-  k_tamilakam:   { third_maratha_war: "k_tamilakam", india_independence: "e_india" },
+  # READY FOR THIRD MARATHA WAR BOOKMARK
 
   k_orissa:      { third_maratha_war: "k_orissa", india_independence: "e_india" },
 }

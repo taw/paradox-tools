@@ -110,12 +110,12 @@ ModernTimesDatabase::TITLES = {
     demesne: ["d_haritanaka"],
   },
   e_rajastan: { # FIXME: name is hax
-    culture: :persian,
+    culture: :hindustani, # persian ?
     religion: :sunni,
     name: "Mughals / Mughal",
   },
   e_deccan: { # FIXME: name is hax
-    culture: :persian,
+    culture: :marathi,
     religion: :hindu,
     name: "Marathas / Maratha",
   },
@@ -766,25 +766,25 @@ ModernTimesDatabase::TITLES = {
   k_andhra: {
     culture: :telugu,
     religion: :hindu,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: { andhra_british: "e_britannia", india_independence: nil },
     autoholders: true,
   },
   k_karnata: {
     culture: :kannada,
     religion: :jain,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: { fourth_mysore_war: "e_britannia", india_independence: nil },
     autoholders: true,
   },
   k_telingana: {
     culture: :telugu,
     religion: :hindu,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: { hyderabad_british: "e_britannia", india_independence: nil },
     autoholders: true,
   },
   k_tamilakam: {
     culture: :tamil,
     religion: :hindu,
-    liege: { travancore_british: "e_britannia", india_independence: nil },
+    liege: { fourth_mysore_war: "e_britannia", india_independence: nil },
     autoholders: true,
   },
   k_orissa: {
