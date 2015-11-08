@@ -22,17 +22,6 @@ class ProtestantismGameModification < CK2GameModification
   end
 
   def setup_protestantism!
-    # %W[religion_icon_strip.dds religion_icon_strip_small.dds religion_icon_strip_big.dds].each do |name|
-    #   create_file! "gfx/interface/#{name}", open("data/modern_times/#{name}", "rb", &:read)
-    # end
-    # generalstuff = ParadoxModFile.new(path: "data/vanilla/generalstuff.gfx").parse!
-    # generalstuff["spriteTypes"].find_all("spriteType").each do |data|
-    #   next unless data["name"] =~ /\AGFX_religion_icon_strip/
-    #   raise unless data["noOfFrames"] = 52
-    #   data["noOfFrames"] = 54
-    # end
-    # create_mod_file! "interface/generalstuff.gfx", generalstuff
-
     create_mod_file! "history/titles/d_protestant.txt", PropertyList[
       Date.parse("0020.1.1"), PropertyList["active", false],
     ]
@@ -52,6 +41,57 @@ class ProtestantismGameModification < CK2GameModification
       # Cannot be held as a secondary title
       primary = yes
       dynasty_title_names = no # Will not be named "Seljuk", etc.
+    }'
+    create_file! "decisions/modern_times_protesant.txt",
+    'decisions = {
+      create_protestant_papacy = {
+        is_high_prio = yes
+        potential = {
+          religion = protestant
+          NOT = { is_title_active = d_protestant }
+        }
+
+        allow = {
+          piety = 1000
+          OR = {
+            owns = 333 # Rome
+            any_realm_lord = {
+              owns = 333
+            }
+          }
+        }
+        effect = {
+          activate_title = { title = d_protestant status = yes }
+          hidden_tooltip = {
+            create_random_priest = {
+              dynasty = none
+              random_traits = yes
+            }
+            new_character = {
+              d_protestant = {
+                grant_title = PREV
+              }
+              wealth = 500
+              opinion = {
+                who = ROOT
+                modifier = opinion_creator_of_rel_heal
+              }
+            }
+
+            religion_authority = {
+              modifier = papacy_instituted
+              years = 20
+            }
+          }
+          piety = 1000
+        }
+            revoke_allowed = {
+          always = no
+        }
+            ai_will_do = {
+          factor = 1
+        }
+      }
     }'
     create_mod_file! "common/religions/01_modern_times.txt", PropertyList[
       "christian", PropertyList[
@@ -96,15 +136,17 @@ class ProtestantismGameModification < CK2GameModification
         ],
       ],
     ]
-    localization! "modern_times_religions",
+    localization!("modern_times_religions",
       "protestant" => "Protestant",
       "protestant_DESC" => "Lutheran/Anglican branch of Protestantism",
       "d_protestant" => "Ecumenical Primacy",
       "d_protestant_adj" => "Primatial",
       "PROTESTANT_PRIMATE" => "Ecumenical Primate",
       "reformed" => "Reformed",
-      "reformed_DESC" => "Reformed/Calvinist branch of Protestantism"
-
+      "reformed_DESC" => "Reformed/Calvinist branch of Protestantism",
+      "create_protestant_papacy" => "Establish Ecumenical Primate in Rome",
+      "create_protestant_papacy_desc" => "With Rome under Protestant control, pious Protestant ruler can establish Ecumenical Primate as leader of Protestants living in countries without established national churches.",
+    )
     add_holy_sites!(
       "c_kent"      => ["protestant", "reformed"],
       "c_roma"      => ["protestant", "reformed"],
@@ -159,34 +201,6 @@ class ProtestantismGameModification < CK2GameModification
         "ai_will_do", PropertyList["factor", 1],
       ],
     ]
-    # decisions << Property[
-    #   "end_peace_of_westphalia_debug", PropertyList[
-    #     "is_high_prio", true,
-    #     "allow", PropertyList[
-    #       "ai", false,
-    #       "NOT", PropertyList["has_global_flag", "end_of_peace_of_westphalia"],
-    #     ],
-    #     "effect", PropertyList[
-    #       "set_global_flag", "end_of_peace_of_westphalia",
-    #     ],
-    #     "revoke_allowed", PropertyList["always", false],
-    #     "ai_will_do", PropertyList["factor", 1],
-    #   ],
-    # ]
-    # decisions << Property[
-    #   "resume_peace_of_westphalia_debug", PropertyList[
-    #     "is_high_prio", true,
-    #     "allow", PropertyList[
-    #       "ai", false,
-    #       "has_global_flag", "end_of_peace_of_westphalia",
-    #     ],
-    #     "effect", PropertyList[
-    #       "clr_global_flag", "end_of_peace_of_westphalia",
-    #     ],
-    #     "revoke_allowed", PropertyList["always", false],
-    #     "ai_will_do", PropertyList["factor", 1],
-    #   ],
-    # ]
     create_mod_file! "decisions/peace_of_westphalia.txt", PropertyList[
       "decisions", PropertyList[*decisions],
     ]
