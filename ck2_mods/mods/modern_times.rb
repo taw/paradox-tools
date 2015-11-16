@@ -468,15 +468,34 @@ class ModernTimesGameModification < CK2GameModification
       end
     end
     create_mod_file! "common/on_actions/10_modern_times.txt", PropertyList[
-      "on_startup", PropertyList[
-        "events", ["modern_times_setup.1", "modern_times_setup.2", "modern_times_setup.3"],
+      "on_chronicle_start", PropertyList[
+        "events", ["modern_times_setup.1"],
       ],
     ]
     create_mod_file! "events/modern_times_setup.txt", PropertyList[
       "namespace", "modern_times_setup",
-      # Law setup
+      # Trigger
       "character_event", PropertyList[
         "id", "modern_times_setup.1",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList["ai", false],
+        "immediate", PropertyList[
+          "character_event", PropertyList["id", "modern_times_setup.11"],
+          # Player is exempt from content law
+          # "character_event", PropertyList["id", "modern_times_setup.12"],
+          "character_event", PropertyList["id", "modern_times_setup.13"],
+          "any_playable_ruler", PropertyList[
+            "character_event", PropertyList["id", "modern_times_setup.11"],
+            "character_event", PropertyList["id", "modern_times_setup.12"],
+            "character_event", PropertyList["id", "modern_times_setup.13"],
+          ],
+        ],
+      ],
+      # Law setup
+      "character_event", PropertyList[
+        "id", "modern_times_setup.11",
         "hide_window", true,
         "is_triggered_only", true,
         "only_rulers", true,
@@ -496,7 +515,7 @@ class ModernTimesGameModification < CK2GameModification
       # Indian vassals should be content by law of British Empire
       # This just delays rebellion a generation, but that's exactly what we want
       "character_event", PropertyList[
-        "id", "modern_times_setup.2",
+        "id", "modern_times_setup.12",
         "hide_window", true,
         "is_triggered_only", true,
         "only_rulers", true,
@@ -510,7 +529,7 @@ class ModernTimesGameModification < CK2GameModification
         ],
       ],
       "character_event", PropertyList[
-        "id", "modern_times_setup.3",
+        "id", "modern_times_setup.13",
         "hide_window", true,
         "is_triggered_only", true,
         "only_rulers", true,
