@@ -1,4 +1,3 @@
-# TODO: cultural retinue (like Marines or something?)
 class AmericanCultureGameModification < CK2GameModification
   def surnames
     # https://en.wikipedia.org/wiki/List_of_most_common_surnames_in_North_America#United_States
@@ -349,6 +348,33 @@ class AmericanCultureGameModification < CK2GameModification
     create_mod_file!("common/dynasties/10_american.txt", dynasties)
   end
 
+  def create_retinues!
+    # Just relabelled North Germanic "Housecarls"
+    retinue = parse("common/retinue_subunits/00_retinue_subunits.txt")["RETTYPE_CUL_NORTHGER"]
+    retinue["potential"] = PropertyList[
+      "is_nomadic", false,
+      "culture", "american",
+    ]
+    create_mod_file! "common/retinue_subunits/10_american.txt", PropertyList[
+      "RETTYPE_CUL_AMERICAN", retinue,
+    ]
+  end
+
+  def create_buildings!
+    buildings = PropertyList[]
+    parse("common/buildings/00_CastleCulture.txt")["castle"].each do |name, building|
+      next unless name =~ /\Aca_culture_group_north_germanic_(\d+)\z/
+      level = $1.to_i
+      building["potential"] = PropertyList["FROM", PropertyList["culture", "american"]]
+      building["desc"] = "ca_culture_american_1_desc"
+      if building["upgrades_from"]
+        building["upgrades_from"] = "ca_culture_american_#{level-1}"
+      end
+      buildings.add! "ca_culture_american_#{level}", building
+    end
+    create_mod_file!("common/buildings/10_american.txt", PropertyList["castle", buildings])
+  end
+
   def apply!
     create_mod_file!("common/cultures/10_american.txt", PropertyList[
       "west_germanic", PropertyList[
@@ -356,7 +382,15 @@ class AmericanCultureGameModification < CK2GameModification
       ]
     ])
     create_dynasties!
+    create_retinues!
+    create_buildings!
     localization! "modern_times_american",
-      "american" => "American"
+      "american" => "American",
+      "RETTYPE_CUL_AMERICAN" => "Marines",
+      "ca_culture_american_1" => "Marines Camp",
+      "ca_culture_american_2" => "Marines Camp",
+      "ca_culture_american_3" => "Marines Camp",
+      "ca_culture_american_4" => "Marines Camp",
+      "ca_culture_american_1_desc" => "United States Marine Corps is a branch of the United States Armed Forces responsible for providing power projection to rapidly deliver combined-arms task forces on land, at sea and in the air."
   end
 end

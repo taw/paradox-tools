@@ -139,6 +139,33 @@ class CanadianCultureGameModification < AmericanCultureGameModification
     create_mod_file!("common/dynasties/10_canadian.txt", dynasties)
   end
 
+  def create_retinues!
+    # Just relabelled Altaic "Horse Archer"
+    retinue = parse("common/retinue_subunits/00_retinue_subunits.txt")["RETTYPE_CUL_ALTAIC"]
+    retinue["potential"] = PropertyList[
+      "is_nomadic", false,
+      "culture", "canadian",
+    ]
+    create_mod_file! "common/retinue_subunits/10_canadian.txt", PropertyList[
+      "RETTYPE_CUL_CANADIAN", retinue,
+    ]
+  end
+
+  def create_buildings!
+    buildings = PropertyList[]
+    parse("common/buildings/00_CastleCulture.txt")["castle"].each do |name, building|
+      next unless name =~ /\Aca_culture_group_altaic_(\d+)\z/
+      level = $1.to_i
+      building["potential"] = PropertyList["FROM", PropertyList["culture", "canadian"]]
+      building["desc"] = "ca_culture_canadian_1_desc"
+      if building["upgrades_from"]
+        building["upgrades_from"] = "ca_culture_canadian_#{level-1}"
+      end
+      buildings.add! "ca_culture_canadian_#{level}", building
+    end
+    create_mod_file!("common/buildings/10_canadian.txt", PropertyList["castle", buildings])
+  end
+
   def apply!
     create_mod_file!("common/cultures/10_canadian.txt", PropertyList[
       "west_germanic", PropertyList[
@@ -146,7 +173,15 @@ class CanadianCultureGameModification < AmericanCultureGameModification
       ]
     ])
     create_dynasties!
+    create_retinues!
+    create_buildings!
     localization! "modern_times_canadian",
-      "canadian" => "Canadian"
+      "canadian" => "Canadian",
+      "RETTYPE_CUL_CANADIAN" => "Mounties",
+      "ca_culture_canadian_1" => "Mounties Riding Ground",
+      "ca_culture_canadian_2" => "Mounties Riding Ground",
+      "ca_culture_canadian_3" => "Mounties Riding Ground",
+      "ca_culture_canadian_4" => "Mounties Riding Ground",
+      "ca_culture_canadian_1_desc" => "Royal Canadian Mounted Police enforces Canadian law - when necessary also abroad."
   end
 end
