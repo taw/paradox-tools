@@ -1,4 +1,4 @@
-# TODO: cultural retinue
+# TODO: cultural retinue (like Marines or something?)
 class AmericanCultureGameModification < CK2GameModification
   def surnames
     # https://en.wikipedia.org/wiki/List_of_most_common_surnames_in_North_America#United_States

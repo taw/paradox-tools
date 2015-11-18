@@ -18,6 +18,7 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          ProtestantismGameModification,
                          UkrainianCultureGameModification,
                          AmericanCultureGameModification,
+                         CanadianCultureGameModification,
                          ModernTimesGameModification,
                          CK2TweaksGameModification,
                          BecomeRepublicGameModification,
