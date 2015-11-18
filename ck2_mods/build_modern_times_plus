@@ -12,7 +12,8 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
       "output/modern_times_plus",
     )
   end
-  def build_mod_files!
+  # Should always be same as in ModernTimesModBuilder
+  def apply_modern_times!
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
                          ProtestantismGameModification,
@@ -20,8 +21,10 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          AmericanCultureGameModification,
                          CanadianCultureGameModification,
                          BrazilianCultureGameModification,
-                         ModernTimesGameModification,
-                         CK2TweaksGameModification,
+                         ModernTimesGameModification
+  end
+  def apply_ck2tweaks!
+    apply_modifications! CK2TweaksGameModification,
                          BecomeRepublicGameModification,
                          NoDynasticNamesGameModification,
                          NoLocalizedRanksGameModification,
@@ -32,6 +35,10 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          # OldStyleBanishmentGameModification,
                          FactionResistanceGameModification,
                          BiggerWarsBoxGameModification
+  end
+  def build_mod_files!
+    apply_modern_times!
+    apply_ck2tweaks!
     create_mod_descriptor!(
       name: "Modern Times Plus",
       path: "mod/modern_times_plus",

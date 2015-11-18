@@ -12,7 +12,7 @@ class ModernTimesModBuilder < ParadoxModBuilder
       "output/modern_times",
     )
   end
-  def build_mod_files!
+  def apply_modern_times!
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
                          ProtestantismGameModification,
@@ -21,7 +21,9 @@ class ModernTimesModBuilder < ParadoxModBuilder
                          CanadianCultureGameModification,
                          BrazilianCultureGameModification,
                          ModernTimesGameModification
-
+  end
+  def build_mod_files!
+    apply_modern_times!
     create_mod_descriptor!(
       name: "Modern Times",
       path: "mod/modern_times",
