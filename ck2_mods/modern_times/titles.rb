@@ -469,14 +469,14 @@ ModernTimesDatabase::TITLES = {
     liege: { annexation_georgia: "e_russia", fall_soviet_union: nil },
   },
   k_ruthenia: {
-    culture: :russian, # :volhynian but it would autoconvert anyway
+    culture: :ukrainian, # Unique Ukrainian culture
     religion: :orthodox,
     name: "Ukraine / Ukrainian",
     liege: { end_ww1: "e_russia", fall_soviet_union: nil },
     demesne: ["d_pereyaslavl"],
   },
   d_vitebsk: {
-    culture: :russian, # :severian but it would autoconvert anyway
+    culture: :ukrainian, # Consider giving them a culture too?
     religion: :orthodox,
     capital: :c_minsk,
     name: "Belarus / Belarussian",

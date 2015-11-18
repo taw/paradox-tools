@@ -11,12 +11,14 @@ class CultureManager
     @female_names = {}
     @dynasties = {}
 
-    @builder.parse("common/cultures/00_cultures.txt").each do |group_name, group|
-      group.each do |name, culture|
-        next unless culture.is_a?(PropertyList)
-        @male_names[name]   = culture["male_names"].map{|n| n.sub(/_.*/, "")}
-        @female_names[name] = culture["female_names"].map{|n| n.sub(/_.*/, "")}
-        @dynasties[name]    = []
+    @builder.glob("common/cultures/*.txt").each do |path|
+      @builder.parse(path).each do |group_name, group|
+        group.each do |name, culture|
+          next unless culture.is_a?(PropertyList)
+          @male_names[name]   = culture["male_names"].map{|n| n.sub(/_.*/, "")}
+          @female_names[name] = culture["female_names"].map{|n| n.sub(/_.*/, "")}
+          @dynasties[name]    = []
+        end
       end
     end
     @builder.parse("common/dynasties/00_dynasties.txt").each do |id, dynasty|
@@ -30,6 +32,7 @@ class CultureManager
   end
 
   def random_dynasty(culture, rng)
+    culture = "volhynian" if culture == "ukrainian"
     rng.sample(@dynasties.fetch(culture))
   end
 

@@ -1,6 +1,5 @@
 ModernTimesDatabase::CULTURES = {
   "d_ascalon"      => "ashkenazi",
-  "d_crimea"       => "russian",
   "d_sevilla"      => "castillan",
   "d_granada"      => "castillan",
   "c_algeciras"    => "english",
@@ -16,12 +15,12 @@ ModernTimesDatabase::CULTURES = {
   "d_samos"        => "greek",
   "d_adrianopolis" => "greek",
   "d_moldau"       => "romanian",
-  "d_kiev"         => "russian",
-  "d_pereyaslavl"  => "russian",
   "d_silesia"      => "polish",
-  # Until we get Ukrainian culture
-  "d_galich"       => "polish",
-  "d_volhynia"     => "polish",
+  "d_ryazan"       => "russian",
+  "d_novgorod-seversk" => "russian",
+  "d_smolensk"         => "russian",
+  "k_ruthenia"     => "ukrainian",
+  "d_crimea"       => "ukrainian",
   # Just remove mongols, all of these horde cultures feel temporary
   "k_cuman"        => "cuman",
   "k_turkestan"    => "cuman",

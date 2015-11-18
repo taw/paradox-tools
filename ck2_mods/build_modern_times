@@ -16,6 +16,7 @@ class ModernTimesModBuilder < ParadoxModBuilder
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
                          ProtestantismGameModification,
+                         UkrainianCultureGameModification,
                          ModernTimesGameModification
 
     create_mod_descriptor!(
