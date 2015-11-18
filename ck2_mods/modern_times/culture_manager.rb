@@ -21,9 +21,11 @@ class CultureManager
         end
       end
     end
-    @builder.parse("common/dynasties/00_dynasties.txt").each do |id, dynasty|
-      culture = dynasty["culture"] or next
-      @dynasties[culture] << id
+    @builder.glob("common/dynasties/*.txt").each do |path|
+      @builder.parse(path).each do |id, dynasty|
+        culture = dynasty["culture"] or next
+        @dynasties[culture] << id
+      end
     end
   end
 

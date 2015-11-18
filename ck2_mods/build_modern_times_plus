@@ -17,6 +17,7 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          NoDynasticNamesGameModification,
                          ProtestantismGameModification,
                          UkrainianCultureGameModification,
+                         AmericanCultureGameModification,
                          ModernTimesGameModification,
                          CK2TweaksGameModification,
                          BecomeRepublicGameModification,

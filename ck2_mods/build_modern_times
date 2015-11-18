@@ -17,6 +17,7 @@ class ModernTimesModBuilder < ParadoxModBuilder
                          NoDynasticNamesGameModification,
                          ProtestantismGameModification,
                          UkrainianCultureGameModification,
+                         AmericanCultureGameModification,
                          ModernTimesGameModification
 
     create_mod_descriptor!(
