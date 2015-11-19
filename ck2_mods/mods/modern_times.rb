@@ -817,6 +817,46 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def create_new_titles!
+    create_mod_file! "common/landed_titles/modern_times_landed.txt", PropertyList[
+      "e_united_states", PropertyList[
+        "color", [30, 120, 220],
+        "color2", [255, 255, 0],
+        "short_name", "yes",
+        "landless", true,
+        "culture", "american",
+        "religion", "protestant",
+      ],
+      "e_canada", PropertyList[
+        "color", [240, 120, 70],
+        "color2", [255, 255, 255],
+        "landless", true,
+        "culture", "canadian",
+        "religion", "protestant",
+      ],
+      "e_brazil", PropertyList[
+        "color", [255, 240, 200],
+        "color2", [255, 255, 255],
+        "landless", true,
+        "culture", "brazilian",
+        "religion", "catholic",
+      ],
+    ]
+    ["e_united_states", "e_canada", "e_brazil"].each do |title|
+      create_mod_file! "history/titles/#{title}.txt", PropertyList[
+        Date.parse("0020.1.1"), PropertyList["active", false, "law", "succ_primogeniture"],
+      ]
+      create_file! "gfx/flags/#{title}.tga", open("data/flags/#{title}.tga", "rb", &:read)
+    end
+    localization! "modern_times_new_titles",
+      "e_united_states" => "United States",
+      "e_united_states_adj" => "American",
+      "e_canada" => "Canada",
+      "e_canada_adj" => "Canadian",
+      "e_brazil" => "Brazil",
+      "e_brazil_adj" => "Brazilian"
+  end
+
   def apply!
     @warnings = []
 
@@ -832,6 +872,7 @@ class ModernTimesGameModification < CK2GameModification
     @character_manager = CharacterManager.new(self)
     @regional_vassals = {}
     @dynasties        = {}
+    create_new_titles!
     initialize_empty_title_histories!
     setup_title_history!
     setup_title_names!

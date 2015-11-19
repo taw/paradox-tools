@@ -25,7 +25,7 @@ class ProtestantismGameModification < CK2GameModification
     create_mod_file! "history/titles/d_protestant.txt", PropertyList[
       Date.parse("0020.1.1"), PropertyList["active", false],
     ]
-    create_file! "common/landed_titles/modern_times.txt",
+    create_file! "common/landed_titles/modern_times_protestant.txt",
     'd_protestant = {
       color={ 180 137 97 }
       color2={ 220 220 0 }
