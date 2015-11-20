@@ -587,6 +587,18 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def allow_more_commanders!
+    # Contrary to what game claims, it's not possible to assign marshal,
+    # so it's really hidden -1
+    override_defines_lua!("more_commanders",
+      "NMilitary.MAX_COMMANDERS_BARON"   => 1,  #  1,
+      "NMilitary.MAX_COMMANDERS_COUNT"   => 3,  #  2,
+      "NMilitary.MAX_COMMANDERS_DUKE"    => 6,  #  4,
+      "NMilitary.MAX_COMMANDERS_KING"    => 9,  #  6,
+      "NMilitary.MAX_COMMANDERS_EMPEROR" => 12, #  8,
+    )
+  end
+
   def apply!
     ### General fixes:
     allow_any_number_of_different_holding_types!
@@ -618,6 +630,7 @@ class CK2TweaksGameModification < CK2GameModification
     easier_title_creation!
     send_missionaries_to_tributaries!
     # TODO: de jure drift by title_decisions
+    allow_more_commanders!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
