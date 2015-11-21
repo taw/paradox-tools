@@ -599,6 +599,12 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def nerf_demand_conversion!
+    override_defines_lua!("nerf_demand_conversion",
+      "NDiplomacy.DEMAND_RELIGIOUS_CONVERSION_INTERACTION_PIETY" => 25,
+    )
+  end
+
   def apply!
     ### General fixes:
     allow_any_number_of_different_holding_types!
@@ -631,6 +637,7 @@ class CK2TweaksGameModification < CK2GameModification
     send_missionaries_to_tributaries!
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
+    nerf_demand_conversion!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
