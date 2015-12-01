@@ -793,7 +793,7 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
-  def murican_invasion!
+  def mexican_invasion!
     patch_mod_file!("events/sunset_invasion.txt") do |node|
       # That's the only one that blocks it
       explorer_event = node.find_all("province_event")[0]
@@ -801,6 +801,78 @@ class ModernTimesGameModification < CK2GameModification
       explorer_event["trigger"]["NOT"]["year"] = 1990
       explorer_event["mean_time_to_happen"]["modifier"]["year"] = 1940
     end
+  end
+
+  def canada_invasion!
+    # Targets (Russia, Norway, Sweden, Denmark, UK):
+    # - oslo
+    # - stockholm
+    # - astrangels
+    # - st. petersburg
+    # - edinborough / bristol
+    # - jylland
+    # Years: 2000 +? What was Hans Island timing? It should be oil related
+    # generally land not on top of capital, but a bit away
+
+    create_mod_file!("events/modern_times_canada_invasion.txt", CanadaInvasionEvents)
+    localization!("canada_invasion",
+      "EVTDESC_CANADA_001" => "Canadian envoys arrive on important diplomatic mission",
+      "EVTOPTA_CANADA_001" => "Such nice and polite people",
+      "EVTDESC_CANADA_002" => "Canadian embassy declares whole Arctic as Canadian, threatens severe consequences to any European country wishing to challenge this claim.",
+      "EVTOPTA_CANADA_002" => "I'm sure this will get resolved peacefully somehow",
+      "EVTDESC_CANADA_003" => "With no agreement on Arctic ownership, Canadians decided to launch surprise attack on Europe",
+      "EVTOPTA_CANADA_003" => "We'll push them back into the cold ocean!",
+      "EVTNAME_CANADA_004" => "Canadian Invasion",
+
+      # option is broken here...
+
+      "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of ululating warriors in weird armor sporting feathers and bone. These invaders from beyond the sunset worship hellish demon gods, sacrificing the populations of entire towns on altars erected on top of pyramid shaped wooden edifices. They cut their victims' hearts out, carefully flay them, and let their devil priests wear the skins for many days...",
+      "EVTOPTA_CANADA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+
+      "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Aztec scourge has reached our shores!",
+      "EVTOPTA_CANADA_005" => "Saddle my Horse!",
+      "EVTNAME_CANADA_006" => "Canadian Invasion",
+      "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Aztecs has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear of the charnel altars of the foreign demon gods. The dreadful lord of the invaders has allegedly taken a vow to conquer the whole world in the name of Huitzilopochtli, the Aztec god of the sun, and of war...",
+      "EVTOPTA_CANADA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+
+      # 100, 105
+    )
+
+  end
+
+  def brazil_invasion! # TODO
+    # years: 1880+ ??? what was timing of Brazil Empire?
+    # Targets:
+    # - porto
+    # - granada
+    # - galicia
+    # - morocco
+    # - goa
+    # - barcelona
+    # - navarra
+
+    # - kingdom/empire level country only as target?
+    # anything else on the map Portugal ever held?
+    # not France / UK ? (Gibraltar / Goa taken by Brits are both silly to invade early)
+
+    create_mod_file!("events/modern_times_brazil_invasion.txt", BrazilInvasionEvents)
+  end
+
+  def usa_invasion! # TODO
+    # years: 1950 +
+    # Targets:
+    # - basra
+    # - mecca
+    # - kuwait
+    # - Syria/Lebannon
+    # - Suez
+    # - Hormuz
+    # - Benghazi
+
+    # - kingdom/empire level country only as target? is Lebanon OK as duchy? probably not
+    # muslim target only
+
+    create_mod_file!("events/modern_times_america_invasion.txt", UsaInvasionEvents)
   end
 
   def fix_russia_colors!
@@ -880,7 +952,10 @@ class ModernTimesGameModification < CK2GameModification
     save_characters!
     save_dynasties!
     move_de_jure_capitals!
-    murican_invasion!
+    mexican_invasion!
+    canada_invasion!
+    brazil_invasion!
+    usa_invasion!
     fix_russia_colors!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
