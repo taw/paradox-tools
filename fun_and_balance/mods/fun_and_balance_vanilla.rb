@@ -2,6 +2,10 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
+    patch_file!("common/opinion_modifiers/00_opinion_modifiers.txt", force_create: true) do |content|
+      content.sub("they_force_vassalized_us = [", "they_force_vassalized_us = {")
+    end
+
     patch_defines_lua!([
       ["SCALED_TRUCE_YEARS", 10, 0],
       ["ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 1],
@@ -29,7 +33,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
       ["DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
-      ["MAX_DISTANCE_TO_OWNER_AREA", 200, 1000],
+      ["MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["RULER_BASE_SKILL", 2, 3],
       ["IDEAS_MAX_LEVEL", 4, 10],
       ["IDEAS_PERCENTAGE_LIMIT", 50, 100],

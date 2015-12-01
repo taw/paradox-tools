@@ -234,7 +234,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def power_projection_tweaks!
     patch_mod_file!("common/powerprojection/00_static.txt") do |node|
       modify_node! node,
-        ["eclipsed_rival",            "power",          5,  30],
+        ["eclipsed_rival",            "power",         10,  30],
         ["eclipsed_rival",            "max",           30, 100],
         ["declared_war_at_rival",     "yearly_decay",   1, 0.5],
         ["joined_war_against_rival",  "yearly_decay",   1, 0.5],
