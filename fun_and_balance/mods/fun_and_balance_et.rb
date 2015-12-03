@@ -8,8 +8,8 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
   end
 
   def apply!
-    patch_file!("common/ideas/et_country_ideas.txt", force_create: true) do |content|
-      content.sub("defence_from_crusades - {", "defence_from_crusades = {")
+    patch_file!("common/opinion_modifiers/00_opinion_modifiers.txt", force_create: true) do |content|
+      content.sub("they_force_vassalized_us = [", "they_force_vassalized_us = {")
     end
 
     patch_defines_lua!([
@@ -30,7 +30,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
       ["PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
       ["VASSAL_FABRICATE_CLAIMS", 1, 1],
-      ["AI_BUY_PROVINCE_SUBJECT_MAX_OE", 50, 50],
       ["VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 10000],
       ["PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
@@ -41,7 +40,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
       ["DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
-      ["MAX_DISTANCE_TO_OWNER_AREA", 200, 1000],
+      ["MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["RULER_BASE_SKILL", 2, 3],
       ["IDEAS_MAX_LEVEL", 4, 10],
       ["IDEAS_PERCENTAGE_LIMIT", 50, 100],
