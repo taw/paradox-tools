@@ -808,15 +808,11 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def canada_invasion!
-    # Targets (Russia, Norway, Sweden, Denmark, UK):
-    # - oslo
-    # - stockholm
-    # - astrangels
-    # - st. petersburg
-    # - edinborough / bristol
-    # - jylland
     # It should be oil related
     # generally land not on top of capital, but a bit away
+
+    leader = CanadaInvasionEvents.find_all("province_event")[0]["immediate"]["k_papal_state"]["holder_scope"]["create_random_soldier"]
+    leader["dynasty"] = new_dynasty("Harper", "canadian")
 
     create_mod_file!("events/modern_times_canada_invasion.txt", CanadaInvasionEvents)
     localization!("canada_invasion",
@@ -845,36 +841,45 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def brazil_invasion! # TODO
-    # Targets:
-    # - porto
-    # - granada
-    # - galicia
-    # - morocco
-    # - goa
-    # - barcelona
-    # - navarra
-
     # - kingdom/empire level country only as target?
-    # anything else on the map Portugal ever held?
     # not France / UK ? (Gibraltar / Goa taken by Brits are both silly to invade early)
 
+    leader = BrazilInvasionEvents.find_all("province_event")[0]["immediate"]["k_papal_state"]["holder_scope"]["create_random_soldier"]
+    leader["dynasty"] = new_dynasty("Braganza", "portuguese")
     create_mod_file!("events/modern_times_brazil_invasion.txt", BrazilInvasionEvents)
+
+    localization!("canada_invasion",
+      "EVTDESC_BRAZIL_001" => "Envoys from Emperor of Brazil arrive on important diplomatic mission",
+      "EVTOPTA_BRAZIL_001" => "They have kings and emperors on the other side of Atlantic as well?",
+      "EVTDESC_BRAZIL_002" => "Emperor of Brazil presents his dynastic claim to throne of Portugal, and all lands which were ever Portuguese, and demands immediate answer",
+      "EVTOPTA_BRAZIL_002" => "Don't we have enough succession crises in Europe?",
+      "EVTDESC_BRAZIL_003" => "With the Portuguese showing little interest in accepting Brazilian claims, Empire of Brazil declares war!",
+      "EVTOPTA_BRAZIL_003" => "We'll push them back into the cold ocean!",
+      "EVTNAME_BRAZIL_004" => "Brazilian Invasion",
+      # ...
+    )
   end
 
   def usa_invasion! # TODO
-    # Targets:
-    # - basra
-    # - mecca
-    # - kuwait
-    # - Syria/Lebannon
-    # - Suez
-    # - Hormuz
-    # - Benghazi
-
     # - kingdom/empire level country only as target? is Lebanon OK as duchy? probably not
     # muslim target only
 
+    leader = UsaInvasionEvents.find_all("province_event")[0]["immediate"]["k_papal_state"]["holder_scope"]["create_random_soldier"]
+    leader["name"] = "Richard"
+    leader["dynasty"] = new_dynasty("Cheney", "american")
+
     create_mod_file!("events/modern_times_america_invasion.txt", UsaInvasionEvents)
+
+    localization!("canada_invasion",
+      "EVTDESC_USA_001" => "Envoys from United States arrive on important diplomatic mission with message of democracy",
+      "EVTOPTA_USA_001" => "What is this democracy thing? I thought it died out in ancient Greece...",
+      "EVTDESC_USA_002" => "American envoys demand installation of democracy and immediate ending of all Weapons of Mass Destruction development",
+      "EVTOPTA_USA_002" => "Weapons of Mass what? No such thing exists in Modern Times...",
+      "EVTDESC_USA_003" => "Not giving much time for diplomacy, Americans decided to advance case for democracy and WMD-free world by force!",
+      "EVTOPTA_USA_003" => "We'll push them back into the cold ocean!",
+      "EVTNAME_USA_004" => "American Invasion",
+      # ...
+    )
   end
 
   def fix_russia_colors!
@@ -952,12 +957,12 @@ class ModernTimesGameModification < CK2GameModification
     setup_title_names!
     setup_vassal_dukes!
     save_characters!
-    save_dynasties!
     move_de_jure_capitals!
     mexican_invasion!
     canada_invasion!
     brazil_invasion!
     usa_invasion!
+    save_dynasties!
     fix_russia_colors!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
