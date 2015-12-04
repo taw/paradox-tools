@@ -795,11 +795,15 @@ class ModernTimesGameModification < CK2GameModification
 
   def mexican_invasion!
     patch_mod_file!("events/sunset_invasion.txt") do |node|
-      # That's the only one that blocks it
-      explorer_event = node.find_all("province_event")[0]
-      explorer_event["trigger"]["year"] = 1890
-      explorer_event["trigger"]["NOT"]["year"] = 1990
-      explorer_event["mean_time_to_happen"]["modifier"]["year"] = 1940
+      province_events = node.find_all("province_event")
+      # Minimum date
+      province_events.each do |ev|
+        ev["trigger"]["year"] = 1890
+      end
+      # Increase chance at date
+      province_events[0]["mean_time_to_happen"]["modifier"]["year"] = 1940
+      # Max date
+      province_events[0]["trigger"]["NOT"]["year"] = 1990
     end
   end
 
@@ -811,7 +815,7 @@ class ModernTimesGameModification < CK2GameModification
     # - st. petersburg
     # - edinborough / bristol
     # - jylland
-    # Years: 2000 +? What was Hans Island timing? It should be oil related
+    # It should be oil related
     # generally land not on top of capital, but a bit away
 
     create_mod_file!("events/modern_times_canada_invasion.txt", CanadaInvasionEvents)
@@ -829,7 +833,7 @@ class ModernTimesGameModification < CK2GameModification
       "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of ululating warriors in weird armor sporting feathers and bone. These invaders from beyond the sunset worship hellish demon gods, sacrificing the populations of entire towns on altars erected on top of pyramid shaped wooden edifices. They cut their victims' hearts out, carefully flay them, and let their devil priests wear the skins for many days...",
       "EVTOPTA_CANADA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
 
-      "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Aztec scourge has reached our shores!",
+      "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Canadian scourge has reached our shores!",
       "EVTOPTA_CANADA_005" => "Saddle my Horse!",
       "EVTNAME_CANADA_006" => "Canadian Invasion",
       "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Aztecs has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear of the charnel altars of the foreign demon gods. The dreadful lord of the invaders has allegedly taken a vow to conquer the whole world in the name of Huitzilopochtli, the Aztec god of the sun, and of war...",
@@ -841,7 +845,6 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def brazil_invasion! # TODO
-    # years: 1880+ ??? what was timing of Brazil Empire?
     # Targets:
     # - porto
     # - granada
@@ -859,7 +862,6 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def usa_invasion! # TODO
-    # years: 1950 +
     # Targets:
     # - basra
     # - mecca

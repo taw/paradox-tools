@@ -7,8 +7,8 @@ BrazilInvasionEvents = PropertyList[
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
       "has_dlc", "Sunset Invasion",
-      "year", 1250,
-      "NOT", PropertyList["year", 1350],
+      "year", 1880,
+      "NOT", PropertyList["year", 1980],
       "NOT", PropertyList["has_global_flag", "brazilian_explorers"],
       "OR", PropertyList[
         "province_id", 1,
@@ -51,7 +51,7 @@ BrazilInvasionEvents = PropertyList[
       "months", 720,
       "modifier", PropertyList[
         "factor", 0.5,
-        "year", 1320,
+        "year", 1940,
       ],
     ],
     "option", PropertyList["name", "EVTOPTA_BRAZIL_001"],
@@ -74,7 +74,7 @@ BrazilInvasionEvents = PropertyList[
     "picture", "GFX_evt_battle_mesoamerican",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1250,
+      "year", 1880,
       "NOT", PropertyList["has_global_flag", "brazilian_arrival"],
       "had_province_flag", PropertyList[
         "flag", "brazilian_explorers",
@@ -604,7 +604,7 @@ BrazilInvasionEvents = PropertyList[
     "picture", "GFX_evt_aztec_arrival",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1250,
+      "year", 1880,
       "has_global_flag", "brazilian_arrival",
       "NOT", PropertyList["has_global_flag", "brazilian_arrival_2"],
       "OR", PropertyList[

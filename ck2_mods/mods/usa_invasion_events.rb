@@ -7,8 +7,8 @@ UsaInvasionEvents = PropertyList[
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
       "has_dlc", "Sunset Invasion",
-      "year", 1250,
-      "NOT", PropertyList["year", 1350],
+      "year", 1950,
+      "NOT", PropertyList["year", 2050],
       "NOT", PropertyList["has_global_flag", "american_explorers"],
       "OR", PropertyList[
         "province_id", 1,
@@ -27,7 +27,7 @@ UsaInvasionEvents = PropertyList[
       "set_global_flag", "american_explorers",
       "set_province_flag", "american_explorers",
       "activate_title", PropertyList[
-        "title", "e_usa",
+        "title", "e_united_states",
         "status", true,
       ],
       "k_papal_state", PropertyList["holder_scope", PropertyList[
@@ -38,7 +38,7 @@ UsaInvasionEvents = PropertyList[
           "religion", "protestant",
         ],
         "new_character", PropertyList[
-          "e_usa", PropertyList["grant_title", "PREV"],
+          "e_united_states", PropertyList["grant_title", "PREV"],
           "set_defacto_liege", "THIS",
           "narrative_event", PropertyList[
             "id", "USA.2",
@@ -51,7 +51,7 @@ UsaInvasionEvents = PropertyList[
       "months", 720,
       "modifier", PropertyList[
         "factor", 0.5,
-        "year", 1320,
+        "year", 2000,
       ],
     ],
     "option", PropertyList["name", "EVTOPTA_USA_001"],
@@ -65,7 +65,7 @@ UsaInvasionEvents = PropertyList[
     "border", "GFX_event_narrative_frame_war",
     "is_triggered_only", true,
     "major_trigger", PropertyList["FROM", PropertyList["owner", PropertyList["NOT", PropertyList["character", "PREVPREV"]]]],
-    "immediate", PropertyList["e_usa", PropertyList["holder_scope", PropertyList["character_event", PropertyList["id", "CM.10018"]]]],
+    "immediate", PropertyList["e_united_states", PropertyList["holder_scope", PropertyList["character_event", PropertyList["id", "CM.10018"]]]],
     "option", PropertyList["name", "EVTOPTA_USA_002"],
   ],
   "province_event", PropertyList[
@@ -74,7 +74,7 @@ UsaInvasionEvents = PropertyList[
     "picture", "GFX_evt_battle_mesoamerican",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1250,
+      "year", 1950,
       "NOT", PropertyList["has_global_flag", "american_arrival"],
       "had_province_flag", PropertyList[
         "flag", "american_explorers",
@@ -83,7 +83,7 @@ UsaInvasionEvents = PropertyList[
     ],
     "immediate", PropertyList[
       "set_global_flag", "american_arrival",
-      "e_usa", PropertyList["holder_scope", PropertyList["narrative_event", PropertyList["id", "USA.4"]]],
+      "e_united_states", PropertyList["holder_scope", PropertyList["narrative_event", PropertyList["id", "USA.4"]]],
     ],
     "mean_time_to_happen", PropertyList["months", 6],
     "option", PropertyList["name", "EVTOPTA_USA_003"],
@@ -604,7 +604,7 @@ UsaInvasionEvents = PropertyList[
     "picture", "GFX_evt_aztec_arrival",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1250,
+      "year", 1950,
       "has_global_flag", "american_arrival",
       "NOT", PropertyList["has_global_flag", "american_arrival_2"],
       "OR", PropertyList[
@@ -624,7 +624,7 @@ UsaInvasionEvents = PropertyList[
     "immediate", PropertyList[
       "set_global_flag", "american_arrival_2",
       "set_province_flag", "american_second_wave",
-      "e_usa", PropertyList["holder_scope", PropertyList["narrative_event", PropertyList["id", "USA.6"]]],
+      "e_united_states", PropertyList["holder_scope", PropertyList["narrative_event", PropertyList["id", "USA.6"]]],
     ],
     "mean_time_to_happen", PropertyList["months", 24],
     "option", PropertyList["name", "EVTOPTA_USA_005"],
@@ -991,7 +991,7 @@ UsaInvasionEvents = PropertyList[
     "id", "USA.100",
     "hide_window", true,
     "trigger", PropertyList[
-      "has_landed_title", "e_usa",
+      "has_landed_title", "e_united_states",
       "NOT", PropertyList["has_global_flag", "american_invasion_fleet_disbanded"],
       "had_global_flag", PropertyList[
         "flag", "american_arrival",
@@ -1015,7 +1015,7 @@ UsaInvasionEvents = PropertyList[
     "trigger", PropertyList[
       "has_global_flag", "american_arrival_2",
       "NOT", PropertyList["has_global_flag", "americans_defeated"],
-      "has_landed_title", "e_usa",
+      "has_landed_title", "e_united_states",
       "has_regiments", false,
       "is_landed", false,
     ],
@@ -1023,7 +1023,7 @@ UsaInvasionEvents = PropertyList[
     "mean_time_to_happen", PropertyList["days", 1],
     "immediate", PropertyList[
       "activate_title", PropertyList[
-        "title", "e_usa",
+        "title", "e_united_states",
         "status", false,
       ],
       "set_global_flag", "americans_defeated",

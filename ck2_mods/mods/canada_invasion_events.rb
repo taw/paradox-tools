@@ -7,8 +7,8 @@ CanadaInvasionEvents = PropertyList[
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
       "has_dlc", "Sunset Invasion",
-      "year", 1250,
-      "NOT", PropertyList["year", 1350],
+      "year", 2000,
+      "NOT", PropertyList["year", 2100],
       "NOT", PropertyList["has_global_flag", "canadian_explorers"],
       "OR", PropertyList[
         "province_id", 1,
@@ -51,7 +51,7 @@ CanadaInvasionEvents = PropertyList[
       "months", 720,
       "modifier", PropertyList[
         "factor", 0.5,
-        "year", 1320,
+        "year", 2050,
       ],
     ],
     "option", PropertyList["name", "EVTOPTA_CANADA_001"],
@@ -74,7 +74,7 @@ CanadaInvasionEvents = PropertyList[
     "picture", "GFX_evt_battle_mesoamerican",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1250,
+      "year", 2000,
       "NOT", PropertyList["has_global_flag", "canadian_arrival"],
       "had_province_flag", PropertyList[
         "flag", "canadian_explorers",
@@ -667,7 +667,7 @@ CanadaInvasionEvents = PropertyList[
     "picture", "GFX_evt_aztec_arrival",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1250,
+      "year", 2000,
       "has_global_flag", "canadian_arrival",
       "NOT", PropertyList["has_global_flag", "canadian_arrival_2"],
       "OR", PropertyList[
