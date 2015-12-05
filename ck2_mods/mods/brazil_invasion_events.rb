@@ -7,16 +7,16 @@ BrazilInvasionEvents = PropertyList[
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
       "has_dlc", "Sunset Invasion",
-      "year", 1880,
-      "NOT", PropertyList["year", 1980],
+      "year", 1860,
+      "NOT", PropertyList["year", 1960],
       "NOT", PropertyList["has_global_flag", "brazilian_explorers"],
       "OR", PropertyList[
         "province_id", 157,
         "province_id", 158,
         "province_id", 162,
         "province_id", 180,
+        "province_id", 204,
         "province_id", 839,
-        "province_id", 1220,
       ],
     ],
     "immediate", PropertyList[
@@ -47,7 +47,7 @@ BrazilInvasionEvents = PropertyList[
       "months", 720,
       "modifier", PropertyList[
         "factor", 0.5,
-        "year", 1940,
+        "year", 1910,
       ],
     ],
     "option", PropertyList["name", "EVTOPTA_BRAZIL_001"],
@@ -70,7 +70,7 @@ BrazilInvasionEvents = PropertyList[
     "picture", "GFX_evt_battle_mesoamerican",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1880,
+      "year", 1860,
       "NOT", PropertyList["has_global_flag", "brazilian_arrival"],
       "had_province_flag", PropertyList[
         "flag", "brazilian_explorers",
@@ -600,7 +600,7 @@ BrazilInvasionEvents = PropertyList[
     "picture", "GFX_evt_aztec_arrival",
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
-      "year", 1880,
+      "year", 1860,
       "has_global_flag", "brazilian_arrival",
       "NOT", PropertyList["has_global_flag", "brazilian_arrival_2"],
       "OR", PropertyList[
@@ -608,8 +608,8 @@ BrazilInvasionEvents = PropertyList[
         "province_id", 158,
         "province_id", 162,
         "province_id", 180,
+        "province_id", 204,
         "province_id", 839,
-        "province_id", 1220,
       ],
       "owner", PropertyList["NOT", PropertyList["culture", "brazilian"]],
     ],
