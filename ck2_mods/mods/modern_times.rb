@@ -823,29 +823,28 @@ class ModernTimesGameModification < CK2GameModification
       "EVTDESC_CANADA_003" => "With no agreement on Arctic ownership, Canadians decided to launch surprise attack on Europe",
       "EVTOPTA_CANADA_003" => "We'll push them back into the cold ocean!",
       "EVTNAME_CANADA_004" => "Canadian Invasion",
-
-      # option is broken here...
-
-      "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of ululating warriors in weird armor sporting feathers and bone. These invaders from beyond the sunset worship hellish demon gods, sacrificing the populations of entire towns on altars erected on top of pyramid shaped wooden edifices. They cut their victims' hearts out, carefully flay them, and let their devil priests wear the skins for many days...",
+      "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of mounted policemen - some rumored to ride moose and use hockey sticks as lances. These invaders from beyond the sunset will kill everyone standing in their way, but at least they'll do it politely...",
       "EVTOPTA_CANADA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
       "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Canadian scourge has reached our shores!",
       "EVTOPTA_CANADA_005" => "Saddle my Horse!",
       "EVTNAME_CANADA_006" => "Canadian Invasion",
-      "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Aztecs has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear of the charnel altars of the foreign demon gods. The dreadful lord of the invaders has allegedly taken a vow to conquer the whole world in the name of Huitzilopochtli, the Aztec god of the sun, and of war...",
+      "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Canadians has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear.",
       "EVTOPTA_CANADA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
-      # 100, 105
+      "EVTNAME_CANADA_105" => "The Canadians Meet With Defeat",
+      "EVTDESC_CANADA_105" => "The great Canadian warhost that crossed the ocean in their mad bid to claim all the Artcic riches has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Toronto to lick their wounds and inform the Canadian Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
+      "EVTOPTA_CANADA_105" => "There shall be a reckoning.",
     )
-
   end
 
   def brazil_invasion! # TODO
     # - kingdom/empire level country only as target?
     # not France / UK ? (Gibraltar / Goa taken by Brits are both silly to invade early)
 
-    leader = BrazilInvasionEvents.find_all("province_event")[0]["immediate"]["k_papal_state"]["holder_scope"]["create_random_soldier"]
-    leader["dynasty"] = new_dynasty("Braganza", "portuguese")
+    context = BrazilInvasionEvents.find_all("province_event")[0]["immediate"]["k_papal_state"]["holder_scope"]
+    context["create_random_soldier"]["dynasty"] = new_dynasty("Braganza", "portuguese")
+    context["new_character"].add! "add_claim", "k_portugal"
+    context["new_character"].add! "add_claim", "c_goa"
+
     create_mod_file!("events/modern_times_brazil_invasion.txt", BrazilInvasionEvents)
 
     localization!("canada_invasion",
@@ -856,7 +855,18 @@ class ModernTimesGameModification < CK2GameModification
       "EVTDESC_BRAZIL_003" => "With the Portuguese showing little interest in accepting Brazilian claims, Empire of Brazil declares war!",
       "EVTOPTA_BRAZIL_003" => "We'll push them back into the cold ocean!",
       "EVTNAME_BRAZIL_004" => "Brazilian Invasion",
-      # ...
+
+      # TODO:
+      "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of ululating warriors in weird armor sporting feathers and bone. These invaders from beyond the sunset worship hellish demon gods, sacrificing the populations of entire towns on altars erected on top of pyramid shaped wooden edifices. They cut their victims' hearts out, carefully flay them, and let their devil priests wear the skins for many days...",
+      "EVTOPTA_CANADA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+      "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Canadian scourge has reached our shores!",
+      "EVTOPTA_CANADA_005" => "Saddle my Horse!",
+      "EVTNAME_CANADA_006" => "Canadian Invasion",
+      "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Aztecs has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear of the charnel altars of the foreign demon gods. The dreadful lord of the invaders has allegedly taken a vow to conquer the whole world in the name of Huitzilopochtli, the Aztec god of the sun, and of war...",
+      "EVTOPTA_CANADA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+      "EVTNAME_CANADA_105" => "The Aztecs Meet With Defeat",
+      "EVTDESC_CANADA_105" => "The great Aztec warhost that crossed the ocean in their mad bid to conquer all of Creation has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Cemanahuac to lick their wounds and inform the Aztec Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
+      "EVTOPTA_CANADA_105" => "There shall be a reckoning.",
     )
   end
 
@@ -878,7 +888,18 @@ class ModernTimesGameModification < CK2GameModification
       "EVTDESC_USA_003" => "Not giving much time for diplomacy, Americans decided to advance case for democracy and WMD-free world by force!",
       "EVTOPTA_USA_003" => "We'll push them back into the cold ocean!",
       "EVTNAME_USA_004" => "American Invasion",
-      # ...
+
+      # TODO:
+      "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of ululating warriors in weird armor sporting feathers and bone. These invaders from beyond the sunset worship hellish demon gods, sacrificing the populations of entire towns on altars erected on top of pyramid shaped wooden edifices. They cut their victims' hearts out, carefully flay them, and let their devil priests wear the skins for many days...",
+      "EVTOPTA_CANADA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+      "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Canadian scourge has reached our shores!",
+      "EVTOPTA_CANADA_005" => "Saddle my Horse!",
+      "EVTNAME_CANADA_006" => "Canadian Invasion",
+      "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Aztecs has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear of the charnel altars of the foreign demon gods. The dreadful lord of the invaders has allegedly taken a vow to conquer the whole world in the name of Huitzilopochtli, the Aztec god of the sun, and of war...",
+      "EVTOPTA_CANADA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+      "EVTNAME_CANADA_105" => "The Aztecs Meet With Defeat",
+      "EVTDESC_CANADA_105" => "The great Aztec warhost that crossed the ocean in their mad bid to conquer all of Creation has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Cemanahuac to lick their wounds and inform the Aztec Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
+      "EVTOPTA_CANADA_105" => "There shall be a reckoning.",
     )
   end
 
