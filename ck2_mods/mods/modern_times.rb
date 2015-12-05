@@ -903,6 +903,67 @@ class ModernTimesGameModification < CK2GameModification
     )
   end
 
+  def setup_cbs_for_new_invasions!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      # Should probably use better CB, but will do for now
+      tribal_invasion = node["tribal_invasion"]
+
+      # Culture/religion convert target province on successful invasion
+      target_effects = tribal_invasion["on_success_title"]["custom_tooltip"]["hidden_tooltip"]
+      target_effects.add! "if", PropertyList[
+        "limit", PropertyList["e_canada", PropertyList["holder", "ROOT"]],
+        "ROOT", PropertyList["any_realm_province", PropertyList[
+          "limit", PropertyList["OR", PropertyList[
+            "has_province_flag", "canadian_explorers",
+            "has_province_flag", "canadian_second_wave",
+          ]],
+          "culture", "canadian",
+          "religion", "protestant",
+          "clr_province_flag", "canadian_explorers",
+          "clr_province_flag", "canadian_second_wave",
+        ]],
+      ]
+      target_effects.add! "if", PropertyList[
+        "limit", PropertyList["e_united_states", PropertyList["holder", "ROOT"]],
+        "ROOT", PropertyList["any_realm_province", PropertyList[
+          "limit", PropertyList["OR", PropertyList[
+            "has_province_flag", "american_explorers",
+            "has_province_flag", "american_second_wave",
+          ]],
+          "culture", "american",
+          "religion", "protestant",
+          "clr_province_flag", "american_explorers",
+          "clr_province_flag", "american_second_wave",
+        ]],
+      ]
+      target_effects.add! "if", PropertyList[
+        "limit", PropertyList["e_brazil", PropertyList["holder", "ROOT"]],
+        "ROOT", PropertyList["any_realm_province", PropertyList[
+          "limit", PropertyList["OR", PropertyList[
+            "has_province_flag", "brazilian_explorers",
+            "has_province_flag", "brazilian_second_wave",
+          ]],
+          "culture", "brazilian",
+          "religion", "catholic",
+          "clr_province_flag", "brazilian_explorers",
+          "clr_province_flag", "brazilian_second_wave",
+        ]],
+      ]
+
+      # CBs
+      vanilla_cb, not_same_realm = tribal_invasion["can_use_title"].find_all("ROOT")
+      tribal_invasion["can_use_title"] = PropertyList[
+        "OR", PropertyList[
+          "ROOT", PropertyList["has_landed_title", "e_brazil"],
+          "ROOT", PropertyList["has_landed_title", "e_canada"],
+          "ROOT", PropertyList["has_landed_title", "e_united_states"],
+          "ROOT", vanilla_cb,
+        ],
+        "ROOT", not_same_realm,
+      ]
+    end
+  end
+
   def fix_russia_colors!
     # Empire of Russia has color of Ukraine, make it have color of Muscovy
     patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
@@ -983,6 +1044,7 @@ class ModernTimesGameModification < CK2GameModification
     canada_invasion!
     brazil_invasion!
     usa_invasion!
+    setup_cbs_for_new_invasions!
     save_dynasties!
     fix_russia_colors!
     patch_mod_files!("history/titles/*.txt") do |node|
