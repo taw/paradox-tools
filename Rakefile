@@ -43,7 +43,7 @@ class ModBuilder
     trash build_dir, mod_descriptor
     system "./#{category}/build_#{name}" or raise "Build failed"
     Dir.chdir("output") do
-      system "7za a '../#{archive_name}' '#{name}'/ '#{name}'.mod"
+      system "7za a '../#{archive_name}' '#{name}'/ '#{name}'.mod >/dev/null"
     end
   end
 end
