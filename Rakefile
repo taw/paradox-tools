@@ -59,7 +59,7 @@ desc "Build all CK2 packages"
 task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal", "modern_times", "modern_times_plus"]
 
 desc "Build all EU4 packages"
-task "eu4" => ["vanilla", "extended_timeline"] # "shattered_europe"
+task "eu4" => ["vanilla", "extended_timeline"]
 
 desc "Build CK2 No Dynastic Names"
 task "no_dynastic_names" do
@@ -133,15 +133,6 @@ task "extended_timeline" do
   ).build!
 end
 
-desc "Build Fun and Balance for Shattered Europe"
-task "shattered_europe" do
-  ModBuilder.new(
-    "fun_and_balance",
-    "fun_and_balance_shattered_europe",
-    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.11.4_and_shattered_europe.7z",
-  ).build!
-end
-
 desc "Remove build files"
 task "clean" do
   trash "output", "build"
@@ -159,7 +150,6 @@ task "reference" do
   system "ck2_mods/build_modern_times_plus"
   system "fun_and_balance/build_fun_and_balance"
   system "fun_and_balance/build_fun_and_balance_et"
-  # system "fun_and_balance/build_fun_and_balance_shattered_europe" # not updated to recent version
   FileUtils.mv "output", "reference"
 end
 
