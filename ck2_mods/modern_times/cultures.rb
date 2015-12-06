@@ -32,4 +32,5 @@ ModernTimesDatabase::CULTURES = {
   "d_samarkand"    => "karluk",
   "c_bashkirs"     => :keep,
   "c_mangyshlak"   => :keep,
+  "c_kuma"         => "uyghur", # actually Kalmyk
 }
