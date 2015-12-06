@@ -113,20 +113,6 @@ class ParadoxModBuilder
     new_content = new_content.encode(encoding, undef: :replace) if reencode
     create_file!(name, new_content) if orig_content != new_content or force_create
   end
-  def patch_defines_lua!(changes)
-    patch_file!("common/defines.lua", reencode: true) do |content|
-      changes.each do |variable, orig, updated|
-        content.sub!(/^(\s+#{variable}\s*=\s*)(.*?)(\s*,|\s*$)/) do
-          if $2 == orig.to_s
-            "#{$1}#{updated}#{$3}"
-          else
-            raise "Tried to change `#{variable}' from `#{orig}' to `#{updated}', but is it `#{$2}' instead"
-          end
-        end or raise("Tried to change `#{variable}' from `#{orig}' to `#{updated}', can't find it in the file")
-      end
-      content
-    end
-  end
   def patch_mod_files!(pattern, &blk)
     matches = (@game.glob(pattern) | @target.glob(pattern))
     raise "No matches found for `#{pattern}'" if matches.size == 0

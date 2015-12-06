@@ -244,4 +244,31 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ["rival_lost_province",       "yearly_decay",   1, 0.5]
     end
   end
+
+  def override_defines_lua!(name, overrides)
+    create_file!(
+      "common/defines/#{name}.lua",
+      overrides.map{|key, val| "NDefines.#{key} = #{val}\n"}.join
+    )
+  end
+
+  def soft_patch_defines_lua!(changes)
+    orig_lua = resolve("common/defines.lua").read
+    changes.each do |full_variable, orig, updated|
+      base_variable = full_variable.sub(/.*\./, "")
+      if orig_lua =~ /^(\s+#{base_variable}\s*=\s*)(.*?)(\s*,|\s*$)/
+        if $2 == orig.to_s
+          # OK
+        else
+          raise "Tried to change `#{full_variable}' from `#{orig}' to `#{updated}', but is it `#{$2}' instead"
+        end
+      else
+        raise("Tried to change `#{full_variable}' from `#{orig}' to `#{updated}', can't find it in the file")
+      end
+    end
+
+    override_defines_lua!("fun_and_balance",
+      Hash[changes.map{|var,_,nv| [var,nv]}]
+    )
+  end
 end
