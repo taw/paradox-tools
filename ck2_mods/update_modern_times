@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 
+# Mostly check against
+# https://en.wikipedia.org/wiki/List_of_current_state_leaders_by_date_of_assumption_of_office#2015
+
 require_relative "../lib/paradox_mod_builder"
 Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
