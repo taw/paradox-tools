@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
+
+class UpdateModernTimes < ParadoxGame
+  attr_reader :map, :character_manager, :db
+
+  def reset_date
+    @reset_date ||= @db.resolve_date(:reset_date)
+  end
+
+  def initialize
+    super("source/ck2_2.4.3")
+    @map = MapManager.new(self)
+    @db = ModernTimesDatabase.new(self)
+    @character_manager = CharacterManager.new(self)
+  end
+
+  def run!
+    out = []
+    @db.holders.each do |title, holders|
+      last_date, last_holder = holders.sort.last
+      next if last_holder.nil?
+      if last_holder[:use]
+        out << "#{title} #{last_date} #{last_holder[:use]}"
+      else
+        out << "#{title} #{last_date} #{last_holder[:name]} | #{last_holder[:dynasty]}"
+      end
+    end
+    puts out.sort
+  end
+end
+
+UpdateModernTimes.new.run!
