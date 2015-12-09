@@ -105,6 +105,9 @@ class ParadoxGame
     YAML.load(data.gsub(/\uFEFF/, ""))["l_english"].tap do |parsed|
       raise "No Engish localization data in `#{path}'" unless parsed
     end
+  rescue
+    warn "#{path}: #{$!}"
+    {}
   end
 
   def parse_localization_from_path_ck2(path)
