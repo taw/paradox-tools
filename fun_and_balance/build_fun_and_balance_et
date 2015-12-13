@@ -32,6 +32,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       name: " Fun and Balance for Extended Timeline",
       path: "mod/fun_and_balance_et",
       supported_version: "1.14",
+      picture: "fun_and_balance_et.jpg",
     )
   end
 end

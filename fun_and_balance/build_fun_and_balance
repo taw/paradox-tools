@@ -29,6 +29,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
       supported_version: "1.14",
+      picture: "fun_and_balance.jpg",
     )
   end
 end

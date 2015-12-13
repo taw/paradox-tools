@@ -52,4 +52,4 @@ Links
 
 * Extended Timeline mod: http://steamcommunity.com/sharedfiles/filedetails/?id=217416366
 * Shattered Europe mod: http://steamcommunity.com/sharedfiles/filedetails/?id=305682089
-
+* Fun and Balance logo basedon "Not now, please, I'm busy (Explored)" by hehaden from flickr (CC-NC)
