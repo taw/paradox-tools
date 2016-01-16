@@ -1049,6 +1049,7 @@ class ModernTimesGameModification < CK2GameModification
     @map = MapManager.new(self)
     @db = ModernTimesDatabase.new(self)
 
+    create_new_titles!
     setup_provinces_holdings!
     setup_provinces_population!
     setup_nomad_flag!
@@ -1058,7 +1059,6 @@ class ModernTimesGameModification < CK2GameModification
     @character_manager = CharacterManager.new(self)
     @regional_vassals = {}
     @dynasties        = {}
-    create_new_titles!
     initialize_empty_title_histories!
     setup_title_history!
     setup_title_names!
