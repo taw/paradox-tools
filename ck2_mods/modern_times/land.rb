@@ -169,8 +169,8 @@ ModernTimesDatabase::LAND = {
   c_yatvyagi:    { times_immemorial: "e_wendish_empire", poland_3_partition: "k_pomerania", duchy_warsaw: "k_poland", end_ww1: "d_lithuanians" },
   c_aukshayts:   { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_lithuanians" },
   c_zhmud:       { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians" },
-  c_jacwiez:     { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_vitebsk"},
-  c_podlasie:    { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_vitebsk"},
+  c_jacwiez:     { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_belarus"},
+  c_podlasie:    { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_belarus"},
 
   c_plock:         { times_immemorial: "e_wendish_empire", poland_3_partition: "k_pomerania", duchy_warsaw: "k_poland" },
   c_czersk:        { times_immemorial: "e_wendish_empire", poland_3_partition: "e_carpathia", duchy_warsaw_expansion: "k_poland" },
@@ -376,12 +376,12 @@ ModernTimesDatabase::LAND = {
 
   d_smolensk:   { forever_ago: "e_russia" },
 
-  c_mstislavl: { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "d_vitebsk"},
-  c_vitebsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "d_vitebsk"},
-  d_vitebsk:   { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "d_vitebsk"},
-  c_polotsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "d_vitebsk"},
-  c_lepiel:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "d_vitebsk"},
-  c_pinsk:     { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_vitebsk"},
+  c_mstislavl: { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
+  c_vitebsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
+  d_vitebsk:   { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_belarus"},
+  c_polotsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
+  c_lepiel:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_belarus"},
+  c_pinsk:     { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_belarus"},
 
   c_salzburg:     { forever_ago: "c_salzburg", peace_of_pressburg: "e_carpathia", treaty_of_shoenbrunn: "d_bavaria", congress_of_vienna: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
 

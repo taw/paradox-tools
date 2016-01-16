@@ -37,6 +37,12 @@ ModernTimesDatabase::DE_JURE = {
   "k_telingana"      => "e_india",
   "k_lanka"          => "e_india",
 
+  "k_belarus"        => "e_wendish_empire",
+  "d_vitebsk"        => "k_belarus",
+  "d_smolensk"       => "k_belarus",
+  "d_yatviags"       => "k_belarus",
+  "d_polotsk"        => "k_belarus",
+
   # This region has 3 situations:
   # - HRE (Prussia under Poland)
   # - Germany Empire (Prussia under Germany, loses Gdansk to Poland)

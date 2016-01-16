@@ -195,7 +195,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       },
     },
   },
-  d_vitebsk: {
+  k_belarus: {
     # backdating from "1920.8.9"
     "1918.11.11" => { name: "Vilgelm Knorinsh", lived: "1890-1939" },
     # noby has better than year date, even Belarussian wikipedia, just picking some shit up

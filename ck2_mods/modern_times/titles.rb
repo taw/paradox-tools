@@ -475,7 +475,7 @@ ModernTimesDatabase::TITLES = {
     liege: { end_ww1: "e_russia", fall_soviet_union: nil },
     demesne: ["d_pereyaslavl"],
   },
-  d_vitebsk: {
+  k_belarus: {
     culture: :belarusian, # Unique Belarusian culture
     religion: :orthodox,
     capital: :c_minsk,

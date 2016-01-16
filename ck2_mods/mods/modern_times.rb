@@ -787,6 +787,7 @@ class ModernTimesGameModification < CK2GameModification
         actual_capital  = title_data[:capital]
         de_jure_capital = map.title_capitals[title]
         next if actual_capital == de_jure_capital
+        next unless de_jure_capital
         title_node = @map.landed_titles_lookup[title].reverse.inject(node){|n,t| n[t]}
         title_node["capital"] = @map.title_to_province_id[actual_capital]
       end
@@ -1018,8 +1019,14 @@ class ModernTimesGameModification < CK2GameModification
         "culture", "brazilian",
         "religion", "catholic",
       ],
+      "k_belarus", PropertyList[
+        "color", [75, 125, 6], # same as Vitebsk
+        "color2", [255, 255, 255],
+        "culture", "belarusian",
+        "religion", "orthodox",
+      ],
     ]
-    ["e_united_states", "e_canada", "e_brazil"].each do |title|
+    ["e_united_states", "e_canada", "e_brazil", "k_belarus"].each do |title|
       create_mod_file! "history/titles/#{title}.txt", PropertyList[
         Date.parse("0020.1.1"), PropertyList["active", false, "law", "succ_primogeniture"],
       ]
@@ -1031,7 +1038,9 @@ class ModernTimesGameModification < CK2GameModification
       "e_canada" => "Canada",
       "e_canada_adj" => "Canadian",
       "e_brazil" => "Brazil",
-      "e_brazil_adj" => "Brazilian"
+      "e_brazil_adj" => "Brazilian",
+      "k_belarus" => "Belarus",
+      "k_belarus_adj" => "Belarusian"
   end
 
   def apply!
