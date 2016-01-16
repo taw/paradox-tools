@@ -476,7 +476,7 @@ ModernTimesDatabase::TITLES = {
     demesne: ["d_pereyaslavl"],
   },
   d_vitebsk: {
-    culture: :ukrainian, # Consider giving them a culture too?
+    culture: :belarusian, # Unique Belarusian culture
     religion: :orthodox,
     capital: :c_minsk,
     name: "Belarus / Belarussian",
