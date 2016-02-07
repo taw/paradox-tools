@@ -51,7 +51,7 @@ class NoLocalizedRanksGameModification < CK2GameModification
     patch_localization! do |line|
       key, *fields = line.split(";")
       if cultures.any?{|c| key.end_with?("_adj_#{c}")}
-        # No localized titles handles thoes
+        # No localized titles handles those
         line
       elsif key =~ rx # cultures.any?{|c| ranks.any?{|r| key == r + c }}
         # puts [key, fields[0]].join(" ; ")

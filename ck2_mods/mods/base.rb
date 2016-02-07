@@ -13,7 +13,11 @@ class CK2GameModification < ParadoxGameModification
     glob("localisation*/*.csv").each do |path|
       patch_file!(path, reencode: "iso-8859-1") do |content|
         content.split("\n").map do |line|
-          yield(line)
+          if line.empty?
+            line # z_alex.csv in CK2 2.5.1
+          else
+            yield(line)
+          end
         end.compact.map{|line| line+"\n"}.join
       end
     end
