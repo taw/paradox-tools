@@ -86,6 +86,10 @@ class ModernTimesDatabase
         counties.each do |county|
           capital, holdings = map.analyze_province_holdings(county)
           first_minor_castle = holdings.keys.find{|barony| holdings[barony] == "castle" and barony != capital }
+          unless first_minor_castle
+            warn "No minor castle in #{county} for #{holy_order}"
+            next
+          end
           @holy_orders[first_minor_castle] = holy_order
         end
       end
