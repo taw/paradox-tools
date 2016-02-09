@@ -385,7 +385,7 @@ ModernTimesDatabase::TITLES = {
     liege: { end_ww1: "e_russia", fall_soviet_union: nil },
   },
   k_cuman: {
-    culture: :cuman,
+    culture: :cuman, # localized as Kazakh
     religion: :sunni,
     name: "Kazakhstan / Kazakh",
     capital: "c_kimak",
@@ -393,7 +393,7 @@ ModernTimesDatabase::TITLES = {
     demesne: ["d_zhetysu"],
   },
   k_khiva: {
-    culture: :karluk,
+    culture: :karluk, # localized as Uzbek
     religion: :sunni,
     name: "Uzbekisan / Uzkekistani",
     liege: { end_ww1: "e_russia", fall_soviet_union: nil },
@@ -717,12 +717,12 @@ ModernTimesDatabase::TITLES = {
     name: "Chechnya / Chechen",
   },
   d_samarkand: {
-    culture: :karluk,
+    culture: :karluk, # localized as Uzbek
     religion: :sunni,
     name: "Bukhara / Bukharan",
   },
   d_khiva: {
-    culture: :karluk,
+    culture: :karluk, # localized as Uzbek
     religion: :sunni,
   },
   k_scotland: {

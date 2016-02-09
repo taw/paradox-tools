@@ -726,12 +726,12 @@ class ModernTimesGameModification < CK2GameModification
         end
         node.add! "bookmard", bookmark_node
 
-        localization!("ZZ vanilla overrides",
+        localization!("zz_vanilla_overrides",
           bm_code => name,
           bm_desc => desc,
         )
         if splash_code
-          localization!("ZZ vanilla overrides",
+          localization!("zz_vanilla_overrides",
             splash_code => name,
             "#{splash_code}_INFO" => desc,
           )
@@ -741,8 +741,10 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def change_localization!
-    localization!("ZZ vanilla overrides",
+    localization!("zz_vanilla_overrides",
       "romanian" => "Romanian", # Not Vlach
+      "cuman" => "Kazakh",
+      "karluk" => "Uzbek",
      )
   end
 
