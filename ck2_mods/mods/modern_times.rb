@@ -686,34 +686,22 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_bookmarks!
-    # Sadly can't be modded and first two are DLC-locked
-    key_bookmarks = [
-      ["BM_CHARLEMAGNE", "DARK_AGES"],
-      ["BM_THE_OLD_GODS", "VIKING_ERA"],
-      ["BM_FATE_OF_ENGLAND", "EARLY_MED"],
-      ["BM_THE_MONGOLS", "HIGH_MED"],
-      ["BM_100_YEARS_WAR", "LATE_MED"],
-    ]
-
-    # Bookmark tags are unfortunately magical
     patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
       node.delete_if{true}
       @db.bookmarks.each do |date, bookmark|
         next unless date >= @db.min_date
         name = bookmark[:name]
         desc = bookmark[:desc] || ""
-        if bookmark[:key]
-          raise "Too many key bookmarks" if key_bookmarks.empty?
-          bm_code, splash_code = key_bookmarks.shift
-        else
-          bm_code, splash_code = date.strftime("BM_%Y_%m_%d"), nil
-        end
+        bm_code, splash_code = date.strftime("BM_%Y_%m_%d"), nil
         bm_desc = "#{bm_code}_DESC"
         bookmark_node = PropertyList[
           "name", bm_code,
           "desc", bm_desc,
           "date", date,
         ]
+        if bookmark[:key]
+          bookmark_node.add! "era", true
+        end
         if bookmark[:characters]
           bookmark[:characters].each do |title|
             _, ruler_id = @holders[title].select{|d,id| d<=date}[-1]
@@ -721,17 +709,17 @@ class ModernTimesGameModification < CK2GameModification
               warn "No ruler of #{title} at #{date} but marked as key character"
               require 'pry'; binding.pry
             end
-            bookmark_node.add! "character", ruler_id
+            bookmark_node.add! "selectable_character", PropertyList["id", ruler_id]
           end
         end
-        node.add! "bookmard", bookmark_node
+        node.add! bm_code.downcase, bookmark_node
 
-        localization!("zz_vanilla_overrides",
+        localization!("modern_times_bookmarks",
           bm_code => name,
           bm_desc => desc,
         )
         if splash_code
-          localization!("zz_vanilla_overrides",
+          localization!("modern_times_bookmarks",
             splash_code => name,
             "#{splash_code}_INFO" => desc,
           )
