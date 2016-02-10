@@ -699,10 +699,14 @@ class ModernTimesGameModification < CK2GameModification
     else
       title_name = title
     end
+    character_name = [
+      character_info["name"],
+      @dynasties.keys.find{|k| @dynasties[k][:id] == character_info["dynasty"]},
+    ].compact.join(" ")
     PropertyList[
       "id", character_id,
       "age", age,
-      # name
+      "name", character_name,
       "title", title,
       "title_name", title_name,
       "character", PropertyList[
