@@ -43,6 +43,14 @@ ModernTimesDatabase::DE_JURE = {
   "d_yatviags"       => "k_belarus",
   "d_polotsk"        => "k_belarus",
 
+  # 2 Sicilies as de jure in 2.5 feels just wrong, reverting to 2.4 system
+  "d_apulia"         => "k_sicily",
+  "d_benevento"      => "k_sicily",
+  "d_calabria"       => "k_sicily",
+  "d_capua"          => "k_sicily",
+  "d_salerno"        => "k_sicily",
+  "d_sicily"         => "k_sicily",
+
   # This region has 3 situations:
   # - HRE (Prussia under Poland)
   # - Germany Empire (Prussia under Germany, loses Gdansk to Poland)
