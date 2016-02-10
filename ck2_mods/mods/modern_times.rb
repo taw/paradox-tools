@@ -689,7 +689,16 @@ class ModernTimesGameModification < CK2GameModification
     character_info = @character_manager.main_plist[character_id]
     birth = character_info.list.find{|k,v| v.is_a?(PropertyList) and v["birth"]}[0]
     age = (date - birth).to_i / 365
-    title_name = title # Not really, fix West Germany etc.
+    if @db.titles[title][:name]
+      title_changes = @db.titles[title][:name].select{|d,n| d <= date}[-1]
+      if title_changes and title_changes[1]
+        title_name = title_changes[1].split("/")[0].strip
+      else
+        title_name = title
+      end
+    else
+      title_name = title
+    end
     PropertyList[
       "id", character_id,
       "age", age,
