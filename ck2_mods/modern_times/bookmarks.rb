@@ -63,7 +63,7 @@ ModernTimesDatabase::BOOKMARKS = {
     name: "Cold War",
     desc: "With fall of Hitler and beginning of decolonization new world order emerged.",
     key: true,
-    characters: ["e_russia", "e_germany", "k_pomerania", "e_india", "k_israel"],
+    characters: ["e_russia", "k_germany", "k_pomerania", "e_india", "k_israel"],
   },
   # Delay it a bit to get Saddam in charge of Iraq
   "1979.7.16" => {

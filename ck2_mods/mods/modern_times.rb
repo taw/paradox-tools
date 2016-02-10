@@ -685,6 +685,28 @@ class ModernTimesGameModification < CK2GameModification
     ])
   end
 
+  def selected_character_node(character_id, title, date)
+    character_info = @character_manager.main_plist[character_id]
+    birth = character_info.list.find{|k,v| v.is_a?(PropertyList) and v["birth"]}[0]
+    age = (date - birth).to_i / 365
+    title_name = title # Not really, fix West Germany etc.
+    PropertyList[
+      "id", character_id,
+      "age", age,
+      # name
+      "title", title,
+      "title_name", title_name,
+      "character", PropertyList[
+        # dna
+        # properties
+        "religion", character_info["religion"],
+        "culture", character_info["culture"],
+        # government
+        "dynasty", character_info["dynasty"],
+      ]
+    ]
+  end
+
   def setup_bookmarks!
     patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
       node.delete_if{true}
@@ -692,7 +714,7 @@ class ModernTimesGameModification < CK2GameModification
         next unless date >= @db.min_date
         name = bookmark[:name]
         desc = bookmark[:desc] || ""
-        bm_code, splash_code = date.strftime("BM_%Y_%m_%d"), nil
+        bm_code = date.strftime("BM_%Y_%m_%d")
         bm_desc = "#{bm_code}_DESC"
         bookmark_node = PropertyList[
           "name", bm_code,
@@ -702,6 +724,9 @@ class ModernTimesGameModification < CK2GameModification
         if bookmark[:key]
           bookmark_node.add! "era", true
         end
+        if bookmark[:name] == "Modern Times"
+          bookmark_node.add! "custom_start", true
+        end
         if bookmark[:characters]
           bookmark[:characters].each do |title|
             _, ruler_id = @holders[title].select{|d,id| d<=date}[-1]
@@ -709,7 +734,7 @@ class ModernTimesGameModification < CK2GameModification
               warn "No ruler of #{title} at #{date} but marked as key character"
               require 'pry'; binding.pry
             end
-            bookmark_node.add! "selectable_character", PropertyList["id", ruler_id]
+            bookmark_node.add! "selectable_character", selected_character_node(ruler_id, title, date)
           end
         end
         node.add! bm_code.downcase, bookmark_node
@@ -718,10 +743,10 @@ class ModernTimesGameModification < CK2GameModification
           bm_code => name,
           bm_desc => desc,
         )
-        if splash_code
+        if bookmark[:key]
           localization!("modern_times_bookmarks",
-            splash_code => name,
-            "#{splash_code}_INFO" => desc,
+            "#{bm_code}_ERA" => name,
+            "#{bm_code}_ERA_INFO" => desc,
           )
         end
       end
