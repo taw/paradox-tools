@@ -51,7 +51,7 @@ ModernTimesDatabase::TITLES = {
     culture: :italian,
     religion: :catholic,
     capital: :c_piemonte,
-    name: "Piedmont-Sardinia / Piedmontese-Sardinian",
+    name: { times_immemorial: "Piedmont-Sardinia / Piedmontese-Sardinian", italy_unification: "North Italy / North Italian"},
     demesne: ["d_sardinia"],
   },
   e_italy: {
