@@ -20,8 +20,10 @@ class FactionResistanceGameModification < CK2GameModification
         when "overthrow", "antiking", "claimant"
           # Never! It's your only chance to keep your legacy!
           ultimatum["option"]["ai_chance"]["factor"] = 0
+        when "increase_council_power"
+          # OK, enjoy your Conclave DLC
         else
-          raise
+          raise "Unknown faction #{faction}"
         end
       end
     end
