@@ -713,21 +713,22 @@ class ModernTimesGameModification < CK2GameModification
     else
       government = "feudal_government"
     end
-    "feudal_government"
+    character_node = PropertyList[
+      "dna", "a"*11, # hack
+      "properties", "aj00bc00000", # hack
+      "religion", character_info["religion"],
+      "culture", character_info["culture"],
+      "government", government,
+      "dynasty", character_info["dynasty"],
+    ]
+    character_node.add! "female", true if character_info["female"]
     PropertyList[
       "id", character_id,
       "age", age,
       "name", character_name,
       "title", title,
       "title_name", title_name,
-      "character", PropertyList[
-        "dna", "a"*11, # hack
-        "properties", "aj00bc00000", # hack
-        "religion", character_info["religion"],
-        "culture", character_info["culture"],
-        "government", government,
-        "dynasty", character_info["dynasty"],
-      ]
+      "character", character_node,
     ]
   end
 
