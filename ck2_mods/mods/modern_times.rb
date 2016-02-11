@@ -708,6 +708,12 @@ class ModernTimesGameModification < CK2GameModification
     localization!("modern_times_bookmarks",
       "ERA_CHAR_INFO_#{character_id}" => "Play as #{character_name} of #{title_name}",
     )
+    if character_info["religion"] == "sunni"
+      government = "muslim_government"
+    else
+      government = "feudal_government"
+    end
+    "feudal_government"
     PropertyList[
       "id", character_id,
       "age", age,
@@ -715,11 +721,11 @@ class ModernTimesGameModification < CK2GameModification
       "title", title,
       "title_name", title_name,
       "character", PropertyList[
-        # dna
-        # properties
+        "dna", "a"*11, # hack
+        "properties", "aj00bc00000", # hack
         "religion", character_info["religion"],
         "culture", character_info["culture"],
-        # government
+        "government", government,
         "dynasty", character_info["dynasty"],
       ]
     ]
