@@ -689,20 +689,25 @@ class ModernTimesGameModification < CK2GameModification
     character_info = @character_manager.main_plist[character_id]
     birth = character_info.list.find{|k,v| v.is_a?(PropertyList) and v["birth"]}[0]
     age = (date - birth).to_i / 365
-    if @db.titles[title][:name]
+    if title == "c_krakowskie"
+      title_name = "Krakow"
+    elsif @db.titles[title][:name]
       title_changes = @db.titles[title][:name].select{|d,n| d <= date}[-1]
       if title_changes and title_changes[1]
         title_name = title_changes[1].split("/")[0].strip
       else
-        title_name = title
+        title_name = localization(title)
       end
     else
-      title_name = title
+      title_name = localization(title)
     end
     character_name = [
       character_info["name"],
       @dynasties.keys.find{|k| @dynasties[k][:id] == character_info["dynasty"]},
     ].compact.join(" ")
+    localization!("modern_times_bookmarks",
+      "ERA_CHAR_INFO_#{character_id}" => "Play as #{character_name} of #{title_name}",
+    )
     PropertyList[
       "id", character_id,
       "age", age,
@@ -1105,15 +1110,15 @@ class ModernTimesGameModification < CK2GameModification
     end
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
 
-    code_warnings!
-    @warnings.sort.each_with_index do |w,i|
-      puts "% 3d %s" % [i+1,w]
-    end
-
     # Order of transformations matters
     setup_technology!
     setup_bookmarks!
     setup_defines!
     change_localization!
+
+    code_warnings!
+    @warnings.sort.each_with_index do |w,i|
+      puts "% 3d %s" % [i+1,w]
+    end
   end
 end
