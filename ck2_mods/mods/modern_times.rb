@@ -456,6 +456,7 @@ class ModernTimesGameModification < CK2GameModification
         if title == "e_britannia" or title == "e_arabia" or title == "e_india"
           laws.add! "law", "imperial_administration"
           laws.add! "law", "vice_royalty_0"
+          laws.add! "law", "ze_administration_laws_2" # Imperial admin for Conclave
         end
         # Secondary same-level titles all need to go here :-/
         if title == "e_india" or title == "k_norway"
@@ -463,13 +464,18 @@ class ModernTimesGameModification < CK2GameModification
         end
         node.add! @db.resolve_date(:forever_ago), laws
         if title == "e_britannia"
-          node.add! @db.resolve_date(:india_independence), PropertyList["law", "feudal_administration"]
+          node.add! @db.resolve_date(:india_independence), PropertyList[
+            "law", "feudal_administration",
+            "law", "ze_administration_laws_0",
+          ]
         end
       end
     end
     create_mod_file! "common/on_actions/10_modern_times.txt", PropertyList[
       "on_chronicle_start", PropertyList[
-        "events", ["modern_times_setup.1"],
+        "events", [
+          "modern_times_setup.1",
+        ],
       ],
     ]
     create_mod_file! "events/modern_times_setup.txt", PropertyList[
@@ -482,18 +488,24 @@ class ModernTimesGameModification < CK2GameModification
         "only_rulers", true,
         "trigger", PropertyList["ai", false],
         "immediate", PropertyList[
-          "character_event", PropertyList["id", "modern_times_setup.11"],
+          "character_event", PropertyList["id", "modern_times_setup.11"],   # non-Conclave
+          "character_event", PropertyList["id", "modern_times_setup.21"],
+          "character_event", PropertyList["id", "modern_times_setup.22"],
+          "character_event", PropertyList["id", "modern_times_setup.23"],
           # Player is exempt from content law
-          # "character_event", PropertyList["id", "modern_times_setup.12"],
-          "character_event", PropertyList["id", "modern_times_setup.13"],
+          # "character_event", PropertyList["id", "modern_times_setup.31"],
+          "character_event", PropertyList["id", "modern_times_setup.32"],
           "any_playable_ruler", PropertyList[
             "character_event", PropertyList["id", "modern_times_setup.11"],
-            "character_event", PropertyList["id", "modern_times_setup.12"],
-            "character_event", PropertyList["id", "modern_times_setup.13"],
+            "character_event", PropertyList["id", "modern_times_setup.21"],
+            "character_event", PropertyList["id", "modern_times_setup.22"],
+            "character_event", PropertyList["id", "modern_times_setup.23"],
+            "character_event", PropertyList["id", "modern_times_setup.31"],
+            "character_event", PropertyList["id", "modern_times_setup.32"],
           ],
         ],
       ],
-      # Law setup
+      # Law setup, non-Conclave
       "character_event", PropertyList[
         "id", "modern_times_setup.11",
         "hide_window", true,
@@ -507,15 +519,90 @@ class ModernTimesGameModification < CK2GameModification
         "immediate", PropertyList[
           "primary_title", PropertyList[
             "succession", "primogeniture",
+            "add_law", "tax_levy_law_feudal_2",
             "add_law", "feudal_tax_2",
             "add_law", "city_tax_2",
           ],
         ],
       ],
+      # Tech-based law:
+      # - tech 5 unlocks Late Admin
+      # - tech 3 unlocks Women 1 (except Muslims/holy orders)
+      # - tech 5 unlocks Women 2 (except Muslims/holy orders)
+      # - tech 7 unlocks Women 3 (except Muslims/holy orders)
+
+      "character_event", PropertyList[
+        "id", "modern_times_setup.21",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList[
+          "holy_order", false,
+          "any_realm_province", PropertyList["TECH_LEGALISM", 5],
+        ],
+        "immediate", PropertyList[
+          "primary_title", PropertyList[
+            "if", PropertyList[
+              "limit", PropertyList["has_law", "ze_administration_laws_0"],
+              "add_law", "ze_administration_laws_1",
+            ]
+          ],
+        ],
+      ],
+      "character_event", PropertyList[
+        "id", "modern_times_setup.22",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList[
+          "NOT", PropertyList["religion_group", "muslim"],
+          "holy_order", false,
+          "any_realm_province", PropertyList["TECH_LEGALISM", 3],
+        ],
+        "immediate", PropertyList[
+          "primary_title", PropertyList[
+            "add_law", "status_of_women_1",
+          ],
+        ],
+      ],
+      "character_event", PropertyList[
+        "id", "modern_times_setup.23",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList[
+          "NOT", PropertyList["religion_group", "muslim"],
+          "holy_order", false,
+          "any_realm_province", PropertyList["TECH_LEGALISM", 5],
+        ],
+        "immediate", PropertyList[
+          "primary_title", PropertyList[
+            "add_law", "status_of_women_2",
+          ],
+        ],
+      ],
+      "character_event", PropertyList[
+        "id", "modern_times_setup.24",
+        "hide_window", true,
+        "is_triggered_only", true,
+        "only_rulers", true,
+        "trigger", PropertyList[
+          "NOT", PropertyList["religion_group", "muslim"],
+          "holy_order", false,
+          "any_realm_province", PropertyList["TECH_LEGALISM", 7],
+        ],
+        "immediate", PropertyList[
+          "primary_title", PropertyList[
+            "add_law", "status_of_women_3",
+          ],
+        ],
+      ],
+
+
       # Indian vassals should be content by law of British Empire
       # This just delays rebellion a generation, but that's exactly what we want
       "character_event", PropertyList[
-        "id", "modern_times_setup.12",
+        "id", "modern_times_setup.31",
         "hide_window", true,
         "is_triggered_only", true,
         "only_rulers", true,
@@ -529,7 +616,7 @@ class ModernTimesGameModification < CK2GameModification
         ],
       ],
       "character_event", PropertyList[
-        "id", "modern_times_setup.13",
+        "id", "modern_times_setup.32",
         "hide_window", true,
         "is_triggered_only", true,
         "only_rulers", true,
