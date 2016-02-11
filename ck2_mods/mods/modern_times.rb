@@ -772,28 +772,35 @@ class ModernTimesGameModification < CK2GameModification
     ])
   end
 
+  def localized_title_name(title, date)
+    if title == "c_krakowskie"
+      "Krakow"
+    elsif @db.titles[title][:name]
+      title_changes = @db.titles[title][:name].select{|d,n| d <= date}[-1]
+      if title_changes and title_changes[1]
+        title_changes[1].split("/")[0].strip
+      else
+        localization(title)
+      end
+    else
+      localization(title)
+    end
+  end
+
   def selected_character_node(character_id, title, date)
     character_info = @character_manager.main_plist[character_id]
     birth = character_info.list.find{|k,v| v.is_a?(PropertyList) and v["birth"]}[0]
     age = (date - birth).to_i / 365
-    if title == "c_krakowskie"
-      title_name = "Krakow"
-    elsif @db.titles[title][:name]
-      title_changes = @db.titles[title][:name].select{|d,n| d <= date}[-1]
-      if title_changes and title_changes[1]
-        title_name = title_changes[1].split("/")[0].strip
-      else
-        title_name = localization(title)
-      end
-    else
-      title_name = localization(title)
-    end
+    title_name = localized_title_name(title, date)
     character_name = [
       character_info["name"],
       @dynasties.keys.find{|k| @dynasties[k][:id] == character_info["dynasty"]},
     ].compact.join(" ")
+    loc = "Play as #{character_name} of #{title_name}"
+    # Strip Unicode diacritical characters
+    loc = loc.unicode_normalize(:nfd).gsub(/[^\000-\177]/,"")
     localization!("modern_times_bookmarks",
-      "ERA_CHAR_INFO_#{character_id}" => "Play as #{character_name} of #{title_name}",
+      "ERA_CHAR_INFO_#{character_id}" => loc,
     )
     if character_info["religion"] == "sunni"
       government = "muslim_government"
