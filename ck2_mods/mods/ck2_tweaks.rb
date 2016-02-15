@@ -265,12 +265,26 @@ class CK2TweaksGameModification < CK2GameModification
     # (short of preventing North Korea mode)
     # or is ridiculously punishing - and unlike with demesne limit
     # there's no reasonable workaround
+    #
+    # Base are 10/20/30/5
+    # Conclave base are 8/15/20/3
+    #
+    # However Conclave gives big bonuses for giving council powers
     override_defines_lua!("vassal_limit",
       "NDiplomacy.VASSAL_LIMIT_DUKE_MULT" => 25.0,
       "NDiplomacy.VASSAL_LIMIT_KING_MULT" => 50.0,
       "NDiplomacy.VASSAL_LIMIT_EMPEROR_MULT" => 100.0,
       "NDiplomacy.VASSAL_LIMIT_GREAT_DUKE_BONUS" => 15.0,
+      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_DUKE_MULT" => 15.0,
+      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_KING_MULT" => 30.0,
+      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_EMPEROR_MULT" => 60.0,
+      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_GREAT_DUKE_BONUS" => 10.0,
     )
+    patch_mod_file!("common/laws/ze_council_power_laws.txt") do |node|
+      node["laws"].each do |law_name, law|
+        law["vassal_limit"] = 5 if law["vassal_limit"] == 2
+      end
+    end
   end
 
   def increase_trade_post_limit!
