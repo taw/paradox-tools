@@ -288,6 +288,10 @@ class ModernTimesDatabase
     ModernTimesDatabase::RELIGIONS
   end
 
+  def republics
+    ModernTimesDatabase::REPUBLICS
+  end
+
   def county_ownership(county)
     map.landed_titles_lookup[county].map{|t| land[t] }.find(&:itself)
   end

@@ -1177,6 +1177,41 @@ class ModernTimesGameModification < CK2GameModification
       "k_belarus_adj" => "Belarusian"
   end
 
+  # All this nonsense is only necessary to make merchant republics selectable from
+  # character selection screen - all this work is absolutely worthless otherwise
+  def setup_patrician_houses!
+    ltnode = PropertyList[]
+    patrician_titles = {}
+    @db.republics.each do |title|
+      path = "history/titles/#{title}.txt"
+      holders = parse(path)
+              .list
+              .map{|k,v|[k, v["holder"]]}
+      holders.each_cons(2) do |(d,h),(d2,_)|
+        next unless h and h != 0
+        dynasty = (@character_manager.main_plist[h]["dynasty"] rescue next)
+        patrician_title = title.sub(/^[dke]_/, "b_") + "_#{dynasty}"
+        p [d,d2,h,dynasty,patrician_title]
+        patrician_titles[patrician_title] ||= {dynasty: dynasty, title: title, holders: []}
+        patrician_titles[patrician_title][:holders] << [d, d2, h]
+      end
+
+      patrician_titles.each do |patrician_title, data|
+        node = PropertyList[]
+        data[:holders].each do |d1,d2,h|
+          node.add! d1, PropertyList["holder", h]
+          node.add! d2, PropertyList["holder", 0]
+        end
+        node0 = node.list[0][1]
+        node0.prepend! "liege", data[:title]
+        node0.prepend! "holding_dynasty", data[:dynasty]
+        create_mod_file!("history/titles/#{patrician_title}.txt", node)
+        ltnode.add! patrician_title, PropertyList[]
+      end
+    end
+    create_mod_file! "common/landed_titles/modern_times_patrician_houses.txt", ltnode
+  end
+
   def apply!
     @warnings = []
 
@@ -1205,6 +1240,7 @@ class ModernTimesGameModification < CK2GameModification
     usa_invasion!
     setup_cbs_for_new_invasions!
     save_dynasties!
+    setup_patrician_houses!
     fix_russia_colors!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
