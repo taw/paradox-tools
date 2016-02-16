@@ -1180,6 +1180,11 @@ class ModernTimesGameModification < CK2GameModification
   # All this nonsense is only necessary to make merchant republics selectable from
   # character selection screen - all this work is absolutely worthless otherwise
   def setup_patrician_houses!
+    dynasty_map = {}
+    @character_manager.main_plist.each do |id, node|
+      dynasty_map[id] = node["dynasty"]
+    end
+
     ltnode = PropertyList[]
     patrician_titles = {}
     @db.republics.each do |title|
@@ -1189,9 +1194,8 @@ class ModernTimesGameModification < CK2GameModification
               .map{|k,v|[k, v["holder"]]}
       holders.each_cons(2) do |(d,h),(d2,_)|
         next unless h and h != 0
-        dynasty = (@character_manager.main_plist[h]["dynasty"] rescue next)
+        dynasty = (dynasty_map[h] or next)
         patrician_title = title.sub(/^[dke]_/, "b_") + "_#{dynasty}"
-        p [d,d2,h,dynasty,patrician_title]
         patrician_titles[patrician_title] ||= {dynasty: dynasty, title: title, holders: []}
         patrician_titles[patrician_title][:holders] << [d, d2, h]
       end
