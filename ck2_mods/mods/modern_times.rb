@@ -519,13 +519,17 @@ class ModernTimesGameModification < CK2GameModification
         "immediate", PropertyList[
           "primary_title", PropertyList[
             "succession", "primogeniture",
-            "add_law", "tax_levy_law_feudal_2",
-            "add_law", "feudal_tax_2",
-            "add_law", "city_tax_2",
+            "if", PropertyList[
+              "limit", PropertyList[
+                "NOT", PropertyList["has_dlc", "Conclave"],
+              ],
+              "add_law", "feudal_tax_2",
+              "add_law", "city_tax_2",
+            ],
           ],
         ],
       ],
-      # Tech-based law:
+      # Tech-based law, for Conclave:
       # - tech 5 unlocks Late Admin
       # - tech 3 unlocks Women 1 (except Muslims/holy orders)
       # - tech 5 unlocks Women 2 (except Muslims/holy orders)
@@ -537,6 +541,7 @@ class ModernTimesGameModification < CK2GameModification
         "is_triggered_only", true,
         "only_rulers", true,
         "trigger", PropertyList[
+          "has_dlc", "Conclave",
           "holy_order", false,
           "any_realm_province", PropertyList["TECH_LEGALISM", 5],
         ],
@@ -555,6 +560,7 @@ class ModernTimesGameModification < CK2GameModification
         "is_triggered_only", true,
         "only_rulers", true,
         "trigger", PropertyList[
+          "has_dlc", "Conclave",
           "NOT", PropertyList["religion_group", "muslim"],
           "holy_order", false,
           "any_realm_province", PropertyList["TECH_LEGALISM", 3],
@@ -571,6 +577,7 @@ class ModernTimesGameModification < CK2GameModification
         "is_triggered_only", true,
         "only_rulers", true,
         "trigger", PropertyList[
+          "has_dlc", "Conclave",
           "NOT", PropertyList["religion_group", "muslim"],
           "holy_order", false,
           "any_realm_province", PropertyList["TECH_LEGALISM", 5],
@@ -587,6 +594,7 @@ class ModernTimesGameModification < CK2GameModification
         "is_triggered_only", true,
         "only_rulers", true,
         "trigger", PropertyList[
+          "has_dlc", "Conclave",
           "NOT", PropertyList["religion_group", "muslim"],
           "holy_order", false,
           "any_realm_province", PropertyList["TECH_LEGALISM", 7],
