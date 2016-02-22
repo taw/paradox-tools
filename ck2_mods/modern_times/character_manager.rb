@@ -177,6 +177,6 @@ private
   end
 
   def title_only_allows_males?(title)
-    @builder.db.titles.fetch(title, {})[:male]
+    @builder.db.republics.include?(title) or @builder.db.titles.fetch(title, {})[:male]
   end
 end

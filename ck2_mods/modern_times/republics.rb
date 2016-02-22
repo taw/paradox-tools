@@ -7,4 +7,5 @@ ModernTimesDatabase::REPUBLICS = [
   "d_genoa",
   "d_provence",
   "d_gloucester",
+  "d_pisa",
 ]
