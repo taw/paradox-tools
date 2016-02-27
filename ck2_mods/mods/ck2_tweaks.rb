@@ -613,6 +613,18 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def mark_more_titles_as_high_priority!
+    patch_mod_file!("common/minor_titles/00_minor_titles.txt") do |node|
+      node.each do |title_name, title|
+        next if title["is_high_prio"] # Already tagged
+        # No special reason to be an ass
+        # Titles with 0 opinion are mostly special stuff
+        next unless (title["opinion_effect"] || 0) > 0
+        title["is_high_prio"] = true
+      end
+    end
+  end
+
   def nerf_demand_conversion!
     override_defines_lua!("nerf_demand_conversion",
       "NDiplomacy.DEMAND_RELIGIOUS_CONVERSION_INTERACTION_PIETY" => 25,
@@ -651,6 +663,7 @@ class CK2TweaksGameModification < CK2GameModification
     send_missionaries_to_tributaries!
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
+    mark_more_titles_as_high_priority!
     nerf_demand_conversion!
 
     ### Specific things for specific campaign, kept for reference:
