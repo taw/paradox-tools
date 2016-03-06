@@ -17,7 +17,7 @@ class FactionResistanceGameModification < CK2GameModification
           # Not worth risking the realm over sometimes, keep at 10%
         when "independence"
           # You can get it back later, keep at 5%
-        when "overthrow", "antiking", "claimant"
+        when "overthrow", "antiking", "claimant", "powerful_vassal_takeover"
           # Never! It's your only chance to keep your legacy!
           ultimatum["option"]["ai_chance"]["factor"] = 0
         when "increase_council_power"

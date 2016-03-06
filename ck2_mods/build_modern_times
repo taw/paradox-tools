@@ -7,7 +7,7 @@ class ModernTimesModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/ck2_2.5.1",
+        "source/ck2_2.5.2",
       ),
       "output/modern_times",
     )
