@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+
+require "set"
+require "pathname"
+require "shellwords"
+
+class Pathname
+  def shellescape
+    to_s.shellescape
+  end
+end
+
+class ModCompatibility
+  def initialize(path)
+    @path = Pathname(path)
+    @files = {}
+    @conflicts = {}
+  end
+
+  def add_file!(mod_name, rel_path)
+    return if rel_path == "descriptor.mod"
+    @files[rel_path] ||= Set[]
+    @files[rel_path] << mod_name
+  end
+
+  def add_mod_dir!(mod_dir)
+    mod_name = mod_dir.basename.to_s
+    mod_dir.find.select(&:file?).each do |file_path|
+      add_file! mod_name, file_path.relative_path_from(mod_dir)
+    end
+  end
+
+  def add_mod_pack!(mod_file)
+    mod_name = mod_file.basename(".civ5mod").to_s
+    `7za l -slt #{mod_file.shellescape}`.split(/\n\n/).grep(/^Path = /)[1..-1].each do |file_info|
+      file_path = file_info[/^Path = (.*)/, 1]
+      next if file_info =~ /^Attributes = D/
+      add_file! mod_name, file_path
+    end
+  end
+
+  def add_files!
+    @path.children.each do |mod|
+      if mod.directory?
+        add_mod_dir!(mod)
+      elsif mod.file? and mod.extname == ".zip"
+        add_mod_pack!(mod)
+      elsif mod.file? and mod.extname == ".mod"
+        # OK, ignore
+      else
+        warn "#{mod_dir} is not directory or .civ5mod file"
+        next
+      end
+    end
+  end
+
+  def analyze_potential_conflict!(path, mods)
+    mods.each do |m1|
+      mods.each do |m2|
+        # alphabetical, but whateever
+        next unless m1 < m2
+        @conflicts[[m1, m2]] ||= []
+        @conflicts[[m1, m2]] << path
+      end
+    end
+  end
+
+  def analyze_potential_conflicts!
+    @files.each do |path, mods|
+      analyze_potential_conflict!(path, mods) unless mods.size == 1
+    end
+    @conflicts.each do |(m1,m2),files|
+      puts "Mods `#{m1}' and `#{m2}' conflict:"
+      puts files.map{|x| "* #{x}"}
+    end
+  end
+
+  def run!
+    add_files!
+    analyze_potential_conflicts!
+  end
+end
+
+
+if ARGV.size != 1
+  STDERR.puts "Usage: #{$0} path_to_mods_directory"
+  exit 1
+end
+
+ModCompatibility.new(ARGV[0]).run!
