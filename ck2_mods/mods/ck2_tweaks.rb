@@ -263,26 +263,31 @@ class CK2TweaksGameModification < CK2GameModification
   def increase_vassal_limit!
     # The entire mechanic is dumb - it either does nothing
     # (short of preventing North Korea mode)
-    # or is ridiculously punishing - and unlike with demesne limit
-    # there's no reasonable workaround
+    # or is ridiculously punishing - and unlike with demesne limit there's no reasonable workaround
     #
-    # Base are 10/20/30/5
-    # Conclave base are 8/15/20/3
+    # duke / great duke / king / emperor
+    # Vanilla base:  10/15/20/ 30  +5/centralization
+    #         mod:   25/40/50/100  +5/centralization
+    # Conclave base   8/11/15/ 20  +5/centralization +2/council law
+    #          mod:  20/30/40/ 60  +5/centralization +4/council law
     #
     # However Conclave gives big bonuses for giving council powers
     override_defines_lua!("vassal_limit",
       "NDiplomacy.VASSAL_LIMIT_DUKE_MULT" => 25.0,
+      "NDiplomacy.VASSAL_LIMIT_GREAT_DUKE_BONUS" => 15.0,
       "NDiplomacy.VASSAL_LIMIT_KING_MULT" => 50.0,
       "NDiplomacy.VASSAL_LIMIT_EMPEROR_MULT" => 100.0,
-      "NDiplomacy.VASSAL_LIMIT_GREAT_DUKE_BONUS" => 15.0,
-      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_DUKE_MULT" => 15.0,
-      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_KING_MULT" => 30.0,
-      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_EMPEROR_MULT" => 60.0,
+      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_DUKE_MULT" => 20.0,
       "NDiplomacy.CONCLAVE_VASSAL_LIMIT_GREAT_DUKE_BONUS" => 10.0,
+      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_KING_MULT" => 40.0,
+      "NDiplomacy.CONCLAVE_VASSAL_LIMIT_EMPEROR_MULT" => 60.0,
+      # Much lower penalties for going over the limit, but exact formula is unclear
+      "NDiplomacy.VASSAL_LIMIT_LEVY_MULTIPLIER" => 0.2,
+      "NDiplomacy.VASSAL_LIMIT_TAX_MULTIPLIER"  => 0.2,
     )
     patch_mod_file!("common/laws/ze_council_power_laws.txt") do |node|
       node["laws"].each do |law_name, law|
-        law["vassal_limit"] = 5 if law["vassal_limit"] == 2
+        law["vassal_limit"] = 4 if law["vassal_limit"] == 2
       end
     end
   end
