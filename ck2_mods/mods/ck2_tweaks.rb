@@ -406,7 +406,7 @@ class CK2TweaksGameModification < CK2GameModification
 
   def allow_joining_all_wars!
     # Maybe it's ridiculous, maybe it's great, no way to tell except by testing
-    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+    patch_mod_files!("common/cb_types/*.txt") do |node|
       node.each do |name, cb|
         cb["can_ask_to_join_war"] = true
         cb["attacker_can_call_allies"] = true
@@ -636,8 +636,223 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  # Based on http://steamcommunity.com/sharedfiles/filedetails/?id=477406895
+  def extra_cb_de_jure_duchy_conquest!
+    cb = PropertyList["emf_dejure_duchy_claim", PropertyList[
+      "name", "CB_NAME_EMF_DEJURE_DUCHY_CLAIM",
+      "war_name", "WAR_NAME_EMF_DEJURE_DUCHY_CLAIM",
+      "sprite", 16,
+      "truce_days", 1825,
+      "hostile_against_others", true,
+      "is_permanent", true,
+      "check_de_jure_tier", "DUKE",
+      "can_ask_to_join_war", false,
+      "can_use_title", PropertyList[
+        "OR", PropertyList[
+          "empire", PropertyList["holder", "ROOT"],
+          "kingdom", PropertyList["holder", "ROOT"],
+        ],
+        "FROM", PropertyList["num_of_realm_counties", PropertyList[
+          "value", 2,
+          "title", "PREV",
+        ]],
+        "OR", PropertyList[
+          "FROM", PropertyList["ai", false],
+          "ROOT", PropertyList["ai", false],
+          "ROOT", PropertyList["is_merchant_republic", true],
+          "NOT", PropertyList["FROM", PropertyList[
+            "is_merchant_republic", true,
+            "capital_scope", PropertyList["county", PropertyList["de_jure_liege_or_above", "PREVPREVPREV"]],
+          ]],
+        ],
+      ],
+      "is_valid_title", PropertyList[
+        "FROM", PropertyList["or", PropertyList[
+          "has_landed_title", "PREV",
+          "any_realm_title", PropertyList["de_jure_liege_or_above", "PREVPREV"],
+        ]],
+        "or", PropertyList[
+          "kingdom", PropertyList["holder", "ROOT"],
+          "empire", PropertyList["holder", "ROOT"],
+        ],
+      ],
+      "on_success_title", PropertyList[
+        "ROOT", PropertyList["vassalize_or_take_under_title", PropertyList[
+          "title", "PREV",
+          "enemy", "FROM",
+        ]],
+        "hidden_tooltip", PropertyList["if", PropertyList[
+          "limit", PropertyList[
+            "not", PropertyList["FROM", PropertyList["is_liege_or_above", "ROOT"]],
+            "has_holder", true,
+            "holder_scope", PropertyList["or", PropertyList[
+              "character", "FROM",
+              "is_liege_or_above", "FROM",
+            ]],
+          ],
+          "usurp_title", PropertyList[
+            "target", "ROOT",
+            "type", "claim",
+          ],
+        ]],
+        "any_attacker", PropertyList[
+          "limit", PropertyList["character", "ROOT"],
+          "participation_scaled_prestige", 150,
+        ],
+        "any_attacker", PropertyList[
+          "limit", PropertyList["not", PropertyList["character", "ROOT"]],
+          "hidden_tooltip", PropertyList["participation_scaled_prestige", 150],
+        ],
+      ],
+      "on_fail", PropertyList[
+        "ROOT", PropertyList["prestige", -150],
+        "any_defender", PropertyList[
+          "limit", PropertyList["character", "FROM"],
+          "participation_scaled_prestige", 75,
+        ],
+        "any_defender", PropertyList[
+          "limit", PropertyList["not", PropertyList["character", "FROM"]],
+          "hidden_tooltip", PropertyList["participation_scaled_prestige", 75],
+        ],
+      ],
+      "on_reverse_demand", PropertyList[
+        "ROOT", PropertyList[
+          "prestige", -300,
+          "transfer_scaled_wealth", PropertyList[
+            "to", "FROM",
+            "value", 4.0,
+          ],
+        ],
+        "any_defender", PropertyList[
+          "limit", PropertyList["character", "FROM"],
+          "participation_scaled_prestige", 150,
+        ],
+        "any_defender", PropertyList[
+          "limit", PropertyList["not", PropertyList["character", "FROM"]],
+          "hidden_tooltip", PropertyList["participation_scaled_prestige", 150],
+        ],
+      ],
+      "attacker_ai_victory_worth", PropertyList["factor", -1],
+      "attacker_ai_defeat_worth", PropertyList["factor", 100],
+      "defender_ai_victory_worth", PropertyList["factor", -1],
+      "defender_ai_defeat_worth", PropertyList["factor", 100],
+      "ai_will_do", PropertyList["factor", 1],
+    ]]
+
+    create_mod_file! "common/cb_types/99_de_jure_duchy_cb.txt", cb
+    localization!("abolish_title_cb",
+      "CB_NAME_EMF_DEJURE_DUCHY_CLAIM" => "De Jure Claim on [Title.GetBaseName]",
+      "WAR_NAME_EMF_DEJURE_DUCHY_CLAIM" => "$ORDER$$FIRST_ADJ$-$SECOND_ADJ$ De Jure War over $OTHER_TITLE$",
+      "emf_dejure_duchy_claim_desc" => "The $TITLE$ is, de jure, a vassal of $CLAIMANT$'s, which is cause enough for war.",
+    )
+  end
+
+
+  # Based on http://steamcommunity.com/sharedfiles/filedetails/?id=639295392
+  def extra_cb_abolish_title!
+    cb = PropertyList["abolish_title", PropertyList[
+      "name", "SM_ABOLISH",
+      "war_name", "WAR_NAME_SM_ABOLISH",
+      "sprite", 6,
+      "truce_days", 3650,
+      "is_permanent", true,
+      "can_ask_to_join_war", true,
+      "hostile_against_others", false,
+      "prestige_cost", 100,
+      "check_all_titles", true,
+      "can_use", PropertyList[
+        "ROOT", PropertyList[
+          "NOT", PropertyList["is_liege_or_above", "FROM"],
+          "any_realm_title", PropertyList["de_jure_liege_or_above", "FROM"],
+        ],
+        "FROM", PropertyList["is_landed", true],
+        "OR", PropertyList[
+          "AND", PropertyList[
+            "ROOT", PropertyList["NOT", PropertyList["same_realm", "FROM"]],
+            "FROM", PropertyList["independent", true],
+          ],
+          "ROOT", PropertyList["same_realm", "FROM"],
+        ],
+      ],
+      "can_use_title", PropertyList[
+        "is_primary_type_title", false,
+        "temporary", false,
+        "higher_tier_than", "COUNT",
+        "ROOT", PropertyList[
+          "any_realm_title", PropertyList["de_jure_liege_or_above", "PREVPREV"],
+          "any_demesne_title", PropertyList["PREVPREV", PropertyList["any_de_jure_vassal_title", PropertyList["title", "PREVPREV"]]],
+        ],
+      ],
+      "is_valid", PropertyList["always", true],
+      "is_valid_title", PropertyList["FROM", PropertyList["has_landed_title", "PREV"]],
+      "on_add", [],
+      "on_success_title", PropertyList[
+        "FROM", PropertyList["destroy_landed_title", "PREV"],
+        "if", PropertyList[
+          "limit", PropertyList["tier", "duke"],
+          "FROM", PropertyList["prestige", -200],
+        ],
+        "if", PropertyList[
+          "limit", PropertyList["tier", "king"],
+          "FROM", PropertyList["prestige", -400],
+        ],
+        "if", PropertyList[
+          "limit", PropertyList["tier", "emperor"],
+          "FROM", PropertyList["prestige", -800],
+        ],
+      ],
+      "on_success", PropertyList[
+        "ROOT", PropertyList["prestige", 100],
+        "any_attacker", PropertyList[
+          "limit", PropertyList["not", PropertyList["character", "ROOT"]],
+          "hidden_tooltip", PropertyList["participation_scaled_prestige", 100],
+        ],
+        "FROM", PropertyList["piety", -100],
+      ],
+      "on_fail", PropertyList[
+        "FROM", PropertyList["prestige", 100],
+        "any_defender", PropertyList[
+          "limit", PropertyList["NOT", PropertyList["character", "FROM"]],
+          "hidden_tooltip", PropertyList["participation_scaled_prestige", 100],
+        ],
+      ],
+      "on_reverse_demand", PropertyList[
+        "ROOT", PropertyList["transfer_scaled_wealth", PropertyList[
+          "to", "FROM",
+          "value", 4.0,
+        ]],
+        "FROM", PropertyList["prestige", 200],
+        "any_defender", PropertyList[
+          "limit", PropertyList["not", PropertyList["character", "FROM"]],
+          "hidden_tooltip", PropertyList["participation_scaled_prestige", 100],
+        ],
+      ],
+      "attacker_ai_victory_worth", PropertyList["factor", -1],
+      "attacker_ai_defeat_worth", PropertyList["factor", 100],
+      "defender_ai_victory_worth", PropertyList["factor", -1],
+      "defender_ai_defeat_worth", PropertyList["factor", 100],
+      "ai_will_do", PropertyList["factor", 1],
+    ]]
+
+    create_mod_file! "common/cb_types/99_abolish_title.txt", cb
+    localization!("abolish_title_cb",
+      "SM_ABOLISH" => "Abolish [Title.GetBaseName]",
+      "WAR_NAME_SM_ABOLISH" => "War to Abolish $OTHER_TITLE$",
+      "abolish_title_desc" => "War to directly challenge the dejure right of this ruler and show the title does not have any authority or power as it claims to. On success the title will be declared forfeit.",
+    )
+  end
+
+  def fix_infamy!
+    override_defines_lua!("fix_infamy",
+      "NInfamy.MAX_INFAMY_PER_WAR_PROVINCE" => 0,
+      "NInfamy.MIN_INFAMY_PER_WAR_PROVINCE" => 0,
+    )
+  end
+
   def apply!
     ### General fixes:
+    extra_cb_de_jure_duchy_conquest!
+    extra_cb_abolish_title!
     allow_any_number_of_different_holding_types!
     allow_intermarriage!
     fix_gavelkind!
@@ -670,6 +885,7 @@ class CK2TweaksGameModification < CK2GameModification
     allow_more_commanders!
     mark_more_titles_as_high_priority!
     nerf_demand_conversion!
+    fix_infamy!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
