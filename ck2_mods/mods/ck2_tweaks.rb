@@ -846,6 +846,8 @@ class CK2TweaksGameModification < CK2GameModification
     override_defines_lua!("fix_infamy",
       "NInfamy.MAX_INFAMY_PER_WAR_PROVINCE" => 0,
       "NInfamy.MIN_INFAMY_PER_WAR_PROVINCE" => 0,
+      "NInfamy.MIN_INFAMY_DECAY" => 100,
+      "NInfamy.MAX_INFAMY_DECAY" => 100,
     )
   end
 
