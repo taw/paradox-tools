@@ -401,6 +401,8 @@ class CK2TweaksGameModification < CK2GameModification
       ]
       # Nomads OP, forcing them to go independent instead will weaken them
       node["faction_overthrow"]["potential"] = PropertyList["always", false]
+      # This faction is full retard. Want a title, get a claim.
+      node["faction_powerful_vassal_takeover"]["potential"] = PropertyList["always", false]
     end
   end
 
