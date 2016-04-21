@@ -9,7 +9,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       content.sub("FROM {", "FROM = {")
     end
 
-
     soft_patch_defines_lua!([
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],

@@ -129,7 +129,7 @@ task "extended_timeline" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance_et",
-    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.15.1_and_extended_timeline_0.15.1.7z"
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.16.3_and_extended_timeline_1.0.2.7z"
   ).build!
 end
 

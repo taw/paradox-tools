@@ -11,6 +11,9 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     patch_file!("common/opinion_modifiers/00_opinion_modifiers.txt", force_create: true) do |content|
       content.sub("they_force_vassalized_us = [", "they_force_vassalized_us = {")
     end
+    patch_file!("missions/Anti_Rival_Missions.txt") do |content|
+      content.sub("FROM {", "FROM = {")
+    end
 
     soft_patch_defines_lua!([
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
@@ -20,7 +23,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.CORE_LOSE", 50, 100],
       ["NCountry.CORE_LOSE_CULTURE_GROUP", 150, 300],
       ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
-      ["NCountry.FOREIGN_REBEL_SUPPORT", 4, 6],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.OVERSEAS_DISTANCE", 150, 400],
       ["NCountry.POLICY_COST", 1, 0],
