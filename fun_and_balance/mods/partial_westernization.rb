@@ -29,6 +29,7 @@ class PartialWesternizationGameModification < EU4GameModification
             ],
             "is_at_war", false,
             Property::NOT["num_of_revolts", 1],
+            "is_westernising", false,
             "adm_power", 250,
             "dip_power", 250,
             "mil_power", 250,
