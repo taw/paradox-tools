@@ -898,6 +898,6 @@ class CK2TweaksGameModification < CK2GameModification
     allow_heir_designation!
     rebalance_faction_priorities!
     allow_joining_all_wars!
-    nerf_nomads!
+    # nerf_nomads!
   end
 end
