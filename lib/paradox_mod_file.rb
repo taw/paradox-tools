@@ -121,6 +121,13 @@ class ParadoxModFile
   def parse_val
     if @tokens[0] == :open
       @tokens.shift
+      if @tokens[0] == :open and @tokens[1] == :close
+        # Nonsense from CK2 saves
+        # warn "{} found in wrong context"
+        @tokens.shift
+        @tokens.shift
+      end
+
       if @tokens[1] == :eq
         parse_obj.tap{
           parse_close

@@ -1,0 +1,123 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class Character
+  attr_reader :children, :id, :data, :dynasty_name, :dynasty_id
+  attr_reader :father_id, :mother_id, :titles
+  attr_accessor :father, :mother
+  def initialize(id, db, data)
+    # No ref to db past initialization
+    @id = id
+    @data = data
+    @bn = @data["bn"] || @data["birth_name"]
+    @father_id = @data["fat"] || @data["father"]
+    @mother_id = @data["mot"] || @data["mother"]
+    @dynasty_id = data["dynasty"]
+    @dynasty_name = db.dynasties[dynasty_id]["name"] || "UnknownDynasty" if dynasty_id
+    @children = []
+    @titles = @data.find_all("old_holding")
+  end
+
+  def best_titles
+    unless @best_titles
+      @best_titles = @titles.grep(/\Ae_/)
+      @best_titles = @titles.grep(/\Ak_/) if @best_titles.empty?
+      @best_titles = @titles.grep(/\Ad_/) if @best_titles.empty?
+      @best_titles = @titles.grep(/\Ac_/) if @best_titles.empty?
+      @best_titles = @titles if @best_titles.empty?
+      @best_titles.sort!
+    end
+    @best_titles
+  end
+
+  def name
+    if best_titles.empty?
+      "#{@bn} #{dynasty_name}"
+    else
+      "#{@bn} #{dynasty_name} of #{best_titles.join("/")}"
+    end
+  end
+
+  def inspect
+    "Character<#{@id} - #{name}>"
+  end
+
+  def to_s
+    "#{id} #{name}"
+  end
+end
+
+class ListDescendants
+  def initialize(path, character_id)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+    @character_id = character_id
+  end
+
+  def characters
+    unless @characters
+      @characters = {}
+      @data["character"].each do |id, character|
+        @characters[id] = Character.new(id, self, character)
+      end
+      link_parents_and_children!
+      link_holders_and_titles!
+    end
+    @characters
+  end
+
+  def dynasties
+    unless @dynasties
+      @dynasties = {}
+      @data["dynasties"].each do |id, dynasty|
+        @dynasties[id] = dynasty
+      end
+    end
+    @dynasties
+  end
+
+  def run!
+    print_family characters[@character_id]
+  end
+
+  def print_family(character, indent="")
+    puts "#{indent}#{character}"
+    character.children.each do |c|
+      print_family c, indent+"* "
+    end
+  end
+
+  private
+
+  def link_parents_and_children!
+    @characters.each do |id, character|
+      father = @characters[character.father_id]
+      mother = @characters[character.mother_id]
+      if father
+        character.father = father
+        father.children << character
+      end
+      if mother
+        character.mother = mother
+        mother.children << character
+      end
+    end
+  end
+
+  def link_holders_and_titles!
+    @data["title"].each do |name, title|
+      id = title["holder"]
+      if @characters[id]
+        @characters[id].titles << name
+      end
+    end
+  end
+end
+
+unless ARGV.size == 2
+  STDERR.puts "Usage: #{$0} <save.ck2> <character id> # non-compressed save only"
+  exit 1
+end
+
+ListDescendants.new(ARGV[0], ARGV[1].to_i).run!
