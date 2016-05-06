@@ -382,13 +382,9 @@ class CK2TweaksGameModification < CK2GameModification
     # AI faction choices drastically affect how things develop.
     # Rebalancing faction priorities can lead to much more interesting choices
     patch_mod_file!("common/objectives/00_factions.txt") do |node|
-      # Not allowed unless Germanic culture
-      # It would probably be better to disallow this succession type otherwise
-      node["faction_succ_feudal_elective"]["potential"].add! Property::OR[
-        "culture_group", "north_germanic",
-        "culture_group", "central_germanic",
-        "culture_group", "west_germanic",
-      ]
+      # Elective faction is retarded. At first I tried to limit it to Germanic culture,
+      # but it's still far too common, so time to kill it
+      node["faction_succ_feudal_elective"]["potential"] = PropertyList["always", false]
       # Allow elective->gavelkind.
       # I hate elective all over the place, create some counterbalance to it
       node["faction_succ_gavelkind"]["chance"].delete_if do |k,v|
