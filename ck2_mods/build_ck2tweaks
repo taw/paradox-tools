@@ -16,7 +16,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     apply_modifications! CK2TweaksGameModification,
                          BecomeRepublicGameModification,
                          NoDynasticNamesGameModification,
-                         NoLocalizedRanksGameModification,
+                         # NoLocalizedRanksGameModification,
                          NoLocalizedTitlesGameModification,
                          VassalTransferGameModification,
                          DynasticDecisionsGameModification,
