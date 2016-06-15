@@ -861,13 +861,13 @@ class CK2TweaksGameModification < CK2GameModification
   def rebalance_conclave!
     patch_mod_file!("common/job_titles/00_job_titles.txt") do |node|
       node.each do |job_title, job|
-        job["opinion_effect"] += 30
+        job["opinion_effect"] += 15
       end
     end
     patch_mod_file!("common/laws/ze_council_power_laws.txt") do |node|
       node["laws"].each do |law_name, law|
         if law_name =~ /1/
-          law["vassal_opinion"] = 5
+          law["vassal_opinion"] = 3
         end
       end
     end
