@@ -39,7 +39,7 @@ class ModCompatibility
   end
 
   def add_mod_pack!(mod_file)
-    mod_name = mod_file.basename(".civ5mod").to_s
+    mod_name = mod_file.basename(".zip").to_s
     `7za l -slt #{mod_file.shellescape}`.split(/\n\n/).grep(/^Path = /)[1..-1].each do |file_info|
       file_path = file_info[/^Path = (.*)/, 1]
       next if file_info =~ /^Attributes = D/
@@ -55,8 +55,10 @@ class ModCompatibility
         add_mod_pack!(mod)
       elsif mod.file? and mod.extname == ".mod"
         # OK, ignore
+      elsif mod.basename.to_s == ".DS_Store"
+        # OK, ignore
       else
-        warn "#{mod_dir} is not directory or .civ5mod file"
+        warn "#{mod} is not directory or archive file"
         next
       end
     end
@@ -102,6 +104,10 @@ class ModCompatibility
   def run!
     add_files!
     analyze_potential_conflicts!
+  end
+
+  def inspect
+    "ModCompatibility<#{@path}>"
   end
 end
 
