@@ -6,8 +6,8 @@ class FocusTreeBuilder
     instance_eval(&block)
   end
 
-  def focus(name, &block)
-    @focuses << FocusBuilder.new(@tag, name, &block).build
+  def focus(*args, &block)
+    @focuses << FocusBuilder.new(@tag, *args, &block).build
   end
 
   def build

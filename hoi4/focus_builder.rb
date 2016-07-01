@@ -1,17 +1,20 @@
 class FocusBuilder
-  def initialize(prefix, name, &block)
+  def initialize(prefix, name, icon:, x:, y:, &block)
     @prefix = prefix
     @name = name
-    @x = nil
-    @y = nil
+    @x = x
+    @y = y
+    set_icon icon
     @prerequisites = []
+    @mutually_exclusive = []
     @reward = PropertyList[]
-    @icon = nil
     instance_eval(&block)
   end
 
   def build
-    Focus.new(@name, id_for_name(@name), @x, @y, @reward, @prerequisites, @icon || inferred_icon)
+    raise "No icon for #{@name}" unless @icon
+    raise "No X/Y for #{@name}" unless @x and @y
+    Focus.new(@name, id_for_name(@name), x: @x, y: @y, reward: @reward, prerequisites: @prerequisites, icon: @icon, mutually_exclusive: @mutually_exclusive)
   end
 
   def loc(x,y)
@@ -24,8 +27,16 @@ class FocusBuilder
     end
   end
 
+  def mutually_exclusive(name)
+    @mutually_exclusive << name
+  end
+
   def army_xp(val)
-    @reward.add! "army_experience", 5
+    @reward.add! "army_experience", val
+  end
+
+  def air_xp(val)
+    @reward.add! "air_experience", val
   end
 
   def research_bonus(name, uses: 1, bonus: nil, ahead: nil)
@@ -47,11 +58,6 @@ class FocusBuilder
     @reward.add! "add_tech_bonus", reward
   end
 
-  def inferred_icon
-    warn "No idea which icon to choose for #{@name}"
-    "GFX_goal_generic_construct_infrastructure"
-  end
-
   private
 
   def categories_for_research_bonus(name)
@@ -61,6 +67,8 @@ class FocusBuilder
     case name
     when "land_doc"
       categories = ["land_doctrine"]
+    when "air_doc"
+      categories = ["air_doctrine"]
     when "infantry_weapons", "infantry_artillery"
       categories = ["artillery", "infantry_weapons"]
     # motorised / motorized inconsistency is in the game
@@ -74,6 +82,17 @@ class FocusBuilder
       categories = ["armor"]
     when "special_forces"
       technologies = ["paratroopers", "paratroopers2", "marines", "marines2", "tech_mountaineers", "tech_mountaineers2"]
+    when "fighter"
+      technologies = %W[early_fighter	fighter1 fighter2	fighter3 heavy_fighter1	heavy_fighter2 heavy_fighter3]
+    when "bomber"
+      technologies = %W[strategic_bomber1 strategic_bomber2 strategic_bomber3]
+      categories = %W[tactical_bomber]
+    when "CAS"
+      categories = %W[cas_bomber]
+    when "nav_bomber"
+      categories = %W[naval_bomber]
+    when "jet_rocket"
+      categories = %W[rocketry jet_technology]
     else
       raise "Can't infer bonus name for #{name}"
     end
@@ -82,5 +101,34 @@ class FocusBuilder
 
   def id_for_name(name)
     "#{@prefix}_#{name.downcase.gsub(" ", "_")}"
+  end
+
+  def set_icon(icon_name)
+    @icon = case icon_name
+    when *%W[
+      small_arms
+      army_motorized
+      army_doctrines
+      army_artillery
+      build_tank
+      army_artillery2
+      army_tanks
+      special_forces
+      air_fighter
+      air_bomber
+      air_doctrine
+      CAS
+      air_naval_bomber
+    ]
+      "GFX_goal_generic_#{icon_name}"
+    when "airforce"
+      "GFX_goal_generic_build_#{icon_name}"
+    when "infantry"
+      "GFX_goal_generic_allies_build_#{icon_name}"
+    when "rocketry"
+      "GFX_focus_#{icon_name}"
+    else
+      raise "Unknown icon name #{icon_name}"
+    end
   end
 end
