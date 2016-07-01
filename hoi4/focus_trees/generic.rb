@@ -74,7 +74,7 @@ focus_tree "Generic 2", "SWE" do
   end
 
   focus "Aviation Effort 2", x: 5, y: 2, icon: "air_doctrine" do
-    req "Bomber Effort", "Fighter Effort"
+    req "Bomber Focus", "Fighter Focus"
     air_xp 25
     # TODO: very complex reward with air bases
     research_bonus :air_doc, bonus: 0.5
@@ -101,7 +101,7 @@ focus_tree "Generic 2", "SWE" do
   focus "Naval Effort", x: 9, y: 0, icon: "naval_dockyard" do
     available_if_has_coastal_state
     navy_xp 25
-    # build_dockyards 3
+    dockyards 3
     ai_wont_do_without_coastal_province
   end
 
@@ -120,7 +120,7 @@ focus_tree "Generic 2", "SWE" do
   end
 
   focus "Submarine Effort", x: 8, y: 2, icon: "navy_submarine" do
-    req "Large Navy", "Flexible Navy"
+    req "Flexible Navy", "Large Navy"
     research_bonus :ss, bonus: 0.5, ahead: 1
     ai_wont_do_without_coastal_province
   end
@@ -139,6 +139,7 @@ focus_tree "Generic 2", "SWE" do
 
   focus "Capital Ships Effort", x: 10, y: 3, icon: "navy_battleship" do
     req "Cruiser Effort"
+    navy_xp 25
     research_bonus :capital_ships, bonus: 0.5, ahead: 1
     ai_wont_do_without_coastal_province
   end
@@ -149,26 +150,31 @@ focus_tree "Generic 2", "SWE" do
 
   focus "Construction Effort", x: 12, y: 1, icon: "civ_factory" do
     req "Industrial Effort"
+    civ_factory 1
   end
 
-  focus "Armament Effort", x: 14, y: 1, icon: "mil_factory" do
+  focus "Production Effort", x: 14, y: 1, icon: "mil_factory" do
     req "Industrial Effort"
+    mil_factory 1
   end
 
   focus "Construction Effort 2", x: 12, y: 2, icon: "civ_factory" do
     req "Construction Effort"
+    civ_factory 1
   end
 
-  focus "Armament Effort 2", x: 14, y: 2, icon: "mil_factory" do
-    req "Armament Effort"
+  focus "Production Effort 2", x: 14, y: 2, icon: "mil_factory" do
+    req "Production Effort"
+    mil_factory 1
   end
 
   focus "Infrastructure Effort", x: 12, y: 3, icon: "infrastructure" do
     req "Construction Effort 2"
   end
 
-  focus "Armament Effort 3", x: 14, y: 3, icon: "mil_factory" do
-    req "Armament Effort 2"
+  focus "Production Effort 3", x: 14, y: 3, icon: "mil_factory" do
+    req "Production Effort 2"
+    civ_factory 1
   end
 
   focus "Infrastructure Effort 2", x: 12, y: 4, icon: "infrastructure" do
@@ -177,6 +183,7 @@ focus_tree "Generic 2", "SWE" do
 
   focus "Construction Effort 3", x: 14 , y: 4, icon: "civ_factory" do
     req "Infrastructure Effort"
+    civ_factory 2
   end
 
   focus "Nuclear Effort", x: 10, y: 5, icon: "wonderweapons" do
@@ -194,6 +201,4 @@ focus_tree "Generic 2", "SWE" do
   focus "Secret Weapons", x: 14, y: 5, icon: "secret_weapon" do
     req "Infrastructure Effort 2"
   end
-
-
 end
