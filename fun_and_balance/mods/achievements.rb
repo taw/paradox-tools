@@ -11,7 +11,7 @@ class AchievementsGameModification < EU4GameModification
       flag_name = "achievement_#{id}_#{name}"
 
       possible = achievement["possible"].deep_copy
-      possible.delete "ironman"
+      possible.delete! "ironman"
       possible.add! "ai", false
       criteria = achievement["happened"]
 
@@ -26,7 +26,7 @@ class AchievementsGameModification < EU4GameModification
         # This is just for pretty printing, more generic else clause would work just as well
         happened = Property::OR[
           "has_country_modifier", flag_name,
-          *criteria.list[0],
+          *criteria.to_a,
         ]
       else
         happened = Property::OR[

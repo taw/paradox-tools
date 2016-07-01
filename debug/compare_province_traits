@@ -20,8 +20,8 @@ def cleanup_history_data(pl)
     decision
   ]
 
-  pl.delete_if do |k,v|
-    history_fields.include?(k)
+  pl.delete! do |prop|
+    history_fields.include?(prop.key)
   end
 end
 
@@ -30,7 +30,7 @@ def cleanup_province(province)
   province.each do |key, val|
     cleanup_history_data(val) if key.is_a?(Date) and val.is_a?(PropertyList)
   end
-  province.delete_if{|key, val| key.is_a?(Date) and val.is_a?(PropertyList) and val.size == 0}
+  province.delete!{|prop| prop.key.is_a?(Date) and prop.val.is_a?(PropertyList) and prop.val.size == 0}
 
   d1000 = Date.new(1000, 1, 1, Date::JULIAN)
 

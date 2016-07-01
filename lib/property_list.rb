@@ -25,6 +25,12 @@ class PropertyList
     end
   end
 
+  def each_value(&blk)
+    @entries.each do |prop|
+      yield prop.val
+    end
+  end
+
   def add!(key, val=nil)
     if key.is_a?(Property) and val == nil
       @entries << key
@@ -33,6 +39,18 @@ class PropertyList
     else
       @entries << Property.new(key, val)
     end
+  end
+
+  def map!(&blk)
+    @entries = @entries.map do |prop|
+      prop = yield(prop)
+      raise "#map block must return Property objects" unless prop.is_a?(Property)
+      prop
+    end
+  end
+
+  def uniq!
+    @entries = @entries.uniq
   end
 
   def prepend!(key, val=nil)
@@ -183,6 +201,10 @@ class PropertyList
 
   def sort!
     @entries.sort!
+  end
+
+  def deep_copy
+    Marshal.load(Marshal.dump(self))
   end
 
   attr_reader :entries

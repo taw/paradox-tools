@@ -16,7 +16,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         if i == 0
           tech["reduced_naval_attrition"] = true
         else
-          tech.delete("reduced_naval_attrition")
+          tech.delete! "reduced_naval_attrition"
         end
       end
     end
@@ -85,7 +85,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   def fix_wargoals!
     patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
-      node["cb_crusade"]["prerequisites"].delete "is_neighbor_of"
+      node["cb_crusade"]["prerequisites"].delete! "is_neighbor_of"
       node["cb_crusade"]["prerequisites"].prepend! Property::OR[
         "is_neighbor_of", "FROM",
         "any_country", PropertyList[
@@ -95,7 +95,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           "cb_on_religious_enemies", true,
         ],
       ]
-      node["cb_heretic"]["prerequisites"].delete "is_neighbor_of"
+      node["cb_heretic"]["prerequisites"].delete! "is_neighbor_of"
       node["cb_heretic"]["prerequisites"].prepend! Property::OR[
         "is_neighbor_of", "FROM",
         "any_country", PropertyList[
@@ -114,17 +114,17 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   def reverse_horde_nerfs!
     patch_mod_file!("decisions/MughalNation.txt") do |node|
-      node["country_decisions"]["mughal_nation"]["allow"].delete("is_tribal")
+      node["country_decisions"]["mughal_nation"]["allow"].delete! "is_tribal"
       node["country_decisions"]["mughal_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
     end
 
     patch_mod_file!("decisions/PersianNation.txt") do |node|
-      node["country_decisions"]["persian_nation"]["allow"].delete("is_tribal")
+      node["country_decisions"]["persian_nation"]["allow"].delete! "is_tribal"
       node["country_decisions"]["persian_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
     end
 
     patch_mod_file!("decisions/ManchuDecisions.txt") do |node|
-      node["country_decisions"]["form_manchu_dynasty"]["allow"].delete("is_tribal")
+      node["country_decisions"]["form_manchu_dynasty"]["allow"].delete! "is_tribal"
       node["country_decisions"]["form_manchu_dynasty"]["effect"].add! "if", PropertyList[
         "limit", PropertyList["technology_group", "nomad_group"],
         "change_technology_group",  "chinese",
@@ -140,11 +140,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["country_decisions"].each_value do |decision|
         decision["allow"]["stability"] = 2
         decision["allow"].add! Property::OR["stability", 3, "adm_tech", 8]
-        decision["allow"].delete_if do |*kv|
-          kv == ["OR", PropertyList["full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
+        decision["allow"].delete! do |prop|
+          prop == Property["OR", PropertyList["full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
         end
-        decision["potential"].delete_if do |*kv|
-          kv == ["OR", PropertyList["ai", false, "full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
+        decision["potential"].delete! do |prop|
+          prop == Property["OR", PropertyList["ai", false, "full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
         end
       end
     end
@@ -158,8 +158,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   def anyone_can_form_byzantium!
     patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
-      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete_if do |k,v|
-        k == "NOT" and (v == PropertyList["tag", "HLR"] or v == PropertyList["tag", "TUR"])
+      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! do |prop|
+        prop.key == "NOT" and (prop.val == PropertyList["tag", "HLR"] or prop.val == PropertyList["tag", "TUR"])
       end
     end
   end
@@ -173,7 +173,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
             religion["province"] ||= PropertyList[]
             religion["province"]["local_missionary_strength"] = 0.03
           else
-            religion["province"].delete("local_missionary_strength") if religion["province"]
+            religion["province"].delete!("local_missionary_strength") if religion["province"]
           end
         end
       end
@@ -210,8 +210,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     # Because Orthodox Ottomans are a thing now
     patch_mod_file!("decisions/Ottoman.txt") do |node|
       constantinople_decision = node["country_decisions"]["make_constantinople_capital"]
-      constantinople_decision["allow"].delete("primary_culture")
-      constantinople_decision["allow"].delete("religion")
+      constantinople_decision["allow"].delete! "primary_culture"
+      constantinople_decision["allow"].delete! "religion"
       constantinople_decision["effect"][151]["change_culture"] = "ROOT"
       constantinople_decision["effect"][151]["change_religion"] = "ROOT"
     end

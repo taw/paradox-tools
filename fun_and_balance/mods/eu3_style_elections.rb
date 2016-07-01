@@ -2,11 +2,11 @@ require_relative "base"
 
 class EU3StyleElectionsGameModification < EU4GameModification
   def eu3_style_elections!(node)
-    node.delete("change_adm")
-    node.delete("change_dip")
-    node.delete("change_mil")
+    node.delete! "change_adm"
+    node.delete! "change_dip"
+    node.delete! "change_mil"
     node["add_scaled_republican_tradition"] *= 0.3 if node["add_scaled_republican_tradition"]
-    node["define_ruler"].delete("fixed") if node["define_ruler"]
+    node["define_ruler"].delete! "fixed" if node["define_ruler"].is_a?(PropertyList)
     eu3_style_elections! node["FROM"] if node["FROM"]
     eu3_style_elections! node["tooltip"] if node["tooltip"]
   end

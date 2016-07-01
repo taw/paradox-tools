@@ -74,8 +74,8 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     patch_mod_file!("common/technologies/adm.txt") do |node|
       techs = [PropertyList[]] + node.find_all("technology")
       techs.each do |tech|
-        tech.delete "development_efficiency"    # 25, 29, with 0.25 each
-        tech.delete "administrative_efficiency" # 24, 28, with 0.25 each
+        tech.delete! "development_efficiency"    # 25, 29, with 0.25 each
+        tech.delete! "administrative_efficiency" # 24, 28, with 0.25 each
       end
       [9, 14, 19, 24, 29].each do |level|
         techs[level].add! "development_efficiency", 0.1

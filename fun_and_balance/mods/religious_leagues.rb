@@ -9,9 +9,9 @@ class ReligiousLeaguesGameModification < EU4GameModification
 
   def apply!
     patch_mod_file! "common/triggered_modifiers/00_triggered_modifiers.txt" do |node|
-      node["hre_dominant_catholic"]["potential"].delete("OR")
+      node["hre_dominant_catholic"]["potential"].delete! "OR"
       node["hre_dominant_catholic"]["potential"].add! "religion_group", "christian"
-      node["hre_dominant_protestant"]["potential"].delete("OR")
+      node["hre_dominant_protestant"]["potential"].delete! "OR"
       node["hre_dominant_protestant"]["potential"].add! "religion_group", "christian"
       ["reformed", "orthodox", "coptic"].each do |religion|
         node.add! "hre_dominant_#{religion}", PropertyList[
@@ -93,8 +93,8 @@ class ReligiousLeaguesGameModification < EU4GameModification
           ],
         ]
 
-        node.delete_if{|k,v| k == "country_event" and v["id"] == "religious_leagues.2"}
-        node.delete_if{|k,v| k == "country_event" and v["id"] == "religious_leagues.3"}
+        node.delete!{|prop| prop.key == "country_event" and prop.val["id"] == "religious_leagues.2"}
+        node.delete!{|prop| prop.key == "country_event" and prop.val["id"] == "religious_leagues.3"}
 
         ["catholic", "protestant", "reformed", "orthodox", "coptic"].each_with_index do |hre_religion,i|
           ["catholic", "protestant", "reformed", "orthodox", "coptic"].each_with_index do |heretic_religion,j|
@@ -229,11 +229,11 @@ class ReligiousLeaguesGameModification < EU4GameModification
 
       # This code is seriously dumb and fragile
       catholic_diet = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.7"}
-      catholic_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete "religion"
+      catholic_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete! "religion"
       catholic_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].add! "NOT", PropertyList["religion", "catholic"]
       catholic_diet["desc"] = "religious_leagues.diet.catholic"
       protestant_diet = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.7"}
-      protestant_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete "religion"
+      protestant_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete! "religion"
       protestant_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].add! "NOT", PropertyList["religion", "protestant"]
       protestant_diet["desc"] = "religious_leagues.diet.protestant"
     end

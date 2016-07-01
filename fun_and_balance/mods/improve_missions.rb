@@ -17,7 +17,8 @@ class ImproveMissionsGameModification < EU4GameModification
 
   def change_tag_references_to_root_references_in_node!(node, tags)
     tags_seen = Set[]
-    node.map! do |key, val|
+    node.map! do |prop|
+      key, val = prop.key, prop.val
       if nation_tag?(key)
         if tags.include?(key)
           key = "ROOT"
@@ -37,19 +38,20 @@ class ImproveMissionsGameModification < EU4GameModification
         tags_seen += change_tag_references_to_root_references_in_node!(val, tags)
         if key == "OR"
           val.uniq!
-          key, val = *val.each.to_a[0] if val.size == 1
+          next val.to_a[0] if val.size == 1
         end
       end
 
-      [key, val]
+      Property[key, val]
     end
     tags_seen
   end
 
   def change_tag_references_to_root_references_in_allow_node!(node, tags)
     tags_seen = Set[]
-    node.map! do |key, val|
-      next [key, val] if key == "tag"
+    node.map! do |prop|
+      key, val = prop.key, prop.val
+      next prop if key == "tag"
 
       if nation_tag?(key)
         if tags.include?(key)
@@ -70,13 +72,13 @@ class ImproveMissionsGameModification < EU4GameModification
         if key == "OR"
           tags_seen += change_tag_references_to_root_references_in_allow_node!(val, tags)
           val.uniq!
-          key, val = *val.each.to_a[0] if val.size == 1
+          next val.to_a[0] if val.size == 1
         else
           tags_seen += change_tag_references_to_root_references_in_node!(val, tags)
         end
       end
 
-      [key, val]
+      Property[key, val]
     end
     tags_seen
   end
@@ -130,14 +132,14 @@ class ImproveMissionsGameModification < EU4GameModification
       not_orig_tags = Property::AND[*tags.map{|t| Property::NOT["tag", t]}]
     end
 
-    mission["allow"].map! do |key, val|
-      if key == "tag" or (key == "OR" and val["tag"])
-        ["OR", PropertyList[
+    mission["allow"].map! do |prop|
+      if prop.key == "tag" or (prop.key == "OR" and prop.val["tag"])
+        Property["OR", PropertyList[
           *tags.map{|t| Property["tag", t]},
           alt_cond,
         ]]
       else
-        [key, val]
+        prop
       end
     end
 
