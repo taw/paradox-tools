@@ -6,3 +6,4 @@
 *.7z
 .DS_Store
 /reference*
+Gemfile.lock

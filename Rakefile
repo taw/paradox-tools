@@ -153,6 +153,8 @@ task "reference" do
   FileUtils.mv "output", "reference"
 end
 
+task "default" => "test"
+
 desc "Run tests"
 task "test" do
   system %q[ruby -e 'Dir["test/*.rb"].each{|x| require "./#{x}"}']
