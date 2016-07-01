@@ -78,6 +78,12 @@ class FocusResearchBonus
         improved_carrier
         advanced_carrier
       ]
+    when "secret"
+      @categories = %W[
+        electronics
+        nuclear
+        rocketry
+      ]
     else
       raise "Can't infer bonus name for #{bonus_name}"
     end

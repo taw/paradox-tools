@@ -190,15 +190,17 @@ focus_tree "Generic 2", "SWE" do
     req "Infrastructure Effort 2"
   end
 
-  focus "Extra Research Slot", x: 12, y: 5, icon: "research" do
+  focus "Extra Tech Slot", x: 12, y: 5, icon: "research" do
     req "Infrastructure Effort 2"
   end
 
-  focus "Extra Research Slot 2", x: 12, y: 6, icon: "research" do
-    req "Extra Research Slot"
+  focus "Extra Tech Slot 2", x: 12, y: 6, icon: "research" do
+    req "Extra Tech Slot"
   end
 
   focus "Secret Weapons", x: 14, y: 5, icon: "secret_weapon" do
     req "Infrastructure Effort 2"
+    research_bonus :secret, bonus: 0.5, uses: 4
+    ai_factor 0.25
   end
 end

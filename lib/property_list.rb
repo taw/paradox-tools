@@ -41,6 +41,20 @@ class PropertyList
     end
   end
 
+  def add_many!(*args)
+    until args.empty?
+      if args[0].is_a?(Property)
+        add! args.shift
+      elsif args.size == 1
+        raise "Even number of non-Property arguments expected"
+      elsif args[1].is_a?(Property)
+        raise "Property argument in unexpected location"
+      else
+        add! args.shift, args.shift
+      end
+    end
+  end
+
   def map!(&blk)
     @entries = @entries.map do |prop|
       prop = yield(prop)
@@ -81,17 +95,7 @@ class PropertyList
 
   def self.[](*args)
     rv = PropertyList.new
-    until args.empty?
-      if args[0].is_a?(Property)
-        rv.add! args.shift
-      elsif args.size == 1
-        raise "Even number of non-Property arguments expected"
-      elsif args[1].is_a?(Property)
-        raise "Property argument in unexpected location"
-      else
-        rv.add! args.shift, args.shift
-      end
-    end
+    rv.add_many! *args
     rv
   end
 
