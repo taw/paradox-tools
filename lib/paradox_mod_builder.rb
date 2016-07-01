@@ -55,8 +55,8 @@ class ParadoxModBuilder
     # YAML is about as much a standard as CSV, use Paradox compatible output instead of yaml gem
     @localization.each do |group, data|
       create_file!("localisation/#{group}_l_english.yml",
-        [0xEF, 0xBB, 0xBF].pack("C*") + # UTF-8 BOM, WTF?
-        "l_english:\n" +
+        # UTF-8 BOM, WTF?
+        "\u{FEFF}l_english:\n" +
         data.map{|k,v| " #{k}: \"#{v}\"\n"}.join
       )
     end

@@ -135,12 +135,12 @@ end
 
 desc "Remove build files"
 task "clean" do
-  trash "output", "build"
+  trash "output"
 end
 
 desc "Generate reference for refactoring"
 task "reference" do
-  trash "output", "build", "reference"
+  trash "output", "reference"
   system "ck2_mods/build_ck2tweaks"
   system "ck2_mods/build_custom_scenario"
   system "ck2_mods/build_no_dynastic_names"
