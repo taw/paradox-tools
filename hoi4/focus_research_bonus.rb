@@ -15,7 +15,7 @@ class FocusResearchBonus
     when "air_doc"
       @categories = ["air_doctrine"]
     when "infantry_weapons", "infantry_artillery"
-      @categories = ["artillery", "infantry_weapons"]
+      @categories = ["infantry_weapons", "artillery"]
     # motorised / motorized inconsistency is in the game
     when "motorized_equipment"
       @bonus_name = "motorized"
@@ -44,6 +44,40 @@ class FocusResearchBonus
       @technologies = %W[convoy_interdiction_ti unrestricted_submarine_warfare wolfpacks advanced_submarine_warfare combined_operations_raiding]
     when "industrial"
       @categories = %W[industry]
+    when "ss"
+      @technologies = %W[
+        early_submarine
+        basic_submarine
+        improved_submarine
+        advanced_submarine
+      ]
+    when "dd"
+      @technologies = %W[
+        early_destroyer
+        basic_destroyer
+        improved_destroyer
+        advanced_destroyer
+      ]
+    when "cr"
+      @technologies = %W[
+        improved_light_cruiser
+        advanced_light_cruiser
+        improved_heavy_cruiser
+        advanced_heavy_cruiser
+      ]
+    when "capital_ships"
+      @technologies = %W[
+        basic_battlecruiser
+        basic_battleship
+        improved_battleship
+        advanced_battleship
+        heavy_battleship
+        heavy_battleship2
+        early_carrier
+        basic_carrier
+        improved_carrier
+        advanced_carrier
+      ]
     else
       raise "Can't infer bonus name for #{bonus_name}"
     end

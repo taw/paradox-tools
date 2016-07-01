@@ -9,23 +9,33 @@ class FocusBuilder
     @prerequisites = []
     @mutually_exclusive = []
     @reward = PropertyList[]
+    @bypass = nil
+    @ai = nil
     instance_eval(&block)
   end
 
   def build
     raise "No icon for #{@name}" unless @icon
     raise "No X/Y for #{@name}" unless @x and @y
-    Focus.new(@name, id_for_name(@name), x: @x, y: @y, reward: @reward, prerequisites: @prerequisites, icon: @icon, mutually_exclusive: @mutually_exclusive, available: @available)
+    Focus.new(@name, id_for_name(@name),
+      x: @x,
+      y: @y,
+      reward: @reward,
+      prerequisites: @prerequisites,
+      icon: @icon,
+      mutually_exclusive: @mutually_exclusive,
+      available: @available,
+      bypass: @bypass,
+      ai: @ai,
+    )
   end
 
   def req(*names)
-    names.each do |name|
-      @prerequisites << PropertyList["focus", id_for_name(name)]
-    end
+    @prerequisites << PropertyList[*names.map{|name| Property["focus", id_for_name(name)]}]
   end
 
   def mutually_exclusive(name)
-    @mutually_exclusive << name
+    @mutually_exclusive << id_for_name(name)
   end
 
   def army_xp(val)
@@ -44,6 +54,10 @@ class FocusBuilder
     @reward.add! "add_tech_bonus", FocusResearchBonus.new(@name, *args).to_plist
   end
 
+  def bypass_if_has_tech(tech)
+    @bypass = PropertyList["has_tech", tech]
+  end
+
   def available_if_has_coastal_state
     @available = PropertyList[
 			"any_state", PropertyList[
@@ -51,6 +65,21 @@ class FocusBuilder
 				"is_controlled_by", "ROOT",
 			]
 		]
+  end
+
+  def ai_wont_do_without_coastal_province
+    @ai = PropertyList[
+      "factor", 1,
+      "modifier", PropertyList[
+        "factor", 0,
+        "all_owned_state", PropertyList[
+          "OR", PropertyList[
+            "is_coastal", false,
+            "dockyard", Property::LT[1],
+          ]
+        ]
+      ]
+    ]
   end
 
   private
