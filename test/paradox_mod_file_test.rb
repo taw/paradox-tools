@@ -194,4 +194,20 @@ class ParadoxModFileTest < MiniTest::Test
       1935, "Žiemgala",
     ]
   end
+
+  def test_sample_7_inequality
+    assert_parse_tree 7, PropertyList[
+      "OR", PropertyList[
+        "num_of_factories", Property::GT[50],
+        "any_country", PropertyList[
+          "is_in_faction_with", "ROOT",
+          "num_of_factories", Property::GT[50],
+        ],
+      ],
+      "if", PropertyList[
+        "limit", PropertyList["original_research_slots", Property::LT[3]],
+        "add_research_slot", 1,
+      ],
+    ]
+  end
 end

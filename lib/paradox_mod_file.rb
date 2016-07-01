@@ -63,10 +63,10 @@ class ParadoxModFile
           @tokens << s[1].to_f
         elsif s.scan(/([\-\+]?\d+)(?![^}=\s])/)
           @tokens << s[1].to_i
-        elsif s.scan(/([=\{\}])/)
-          @tokens << ({"{" => :open, "}" => :close, "=" => :eq}[s[1]])
+        elsif s.scan(/([=\{\}<>])/)
+          @tokens << ({"{" => :open, "}" => :close, "=" => :eq, ">" => :gt, "<" => :lt}[s[1]])
         elsif s.scan(/(
-                            (?:_|\.|\-|\–|'|’|\[|\]|<|>|:|\?|\p{Letter}|\p{Digit})+
+                            (?:_|\.|\-|\–|'|’|\[|\]|:|\?|\p{Letter}|\p{Digit})+
                            )/x)
           if s[1] == "yes"
             @tokens << true
@@ -128,7 +128,7 @@ class ParadoxModFile
         @tokens.shift
       end
 
-      if @tokens[1] == :eq
+      if @tokens[1] == :eq or @tokens[1] == :gt or @tokens[1] == :lt
         parse_obj.tap{
           parse_close
         }
@@ -162,6 +162,16 @@ class ParadoxModFile
       @tokens.shift
       val = parse_val
       [key, val]
+    elsif key_token_zero? and @tokens[1] == :gt
+      key = @tokens.shift
+      @tokens.shift
+      val = parse_val
+      [key, Property::GT[val]]
+    elsif key_token_zero? and @tokens[1] == :lt
+      key = @tokens.shift
+      @tokens.shift
+      val = parse_val
+      [key, Property::LT[val]]
     else
       nil
     end

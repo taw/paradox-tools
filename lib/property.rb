@@ -40,4 +40,33 @@ class Property
     [key, val] <=> [other.key, other.val]
   end
   include Comparable
+
+  def inspect_for_plist
+    if val.is_a?(Property::SpecialValue)
+      "#{key.inspect}, #{val.inspect_for_plist}"
+    else
+      "#{key.inspect}, #{val.inspect}"
+    end
+  end
+
+  class SpecialValue
+    attr_reader :val
+    def initialize(val)
+      @val = val
+    end
+
+    def inspect_for_plist
+      "#{self.class}[#{val.inspect}]"
+    end
+
+    def self.[](arg)
+      new(arg)
+    end
+  end
+
+  class GT < SpecialValue
+  end
+
+  class LT < SpecialValue
+  end
 end

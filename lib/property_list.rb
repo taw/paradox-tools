@@ -179,10 +179,10 @@ class PropertyList
       "PropertyList[]"
     when 1
       prop = @entries[0]
-      "PropertyList[#{prop.key.inspect}, #{prop.val.inspect}]"
+      "PropertyList[#{prop.inspect_for_plist}]"
     else
       "PropertyList[\n#{
-        @entries.map{|prop| "#{prop.key.inspect}, #{prop.val.inspect},\n"}.join.gsub(/^/, "  ")
+        @entries.map{|prop| "#{prop.inspect_for_plist},\n" }.join.gsub(/^/, "  ")
       }]"
     end
   end

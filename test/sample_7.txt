@@ -1,0 +1,13 @@
+OR = {
+  num_of_factories > 50
+  any_country = {
+    is_in_faction_with = ROOT
+    num_of_factories > 50
+  }
+}
+if = {
+  limit = {
+    original_research_slots < 3
+  }
+  add_research_slot = 1
+}
