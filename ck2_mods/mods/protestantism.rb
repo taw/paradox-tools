@@ -6,10 +6,9 @@ class ProtestantismGameModification < CK2GameModification
         if sites[k]
           found << k
           # This is nasty but produces better looking output that add!
-          v.instance_eval do
-            idx = @list.index{|a,| a == "color2" } or raise
-            @list[idx+1,0] = sites[k].map{|rel| ["holy_site", rel] }
-          end
+          entries = v.send(:entries)
+          idx = entries.index{|prop| prop.key == "color2" } or raise
+          entries[idx+1,0] = sites[k].map{|rel| Property["holy_site", rel] }
         elsif v.is_a?(PropertyList) and k =~ /\A[dke]/
           add_sites[v]
         end

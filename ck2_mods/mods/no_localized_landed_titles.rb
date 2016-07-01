@@ -2,8 +2,9 @@ require_relative "base"
 
 class NoLocalizedTitlesGameModification < CK2GameModification
   def no_localized_landed_titles!(node)
-    cultures.each do |culture|
-      node.delete(culture)
+    return unless node.is_a?(PropertyList)
+    cultures.each do |culture_name|
+      node.delete! culture_name
     end
 
     node.each do |key, val|

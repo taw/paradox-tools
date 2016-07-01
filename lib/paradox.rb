@@ -1,6 +1,7 @@
 require "pp"
 require "date"
 require "pathname"
+require_relative "property"
 require_relative "property_list"
 require_relative "paradox_game"
 require_relative "paradox_mod_file"

@@ -8,7 +8,7 @@ class NoDynasticNamesGameModification < CK2GameModification
           next if culture_name == "graphical_culture"
           next if culture_name == "second_graphical_culture"
           next if culture_name == "graphical_cultures"
-          culture.delete("dynasty_title_names")
+          culture.delete! "dynasty_title_names"
         end
       end
     end

@@ -4,7 +4,7 @@ require "set"
 require "minitest/autorun"
 require_relative "../lib/paradox"
 
-class ParadoxModFileTest < MiniTest::Test
+class PropeltyListTest < MiniTest::Test
   def test_to_h
     str = ParadoxModFile.new(string: "
       government = merchant_republic
@@ -116,7 +116,7 @@ class ParadoxModFileTest < MiniTest::Test
     assert_equal(long, short)
   end
 
-  def test_add
+  def test_add!
     a = PropertyList[]
     a.add! "test", "foo"
     a.add! Property::NOT["another", "bar"]
@@ -124,5 +124,66 @@ class ParadoxModFileTest < MiniTest::Test
       "test", "foo",
       "NOT", PropertyList["another", "bar"],
     ], a)
+  end
+
+  def test_delete!
+    base = PropertyList["foo", "bar", "hello", "world", "foo", 123]
+    [
+      ["foo", PropertyList["hello", "world"]],
+      [Property["foo", "bar"], PropertyList["hello", "world", "foo", 123]],
+      [Property["foo", 123], PropertyList["foo", "bar", "hello", "world"]],
+      ["hello", PropertyList["foo", "bar", "foo", 123]],
+      [Property["hello", "world"], PropertyList["foo", "bar", "foo", 123]],
+      # Various nonexistent properties
+      [Property["foo", "lol"], base],
+      [Property["hello", "omg"], base],
+      ["xxx", base],
+    ].each do |arg, expected|
+      v = base.dup
+      v.delete!(arg)
+      assert_equal v, expected
+    end
+  end
+
+  def test_delete_with_block
+    base = PropertyList["foo", "bar", "hello", "world", "foo", 123]
+    v = base.dup
+    v.delete!{|prop| prop.val == 123 }
+    assert_equal v, PropertyList["foo", "bar", "hello", "world"]
+  end
+
+  def test_get
+    a = PropertyList["foo", "bar", "hello", "world", "foo", 123]
+    assert_equal a["foo"], "bar"
+    assert_equal a["hello"], "world"
+    assert_equal a["omg"], nil
+  end
+
+  def test_set
+    a = PropertyList["foo", "bar", "hello", "world", "foo", 123]
+    a["hello"] = "WORLD"
+    a["omg"] = "WTF"
+    assert_equal a, PropertyList["foo", "bar", "hello", "WORLD", "foo", 123, "omg", "WTF"]
+    assert_raises("Expected 0 or 1 property with value foo") do
+      a["foo"] = "BAR"
+    end
+  end
+
+  def test_find_all
+    a = PropertyList["foo", "bar", "hello", "world", "foo", 123]
+    assert_equal a.find_all("foo"), ["bar", 123]
+    assert_equal a.find_all("hello"), ["world"]
+    assert_equal a.find_all("omg"), []
+  end
+
+  def test_hash_to_plist
+    a = {"foo" => "bar", "hello" => "world"}
+    assert_equal a.to_plist.to_h, a
+    assert_equal a.to_plist, PropertyList["foo", "bar", "hello", "world"]
+  end
+
+  def test_to_a
+    a = PropertyList["foo", "bar", "hello", "world", "foo", 123]
+    assert_equal a.to_a, [Property["foo", "bar"], Property["hello", "world"], Property["foo", 123]]
   end
 end

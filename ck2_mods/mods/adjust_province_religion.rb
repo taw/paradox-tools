@@ -165,8 +165,8 @@ class AdjustProvinceReligionGameModification < CK2GameModification
       node["religion"] = religion unless religion == "restore"
 
       node.each do |key, val|
-        next unless key.is_a?(Date)
-        val.delete "religion"
+        next unless key.is_a?(Date) and val.is_a?(PropertyList)
+        val.delete! "religion"
       end
     end
   end

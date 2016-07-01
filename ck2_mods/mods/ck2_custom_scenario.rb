@@ -17,21 +17,22 @@ class CK2CustomScenarioGameModification < CK2GameModification
       if titles_to_clean_up.include?(title)
         patch_mod_file!(path) do |node|
           node.each do |date, attrs|
-            attrs.delete "holder"
-            attrs.delete "historical_nomad"
-            attrs.delete "liege"
+            attrs.delete! "holder"
+            attrs.delete! "historical_nomad"
+            attrs.delete! "liege"
           end
-          node.delete_if{|k,v| v.empty?}
+          node.delete!{|prop| prop.val.empty?}
         end
       else
         patch_mod_file!(path) do |node|
           node.each do |date, attrs|
-            attrs.delete "historical_nomad"
-            attrs.delete_if do |k,v|
-              k == "liege" and titles_to_clean_up.include?(v)
+            next unless attrs.is_a?(PropertyList)
+            attrs.delete! "historical_nomad"
+            attrs.delete! do |prop|
+              prop.key == "liege" and titles_to_clean_up.include?(prop.val)
             end
           end
-          node.delete_if{|k,v| v.empty?}
+          node.delete!{|prop| prop.val.empty?}
         end
       end
     end
@@ -39,7 +40,7 @@ class CK2CustomScenarioGameModification < CK2GameModification
 
   def no_wars!
     patch_mod_files!("history/wars/*.txt") do |node|
-      node.delete_if{true}
+      node.delete!{true}
     end
   end
 
@@ -68,15 +69,14 @@ class CK2CustomScenarioGameModification < CK2GameModification
     provinces.each do |path|
       patch_mod_file!("history/provinces/#{path}.txt") do |node|
         # This is terribly hacky
-        node.instance_eval do
-          first_settlement = @list.index{|k,v| k=~/\Ab_/ }
-          first_city       = @list.index{|k,v| k=~/\Ab_/ and v == "city"}
-          first_castle     = @list.index{|k,v| k=~/\Ab_/ and v == "castle"}
-          raise unless first_city and first_settlement == first_castle
-          city = @list[first_city,1]
-          @list[first_city,1]   = []
-          @list[first_castle,0] = city
-        end
+        entries = node.send(:entries)
+        first_settlement = entries.index{|prop| prop.key =~ /\Ab_/ }
+        first_city       = entries.index{|prop| prop.key =~ /\Ab_/ and prop.val == "city"}
+        first_castle     = entries.index{|prop| prop.key =~ /\Ab_/ and prop.val == "castle"}
+        raise unless first_city and first_settlement == first_castle
+        city = entries[first_city,1]
+        entries[first_city,1]   = []
+        entries[first_castle,0] = city
       end
     end
   end

@@ -1,190 +1,64 @@
-class Property
-  attr_reader :key, :val
-  def initialize(key, val)
-    @key = key
-    @val = val
-  end
-
-  def self.[](key, val)
-    new(key, val)
-  end
-
-  def eql?(other)
-    other.is_a?(Property) and key == other.key and val == other.val
-  end
-
-  def hash
-    [self.class, key, val].hash
-  end
-
-  module OR
-    def self.[](*args)
-      Property["OR", PropertyList[*args]]
-    end
-  end
-
-  module AND
-    def self.[](*args)
-      Property["AND", PropertyList[*args]]
-    end
-  end
-
-  module NOT
-    def self.[](*args)
-      Property["NOT", PropertyList[*args]]
-    end
-  end
-
-  def <=>(other)
-    return nil unless other.is_a?(Property)
-    [key, val] <=> [other.key, other.val]
-  end
-  include Comparable
-end
-
 class PropertyList
+  def instance_eval
+    raise "instance_eval is not part of the API; TODO: FIX ALL of them"
+  end
+
   def initialize
-    @list = []
+    @entries = []
   end
 
-  # Still a bit dubious, deep copy way better...
-  def list
-    @list.dup
+  def size
+    @entries.size
   end
 
-  def prepend!(key, val=nil)
-    if key.is_a?(Property) and val == nil
-      @list[0,0] = [[key.key, key.val]]
-    elsif val == nil or key.is_a?(Property) and val.is_a?(Property)
-      raise ArgumentError, "Wrong use of #add! interface"
-    else
-      @list[0,0] = [[key, val]]
+  def empty?
+    @entries.empty?
+  end
+
+  def each_property(&blk)
+    @entries.each(&blk)
+  end
+
+  def each(&blk)
+    @entries.each do |prop|
+      yield prop.key, prop.val
     end
   end
 
   def add!(key, val=nil)
     if key.is_a?(Property) and val == nil
-      @list << [key.key, key.val]
+      @entries << key
     elsif key == nil or val == nil or key.is_a?(Property) or val.is_a?(Property)
       raise ArgumentError, "Wrong use of #add! interface"
     else
-      @list << [key, val]
+      @entries << Property.new(key, val)
     end
   end
 
-  def [](key)
-    @list.each{|k,v| return v if key == k}
-    return nil
-  end
-
-  def []=(key, val)
-    cnt = @list.count{|k,v| k == key}
-    if cnt == 1
-      @list.find{|k,v| k == key}[1] = val
-    elsif cnt == 0
-      @list << [key, val]
+  def prepend!(key, val=nil)
+    if key.is_a?(Property) and val == nil
+      @entries.unshift key
+    elsif val == nil or key.is_a?(Property) and val.is_a?(Property)
+      raise ArgumentError, "Wrong use of #add! interface"
     else
-      raise "Expected 0 or 1 property with value #{key}, found #{cnt}" unless cnt == 1
+      @entries.unshift Property[key, val]
     end
-  end
-
-  def each(&blk)
-    @list.each(&blk)
-  end
-
-  def each_value
-    @list.each do |k,v|
-      yield(v)
-    end
-  end
-
-  # Unlike .to_h[key] it reliably return an array, not nil/x/[x,y]
-  def find_all(key)
-    rv = []
-    @list.each{|k,v| rv << v if k == key}
-    rv
-  end
-
-  def keys
-    @list.map(&:first)
-  end
-
-  def values
-    @list.map(&:last)
   end
 
   # What should it return?
-  def delete(key)
-    if key.is_a?(Property)
-      key, val = key.key, key.val
-      @list = @list.reject{|k,v| k == key and v == val }
+  def delete!(key=nil, &block)
+    if block_given?
+      raise "Both key and block given" if key
+      @entries =  @entries.reject(&block)
     else
-      @list = @list.reject{|k,v| k == key}
-    end
-    nil
-  end
-
-  def delete_if
-    @list = @list.reject{|k,v| yield(k,v) }
-    nil
-  end
-
-  def to_h
-    rv = {}
-    cast_to_array = {}
-    @list.each do |k,v|
-      if cast_to_array[k]
-        rv[k] << v
-      elsif rv.has_key?(k)
-        cast_to_array[k] = true
-        rv[k] = [rv[k], v]
+      raise "Either key or block required" unless key
+      if key.is_a?(Property)
+        @entries = @entries.reject{|prop| prop == key}
       else
-        rv[k] = v
+        @entries = @entries.reject{|prop| prop.key == key}
       end
     end
-    rv
-  end
-
-  def normalize
-    new_list = @list.map do |k,v|
-      v = v.normalize if v.is_a? PropertyList
-      v = v.sort if v.is_a? Array
-      [k, v]
-    end
-    new_list.sort_by!{|k,v| [k.class.to_s, k, v.class.to_s, v] }
-    PropertyList[*new_list.flatten(1)]
-  end
-
-  def inspect
-    case @list.size
-    when 0
-      "PropertyList[]"
-    when 1
-      k, v = @list[0]
-      "PropertyList[#{k.inspect}, #{v.inspect}]"
-    else
-      "PropertyList[\n" + @list.map{|k,v| "#{k.inspect}, #{v.inspect},\n"}.join.gsub(/^/, "  ") + "]"
-    end
-  end
-
-  alias_method :to_s, :inspect
-
-  def to_json(*args)
-    @list.to_json(*args)
-  end
-
-  def ==(other)
-    return false unless other.is_a?(PropertyList)
-    @list == other.instance_eval{ @list }
-  end
-
-  def eql?(other)
-    return false unless other.is_a?(PropertyList)
-    @list.eql?(other.instance_eval{ @list })
-  end
-
-  def hash
-    [self.class, @list].hash
+    nil
   end
 
   def self.[](*args)
@@ -203,33 +77,116 @@ class PropertyList
     rv
   end
 
-  def <=>(other)
-    return nil unless other.is_a?(PropertyList)
-    @list <=> other.instance_eval{ @list }
-  end
-  include Comparable
-
-  def map!
-    @list.size.times do |i|
-      @list[i] = yield(*@list[i])
+  def []=(key, val)
+    cnt = @entries.count{|prop| prop.key == key}
+    if cnt == 1
+      i = @entries.index{|prop| prop.key == key}
+      @entries[i] = Property[key, val]
+    elsif cnt == 0
+      @entries << Property[key, val]
+    else
+      raise "Expected 0 or 1 property with value #{key}, found #{cnt}"
     end
   end
 
-  def uniq!
-    @list = @list.uniq
+  def [](key)
+    @entries.each{|prop| return prop.val if prop.key == key}
+    nil
   end
 
-  def size
-    @list.size
+  def ==(other)
+    return false unless other.is_a?(PropertyList)
+    @entries == other.send(:entries)
   end
 
-  def empty?
-    @list.empty?
+  def eql?(other)
+    return false unless other.is_a?(PropertyList)
+    @entries.eql?(other.send(:entries))
   end
 
-  def deep_copy
-    Marshal.load(Marshal.dump(self))
+  def hash
+    [self.class, @entries].hash
   end
+
+  def keys
+    @entries.map(&:key)
+  end
+
+  def values
+    @entries.map(&:val)
+  end
+
+  def normalize
+    new_entries = @entries.map do |prop|
+      if prop.val.is_a?(PropertyList)
+        Property[prop.key, prop.val.normalize]
+      elsif prop.val.is_a?(Array)
+        Property[prop.key, prop.val.sort]
+      else
+        prop
+      end
+    end
+    new_entries.sort_by!{|prop| [prop.key.class.to_s, prop.key, prop.val.class.to_s, prop.val] }
+    PropertyList[*new_entries]
+  end
+
+  def to_h
+    rv = {}
+    cast_to_array = {}
+    each do |k,v|
+      if cast_to_array[k]
+        rv[k] << v
+      elsif rv.has_key?(k)
+        cast_to_array[k] = true
+        rv[k] = [rv[k], v]
+      else
+        rv[k] = v
+      end
+    end
+    rv
+  end
+
+  # Unlike .to_h[key] it reliably return an array, not nil/x/[x,y]
+  def find_all(key)
+    rv = []
+    @entries.each do |prop|
+      rv << prop.val if prop.key == key
+    end
+    rv
+  end
+
+  def inspect
+    case @entries.size
+    when 0
+      "PropertyList[]"
+    when 1
+      prop = @entries[0]
+      "PropertyList[#{prop.key.inspect}, #{prop.val.inspect}]"
+    else
+      "PropertyList[\n#{
+        @entries.map{|prop| "#{prop.key.inspect}, #{prop.val.inspect},\n"}.join.gsub(/^/, "  ")
+      }]"
+    end
+  end
+
+  alias_method :to_s, :inspect
+
+  def <=>(other)
+    return nil unless other.is_a?(PropertyList)
+    @entries <=> other.send(:entries)
+  end
+  include Comparable
+
+  def to_a
+    @entries.dup
+  end
+
+  def sort!
+    @entries.sort!
+  end
+
+  attr_reader :entries
+  private :entries
 end
 
 class Hash

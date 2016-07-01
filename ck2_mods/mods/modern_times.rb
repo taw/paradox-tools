@@ -183,8 +183,8 @@ class ModernTimesGameModification < CK2GameModification
         ]
       when "d_knights_templar"
         # Every conspiracy site will tell you templars were never really destroyed
-        node.list[-1][1].delete "active"
-        node.list[-1][1].delete "holder"
+        node[Date.new(1312, 3, 22)].delete! "active"
+        node[Date.new(1312, 3, 22)].delete! "holder"
       else
         # OK
       end
@@ -344,7 +344,7 @@ class ModernTimesGameModification < CK2GameModification
     patch_mod_files!("history/technology/*.txt") do |node|
       # Could get them from map, just sanity check to get them here
       duchies += node.find_all("technology").map{|x| x["titles"]}.flatten
-      node.delete_if{true}
+      node.delete!{true}
     end
 
     tech_groups = {}
@@ -407,9 +407,8 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
     end
-    node.instance_eval do
-      @list = @list.select{|k,v| v != [] }.sort
-    end
+    node.delete!{|prop| prop.val == []}
+    node.sort!
   end
 
   def setup_title_names!
@@ -797,7 +796,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def selected_character_node(character_id, title, date)
     character_info = @character_manager.main_plist[character_id]
-    birth = character_info.list.find{|k,v| v.is_a?(PropertyList) and v["birth"]}[0]
+    birth = character_info.to_a.find{|prop| prop.val.is_a?(PropertyList) and prop.val["birth"]}.key
     age = (date - birth).to_i / 365
     title_name = localized_title_name(title, date)
     character_name = [
@@ -836,7 +835,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_bookmarks!
     patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
-      node.delete_if{true}
+      node.delete!{true}
       @db.bookmarks.each do |date, bookmark|
         next unless date >= @db.min_date
         name = bookmark[:name]
@@ -1198,8 +1197,8 @@ class ModernTimesGameModification < CK2GameModification
     @db.republics.each do |title|
       path = "history/titles/#{title}.txt"
       holders = parse(path)
-              .list
-              .map{|k,v|[k, v["holder"]]}
+              .to_a
+              .map{|prop| [prop.key, prop.val["holder"]]}
       holders.each_cons(2) do |(d,h),(d2,_)|
         next unless h and h != 0
         dynasty = (dynasty_map[h] or next)
@@ -1214,7 +1213,7 @@ class ModernTimesGameModification < CK2GameModification
           node.add! d1, PropertyList["holder", h]
           node.add! d2, PropertyList["holder", 0]
         end
-        node0 = node.list[0][1]
+        node0 = node.to_a[0].val
         node0.prepend! "liege", data[:title]
         node0.prepend! "holding_dynasty", data[:dynasty]
         create_mod_file!("history/titles/#{patrician_title}.txt", node)

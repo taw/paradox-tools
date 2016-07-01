@@ -41,7 +41,7 @@ class RulerDesignerResetGameModification < CK2GameModification
     )
     patch_mod_files!("common/traits/*.txt") do |node|
       node.each do |name, trait|
-        trait.delete "ruler_designer_cost"
+        trait.delete! "ruler_designer_cost"
       end
     end
   end

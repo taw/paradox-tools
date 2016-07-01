@@ -52,7 +52,7 @@ class MapManager
       @builder.glob("history/provinces/*.txt").each do |path|
         node = @builder.parse(path)
         title = node["title"]
-        cultures =  [node["culture"], *node.list.map{|_,v| v["culture"] if v.is_a?(PropertyList)}].compact
+        cultures =  [node["culture"], *node.values.map{|v| v["culture"] if v.is_a?(PropertyList)}].compact
         @culture_in_county[title] = cultures.last
       end
     end

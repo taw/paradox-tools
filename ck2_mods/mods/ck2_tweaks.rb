@@ -49,7 +49,7 @@ class CK2TweaksGameModification < CK2GameModification
       node.each do |group_name, group|
         group.each do |religion_name, religion|
           next unless religion.is_a?(PropertyList)
-          religion.delete("intermarry")
+          religion.delete! "intermarry"
           religion_groups.each do |g|
             religion.add! "intermarry", g
           end
@@ -78,14 +78,14 @@ class CK2TweaksGameModification < CK2GameModification
         convert_to_feudalism_vassal
         convert_to_republic_indep
       ].each do |decision|
-        node["decisions"][decision]["allow"].delete_if{|k,v| k == "custom_tooltip"}
+        node["decisions"][decision]["allow"].delete! "custom_tooltip"
       end
     end
   end
 
   def cognatic_for_most_cultures!
     patch_mod_file!("common/laws/succession_laws.txt") do |node|
-      node["gender_laws"]["true_cognatic_succession"].delete("allow")
+      node["gender_laws"]["true_cognatic_succession"].delete! "allow"
     end
   end
 
@@ -98,7 +98,7 @@ class CK2TweaksGameModification < CK2GameModification
           focus_specific = !!(decision["potential"].to_s =~ /has_focus/)
 
           if ["ask_help_to_manage_titles", "conscript_merchant_ships"].include?(name)
-            decision.delete "is_high_prio"
+            decision.delete! "is_high_prio"
           # expel_jews/borrow_money_jews are available all time and no longer that OP
           # welcome_jews is time specific
           elsif ["welcome_jews"].include?(name) or time_specific or focus_specific
@@ -121,12 +121,12 @@ class CK2TweaksGameModification < CK2GameModification
           culture_rules = building["potential"]["FROM"]
 
           if culture_rules.size == 1
-            province_rule = Property[*culture_rules.list[0]]
+            province_rule = culture_rules.to_a[0]
           else
-            province_rule = Property::AND[*culture_rules.list.flatten(1)]
+            province_rule = Property::AND[*culture_rules.to_a]
           end
 
-          building["potential"].delete "FROM"
+          building["potential"].delete! "FROM"
           building["potential"].add! Property::OR[
             "FROM", culture_rules,
             province_rule,
@@ -146,7 +146,7 @@ class CK2TweaksGameModification < CK2GameModification
 
   def seduce_any_religion!
     patch_mod_file!("decisions/way_of_life_decisions.txt") do |node|
-      node["targetted_decisions"]["seduce_decision"]["allow"].delete "religion_group"
+      node["targetted_decisions"]["seduce_decision"]["allow"].delete! "religion_group"
     end
   end
 
@@ -242,7 +242,7 @@ class CK2TweaksGameModification < CK2GameModification
   def disable_fucking_hints!
     patch_mod_file!("common/hints.txt") do |node|
       node.each do |name, hint|
-        hint.delete "sticky"
+        hint.delete! "sticky"
       end
     end
   end
@@ -256,7 +256,7 @@ class CK2TweaksGameModification < CK2GameModification
   # If this had a timeout it would be fine, but it's ridiculous lasting forever
   def no_foreign_conqueror_penalty!
     patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
-      node["opinion_foreign_conqueror"].delete "opinion"
+      node["opinion_foreign_conqueror"].delete! "opinion"
     end
   end
 
@@ -308,7 +308,7 @@ class CK2TweaksGameModification < CK2GameModification
   def show_all_wars_on_map!
     patch_mod_files!("common/cb_types/*.txt") do |node|
       node.each do |name, cb|
-        cb.delete("display_on_map")
+        cb.delete! "display_on_map"
       end
     end
   end
@@ -353,7 +353,7 @@ class CK2TweaksGameModification < CK2GameModification
         decisions.each do |name, decision|
           next unless feasts.include?(name)
           next unless decision["allow"]["war"] == false
-          decision["allow"].delete_if{|k,v| [k,v] == ["war", false]}
+          decision["allow"].delete! Property["war", false]
         end
       end
     end
@@ -365,14 +365,14 @@ class CK2TweaksGameModification < CK2GameModification
                     event["trigger"]["has_character_modifier"] == "holding_grand_hunt"
 
         if event["trigger"]["war"] == false
-          event["trigger"].delete_if{|k,v| [k,v] == ["war", false]}
+          event["trigger"].delete! Property["war", false]
         elsif event["trigger"]["war"] == true
           raise unless event["id"] == 72112 or event["id"] == 36089
         end
       end
       # 72112 - cancel feast because war
       # 36089 - cancel hunt because war
-      node.delete_if{|c,e| e["id"] == 72112 or e["id"] == 36089}
+      node.delete!{|prop| prop.val["id"] == 72112 or prop.val["id"] == 36089}
     end
   end
 
@@ -396,8 +396,8 @@ class CK2TweaksGameModification < CK2GameModification
       ]
       # Allow elective->gavelkind.
       # I hate elective all over the place, create some counterbalance to it
-      node["faction_succ_gavelkind"]["chance"].delete_if do |k,v|
-        k == "modifier" and v["has_law"] == "succ_feudal_elective"
+      node["faction_succ_gavelkind"]["chance"].delete! do |prop|
+        prop.key == "modifier" and prop.val["has_law"] == "succ_feudal_elective"
       end
       # Make nomads a more eager to split
       node["faction_independence"]["membership"].add! "modifier", PropertyList[
@@ -426,12 +426,11 @@ class CK2TweaksGameModification < CK2GameModification
     # More republican plots for start
     # Should do more fun plots later
     patch_mod_file!("common/objectives/00_plots.txt") do |node|
-      node["plot_seize_trade_post"]["allow"]["trade_post_owner"].delete Property[
+      node["plot_seize_trade_post"]["allow"]["trade_post_owner"].delete! Property[
         "num_of_trade_post_diff",
-        PropertyList[ "character", "FROM", "value", 1],
+        PropertyList["character", "FROM", "value", 1],
       ]
-      node["plot_seize_trade_post"]["potential"].delete "is_merchant_republic"
-      # require 'pry'; binding.pry
+      node["plot_seize_trade_post"]["potential"].delete! "is_merchant_republic"
       node["plot_seize_trade_post"]["allow"]["trade_post_owner"]["OR"].add! "de_facto_liege", "FROM"
     end
   end
@@ -441,7 +440,8 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_files!("common/cultures/00_cultures.txt") do |node|
       node.each do |group_name, group|
         group.each do |name, culture|
-          culture.delete "dukes_called_kings"
+          next unless culture.is_a?(PropertyList)
+          culture.delete! "dukes_called_kings"
         end
       end
     end
@@ -475,7 +475,7 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_file!("events/culture_conversion_events.txt") do |node|
       node.find_all("province_event").each do |event|
         if event["id"] == 55000
-          event["trigger"].delete_if{|k,v| k == "any_neighbor_province"}
+          event["trigger"].delete! "any_neighbor_province"
           # Speed it up by 2x base
           event["mean_time_to_happen"]["months"] /= 2
           event["mean_time_to_happen"].add! "modifier", PropertyList[
@@ -530,7 +530,7 @@ class CK2TweaksGameModification < CK2GameModification
         if allow["hidden_tooltip"] and
            allow["hidden_tooltip"]["OR"] and
            allow["hidden_tooltip"]["OR"]["ai"] == false
-          allow.delete "hidden_tooltip"
+          allow.delete! "hidden_tooltip"
           node["allow"] = PropertyList["always", true] if allow.empty?
           next
         end
@@ -600,11 +600,11 @@ class CK2TweaksGameModification < CK2GameModification
       ]
 
       # Just delete same_realm trigger here, can randomly meet
-      character_conversion["trigger"]["location"]["any_province_character"].delete "same_realm"
-      character_conversion["option"]["location"]["random_province_character"]["limit"].delete "same_realm"
+      character_conversion["trigger"]["location"]["any_province_character"].delete! "same_realm"
+      character_conversion["option"]["location"]["random_province_character"]["limit"].delete! "same_realm"
 
       # Ruffians also don't care for borders
-      priest_attacked["trigger"]["location"].delete("owner")
+      priest_attacked["trigger"]["location"].delete! "owner"
 
       # For testing
       # province_conversion["mean_time_to_happen"]["months"] = 1

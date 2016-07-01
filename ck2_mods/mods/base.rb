@@ -5,7 +5,7 @@ class CK2GameModification < ParadoxGameModification
     @cultures ||= begin
       culture_data = parse("common/cultures/00_cultures.txt")
       culture_data.keys +
-      culture_data.values.map{|vs| vs.list.map{|k,v| k if v.is_a?(PropertyList)}.compact}.flatten
+      culture_data.values.flat_map(&:to_a).select{|prop| prop.val.is_a?(PropertyList)}.map(&:key)
     end
   end
 

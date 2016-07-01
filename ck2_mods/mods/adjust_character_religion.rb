@@ -148,13 +148,12 @@ class AdjustCharacterReligionGameModification < CK2GameModification
           character["religion"] = relation_based_character_religion[id]
           character.each do |key, val|
             next unless val.is_a?(PropertyList)
-            val.delete "religion"
+            val.delete! "religion"
           end
         end
         religions[character["religion"]] += 1
       end
     end
-    # p religions
   end
 
   def apply!
