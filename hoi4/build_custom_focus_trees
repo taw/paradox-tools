@@ -6,6 +6,7 @@ require_relative "focus"
 require_relative "focus_builder"
 require_relative "focus_tree"
 require_relative "focus_tree_builder"
+require_relative "focus_icon"
 require_relative "focus_trees/generic"
 
 class CustomFocusTreesModBuilder < ParadoxModBuilder
