@@ -62,11 +62,29 @@ class Property
     def self.[](arg)
       new(arg)
     end
+
+    def ==(other)
+      self.class == other.class and @val == other.val
+    end
+
+    def eql?(other)
+      self.class == other.class and @val.eql?(other.val)
+    end
+
+    def hash
+      [self.class, @val].hash
+    end
   end
 
   class GT < SpecialValue
+    def op
+      ">"
+    end
   end
 
   class LT < SpecialValue
+    def op
+      "<"
+    end
   end
 end

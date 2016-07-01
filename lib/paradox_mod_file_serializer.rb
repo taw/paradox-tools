@@ -66,23 +66,25 @@ class ParadoxModFileSerializer
     node.each do |key,val|
       if val.is_a?(PropertyList)
         line! "#{serialize_key(key)} = {"
-        @indent += 2
+        @indent += 1
         print_property_list! val
-        @indent -= 2
+        @indent -= 1
         line! "}"
       elsif val.is_a?(Array)
         # Empty Array is indistinguishable from empty PropertyList
         if val.all?{|v| primitive?(v)}
           line! "#{serialize_key(key)} = {"
-          @indent += 2
+          @indent += 1
           val.each do |v|
             line! serialize_primitive(v)
           end
-          @indent -= 2
+          @indent -= 1
           line! "}"
         end
       elsif primitive?(val)
         line! "#{key} = #{serialize_primitive(val)}"
+      elsif val.is_a?(Property::SpecialValue)
+        line! "#{key} #{val.op} #{val.val}"
       else
         raise "Not sure how to serialize #{val.class}"
       end
