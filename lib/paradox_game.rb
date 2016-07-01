@@ -62,11 +62,11 @@ class ParadoxGame
   end
 
   def localization_type
-    eu4 = !glob("localisation/*_l_english.yml").empty?
-    ck2 = !glob("localisation/*.csv").empty?
-    return :both if eu4 and ck2
-    return :eu4 if eu4
-    return :ck2 if ck2
+    yml = !glob("localisation/*_l_english.yml").empty?
+    csv = !glob("localisation/*.csv").empty?
+    raise "Not a clue" if yml and csv
+    return :hoi4 if yml # Should work with EU4 as well
+    return :ck2 if csv
     return :none
   end
 
@@ -76,7 +76,7 @@ class ParadoxGame
     unless @localization_data
       @localization_data = {}
       glob("localisation/*_l_english.yml").each do |path|
-        @localization_data.merge! parse_localization_from_path_eu4(resolve(path))
+        @localization_data.merge! parse_localization_from_path_hoi4(resolve(path))
       end
       glob("localisation/*.csv").each do |path|
         @localization_data.merge! parse_localization_from_path_ck2(resolve(path))
@@ -100,9 +100,10 @@ class ParadoxGame
     end
   end
 
-  def parse_localization_from_path_eu4(path)
+  # It can handle EU4 format as well
+  def parse_localization_from_path_hoi4(path)
     data = path.read
-    YAML.load(data.gsub(/\uFEFF/, ""))["l_english"].tap do |parsed|
+    YAML.load(data.gsub(/\uFEFF/, "").gsub(/^ (\S+?):0 /){ " #{$1}: " })["l_english"].tap do |parsed|
       raise "No Engish localization data in `#{path}'" unless parsed
     end
   rescue

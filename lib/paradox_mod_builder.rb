@@ -38,8 +38,8 @@ class ParadoxModBuilder
     case @game.localization_type
     when :ck2
       save_localization_ck2!
-    when :eu4
-      save_localization_eu4!
+    when :hoi4
+      save_localization_hoi4!
     else
       raise "No idea how to save localization"
     end
@@ -51,11 +51,11 @@ class ParadoxModBuilder
       )
     end
   end
-  def save_localization_eu4!
+  def save_localization_hoi4!
     # YAML is about as much a standard as CSV, use Paradox compatible output instead of yaml gem
     @localization.each do |group, data|
       create_file!("localisation/#{group}_l_english.yml",
-        # [0xEF, 0xBB, 0xBF].pack("C*") + # UTF-8 BOM, WTF?
+        [0xEF, 0xBB, 0xBF].pack("C*") + # UTF-8 BOM, WTF?
         "l_english:\n" +
         data.map{|k,v| " #{k}: \"#{v}\"\n"}.join
       )

@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "../lib/paradox_mod_builder"
+require_relative "focus"
+require_relative "focus_builder"
+require_relative "focus_tree"
+require_relative "focus_tree_builder"
+require_relative "focus_trees/generic"
+
+class CustomFocusTreesModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/hoi4-1.0.0",
+      ),
+      "output/custom_focus_trees"
+    )
+  end
+  def build_mod_files!
+    FocusTree["Generic 2"].focuses.each do |focus|
+      localization! "custom_focus_trees", focus.id => focus.name
+    end
+    create_mod_file! "common/national_focus/generic2.txt", FocusTree["Generic 2"].to_plist
+    create_mod_descriptor!(
+      name: "Custom Focus Trees",
+      path: "mod/custom_focus_trees",
+      supported_version: "1.1.*",
+    )
+  end
+end
+
+if __FILE__ == $0
+  CustomFocusTreesModBuilder.new.build!
+end
