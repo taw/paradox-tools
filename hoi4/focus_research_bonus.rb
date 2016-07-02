@@ -84,6 +84,8 @@ class FocusResearchBonus
         nuclear
         rocketry
       ]
+    when "nuclear"
+      @categories = %W[nuclear]
     else
       raise "Can't infer bonus name for #{bonus_name}"
     end

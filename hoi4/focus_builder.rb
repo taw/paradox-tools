@@ -52,6 +52,10 @@ class FocusBuilder
     add_reward! Property["navy_experience", val]
   end
 
+  def research_slot
+    add_reward! Property["add_research_slot", 1]
+  end
+
   def research_bonus(*args)
     add_reward! Property["add_tech_bonus", FocusResearchBonus.new(@name, *args).to_plist]
   end
@@ -84,6 +88,29 @@ class FocusBuilder
     ]
   end
 
+  def ai_will_do_3x_unless_tiny
+    @ai = PropertyList[
+      "ai_will_do", PropertyList[
+        "factor", 3,
+        "modifier", PropertyList[
+          "factor", 0,
+          "date", Property::LT["1939-01-01"],
+          "OR", PropertyList[
+            "tag", "GXC",
+            "tag", "YUN",
+            "tag", "SHX",
+            "tag", "XSM",
+            "tag", "BEL",
+            "tag", "LUX",
+            "tag", "HOL",
+            "tag", "DEN",
+            "num_of_controlled_states", Property::LT[2],
+          ],
+        ],
+      ],
+    ]
+  end
+
   def civ_factory(number)
     add_building! "industrial_complex", number
   end
@@ -92,24 +119,39 @@ class FocusBuilder
     add_building! "arms_factory", number
   end
 
-  def dockyards(number)
-    add_building! "dockyard", number
+  def dockyards(number, flag)
+    add_building! "dockyard", number, flag
+  end
+
+  def air_base(number, flag)
+    add_building! "air_base", number, flag
+  end
+
+  def infrastructure(number)
+    add_building! "infrastructure", number
   end
 
   def ai_factor(n)
-    @ai = PropertyList[
-      "factor", 1,
-      "modifier", PropertyList[
+    # No idea why it's coded this way
+    if n > 1
+      @ai = PropertyList[
         "factor", n,
-        "always", true,
       ]
-    ]
+    else
+      @ai = PropertyList[
+        "factor", 1,
+        "modifier", PropertyList[
+          "factor", n,
+          "always", true,
+        ]
+      ]
+    end
   end
 
   private
 
-  def add_building!(type, number)
-    bonus = FocusBuildingBonus.new(type, number)
+  def add_building!(type, number, flag=nil)
+    bonus = FocusBuildingBonus.new(type, number, flag)
     @tooltip.add_many! *bonus.tooltip
     @reward.add_many! *bonus.reward
   end

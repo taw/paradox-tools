@@ -12,6 +12,7 @@ class Focus
     @icon = icon
     @mutually_exclusive = mutually_exclusive
     @ai = ai
+    @bypass = bypass
   end
 
   def to_plist
