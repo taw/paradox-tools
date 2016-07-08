@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+require "pry"
+require_relative "../lib/paradox_game"
+
+class AnalyzeTechnologies < ParadoxGame
+  def technologies
+    unless @technologies
+      @technologies = {}
+      glob("common/technologies/*.txt").each do |path|
+        parse(path)["technologies"].each do |name, tech|
+          next unless tech.is_a?(PropertyList)
+          tech["start_year"] = 1936 if (tech["start_year"]||0) < 1936
+          tech.delete! "ai_will_do"
+          tech.delete! "ai_research_weights"
+          tech["folder"].delete! "position" if tech["folder"]
+          @technologies[name] = tech
+        end
+      end
+    end
+    @technologies
+  end
+
+  def good_technologies
+    unless @good_technologies
+      @good_technologies = {}
+      technologies.each do |name, tech|
+        # Assume only one doctrine tree
+        if tech["doctrine"]
+          if tech["categories"].include?("air_doctrine")
+            next unless tech["categories"].include?("cat_strategic_destruction")
+          end
+          if tech["categories"].include?("naval_doctrine")
+            next unless tech["categories"].include?("cat_fleet_in_being")
+          end
+          if tech["categories"].include?("land_doctrine")
+            next unless tech["categories"].include?("cat_superior_firepower")
+          end
+        end
+        next if name =~ /\Adispersed_industry/
+        next if %W[centralized_fire_control concentrated_fire_plans day_bombing dispersed_support dogfighting_experience fighter_sweeps flexible_line intergrated_support night_bombing streamlined_line].include?(name)
+        @good_technologies[name] = tech
+      end
+      validate_good_technologies!
+    end
+    @good_technologies
+  end
+
+  def validate_good_technologies!
+    @good_technologies.each do |name, tech|
+      raise if tech["xor"] and tech["XOR"]
+      xor = tech["xor"] || tech["XOR"]
+      next unless xor
+      xor.each do |alt_name|
+        alt_tech = @good_technologies[alt_name]
+        if alt_tech
+          puts "Technology list includes #{name} and #{alt_name}"
+          puts [tech["research_cost"], alt_tech["research_cost"]]
+        end
+      end
+    end
+  end
+
+  def report!
+    techs_by_year = Hash.new(0)
+
+    good_technologies.each do |name, tech|
+      year = tech["start_year"]
+      cost = tech["research_cost"]
+      techs_by_year[year] += (cost * 100).round
+    end
+    pp Hash[techs_by_year.sort]
+    pp techs_by_year.values.inject(&:+) / 365.0 / 5
+  end
+end
+
+if __FILE__ == $0
+  AnalyzeTechnologies.new(*ARGV).report!
+end
