@@ -69,8 +69,8 @@ class AnalyzeTechnologies < ParadoxGame
       cost = tech["research_cost"]
       techs_by_year[year] += (cost * 100).round
     end
-    pp Hash[techs_by_year.sort]
-    pp techs_by_year.values.inject(&:+) / 365.0 / 5
+    pp Hash[techs_by_year.sort.map{|y,v| [y,(v / 365.0 / 5).round(2)]}]
+    pp (techs_by_year.values.inject(&:+) / 365.0 / 5).round(2)
   end
 end
 
