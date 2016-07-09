@@ -1,0 +1,306 @@
+#!/usr/bin/env ruby
+
+require "date"
+require "pry"
+require "set"
+require_relative "../lib/paradox_game"
+
+class Date
+  def inspect
+    to_s
+  end
+end
+
+class Technology
+  attr_reader :name, :start_year, :cost, :research_time_factor, :xor
+  def initialize(name, tech)
+    @name = name
+    @tech = tech
+    @start_year = tech["start_year"]
+    @start_year = 1936 if (@start_year||0) < 1936
+    @cost = tech["research_cost"]
+    @research_time_factor = tech["research_time_factor"] || 0
+    @xor = tech["xor"] || tech["XOR"]
+  end
+
+  def has_category?(cat)
+    @tech["categories"].include?(cat)
+  end
+
+  # Ignore those exclusive with what we want
+  def good?
+    if @tech["doctrine"]
+      if has_category?("air_doctrine")
+        return false unless has_category?("cat_strategic_destruction")
+      end
+      if has_category?("naval_doctrine")
+        return false unless has_category?("cat_fleet_in_being")
+      end
+      if has_category?("land_doctrine")
+        return false unless has_category?("cat_superior_firepower")
+      end
+    end
+    return false if @name =~ /\Adispersed_industry/
+    return false if %W[centralized_fire_control concentrated_fire_plans day_bombing dispersed_support dogfighting_experience fighter_sweeps flexible_line intergrated_support night_bombing flexible_line].include?(@name)
+    true
+  end
+end
+
+class PlanTechOrder < ParadoxGame
+  def technologies
+    unless @technologies
+      @technologies = {}
+      glob("common/technologies/*.txt").each do |path|
+        parse(path)["technologies"].each do |name, tech|
+          next unless tech.is_a?(PropertyList)
+          @technologies[name] = Technology.new(name, tech)
+        end
+      end
+    end
+    @technologies
+  end
+
+  def initialize(*args)
+    super
+    @date = Date.parse("1936.1.1")
+    @done = Set[]
+    @researching = {}
+    @log = {}
+    @bonus = 5 # export focus
+    @research_order = %W[
+      electronic_mechanical_engineering
+
+      concentrated_industry
+      concentrated_industry2
+      concentrated_industry3
+      concentrated_industry4
+      concentrated_industry5
+
+      mechanical_computing
+      computing_machine
+      improved_computing_machine
+      advanced_computing_machine
+      atomic_research
+
+      basic_machine_tools
+      improved_machine_tools
+      advanced_machine_tools
+      assembly_line_production
+      streamlined_line
+
+      construction1
+      construction2
+      construction3
+      construction4
+      construction5
+
+      infantry_weapons
+      infantry_weapons1
+      infantry_weapons2
+      improved_infantry_weapons
+      improved_infantry_weapons_2
+      infantry_at
+      infantry_at2
+      advanced_infantry_weapons
+      advanced_infantry_weapons2
+
+      interwar_artillery
+      artillery1
+      artillery2
+      artillery3
+      artillery4
+      artillery5
+
+      night_vision
+      night_vision2
+      support_weapons
+      support_weapons2
+      support_weapons3
+      support_weapons4
+
+      tech_support
+
+      motorised_infantry
+
+      tech_field_hospital
+      tech_field_hospital2
+      tech_field_hospital3
+      tech_field_hospital4
+
+      tech_mountaineers
+      tech_mountaineers2
+      tech_mountaineers3
+
+      radio
+
+      paratroopers
+      paratroopers2
+      paratroopers3
+
+      tech_engineers
+      tech_engineers2
+      tech_engineers3
+      tech_engineers4
+
+      tech_recon
+      tech_recon2
+      tech_recon3
+      tech_recon4
+
+      tech_logistics_company
+      tech_logistics_company2
+      tech_logistics_company3
+      tech_logistics_company4
+
+      tech_military_police
+      tech_military_police2
+      tech_military_police3
+      tech_military_police4
+
+      gwtank
+      basic_light_tank
+      improved_light_tank
+      basic_medium_tank
+      basic_medium_art
+      improved_medium_tank
+      improved_medium_art
+      advanced_medium_td
+      advanced_medium_art
+      main_battle_tank
+      modern_art
+
+      transport
+      landing_craft
+      tank_landing_craft
+      marines
+      marines2
+      marines3
+
+      early_bomber
+      heavy_fighter1
+      heavy_fighter2
+      heavy_fighter3
+
+      superior_firepower
+      sup_delay
+      mobile_defence
+      regimental_combat_teams
+      overwhelming_firepower
+      sup_mechanized_offensive
+      combined_arms
+      tactical_control
+      air_land_battle
+      forward_observers
+      advanced_firebases
+      shock_and_awe
+
+      excavation1
+      excavation2
+      excavation3
+      excavation4
+      excavation5
+
+      basic_encryption
+      improved_encryption
+      advanced_encryption
+      basic_decryption
+      improved_decryption
+      advanced_decryption
+
+      interwar_antitank
+      antitank1
+      antitank2
+      antitank3
+      antitank4
+      antitank5
+    ]
+  end
+
+  def finished?
+    @date > Date.parse("1950.1.1")
+  end
+
+  def advance_to_next_date!
+    @date += 1
+  end
+
+  def find_best_tech
+    @research_order.find do |name|
+      next if research_done?(name)
+      next if research_in_progress?(name)
+      next if technologies[name].start_year > @date.year
+      return name
+    end
+    nil
+  end
+
+  def research_done?(name)
+    @done.include?(name)
+  end
+
+  def research_in_progress?(name)
+    @researching.has_key?(name)
+  end
+
+  def possible_technologies
+    technologies.select do |name,tech|
+      tech.good? and not research_done?(name)
+    end.keys
+  end
+
+  def choose_research_slots!
+    while @researching.size < 5
+      best_tech = find_best_tech
+      if best_tech
+        start_researching! best_tech
+      else
+        # log "Nothing to research"
+        # binding.pry
+        break
+      end
+    end
+  end
+
+  def start_researching!(name)
+    cost = technologies[name].cost * (100 - @bonus)
+    end_date = @date + cost
+    @researching[name] = end_date
+    log "Start researching #{name}"
+  end
+
+  def log(msg)
+    puts "#{@date} #{msg}"
+  end
+
+  def finish_current_research
+    @researching.dup.each do |name, end_date|
+      if @date >= end_date
+        log "Finished research of #{name}"
+        @researching.delete name
+        @done << name
+        (@log[@date.year] ||= []) << name
+        if technologies[name].research_time_factor
+          @bonus += (-100 * technologies[name].research_time_factor).round
+        end
+      end
+    end
+  end
+
+  def run!
+    until finished?
+      finish_current_research
+      choose_research_slots!
+      advance_to_next_date!
+    end
+
+    @log.each do |year, techs|
+      puts "#{year}: #{techs.join(' ')}"
+    end
+
+    puts "I'm done!"
+  end
+end
+
+if __FILE__ == $0
+  PlanTechOrder.new(*ARGV).run!
+end
