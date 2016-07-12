@@ -1,5 +1,5 @@
-require "yaml"
 require "csv"
+require_relative "fake_yaml"
 require_relative "paradox_mod_file"
 
 class Pathname
@@ -102,13 +102,7 @@ class ParadoxGame
 
   # It can handle EU4 format as well
   def parse_localization_from_path_hoi4(path)
-    data = path.read
-    YAML.load(data.gsub(/\uFEFF/, "").gsub(/^ (\S+?):0 /){ " #{$1}: " })["l_english"].tap do |parsed|
-      raise "No Engish localization data in `#{path}'" unless parsed
-    end
-  rescue
-    warn "#{path}: #{$!}"
-    {}
+    FakeYaml.load(path)
   end
 
   def parse_localization_from_path_ck2(path)
