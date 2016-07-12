@@ -29,7 +29,13 @@ class ParadoxModFile
     if @data[0,4] == "PK\x03\x04"
       raise "Compressed save games are not supported yet"
     end
-    @data = @data.force_encoding("windows-1252").encode("utf-8", undef: :replace)
+    if @data[0,3] ==  "\u{FEFF}".b
+      # HOI4 files often have abomination which is UTF8 BOM
+      @data = @data[3..-1].force_encoding("utf-8")
+    else
+      # Most older games are fairly inconsistent about encoding used
+      @data = @data.force_encoding("windows-1252").encode("utf-8", undef: :replace)
+    end
   end
 
   def parse!

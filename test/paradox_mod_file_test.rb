@@ -210,4 +210,56 @@ class ParadoxModFileTest < MiniTest::Test
       ],
     ]
   end
+
+  def test_sample_8_utf8bom
+    assert_parse_tree 8, PropertyList[
+      "division_template", PropertyList[
+        "name", "División de Infanteria",
+        "regiments", PropertyList[
+          "infantry", PropertyList["x", 0, "y", 0],
+          "infantry", PropertyList["x", 0, "y", 1],
+          "infantry", PropertyList["x", 1, "y", 0],
+          "infantry", PropertyList["x", 1, "y", 1],
+        ],
+      ],
+      "units", PropertyList[
+        "division", PropertyList[
+          "name", "1era División de Infantería",
+          "location", 10362,
+          "division_template", "División de Infanteria",
+          "start_experience_factor", 0.1,
+          "start_equipment_factor", 0.3,
+        ],
+        "division", PropertyList[
+          "name", "2da División de Infantería",
+          "location", 10362,
+          "division_template", "División de Infanteria",
+          "start_experience_factor", 0.1,
+          "start_equipment_factor", 0.3,
+        ],
+        "navy", PropertyList[
+          "name", "Armada Nacional",
+          "base", 10362,
+          "location", 10362,
+          "ship", PropertyList[
+            "name", "ROU Uruguay",
+            "definition", "destroyer",
+            "equipment", PropertyList["destroyer_1", PropertyList[
+              "amount", 1,
+              "owner", "URG",
+            ]],
+          ],
+        ],
+      ],
+      "instant_effect", PropertyList["add_equipment_production", PropertyList[
+        "equipment", PropertyList[
+          "type", "infantry_equipment_0",
+          "creator", "URG",
+        ],
+        "requested_factories", 1,
+        "progress", 0.79,
+        "efficiency", 100,
+      ]],
+    ]
+  end
 end
