@@ -24,6 +24,10 @@ class MultiRangeTest < MiniTest::Test
     assert_raises(ArgumentError) do
       MultiRange.new(3..2)
     end
+
+    assert_raises(ArgumentError) do
+      MultiRange.new("omg")
+    end
   end
 
   def test_or
@@ -51,5 +55,17 @@ class MultiRangeTest < MiniTest::Test
     refute_equal MultiRange.new(1..10), (1...10)
     assert_equal MultiRange.new(1..10), (1...11)
     assert_equal MultiRange.new(1...10), (1..9)
+  end
+
+  def test_empty
+    assert_equal true, MultiRange.new.empty?
+    assert_equal false, MultiRange.new(1..10).empty?
+  end
+
+  def test_to_s
+    assert_equal MultiRange.new(1..10).to_s, "1..10"
+    assert_equal MultiRange.new(1..10).inspect, "MultiRange.new(1..10)"
+    assert_equal MultiRange.new(1..10, 20..30).to_s, "1..10 20..30"
+    assert_equal MultiRange.new(1..10, 20..30).inspect, "MultiRange.new(1..10, 20..30)"
   end
 end
