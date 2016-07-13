@@ -45,4 +45,11 @@ class MultiRangeTest < MiniTest::Test
     assert_equal MultiRange.new(1..2, 5..6), (a-b)
     assert_equal MultiRange.new(3..5, 7..9), (b-a)
   end
+
+  def test_eq
+    assert_equal MultiRange.new(1..10), (1..10)
+    refute_equal MultiRange.new(1..10), (1...10)
+    assert_equal MultiRange.new(1..10), (1...11)
+    assert_equal MultiRange.new(1...10), (1..9)
+  end
 end

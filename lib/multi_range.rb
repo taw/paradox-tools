@@ -97,7 +97,11 @@ private
   def parse_arg(arg)
     case arg
     when Range
-      yield(arg.begin, arg.end)
+      if arg.exclude_end?
+        yield(arg.begin, arg.to_a.last)
+      else
+        yield(arg.begin, arg.end)
+      end
     when MultiRange
       arg.to_list.each do |s,e|
         yield(s,e)
