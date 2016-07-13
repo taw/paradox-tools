@@ -1,0 +1,5 @@
+﻿l_english:
+ ESTATE_LOYALTY_TOOLTIP_BASE:0 "The $ESTATE|Y$ have a loyalty level of $LOYALTY|Y$.\nLoyalty is determined by your past actions towards this Estate.\nUnless they demand more territory it will change towards $NEUTRAL|Y$ every month."
+ ESTATE_LOYALTY_TOOLTIP_CHANGE:0 "The current monthly change is $CHANGE$,"
+ ESTATE_LOYALTY_TOOLTIP_CHANGE_MOD:0 " affected by:$DESC$"
+ ESTATE_LOYALTY_TOOLTIP_CHANGE_YEARLY:0	"which corresponds to a yearly base change of $BASE$."

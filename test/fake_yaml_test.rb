@@ -37,12 +37,19 @@ class MultiRangeTest < MiniTest::Test
 
   def test_error_correction
     assert_equal({
-    "corruption_event.17.d"=>
-     "Matters of governmental organization have never been [Root.Monarch.GetName]'s strong suit. What a good leader does to compensate for such a known weakness is to delegate and this is exactly what our [Root.Monarch.GetTitle] has done, but the people who have handled administration in [Root.Monarch.GetHerHis] stead have proven to be more competent than honest. The government runs well enough, but tends to slowly shift its priorities towards matters which the benefactors of these irreplaceable officials find to be of importance.\n\nWith [Root.Monarch.GetName] [Root.Monarch.GetHerselfHimself] unable to fully grasp the intricacies of the matters in question, the guilty parties cannot easily be seen or removed from office. For now, we'll simply have to suffer the consequences.",
-    "corruption_event.17.a"=>"Unfortunate that skill and honor do not always go hand in hand.",
-    "corruption_event.18.t"=>"Overextension Exploited",
-    "corruption_event.18.d"=>
-     "The rapid expansion of the [Root.GetAdjective] borders is most fortunate, but brings with it new administrative challenges. As every person familiar with the optimistic language knows, \"challenges\" is the sweeter-tasting word for \"problems\". Our country has not fully adjusted to its new extent yet, and people who have noticed the confusion and poorly enforced law in these new acquisitions are reaping the benefits.\n\nThis lawlessness may eventually pass, but the temporary administrations appear to have built an unstable foundation for the future. It will take time and money to rid our society from the distrust forming in the present situation."
+      "corruption_event.17.d"=>"Matters of governmental organization have never been [Root.Monarch.GetName]'s strong suit. What a good leader does to compensate for such a known weakness is to delegate and this is exactly what our [Root.Monarch.GetTitle] has done, but the people who have handled administration in [Root.Monarch.GetHerHis] stead have proven to be more competent than honest. The government runs well enough, but tends to slowly shift its priorities towards matters which the benefactors of these irreplaceable officials find to be of importance.\n\nWith [Root.Monarch.GetName] [Root.Monarch.GetHerselfHimself] unable to fully grasp the intricacies of the matters in question, the guilty parties cannot easily be seen or removed from office. For now, we'll simply have to suffer the consequences.",
+      "corruption_event.17.a"=>"Unfortunate that skill and honor do not always go hand in hand.",
+      "corruption_event.18.t"=>"Overextension Exploited",
+      "corruption_event.18.d"=>"The rapid expansion of the [Root.GetAdjective] borders is most fortunate, but brings with it new administrative challenges. As every person familiar with the optimistic language knows, \"challenges\" is the sweeter-tasting word for \"problems\". Our country has not fully adjusted to its new extent yet, and people who have noticed the confusion and poorly enforced law in these new acquisitions are reaping the benefits.\n\nThis lawlessness may eventually pass, but the temporary administrations appear to have built an unstable foundation for the future. It will take time and money to rid our society from the distrust forming in the present situation."
    }, FakeYaml.load(sample("mare_nostrum_l_english")))
+  end
+
+  def test_error_correction_2
+    assert_equal({
+      "ESTATE_LOYALTY_TOOLTIP_BASE"=>"The $ESTATE|Y$ have a loyalty level of $LOYALTY|Y$.\nLoyalty is determined by your past actions towards this Estate.\nUnless they demand more territory it will change towards $NEUTRAL|Y$ every month.",
+      "ESTATE_LOYALTY_TOOLTIP_CHANGE"=>"The current monthly change is $CHANGE$,",
+      "ESTATE_LOYALTY_TOOLTIP_CHANGE_MOD"=>" affected by:$DESC$",
+      "ESTATE_LOYALTY_TOOLTIP_CHANGE_YEARLY"=>"which corresponds to a yearly base change of $BASE$.",
+    }, FakeYaml.load(sample("cossacks_l_english")))
   end
 end
