@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
-require "minitest/autorun"
-require_relative "../lib/multi_range"
+require_relative "test_helper"
 
 class MultiRangeTest < MiniTest::Test
   def test_init

@@ -1,8 +1,4 @@
-#!/usr/bin/env ruby
-
-require "set"
-require "minitest/autorun"
-require_relative "../lib/paradox"
+require_relative "test_helper"
 
 class PropeltyListTest < MiniTest::Test
   def test_to_h

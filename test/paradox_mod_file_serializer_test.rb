@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
-require "minitest/autorun"
-require_relative "../lib/paradox"
+require_relative "test_helper"
 
 class ParadoxModFileSerializerTest < MiniTest::Test
   def assert_reserialization(number, expected)

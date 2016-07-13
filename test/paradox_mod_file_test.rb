@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
-require "minitest/autorun"
-require_relative "../lib/paradox"
+require_relative "test_helper"
 
 class ParadoxModFileTest < MiniTest::Test
   def assert_parse_tree(number, expected)

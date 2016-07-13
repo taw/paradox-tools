@@ -1,7 +1,4 @@
-#!/usr/bin/env ruby
-
-require "minitest/autorun"
-require_relative "../lib/fake_yaml"
+require_relative "test_helper"
 
 class MultiRangeTest < MiniTest::Test
   def sample(name)
