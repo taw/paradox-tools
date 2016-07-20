@@ -182,4 +182,30 @@ class PropeltyListTest < MiniTest::Test
     a = PropertyList["foo", "bar", "hello", "world", "foo", 123]
     assert_equal a.to_a, [Property["foo", "bar"], Property["hello", "world"], Property["foo", 123]]
   end
+
+  def test_size
+    assert_equal 3, PropertyList["foo", "bar", "hello", "world", "foo", 123].size
+    assert_equal 0, PropertyList[].size
+  end
+
+  def test_empty
+    assert_equal false, PropertyList["foo", "bar", "hello", "world", "foo", 123].empty?
+    assert_equal true, PropertyList[].empty?
+  end
+
+  def test_inspect
+    [
+      "PropertyList[]",
+      "PropertyList[1, 2]",
+      "PropertyList[\n  1, 2,\n  3, 4,\n]",
+    ].each do |example|
+      assert_equal example, eval(example).inspect
+    end
+  end
+
+  def test_uniq
+    a = PropertyList["foo", "bar", "hello", "world", "foo", "bar", "hello", "there"]
+    a.uniq!
+    assert_equal PropertyList["foo", "bar", "hello", "world", "hello", "there"], a
+  end
 end
