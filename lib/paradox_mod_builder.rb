@@ -128,7 +128,7 @@ class ParadoxModBuilder
       if node == orig_node
         content
       else
-        ParadoxModFileSerializer.serialize(node, orig_node)
+        ParadoxModFileSerializer.serialize(node)
       end
     end
   end

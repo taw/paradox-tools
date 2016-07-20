@@ -91,9 +91,9 @@ class ParadoxModFileSerializer
     end
   end
 
-  def self.serialize(node, orig_node=nil)
+  def self.serialize(node)
    s = ParadoxModFileSerializer.new
-   s.print_property_list!(node) # Ignore orig_node completely for now
+   s.print_property_list!(node)
    s.output
   end
 end
