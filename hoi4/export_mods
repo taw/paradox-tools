@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+require_relative "../lib/paradox"
+require "pry"
+
+class ExportMod
+  def initialize(mod_path, export_path)
+    @mod_path = mod_path
+    @export_path = export_path
+    @mod = ParadoxModFile.new(path: @mod_path).parse!
+    @name = @mod["name"]
+    if @mod["path"]
+      @data_path = @mod_path.parent.parent + @mod["path"]
+    end
+    if @mod["archive"]
+      @archive = steam_workshop_dir + @mod["archive"]
+    end
+    raise "#{@name} can't have both path and archive" if @data_path and @archive
+    raise "#{@name} needs path or archive" unless @data_path or @archive
+    if @archive
+      @basename = Pathname(@archive).basename(".zip").to_s
+      @mod.delete!("archive")
+      @mod["path"] = "mod/#{@basename}"
+    else
+      @basename = Pathname(@data_path).basename.to_s
+    end
+  end
+
+  def export_mod_path
+    (@export_path + "#{@basename}.mod")
+  end
+
+  def export_data_path
+    (@export_path + @basename)
+  end
+
+  def export!
+    export_data_path.mkpath
+    if @archive
+      Dir.chdir(export_data_path){ system *%W[7za x #{@archive}]}
+    else
+      system *%W[cp -a #{@data_path} #{export_data_path.parent}]
+    end
+    export_mod_path.write(ParadoxModFileSerializer.serialize(@mod))
+  end
+
+  def steam_workshop_dir
+    # Pathname("/cygdrive/d/Games/Steam/steamapps/workshop/content/394360/")
+    Pathname("/cygdrive/d/Games/Steam/steamapps/")
+  end
+end
+
+class ExportMods
+  # These don't seem to be directly in win32 registry
+  def mod_dir
+    Pathname("/cygdrive/c/Users/taw/Documents/Paradox Interactive/Hearts of Iron IV/mod")
+  end
+
+  def export_path
+    Pathname("output/hoi4_mods")
+  end
+
+  def run!
+    if export_path.exist?
+      system *%W[trash #{export_path}]
+    end
+    export_path.mkpath
+    mod_dir.children.each do |path|
+      next unless path.file? and path.extname == ".mod"
+      ExportMod.new(path, export_path).export!
+    end
+  end
+end
+
+ExportMods.new.run!

@@ -5,7 +5,7 @@ require "pathname"
 require "shellwords"
 require "digest/sha1"
 require "zip"
-Zip.warn_invalid_date = false
+# Zip.warn_invalid_date = false
 
 class Pathname
   def sha1
