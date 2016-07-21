@@ -208,4 +208,71 @@ class PropeltyListTest < MiniTest::Test
     a.uniq!
     assert_equal PropertyList["foo", "bar", "hello", "world", "hello", "there"], a
   end
+
+  def test_values
+    a = PropertyList["foo", "bar", "hello", "world", "foo", "bar", "hello", "there"]
+    assert_equal ["foo", "hello", "foo", "hello"], a.keys
+  end
+
+  def test_keys
+    a = PropertyList["foo", "bar", "hello", "world", "foo", "bar", "hello", "there"]
+    assert_equal ["bar", "world", "bar", "there"], a.values
+  end
+
+  def test_each_property
+    properties = []
+    a = PropertyList["foo", "bar", "hello", "world", "foo", "bar", "hello", "there"]
+    a.each_property do |prop|
+      properties << prop
+    end
+    assert_equal [
+      Property["foo", "bar"],
+      Property["hello", "world"],
+      Property["foo", "bar"],
+      Property["hello", "there"],
+    ], properties
+  end
+
+  def test_each_value
+    values = []
+    a = PropertyList["foo", "bar", "hello", "world", "foo", "bar", "hello", "there"]
+    a.each_value do |val|
+      values << val
+    end
+    assert_equal [
+      "bar",
+      "world",
+      "bar",
+      "there",
+    ], values
+  end
+
+  def test_prepend
+    a = PropertyList["foo", "bar"]
+    a.prepend! "hello", "world"
+    assert_equal PropertyList[
+      "hello", "world",
+      "foo", "bar",
+    ], a
+  end
+
+  def test_add_many
+    a = PropertyList["foo", "bar"]
+    a.add_many! Property["hello", "world"], "test", "this"
+    assert_equal PropertyList[
+      "foo", "bar",
+      "hello", "world",
+      "test", "this",
+    ], a
+  end
+
+  def test_sort
+    a = PropertyList["foo", 2, "foo", 1, "foo", 3]
+    a.sort!
+    assert_equal PropertyList[
+      "foo", 1,
+      "foo", 2,
+      "foo", 3,
+    ], a
+  end
 end
