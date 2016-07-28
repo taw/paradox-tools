@@ -34,7 +34,7 @@ class CountryInformation
   end
 
   def add_unit_in_training!(unit)
-    @manpower["training"] += unit["manpower"]
+    @manpower["training"] += unit["manpower"] if unit["manpower"]
     add_equipments! unit["equipment"] if unit["equipment"]
   end
 
