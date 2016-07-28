@@ -5,7 +5,8 @@ require_relative "../lib/paradox_game"
 require "json"
 
 class CountryInformation
-  def initialize(tag, country)
+  def initialize(ledger, tag, country)
+    @ledger = ledger
     @tag = tag
     @resources = {}
     @ic = Hash.new(0)
@@ -75,10 +76,9 @@ class CountryInformation
   end
 
   def add_equipment!(equipment)
-    id = equipment["id"]["id"]
-    type = equipment["id"]["type"]
+    type = @ledger.equipment[equipment["id"]]
     amount = equipment["amount"]
-    @equipment[[id, type]] += amount
+    @equipment[type] += amount
   end
 
   def to_json
@@ -88,12 +88,13 @@ class CountryInformation
       divisions: @divisions,
       manpower: @manpower,
       ships: @ships,
-      equipment: @equipment,
+      equipment: Hash[@equipment.sort],
     }
   end
 end
 
 class GenerateLedger < ParadoxGame
+  attr_reader :equipment
   def initialize(save_path, *roots)
     super(*roots)
     @data = ParadoxModFile.new(path: save_path).parse!
@@ -103,12 +104,6 @@ class GenerateLedger < ParadoxGame
     @data["date"]
   end
 
-  def each_state
-    @data["states"].each do |num, state|
-      yield localization("STATE_#{num}"), state
-    end
-  end
-
   def save_report!(path, data)
     Pathname(path).parent.mkpath
     Pathname(path).write(JSON.pretty_generate(data))
@@ -116,16 +111,21 @@ class GenerateLedger < ParadoxGame
 
   def run!
     @countries = {}
-    @data["countries"].each do |tag, country|
-      @countries[tag] ||= CountryInformation.new(tag, country)
+    @equipment = {}
+    @data["equipments"].each do |type, equipment|
+      binding.pry if @equipment[equipment["id"]]
+      @equipment[equipment["id"]] = type
     end
-    each_state do |name, state|
+    @data["countries"].each do |tag, country|
+      @countries[tag] ||= CountryInformation.new(self, tag, country)
+    end
+    @data["states"].each do |num, state|
+      # name = localization("STATE_#{num}")
       owner = state["owner"]
       controller = state["controller"] || owner
       @countries[owner].add_owned_state! state
       @countries[controller].add_controlled_state! state
     end
-
     @countries.each do |tag, country|
       save_report! "ledger/#{tag}.json", country.to_json
     end
