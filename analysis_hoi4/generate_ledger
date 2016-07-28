@@ -102,6 +102,15 @@ class CountryInformation
     @equipment[type] += amount
   end
 
+  def add_air_force!(air_force)
+    air_force.find_all("air_wing_pool").each do |air_wing_pool|
+      air_wing_pool.find_all("air_wings").each do |air_wing|
+        @manpower["air"] += air_wing["manpower"]
+        add_equipments! air_wing["equipment"]
+      end
+    end
+  end
+
   def to_json
     {
       resources: @resources,
@@ -117,6 +126,7 @@ end
 class GenerateLedger < ParadoxGame
   attr_reader :equipment
   def initialize(save_path, *roots)
+    @save_path = Pathname(save_path)
     super(*roots)
     @data = ParadoxModFile.new(path: save_path).parse!
   end
@@ -147,9 +157,17 @@ class GenerateLedger < ParadoxGame
       @countries[owner].add_owned_state! state
       @countries[controller].add_controlled_state! state
     end
+    @data["strategic_air"].each do |tag, air_force|
+      next if tag == "air_base"
+      @countries[tag].add_air_force! air_force
+    end
     @countries.each do |tag, country|
       save_report! "ledger/#{tag}.json", country.to_json
     end
+  end
+
+  def inspect
+    "Ledger<#{@save_path}>"
   end
 end
 
