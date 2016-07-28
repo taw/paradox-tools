@@ -4,6 +4,95 @@ require "pry"
 require_relative "../lib/paradox_game"
 require "json"
 
+class CountryInformation
+  def initialize(tag, country)
+    @tag = tag
+    @resources = {}
+    @ic = Hash.new(0)
+    @divisions = 0
+    @manpower = Hash.new(0)
+    @ships = Hash.new(0)
+    @equipment = Hash.new(0)
+
+    country["resources"]["produced"].each do |name, amount|
+      @resources[name] = amount
+    end
+    add_units! country["units"]
+  end
+
+  def add_units!(units)
+    return unless units
+    units.each do |type, unit|
+      # unit["logical_country"] # For expeditionary corps/volunteers/etc. presumably?
+      case type
+      when "division"
+        add_division! unit
+      when "navy"
+        add_navy! unit
+      else
+        binding.pry
+      end
+    end
+  end
+
+  def add_owned_state!(state)
+    return unless state["buildings"]
+    ["dockyard", "industrial_complex", "arms_factory"].each do |type|
+      next unless state["buildings"][type]
+      next if state["buildings"][type] == []
+      count = state["buildings"][type]["level"].size
+      @ic["owned_#{type}"] += count
+      @ic["owned_total"] += count
+    end
+  end
+
+  def add_controlled_state!(state)
+    return unless state["buildings"]
+    ["dockyard", "industrial_complex", "arms_factory"].each do |type|
+      next unless state["buildings"][type]
+      next if state["buildings"][type] == []
+      count = state["buildings"][type]["level"].size
+      @ic["controlled_#{type}"] += count
+      @ic["controlled_total"] += count
+    end
+  end
+
+  def add_navy!(unit)
+    @manpower["navy"] += unit["manpower"]
+    unit.find_all("ship").each do |ship|
+      @ships[ship["definition"]] += 1
+      @ships["total"] += 1
+    end
+  end
+
+  def add_division!(unit)
+    @manpower["army"] += unit["manpower"]
+    @divisions += 1
+    unit["equipment"].each do |cat, equipment|
+      binding.pry unless cat == "equipment"
+      add_equipment! equipment
+    end
+  end
+
+  def add_equipment!(equipment)
+    id = equipment["id"]["id"]
+    type = equipment["id"]["type"]
+    amount = equipment["amount"]
+    @equipment[[id, type]] += amount
+  end
+
+  def to_json
+    {
+      resources: @resources,
+      ic: @ic,
+      divisions: @divisions,
+      manpower: @manpower,
+      ships: @ships,
+      equipment: @equipment,
+    }
+  end
+end
+
 class GenerateLedger < ParadoxGame
   def initialize(save_path, *roots)
     super(*roots)
@@ -25,35 +114,21 @@ class GenerateLedger < ParadoxGame
     Pathname(path).write(JSON.pretty_generate(data))
   end
 
-  def generate_ic_reports!
-    by_controller = {}
-    by_owner = {}
+  def run!
+    @countries = {}
+    @data["countries"].each do |tag, country|
+      @countries[tag] ||= CountryInformation.new(tag, country)
+    end
     each_state do |name, state|
       owner = state["owner"]
-      controller = state["controler"] || owner
-      next unless state["buildings"]
-      state["buildings"].each do |type, buildings|
-        next if buildings == []
-        count = buildings["level"].size
-        by_owner[owner] ||= Hash.new(0)
-        by_owner[owner][type] += count
-        by_controller[controller] ||= Hash.new(0)
-        by_controller[owner][type] += count
-      end
+      controller = state["controller"] || owner
+      @countries[owner].add_owned_state! state
+      @countries[controller].add_controlled_state! state
     end
-    by_owner.each do |tag, data|
-      data["total_ic"] = data["dockyard"] + data["industrial_complex"] + data["arms_factory"]
-    end
-    by_controller.each do |tag, data|
-      data["total_ic"] = data["dockyard"] + data["industrial_complex"] + data["arms_factory"]
-    end
-    save_report! "ledger/ic_by_owner.json", by_owner
-    save_report! "ledger/ic_by_controller.json", by_controller
-  end
 
-
-  def run!
-    generate_ic_reports!
+    @countries.each do |tag, country|
+      save_report! "ledger/#{tag}.json", country.to_json
+    end
   end
 end
 
