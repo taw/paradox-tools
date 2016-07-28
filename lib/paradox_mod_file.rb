@@ -59,6 +59,7 @@ class ParadoxModFile
         @data
           .gsub("\r\n", "\n")
           .sub(/\AEU4txt/, "")
+          .sub(/\AHOI4txt/, "")
           .sub(/\ACK2txt(.*)\}\s*\z/m){$1} # CK2 saves have unbalanced {}s
       )
       until s.eos?

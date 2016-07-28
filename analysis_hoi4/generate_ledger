@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+require "pry"
+require_relative "../lib/paradox_game"
+require "json"
+
+class GenerateLedger < ParadoxGame
+  def initialize(save_path, *roots)
+    super(*roots)
+    @data = ParadoxModFile.new(path: save_path).parse!
+  end
+
+  def date
+    @data["date"]
+  end
+
+  def each_state
+    @data["states"].each do |num, state|
+      yield localization("STATE_#{num}"), state
+    end
+  end
+
+  def save_report!(path, data)
+    Pathname(path).parent.mkpath
+    Pathname(path).write(JSON.pretty_generate(data))
+  end
+
+  def generate_ic_reports!
+    by_controller = {}
+    by_owner = {}
+    each_state do |name, state|
+      owner = state["owner"]
+      controller = state["controler"] || owner
+      next unless state["buildings"]
+      state["buildings"].each do |type, buildings|
+        next if buildings == []
+        count = buildings["level"].size
+        by_owner[owner] ||= Hash.new(0)
+        by_owner[owner][type] += count
+        by_controller[controller] ||= Hash.new(0)
+        by_controller[owner][type] += count
+      end
+    end
+    by_owner.each do |tag, data|
+      data["total_ic"] = data["dockyard"] + data["industrial_complex"] + data["arms_factory"]
+    end
+    by_controller.each do |tag, data|
+      data["total_ic"] = data["dockyard"] + data["industrial_complex"] + data["arms_factory"]
+    end
+    save_report! "ledger/ic_by_owner.json", by_owner
+    save_report! "ledger/ic_by_controller.json", by_controller
+  end
+
+
+  def run!
+    generate_ic_reports!
+  end
+end
+
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.hoi4> <hoi4_path> [<mod1_path> <mod2_path> ...]"
+  STDERR.puts "# non-binary saves only"
+  exit 1
+end
+
+GenerateLedger.new(*ARGV).run!
