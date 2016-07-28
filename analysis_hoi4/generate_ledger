@@ -18,7 +18,24 @@ class CountryInformation
     country["resources"]["produced"].each do |name, amount|
       @resources[name] = amount
     end
+    add_equipments! country["production"]["equipments"]
     add_units! country["units"]
+    add_deployment! country["deployment"]
+  end
+
+  def add_deployment!(deployment)
+    return unless deployment
+    deployment.each do |type, data|
+      next unless type == "military_deployment_conveyor"
+      data.find_all("military_deployment_line").each do |line|
+        add_unit_in_training! line["military_deployment"]
+      end
+    end
+  end
+
+  def add_unit_in_training!(unit)
+    @manpower["training"] += unit["manpower"]
+    add_equipments! unit["equipment"] if unit["equipment"]
   end
 
   def add_units!(units)
@@ -69,7 +86,11 @@ class CountryInformation
   def add_division!(unit)
     @manpower["army"] += unit["manpower"]
     @divisions += 1
-    unit["equipment"].each do |cat, equipment|
+    add_equipments! unit["equipment"]
+  end
+
+  def add_equipments!(equipments)
+    equipments.each do |cat, equipment|
       binding.pry unless cat == "equipment"
       add_equipment! equipment
     end
