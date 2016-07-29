@@ -5,16 +5,19 @@ require_relative "../lib/paradox_game"
 require "json"
 
 class CountryInformation
+  attr_reader :divisions, :manpower, :ships, :equipment, :ic, :resources
+  attr_accessor :faction
   def initialize(ledger, tag, country)
     @ledger = ledger
     @tag = tag
     @original_tag = country["original_tag"] || @tag
-    @resources = {}
+    @resources = Hash.new(0)
     @ic = Hash.new(0)
     @divisions = 0
     @manpower = Hash.new(0)
     @ships = Hash.new(0)
     @equipment = {}
+    @faction = "Neutrals"
     @ideology = country["politics"]["ruling_party"]
     @name = ledger.localization("#{@original_tag}_#{@ideology}")
 
@@ -121,25 +124,86 @@ class CountryInformation
 
   def summarize_equipment_table
     Hash[
-      @equipment.sort.map do |archetype, details|
+      @equipment.map do |archetype, details|
         total = details["total"]
         max_level = (details.keys - ["total"]).max
         counts_by_level = (0..max_level).map{|i| details[i]}
         summarized_details = "#{total} (#{counts_by_level.join(' ')})"
-        [archetype, summarized_details]
-      end
+        [@ledger.localization(archetype), summarized_details]
+      end.sort
     ]
   end
 
   def to_json
     {
-      ideology: @ideology,
       name: @name,
-      resources: @resources,
-      ic: @ic,
+      ideology: @ideology,
+      faction: @faction,
+      resources: Hash[@resources.sort],
+      ic: Hash[@ic.sort],
       divisions: @divisions,
-      manpower: @manpower,
-      ships: @ships,
+      manpower:  Hash[@manpower.sort],
+      ships:  Hash[@ships.sort],
+      equipment: summarize_equipment_table,
+    }
+  end
+end
+
+class FactionInformation
+  def initialize(ledger, name)
+    @ledger = ledger
+    @name = name
+    @countries = []
+    @resources = Hash.new(0)
+    @ic = Hash.new(0)
+    @divisions = 0
+    @manpower = Hash.new(0)
+    @ships = Hash.new(0)
+    @equipment = {}
+  end
+
+  def add_country!(country)
+    @divisions += country.divisions
+    country.manpower.each do |cat, count|
+      @manpower[cat] += count
+    end
+    country.resources.each do |cat, count|
+      @resources[cat] += count
+    end
+    country.ic.each do |cat, count|
+      @ic[cat] += count
+    end
+    country.ships.each do |cat, count|
+      @ships[cat] += count
+    end
+    country.equipment.each do |archetype, details|
+      @equipment[archetype] ||= Hash.new(0)
+      details.each do |level, count|
+        @equipment[archetype][level] += count
+      end
+    end
+  end
+
+  def summarize_equipment_table
+    Hash[
+      @equipment.map do |archetype, details|
+        total = details["total"]
+        max_level = (details.keys - ["total"]).max
+        counts_by_level = (0..max_level).map{|i| details[i]}
+        summarized_details = "#{total} (#{counts_by_level.join(' ')})"
+        [@ledger.localization(archetype), summarized_details]
+      end.sort
+    ]
+  end
+
+  def to_json
+    {
+      name: @name,
+      resources: Hash[@resources.sort],
+      ic: Hash[@ic.sort],
+      divisions: @divisions,
+      manpower:  Hash[@manpower.sort],
+      ships: Hash[@ships.sort],
       equipment: summarize_equipment_table,
     }
   end
@@ -203,11 +267,30 @@ class GenerateLedger < ParadoxGame
     @countries.each do |tag, country|
       save_report! "ledger/country/#{tag}.json", country.to_json
     end
+    @factions.each do |name, faction|
+      save_report! "ledger/factions/#{name}.json", faction.to_json
+    end
+  end
+
+  def analyze_faction_information!
+    @factions = {}
+    @data.find_all("faction").each do |faction|
+      name = faction["name"]
+      faction["members"].each do |tag|
+        @countries[tag].faction = name
+      end
+    end
+    @countries.each do |tag, country|
+      faction_name = country.faction
+      @factions[faction_name] ||= FactionInformation.new(self, faction_name)
+      @factions[faction_name].add_country! country
+    end
   end
 
   def run!
     setup_equipment_mapping!
     analyze_country_information!
+    analyze_faction_information!
     save_reports!
   end
 
