@@ -8,6 +8,7 @@ class CountryInformation
   def initialize(ledger, tag, country)
     @ledger = ledger
     @tag = tag
+    @original_tag = country["original_tag"] || @tag
     @resources = {}
     @ic = Hash.new(0)
     @divisions = 0
@@ -15,7 +16,7 @@ class CountryInformation
     @ships = Hash.new(0)
     @equipment = {}
     @ideology = country["politics"]["ruling_party"]
-    @name = ledger.localization("#{@tag}_#{@ideology}")
+    @name = ledger.localization("#{@original_tag}_#{@ideology}")
 
     country["resources"]["produced"].each do |name, amount|
       raise unless amount == amount.to_i
