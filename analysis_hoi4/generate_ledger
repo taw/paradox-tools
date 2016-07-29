@@ -14,6 +14,8 @@ class CountryInformation
     @manpower = Hash.new(0)
     @ships = Hash.new(0)
     @equipment = {}
+    @ideology = country["politics"]["ruling_party"]
+    @name = ledger.localization("#{@tag}_#{@ideology}")
 
     country["resources"]["produced"].each do |name, amount|
       raise unless amount == amount.to_i
@@ -116,18 +118,28 @@ class CountryInformation
     end
   end
 
+  def summarize_equipment_table
+    Hash[
+      @equipment.sort.map do |archetype, details|
+        total = details["total"]
+        max_level = (details.keys - ["total"]).max
+        counts_by_level = (0..max_level).map{|i| details[i]}
+        summarized_details = "#{total} (#{counts_by_level.join(' ')})"
+        [archetype, summarized_details]
+      end
+    ]
+  end
+
   def to_json
     {
+      ideology: @ideology,
+      name: @name,
       resources: @resources,
       ic: @ic,
       divisions: @divisions,
       manpower: @manpower,
       ships: @ships,
-      equipment: Hash[
-        @equipment.sort.map{|k,v|
-          [k, Hash[v.sort_by{|kk,vv| kk == "total" ? -1 : kk}]]
-        }
-      ]
+      equipment: summarize_equipment_table,
     }
   end
 end
@@ -146,7 +158,7 @@ class GenerateLedger < ParadoxGame
 
   def save_report!(path, data)
     Pathname(path).parent.mkpath
-    Pathname(path).write(JSON.pretty_generate(data))
+    Pathname(path).write(JSON.pretty_generate(data) + "\n")
   end
 
   def setup_equipment_mapping!
@@ -168,8 +180,7 @@ class GenerateLedger < ParadoxGame
     end
   end
 
-  def run!
-    setup_equipment_mapping!
+  def analyze_country_information!
     @countries = {}
     @data["countries"].each do |tag, country|
       @countries[tag] ||= CountryInformation.new(self, tag, country)
@@ -184,10 +195,19 @@ class GenerateLedger < ParadoxGame
       next if tag == "air_base"
       @countries[tag].add_air_force! air_force
     end
+  end
+
+  def save_reports!
     system "trash", "ledger" if Pathname("ledger").exist?
     @countries.each do |tag, country|
       save_report! "ledger/country/#{tag}.json", country.to_json
     end
+  end
+
+  def run!
+    setup_equipment_mapping!
+    analyze_country_information!
+    save_reports!
   end
 
   def inspect
