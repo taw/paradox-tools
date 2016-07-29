@@ -13,10 +13,11 @@ class CountryInformation
     @divisions = 0
     @manpower = Hash.new(0)
     @ships = Hash.new(0)
-    @equipment = Hash.new(0)
+    @equipment = {}
 
     country["resources"]["produced"].each do |name, amount|
-      @resources[name] = amount
+      raise unless amount == amount.to_i
+      @resources[name] = amount.to_i
     end
     add_equipments! country["production"]["equipments"]
     add_units! country["units"]
@@ -97,9 +98,13 @@ class CountryInformation
   end
 
   def add_equipment!(equipment)
-    type = @ledger.equipment[equipment["id"]]
+    archetype, level = @ledger.equipment[equipment["id"]]
     amount = equipment["amount"]
-    @equipment[type] += amount
+    amount = amount.to_i if amount == amount.to_i
+
+    @equipment[archetype] ||= Hash.new(0)
+    @equipment[archetype][level] += amount
+    @equipment[archetype]["total"] += amount
   end
 
   def add_air_force!(air_force)
@@ -118,7 +123,11 @@ class CountryInformation
       divisions: @divisions,
       manpower: @manpower,
       ships: @ships,
-      equipment: Hash[@equipment.sort],
+      equipment: Hash[
+        @equipment.sort.map{|k,v|
+          [k, Hash[v.sort_by{|kk,vv| kk == "total" ? -1 : kk}]]
+        }
+      ]
     }
   end
 end
@@ -140,18 +149,32 @@ class GenerateLedger < ParadoxGame
     Pathname(path).write(JSON.pretty_generate(data))
   end
 
-  def run!
-    @countries = {}
+  def setup_equipment_mapping!
     @equipment = {}
+    @archetype = {}
+    levels = Hash.new(0)
+    glob("common/units/equipment/*.txt").each do |path|
+      parse(path)["equipments"].each do |name, equipment|
+        next if equipment["is_archetype"]
+        a = equipment["archetype"]
+        @archetype[name] = [a, levels[a]]
+        levels[a] += 1
+      end
+    end
     @data["equipments"].each do |type, equipment|
       binding.pry if @equipment[equipment["id"]]
-      @equipment[equipment["id"]] = type
+      raise unless @archetype[type]
+      @equipment[equipment["id"]] = @archetype[type]
     end
+  end
+
+  def run!
+    setup_equipment_mapping!
+    @countries = {}
     @data["countries"].each do |tag, country|
       @countries[tag] ||= CountryInformation.new(self, tag, country)
     end
     @data["states"].each do |num, state|
-      # name = localization("STATE_#{num}")
       owner = state["owner"]
       controller = state["controller"] || owner
       @countries[owner].add_owned_state! state
@@ -161,8 +184,9 @@ class GenerateLedger < ParadoxGame
       next if tag == "air_base"
       @countries[tag].add_air_force! air_force
     end
+    system "trash", "ledger" if Pathname("ledger").exist?
     @countries.each do |tag, country|
-      save_report! "ledger/#{tag}.json", country.to_json
+      save_report! "ledger/country/#{tag}.json", country.to_json
     end
   end
 
