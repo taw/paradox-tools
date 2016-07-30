@@ -77,8 +77,11 @@ class CountryInformation
       next unless state["buildings"][type]
       next if state["buildings"][type] == []
       count = state["buildings"][type]["level"].size
+      count_working = state["buildings"][type]["level"].select{|lvl| lvl == 100}.size
       @ic["controlled_#{type}"] += count
       @ic["controlled_total"] += count
+      @ic["working_#{type}"] += count_working
+      @ic["working_total"] += count_working
     end
   end
 
