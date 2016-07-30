@@ -212,6 +212,36 @@ class FactionInformation
   end
 end
 
+class WarInformation
+  def initialize(ledger, war)
+    @ledger = ledger
+    @name = war["name"]
+    @attackers = war["attackers"]
+    @defenders = war["defenders"]
+    @attacker_casualties = 0
+    @defender_casualties = 0
+    war["casualties"].each do |tag, count|
+      if @attackers.include?(tag)
+        @attacker_casualties += count
+      elsif @defenders.include?(tag)
+        @defender_casualties += count
+      else
+        binding.pry
+      end
+    end
+  end
+
+  def to_json
+    {
+      name: @name,
+      attackers: @attackers,
+      defenders: @defenders,
+      attacker_casualties: @attacker_casualties,
+      defender_casualties: @defender_casualties,
+    }
+  end
+end
+
 class GenerateLedger < ParadoxGame
   attr_reader :equipment
   def initialize(save_path, *roots)
@@ -273,6 +303,9 @@ class GenerateLedger < ParadoxGame
     @factions.each do |name, faction|
       save_report! "ledger/factions/#{name}.json", faction.to_json
     end
+    @wars.each do |name, war|
+      save_report! "ledger/wars/#{name}.json", war.to_json
+    end
   end
 
   def analyze_faction_information!
@@ -290,10 +323,18 @@ class GenerateLedger < ParadoxGame
     end
   end
 
+  def analyze_wars!
+    @wars = {}
+    @data.find_all("active_war").each do |war|
+      @wars[war["name"]] = WarInformation.new(self, war)
+    end
+  end
+
   def run!
     setup_equipment_mapping!
     analyze_country_information!
     analyze_faction_information!
+    analyze_wars!
     save_reports!
   end
 
