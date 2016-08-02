@@ -5,15 +5,50 @@ require "set"
 require "z3"
 require_relative "../lib/paradox_game"
 
+class Bonuses
+  attr_reader :bonuses
+  def initialize(*kvs)
+    @bonuses = {}
+    kvs.each do |key, val|
+      add!(key, val)
+    end
+  end
+
+  include Enumerable
+  def each(&block)
+    @bonuses.sort.each(&block)
+  end
+
+  private
+
+  def add!(key, val)
+    if val.is_a?(PropertyList)
+      val.each do |k,v|
+        add! "#{key}:#{k}", v
+      end
+    elsif key == "enable_tactic"
+      add! "enable_tactics", [val]
+    elsif key == "enable_tactics"
+      @bonuses[key] ||= []
+      @bonuses[key] += val
+    elsif val.is_a?(Numeric)
+      @bonuses[key] ||= 0
+      @bonuses[key] = (@bonuses[key] + val).round(6)
+    else
+      binding.pry
+    end
+  end
+end
+
 class Doctrine
   attr_reader :bonuses, :exclusive, :name, :loc_name, :paths, :reqs
   def initialize(game, name, node)
     @name = name
     @loc_name = game.localization(name)
-    @bonuses = []
     @exclusive = Set[]
     @paths = Set[]
     @reqs = Set[]
+    bonuses = []
     node.each do |key, val|
       case key
       when "doctrine", "ai_research_weights", "ai_will_do", "folder", "research_cost", "categories"
@@ -23,9 +58,10 @@ class Doctrine
       when "path"
         @paths << val["leads_to_tech"]
       else
-        @bonuses << [key, val]
+        bonuses << [key, val]
       end
     end
+    @bonuses = Bonuses.new(*bonuses)
   end
 
   def root?
@@ -43,7 +79,7 @@ class DoctrineSet
   end
 
   def bonuses
-    @techs.map(&:bonuses).flatten(1)
+    @bonuses ||= Bonuses.new(*@techs.map{|t| t.bonuses.to_a}.flatten(1))
   end
 end
 
@@ -124,14 +160,14 @@ class AnalyzeDoctrines < ParadoxGame
   def report_trees!(category)
     node = parse("common/technologies/#{category}.txt")
     doctrine_tree = DoctrineTree.new(self, node)
-    puts "Bonuses for #{category}"
+    puts "== Bonuses for #{category} =="
     doctrine_tree.each_doctrine_set do |doctrine_set|
       puts doctrine_set
       doctrine_set.bonuses.each do |key, val|
-        puts "* #{key} - #{val.inspect}"
+        puts "* #{key}: #{val.inspect}"
       end
+      puts ""
     end
-    puts ""
   end
 
   def report!
