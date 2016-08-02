@@ -1,0 +1,146 @@
+#!/usr/bin/env ruby
+
+require "pry"
+require "set"
+require "z3"
+require_relative "../lib/paradox_game"
+
+class Doctrine
+  attr_reader :bonuses, :exclusive, :name, :loc_name, :paths, :reqs
+  def initialize(game, name, node)
+    @name = name
+    @loc_name = game.localization(name)
+    @bonuses = []
+    @exclusive = Set[]
+    @paths = Set[]
+    @reqs = Set[]
+    node.each do |key, val|
+      case key
+      when "doctrine", "ai_research_weights", "ai_will_do", "folder", "research_cost", "categories"
+        # pass
+      when "xor", "XOR"
+        @exclusive += val
+      when "path"
+        @paths << val["leads_to_tech"]
+      else
+        @bonuses << [key, val]
+      end
+    end
+  end
+
+  def root?
+    @reqs.empty?
+  end
+end
+
+class DoctrineSet
+  def initialize(techs)
+    @techs = techs
+  end
+
+  def to_s
+    @techs.map{|t| t.loc_name}.join(", ")
+  end
+
+  def bonuses
+    @techs.map(&:bonuses).flatten(1)
+  end
+end
+
+class DoctrineTree
+  def initialize(game, node)
+    @game = game
+    parse_node!(node)
+    setup_doctrine_sets!
+  end
+
+  def each_doctrine_set(&block)
+    @doctrine_sets.each(&block)
+  end
+
+  private
+
+  def parse_node!(node)
+    @doctrines = {}
+    node["technologies"].each do |name, tech|
+      raise if @doctrines[name]
+      @doctrines[name] = Doctrine.new(@game, name, tech)
+    end
+    @doctrines.each do |name, doctrine|
+      doctrine.paths.each do |path_to|
+        @doctrines[path_to].reqs << name
+      end
+    end
+  end
+
+  def setup_base_solver!
+    @solver = Z3::Solver.new
+    @vars = {}
+    @doctrines.each do |name, doctrine|
+      @vars[name] = Z3.Int(name)
+      @solver.assert @vars[name] >= 0
+      @solver.assert @vars[name] <= 1
+    end
+    @doctrines.each do |name, doctrine|
+      doctrine.exclusive.each do |name_xor|
+        @solver.assert @vars[name] + @vars[name_xor] <= 1
+      end
+      unless doctrine.root?
+        req_vars = doctrine.reqs.map{|req_name| @vars[req_name]}
+        @solver.assert (@vars[name] == 1).implies Z3.Add(*req_vars) >= 1
+      end
+    end
+    @count_doctrines = Z3.Add(*@vars.values)
+  end
+
+  def add_doctrine_set(model)
+    doctrine_set = @vars.select{|n,v| model[v].to_s == "1" }.keys
+    missing =  @vars.select{|n,v| model[v].to_s == "0" }.values
+    @doctrine_sets << DoctrineSet.new(doctrine_set.map{|name| @doctrines[name]})
+    @solver.assert Z3.Add(*missing) >= 1
+  end
+
+  def setup_doctrine_sets!
+    @doctrine_sets = []
+    setup_base_solver!
+    @vars.size.downto(0).each do |target|
+      while true
+        @solver.push
+        @solver.assert @count_doctrines == target
+        if @solver.check == :sat
+          model = @solver.model
+          @solver.pop
+          add_doctrine_set(model)
+        else
+          @solver.pop
+          break
+        end
+      end
+    end
+  end
+end
+
+class AnalyzeDoctrines < ParadoxGame
+  def report_trees!(category)
+    node = parse("common/technologies/#{category}.txt")
+    doctrine_tree = DoctrineTree.new(self, node)
+    puts "Bonuses for #{category}"
+    doctrine_tree.each_doctrine_set do |doctrine_set|
+      puts doctrine_set
+      doctrine_set.bonuses.each do |key, val|
+        puts "* #{key} - #{val.inspect}"
+      end
+    end
+    puts ""
+  end
+
+  def report!
+    report_trees!("land_doctrine")
+    report_trees!("air_doctrine")
+    report_trees!("naval_doctrine")
+  end
+end
+
+if __FILE__ == $0
+  AnalyzeDoctrines.new(*ARGV).report!
+end

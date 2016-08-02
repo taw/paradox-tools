@@ -8,3 +8,4 @@
 /reference*
 Gemfile.lock
 coverage
+/ledger
