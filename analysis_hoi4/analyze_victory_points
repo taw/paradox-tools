@@ -1,0 +1,42 @@
+#!/usr/bin/env ruby
+
+require "pry"
+require_relative "../lib/paradox_game"
+
+class AnalyzeVictoryPoints < ParadoxGame
+  def states
+    unless @states
+      @states = {}
+      glob("history/states/*.txt").each do |path|
+        node = parse(path)["state"]
+        id = node["id"]
+        name = localization(node["name"])
+        vps = node["history"]["victory_points"] || []
+        total = vps.each_slice(2).map(&:last).inject(0, &:+)
+        raise unless total = total.to_i
+        total = total.to_i
+        # Some names are duplicates
+        raise if @states[id]
+        @states[id] = {name: name, total: total}
+      end
+    end
+    @states
+  end
+
+  def report!
+    count_by_total = Hash.new(0)
+    states.each do |id, state|
+      count_by_total[state[:total]] += 1
+    end
+    onecav_needed = 0
+    states.each do |id, state|
+      cav_needed = (state[:total] / 2.0).ceil
+      onecav_needed += cav_needed
+    end
+    p onecav_needed
+  end
+end
+
+if __FILE__ == $0
+  AnalyzeVictoryPoints.new(*ARGV).report!
+end
