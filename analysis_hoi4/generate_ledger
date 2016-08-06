@@ -4,7 +4,27 @@ require "pry"
 require_relative "../lib/paradox_game"
 require "json"
 
-class CountryInformation
+class InformationTables
+  def adjust_precision(x)
+    x = x.round(3)
+    return x.to_i if x == x.to_i
+    x
+  end
+
+  def summarize_equipment_table
+    Hash[
+      @equipment.map do |archetype, details|
+        total = adjust_precision(details["total"])
+        max_level = (details.keys - ["total"]).max
+        counts_by_level = (0..max_level).map{|i| adjust_precision(details[i])}
+        summarized_details = "#{total} (#{counts_by_level.join(' ')})"
+        [@ledger.localization(archetype), summarized_details]
+      end.sort
+    ]
+  end
+end
+
+class CountryInformation < InformationTables
   attr_reader :divisions, :manpower, :ships, :equipment, :ic, :resources
   attr_accessor :faction
   def initialize(ledger, tag, country)
@@ -109,7 +129,6 @@ class CountryInformation
   def add_equipment!(equipment)
     archetype, level = @ledger.equipment[equipment["id"]]
     amount = equipment["amount"]
-    amount = amount.to_i if amount == amount.to_i
 
     @equipment[archetype] ||= Hash.new(0)
     @equipment[archetype][level] += amount
@@ -123,18 +142,6 @@ class CountryInformation
         add_equipments! air_wing["equipment"]
       end
     end
-  end
-
-  def summarize_equipment_table
-    Hash[
-      @equipment.map do |archetype, details|
-        total = details["total"]
-        max_level = (details.keys - ["total"]).max
-        counts_by_level = (0..max_level).map{|i| details[i]}
-        summarized_details = "#{total} (#{counts_by_level.join(' ')})"
-        [@ledger.localization(archetype), summarized_details]
-      end.sort
-    ]
   end
 
   def to_json
@@ -152,7 +159,7 @@ class CountryInformation
   end
 end
 
-class FactionInformation
+class FactionInformation < InformationTables
   def initialize(ledger, name)
     @ledger = ledger
     @name = name
@@ -185,18 +192,6 @@ class FactionInformation
         @equipment[archetype][level] += count
       end
     end
-  end
-
-  def summarize_equipment_table
-    Hash[
-      @equipment.map do |archetype, details|
-        total = details["total"]
-        max_level = (details.keys - ["total"]).max
-        counts_by_level = (0..max_level).map{|i| details[i]}
-        summarized_details = "#{total} (#{counts_by_level.join(' ')})"
-        [@ledger.localization(archetype), summarized_details]
-      end.sort
-    ]
   end
 
   def to_json
