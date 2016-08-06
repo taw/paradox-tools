@@ -273,8 +273,12 @@ class GenerateLedger < ParadoxGame
     end
     @data["equipments"].each do |type, equipment|
       binding.pry if @equipment[equipment["id"]]
-      raise unless @archetype[type]
-      @equipment[equipment["id"]] = @archetype[type]
+      if @archetype[type]
+        @equipment[equipment["id"]] = @archetype[type]
+      else
+        # Seems like a weird bug. Assume creating archetype is same as creating level 0
+        @equipment[equipment["id"]] = [type, 0]
+      end
     end
   end
 
