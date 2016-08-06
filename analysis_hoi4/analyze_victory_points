@@ -7,7 +7,7 @@ require_relative "../lib/paradox_game"
 class Unit
   def initialize(cav, has_mp)
     @cav = cav
-    @has_mp = @has_mp
+    @has_mp = has_mp
   end
 
   def suppression
@@ -15,6 +15,14 @@ class Unit
       @cav * 3.0
     else
       @cav * 2.0
+    end
+  end
+
+  def name
+    if @has_mp
+      "#{@cav}cav+mp"
+    else
+      "#{@cav}cav"
     end
   end
 
@@ -57,12 +65,19 @@ class AnalyzeVictoryPoints < ParadoxGame
     @state_count_by_vp_total
   end
 
-  def total_suppression_needed(mod, unit)
-    total = 0
+  def total_suppression_needed(mod, units)
+    total = Hash.new(0)
     state_count_by_vp_total.each do |vp_total, count|
-      vp_total = (vp_total * mod).floor
-      units_needed = (vp_total / unit.suppression).ceil
-      total += count * units_needed
+      resistance = (vp_total * mod).floor
+      units.each do |unit|
+        while (resistance >= unit.suppression) or (resistance > 0 and unit.suppression <= 2)
+          total[unit.name] += count
+          total["ic"] += unit.ic * count
+          total["men"] += unit.manpower * count
+          resistance -= unit.suppression
+        end
+      end
+      raise if resistance > 0
     end
     total
   end
@@ -70,17 +85,16 @@ class AnalyzeVictoryPoints < ParadoxGame
   def report!
     units = {
       "1cav"    => Unit.new(1, false),
-      "2cav"    => Unit.new(2, false),
-      # "3cav"    => Unit.new(3, false),
-      # "4cav"    => Unit.new(4, false),
-      # "5cav"    => Unit.new(5, false),
-      # "6cav"    => Unit.new(6, false),
       "1cav+mp" => Unit.new(1, true),
       "2cav+mp" => Unit.new(2, true),
-      # "3cav+mp" => Unit.new(3, true),
-      # "4cav+mp" => Unit.new(4, true),
-      # "5cav+mp" => Unit.new(5, true),
-      # "6cav+mp" => Unit.new(6, true),
+      "3cav+mp" => Unit.new(3, true),
+      "4cav+mp" => Unit.new(4, true),
+      "5cav+mp" => Unit.new(5, true),
+      "6cav+mp" => Unit.new(6, true),
+      "7cav+mp" => Unit.new(7, true),
+      "8cav+mp" => Unit.new(8, true),
+      "9cav+mp" => Unit.new(9, true),
+      "10cav+mp" => Unit.new(10, true),
     }
     levels = {
       "harshest" => 1.0,
@@ -91,8 +105,8 @@ class AnalyzeVictoryPoints < ParadoxGame
     levels.each do |level, mod|
       puts "To suppress the whole world at #{level} treatment you need:"
       units.each do |name, unit|
-        needed = total_suppression_needed(mod, unit)
-        puts "* #{name} - #{needed} divisions, #{unit.manpower*needed} men, #{unit.ic*needed} IC"
+        needed = total_suppression_needed(mod, [unit, Unit.new(1, false)])
+        puts "* #{name} - #{needed.inspect}"
       end
       puts ""
     end
