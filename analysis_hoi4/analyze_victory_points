@@ -23,17 +23,64 @@ class AnalyzeVictoryPoints < ParadoxGame
     @states
   end
 
+  def state_count_by_vp_total
+    unless @state_count_by_vp_total
+      @state_count_by_vp_total = Hash.new(0)
+      states.each do |id, state|
+        @state_count_by_vp_total[state[:total]] += 1
+      end
+    end
+    @state_count_by_vp_total
+  end
+
+  def total_suppression_needed(mod, suppression_per_unit)
+    total = 0
+    state_count_by_vp_total.each do |vp_total, count|
+      vp_total = (vp_total * mod).floor
+      units_needed = (vp_total / suppression_per_unit.to_f).ceil
+      total += count * units_needed
+    end
+    total
+  end
+
+  # Assumes 50% MP bonus
+  def unit_stats(cavs, has_mp)
+    if has_mp
+      [3*cavs, 1000*cavs+500, 60*cavs+60]
+    else
+      [2*cavs, 1000*cavs, 60*cavs]
+    end
+  end
+
   def report!
-    count_by_total = Hash.new(0)
-    states.each do |id, state|
-      count_by_total[state[:total]] += 1
+    units = {
+      "1cav"    => unit_stats(1, false),
+      "2cav"    => unit_stats(2, false),
+      # "3cav"    => unit_stats(3, false),
+      # "4cav"    => unit_stats(4, false),
+      # "5cav"    => unit_stats(5, false),
+      # "6cav"    => unit_stats(6, false),
+      "1cav+mp" => unit_stats(1, true),
+      "2cav+mp" => unit_stats(2, true),
+      # "3cav+mp" => unit_stats(3, true),
+      # "4cav+mp" => unit_stats(4, true),
+      # "5cav+mp" => unit_stats(5, true),
+      # "6cav+mp" => unit_stats(6, true),
+    }
+    levels = {
+      "harshest" => 1.0,
+      "harsh" => 0.8,
+      "gentle" => 0.6,
+      "gentlest" => 0.4,
+    }
+    levels.each do |level, mod|
+      puts "To suppress the whole world at #{level} treatment you need:"
+      units.each do |name, (suppression, men, ic)|
+        needed = total_suppression_needed(mod, suppression)
+        puts "* #{name} - #{needed} divisions, #{men*needed} men, #{ic*needed} IC"
+      end
+      puts ""
     end
-    onecav_needed = 0
-    states.each do |id, state|
-      cav_needed = (state[:total] / 2.0).ceil
-      onecav_needed += cav_needed
-    end
-    p onecav_needed
   end
 end
 
