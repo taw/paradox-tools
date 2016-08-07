@@ -31,6 +31,17 @@ class CountryInformation < InformationTables
     @ideology = country["politics"]["ruling_party"]
     @name = ledger.localization("#{@original_tag}_#{@ideology}")
 
+    @research_cost = 0
+    (country["technology"]["technologies"] || {}).each do |name, tech|
+      next unless tech["level"]
+      raise unless tech["level"] == 1
+      if ledger.technology_cost[name]
+        @research_cost += ledger.technology_cost[name]
+      else
+        warn "Unknown tech: `#{name}' for #{@tag}"
+      end
+    end
+
     country["resources"]["produced"].each do |name, amount|
       raise unless amount == amount.to_i
       @resources[name] = amount.to_i
@@ -139,6 +150,7 @@ class CountryInformation < InformationTables
       name: @name,
       ideology: @ideology,
       faction: @faction,
+      research_cost: @research_cost,
       resources: Hash[@resources.sort],
       ic: Hash[@ic.sort],
       divisions: @divisions,
@@ -299,7 +311,7 @@ class Equipment
 end
 
 class GenerateLedger < ParadoxGame
-  attr_reader :id_to_equipment
+  attr_reader :id_to_equipment, :technology_cost
   def initialize(save_path, *roots)
     @save_path = Pathname(save_path)
     super(*roots)
@@ -344,6 +356,16 @@ class GenerateLedger < ParadoxGame
       else
         # Seems like a weird bug. Assume creating archetype is same as creating level 0
         @id_to_equipment[id] = @archetypes[type].default_level
+      end
+    end
+  end
+
+  def setup_technology_mapping!
+    @technology_cost = {}
+    glob("common/technologies/*.txt").each do |path|
+      parse(path)["technologies"].each do |name, tech|
+        next unless tech.is_a?(PropertyList)
+        @technology_cost[name] = tech["research_cost"]
       end
     end
   end
@@ -402,6 +424,7 @@ class GenerateLedger < ParadoxGame
 
   def run!
     setup_equipment_mapping!
+    setup_technology_mapping!
     analyze_country_information!
     analyze_faction_information!
     analyze_wars!
