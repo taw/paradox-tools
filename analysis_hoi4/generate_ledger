@@ -5,20 +5,10 @@ require_relative "../lib/paradox_game"
 require "json"
 
 class InformationTables
-  def adjust_precision(x)
-    x = x.round(3)
-    return x.to_i if x == x.to_i
-    x
-  end
-
   def summarize_equipment_table
     Hash[
       @equipment.map do |archetype, details|
-        total = adjust_precision(details["total"])
-        max_level = (details.keys - ["total"]).max
-        counts_by_level = (0..max_level).map{|i| adjust_precision(details[i])}
-        summarized_details = "#{total} (#{counts_by_level.join(' ')})"
-        [@ledger.localization(archetype), summarized_details]
+        [archetype.name, archetype.format_equipment_details(details)]
       end.sort
     ]
   end
@@ -126,13 +116,13 @@ class CountryInformation < InformationTables
     end
   end
 
-  def add_equipment!(equipment)
-    archetype, level = @ledger.equipment[equipment["id"]]
-    amount = equipment["amount"]
-
+  def add_equipment!(equipment_node)
+    amount = equipment_node["amount"]
+    id = equipment_node["id"]
+    equipment = @ledger.id_to_equipment[id]
+    archetype = equipment.archetype
     @equipment[archetype] ||= Hash.new(0)
-    @equipment[archetype][level] += amount
-    @equipment[archetype]["total"] += amount
+    @equipment[archetype][equipment] += amount
   end
 
   def add_air_force!(air_force)
@@ -188,8 +178,8 @@ class FactionInformation < InformationTables
     end
     country.equipment.each do |archetype, details|
       @equipment[archetype] ||= Hash.new(0)
-      details.each do |level, count|
-        @equipment[archetype][level] += count
+      details.each do |equipment, count|
+        @equipment[archetype][equipment] += count
       end
     end
   end
@@ -237,8 +227,79 @@ class WarInformation
   end
 end
 
+class EquipmentArchetype
+  attr_reader :name
+  def initialize(name)
+    @name = name
+    @equipment = {}
+    @lookup = {}
+  end
+
+  def add!(equipment, subgroup)
+    @equipment[subgroup] ||= []
+    @equipment[subgroup] << equipment
+    @lookup[equipment] = [subgroup, @equipment[subgroup].size-1]
+  end
+
+  def default_level
+    @equipment[nil][0]
+  end
+
+  def default_only?
+    @lookup.values == [[nil, 0]]
+  end
+
+  def inspect
+    "EquipmentArchetype<#{@name}>"
+  end
+
+  def format_equipment_details(details)
+    total = adjust_precision(details.values.inject(0, &:+))
+    result = "#{total}"
+    unless default_only?
+      subgroups = {}
+      details.each do |equipment, amount|
+        subgroup, level = @lookup[equipment]
+        subgroups[subgroup] ||= []
+        raise if subgroups[subgroup][level]
+        subgroups[subgroup][level] = adjust_precision(amount)
+      end
+      # Fill with zeroes if only new equipment present
+      subgroups.sort_by{|k,_| k||""}.each do |subgroup, counts|
+        subtotals = counts.map{|c| c || 0}.join(" ")
+        if subgroup
+          result << " #{subgroup}:[#{subtotals}]"
+        else
+          result << " [#{subtotals}]"
+        end
+      end
+    end
+    result
+  end
+
+  private
+
+  def adjust_precision(x)
+    x = x.round(3)
+    return x.to_i if x == x.to_i
+    x
+  end
+end
+
+class Equipment
+  attr_reader :name, :archetype
+  def initialize(name, archetype)
+    @name = name
+    @archetype = archetype
+  end
+
+  def inspect
+    "Equipment<#{@name} : #{@archetype.name}>"
+  end
+end
+
 class GenerateLedger < ParadoxGame
-  attr_reader :equipment
+  attr_reader :id_to_equipment
   def initialize(save_path, *roots)
     @save_path = Pathname(save_path)
     super(*roots)
@@ -255,24 +316,34 @@ class GenerateLedger < ParadoxGame
   end
 
   def setup_equipment_mapping!
-    @equipment = {}
-    @archetype = {}
-    levels = Hash.new(0)
+    @archetypes = {}
+    @equipments = {}
     glob("common/units/equipment/*.txt").each do |path|
       parse(path)["equipments"].each do |name, equipment|
         next if equipment["is_archetype"]
-        a = equipment["archetype"]
-        @archetype[name] = [a, levels[a]]
-        levels[a] += 1
+        archetype_name = equipment["archetype"]
+        # It's treated as light tank by archetype, but shouldn't
+        archetype_name = "gw_tank_equipment" if name == "gw_tank_equipment"
+        if equipment["carrier_capable"] and archetype_name =~ /\Acv_(.*)/
+          archetype_name = $1
+          subgroup = "cv"
+        else
+          subgroup = nil
+        end
+        archetype = @archetypes[archetype_name] ||= EquipmentArchetype.new(archetype_name)
+        equipment = @equipments[name] = Equipment.new(name, archetype)
+        archetype.add!(equipment, subgroup)
       end
     end
+    @id_to_equipment = {}
     @data["equipments"].each do |type, equipment|
-      binding.pry if @equipment[equipment["id"]]
-      if @archetype[type]
-        @equipment[equipment["id"]] = @archetype[type]
+      id = equipment["id"]
+      binding.pry if @id_to_equipment[id]
+      if @equipments[type]
+        @id_to_equipment[id] = @equipments[type]
       else
         # Seems like a weird bug. Assume creating archetype is same as creating level 0
-        @equipment[equipment["id"]] = [type, 0]
+        @id_to_equipment[id] = @archetypes[type].default_level
       end
     end
   end
