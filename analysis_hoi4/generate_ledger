@@ -8,7 +8,7 @@ class InformationTables
   def summarize_equipment_table
     Hash[
       @equipment.map do |archetype, details|
-        [archetype.name, archetype.format_equipment_details(details)]
+        [@ledger.localization(archetype.name), archetype.format_equipment_details(details)]
       end.sort
     ]
   end
@@ -374,6 +374,8 @@ class GenerateLedger < ParadoxGame
   def analyze_country_information!
     @countries = {}
     @data["countries"].each do |tag, country|
+      # This seems to be good enough filter for inactive Dxx tags
+      next if country["original_capital"] == 0 and country["original_tag"] == nil
       @countries[tag] ||= CountryInformation.new(self, tag, country)
     end
     @data["states"].each do |num, state|
@@ -384,6 +386,7 @@ class GenerateLedger < ParadoxGame
     end
     @data["strategic_air"].each do |tag, air_force|
       next if tag == "air_base" or tag == "rocket_site"
+      next unless air_force["air_wing_pool"]
       @countries[tag].add_air_force! air_force
     end
   end
