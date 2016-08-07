@@ -15,7 +15,8 @@ class InformationTables
 end
 
 class CountryInformation < InformationTables
-  attr_reader :divisions, :manpower, :ships, :equipment, :ic, :resources
+  attr_reader :tag, :name
+  attr_reader :divisions, :manpower, :ships, :equipment, :ic, :resources, :research_cost
   attr_accessor :faction
   def initialize(ledger, tag, country)
     @ledger = ledger
@@ -387,6 +388,46 @@ class GenerateLedger < ParadoxGame
     end
   end
 
+  def ranking_ships
+    Hash[
+      @countries
+        .values
+        .map{|c| [c.name, c.ships["total"]]}
+        .sort_by{|n,v| [-v,n]}
+        .select{|v,n| n > 0}
+    ]
+  end
+
+  def ranking_army
+    Hash[
+      @countries
+        .values
+        .map{|c| [c.name, c.manpower["army"]]}
+        .sort_by{|n,v| [-v,n]}
+        .select{|v,n| n > 0}
+    ]
+  end
+
+  def ranking_ic
+    Hash[
+      @countries
+        .values
+        .map{|c| [c.name, c.ic["controlled_total"]]}
+        .sort_by{|n,v| [-v,n]}
+        .select{|v,n| n > 0}
+    ]
+  end
+
+  def ranking_research
+    Hash[
+      @countries
+        .values
+        .map{|c| [c.name, c.research_cost]}
+        .sort_by{|n,v| [-v,n]}
+        .select{|v,n| n > 0}
+    ]
+  end
+
   def save_reports!
     system "trash", "ledger" if Pathname("ledger").exist?
     @countries.each do |tag, country|
@@ -398,6 +439,10 @@ class GenerateLedger < ParadoxGame
     @wars.each do |name, war|
       save_report! "ledger/wars/#{name}.json", war.to_json
     end
+    save_report! "ledger/rankings/ships.json", ranking_ships
+    save_report! "ledger/rankings/army.json", ranking_army
+    save_report! "ledger/rankings/ic.json", ranking_ic
+    save_report! "ledger/rankings/research.json", ranking_research
   end
 
   def analyze_faction_information!
