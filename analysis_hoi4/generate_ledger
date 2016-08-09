@@ -195,11 +195,13 @@ class FactionInformation < InformationTables
         @equipment[archetype][equipment] += count
       end
     end
+    @countries << country
   end
 
   def to_json
     {
       name: @name,
+      members: @countries.map(&:name).sort,
       resources: Hash[@resources.sort],
       ic: Hash[@ic.sort],
       divisions: @divisions,
