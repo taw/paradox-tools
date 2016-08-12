@@ -15,6 +15,7 @@ class UpdateModernTimes < ParadoxGame
 
   def initialize
     super("source/ck2_2.5.1")
+    @warnings = []
     @map = MapManager.new(self)
     @db = ModernTimesDatabase.new(self)
     @character_manager = CharacterManager.new(self)
@@ -32,6 +33,10 @@ class UpdateModernTimes < ParadoxGame
       end
     end
     puts out.sort
+  end
+
+  def warn(msg)
+    @warnings << msg
   end
 end
 

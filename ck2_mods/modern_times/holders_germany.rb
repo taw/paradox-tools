@@ -326,6 +326,8 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1992.7.8" => {name: "Thomas | Klestil", lived: "1932.11.4 – 2004.7.6"},
     # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
     "2004.7.6" => {name: "Heinz | Fischer", lived: "1938.10.9 -"},
+    # Member of presidential council, pick one of three arbitrarily
+    "2016.7.8" => {name: "Doris | Bures", lived: "1962.8.3 -", female: true},
   },
   # Württemberg
   d_swabia: {

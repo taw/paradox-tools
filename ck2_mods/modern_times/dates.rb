@@ -7,7 +7,7 @@ module ModernTimesDatabase::Dates
   @dates = {
     ### Special tags
     reset_date: "1450.1.1",
-    today: "2016.1.16",
+    today: "2016.8.12",
     game_end: "2999.12.31",
 
     times_immemorial: "1600.1.1",

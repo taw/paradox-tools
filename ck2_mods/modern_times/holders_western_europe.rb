@@ -139,6 +139,9 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
     "2006.3.9" => {
       name: "Aníbal Cavaco | Silva", lived: "1939.7.15 -",
     },
+    "2016.3.9" => {
+      name: "Marcelo Rebelo | de Sousa", lived: "1948.12.2 -",
+    },
   },
   k_frisia: {
     "1815.3.16" => {name: "William | Orange-Nassau", lived: "1772.8.24 - 1843.12.12"},

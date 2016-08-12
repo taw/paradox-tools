@@ -153,6 +153,10 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
       name: "Ólafur Ragnar | Grímsson",
       lived: "1943–",
     },
+    "2016.8.1" => {
+      name: "Guðni Thorlacius | Jóhannesson",
+      lived: "1968.6.26 -",
+    },
   },
   k_finland: {
     # Backdating from "1919.7.26"

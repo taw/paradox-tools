@@ -76,7 +76,7 @@ ModernTimesDatabase::BOOKMARKS = {
     desc: "Collapse of the Soviet Union freed nations of Soviet periphery, but also woke up dormant national conflicts. Will Russia continue its descent into chaos, or is it just a temporary setback?",
     characters: ["k_poland", "c_alania", "k_cuman"],
   },
-  "2016.1.16" => {
+  "2016.8.12" => {
     name: "Modern Times",
     desc: "After a brief period of calm following breakup of Soviet Union, new trouble is stirring. Putin challenges borders in former Soviet sphere, radical Islamists rally around a new caliph.",
     key: true,

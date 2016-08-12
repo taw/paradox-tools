@@ -83,6 +83,10 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
       name: "Aguila Saleh | Issa",
       lived: "1944-",
     },
+    "2016.3.30" => {
+      name: "Fayez | al-Sarraj",
+      lived: "1960-",
+    },
   },
   d_tunis: {
     # Backdating
