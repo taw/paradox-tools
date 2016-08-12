@@ -26,16 +26,14 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
   end
   def apply_ck2tweaks!
     apply_modifications! CK2TweaksGameModification,
+                         UITweaksGameModification,
                          BecomeRepublicGameModification,
-                         NoDynasticNamesGameModification,
                          NoLocalizedRanksGameModification,
                          NoLocalizedTitlesGameModification,
                          VassalTransferGameModification,
                          DynasticDecisionsGameModification,
                          RulerDesignerResetGameModification,
-                         # OldStyleBanishmentGameModification,
-                         FactionResistanceGameModification,
-                         BiggerWarsBoxGameModification
+                         FactionResistanceGameModification
   end
   def build_mod_files!
     apply_modern_times!

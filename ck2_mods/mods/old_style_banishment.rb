@@ -1,5 +1,7 @@
 require_relative "base"
 
+# This is not used because it's a bit overpowered
+
 class OldStyleBanishmentGameModification < CK2GameModification
   # There seems to be no way to restore old functionality via defines.txt etc.
   # So recoded from scratch

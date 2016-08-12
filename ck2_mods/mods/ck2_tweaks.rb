@@ -38,12 +38,6 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
-  def religion_groups
-    @religion_groups ||= glob("common/religions/*.txt").map do |path|
-      parse(path).keys
-    end.flatten
-  end
-
   def allow_intermarriage!
     patch_mod_files!("common/religions/*.txt") do |node|
       node.each do |group_name, group|
@@ -86,30 +80,6 @@ class CK2TweaksGameModification < CK2GameModification
   def cognatic_for_most_cultures!
     patch_mod_file!("common/laws/succession_laws.txt") do |node|
       node["gender_laws"]["true_cognatic_succession"].delete! "allow"
-    end
-  end
-
-  def setup_sensible_important_decisions_list!
-    patch_mod_files!("decisions/*.txt") do |node|
-      node.each do |category, decisions|
-        next unless category == "decisions"
-        decisions.each do |name, decision|
-          time_specific  = !!(decision["allow"].to_s =~ /month|war/)
-          focus_specific = !!(decision["potential"].to_s =~ /has_focus/)
-
-          if ["ask_help_to_manage_titles", "conscript_merchant_ships"].include?(name)
-            decision.delete! "is_high_prio"
-          # expel_jews/borrow_money_jews are available all time and no longer that OP
-          # welcome_jews is time specific
-          elsif ["welcome_jews"].include?(name) or time_specific or focus_specific
-            decision.add! "is_high_prio", true
-          elsif decision["is_high_prio"]
-            # The rest are OK
-          else
-            # The rest are OK
-          end
-        end
-      end
     end
   end
 
@@ -239,14 +209,6 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
-  def disable_fucking_hints!
-    patch_mod_file!("common/hints.txt") do |node|
-      node.each do |name, hint|
-        hint.delete! "sticky"
-      end
-    end
-  end
-
   def divine_blood_full_fertility!
     override_defines_lua!("divine_blood",
       "NReligion.DIVINE_BLOOD_FERTILITY_MULT" => 1.0,
@@ -303,14 +265,6 @@ class CK2TweaksGameModification < CK2GameModification
     override_defines_lua!("trade_posts",
       "NEconomy.MAX_TRADE_POSTS_BASE" => 10,
     )
-  end
-
-  def show_all_wars_on_map!
-    patch_mod_files!("common/cb_types/*.txt") do |node|
-      node.each do |name, cb|
-        cb.delete! "display_on_map"
-      end
-    end
   end
 
   def allow_feasts_at_minor_wars!
@@ -625,18 +579,6 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
-  def mark_more_titles_as_high_priority!
-    patch_mod_file!("common/minor_titles/00_minor_titles.txt") do |node|
-      node.each do |title_name, title|
-        next if title["is_high_prio"] # Already tagged
-        # No special reason to be an ass
-        # Titles with 0 opinion are mostly special stuff
-        next unless (title["opinion_effect"] || 0) > 0
-        title["is_high_prio"] = true
-      end
-    end
-  end
-
   def nerf_demand_conversion!
     override_defines_lua!("nerf_demand_conversion",
       "NDiplomacy.DEMAND_RELIGIOUS_CONVERSION_INTERACTION_PIETY" => 25,
@@ -885,16 +827,13 @@ class CK2TweaksGameModification < CK2GameModification
     cognatic_for_most_cultures!
     preserve_culture_buildings!
     pagans_can_go_feudal!
-    setup_sensible_important_decisions_list!
     setup_sensible_ai_for_demesne_laws!
     fast_de_jure_drift!
     allow_everyone_river_access!
-    disable_fucking_hints!
     disable_diplomatic_range_limit!
     no_foreign_conqueror_penalty!
     increase_vassal_limit!
     increase_trade_post_limit!
-    show_all_wars_on_map!
     allow_feasts_at_minor_wars!
     no_multiple_empires!
     more_plots!
@@ -907,7 +846,6 @@ class CK2TweaksGameModification < CK2GameModification
     send_missionaries_to_tributaries!
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
-    mark_more_titles_as_high_priority!
     nerf_demand_conversion!
     fix_infamy!
 

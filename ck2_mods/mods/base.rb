@@ -48,4 +48,10 @@ class CK2GameModification < ParadoxGameModification
       end
     end
   end
+
+  def religion_groups
+    @religion_groups ||= glob("common/religions/*.txt").map do |path|
+      parse(path).keys
+    end.flatten
+  end
 end
