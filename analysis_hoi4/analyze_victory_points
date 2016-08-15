@@ -12,9 +12,9 @@ class Unit
 
   def suppression
     if @has_mp
-      @cav * 3.0
+      (@cav * 2 * 1.5).floor
     else
-      @cav * 2.0
+      (@cav * 2)
     end
   end
 
@@ -36,24 +36,67 @@ class Unit
 end
 
 class AnalyzeVictoryPoints < ParadoxGame
+  def province_to_victory_points
+    unless @province_to_victory_points
+      analyze_states!
+    end
+    province_to_victory_points
+  end
+
   def states
     unless @states
-      @states = {}
-      glob("history/states/*.txt").each do |path|
-        node = parse(path)["state"]
-        id = node["id"]
-        name = localization(node["name"])
-        vps = node["history"]["victory_points"] || []
-        total = vps.each_slice(2).map(&:last).inject(0, &:+)
-        raise unless total = total.to_i
-        total = total.to_i
-        # Some names are duplicates
-        raise if @states[id]
-        @states[id] = {name: name, total: total}
-      end
+      analyze_states!
     end
     @states
   end
+
+  private def analyze_states!
+    @province_to_victory_points = Hash.new(0)
+    @states = {}
+    glob("history/states/*.txt").each do |path|
+      node = parse(path)["state"]
+      name = localization(node["name"])
+      id = node["id"]
+
+      # Some of these are for provinces belonging to another state
+      # Like 500 (Rio) including 501 (Sao Paula)'s VP
+      node["history"].find_all("victory_points").each do |vps|
+        vps.each_slice(2) do |province_id, vps|
+          @province_to_victory_points[province_id] = vps
+        end
+      end
+
+      # Some names are duplicates, so no key by name
+      raise if @states[id]
+      @states[id] = {name: name, provinces: node["provinces"]}
+    end
+
+    @states.each do |id, state|
+      vp_provinces = {}
+      state[:provinces].each do |province_id|
+        value = @province_to_victory_points[province_id] || 0
+        next unless value > 0
+        vp_name = localization("VICTORY_POINTS_#{province_id}")
+        raise if vp_provinces[vp_name]
+        vp_provinces[vp_name] = value
+      end
+      total = vp_provinces.values.inject(0, &:+)
+
+      state[:vps] = vp_provinces
+      state[:total] = total.to_i
+    end
+  end
+
+ def report_states!
+   states_by_vp_total = {}
+   states.each do |id, state|
+     (states_by_vp_total[state[:total]] ||= []) << state[:name]
+   end
+   states_by_vp_total.sort_by(&:first).each do |vp_total, names|
+     puts "#{vp_total}: #{names.sort.join(", ")}"
+   end
+   puts ""
+ end
 
   def state_count_by_vp_total
     unless @state_count_by_vp_total
@@ -69,8 +112,15 @@ class AnalyzeVictoryPoints < ParadoxGame
     total = Hash.new(0)
     state_count_by_vp_total.each do |vp_total, count|
       resistance = (vp_total * mod).floor
-      units.each do |unit|
-        while (resistance >= unit.suppression) or (resistance > 0 and unit.suppression <= 2)
+      last_unit = units.last
+      units.each_with_index do |unit, i|
+        is_last_unit = (i == units.size - 1)
+        while resistance > 0
+          # Overkill, but might still be better than 1cavs
+          if (not is_last_unit) and (resistance < unit.suppression)
+            men_last = (resistance.to_f / last_unit.suppression).ceil * last_unit.manpower
+            break if men_last < unit.manpower
+          end
           total[unit.name] += count
           total["ic"] += unit.ic * count
           total["men"] += unit.manpower * count
@@ -82,7 +132,62 @@ class AnalyzeVictoryPoints < ParadoxGame
     total
   end
 
-  def report!
+  def suppression_levels
+    {
+      "harshest" => 1.0,
+      "harsh" => 0.8,
+      "gentle" => 0.6,
+      "gentlest" => 0.4,
+    }
+  end
+
+  def report_ncav!
+    units = {
+      "1cav" => Unit.new(1, false),
+      "2cav" => Unit.new(2, false),
+      "3cav" => Unit.new(3, false),
+      "4cav" => Unit.new(4, false),
+      "5cav" => Unit.new(5, false),
+      "6cav" => Unit.new(6, false),
+      "7cav" => Unit.new(7, false),
+      "8cav" => Unit.new(8, false),
+      "9cav" => Unit.new(9, false),
+      "10cav" => Unit.new(10, false),
+    }
+    suppression_levels.each do |level, mod|
+      puts "To suppress the whole world at #{level} treatment you need:"
+      units.each do |name, unit|
+        needed = total_suppression_needed(mod, [unit])
+        puts "* #{name} - #{needed[name]} divisions, #{needed["men"]/1000}k men"
+      end
+      puts ""
+    end
+  end
+
+  def report_ncav_plus_mp!
+    units = {
+      "1cav+mp" => Unit.new(1, true),
+      "2cav+mp" => Unit.new(2, true),
+      "3cav+mp" => Unit.new(3, true),
+      "4cav+mp" => Unit.new(4, true),
+      "5cav+mp" => Unit.new(5, true),
+      "6cav+mp" => Unit.new(6, true),
+      "7cav+mp" => Unit.new(7, true),
+      "8cav+mp" => Unit.new(8, true),
+      "9cav+mp" => Unit.new(9, true),
+      "10cav+mp" => Unit.new(10, true),
+    }
+    suppression_levels.each do |level, mod|
+      puts "To suppress the whole world at #{level} treatment you need:"
+      units.each do |name, unit|
+        needed = total_suppression_needed(mod, [unit])
+        puts "* #{name} - #{needed[name]} divisions, #{needed["men"]/1000}k men"
+      end
+      puts ""
+    end
+  end
+
+  def report_mixed!
     units = {
       "1cav"    => Unit.new(1, false),
       "1cav+mp" => Unit.new(1, true),
@@ -96,13 +201,7 @@ class AnalyzeVictoryPoints < ParadoxGame
       "9cav+mp" => Unit.new(9, true),
       "10cav+mp" => Unit.new(10, true),
     }
-    levels = {
-      "harshest" => 1.0,
-      "harsh" => 0.8,
-      "gentle" => 0.6,
-      "gentlest" => 0.4,
-    }
-    levels.each do |level, mod|
+    suppression_levels.each do |level, mod|
       puts "To suppress the whole world at #{level} treatment you need:"
       units.each do |name, unit|
         needed = total_suppression_needed(mod, [unit, Unit.new(1, false)])
@@ -110,6 +209,13 @@ class AnalyzeVictoryPoints < ParadoxGame
       end
       puts ""
     end
+  end
+
+  def report!
+    report_states!
+    report_ncav!
+    report_ncav_plus_mp!
+    report_mixed!
   end
 end
 
