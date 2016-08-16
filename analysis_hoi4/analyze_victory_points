@@ -60,15 +60,18 @@ class AnalyzeVictoryPoints < ParadoxGame
 
       # Some of these are for provinces belonging to another state
       # Like 500 (Rio) including 501 (Sao Paula)'s VP
-      node["history"].find_all("victory_points").each do |vps|
-        vps.each_slice(2) do |province_id, vps|
+      node["history"].find_all("victory_points").each do |vps_node|
+        vps_node.each_slice(2) do |province_id, vps|
           @province_to_victory_points[province_id] = vps
         end
       end
 
       # Some names are duplicates, so no key by name
       raise if @states[id]
-      @states[id] = {name: name, provinces: node["provinces"]}
+
+      cores = node["history"].find_all("add_core_of")
+
+      @states[id] = {name: name, provinces: node["provinces"], cores: cores}
     end
 
     @states.each do |id, state|
