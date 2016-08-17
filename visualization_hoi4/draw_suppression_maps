@@ -24,20 +24,40 @@ class DrawSuppressionMap < ParadoxGame
     ]
   end
 
-  def victory_point_color_map
-    vp_color = Hash.new do |ht,k|
-      ht[k] = [rand(256), rand(256), rand(256)]
+  def suppression_color
+    @suppression_color ||= begin
+      ht = Hash.new do
+        [255,0,0]
+      end
+      ht[0] = [255,255,255]
+      ht[1] = [0,128,0]
+      ht[2] = [0,255,0]
+      ht[3] = [128,255,0]
+      ht[4] = [255,255,0]
+      ht[5] = [255,128,0]
+      ht
     end
+  end
 
+  def suppression_color_map(mod)
     state_based_color_map do |state_id|
-      vp_color[state_to_vp_total[state_id]]
+      suppression = (state_to_vp_total[state_id] * mod).floor
+      cavs = (suppression/2.0).ceil
+      suppression_color[cavs]
     end
   end
 
   def run!
-    pixels = generate_map_image_pixels(victory_point_color_map)
-    add_state_borders(pixels)
-    pixels_to_img(pixels).write("victory_points.png")
+    {
+      "harshest" => 1.0,
+      "harsh" => 0.8,
+      "gentle" => 0.6,
+      "gentlest" => 0.4,
+    }.each do |level, num|
+      pixels = generate_map_image_pixels(suppression_color_map(num))
+      add_state_borders(pixels)
+      pixels_to_img(pixels).write("suppression_#{level}.png")
+    end
   end
 end
 
