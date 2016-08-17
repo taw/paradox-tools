@@ -5,6 +5,39 @@ require_relative "../lib/paradox"
 require_relative "game_map"
 require "pry"
 
+# We assume there's no crossing x=0 line
+class BlobMidpoint
+  def initialize
+    @x_total = 0.0
+    @y_total = 0.0
+    @samples = 0
+  end
+
+  def add(x,y)
+    @x_total += x
+    @y_total += y
+    @samples += 1
+  end
+
+  def x
+    return if @samples == 0
+    (@x_total / @samples).round
+  end
+
+  def y
+    return if @samples == 0
+    (@y_total / @samples).round
+  end
+
+  def to_s
+    "<#{x},#{y}>"
+  end
+
+  def inspect
+    to_s
+  end
+end
+
 class DrawSuppressionMap < ParadoxGame
   include GameMap
 
@@ -26,24 +59,55 @@ class DrawSuppressionMap < ParadoxGame
 
   def suppression_color
     @suppression_color ||= begin
-      ht = Hash.new do
-        [255,0,0]
-      end
+      colors = %W[
+        008080 339384 50a78a 6cbc92 88cf9b a8e1aa cef2be ffffe0 ffd8cd ffaeb5 f78599 e65f7b cf3b59 b11732 8b0000
+      ].map{|c| c.scan(/../).map(&:hex)}
+      ht = {}
+      ht.default = colors[-1]
       ht[0] = [255,255,255]
-      ht[1] = [0,128,0]
-      ht[2] = [0,255,0]
-      ht[3] = [128,255,0]
-      ht[4] = [255,255,0]
-      ht[5] = [255,128,0]
+      colors.each_with_index do |c,i|
+        ht[i+1] = c
+      end
       ht
     end
   end
 
+  def state_it_to_cav(state_id, mod)
+    suppression = (state_to_vp_total[state_id] * mod).floor
+    (suppression/2.0).ceil
+  end
+
   def suppression_color_map(mod)
     state_based_color_map do |state_id|
-      suppression = (state_to_vp_total[state_id] * mod).floor
-      cavs = (suppression/2.0).ceil
-      suppression_color[cavs]
+      suppression_color[state_it_to_cav(state_id, mod)]
+    end
+  end
+
+  def midpoints
+    unless @midpoints
+      @midpoints = {}
+      (0...provinces_image.columns).each do |x|
+        (0...provinces_image.rows).each do |y|
+          state_id = state_at(x,y)
+          @midpoints[state_id] ||= BlobMidpoint.new
+          @midpoints[state_id].add(x,y)
+        end
+      end
+    end
+    @midpoints
+  end
+
+  def add_suppression_labels(img, mod)
+    text = Magick::Draw.new
+    text.font_family = 'helvetica'
+    text.pointsize = 12
+    text.gravity = Magick::CenterGravity
+
+    midpoints.sort.each do |state_id, midpoint|
+      next unless state_to_vp_total[state_id]
+      cavs = state_it_to_cav(state_id, mod)
+      next if cavs == 0
+      text.annotate(img, 0, 0, midpoint.x - xsize/2, midpoint.y - ysize/2 + 2, "#{cavs}")
     end
   end
 
@@ -56,7 +120,9 @@ class DrawSuppressionMap < ParadoxGame
     }.each do |level, num|
       pixels = generate_map_image_pixels(suppression_color_map(num))
       add_state_borders(pixels)
-      pixels_to_img(pixels).write("suppression_#{level}.png")
+      img = pixels_to_img(pixels)
+      add_suppression_labels(img, num)
+      img.write("suppression_#{level}.png")
     end
   end
 end

@@ -125,7 +125,7 @@ module GameMap
   end
 
   def add_state_borders(pixels)
-    black = [0,0,0].pack("C*")
+    border_color = [64,64,64].pack("C*")
     (0...provinces_image.columns).each do |x|
       (0...provinces_image.rows).each do |y|
         cc = state_at(x,y)
@@ -139,7 +139,7 @@ module GameMap
         border = true if cu and cu != cc
         border = true if cd and cd != cc
         if border
-          pixels[3*(x + y * xsize), 3] = black
+          pixels[3*(x + y * xsize), 3] = border_color
         end
       end
     end
