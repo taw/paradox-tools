@@ -8,16 +8,12 @@ require "pry"
 class DrawSuppressionMap < ParadoxGame
   include GameMap
 
-  def victory_point_color_map
-    vp_color = Hash.new do |ht,k|
-      ht[k] = [rand(256), rand(256), rand(256)]
-    end
-
+  def state_based_color_map
     Hash[
       province_definitions.map do |province_id, (color, land_sea)|
         state_id = province_ids_to_states[province_id]
         if state_id
-          new_color = vp_color[state_to_vp_total[state_id]]
+          new_color = yield(state_id)
         elsif land_sea == "land"
           new_color = [107, 66, 38]
         else
@@ -26,6 +22,16 @@ class DrawSuppressionMap < ParadoxGame
         [color, new_color.pack("C*")]
       end
     ]
+  end
+
+  def victory_point_color_map
+    vp_color = Hash.new do |ht,k|
+      ht[k] = [rand(256), rand(256), rand(256)]
+    end
+
+    state_based_color_map do |state_id|
+      vp_color[state_to_vp_total[state_id]]
+    end
   end
 
   def run!
