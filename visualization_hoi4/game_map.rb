@@ -49,14 +49,31 @@ module GameMap
   def states_to_province_ids
     unless @states_to_province_ids
       @states_to_province_ids = {}
+      @province_to_victory_points = {}
       glob("history/states/*.txt").each do |path|
         node = parse(path)["state"]
         id = node["id"]
         provinces = node["provinces"]
+        node["history"].find_all("victory_points").each do |vps_node|
+          vps_node.each_slice(2) do |province_id, vps|
+            @province_to_victory_points[province_id] = vps
+          end
+        end
         @states_to_province_ids[id] = provinces
       end
     end
     @states_to_province_ids
+  end
+
+  def state_to_vp_total
+    unless @state_to_vp_total
+      @state_to_vp_total = Hash.new(0)
+      states_to_province_ids.each do |state_id, province_ids|
+        total = province_ids.map{|i| @province_to_victory_points[i]}.compact.inject(0, &:+).round
+        @state_to_vp_total[state_id] = total
+      end
+    end
+    @state_to_vp_total
   end
 
   def province_ids_to_states
@@ -82,5 +99,50 @@ module GameMap
         [color, new_color.pack("C*")]
       end
     ]
+  end
+
+  def province_color_to_state_id
+    @province_color_to_state_id ||= Hash[
+      province_definitions.map do |province_id, (color, land_sea)|
+        state_id = province_ids_to_states[province_id]
+        if state_id
+          # OK
+        elsif land_sea == "land"
+          state_id = -1
+        else
+          state_id = -2
+        end
+        [color, state_id]
+      end
+    ]
+  end
+
+  def state_at(x,y)
+    x %= provinces_image.columns
+    return nil if y < 0 or y >= ysize
+    pixel = provinces_image_pixels[3*(x + y * xsize), 3]
+    province_color_to_state_id[pixel]
+  end
+
+  def add_state_borders(pixels)
+    black = [0,0,0].pack("C*")
+    (0...provinces_image.columns).each do |x|
+      (0...provinces_image.rows).each do |y|
+        cc = state_at(x,y)
+        cr = state_at(x+1,y)
+        cl = state_at(x-1,y)
+        cu = state_at(x,y-1)
+        cd = state_at(x,y+1)
+        border = false
+        border = true if cr and cr != cc
+        border = true if cl and cl != cc
+        border = true if cu and cu != cc
+        border = true if cd and cd != cc
+        if border
+          pixels[3*(x + y * xsize), 3] = black
+        end
+      end
+    end
+    pixels
   end
 end

@@ -5,22 +5,19 @@ require_relative "../lib/paradox"
 require_relative "game_map"
 require "pry"
 
-class DrawBlankStateMap < ParadoxGame
+class DrawSuppressionMap < ParadoxGame
   include GameMap
 
-  def states_to_colors
-    @states_to_colors ||= Hash.new do |ht,k|
+  def victory_point_color_map
+    vp_color = Hash.new do |ht,k|
       ht[k] = [rand(256), rand(256), rand(256)]
     end
-  end
 
-  def random_state_color_map
     Hash[
       province_definitions.map do |province_id, (color, land_sea)|
         state_id = province_ids_to_states[province_id]
-        state_color = states_to_colors[state_id] if state_id
-        if state_color
-          new_color = state_color
+        if state_id
+          new_color = vp_color[state_to_vp_total[state_id]]
         elsif land_sea == "land"
           new_color = [107, 66, 38]
         else
@@ -32,11 +29,10 @@ class DrawBlankStateMap < ParadoxGame
   end
 
   def run!
-    pixels = generate_map_image_pixels(random_state_color_map)
-    # pixels = generate_map_image_pixels(land_sea_color_map)
+    pixels = generate_map_image_pixels(victory_point_color_map)
     add_state_borders(pixels)
-    pixels_to_img(pixels).write("blank_state_map.png")
+    pixels_to_img(pixels).write("victory_points.png")
   end
 end
 
-DrawBlankStateMap.new(*ARGV).run!
+DrawSuppressionMap.new(*ARGV).run!
