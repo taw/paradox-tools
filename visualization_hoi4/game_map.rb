@@ -9,17 +9,37 @@ module GameMap
     end
   end
 
-  def generate_map_image(color_map)
+  def provinces_image_pixels
+    @provinces_image_pixels ||= provinces_image.export_pixels_to_str
+  end
+
+  def xsize
+    @xsize ||= provinces_image.columns
+  end
+
+  def ysize
+    @ysize ||= provinces_image.rows
+  end
+
+  def generate_map_image_pixels(color_map)
     black = [0,0,0].pack("CCC")
-    pixels = provinces_image.export_pixels_to_str
+    pixels = provinces_image_pixels.dup
     (0...pixels.size).step(3) do |i|
       current_color = pixels[i, 3]
       new_color     = color_map[current_color] || black
       pixels[i, 3]  = new_color
     end
+    pixels
+  end
+
+  def pixels_to_img(pixels)
     img = Magick::Image.new(provinces_image.columns, provinces_image.rows){|info| info.depth=8}
     img.import_pixels(0, 0, img.columns, img.rows, "RGB", pixels)
     img
+  end
+
+  def generate_map_image(color_map)
+    pixels_to_img(generate_map_image_pixels(color_map))
   end
 
   def provinces_image
@@ -49,5 +69,18 @@ module GameMap
       end
     end
     @province_ids_to_states
+  end
+
+  def land_sea_color_map
+    Hash[
+      province_definitions.map do |id, (color, land_sea)|
+        if land_sea == "land"
+          new_color = [107, 66, 38]
+        else
+          new_color = [0, 0, 80]
+        end
+        [color, new_color.pack("C*")]
+      end
+    ]
   end
 end

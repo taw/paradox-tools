@@ -8,19 +8,6 @@ require "pry"
 class DrawSeaLandMap < ParadoxGame
   include GameMap
 
-  def land_sea_color_map
-    Hash[
-      province_definitions.map do |id, (color, land_sea)|
-        if land_sea == "land"
-          new_color = [107, 66, 38]
-        else
-          new_color = [0, 0, 80]
-        end
-        [color, new_color.pack("C*")]
-      end
-    ]
-  end
-
   def run!
     generate_map_image(land_sea_color_map).write("sea_land_map.png")
   end
