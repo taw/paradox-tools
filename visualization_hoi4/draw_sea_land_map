@@ -2,39 +2,14 @@
 
 require "RMagick"
 require_relative "../lib/paradox"
+require_relative "game_map"
 require "pry"
 
-class DrawBlankStateMap < ParadoxGame
-  def province_definitions
-    @province_definitions ||= begin
-      defs = {}
-      parse_csv("map/definition.csv")[1..-1].each do |id, r, g, b, land_sea, *|
-        defs[id.to_i] = [[r.to_i, g.to_i, b.to_i].pack("CCC"), land_sea]
-      end
-      defs
-    end
-  end
+class DrawSeaLandMap < ParadoxGame
+  include GameMap
 
-  def generate_map_image(color_map)
-    black = [0,0,0].pack("CCC")
-    pixels = provinces_image.export_pixels_to_str
-    (0...pixels.size).step(3) do |i|
-      current_color = pixels[i, 3]
-      new_color     = color_map[current_color] || black
-      pixels[i, 3]  = new_color
-    end
-    pixels
-    img = Magick::Image.new(provinces_image.columns, provinces_image.rows){|info| info.depth=8}
-    img.import_pixels(0, 0, img.columns, img.rows, "RGB", pixels)
-    img
-  end
-
-  def provinces_image
-    @provinces_image ||= Magick::Image.read(resolve("map/provinces.bmp")).first
-  end
-
-  def run!
-    color_map = Hash[
+  def land_sea_color_map
+    Hash[
       province_definitions.map do |id, (color, land_sea)|
         if land_sea == "land"
           new_color = [107, 66, 38]
@@ -44,9 +19,11 @@ class DrawBlankStateMap < ParadoxGame
         [color, new_color.pack("C*")]
       end
     ]
-    generate_map_image(color_map).write("colonial_regions.png")
+  end
+
+  def run!
+    generate_map_image(land_sea_color_map).write("sea_land_map.png")
   end
 end
 
-
-DrawBlankStateMap.new(*ARGV).run!
+DrawSeaLandMap.new(*ARGV).run!

@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require "RMagick"
+require_relative "../lib/paradox"
+require_relative "game_map"
+require "pry"
+
+class DrawBlankStateMap < ParadoxGame
+  include GameMap
+
+  def states_to_colors
+    @states_to_colors ||= Hash.new do |ht,k|
+      ht[k] = [rand(256), rand(256), rand(256)]
+    end
+  end
+
+  def random_state_color_map
+    Hash[
+      province_definitions.map do |province_id, (color, land_sea)|
+        state_id = province_ids_to_states[province_id]
+        state_color = states_to_colors[state_id] if state_id
+        if state_color
+          new_color = state_color
+        elsif land_sea == "land"
+          new_color = [107, 66, 38]
+        else
+          new_color = [0, 0, 80]
+        end
+        [color, new_color.pack("C*")]
+      end
+    ]
+  end
+
+  def run!
+    random_state_color_map
+    generate_map_image(random_state_color_map).write("blank_state_map.png")
+  end
+end
+
+DrawBlankStateMap.new(*ARGV).run!
