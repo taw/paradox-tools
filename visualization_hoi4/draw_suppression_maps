@@ -45,12 +45,12 @@ class DrawSuppressionMap < ParadoxGame
     Hash[
       province_definitions.map do |province_id, (color, land_sea)|
         state_id = province_ids_to_states[province_id]
-        if state_id
+        if land_sea != "land"
+          new_color = [128, 255, 255]
+        elsif state_id
           new_color = yield(state_id)
-        elsif land_sea == "land"
-          new_color = [107, 66, 38]
         else
-          new_color = [0, 0, 80]
+          new_color = [107, 66, 38]
         end
         [color, new_color.pack("C*")]
       end
@@ -72,14 +72,14 @@ class DrawSuppressionMap < ParadoxGame
     end
   end
 
-  def state_it_to_cav(state_id, mod)
+  def state_id_to_cav(state_id, mod)
     suppression = (state_to_vp_total[state_id] * mod).floor
     (suppression/2.0).ceil
   end
 
   def suppression_color_map(mod)
     state_based_color_map do |state_id|
-      suppression_color[state_it_to_cav(state_id, mod)]
+      suppression_color[state_id_to_cav(state_id, mod)]
     end
   end
 
@@ -105,7 +105,7 @@ class DrawSuppressionMap < ParadoxGame
 
     midpoints.sort.each do |state_id, midpoint|
       next unless state_to_vp_total[state_id]
-      cavs = state_it_to_cav(state_id, mod)
+      cavs = state_id_to_cav(state_id, mod)
       next if cavs == 0
       text.annotate(img, 0, 0, midpoint.x - xsize/2, midpoint.y - ysize/2 + 2, "#{cavs}")
     end
