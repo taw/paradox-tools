@@ -114,11 +114,17 @@ class CountryInformation < InformationTables
 
   def add_equipment!(equipment_node)
     amount = equipment_node["amount"]
+    amount = amount.to_i if amount == amount.to_i
     id = equipment_node["id"]
     equipment = @ledger.id_to_equipment[id]
     archetype = equipment.archetype
-    @equipment[archetype] ||= Hash.new(0)
-    @equipment[archetype][equipment] += amount
+
+    if archetype.name == "convoy"
+      @ships["convoy"] += amount
+    else
+      @equipment[archetype] ||= Hash.new(0)
+      @equipment[archetype][equipment] += amount
+    end
   end
 
   def add_air_force!(air_force)
