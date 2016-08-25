@@ -35,7 +35,7 @@ class DrawBlankStateMap < ParadoxGame
     pixels = generate_map_image_pixels(random_state_color_map)
     # pixels = generate_map_image_pixels(land_sea_color_map)
     add_state_borders(pixels)
-    pixels_to_img(pixels).write("blank_state_map.png")
+    write_image(pixels_to_img(pixels), "output/blank_state_map.png")
   end
 end
 

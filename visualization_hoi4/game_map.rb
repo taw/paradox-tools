@@ -145,4 +145,10 @@ module GameMap
     end
     pixels
   end
+
+  def write_image(img, path)
+    path = Pathname(path)
+    path.parent.mkpath
+    img.write(path.to_s)
+  end
 end

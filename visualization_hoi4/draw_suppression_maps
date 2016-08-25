@@ -122,7 +122,7 @@ class DrawSuppressionMap < ParadoxGame
       add_state_borders(pixels)
       img = pixels_to_img(pixels)
       add_suppression_labels(img, num)
-      img.write("suppression_#{level}.png")
+      write_image(img, "output/suppression_#{level}.png")
     end
   end
 end
