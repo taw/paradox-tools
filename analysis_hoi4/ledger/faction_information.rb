@@ -44,6 +44,7 @@ class FactionInformation < InformationTables
       manpower:  Hash[@manpower.sort],
       ships: Hash[@ships.sort],
       equipment: summarize_equipment_table,
+      equipment_categories: equipment_categories,
     }
   end
 end

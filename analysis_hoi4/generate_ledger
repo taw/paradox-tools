@@ -30,8 +30,10 @@ class GenerateLedger < ParadoxGame
   def setup_equipment_mapping!
     @archetypes = {}
     @equipments = {}
+    nodes = {}
     glob("common/units/equipment/*.txt").each do |path|
       parse(path)["equipments"].each do |name, equipment|
+        nodes[name] = equipment
         next if equipment["is_archetype"]
         archetype_name = equipment["archetype"]
         # It's treated as light tank by archetype, but shouldn't
@@ -43,7 +45,7 @@ class GenerateLedger < ParadoxGame
           subgroup = nil
         end
         archetype = @archetypes[archetype_name] ||= EquipmentArchetype.new(archetype_name)
-        equipment = @equipments[name] = Equipment.new(name, archetype)
+        equipment = @equipments[name] = Equipment.new(name, archetype, equipment, nodes[archetype_name])
         archetype.add!(equipment, subgroup)
       end
     end
