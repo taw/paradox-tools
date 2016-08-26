@@ -5,57 +5,8 @@ require_relative "../lib/paradox"
 require_relative "game_map"
 require "pry"
 
-# We assume there's no crossing x=0 line
-class BlobMidpoint
-  def initialize
-    @x_total = 0.0
-    @y_total = 0.0
-    @samples = 0
-  end
-
-  def add(x,y)
-    @x_total += x
-    @y_total += y
-    @samples += 1
-  end
-
-  def x
-    return if @samples == 0
-    (@x_total / @samples).round
-  end
-
-  def y
-    return if @samples == 0
-    (@y_total / @samples).round
-  end
-
-  def to_s
-    "<#{x},#{y}>"
-  end
-
-  def inspect
-    to_s
-  end
-end
-
 class DrawSuppressionMap < ParadoxGame
   include GameMap
-
-  def state_based_color_map
-    Hash[
-      province_definitions.map do |province_id, (color, land_sea)|
-        state_id = province_ids_to_states[province_id]
-        if land_sea != "land"
-          new_color = [128, 255, 255]
-        elsif state_id
-          new_color = yield(state_id)
-        else
-          new_color = [107, 66, 38]
-        end
-        [color, new_color.pack("C*")]
-      end
-    ]
-  end
 
   def suppression_color
     @suppression_color ||= begin
@@ -83,27 +34,13 @@ class DrawSuppressionMap < ParadoxGame
     end
   end
 
-  def midpoints
-    unless @midpoints
-      @midpoints = {}
-      (0...provinces_image.columns).each do |x|
-        (0...provinces_image.rows).each do |y|
-          state_id = state_at(x,y)
-          @midpoints[state_id] ||= BlobMidpoint.new
-          @midpoints[state_id].add(x,y)
-        end
-      end
-    end
-    @midpoints
-  end
-
   def add_suppression_labels(img, mod)
     text = Magick::Draw.new
     text.font_family = 'helvetica'
     text.pointsize = 12
     text.gravity = Magick::CenterGravity
 
-    midpoints.sort.each do |state_id, midpoint|
+    state_midpoints.sort.each do |state_id, midpoint|
       next unless state_to_vp_total[state_id]
       cavs = state_id_to_cav(state_id, mod)
       next if cavs == 0

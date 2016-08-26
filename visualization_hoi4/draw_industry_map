@@ -1,0 +1,102 @@
+#!/usr/bin/env ruby
+
+require "RMagick"
+require_relative "../lib/paradox"
+require_relative "game_map"
+require "pry"
+
+class DrawIndustryMap < ParadoxGame
+  include GameMap
+
+  def initialize(save_path, *roots)
+    @save_path = Pathname(save_path)
+    super(*roots)
+    @data = ParadoxModFile.new(path: save_path).parse!
+  end
+
+  def state_to_industry_level
+    unless @state_to_industry_level
+      @state_to_industry_level = {}
+      @data["states"].each do |id, state|
+        count = 0
+        (state["buildings"] || []).each do |name, levels|
+          case name
+          when "arms_factory", "industrial_complex", "dockyard"
+            next if levels.empty?
+            count += levels["level"].size
+          end
+        end
+        @state_to_industry_level[id] = count
+      end
+    end
+    @state_to_industry_level
+  end
+
+  def states_to_colors
+    @states_to_colors ||= Hash.new do |ht,k|
+      ht[k] = [rand(256), rand(256), rand(256)]
+    end
+  end
+
+  # Should pick better colors
+  def industry_color
+    @industry_color ||= begin
+      colors = %W[
+        008080 339384 50a78a 6cbc92 88cf9b a8e1aa cef2be ffffe0 ffd8cd ffaeb5 f78599 e65f7b cf3b59 b11732 8b0000
+      ].map{|c| c.scan(/../).map(&:hex)}
+      ht = {}
+      ht.default = colors[-1]
+      ht[0] = [255,255,255]
+      colors.each_with_index do |c,i|
+        ht[i+1] = c
+      end
+      ht
+    end
+  end
+
+  def random_state_color_map
+    Hash[
+      province_definitions.map do |province_id, (color, land_sea)|
+        state_id = province_ids_to_states[province_id]
+        state_color = states_to_colors[state_id] if state_id
+        if state_color
+          new_color = state_color
+        elsif land_sea == "land"
+          new_color = [107, 66, 38]
+        else
+          new_color = [0, 0, 80]
+        end
+        [color, new_color.pack("C*")]
+      end
+    ]
+  end
+
+  def industry_color_map
+    state_based_color_map do |state_id|
+      industry_color[state_to_industry_level[state_id]]
+    end
+  end
+
+  def add_industry_labels(img)
+    text = Magick::Draw.new
+    text.font_family = 'helvetica'
+    text.pointsize = 12
+    text.gravity = Magick::CenterGravity
+
+    state_midpoints.sort.each do |state_id, midpoint|
+      count = state_to_industry_level[state_id] || 0
+      next unless count > 0
+      text.annotate(img, 0, 0, midpoint.x - xsize/2, midpoint.y - ysize/2 + 2, "#{count}")
+    end
+  end
+
+  def run!
+    pixels = generate_map_image_pixels(industry_color_map)
+    add_state_borders(pixels)
+    img = pixels_to_img(pixels)
+    add_industry_labels(img)
+    write_image(img, "output/industry.png")
+  end
+end
+
+DrawIndustryMap.new(*ARGV).run!

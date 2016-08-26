@@ -1,3 +1,36 @@
+# We assume there's no crossing x=0 line
+class BlobMidpoint
+  def initialize
+    @x_total = 0.0
+    @y_total = 0.0
+    @samples = 0
+  end
+
+  def add(x,y)
+    @x_total += x
+    @y_total += y
+    @samples += 1
+  end
+
+  def x
+    return if @samples == 0
+    (@x_total / @samples).round
+  end
+
+  def y
+    return if @samples == 0
+    (@y_total / @samples).round
+  end
+
+  def to_s
+    "<#{x},#{y}>"
+  end
+
+  def inspect
+    to_s
+  end
+end
+
 module GameMap
   def province_definitions
     @province_definitions ||= begin
@@ -150,5 +183,35 @@ module GameMap
     path = Pathname(path)
     path.parent.mkpath
     img.write(path.to_s)
+  end
+
+  def state_based_color_map
+    Hash[
+      province_definitions.map do |province_id, (color, land_sea)|
+        state_id = province_ids_to_states[province_id]
+        if land_sea != "land"
+          new_color = [128, 255, 255]
+        elsif state_id
+          new_color = yield(state_id)
+        else
+          new_color = [107, 66, 38]
+        end
+        [color, new_color.pack("C*")]
+      end
+    ]
+  end
+
+  def state_midpoints
+    unless @state_midpoints
+      @state_midpoints = {}
+      (0...provinces_image.columns).each do |x|
+        (0...provinces_image.rows).each do |y|
+          state_id = state_at(x,y)
+          @state_midpoints[state_id] ||= BlobMidpoint.new
+          @state_midpoints[state_id].add(x,y)
+        end
+      end
+    end
+    @state_midpoints
   end
 end
