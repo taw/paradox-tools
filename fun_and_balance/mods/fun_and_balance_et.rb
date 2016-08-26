@@ -47,6 +47,8 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
+      ["NMilitary.FORTRESS_COST", 0.5, 0.125],
+      ["NAI.FORT_MAINTENANCE_CHEAT", 1, 0],
     ])
 
     # Extended timeline diplomatic relations per era:
