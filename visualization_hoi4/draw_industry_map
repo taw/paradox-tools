@@ -16,17 +16,23 @@ class DrawIndustryMap < ParadoxGame
 
   def state_to_industry_level
     unless @state_to_industry_level
-      @state_to_industry_level = {}
+      @state_to_industry_level = Hash.new{|ht,k| ht[k] = Hash.new(0) }
       @data["states"].each do |id, state|
-        count = 0
+        counts = @state_to_industry_level[id]
         (state["buildings"] || []).each do |name, levels|
+          level = (levels.empty? ? 0 : levels["level"].size)
           case name
-          when "arms_factory", "industrial_complex", "dockyard"
-            next if levels.empty?
-            count += levels["level"].size
+          when "arms_factory"
+            counts["mil"] += level
+            counts["total"] += level
+          when "industrial_complex"
+            counts["civ"] += level
+            counts["total"] += level
+          when "dockyard"
+            counts["dock"] += level
+            counts["total"] += level
           end
         end
-        @state_to_industry_level[id] = count
       end
     end
     @state_to_industry_level
@@ -71,31 +77,33 @@ class DrawIndustryMap < ParadoxGame
     ]
   end
 
-  def industry_color_map
+  def industry_color_map(type)
     state_based_color_map do |state_id|
-      industry_color[state_to_industry_level[state_id]]
+      industry_color[state_to_industry_level[state_id][type]]
     end
   end
 
-  def add_industry_labels(img)
+  def add_industry_labels(img, type)
     text = Magick::Draw.new
     text.font_family = 'helvetica'
     text.pointsize = 12
     text.gravity = Magick::CenterGravity
 
     state_midpoints.sort.each do |state_id, midpoint|
-      count = state_to_industry_level[state_id] || 0
+      count = state_to_industry_level[state_id][type] || 0
       next unless count > 0
       text.annotate(img, 0, 0, midpoint.x - xsize/2, midpoint.y - ysize/2 + 2, "#{count}")
     end
   end
 
   def run!
-    pixels = generate_map_image_pixels(industry_color_map)
-    add_state_borders(pixels)
-    img = pixels_to_img(pixels)
-    add_industry_labels(img)
-    write_image(img, "output/industry.png")
+    ["total", "civ", "mil", "dock"].each do |type|
+      pixels = generate_map_image_pixels(industry_color_map(type))
+      add_state_borders(pixels)
+      img = pixels_to_img(pixels)
+      add_industry_labels(img, type)
+      write_image(img, "output/industry_#{type}.png")
+    end
   end
 end
 
