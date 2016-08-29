@@ -232,7 +232,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     # restored monarchy
     "1935.11.25" => {
-      use: "George 1", # king restored
+      use: "George 2", # king restored
     },
     "1947.4.1" => {
       name: "Paul | Glücksburg",

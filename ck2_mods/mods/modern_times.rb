@@ -940,12 +940,12 @@ class ModernTimesGameModification < CK2GameModification
       province_events = node.find_all("province_event")
       # Minimum date
       province_events.each do |ev|
-        ev["trigger"]["year"] = 1890
+        ev["trigger"]["OR"]["year"] = 1890
       end
       # Increase chance at date
       province_events[0]["mean_time_to_happen"]["modifier"]["year"] = 1940
       # Max date
-      province_events[0]["trigger"]["NOT"]["year"] = 1990
+      province_events[0]["trigger"]["NOR"]["year"] = 1990
     end
   end
 
@@ -1223,6 +1223,16 @@ class ModernTimesGameModification < CK2GameModification
     create_mod_file! "common/landed_titles/modern_times_patrician_houses.txt", ltnode
   end
 
+  def enable_diseases!
+    patch_mod_file!("common/disease/00_disease.txt") do |node|
+      node.each do |name, disease|
+        if disease["timeperiod"]["end_date"] == Date.new(1452, 1, 1)
+          disease["timeperiod"]["end_date"] = Date.new(2999, 12, 31)
+        end
+      end
+    end
+  end
+
   def apply!
     @warnings = []
 
@@ -1253,6 +1263,7 @@ class ModernTimesGameModification < CK2GameModification
     save_dynasties!
     setup_patrician_houses!
     fix_russia_colors!
+    enable_diseases!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
     end
