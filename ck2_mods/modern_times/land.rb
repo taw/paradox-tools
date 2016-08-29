@@ -222,6 +222,7 @@ ModernTimesDatabase::LAND = {
   d_skane:      { forever_ago: "k_sweden" },
   k_sweden:     { forever_ago: "k_sweden" },
   d_jamtland:   { forever_ago: "k_sweden" },
+  d_sapmi:      { forever_ago: "k_sweden" },
   c_rosello:    { forever_ago: "e_france" }, # 1659+
 
   d_savoie:         { forever_ago: "k_burgundy" },
@@ -236,6 +237,7 @@ ModernTimesDatabase::LAND = {
   d_ostlandet:  { forever_ago: "k_norway" },
   d_vestlandet: { forever_ago: "k_norway" },
   d_trondelag:  { forever_ago: "k_norway" },
+  d_finnmark:   { forever_ago: "k_norway" },
 
   k_bohemia:    { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "e_germany", end_ww2: "k_bohemia" },
   c_litomerice: { forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", munich_agreement: "e_germany", end_ww2: "k_bohemia" },

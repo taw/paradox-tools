@@ -25,6 +25,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "e_carpathia"        => [3,3,3, 4,4,4, 5,5,5],
   "e_wendish_empire"   => [3,3,3, 4,4,4, 5,5,5],
   "k_finland"          => [3,3,3, 4,4,4, 5,5,5],
+  "k_sapmi"            => [3,3,3, 4,4,4, 5,5,5],
   "d_iceland"          => [3,3,3, 4,4,4, 5,5,5],
   "k_rus"              => [3,3,3, 4,4,4, 5,5,5],
   "k_ruthenia"         => [3,3,3, 4,4,4, 5,5,5],

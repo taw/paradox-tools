@@ -42,6 +42,7 @@ ModernTimesDatabase::DE_JURE = {
   "d_smolensk"       => "k_belarus",
   "d_yatviags"       => "k_belarus",
   "d_polotsk"        => "k_belarus",
+  "d_kola"           => "k_finland",
 
   # 2 Sicilies as de jure in 2.5 feels just wrong, reverting to 2.4 system
   "d_apulia"         => "k_sicily",
@@ -57,7 +58,7 @@ ModernTimesDatabase::DE_JURE = {
   # - after WW1 (Prussia becomes East Germany, moves West)
 
   # While HRE exists Prussia is de jure vassal of Commonwealth
-  # After it falls apart it becomes part of empire of Germany - without Gdanks
+  # After it falls apart it becomes part of empire of Germany - without Gdansk
   # After WW2 it becomes East Germany
   "d_prussia"        => { times_immemorial: "k_pomerania", end_ww2: "k_poland" },
   "d_pomeralia"      => { hre_disbanded: "k_poland" },
@@ -72,6 +73,8 @@ ModernTimesDatabase::DE_JURE = {
 
   # Lotharingia divided, after WW2 France gets most of it
   "d_luxembourg"     => "k_frisia",
+  "d_brabant"        => "k_frisia",
+  "d_flanders"       => "k_frisia",
   "d_upper_lorraine" => "k_france",
   "d_lower_lorraine" => {times_immemorial: "k_germany", end_ww2: "k_france"}, # This shape...
   "d_alsace"         => {times_immemorial: "k_germany", end_ww2: "k_france"},
