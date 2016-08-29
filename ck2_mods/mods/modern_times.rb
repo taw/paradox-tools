@@ -1226,8 +1226,11 @@ class ModernTimesGameModification < CK2GameModification
   def enable_diseases!
     patch_mod_file!("common/disease/00_disease.txt") do |node|
       node.each do |name, disease|
-        if disease["timeperiod"]["end_date"] == Date.new(1452, 1, 1)
-          disease["timeperiod"]["end_date"] = Date.new(2999, 12, 31)
+        disease.find_all("timeperiod").each do |time_period|
+          # This actually means all of them
+          if time_period["end_date"] >= Date.new(1400, 1, 1)
+            time_period["end_date"] = Date.new(2999, 12, 31)
+          end
         end
       end
     end
