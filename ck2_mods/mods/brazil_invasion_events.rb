@@ -35,6 +35,7 @@ BrazilInvasionEvents = PropertyList[
         ],
         "new_character", PropertyList[
           "e_brazil", PropertyList["grant_title", "PREV"],
+          "set_government_type", "feudal_government",
           "set_defacto_liege", "THIS",
           "narrative_event", PropertyList[
             "id", "BRAZIL.2",

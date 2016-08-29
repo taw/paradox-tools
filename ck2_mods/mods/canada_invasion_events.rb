@@ -38,6 +38,7 @@ CanadaInvasionEvents = PropertyList[
         ],
         "new_character", PropertyList[
           "e_canada", PropertyList["grant_title", "PREV"],
+          "set_government_type", "feudal_government",
           "set_defacto_liege", "THIS",
           "narrative_event", PropertyList[
             "id", "CANADA.2",

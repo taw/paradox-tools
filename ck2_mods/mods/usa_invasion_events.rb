@@ -37,6 +37,7 @@ UsaInvasionEvents = PropertyList[
         ],
         "new_character", PropertyList[
           "e_united_states", PropertyList["grant_title", "PREV"],
+          "set_government_type", "feudal_government",
           "set_defacto_liege", "THIS",
           "narrative_event", PropertyList[
             "id", "USA.2",
