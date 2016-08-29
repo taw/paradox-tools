@@ -1223,19 +1223,31 @@ class ModernTimesGameModification < CK2GameModification
     create_mod_file! "common/landed_titles/modern_times_patrician_houses.txt", ltnode
   end
 
-  def enable_diseases!
-    patch_mod_file!("common/disease/00_disease.txt") do |node|
+  def move_diseases_into_the_future!
+    patch_mod_files!("common/disease/*.txt") do |node|
       node.each do |name, disease|
         disease.find_all("timeperiod").each do |time_period|
-          # This actually means all of them
-          if time_period["end_date"] >= Date.new(1400, 1, 1)
+          if time_period["start_date"] == Date.new(769, 1, 1)
             time_period["end_date"] = Date.new(2999, 12, 31)
+          else
+            case time_period["start_date"]..time_period["end_date"]
+            when Date.new(760, 1, 1)..Date.new(1400, 1, 1)
+              # dynamic or deadly
+              time_period["end_date"] = Date.new(2999, 12, 31)
+            when Date.new(1100, 1, 1)..Date.new(1400, 1, 1)
+              # delayed dynamic
+              time_period["start_date"] = Date.new(2050, 12, 31)
+              time_period["end_date"] = Date.new(2999, 12, 31)
+            else
+              # if historical, skip
+              # also special rules for late game dynamic
+            end
           end
         end
       end
     end
   end
-
+   
   def apply!
     @warnings = []
 
@@ -1266,7 +1278,7 @@ class ModernTimesGameModification < CK2GameModification
     save_dynasties!
     setup_patrician_houses!
     fix_russia_colors!
-    enable_diseases!
+    move_diseases_into_the_future!
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
     end
