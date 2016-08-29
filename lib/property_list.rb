@@ -1,8 +1,4 @@
 class PropertyList
-  def instance_eval
-    raise "instance_eval is not part of the API; TODO: FIX ALL of them"
-  end
-
   def initialize
     @entries = []
   end
