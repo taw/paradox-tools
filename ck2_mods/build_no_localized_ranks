@@ -7,7 +7,7 @@ class NoLocalizedRanksModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/ck2_2.5.2",
+        "source/ck2_2.6.1",
       ),
       "output/no_localized_ranks",
     )

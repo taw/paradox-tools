@@ -87,8 +87,11 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_files!("common/buildings/*.txt") do |node|
       node.each do |category, buildings|
         buildings.each do |name, building|
-          next unless building["potential"] and building["potential"]["FROM"].to_s =~ /culture/
-          culture_rules = building["potential"]["FROM"]
+          potential = building["potential"]
+          next unless potential
+          next if potential == []
+          next unless potential["FROM"].to_s =~ /culture/
+          culture_rules = potential["FROM"]
 
           if culture_rules.size == 1
             province_rule = culture_rules.to_a[0]
@@ -96,8 +99,8 @@ class CK2TweaksGameModification < CK2GameModification
             province_rule = Property::AND[*culture_rules.to_a]
           end
 
-          building["potential"].delete! "FROM"
-          building["potential"].add! Property::OR[
+          potential.delete! "FROM"
+          potential.add! Property::OR[
             "FROM", culture_rules,
             province_rule,
             "FROMFROM", PropertyList["has_building", name],
@@ -314,12 +317,13 @@ class CK2TweaksGameModification < CK2GameModification
 
     patch_mod_files!("events/*.txt") do |node|
       node.each do |category, event|
-        next unless event["trigger"]
-        next unless event["trigger"]["has_character_modifier"] == "holding_large_feast" or
-                    event["trigger"]["has_character_modifier"] == "holding_grand_hunt"
+        trigger = event["trigger"]
+        next if trigger.nil? or trigger == []
+        next unless trigger["has_character_modifier"] == "holding_large_feast" or
+                    trigger["has_character_modifier"] == "holding_grand_hunt"
 
-        if event["trigger"]["war"] == false
-          event["trigger"].delete! Property["war", false]
+        if trigger["war"] == false
+          trigger.delete! Property["war", false]
         elsif event["trigger"]["war"] == true
           raise unless event["id"] == 72112 or event["id"] == 36089
         end
