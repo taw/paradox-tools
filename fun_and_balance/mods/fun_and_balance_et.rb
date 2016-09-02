@@ -16,7 +16,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     end
 
     soft_patch_defines_lua!([
-      ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 250],
+      ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["NCountry.ADVISOR_COST_INCREASE_PER_YEAR", 0.005,  0.0005],
@@ -26,7 +26,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.OVERSEAS_DISTANCE", 150, 400],
       ["NCountry.POLICY_COST", 1, 0],
-      ["NCountry.POWER_MAX", 999, 1500],
       ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
       ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
@@ -42,7 +41,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
       ["NDiplomacy.SCALED_TRUCE_YEARS", 10, 0],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 10000],
-      ["NEconomy.AUTONOMY_AT_DIPLO_ANNEX", 60, 50],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
