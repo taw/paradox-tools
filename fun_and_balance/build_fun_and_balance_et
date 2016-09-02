@@ -7,7 +7,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/eu4-1.17.0",
+        "source/eu4-1.17.1",
         "source/ExtendedTimeline 1.1.0/ExtendedTimeline.mod"
       ),
       "output/fun_and_balance_et"
