@@ -206,4 +206,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       Hash[changes.map{|var,_,nv| [var,nv]}]
     )
   end
+
+  def disable_call_for_peace!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["call_for_peace"].delete!{true}
+    end
+  end
 end

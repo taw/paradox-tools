@@ -55,5 +55,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     power_projection_tweaks!
+    disable_call_for_peace!
   end
 end
