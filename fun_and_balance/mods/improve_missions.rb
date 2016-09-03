@@ -147,80 +147,6 @@ class ImproveMissionsGameModification < EU4GameModification
     mission["chance"].add! "modifier", PropertyList["factor", 0.5, not_orig_tags]
   end
 
-  def mission_rewards_totally_awful?(mission)
-    good_rewards = %W[
-      add_mil_power add_adm_power add_dip_power
-      add_army_tradition add_navy_tradition
-      add_base_tax add_province_manpower
-      add_country_modifier
-      add_stability
-      add_inflation
-      add_legitimacy
-      add_years_of_income
-      add_papal_influence
-      add_mercantilism
-      add_treasury
-      every_owned_province
-      add_ruler_modifier
-    ]
-    # The problem with add_legitimacy is that republics won't benefit from it at all, but it's useful for most countries
-    # The problem with add_papal_influence is that it only matters for catholic countries
-    type = mission_type(mission)
-    immediate = mission["immediate"].to_h
-    effect    = mission["effect"].to_h
-
-    # Unlike CK2 this is just label, real deal is in hidden_effect
-    effect.delete("custom_tooltip")
-    effect.merge!(effect.delete("hidden_effect").to_h)
-
-    # I'm extremely confused by this. Maybe missions have bugs here?
-    # Is neighbor_countries scoped FROM or ROOT as I've seen both?
-    effect.merge!(effect.delete("FROM").to_h)
-    effect.merge!(effect.delete("ROOT").to_h)
-
-    effect.merge!(effect.delete("owner").to_h) if mission["type"] == "our_provinces"
-    effect.delete("if").each do |cond|
-      effect.merge!(cond.to_h)
-    end if effect["if"]
-    effect.delete("limit")
-    # Getting points of good kind
-    return false if !(effect.keys & good_rewards).empty?
-    # Getting free CBs
-    return false if immediate["add_claim"] or immediate.values.map(&:to_h).inject({}, &:merge)["add_claim"]
-    # These are used mostly to ensure mission can't be taken too many times in a row
-    effect.delete("set_country_flag")
-    # This is legitimately awful
-    return true if immediate.empty? and effect.keys == ["add_prestige"]
-    return true if immediate.empty? and effect.keys == ["define_advisor"]
-    # Check manually
-    require 'pry'; binding.pry
-  end
-
-  # Vanilla made rewards less shitty in 1.12, at least that's what they say
-  def fix_mission_rewards!(name, mission)
-    case name
-    when "view_the_hanami"
-      # Daimyo only mission
-      mission["effect"]["add_legitimacy"] = 10
-    when "improve_reputation_mission"
-      mission["effect"]["add_stability"] = 1
-      mission["effect"]["add_legitimacy"] = 10
-      mission["effect"]["add_republican_tradition"] = 0.1
-    when "get_minor_cash_reserve"
-      mission["effect"]["add_adm_power"] = 10
-    when "recover_negative_stability"
-      mission["effect"]["add_prestige"] = 10
-      mission["effect"]["add_legitimacy"] = 10
-      mission["effect"]["add_republican_tradition"] = 0.1
-    when "defeat_rebels_mission"
-      mission["effect"]["add_prestige"] = 10
-      mission["effect"]["add_legitimacy"] = 10
-      mission["effect"]["add_republican_tradition"] = 0.1
-    else
-      require 'pry'; binding.pry
-    end
-  end
-
   def apply!
     patch_mod_files!("missions/*.txt") do |node|
       node.each do |name, mission|
@@ -353,15 +279,14 @@ class ImproveMissionsGameModification < EU4GameModification
         when ["GUJ"], ["VIJ"], ["CSU"]
           # TODO
         when []
-          # fortify_the_eastern_border is Sweden-specific, but it's not a big deal it's out of the set
-          if mission_rewards_totally_awful?(mission)
-            fix_mission_rewards!(name, mission)
-          end
+          # As prestige actually matters nowadays, this fix is no longer necessary
         when ["MJZ", "MHX", "MYR"]
           # Unite Manchu, fine to just let Manchu tribes do it
         # Shattered Europe Scenario - we don't want to change these
         when  ["GRA", "ALU", "BDJ"], ["GRA", "ALU", "SEV"], ["GRA", "ALU", "BDJ", "SEV"], ["ALU"]
           # OK
+        when ["ORI"]
+          # Ignore for now
         else
           p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
           puts name, mission, ""
