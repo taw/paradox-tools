@@ -91,44 +91,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def reverse_horde_nerfs!
-    patch_mod_file!("decisions/MughalNation.txt") do |node|
-      node["country_decisions"]["mughal_nation"]["allow"].delete! "is_tribal"
-      node["country_decisions"]["mughal_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
-    end
-
-    patch_mod_file!("decisions/PersianNation.txt") do |node|
-      node["country_decisions"]["persian_nation"]["allow"].delete! "is_tribal"
-      node["country_decisions"]["persian_nation"]["effect"]["if"]["change_government"] = "despotic_monarchy"
-    end
-
-    patch_mod_file!("decisions/ManchuDecisions.txt") do |node|
-      node["country_decisions"]["form_manchu_dynasty"]["allow"].delete! "is_tribal"
-      node["country_decisions"]["form_manchu_dynasty"]["effect"].add! "if", PropertyList[
-        "limit", PropertyList["technology_group", "nomad_group"],
-        "change_technology_group",  "chinese",
-        "change_unit_type", "chinese",
-      ]
-      node["country_decisions"]["form_manchu_dynasty"]["effect"].add! "if", PropertyList[
-        "limit", PropertyList["government", "steppe_horde"],
-        "change_government", "despotic_monarchy",
-      ]
-    end
-
-    patch_mod_file!("decisions/Tribal.txt") do |node|
-      node["country_decisions"].each_value do |decision|
-        decision["allow"]["stability"] = 2
-        decision["allow"].add! Property::OR["stability", 3, "adm_tech", 8]
-        decision["allow"].delete! do |prop|
-          prop == Property["OR", PropertyList["full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
-        end
-        decision["potential"].delete! do |prop|
-          prop == Property["OR", PropertyList["ai", false, "full_idea_group", "economic_ideas", "full_idea_group", "innovativeness_ideas", "full_idea_group", "administrative_ideas"]]
-        end
-      end
-    end
-  end
-
   def anyone_can_form_byzantium!
     patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
       node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! do |prop|

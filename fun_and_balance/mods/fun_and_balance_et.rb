@@ -80,7 +80,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     # patch_religion! - TODO
     disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
-    # reverse_horde_nerfs! - do I want it here?
     power_projection_tweaks!
 
     fix_adopt_secularism_decision!
