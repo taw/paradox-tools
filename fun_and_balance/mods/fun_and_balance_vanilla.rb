@@ -11,10 +11,11 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
 
     soft_patch_defines_lua!([
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
+      ["NAI.FORT_MAINTENANCE_CHEAT", 1, 0],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
-      ["NCountry.CORE_LOSE", 50, 100],
       ["NCountry.CORE_LOSE_CULTURE_GROUP", 150, 300],
+      ["NCountry.CORE_LOSE", 50, 100],
       ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.OVERSEAS_DISTANCE", 150, 400],
@@ -34,26 +35,19 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
       ["NDiplomacy.SCALED_TRUCE_YEARS", 10, 0],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 10000],
+      ["NMilitary.FORTRESS_COST", 0.5, 0.125],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
-      ["NMilitary.FORTRESS_COST", 0.5, 0.125],
-      ["NAI.FORT_MAINTENANCE_CHEAT", 1, 0],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["war"] = PropertyList[] if node["war"] == []
       modify_node! node,
         ["base_values", "global_missionary_strength", 0.02, 0.01],
         ["base_values", "global_heretic_missionary_strength", nil, 0.01],
         ["base_values", "diplomatic_upkeep", 4, 8],
-        ["war", "war_exhaustion_cost", nil, 100],
-        ["emperor", "diplomatic_upkeep", 1, 2],
-        ["war_exhaustion", "defensiveness", nil, -0.02],
-        ["war_exhaustion", "land_morale", nil, -0.02],
-        ["war_exhaustion", "naval_morale", nil, -0.02],
-        ["num_of_marriages", "heir_chance", 0.05, 0.03]
+        ["emperor", "diplomatic_upkeep", 1, 2]
     end
 
     anyone_can_form_byzantium!
