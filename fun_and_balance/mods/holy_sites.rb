@@ -89,7 +89,7 @@ class HolySitesGameModification < EU4GameModification
       "allow", PropertyList[
         "religion", religion,
         Property::NOT["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
-        Property::OR[
+        Property::AND[
           id, PropertyList["owner", PropertyList["is_neighbor_of", "ROOT"]],
           "has_idea", "deus_vult",
         ],
