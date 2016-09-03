@@ -16,7 +16,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     apply_modifications! FunAndBalanceGameModification,
                          HolySitesVanillaGameModification,
                          ReligiousLeaguesGameModification,
-                         PartialWesternizationGameModification,
                          NationCustomizerGameModification,
                          AchievementsGameModification,
                          ExtraFormableCountriesGameModification,

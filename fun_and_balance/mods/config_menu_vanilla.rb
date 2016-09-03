@@ -11,8 +11,6 @@ class ConfigMenuVanillaGameModification < ConfigMenuGameModification
       menu_clr_flag_option("disable_extra_missions", "Enable extra missions"),
       menu_set_flag_option("disable_extra_formable_countries", "Disable extra formable countries"),
       menu_clr_flag_option("disable_extra_formable_countries", "Enable extra formable countries"),
-      menu_set_flag_option("enable_partial_westernization", "Enable partial westernization"),
-      menu_clr_flag_option("enable_partial_westernization", "Disable partial westernization"),
       menu_set_flag_option("disable_eu3_style_elections", "Disable EU3 style elections"),
       menu_clr_flag_option("disable_eu3_style_elections", "Enable EU3 style elections"),
       menu_set_flag_option("enable_burgundian_succession_crisis", "Enable Burgundian Successian Crisis"),
