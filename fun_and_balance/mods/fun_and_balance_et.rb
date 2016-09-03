@@ -92,7 +92,5 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     power_projection_tweaks!
 
     fix_adopt_secularism_decision!
-
-    # ET already distributes development efficiency and admin efficiency between levels
   end
 end

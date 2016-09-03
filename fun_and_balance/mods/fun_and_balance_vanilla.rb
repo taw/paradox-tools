@@ -68,20 +68,5 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     reverse_horde_nerfs!
     smooth_oe_scaling!
     power_projection_tweaks!
-
-    # Redistribute adm/dev efficiency
-    patch_mod_file!("common/technologies/adm.txt") do |node|
-      techs = [PropertyList[]] + node.find_all("technology")
-      techs.each do |tech|
-        tech.delete! "development_efficiency"    # 25, 29, with 0.25 each
-        tech.delete! "administrative_efficiency" # 24, 28, with 0.25 each
-      end
-      [9, 14, 19, 24, 29].each do |level|
-        techs[level].add! "development_efficiency", 0.1
-      end
-      [8, 13, 18, 23, 28].each do |level|
-        techs[level].add! "administrative_efficiency", 0.1
-      end
-    end
   end
 end
