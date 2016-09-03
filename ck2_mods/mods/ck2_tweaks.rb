@@ -496,61 +496,6 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
-  def send_missionaries_to_tributaries!
-    patch_mod_file!("common/job_actions/00_job_actions.txt") do |node|
-      criteria = node["action_inquisition"]["trigger"]["OR"]["any_province_lord"]["OR"]
-      criteria.add! "pays_tribute_to", "FROM"
-      criteria.add! "any_liege", PropertyList["pays_tribute_to", "FROM"]
-    end
-
-    patch_mod_file!("events/job_lord_spiritual.txt") do |node|
-      province_conversion  = node.find_all("character_event").find{|c| c["id"] == 900}
-      character_conversion = node.find_all("character_event").find{|c| c["id"] == 901}
-      priest_attacked      = node.find_all("character_event").find{|c| c["id"] == 902}
-
-      raise unless province_conversion["trigger"] == PropertyList[
-        "has_job_action", "action_inquisition",
-        "NOT", PropertyList["location", PropertyList["religion", "ROOT"]],
-        "location", PropertyList["owner", PropertyList["same_realm", "ROOT"]],
-      ]
-
-      # This is the most dreadful code I've written in a while
-      province_conversion["trigger"] = PropertyList[
-        "has_job_action", "action_inquisition",
-        "NOT", PropertyList["location", PropertyList["religion", "ROOT"]],
-        "OR", PropertyList[
-          "location", PropertyList[
-            "owner", PropertyList["same_realm", "ROOT"],
-          ],
-          "liege", PropertyList[
-            "ROOT", PropertyList[
-              "location", PropertyList[
-                "any_province_lord", PropertyList[
-                  "OR", PropertyList[
-                    "pays_tribute_to", "PREVPREVPREV",
-                    "any_liege", PropertyList["pays_tribute_to", "PREVPREVPREVPREV"],
-                  ]
-                ]
-              ]
-            ]
-          ]
-        ]
-      ]
-
-      # Just delete same_realm trigger here, can randomly meet
-      character_conversion["trigger"]["location"]["any_province_character"].delete! "same_realm"
-      character_conversion["option"]["location"]["random_province_character"]["limit"].delete! "same_realm"
-
-      # Ruffians also don't care for borders
-      priest_attacked["trigger"]["location"].delete! "owner"
-
-      # For testing
-      # province_conversion["mean_time_to_happen"]["months"] = 1
-      # character_conversion["mean_time_to_happen"]["months"] = 1
-      # priest_attacked["mean_time_to_happen"]["months"] = 1
-    end
-  end
-
   def allow_more_commanders!
     # Contrary to what game claims, it's not possible to assign marshal,
     # so it's really hidden -1
@@ -815,7 +760,6 @@ class CK2TweaksGameModification < CK2GameModification
     # fix_de_jure_map!
     easier_culture_conversion!
     easier_title_creation!
-    send_missionaries_to_tributaries!
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
     nerf_demand_conversion!
