@@ -48,15 +48,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def reduce_religious_center_penalty!
-    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
-      unless node["religious_center"]["local_missionary_strength"] == -0.05
-        raise "Expected important missionary center to have -5% missionary strength"
-      end
-      node["religious_center"]["local_missionary_strength"] = -0.02
-    end
-  end
-
   def disable_burgundy_inheritance!
     patch_mod_file!("events/FlavorBUR.txt") do |node|
       node.each do |key, val|

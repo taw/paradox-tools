@@ -78,7 +78,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     fix_wargoals!
     no_naval_attrition!
     # patch_religion! - TODO
-    reduce_religious_center_penalty!
     disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     # reverse_horde_nerfs! - do I want it here?
