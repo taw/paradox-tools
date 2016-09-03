@@ -16,12 +16,12 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["NCountry.CORE_LOSE_CULTURE_GROUP", 150, 300],
       ["NCountry.CORE_LOSE", 50, 100],
-      ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
+      ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"], # This goes away in 1.8 anyway
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.OVERSEAS_DISTANCE", 150, 400],
       ["NCountry.POLICY_COST", 1, 0],
-      ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
-      ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
+      ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0], # 1.8 changes this
+      ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0], # 1.8 changes this
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],

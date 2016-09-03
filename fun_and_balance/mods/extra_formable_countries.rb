@@ -22,8 +22,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       ALG ARB BRZ BUK BYZ CAM CAN CHL COL EGY ENG FRA GBR GER GRE HAB HAN
       HAT HIN HLR INC IRE ITA JAP KOJ KUR LAP LOU MCH MEX MOR MSA MUG NED
       PER PEU PLC PRG PRU QNG QUE RMN RUS SCA SPA SPI TIB TRP TUN UKR USA
-      VNZ WES
-      AUS CRO MAY POL SOK SST
+      VNZ WES AUS CRO MAY POL SOK SST
     ]
     cant_by_formed_by = %W[HLR PAP HIN MUG SPA FRA GER BYZ BUK ITA RUS SCA PER GBR PLC EGY VIJ INC]
 
@@ -61,7 +60,10 @@ class ExtraFormableCountriesGameModification < EU4GameModification
               "duration", 7300,
             ],
             "add_prestige", 25,
-            "swap_free_idea_group", true,
+            "if", PropertyList[
+              "limit", PropertyList["has_custom_ideas", false],
+              "country_event", PropertyList["id", "ideagroups.1"],
+            ],
           ],
           "ai_will_do", PropertyList["factor", 1],
         ],
