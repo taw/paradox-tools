@@ -2,9 +2,6 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
-    patch_file!("common/opinion_modifiers/00_opinion_modifiers.txt", force_create: true) do |content|
-      content.sub("they_force_vassalized_us = [", "they_force_vassalized_us = {")
-    end
     patch_file!("missions/Anti_Rival_Missions.txt") do |content|
       content.sub("FROM {", "FROM = {")
     end

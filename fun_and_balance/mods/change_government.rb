@@ -8,9 +8,7 @@ class ChangeGovernmentGameModification < EU4GameModification
       node["country_decisions"].each do |key, decision|
         case key
         when "plutocratic_administration_rep",
-             "plutocratic_administration",
-             "aristocratic_administration",
-             "theocratic_administration"
+             "plutocratic_administration"
           decision["potential"].delete!(&not_20_cities)
           decision["allow"].delete!(&not_20_cities)
         end
