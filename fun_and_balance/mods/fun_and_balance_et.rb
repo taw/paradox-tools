@@ -81,7 +81,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     # reverse_horde_nerfs! - do I want it here?
-    smooth_oe_scaling!
     power_projection_tweaks!
 
     fix_adopt_secularism_decision!

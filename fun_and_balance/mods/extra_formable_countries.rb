@@ -71,7 +71,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       loc_culture = localization(culture)
       localization! "extra_formable_countries",
         "extra_formable_form_#{tag}_title" => "Form #{loc_tag}",
-        "extra_formable_form_#{tag}_desc"  => "Our country is one true home of #{loc_culture} people, let's call it #{loc_tag}!"
+        "extra_formable_form_#{tag}_desc"  => "Our country is the one true home of #{loc_culture} people, let's call it #{loc_tag}!"
     end
     create_mod_file! "decisions/extra_formable_countries.txt", PropertyList[
       *decisions

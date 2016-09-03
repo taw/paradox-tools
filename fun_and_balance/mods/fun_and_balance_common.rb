@@ -22,18 +22,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def smooth_oe_scaling!
-    patch_mod_file!("events/PurelyNasty.txt") do |node|
-      node.find_all("province_event").each do |event|
-        mtth = event["mean_time_to_happen"]
-        mtth["months"] *= 4
-        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 3.0]]
-        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 4.0]]
-        mtth.add! "modifier", PropertyList["factor", 0.5, "owner", PropertyList["overextension_percentage", 5.0]]
-      end
-    end
-  end
-
   def double_diplo_rel_limit_from_ideas!
     patch_mod_files!("common/ideas/*.txt") do |node|
       node.each do |group_name, idea_group|

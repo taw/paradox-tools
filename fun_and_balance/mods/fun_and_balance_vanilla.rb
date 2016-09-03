@@ -59,7 +59,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     disable_burgundy_inheritance!
     move_burgundy_capital_to_hre!
     reverse_horde_nerfs!
-    smooth_oe_scaling!
     power_projection_tweaks!
   end
 end
