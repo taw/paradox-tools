@@ -24,20 +24,6 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
-  def allow_any_number_of_different_holding_types!
-    # A nerf without exploit
-    override_defines_lua!("max_counties_in_realm",
-      "NTitle.MAX_REPUBLIC_COUNTIES_IN_REALM"  => 1.0,
-      "NTitle.MAX_THEOCRACY_COUNTIES_IN_REALM" => 1.0,
-    )
-  end
-
-  def disable_diplomatic_range_limit!
-    override_defines_lua!("diplomatic_distance",
-      "NDiplomacy.MAX_DIPLO_DISTANCE" => 10000,
-    )
-  end
-
   def allow_intermarriage!
     patch_mod_files!("common/religions/*.txt") do |node|
       node.each do |group_name, group|
@@ -74,12 +60,6 @@ class CK2TweaksGameModification < CK2GameModification
       ].each do |decision|
         node["decisions"][decision]["allow"].delete! "custom_tooltip"
       end
-    end
-  end
-
-  def cognatic_for_most_cultures!
-    patch_mod_file!("common/laws/succession_laws.txt") do |node|
-      node["gender_laws"]["true_cognatic_succession"].delete! "allow"
     end
   end
 
@@ -795,15 +775,6 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
-  def fix_infamy!
-    override_defines_lua!("fix_infamy",
-      "NInfamy.MAX_INFAMY_PER_WAR_PROVINCE" => 0,
-      "NInfamy.MIN_INFAMY_PER_WAR_PROVINCE" => 0,
-      "NInfamy.MIN_INFAMY_DECAY" => 100,
-      "NInfamy.MAX_INFAMY_DECAY" => 100,
-    )
-  end
-
   def rebalance_conclave!
     patch_mod_file!("common/job_titles/00_job_titles.txt") do |node|
       node.each do |job_title, job|
@@ -823,18 +794,15 @@ class CK2TweaksGameModification < CK2GameModification
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
     extra_cb_abolish_title!
-    allow_any_number_of_different_holding_types!
     allow_intermarriage!
     fix_gavelkind!
     reduce_wrong_gov_type_penalties!
     seduce_any_religion!
-    cognatic_for_most_cultures!
     preserve_culture_buildings!
     pagans_can_go_feudal!
     setup_sensible_ai_for_demesne_laws!
     fast_de_jure_drift!
     allow_everyone_river_access!
-    disable_diplomatic_range_limit!
     no_foreign_conqueror_penalty!
     increase_vassal_limit!
     increase_trade_post_limit!
@@ -851,7 +819,6 @@ class CK2TweaksGameModification < CK2GameModification
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
     nerf_demand_conversion!
-    fix_infamy!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
