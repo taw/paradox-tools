@@ -161,7 +161,8 @@ class ImproveMissionsGameModification < EU4GameModification
           make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 101])
         when ["USA"]
           next if name == "defend_the_american_colonies" # alt condition is impossible with this prereq
-          make_mission_not_tag_specific!(mission, tags, Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
+          # Disabled due to new region system:
+          # make_mission_not_tag_specific!(mission, tags, Property["the_thirteen_colonies", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["BYZ"]
           # Pretty much all these missions make sense only as Byzantine missions, form Byzantium if you want them
           # However, we allow them if you're HLR and own Rome and Constantinople!
@@ -240,17 +241,21 @@ class ImproveMissionsGameModification < EU4GameModification
         when ["MNG", "MCH"]
           raise "Unknown Ming/Manchu missions" unless name == "colonize_taiwan" or name == "colonize_deren"
           # This makes sense only for these missions, not in general
-          make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
+          # Disabled due to new region system:
+          # make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
         when ["MNG"], ["MNG", "QNG"]
           if name == "china_discovers_india"
-            make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
+            # Disabled due to new region system:
+            # make_mission_not_tag_specific!(mission, tags, Property["chinese_coast", PropertyList["owned_by", "root"]])
           else
             # This is a huge region, unlikely to trigger ever
-            make_mission_not_tag_specific!(mission, tags, Property["chinese_region", PropertyList["type", "all", "owned_by", "ROOT"]])
+            # Disabled due to new region system:
+            # make_mission_not_tag_specific!(mission, tags, Property["chinese_region", PropertyList["type", "all", "owned_by", "ROOT"]])
           end
         when ["MCH"]
           # This includes 2 originally uncolonized provinces, so it's maybe not super useful
-          make_mission_not_tag_specific!(mission, tags, Property["manchuria", PropertyList["type", "all", "owned_by", "ROOT"]])
+          # Disabled due to new region system:
+          # make_mission_not_tag_specific!(mission, tags, Property["manchuria", PropertyList["type", "all", "owned_by", "ROOT"]])
         when ["TIM"], ["MUG"], ["TIM", "MUG"]
           # Samarkand and Kabul
           # Punjab
