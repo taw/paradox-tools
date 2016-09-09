@@ -8,13 +8,14 @@ require_relative "bonus_scoring"
 class AnalyzePolicies < ParadoxGame
   def each_policy
     glob("common/policies/*").each do |path|
-      parse(path).each do |policy|
-        yield(policy)
+      parse(path).each do |name, policy|
+        yield(name, policy)
       end
     end
   end
 
   def analyze_policies!
+    results = []
     each_policy do |name, policy|
       policy = policy.to_h
       point_type = policy["monarch_power"].downcase
@@ -28,8 +29,9 @@ class AnalyzePolicies < ParadoxGame
       policy.each do |k,v|
         bonuses.send(k,v)
       end
-      puts [bonuses.score, name, *requirements, point_type, policy.inspect].join("\ ")
+      results << [bonuses.score, name, *requirements, point_type, policy.inspect]
     end
+    puts results.sort.map{|r| r.join(" ")}
   end
 end
 
