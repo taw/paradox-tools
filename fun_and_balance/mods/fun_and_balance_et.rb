@@ -22,6 +22,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.CORE_LOSE", 50, 100],
       ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
+      ["NCountry.MAX_WAR_EXHAUSTION", 20, 50],
       ["NCountry.POLICY_COST", 1, 0],
       ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0],
       ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0],
