@@ -120,6 +120,11 @@ class ImproveMissionsGameModification < EU4GameModification
     alt += tags_seen.map{|seen| Property::NOT["tag", seen]}
     alt << Property::NOT["has_global_flag", "fun_and_balance_config.disable_extra_missions"]
 
+    # None of original countries still exist
+    tags.each do |tag|
+      alt << Property::NOT["exists", tag]
+    end
+
     if alt.size == 1
       alt_cond = alt[0]
     else
