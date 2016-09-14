@@ -1,0 +1,109 @@
+#!/usr/bin/env ruby
+
+require "set"
+require "pathname"
+require "shellwords"
+require "digest/sha1"
+require "zip"
+# Zip.warn_invalid_date = false
+
+class Pathname
+  def sha1
+    Digest::SHA1.hexdigest(read)
+  end
+
+  def shellescape
+    to_s.shellescape
+  end
+end
+
+class ModUpdateCompatibility
+  def initialize(v1, v2, path)
+    @v1 = Pathname(v1)
+    @v2 = Pathname(v2)
+    @path = Pathname(path)
+    @files = {}
+    @conflicts = {}
+  end
+
+  def add_file!(mod_name, rel_path)
+    rel_path = rel_path.to_s
+    return if rel_path == "descriptor.mod"
+    @files[rel_path] ||= Set[]
+    @files[rel_path] << mod_name
+  end
+
+  def add_mod_pack!(mod_file)
+    mod_name = mod_file.basename(".zip").to_s
+    `7za l -slt #{mod_file.shellescape}`.split(/\n\n/).grep(/^Path = /)[1..-1].each do |file_info|
+      file_path = file_info[/^Path = (.*)/, 1]
+      next if file_info =~ /^Attributes = D/
+      add_file! mod_name, file_path
+    end
+  end
+
+  def add_mod_dir!(mod_dir)
+    mod_name = mod_dir.basename.to_s
+    mod_dir.find.select(&:file?).each do |file_path|
+      add_file! mod_name, file_path.relative_path_from(mod_dir)
+    end
+  end
+
+  def add_files!
+    @path.children.each do |mod|
+      if mod.directory?
+        add_mod_dir!(mod)
+      elsif mod.file? and mod.extname == ".zip"
+        add_mod_pack!(mod)
+      elsif mod.file? and mod.extname == ".mod"
+        # OK, ignore
+      elsif mod.basename.to_s == ".DS_Store"
+        # OK, ignore
+      else
+        warn "#{mod} is not directory or archive file"
+        next
+      end
+    end
+  end
+
+  def analyze_potential_conflicts!
+    conflicts_by_mod = {}
+    @files.each do |path, mods|
+      v1_path = @v1 + path
+      v2_path = @v2 + path
+      next unless v1_path.exist? or v2_path.exist? # File is added
+      if v1_path.exist? and v2_path.exist?
+        next if v1_path.read == v2_path.read
+      end
+      mods.each do |mod|
+        conflicts_by_mod[mod] ||= []
+        conflicts_by_mod[mod] << "#{path}"
+      end
+    end
+
+    conflicts_by_mod.each do |mod, conflicts|
+      puts "#{mod} needs to be checked, possible conflicts:"
+      conflicts.sort.each do |c|
+        puts "* #{c}"
+      end
+      puts ""
+    end
+  end
+
+  def run!
+    add_files!
+    analyze_potential_conflicts!
+  end
+
+  def inspect
+    "#{self.class}<#{@v1},#{@v2},#{@path}>"
+  end
+end
+
+if ARGV.size != 3
+  STDERR.puts "Usage: #{$0} path_to_game_version_1 path_to_game_version_2 path_to_mods_directory"
+  STRERR.puts "Checks if mod needs updating from game version 1 to version 2 "
+  exit 1
+end
+
+ModUpdateCompatibility.new(ARGV[0], ARGV[1], ARGV[2]).run!
