@@ -29,8 +29,8 @@ class ModUpdateCompatibility
   def add_file!(mod_name, rel_path)
     rel_path = rel_path.to_s
     return if rel_path == "descriptor.mod"
-    @files[rel_path] ||= Set[]
-    @files[rel_path] << mod_name
+    @files[mod_name] ||= Set[]
+    @files[mod_name] << rel_path
   end
 
   def add_mod_pack!(mod_file)
@@ -68,25 +68,24 @@ class ModUpdateCompatibility
 
   def analyze_potential_conflicts!
     conflicts_by_mod = {}
-    @files.each do |path, mods|
-      v1_path = @v1 + path
-      v2_path = @v2 + path
-      next unless v1_path.exist? or v2_path.exist? # File is added
-      if v1_path.exist? and v2_path.exist?
-        next if v1_path.read == v2_path.read
+    @files.each do |mod, paths|
+      conflicts = []
+      paths.each do |path|
+        v1_path = @v1 + path
+        v2_path = @v2 + path
+        next unless v1_path.exist? or v2_path.exist? # File is added
+        if v1_path.exist? and v2_path.exist?
+          next if v1_path.read == v2_path.read
+        end
+        conflicts << "* #{path}"
       end
-      mods.each do |mod|
-        conflicts_by_mod[mod] ||= []
-        conflicts_by_mod[mod] << "#{path}"
+      if conflicts.empty?
+        puts "#{mod} - OK"
+      else
+        puts "#{mod} - #{conflicts.size} conflicts"
+        # puts conflicts
       end
-    end
-
-    conflicts_by_mod.each do |mod, conflicts|
-      puts "#{mod} needs to be checked, possible conflicts:"
-      conflicts.sort.each do |c|
-        puts "* #{c}"
-      end
-      puts ""
+      # puts ""
     end
   end
 
