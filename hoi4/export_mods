@@ -14,7 +14,7 @@ class ExportMod
       @data_path = @mod_path.parent.parent + @mod["path"]
     end
     if @mod["archive"]
-      @archive = steam_workshop_dir + @mod["archive"]
+      @archive = steam_workshop_dir + @mod["archive"].gsub("\\\\", "/").gsub(/\AD:/, "/cygdrive/d")
     end
     raise "#{@name} can't have both path and archive" if @data_path and @archive
     raise "#{@name} needs path or archive" unless @data_path or @archive
