@@ -91,7 +91,7 @@ class DoctrineTree
   end
 
   def each_doctrine_set(&block)
-    @doctrine_sets.each(&block)
+    @doctrine_sets.sort_by{|ds| ds.to_s}.each(&block)
   end
 
   private
