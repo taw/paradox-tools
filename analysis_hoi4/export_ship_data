@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require "pry"
+require "json"
+
+class ExportShipInfoToJson < ParadoxGame
+  def run!
+    equipments = {}
+
+    glob("common/units/equipment/*.txt").each do |path|
+      parse(path)["equipments"].each do |name, data|
+        equipments[name] = data
+      end
+    end
+
+    export_data = []
+    equipments.each do |name, data|
+      next if data["is_archetype"]
+      archetype = data["archetype"] && equipments[data["archetype"]]
+      type = [*data["type"], *archetype["type"]]
+      next unless (type & %W[air_transport armor fighter infantry missile motorized convoy strategic_bomber naval_bomber tactical_bomber interceptor]).empty?
+
+      manpower = data["manpower"] || archetype["manpower"]
+      resource_cost = data["build_cost_ic"] || archetype["build_cost_ic"]
+      export_data << [localization(name), manpower, resource_cost]
+    end
+
+    export_data.sort.each do |ship_data|
+      p ship_data
+    end
+  end
+end
+
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <hoi4_path> [<mod1_path> <mod2_path> ...]"
+  exit 1
+end
+
+ExportShipInfoToJson.new(*ARGV).run!
