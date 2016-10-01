@@ -4,7 +4,7 @@ require_relative "../lib/paradox_game"
 require "pry"
 require "json"
 
-class ExportShipInfoToJson < ParadoxGame
+class ExportShipData < ParadoxGame
   def run!
     equipments = {}
 
@@ -37,4 +37,4 @@ unless ARGV.size >= 1
   exit 1
 end
 
-ExportShipInfoToJson.new(*ARGV).run!
+ExportShipData.new(*ARGV).run!

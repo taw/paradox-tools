@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require "pry"
+require "json"
+
+class ExportEquipmentData < ParadoxGame
+  def run!
+    equipments = {}
+
+    glob("common/units/equipment/*.txt").each do |path|
+      parse(path)["equipments"].each do |name, data|
+        equipments[name] = data
+      end
+    end
+
+    export_data = []
+    equipments.each do |name, data|
+      next if data["is_archetype"]
+      raise unless data["archetype"] # Everything that's not archetype, must have one
+      archetype = equipments[data["archetype"]]
+      # This is generally fine, but conflicts with override logic
+      raise "Duplicate detected" if data.keys.uniq != data.keys
+      raise "Duplicate detected" if archetype.keys.uniq != archetype.keys
+
+      merged_data = {}
+      archetype.each do |key, val|
+        next if key == "is_archetype"
+        next if key == "is_buildable"
+        merged_data[key] = val
+      end
+      data.each do |key, val|
+        merged_data[key] = val
+      end
+      merged_data["resources"] = merged_data["resources"].to_h
+
+      export_data << [localization(name), merged_data]
+    end
+
+    export_data.sort.each do |equipment_data|
+      pp equipment_data
+    end
+  end
+end
+
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <hoi4_path> [<mod1_path> <mod2_path> ...]"
+  exit 1
+end
+
+ExportEquipmentData.new(*ARGV).run!
