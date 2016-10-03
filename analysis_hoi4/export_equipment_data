@@ -37,9 +37,16 @@ class ExportEquipmentData < ParadoxGame
       export_data << [localization(name), merged_data]
     end
 
-    export_data.sort.each do |equipment_data|
-      pp equipment_data
+    # Prettyprint
+    puts "{"
+    export_data.sort.each do |name, data|
+      puts "  #{name.inspect} => {"
+      data.each do |k,v|
+        puts "    #{k.inspect} => #{v.inspect},"
+      end
+      puts "  },"
     end
+    puts "}"
   end
 end
 
