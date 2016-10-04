@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require "pry"
+
+# There's a lot of duplication between this, AnalyzeVictoryPoints and DrawSuppressionMaps
+class ExportSuppressionData < ParadoxGame
+  private def analyze_states!
+    @province_to_victory_points = Hash.new(0)
+    @states = {}
+    glob("history/states/*.txt").each do |path|
+      node = parse(path)["state"]
+      name = localization(node["name"])
+      id = node["id"]
+
+      # Some of these are for provinces belonging to another state
+      # Like 500 (Rio) including 501 (Sao Paula)'s VP
+      node["history"].find_all("victory_points").each do |vps_node|
+        vps_node.each_slice(2) do |province_id, vps|
+          @province_to_victory_points[province_id] = vps
+        end
+      end
+
+      # Some names are duplicates, so no key by name
+      raise if @states[id]
+
+      cores = node["history"].find_all("add_core_of")
+
+      @states[id] = {name: name, provinces: node["provinces"], cores: cores}
+    end
+
+    names_seen = {}
+
+    @states.each do |id, state|
+      vp_provinces = {}
+      state[:provinces].each do |province_id|
+        value = @province_to_victory_points[province_id] || 0
+        next unless value > 0
+        vp_name = localization("VICTORY_POINTS_#{province_id}")
+        raise if vp_provinces[vp_name]
+        vp_provinces[vp_name] = value
+      end
+      total = vp_provinces.values.inject(0, &:+)
+
+      state[:vps] = vp_provinces
+      state[:total] = total.to_i
+      names_seen[state[:name]] ||= []
+      names_seen[state[:name]] << state
+    end
+
+    names_seen.each do |name, states|
+      next if states.size == 1
+      raise unless name == "Georgia"
+      states.each do |s|
+        if s[:cores] == ["USA"]
+          s[:name] = "Georgia (USA)"
+        else
+          s[:name] = "Georgia (Caucasus)"
+        end
+      end
+    end
+  end
+
+  def states
+    unless @states
+      analyze_states!
+    end
+    @states
+  end
+
+  def states_by_vp_total
+    unless @states_by_vp_total
+      @states_by_vp_total = {}
+      states.each do |id, state|
+        @states_by_vp_total[state[:total]] ||= []
+        @states_by_vp_total[state[:total]] << state[:name]
+      end
+    end
+    @states_by_vp_total
+  end
+
+  def run!
+    puts "{"
+    states_by_vp_total.sort.each do |t,n|
+      puts "  #{t} => #{n.sort.inspect},"
+    end
+    puts "}"
+  end
+end
+
+ExportSuppressionData.new(*ARGV).run!
