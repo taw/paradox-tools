@@ -12,6 +12,10 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"], # This goes away in 1.8 anyway
+      ["NCountry.LIBERTY_DESIRE_GREAT_POWER_VASSAL", 50, 15],
+      ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
+      ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
+      ["NCountry.LIBERTY_DESIRE_LARGE_VASSAL", 25, 15],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.MAX_WAR_EXHAUSTION", 20, 50],
       ["NCountry.POLICY_COST", 1, 0],
