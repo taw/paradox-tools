@@ -8,7 +8,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     super(
       ParadoxGame.new(
         "source/eu4-1.17.1",
-        "source/ExtendedTimeline 1.1.0/ExtendedTimeline.mod"
+        "source/ExtendedTimeline 1.1.1/ExtendedTimeline.mod"
       ),
       "output/fun_and_balance_et"
     )
@@ -29,7 +29,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
                          ChangeGovernmentGameModification
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"
-      name: " Fun and Balance for Extended Timeline",
+      # space used to work, but Steam started stripping it
+      name: "!Fun and Balance for Extended Timeline",
       path: "mod/fun_and_balance_et",
       supported_version: "1.17",
       picture: "fun_and_balance_et.jpg",
