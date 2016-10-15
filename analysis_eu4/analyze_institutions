@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require "pry"
+
+class Array
+  def average
+    inject(0.0, &:+) / size
+  end
+end
+
+
+class AnalyzeInstitutions
+  def initialize(save_game)
+    @data = ParadoxModFile.new(path: save_game).parse!
+  end
+
+  def institutions
+    @data["institutions"] # => [1, 1, 0, 0, 0, 0, 0]
+  end
+
+  def penalties
+    @penalties ||= @data["institutions_penalties"] # => [0.5, 0.07, 0.0, 0.0, 0.0, 0.0, 0.0]
+  end
+
+  def countries
+    @countries ||= begin
+      result = []
+      @data["countries"].each do |tag, country|
+        total_penalty = country["institutions"].zip(penalties).map{|i,p| (1-i)*p}.inject(0, &:+)
+        next if country["num_of_cities"].to_i == 0
+        result << {
+          tag: tag,
+          penalty: total_penalty,
+          tech_group: country["technology_group"],
+        }
+      end
+      result
+    end
+  end
+
+  def report!
+    date = @data["date"].to_s
+    result = countries
+             .group_by{|x| x[:tech_group]}
+             .map{|t,r|
+               [t, r.map{|u| u[:penalty]}.average.round(6)]
+             }
+             .sort_by(&:last)
+             .to_h
+    p [date, result]
+  end
+end
+
+if __FILE__ == $0
+  ARGV.each do |path|
+    AnalyzeInstitutions.new(path).report!
+  end
+end
