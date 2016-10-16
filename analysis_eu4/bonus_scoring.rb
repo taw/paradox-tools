@@ -84,6 +84,10 @@ class BonusScoring
     # Far too conditional
     :devotion,
     :church_power_modifier,
+
+    # Sailors seriously just don't matter
+    :global_sailors_modifier,
+    :sailors_recovery_speed,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -97,16 +101,7 @@ class BonusScoring
   end
 
   # They aren't worth the same, but very conditional and hard to judge value
-  def may_infiltrate_administration(v)
-    extra_minor_abilities 1
-  end
-  def may_sow_discontent(v)
-    extra_minor_abilities 1
-  end
-  def may_sabotage_reputation(v)
-    extra_minor_abilities 1
-  end
-  def may_force_march(v)
+  def may_perform_slave_raid(v)
     extra_minor_abilities 1
   end
   def reduced_stab_impacts(v)
@@ -174,13 +169,13 @@ class BonusScoring
   # from time sensitivity here
   #
   # Signs opposite since it's time vs modifier
-  def fabricate_claims_time(v)
+  def fabricate_claims_cost(v)
     diplomats 2 * 1.5 * 0.25 * -v
   end
   def improve_relation_modifier(v)
     diplomats 2 * 1.5 * 0.25 * v
   end
-  def justify_trade_conflict_time(v)
+  def justify_trade_conflict_cost(v)
     diplomats 2 * 1.5 * 0.01 * -v
   end
 
@@ -232,15 +227,15 @@ class BonusScoring
   def inflation_reduction(v)
     monthly_adm_points v*(75.0/2.0/12)*0.25
   end
-  # Assume average of 6dev/year cored before efficiency unlocks,
+  # Assume average of 8dev/year cored before efficiency unlocks,
   # proportionally more after efficiency
   def core_creation(v)
-    monthly_adm_points (-v * 10.0 * 6.0 / 12)
+    monthly_adm_points (-v * 10.0 * 8.0 / 12)
   end
-  # Assume average of 6dev/year diploannexed before efficiency unlocks,
+  # Assume average of 4dev/year diploannexed before efficiency unlocks,
   # proportionally more after efficiency
   def diplomatic_annexation_cost(v)
-    monthly_dip_points (-v * 10.0 * 6.0 / 12)
+    monthly_dip_points (-v * 10.0 * 4.0 / 12)
   end
   # Assume 2 unjustified demand for base of 50 each every 10 years
   def unjustified_demands(v)
@@ -313,6 +308,24 @@ class BonusScoring
   end
   def artillery_power(v)
     land_unit_power 0.20 * v
+  end
+  # Assume 50% damage in fire and 50% in shock
+  # this isn't true very early game where shock rules, but should be true overall
+  #
+  # Weight damage taken and damage received modifiers equally
+  # combat ability only affect damae dealt
+  # discipline affects damage both taken and dealt
+  def shock_damage_received(v)
+    land_unit_power v*-0.50
+  end
+  def shock_damage(v)
+    land_unit_power v*0.50
+  end
+  def fire_damage_received(v)
+    land_unit_power v*-0.50
+  end
+  def fire_damage(v)
+    land_unit_power v*0.50
   end
 
   def heavy_ship_cost(v) # not seen anywhere
@@ -669,16 +682,14 @@ class BonusScoring
     global_revolt_risk (2*0.05*v)
   end
 
-  # Assume that on average 50% reduction will make 0.5 cultures accepted which would otherwise not be,
-  # and they'd be in a different culture group, and that it will affect 10% of provinces.
-  # I know these don't add up, but they're ballpark figures over a lot of scenarios.
-
-  def accepted_culture_threshold(v)
-    affected = 0.5 * 0.10 * (v/-0.5)
+  # Assume that extra accepted culture is on average in 10% of provinces
+  def num_accepted_cultures(v)
+    affected = v * 0.10
     global_revolt_risk -2*affected
     global_tax_modifier 0.33*affected
     global_missionary_strength 0.02*affected
     global_manpower_modifier 0.33*affected
+    global_sailors_modifier 0.20*affected
   end
 
   ### Higher level calculations ###
@@ -697,11 +708,6 @@ class BonusScoring
   end
   def leader_naval_manuever(v)
     naval_unit_power 0.02*v
-  end
-
-  # Assume 10% of AE comes from discovered actions
-  def discovered_relations_impact(v)
-    ae_impact 0.1*v
   end
 
   # Counting 200% range extension worth as much as extra colonist - it's extremely conditional
@@ -726,29 +732,31 @@ class BonusScoring
       when :monthly_mixed_monarch_points
         # This is meant for unpredictable mix, for 1/1/1 like all tech just use explicit values
         total += v
+      # Diploannexations got nerfed to hell, now paper mana is king
       when :monthly_dip_points
-        total += v*1.1
+        total += v*1.0
       when :monthly_adm_points
-        total += v*1.1
+        total += v*1.2
       when :monthly_mil_points
         total += v*0.8
       when :colonists
         # Definitely the most important agent type by huge margin
         total += 3*v
       when :diplomats
-        # 3rd diplomat is arguably worth more, but it falls down fast
-        # Diplomats became more important in 1.12 as you only have 2 not 3 after embassy got removed
-        # 1.12.1 code implies that kingdom/empire will get 1 free diplomat, but that doesn't work yet
-        total += 2*v
-      when :missionaries
+        # Everybody starts with 3 at kingdom tier, and 4th etc.
+        # are not really a big deal
         total += 0.75*v
       when :merchants
         # This also provides +5 naval force limit per merchant beyond 2nd, not counted separately
         # They became less relevant as you can get them from CNs and trade companies, at least
         # if you're western tech
-        total += 0.75*v
+        total += 0.5*v
+      when :missionaries
+        # Extra missionaries are no big deal, and missionary strength
+        # is much easier to achieve than it used to be
+        total += 0.5*v
       when :global_missionary_strength
-        total += 75.0*v
+        total += 50.0*v
       when :global_revolt_risk
         total -= 1.0*v
       when :global_autonomy
@@ -776,7 +784,10 @@ class BonusScoring
       when :extra_minor_abilities
         total += v*0.5
       when :extra_cbs
-        total += v*2.0
+        # Tech group based CBs got nerfed
+        # and good CBs are less important now that you'll get universal CBs late game
+        # so reducing it slightly
+        total += v*1.0
       when :legitimacy
         total += v*0.5
       when :republican_tradition
@@ -785,7 +796,7 @@ class BonusScoring
         total += v*2
       when :advisor_pool
         # This is far less valuable now that you can just buy it for small amount of money
-        total += 0.25*v
+        total += 0.2*v
       when :hostile_attrition
         total += 1*v
       when :relations_decay_of_me
@@ -797,6 +808,15 @@ class BonusScoring
         total += v
       when :migration_cooldown
         # Extremely situational
+      when :horde_unity
+        # Extremely situational
+      when :global_institution_spread
+        # This makes very little difference,
+        # the difficulty is just getting institutions to reach you,
+        # spread % modifiers after that is basically insignificant
+        #
+        # Unless of course you're just spamming development to
+        # get them without spread, then it matters even less
       else
         warn "#{k} not scored"
       end
