@@ -11,7 +11,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NAI.FORT_MAINTENANCE_CHEAT", 1, 0],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
-      ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"], # This goes away in 1.8 anyway
+      ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"], # This goes away in 1.18 anyway
       ["NCountry.LIBERTY_DESIRE_GREAT_POWER_VASSAL", 50, 15],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
@@ -19,8 +19,8 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.MAX_WAR_EXHAUSTION", 20, 50],
       ["NCountry.POLICY_COST", 1, 0],
-      ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0], # 1.8 changes this
-      ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0], # 1.8 changes this
+      ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0], # 1.18 changes this
+      ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0], # 1.18 changes this
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
@@ -28,7 +28,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
       ["NCountry.RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["NCountry.TECH_AHEAD_OF_TIME", 0.1, 0.05],
-      ["NCountry.WESTERN_POWER_TICK_REDUCTION_FACTOR", 100, 1000000],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
