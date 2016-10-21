@@ -23,7 +23,8 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          ImproveMissionsGameModification,
                          HideCancelledMissionsGameModification,
                          ConfigMenuVanillaGameModification,
-                         ChangeGovernmentGameModification
+                         ChangeGovernmentGameModification,
+                         DisableCoalitionsGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
