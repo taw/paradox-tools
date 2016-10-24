@@ -17,7 +17,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
       ["NCountry.LIBERTY_DESIRE_LARGE_VASSAL", 25, 15],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
-      ["NCountry.MAX_WAR_EXHAUSTION", 20, 50],
       ["NCountry.POLICY_COST", 1, 0],
       ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0], # 1.18 changes this
       ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0], # 1.18 changes this
