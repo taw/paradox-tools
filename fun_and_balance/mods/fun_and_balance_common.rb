@@ -176,7 +176,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ["refused_war_against_rival", "yearly_decay",   1, 0.5],
         ["vassalized_rival",          "yearly_decay",   1, 0.5],
         ["took_province_from_rival",  "yearly_decay",   1, 0.5],
-        ["rival_lost_province",       "yearly_decay",   1, 0.5]
+        ["rival_lost_province",       "yearly_decay",   1, 0.5],
+        ["great_power_1",             "power",         25,  50],
+        ["great_power_2",             "power",         22,  46],
+        ["great_power_3",             "power",         20,  43],
+        ["great_power_4",             "power",         18,  39],
+        ["great_power_5",             "power",         16,  36],
+        ["great_power_6",             "power",         14,  32],
+        ["great_power_7",             "power",         12,  29],
+        ["great_power_8",             "power",         10,  25]
     end
   end
 
