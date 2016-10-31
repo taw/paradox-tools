@@ -155,6 +155,9 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       modify_node! node,
         ["take_province_ban", "badboy_factor", 1.0, 0.1]
+      # Could use fancier logic, but let's leave it for now...
+      node["superiority_primitives"]["allowed_provinces"] = PropertyList["always", true]
+      node["superiority_overseas"]["allowed_provinces"] = PropertyList["always", true]
     end
   end
 
