@@ -5,8 +5,8 @@ class ConfigMenuVanillaGameModification < ConfigMenuGameModification
     build_mod_config_menu!(
       menu_set_flag_option("enable_achievements", "Enable Achievements"),
       menu_clr_flag_option("enable_achievements", "Disable Achievements"),
-      menu_set_flag_option("disable_holy_sites", "Disable Holy Sites"),
-      menu_clr_flag_option("disable_holy_sites", "Enable Holy Sites"),
+      menu_set_flag_option("enable_holy_sites", "Enable Holy Sites"),
+      menu_clr_flag_option("enable_holy_sites", "Disable Holy Sites"),
       menu_set_flag_option("disable_extra_missions", "Disable extra missions"),
       menu_clr_flag_option("disable_extra_missions", "Enable extra missions"),
       menu_set_flag_option("disable_extra_formable_countries", "Disable extra formable countries"),

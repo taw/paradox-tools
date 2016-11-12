@@ -48,7 +48,7 @@ class HolySitesGameModification < EU4GameModification
       trigger_name, PropertyList[
         "potential", PropertyList[
           "religion", religion,
-          Property::NOT["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
+          Property["has_global_flag", "fun_and_balance_config.enable_holy_sites"],
         ],
         "trigger", PropertyList[site[:id], PropertyList["owner", PropertyList["religion", religion]]],
         "global_missionary_strength", 0.002,
@@ -66,7 +66,7 @@ class HolySitesGameModification < EU4GameModification
     Property[trigger_name, PropertyList[
       "potential", PropertyList[
         "religion", religion,
-        Property::NOT["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
+        Property["has_global_flag", "fun_and_balance_config.enable_holy_sites"],
       ],
       "trigger", PropertyList[
         *sites.map{|site| Property[site[:id], PropertyList["owner", PropertyList["religion", religion]]] }
@@ -88,7 +88,7 @@ class HolySitesGameModification < EU4GameModification
       "ai_mission", true,
       "allow", PropertyList[
         "religion", religion,
-        Property::NOT["has_global_flag", "fun_and_balance_config.disable_holy_sites"],
+        Property["has_global_flag", "fun_and_balance_config.enable_holy_sites"],
         Property::AND[
           id, PropertyList["owner", PropertyList["is_neighbor_of", "ROOT"]],
           "has_idea", "deus_vult",
