@@ -8,14 +8,13 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
 
     soft_patch_defines_lua!([
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
-      ["NAI.FORT_MAINTENANCE_CHEAT", 1, 0],
+      ["NAI.FORT_MAINTENANCE_CHEAT", 0, 0],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"], # This goes away in 1.18 anyway
-      ["NCountry.LIBERTY_DESIRE_GREAT_POWER_VASSAL", 50, 15],
+      ["NCountry.LIBERTY_DESIRE_VASSAL_DEVELOPMENT_RATIO", 0.25, 0.10],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
-      ["NCountry.LIBERTY_DESIRE_LARGE_VASSAL", 25, 15],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.POLICY_COST", 1, 0],
       ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0], # 1.18 changes this
@@ -31,7 +30,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
-      ["NMilitary.FORTRESS_COST", 0.5, 0.125],
+      ["NMilitary.FORTRESS_COST", 0.25, 0.25],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],

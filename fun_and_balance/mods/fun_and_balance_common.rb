@@ -85,71 +85,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           "cb_on_religious_enemies", true,
         ],
       ]
-      # Exploration
-
-      # WANT: root - target >= 2
-      # GOT:   !(target - root >= -1)
-      #     -> (target - root < -1)
-      #     -> (root - target > 1)
-      #     -> (root - target >= 2) # due to Z only
-      # Paradox math is silly
-      bad_institutions = Property[
-        "NOT", PropertyList[
-          "institution_difference", PropertyList["who", "ROOT", "value", -1]
-        ]
-      ]
-      primitive_natives = Property[
-        "OR", PropertyList[
-          "primitives", true,
-          "AND", PropertyList[
-            "OR", PropertyList[
-              "technology_group", "north_american",
-              "technology_group", "mesoamerican",
-              "technology_group", "south_american",
-              "technology_group", "andean",
-            ],
-            "religion_group", "pagan",
-            bad_institutions,
-          ],
-        ]
-      ]
-      node["cb_primitives"]["prerequisites"] = PropertyList[
-        "OR", PropertyList[
-          "cb_on_primitives", true,
-          "AND", PropertyList[
-            "is_colonial_nation", true,
-            "is_neighbor_of", "FROM",
-          ],
-        ],
-        "NOT", PropertyList["has_country_modifier", "the_proclamation_of_year_timer"],
-        # Target is primitives or subject of primitives
-        "FROM", PropertyList[
-          primitive_natives,
-          "OR", PropertyList[
-            "is_subject", false,
-            "AND", PropertyList[
-              "is_subject", true,
-              "overlord", PropertyList[primitive_natives],
-            ],
-          ],
-        ],
-        "is_revolution_target", false,
-      ]
-      # Expansion
-      node["cb_overseas"]["prerequisites"] = PropertyList[
-        "cb_on_overseas", true,
-        "FROM", PropertyList[
-          "primitives", false,
-          "is_subject", false,
-          "capital_scope", PropertyList["OR", PropertyList[
-            "continent", "asia",
-            "continent", "africa",
-          ]],
-          bad_institutions,
-        ],
-        "is_subject", false,
-        "is_revolution_target", false,
-      ]
     end
     # Imperial Ban CB adjust down
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
@@ -158,7 +93,67 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       # Could use fancier logic, but let's leave it for now...
       node["superiority_primitives"]["allowed_provinces"] = PropertyList["always", true]
       node["superiority_overseas"]["allowed_provinces"] = PropertyList["always", true]
+      node["superiority_overseas"]["po_become_vassal" ] = PropertyList["always", true]
     end
+
+    # Exploration / Expansion
+    create_mod_file! "decisions/ReligiousShift.txt", PropertyList[
+      "cb_primitives", PropertyList[
+        "valid_for_subject", false,
+        "prerequisites", PropertyList[
+          "OR", PropertyList[
+            "cb_on_primitives", true,
+            "AND", PropertyList[
+              "is_colonial_nation", true,
+              "is_neighbor_of", "FROM",
+            ],
+          ],
+          "NOT", PropertyList["has_country_modifier", "the_proclamation_of_year_timer"],
+          "FROM", PropertyList[
+            "OR", PropertyList[
+              "capital_scope", PropertyList["continent", "north_america"],
+              "capital_scope", PropertyList["continent", "south_america"],
+              "capital_scope", PropertyList["continent", "oceania"],
+            ],
+            "OR", PropertyList[
+              "AND", PropertyList[
+                "is_subject", false,
+                "NOT", PropertyList["ROOT", PropertyList["PREV", PropertyList["tech_difference", -7]]],
+              ],
+              "AND", PropertyList[
+                "is_subject", true,
+                "overlord", PropertyList[
+                  "OR", PropertyList[
+                    "capital_scope", PropertyList["continent", "north_america"],
+                    "capital_scope", PropertyList["continent", "south_america"],
+                    "capital_scope", PropertyList["continent", "oceania"],
+                  ],
+                  "NOT", PropertyList["ROOT", PropertyList["PREV", PropertyList["tech_difference", -7]]],
+                ],
+              ],
+            ],
+          ],
+          "is_revolution_target", false,
+        ],
+        "war_goal", "superiority_primitives",
+      ],
+      "cb_overseas", PropertyList[
+        "valid_for_subject", false,
+        "prerequisites", PropertyList[
+          "cb_on_overseas", true,
+          "FROM", PropertyList[
+            "is_subject", false,
+            "NOT", PropertyList["capital_scope", PropertyList["continent", "north_america"]],
+            "NOT", PropertyList["capital_scope", PropertyList["continent", "south_america"]],
+            "NOT", PropertyList["capital_scope", PropertyList["continent", "oceania"]],
+            "NOT", PropertyList["ROOT", PropertyList["PREV", PropertyList["tech_difference", -7]]],
+          ],
+          "is_subject", false,
+          "is_revolution_target", false,
+        ],
+        "war_goal", "superiority_overseas",
+      ],
+    ]
   end
 
   def anyone_can_form_byzantium!
