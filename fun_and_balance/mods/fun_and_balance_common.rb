@@ -97,7 +97,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
 
     # Exploration / Expansion
-    create_mod_file! "decisions/ReligiousShift.txt", PropertyList[
+    create_mod_file! "common/cb_types/00_exploration_and_expansion.txt", PropertyList[
       "cb_primitives", PropertyList[
         "valid_for_subject", false,
         "prerequisites", PropertyList[
