@@ -30,7 +30,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
-      ["NMilitary.FORTRESS_COST", 0.25, 0.25],
+      ["NMilitary.FORTRESS_COST", 0.50, 0.25],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
