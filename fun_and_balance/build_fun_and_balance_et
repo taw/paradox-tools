@@ -7,8 +7,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/eu4-1.17.1",
-        "source/ExtendedTimeline 1.1.1/ExtendedTimeline.mod"
+        "source/eu4-1.19.0",
+        "source/ExtendedTimeline 1.3.1/ExtendedTimeline.mod"
       ),
       "output/fun_and_balance_et"
     )
@@ -32,7 +32,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       # space used to work, but Steam started stripping it
       name: "!Fun and Balance for Extended Timeline",
       path: "mod/fun_and_balance_et",
-      supported_version: "1.17",
+      supported_version: "1.19",
       picture: "fun_and_balance_et.jpg",
     )
   end
