@@ -1,0 +1,91 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require "set"
+require "pry"
+
+class CountriesByDate < ParadoxGame
+  def year_one
+    @year_one ||= Date.parse("0001.01.01")
+  end
+
+  def province_events
+    unless @province_events
+      @province_events = {}
+      glob("history/provinces/*").each do |path|
+        id = path.basename.to_s.to_i
+        begin
+          data = parse(path)
+        rescue
+          warn "Can't parse #{path}"
+          next
+        end
+        @province_events[id] = []
+        @province_events[id] << [year_one, nil]
+        @province_events[id] << [year_one, data["owner"]]
+        data.each do |key, val|
+          next unless key.is_a?(Date)
+          next if val.is_a?(Array) # [] or bug
+          if val["owner"]
+            @province_events[id] << [key, val["owner"]]
+          end
+        end
+      end
+    end
+    @province_events
+  end
+
+  def country_events
+    unless @country_events
+      @country_events = Hash.new{|ht,k| ht[k] = Hash.new(0) }
+      province_events.each do |id, events|
+        events.each_cons(2) do |(d1,o1),(d2,o2)|
+          x=[id,d1,o1,d2,o2]
+          @country_events[o1][d2] -= 1
+          @country_events[o2][d2] += 1
+        end
+      end
+    end
+    @country_events
+  end
+
+  def country_size
+    unless @country_size
+      @country_size = Hash.new{|ht,k| ht[k] = Hash.new(0) }
+      country_events.each do |tag, events|
+        total = 0
+        @country_size[tag][year_one] = 0
+        events.sort.each do |date, diff|
+          total += diff
+          @country_size[tag][date] = total
+        end
+      end
+    end
+    @country_size
+  end
+
+  def country_size_at_date(tag, date)
+    country_size[tag].select{|x,| x <= date}.max[1]
+  end
+
+  def dates
+    @dates ||= country_size.values.map{|k,| Set[*k.keys]}.inject(&:|).sort
+  end
+
+  def tags
+    @tags ||= country_size.keys - [nil]
+  end
+
+  def countries_by_date(date)
+    tags.select{|tag| country_size_at_date(tag, date) > 0}
+  end
+
+  def call
+    dates.each do |date|
+      countries = countries_by_date(date)
+      puts "#{date} - #{countries.size}"
+    end
+  end
+end
+
+CountriesByDate.new(*ARGV).call
