@@ -791,7 +791,7 @@ class BonusScoring
       when :legitimacy
         total += v*0.5
       when :republican_tradition
-        total += v*100.0 # value at 2x legitimacy, uses different scale
+        total += v # value at 2x legitimacy, old patches used 0-1, now 0-100
       when :may_explore
         total += v*2
       when :advisor_pool

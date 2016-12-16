@@ -83,7 +83,7 @@ class CountriesByDate < ParadoxGame
   def call
     dates.each do |date|
       countries = countries_by_date(date)
-      puts "#{date} - #{countries.size}"
+      puts "#{date} - #{countries.size} - #{countries.map{|tag| localization(tag)}.sort.join(" ")}"
     end
   end
 end
