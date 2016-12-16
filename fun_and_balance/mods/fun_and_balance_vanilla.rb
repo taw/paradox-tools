@@ -42,7 +42,8 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
         ["base_values", "global_missionary_strength", 0.02, 0.01],
         ["base_values", "global_heretic_missionary_strength", nil, 0.01],
         ["base_values", "diplomatic_upkeep", 4, 8],
-        ["emperor", "diplomatic_upkeep", 1, 2]
+        ["emperor", "diplomatic_upkeep", 1, 2],
+        ["ai_nation", "free_leader_pool", 1, 0]
     end
 
     anyone_can_form_byzantium!
