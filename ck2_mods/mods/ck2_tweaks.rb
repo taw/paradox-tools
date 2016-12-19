@@ -401,7 +401,7 @@ class CK2TweaksGameModification < CK2GameModification
     # end
     patch_mod_file!("history/titles/k_italy.txt") do |node|
       node[Date.parse("0867.1.1")] = PropertyList["de_jure_liege", "e_hre"]
-      node.instance_eval{ @list.sort! }
+      node.instance_eval{ @entries.sort! }
     end
   end
 
@@ -455,7 +455,7 @@ class CK2TweaksGameModification < CK2GameModification
       deep_search(titles) do |node, path|
         next unless path[-1] == "allow"
         allow = node["allow"]
-        title = path[-2]
+        # title = path[-2]
         # These are generally sensible
         next if allow == PropertyList["always", false]
         next if allow == PropertyList["always", true]
@@ -757,8 +757,8 @@ class CK2TweaksGameModification < CK2GameModification
     dont_call_duke_kings_ever!
     stronger_claims_on_rebels!
     # extend_timeline!
-    # fix_de_jure_map!
     easier_culture_conversion!
+    fix_de_jure_map!
     easier_title_creation!
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
