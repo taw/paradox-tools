@@ -314,6 +314,16 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  # Can't just delete, as there are references to them in events etc.
+  def remove_all_anachronistic_factions!
+    patch_mod_file!("common/objectives/00_factions.txt") do |node|
+      bad_factions = node.keys - ["faction_independence", "faction_claimant", "faction_antiking"]
+      bad_factions.each do |faction_name|
+        node[faction_name]["potential"] = PropertyList["always", false]
+      end
+    end
+  end
+
   # This is very speculative, no idea if it does anything or not
   # (unlike let's say law changes which are pretty proven)
   def rebalance_faction_priorities!
@@ -769,9 +779,10 @@ class CK2TweaksGameModification < CK2GameModification
     # divine_blood_full_fertility!
     create_minimal_hunie_trait!
     allow_heir_designation!
-    rebalance_faction_priorities!
+    # rebalance_faction_priorities!
     allow_joining_all_wars!
     # nerf_nomads!
     rebalance_conclave!
+    remove_all_anachronistic_factions!
   end
 end
