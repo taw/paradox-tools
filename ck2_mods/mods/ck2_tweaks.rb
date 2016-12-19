@@ -843,11 +843,38 @@ class CK2TweaksGameModification < CK2GameModification
           ],
         ],
       ]
+      # any religious group
+      seduce["allow"] = PropertyList[
+       "NOR", PropertyList[
+         "has_opinion_modifier", PropertyList[
+           "who", "FROM",
+           "modifier", "opinion_seduced_refused",
+         ],
+         "has_character_modifier", "dismissed_proposal",
+       ],
+       "NOT", PropertyList["trait", "celibate"],
+       "NOT", PropertyList["FROM", PropertyList["trait", "celibate"]],
+       "is_within_diplo_range", "FROM",
+      ]
     end
     # Less stressful to have multiple lovers
     patch_mod_file!("events/wol_lover_events.txt") do |node|
       event = node.find_all("character_event").find{|ev| ev["id"] == "WoL.1150"}
       event["mean_time_to_happen"]["months"] *= 5
+    end
+  end
+
+  # enable enatic and tanistry
+  def enable_more_succession_laws!
+    patch_mod_file!("common/laws/succession_laws.txt") do |node|
+      succession = node["succession_laws"]
+      succession["succ_tanistry"]["potential"] = succession["succ_gavelkind"]["potential"]
+
+      gender = node["gender_laws"]
+      gender["enatic_cognatic_succession"]["potential"] = gender["true_cognatic_succession"]["potential"]
+      gender["enatic_cognatic_succession"]["allow"] = gender["true_cognatic_succession"]["allow"]
+      gender["enatic_succession"]["potential"] = gender["true_cognatic_succession"]["potential"]
+      gender["enatic_succession"]["allow"] = gender["true_cognatic_succession"]["allow"]
     end
   end
 
@@ -892,5 +919,6 @@ class CK2TweaksGameModification < CK2GameModification
     # rebalance_conclave!
     remove_all_anachronistic_factions!
     make_holy_wars_convert!
+    enable_more_succession_laws!
   end
 end
