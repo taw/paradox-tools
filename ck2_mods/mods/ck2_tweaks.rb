@@ -873,8 +873,8 @@ class CK2TweaksGameModification < CK2GameModification
     dont_call_duke_kings_ever!
     stronger_claims_on_rebels!
     # extend_timeline!
-    easier_culture_conversion!
     fix_de_jure_map!
+    # easier_culture_conversion!
     easier_title_creation!
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
@@ -889,7 +889,7 @@ class CK2TweaksGameModification < CK2GameModification
     # rebalance_faction_priorities!
     allow_joining_all_wars!
     # nerf_nomads!
-    rebalance_conclave!
+    # rebalance_conclave!
     remove_all_anachronistic_factions!
     make_holy_wars_convert!
   end

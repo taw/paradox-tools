@@ -66,7 +66,7 @@ class UITweaksGameModification < CK2GameModification
     setup_sensible_important_decisions_list!
     disable_fucking_hints!
     mark_more_titles_as_high_priority!
-    bigger_war_box!
+    # bigger_war_box! # Bigger UI conflict
     show_all_wars_on_map!
   end
 end
