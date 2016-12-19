@@ -745,6 +745,51 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+
+  def easier_seduction!
+    # You can seduce family, spouses, exes
+    # lustful makes you bisexual
+    patch_mod_file!("decisions/way_of_life_decisions.txt") do |node|
+      seduce = node["targetted_decisions"]["seduce_decision"]
+      seduce["potential"] = PropertyList[
+        "is_marriage_adult", true,
+        "NOT", PropertyList["character", "FROM"],
+        "NOT", PropertyList["trait", "incapable"],
+        "prisoner", false,
+        "NOT", PropertyList["is_lover", "FROM"],
+        "OR", PropertyList[
+          "AND", PropertyList[
+            "NOT", PropertyList["same_sex", "FROM"],
+            "OR", PropertyList[
+              "FROM", PropertyList["trait", "homosexual"],
+              "FROM", PropertyList["NOT", PropertyList["trait", "homosexual"]],
+            ],
+            "OR", PropertyList[
+              "trait", "lustful",
+              "NOT", PropertyList["trait", "homosexual"],
+            ]
+          ],
+          "AND", PropertyList[
+            "same_sex", "FROM",
+            "OR", PropertyList[
+              "FROM", PropertyList["trait", "homosexual"],
+              "FROM", PropertyList["trait", "lustful"],
+            ],
+            "OR", PropertyList[
+              "trait", "homosexual",
+              "trait", "lustful",
+            ]
+          ],
+        ],
+      ]
+    end
+    # Less stressful to have multiple lovers
+    patch_mod_file!("events/wol_lover_events.txt") do |node|
+      event = node.find_all("character_event").find{|ev| ev["id"] == "WoL.1150"}
+      event["mean_time_to_happen"]["months"] *= 5
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -773,6 +818,7 @@ class CK2TweaksGameModification < CK2GameModification
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
     nerf_demand_conversion!
+    easier_seduction!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
