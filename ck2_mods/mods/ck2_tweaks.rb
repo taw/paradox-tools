@@ -745,6 +745,67 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def make_holy_wars_convert!
+    patch_mod_file!("decisions/conversion_decisions.txt") do |node|
+      # Anyone can press the button
+      node["decisions"]["convert_to_attacker_religion"]["potential"] = PropertyList[
+        "is_playable", true,
+        "controls_religion", false,
+        "war", true,
+        "any_war", PropertyList[
+          "defender", PropertyList["character", "ROOT"],
+          "attacker", PropertyList["NOT", PropertyList["religion", "ROOT"]],
+          "OR", PropertyList[
+            "using_cb", "crusade",
+            "using_cb", "religious",
+            "using_cb", "muslim_invasion",
+            "using_cb", "buddhist_holy_war",
+            "using_cb", "pagan_holy_war",
+          ],
+        ],
+      ]
+      # Make AI 10x as likely to press the button
+      node["decisions"]["convert_to_attacker_religion"]["ai_will_do"] = PropertyList[
+        "factor", 1,
+        "modifier", PropertyList[
+          "factor", 0,
+          "NOT", PropertyList["any_war", PropertyList[
+            "defender", PropertyList["character", "ROOT"],
+            "attacker", PropertyList["NOT", PropertyList["religion", "ROOT"]],
+            "OR", PropertyList[
+              "using_cb", "crusade",
+              "using_cb", "religious",
+              "using_cb", "muslim_invasion",
+              "using_cb", "buddhist_holy_war",
+              "using_cb", "pagan_holy_war",
+            ],
+            "war_score", 50,
+            "thirdparty_title_scope", PropertyList["ROOT", PropertyList["primary_title", PropertyList["title", "PREVPREV"]]],
+          ]],
+        ],
+        "modifier", PropertyList[
+          "factor", 2,
+          "any_war", PropertyList[
+            "defender", PropertyList["character", "ROOT"],
+            "attacker", PropertyList["NOT", PropertyList["religion", "ROOT"]],
+            "OR", PropertyList[
+              "using_cb", "crusade",
+              "using_cb", "religious",
+              "using_cb", "muslim_invasion",
+              "using_cb", "buddhist_holy_war",
+              "using_cb", "pagan_holy_war",
+            ],
+            "war_score", 75,
+            "thirdparty_title_scope", PropertyList["ROOT", PropertyList["primary_title", PropertyList["title", "PREVPREV"]]],
+          ],
+        ],
+      ]
+    end
+    # make it forced?
+    # patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+    #   # religious
+    # end
+  end
 
   def easier_seduction!
     # You can seduce family, spouses, exes
@@ -830,5 +891,6 @@ class CK2TweaksGameModification < CK2GameModification
     # nerf_nomads!
     rebalance_conclave!
     remove_all_anachronistic_factions!
+    make_holy_wars_convert!
   end
 end
