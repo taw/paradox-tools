@@ -285,4 +285,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["call_for_peace"].delete!{true}
     end
   end
+
+  def longer_cb_on_backstabbers!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      node["cb_dishonored_call"]["months"] = 120
+    end
+  end
 end

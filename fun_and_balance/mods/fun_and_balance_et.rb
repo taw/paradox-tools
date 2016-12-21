@@ -77,6 +77,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     move_burgundy_capital_to_hre!
     power_projection_tweaks!
     disable_call_for_peace!
+    longer_cb_on_backstabbers!
 
     fix_adopt_secularism_decision!
   end
