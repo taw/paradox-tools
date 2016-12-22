@@ -12,10 +12,11 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"], # This goes away in 1.18 anyway
-      ["NCountry.LIBERTY_DESIRE_VASSAL_DEVELOPMENT_RATIO", 0.25, 0.10],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
+      ["NCountry.LIBERTY_DESIRE_VASSAL_DEVELOPMENT_RATIO", 0.25, 0.10],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
+      ["NCountry.MERCHANT_REPUBLIC_SIZE_LIMIT", 20, 10000],
       ["NCountry.POLICY_COST", 1, 0],
       ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0], # 1.18 changes this
       ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0], # 1.18 changes this
