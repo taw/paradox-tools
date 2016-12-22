@@ -82,7 +82,7 @@ class DiffParadox
     end
   end
   def run!
-    if @a.directory? and b.directory?
+    if @a.directory? and @b.directory?
       files_in_both.each do |path|
         diff_file!(@a + path, @b + path)
       end
