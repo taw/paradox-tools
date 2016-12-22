@@ -291,4 +291,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["cb_dishonored_call"]["months"] = 120
     end
   end
+
+  def faster_institution_spread!
+    patch_mod_file!("common/institutions/00_Core.txt") do |node|
+      node.each do |name, institution|
+        institution["embracement_speed"].find_all("modifier").each do |mod|
+          mod["factor"] *= 2
+        end
+      end
+    end
+  end
 end

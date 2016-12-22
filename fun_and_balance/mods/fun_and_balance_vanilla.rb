@@ -66,5 +66,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     power_projection_tweaks!
     disable_call_for_peace!
     longer_cb_on_backstabbers!
+    faster_institution_spread!
   end
 end
