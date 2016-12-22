@@ -69,7 +69,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     end
 
     anyone_can_form_byzantium!
-    double_diplo_rel_limit_from_ideas!
+    # double_diplo_rel_limit_from_ideas!
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!
