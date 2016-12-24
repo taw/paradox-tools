@@ -410,6 +410,7 @@ class CK2TweaksGameModification < CK2GameModification
     #   require 'pry'; binding.pry
     # end
     patch_mod_file!("history/titles/k_italy.txt") do |node|
+      node[Date.parse("0100.1.1")] = PropertyList["de_jure_liege", "e_byzantium"]
       node[Date.parse("0867.1.1")] = PropertyList["de_jure_liege", "e_hre"]
       node.instance_eval{ @entries.sort! }
     end
