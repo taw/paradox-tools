@@ -36,6 +36,7 @@ class TribalDevelopmentAnalysis
   def run!
     realms = {}
     @data["provinces"].each do |id, province|
+      next if province == []
       holding_names = valid_titles & province.keys
       holding_names.each do |name|
         realm = top_realm_by_title(name)
