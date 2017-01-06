@@ -879,6 +879,22 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def fix_council_positions!
+    # The bullshit of enemy being simultaneously too weak for glory hounds
+    # and too numerous for pragmatists
+    patch_mod_file!("common/council_voting/01_pragmatist_pattern.txt") do |node|
+      y = node["pragmatist_pattern_for"]["declare_war_interaction"]
+      y["NOT"]["custom_tooltip"]["hidden_tooltip"] = PropertyList["liege",
+        PropertyList["is_primary_war_defender", true]
+      ]
+      n = node["pragmatist_pattern_against"]["declare_war_interaction"]
+      nn = n["OR"].find_all("custom_tooltip").find{|nd| nd["text"] == "pattern_pragmatist_were_already_busy_fighting_tooltip"}
+      nn["hidden_tooltip"] = PropertyList["liege",
+        PropertyList["is_primary_war_defender", true]
+      ]
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -908,6 +924,7 @@ class CK2TweaksGameModification < CK2GameModification
     allow_more_commanders!
     nerf_demand_conversion!
     easier_seduction!
+    fix_council_positions!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
