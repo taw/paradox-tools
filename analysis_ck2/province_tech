@@ -23,22 +23,43 @@ class ProvinceTechAnalysis
     end
   end
 
-  def realm(id)
+  def realms(id)
     province = @data["provinces"][id]
     province_titles = valid_titles & province.keys
     top_realms = province_titles.map do |title|
       top_realm_by_title(title)
     end.uniq
 
-    top_realms.sort.join(" / ")
+    top_realms.sort
   end
 
   def run!
+    province_techs = []
+    realm_provinces_techs = {}
     @data["provinces"].each do |id, province|
+      # Ocean provinces now have flags (like disease)
+      next if province == []
       name = province["name"]
+      next unless name
       total_tech = province["technology"]["tech_levels"].inject(&:+).round(3)
-      province_realm = realm(id)
-      puts [total_tech, name, province_realm, id].join("\t")
+      province_realms = realms(id)
+      province_techs << [total_tech, name, province_realms, id]
+      province_realms.each do |realm|
+        realm_provinces_techs[realm] ||= []
+        realm_provinces_techs[realm] << total_tech
+      end
+    end
+
+    puts "Provinces:"
+    province_techs.sort.reverse.each do |total_tech, name, province_realms, id|
+      puts [total_tech, name, province_realms.join("\t"), id].join("\t")
+    end
+    puts ""
+
+    puts "Realms:"
+    realm_avg = realm_provinces_techs.map{|realm, techs| [techs.inject(&:+) / techs.size, realm, techs.size] }
+    realm_avg.sort.reverse.each do |avg, realm, size|
+      puts "#{avg.round(2)}\t#{realm}\t#{size}"
     end
   end
 end

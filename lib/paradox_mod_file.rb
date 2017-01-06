@@ -180,6 +180,12 @@ class ParadoxModFile
       @tokens.shift
       val = parse_val
       [key, Property::LT[val]]
+    elsif @tokens[0] == :eq
+      # This is stupid thing found in ck2 saves
+      key = ""
+      @tokens.shift
+      val = parse_val
+      [key, val]
     else
       nil
     end
