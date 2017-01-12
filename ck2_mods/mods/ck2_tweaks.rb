@@ -895,6 +895,18 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def more_battle_captives!
+    #         <duke  duke king emperor
+    # Vanilla:  1.000    0.5   0.25  0.125
+    # BP Mod:  50.000   50.0  50.00 50.000
+    # This:    50.000   25.0  12.50  6.250
+    patch_mod_file!("events/battle_events.txt") do |node|
+      imprison_event = node.find_all("character_event").find{|e| e["id"] == 250}
+      mods = imprison_event["weight_multiplier"]
+      mods.add! "modifier", PropertyList["factor", 50, "always", true]
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -925,6 +937,7 @@ class CK2TweaksGameModification < CK2GameModification
     nerf_demand_conversion!
     easier_seduction!
     fix_council_positions!
+    more_battle_captives!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
