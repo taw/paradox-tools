@@ -35,9 +35,7 @@ class BuildingsAnalysis
       hospital = province["hospital"]
       if hospital
         hospital_buildings = hospital.keys.select{|k| hospital[k] == true}
-        unless hospital_buildings.empty?
-          add_holding "hospital", hospital_buildings
-        end
+        add_holding "hospital", hospital_buildings
       end
 
       holding_names = valid_titles & province.keys
