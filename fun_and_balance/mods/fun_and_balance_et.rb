@@ -60,7 +60,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     # modern      3+6   -> 6+8
     #
     # It's much less calibrated than vanilla.
-    # Bonuses from ideas etc. doubled
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
