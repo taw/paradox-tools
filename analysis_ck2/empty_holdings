@@ -24,11 +24,13 @@ class EmptyHoldingsAnalysis
     end
   end
 
+  # Not sure how it deals with nomad counties
   def run!
     realms = Hash.new(0)
     @data["provinces"].each do |id, province|
       next if province == []
       holding_names = valid_titles & province.keys
+      next if holding_names.empty?
       primary =  province["primary_settlement"]
       built = holding_names.size
       max = province["max_settlements"] || built
@@ -37,9 +39,10 @@ class EmptyHoldingsAnalysis
       else
         realm = top_realm_by_title(primary)
       end
-      realms[realm] += (max - built)
+      free = max - built
+      realms[realm] += free if free > 0
     end
-    realms.sort_by(&:last).each do |realm, free|
+    realms.sort_by(&:last).reverse.each do |realm, free|
       puts "#{realm} #{free}"
     end
   end
