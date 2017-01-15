@@ -1,0 +1,67 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require "set"
+require "pry"
+
+class BuildingsAnalysis
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def valid_titles
+    @valid_titles ||= Set[*@data["title"].keys]
+  end
+
+  def add(type, building)
+    @by_type[type] ||= Hash.new(0)
+    @by_type[type][building] += 1
+  end
+
+  def add_holding(type, buildings)
+    add type, "total"
+    buildings.each do |b|
+      add type, b
+    end
+  end
+
+  def run!
+    @by_type = {}
+
+    @data["provinces"].each do |id, province|
+      next if province == []
+
+      hospital = province["hospital"]
+      if hospital
+        hospital_buildings = hospital.keys.select{|k| hospital[k] == true}
+        unless hospital_buildings.empty?
+          add_holding "hospital", hospital_buildings
+        end
+      end
+
+      holding_names = valid_titles & province.keys
+      holding_names.each do |name|
+        holding = province[name]
+        type = holding["type"]
+        buildings = holding.keys.select{|k| holding[k] == true}
+        buildings -= %W[maintaining_mercenaries]
+        add_holding type, buildings
+      end
+    end
+
+    @by_type.each do |type, stats|
+      puts "#{type}"
+      stats.sort_by(&:last).each do |b, n|
+        puts "* #{b} - #{n}"
+      end
+    end
+  end
+end
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+BuildingsAnalysis.new(ARGV[0]).run!
