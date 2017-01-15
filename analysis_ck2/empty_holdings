@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require "set"
+require "pry"
+
+class EmptyHoldingsAnalysis
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def valid_titles
+    @valid_titles ||= Set[*@data["title"].keys]
+  end
+
+  def top_realm_by_title(title)
+    title_data = @data["title"][title]
+    raise "No such title `#{title}'" unless title_data
+    if title_data["liege"]
+      top_realm_by_title(title_data["liege"]["title"])
+    else
+      title
+    end
+  end
+
+  def run!
+    realms = Hash.new(0)
+    @data["provinces"].each do |id, province|
+      next if province == []
+      holding_names = valid_titles & province.keys
+      primary =  province["primary_settlement"]
+      built = holding_names.size
+      max = province["max_settlements"] || built
+      if primary == "---"
+        realm = "---"
+      else
+        realm = top_realm_by_title(primary)
+      end
+      realms[realm] += (max - built)
+    end
+    realms.sort_by(&:last).each do |realm, free|
+      puts "#{realm} #{free}"
+    end
+  end
+end
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+tda = EmptyHoldingsAnalysis.new(ARGV[0])
+tda.run!
