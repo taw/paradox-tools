@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require "set"
+
+class BestSitesForNewHoldingsAnalysis
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def valid_titles
+    @valid_titles ||= Set[*@data["title"].keys]
+  end
+
+  def top_realm_by_title(title)
+    title_data = @data["title"][title]
+    raise "No such title `#{title}'" unless title_data
+    if title_data["liege"]
+      top_realm_by_title(title_data["liege"]["title"])
+    else
+      title
+    end
+  end
+
+  def top_realm(province)
+    primary = province["primary_settlement"]
+    if primary == "---"
+      "---"
+    else
+      top_realm_by_title(primary)
+    end
+  end
+
+  def add_site(realm, province_name, cost)
+    @realms[realm] ||= []
+    @realms[realm] << [cost, province_name]
+  end
+
+  def add_province(id, province)
+    holding_names = valid_titles & province.keys
+    return if holding_names.empty?
+    realm = top_realm(province)
+    built = holding_names.size
+    max = province["max_settlements"] || built
+    free = max - built
+    return if free == 0
+    base_cost = 400 + 100*built
+    construction_tech = province["technology"]["tech_levels"][11]
+    discount = 0.25 * (construction_tech / 8.0)
+    cost = base_cost * (1 - discount)
+    province_name = province["name"]
+    add_site(realm, province_name, cost)
+  end
+
+  # Not sure how it deals with nomad counties
+  def run!
+    @realms = {}
+    @data["provinces"].each do |id, province|
+      next if province == []
+      add_province(id, province)
+    end
+    @realms.sort_by{|r,s| -s.size}.each do |realm, stats|
+      puts "#{realm}:"
+      stats.sort.each do |c,n|
+        puts "* #{c} - #{n}"
+      end
+    end
+  end
+end
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+BestSitesForNewHoldingsAnalysis.new(ARGV[0]).run!

@@ -2,7 +2,6 @@
 
 require_relative "../lib/paradox"
 require "set"
-require "pry"
 
 class EmptyHoldingsAnalysis
   def initialize(path)
