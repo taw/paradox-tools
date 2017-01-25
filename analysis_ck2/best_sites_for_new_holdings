@@ -10,6 +10,12 @@ class BestSitesForNewHoldingsAnalysis
     @data = ParadoxModFile.new(path: @path).parse!
   end
 
+  def province_type(province)
+    province[province["primary_settlement"]]["type"] || "unknown"
+  rescue
+    "unknown"
+  end
+
   def top_realm(province)
     primary = province["primary_settlement"]
     if primary == "---"
@@ -29,15 +35,23 @@ class BestSitesForNewHoldingsAnalysis
     return if holding_names.empty?
     realm = top_realm(province)
     built = holding_names.size
+    built += 1 if province["settlement_construction"]
     max = province["max_settlements"] || built
     free = max - built
     return if free == 0
-    base_cost = 400 + 100*built
-    construction_tech = province["technology"]["tech_levels"][11]
-    discount = 0.25 * (construction_tech / 8.0)
-    cost = base_cost * (1 - discount)
-    province_name = province["name"]
-    add_site(realm, province_name, cost)
+    free.times do |i|
+      # These should be used for more accurate estimation, but aren't:
+      modifiers = province.find_all("modifier").map{|m| m["modifier"]}
+      type = province_type(province)
+      base_cost = 400 + 100*(built+i)
+      construction_tech = province["technology"]["tech_levels"][11]
+      discount = 0.25 * (construction_tech / 8.0)
+      cost = base_cost * (1 - discount)
+      province_name = province["name"]
+      province_name += " (#{i+1})" if i > 0
+      province_name += " (#{type})" unless ["castle", "city", "temple"].include?(type)
+      add_site(realm, province_name, cost)
+    end
   end
 
   # Not sure how it deals with nomad counties
@@ -48,9 +62,9 @@ class BestSitesForNewHoldingsAnalysis
       add_province(id, province)
     end
     @realms.sort_by{|r,s| -s.size}.each do |realm, stats|
-      puts "#{realm}:"
+      puts "#{realm_name(realm)}:"
       stats.sort.each do |c,n|
-        puts "* #{c} - #{n}"
+        puts "* #{c.round(2)} - #{n}"
       end
     end
   end
