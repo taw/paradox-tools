@@ -1,17 +1,13 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox"
-require "set"
-require "pry"
+require_relative "ck2_analyses"
 
 class BuildingsAnalysis
+  include Ck2Analyses
   def initialize(path)
     @path = path
     @data = ParadoxModFile.new(path: @path).parse!
-  end
-
-  def valid_titles
-    @valid_titles ||= Set[*@data["title"].keys]
   end
 
   def add(type, building)

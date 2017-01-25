@@ -1,26 +1,13 @@
 #!/usr/bin/env ruby
 
-require "set"
 require_relative "../lib/paradox"
+require_relative "ck2_analyses"
 
 class TribalDevelopmentAnalysis
+  include Ck2Analyses
   def initialize(path)
     @path = path
     @data = ParadoxModFile.new(path: @path).parse!
-  end
-
-  def valid_titles
-    @valid_titles ||= Set[*@data["title"].keys]
-  end
-
-  def top_realm_by_title(title)
-    title_data = @data["title"][title]
-    raise "No such title `#{title}'" unless title_data
-    if title_data["liege"]
-      top_realm_by_title(title_data["liege"]["title"])
-    else
-      title
-    end
   end
 
   def realm(id)
@@ -55,7 +42,7 @@ class TribalDevelopmentAnalysis
       end
     end
     realms.sort_by{|name, data| [-data.values.inject(&:+), name]}.each do |name, data|
-      puts "#{name} #{data.inspect}"
+      puts "#{realm_name(name)} #{data.inspect}"
     end
   end
 end
@@ -65,5 +52,4 @@ unless ARGV.size == 1
   exit 1
 end
 
-tda = TribalDevelopmentAnalysis.new(ARGV[0])
-tda.run!
+TribalDevelopmentAnalysis.new(ARGV[0]).run!

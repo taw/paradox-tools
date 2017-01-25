@@ -1,26 +1,13 @@
 #!/usr/bin/env ruby
 
-require "set"
 require_relative "../lib/paradox"
+require_relative "ck2_analyses"
 
 class ProvinceTechAnalysis
+  include Ck2Analyses
   def initialize(path)
     @path = path
     @data = ParadoxModFile.new(path: @path).parse!
-  end
-
-  def valid_titles
-    @valid_titles ||= Set[*@data["title"].keys]
-  end
-
-  def top_realm_by_title(title)
-    title_data = @data["title"][title]
-    raise "No such title `#{title}'" unless title_data
-    if title_data["liege"]
-      top_realm_by_title(title_data["liege"]["title"])
-    else
-      title
-    end
   end
 
   def realms(id)
@@ -29,7 +16,6 @@ class ProvinceTechAnalysis
     top_realms = province_titles.map do |title|
       top_realm_by_title(title)
     end.uniq
-
     top_realms.sort
   end
 
@@ -59,7 +45,7 @@ class ProvinceTechAnalysis
     puts "Realms:"
     realm_avg = realm_provinces_techs.map{|realm, techs| [techs.inject(&:+) / techs.size, realm, techs.size] }
     realm_avg.sort.reverse.each do |avg, realm, size|
-      puts "#{avg.round(2)}\t#{realm}\t#{size}"
+      puts "#{avg.round(2)}\t#{realm_name(realm)}\t#{size}"
     end
   end
 end
@@ -69,5 +55,4 @@ unless ARGV.size == 1
   exit 1
 end
 
-pta = ProvinceTechAnalysis.new(ARGV[0])
-pta.run!
+ProvinceTechAnalysis.new(ARGV[0]).run!
