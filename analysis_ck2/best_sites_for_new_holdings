@@ -36,7 +36,7 @@ class BestSitesForNewHoldingsAnalysis
     realm = top_realm(province)
     built = holding_names.size
     built += 1 if province["settlement_construction"]
-    max = province["max_settlements"] || built
+    max = province["max_settlements"] || 7
     free = max - built
     return if free == 0
     free.times do |i|
