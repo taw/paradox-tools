@@ -62,11 +62,19 @@ class UITweaksGameModification < CK2GameModification
     end
   end
 
+  def stop_join_war_spam!
+    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
+      node["CALL_ALLY_INTERACTION_ACCEPT_EVENT"]["events"].delete(238)
+      node["CALL_ALLY_INTERACTION_ACCEPT_EVENT"]["events"].delete(41000)
+    end
+  end
+
   def apply!
     setup_sensible_important_decisions_list!
     disable_fucking_hints!
     mark_more_titles_as_high_priority!
     # bigger_war_box! # Bigger UI conflict
     show_all_wars_on_map!
+    stop_join_war_spam!
   end
 end
