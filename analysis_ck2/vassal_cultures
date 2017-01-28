@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "ck2_analyses"
+
+class Character
+  def print_dynasty_tree(prefix="")
+    puts "#{prefix}#{name} (#{culture}; #{religion})"
+    if father
+      father.print_dynasty_tree("#{' ' * prefix.size}F: ")
+    end
+    if mother
+      mother.print_dynasty_tree("#{' ' * prefix.size}M: ")
+    end
+  end
+
+  def print_vassal_tree(prefix="")
+    puts "#{prefix}#{full_name} of #{top_tier_titles.join("/")} (#{culture}; #{religion})"
+    vassals.sort_by{|v| -v.tier}.each do |v|
+      v.print_vassal_tree("#{' ' * prefix.size}* ")
+    end
+  end
+end
+
+class VassalCulturesAnalysis
+  include Ck2Analyses
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def run!
+    load_characters!
+    player.print_vassal_tree
+  end
+end
+
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+VassalCulturesAnalysis.new(ARGV[0]).run!

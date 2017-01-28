@@ -17,8 +17,12 @@ class Character
     @spouses = @node.find_all("spouse").map{|i| Character[i]}
   end
 
-  def to_s
+  def full_name
     [name, dynasty].compact.join(" ")
+  end
+
+  def to_s
+    full_name
   end
 
   def inspect
@@ -43,6 +47,14 @@ class Character
 
   def vassals
     titles.flat_map(&:vassals).map(&:holder).uniq - [self]
+  end
+
+  def tier
+    @tier ||= (titles.map(&:tier).max || 0)
+  end
+
+  def top_tier_titles
+    @titles.select{|t| t.tier == tier}
   end
 
   class << self

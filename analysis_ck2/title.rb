@@ -15,6 +15,18 @@ class Title
     "Title<#{to_s}>"
   end
 
+  def tier
+    unless @tier
+      t = %W[b c d k e].index(@id[0])
+      if t
+        @tier = t + 1
+      else
+        raise "Wrong title tier #{@id}"
+      end
+    end
+    @tier
+  end
+
   def link!
     if @node["liege"]
       liege_title = @node["liege"]["title"]
