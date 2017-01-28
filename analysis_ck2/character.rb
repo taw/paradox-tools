@@ -1,0 +1,62 @@
+class Character
+  attr_reader :id, :node, :father, :mother, :dynasty, :spouses
+  attr_reader :children, :titles
+  def initialize(id, node)
+    @id = id
+    @node = node
+    @children = []
+    @titles = []
+  end
+
+  def link!
+    @father = Character[@node["fat"]]
+    @mother = Character[@node["mot"]]
+    @father.children << self if @father
+    @mother.children << self if @mother
+    @dynasty = Dynasty[@node["dnt"]]
+    @spouses = @node.find_all("spouse").map{|i| Character[i]}
+  end
+
+  def to_s
+    [name, dynasty].compact.join(" ")
+  end
+
+  def inspect
+    "Character<#{id}, #{to_s}>"
+  end
+
+  def culture
+    @node["cul"] || dynasty.culture
+  end
+
+  def religion
+    @node["rel"] || dynasty.religion
+  end
+
+  def name
+    @node["bn"]
+  end
+
+  def dynasty_name
+    @dynasty.name
+  end
+
+  def vassals
+    titles.flat_map(&:vassals).map(&:holder).uniq - [self]
+  end
+
+  class << self
+    def each(&block)
+      @db.each(&block)
+    end
+
+    def [](id)
+      @db[id]
+    end
+
+    def add(id, node)
+      @db ||= {}
+      @db[id] = Character.new(id, node)
+    end
+  end
+end
