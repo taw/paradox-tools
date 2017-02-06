@@ -823,7 +823,7 @@ class CK2TweaksGameModification < CK2GameModification
           "AND", PropertyList[
             "NOT", PropertyList["same_sex", "FROM"],
             "OR", PropertyList[
-              "FROM", PropertyList["trait", "homosexual"],
+              "FROM", PropertyList["trait", "lustful"],
               "FROM", PropertyList["NOT", PropertyList["trait", "homosexual"]],
             ],
             "OR", PropertyList[
@@ -834,12 +834,12 @@ class CK2TweaksGameModification < CK2GameModification
           "AND", PropertyList[
             "same_sex", "FROM",
             "OR", PropertyList[
-              "FROM", PropertyList["trait", "homosexual"],
               "FROM", PropertyList["trait", "lustful"],
+              "FROM", PropertyList["trait", "homosexual"],
             ],
             "OR", PropertyList[
-              "trait", "homosexual",
               "trait", "lustful",
+              "trait", "homosexual",
             ]
           ],
         ],
