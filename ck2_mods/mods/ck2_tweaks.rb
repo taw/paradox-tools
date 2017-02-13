@@ -907,6 +907,13 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def fix_hostile_supply!
+    # It's supposed to apply to enemy, actually applies to allies!
+    override_defines_lua!("hostile_supply",
+      "NDiplomacy.ENEMY_SETTLEMENT_SUPPLY_BONUS" => 0.0,
+    )
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -938,6 +945,7 @@ class CK2TweaksGameModification < CK2GameModification
     easier_seduction!
     fix_council_positions!
     more_battle_captives!
+    fix_hostile_supply!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
