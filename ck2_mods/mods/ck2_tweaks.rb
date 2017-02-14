@@ -910,7 +910,7 @@ class CK2TweaksGameModification < CK2GameModification
   def fix_hostile_supply!
     # It's supposed to apply to enemy, actually applies to allies!
     override_defines_lua!("hostile_supply",
-      "NDiplomacy.ENEMY_SETTLEMENT_SUPPLY_BONUS" => 0.0,
+      "NMilitary.ENEMY_SETTLEMENT_SUPPLY_BONUS" => 0.0,
     )
   end
 
