@@ -317,9 +317,16 @@ class CK2TweaksGameModification < CK2GameModification
   # Can't just delete, as there are references to them in events etc.
   def remove_all_anachronistic_factions!
     patch_mod_file!("common/objectives/00_factions.txt") do |node|
-      bad_factions = node.keys - ["faction_independence", "faction_claimant", "faction_antiking"]
+      good_factions = ["faction_independence", "faction_claimant", "faction_antiking"]
+      bad_factions = node.keys - good_factions
+      good_factions.each do |faction_name|
+        faction = node[faction_name]
+        # Increase their chances, not sure if it even does much
+        faction["chance"]["factor"] *= 5
+      end
       bad_factions.each do |faction_name|
-        node[faction_name]["potential"] = PropertyList["always", false]
+        faction = node[faction_name]
+        faction["potential"] = PropertyList["always", false]
       end
     end
   end
@@ -424,6 +431,7 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_file!("events/culture_conversion_events.txt") do |node|
       node.find_all("province_event").each do |event|
         if event["id"] == 55000
+          # There were also rules about not depopulated, but who cares about that
           event["trigger"].delete! "any_neighbor_province"
           # Speed it up by 2x base
           event["mean_time_to_happen"]["months"] /= 2
@@ -914,6 +922,33 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def allow_settle_tribe_job!
+    patch_mod_file!("common/job_actions/00_job_actions.txt") do |node|
+      # Doesn't need tribal
+      node["action_settle_tribe"]["potential"] = PropertyList[
+        "FROM", PropertyList["job_treasurer", PropertyList["NOT", PropertyList["has_character_modifier", "in_seclusion"]]],
+      ]
+      # Doesn't need demesne
+      node["action_settle_tribe"]["trigger"] = PropertyList[
+        "any_province_lord", PropertyList[
+          "OR", PropertyList[
+            "character", "FROM",
+            "is_liege_or_above", "FROM",
+          ],
+        ],
+        "NOT", PropertyList["culture", "FROM"],
+      ]
+    end
+  end
+
+  def remove_viceroyalty_opinion_penalty!
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+      node.keys.grep(/opinion_granted_other_.*_vice_royalty/).each do |key|
+        node[key]["opinion"] = 0
+      end
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -937,7 +972,7 @@ class CK2TweaksGameModification < CK2GameModification
     stronger_claims_on_rebels!
     # extend_timeline!
     fix_de_jure_map!
-    # easier_culture_conversion!
+    easier_culture_conversion!
     easier_title_creation!
     # TODO: de jure drift by title_decisions
     allow_more_commanders!
@@ -946,6 +981,7 @@ class CK2TweaksGameModification < CK2GameModification
     fix_council_positions!
     more_battle_captives!
     fix_hostile_supply!
+    allow_settle_tribe_job!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
@@ -959,5 +995,6 @@ class CK2TweaksGameModification < CK2GameModification
     remove_all_anachronistic_factions!
     make_holy_wars_convert!
     enable_more_succession_laws!
+    remove_viceroyalty_opinion_penalty!
   end
 end
