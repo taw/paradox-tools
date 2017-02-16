@@ -46,8 +46,12 @@ class TechnologyMap < ParadoxGame
     end
   end
 
+  def save_path
+    "ck2_technologies_#{@data["date"]}.png"
+  end
+
   def run!
-    generate_map_image(build_color_map(technology_map)).write("ck2_technologies.png")
+    generate_map_image(build_color_map(technology_map)).write(save_path)
   end
 end
 
