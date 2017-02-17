@@ -123,7 +123,12 @@ class ParadoxModFile
       end
     end
     @tokens.shift
-    rv
+    # {} could be empty array or empty object, but code is simpler to assume object
+    if rv == []
+      {}
+    else
+      rv
+    end
   end
 
   def parse_val
