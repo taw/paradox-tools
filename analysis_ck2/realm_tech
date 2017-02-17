@@ -3,7 +3,7 @@
 require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class ProvinceTechAnalysis
+class RealmTechAnalysis
   include Ck2Analyses
   def initialize(path)
     @path = path
@@ -11,9 +11,8 @@ class ProvinceTechAnalysis
   end
 
   def run!
-    province_techs.sort_by{|info| [-info[:tech], info[:name]] }.each do |info|
-      province_realms = realms(info[:id]).map{|realm| realm_name(realm)}
-      puts [info[:tech], info[:name], province_realms.join("\t"), info[:id]].join("\t")
+    realm_techs.sort_by{|info| [-info[:tech], info[:name], info[:size]]}.each do |info|
+      puts "#{info[:tech]}\t#{info[:name]}\t#{info[:size]}"
     end
   end
 end
@@ -23,4 +22,4 @@ unless ARGV.size == 1
   exit 1
 end
 
-ProvinceTechAnalysis.new(ARGV[0]).run!
+RealmTechAnalysis.new(ARGV[0]).run!
