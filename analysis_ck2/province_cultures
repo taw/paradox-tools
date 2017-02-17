@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "ck2_analyses"
+
+class ProvinceCulturesAnalysis
+  include Ck2Analyses
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def run!
+    cultures = Hash.new(0)
+    @data["provinces"].each do |id, province|
+      culture = province["culture"]
+      cultures[culture] += 1 if culture
+    end
+
+    cultures.sort_by{|c,n| [-n,c]}.each do |culture, count|
+      puts "#{count} #{culture}"
+    end
+  end
+end
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+ProvinceCulturesAnalysis.new(ARGV[0]).run!
