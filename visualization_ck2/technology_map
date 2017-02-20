@@ -31,15 +31,34 @@ class TechnologyMap < ParadoxGame
     end
   end
 
+  # 0 to 1
+  def tech_scale_linear(t)
+    @max_tech ||= province_technologies.values.max
+    @min_tech ||= province_technologies.values.select{|v| v != 0}.min
+    (t-@min_tech) / (@max_tech-@min_tech)
+  end
+
+  # 0 to 1
+  # We return worst value if multiples are covered
+  # (which mostly matters for initial map, not really later)
+  def tech_scale_quantile(t)
+    unless @tech_scale
+      @tech_scale = {}
+      samples = province_technologies.values.select{|v| v != 0}.sort
+      samples.each_with_index do |s,i|
+        @tech_scale[s] ||= i.to_f / (samples.size-1)
+      end
+    end
+    @tech_scale[t]
+  end
+
   def technology_map
     @technology_map ||= begin
-      max_tech = province_technologies.values.max
-      min_tech = province_technologies.values.select{|v| v != 0}.min
       province_technologies.map{|i,t|
         if t == 0
           [i, [63, 63, 63]]
         else
-          c = (255.0 * (t-min_tech) / (max_tech-min_tech)).round
+          c = (255.0 * tech_scale_quantile(t)).round
           [i, [255-c, c, 127]]
         end
       }.to_h
