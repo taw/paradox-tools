@@ -125,7 +125,7 @@ class ParadoxModFile
     @tokens.shift
     # {} could be empty array or empty object, but code is simpler to assume object
     if rv == []
-      {}
+      PropertyList.new
     else
       rv
     end
