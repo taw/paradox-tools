@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "ck2_analyses"
+
+class BuildingSitesAnalysis
+  include Ck2Analyses
+  def initialize(path)
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def interesting_buildings
+    [
+      ["city", "ct_university_1", 7, 2],
+      ["city", "ct_university_2", 7, 4],
+      ["city", "ct_university_3", 7, 8],
+      ["temple", "tp_school_1", 8, 3],
+      ["temple", "tp_school_2", 8, 6],
+    ]
+  end
+
+  def run!
+    buildables = []
+
+    @data["provinces"].each do |id, province|
+      next if province == []
+      holding_names = valid_titles & province.keys
+      next if holding_names.empty?
+
+      holding_names.each do |name|
+        holding = province[name]
+        type = holding["type"]
+        buildings = holding.keys.select{|k| holding[k] == true}
+        buildings -= %W[maintaining_mercenaries]
+        realm = top_realm_by_title(name)
+        techs = province["technology"]["tech_levels"]
+
+        # Not actionable right now
+        next if holding["building_construction"]
+
+        interesting_buildings.each do |ht, building, tt, tlevel|
+          next unless type == ht
+          next unless techs[tt] >= tlevel
+          next if buildings.include?(building)
+          buildables << [realm, building, name]
+        end
+      end
+    end
+
+    buildables.sort.each do |buildable|
+      puts buildable.join(" ")
+    end
+  end
+end
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+  exit 1
+end
+
+BuildingSitesAnalysis.new(ARGV[0]).run!
