@@ -939,6 +939,15 @@ class CK2TweaksGameModification < CK2GameModification
         "NOT", PropertyList["culture", "FROM"],
       ]
     end
+
+    patch_mod_file!("events/job_steward.txt") do |node|
+      event = node.find_all("character_event").find{|e| e["id"] == 925}
+      event["trigger"] = PropertyList[
+        "has_job_action", "action_settle_tribe",
+        "NOT", PropertyList["location", PropertyList["culture", "ROOT"]],
+        "location", PropertyList["owner", PropertyList["same_realm", "ROOT"]],
+      ]
+    end
   end
 
   def remove_viceroyalty_opinion_penalty!
