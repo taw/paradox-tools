@@ -11,9 +11,9 @@ class TechnologyMap < ParadoxGame
   include GameMap
 
   def initialize(save_game, *roots)
+    super(*roots)
     @path = save_game
     @data = ParadoxModFile.new(path: @path).parse!
-    super(*roots)
   end
 
   def province_technologies
