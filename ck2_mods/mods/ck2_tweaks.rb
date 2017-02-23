@@ -958,6 +958,30 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def viceroyalties_can_use_gavelkind!
+    # I hate patches like this
+    patch_mod_file!("common/laws/succession_laws.txt") do |node|
+      succession = node["succession_laws"]
+      gavelkind = succession["succ_gavelkind"]
+      gavelkind["potential"]["holder_scope"] = PropertyList[
+       "OR", PropertyList[
+         "independent", true,
+         "NOT", PropertyList["any_liege", PropertyList["holy_order", true]],
+       ],
+       "NOT", PropertyList["religion_group", "muslim"],
+       "is_merchant_republic", false,
+       "is_patrician", false,
+       "in_revolt", false,
+      ]
+      # Also ban it for viceroyalties or weird stuff happens
+      primogeniture = succession["succ_primogeniture"]
+      primogeniture["potential"]["holder_scope"].add!(
+        "NOT",
+        PropertyList["any_demesne_title", PropertyList["is_vice_royalty", true]]
+      )
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -1005,5 +1029,6 @@ class CK2TweaksGameModification < CK2GameModification
     make_holy_wars_convert!
     enable_more_succession_laws!
     remove_viceroyalty_opinion_penalty!
+    viceroyalties_can_use_gavelkind!
   end
 end
