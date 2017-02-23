@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require "zip"
+Zip.warn_invalid_date = false
+
+def unpack_save(path)
+  # Already unpacked!
+  return unless open(path, "rb").read(2) == "PK"
+  Zip::File.open(path) do |zip_file|
+    save_entry = zip_file.entries.find{|entry| entry.name == File.basename(path)}
+    raise "Doesn't look like savegame" unless save_entry
+    content = save_entry.get_input_stream.read
+    tmp = "#{path}.tmp"
+    raise if Pathname(tmp).exist?
+    open(tmp, "wb") do |fh|
+      fh.write(content)
+    end
+    FileUtils.mv tmp, path
+  end
+end
+
+ARGV.each do |path|
+  unpack_save(path)
+end
