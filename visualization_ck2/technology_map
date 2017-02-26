@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require "RMagick"
-# require "pp"
 require_relative "../lib/paradox"
 require_relative "image_generation"
 require_relative "game_map"
@@ -66,10 +64,11 @@ class TechnologyMap < ParadoxGame
   end
 
   def save_path
-    "ck2_technologies_#{@data["date"]}.png"
+    "output/ck2_technologies_#{@data["date"]}.png"
   end
 
   def run!
+    Pathname("output").mkpath
     generate_map_image(build_color_map(technology_map)).write(save_path)
   end
 end

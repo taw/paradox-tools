@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "image_generation"
+require_relative "game_map"
+
+class RulerReligionMap < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def initialize(save_game, *roots)
+    super(*roots)
+    @path = save_game
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def top_realm_by_title(title)
+    title_data = @data["title"][title]
+    raise "No such title `#{title}'" unless title_data
+    if title_data["liege"]
+      top_realm_by_title(title_data["liege"]["title"])
+    else
+      title
+    end
+  end
+
+  def province_id_to_title
+    @province_id_to_title ||= begin
+      map = {}
+      node = parse("common/province_setup/00_province_setup.txt")
+      node.each do |id, province|
+        map[id] = province["title"]
+      end
+      map
+    end
+  end
+
+  def character_religion(character_id)
+    character = @data["character"][character_id]
+    religion = character["rel"]
+    return religion if religion
+    dynasty_id = character["dnt"]
+    dynasty = @data["dynasties"][dynasty_id]
+    dynasty["religion"] || dynasty["coat_of_arms"]["religion"]
+  end
+
+  def ruler_religions
+    @ruler_religions ||= begin
+      map = {}
+      @data["provinces"].to_a.each do |prop|
+        id = prop.key
+        title = province_id_to_title[id]
+        next unless title # wasteland or something
+        realm = top_realm_by_title(title)
+        holder_id = @data["title"][realm]["holder"]
+        religion = character_religion(holder_id)
+        map[id] = religion
+      end
+      map
+    end
+  end
+
+  def ruler_religion_map
+    @ruler_religion_map ||= begin
+      ruler_religions.map{|i,r|
+        [i, religion_colors[r]]
+      }.to_h
+    end
+  end
+
+  def religion_colors
+    @religion_colors ||= begin
+      map = {}
+      parse("common/religions/00_religions.txt").each do |group_name, group|
+        group.each do |religion_name, religion|
+          next unless religion.is_a?(PropertyList)
+          color = religion["color"]
+          next unless color
+          r, g, b = color
+          color = color.map{|u| (u*255.0).round }
+          map[religion_name] = color
+        end
+      end
+      map
+    end
+  end
+
+  def save_path
+    "output/ck2_ruler_religion_#{@data["date"]}.png"
+  end
+
+  def run!
+    Pathname("output").mkpath
+    generate_map_image(build_color_map(ruler_religion_map)).write(save_path)
+  end
+end
+
+RulerReligionMap.new(*ARGV).run!

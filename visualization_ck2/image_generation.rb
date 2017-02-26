@@ -1,3 +1,5 @@
+require "RMagick"
+
 module ImageGeneration
   def province_definitions
     @province_definitions ||= begin
