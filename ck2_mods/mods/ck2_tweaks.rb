@@ -24,6 +24,15 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def reduce_revocation_timer!
+    # This is exploit-prevention silliness, but at 12 months
+    # it gets in way of legit revocation
+    # (like when infidel vassal grants titles)
+    override_defines_lua!("reduce_revocation_timer",
+      "NTitle.MIN_REVOKE_MONTHS_AFTER_GRANT" => 1,
+    )
+  end
+
   def allow_intermarriage!
     patch_mod_files!("common/religions/*.txt") do |node|
       node.each do |group_name, group|
@@ -1015,6 +1024,7 @@ class CK2TweaksGameModification < CK2GameModification
     more_battle_captives!
     fix_hostile_supply!
     allow_settle_tribe_job!
+    reduce_revocation_timer!
 
     ### Specific things for specific campaign, kept for reference:
     # remove_levy_nerfs!
