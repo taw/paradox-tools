@@ -3,10 +3,11 @@
 require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class BuildingSitesAnalysis
+class BuildingSitesAnalysis < ParadoxGame
   include Ck2Analyses
-  def initialize(path)
-    @path = path
+  def initialize(save_game, *roots)
+    super(*roots)
+    @path = save_game
     @data = ParadoxModFile.new(path: @path).parse!
   end
 
@@ -43,7 +44,7 @@ class BuildingSitesAnalysis
           next unless type == ht
           next unless techs[tt] >= tlevel
           next if buildings.include?(building)
-          buildables << [realm, building, name]
+          buildables << [realm, building, title_paths[name].reverse.join("/")]
         end
       end
     end
@@ -54,9 +55,9 @@ class BuildingSitesAnalysis
   end
 end
 
-unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.ck2> <root> [<mod1> <mod2> ... ] # non-compressed save only"
   exit 1
 end
 
-BuildingSitesAnalysis.new(ARGV[0]).run!
+BuildingSitesAnalysis.new(*ARGV).run!

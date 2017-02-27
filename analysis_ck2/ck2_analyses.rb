@@ -97,4 +97,30 @@ module Ck2Analyses
       character.link!
     end
   end
+
+  def title_paths
+    @title_paths ||= begin
+      map = {}
+      deep_search(landed_titles) do |node, path|
+        if path[-1] =~ /\A[ekdcb]_/
+          map[path[-1]] = path.reverse
+        end
+      end
+      map
+    end
+  end
+
+  def landed_titles
+    @landed_titles ||= parse("common/landed_titles/landed_titles.txt")
+  end
+
+  def deep_search(node, path=[], &blk)
+    node.each do |key, val|
+      subpath =  [*path, key]
+      if val.is_a?(PropertyList)
+        deep_search(val, subpath, &blk)
+      end
+      yield(val, subpath)
+    end
+  end
 end
