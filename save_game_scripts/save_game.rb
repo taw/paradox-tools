@@ -40,7 +40,7 @@ class SaveGame
 
   def each_token
     s = StringScanner.new(@data)
-    raise "Not a save game" unless s.scan(/EU4txt/)
+    raise "Not a save game" unless s.scan(/EU4txt|CK2txt/)
     until s.eos?
       next if s.scan(/\s+/)
       if s.scan(/"(.*?)"/)

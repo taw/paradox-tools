@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require "./save_game"
-require "./localization"
+require_relative "save_game"
+require_relative "localization"
 
 unless ARGV.size == 1 or ARGV.size == 2
   STDERR.puts "Usage: #{$0} <file.eu4> [<tag>]"

@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require_relative "save_game"
+
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <file.ck2>"
+  exit 1
+end
+
+save_path = ARGV[0]
+SaveGame.new(save_path)[:game_rules].each do |node|
+  puts "#{node.key} = #{node.content}"
+end
