@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+require "shellwords"
+
+class Pathname
+  def glob(pattern)
+    Dir.chdir(self.to_s) { Dir.glob(pattern).map{|m| self + m } }
+  end
+end
+
+class AnalyzeSavegameCollection
+  def initialize(script, save_dir, out_dir, *arguments)
+    @script = script
+    @save_dir = Pathname(save_dir)
+    @out_dir = Pathname(out_dir)
+    @arguments = arguments
+  end
+
+  def analyze!(save_path)
+    out_path = @out_dir + (save_path.basename(".ck2").to_s + ".txt")
+    cmd = [@script, save_path, *@arguments].map{|n| n.to_s.shellescape}.join(" ")
+    system "#{cmd} >#{out_path.to_s.shellescape}"
+  end
+
+  def call
+    @out_dir.mkpath
+    @save_dir.glob("*.ck2").each do |save_path|
+      analyze!(save_path)
+    end
+  end
+end
+
+unless ARGV.size >= 3
+  STDERR.puts "Usage: #{$0} script save_dir out_dir [arguments]"
+  exit 1
+end
+
+AnalyzeSavegameCollection.new(*ARGV).call
