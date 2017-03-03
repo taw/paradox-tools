@@ -63,6 +63,17 @@ module Ck2Analyses
     end
   end
 
+  def province_id_to_title
+    @province_id_to_title ||= begin
+      map = {}
+      node = parse("common/province_setup/00_province_setup.txt")
+      node.each do |id, province|
+        map[id] = province["title"]
+      end
+      map
+    end
+  end
+
   def realms(id)
     province = @data["provinces"][id]
     province_titles = valid_titles & province.keys

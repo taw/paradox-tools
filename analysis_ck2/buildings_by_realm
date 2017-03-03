@@ -3,10 +3,11 @@
 require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class BuildingsAnalysis
+class BuildingsAnalysis < ParadoxGame
   include Ck2Analyses
-  def initialize(path)
-    @path = path
+  def initialize(save_game, *roots)
+    super(*roots)
+    @path = save_game
     @data = ParadoxModFile.new(path: @path).parse!
   end
 
@@ -27,16 +28,10 @@ class BuildingsAnalysis
     @by_realm = {}
 
     @data["provinces"].each do |id, province|
-      next if province == []
+      province_title = province_id_to_title[id]
+      next unless province_title
+      realm = top_realm_by_title(province_title)      
       holding_names = valid_titles & province.keys
-      next if holding_names.empty?
-      primary =  province["primary_settlement"]
-
-      if primary == "---"
-        realm = "---"
-      else
-        realm = top_realm_by_title(primary)
-      end
 
       hospital = province["hospital"]
       if hospital
@@ -67,9 +62,9 @@ class BuildingsAnalysis
   end
 end
 
-unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.ck2> <root> [<mod1> <mod2> ... ] # non-compressed save only"
   exit 1
 end
 
-BuildingsAnalysis.new(ARGV[0]).run!
+BuildingsAnalysis.new(*ARGV).run!
