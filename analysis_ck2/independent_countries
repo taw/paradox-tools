@@ -1,0 +1,96 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "ck2_analyses"
+
+class IndependentCountrieshAnalysis < ParadoxGame
+  include Ck2Analyses
+  def initialize(save_game, *roots)
+    super(*roots)
+    @path = save_game
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def title_direct_liege
+    @title_direct_liege ||= begin
+      map = {}
+      @data["title"].each do |name, title|
+        next unless title["holder"]
+        if title["liege"]
+          map[name] = title["liege"]["title"]
+        else
+          map[name] = nil # own realm, but keep key
+        end
+      end
+      map
+    end
+  end
+
+  def title_top_liege
+    @title_top_liege ||= begin
+      map = {}
+      title_direct_liege.each_key do |key|
+        liege = key
+        liege = title_direct_liege[liege] while title_direct_liege[liege]
+        map[key] = liege
+      end
+      map
+    end
+  end
+
+  def independent_titles_with_land
+    @independent_titles_with_land ||= begin
+      map = Hash.new(0)
+      title_top_liege.each do |title, top_title|
+        next unless title =~ /\A[bc]_/
+        map[top_title] += 1
+      end
+      map
+    end
+  end
+
+  def holders
+    @holders ||= begin
+      map = {}
+      @data["title"].each do |name, title|
+        next unless title["holder"]
+        map[name] = title["holder"]
+      end
+      map
+    end
+  end
+
+  def title_name(name)
+    @data["title"][name]["name"] || localization(name)
+  end
+
+  def independent_rulers
+    @independent_rulers ||= begin
+      map = {}
+      independent_titles_with_land.each do |name, size|
+        holder = holders[name]
+        map[holder] ||= {titles: [], size: 0}
+        map[holder][:titles] << title_name(name)
+        map[holder][:size] += size
+      end
+      map
+    end
+  end
+
+  def run!
+    independent_rulers
+      .values
+      .map{|k| [k[:size], *k[:titles].sort]}
+      .sort_by{|s,t| [-s, *t]}
+      .each do |size, *titles|
+      puts [size, *titles].join("\t")
+    end
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.ck2> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
+IndependentCountrieshAnalysis.new(*ARGV).run!
