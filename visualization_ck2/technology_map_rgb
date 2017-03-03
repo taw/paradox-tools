@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "image_generation"
+require_relative "game_map"
+
+class TechnologyMap < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def initialize(save_game, *roots)
+    super(*roots)
+    @path = save_game
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def province_technologies
+    @province_technologies ||= begin
+      map = {}
+      @data["provinces"].to_a.each do |prop|
+        id = prop.key
+        next if prop.val == []
+        if prop.val["technology"]
+          levels = prop.val["technology"]["tech_levels"]
+          m = levels[0, 6].inject(&:+).round(1)
+          e = levels[6, 6].inject(&:+).round(1)
+          c = levels[12, 6].inject(&:+).round(1)
+          map[id] = [m, e, c]
+        end
+      end
+      map
+    end
+  end
+
+  def technology_map
+    @technology_map ||= begin
+      max_tech ||= province_technologies.values.flatten.max
+      province_technologies.map{|i,(m,e,c)|
+        m = (m / max_tech * 255.0).round
+        e = (e / max_tech * 255.0).round
+        c = (c / max_tech * 255.0).round
+        [i, [m, e, c]]
+      }.to_h
+    end
+  end
+
+  def save_path
+    "output/ck2_technologies_rgb_#{@data["date"]}.png"
+  end
+
+  def run!
+    Pathname("output").mkpath
+    generate_map_image(build_color_map(technology_map)).write(save_path)
+  end
+end
+
+TechnologyMap.new(*ARGV).run!
