@@ -2,7 +2,6 @@
 
 require_relative "../lib/paradox"
 require_relative "ck2_analyses"
-require "csv"
 
 class BestDemesneForEU4ConverterAnalysis < ParadoxGame
   include Ck2Analyses
