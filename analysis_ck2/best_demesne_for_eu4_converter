@@ -20,15 +20,21 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
     end
   end
 
-  def duchies
-    @duchies ||= begin
+  def titles
+    @titles ||= begin
       map = {}
       title_paths.each do |title, path|
         next unless title =~ /\A[bc]_/
         duchy = path.find{|t| t =~ /\Ad_/}
+        kingdom = path.find{|t| t =~ /\Ak_/}
+        empire = path.find{|t| t =~ /\Ae_/}
         next unless duchy
         map[duchy] ||= []
         map[duchy] << title
+        map[kingdom] ||= []
+        map[kingdom] << title
+        map[empire] ||= []
+        map[empire] << title
       end
       map
     end
@@ -47,15 +53,15 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
     end
   end
 
-  def ck2_duchies_to_eu4
-    @duchies_stats ||= begin
+  def ck2_title_to_eu4
+    @ck2_title_to_eu4 ||= begin
       map = {}
-      duchies.each do |duchy, subtitles|
-        map[duchy] = Hash.new(0)
-        [duchy, *subtitles].each do |ck2_title|
+      titles.each do |title, subtitles|
+        map[title] = Hash.new(0)
+        [title, *subtitles].each do |ck2_title|
           next unless ck2_to_eu4[ck2_title]
           ck2_to_eu4[ck2_title].each do |eu4_province|
-            map[duchy][eu4_province] += 1
+            map[title][eu4_province] += 1
           end
         end
       end
@@ -63,22 +69,26 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
     end
   end
 
-  def duchy_size
-    @duchy_size ||= begin
+  def title_size
+    @title_size ||= begin
       map = {}
-      duchies.each do |duchy, subtitles|
-        map[duchy] = subtitles.count{|t| t =~ /\Ac_/}
+      titles.each do |title, subtitles|
+        map[title] = subtitles.count{|t| t =~ /\Ac_/}
       end
       map
     end
   end
 
-  def duchy_value
-    @duchy_value ||= begin
+  def title_value
+    @title_value ||= begin
       map = Hash.new(0)
-      ck2_duchies_to_eu4.each do |duchy, eu4s|
+      ck2_title_to_eu4.each do |title, eu4s|
         eu4s.each do |eu4, weight|
-          map[duchy] += weight / eu4_to_ck2[eu4].size.to_f
+          # Hard to guess rounding
+          w = weight / eu4_to_ck2[eu4].size.to_f
+          # map[title] += 1 if w > 0.5
+          # map[title] += 0.5 if w == 0.5
+          map[title] += w
         end
       end
       map
@@ -86,11 +96,14 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
   end
 
   def run!
-    best_duchies = duchies.keys.sort_by{|d|
-      [-duchy_value[d] / duchy_size[d], d]
+    best_titles = titles.keys.sort_by{|t|
+      [-title_value[t] / title_size[t], -title_size[t], t]
     }
-    best_duchies.each do |duchy|
-      puts "#{duchy} - #{duchy_size[duchy]} counties become #{duchy_value[duchy].round(2)} provinces"
+    best_titles.each do |title|
+      value = title_value[title].round(2)
+      value = value.to_i if value == value.to_i
+      tier = title[0].upcase
+      puts "#{tier} #{localization(title)} - #{title_size[title]} counties become #{value} provinces"
     end
   end
 end
