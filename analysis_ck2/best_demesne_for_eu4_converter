@@ -1,0 +1,103 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "ck2_analyses"
+require "csv"
+
+class BestDemesneForEU4ConverterAnalysis < ParadoxGame
+  include Ck2Analyses
+  def ck2_to_eu4
+    @ck2_to_eu4 ||= begin
+      map = {}
+      # This is not real address, just a side effect of data hiding in dlc zips
+      parse_csv("dlc/dlc030/eu4_converter/province_table.csv")
+        .select{|row| row.size != 0 and row[0][0] != "#"}
+        .each do |ck2_title, eu4_province, |
+        map[ck2_title] ||= []
+        map[ck2_title] << eu4_province.to_i
+      end
+      map
+    end
+  end
+
+  def duchies
+    @duchies ||= begin
+      map = {}
+      title_paths.each do |title, path|
+        next unless title =~ /\A[bc]_/
+        duchy = path.find{|t| t =~ /\Ad_/}
+        next unless duchy
+        map[duchy] ||= []
+        map[duchy] << title
+      end
+      map
+    end
+  end
+
+  def eu4_to_ck2
+    @eu4_to_ck2 ||= begin
+      map = {}
+      ck2_to_eu4.each do |ck2, eu4s|
+        eu4s.each do |eu4|
+          map[eu4] ||= []
+          map[eu4] << ck2
+        end
+      end
+      map
+    end
+  end
+
+  def ck2_duchies_to_eu4
+    @duchies_stats ||= begin
+      map = {}
+      duchies.each do |duchy, subtitles|
+        map[duchy] = Hash.new(0)
+        [duchy, *subtitles].each do |ck2_title|
+          next unless ck2_to_eu4[ck2_title]
+          ck2_to_eu4[ck2_title].each do |eu4_province|
+            map[duchy][eu4_province] += 1
+          end
+        end
+      end
+      map
+    end
+  end
+
+  def duchy_size
+    @duchy_size ||= begin
+      map = {}
+      duchies.each do |duchy, subtitles|
+        map[duchy] = subtitles.count{|t| t =~ /\Ac_/}
+      end
+      map
+    end
+  end
+
+  def duchy_value
+    @duchy_value ||= begin
+      map = Hash.new(0)
+      ck2_duchies_to_eu4.each do |duchy, eu4s|
+        eu4s.each do |eu4, weight|
+          map[duchy] += weight / eu4_to_ck2[eu4].size.to_f
+        end
+      end
+      map
+    end
+  end
+
+  def run!
+    best_duchies = duchies.keys.sort_by{|d|
+      [-duchy_value[d] / duchy_size[d], d]
+    }
+    best_duchies.each do |duchy|
+      puts "#{duchy} - #{duchy_size[duchy]} counties become #{duchy_value[duchy].round(2)} provinces"
+    end
+  end
+end
+
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <root> [<mod1> <mod2> ... ]"
+  exit 1
+end
+
+BestDemesneForEU4ConverterAnalysis.new(*ARGV).run!
