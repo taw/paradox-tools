@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require_relative "ck2_analyses"
+
+class TraitsStatisticsAnalysis < CK2GameAndSaveAnalysis
+  def run!
+    trait_count = Hash.new(0)
+    @data["character"].each do |character_id, character|
+      character_traits = character["traits"] or next
+      character_traits.each do |trait_id|
+        trait_count[trait_id] += 1
+      end
+    end
+
+    (1...trait_count.keys.max).each do |id|
+      trait_name = traits[id]
+      loc = trait_name ? traits[id] : id
+      puts "#{loc} #{trait_count[id]}"
+    end
+  end
+end
+
+TraitsStatisticsAnalysis.new(*ARGV).run!
