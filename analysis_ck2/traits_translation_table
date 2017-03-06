@@ -1,19 +1,10 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox"
+require_relative "ck2_analyses"
 
 class TraitsTranslationTableAnalysis < ParadoxGame
-  def traits
-    @traits ||= begin
-      map = {}
-      glob("common/traits/*").sort.each do |path|
-        parse(path).each do |name, trait|
-          map[map.size+1] = name
-        end
-      end
-      map
-    end
-  end
+  include Ck2Analyses
 
   def run!
     traits.each do |i, name|

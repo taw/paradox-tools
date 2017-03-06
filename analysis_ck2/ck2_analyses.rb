@@ -134,4 +134,16 @@ module Ck2Analyses
       yield(val, subpath)
     end
   end
+
+  def traits
+    @traits ||= begin
+      map = {}
+      glob("common/traits/*").sort.each do |path|
+        parse(path).each do |name, trait|
+          map[map.size+1] = name
+        end
+      end
+      map
+    end
+  end
 end
