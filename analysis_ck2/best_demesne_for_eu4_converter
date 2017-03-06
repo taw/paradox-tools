@@ -1,10 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class BestDemesneForEU4ConverterAnalysis < ParadoxGame
-  include Ck2Analyses
+class BestDemesneForEU4ConverterAnalysis < CK2GameAnalysis
   def ck2_to_eu4
     @ck2_to_eu4 ||= begin
       map = {}
@@ -105,11 +103,6 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
       puts "#{tier} #{localization(title)} - #{title_size[title]} counties become #{value} provinces"
     end
   end
-end
-
-unless ARGV.size >= 1
-  STDERR.puts "Usage: #{$0} <root> [<mod1> <mod2> ... ]"
-  exit 1
 end
 
 BestDemesneForEU4ConverterAnalysis.new(*ARGV).run!

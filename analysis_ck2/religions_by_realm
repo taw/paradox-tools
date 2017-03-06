@@ -1,16 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class ReligionsAnalysis < ParadoxGame
-  include Ck2Analyses
-  def initialize(save_game, *roots)
-    super(*roots)
-    @path = save_game
-    @data = ParadoxModFile.new(path: @path).parse!
-  end
-
+class ReligionsAnalysis < CK2GameAndSaveAnalysis
   def run!
     @by_realm = {}
 
@@ -29,11 +21,6 @@ class ReligionsAnalysis < ParadoxGame
       end
     end
   end
-end
-
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.ck2> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
 end
 
 ReligionsAnalysis.new(*ARGV).run!

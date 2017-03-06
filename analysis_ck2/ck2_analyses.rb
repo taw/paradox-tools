@@ -2,6 +2,7 @@ require "set"
 require_relative "character"
 require_relative "dynasty"
 require_relative "title"
+require_relative "../lib/paradox"
 
 module Ck2Analyses
   def realm_name(title)
@@ -91,6 +92,13 @@ module Ck2Analyses
     Character[player_id]
   end
 
+  def province_type(province)
+    province[province["primary_settlement"]]["type"] || "unknown"
+  rescue
+    "unknown"
+  end
+
+
   def load_characters!
     @data["dynasties"].each do |id, node|
       Dynasty.add id, node
@@ -145,5 +153,43 @@ module Ck2Analyses
       end
       map
     end
+  end
+end
+
+class CK2SaveAnalysis
+  include Ck2Analyses
+  def initialize(*args)
+    unless args.size == 1
+      STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
+      exit 1
+    end
+    path, = *args
+    @path = path
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+end
+
+class CK2GameAnalysis < ParadoxGame
+  include Ck2Analyses
+  def initialize(*args)
+    unless args.size >= 1
+      STDERR.puts "Usage: #{$0} <root> [<mod1> <mod2> ... ]"
+      exit 1
+    end
+    super(*args)
+  end
+end
+
+class CK2GameAndSaveAnalysis < ParadoxGame
+  include Ck2Analyses
+  def initialize(*args)
+    unless args.size >= 2
+      STDERR.puts "Usage: #{$0} <save.ck2> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+      exit 1
+    end
+    save_game, *roots = *args
+    super(*roots)
+    @path = save_game
+    @data = ParadoxModFile.new(path: @path).parse!
   end
 end

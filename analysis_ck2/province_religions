@@ -1,15 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class ProvinceReligionsAnalysis
-  include Ck2Analyses
-  def initialize(path)
-    @path = path
-    @data = ParadoxModFile.new(path: @path).parse!
-  end
-
+class ProvinceReligionsAnalysis < CK2SaveAnalysis
   def run!
     religions = Hash.new(0)
     @data["provinces"].each do |id, province|
@@ -23,9 +16,4 @@ class ProvinceReligionsAnalysis
   end
 end
 
-unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
-  exit 1
-end
-
-ProvinceReligionsAnalysis.new(ARGV[0]).run!
+ProvinceReligionsAnalysis.new(*ARGV).run!

@@ -1,21 +1,13 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class TraitsTranslationTableAnalysis < ParadoxGame
-  include Ck2Analyses
-
+class TraitsTranslationTableAnalysis < CK2GameAnalysis
   def run!
     traits.each do |i, name|
       puts "#{i} #{localization(name)}"
     end
   end
-end
-
-unless ARGV.size >= 1
-  STDERR.puts "Usage: #{$0} <root> [<mod1> <mod2> ... ]"
-  exit 1
 end
 
 TraitsTranslationTableAnalysis.new(*ARGV).run!

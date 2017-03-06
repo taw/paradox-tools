@@ -1,15 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class RealmTechAnalysis
-  include Ck2Analyses
-  def initialize(path)
-    @path = path
-    @data = ParadoxModFile.new(path: @path).parse!
-  end
-
+class RealmTechAnalysis < CK2SaveAnalysis
   def run!
     realm_techs.sort_by{|info| [-info[:tech], info[:name], info[:size]]}.each do |info|
       puts "#{info[:tech]}\t#{info[:name]}\t#{info[:size]}"
@@ -17,9 +10,4 @@ class RealmTechAnalysis
   end
 end
 
-unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} <save.ck2> # non-compressed save only"
-  exit 1
-end
-
-RealmTechAnalysis.new(ARGV[0]).run!
+RealmTechAnalysis.new(*ARGV).run!

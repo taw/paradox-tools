@@ -1,16 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "ck2_analyses"
 
-class IndependentCountrieshAnalysis < ParadoxGame
-  include Ck2Analyses
-  def initialize(save_game, *roots)
-    super(*roots)
-    @path = save_game
-    @data = ParadoxModFile.new(path: @path).parse!
-  end
-
+class IndependentCountrieshAnalysis < CK2GameAndSaveAnalysis
   def title_direct_liege
     @title_direct_liege ||= begin
       map = {}
@@ -86,11 +78,6 @@ class IndependentCountrieshAnalysis < ParadoxGame
       puts [size, *titles].join("\t")
     end
   end
-end
-
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.ck2> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
 end
 
 IndependentCountrieshAnalysis.new(*ARGV).run!
