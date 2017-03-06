@@ -4,18 +4,26 @@ require_relative "ck2_analyses"
 
 class TraitsStatisticsAnalysis < CK2GameAndSaveAnalysis
   def run!
-    trait_count = Hash.new(0)
+    alive = Hash.new(0)
+    dead  = Hash.new(0)
+    total = Hash.new(0)
     @data["character"].each do |character_id, character|
       character_traits = character["traits"] or next
+      character_alive = !character["d_d"]
       character_traits.each do |trait_id|
-        trait_count[trait_id] += 1
+        if character_alive
+          alive[trait_id] += 1
+        else
+          dead[trait_id] += 1
+        end
+        total[trait_id] += 1
       end
     end
 
-    (1...trait_count.keys.max).each do |id|
+    (1...total.keys.max).each do |id|
       trait_name = traits[id]
       loc = trait_name ? traits[id] : id
-      puts "#{loc} #{trait_count[id]}"
+      puts "#{id} #{loc} #{alive[id]} #{dead[id]} #{alive[id]+dead[id]}"
     end
   end
 end
