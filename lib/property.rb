@@ -87,4 +87,21 @@ class Property
       "<"
     end
   end
+  class GE < SpecialValue
+    def op
+      ">="
+    end
+  end
+
+  class LE < SpecialValue
+    def op
+      "<="
+    end
+  end
+
+  class EQEQ < SpecialValue
+    def op
+      "=="
+    end
+  end
 end

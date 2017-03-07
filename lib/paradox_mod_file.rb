@@ -71,11 +71,18 @@ class ParadoxModFile
           @tokens << s[1].to_f
         elsif s.scan(/([\-\+]?\d+)(?![^}=\s])/)
           @tokens << s[1].to_i
-        elsif s.scan(/([=\{\}<>])/)
-          @tokens << ({"{" => :open, "}" => :close, "=" => :eq, ">" => :gt, "<" => :lt}[s[1]])
-        elsif s.scan(/(
-                            (?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\p{Letter}|\p{Digit})+
-                           )/x)
+        elsif s.scan(/(>=|<=|==|[=\{\}<>])/)
+          @tokens << ({
+            "{" => :open,
+            "}" => :close,
+            "=" => :eq,
+            ">" => :gt,
+            "<" => :lt,
+            "<=" => :le,
+            ">=" => :ge,
+            "==" => :eqeq,
+          }[s[1]])
+        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\p{Letter}|\p{Digit})+)/)
           if s[1] == "yes"
             @tokens << true
           elsif s[1] == "no"
@@ -141,7 +148,7 @@ class ParadoxModFile
         @tokens.shift
       end
 
-      if @tokens[1] == :eq or @tokens[1] == :gt or @tokens[1] == :lt
+      if [:eq, :lt, :le, :gt, :ge, :eqeq].include?(@tokens[1])
         parse_obj.tap{
           parse_close
         }
@@ -185,6 +192,21 @@ class ParadoxModFile
       @tokens.shift
       val = parse_val
       [key, Property::LT[val]]
+    elsif key_token_zero? and @tokens[1] == :le
+      key = @tokens.shift
+      @tokens.shift
+      val = parse_val
+      [key, Property::LE[val]]
+    elsif key_token_zero? and @tokens[1] == :ge
+      key = @tokens.shift
+      @tokens.shift
+      val = parse_val
+      [key, Property::GE[val]]
+    elsif key_token_zero? and @tokens[1] == :eqeq
+      key = @tokens.shift
+      @tokens.shift
+      val = parse_val
+      [key, Property::EQEQ[val]]
     elsif @tokens[0] == :eq
       # This is stupid thing found in ck2 saves
       key = ""
