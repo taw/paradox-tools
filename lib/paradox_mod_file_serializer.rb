@@ -32,7 +32,7 @@ class ParadoxModFileSerializer
       serialize_primitive(val.to_s)
     when /\A[A-Za-z0-9_\.:\[\]\<\>\*]+\z/
       val
-    when /\A(\p{Alpha}|\p{Number}|[_\.\-\/\u00A0 '’`\?\\%!:])*\z/
+    when /\A(\p{Alpha}|\p{Number}|[_\.\-\/\u00A0 '’`\?\\%!:,])*\z/
       # A lot more Strings are allowed, but at some point we'll need to think about escaping them
       '"' + val + '"'
     else
@@ -54,6 +54,16 @@ class ParadoxModFileSerializer
     when Symbol
       serialize_key(key.to_s)
     when /\A[A-Za-z0-9\-_\.:]+\z/
+      key
+    when ""
+      # CK2 saves have blocks like:
+      #
+      # troops={
+      #   light_infantry_f=
+      #   { 274.248 350.000 }
+      #   archers_f= { 111.866 150.000 }
+      #   ={ 0.174 50.000 }
+      # }
       key
     else
       # Can keys be quoted?

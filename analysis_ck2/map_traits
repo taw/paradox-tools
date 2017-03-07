@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+# This is mostly useful for migrating save files
+# from one patch to another, or for disabling/enabling mods which add traits
+
+require_relative "../lib/paradox"
+require "pathname"
+
+class MapTraits
+  def initialize(*args)
+    unless args.size == 3
+      STDERR.puts "Usage: #{$0} <traits-map.txt> <save_in.ck2> <save_out.ck2> # non-compressed save only"
+      exit 1
+    end
+    @traits_map_path = Pathname(args[0])
+    @save_in = Pathname(args[1])
+    @save_out = Pathname(args[2])
+    traits_map
+    raise "#{@save_in} doesn't exist" unless @save_in.exist?
+    raise "#{@save_out} already exists" if @save_out.exist?
+  end
+
+  def traits_map
+    @traits_map ||= begin
+      map = {}
+      raise "#{@traits_map_path} doesn't exist" unless @traits_map_path.exist?
+      @traits_map_path.readlines.each do |line|
+        raise "Bad line: #{line}" unless line.strip =~ /\A(\d+)\s+(\d+)\z/
+        a, b = $1.to_i, $2.to_i
+        raise "Trait #{a} already mapped" if map[a]
+        map[a] = b
+      end
+      map
+    end
+  end
+
+  def map_traits!(character)
+    return unless character["traits"]
+    character["traits"] = character["traits"].map{|t| traits_map[t] || t}.select{|t| t != 0}.uniq
+  end
+
+  def run!
+    @save = ParadoxModFile.new(path: @save_in).parse!
+    @save["character"].each do |character_id, character|
+      map_traits! character
+    end
+    output = ParadoxModFileSerializer.serialize(PropertyList["CK2txt", @save])
+    output.sub!(/\ACK2txt = {/, "CK2txt")
+    @save_out.write(output)
+  end
+end
+
+MapTraits.new(*ARGV).run!
