@@ -67,7 +67,21 @@ class CK2TweaksGameModification < CK2GameModification
         convert_to_feudalism_vassal
         convert_to_republic_indep
       ].each do |decision|
-        node["decisions"][decision]["allow"].delete! "custom_tooltip"
+        allow = node["decisions"][decision]["allow"]
+        allow_orig = allow.dup
+        allow.delete!{|prop|
+          prop == Property[
+            "custom_tooltip", PropertyList[
+                "text", "TT_NOT_UNREFORMED_PAGAN",
+                "hidden_tooltip", PropertyList["OR", PropertyList[
+                  "NOT", PropertyList["religion_group", "pagan_group"],
+                  "is_reformed_religion", true,
+                ],
+              ],
+            ]
+          ]
+        }
+        raise "Can't find condition" if allow == allow_orig
       end
     end
   end
@@ -108,7 +122,12 @@ class CK2TweaksGameModification < CK2GameModification
 
   def seduce_any_religion!
     patch_mod_file!("decisions/way_of_life_decisions.txt") do |node|
-      node["targetted_decisions"]["seduce_decision"]["allow"].delete! "religion_group"
+      allow = node["targetted_decisions"]["seduce_decision"]["allow"]
+      allow_orig = allow.dup
+      allow.delete!{|prop|
+        prop == Property::OR["religion_group", "FROM", "is_liege_or_above", "FROM"]
+      }
+      raise "Can't find condition" if allow == allow_orig
     end
   end
 
@@ -304,6 +323,11 @@ class CK2TweaksGameModification < CK2GameModification
       end
     end
 
+    # 2.7.0 fix
+    patch_file!("events/mnm_hermetics_events.txt") do |content|
+      content.gsub("random 70", "random = 70")
+    end
+
     patch_mod_files!("events/*.txt") do |node|
       node.each do |category, event|
         trigger = event["trigger"]
@@ -326,7 +350,11 @@ class CK2TweaksGameModification < CK2GameModification
   # Can't just delete, as there are references to them in events etc.
   def remove_all_anachronistic_factions!
     patch_mod_file!("common/objectives/00_factions.txt") do |node|
-      good_factions = ["faction_independence", "faction_claimant", "faction_antiking"]
+      good_factions = [
+        "faction_independence",
+        "faction_claimant",
+        "faction_antiking",
+      ]
       bad_factions = node.keys - good_factions
       good_factions.each do |faction_name|
         faction = node[faction_name]
@@ -376,7 +404,6 @@ class CK2TweaksGameModification < CK2GameModification
   end
 
   def allow_joining_all_wars!
-    # Maybe it's ridiculous, maybe it's great, no way to tell except by testing
     patch_mod_files!("common/cb_types/*.txt") do |node|
       node.each do |name, cb|
         cb["can_ask_to_join_war"] = true
@@ -389,13 +416,16 @@ class CK2TweaksGameModification < CK2GameModification
   def more_plots!
     # More republican plots for start
     # Should do more fun plots later
+    #
+    # The code is a bit awkward
     patch_mod_file!("common/objectives/00_plots.txt") do |node|
-      node["plot_seize_trade_post"]["allow"]["trade_post_owner"].delete! Property[
+      seize_plot = node["plot_seize_trade_post"]
+      seize_plot["allow"]["trade_post_owner"].delete! Property[
         "num_of_trade_post_diff",
         PropertyList["character", "FROM", "value", 1],
       ]
-      node["plot_seize_trade_post"]["potential"].delete! "is_merchant_republic"
-      node["plot_seize_trade_post"]["allow"]["trade_post_owner"]["OR"].add! "de_facto_liege", "FROM"
+      seize_plot["allow"]["trade_post_owner"]["OR"].add! "de_facto_liege", "FROM"
+      seize_plot["potential"].delete! "is_merchant_republic"
     end
   end
 
@@ -421,6 +451,8 @@ class CK2TweaksGameModification < CK2GameModification
 
   # Vanilla map is really really dumb
   # It would take a lot of work to make it sensible, so just some easy code
+  #
+  # The most annoying crap is empire of Italy
   def fix_de_jure_map!
     # patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
     #   require 'pry'; binding.pry
@@ -428,6 +460,10 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_file!("history/titles/k_italy.txt") do |node|
       node[Date.parse("0100.1.1")] = PropertyList["de_jure_liege", "e_byzantium"]
       node[Date.parse("0867.1.1")] = PropertyList["de_jure_liege", "e_hre"]
+      node.instance_eval{ @entries.sort! }
+    end
+    patch_mod_file!("history/titles/k_venice.txt") do |node|
+      node[Date.parse("0100.1.1")] = PropertyList["de_jure_liege", "e_byzantium"]
       node.instance_eval{ @entries.sort! }
     end
   end
@@ -764,9 +800,11 @@ class CK2TweaksGameModification < CK2GameModification
   end
 
   def make_holy_wars_convert!
+    # This code is quite nasty, but it's hard to patch more precisely
     patch_mod_file!("decisions/conversion_decisions.txt") do |node|
+      convert = node["decisions"]["convert_to_attacker_religion"]
       # Anyone can press the button
-      node["decisions"]["convert_to_attacker_religion"]["potential"] = PropertyList[
+      convert["potential"] = PropertyList[
         "is_playable", true,
         "controls_religion", false,
         "war", true,
@@ -783,7 +821,7 @@ class CK2TweaksGameModification < CK2GameModification
         ],
       ]
       # Make AI 10x as likely to press the button
-      node["decisions"]["convert_to_attacker_religion"]["ai_will_do"] = PropertyList[
+      convert["ai_will_do"] = PropertyList[
         "factor", 1,
         "modifier", PropertyList[
           "factor", 0,
@@ -826,7 +864,9 @@ class CK2TweaksGameModification < CK2GameModification
   end
 
   def easier_seduction!
-    # You can seduce family, spouses, exes
+    # You can seduce family, exes
+    # seducing spouses doesn't work due to events
+    # what about consorts?
     # lustful makes you bisexual
     patch_mod_file!("decisions/way_of_life_decisions.txt") do |node|
       seduce = node["targetted_decisions"]["seduce_decision"]
@@ -836,6 +876,7 @@ class CK2TweaksGameModification < CK2GameModification
         "NOT", PropertyList["trait", "incapable"],
         "prisoner", false,
         "NOT", PropertyList["is_lover", "FROM"],
+        "NOT", PropertyList["any_spouse", PropertyList["character", "FROM"]],
         "OR", PropertyList[
           "AND", PropertyList[
             "NOT", PropertyList["same_sex", "FROM"],
@@ -861,19 +902,6 @@ class CK2TweaksGameModification < CK2GameModification
           ],
         ],
       ]
-      # any religious group
-      seduce["allow"] = PropertyList[
-       "NOR", PropertyList[
-         "has_opinion_modifier", PropertyList[
-           "who", "FROM",
-           "modifier", "opinion_seduced_refused",
-         ],
-         "has_character_modifier", "dismissed_proposal",
-       ],
-       "NOT", PropertyList["trait", "celibate"],
-       "NOT", PropertyList["FROM", PropertyList["trait", "celibate"]],
-       "is_within_diplo_range", "FROM",
-      ]
     end
     # Less stressful to have multiple lovers
     patch_mod_file!("events/wol_lover_events.txt") do |node|
@@ -882,12 +910,12 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
-  # enable enatic and tanistry
+  # Tanisty sounded like a good idea, but it's just too random in practice
+  # Enable enatic and enatic-cognatic
   def enable_more_succession_laws!
     patch_mod_file!("common/laws/succession_laws.txt") do |node|
-      succession = node["succession_laws"]
-      succession["succ_tanistry"]["potential"] = succession["succ_gavelkind"]["potential"]
-
+      #succession = node["succession_laws"]
+      #succession["succ_tanistry"]["potential"] = succession["succ_gavelkind"]["potential"]
       gender = node["gender_laws"]
       gender["enatic_cognatic_succession"]["potential"] = gender["true_cognatic_succession"]["potential"]
       gender["enatic_cognatic_succession"]["allow"] = gender["true_cognatic_succession"]["allow"]
@@ -900,15 +928,12 @@ class CK2TweaksGameModification < CK2GameModification
     # The bullshit of enemy being simultaneously too weak for glory hounds
     # and too numerous for pragmatists
     patch_mod_file!("common/council_voting/01_pragmatist_pattern.txt") do |node|
-      y = node["pragmatist_pattern_for"]["declare_war_interaction"]
-      y["NOT"]["custom_tooltip"]["hidden_tooltip"] = PropertyList["liege",
+      yes = node["pragmatist_pattern_for"]["declare_war_interaction"]
+      yes["NOT"]["custom_tooltip"]["hidden_tooltip"]["liege"] =
         PropertyList["is_primary_war_defender", true]
-      ]
-      n = node["pragmatist_pattern_against"]["declare_war_interaction"]
-      nn = n["OR"].find_all("custom_tooltip").find{|nd| nd["text"] == "pattern_pragmatist_were_already_busy_fighting_tooltip"}
-      nn["hidden_tooltip"] = PropertyList["liege",
-        PropertyList["is_primary_war_defender", true]
-      ]
+      no = node["pragmatist_pattern_against"]["declare_war_interaction"]
+      no_busy = no["OR"].find_all("custom_tooltip").find{|nd| nd["text"] == "pattern_pragmatist_were_already_busy_fighting_tooltip"}
+      no_busy["hidden_tooltip"]["liege"] = PropertyList["is_primary_war_defender", true]
     end
   end
 
@@ -933,12 +958,10 @@ class CK2TweaksGameModification < CK2GameModification
 
   def allow_settle_tribe_job!
     patch_mod_file!("common/job_actions/00_job_actions.txt") do |node|
-      # Doesn't need tribal
-      node["action_settle_tribe"]["potential"] = PropertyList[
-        "FROM", PropertyList["job_treasurer", PropertyList["NOT", PropertyList["has_character_modifier", "in_seclusion"]]],
-      ]
+      settle = node["action_settle_tribe"]
+      settle["potential"].delete! Property["FROM", PropertyList["is_tribal", true]]
       # Doesn't need demesne
-      node["action_settle_tribe"]["trigger"] = PropertyList[
+      settle["trigger"] = PropertyList[
         "any_province_lord", PropertyList[
           "OR", PropertyList[
             "character", "FROM",
@@ -984,10 +1007,12 @@ class CK2TweaksGameModification < CK2GameModification
       ]
       # Also ban it for viceroyalties or weird stuff happens
       primogeniture = succession["succ_primogeniture"]
-      primogeniture["potential"]["holder_scope"].add!(
-        "NOT",
-        PropertyList["any_demesne_title", PropertyList["is_vice_royalty", true]]
-      )
+      primogeniture["potential"]["holder_scope"].add! Property[
+        "OR", PropertyList[
+          "independent", true,
+          "NOT", PropertyList["any_demesne_title", PropertyList["is_vice_royalty", true]],
+        ],
+      ]
     end
   end
 
@@ -1001,8 +1026,8 @@ class CK2TweaksGameModification < CK2GameModification
     seduce_any_religion!
     preserve_culture_buildings!
     pagans_can_go_feudal!
-    setup_sensible_ai_for_demesne_laws!
-    fast_de_jure_drift!
+    setup_sensible_ai_for_demesne_laws! # Obsolete with Conclave but whatever, just keep it
+    fast_de_jure_drift! # This is now in game rules, but maybe custom values are better?
     allow_everyone_river_access!
     no_foreign_conqueror_penalty!
     increase_vassal_limit!
@@ -1012,11 +1037,9 @@ class CK2TweaksGameModification < CK2GameModification
     more_plots!
     dont_call_duke_kings_ever!
     stronger_claims_on_rebels!
-    # extend_timeline!
     fix_de_jure_map!
     easier_culture_conversion!
     easier_title_creation!
-    # TODO: de jure drift by title_decisions
     allow_more_commanders!
     nerf_demand_conversion!
     easier_seduction!
@@ -1025,10 +1048,10 @@ class CK2TweaksGameModification < CK2GameModification
     fix_hostile_supply!
     allow_settle_tribe_job!
     reduce_revocation_timer!
+    divine_blood_full_fertility!
+    # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
-    # remove_levy_nerfs!
-    # divine_blood_full_fertility!
     create_minimal_hunie_trait!
     allow_heir_designation!
     # rebalance_faction_priorities!
@@ -1040,5 +1063,6 @@ class CK2TweaksGameModification < CK2GameModification
     enable_more_succession_laws!
     remove_viceroyalty_opinion_penalty!
     viceroyalties_can_use_gavelkind!
+    # extend_timeline!
   end
 end

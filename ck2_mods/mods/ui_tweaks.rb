@@ -70,7 +70,7 @@ class UITweaksGameModification < CK2GameModification
   end
 
   def apply!
-    setup_sensible_important_decisions_list!
+    # setup_sensible_important_decisions_list! # 2.7.0 fixes it
     disable_fucking_hints!
     mark_more_titles_as_high_priority!
     # bigger_war_box! # Bigger UI conflict
