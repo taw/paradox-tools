@@ -32,10 +32,6 @@ class VassalTransferGameModification < CK2GameModification
           ],
           "potential", PropertyList[
             "tier", "duke",
-          ],
-          "allow", PropertyList[
-            "tier", "duke",
-            "liege", PropertyList["character", "FROM"],
             # Neighbouring vassal king
             "any_realm_province", PropertyList[
               "any_neighbor_province", PropertyList[
@@ -48,6 +44,10 @@ class VassalTransferGameModification < CK2GameModification
                 ],
               ],
             ],
+          ],
+          "allow", PropertyList[
+            "tier", "duke",
+            "liege", PropertyList["character", "FROM"],
           ],
           "effect", PropertyList[
             k_title, PropertyList[
