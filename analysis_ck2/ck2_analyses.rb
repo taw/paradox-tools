@@ -146,7 +146,7 @@ module Ck2Analyses
   def traits
     @traits ||= begin
       map = {}
-      glob("common/traits/*").sort.each do |path|
+      glob("common/traits/*.txt").sort.each do |path|
         parse(path).each do |name, trait|
           map[map.size+1] = name
         end

@@ -66,7 +66,11 @@ class ParadoxModFile
         if s.scan(/(\p{Space})+|#.*$/)
           # pass
         elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
-          @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
+          begin
+            @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
+          rescue ArgumentError
+            @tokens << s[0]
+          end
         elsif s.scan(/([\-\+]?\d+\.\d+)(?![^}=\s])/)
           @tokens << s[1].to_f
         elsif s.scan(/([\-\+]?\d+)(?![^}=\s])/)
