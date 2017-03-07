@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-# This is mostly useful for migrating save files
-# from one patch to another, or for disabling/enabling mods which add traits
+# This is a fallback version of map_traits script
+# that uses regular expressions to achieve the same effect
 
 require_relative "../lib/paradox"
 require "pathname"
@@ -34,19 +34,23 @@ class MapTraits
     end
   end
 
-  def map_traits!(character)
-    return unless character["traits"]
-    character["traits"] = character["traits"].map{|t| traits_map[t] || t}.select{|t| t != 0}.uniq
+  def map_traits(traits)
+    traits = traits
+      .split
+      .map(&:to_i)
+      .map{|t| traits_map[t] || t}
+      .select{|t| t != 0}
+      .uniq
+    traits.join(" ")
   end
 
   def run!
-    @save = ParadoxModFile.new(path: @save_in).parse!
-    @save["character"].each do |character_id, character|
-      map_traits! character
+    save = @save_in.read.force_encoding("windows-1252").encode("UTF-8")
+    save.gsub!(/traits\s*=\s*\{\s*\K[\d ]*?(?=\s*\})/) do
+      map_traits($&)
     end
-    output = ParadoxModFileSerializer.serialize(PropertyList["CK2txt", @save])
-    output.sub!(/\ACK2txt = {/, "CK2txt")
-    @save_out.write(output)
+    save = save.encode("windows-1252")
+    @save_out.write(save)
   end
 end
 
