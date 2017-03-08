@@ -1,0 +1,92 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "bonus_scoring"
+
+class ListProvinceTradeModifiers < ParadoxGame
+  def province_modifiers
+    @province_modifiers ||= begin
+      map = {}
+      glob("common/event_modifiers/*.txt").each do |path|
+        parse(path).each do |name, modifier|
+          map[name] = modifier
+        end
+      end
+      map
+    end
+  end
+
+  def parse_province_file(path)
+    # Wanted to do this:
+    # parse(path)
+    #
+    # But due to broken shit in 6-Skane.txt we have to do this:
+    content = resolve(path)
+      .read
+      .force_encoding("windows-1252")
+      .encode("utf-8")
+      .gsub("add_permanent_province_modifier {", "add_permanent_province_modifier = {")
+    ParadoxModFile.new(string: content).parse!
+  end
+
+  def merge_modifiers(mods)
+    bonus = Hash.new(0)
+    mods.each do |name|
+      province_modifiers[name].each do |key, val|
+        next if key == "picture"
+        bonus[key] += val
+      end
+    end
+    bonus
+  end
+
+  def prices
+    @prices ||= begin
+      map = Hash.new(0)
+      parse("common/prices/00_prices.txt").each do |name, good|
+        map[name] = good["base_price"]
+        map[name] += 20 if good["goldtype"]
+      end
+      map
+    end
+  end
+
+  def provinces
+    @provinces ||= begin
+      map = {}
+      glob("history/provinces/*.txt").each do |path|
+        id = path.basename.to_s.to_i
+        node = parse_province_file(path)
+        name = localization("PROV#{id}")
+        mods = node.find_all("add_permanent_province_modifier").map{|mod| mod["name"]}
+        good = node["trade_goods"]
+        bonus = merge_modifiers(mods)
+        # No idea if these numbers are legit
+        goods_produced = 1 + bonus["trade_goods_size"]
+        production_value = prices[good] * goods_produced
+        trade = 2 + bonus["province_trade_power_value"]
+        next unless good # probably water
+        # Total guess
+        value = (0.4 + trade*0.2 + production_value*0.2).round(2)
+
+        map[id] = {
+          name: name,
+          goods: good,
+          bonus: bonus,
+          production: production_value,
+          trade: trade,
+          value: value,
+        }
+      end
+      map
+    end
+  end
+
+  def run!
+    provinces.each do |id, province|
+      puts "#{id}\t#{province[:value]}"
+    end
+  end
+end
+
+ListProvinceTradeModifiers.new(*ARGV).run!
