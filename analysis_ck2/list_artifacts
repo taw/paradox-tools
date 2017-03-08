@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require_relative "ck2_analyses"
+
+class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
+  def run!
+    load_characters!
+    artifacts  = {}
+
+    @data["artifacts"].each do |artifact_id, artifact|
+      name = localization(artifact["type"])
+      owner_id = artifact["owner"]
+
+      (artifacts[owner_id] ||= []) << name
+    end
+
+    artifacts.each do |owner_id, items|
+      owner = Character[owner_id]
+      puts "#{owner.full_name} of #{owner.top_tier_titles.join("/")}"
+      items.sort.each do |item|
+        puts "* #{item}"
+      end
+    end
+  end
+end
+
+ListArtifactsAnalysis.new(*ARGV).run!
