@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-require "set"
-require "pp"
-require "pathname"
 require_relative "../lib/paradox"
 
 class AnalyzeMissions < ParadoxGame
@@ -14,15 +11,16 @@ class AnalyzeMissions < ParadoxGame
 
   def each_mission
     glob("missions/*").each do |path|
-      parse(path).each do |mission|
-        yield(mission)
+      parse(path).each do |name, mission|
+        yield(name, mission)
       end
     end
   end
 
   def parse_effects(node)
     return [] unless node
-    node.each.to_a.map{|k,v|
+    node.to_a.map{|prop|
+      k, v = prop.key, prop.val
       # We don't care about exact numbers
       if %W[
           add_claim

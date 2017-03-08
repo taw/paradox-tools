@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 
-require "pp"
-require "pathname"
 require_relative "../lib/paradox"
 require_relative "bonus_scoring"
 
