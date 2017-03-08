@@ -18,8 +18,12 @@ module Ck2Analyses
   def top_realm_by_title(title)
     title_data = @data["title"][title]
     raise "No such title `#{title}'" unless title_data
-    if title_data["liege"]
-      top_realm_by_title(title_data["liege"]["title"])
+    liege = title_data["liege"]
+    if liege
+      # This double coding is 2.7.0 thing
+      # Dynamic titles have complex coding
+      liege = liege["title"] if liege.is_a?(PropertyList)
+      top_realm_by_title(liege)
     else
       title
     end
