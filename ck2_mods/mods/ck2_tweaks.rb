@@ -1016,6 +1016,39 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def open_societies!
+    patch_mod_file!("common/societies/00_societies.txt") do |node|
+      # Indians can join both
+      # Code is a bit dubious
+      ### Hermetics
+      hermetics = node["hermetics"]
+      show = hermetics["show_society"]
+      join = hermetics["can_join_society"]
+      populate = hermetics["startup_populate"]["trigger"].to_a.find{|x| x.inspect =~ /christian/}
+      show["OR"].add! Property["religion_group", "indian_group"]
+      join["OR"].add! Property["religion_group", "indian_group"]
+      populate.val.add! Property["religion_group", "indian_group"]
+
+      ### Kali Cult
+      kali = node["the_cult_of_kali"]
+      show = kali["show_society"]
+      populate = kali["startup_populate"]["trigger"]
+
+      show["OR"].delete! Property["religion", "hindu"]
+      show["OR"].delete! Property["trait", "secretly_hinduism"]
+      show["OR"].add! Property["true_religion_group_indian_group_trigger", true]
+      populate.delete! Property["true_religion_hinduism_trigger", true]
+      populate.add! Property["true_religion_group_indian_group_trigger", true]
+    end
+
+    patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
+      node["has_cult_of_kali_prerequisites"] = PropertyList[
+        "has_common_devilworship_prerequisites", true,
+        "true_religion_group_indian_group_trigger", true,
+      ]
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -1049,6 +1082,7 @@ class CK2TweaksGameModification < CK2GameModification
     allow_settle_tribe_job!
     reduce_revocation_timer!
     divine_blood_full_fertility!
+    open_societies!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
