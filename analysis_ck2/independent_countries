@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "ck2_analyses"
+require_relative "../ck2/ck2_analyses"
 
 class IndependentCountrieshAnalysis < CK2GameAndSaveAnalysis
   def title_direct_liege

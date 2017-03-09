@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "ck2_analyses"
+require_relative "../ck2/ck2_analyses"
 
 class ReligionsAnalysis < CK2GameAndSaveAnalysis
   def run!

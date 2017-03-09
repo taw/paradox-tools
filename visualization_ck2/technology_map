@@ -1,12 +1,11 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "image_generation"
-require_relative "game_map"
+require_relative "../ck2/ck2_analyses"
 
 class TechnologyMap < ParadoxGame
   include ImageGeneration
-  include GameMap
+  include Ck2Analyses
 
   def initialize(save_game, *roots)
     super(*roots)

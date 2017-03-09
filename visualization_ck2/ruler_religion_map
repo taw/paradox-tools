@@ -1,47 +1,16 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
 require_relative "image_generation"
-require_relative "game_map"
+require_relative "../ck2/ck2_analyses"
 
 class RulerReligionMap < ParadoxGame
   include ImageGeneration
-  include GameMap
+  include Ck2Analyses
 
   def initialize(save_game, *roots)
     super(*roots)
     @path = save_game
     @data = ParadoxModFile.new(path: @path).parse!
-  end
-
-  def top_realm_by_title(title)
-    title_data = @data["title"][title]
-    raise "No such title `#{title}'" unless title_data
-    if title_data["liege"]
-      top_realm_by_title(title_data["liege"]["title"])
-    else
-      title
-    end
-  end
-
-  def province_id_to_title
-    @province_id_to_title ||= begin
-      map = {}
-      node = parse("common/province_setup/00_province_setup.txt")
-      node.each do |id, province|
-        map[id] = province["title"]
-      end
-      map
-    end
-  end
-
-  def character_religion(character_id)
-    character = @data["character"][character_id]
-    religion = character["rel"]
-    return religion if religion
-    dynasty_id = character["dnt"]
-    dynasty = @data["dynasties"][dynasty_id]
-    dynasty["religion"] || dynasty["coat_of_arms"]["religion"]
   end
 
   def ruler_religions

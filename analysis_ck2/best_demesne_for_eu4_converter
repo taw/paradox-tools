@@ -1,8 +1,22 @@
 #!/usr/bin/env ruby
 
-require_relative "ck2_analyses"
+require_relative "../ck2/ck2_analyses"
 
-class BestDemesneForEU4ConverterAnalysis < CK2GameAnalysis
+class BestDemesneForEU4ConverterAnalysis < ParadoxGame
+  include Ck2Analyses
+  def initialize(*args)
+    unless args.size == 2
+      STDERR.puts "Usage: #{$0} <root> <province_values.txt>"
+      exit 1
+    end
+    root, province_values_txt = *args
+    @province_values = Pathname(province_values_txt).readlines.map{|line|
+      k, v = line.chomp.split(/\s+/, 2)
+      [k.to_i, v.to_f]
+    }.to_h
+    super(root)
+  end
+
   def ck2_to_eu4
     @ck2_to_eu4 ||= begin
       map = {}
@@ -26,12 +40,11 @@ class BestDemesneForEU4ConverterAnalysis < CK2GameAnalysis
         kingdom = path.find{|t| t =~ /\Ak_/}
         empire = path.find{|t| t =~ /\Ae_/}
         next unless duchy
-        map[duchy] ||= []
-        map[duchy] << title
-        map[kingdom] ||= []
-        map[kingdom] << title
-        map[empire] ||= []
-        map[empire] << title
+        path.each do |t|
+          next if t =~ /\Ab_/
+          map[t] ||= []
+          map[t] << title
+        end
       end
       map
     end
@@ -58,7 +71,9 @@ class BestDemesneForEU4ConverterAnalysis < CK2GameAnalysis
         [title, *subtitles].each do |ck2_title|
           next unless ck2_to_eu4[ck2_title]
           ck2_to_eu4[ck2_title].each do |eu4_province|
-            map[title][eu4_province] += 1
+            eu4_value = @province_values[eu4_province]
+            raise "Unknown province #{eu4_province}" unless eu4_value
+            map[title][eu4_province] += eu4_value
           end
         end
       end
@@ -100,7 +115,7 @@ class BestDemesneForEU4ConverterAnalysis < CK2GameAnalysis
       value = title_value[title].round(2)
       value = value.to_i if value == value.to_i
       tier = title[0].upcase
-      puts "#{tier} #{localization(title)} - #{title_size[title]} counties become #{value} provinces"
+      puts "#{tier} #{localization(title)} - #{title_size[title]} counties become #{value} value"
     end
   end
 end

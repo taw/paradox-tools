@@ -5,6 +5,24 @@ require_relative "title"
 require_relative "../lib/paradox"
 
 module Ck2Analyses
+  def default_map
+    @default_map ||= parse("map/default.map")
+  end
+
+  def land_province_ids
+    @land_province_ids ||= begin
+      (1...default_map["max_provinces"]).to_a - sea_province_ids
+    end
+  end
+
+  def sea_province_ids
+    @sea_province_ids ||= begin
+      default_map["major_rivers"] |
+      default_map["externals"] |
+      default_map.find_all("sea_zones").flat_map{|a,b| (a..b).to_a}
+    end
+  end
+
   def realm_name(title)
     @data["title"][title]["name"] || title
   rescue
@@ -157,6 +175,15 @@ module Ck2Analyses
       end
       map
     end
+  end
+
+  def character_religion(character_id)
+    character = @data["character"][character_id]
+    religion = character["rel"]
+    return religion if religion
+    dynasty_id = character["dnt"]
+    dynasty = @data["dynasties"][dynasty_id]
+    dynasty["religion"] || dynasty["coat_of_arms"]["religion"]
   end
 end
 
