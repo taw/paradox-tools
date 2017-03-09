@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+# This needs to be copied into converter mod to see localized names:
+# localisation/prov_names_l_english.yml
+
+require_relative "../lib/paradox"
+
+class FindCotsInConvertedCampaign < ParadoxGame
+  def run!
+    cots = []
+    glob("history/provinces/*.txt").each do |path|
+      id = path.basename.to_s.to_i
+      node = parse(path)
+      mods = node
+        .values
+        .grep(PropertyList)
+        .flat_map(&:to_a)
+        .select{|prop| prop.key == "add_permanent_province_modifier"}
+        .map{|m| m.val["name"]}
+      next if mods.empty?
+      cots << [id, *mods]
+    end
+    cots.sort.each do |id, *mods|
+      puts [id, localization("PROV#{id}"), *mods].join("\t")
+    end
+  end
+end
+
+FindCotsInConvertedCampaign.new(*ARGV).run!
