@@ -44,4 +44,21 @@ module ImageGeneration
       }
     ]
   end
+
+  def religion_colors
+    @religion_colors ||= begin
+      map = {}
+      parse("common/religions/00_religions.txt").each do |group_name, group|
+        group.each do |religion_name, religion|
+          next unless religion.is_a?(PropertyList)
+          color = religion["color"]
+          next unless color
+          r, g, b = color
+          color = color.map{|u| (u*255.0).round }
+          map[religion_name] = color
+        end
+      end
+      map
+    end
+  end
 end

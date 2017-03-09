@@ -3,7 +3,7 @@
 require_relative "image_generation"
 require_relative "../ck2/ck2_analyses"
 
-class RulerReligionMap < ParadoxGame
+class HolderReligionMap < ParadoxGame
   include ImageGeneration
   include Ck2Analyses
 
@@ -13,15 +13,14 @@ class RulerReligionMap < ParadoxGame
     @data = ParadoxModFile.new(path: @path).parse!
   end
 
-  def ruler_religions
-    @ruler_religions ||= begin
+  def holder_religions
+    @holder_religions ||= begin
       map = {}
       @data["provinces"].to_a.each do |prop|
         id = prop.key
         title = province_id_to_title[id]
         next unless title # wasteland or something
-        realm = top_realm_by_title(title)
-        holder_id = @data["title"][realm]["holder"]
+        holder_id = @data["title"][title]["holder"]
         religion = character_religion(holder_id)
         map[id] = religion
       end
@@ -29,22 +28,22 @@ class RulerReligionMap < ParadoxGame
     end
   end
 
-  def ruler_religion_map
-    @ruler_religion_map ||= begin
-      ruler_religions.map{|i,r|
+  def holder_religion_map
+    @holder_religion_map ||= begin
+      holder_religions.map{|i,r|
         [i, religion_colors[r]]
       }.to_h
     end
   end
 
   def save_path
-    "output/ck2_ruler_religion_#{@data["date"]}.png"
+    "output/ck2_holder_religion_#{@data["date"]}.png"
   end
 
   def run!
     Pathname("output").mkpath
-    generate_map_image(build_color_map(ruler_religion_map)).write(save_path)
+    generate_map_image(build_color_map(holder_religion_map)).write(save_path)
   end
 end
 
-RulerReligionMap.new(*ARGV).run!
+HolderReligionMap.new(*ARGV).run!
