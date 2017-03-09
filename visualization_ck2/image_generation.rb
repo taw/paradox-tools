@@ -48,14 +48,35 @@ module ImageGeneration
   def religion_colors
     @religion_colors ||= begin
       map = {}
-      parse("common/religions/00_religions.txt").each do |group_name, group|
-        group.each do |religion_name, religion|
-          next unless religion.is_a?(PropertyList)
-          color = religion["color"]
-          next unless color
-          r, g, b = color
-          color = color.map{|u| (u*255.0).round }
-          map[religion_name] = color
+      glob("common/religions/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |religion_name, religion|
+            next unless religion.is_a?(PropertyList)
+            color = religion["color"]
+            next unless color
+            r, g, b = color
+            color = color.map{|u| (u*255.0).round }
+            map[religion_name] = color
+          end
+        end
+      end
+      map
+    end
+  end
+
+  def culture_colors
+    @culture_colors ||= begin
+      map = {}
+      glob("common/cultures/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |culture_name, culture|
+            next unless culture.is_a?(PropertyList)
+            color = culture["color"]
+            next unless color
+            r, g, b = color
+            color = color.map{|u| (u*255.0).round }
+            map[culture_name] = color
+          end
         end
       end
       map

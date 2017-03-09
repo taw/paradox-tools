@@ -177,13 +177,46 @@ module Ck2Analyses
     end
   end
 
+  def historical_dynasty_religion
+    @historical_dynasty_religion ||= begin
+      map = {}
+      glob("common/dynasties/*.txt").each do |path|
+        parse(path).each do |id, dynasty|
+          map[id] = dynasty["religion"] if dynasty["religion"]
+        end
+      end
+      map
+    end
+  end
+
   def character_religion(character_id)
     character = @data["character"][character_id]
     religion = character["rel"]
     return religion if religion
     dynasty_id = character["dnt"]
     dynasty = @data["dynasties"][dynasty_id]
-    dynasty["religion"] || dynasty["coat_of_arms"]["religion"]
+    historical_dynasty_religion[dynasty_id] || dynasty["religion"] || dynasty["coat_of_arms"]["religion"] || binding.pry
+  end
+
+  def historical_dynasty_culture
+    @historical_dynasty_culture ||= begin
+      map = {}
+      glob("common/dynasties/*.txt").each do |path|
+        parse(path).each do |id, dynasty|
+          map[id] = dynasty["culture"] if dynasty["culture"]
+        end
+      end
+      map
+    end
+  end
+
+  def character_culture(character_id)
+    character = @data["character"][character_id]
+    culture = character["cul"]
+    return culture if culture
+    dynasty_id = character["dnt"]
+    dynasty = @data["dynasties"][dynasty_id]
+    historical_dynasty_culture[dynasty_id] || dynasty["culture"] || binding.pry
   end
 end
 

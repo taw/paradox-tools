@@ -22,8 +22,7 @@ class RulerReligionMap < ParadoxGame
         next unless title # wasteland or something
         realm = top_realm_by_title(title)
         holder_id = @data["title"][realm]["holder"]
-        religion = character_religion(holder_id)
-        map[id] = religion
+        map[id] = character_religion(holder_id)
       end
       map
     end
