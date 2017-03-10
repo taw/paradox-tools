@@ -1,0 +1,94 @@
+#!/usr/bin/env ruby
+
+require_relative "image_generation"
+require_relative "../ck2/ck2_analyses"
+
+class RelativesMap < ParadoxGame
+  include ImageGeneration
+  include Ck2Analyses
+
+  def initialize(save_game, *roots)
+    super(*roots)
+    @path = save_game
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def relatives_holders
+    @relatives_holders ||= begin
+      map = {}
+      @data["provinces"].to_a.each do |prop|
+        id = prop.key
+        title = province_id_to_title[id]
+        next unless title # wasteland or something
+        holder_id = @data["title"][title]["holder"]
+        map[id] = @relatives[holder_id]
+      end
+      map
+    end
+  end
+
+  def holder_colors
+    @holder_colors ||= begin
+      map = {}
+      max_degree = @relatives.values.max
+      (0..max_degree).each do |j|
+        map[j] = [64, (255-191.0*j/max_degree).round, 64]
+      end
+      map[nil] = [255, 64, 64]
+      map
+    end
+  end
+
+  def relatives_map
+    @relatives_map ||= begin
+      relatives_holders.map{|i,r|
+        [i, holder_colors[r]]
+      }.to_h
+    end
+  end
+
+  def save_path
+    "output/ck2_relatives_#{@data["date"]}.png"
+  end
+
+  # First go up, then go down
+  # Not tested with weird shapes
+  def calculate_relatives!(root_id)
+    @relatives = {root_id => 0}
+    queue = Set[root_id]
+    until queue.empty?
+      new_queue = Set[]
+      queue.each do |id|
+        character = Character[id]
+        [character.mother, character.father].compact.each do |c|
+          next if @relatives[c.id]
+          @relatives[c.id] = @relatives[id] + 1
+          new_queue << c.id
+        end
+      end
+      queue = new_queue
+    end
+    queue = Set[*@relatives.keys]
+    until queue.empty?
+      new_queue = Set[]
+      queue.each do |id|
+        character = Character[id]
+        character.children.each do |c|
+          next if @relatives[c.id]
+          @relatives[c.id] = @relatives[id] + 1
+          new_queue << c.id
+        end
+      end
+      queue = new_queue
+    end
+  end
+
+  def run!
+    load_characters!
+    calculate_relatives!(player_id)
+    Pathname("output").mkpath
+    generate_map_image(build_color_map(relatives_map)).write(save_path)
+  end
+end
+
+RelativesMap.new(*ARGV).run!
