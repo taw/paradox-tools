@@ -27,6 +27,7 @@ class ModCompatibility
   def add_file!(mod_name, rel_path)
     rel_path = rel_path.to_s
     return if rel_path == "descriptor.mod"
+    return if rel_path == "Thumbs.db"
     @files[rel_path] ||= Set[]
     @files[rel_path] << mod_name
   end
