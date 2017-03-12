@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require_relative "../ck2/ck2_analyses"
+
+class ListSocietyMembers < CK2GameAndSaveAnalysis
+  def full_title(c)
+    titles = c.top_tier_titles.join("/")
+    of_title = titles.empty? ? "(landless)" : "of #{titles}"
+    "#{c.full_name} #{of_title}"
+  end
+
+  def run!
+    load_characters!
+
+    @data["society"].each do |id, society|
+      type = society["type"]
+      leader_id = society["society_leader"]
+      leader = Character[leader_id]
+      members = society.find_all("member").map{|m|
+        [m["society_rank"], full_title(Character[m["character"]])]
+      }.sort_by{|r,m| [-r,m]}
+
+      puts "#{id} #{type}"
+      puts "* Leader: #{full_title(leader)}"
+      members.each do |r, m|
+        puts "* Rank #{r}: #{m}"
+      end
+      puts ""
+    end
+  end
+end
+
+ListSocietyMembers.new(*ARGV).run!
