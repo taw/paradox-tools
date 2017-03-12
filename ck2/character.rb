@@ -44,6 +44,18 @@ class Character
   def dynasty_name
     @dynasty.name
   end
+  
+  def trait_ids
+    @node["traits"] || []
+  end
+  
+  def dead?
+    !!@node["d_d"]  
+  end
+  
+  def alive?
+    !@node["d_d"]
+  end
 
   def vassals
     titles.flat_map(&:vassals).map(&:holder).uniq - [self]
