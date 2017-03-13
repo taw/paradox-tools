@@ -111,7 +111,7 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
       value = title_value[title].round(2)
       value = value.to_i if value == value.to_i
       tier = title[0].upcase
-      puts "#{tier} #{localization(title)} - #{title_size[title]} counties become #{value} value"
+      puts "#{tier} #{localization(title)} - #{title_size[title]} counties become #{value} value [ #{title_paths[title].join("/")} ]"
     end
   end
 end
