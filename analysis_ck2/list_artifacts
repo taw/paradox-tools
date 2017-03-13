@@ -7,10 +7,14 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
     @artifact_types ||= begin
       map = {}
       glob("common/artifacts/*.txt").each do |path|
-        parse(path).each do |name, artifact|
-          next if name == "slots"
-          map[name] = {
-            name: localization(name),
+        parse(path).each do |id, artifact|
+          next if id == "slots"
+          name = localization(id)
+          if id =~ /\Amagnum_opus_.*_(\d+)\z/
+            name += " #{$1}"
+          end
+          map[id] = {
+            name: name,
             quality: artifact["quality"],
           }
         end
@@ -37,8 +41,8 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
     artifact_owners.each do |owner_id, items|
       owner = Character[owner_id]
       puts "#{owner.full_name} of #{owner.top_tier_titles.join("/")}"
-      items.sort.each do |item_name|
-        item = artifact_types[item_name]
+      items.sort.each do |id|
+        item = artifact_types[id]
         puts "* #{item[:name]} [#{item[:quality]}]"
       end
     end
