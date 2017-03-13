@@ -3,22 +3,43 @@
 require_relative "../ck2/ck2_analyses"
 
 class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
+  def artifact_types
+    @artifact_types ||= begin
+      map = {}
+      glob("common/artifacts/*.txt").each do |path|
+        parse(path).each do |name, artifact|
+          next if name == "slots"
+          map[name] = {
+            name: localization(name),
+            quality: artifact["quality"],
+          }
+        end
+      end
+      map
+    end
+  end
+
+  def artifact_owners
+    @artifact_owners ||= begin
+      map = {}
+      @data["artifacts"].each do |artifact_id, artifact|
+        name = artifact["type"]
+        owner_id = artifact["owner"]
+        map[owner_id] ||= []
+        map[owner_id] << name
+      end
+      map
+    end
+  end
+
   def run!
     load_characters!
-    artifacts  = {}
-
-    @data["artifacts"].each do |artifact_id, artifact|
-      name = localization(artifact["type"])
-      owner_id = artifact["owner"]
-
-      (artifacts[owner_id] ||= []) << name
-    end
-
-    artifacts.each do |owner_id, items|
+    artifact_owners.each do |owner_id, items|
       owner = Character[owner_id]
       puts "#{owner.full_name} of #{owner.top_tier_titles.join("/")}"
-      items.sort.each do |item|
-        puts "* #{item}"
+      items.sort.each do |item_name|
+        item = artifact_types[item_name]
+        puts "* #{item[:name]} [#{item[:quality]}]"
       end
     end
   end
