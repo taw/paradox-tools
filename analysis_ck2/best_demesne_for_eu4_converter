@@ -36,10 +36,6 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
       map = {}
       title_paths.each do |title, path|
         next unless title =~ /\A[bc]_/
-        duchy = path.find{|t| t =~ /\Ad_/}
-        kingdom = path.find{|t| t =~ /\Ak_/}
-        empire = path.find{|t| t =~ /\Ae_/}
-        next unless duchy
         path.each do |t|
           next if t =~ /\Ab_/
           map[t] ||= []

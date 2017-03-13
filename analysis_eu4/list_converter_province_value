@@ -3,7 +3,7 @@
 require_relative "../lib/paradox"
 require_relative "bonus_scoring"
 
-class ListProvinceTradeModifiers < ParadoxGame
+class ListConverterProvinceValue < ParadoxGame
   def province_modifiers
     @province_modifiers ||= begin
       map = {}
@@ -40,8 +40,31 @@ class ListProvinceTradeModifiers < ParadoxGame
     bonus
   end
 
-  def prices
-    @prices ||= begin
+  def price_changes
+    @price_changes ||= begin
+      # Historical price changes are encoded in
+      # history/countries/HAB - Austria.txt
+      # but we can grep them all
+      map = {}
+      glob("history/countries/*.txt").each do |path|
+        parse(path).each do |key, val|
+          next unless key.is_a?(Date)
+          val.find_all("change_price").each do |change|
+            raise unless change["duration"] == -1
+            good = change["trade_goods"]
+            mod = change["value"]
+            name = change["key"]
+            map[good] ||= []
+            map[good] << [key, name, mod]
+          end
+        end
+      end
+      map
+    end
+  end
+
+  def base_prices
+    @base_prices ||= begin
       map = Hash.new(0)
       parse("common/prices/00_prices.txt").each do |name, good|
         map[name] = good["base_price"]
@@ -50,6 +73,22 @@ class ListProvinceTradeModifiers < ParadoxGame
       map
     end
   end
+
+  def prices
+    @prices ||= begin
+      map = base_prices.dup
+      price_changes.each do |good, changes|
+        average_change = 0
+        changes.each do |date, name, value|
+          game_part = (1821.0 - date.year) / (1821 - 1444)
+          average_change += game_part * value
+        end
+        map[good] = (map[good] * (1 + average_change)).round(2)
+      end
+      map
+    end
+  end
+
 
   def provinces
     @provinces ||= begin
@@ -89,4 +128,4 @@ class ListProvinceTradeModifiers < ParadoxGame
   end
 end
 
-ListProvinceTradeModifiers.new(*ARGV).run!
+ListConverterProvinceValue.new(*ARGV).run!
