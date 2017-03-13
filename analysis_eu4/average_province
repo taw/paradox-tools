@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class Array
+  def sum
+    inject(0, &:+)
+  end
+
+  def avg
+    sum / size.to_f
+  end
+end
+
+class AverageProvince < ParadoxGame
+  def parse_province_file(path)
+    # Wanted to do this:
+    # parse(path)
+    #
+    # But due to broken shit in 6-Skane.txt we have to do this:
+    content = resolve(path)
+      .read
+      .force_encoding("windows-1252")
+      .encode("utf-8")
+      .gsub("add_permanent_province_modifier {", "add_permanent_province_modifier = {")
+    ParadoxModFile.new(string: content).parse!
+  end
+
+  def run!
+    tax = []
+    production = []
+    manpower = []
+
+    glob("history/provinces/*.txt").each do |path|
+      id = path.basename.to_s.to_i
+      node = parse_province_file(path)
+      name = localization("PROV#{id}")
+      base_tax = node["base_tax"]
+      base_production = node["base_production"]
+      base_manpower = node["base_manpower"]
+      next unless base_tax # probably water or wasteland
+      tax << base_tax
+      production << base_production
+      manpower << base_manpower
+    end
+
+    puts "Average Base Tax: #{tax.avg.round(2)}"
+    puts "Average Base Production: #{production.avg.round(2)}"
+    puts "Average Base Manpower: #{manpower.avg.round(2)}"
+  end
+end
+
+AverageProvince.new(*ARGV).run!
