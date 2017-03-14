@@ -1049,6 +1049,12 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def fix_regency!
+    patch_mod_file!("common/minor_titles/00_minor_titles.txt") do |node|
+      node["title_appointed_regent"]["allowed_to_grant"].delete! Property["has_regent", false]
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -1083,6 +1089,7 @@ class CK2TweaksGameModification < CK2GameModification
     reduce_revocation_timer!
     divine_blood_full_fertility!
     open_societies!
+    fix_regency!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
