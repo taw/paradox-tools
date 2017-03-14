@@ -87,6 +87,39 @@ class ListConverterProvinceValue < ParadoxGame
     end
   end
 
+  def province_data
+    @province_data ||= begin
+      map = {}
+      glob("history/provinces/*.txt").each do |path|
+        id = path.basename.to_s.to_i
+        node = parse_province_file(path)
+        name = localization("PROV#{id}")
+        mods = node.find_all("add_permanent_province_modifier").map{|mod| mod["name"]}
+        bonus = merge_modifiers(mods)
+        goods = node["trade_goods"]
+        if goods == nil
+          next # water or wasetland
+        elsif goods == "unknown"
+          # Just guess some mid-tier good
+          goods_price = prices["fur"]
+        else
+          goods_price = prices[goods]
+        end
+        map[id] = {
+          name: name,
+          mods: mods,
+          goods: goods,
+          price: goods_price,
+          trade_goods_bonus: bonus["trade_goods_size"],
+          trade_power_bonus: bonus["province_trade_power_value"],
+          base_tax: node["base_tax"],
+          base_production: node["base_production"],
+          base_manpower: node["base_manpower"],
+        }
+      end
+      map
+    end
+  end
 
   def provinces
     @provinces ||= begin
@@ -103,36 +136,18 @@ class ListConverterProvinceValue < ParadoxGame
       average_income = 7.181222
       avearge_manpower = base_manpower
 
-      glob("history/provinces/*.txt").each do |path|
-        id = path.basename.to_s.to_i
-        node = parse_province_file(path)
-        name = localization("PROV#{id}")
-        mods = node.find_all("add_permanent_province_modifier").map{|mod| mod["name"]}
-        bonus = merge_modifiers(mods)
-        goods = node["trade_goods"]
-
-        if goods == nil
-          next # water or wasetland
-        elsif goods == "unknown"
-          # Just guess some mid-tier good
-          goods_price = prices["fur"]
-        else
-          goods_price = prices[goods]
-        end
-
+      province_data.each do |id, province|
         # Dalaskogen's +5 is equivalent to 25 extra dev in this contextgo
-        goods_produced = (0.2 * base_production + bonus["trade_goods_size"]).round(6)
-        trade_value = goods_produced * goods_price
+        goods_produced = (0.2 * base_production + province[:trade_goods_bonus]).round(6)
+        trade_value = (goods_produced * province[:price]).round(6)
 
         # +5% from +1 stab
         # +10% from neutral clergy
         annual_tax = (1.0 * base_tax * 1.15).round(6)
-
-        trade_value = (goods_produced * goods_price).round(6)
         # There are 50% gains from tech, assume middle values
         annual_production = (trade_value * 1.25).round(6)
 
-        base_trade_power = 0.6 * base_production + bonus["province_trade_power_value"]
+        base_trade_power = 0.6 * base_production + province[:trade_power_bonus]
         # Just guess:
         # * coastal +25%
         # * +50% from 25% mercantilism
@@ -142,7 +157,7 @@ class ListConverterProvinceValue < ParadoxGame
         # There are 50% gains from tech, assume middle values
         annual_trade = (1.25 * average_trade_value * trade_power / average_trade_power).round(6)
 
-        if goods == "gold"
+        if province[:goods] == "gold"
           annual_gold = 6 * base_production
         else
           annual_gold = 0
@@ -154,12 +169,8 @@ class ListConverterProvinceValue < ParadoxGame
         # 30% in its base manpower
         value = (0.7 * (annual_income / average_income) + 0.3 * (base_manpower / avearge_manpower)).round(6)
 
-        map[id] = {
-          name: name,
-          goods: goods,
-          bonus: bonus,
+        map[id] = province.merge({
           goods_produced: goods_produced,
-          goods_price: goods_price,
           trade_value: trade_value,
           base_tax: base_tax,
           base_production: base_production,
@@ -170,7 +181,7 @@ class ListConverterProvinceValue < ParadoxGame
           annual_gold: annual_gold,
           annual_income: annual_income,
           value: value,
-        }
+        })
       end
       map
     end
