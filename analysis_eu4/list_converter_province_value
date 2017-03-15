@@ -2,6 +2,141 @@
 
 require_relative "../lib/paradox"
 
+class Province
+  attr_reader :bonus, :mods, :goods, :usable, :name
+  attr_reader :base_tax, :base_production, :base_manpower
+
+  def initialize(game, id, node)
+    @game = game
+    @bonus = node.find_all("add_permanent_province_modifier").map{|mod| mod["name"]}
+    @mods = merge_modifiers(@bonus)
+    @goods = node["trade_goods"]
+    @name = @game.localization("PROV#{id}")
+    @base_tax = node["base_tax"]
+    @base_production = node["base_production"]
+    @base_manpower = node["base_manpower"]
+  end
+
+  def usable?
+    @goods != nil
+  end
+
+  def goods_price
+    @goods_price ||= if goods == nil
+      raise # water or wasetland
+    elsif goods == "unknown"
+      # Just guess some mid-tier good
+      @game.prices["fur"]
+    else
+      @game.prices[goods]
+    end
+  end
+
+  def trade_goods_bonus
+    mods["trade_goods_size"]
+  end
+
+  def trade_power_bonus
+    mods["province_trade_power_value"]
+  end
+
+  def annual_gold
+    if @goods == "gold"
+      6 * base_production
+    else
+      0
+    end
+  end
+
+  def annual_tax
+    # +5% from +1 stab
+    # +10% from neutral clergy
+    @annual_tax = (1.0 * base_tax * 1.15).round(6)
+  end
+
+  def annual_production
+  # There are 50% gains from tech, assume middle values
+    (trade_value * 1.25).round(6)
+  end
+
+  def base_trade_power
+    0.6 * base_production + trade_power_bonus
+  end
+
+  # Just guess:
+  # * coastal +25%
+  # * +50% from 25% mercantilism
+  # maybe check what's coastal, then update stuff above
+  def trade_power
+    (base_trade_power * 1.75).round(6)
+  end
+
+  # Dalaskogen's +5 is equivalent to 25 extra dev in this contextgo
+  def goods_produced
+    (0.2 * base_production + trade_goods_bonus).round(6)
+  end
+
+  def trade_value
+    (goods_produced * goods_price).round(6)
+  end
+
+  def converter_reset!
+    # From average_province script
+    @base_tax = 2.70
+    @base_production = 2.72
+    @base_manpower = 1.85
+  end
+
+  # There are 50% gains from tech, assume middle values
+  def annual_trade
+    (1.25 * average_trade_value * trade_power / average_trade_power).round(6)
+  end
+
+  def annual_income
+    annual_tax + annual_production + annual_trade + annual_gold
+  end
+
+  # Value is based on assumption that 70% of province value is in its income
+  # 30% in its base manpower
+  def value
+    (
+      0.7 * (annual_income / average_income) +
+      0.3 * (base_manpower / avearge_manpower)
+    ).round(6)
+  end
+
+  private
+
+  # From calculations above
+  # It basically simplifies world to one big trade node
+  def average_trade_power
+    3.981490
+  end
+
+  def average_trade_value
+    1.535769
+  end
+
+  def average_income
+    7.181222
+  end
+
+  def avearge_manpower
+    1.85 # converter base_manpower
+  end
+
+  def merge_modifiers(mods)
+    bonus = Hash.new(0)
+    mods.each do |name|
+      @game.province_modifiers[name].each do |key, val|
+        next if key == "picture"
+        bonus[key] += val
+      end
+    end
+    bonus
+  end
+end
+
 class ListConverterProvinceValue < ParadoxGame
   def province_modifiers
     @province_modifiers ||= begin
@@ -26,17 +161,6 @@ class ListConverterProvinceValue < ParadoxGame
       .encode("utf-8")
       .gsub("add_permanent_province_modifier {", "add_permanent_province_modifier = {")
     ParadoxModFile.new(string: content).parse!
-  end
-
-  def merge_modifiers(mods)
-    bonus = Hash.new(0)
-    mods.each do |name|
-      province_modifiers[name].each do |key, val|
-        next if key == "picture"
-        bonus[key] += val
-      end
-    end
-    bonus
   end
 
   def price_changes
@@ -87,101 +211,16 @@ class ListConverterProvinceValue < ParadoxGame
     end
   end
 
-  def province_data
-    @province_data ||= begin
+  def provinces
+    @map ||= begin
       map = {}
       glob("history/provinces/*.txt").each do |path|
         id = path.basename.to_s.to_i
         node = parse_province_file(path)
-        name = localization("PROV#{id}")
-        mods = node.find_all("add_permanent_province_modifier").map{|mod| mod["name"]}
-        bonus = merge_modifiers(mods)
-        goods = node["trade_goods"]
-        if goods == nil
-          next # water or wasetland
-        elsif goods == "unknown"
-          # Just guess some mid-tier good
-          goods_price = prices["fur"]
-        else
-          goods_price = prices[goods]
-        end
-        map[id] = {
-          name: name,
-          mods: mods,
-          goods: goods,
-          price: goods_price,
-          trade_goods_bonus: bonus["trade_goods_size"],
-          trade_power_bonus: bonus["province_trade_power_value"],
-          base_tax: node["base_tax"],
-          base_production: node["base_production"],
-          base_manpower: node["base_manpower"],
-        }
-      end
-      map
-    end
-  end
-
-  def provinces
-    @provinces ||= begin
-      map = {}
-      # From average_province script
-      base_tax = 2.70
-      base_production = 2.72
-      base_manpower = 1.85
-
-      # From calculations below
-      # It basically simplifies world to one big trade node
-      average_trade_power = 3.981490
-      average_trade_value = 1.535769
-      average_income = 7.181222
-      avearge_manpower = base_manpower
-
-      province_data.each do |id, province|
-        # Dalaskogen's +5 is equivalent to 25 extra dev in this contextgo
-        goods_produced = (0.2 * base_production + province[:trade_goods_bonus]).round(6)
-        trade_value = (goods_produced * province[:price]).round(6)
-
-        # +5% from +1 stab
-        # +10% from neutral clergy
-        annual_tax = (1.0 * base_tax * 1.15).round(6)
-        # There are 50% gains from tech, assume middle values
-        annual_production = (trade_value * 1.25).round(6)
-
-        base_trade_power = 0.6 * base_production + province[:trade_power_bonus]
-        # Just guess:
-        # * coastal +25%
-        # * +50% from 25% mercantilism
-        # maybe check what's coastal, then update stuff above
-        trade_power = (base_trade_power * 1.75).round(6)
-
-        # There are 50% gains from tech, assume middle values
-        annual_trade = (1.25 * average_trade_value * trade_power / average_trade_power).round(6)
-
-        if province[:goods] == "gold"
-          annual_gold = 6 * base_production
-        else
-          annual_gold = 0
-        end
-
-        annual_income = annual_tax + annual_production + annual_trade + annual_gold
-
-        # Value is based on assumption that 70% of province value is in its income
-        # 30% in its base manpower
-        value = (0.7 * (annual_income / average_income) + 0.3 * (base_manpower / avearge_manpower)).round(6)
-
-        map[id] = province.merge({
-          goods_produced: goods_produced,
-          trade_value: trade_value,
-          base_tax: base_tax,
-          base_production: base_production,
-          trade_power: trade_power,
-          annual_tax: annual_tax,
-          annual_production: annual_production,
-          annual_trade: annual_trade,
-          annual_gold: annual_gold,
-          annual_income: annual_income,
-          value: value,
-        })
+        province = Province.new(self, id, node)
+        next unless province.usable?
+        map[id] = province
+        map[id].converter_reset!
       end
       map
     end
@@ -189,7 +228,7 @@ class ListConverterProvinceValue < ParadoxGame
 
   def run!
     provinces.each do |id, province|
-      puts "#{id}\t#{province[:value]}"
+      puts "#{id}\t#{province.value}"
     end
   end
 end
