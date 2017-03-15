@@ -2,9 +2,38 @@
 
 require_relative "../lib/paradox"
 
+class TradeNode
+  attr_reader :province_ids, :provinces, :outgoing
+  def initialize(map, node)
+    @map = map
+    @province_ids = node["members"]
+    @provinces = []
+    @outgoing = node.find_all("outgoing").map{|n| n["name"]}
+  end
+
+  def local_trade
+    @local_trade ||= @provinces.map(&:trade_value).inject(0, &:+).round(6)
+  end
+
+  # in/out
+  def trade_value
+    local_trade
+  end
+
+  def province_trade_power
+    @province_trade_power ||= @provinces.map(&:trade_power).inject(0, &:+).round(6)
+  end
+
+  def total_trade_power
+    # guess that 2/3 comes from provinces
+    1.5 * province_trade_power
+  end
+end
+
 class Province
   attr_reader :bonus, :mods, :goods, :usable, :name
   attr_reader :base_tax, :base_production, :base_manpower
+  attr_accessor :trade_node
 
   def initialize(game, id, node)
     @game = game
@@ -89,7 +118,7 @@ class Province
 
   # There are 50% gains from tech, assume middle values
   def annual_trade
-    (1.25 * average_trade_value * trade_power / average_trade_power).round(6)
+    (1.25 * trade_node.trade_value * trade_power / trade_node.total_trade_power).round(6)
   end
 
   def annual_income
@@ -137,6 +166,53 @@ class Province
   end
 end
 
+class Map
+  attr_reader :provinces
+  def initialize(game, reset=false)
+    @game = game
+    @trade_nodes = {}
+    @game.parse("common/tradenodes/00_tradenodes.txt").each do |name, node|
+      @trade_nodes[name] = TradeNode.new(self, node)
+    end
+    @provinces = {}
+    @game.glob("history/provinces/*.txt").each do |path|
+      id = path.basename.to_s.to_i
+      node = parse_province_file(path)
+      province = Province.new(@game, id, node)
+      next unless province.usable?
+      @provinces[id] = province
+      @provinces[id].converter_reset! if reset
+    end
+    @trade_nodes.each do |name, node|
+      node.province_ids.each do |id|
+        province = @provinces[id] or next
+        province.trade_node = node
+        node.provinces << province
+      end
+    end
+    @provinces.each do |id, province|
+      raise "No node for #{province.name}" unless province.trade_node
+    end
+    # Now propagate trade...
+
+  end
+
+  private
+
+  def parse_province_file(path)
+    # Wanted to do this:
+    # parse(path)
+    #
+    # But due to broken shit in 6-Skane.txt we have to do this:
+    content = @game.resolve(path)
+      .read
+      .force_encoding("windows-1252")
+      .encode("utf-8")
+      .gsub("add_permanent_province_modifier {", "add_permanent_province_modifier = {")
+    ParadoxModFile.new(string: content).parse!
+  end
+end
+
 class ListConverterProvinceValue < ParadoxGame
   def province_modifiers
     @province_modifiers ||= begin
@@ -148,19 +224,6 @@ class ListConverterProvinceValue < ParadoxGame
       end
       map
     end
-  end
-
-  def parse_province_file(path)
-    # Wanted to do this:
-    # parse(path)
-    #
-    # But due to broken shit in 6-Skane.txt we have to do this:
-    content = resolve(path)
-      .read
-      .force_encoding("windows-1252")
-      .encode("utf-8")
-      .gsub("add_permanent_province_modifier {", "add_permanent_province_modifier = {")
-    ParadoxModFile.new(string: content).parse!
   end
 
   def price_changes
@@ -211,25 +274,18 @@ class ListConverterProvinceValue < ParadoxGame
     end
   end
 
-  def provinces
-    @map ||= begin
-      map = {}
-      glob("history/provinces/*.txt").each do |path|
-        id = path.basename.to_s.to_i
-        node = parse_province_file(path)
-        province = Province.new(self, id, node)
-        next unless province.usable?
-        map[id] = province
-        map[id].converter_reset!
-      end
-      map
-    end
+  def map
+    @map ||= Map.new(self)
   end
 
   def run!
-    provinces.sort.each do |id, province|
+    map.provinces.sort.each do |id, province|
       puts "#{id}\t#{province.name}\t#{province.value}"
     end
+  end
+
+  def inspect
+    "#{self.class}"
   end
 end
 
