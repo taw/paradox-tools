@@ -4,20 +4,22 @@ require_relative "../lib/paradox"
 
 class TradeNode
   attr_reader :province_ids, :provinces, :outgoing
+  attr_accessor :incoming_trade_value, :outgoing_trade_value
   def initialize(map, node)
     @map = map
     @province_ids = node["members"]
     @provinces = []
     @outgoing = node.find_all("outgoing").map{|n| n["name"]}
+    @outgoing_trade_value = 0
+    @incoming_trade_value = 0
   end
 
   def local_trade
     @local_trade ||= @provinces.map(&:trade_value).inject(0, &:+).round(6)
   end
 
-  # in/out
   def trade_value
-    local_trade
+    local_trade + incoming_trade_value - outgoing_trade_value
   end
 
   def province_trade_power
@@ -27,6 +29,10 @@ class TradeNode
   def total_trade_power
     # guess that 2/3 comes from provinces
     1.5 * province_trade_power
+  end
+
+  def end_node?
+    @outgoing.empty?
   end
 end
 
@@ -168,7 +174,7 @@ end
 
 class Map
   attr_reader :provinces
-  def initialize(game, reset=false)
+  def initialize(game, reset=true)
     @game = game
     @trade_nodes = {}
     @game.parse("common/tradenodes/00_tradenodes.txt").each do |name, node|
@@ -193,8 +199,18 @@ class Map
     @provinces.each do |id, province|
       raise "No node for #{province.name}" unless province.trade_node
     end
-    # Now propagate trade...
-
+    processed = {}
+    @trade_nodes.each do |name, node|
+      processed[name] = true
+      next if node.end_node?
+      transfer = node.trade_value * 0.5
+      node.outgoing_trade_value = transfer
+      node.outgoing.each do |out_name|
+        raise "Cycle detected" if processed[out_name]
+        # guess 5% transfer bonus, split evenly
+        @trade_nodes[out_name].incoming_trade_value += 1.05 * transfer / node.outgoing.size
+      end
+    end
   end
 
   private

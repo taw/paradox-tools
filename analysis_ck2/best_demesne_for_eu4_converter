@@ -11,7 +11,7 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
     end
     root, province_values_txt = *args
     @province_values = Pathname(province_values_txt).readlines.map{|line|
-      k, v = line.chomp.split(/\s+/, 2)
+      k, n, v = line.chomp.split(/\t/, 3)
       [k.to_i, v.to_f]
     }.to_h
     super(root)
