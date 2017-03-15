@@ -227,8 +227,8 @@ class ListConverterProvinceValue < ParadoxGame
   end
 
   def run!
-    provinces.each do |id, province|
-      puts "#{id}\t#{province.value}"
+    provinces.sort.each do |id, province|
+      puts "#{id}\t#{province.name}\t#{province.value}"
     end
   end
 end
