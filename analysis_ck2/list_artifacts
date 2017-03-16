@@ -27,8 +27,16 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
     @artifact_owners ||= begin
       map = {}
       @data["artifacts"].each do |artifact_id, artifact|
+        # No idea wtf this is about
+        next if artifact == "none"
         name = artifact["type"]
         owner_id = artifact["owner"]
+        raise "Artifact with no name: #{artifact}" unless name
+        raise "Artifact with no owner: #{artifact}" unless owner_id
+        item = artifact_types[name]
+        raise "No such item: #{name}" unless item
+        # Don't bother with crap
+        next unless item[:quality] >= 3
         map[owner_id] ||= []
         map[owner_id] << name
       end
