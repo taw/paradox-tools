@@ -15,7 +15,7 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
           end
           map[id] = {
             name: name,
-            quality: artifact["quality"],
+            quality: artifact["quality"] || "?",
           }
         end
       end
@@ -35,8 +35,10 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
         raise "Artifact with no owner: #{artifact}" unless owner_id
         item = artifact_types[name]
         raise "No such item: #{name}" unless item
+        quality = item[:quality]
         # Don't bother with crap
-        next unless item[:quality] >= 3
+        # Strange chest has no quality
+        next if quality == 1 or quality == 2
         map[owner_id] ||= []
         map[owner_id] << name
       end
