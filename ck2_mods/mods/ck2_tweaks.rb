@@ -1047,6 +1047,12 @@ class CK2TweaksGameModification < CK2GameModification
         "true_religion_group_indian_group_trigger", true,
       ]
     end
+
+    patch_mod_file!("decisions/mnm_society_decisions.txt") do |node|
+      cult_of_kali_recruit = node.to_a.map{|n| n.val["cult_of_kali_recruit"] }.find(&:itself)
+      cult_of_kali_recruit["allow"].delete! Property["religion", "hindu"]
+      cult_of_kali_recruit["allow"].add! Property["true_religion_group_indian_group_trigger", true]
+    end
   end
 
   def fix_regency!
