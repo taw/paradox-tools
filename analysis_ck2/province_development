@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require_relative "../ck2/ck2_analyses"
+
+class ProvinceDevelopmentAnalysis < CK2GameAndSaveAnalysis
+  def building_types
+    @building_types ||= begin
+      map = {}
+      glob("common/buildings/*.txt").each do |path|
+        parse(path).each do |holding_type, buildings|
+          buildings.each do |name, building|
+            map[name] = building["gold_cost"] || 0
+          end
+        end
+      end
+      map
+    end
+  end
+
+  def run!
+    totals = Hash.new(0)
+    @data["provinces"].each do |id, province|
+      next if province == []
+      holding_names = ["hospital", "trade_post", *valid_titles] & province.keys
+      next if holding_names.empty?
+
+      holding_names.each do |name|
+        holding = province[name]
+        type = holding["type"]
+        buildings = holding.keys.select{|k| holding[k] == true}
+        buildings -= %W[maintaining_mercenaries]
+
+        totals[id] += buildings.map{|t| building_types[t]}.inject(0, &:+)
+      end
+    end
+
+    totals.sort_by{|id,t| [-t,id]}.each do |id,t|
+      puts "#{t.round} #{localization("PROV#{id}")}"
+    end
+  end
+end
+
+
+ProvinceDevelopmentAnalysis.new(*ARGV).run!
