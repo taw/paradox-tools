@@ -38,7 +38,6 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
         quality = item[:quality]
         # Don't bother with crap
         # Strange chest has no quality
-        next if quality == 1 or quality == 2
         map[owner_id] ||= []
         map[owner_id] << name
       end
@@ -48,14 +47,37 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
 
   def run!
     load_characters!
+
+    report = []
+
     artifact_owners.each do |owner_id, items|
       owner = Character[owner_id]
-      puts "#{owner.full_name} of #{owner.top_tier_titles.join("/")}"
-      items.sort.each do |id|
+      owner_name = "#{owner.full_name} of #{owner.top_tier_titles.join("/")}"
+
+      capital = owner.titles.map(&:id).find{|t| t =~ /\A[cb]_/ and title_paths[t]}
+
+      if capital
+        location_path = title_paths[capital].reverse.join("/")
+      elsif !owner.titles.empty?
+        # has title but no capital, like landless pope or independent nomad clan
+        location_path = "?"
+      elsif
+        host = Character[owner.node["host"]]
+        host_capital = host.titles.map(&:id).find{|t| t =~ /\A[cb]_/ and title_paths[t]}
+        if host_capital
+          location_path = title_paths[host_capital].reverse.join("/")
+        else
+          location_path = "?"
+        end
+      end
+
+      items.each do |id|
         item = artifact_types[id]
-        puts "* #{item[:name]} [#{item[:quality]}]"
+        report << "#{location_path} - #{owner_name} - #{item[:name]} [#{item[:quality]}]"
       end
     end
+
+    puts report.sort
   end
 end
 
