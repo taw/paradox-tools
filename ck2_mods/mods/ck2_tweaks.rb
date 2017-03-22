@@ -1061,6 +1061,68 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def more_zoom!
+    override_defines_lua!("more_zoom",
+      "NFrontend.MAX_ZOOM_LEVEL" => "4000",
+    )
+  end
+
+  def no_random_coas!
+    patch_mod_files!("common/religions/*.txt") do |node|
+      node.each do |group_name, group|
+        # is this enough?
+        group.delete! Property["has_coa_on_barony_only", false]
+      end
+    end
+  end
+
+  def unhappy_late_vassals!
+    # Triple them all
+    patch_mod_file!("common/laws/ze_crown_laws.txt") do |node|
+      node["de_jure_laws"]["vassal_wars_law_1"]["feudal_opinion"] = -15
+      node["de_jure_laws"]["vassal_wars_law_2"]["feudal_opinion"] = -30
+    end
+    patch_mod_file!("common/laws/ze_demesne_laws.txt") do |node|
+      node["laws"]["ze_administration_laws_2"]["feudal_opinion"] = -30
+    end
+  end
+
+  def increase_cap!(event)
+    # bleh...
+    s = ParadoxModFileSerializer.serialize(event["immediate"])
+    s = s.gsub("match_max = 5000", "match_max = 20000")
+    s = s.gsub("match_max = 10000", "match_max = 40000")
+    event["immediate"] = ParadoxModFile.new(string: s).parse!
+  end
+
+  def adventurers_cap!
+    patch_mod_file!("events/adventures_the_old_gods.txt") do |node|
+      events = node.find_all("character_event")
+      increase_cap!(events.find{|e| e["id"] == "TOG.1202"})
+      increase_cap!(events.find{|e| e["id"] == "TOG.1212"})
+    end
+
+    patch_mod_file!("events/family_events.txt") do |node|
+      events = node.find_all("character_event")
+      increase_cap!(events.find{|e| e["id"] == 37015})
+    end
+  end
+
+  def much_less_attriton!
+    override_defines_lua!("much_less_attrition",
+      "NMilitary.ATTRITION_LEVEL_FACTOR" => 0.05,
+      "NMilitary.ATTRITION_LEVEL_FACTOR_50_OVER" => 0.1,
+      "NMilitary.ATTRITION_LEVEL_FACTOR_100_OVER" => 0.2,
+    )
+  end
+
+  def remove_siege_defense_bonus!
+    # I seriously can't patch it because <CULTURE> clashes with < > etc.
+    patch_file!("common/technology.txt") do |content|
+      content.sub!("SIEGE_DEFENCE = 1.0", "") or raise
+    end
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -1083,7 +1145,7 @@ class CK2TweaksGameModification < CK2GameModification
     dont_call_duke_kings_ever!
     stronger_claims_on_rebels!
     fix_de_jure_map!
-    easier_culture_conversion!
+    easier_culture_conversion! # could be too much...
     easier_title_creation!
     allow_more_commanders!
     nerf_demand_conversion!
@@ -1096,6 +1158,8 @@ class CK2TweaksGameModification < CK2GameModification
     divine_blood_full_fertility!
     open_societies!
     fix_regency!
+    more_zoom!
+    no_random_coas!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
@@ -1111,5 +1175,11 @@ class CK2TweaksGameModification < CK2GameModification
     remove_viceroyalty_opinion_penalty!
     viceroyalties_can_use_gavelkind!
     # extend_timeline!
+
+    # Trying to make late game work:
+    unhappy_late_vassals!
+    adventurers_cap!
+    much_less_attriton!
+    remove_siege_defense_bonus!
   end
 end
