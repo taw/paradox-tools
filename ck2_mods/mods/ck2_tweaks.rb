@@ -1123,6 +1123,18 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def fix_eu4_converter_merchant_republics!
+    # I moved eu4 converter dlc files to weird place
+    # maybe best to merge it with everything else?
+    # Easier to regexp CSVs than parse and redo
+    content = resolve("dlc/dlc030/eu4_converter/government_table.csv").read
+    content.sub!("gov_oligarchic_republic;oligarchic_republic",
+                 "gov_oligarchic_republic;merchant_republic")
+    content.sub!("gov_oligarchic_republic;oligarchic_republic",
+                 "administrative_republic;merchant_republic")
+    create_file!("eu4_converter/government_table.csv", content)
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -1160,6 +1172,7 @@ class CK2TweaksGameModification < CK2GameModification
     fix_regency!
     more_zoom!
     no_random_coas!
+    fix_eu4_converter_merchant_republics!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:

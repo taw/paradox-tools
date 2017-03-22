@@ -83,9 +83,12 @@ class ParadoxModBuilder
   def glob(pattern)
     (@target.glob(pattern) + @game.glob(pattern)).uniq{|file| file.to_s.downcase}.sort
   end
-  # This is not game parse as it will return modded file if it already exists
+  # These is not game's parse/parse_csv as they will return modded file if it already exists
   def parse(path)
     ParadoxModFile.new(path: resolve(path)).parse!
+  end
+  def parse_csv(path)
+    CSV.parse(resolve(path).open("r:windows-1252:utf-8").read, col_sep: ";")
   end
   def create_file!(name, content)
     (@target + name).parent.mkpath
