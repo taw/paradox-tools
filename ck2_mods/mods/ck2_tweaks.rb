@@ -1130,8 +1130,8 @@ class CK2TweaksGameModification < CK2GameModification
     content = resolve("dlc/dlc030/eu4_converter/government_table.csv").read
     content.sub!("gov_oligarchic_republic;oligarchic_republic",
                  "gov_oligarchic_republic;merchant_republic")
-    content.sub!("gov_oligarchic_republic;oligarchic_republic",
-                 "administrative_republic;merchant_republic")
+    content.sub!("gov_aristocratic_republic;administrative_republic",
+                 "gov_aristocratic_republic;merchant_republic")
     create_file!("eu4_converter/government_table.csv", content)
   end
 
