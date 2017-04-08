@@ -140,9 +140,10 @@ class HolySitesGameModification < EU4GameModification
         holy_site_info[:sites][group_name.to_sym],
         (holy_site_info[:sites][subgroup] if subgroup),
         holy_site_info[:sites][religion_name.to_sym],
-      ].compact.inject(&:+)
+      ].compact.first
       by_religion[religion_name] =  holy_sites
     end
+
     holy_site_info[:sites].each do |group, sites|
       name = localization(group)
 

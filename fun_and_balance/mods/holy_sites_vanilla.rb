@@ -16,10 +16,9 @@ class HolySitesVanillaGameModification < HolySitesGameModification
         mesoamerican_religion: :new_world,
       },
       sites: {
-        christian:    ["Roma", "Jerusalem", "Constantinople"],
-        western_christian: ["Galicia / Santiago de Compostela", "Kent / Cantenbury"],
-        orthodox:     ["Thessaloniki / Mount Athos", "Kiev"],
-        coptic:       ["Alexandria", "Tigre / Ark of the Covenant"],
+        western_christian: ["Roma", "Jerusalem", "Constantinople", "Galicia / Santiago de Compostela", "Kent / Cantenbury"],
+        orthodox:     ["Roma", "Jerusalem", "Constantinople", "Thessaloniki / Mount Athos", "Kiev"],
+        coptic:       ["Roma", "Jerusalem", "Constantinople", "Alexandria", "Tigre / Ark of the Covenant"],
 
         muslim:       ["Mecca", "Jerusalem", "Constantinople", "Cordoba", "Hillah / Karbala"],
         # Varanasi, Chidambaram, Angkor Wat - Hindu
@@ -28,7 +27,7 @@ class HolySitesVanillaGameModification < HolySitesGameModification
         dharmic:     ["Jaunpur / Varanasi", "Coromandel / Chidambaram", "Baroda / Palitana", "Angkor / Angkor Wat", "Lahore / Harmandir Sahib"],
 
         # These are not amazing, but they'll have to do:
-        eastern:     ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "West Gyeongsang / Bulguksa"],
+        eastern:     ["Bihar / Bodhgaya / 558", "Angkor / Angkor Wat", "Qingzhou / Qufu", "Owari / Ise Jingu", "Sangju / Bulguksa"],
 
         # Adapted from CK2
         norse_pagan_reformed:   ["Zeeland", "Hannover / Paderborn / 1758", "Sjaelland", "Trondelag", "Uppland / Uppsala"],

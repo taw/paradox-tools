@@ -14,12 +14,9 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.CULTURE_GAIN_THRESHOLD", "0.20", "0.10"], # This goes away in 1.18 anyway
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
-      ["NCountry.LIBERTY_DESIRE_VASSAL_DEVELOPMENT_RATIO", 0.25, 0.10],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.MERCHANT_REPUBLIC_SIZE_LIMIT", 20, 10000],
       ["NCountry.POLICY_COST", 1, 0],
-      ["NCountry.PROTECTORATE_LOWER_BOUND", 0.5, 5.0], # 1.18 changes this
-      ["NCountry.PROTECTORATE_TECH_THRESHOLD", 0.5, 5.0], # 1.18 changes this
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
@@ -31,19 +28,20 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
-      ["NDiplomacy.PO_BECOME_PROTECTORATE_AE", 0.25, 0.17],
-      ["NDiplomacy.PO_BECOME_VASSAL_AE", 0.5, 0.33],
-      ["NDiplomacy.PO_CONCEDE_COLONIAL_AE", 0.25, 0.17],
-      ["NDiplomacy.PO_DEMAND_PROVINCES_AE", 0.75, 0.5],
-      ["NDiplomacy.PO_FORM_PU_AE", 0.1, 0.066],
-      ["NDiplomacy.PO_RETURN_CORES_AE", 0.5, 0.33],
-      ["NDiplomacy.PO_REVOKE_ELECTOR_AE", 25, 15],
+      # ["NDiplomacy.PO_BECOME_VASSAL_AE", 0.5, 0.33],
+      # ["NDiplomacy.PO_CONCEDE_COLONIAL_AE", 0.25, 0.17],
+      # ["NDiplomacy.PO_DEMAND_PROVINCES_AE", 0.75, 0.5],
+      # ["NDiplomacy.PO_FORM_PU_AE", 0.1, 0.066],
+      # ["NDiplomacy.PO_RETURN_CORES_AE", 0.5, 0.33],
+      # ["NDiplomacy.PO_REVOKE_ELECTOR_AE", 25, 15],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
       ["NMilitary.FORTRESS_COST", 0.50, 0.25],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
+      ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
+      ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, -0.6],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
@@ -56,7 +54,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     end
 
     anyone_can_form_byzantium!
-    # double_diplo_rel_limit_from_ideas!
     fix_opinions!
     fix_wargoals!
     no_naval_attrition!

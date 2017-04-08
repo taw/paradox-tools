@@ -22,20 +22,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def double_diplo_rel_limit_from_ideas!
-    patch_mod_files!("common/ideas/*.txt") do |node|
-      node.each do |group_name, idea_group|
-        idea_group.each do |name, idea|
-          next if %W[category trigger ai_will_do important free].include?(name)
-          next if idea == [] # Empty idea
-          if idea["diplomatic_upkeep"] == 1
-            idea["diplomatic_upkeep"] = 2
-          end
-        end
-      end
-    end
-  end
-
   def disable_burgundy_inheritance!
     patch_mod_file!("events/FlavorBUR.txt") do |node|
       node.each do |key, val|
@@ -95,65 +81,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["superiority_overseas"]["allowed_provinces"] = PropertyList["always", true]
       node["superiority_overseas"]["po_become_vassal" ] = PropertyList["always", true]
     end
-
-    # Exploration / Expansion
-    create_mod_file! "common/cb_types/00_exploration_and_expansion.txt", PropertyList[
-      "cb_primitives", PropertyList[
-        "valid_for_subject", false,
-        "prerequisites", PropertyList[
-          "OR", PropertyList[
-            "cb_on_primitives", true,
-            "AND", PropertyList[
-              "is_colonial_nation", true,
-              "is_neighbor_of", "FROM",
-            ],
-          ],
-          "NOT", PropertyList["has_country_modifier", "the_proclamation_of_year_timer"],
-          "FROM", PropertyList[
-            "OR", PropertyList[
-              "capital_scope", PropertyList["continent", "north_america"],
-              "capital_scope", PropertyList["continent", "south_america"],
-              "capital_scope", PropertyList["continent", "oceania"],
-            ],
-            "OR", PropertyList[
-              "AND", PropertyList[
-                "is_subject", false,
-                "NOT", PropertyList["ROOT", PropertyList["PREV", PropertyList["tech_difference", -7]]],
-              ],
-              "AND", PropertyList[
-                "is_subject", true,
-                "overlord", PropertyList[
-                  "OR", PropertyList[
-                    "capital_scope", PropertyList["continent", "north_america"],
-                    "capital_scope", PropertyList["continent", "south_america"],
-                    "capital_scope", PropertyList["continent", "oceania"],
-                  ],
-                  "NOT", PropertyList["ROOT", PropertyList["PREV", PropertyList["tech_difference", -7]]],
-                ],
-              ],
-            ],
-          ],
-          "is_revolution_target", false,
-        ],
-        "war_goal", "superiority_primitives",
-      ],
-      "cb_overseas", PropertyList[
-        "valid_for_subject", false,
-        "prerequisites", PropertyList[
-          "cb_on_overseas", true,
-          "FROM", PropertyList[
-            "is_subject", false,
-            "NOT", PropertyList["capital_scope", PropertyList["continent", "north_america"]],
-            "NOT", PropertyList["capital_scope", PropertyList["continent", "south_america"]],
-            "NOT", PropertyList["capital_scope", PropertyList["continent", "oceania"]],
-            "NOT", PropertyList["ROOT", PropertyList["PREV", PropertyList["tech_difference", -7]]],
-          ],
-          "is_subject", false,
-          "is_revolution_target", false,
-        ],
-        "war_goal", "superiority_overseas",
-      ],
-    ]
   end
 
   def anyone_can_form_byzantium!
@@ -168,7 +95,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/religions/00_religion.txt") do |node|
       node.each do |group_name, group|
         group.each do |name, religion|
-          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range"].include?(name)
+          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier"].include?(name)
           if group_name == "pagan"
             religion["province"] ||= PropertyList[]
             religion["province"]["local_missionary_strength"] = 0.03
