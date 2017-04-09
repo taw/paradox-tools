@@ -71,7 +71,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           "cb_on_religious_enemies", true,
         ],
       ]
+      # Remove Punitive Wars
+      node["cb_super_badboy"]["prerequisites"] = PropertyList["always", false]
     end
+
     # Imperial Ban CB adjust down
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       modify_node! node,

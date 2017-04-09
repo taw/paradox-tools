@@ -62,7 +62,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
         ["base_values", "diplomatic_upkeep", 3, 6],
-        ["emperor", "diplomatic_upkeep", 1, 2],
         ["ai_nation", "free_leader_pool", 1, 0]
     end
     # We could do something fancier here
@@ -85,7 +84,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     disable_call_for_peace!
     longer_cb_on_backstabbers!
     faster_institution_spread!
-
     fix_adopt_secularism_decision!
   end
 end
