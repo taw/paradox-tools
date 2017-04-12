@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require "set"
+require_relative "../lib/paradox"
+
+class ReleasableCountries < ParadoxGame
+  def initialize(save_game, *paths)
+    super(*paths)
+    @path = save_game
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def foreign_cores
+    @foreign_cores ||= begin
+      map = {}
+      @data["provinces"].each do |id, province|
+        cores = province.find_all("core")
+        owner = province["owner"]
+        cores.each do |core|
+          next if core == owner
+          map[core] ||= Set[]
+          map[core] << owner
+        end
+      end
+      map
+    end
+  end
+
+  def country_size(tag)
+    @data["countries"][tag]["num_of_cities"] || 0
+  end
+
+  def call
+    foreign_cores.each do |country, foreigners|
+      next if country_size(country) > 0
+      puts "#{localization(country)}: #{ foreigners.map{|tag| localization(tag)}.join(", ") }"
+    end
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
+ReleasableCountries.new(*ARGV).call
