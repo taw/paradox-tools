@@ -1,0 +1,92 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+
+class WorldConquestProgress
+  def initialize(save_game)
+    @data = ParadoxModFile.new(path: save_game).parse!
+  end
+
+  def provinces
+    unless @provinces
+      @provinces = {}
+      @data["provinces"].each do |id, province|
+        dev = (province["base_tax"] || 0) +
+              (province["base_production"] || 0) +
+              (province["base_manpower"] || 0)
+        next if dev == 0
+        # Fractional dev used to be the case for colonies, they removed it by now right?
+        dev = dev.to_i if dev == dev.to_i
+        owner = province["owner"]
+        @provinces[-id] = {dev: dev, owner: owner}
+      end
+    end
+    @provinces
+  end
+
+  def country_development
+    unless @country_development
+      @country_development = {}
+      provinces.each do |id, province|
+        owner = province[:owner]
+        @country_development[owner] ||= 0
+        @country_development[owner] += province[:dev]
+      end
+    end
+    @country_development
+  end
+
+  def player_tag
+    @player_tag ||= @data["player"]
+  end
+
+  def subjects
+    unless @subjects
+      @subjects = {}
+      @data["diplomacy"].each do |type, relation|
+        next unless relation["subject_type"]
+        subject_type = relation["subject_type"]
+        overlord = relation["first"]
+        subject = relation["second"]
+        raise if @subjects[subject]
+        @subjects[subject] = [overlord, subject_type]
+      end
+    end
+    @subjects
+  end
+
+  def call
+    own = 0
+    subject = Hash.new(0)
+    uncolonized = 0
+    foreigners = 0
+
+    country_development.each do |tag, dev|
+      if tag == player_tag
+        own += dev
+      elsif tag == nil
+        uncolonized += dev
+      elsif subjects[tag] and subjects[tag][0] == player_tag
+        subject[subjects[tag][1]] += dev
+      else
+        foreigners += dev
+      end
+    end
+
+    puts "own: #{own}"
+    subject.each do |type, dev|
+      puts "#{type}: #{dev}"
+    end
+    puts "foreigners: #{foreigners}"
+    puts "uncolonized: #{uncolonized}"
+  end
+end
+
+if __FILE__ == $0
+  unless ARGV.size == 1
+    STDERR.puts "Usage: #{$0} save_game.eu4"
+    exit 1
+  end
+
+  WorldConquestProgress.new(*ARGV).call
+end
