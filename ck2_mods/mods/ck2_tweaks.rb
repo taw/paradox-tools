@@ -1172,7 +1172,6 @@ class CK2TweaksGameModification < CK2GameModification
     fix_regency!
     more_zoom!
     no_random_coas!
-    fix_eu4_converter_merchant_republics!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
@@ -1188,6 +1187,7 @@ class CK2TweaksGameModification < CK2GameModification
     remove_viceroyalty_opinion_penalty!
     viceroyalties_can_use_gavelkind!
     # extend_timeline!
+    # fix_eu4_converter_merchant_republics!
 
     # Trying to make late game work:
     unhappy_late_vassals!

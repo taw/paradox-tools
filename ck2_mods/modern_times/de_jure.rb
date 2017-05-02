@@ -78,4 +78,11 @@ ModernTimesDatabase::DE_JURE = {
   "d_upper_lorraine" => "k_france",
   "d_lower_lorraine" => {times_immemorial: "k_germany", end_ww2: "k_france"}, # This shape...
   "d_alsace"         => {times_immemorial: "k_germany", end_ww2: "k_france"},
+
+  # Reverting 2.7 de jure map changes
+  "d_samos"          => "k_byzantium",
+  "d_cibyrrhaeot"    => "k_byzantium",
+  "d_itil"           => "k_cuman",
+  "d_cherson"        => "k_taurica",
+  "d_crimea"         => "k_taurica",
 }

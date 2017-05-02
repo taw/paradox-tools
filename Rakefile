@@ -56,10 +56,18 @@ desc "Build all packages"
 task "all" => ["ck2", "eu4"]
 
 desc "Build all CK2 packages"
-task "ck2" => ["no_dynastic_names", "no_localized_ranks", "no_localized_landed_titles", "suez_canal", "modern_times", "modern_times_plus"]
+task "ck2" => [
+  "no_localized_ranks",
+  "suez_canal",
+  "modern_times",
+  "modern_times_plus",
+]
 
 desc "Build all EU4 packages"
-task "eu4" => ["vanilla", "extended_timeline"]
+task "eu4" => [
+  "vanilla",
+  "extended_timeline",
+]
 
 desc "Build CK2 No Dynastic Names"
 task "no_dynastic_names" do

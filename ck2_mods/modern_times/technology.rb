@@ -35,6 +35,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_croatia"          => [3,3,3, 4,4,4, 5,5,5],
   "k_byzantium"        => [3,3,3, 4,4,4, 5,5,5],
   "k_anatolia"         => [3,3,3, 4,4,4, 5,5,5],
+  "k_trebizond"        => [3,3,3, 4,4,4, 5,5,5],
   "k_armenia"          => [3,3,3, 4,4,4, 5,5,5],
   # Moscow gets +1 mil over its group
   "d_moskva"           => [4,3,3, 5,4,4, 6,5,5],
@@ -54,6 +55,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_khotan"           => [2,2,2, 3,3,3, 4,4,4],
   "k_mongolia"         => [2,2,2, 3,3,3, 4,4,4],
   "k_cuman"            => [2,2,2, 3,3,3, 4,4,4],
+  "k_khazaria"         => [2,2,2, 3,3,3, 4,4,4],
   "k_turkestan"        => [2,2,2, 3,3,3, 4,4,4],
   # Israel tech group - some catch up
   "k_jerusalem"        => [2,2,2, 3,3,3, 5,5,5],

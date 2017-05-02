@@ -7,11 +7,12 @@ class ModernTimesModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/ck2_2.6.1",
+        "source/ck2_2.7.1",
       ),
       "output/modern_times",
     )
   end
+
   def apply_modern_times!
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
