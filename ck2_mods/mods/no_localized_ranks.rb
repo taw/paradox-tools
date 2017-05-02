@@ -48,25 +48,19 @@ class NoLocalizedRanksGameModification < CK2GameModification
       "\\z"
     )
 
-    glob("localisation*/*.csv").each do |path|
-      content = resolve(path).read.force_encoding("windows-1252").encode("UTF-8", undef: :replace)
-      content.each_line do |line|
-        key, *fields = line.split(";")
-        if cultures.any?{|c| key.end_with?("_adj_#{c}")}
-          # No localized titles handles those
-          # OK
-        elsif key =~ rx # cultures.any?{|c| ranks.any?{|r| key == r + c }}
-          base_key = key.sub(%r[_(#{cultures.join("|")})\z], "")
-          # puts [key, fields[0]].join(" ; ")
-          localization!("zz_vanilla_overrides",
-            key => localization(base_key),
-          )
-        elsif cultures.any?{|c| key.end_with?("_#{c}")}
-          # These are unrelated things like "convertto_swedish" "k_cuman" "region_baltic" etc.
-          # OK
-        else
-          # OK
-        end
+    patch_localization! do |line|
+      key, *fields = line.split(";")
+      if cultures.any?{|c| key.end_with?("_adj_#{c}")}
+        # No localized titles handles those
+        line
+      elsif key =~ rx # cultures.any?{|c| ranks.any?{|r| key == r + c }}
+        # puts [key, fields[0]].join(" ; ")
+        nil
+      elsif cultures.any?{|c| key.end_with?("_#{c}")}
+        # These are unrelated things like "convertto_swedish" "k_cuman" "region_baltic" etc.
+        line
+      else
+        line
       end
     end
   end
