@@ -2,9 +2,10 @@
 
 require_relative "../lib/paradox_game"
 
-class WorldConquestProgress
-  def initialize(save_game)
+class WorldConquestProgress < ParadoxGame
+  def initialize(save_game, *paths)
     @data = ParadoxModFile.new(path: save_game).parse!
+    super(*paths)
   end
 
   def provinces
@@ -55,38 +56,56 @@ class WorldConquestProgress
     @subjects
   end
 
-  def call
-    own = 0
-    subject = Hash.new(0)
-    uncolonized = 0
-    foreigners = 0
-
-    country_development.each do |tag, dev|
-      if tag == player_tag
-        own += dev
-      elsif tag == nil
-        uncolonized += dev
-      elsif subjects[tag] and subjects[tag][0] == player_tag
-        subject[subjects[tag][1]] += dev
-      else
-        foreigners += dev
+  def development_by_type
+    @development_by_type ||= begin
+      map = Hash.new(0)
+      country_development.each do |tag, dev|
+        if tag == player_tag
+          map[:own] += dev
+        elsif tag == nil
+          map[:uncolonized] += dev
+        elsif subjects[tag] and subjects[tag][0] == player_tag
+          map[subjects[tag][1]] += dev
+        else
+          map[:foreigners] += dev
+        end
       end
+      map
     end
+  end
 
-    puts "own: #{own}"
-    subject.each do |type, dev|
+  def development_by_independent_country
+    @development_by_independent_country ||= begin
+      map = Hash.new(0)
+      country_development.each do |tag, dev|
+        if tag == nil
+          # skip
+        elsif subjects[tag]
+          map[subjects[tag][0]] += dev
+        else
+          map[tag] += dev
+        end
+      end
+      map
+    end
+  end
+
+  def call
+    development_by_type.each do |type, dev|
       puts "#{type}: #{dev}"
     end
-    puts "foreigners: #{foreigners}"
-    puts "uncolonized: #{uncolonized}"
+    puts ""
+    development_by_independent_country
+      .sort_by{|tag,dev| [-dev, tag]}
+      .each do |tag, dev|
+      puts "#{localization(tag)}: #{dev}"
+    end
   end
 end
 
-if __FILE__ == $0
-  unless ARGV.size == 1
-    STDERR.puts "Usage: #{$0} save_game.eu4"
-    exit 1
-  end
-
-  WorldConquestProgress.new(*ARGV).call
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
 end
+
+WorldConquestProgress.new(*ARGV).call
