@@ -70,7 +70,7 @@ class CountryInformation < InformationTables
     return unless state["buildings"]
     ["dockyard", "industrial_complex", "arms_factory"].each do |type|
       next unless state["buildings"][type]
-      next if state["buildings"][type] == []
+      next if state["buildings"][type] == PropertyList[]
       count = state["buildings"][type]["level"].size
       @ic["owned_#{type}"] += count
       @ic["owned_total"] += count
@@ -81,7 +81,7 @@ class CountryInformation < InformationTables
     return unless state["buildings"]
     ["dockyard", "industrial_complex", "arms_factory"].each do |type|
       next unless state["buildings"][type]
-      next if state["buildings"][type] == []
+      next if state["buildings"][type] == PropertyList[]
       count = state["buildings"][type]["level"].size
       count_working = state["buildings"][type]["level"].select{|lvl| lvl == 100}.size
       @ic["controlled_#{type}"] += count
@@ -100,7 +100,12 @@ class CountryInformation < InformationTables
   end
 
   def add_division!(unit)
-    @manpower["army"] += unit["manpower"]
+    # Old style
+    manpower = unit["manpower"]
+    # New style
+    manpower ||= unit["army_manpower"].find_all("army_manpower_value").map{|v| v["value"]["value"]}.inject(&:+)
+    raise "Unit without manpower" unless manpower
+    @manpower["army"] += manpower
     @divisions += 1
     add_equipments! unit["equipment"]
   end
