@@ -94,9 +94,13 @@ class ParadoxModFile
           else
             @tokens << s[1]
           end
-        elsif s.scan(/"([^"]*)"/)
+        elsif s.scan(/"([^"\\]*)"/)
           # Is there ever any weird escaping here?
           @tokens << s[1]
+        elsif s.scan(/"(([^"\\]|\\")*)"/)
+          # There is some escaping
+          # Only seen in modded HOI4 saves so far
+          @tokens << s[1].gsub('\"', '"')
         elsif s.scan(/,/)
           # Seen in some array defintions, pass
         else

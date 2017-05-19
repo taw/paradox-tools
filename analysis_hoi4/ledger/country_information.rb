@@ -19,7 +19,11 @@ class CountryInformation < InformationTables
     @research_cost = 0
     (country["technology"]["technologies"] || {}).each do |name, tech|
       next unless tech["level"]
-      raise unless tech["level"] == 1
+      # seen in Kaiserreich saves:
+      #   "motorised_infantry", PropertyList["level", 2],
+      # no idea what that even means, might be a bug
+      #
+      # raise unless tech["level"] == 1
       if ledger.technology_cost[name]
         @research_cost += ledger.technology_cost[name]
       else
