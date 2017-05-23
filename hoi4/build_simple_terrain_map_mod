@@ -1,0 +1,148 @@
+#!/usr/bin/env ruby
+
+require "RMagick"
+require_relative "../lib/paradox"
+require_relative "../lib/paradox_mod_builder"
+
+class BuildSimpleTerrainMapMod < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/hoi4-1.3.3",
+      ),
+      "output/simple_terrain_map_mode"
+    )
+  end
+
+  def pixels_to_img(pixels, xsize, ysize)
+    img = Magick::Image.new(xsize, ysize)
+    # {|info|
+      # info.depth=8
+      # info.image_type = Magick::PaletteType
+      # binding.pry
+    # }
+    img.import_pixels(0, 0, img.columns, img.rows, "RGB", pixels)
+    img
+  end
+
+  def province_map
+    @province_map ||= begin
+      map = {}
+      resolve("map/definition.csv").readlines.each do |line|
+        parts = line.chomp.split(";")
+        color = parts[1,3].map(&:to_i).pack("C*").b
+        raise if map[color]
+        map[color] = parts[0,1] + parts[4..-1]
+      end
+      map
+    end
+  end
+
+  def load_map(name)
+    img = Magick::ImageList.new(resolve("map/#{name}"))[0]
+    raise unless xsize == img.columns
+    raise unless ysize == img.rows
+    img.export_pixels_to_str
+  end
+
+  def save_map(name, pixels)
+    # img = Magick::ImageList.new(resolve("map/#{name}"))[0]
+    # img.import_pixels(0, 0, xsize, ysize, "RGB", pixels)
+    img = pixels_to_img(pixels, xsize, ysize)
+    Pathname("output/simple_terrain_map_mode/map").mkpath
+    img.write("bmp3:output/simple_terrain_map_mode/map/#{name}")
+  end
+
+  def xsize
+    5632
+  end
+
+  def ysize
+    2048
+  end
+
+  def each_tile
+    xsize.times do |x|
+      ysize.times do |y|
+        yield(x, y, 3*(y * xsize + x))
+      end
+    end
+  end
+
+  def build_mod_files!
+    provinces_pixels = load_map("provinces.bmp")
+    terrain_pixels   = load_map("terrain.bmp")
+    heightmap_pixels = load_map("heightmap.bmp")
+
+    counts = Hash.new(0)
+    each_tile do |x,y,idx|
+      height = heightmap_pixels[idx, 3]
+      counts[height]  += 1
+    end
+    counts = counts.sort_by(&:last).to_h
+
+    each_tile do |x,y,idx|
+      current_terrain = terrain_pixels[idx, 3]
+      current_province = province_map[provinces_pixels[idx, 3]]
+      raise unless current_province
+
+      if current_province[1] == "sea"
+        heightmap_pixels[idx, 3] = "YYY".b
+      elsif current_province[3] == "mountain"
+        heightmap_pixels[idx, 3] = "\xC9\xC9\xC9".b
+      elsif current_province[3] == "hills"
+        heightmap_pixels[idx, 3] = "{{{".b
+      else
+        heightmap_pixels[idx, 3] = "qqq".b
+      end
+
+      # OK, will be covered by water regardless
+      next if current_province[1] == "sea"
+      next if current_province[3] == "lakes"
+      next if current_province[3] == "unknown" # usually plains or forent, non special value here
+      map = {
+        "plains"   => "V|\e".b,
+        "forest"   => "\x00V\x06".b,
+        "hills"    => "pJ\x1F".b,
+        "mountain" => "\xFFl\x00".b,
+        "urban"    => "\xFF\xFF\xFF".b,
+        "desert"   => "\xCE\xA9c".b,
+        "marsh"    => "K\x93\xAE".b,
+        "jungle"   => "\xFF\x00\x7F".b,
+      }
+      terrain_pixels[idx,3] = (map[current_province[3]] or raise)
+    end
+
+
+    save_map("terrain.bmp", terrain_pixels)
+    save_map("heightmap.bmp", heightmap_pixels)
+
+    create_mod_descriptor!(
+      name: "Simple Terrain Map Mode",
+      path: "mod/simple_terrain_map_mode",
+      supported_version: "1.3.*",
+    )
+  end
+end
+
+BuildSimpleTerrainMapMod.new.build!
+
+__END__
+
+
+
+    counts = {}
+    each_tile do |x,y,idx|
+      visual_terrain = terrain_pixels[idx, 3]
+      actual_terrain = province_map[provinces_pixels[idx, 3]][3]
+      counts[actual_terrain] ||= Hash.new(0)
+      counts[actual_terrain][visual_terrain] += 1
+    end
+    counts
+
+    counts = Hash.new(0)
+    each_tile do |x,y,idx|
+      height = heightmap_pixels[idx, 3]
+      counts[height]  += 1
+    end
+    counts = counts.sort_by(&:last).to_h
