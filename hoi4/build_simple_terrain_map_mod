@@ -107,12 +107,14 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
     end
   end
 
-  def load_map(name)
-    warn "KILL THIS"
-    img = Magick::ImageList.new(resolve("map/#{name}"))[0]
-    raise unless xsize == img.columns
-    raise unless ysize == img.rows
-    img.export_pixels_to_str
+  def victory_points
+    @victory_points ||= begin
+      vps = Set[]
+      glob("history/states/*.txt").each do |path|
+        vps += parse(path)["state"]["history"].find_all("victory_points").map(&:first)
+      end
+      vps
+    end
   end
 
   def build_mod_files!
@@ -121,24 +123,27 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
     provinces = ProvinceImage.new(self)
 
     each_tile do |x,y|
-      # current_terrain  = terrain[x,y]
       current_province = provinces[x,y]
-      # current_height   = heightmap[x,y]
       raise unless current_province
+      province_terrain = current_province[3]
+      # province_terrain = "urban" if victory_points.include?(current_province[0].to_i)
 
-      if current_province[1] == "sea"
-        heightmap[x,y] = "Y".b
-      elsif current_province[3] == "mountain"
-        heightmap[x,y] = "\xa0".b
-      elsif current_province[3] == "hills"
+      # Game contains extra provinces which are urban in-game, but other in definition.csv
+      # I can't figure out what's the rule
+
+      # There's no deep reason to change height of seas
+      next if current_province[1] == "sea"
+      next if province_terrain == "lakes"
+
+      if province_terrain == "mountain"
+        heightmap[x,y] = "\x90".b
+      elsif province_terrain == "hills"
         heightmap[x,y] = "\x80".b
       else
         heightmap[x,y] = "q".b
       end
 
-      next if current_province[1] == "sea"
-      next if current_province[3] == "lakes"
-      next if current_province[3] == "unknown" # usually plains or forent, non special value here
+      next if province_terrain == "unknown" # usually plains or forent, non special value here
 
       # Terrain fix here...
       map = {
@@ -151,7 +156,7 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
         "urban"    => "\x0d".b,
         "jungle"   => "\x15".b,
       }
-      terrain[x,y] = (map[current_province[3]] or raise)
+      terrain[x,y] = (map[province_terrain] or raise)
     end
 
     heightmap.save!
