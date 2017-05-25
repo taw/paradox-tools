@@ -10,6 +10,7 @@ class Image
     @bits_per_pixel = @data[0x1c, 2].unpack("v")[0]
     raise unless @bits_per_pixel % 8 == 0
     @bytes_per_pixel = @bits_per_pixel / 8
+    @xsize_plus_padding = (xsize / 4.0).ceil * 4
     raise unless xsize == @data[0x12, 4].unpack("l")[0]
     raise unless ysize == @data[0x16, 2].unpack("v")[0]
   end
@@ -30,14 +31,16 @@ class Image
   end
 
   def idx(x,y)
-    @pixel_offset + ((ysize - 1 - y) * xsize + x) * @bytes_per_pixel
+    @pixel_offset + ((ysize - 1 - y) * @xsize_plus_padding + x) * @bytes_per_pixel
   end
 
   def [](x,y)
+    raise if x >= xsize or y >= ysize or x < 0 or y < 0
     @data[idx(x,y), @bytes_per_pixel]
   end
 
   def []=(x,y,v)
+    raise if x >= xsize or y >= ysize or x < 0 or y < 0
     raise unless v.size == @bytes_per_pixel
     @data[idx(x,y), @bytes_per_pixel] = v
   end
@@ -63,6 +66,20 @@ class ProvinceImage < Image
   def [](x,y)
     px = super(x,y).reverse.b
     @builder.province_map[px] or raise
+  end
+end
+
+class TreesImage < Image
+  def initialize(builder)
+    super(builder, "trees.bmp")
+  end
+
+  def xsize
+    1650
+  end
+
+  def ysize
+    600
   end
 end
 
@@ -124,20 +141,25 @@ module SimpleTerrainMapMod
     ]]
   end
 
+  # Game contains extra provinces which are urban in-game, but other in definition.csv
+  # I can't figure out what's the rule
+  def find_province_terrain(province_data)
+    v = province_data[3]
+    v = "urban" if urban_province_types.include?(v)
+    # v = "urban" if victory_points.include?(current_province[0].to_i)
+    v
+  end
+
   def apply_simple_terrain_map_mod!
     heightmap = HeightmapImage.new(self)
     terrain   = TerrainImage.new(self)
     provinces = ProvinceImage.new(self)
+    trees     = TreesImage.new(self)
 
     each_tile do |x,y|
       current_province = provinces[x,y]
       raise unless current_province
-      province_terrain = current_province[3]
-      province_terrain = "urban" if urban_province_types.include?(province_terrain)
-      # province_terrain = "urban" if victory_points.include?(current_province[0].to_i)
-
-      # Game contains extra provinces which are urban in-game, but other in definition.csv
-      # I can't figure out what's the rule
+      province_terrain = find_province_terrain(current_province)
 
       # There's no deep reason to change height of seas
       next if current_province[1] == "sea"
@@ -167,7 +189,40 @@ module SimpleTerrainMapMod
       terrain[x,y] = (map[province_terrain] or raise)
     end
 
-    heightmap.save!
+    # Two passes to avoid south-east bias
+    each_tile do |x,y|
+      tree_x = (x / (xsize-1).to_f * (trees.xsize-1)).round
+      tree_y = (y / (ysize-1).to_f * (trees.ysize-1)).round
+      current_province = provinces[x,y]
+      raise unless current_province
+      province_terrain = find_province_terrain(current_province)
+      next if current_province[1] == "sea"
+
+      if province_terrain != "jungle" and province_terrain != "forest"
+        trees[tree_x, tree_y] = "\x00".b
+      end
+    end
+
+    each_tile do |x,y|
+      tree_x = (x / (xsize-1).to_f * (trees.xsize-1)).round
+      tree_y = (y / (ysize-1).to_f * (trees.ysize-1)).round
+      current_tree = trees[tree_x, tree_y]
+      current_province = provinces[x,y]
+      raise unless current_province
+      province_terrain = find_province_terrain(current_province)
+      next if current_province[1] == "sea"
+
+      next if current_tree != "\x00".b # Already has some tree
+
+      if province_terrain == "jungle"
+        trees[tree_x, tree_y] = "\x1c".b
+      elsif province_terrain == "forest"
+        trees[tree_x, tree_y] = "\x06".b
+      end
+    end
+
+    #heightmap.save!
     terrain.save!
+    trees.save!
   end
 end

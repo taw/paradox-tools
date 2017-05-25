@@ -10,19 +10,20 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
         "source/hoi4-1.3.3",
         "source/KR-0.4.3",
       ),
-      "output/simple_terrain_map_mode_kr"
+      "output/a_simple_terrain_map_mode_kr"
     )
   end
 
   def mod_name
-    "simple_terrain_map_mode_kr"
+    "a_simple_terrain_map_mode_kr"
   end
 
+  # Starting with A makes it override Kaiserreich mod
   def build_mod_files!
     apply_simple_terrain_map_mod!
     create_mod_descriptor!(
-      name: "Simple Terrain Map Mode KR",
-      path: "mod/simple_terrain_map_mode_kr",
+      name: "A Simple Terrain Map Mode KR",
+      path: "mod/a_simple_terrain_map_mode_kr",
       supported_version: "1.3.*",
     )
   end
