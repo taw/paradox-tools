@@ -1,0 +1,65 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+
+class ManpowerByCountry < ParadoxGame
+  def initialize(*roots)
+    super(*roots)
+  end
+
+  def each_state
+    glob("history/states/*.txt").each do |path|
+      begin
+        state = parse(path)
+      rescue
+        # Hacks for KR fails
+        if path.basename.to_s == "149-Western Finland.txt" or
+           path.basename.to_s == "501-Saol Paulo.txt"
+          state = ParadoxModFile.new(string: resolve(path).read+"}").parse!
+        else
+          raise
+        end
+      end
+      next if state.empty?
+      yield(state)
+    end
+  end
+
+  def run!
+    countries = Hash.new{|ht,k| ht[k] = {
+      "core"=>0, "colony"=>0, "unowned"=>0,
+    }}
+    each_state do |state|
+      manpower = state["state"]["manpower"] / 1_000_000.0
+      owner = state["state"]["history"]["owner"]
+      cores = state["state"]["history"].find_all("add_core_of")
+      cores.each do |core|
+        if core == owner
+          countries[core]["core"] += manpower
+          owner = nil
+        else
+          countries[core]["unowned"] += manpower
+        end
+      end
+      if owner
+        countries[owner]["colony"] += manpower
+      end
+    end
+    countries.sort_by{|_,s| -s.values.inject(&:+)}.each do |tag, stats|
+      stats = stats
+        .select{|k,v| v != 0}
+        .map{|k,v| "#{k}: #{v.round(3)}m"}
+        .join(", ")
+      puts "* #{tag} - #{stats}"
+    end
+  end
+end
+
+
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <hoi4_path> [<mod1_path> <mod2_path> ...]"
+  STDERR.puts "# non-binary saves only"
+  exit 1
+end
+
+ManpowerByCountry.new(*ARGV).run!

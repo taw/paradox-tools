@@ -184,7 +184,6 @@ class GenerateLedger < ParadoxGame
   end
 end
 
-
 unless ARGV.size >= 2
   STDERR.puts "Usage: #{$0} <save.hoi4> <hoi4_path> [<mod1_path> <mod2_path> ...]"
   STDERR.puts "# non-binary saves only"
