@@ -67,7 +67,6 @@ class DiffParadox
     if data1 == data2
       # OK
     else
-      require 'pry'; binding.pry
       diff_command!(path1, path2)
     end
   end

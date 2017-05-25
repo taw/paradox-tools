@@ -92,7 +92,7 @@ class ImproveMissionsGameModification < EU4GameModification
       elsif key == "allow"
         tags_seen += change_tag_references_to_root_references_in_allow_node!(node, tags)
       else
-        require 'pry'; binding.pry
+        raise "No idea how to fix #{key}"
       end
     end
     tags_seen

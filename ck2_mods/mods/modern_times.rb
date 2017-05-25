@@ -858,7 +858,6 @@ class ModernTimesGameModification < CK2GameModification
             _, ruler_id = @holders[title].select{|d,id| d<=date}[-1]
             unless ruler_id
               warn "No ruler of #{title} at #{date} but marked as key character"
-              require 'pry'; binding.pry
             end
             bookmark_node.add! "selectable_character", selected_character_node(ruler_id, title, date)
           end
@@ -1247,7 +1246,7 @@ class ModernTimesGameModification < CK2GameModification
       end
     end
   end
-   
+
   def apply!
     @warnings = []
 

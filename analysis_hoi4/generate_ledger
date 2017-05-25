@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require "pry"
 require_relative "../lib/paradox_game"
 require_relative "ledger/equipment"
 require_relative "ledger/equipment_archetype"

@@ -3,7 +3,6 @@
 require "RMagick"
 require_relative "../lib/paradox"
 require_relative "game_map"
-require "pry"
 
 class DrawSuppressionMap < ParadoxGame
   include GameMap

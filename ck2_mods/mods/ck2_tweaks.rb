@@ -454,9 +454,6 @@ class CK2TweaksGameModification < CK2GameModification
   #
   # The most annoying crap is empire of Italy
   def fix_de_jure_map!
-    # patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
-    #   require 'pry'; binding.pry
-    # end
     patch_mod_file!("history/titles/k_italy.txt") do |node|
       node[Date.parse("0100.1.1")] = PropertyList["de_jure_liege", "e_byzantium"]
       node[Date.parse("0867.1.1")] = PropertyList["de_jure_liege", "e_hre"]

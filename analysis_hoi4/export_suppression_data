@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox"
-require "pry"
 
 # There's a lot of duplication between this, AnalyzeVictoryPoints and DrawSuppressionMaps
 class ExportSuppressionData < ParadoxGame

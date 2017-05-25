@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require "pry"
 require_relative "../lib/paradox_game"
 
 # Assumes 50% MP bonus

@@ -37,7 +37,7 @@ class ParadoxModFileSerializer
       '"' + val + '"'
     else
       # Could be String that needs escaping, or something else unusual
-      require 'pry'; binding.pry
+      raise "No idea how to serialize #{val.inspect}"
     end
   end
 
@@ -67,7 +67,7 @@ class ParadoxModFileSerializer
       key
     else
       # Can keys be quoted?
-      require 'pry'; binding.pry
+      raise "No idea how to serialize #{key.inspect}"
     end
   end
 

@@ -2,7 +2,6 @@
 
 require "fileutils"
 require_relative "../lib/paradox"
-require "pry"
 
 class ExportMod
   def initialize(mod_path, export_path)

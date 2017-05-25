@@ -79,7 +79,7 @@ class ParadoxBinarySaveFile
       else
         if token_type <= 25
           puts "At offset: #{pretty_ofs}"
-          require 'pry'; binding.pry
+          raise "No idea what to do with token type #{token_type}"
         end
         @tokens << [:special, token_type]
       end

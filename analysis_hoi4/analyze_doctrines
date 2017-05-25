@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require "pry"
 require "set"
 require "z3"
 require_relative "../lib/paradox_game"
