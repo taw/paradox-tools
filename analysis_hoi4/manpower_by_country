@@ -29,6 +29,7 @@ class ManpowerByCountry < ParadoxGame
     countries = Hash.new{|ht,k| ht[k] = {
       "core"=>0, "colony"=>0, "unowned"=>0,
     }}
+    total = 0
     each_state do |state|
       manpower = state["state"]["manpower"] / 1_000_000.0
       owner = state["state"]["history"]["owner"]
@@ -44,6 +45,7 @@ class ManpowerByCountry < ParadoxGame
       if owner
         countries[owner]["colony"] += manpower
       end
+      total += manpower
     end
     countries.sort_by{|_,s| -s.values.inject(&:+)}.each do |tag, stats|
       stats = stats
@@ -52,6 +54,7 @@ class ManpowerByCountry < ParadoxGame
         .join(", ")
       puts "* #{tag} - #{stats}"
     end
+    puts "Total global manpower: #{total.round(3)}m"
   end
 end
 
