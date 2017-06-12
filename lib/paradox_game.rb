@@ -76,10 +76,10 @@ class ParadoxGame
     unless @localization_data
       @localization_data = {}
       glob("localisation/*_l_english.yml").each do |path|
-        @localization_data.merge! parse_localization_from_path_hoi4(resolve(path))
+        @localization_data.merge!(parse_localization_from_path_hoi4(resolve(path)) || {})
       end
       glob("localisation/*.csv").each do |path|
-        @localization_data.merge! parse_localization_from_path_ck2(resolve(path))
+        @localization_data.merge!(parse_localization_from_path_ck2(resolve(path)) || {})
       end
     end
     @localization_data
