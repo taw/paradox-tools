@@ -69,6 +69,8 @@ class NationCustomizerGameModification < EU4GameModification
           case [max_level, *level_costs]
           when [nil]
             # OK, scale up to 10 for greater good
+          when [nil, [2, 5], [3, 15], [4, 30]]
+            # This is same as default, shouldn't even be explicitly stated
           when [nil, [2, 3], [3, 9], [4, 18]]
             # 60% cost ideas, scole up to level 10
             idea.add! "level_cost_5", 30
@@ -87,7 +89,7 @@ class NationCustomizerGameModification < EU4GameModification
             idea.add! "level_cost_5", 225
             idea["max_level"] = 5
           when [2, [1, 3], [2, 18]]
-            # 2n+1 * 60%, well, jusn following the formula
+            # 2n+1 * 60%, well, just following the formula
             idea.add! "level_cost_3", 45
             idea.add! "level_cost_4", 84
             idea.add! "level_cost_5", 135
@@ -102,7 +104,7 @@ class NationCustomizerGameModification < EU4GameModification
             # It's another issue if such high costs are really justified
           else
             idea.add! "max_level", 4 unless max_level
-            p [idea_name, max_level, *level_costs]
+            warn "Not sure what to do with #{[idea_name, max_level, level_costs].inspect}"
           end
         end
 

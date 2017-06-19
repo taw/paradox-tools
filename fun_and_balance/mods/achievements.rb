@@ -48,7 +48,7 @@ class AchievementsGameModification < EU4GameModification
       loc_name = localization(name, name.split("_").map(&:capitalize).join(" "))
 
       localization! "fun_and_balance_achievements",
-        "#{flag_name}"      => "Achievement #{loc_name}",
+        "#{flag_name}"      => "Achievement #{loc_name}".sub(/\A(Achievement )+/, "Achievement "),
         "desc_#{flag_name}" => "EU4 disables achievements if you play with mods, but feel free to use Steam Achievement Manager to add it to your account, or just buy yourself some congratulatory ice cream."
     end
     create_mod_file! "common/triggered_modifiers/achievements.txt", PropertyList[*triggers]

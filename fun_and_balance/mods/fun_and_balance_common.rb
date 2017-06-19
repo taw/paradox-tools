@@ -43,8 +43,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
       modify_node! node,
         ["opinion_annex_vassal", "min", nil, -100],
-        ["broke_march", "opinion", -200, -100],
-        ["broke_march", "years", nil, 10]
+        ["broke_march", "opinion", -50, -50]
     end
   end
 
