@@ -1132,6 +1132,25 @@ class CK2TweaksGameModification < CK2GameModification
     create_file!("eu4_converter/government_table.csv", content)
   end
 
+  def nerf_holy_wars_cb!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      # Does it work?
+      node["religious"]["check_de_jure_tier"] = "COUNT"
+      node["religious"]["truce_days"] = node["buddhist_holy_war"]["truce_days"]
+    end
+  end
+
+  def makes_title_creation_expensive!
+    override_defines_lua!("expensive_title_creation",
+      "NTitle.DUKE_PIETY_CREATION_COST" => 200,
+      "NTitle.KING_PIETY_CREATION_COST" => 500,
+      "NTitle.EMPEROR_PIETY_CREATION_COST" => 2000,
+      "NTitle.DUKE_GOLD_CREATION_COST" => 400,
+      "NTitle.KING_GOLD_CREATION_COST" => 1000,
+      "NTitle.EMPEROR_GOLD_CREATION_COST" => 4000,
+    )
+  end
+
   def apply!
     ### General fixes:
     extra_cb_de_jure_duchy_conquest!
@@ -1165,31 +1184,33 @@ class CK2TweaksGameModification < CK2GameModification
     allow_settle_tribe_job!
     reduce_revocation_timer!
     divine_blood_full_fertility!
-    open_societies!
     fix_regency!
     more_zoom!
     no_random_coas!
     # TODO: de jure drift by title_decisions
 
     ### Specific things for specific campaign, kept for reference:
-    create_minimal_hunie_trait!
+    nerf_holy_wars_cb!
+    # create_minimal_hunie_trait!
     allow_heir_designation!
     # rebalance_faction_priorities!
     allow_joining_all_wars!
     # nerf_nomads!
     # rebalance_conclave!
-    remove_all_anachronistic_factions!
-    make_holy_wars_convert!
-    enable_more_succession_laws!
-    remove_viceroyalty_opinion_penalty!
-    viceroyalties_can_use_gavelkind!
+    # remove_all_anachronistic_factions!
+    # make_holy_wars_convert!
+    # enable_more_succession_laws!
+    # remove_viceroyalty_opinion_penalty!
+    # viceroyalties_can_use_gavelkind!
     # extend_timeline!
     # fix_eu4_converter_merchant_republics!
+    # open_societies!
 
     # Trying to make late game work:
-    unhappy_late_vassals!
+    # unhappy_late_vassals!
     adventurers_cap!
     much_less_attriton!
     remove_siege_defense_bonus!
+    makes_title_creation_expensive!
   end
 end

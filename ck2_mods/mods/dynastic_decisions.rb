@@ -42,7 +42,6 @@ class DynasticDecisionsGameModification < CK2GameModification
         "ai_target_filter", "dynasty",
         "from_potential", PropertyList["age", 16],
         "potential", PropertyList[
-          "age", 6,
           Property::NOT["age", 16],
         ],
         # "allow", PropertyList[
