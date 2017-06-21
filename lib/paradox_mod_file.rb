@@ -97,13 +97,16 @@ class ParadoxModFile
         elsif s.scan(/"([^"\\]*)"/)
           # Is there ever any weird escaping here?
           @tokens << s[1]
-        elsif s.scan(/"(([^"\\]|\\")*)"/)
+        elsif s.scan(/"(([^"\\]|\\"|\\\\)*)"/)
           # There is some escaping
-          # Only seen in modded HOI4 saves so far
+          # \" seen in some modded HOI4 saves
+          # \\ seen in windows paths in Steam-generated .mod files
           @tokens << s[1].gsub('\"', '"')
         elsif s.scan(/,/)
           # Seen in some array defintions, pass
         else
+          require "pry"
+          binding.pry
           raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}: `#{s.rest[0,20]}...'"
         end
       end
