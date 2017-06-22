@@ -16,6 +16,7 @@ class FakeYaml
 
       YAML.load(data)["l_english"].tap do |parsed|
         raise "No Engish localization data in `#{path}'" unless parsed
+        raise "Not a Hash" unless parsed.is_a?(Hash)
       end
     rescue
       warn "#{path}: #{$!}"
