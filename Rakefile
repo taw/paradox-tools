@@ -50,7 +50,7 @@ end
 
 ####
 
-FUN_AND_BALANCE_VERSION = "0.34"
+FUN_AND_BALANCE_VERSION = "0.35"
 
 desc "Build all packages"
 task "all" => ["ck2", "eu4"]
@@ -128,7 +128,7 @@ task "vanilla" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance",
-    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.21.1.7z",
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.22.1.7z",
   ).build!
 end
 
@@ -137,7 +137,7 @@ task "extended_timeline" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance_et",
-    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.21.1_and_extended_timeline_1.4.4.7z"
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.22.1_and_extended_timeline_1.5.1.7z"
   ).build!
 end
 

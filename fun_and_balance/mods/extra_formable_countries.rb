@@ -37,6 +37,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
           "major", true,
           "potential", PropertyList[
             Property::NOT["has_global_flag", "fun_and_balance_config.disable_extra_formable_countries"],
+            Property::NOT["has_country_flag", "fun_and_balance.formed_#{tag}"],
             Property::NOT["exists", tag],
             *cant_by_formed_by.map{|ct| Property::NOT["tag", ct] },
             "primary_culture", culture,
@@ -44,9 +45,8 @@ class ExtraFormableCountriesGameModification < EU4GameModification
           "allow", PropertyList[
             "adm_tech", 10,
             "num_of_cities", 3,
-            "is_subject", false,
+            "is_free_or_tributary_trigger", true,
             "is_at_war", false,
-            "is_tribal", false,
             Property::NOT["any_province", PropertyList[
               "culture", culture,
               Property::NOT["owned_by", "ROOT"],
@@ -59,11 +59,27 @@ class ExtraFormableCountriesGameModification < EU4GameModification
               "name", "centralization_modifier",
               "duration", 7300,
             ],
+            "if", PropertyList[
+              "limit", PropertyList[
+                "is_part_of_hre", true,
+                "is_elector", false,
+                "is_emperor", false,
+              ],
+              "every_owned_province", PropertyList[
+                "limit", PropertyList["is_part_of_hre", true],
+                "set_in_empire", false,
+              ],
+            ],
             "add_prestige", 25,
+            "if", PropertyList[
+              "limit", PropertyList["NOT", PropertyList["government_rank", 2]],
+              "set_government_rank", 2,
+            ],
             "if", PropertyList[
               "limit", PropertyList["has_custom_ideas", false],
               "country_event", PropertyList["id", "ideagroups.1"],
             ],
+            "set_country_flag", "fun_and_balance.formed_#{tag}",
           ],
           "ai_will_do", PropertyList["factor", 1],
         ],
