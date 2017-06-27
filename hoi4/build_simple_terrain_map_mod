@@ -7,22 +7,23 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/hoi4-1.3.3",
+        "source/hoi4-1.4.0",
       ),
-      "output/simple_terrain_map_mode"
+      "output/#{mod_name}"
     )
   end
 
   def mod_name
-    "simple_terrain_map_mode"
+    "a_simple_terrain_map_mode"
   end
 
   def build_mod_files!
     apply_simple_terrain_map_mod!
     create_mod_descriptor!(
-      name: "Simple Terrain Map Mode",
-      path: "mod/simple_terrain_map_mode",
-      supported_version: "1.3.*",
+      name: "A Simple Terrain Map Mode",
+      path: "mod/#{mod_name}",
+      supported_version: "1.4.*",
+      picture: "a_simple_terrain_map_mode.png",
     )
   end
 end
