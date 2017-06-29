@@ -81,7 +81,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       # Could use fancier logic, but let's leave it for now...
       node["superiority_primitives"]["allowed_provinces"] = PropertyList["always", true]
       node["superiority_overseas"]["allowed_provinces"] = PropertyList["always", true]
-      node["superiority_overseas"]["po_become_vassal" ] = PropertyList["always", true]
+      node["superiority_overseas"]["po_become_vassal" ] = true
     end
   end
 
