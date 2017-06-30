@@ -31,6 +31,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
         ]
       end
     end
+
     patch_mod_file!("events/ReligiousLeagues.txt") do |node|
       ["reformed", "orthodox", "coptic"].each_with_index do |religion, i|
         node.add! "country_event", PropertyList[
@@ -160,7 +161,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
             "any_known_country", PropertyList[
               "is_elector", true,
               "religion", "reformed",
-              "is_subject", false,
+              "is_free_or_tributary_trigger", true,
             ],
             "NOT", PropertyList["hre_reform_level", 6],
           ],
@@ -202,7 +203,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
               "any_known_country", PropertyList[
                 "is_elector", true,
                 "religion", religion,
-                "is_subject", false,
+                "is_free_or_tributary_trigger", true,
               ],
               "NOT", PropertyList["hre_reform_level", 6],
             ],
