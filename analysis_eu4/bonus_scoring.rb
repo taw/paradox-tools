@@ -88,6 +88,11 @@ class BonusScoring
     # Sailors seriously just don't matter
     :global_sailors_modifier,
     :sailors_recovery_speed,
+    :sailor_maintenance_modifer,
+
+    # Naval battles, they hard to model and relatively low importance
+    :sunk_ship_morale_hit_recieved,
+    :capture_ship_chance,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -159,6 +164,14 @@ class BonusScoring
   end
   def army_tradition_decay(v)
     army_tradition -0.75*v
+  end
+
+  # Guestimate resting ponts of 20% army and 5% navy tradition from typical amount of fighting
+  def army_tradition_from_battle(v)
+    army_tradition(0.2 * v)
+  end
+  def naval_tradition_from_battle(v)
+    army_tradition(0.05 * v)
   end
 
   # Assume 2 diplomats, and diplomats spending 25% of their time fabricating, 25% improving relations
@@ -640,6 +653,11 @@ class BonusScoring
     colonists -1*0.10*v
   end
 
+  # Probably should test it more, estimated value 2 colonist
+  def may_establish_frontier(v)
+    colonists 2
+  end
+
   # This is potentially useful, but it's so extremely conditional (only emperor) I'm not going to score it
   def imperial_authority(v)
   end
@@ -722,6 +740,25 @@ class BonusScoring
 
   def naval_forcelimit(v)
     naval_forcelimit_modifier(v/50.0)
+  end
+
+  # Let's set base to B = 5 + 10 (empire) + 16 (level 20 tech, about halfway)
+  # Let's asy that you double that many non-state territories
+  # So gaining V states, let's you increase your autonomy-weighted land from:
+  # from: B * 1 + 2B * 0.25 to
+  # to: B * 1 + V * 0.75 + 2B * 0.25
+  # or [0.75 v] / [1.5 b] = v/2b
+
+  def max_states(v)
+    b = 5+10+16
+    avg_autonomy_reduction = v / (2.0 * b)
+    global_manpower_modifier avg_autonomy_reduction
+    global_sailors_modifier avg_autonomy_reduction
+    global_tax_modifier avg_autonomy_reduction
+    production_efficiency avg_autonomy_reduction
+    global_trade_power 0.5*avg_autonomy_reduction
+    land_forcelimit_modifier avg_autonomy_reduction
+    naval_forcelimit_modifier avg_autonomy_reduction
   end
 
   def score
