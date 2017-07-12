@@ -62,7 +62,8 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
         ["base_values", "diplomatic_upkeep", 3, 6],
-        ["ai_nation", "free_leader_pool", 1, 0]
+        ["ai_nation", "free_leader_pool", 1, 0],
+        ["war", "war_exhaustion_cost", nil, 100]
     end
     # We could do something fancier here
     # patch_mod_file!("common/triggered_modifiers/et_triggered_modifiers.txt") do |node|
