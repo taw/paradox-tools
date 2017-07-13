@@ -30,6 +30,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
     each_country_primary_culture do |culture, tag|
       next if already_formable.include?(tag)
       next if tag == "MOS" # Form Russia instead
+      next if tag == "MRI" or tag == "OTM" # Form Japan instead
 
       decisions << "country_decisions"
       decisions << PropertyList[
