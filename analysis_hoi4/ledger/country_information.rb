@@ -100,6 +100,7 @@ class CountryInformation < InformationTables
     unit.find_all("ship").each do |ship|
       @ships[ship["definition"]] += 1
       @ships["total"] += 1
+      add_equipments! ship["equipment"]
     end
   end
 
