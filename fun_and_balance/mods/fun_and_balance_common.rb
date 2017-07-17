@@ -230,4 +230,22 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       end
     end
   end
+
+  def subject_tweaks!
+    patch_mod_file!("common/subject_types/00_subject_types.txt") do |node|
+      # Due to forward declarations, it's a bit weird
+      types = {}
+      node.each do |subject_type, subject|
+        next if subject.empty?
+        raise "Multiple declarations, wtf" if types[subject_type]
+        types[subject_type] = subject
+      end
+
+      types["vassal"]["liberty_desire_development_ratio"] = 0.1
+      types["march"]["relative_power_class"] = 1
+
+      # Everything has 0.1
+      # except tributary state at 0.175
+    end
+  end
 end

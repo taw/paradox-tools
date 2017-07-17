@@ -85,6 +85,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     disable_call_for_peace!
     longer_cb_on_backstabbers!
     faster_institution_spread!
+    subject_tweaks!
     fix_adopt_secularism_decision!
   end
 end

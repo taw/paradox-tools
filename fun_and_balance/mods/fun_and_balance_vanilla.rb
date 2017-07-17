@@ -64,5 +64,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     disable_call_for_peace!
     longer_cb_on_backstabbers!
     faster_institution_spread!
+    subject_tweaks!
   end
 end
