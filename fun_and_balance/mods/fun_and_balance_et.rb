@@ -86,6 +86,8 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     longer_cb_on_backstabbers!
     faster_institution_spread!
     subject_tweaks!
+    more_building_slots!
+    # ET sperific
     fix_adopt_secularism_decision!
   end
 end

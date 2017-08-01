@@ -241,11 +241,22 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         types[subject_type] = subject
       end
 
+      # Reduced by a lot to allow vassal game
       types["vassal"]["liberty_desire_development_ratio"] = 0.1
       types["march"]["relative_power_class"] = 1
 
-      # Everything has 0.1
-      # except tributary state at 0.175
+      # A bit more
+      types["tributary_state"]["liberty_desire_development_ratio"] = 0.2
+
+      # to balance LD from relative power (also tariffs, mercantilism etc.)
+      types["colony"]["relative_power_class"] = 1
+      types["colony"]["base_liberty_desire"] = -25.0
+    end
+  end
+
+  def more_building_slots!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["development"]["allowed_num_of_buildings"] = 0.2
     end
   end
 end

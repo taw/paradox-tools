@@ -65,5 +65,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     longer_cb_on_backstabbers!
     faster_institution_spread!
     subject_tweaks!
+    more_building_slots!
   end
 end
