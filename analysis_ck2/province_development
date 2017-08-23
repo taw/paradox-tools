@@ -5,7 +5,10 @@ require_relative "../ck2/ck2_analyses"
 class ProvinceDevelopmentAnalysis < CK2GameAndSaveAnalysis
   def building_types
     @building_types ||= begin
-      map = {}
+      map = Hash.new{|ht,k|
+        warn "Unknown building #{k}"
+        ht[k] = 0
+      }
       glob("common/buildings/*.txt").each do |path|
         parse(path).each do |holding_type, buildings|
           buildings.each do |name, building|
