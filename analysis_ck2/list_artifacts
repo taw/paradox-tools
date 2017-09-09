@@ -32,10 +32,13 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
         name = artifact["type"]
         owner_id = artifact["owner"]
         raise "Artifact with no name: #{artifact}" unless name
-        raise "Artifact with no owner: #{artifact}" unless owner_id
+        unless owner_id
+          warn "Artifact with no owner: #{name}"
+          next
+        end
         item = artifact_types[name]
         raise "No such item: #{name}" unless item
-        quality = item[:quality]
+        # quality = item[:quality]
         # Don't bother with crap
         # Strange chest has no quality
         map[owner_id] ||= []
