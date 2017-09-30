@@ -242,9 +242,28 @@ class BonusScoring
   end
   # Assume average of 8dev/year cored before efficiency unlocks,
   # proportionally more after efficiency
+  #
+  # This also affects coring time, so reduces OE
+  # 8dev/year = average OE of 24%
   def core_creation(v)
+    overextension(v * 0.24)
+    core_creation_cost(v)
+  end
+
+  def core_creation_cost(v)
     monthly_adm_points (-v * 10.0 * 8.0 / 12)
   end
+
+  def overextension(v)
+    # trade_power_abroad v*-1.0 # TODO
+    stability_cost_modifier v*0.5
+    mercenary_cost v*0.5
+    diplomatic_reputation v*-2.0
+    improve_relation_modifier v*-0.5
+    global_unrest v*5.0
+    # yearly_corruption v*0.5 # TODO
+  end
+
   # Assume average of 4dev/year diploannexed before efficiency unlocks,
   # proportionally more after efficiency
   def diplomatic_annexation_cost(v)
@@ -410,6 +429,11 @@ class BonusScoring
   # (durability is naval equivalent of discipline)
   def discipline(v)
     land_unit_power(2*v)
+  end
+  # Estimate 10% fighting power is mercs
+  # (independent of all other military estimates)
+  def mercenary_discipline(v)
+    discipline(0.1*v)
   end
   def ship_durability(v)
     naval_unit_power(2*v)
@@ -639,10 +663,6 @@ class BonusScoring
     monthly_adm_points(v * 0.5 / 12.0)
   end
 
-  # Far too conditional
-  def monthly_fervor_increase(v)
-  end
-
   # Assumes:
   #   2 diplomats - 25% time in travel
   #   2 merchant  -  1% time in travel
@@ -660,18 +680,6 @@ class BonusScoring
 
   # This is potentially useful, but it's so extremely conditional (only emperor) I'm not going to score it
   def imperial_authority(v)
-  end
-
-  # Since you always park a unit on your colony, and they never can kill your unit
-  # (unless you upgrade tech that same month and it goes to 0 morale or such nonsense)
-  # it never matters
-  #
-  # However wiki says this also doubles native contribution to manpower and base tax
-  # which is actually relevant.
-  # Guesstimating this as 20% colonial growth at 2 colonists
-  def reduced_native_attacks(v)
-    raise unless v == true
-    colonists 2*0.2
   end
 
   # Growth triggers once a year
@@ -761,6 +769,19 @@ class BonusScoring
     naval_forcelimit_modifier avg_autonomy_reduction
   end
 
+  # This is multiplicative
+  # Average AE is:
+  #   first two eras: 0%
+  #   then: 10% (tech) + up to 40% (absolutism)
+  #   then: 30% (tech) + up to 40% (absolutism)
+  # So if you have max absolutism all the time, base is 30%
+  # Let's assume 25%. Then extra 5% is actually 6.66% discount.
+  def administrative_efficiency(v)
+    diplomatic_annexation_cost(-v/0.75)
+    core_creation_cost(-v/0.75) # just cost not time
+    province_warscore_cost(-v/0.75)
+  end
+
   def score
     total = 0
     @ht.each do |k,v|
@@ -843,10 +864,12 @@ class BonusScoring
       when :diplomatic_reputation
         # This is back to being good
         total += v
-      when :migration_cooldown
+      when :yearly_absolutism
+        # This is going to get capped really quickly
+      when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :amount_of_banners, :reduced_liberty_desire, :monthly_fervor_increase, :yearly_harmony
         # Extremely situational
-      when :horde_unity
-        # Extremely situational
+      when :cavalry_flanking
+        # Does something, but probably too weak to count
       when :global_institution_spread
         # This makes very little difference,
         # the difficulty is just getting institutions to reach you,
