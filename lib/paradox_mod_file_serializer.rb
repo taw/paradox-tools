@@ -30,7 +30,7 @@ class ParadoxModFileSerializer
       "%d.%d.%d" % [val.year, val.month, val.day]
     when Symbol
       serialize_primitive(val.to_s)
-    when /\A[A-Za-z0-9_\.:\[\]\<\>\*]+\z/
+    when /\A[A-Za-z0-9_\.:\[\]\<\>\*@]+\z/
       val
     when /\A(\p{Alpha}|\p{Number}|[_\.\-\/\u00A0 '’`\?\\%!:,\[\]+&])*\z/
       # A lot more Strings are allowed, but at some point we'll need to think about escaping them
@@ -53,7 +53,7 @@ class ParadoxModFileSerializer
       "%d.%d.%d" % [key.year, key.month, key.day]
     when Symbol
       serialize_key(key.to_s)
-    when /\A[A-Za-z0-9\-_\.:]+\z/
+    when /\A[A-Za-z0-9\-_\.:@]+\z/
       key
     when ""
       # CK2 saves have blocks like:
