@@ -1,0 +1,19 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class ExportTradeGraph < ParadoxGame
+  def report!
+    node = parse("common/tradenodes/00_tradenodes.txt")
+    node.each do |from, node|
+      node.find_all("outgoing").each do |link|
+        to = link["name"]
+        puts [from, to].join(" ")
+      end
+    end
+  end
+end
+
+if __FILE__ == $0
+  ExportTradeGraph.new(*ARGV).report!
+end
