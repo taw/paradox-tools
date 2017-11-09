@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require "rgl/adjacency"
+require "rgl/dot"
+
+trade_graph_data = ARGF.readlines.map{|line| line.chomp.split}
+trade_graph = RGL::DirectedAdjacencyGraph[*trade_graph_data.flatten]
+trade_graph.write_to_graphic_file("png")
