@@ -94,6 +94,13 @@ class ParadoxModBuilder
     (@target + name).parent.mkpath
     (@target + name).write(content)
   end
+  def patch_files!(pattern, **args, &blk)
+    matches = (@game.glob(pattern) | @target.glob(pattern))
+    raise "No matches found for `#{pattern}'" if matches.size == 0
+    matches.each do |path|
+      patch_file!(path, **args, &blk)
+    end
+  end
   def patch_file!(name, force_create: false, reencode: false, autocreate: false)
     if autocreate
       begin
