@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+
+require "rgl/adjacency"
+require "rgl/connected_components"
+
+trade_graph_data = ARGF.readlines.map{|line| line.chomp.split}
+trade_graph = RGL::DirectedAdjacencyGraph[*trade_graph_data.flatten]
+
+
+inv_comp_map = {}
+trade_graph.strongly_connected_components.comp_map.each do |v, n|
+  (inv_comp_map[n] ||= []) << v
+end
+puts inv_comp_map.values.delete_if { |scc| scc.size == 1 }.inspect
