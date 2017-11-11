@@ -15,6 +15,10 @@ module GameMap
     end
   end
 
+  def provinces_image_pixels
+    @provinces_image_pixels ||= provinces_image.export_pixels_to_str
+  end
+
   def provinces_by_continent
     @provinces_by_continent ||= parse("map/continent.txt").to_h
   end

@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "../visualization_eu4/image_generation"
+require_relative "../visualization_eu4/game_map"
+
+class ProvinceCentroids < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def call
+    province_midpoints.sort.each do |id, centroid|
+      puts [id, province_definitions[id][1], centroid.x, centroid.y].join("\t")
+    end
+  end
+end
+
+
+if __FILE__ == $0
+  ProvinceCentroids.new(*ARGV).call
+end
