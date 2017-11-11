@@ -15,7 +15,6 @@ class ProvinceCentroids < ParadoxGame
   end
 end
 
-
 if __FILE__ == $0
   ProvinceCentroids.new(*ARGV).call
 end

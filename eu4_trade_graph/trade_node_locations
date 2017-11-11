@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "../visualization_eu4/image_generation"
+require_relative "../visualization_eu4/game_map"
+
+class TradeNodeLocations < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def call
+    node = parse("common/tradenodes/00_tradenodes.txt")
+    node.each do |from, node|
+      province_id = node["location"]
+      location = province_midpoints[province_id]
+      puts [from, location.x, location.y].join(" ")
+    end
+  end
+end
+
+if __FILE__ == $0
+  TradeNodeLocations.new(*ARGV).call
+end
