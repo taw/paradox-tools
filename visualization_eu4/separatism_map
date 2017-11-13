@@ -1,0 +1,111 @@
+#!/usr/bin/env ruby
+
+require "RMagick"
+require_relative "../lib/paradox"
+require_relative "image_generation"
+require_relative "game_map"
+
+class Province
+  attr_reader :node
+  def initialize(node)
+    @node = node
+  end
+
+  def name
+    node["name"]
+  end
+
+  def owner
+    node["owner"]
+  end
+
+  def extra_nationalism
+    @nationalism ||= (node["nationalism"] || 0)
+  end
+
+  def events
+    @events ||= begin
+      node["history"]
+        .to_a
+        .select{|x| x.key.is_a?(Date)}
+        .flat_map{|x|
+          x.val.to_a.map{|y| [x.key,y.key,y.val]}
+        }
+        .sort
+        .reverse
+    end
+  end
+
+  def most_recent_ownership_change
+    @most_recent_ownership_change ||= begin
+      event = events.find{|d,e,x| e == "owner" and x == owner}
+      if event
+        event[0]
+      else
+        nil
+      end
+    end
+  end
+
+  # I'm not totally convinced of this, 1444 start date shows every province getting core
+  # Or does it only apply to post-campaign-start changes?
+  def natural_separatism_at(date)
+    # hack
+    return 0 if node["original_coloniser"] == owner
+
+    if most_recent_ownership_change
+      years_since = date.year - most_recent_ownership_change.year
+      years = [30 - years_since, 0].max
+    else
+      years = 0
+    end
+  end
+
+  def separatism_at(date)
+    natural_separatism_at(date) + extra_nationalism
+  end
+end
+
+class SeparatismMap < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def initialize(save_game, *roots)
+    super(*roots)
+    @data = ParadoxModFile.new(path: save_game).parse!
+  end
+
+  def date
+    @date ||= @data["date"]
+  end
+
+  def provinces
+    @provinces ||= @data["provinces"].to_h
+  end
+
+  def separatism_colors(y)
+    colors = %W[
+      008080 339384 50a78a 6cbc92 88cf9b a8e1aa cef2be ffffe0 ffd8cd ffaeb5 f78599 e65f7b cf3b59 b11732 8b0000
+    ].map{|c| c.scan(/../).map(&:hex)}
+    y /= 2
+    y = 14 if y >= 14
+    colors[y] or binding.pry
+  end
+
+  def separatism_by_province
+    @separatism_by_province ||= land_province_ids.map{|id|
+      province = Province.new(provinces[-id])
+      [id, province.separatism_at(date)]
+    }.to_h
+  end
+
+  def call
+    province_map = separatism_by_province.map{|k,v| [k, separatism_colors(v)] }.to_h
+    generate_map_image(build_color_map(province_map)).write("separatism5.png")
+    binding.pry
+  end
+end
+
+if __FILE__ == $0
+  SeparatismMap.new(*ARGV).call
+end

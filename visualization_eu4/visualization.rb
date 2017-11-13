@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 
 require "RMagick"
-require "pp"
 require_relative "../lib/paradox"
 require_relative "image_generation"
 require_relative "game_map"
