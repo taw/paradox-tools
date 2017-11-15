@@ -1,0 +1,92 @@
+#!/usr/bin/env ruby
+
+require "RMagick"
+require_relative "../lib/paradox"
+require_relative "image_generation"
+require_relative "game_map"
+
+class Province
+  attr_reader :node
+  def initialize(node)
+    @node = node
+  end
+
+  def name
+    node["name"]
+  end
+
+  def owner
+    node["owner"]
+  end
+
+  def culture
+    @node["culture"]
+  end
+
+  def religion
+    @node["religion"]
+  end
+end
+
+class ReligionMap < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def initialize(save_game, *roots)
+    super(*roots)
+    @data = ParadoxModFile.new(path: save_game).parse!
+  end
+
+  def date
+    @date ||= @data["date"]
+  end
+
+  def provinces
+    @provinces ||= @data["provinces"].to_h
+  end
+  
+  def random_color
+    # Very bad way to do so
+    [rand(256), rand(256), rand(256)]
+  end
+  
+  def religion_colors(v)
+    @religion_colors ||= begin
+      map = {}
+      glob("common/religions/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |name, religion|
+            next unless religion.is_a?(PropertyList)
+            unless religion["color"]
+              warn "No color for #{name}" 
+              next
+            end
+            map[name] = religion["color"]
+          end
+        end
+      end
+      map
+    end
+    # If none
+    @religion_colors[v] ||= begin
+      warn "Generating random color for unknown religion #{v.inspect}"
+      random_color
+    end
+  end
+
+  def religion_by_province
+    @religion_by_province ||= land_province_ids.map{|id|
+      province = Province.new(provinces[-id])
+      [id, province.religion]
+    }.to_h
+  end
+
+  def call
+    province_map = religion_by_province.map{|k,v| [k, religion_colors(v)] }.to_h
+    generate_map_image(build_color_map(province_map)).write("religion-#{date}.png")
+  end
+end
+
+if __FILE__ == $0
+  ReligionMap.new(*ARGV).call
+end
