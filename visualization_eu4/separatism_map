@@ -101,8 +101,7 @@ class SeparatismMap < ParadoxGame
 
   def call
     province_map = separatism_by_province.map{|k,v| [k, separatism_colors(v)] }.to_h
-    generate_map_image(build_color_map(province_map)).write("separatism5.png")
-    binding.pry
+    generate_map_image(build_color_map(province_map)).write("separatism-#{date}.png")
   end
 end
 
