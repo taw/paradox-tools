@@ -122,7 +122,7 @@ class AnalyzeWarsBattles
     end
   end
 
-  def report!
+  def call
     analyze_wars!
     @wars.each do |war|
       p war
@@ -137,5 +137,5 @@ if __FILE__ == $0
     exit 1
   end
 
-  AnalyzeWarsBattles.new(*ARGV).report!
+  AnalyzeWarsBattles.new(*ARGV).call
 end
