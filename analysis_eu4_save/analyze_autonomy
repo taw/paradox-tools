@@ -14,7 +14,7 @@ class AnalyzeAutonomy < ParadoxGame
     @data = ParadoxModFile.new(path: save_game).parse!
   end
 
-  def report!
+  def call
     countries = {}
     @data["provinces"].each do |id, data|
       bt       = data["base_tax"]
@@ -39,5 +39,5 @@ class AnalyzeAutonomy < ParadoxGame
 end
 
 if __FILE__ == $0
-  AnalyzeAutonomy.new(*ARGV).report!
+  AnalyzeAutonomy.new(*ARGV).call
 end
