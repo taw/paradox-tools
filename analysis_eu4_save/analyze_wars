@@ -51,7 +51,7 @@ class AnalyzeWars
     end
   end
 
-  def report!
+  def call
     analyze_wars!
     (start_date.year..current_date.year).each do |year|
       wars_count = @wars.count{|war_time| war_time.include?(year) }
@@ -66,5 +66,5 @@ if __FILE__ == $0
     exit 1
   end
 
-  AnalyzeWars.new(*ARGV).report!
+  AnalyzeWars.new(*ARGV).call
 end
