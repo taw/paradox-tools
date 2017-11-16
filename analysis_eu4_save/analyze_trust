@@ -7,10 +7,10 @@ class AnalyzeTrust
     @data = ParadoxModFile.new(path: save_game).parse!
   end
 
-  def report!
+  def call
     @data["countries"].each do |tag1, data|
       data["active_relations"].each do |tag2, relations|
-        trust = relations["trust"] || "-"
+        trust = relations["trust_value"] || relations["trust"] || "-"
         puts [tag1, tag2, trust].join("\t")
       end
     end
@@ -23,5 +23,5 @@ if __FILE__ == $0
     exit 1
   end
 
-  AnalyzeTrust.new(*ARGV).report!
+  AnalyzeTrust.new(*ARGV).call
 end
