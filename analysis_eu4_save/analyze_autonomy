@@ -17,14 +17,13 @@ class AnalyzeAutonomy < ParadoxGame
   def report!
     countries = {}
     @data["provinces"].each do |id, data|
-      autonomy = data["local_autonomy"]
-      min_autonomy = data["min_autonomy"] || 0
       bt       = data["base_tax"]
       owner    = data["owner"]
       next unless bt
       next unless owner
+      autonomy = [data["local_autonomy"], data["min_autonomy"], 0].compact.max
       countries[owner] ||= []
-      countries[owner] << [bt, [autonomy, min_autonomy].max]
+      countries[owner] << [bt, autonomy]
     end
 
     countries.map do |tag, data|
