@@ -8,7 +8,6 @@ class Array
   end
 end
 
-
 class AnalyzeInstitutions
   def initialize(save_game)
     @data = ParadoxModFile.new(path: save_game).parse!
@@ -38,7 +37,7 @@ class AnalyzeInstitutions
     end
   end
 
-  def report!
+  def call
     date = @data["date"].to_s
     result = countries
              .group_by{|x| x[:tech_group]}
@@ -53,6 +52,6 @@ end
 
 if __FILE__ == $0
   ARGV.each do |path|
-    AnalyzeInstitutions.new(path).report!
+    AnalyzeInstitutions.new(path).call
   end
 end
