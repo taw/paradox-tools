@@ -6,7 +6,7 @@ require "simplex"
 require "pp"
 
 class AnalyzeCustomIdeaBonuses < ParadoxGame
-  def analyze!
+  def call
     print_scores!
     [50, 100, 150, 200, 300, 400, 600].each do |max_cost|
      puts ""
@@ -104,6 +104,7 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
           next if idea_name == "category"
           idea = idea.to_h
           idea.delete "default"
+          idea.delete "chance"
           max_level = idea.delete("max_level") || default_max_level
           levels = max_level.times.map do |i|
             idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
@@ -117,5 +118,4 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
   end
 end
 
-acib = AnalyzeCustomIdeaBonuses.new(*ARGV)
-acib.analyze!
+AnalyzeCustomIdeaBonuses.new(*ARGV).call
