@@ -1,72 +1,12 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox"
-
-class Country
-  def initialize(tag, node)
-    @tag = tag
-    @node = node
-  end
-
-  def primary_culture
-    @node["primary_culture"]
-  end
-
-  def accepted_cultures
-    @node.find_all("accepted_culture")
-  end
-
-  def government_rank
-    @node["government_rank"]
-  end
-
-  def to_s
-    "Country<#{@tag}>"
-  end
-
-  def inspect
-    to_s
-  end
-end
-
-class Province
-  def initialize(id, node)
-    @id = id
-    @node = node
-  end
-
-  def city?
-    @node["is_city"]
-  end
-
-  def development
-    (@node["base_tax"] || 0) +
-    (@node["base_production"] || 0) +
-    (@node["base_manpower"] || 0)
-  end
-
-  def owner
-    @node["owner"]
-  end
-
-  def culture
-    @node["culture"]
-  end
-
-  def to_s
-    "Province<#{@id}>"
-  end
-
-  def inspect
-    to_s
-  end
-end
+require_relative "eu4_save"
 
 class CulturesByCountry < ParadoxGame
   def initialize(save_game, *paths)
     super(*paths)
-    @path = save_game
-    @data = ParadoxModFile.new(path: @path).parse!
+    @save = EU4Save.new(save_game)
   end
 
   def culture_to_culture_group
@@ -84,28 +24,10 @@ class CulturesByCountry < ParadoxGame
     end
   end
 
-  def countries
-    @countries ||= begin
-      @data["countries"]
-        .enum_for(:each)
-        .map{|tag, node| [tag, Country.new(tag, node)] }
-        .to_h
-    end
-  end
-
-  def provinces
-    @provinces ||= begin
-      @data["provinces"]
-        .enum_for(:each)
-        .map{|id, node| [-id, Province.new(-id, node)] }
-        .to_h
-    end
-  end
-
   def cultures_by_country
     @cultures_by_country ||= begin
       totals = {}
-      provinces.each do |id, province|
+      @save.provinces.each do |id, province|
         next unless province.city?
         raise if province.development == 0
         next unless province.owner
@@ -123,7 +45,7 @@ class CulturesByCountry < ParadoxGame
   def country_sizes
     @country_sizes ||= begin
       totals = Hash.new(0)
-      provinces.each do |id, province|
+      @save.provinces.each do |id, province|
         next unless province.city?
         raise if province.development == 0
         totals[province.owner] += province.development
@@ -133,7 +55,7 @@ class CulturesByCountry < ParadoxGame
   end
 
   def culture_status(tag, culture)
-    country = countries[tag]
+    country = @save.countries[tag]
     return "primary" if culture == country.primary_culture
     return "accepted" if country.accepted_cultures.include?(culture)
     if same_culture_group?(culture, country.primary_culture)
