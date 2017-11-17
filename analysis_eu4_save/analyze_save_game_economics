@@ -14,13 +14,60 @@ module Enumerable
   end
 end
 
+class Country
+  def initialize(tag, node)
+    @tag = tag
+    @node = node
+  end
+
+  def development
+    @node["development"] || 0
+  end
+
+  def exist?
+    development > 0
+  end
+
+  def army
+    @node.find_all("army").map{|n| n.find_all("regiment")}.flatten(1).map{|r| [r["type"], r["mercenary"]]}
+  end
+
+  def navy
+    @node.find_all("navy").map{|n| n.find_all("ship")}.flatten(1).map{|s| s["type"]}
+  end
+
+  # FIXME: This is no longer correct as of 1.22, there's extra thing on the list
+  def income
+    # 15 vs 16
+    Hash[%W[
+      trade production trade gold tariffs vassals
+      harbor_fees subsidies war_reparations interest gift
+      events spoils_of_war treasure_fleet siphon_income
+    ].zip(@node["ledger"]["lastyearincome"])]
+  end
+
+  # FIXME: This is no longer correct as of 1.22, there's extra things on the list
+  def expense
+    # 25 vs 30
+    Hash[%W[
+      advisor_upkeep interest harbor_fees subsidies war_reparations
+      army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
+      army_build fleet_build fort_build buildings rebel_support
+      repaid_loans gift advisor_recruit event peace
+      vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
+    ].zip(@node["ledger"]["lastyearexpense"])]
+  end
+end
+
 class AnalyzeSaveGameEconomics
   def initialize(save_game)
     @data = ParadoxModFile.new(path: save_game).parse!
   end
 
   def countries
-    @data["countries"]
+    @countries ||= begin
+      @data["countries"].to_h.map{|tag,node| [tag, Country.new(tag, node)] }.to_h
+    end
   end
 
   # Old save games use String not real Date
@@ -42,37 +89,11 @@ class AnalyzeSaveGameEconomics
     @current_date ||= convert_date(@data["date"])
   end
 
-  def army_for_country(tag)
-    countries["FRA"].find_all("army").map{|n| n.find_all("regiment")}.flatten(1).map{|r| [r["type"], r["mercenary"]]}
-  end
-
-  def navy_for_country(tag)
-    countries["FRA"].find_all("navy").map{|n| n.find_all("ship")}.flatten(1).map{|s| s["type"]}
-  end
-
-  def expense_for_country(tag)
-    Hash[%W[
-      advisor_upkeep interest harbor_fees subsidies war_reparations
-      army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
-      army_build fleet_build fort_build buildings rebel_support
-      repaid_loans gift advisor_recruit event peace
-      vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
-    ].zip(countries[tag]["ledger"]["lastyearexpense"])]
-  end
-
-  def income_for_country(tag)
-    Hash[%W[
-      trade production trade gold tariffs vassals
-      harbor_fees subsidies war_reparations interest gift
-      events spoils_of_war treasure_fleet siphon_income
-    ].zip(countries[tag]["ledger"]["lastyearincome"])]
-  end
-
   # In-game ranking like score are ridiculous, so doing this instead
   # Player will be great power in 50 years, that is pretty much guaranteed,
   # so these are relevant comparison point
   def great_powers
-    @great_powers ||= countries.keys.sort_by{|tag| -countries[tag]["development"]}[0,25]
+    @great_powers ||= countries.keys.sort_by{|tag| -countries[tag].development}[0,25]
   end
 
   def total_development
@@ -84,13 +105,13 @@ class AnalyzeSaveGameEconomics
   end
 
   def number_of_countries
-    countries.values.select{|x| x["development"] > 0}.size
+    countries.values.count(&:exist?)
   end
 
   def report_great_powers_income!
     totals = Hash.new(0.0)
     great_powers.each do |tag|
-      income = income_for_country(tag)
+      income = countries[tag].income
       total_income = income.values.sum
       income.each do |type, val|
         totals[type] ||= []
@@ -106,7 +127,7 @@ class AnalyzeSaveGameEconomics
   def report_great_powers_expense!
     totals = Hash.new(0.0)
     great_powers.each do |tag|
-      expense = expense_for_country(tag)
+      expense = countries[tag].expense
       total_expense = expense.values.sum
       expense.each do |type, val|
         totals[type] ||= []
@@ -119,7 +140,7 @@ class AnalyzeSaveGameEconomics
     end
   end
 
-  def report!
+  def call
     puts "Total development: #{total_development}"
     puts "Average base dev: #{average_base_development_cost}"
     puts "Number of countries: #{number_of_countries}"
@@ -134,5 +155,5 @@ if __FILE__ == $0
     exit 1
   end
 
-  AnalyzeSaveGameEconomics.new(*ARGV).report!
+  AnalyzeSaveGameEconomics.new(*ARGV).call
 end
