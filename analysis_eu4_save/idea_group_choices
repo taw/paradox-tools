@@ -1,0 +1,59 @@
+#!/usr/bin/env ruby
+
+
+require_relative "../lib/paradox_game"
+require_relative "eu4_save"
+
+class IdeaGroupChoices < ParadoxGame
+  def initialize(save_game, *roots)
+    super(*roots)
+    @save = EU4Save.new(save_game)
+  end
+
+  def valid_ideas
+    %W[
+      administrative_ideas
+      aristocracy_ideas
+      defensive_ideas
+      diplomatic_ideas
+      economic_ideas
+      expansion_ideas
+      exploration_ideas
+      humanist_ideas
+      influence_ideas
+      innovativeness_ideas
+      maritime_ideas
+      naval_ideas
+      offensive_ideas
+      plutocracy_ideas
+      quality_ideas
+      quantity_ideas
+      religious_ideas
+      spy_ideas
+      trade_ideas
+    ]
+  end
+
+  def call
+    idea_groups = Hash.new(0)
+    idea_groups_count = {}
+    @save.countries.each do |tag, country|
+      country
+        .idea_groups
+        .select{|idea, count| valid_ideas.include?(idea) }
+        .each_with_index do |(idea, count), index|
+          # This also includes idea groups with 0 unlocked ideas
+          idea_groups[idea] += 1
+          idea_groups_count[idea] ||= Hash.new(0)
+          idea_groups_count[idea][index] += 1
+        end
+    end
+    idea_groups.sort_by(&:last).reverse.each do |idea, count|
+      last_pick = idea_groups_count[idea].keys.max
+      subcounts = (0..last_pick).map{|k| "#{idea_groups_count[idea][k]}"}.join(" ")
+      puts "#{idea}: #{count} [#{subcounts}]"
+    end
+  end
+end
+
+IdeaGroupChoices.new(*ARGV).call

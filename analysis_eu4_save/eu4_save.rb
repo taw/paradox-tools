@@ -1,4 +1,5 @@
 class Country
+  attr_reader :tag, :node
   def initialize(tag, node)
     @tag = tag
     @node = node
@@ -28,6 +29,10 @@ class Country
     @node["num_of_cities"].to_i
   end
 
+  def idea_groups
+    @node["active_idea_groups"].enum_for(:each).to_a
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
@@ -35,6 +40,7 @@ class Country
 end
 
 class Province
+  attr_reader :id, :node
   def initialize(id, node)
     @id = id
     @node = node
