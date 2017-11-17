@@ -1,0 +1,68 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class CulturesByCountry < ParadoxGame
+  def initialize(save_game, *paths)
+    super(*paths)
+    @path = save_game
+    @data = ParadoxModFile.new(path: @path).parse!
+  end
+
+  def cultures_by_country
+    @cultures_by_country ||= begin
+      totals = {}
+      @data["provinces"].each do |id, province|
+        next unless province["is_city"]
+        dev = (province["base_tax"] || 0) +
+              (province["base_production"] || 0) +
+              (province["base_manpower"] || 0)
+        raise if dev == 0
+        culture = province["culture"]
+        owner = province["owner"]
+        next unless owner
+        totals[owner] ||= Hash.new(0)
+        totals[owner][culture] += dev
+      end
+      totals
+    end
+  end
+
+  def country_sizes
+    @country_sizes ||= begin
+      totals = Hash.new(0)
+      @data["provinces"].each do |id, province|
+        next unless province["is_city"]
+        dev = (province["base_tax"] || 0) +
+              (province["base_production"] || 0) +
+              (province["base_manpower"] || 0)
+        raise if dev == 0
+        culture = province["culture"]
+        owner = province["owner"]
+        totals[owner] += dev
+      end
+      totals
+    end
+  end
+
+  def call
+    country_sizes
+    cultures_by_country
+    binding.pry
+    country_sizes.sort_by(&:last).reverse.each do |tag, size|
+      puts "#{localization(tag)}:"
+      cultures = cultures_by_country[tag]
+      cultures.sort_by(&:last).reverse.each do |name, dev|
+        puts "* #{localization(name)} - #{dev.round}"
+      end
+      puts ""
+    end
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
+CulturesByCountry.new(*ARGV).call
