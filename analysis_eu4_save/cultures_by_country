@@ -2,6 +2,66 @@
 
 require_relative "../lib/paradox"
 
+class Country
+  def initialize(tag, node)
+    @tag = tag
+    @node = node
+  end
+
+  def primary_culture
+    @node["primary_culture"]
+  end
+
+  def accepted_cultures
+    @node.find_all("accepted_culture")
+  end
+
+  def government_rank
+    @node["government_rank"]
+  end
+
+  def to_s
+    "Country<#{@tag}>"
+  end
+
+  def inspect
+    to_s
+  end
+end
+
+class Province
+  def initialize(id, node)
+    @id = id
+    @node = node
+  end
+
+  def city?
+    @node["is_city"]
+  end
+
+  def development
+    (@node["base_tax"] || 0) +
+    (@node["base_production"] || 0) +
+    (@node["base_manpower"] || 0)
+  end
+
+  def owner
+    @node["owner"]
+  end
+
+  def culture
+    @node["culture"]
+  end
+
+  def to_s
+    "Province<#{@id}>"
+  end
+
+  def inspect
+    to_s
+  end
+end
+
 class CulturesByCountry < ParadoxGame
   def initialize(save_game, *paths)
     super(*paths)
@@ -9,51 +69,92 @@ class CulturesByCountry < ParadoxGame
     @data = ParadoxModFile.new(path: @path).parse!
   end
 
+  def culture_to_culture_group
+    @culture_to_culture_group = begin
+      map = {}
+      glob("common/cultures/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |culture_name, culture|
+            next unless culture.is_a?(PropertyList)
+            map[culture_name] = group_name
+          end
+        end
+      end
+      map
+    end
+  end
+
+  def countries
+    @countries ||= begin
+      @data["countries"]
+        .enum_for(:each)
+        .map{|tag, node| [tag, Country.new(tag, node)] }
+        .to_h
+    end
+  end
+
+  def provinces
+    @provinces ||= begin
+      @data["provinces"]
+        .enum_for(:each)
+        .map{|id, node| [-id, Province.new(-id, node)] }
+        .to_h
+    end
+  end
+
   def cultures_by_country
     @cultures_by_country ||= begin
       totals = {}
-      @data["provinces"].each do |id, province|
-        next unless province["is_city"]
-        dev = (province["base_tax"] || 0) +
-              (province["base_production"] || 0) +
-              (province["base_manpower"] || 0)
-        raise if dev == 0
-        culture = province["culture"]
-        owner = province["owner"]
-        next unless owner
-        totals[owner] ||= Hash.new(0)
-        totals[owner][culture] += dev
+      provinces.each do |id, province|
+        next unless province.city?
+        raise if province.development == 0
+        next unless province.owner
+        totals[province.owner] ||= Hash.new(0)
+        totals[province.owner][province.culture] += province.development
       end
       totals
     end
+  end
+
+  def same_culture_group?(a, b)
+    culture_to_culture_group[a] == culture_to_culture_group[b]
   end
 
   def country_sizes
     @country_sizes ||= begin
       totals = Hash.new(0)
-      @data["provinces"].each do |id, province|
-        next unless province["is_city"]
-        dev = (province["base_tax"] || 0) +
-              (province["base_production"] || 0) +
-              (province["base_manpower"] || 0)
-        raise if dev == 0
-        culture = province["culture"]
-        owner = province["owner"]
-        totals[owner] += dev
+      provinces.each do |id, province|
+        next unless province.city?
+        raise if province.development == 0
+        totals[province.owner] += province.development
       end
       totals
     end
   end
 
+  def culture_status(tag, culture)
+    country = countries[tag]
+    return "primary" if culture == country.primary_culture
+    return "accepted" if country.accepted_cultures.include?(culture)
+    if same_culture_group?(culture, country.primary_culture)
+      if country.government_rank == 3
+        "union"
+      else
+        "related"
+      end
+    else
+      nil
+    end
+  end
+
   def call
-    country_sizes
-    cultures_by_country
-    binding.pry
     country_sizes.sort_by(&:last).reverse.each do |tag, size|
       puts "#{localization(tag)}:"
       cultures = cultures_by_country[tag]
-      cultures.sort_by(&:last).reverse.each do |name, dev|
-        puts "* #{localization(name)} - #{dev.round}"
+      cultures.sort_by(&:last).reverse.each do |culture_name, dev|
+        status =  culture_status(tag, culture_name)
+        status = " [#{status}]" if status
+        puts "* #{localization(culture_name)}#{status} - #{dev.round}"
       end
       puts ""
     end
