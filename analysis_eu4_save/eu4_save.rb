@@ -46,6 +46,18 @@ class Province
     @node["culture"]
   end
 
+  def local_autonomy
+    @node["local_autonomy"] || 0
+  end
+
+  def min_autonomy
+    @node["min_autonomy"] || 0
+  end
+
+  def effective_autonomy
+    [local_autonomy, min_autonomy].max
+  end
+
   def to_s
     "Province<#{@id}>"
   end

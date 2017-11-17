@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_game"
+require_relative "eu4_save"
 
 module Enumerable
   def sum
@@ -11,25 +12,21 @@ end
 class AnalyzeAutonomy < ParadoxGame
   def initialize(save_game, *roots)
     super(*roots)
-    @data = ParadoxModFile.new(path: save_game).parse!
+    @save = EU4Save.new(save_game)
   end
 
   def call
     countries = {}
-    @data["provinces"].each do |id, data|
-      bt       = data["base_tax"]
-      owner    = data["owner"]
-      next unless bt
-      next unless owner
-      autonomy = [data["local_autonomy"], data["min_autonomy"], 0].compact.max
-      countries[owner] ||= []
-      countries[owner] << [bt, autonomy]
+    @save.provinces.each do |id, province|
+      next unless province.owner and province.development
+      countries[province.owner] ||= []
+      countries[province.owner] << [province.development, province.effective_autonomy]
     end
 
     countries.map do |tag, data|
-      max_bt = data.map{|bt,_| bt}.sum
-      lost_bt = data.map{|bt,a| bt*(a/100.0) }.sum
-      avg_autonomy = 100.0 * lost_bt / max_bt
+      max_dev = data.map{|dev,_| dev}.sum
+      lost_dev = data.map{|dev,a| dev*(a/100.0) }.sum
+      avg_autonomy = 100.0 * lost_dev / max_dev
       name = localization(tag)
       [name, avg_autonomy.round(2)]
     end.sort.each do |name, avg_autonomy|
@@ -38,6 +35,4 @@ class AnalyzeAutonomy < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  AnalyzeAutonomy.new(*ARGV).call
-end
+AnalyzeAutonomy.new(*ARGV).call
