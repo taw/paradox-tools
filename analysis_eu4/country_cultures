@@ -18,8 +18,6 @@ class CountryPrimaryCultures < ParadoxGame
   end
 end
 
-if $0 == __FILE__
-  CountryPrimaryCultures.new(*ARGV).each_country_primary_culture do |culture_name, primary_tag|
-    puts [primary_tag, culture_name].join("\t")
-  end
+CountryPrimaryCultures.new(*ARGV).each_country_primary_culture do |culture_name, primary_tag|
+  puts [primary_tag, culture_name].join("\t")
 end

@@ -285,7 +285,7 @@ class PlanTechOrder < ParadoxGame
     end
   end
 
-  def run!
+  def call
     until finished?
       finish_current_research
       choose_research_slots!
@@ -300,6 +300,4 @@ class PlanTechOrder < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  PlanTechOrder.new(*ARGV).run!
-end
+PlanTechOrder.new(*ARGV).call

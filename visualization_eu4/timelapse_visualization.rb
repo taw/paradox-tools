@@ -59,7 +59,5 @@ class TimelapseVisualization < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  vis = TimelapseVisualization.new(*ARGV)
-  vis.generate_maps!
-end
+vis = TimelapseVisualization.new(*ARGV)
+vis.generate_maps!

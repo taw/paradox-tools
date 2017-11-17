@@ -105,6 +105,4 @@ class SeparatismMap < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  SeparatismMap.new(*ARGV).call
-end
+SeparatismMap.new(*ARGV).call

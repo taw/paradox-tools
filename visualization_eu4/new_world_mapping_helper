@@ -42,8 +42,6 @@ class NewWorldMappingHelper < ParadoxModBuilder
   end
 end
 
-if __FILE__ == $0
-  save_game = ParadoxModFile.new(path: ARGV[0]).parse!
-  nwmh = NewWorldMappingHelper.new(ParadoxGame.new("eu4"), "output/new_world_mapping_helper")
-  nwmh.run!(save_game)
-end
+save_game = ParadoxModFile.new(path: ARGV[0]).parse!
+nwmh = NewWorldMappingHelper.new(ParadoxGame.new("eu4"), "output/new_world_mapping_helper")
+nwmh.run!(save_game)

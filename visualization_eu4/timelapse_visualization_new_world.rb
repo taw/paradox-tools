@@ -57,7 +57,5 @@ class TimelapseVisualizationNewWorld < TimelapseVisualization
   end
 end
 
-if __FILE__ == $0
-  vis = TimelapseVisualizationNewWorld.new(*ARGV)
-  vis.generate_maps!
-end
+vis = TimelapseVisualizationNewWorld.new(*ARGV)
+vis.generate_maps!

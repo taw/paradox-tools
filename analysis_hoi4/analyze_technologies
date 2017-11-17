@@ -73,6 +73,4 @@ class AnalyzeTechnologies < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  AnalyzeTechnologies.new(*ARGV).report!
-end
+AnalyzeTechnologies.new(*ARGV).report!

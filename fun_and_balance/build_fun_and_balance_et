@@ -36,6 +36,4 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   end
 end
 
-if __FILE__ == $0
-  FunAndBalanceETModBuilder.new.build!
-end
+FunAndBalanceETModBuilder.new.build!

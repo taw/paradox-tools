@@ -44,12 +44,12 @@ class ReligionMap < ParadoxGame
   def provinces
     @provinces ||= @data["provinces"].to_h
   end
-  
+
   def random_color
     # Very bad way to do so
     [rand(256), rand(256), rand(256)]
   end
-  
+
   def religion_colors(v)
     @religion_colors ||= begin
       map = {}
@@ -58,7 +58,7 @@ class ReligionMap < ParadoxGame
           group.each do |name, religion|
             next unless religion.is_a?(PropertyList)
             unless religion["color"]
-              warn "No color for #{name}" 
+              warn "No color for #{name}"
               next
             end
             map[name] = religion["color"]
@@ -87,6 +87,4 @@ class ReligionMap < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  ReligionMap.new(*ARGV).call
-end
+ReligionMap.new(*ARGV).call

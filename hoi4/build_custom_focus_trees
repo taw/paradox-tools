@@ -33,6 +33,4 @@ class CustomFocusTreesModBuilder < ParadoxModBuilder
   end
 end
 
-if __FILE__ == $0
-  CustomFocusTreesModBuilder.new.build!
-end
+CustomFocusTreesModBuilder.new.build!

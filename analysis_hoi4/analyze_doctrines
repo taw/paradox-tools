@@ -176,6 +176,4 @@ class AnalyzeDoctrines < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  AnalyzeDoctrines.new(*ARGV).report!
-end
+AnalyzeDoctrines.new(*ARGV).report!

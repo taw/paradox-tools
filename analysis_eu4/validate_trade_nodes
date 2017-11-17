@@ -56,6 +56,4 @@ class ValidateTradeNodes < ParadoxGame
   end
 end
 
-if $0 == __FILE__
-  ValidateTradeNodes.new(*ARGV).validate_trade_nodes!
-end
+ValidateTradeNodes.new(*ARGV).validate_trade_nodes!

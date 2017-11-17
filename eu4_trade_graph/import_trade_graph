@@ -37,7 +37,7 @@ class ExportTradeGraph < ParadoxGame
     ]
   end
 
-  def report!
+  def call
     if not valid?
       raise "Trade Graph is not valid, can't rebuild"
     end
@@ -72,6 +72,4 @@ class ExportTradeGraph < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  ExportTradeGraph.new(*ARGV).report!
-end
+ExportTradeGraph.new(*ARGV).call

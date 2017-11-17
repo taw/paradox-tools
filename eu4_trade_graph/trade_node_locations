@@ -18,6 +18,4 @@ class TradeNodeLocations < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  TradeNodeLocations.new(*ARGV).call
-end
+TradeNodeLocations.new(*ARGV).call

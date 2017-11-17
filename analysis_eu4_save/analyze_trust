@@ -17,11 +17,9 @@ class AnalyzeTrust
   end
 end
 
-if __FILE__ == $0
-  unless ARGV.size == 1
-    STDERR.puts "Usage: #{$0} save_game.eu4"
-    exit 1
-  end
-
-  AnalyzeTrust.new(*ARGV).call
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} save_game.eu4"
+  exit 1
 end
+
+AnalyzeTrust.new(*ARGV).call

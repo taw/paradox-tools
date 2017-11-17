@@ -44,12 +44,12 @@ class CultureMap < ParadoxGame
   def provinces
     @provinces ||= @data["provinces"].to_h
   end
-  
+
   def random_color
     # Very bad way to do so
     [rand(256), rand(256), rand(256)]
   end
-  
+
   def culture_colors(v)
     @culture_colors ||= {}
     @culture_colors[v] ||= random_color
@@ -68,6 +68,4 @@ class CultureMap < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  CultureMap.new(*ARGV).call
-end
+CultureMap.new(*ARGV).call

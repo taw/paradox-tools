@@ -37,8 +37,6 @@ class Visualization < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  vis = Visualization.new(*ARGV)
-  vis.generate_map_by_continent!
-  vis.generate_map_by_colonial_regions!
-end
+vis = Visualization.new(*ARGV)
+vis.generate_map_by_continent!
+vis.generate_map_by_colonial_regions!

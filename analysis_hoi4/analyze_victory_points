@@ -221,6 +221,4 @@ class AnalyzeVictoryPoints < ParadoxGame
   end
 end
 
-if __FILE__ == $0
-  AnalyzeVictoryPoints.new(*ARGV).report!
-end
+AnalyzeVictoryPoints.new(*ARGV).report!
