@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_game"
+require_relative "eu4_save"
 
 class Array
   def average
@@ -10,27 +11,22 @@ end
 
 class AnalyzeInstitutions
   def initialize(save_game)
-    @data = ParadoxModFile.new(path: save_game).parse!
+    @save = EU4Save.new(save_game)
   end
 
-  def institutions
-    @data["institutions"] # => [1, 1, 0, 0, 0, 0, 0]
-  end
-
-  def penalties
-    @penalties ||= @data["institutions_penalties"] # => [0.5, 0.07, 0.0, 0.0, 0.0, 0.0, 0.0]
+  def total_penalty(country)
+    country.institutions.zip(@save.institutions_penalties).map{|i,p| (1-i)*p}.inject(0, &:+)
   end
 
   def countries
     @countries ||= begin
       result = []
-      @data["countries"].each do |tag, country|
-        total_penalty = country["institutions"].zip(penalties).map{|i,p| (1-i)*p}.inject(0, &:+)
-        next if country["num_of_cities"].to_i == 0
+      @save.countries.each do |tag, country|
+        next if country.num_of_cities == 0
         result << {
           tag: tag,
-          penalty: total_penalty,
-          tech_group: country["technology_group"],
+          penalty: total_penalty(country),
+          tech_group: country.technology_group,
         }
       end
       result
@@ -38,7 +34,7 @@ class AnalyzeInstitutions
   end
 
   def call
-    date = @data["date"].to_s
+    date = @save.date.to_s
     result = countries
              .group_by{|x| x[:tech_group]}
              .map{|t,r|
@@ -50,8 +46,6 @@ class AnalyzeInstitutions
   end
 end
 
-if __FILE__ == $0
-  ARGV.each do |path|
-    AnalyzeInstitutions.new(path).call
-  end
+ARGV.each do |path|
+  AnalyzeInstitutions.new(path).call
 end

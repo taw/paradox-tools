@@ -16,6 +16,18 @@ class Country
     @node["government_rank"]
   end
 
+  def institutions
+    @node["institutions"]
+  end
+
+  def technology_group
+    @node["technology_group"]
+  end
+
+  def num_of_cities
+    @node["num_of_cities"].to_i
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
@@ -87,6 +99,18 @@ class EU4Save
         .map{|id, node| [-id, Province.new(-id, node)] }
         .to_h
     end
+  end
+
+  def institutions
+    @institutions ||= @data["institutions"] # => [1, 1, 0, 0, 0, 0, 0]
+  end
+
+  def institutions_penalties
+    @institutions_penalties ||= @data["institutions_penalties"] # => [0.5, 0.07, 0.0, 0.0, 0.0, 0.0, 0.0]
+  end
+
+  def date
+    @data["date"]
   end
 
   def to_s
