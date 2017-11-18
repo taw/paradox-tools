@@ -1,0 +1,105 @@
+title_decisions = {
+  xxx_take_title = {
+    filter = all
+    ai_target_filter = owned
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = { grant_title_no_opinion = FROM }
+  }
+	xxx_county_religion = {
+    filter = all
+    ai_target_filter = owned
+		from_potential = { ai = no }
+		potential = { always = yes }
+		effect = { location = { religion = FROM } }
+		ai_will_do = { factor = 0	}
+	}
+  xxx_county_culture = {
+    filter = all
+    ai_target_filter = owned
+		from_potential = { ai = no }
+		potential = { always = yes }
+		effect = { location = { culture = FROM } }
+		ai_will_do = { factor = 0	}
+	}
+}
+
+targetted_decisions = {
+  xxx_go_catholic = {
+    filter = all
+    ai_target_filter = rivals
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = {
+      religion = catholic
+      any_demesne_title = { limit = { tier = COUNT } location = { religion = catholic } }
+      any_vassal = {
+        religion = catholic
+        any_demesne_title = { limit = { tier = COUNT } location = { religion = catholic } }
+        any_vassal = {
+          religion = catholic
+          any_demesne_title = { limit = { tier = COUNT } location = { religion = catholic } }
+        }
+      }
+    }
+  }
+
+  xxx_go_orthodox = {
+    filter = all
+    ai_target_filter = rivals
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = {
+      religion = orthodox
+      any_demesne_title = { limit = { tier = COUNT } location = { religion = orthodox } }
+      any_vassal = {
+        religion = orthodox
+        any_demesne_title = { limit = { tier = COUNT } location = { religion = orthodox } }
+        any_vassal = {
+          religion = orthodox
+          any_demesne_title = { limit = { tier = COUNT } location = { religion = orthodox } }
+        }
+      }
+    }
+  }
+
+  xxx_force_vassalize = {
+    filter = all
+    ai_target_filter = rivals
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = { set_defacto_liege = FROM }
+  }
+
+  xxx_force_independence = {
+    filter = all
+    ai_target_filter = rivals
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = { set_defacto_liege = THIS }
+  }
+
+#  xxx_force_ally1 = {
+#    filter = all
+#    ai_target_filter = rivals
+#    from_potential = { ai = no }
+#    potential = { always = yes }
+#    effect = { add_alliance = { who = THIS years = 20 } }
+#  }
+
+#  xxx_force_ally2 = {
+#    filter = all
+#    ai_target_filter = rivals
+#    from_potential = { ai = no }
+#    potential = { always = yes }
+#    effect = { add_alliance = { who = ROOT years = 20 } }
+#  }
+
+#  xxx_force_ally3 = {
+#    filter = all
+#    ai_target_filter = rivals
+#    from_potential = { ai = no }
+#    potential = { always = yes }
+#    effect = { add_alliance = { who = FROM years = 20 } }
+#  }
+}

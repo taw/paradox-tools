@@ -1,0 +1,73 @@
+title_decisions = {
+	make_enatic = {
+    from_potential = {
+      ai = no
+    }
+    potential = {
+      always = yes
+    }
+    allow = {
+      always = yes
+    }
+    effect = {
+      # FROM = me
+      # ROOT = target
+      add_law = enatic_succession
+    }
+    revoke_allowed = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 0
+		}
+  }
+
+	move_capital = {
+		from_potential = {
+			ai = no
+		}
+		potential = {
+			always = yes
+		}
+		allow = {
+			always = yes
+		}
+		effect = {
+			FROM = { capital = ROOT }
+		}
+		revoke_allowed = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	de_jure_france = {
+    filter = all ai_target_filter = owned from_potential = { ai = no }
+    effect = { ROOT = { de_jure_liege = e_france } }
+  }
+
+  magic_destroy_title = {
+    filter = all ai_target_filter = owned from_potential = { ai = no }
+    effect = { destroy_landed_title = ROOT }
+  }
+}
+
+targetted_decisions = {
+  xxx_force_vassalize = {
+    filter = all
+    ai_target_filter = rivals
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = { set_defacto_liege = FROM }
+  }
+
+  xxx_force_independence = {
+    filter = all
+    ai_target_filter = rivals
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = { set_defacto_liege = THIS }
+  }
+}
