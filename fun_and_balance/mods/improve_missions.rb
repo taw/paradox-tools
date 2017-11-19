@@ -296,7 +296,11 @@ class ImproveMissionsGameModification < EU4GameModification
         when  ["GRA", "ALU", "BDJ"], ["GRA", "ALU", "SEV"], ["GRA", "ALU", "BDJ", "SEV"], ["ALU"]
           # OK
         when ["ORI"]
-          # Ignore for now
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 552])
+        when ["OMA"]
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 400], Property["owns_core_province", 403])
+        when ["HSN"]
+          make_mission_not_tag_specific!(mission, tags, Property["owns_core_province", 4295])
         else
           p [name, tags, change_tag_references_to_root_references!(mission, "XXXXXX").to_a]
           puts name, mission, ""
