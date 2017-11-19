@@ -97,7 +97,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/religions/00_religion.txt") do |node|
       node.each do |group_name, group|
         group.each do |name, religion|
-          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier"].include?(name)
+          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier", "ai_will_propagate_through_trade"].include?(name)
           if group_name == "pagan"
             religion["province"] ||= PropertyList[]
             religion["province"]["local_missionary_strength"] = 0.03

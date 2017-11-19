@@ -86,7 +86,7 @@ class ImproveMissionsGameModification < EU4GameModification
   def change_tag_references_to_root_references!(mission, tags)
     tags_seen = Set[]
     mission.each do |key, node|
-      next if key == "type" or key == "category" or key == "ai_mission"
+      next if %W[type category ai_mission target_areas_list target_provinces_list target_colonial_region_list].include?(key)
       if %W[abort success chance immediate abort_effect effect target_provinces].include?(key)
         tags_seen += change_tag_references_to_root_references_in_node!(node, tags)
       elsif key == "allow"
