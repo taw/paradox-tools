@@ -47,7 +47,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
       ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
-      ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, -0.6],
+      # ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, -0.6],
     ])
 
     # Extended timeline diplomatic relations per era:
@@ -87,6 +87,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     faster_institution_spread!
     subject_tweaks!
     more_building_slots!
+    nerf_china!
     # ET sperific
     fix_adopt_secularism_decision!
   end

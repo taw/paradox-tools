@@ -41,7 +41,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
       ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
-      ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, -0.6],
+      # ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, -0.6],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
@@ -66,5 +66,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     faster_institution_spread!
     subject_tweaks!
     more_building_slots!
+    nerf_china!
   end
 end

@@ -259,4 +259,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["development"]["allowed_num_of_buildings"] = 0.2
     end
   end
+
+  def nerf_china!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["negative_mandate"]["global_unrest"] = 10
+    end
+  end
 end
