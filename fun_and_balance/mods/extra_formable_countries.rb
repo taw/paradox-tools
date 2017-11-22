@@ -19,12 +19,101 @@ class ExtraFormableCountriesGameModification < EU4GameModification
 
   def apply!
     already_formable = %W[
-      ALG ARB BRZ BUK BYZ CAM CAN CHL COL EGY ENG FRA GBR GER GRE HAB HAN
-      HAT HIN HLR INC IRE ITA JAP KOJ KUR LAP LOU MCH MEX MOR MSA MUG NED
-      PER PEU PLC PRG PRU QNG QUE RMN RUS SCA SPA SPI TIB TRP TUN UKR USA
-      VNZ WES AUS CRO MAY POL SOK SST
+      ADU
+      ALG
+      ARB
+      ARM
+      AUS
+      BHA
+      BRZ
+      BUK
+      BYZ
+      CAM
+      CAN
+      CHL
+      COL
+      CRO
+      EGY
+      ENG
+      FRA
+      GBR
+      GEO
+      GER
+      GLH
+      GRE
+      HAB
+      HAN
+      HAT
+      HIN
+      HLR
+      ICE
+      INC
+      IRE
+      ITA
+      JAP
+      KOJ
+      KUR
+      LAP
+      LOU
+      MAM
+      MAY
+      MCH
+      MEX
+      MOR
+      MSA
+      MUG
+      NED
+      PER
+      PEU
+      PLC
+      POL
+      PRG
+      PRU
+      QNG
+      QUE
+      RMN
+      ROM
+      RUM
+      RUS
+      SCA
+      SOK
+      SPA
+      SPI
+      SST
+      TIB
+      TIM
+      TRA
+      TRP
+      TUN
+      TUS
+      UKR
+      USA
+      VNZ
+      WES
+      YEM
+      YUA
     ]
-    cant_by_formed_by = %W[HLR PAP HIN MUG SPA FRA GER BYZ BUK ITA RUS SCA PER GBR PLC EGY VIJ INC BHA]
+    cant_by_formed_by = %W[
+      BHA
+      BUK
+      BYZ
+      EGY
+      FRA
+      GBR
+      GER
+      HIN
+      HLR
+      INC
+      ITA
+      MUG
+      PAP
+      PER
+      PLC
+      RUS
+      SCA
+      SPA
+      VIJ
+    ]
 
     decisions = []
     each_country_primary_culture do |culture, tag|
