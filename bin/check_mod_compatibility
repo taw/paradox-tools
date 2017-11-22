@@ -102,7 +102,7 @@ class ModCompatibility
     end
   end
 
-  def run!
+  def call
     add_files!
     analyze_potential_conflicts!
   end
@@ -112,10 +112,9 @@ class ModCompatibility
   end
 end
 
-
 if ARGV.size != 1
   STDERR.puts "Usage: #{$0} path_to_mods_directory"
   exit 1
 end
 
-ModCompatibility.new(ARGV[0]).run!
+ModCompatibility.new(ARGV[0]).call
