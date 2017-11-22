@@ -67,5 +67,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     subject_tweaks!
     more_building_slots!
     nerf_china!
+    everybody_can_can_claim_states!
   end
 end

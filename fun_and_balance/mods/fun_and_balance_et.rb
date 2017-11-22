@@ -88,6 +88,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     subject_tweaks!
     more_building_slots!
     nerf_china!
+    everybody_can_can_claim_states!
     # ET sperific
     fix_adopt_secularism_decision!
   end

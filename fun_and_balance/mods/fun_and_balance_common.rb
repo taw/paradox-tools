@@ -265,4 +265,20 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["negative_mandate"]["global_unrest"] = 10
     end
   end
+
+  def everybody_can_can_claim_states!
+    patch_mod_files!("common/governments/*.txt") do |node|
+      node.each do |name, government|
+        next if government["claim_states"]
+        government["claim_states"] = true
+        # I tried to make this locked to empire rank, but game just ignore that
+        # next unless government["rank"]
+        # government["rank"].each do |rank, rank_bonuses|
+        #   if rank >= 3
+        #     rank_bonuses["claim_states"] = true
+        #   end
+        # end
+      end
+    end
+  end
 end
