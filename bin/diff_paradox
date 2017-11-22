@@ -16,24 +16,39 @@ class DiffParadox
     @diff_options = ["-w", "-U3"] if @diff_options.empty?
     @normalize = normalize
   end
+
+  def files_in(path)
+    Set[
+      *path.find.select(&:file?).map do |f|
+        Pathname(f.relative_path_from(path).to_s.downcase)
+      end
+    ]
+  end
+
   def files_in_a
-    @files_in_a ||= Set[*@a.find.select(&:file?).map{|f| Pathname(f.relative_path_from(@a).to_s.downcase)}]
+    @files_in_a ||= files_in(@a)
   end
+
   def files_in_b
-    @files_in_b ||= Set[*@b.find.select(&:file?).map{|f| Pathname(f.relative_path_from(@b).to_s.downcase)}]
+    @files_in_b ||= files_in(@b)
   end
+
   def only_in_a
     files_in_a - files_in_b
   end
+
   def only_in_b
     files_in_b - files_in_a
   end
+
   def files_in_both
     files_in_a & files_in_b
   end
+
   def diff_command!(path1, path2)
     system("diff", *@diff_options, path1.to_s, path2.to_s)
   end
+
   def diff_serialized!(mod1, path1, mod2, path2)
     mod1out = ParadoxModFileSerializer.serialize(mod1)
     mod2out = ParadoxModFileSerializer.serialize(mod2)
@@ -46,10 +61,11 @@ class DiffParadox
     f2.close
 
     diff_command!(f1.path, f2.path)
-
+  ensure
     f1.unlink
     f2.unlink
   end
+
   def diff_paradox!(path1, path2)
     mod1 = ParadoxModFile.new(path: path1).parse!
     mod2 = ParadoxModFile.new(path: path2).parse!
@@ -61,15 +77,19 @@ class DiffParadox
     end
     diff_serialized!(mod1, path1, mod2, path2)
   end
+
   def diff_yaml!(path1, path2)
-    data1 = YAML.load(path1.read.gsub("\ufeff", ""))
-    data2 = YAML.load(path2.read.gsub("\ufeff", ""))
-    if data1 == data2
+    if (load_yaml(path1) == load_yaml(path2) rescue false)
       # OK
     else
       diff_command!(path1, path2)
     end
   end
+
+  def load_yaml(path)
+    YAML.load(path.read.gsub("\ufeff", ""))
+  end
+
   def diff_file!(path1, path2)
     case path1.extname
     when ".txt", ".mod", ".gfx", ".gui"
@@ -80,7 +100,8 @@ class DiffParadox
       diff_command! path1, path2
     end
   end
-  def run!
+
+  def call
     if @a.directory? and @b.directory?
       files_in_both.each do |path|
         diff_file!(@a + path, @b + path)
@@ -107,4 +128,4 @@ end
 *diff_options, path1, path2 = *ARGV
 normalize = !!diff_options.delete("--normalize")
 
-dp = DiffParadox.new(path1, path2, diff_options, normalize).run!
+DiffParadox.new(path1, path2, diff_options, normalize).call
