@@ -49,11 +49,16 @@ class ValidateTradeNodes < ParadoxGame
     end
   end
 
-  def validate_trade_nodes!
+  def impassable
+    @impassable ||= parse("map/climate.txt")["impassable"].to_set
+  end
+
+  def call
     land_provinces_without_trade_node.each do |id|
+      next if impassable.include?(id)
       puts [id, province_names[id]].join(" ")
     end
   end
 end
 
-ValidateTradeNodes.new(*ARGV).validate_trade_nodes!
+ValidateTradeNodes.new(*ARGV).call
