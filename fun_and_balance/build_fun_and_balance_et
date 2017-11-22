@@ -8,7 +8,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     super(
       ParadoxGame.new(
         "source/eu4-1.23.0",
-        "source/ExtendedTimeline 1.6.2/ExtendedTimeline.mod"
+        "source/ExtendedTimeline 1.6.3/ExtendedTimeline.mod"
       ),
       "output/fun_and_balance_et"
     )
