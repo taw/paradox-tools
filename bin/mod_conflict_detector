@@ -7,7 +7,7 @@ class ModConflictDetector
     @mods = mods.map{|path| Pathname(path)}
   end
 
-  def run!
+  def call
     files = Hash.new{|ht,k| ht[k] = []}
     @mods.each do |mod|
       raise "#{mod} does not exist" unless mod.exist?
@@ -30,4 +30,4 @@ unless ARGV.size >= 2
   exit 1
 end
 
-ModConflictDetector.new(*ARGV).run!
+ModConflictDetector.new(*ARGV).call
