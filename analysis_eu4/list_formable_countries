@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class ListFormableCountries < ParadoxGame
+  def each_change_tag(node, &blk)
+    return unless node.is_a?(PropertyList)
+    node.each do |key, val|
+      if key == "change_tag"
+        yield val
+      end
+      each_change_tag(val, &blk)
+    end
+  end
+  
+  def call
+    tags = Set[]
+    glob("{events,decisions}/*.txt").each do |path|
+      begin
+        node = parse(path)
+      rescue
+        warn "#{path}: #{$!}"
+        next
+      end
+      each_change_tag(node) do |tag|
+        tags << tag
+      end
+    end
+    puts tags.sort
+  end
+end
+
+ListFormableCountries.new(*ARGV).call
