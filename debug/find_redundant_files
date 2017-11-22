@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "set"
 require "pathname"
 require "pp"
 
@@ -9,15 +10,25 @@ end
 
 class FindRedundantFiles
   def initialize(dir1, dir2)
-    @dir1 = dir1
-    @dir2 = dir2
+    @dir1 = Pathname(dir1)
+    @dir2 = Pathname(dir2)
   end
+
   def test_if_redundant!(path)
     puts path if `diff -qw '#{@dir1+path}' '#{@dir2+path}'`.empty?
   end
-  def run!
-    files1 = @dir1.find.select(&:file?).map{|path| path.relative_path_from(@dir1)}
-    files2 = @dir2.find.select(&:file?).map{|path| path.relative_path_from(@dir2)}
+
+  def files_in(path)
+    Set[
+      *path.find.select(&:file?).map do |f|
+        Pathname(f.relative_path_from(path).to_s.downcase)
+      end
+    ]
+  end
+
+  def call
+    files1 = files_in(@dir1)
+    files2 = files_in(@dir2)
 
     (files1 & files2).each do |path|
       test_if_redundant!(path)
@@ -30,7 +41,4 @@ unless ARGV.size == 2
   exit 1
 end
 
-dir1 = Pathname(ARGV[0])
-dir2 = Pathname(ARGV[1])
-
-FindRedundantFiles.new(dir1, dir2).run!
+FindRedundantFiles.new(*ARGV).call
