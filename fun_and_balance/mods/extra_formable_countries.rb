@@ -17,6 +17,21 @@ class ExtraFormableCountriesGameModification < EU4GameModification
     end
   end
 
+  def culture_to_culture_group
+    @culture_to_culture_group = begin
+      map = {}
+      glob("common/cultures/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |culture_name, culture|
+            next unless culture.is_a?(PropertyList)
+            map[culture_name] = group_name
+          end
+        end
+      end
+      map
+    end
+  end
+
   def apply!
     already_formable = %W[
       ADU
@@ -121,6 +136,8 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       next if tag == "MOS" # Form Russia instead
       next if tag == "MRI" or tag == "OTM" # Form Japan instead
 
+      culture_group = culture_to_culture_group[culture]
+
       decisions << "country_decisions"
       decisions << PropertyList[
         "extra_formable_form_#{tag}", PropertyList[
@@ -130,13 +147,17 @@ class ExtraFormableCountriesGameModification < EU4GameModification
             Property::NOT["has_country_flag", "fun_and_balance.formed_#{tag}"],
             Property::NOT["exists", tag],
             *cant_by_formed_by.map{|ct| Property::NOT["tag", ct] },
-            "primary_culture", culture,
+            Property::OR[
+              "culture_group", culture_group,
+              "accepted_culture", culture,
+            ],
           ],
           "allow", PropertyList[
             "adm_tech", 10,
             "num_of_cities", 3,
             "is_free_or_tributary_trigger", true,
             "is_at_war", false,
+            "primary_culture", culture,
             Property::NOT["any_province", PropertyList[
               "culture", culture,
               Property::NOT["owned_by", "ROOT"],
