@@ -61,6 +61,7 @@ class ParadoxModFile
           .sub(/\AEU4txt/, "")
           .sub(/\AHOI4txt/, "")
           .sub(/\ACK2txt(.*)\}\s*\z/m){$1} # CK2 saves have unbalanced {}s
+          .sub("map_area_data{", "map_area_data={") # EU4 1.23 save bugfix
       )
       until s.eos?
         if s.scan(/(\p{Space})+|#.*$/)
