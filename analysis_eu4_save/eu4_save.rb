@@ -83,7 +83,7 @@ class Province
 end
 
 class EU4Save
-  attr_reader :path
+  attr_reader :path, :data
   def initialize(path)
     @path = path
     @data = ParadoxModFile.new(path: @path).parse!

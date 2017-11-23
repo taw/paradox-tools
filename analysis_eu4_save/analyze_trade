@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require_relative "eu4_save"
+require "pp"
+
+class AnalyzeTrade < ParadoxGame
+  def initialize(save_game, *roots)
+    super(*roots)
+    @save = EU4Save.new(save_game)
+  end
+
+  def trade_nodes
+    @trade_nodes ||= begin
+      map = {}
+      indexes_to_names = {}
+      @save.data["trade"].to_a.each_with_index do |prop, i|
+        node = prop.val
+        incoming = node.find_all("incoming")
+        node = node.to_h
+        name = node.delete("definitions")
+        node["incoming"] = incoming.map(&:to_h)
+        indexes_to_names[i+1] = name
+        map[name] = node
+        node.each do |key, val|
+          if val.is_a?(PropertyList)
+            val = val.to_h
+            val.delete "max_demand"
+            val.delete "potential"
+            if val.empty?
+              node.delete key
+            else
+              node[key] = val
+            end
+          end
+        end
+      end
+      map.each do |_, node|
+        node["incoming"].each do |incoming|
+          incoming["from"] = indexes_to_names[incoming["from"]]
+        end
+      end
+      map
+    end
+  end
+
+  def call
+    pp trade_nodes
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
+AnalyzeTrade.new(*ARGV).call
