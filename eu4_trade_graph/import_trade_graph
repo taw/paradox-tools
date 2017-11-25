@@ -47,7 +47,7 @@ class ExportTradeGraph < ParadoxGame
     @trade_graph.topsort_iterator.each do |node_name|
       orig_node = orig[node_name]
       raise "Unknown keys: #{orig_node.keys}" unless (
-        orig_node.keys.to_set - Set["location", "color", "outgoing", "members", "inland", "end"]
+        orig_node.keys.to_set - Set["location", "color", "outgoing", "members", "inland", "end", "ai_will_propagate_through_trade"]
       ).empty?
 
       node = PropertyList[]
