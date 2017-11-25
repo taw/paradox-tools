@@ -10,4 +10,11 @@ inv_comp_map = {}
 trade_graph.strongly_connected_components.comp_map.each do |v, n|
   (inv_comp_map[n] ||= []) << v
 end
-puts inv_comp_map.values.delete_if { |scc| scc.size == 1 }.inspect
+loops = inv_comp_map.values.delete_if { |scc| scc.size == 1 }
+
+if loops.empty?
+  puts "Everything works!"
+else
+  puts "There are loops:"
+  puts loops.map(&:inspect)
+end
