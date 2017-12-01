@@ -76,6 +76,10 @@ class Province
     [local_autonomy, min_autonomy].max
   end
 
+  def buildings
+    (@node["buildings"] || {}).keys
+  end
+
   def to_s
     "Province<#{@id}>"
   end
