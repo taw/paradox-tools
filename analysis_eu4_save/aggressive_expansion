@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require_relative "eu4_save"
+
+module Enumerable
+  def sum
+    inject(0, &:+)
+  end
+end
+
+class AnalyzeAE < ParadoxGame
+  def initialize(save_game, *roots)
+    super(*roots)
+    @save = EU4Save.new(save_game)
+  end
+
+  def call
+    @save.aggressive_expansion.sort_by{|tag, aes| -aes.values.sum}.each do |tag, aes|
+      puts "#{localization(tag)}:"
+      aes.sort_by(&:last).reverse.each do |tag2, ae|
+        puts "* #{localization(tag2)} #{ae}"
+      end
+      puts ""
+    end
+  end
+end
+
+AnalyzeAE.new(*ARGV).call

@@ -119,6 +119,27 @@ class EU4Save
     @data["date"]
   end
 
+  def player_tag
+    @player_tag ||= @data["countries"].enum_for(:each).find{|k,v| v["human"]}.first
+  end
+
+  def aggressive_expansion
+    @active_relations ||= begin
+      map = {}
+      @data["countries"].each do |tag, country|
+        next unless country["active_relations"]
+        country["active_relations"].each do |tag2, relations|
+          relations.find_all("opinion").each do |opinion|
+            next unless opinion["modifier"] == "aggressive_expansion"
+            map[tag2] ||= {}
+            map[tag2][tag] = -opinion["current_opinion"]
+          end
+        end
+      end
+      map
+    end
+  end
+
   def to_s
     "EU4Save<#{@path}>"
   end
