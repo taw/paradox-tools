@@ -1,0 +1,51 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require_relative "eu4_save"
+
+class AnalyzeBuildingsByCountry < ParadoxGame
+  def initialize(save_game, *roots)
+    super(*roots)
+    @save = EU4Save.new(save_game)
+  end
+
+  def building_costs
+    @building_costs ||= begin
+      map = {}
+      glob("common/buildings/*.txt").each do |path|
+        parse(path).each do |name, building|
+          map[name] = building["cost"]
+        end
+      end
+      map
+    end
+  end
+
+  def call
+    country_provinces = Hash.new(0)
+    country_values = Hash.new(0)
+
+    @save.provinces.each do |id, province|
+      owner = province.owner
+      unless owner
+        unless province.buildings.empty?
+          raise "Province #{id} has buildings, but no owner!"
+        end
+        next
+      end
+      country_provinces[owner] += 1
+      province.buildings.each do |building|
+        country_values[owner] += building_costs[building]
+      end
+    end
+
+    results = []
+    country_provinces.each do |tag, provinces|
+      avg = (country_values[tag].to_f / provinces).round
+      results << [avg, localization(tag), provinces]
+    end
+    puts results.sort.reverse.map{|row| row.join(" ") }
+  end
+end
+
+AnalyzeBuildingsByCountry.new(*ARGV).call
