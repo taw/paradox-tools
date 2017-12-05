@@ -10,7 +10,7 @@ class CulturesByCountry < ParadoxGame
   end
 
   def culture_to_culture_group
-    @culture_to_culture_group = begin
+    @culture_to_culture_group ||= begin
       map = {}
       glob("common/cultures/*.txt").each do |path|
         parse(path).each do |group_name, group|

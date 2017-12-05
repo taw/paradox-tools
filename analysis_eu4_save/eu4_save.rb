@@ -6,31 +6,31 @@ class Country
   end
 
   def primary_culture
-    @node["primary_culture"]
+    @primary_culture ||= @node["primary_culture"]
   end
 
   def accepted_cultures
-    @node.find_all("accepted_culture")
+    @accepted_cultures ||= @node.find_all("accepted_culture")
   end
 
   def government_rank
-    @node["government_rank"]
+    @government_rank ||= @node["government_rank"]
   end
 
   def institutions
-    @node["institutions"]
+    @institutions ||= @node["institutions"]
   end
 
   def technology_group
-    @node["technology_group"]
+    @technology_group ||= @node["technology_group"]
   end
 
   def num_of_cities
-    @node["num_of_cities"].to_i
+    @num_of_cities ||= @node["num_of_cities"].to_i
   end
 
   def idea_groups
-    @node["active_idea_groups"].enum_for(:each).to_a
+    @active_idea_groups ||= @node["active_idea_groups"].enum_for(:each).to_a
   end
 
   def to_s
