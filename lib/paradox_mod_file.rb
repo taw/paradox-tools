@@ -6,10 +6,11 @@ require_relative "property_list"
 class ParadoxModFile
   attr_reader :path
   def initialize(string: nil, path: nil)
-    if path
-      @path = Pathname(path)
-    elsif string
+    if string
       @data = string
+      @path = Pathname(path) # Just for better exception message
+    elsif path
+      @path = Pathname(path)
     else
       raise "You must pass eithier path: or string: argument"
     end

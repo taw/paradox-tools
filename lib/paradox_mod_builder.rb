@@ -132,7 +132,7 @@ class ParadoxModBuilder
   end
   def patch_mod_file!(path, **args)
     patch_file!(path, reencode: true, **args) do |content|
-      orig_node = ParadoxModFile.new(string: content).parse!
+      orig_node = ParadoxModFile.new(string: content, path: path).parse!
       node = Marshal.load(Marshal.dump(orig_node)) # deep clone
       yield(node)
       if node == orig_node
