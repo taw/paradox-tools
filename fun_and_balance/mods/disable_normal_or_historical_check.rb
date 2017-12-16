@@ -2,7 +2,7 @@ require_relative "base"
 
 class DisableNormalOrHistoricalCheck < EU4GameModification
   def apply!
-    # Hotfix 1.23
+    # Hotfix 1.23 / 1.24
     patch_file!("missions/Coptic_Missions.txt") do |content|
       content.sub("yes'", "yes")
     end

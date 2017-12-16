@@ -170,17 +170,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
               "name", "centralization_modifier",
               "duration", 7300,
             ],
-            "if", PropertyList[
-              "limit", PropertyList[
-                "is_part_of_hre", true,
-                "is_elector", false,
-                "is_emperor", false,
-              ],
-              "every_owned_province", PropertyList[
-                "limit", PropertyList["is_part_of_hre", true],
-                "set_in_empire", false,
-              ],
-            ],
+            "remove_non_electors_emperors_from_empire_effect", true,
             "add_prestige", 25,
             "if", PropertyList[
               "limit", PropertyList["NOT", PropertyList["government_rank", 2]],
