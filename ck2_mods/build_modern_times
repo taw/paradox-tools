@@ -7,7 +7,7 @@ class ModernTimesModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/ck2_2.7.1",
+        "source/ck2_2.8.1",
       ),
       "output/modern_times",
     )
@@ -25,6 +25,11 @@ class ModernTimesModBuilder < ParadoxModBuilder
                          ModernTimesGameModification
   end
   def build_mod_files!
+    # Hotfix 2.8
+    patch_file!("common/landed_titles/landed_titles.txt") do |content|
+      content.sub("b_qobadhiyan {}", " b_qobadhiyan = {}")
+    end
+
     apply_modern_times!
     create_mod_descriptor!(
       name: "Modern Times",

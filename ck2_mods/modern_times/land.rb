@@ -7,6 +7,8 @@ ModernTimesDatabase::LAND = {
 
   # Level of actualy Ottoman control was fairly minor
   d_sanaa:        { times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
+  d_taizz:        { times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
+  c_kathiri:      { times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_aden:         { times_immemorial: "e_arabia",aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
 
   c_abkhazia:     { times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", abkhazia_war: "e_russia" },
@@ -57,11 +59,11 @@ ModernTimesDatabase::LAND = {
 
   c_oromieh: { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
   d_baghdad: { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
+  d_samarra: { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
   d_tigris:  { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
   d_basra:   { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
 
   c_mosul:   { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_suwaida: { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
   c_druz:    { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
   c_sinjar:  { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
 
@@ -70,6 +72,7 @@ ModernTimesDatabase::LAND = {
   c_tell_bashir: { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"  },
   k_syria:       { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria" },
   d_jazira:      { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria" },
+  c_nisibin:     { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria" },
   d_tunis:        { times_immemorial: "e_arabia", tunisia_french: "e_france", tunisia_independence: "d_tunis" },
   d_alger:        { times_immemorial: "e_arabia", algeria_french: "e_france", algeria_indepnedence: "d_alger" },
   d_kabylia:      { times_immemorial: "e_arabia", algeria_french: "e_france", algeria_indepnedence: "d_alger" },
@@ -108,16 +111,15 @@ ModernTimesDatabase::LAND = {
   d_cyprus:     { times_immemorial: "e_arabia", cyprus_convention: "e_britannia", cyprus_independence: "d_cyprus" },
   c_famagusta:  { times_immemorial: "e_arabia", cyprus_convention: "e_britannia", cyprus_independence: "d_cyprus", north_cyprus_invasion: "k_anatolia" },
 
-  d_syria:       { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
+  d_palmyra:     { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
+  d_mudar:       { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
   c_palmyra:     { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
   c_asas:        { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni" },
 
   d_oultrejourdain: { times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
-  c_petra:   { times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
   c_maan:    { times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
   c_amman:   { times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
   c_az_zarqa:{ times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
-
 
   k_mauretania:{ times_immemorial: "k_mauretania", morocco_protectorate: "e_france", french_morocco_independence: "k_mauretania" },
   c_cebta:     { times_immemorial: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
@@ -205,7 +207,10 @@ ModernTimesDatabase::LAND = {
   d_sicily:     { forever_ago: "d_sicily", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
 
   d_dihistan:  { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
+  c_konjikala: { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
+  c_tus:       { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_merv:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
+  c_amol:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_aral:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
   d_turkestan: { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_cuman" },
 
@@ -260,9 +265,13 @@ ModernTimesDatabase::LAND = {
   c_sarpa:          { forever_ago: "e_russia" },
 
   k_persia:       { forever_ago: "k_persia" },
+  d_gilan:        { forever_ago: "k_persia" },
+  d_tabriz:       { forever_ago: "k_persia" },
+  d_mazandaran:   { forever_ago: "k_persia" },
+  c_sarakhs:      { forever_ago: "k_persia" },
   d_sistan:       { forever_ago: "k_persia" },
   d_kermanshah:   { forever_ago: "k_persia" },
-  c_dailam:       { forever_ago: "k_persia" },
+  d_khorasan:     { forever_ago: "k_persia" },
 
   # After 1758 Xinjiang in China. Before Dzungar Khanate
   k_khotan:     { forever_ago: "k_khotan" },
@@ -311,7 +320,7 @@ ModernTimesDatabase::LAND = {
   d_kola:       { forever_ago: "e_russia" },
   d_karelia:    { forever_ago: "e_russia" },
   c_malta:      { forever_ago: "c_malta", malta_british: "e_britannia", malta_independence: "c_malta" },
-  c_corsica:    { forever_ago: "k_genoa", french_corsica: "e_france" },
+  d_corsica:    { forever_ago: "k_genoa", french_corsica: "e_france" },
 
   c_steiermark:   { forever_ago: "e_carpathia", end_ww1: "k_serbia", slovenia_independence: "d_carinthia" },
   c_aquileia:     { forever_ago: "e_carpathia", end_ww1: "k_serbia", slovenia_independence: "d_carinthia" },
@@ -436,20 +445,23 @@ ModernTimesDatabase::LAND = {
 
   d_bavaria: { forever_ago: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
 
-  c_ar_ar:  { forever_ago: "d_nefoud", end_ww1: "k_arabia" },
   d_nefoud: { forever_ago: "d_nefoud", end_ww1: "k_arabia" },
   # 1810s Saudi occupation was just rebels
   d_medina: { forever_ago: "e_arabia", end_ww1: "d_medina", hejaz_saudi: "k_arabia" },
+  c_najran: { forever_ago: "e_arabia", end_ww1: "d_medina", hejaz_saudi: "k_arabia" },
   d_arabia_petrae: { forever_ago: "e_arabia", end_ww1: "d_medina", hejaz_saudi: "k_arabia" },
   # Taken by Saudis 1913, but let's not make this official prematurely
   d_amman:   { forever_ago: "e_arabia", end_ww1: "k_arabia" },
 
   # Muscat and Oman
   d_oman:     { forever_ago: "d_oman", oman_persian: "k_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
+  c_dhofar: { forever_ago: "d_oman", oman_persian: "k_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
+  c_mahra: { forever_ago: "d_oman", oman_persian: "k_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
   c_dhu_zabi:  { forever_ago: "d_oman", general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
 
   c_taizz:   { forever_ago: "e_arabia", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
   c_sanaa:   { forever_ago: "e_arabia", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
+  c_zabid:   { forever_ago: "e_arabia", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
 
   c_plauen:     { forever_ago: "d_saxony", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   d_meissen:    { forever_ago: "d_saxony", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
@@ -458,6 +470,9 @@ ModernTimesDatabase::LAND = {
   c_kyzylkum:   { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
 
   d_samarkand:  { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "k_khiva" },
+  d_khuttal:    { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "k_khiva" },
+
+
 
   c_bahrein:    { forever_ago: "k_persia", bahrain_1783_invasion: "c_bahrein", bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
 
@@ -478,6 +493,7 @@ ModernTimesDatabase::LAND = {
   c_syr_darya:  { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
 
   d_zhetysu:    { forever_ago: "k_cuman", senior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  d_ferghana:   { forever_ago: "k_cuman", senior_juz_russian: "e_russia", end_ww1: "k_cuman" },
 
   k_delhi:       { forever_ago: "e_rajastan", third_maratha_war: "k_delhi", india_independence: "e_india" },
   k_kosala:      { forever_ago: "e_rajastan", third_maratha_war: "k_kosala", india_independence: "e_india" },
@@ -499,9 +515,9 @@ ModernTimesDatabase::LAND = {
   c_udabhanda:   { durrani_afghanistan: "k_afghanistan" },
   c_purushapura: { durrani_afghanistan: "k_afghanistan" },
   c_maymana:     { durrani_afghanistan: "k_afghanistan" },
-  c_balkh:       { durrani_afghanistan: "k_afghanistan" },
+  d_balkh:       { durrani_afghanistan: "k_afghanistan" },
   d_zabulistan:  { durrani_afghanistan: "k_afghanistan" },
-  c_herat:       { durrani_afghanistan: "k_afghanistan" },
+  d_herat:       { durrani_afghanistan: "k_afghanistan" },
   d_baluchistan: { durrani_afghanistan: "k_afghanistan", kalat_independent: "d_baluchistan", baluchistan_agency: "e_britannia", india_independence: "k_baluchistan" },
 
   #########################################
@@ -533,6 +549,7 @@ ModernTimesDatabase::LAND = {
   # READY FOR 1800 NAPOLEON BOOKMARK
 
   k_punjab:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+  k_kashmir:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
   c_trigarta:    { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india" },
   c_sakala:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india" },
 
@@ -582,4 +599,7 @@ ModernTimesDatabase::LAND = {
   k_tamilakam:   { fourth_mysore_war: "k_tamilakam", india_independence: "e_india" },
   k_telingana:   { hyderabad_british: "k_telingana", india_independence: "e_india" },
   k_orissa:      { orissa_british: "k_orissa", india_independence: "e_india" },
+
+  # FIXME:
+  e_tibet:       { forever_ago: "e_tibet" },
 }

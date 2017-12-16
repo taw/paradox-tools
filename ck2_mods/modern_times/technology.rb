@@ -11,6 +11,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_pomerania"        => [3,3,3, 4.5,4.5,4.5, 6,6,6],
   "d_prussia"          => [3,3,3, 4.5,4.5,4.5, 6,6,6],
   "k_italy"            => [3,3,3, 4.5,4.5,4.5, 6,6,6],
+  "k_sardinia"         => [3,3,3, 4.5,4.5,4.5, 6,6,6],
   "k_venice"           => [3,3,3, 4.5,4.5,4.5, 6,6,6],
   "k_denmark"          => [3,3,3, 4.5,4.5,4.5, 6,6,6],
   "k_norway"           => [3,3,3, 4.5,4.5,4.5, 6,6,6],
@@ -57,6 +58,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_cuman"            => [2,2,2, 3,3,3, 4,4,4],
   "k_khazaria"         => [2,2,2, 3,3,3, 4,4,4],
   "k_turkestan"        => [2,2,2, 3,3,3, 4,4,4],
+  "e_tibet"            => [2,2,2, 3,3,3, 4,4,4],
   # Israel tech group - some catch up
   "k_jerusalem"        => [2,2,2, 3,3,3, 5,5,5],
 }

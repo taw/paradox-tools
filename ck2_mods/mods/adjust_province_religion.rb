@@ -106,7 +106,7 @@ class AdjustProvinceReligionGameModification < CK2GameModification
       "d_oultrejourdain" => "samaritan",
       "d_tripoli"        => "monothelite",
       "d_damascus"       => "sunni",
-      "d_syria"          => "druze",
+      "d_palmyra"          => "druze",
       "d_jazira"         => "monophysite",
 
       # Arabia / Mesopotamia

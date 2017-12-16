@@ -1,4 +1,8 @@
 ModernTimesDatabase::TITLES = {
+  e_tibet: {
+    culture: :bodpa,
+    religion: :buddist,
+  },
   e_britannia: {
     culture: :english,
     religion: :protestant,
@@ -301,12 +305,6 @@ ModernTimesDatabase::TITLES = {
     culture: :levantine_arabic,
     religion: :sunni,
   },
-  # Avoids silliness of ISIS making this primary and two Syrias on the map
-  d_syria: {
-    culture: :levantine_arabic,
-    religion: :sunni,
-    name: "East Syria / East Syrian",
-  },
   d_tunis: {
     culture: :maghreb_arabic,
     religion: :sunni,
@@ -370,7 +368,7 @@ ModernTimesDatabase::TITLES = {
     religion: :shiite,
     capital: :c_rayy,
     name: {"1925.12.15" => "Iran / Iranian"},
-    demesne: ["d_esfahan"],
+    demesne: ["d_jibal"],
   },
   k_bengal: {
     culture: :bengali,

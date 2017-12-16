@@ -203,6 +203,10 @@ class PropertyList
     @entries.sort!
   end
 
+  def sort_by!(&blk)
+    @entries.sort_by!(&blk)
+  end
+
   def deep_copy
     Marshal.load(Marshal.dump(self))
   end

@@ -85,4 +85,14 @@ ModernTimesDatabase::DE_JURE = {
   "d_itil"           => "k_cuman",
   "d_cherson"        => "k_taurica",
   "d_crimea"         => "k_taurica",
+
+  # Reverting 2.8 de jure map changes
+  "d_sanaa"          => "k_arabia",
+  "d_taizz"          => "k_arabia",
+  "d_hadramut"       => "k_arabia",
+  "d_gilan"          => "k_persia",
+  "d_tabriz"         => "k_persia",
+  "d_mazandaran"     => "k_persia",
+  "d_azerbaijan"     => "k_persia",
+  "d_dihistan"       => "k_khiva",
 }

@@ -408,7 +408,7 @@ class ModernTimesGameModification < CK2GameModification
       end
     end
     node.delete!{|prop| prop.val == []}
-    node.sort!
+    node.sort_by!{|prop| [prop.key, prop.val.to_s]}
   end
 
   def setup_title_names!

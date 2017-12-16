@@ -269,6 +269,7 @@ class ModernTimesDatabase
     ranges = []
     map.counties_in[title].each do |county|
       land = county_ownership(county)
+      raise "Can't find history for #{county} in #{title}" unless land
       land.size.times do |i|
         start_date, owner = land[i]
         end_date = land[i+1] && land[i+1][0]
