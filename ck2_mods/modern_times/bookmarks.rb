@@ -69,7 +69,7 @@ ModernTimesDatabase::BOOKMARKS = {
   "1979.7.16" => {
     name: "Iranian Revolution",
     desc: "Shiite Islamic Revolution in Iran and Saddam Hussein's ambition to become leader of Arab world are on a colision course.",
-    characters: ["k_mesopotamia", "k_persia"],
+    characters: ["k_iraq", "k_persia"],
   },
   "1991.12.26" => {
     name: "Fall of Soviet Union",

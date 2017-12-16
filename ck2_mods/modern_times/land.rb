@@ -34,7 +34,6 @@ ModernTimesDatabase::LAND = {
   d_samos:        { times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia" },
   d_edessa:       { times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
   c_amida:        { times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
-  c_kurdistan:    { times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"}, # Maybe Iraq, but then Turkey wouldn't border Iran any more
   d_thrace:       { times_immemorial: "e_arabia", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "k_anatolia" },
 
   d_alexandria: { times_immemorial: "k_egypt" },
@@ -57,15 +56,16 @@ ModernTimesDatabase::LAND = {
   c_hebron:    { times_immemorial: "e_arabia", end_ww1: "d_jerusalem", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
   c_jerusalem: { times_immemorial: "e_arabia", end_ww1: "d_jerusalem", israel_independence: "d_oultrejourdain", six_day_war: "k_israel" },
 
-  c_oromieh: { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
-  d_baghdad: { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
-  d_samarra: { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
-  d_tigris:  { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
-  d_basra:   { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia"},
+  c_oromieh: { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
+  d_baghdad: { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
+  d_samarra: { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
+  d_tigris:  { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
+  d_basra:   { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
+  d_kurdistan: { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
 
-  c_mosul:   { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_druz:    { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
-  c_sinjar:  { times_immemorial: "e_arabia", british_iraq: "k_mesopotamia", caliphate_reborn: "d_sunni"},
+  c_mosul:   { times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
+  c_druz:    { times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
+  c_sinjar:  { times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
 
   c_tiberias:    { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", six_day_war: "k_israel" },
   c_safed:       { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria" },
@@ -120,6 +120,7 @@ ModernTimesDatabase::LAND = {
   c_maan:    { times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
   c_amman:   { times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
   c_az_zarqa:{ times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
+  c_al_aqabah:{ times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain" },
 
   k_mauretania:{ times_immemorial: "k_mauretania", morocco_protectorate: "e_france", french_morocco_independence: "k_mauretania" },
   c_cebta:     { times_immemorial: "k_mauretania", morocco_protectorate: "e_spain",  north_spanish_morocco_end: "k_mauretania" },
@@ -162,8 +163,12 @@ ModernTimesDatabase::LAND = {
   d_ulster:     { times_immemorial: "e_britannia" },
   c_tyrconnell: { times_immemorial: "e_britannia", ireland_independence: "k_ireland" },
   k_scotland:   { times_immemorial: "k_scotland", scotland_union: "e_britannia", scotland_devolution: "k_scotland" },
-  c_orkney:     { times_immemorial: "k_scotland", scotland_union: "e_britannia" },
-  c_shetland:   { times_immemorial: "k_scotland", scotland_union: "e_britannia" },
+  c_orkney:     { times_immemorial: "k_scotland", scotland_union: "e_britannia", scotland_devolution: "k_scotland" },
+  c_shetland:   { times_immemorial: "k_scotland", scotland_union: "e_britannia", scotland_devolution: "k_scotland" },
+  k_wales:      { times_immemorial: "e_britannia", wales_devolution: "k_wales" },
+  d_cornwall:   { times_immemorial: "e_britannia" },
+  c_hereford:   { times_immemorial: "e_britannia" },
+  c_shrewsbury: { times_immemorial: "e_britannia" },
 
   k_brittany:   { times_immemorial: "e_france" },
 
@@ -232,6 +237,8 @@ ModernTimesDatabase::LAND = {
 
   d_savoie:         { forever_ago: "k_burgundy" },
   d_upper_burgundy: { forever_ago: "k_burgundy" },
+  c_st_gallen:      { forever_ago: "k_burgundy" },
+  c_chur:           { forever_ago: "k_burgundy" },
   k_france:         { forever_ago: "e_france" },
   k_aquitaine:      { forever_ago: "e_france" },
   c_boulogne:       { forever_ago: "e_france" },
@@ -274,9 +281,9 @@ ModernTimesDatabase::LAND = {
   d_khorasan:     { forever_ago: "k_persia" },
 
   # After 1758 Xinjiang in China. Before Dzungar Khanate
-  k_khotan:     { forever_ago: "k_khotan" },
-  c_dunkheger:  { forever_ago: "k_khotan" },
-  c_altay:      { forever_ago: "k_khotan" },
+  k_khotan:     { forever_ago: "e_china_west_governor" },
+  c_dunkheger:  { forever_ago: "e_china_west_governor" },
+  c_altay:      { forever_ago: "e_china_west_governor" },
 
   # This is awkward, as it was Chinese all along, but Dzungar goes away
   k_mongolia:   { forever_ago: "k_mongolia", fall_dzungar: "k_khotan", mongolia_independence: "k_mongolia" },
@@ -601,5 +608,7 @@ ModernTimesDatabase::LAND = {
   k_orissa:      { orissa_british: "k_orissa", india_independence: "e_india" },
 
   # FIXME:
-  e_tibet:       { forever_ago: "e_tibet" },
+  e_tibet:       { forever_ago: "e_tibet", tibet_chinese: "e_china_west_governor" },
+  d_bhutan:      { forever_ago: "d_bhutan" },
+  k_nepal:       { forever_ago: "k_nepal" },
 }

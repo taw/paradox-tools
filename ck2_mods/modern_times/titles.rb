@@ -1,7 +1,20 @@
 ModernTimesDatabase::TITLES = {
+  e_china_west_governor: {
+    culture: :han,
+    religion: :taoist,
+    name: { times_immemorial: "Qing / Qing", end_of_qing: "China / Chinese" },
+  },
+  d_bhutan: {
+    culture: :nepali,
+    religion: :buddhist,
+  },
+  k_nepal: {
+    culture: :nepali,
+    religion: :hindu,
+  },
   e_tibet: {
     culture: :bodpa,
-    religion: :buddist,
+    religion: :buddhist,
   },
   e_britannia: {
     culture: :english,
@@ -9,6 +22,11 @@ ModernTimesDatabase::TITLES = {
     capital: :c_middlesex,
     name: "United Kingdom / British",
     demesne: ["d_somerset"],
+  },
+  k_wales: {
+    culture: :welsh,
+    religion: :protestant,
+    liege: {wales_devolution: "e_britannia"},
   },
   k_ireland: {
     culture: :irish,
@@ -354,6 +372,7 @@ ModernTimesDatabase::TITLES = {
     culture: :afghan,
     religion: :sunni,
     capital: :c_kabul,
+    name: "Afghanistan / Afghani",
   },
   c_kuwait: {
     culture: :bedouin_arabic,
@@ -444,7 +463,7 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
   },
-  k_mesopotamia: {
+  k_iraq: {
     culture: :levantine_arabic,
     religion: :shiite,
     capital: :c_baghdad,
@@ -483,6 +502,7 @@ ModernTimesDatabase::TITLES = {
   k_mongolia: {
     culture: :mongol,
     religion: :sunni,
+    liege: nil,
   },
   d_carinthia: {
     culture: :croatian,
@@ -536,7 +556,7 @@ ModernTimesDatabase::TITLES = {
   k_israel: {
     culture: :ashkenazi,
     religion: :jewish,
-    capital: :c_acre,
+    capital: :c_jerusalem,
   },
   d_arabia_felix: {
     culture: :bedouin_arabic,

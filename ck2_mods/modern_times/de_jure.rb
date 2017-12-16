@@ -36,6 +36,7 @@ ModernTimesDatabase::DE_JURE = {
   "k_andhra"         => "e_india",
   "k_telingana"      => "e_india",
   "k_lanka"          => "e_india",
+  "d_cornwall"       => "k_england",
 
   "k_belarus"        => "e_wendish_empire",
   "d_vitebsk"        => "k_belarus",
@@ -95,4 +96,10 @@ ModernTimesDatabase::DE_JURE = {
   "d_mazandaran"     => "k_persia",
   "d_azerbaijan"     => "k_persia",
   "d_dihistan"       => "k_khiva",
+  "d_herat"          => "k_afghanistan",
+  "d_balkh"          => "k_afghanistan",
+  "d_trebizond"      => "k_anatolia",
+  "d_armeniacon"     => "k_anatolia",
+  "d_khorasan"       => "k_persia",
+  "d_merv"           => "k_khiva",
 }

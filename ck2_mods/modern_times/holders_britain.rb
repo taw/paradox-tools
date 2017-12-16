@@ -132,6 +132,20 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
       female: true,
     },
   },
+  k_wales: {
+    "1999.5.12" => {
+      name: "Alun | Michael",
+      lived: "1943.8.22-",
+    },
+    "2000.2.9" => {
+      name: "Rhodri | Morgan",
+      lived: "1939.9.29-2017.5.17",
+    },
+    "2009.12.9" => {
+      name: "Carwyn | Jones",
+      lived: "1967.3.21-",
+    },
+  },
   k_ireland: {
     ireland_independence: {
       name: "Éamon | de Valera",

@@ -18,6 +18,9 @@ module ModernTimesDatabase::Dates
 
     ### Actual dates:
 
+    end_of_qing: "1912.2.12",
+    wales_devolution: "1999.5.12",
+    tibet_chinese: "1950.10.19",
     travancore_british: "1795.1.1", # year only
     marathas_battle_of_delhi: "1757.8.11",
     andhra_british: "1792.1.1", # year only

@@ -111,7 +111,7 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
       traits: ["sayyid"],
     },
   },
-  k_mesopotamia: {
+  k_iraq: {
     # Backdating
     "1920.4.25" => {
       name: "Faisal | Hashemite",
