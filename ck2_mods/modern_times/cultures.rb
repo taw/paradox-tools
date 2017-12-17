@@ -1,5 +1,8 @@
 ModernTimesDatabase::CULTURES = {
   "d_ascalon"      => "ashkenazi",
+  "c_jerusalem"    => "ashkenazi",
+  "c_acre"         => "ashkenazi",
+  "c_darum"        => "levantine_arabic",
   "d_sevilla"      => "castillan",
   "d_granada"      => "castillan",
   "c_algeciras"    => "english",
@@ -34,6 +37,8 @@ ModernTimesDatabase::CULTURES = {
   "c_dashhowuz"    => "karluk",
   "c_ural"         => "cuman",
   "d_samarkand"    => "karluk",
+  "d_itil"         => "cuman",
+  "d_sarkel"       => "alan",
   "c_bashkirs"     => :keep,
   "c_mangyshlak"   => :keep,
   "c_kuma"         => "uyghur", # actually Kalmyk

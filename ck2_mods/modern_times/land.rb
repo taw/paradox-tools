@@ -169,6 +169,8 @@ ModernTimesDatabase::LAND = {
   d_cornwall:   { times_immemorial: "e_britannia" },
   c_hereford:   { times_immemorial: "d_hereford" },
   c_shrewsbury: { times_immemorial: "d_hereford" },
+  d_hereford:   { times_immemorial: "d_hereford" },
+  d_the_isles:  { times_immemorial: "e_britannia" },
 
   k_brittany:   { times_immemorial: "e_france" },
 

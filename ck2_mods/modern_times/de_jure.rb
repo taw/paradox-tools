@@ -37,6 +37,8 @@ ModernTimesDatabase::DE_JURE = {
   "k_telingana"      => "e_india",
   "k_lanka"          => "e_india",
   "d_cornwall"       => "k_england",
+  "d_orkney"         => "k_scotland",
+  "d_the_isles"      => "k_england",
 
   "k_belarus"        => "e_wendish_empire",
   "d_vitebsk"        => "k_belarus",
@@ -106,5 +108,4 @@ ModernTimesDatabase::DE_JURE = {
   "d_mudar"          => "k_syria",
   "d_jazira"         => "k_iraq",
   "d_sistan"         => "k_afghanistan",
-  "d_orkney"         => "k_scotland",
 }

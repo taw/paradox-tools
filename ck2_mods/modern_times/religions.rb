@@ -1,6 +1,7 @@
 ModernTimesDatabase::RELIGIONS = {
   "k_england"        => "protestant",
   "k_wales"          => "protestant",
+  "d_the_isles"      => "protestant",
   "d_mecklemburg"    => "protestant",
   "d_crimea"         => "orthodox",
   "d_armenia"        => "orthodox",
@@ -17,6 +18,9 @@ ModernTimesDatabase::RELIGIONS = {
   "d_brunswick"      => "protestant",
   "d_courland"       => "protestant",
   "d_ascalon"        => "jewish",
+  "c_jerusalem"      => "jewish",
+  "c_acre"           => "jewish",
+  "c_darum"          => "sunni",
   "d_holland"        => "reformed",
   "d_gelre"          => "reformed",
   "d_upper_burgundy" => "reformed",
@@ -46,6 +50,8 @@ ModernTimesDatabase::RELIGIONS = {
   "d_adrianopolis"   => "orthodox",
   "c_kuma"           => "buddhist",
   "c_alania"         => "sunni",
+  "d_moldau"         => "orthodox",
+  "d_transylvania"   => "orthodox",
   # Uniate
   "d_galich"         => "catholic",
   "d_volhynia"       => "catholic",

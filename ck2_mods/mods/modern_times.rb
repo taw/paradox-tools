@@ -927,7 +927,13 @@ class ModernTimesGameModification < CK2GameModification
         actual_capital  = title_data[:capital]
         de_jure_capital = map.title_capitals[title]
         next if actual_capital == de_jure_capital
-        next unless de_jure_capital
+        next if actual_capital == title # county-tier, skip
+        # unless de_jure_capital
+        #   warn "Trying to set capital of title without capital: #{title} #{actual_capital}"
+        #   next
+        # end
+        # FIXME: New titles like Belarus don't work
+        next unless @map.landed_titles_lookup[title]
         title_node = @map.landed_titles_lookup[title].reverse.inject(node){|n,t| n[t]}
         title_node["capital"] = @map.title_to_province_id[actual_capital]
       end
