@@ -42,4 +42,6 @@ ModernTimesDatabase::CULTURES = {
   "c_bashkirs"     => :keep,
   "c_mangyshlak"   => :keep,
   "c_kuma"         => "uyghur", # actually Kalmyk
+  "d_ferghana"     => "karluk",
+  "d_khuttal"      => "persian",
 }

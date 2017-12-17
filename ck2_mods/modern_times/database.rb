@@ -361,6 +361,12 @@ private
     # This is obviously error, but we can't fix it due to engine limitations
     known_posthumous = [
       "e_spain Alfonso 2",
+      "e_tibet Khedrup 1",
+      "e_tibet Lungtok 1",
+      "e_tibet Tenzin 1",
+      "e_tibet Thubten 1",
+      "e_tibet Trinley 1",
+      "e_tibet Tsultrim 1",
     ]
 
     holders.keys.each do |title|

@@ -1,4 +1,16 @@
 ModernTimesDatabase::TITLES = {
+  d_ferghana: {
+    culture: :karluk,
+    religion: :sunni,
+    name: "Kyrgyzstan / Kyrgyz",
+    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+  },
+  d_khuttal: {
+    culture: :persian,
+    religion: :sunni,
+    name: "Tajikistan / Tajik",
+    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+  },
   d_gloucester: { # "Hwicce"
     culture: :english,
     religion: :protestant,
@@ -671,6 +683,7 @@ ModernTimesDatabase::TITLES = {
   c_dhu_zabi: {
     culture: :bedouin_arabic,
     religion: :sunni,
+    name: "Abu Dhabi / Abu Dhabian",
   },
   # Yes, this is Catholic ruler and Protestant population
   d_saxony: {

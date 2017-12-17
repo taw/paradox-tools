@@ -1,4 +1,48 @@
 ModernTimesDatabase::HOLDERS_INDIA = {
+  e_tibet: {
+    # Dalai Lamas
+    # The whole system is bullshit, with interregnums and child reigns
+    # We make up a lot of dates here:
+    # * everyone is Dalai Lama from birth
+    # * everyone lives a bit longer to fill in the interregnum
+
+    # Lungtok and before only year dates
+    "1805.1.1" => { name: "Lungtok | Gyatso", lived: "1805.1.1 - 1816.3.29" },
+    "1816.3.29" => { name: "Tsultrim | Gyatso", lived: "1816.3.29 - 1838.11.1" },
+    "1838.11.1" => { name: "Khedrup | Gyatso", lived: "1838.11.1 - 1857.1.26" },
+    "1857.1.26" => { name: "Trinley | Gyatso", lived: "1857.1.26 - 1876.2.12" },
+    "1876.2.12" => { name: "Thubten | Gyatso", lived: "1876.2.12 - 1935.7.6"},
+    "1935.7.6"  => { name: "Tenzin | Gyatso", lived: "1935.7.6 -"},
+  },
+  # Without "Bir Bikram" and other middle names, they look bad in UI
+  k_nepal: {
+    "1768.9.25"  => { name: "Prithvi Narayan | Shah", lived: "1723.1.7 – 1775.1.11" },
+    "1775.1.11"  => { name: "Pratap Singh | Shah", lived: "1751.4.16 – 1777.11.17", father: "Prithvi Narayan" },
+    "1777.11.17" => { name: "Rana Bahadur | Shah", lived: "1775.5.25 – 1806.4.25", father: "Pratap Singh" },
+    "1799.3.8"   => { name: "Girvan Yuddha | Shah", lived: "1797.10.19 – 1816.11.20", father: "Rana Bahadur" },
+    "1816.11.20" => { name: "Rajendra | Shah", lived: "1813.12.3 – 1881.7.10", father: "Girvan Yuddha" },
+    "1847.5.12"  => { name: "Surendra | Shah", lived: "1829.10.20 – 1881.5.17", father: "Rajendra" },
+    # grandson of Surendra Bikram
+    "1881.5.17"  => { name: "Prithvi | Shah", lived: "1875.8.18 – 1911.12.11" },
+    "1911.12.11" => { name: "Tribhuvan | Shah", lived: "1906.6.30 – 1955.3.13", father: "Prithvi" },
+    # grandson of Tribhuvan
+    "1950.11.7"  => { name: "Gyanendra | Shah", lived: "1947.7.7 -" },
+    "1951.1.7"   => { use: "Tribhuvan" },
+    "1955.3.14"  => { name: "Mahendra | Shah", lived: "1920.6.11 – 1972.1.31", father: "Tribhuvan" },
+    "1972.1.31"  => { name: "Birendra | Shah", lived: "1945.12.28 – 2001.6.1", father: "Mahendra" },
+    "2001.6.1"   => { name: "Dipendra | Shah", lived: "1971.6.27 – 2001.6.4", father: "Birendra" },
+    "2001.6.4"   => { use: "Gyanendra", },
+    # end of monarchy, backdating presidents to fill the gap
+    "2008.5.28"  => { name: "Ram Baran | Yadav", lived: "1948.2.4 -" },
+    "2015.10.29" => { name: "Bidhya Devi | Bhandari", lived: "1961.6.19 -", female: true },
+  },
+  d_bhutan: {
+    "1907.12.17" => { name: "Ugyen | Wangchuck", lived: "1862 – 1926.8.21" },
+    "1926.8.21"  => { name: "Jigme | Wangchuck", lived: "1905 – 1952.3.24", father: "Ugyen" },
+    "1952.3.24"  => { name: "Jigme Dorji | Wangchuck", lived: "1929.5.2 – 1972.7.21", father: "Jigme" },
+    "1972.7.21"  => { name: "Jigme Singye | Wangchuck", lived: "1955.11.11 -", father: "Jigme Dorji" },
+    "2006.12.14" => { name: "Jigme Khesar Namgyel | Wangchuck", lived: "1980.2.21 -", father: "Jigme Singye" },
+  },
   e_india: {
     third_maratha_war: { use_all: "e_britannia" },
     "1947.8.15"   => {name: "Jawharlal | Nehru", lived: "1889 - 1964"},

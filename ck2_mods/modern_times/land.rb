@@ -62,10 +62,12 @@ ModernTimesDatabase::LAND = {
   d_tigris:  { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   d_basra:   { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   d_kurdistan: { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
+  c_bira:     { times_immemorial: "e_arabia", british_iraq: "k_iraq"},
 
   c_mosul:   { times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
   c_druz:    { times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
   c_sinjar:  { times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
+  c_rahbah:  { times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
 
   c_tiberias:    { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", six_day_war: "k_israel" },
   c_safed:       { times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria" },
@@ -278,13 +280,12 @@ ModernTimesDatabase::LAND = {
   d_tabriz:       { forever_ago: "k_persia" },
   d_mazandaran:   { forever_ago: "k_persia" },
   c_sarakhs:      { forever_ago: "k_persia" },
-  d_kermanshah:   { forever_ago: "k_persia" },
+  c_kermanshah:   { forever_ago: "k_persia" },
   d_khorasan:     { forever_ago: "k_persia" },
 
   # After 1758 Xinjiang in China. Before Dzungar Khanate
   k_khotan:     { forever_ago: "e_china_west_governor" },
-  c_dunkheger:  { forever_ago: "e_china_west_governor" },
-  c_altay:      { forever_ago: "e_china_west_governor" },
+  d_altay:      { forever_ago: "e_china_west_governor" },
 
   # This is awkward, as it was Chinese all along, but Dzungar goes away
   k_mongolia:   { forever_ago: "k_mongolia", fall_dzungar: "k_khotan", mongolia_independence: "k_mongolia" },
@@ -478,7 +479,7 @@ ModernTimesDatabase::LAND = {
   c_kyzylkum:   { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
 
   d_samarkand:  { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "k_khiva" },
-  d_khuttal:    { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "k_khiva" },
+  d_khuttal:    { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "d_khuttal" },
 
 
 
@@ -501,7 +502,7 @@ ModernTimesDatabase::LAND = {
   c_syr_darya:  { forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman" },
 
   d_zhetysu:    { forever_ago: "k_cuman", senior_juz_russian: "e_russia", end_ww1: "k_cuman" },
-  d_ferghana:   { forever_ago: "k_cuman", senior_juz_russian: "e_russia", end_ww1: "k_cuman" },
+  d_ferghana:   { forever_ago: "k_cuman", senior_juz_russian: "e_russia", end_ww1: "d_ferghana" },
 
   k_delhi:       { forever_ago: "e_rajastan", third_maratha_war: "k_delhi", india_independence: "e_india" },
   k_kosala:      { forever_ago: "e_rajastan", third_maratha_war: "k_kosala", india_independence: "e_india" },
@@ -540,6 +541,7 @@ ModernTimesDatabase::LAND = {
   k_bihar:       { battle_of_buxar: "k_bihar", india_independence: "e_india" },
   c_kanchipuram: { madras_british: "e_britannia", india_independence: "e_india" }, # Madras
   k_sindh:       { sindh_independent: "k_sindh", conquest_of_sindh: "e_britannia", india_independence: "k_baluchistan" },
+  c_kalat:       { sindh_independent: "k_sindh", conquest_of_sindh: "e_britannia", india_independence: "k_baluchistan" },
 
   # Names on CK2 map have very little correlation with names on real map
   # I think Nepal and Bhutan are out of map and these are the only parts of Bangladesh, but who knows really
