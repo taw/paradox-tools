@@ -190,6 +190,7 @@ module ModernTimesDatabase::Dates
     oman_independence: "1971.12.2", # GeaCron thinks so, there was supposedly some "1962: Great Britain declares Muscat and Oman an independent nation."
     bangladesh_independence: "1971.12.16",
     bahrain_independence: "1971.8.15",
+    qatar_independence: "1971.9.1",
     north_cyprus_invasion: "1974.8.18",
     madrid_accords: "1975.11.14",
     djibouti_independence: "1977.6.27",

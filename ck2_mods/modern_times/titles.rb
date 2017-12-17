@@ -407,6 +407,12 @@ ModernTimesDatabase::TITLES = {
   c_bahrein: {
     culture: :bedouin_arabic,
     religion: :sunni,
+    name: "Qatar / Qatari",
+  },
+  c_uwal: {
+    culture: :bedouin_arabic,
+    religion: :sunni,
+    name: "Bahrain / Bahraini",
   },
   k_persia: {
     culture: :persian,

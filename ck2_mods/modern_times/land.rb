@@ -483,8 +483,10 @@ ModernTimesDatabase::LAND = {
   d_khuttal:    { forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "d_khuttal" },
 
 
-
-  c_bahrein:    { forever_ago: "k_persia", bahrain_1783_invasion: "c_bahrein", bahrain_british: "e_britannia", bahrain_independence: "c_bahrein" },
+  # Bahrain
+  c_uwal:    { forever_ago: "k_persia", bahrain_1783_invasion: "c_uwal", bahrain_british: "e_britannia", bahrain_independence: "c_uwal" },
+  # Qatar !!!
+  c_bahrein:  { forever_ago: "k_persia", bahrain_1783_invasion: "c_bahrein", bahrain_british: "e_britannia", qatar_independence: "c_bahrein" },
 
   d_yaik:       { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },
   c_guryev:     { forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman" },

@@ -306,6 +306,18 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   k_khiva: { # Uzbekistan
     "1989.6.23" => {name: "Islam | Karimov", lived: "1938.1.30-"},
   },
+  d_khuttal: { # Tajikistan
+    "1990.11.30" => { name: "Qahhor | Mahkamov", lived: "1932.4.16 – 2016.6.8"},
+    "1991.9.23" => { name: "Rahmon | Nabiyev", lived: "1930.10.5 – 1993.4.11"},
+    "1992.11.20" => { name: "Emomali | Rahmon", lived: "1952.10.5 -"},
+  },
+  d_ferghana: { # Kyrgyzstan
+    "1990.10.27" => {name: "Askar Akayev", lived: "1944.11.10 -"},
+    "2005.3.25"  => {name: "Kurmanbek Bakiyev", lived: "1949.8.1 -"},
+    "2010.4.7"   => {name: "Roza Otunbayeva", lived: "1950.8.23 -", female: true},
+    "2011.12.1"  => {name: "Almazbek Atambayev", lived: "1956.9.17 -"},
+    "2017.11.24" => {name: "Sooronbay Jeenbekov", lived: "1958.11.16 -"},
+  },
   d_dihistan: { # Turkmenistan
     "1958.12.14" => { name: "Dzhuma Durdy | Karayev", lived: "1910-1960.5.4" },
     # backdating from "1960.6.13"

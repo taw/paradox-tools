@@ -184,7 +184,14 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "2008.5.5"   => { name: "Michel Suleiman", lived: "1948.11.21 -" },
     "2014.5.25"  => { name: "Tammam Salam", lived: "1945.5.13 -" },
   },
-  c_bahrein: {
+  c_bahrein: { # Qatar
+    # Start count from independence, there were sheiks under British protectorate before that
+    "1971.9.1"  => { name: "Ahmad | Al Thani", lived: "1920 – 1977.11.25" },
+    "1972.2.22" => { name: "Khalifa | Al Thani", lived: "1932.9.17 – 2016.10.23" },
+    "1995.6.27" => { name: "Hamad | Al Thani", lived: "1952.1.1 -", father: "Khalifa" },
+    "2013.6.25" => { name: "Tamim | Al Thani", lived: "1980.6.3 -", father: "Hamad" },
+  },
+  c_uwal: { # Bahrain
     # Hakims of Bahrain until Britain took over, ignoring co-regents
     # Wikipedia has only year dates and very little extra info
     # death dates totally fictional
