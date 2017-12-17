@@ -1,4 +1,18 @@
 ModernTimesDatabase::TITLES = {
+  d_gloucester: { # "Hwicce"
+    culture: :english,
+    religion: :protestant,
+    name: "Gloucester / Gloucesterian",
+    liege: {times_immemorial: "e_britannia"},
+    autoholders: true,
+  },
+  d_hereford: { # "Mercia"
+    culture: :english,
+    religion: :protestant,
+    name: "Midlands / Midland",
+    liege: {times_immemorial: "e_britannia"},
+    autoholders: true,
+  },
   e_china_west_governor: {
     culture: :han,
     religion: :taoist,

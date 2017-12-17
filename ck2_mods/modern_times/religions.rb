@@ -1,5 +1,6 @@
 ModernTimesDatabase::RELIGIONS = {
   "k_england"        => "protestant",
+  "k_wales"          => "protestant",
   "d_mecklemburg"    => "protestant",
   "d_crimea"         => "orthodox",
   "d_armenia"        => "orthodox",
@@ -44,6 +45,7 @@ ModernTimesDatabase::RELIGIONS = {
   "d_samos"          => "orthodox",
   "d_adrianopolis"   => "orthodox",
   "c_kuma"           => "buddhist",
+  "c_alania"         => "sunni",
   # Uniate
   "d_galich"         => "catholic",
   "d_volhynia"       => "catholic",

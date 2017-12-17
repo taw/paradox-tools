@@ -167,8 +167,8 @@ ModernTimesDatabase::LAND = {
   c_shetland:   { times_immemorial: "k_scotland", scotland_union: "e_britannia", scotland_devolution: "k_scotland" },
   k_wales:      { times_immemorial: "e_britannia", wales_devolution: "k_wales" },
   d_cornwall:   { times_immemorial: "e_britannia" },
-  c_hereford:   { times_immemorial: "e_britannia" },
-  c_shrewsbury: { times_immemorial: "e_britannia" },
+  c_hereford:   { times_immemorial: "d_hereford" },
+  c_shrewsbury: { times_immemorial: "d_hereford" },
 
   k_brittany:   { times_immemorial: "e_france" },
 
@@ -276,7 +276,6 @@ ModernTimesDatabase::LAND = {
   d_tabriz:       { forever_ago: "k_persia" },
   d_mazandaran:   { forever_ago: "k_persia" },
   c_sarakhs:      { forever_ago: "k_persia" },
-  d_sistan:       { forever_ago: "k_persia" },
   d_kermanshah:   { forever_ago: "k_persia" },
   d_khorasan:     { forever_ago: "k_persia" },
 
@@ -519,6 +518,7 @@ ModernTimesDatabase::LAND = {
   c_kakheti:      { treaty_of_resht: "k_persia", treaty_of_gulistan: "e_russia", end_ww1: "k_georgia" },
 
   d_kabul:       { durrani_afghanistan: "k_afghanistan" },
+  d_sistan:      { durrani_afghanistan: "k_afghanistan" },
   c_udabhanda:   { durrani_afghanistan: "k_afghanistan" },
   c_purushapura: { durrani_afghanistan: "k_afghanistan" },
   c_maymana:     { durrani_afghanistan: "k_afghanistan" },
@@ -557,6 +557,7 @@ ModernTimesDatabase::LAND = {
 
   k_punjab:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
   k_kashmir:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "k_baluchistan" },
+  d_uttaranchal:  { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india" },
   c_trigarta:    { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india" },
   c_sakala:      { sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india" },
 

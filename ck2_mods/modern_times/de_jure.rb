@@ -102,4 +102,9 @@ ModernTimesDatabase::DE_JURE = {
   "d_armeniacon"     => "k_anatolia",
   "d_khorasan"       => "k_persia",
   "d_merv"           => "k_khiva",
+  "d_mosul"          => "k_iraq",
+  "d_mudar"          => "k_syria",
+  "d_jazira"         => "k_iraq",
+  "d_sistan"         => "k_afghanistan",
+  "d_orkney"         => "k_scotland",
 }
