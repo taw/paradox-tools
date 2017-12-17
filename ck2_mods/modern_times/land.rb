@@ -284,11 +284,12 @@ ModernTimesDatabase::LAND = {
   d_khorasan:     { forever_ago: "k_persia" },
 
   # After 1758 Xinjiang in China. Before Dzungar Khanate
-  k_khotan:     { forever_ago: "e_china_west_governor" },
-  d_altay:      { forever_ago: "e_china_west_governor" },
+  k_khotan:       { forever_ago: "e_china_west_governor" },
+  d_altay:        { forever_ago: "e_china_west_governor" },
+  k_xixia:        { forever_ago: "e_china_west_governor" },
 
   # This is awkward, as it was Chinese all along, but Dzungar goes away
-  k_mongolia:   { forever_ago: "k_mongolia", fall_dzungar: "k_khotan", mongolia_independence: "k_mongolia" },
+  k_mongolia:   { forever_ago: "k_mongolia", fall_dzungar: "e_china_west_governor", mongolia_independence: "k_mongolia" },
 
   c_trent:        { forever_ago: "e_carpathia", end_ww1: "k_bavaria", south_tirol_annexation: "e_italy" },
   d_osterreich:   { forever_ago: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },

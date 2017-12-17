@@ -132,6 +132,12 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_county_history!(title, node)
+    node.each do |date, props|
+      next unless props.is_a?(PropertyList)
+      props.delete! "set_tribute_suzerain"
+      props.delete! "clear_tribute_suzerain"
+    end
+
     reset_character = @character_manager.create_reset_character(title)
     node.add! reset_date, PropertyList["liege", 0]
     node.add! reset_date, PropertyList["holder", reset_character]
@@ -155,6 +161,12 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_major_title_history!(title, node)
+    node.each do |date, props|
+      next unless props.is_a?(PropertyList)
+      props.delete! "set_tribute_suzerain"
+      props.delete! "clear_tribute_suzerain"
+    end
+
     if @map.landless_title?(title)
       case title
       when "e_golden_horde", "e_il-khanate"
@@ -353,6 +365,8 @@ class ModernTimesGameModification < CK2GameModification
       tech_levels = @db.title_technology(title)
       if tech_levels
         (tech_groups[tech_levels] ||= []) << title
+      elsif @map.counties_in[title].nil?
+        # titular only, so doesn't matter
       else
         warn "No tech for #{title} - #{map.landed_titles_lookup[title]}"
       end
