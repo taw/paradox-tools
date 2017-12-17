@@ -16,6 +16,30 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "1875.1.12" => {name: "Zaitian | Qing", lived: "1871.8.14 - 1908.11.14", father: "Yizhu" },
     # adopted by both previous emperors, Zaitian was his uncle
     "1908.11.14" => {name: "Puyi | Qing", lived: "1906.2.7 – 1967.10.17", father: "Zaitian" },
+
+    # Republican China
+    # Picking up the most prominent of various office holders
+    "1912.2.12" => { name: "Sun | Yat-sen", lived: "1866.11.12 – 1925.3.12" },
+    "1912.3.10" => { name: "Shikai | Yuan", lived: "1859.9.16 – 1916.6.6" },
+
+    # Now there's a decade of bullshit, there was no real Chinese government here,
+    # so here's a 3 times president.
+    # This could be fixed I guess.
+    "1916.6.7" => { name: "Yuanhong | Li", lived: "1864.10.19 – 1928.6.3" },
+
+    # Proper KMT governent
+    "1928.2.7" => { name: "Yankai | Tan", lived: "1880.1.25 – 1930.9.22" },
+    "1928.10.10" => { name: "Kai-shek | Chiang", lived: "1887.10.31 – 1975.4.5" },
+
+    # Communist China
+    # https://en.wikipedia.org/wiki/Paramount_leader
+    # Mao kept as ruler for as long as he lived
+    "1949.10.1" => { name: "Zedong | Mao", lived: "1893.12.26 – 1976.9.9" },
+    "1976.9.9" => { name: "Guofeng | Hua", lived: "1921.2.16 – 2008.8.20" },
+    "1978.12.22" => { name: "Xiaoping | Deng", lived: "1904.8.22 – 1997.2.19" },
+    "1992.10.19" => { name: "Zemin | Jiang", lived: "1926.8.17 -" },
+    "2002.11.15" => { name: "Jintao | Hu", lived: "1942.12.21 -" },
+    "2012.11.15" => { name: "Jinping | Xi", lived: "1953.6.15 -" },
   },
   e_tibet: {
     # Dalai Lamas

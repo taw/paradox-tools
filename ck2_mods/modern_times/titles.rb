@@ -25,6 +25,7 @@ ModernTimesDatabase::TITLES = {
     liege: {times_immemorial: "e_britannia"},
     autoholders: true,
   },
+  # TODO: china policy / status / flags
   e_offmap_china: {
     culture: :han,
     religion: :taoist,
