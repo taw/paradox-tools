@@ -53,7 +53,31 @@ end
 FUN_AND_BALANCE_VERSION = "0.37"
 
 desc "Build all packages"
-task "all" => ["ck2", "eu4"]
+task "all" => ["ck2", "eu4", "hoi4"]
+
+desc "Build all HOI4 packages"
+task "hoi4" => [
+  "a_simple_terrain_map_mode",
+  "a_simple_terrain_map_mode_kr",
+]
+
+desc "Build HOI4 Simple Terrain Map Mode Mod"
+task "a_simple_terrain_map_mode" do
+  ModBuilder.new(
+    "hoi4",
+    "a_simple_terrain_map_mode",
+    "a_simple_terrain_map_mode.7z",
+  ).build!
+end
+
+desc "Build HOI4 Simple Terrain Map Mode Mod for Kaiserreich"
+task "a_simple_terrain_map_mode_kr" do
+  ModBuilder.new(
+    "hoi4",
+    "a_simple_terrain_map_mode_kr",
+    "a_simple_terrain_map_mode_kr.7z",
+  ).build!
+end
 
 desc "Build all CK2 packages"
 task "ck2" => [
