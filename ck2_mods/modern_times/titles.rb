@@ -25,6 +25,11 @@ ModernTimesDatabase::TITLES = {
     liege: {times_immemorial: "e_britannia"},
     autoholders: true,
   },
+  e_offmap_china: {
+    culture: :han,
+    religion: :taoist,
+    name: { times_immemorial: "Qing / Qing", end_of_qing: "China / Chinese" },
+  },
   e_china_west_governor: {
     culture: :han,
     religion: :taoist,

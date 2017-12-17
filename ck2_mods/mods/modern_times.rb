@@ -235,10 +235,11 @@ class ModernTimesGameModification < CK2GameModification
   def setup_title_history!
     # This is a silly trick of creating node if it doesn't exist, reusing it otherwise
     @db.titles.keys.each do |title|
+      path = path_for_title(title)
       begin
-        parse("history/titles/#{title}.txt")
+        parse(path)
       rescue
-        create_mod_file! "history/titles/#{title}.txt", PropertyList[]
+        create_mod_file! path, PropertyList[]
       end
     end
 
@@ -258,6 +259,14 @@ class ModernTimesGameModification < CK2GameModification
             node.add! date, PropertyList["liege", liege || 0]
           end
         end
+      end
+    end
+
+    glob("history/offmap_powers/*.txt").each do |path|
+      title = "e_" + path.basename(".txt").to_s
+      patch_mod_file!(path) do |node|
+        setup_major_title_history!(title, node)
+        add_holders!(node, holders[title]) if holders[title]
       end
     end
   end
@@ -425,10 +434,19 @@ class ModernTimesGameModification < CK2GameModification
     node.sort_by!{|prop| [prop.key, prop.val.to_s]}
   end
 
+  def path_for_title(title)
+    if title =~ /\Ae_offmap/
+      "history/offmap_powers/#{title.sub(/\Ae_/, "")}.txt"
+    else
+      "history/titles/#{title}.txt"
+    end
+  end
+
   def setup_title_names!
     @db.titles.each do |title, data|
       next unless data[:name]
-      patch_mod_file!("history/titles/#{title}.txt") do |node|
+      path = path_for_title(title)
+      patch_mod_file!(path) do |node|
         data[:name].each do |date, name_adj|
           if name_adj
             name, adj = name_adj.split(" / ")
@@ -1299,6 +1317,9 @@ class ModernTimesGameModification < CK2GameModification
     fix_russia_colors!
     move_diseases_into_the_future!
     patch_mod_files!("history/titles/*.txt") do |node|
+      cleanup_history_node!(node)
+    end
+    patch_mod_files!("history/offmap_powers/*.txt") do |node|
       cleanup_history_node!(node)
     end
     setup_title_laws! # Run after other title history changes, to make sure any new titles get covered

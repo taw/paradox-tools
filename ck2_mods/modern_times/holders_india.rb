@@ -1,4 +1,22 @@
 ModernTimesDatabase::HOLDERS_INDIA = {
+  e_offmap_china: {
+    # Somewhat dubious when to start counting Qing, will only matter if we move back that far, which is unlikely
+    # Wikipedia gives crowning dates leaving gaps, so we backdate everyone to death of their predecessor
+    "1616.2.17" => {name: "Nurhaci | Qing", lived: "1559.2.21 – 1626.9.30" },
+    "1626.9.30" => {name: "Hong Taiji | Qing", lived: "1592.11.28 – 1643.9.21", father: "Nurhaci" },
+    "1643.9.21" => {name: "Fulin | Qing", lived: "1638.3.15 – 1661.2.5", father: "Hong Taiji" },
+    "1661.2.5" => {name: "Xuanye | Qing", lived: "1654.5.4 – 1722.12.20", father: "Fulin" },
+    "1722.12.20" => {name: "Yinzhen | Qing", lived: "1678.12.13 – 1735.10.8", father: "Xuanye" },
+    "1735.10.8" => {name: "Hongli | Qing", lived: "1711.9.25 – 1799.2.7", father: "Yinzhen" },
+    "1799.2.7" => {name: "Yongyan | Qing", lived: "1760.11.13 – 1820.9.2", father: "Hongli" },
+    "1820.9.2" => {name: "Minning | Qing", lived: "1782.9.16 – 1850.2.25", father: "Yongyan" },
+    "1850.2.25" => {name: "Yizhu | Qing", lived: "1831.7.17 – 1861.8.22", father: "Minning" },
+    "1861.8.22" => {name: "Zaichun | Qing", lived: "1856.4.27 – 1875.1.12", father: "Yizhu" },
+    # adopted by Yizhu who was his uncle
+    "1875.1.12" => {name: "Zaitian | Qing", lived: "1871.8.14 - 1908.11.14", father: "Yizhu" },
+    # adopted by both previous emperors, Zaitian was his uncle
+    "1908.11.14" => {name: "Puyi | Qing", lived: "1906.2.7 – 1967.10.17", father: "Zaitian" },
+  },
   e_tibet: {
     # Dalai Lamas
     # The whole system is bullshit, with interregnums and child reigns

@@ -112,6 +112,8 @@ class ModernTimesDatabase
           data[:capital].to_s
         elsif title =~ /\Ac_/
           title
+        elsif title =~ /\Ae_offmap/
+          nil
         else
           map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
         end
@@ -120,7 +122,11 @@ class ModernTimesDatabase
           warn "Only king/emperor level titles should have demesne specified: #{title}"
         end
 
-        demesne = [map.duchy_for_county(capital)] + (data[:demesne] || []).map(&:to_s)
+        if title =~ /\Ae_offmap/
+          demesne = []
+        else
+          demesne = [map.duchy_for_county(capital)] + (data[:demesne] || []).map(&:to_s)
+        end
 
         if data[:name]
           names = data[:name]
