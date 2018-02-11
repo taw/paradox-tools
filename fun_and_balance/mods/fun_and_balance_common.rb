@@ -70,8 +70,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           "cb_on_religious_enemies", true,
         ],
       ]
-      # Remove Punitive Wars
-      node["cb_super_badboy"]["prerequisites"] = PropertyList["always", false]
+      # Make Punitive Wars into Take Capital
+      node["cb_super_badboy"]["war_goal"] = "take_capital_punitive"
     end
 
     # Imperial Ban CB adjust down
@@ -81,6 +81,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       # Could use fancier logic, but let's leave it for now...
       node["superiority_primitives"]["allowed_provinces"] = PropertyList["always", true]
       node["superiority_overseas"]["allowed_provinces"] = PropertyList["always", true]
+      # Description doesn't match what it does
+      node["take_capital_punitive"]["prov_desc"] = "ALL_CORES"
     end
   end
 
