@@ -44,4 +44,6 @@ ModernTimesDatabase::CULTURES = {
   "c_kuma"         => "uyghur", # actually Kalmyk
   "d_ferghana"     => "karluk",
   "d_khuttal"      => "persian",
+  "c_thessalia"    => "greek",
+  "c_cephalonia"   => "greek",
 }

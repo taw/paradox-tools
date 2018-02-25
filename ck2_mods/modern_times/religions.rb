@@ -52,6 +52,9 @@ ModernTimesDatabase::RELIGIONS = {
   "c_alania"         => "sunni",
   "d_moldau"         => "orthodox",
   "d_transylvania"   => "orthodox",
+  "c_thessalia"      => "orthodox",
+  "c_cephalonia"     => "orthodox",
+  "c_methone"        => "orthodox",
   # Uniate
   "d_galich"         => "catholic",
   "d_volhynia"       => "catholic",

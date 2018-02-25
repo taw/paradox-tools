@@ -332,8 +332,8 @@ ModernTimesDatabase::LAND = {
   c_malta:      { forever_ago: "c_malta", malta_british: "e_britannia", malta_independence: "c_malta" },
   d_corsica:    { forever_ago: "k_genoa", french_corsica: "e_france" },
 
-  c_steiermark:   { forever_ago: "e_carpathia", end_ww1: "k_serbia", slovenia_independence: "d_carinthia" },
-  c_aquileia:     { forever_ago: "e_carpathia", end_ww1: "k_serbia", slovenia_independence: "d_carinthia" },
+  c_steiermark:   { forever_ago: "e_carpathia", end_ww1: "k_bavaria" },
+  d_carinthia:    { forever_ago: "e_carpathia", end_ww1: "k_serbia", slovenia_independence: "d_carinthia" },
 
   c_adrianopolis:{ forever_ago: "e_arabia", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "k_anatolia" },
   c_smyrna:      { forever_ago: "e_arabia", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "k_anatolia" },
@@ -347,7 +347,7 @@ ModernTimesDatabase::LAND = {
   d_pest:         { forever_ago: "e_carpathia", end_ww1: "k_hungary" },
   c_abauj:        { forever_ago: "e_carpathia", end_ww1: "k_hungary" },
   c_marmaros:     { forever_ago: "e_carpathia", end_ww1: "k_dacia" },
-  d_temes:        { forever_ago: "e_arabia", treaty_of_passarowitz: "e_carpathia", end_ww1: "k_hungary" },
+  c_bacs:         { forever_ago: "e_arabia", treaty_of_passarowitz: "e_carpathia", end_ww1: "k_serbia" },
   c_temes:        { forever_ago: "e_arabia", treaty_of_passarowitz: "e_carpathia", end_ww1: "k_dacia" },
 
   c_gnieznienskie: { forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", german_unification: "e_germany", end_ww1: "k_poland" },
@@ -422,7 +422,7 @@ ModernTimesDatabase::LAND = {
   d_venice:       { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
   c_zadar:        { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
   c_split:        { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
-  d_carinthia:    { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
+
   c_istria:       { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
 
   d_slavonia:     { forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
