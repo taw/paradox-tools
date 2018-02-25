@@ -25,7 +25,7 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     # Now there's a decade of bullshit, there was no real Chinese government here,
     # so here's a 3 times president.
     # This could be fixed I guess.
-    "1916.6.7" => { name: "Yuanhong | Li", lived: "1864.10.19 – 1928.6.3" },
+    "1916.6.6" => { name: "Yuanhong | Li", lived: "1864.10.19 – 1928.6.3" },
 
     # Proper KMT governent
     "1928.2.7" => { name: "Yankai | Tan", lived: "1880.1.25 – 1930.9.22" },

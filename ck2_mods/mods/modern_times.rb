@@ -1285,6 +1285,47 @@ class ModernTimesGameModification < CK2GameModification
     end
   end
 
+  def setup_china_flags!
+    patch_mod_file!("history/offmap_powers/offmap_china.txt") do |node|
+      # We need to babysit the flags so they always match current situtation
+
+      # Early Qing - closed / unrest
+      node.add! Date.parse("1450.1.1"), PropertyList[
+        "status", "china_unrest",
+        "set_offmap_flag", "china_had_unrest",
+        "policy", "china_isolationist",
+      ]
+      # From Taping rebellion until end of Qing - basically civil war, still closed
+      node.add! Date.parse("1851.1.1"), PropertyList[
+        "clr_offmap_flag", "china_had_unrest",
+        "status", "china_civil_war",
+        "set_offmap_flag", "china_civil_war",
+      ]
+      # KMT - open, but still civil war
+      node.add! Date.parse("1912.2.12"), PropertyList[
+        "policy", "china_open",
+      ]
+      # PRC - wins civil war, closed, unrest
+      node.add! Date.parse("1949.10.1"), PropertyList[
+        "policy", "china_isolationist",
+        "clr_offmap_flag", "china_civil_war",
+        "status", "china_unrest",
+        "set_offmap_flag", "china_had_unrest",
+      ]
+      # Deng - open / stable
+      node.add! Date.parse("1978.12.22"), PropertyList[
+        "policy", "china_open",
+        "clr_offmap_flag", "china_had_unrest",
+        "status", "china_stable",
+      ]
+      # (arbitrarity from Xi) - golden age
+      node.add! Date.parse("2012.11.15"), PropertyList[
+        "status", "china_golden_age",
+        "set_offmap_flag", "china_had_golden_age",
+      ]
+    end
+  end
+
   def apply!
     @warnings = []
 
@@ -1307,6 +1348,7 @@ class ModernTimesGameModification < CK2GameModification
     setup_vassal_dukes!
     save_characters!
     move_de_jure_capitals!
+    setup_china_flags!
     mexican_invasion!
     canada_invasion!
     brazil_invasion!
