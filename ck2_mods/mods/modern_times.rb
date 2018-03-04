@@ -911,10 +911,15 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def change_localization!
-    localization!("zz_vanilla_overrides",
+    localization!("!aaa_vanilla_overrides",
       "romanian" => "Romanian", # Not Vlach
       "cuman" => "Kazakh",
       "karluk" => "Uzbek",
+      "PROV870" => "Abu Dhabi",
+      "PROV653" => "Qatar",
+      "PROV603" => "Chechnya",
+      "PROV468" => "Montenegro",
+      "PROV1531" => "Bahrain",
      )
   end
 

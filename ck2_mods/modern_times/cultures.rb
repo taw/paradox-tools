@@ -46,4 +46,5 @@ ModernTimesDatabase::CULTURES = {
   "d_khuttal"      => "persian",
   "c_thessalia"    => "greek",
   "c_cephalonia"   => "greek",
+  "d_cherson"      => "alan", # Tartar ?
 }

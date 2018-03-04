@@ -55,6 +55,8 @@ ModernTimesDatabase::RELIGIONS = {
   "c_thessalia"      => "orthodox",
   "c_cephalonia"     => "orthodox",
   "c_methone"        => "orthodox",
+  "c_savolaks"       => "protestant",
+  "c_kexholm"        => "protestant",
   # Uniate
   "d_galich"         => "catholic",
   "d_volhynia"       => "catholic",
