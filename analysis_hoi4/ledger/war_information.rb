@@ -1,12 +1,17 @@
 class WarInformation
+  attr_reader :name
+
   def initialize(ledger, war)
     @ledger = ledger
-    @name = war["name"]
     @attackers = war["attackers"]
     @defenders = war["defenders"]
     @attacker_casualties = 0
     @defender_casualties = 0
-    war["casualties"].each do |tag, count|
+    # Removed in 1.5.0, use ID so at least file names differ
+    @name = war["name"] || war["id"]["id"]
+  # Removed in 1.5.0, might be possible to infer from other sources?
+    casualties = war["casualties"] || []
+    casualties.each do |tag, count|
       if @attackers.include?(tag)
         @attacker_casualties += count
       elsif @defenders.include?(tag)

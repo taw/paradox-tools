@@ -166,7 +166,8 @@ class GenerateLedger < ParadoxGame
   def analyze_wars!
     @wars = {}
     @data.find_all("active_war").each do |war|
-      @wars[war["name"]] = WarInformation.new(self, war)
+      warinfo = WarInformation.new(self, war)
+      @wars[warinfo.name] = warinfo
     end
   end
 
