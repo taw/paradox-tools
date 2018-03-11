@@ -235,6 +235,7 @@ ModernTimesDatabase::LAND = {
   c_bornholm:   { forever_ago: "k_denmark" },
   d_skane:      { forever_ago: "k_sweden" },
   k_sweden:     { forever_ago: "k_sweden" },
+  c_viken:      { forever_ago: "k_sweden" },
   d_jamtland:   { forever_ago: "k_sweden" },
   d_sapmi:      { forever_ago: "k_sweden" },
   c_rosello:    { forever_ago: "e_france" }, # 1659+
