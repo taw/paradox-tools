@@ -105,6 +105,7 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
           idea = idea.to_h
           idea.delete "default"
           idea.delete "chance"
+          idea.delete "enabled"
           max_level = idea.delete("max_level") || default_max_level
           levels = max_level.times.map do |i|
             idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
