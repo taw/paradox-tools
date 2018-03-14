@@ -30,6 +30,7 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
     reduce_wrong_gov_type_penalties!
     seduce_any_religion!
     increase_trade_post_limit!
+    allow_everyone_river_access!
     # dont_call_duke_kings_ever! # culture file crashes
     allow_more_commanders!
     fix_hostile_supply!
@@ -62,7 +63,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
         "source/ck2_2.8.1",
         "source/CK2Plus_v4071/CK2Plus.mod",
       ),
-      "output/ck2tweaks",
+      "output/ck2plus_tweaks",
     )
   end
   def build_mod_files!
