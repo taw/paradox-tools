@@ -1143,8 +1143,8 @@ class CK2TweaksGameModification < CK2GameModification
   def makes_title_creation_expensive!
     override_defines_lua!("expensive_title_creation",
       "NTitle.DUKE_PIETY_CREATION_COST" => 200,
-      "NTitle.KING_PIETY_CREATION_COST" => 500,
-      "NTitle.EMPEROR_PIETY_CREATION_COST" => 2000,
+      "NTitle.KING_PIETY_CREATION_COST" => 1000,
+      "NTitle.EMPEROR_PIETY_CREATION_COST" => 4000,
       "NTitle.DUKE_GOLD_CREATION_COST" => 400,
       "NTitle.KING_GOLD_CREATION_COST" => 1000,
       "NTitle.EMPEROR_GOLD_CREATION_COST" => 4000,

@@ -32,7 +32,7 @@ class ParadoxModFileSerializer
       serialize_primitive(val.to_s)
     when /\A[A-Za-z0-9_\.:\[\]\<\>\*@]+\z/
       val
-    when /\A(\p{Alpha}|\p{Number}|[_\.\-\/\u00A0 '’`\?\\%!:,\[\]+&])*\z/
+    when /\A(\p{Alpha}|\p{Number}|[_\.\-\/\u00A0 '’`\?\\%!:,\[\]\(\)<>+&])*\z/
       # A lot more Strings are allowed, but at some point we'll need to think about escaping them
       '"' + val + '"'
     else

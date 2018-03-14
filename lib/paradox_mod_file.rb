@@ -88,7 +88,7 @@ class ParadoxModFile
             ">=" => :ge,
             "==" => :eqeq,
           }[s[1]])
-        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\p{Letter}|\p{Digit})+)/)
+        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\+|\p{Letter}|\p{Digit})+)/)
           if s[1] == "yes"
             @tokens << true
           elsif s[1] == "no"
@@ -107,8 +107,8 @@ class ParadoxModFile
         elsif s.scan(/,/)
           # Seen in some array defintions, pass
         else
-          require "pry"
-          binding.pry
+          # require "pry"
+          # binding.pry
           raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}: `#{s.rest[0,20]}...'"
         end
       end

@@ -1,0 +1,77 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
+
+class CK2PlusTweaksGameModification < CK2TweaksGameModification
+  def seduce_any_religion!
+    patch_mod_file!("decisions/way_of_life_decisions.txt") do |node|
+      allow = node["targeted_decisions"]["seduce_decision"]["allow"]
+      allow_orig = allow.dup
+      allow.delete!{|prop|
+        prop == Property["religion_group", "FROM"]
+      }
+      raise "Can't find condition" if allow == allow_orig
+    end
+  end
+
+  def nerf_holy_wars_cb!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      # Does it work?
+      node["holy_war"]["check_de_jure_tier"] = "COUNT"
+    end
+  end
+
+  def apply!
+    extra_cb_de_jure_duchy_conquest!
+    extra_cb_abolish_title!
+    allow_intermarriage!
+    fix_gavelkind!
+    reduce_wrong_gov_type_penalties!
+    seduce_any_religion!
+    increase_trade_post_limit!
+    # dont_call_duke_kings_ever! # culture file crashes
+    allow_more_commanders!
+    fix_hostile_supply!
+    divine_blood_full_fertility!
+    more_battle_captives!
+    # fix_regency! # supposedly fixed in base game?
+    more_zoom!
+    no_random_coas!
+    nerf_holy_wars_cb!
+    create_minimal_hunie_trait!
+    allow_heir_designation!
+    allow_joining_all_wars!
+    # adventurers_cap! # not sure if still needed
+    # much_less_attriton! # not sure if still needed
+    # remove_siege_defense_bonus!
+    makes_title_creation_expensive!
+    # open_societies! # probably still needed
+
+    # CK2+ specific
+
+
+    # Megacampaign specific
+  end
+end
+
+class CK2TweaksModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/ck2_2.8.1",
+        "source/CK2Plus_v4071/CK2Plus.mod",
+      ),
+      "output/ck2tweaks",
+    )
+  end
+  def build_mod_files!
+    apply_modifications! CK2PlusTweaksGameModification
+    create_mod_descriptor!(
+      name: "CK2+ Tweaks",
+      path: "mod/ck2plus_tweaks",
+    )
+  end
+end
+
+CK2TweaksModBuilder.new.build!
