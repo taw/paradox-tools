@@ -37,6 +37,48 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
     # Forunately they removed naval attrition already
   end
 
+  def terrain_bonus(icon, atk, defs)
+    PropertyList[
+      "icon", icon,
+      "archers_offensive", atk,
+      "camel_cavalry_offensive", atk,
+      "free_levies_in_offensive", atk,
+      "heavy_infantry_offensive", atk,
+      "horse_archers_offensive", atk,
+      "knights_offensive", atk,
+      "light_cavalry_offensive", atk,
+      "light_infantry_offensive", atk,
+      "nomad_horse_offensive", atk,
+      "pikemen_offensive", atk,
+      "war_elephants_offensive", atk,
+      "archers_defensive", defs,
+      "camel_cavalry_defensive", defs,
+      "free_levies_in_defensive", defs,
+      "heavy_infantry_defensive", defs,
+      "horse_archers_defensive", defs,
+      "knights_defensive", defs,
+      "light_cavalry_defensive", defs,
+      "light_infantry_defensive", defs,
+      "nomad_horse_defensive", defs,
+      "pikemen_defensive", defs,
+      "war_elephants_defensive", defs,
+    ].select!{|prop| prop.val != 0}
+  end
+
+  def increase_terrain_bonuses!
+    # CK2+ makes terrain bonuses even weaker
+    patch_mod_file!("common/static_modifiers.txt") do |node|
+      node["river_crossing"] = terrain_bonus(2, -0.3, 0.0)
+      node["major_river_crossing"] = terrain_bonus(2, -0.5, 0.0)
+      node["strait_river_crossing"] = terrain_bonus(3, -0.5, 0.0)
+      node["amphibious_landing"] = terrain_bonus(4, -0.5, 0.0)
+      node["defenderbonus_mountain"] = terrain_bonus(1, 0.0, 0.8)
+      node["defenderbonus_hills"] = terrain_bonus(1, 0.0, 0.6)
+      node["defenderbonus_forest"] = terrain_bonus(1, 0.0, 0.4)
+      node["defenderbonus_jungle"] = terrain_bonus(1, 0.0, 0.4)
+    end
+  end
+
   def apply!
     extra_cb_de_jure_duchy_conquest!
     extra_cb_abolish_title!
@@ -68,6 +110,7 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
     revert_bad_ck2plus_changes!
 
     # Megacampaign specific
+    increase_terrain_bonuses!
 
   end
 end

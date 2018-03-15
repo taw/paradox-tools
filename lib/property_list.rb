@@ -211,6 +211,11 @@ class PropertyList
     Marshal.load(Marshal.dump(self))
   end
 
+  def select!(&blk)
+    @entries.select!(&blk)
+    self
+  end
+
   attr_reader :entries
   private :entries
 end
