@@ -79,6 +79,44 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
     end
   end
 
+  def remove_easy_mode_laws!
+    patch_mod_file!("common/laws/crown_laws.txt") do |node|
+      # Inheritance always possible
+      laws = node["de_jure_laws"]
+      laws["out_of_realm_inheritance_law_0"]["effect"]["set_protected_inheritance"] = false
+      laws["out_of_realm_inheritance_law_1"]["effect"]["set_protected_inheritance"] = false
+    end
+
+    patch_mod_file!("common/laws/demesne_laws.txt") do |node|
+      node["laws"]["revoke_title_law_2"]["effect"]["set_allow_free_infidel_revokation"] = false
+    end
+
+    # Reorder them in more sensible way:
+    # * council power
+    # then:
+    # * execution
+    # * banishment
+    # * imprison
+    # * revoke
+    # * war
+    # * grant
+    patch_mod_file!("common/laws/ze_council_power_laws.txt") do |node|
+      laws = node["laws"]
+
+      laws["imprison_voting_power_1"]["allow"].delete!(Property["has_law", "war_voting_power_1"])
+      laws["revoke_title_voting_power_1"]["allow"].delete!(Property["has_law", "war_voting_power_1"])
+      laws["grant_title_voting_power_1"]["allow"].delete!(Property["has_law", "war_voting_power_1"])
+      laws["banish_voting_power_1"]["allow"].delete!(Property["has_law", "war_voting_power_1"])
+      laws["execution_voting_power_1"]["allow"].delete!(Property["has_law", "war_voting_power_1"])
+
+      laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "banish_voting_power_0"])
+      laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "revoke_title_voting_power_0"])
+      laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "grant_title_voting_power_0"])
+      laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "imprison_voting_power_0"])
+      laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "execution_voting_power_0"])
+    end
+  end
+
   def apply!
     extra_cb_de_jure_duchy_conquest!
     extra_cb_abolish_title!
@@ -111,7 +149,7 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
 
     # Megacampaign specific
     increase_terrain_bonuses!
-
+    remove_easy_mode_laws!
   end
 end
 
