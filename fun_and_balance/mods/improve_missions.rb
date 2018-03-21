@@ -1,4 +1,5 @@
 require_relative "base"
+# Only works before 1.25 mission system rework
 
 # This gives tag-specific missions alternative conditions
 # and improves rewards for really awful missions (much less applicable since 1.12)

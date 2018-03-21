@@ -1,5 +1,7 @@
 require_relative "base"
 
+# Only works before 1.25 mission system rework
+
 class HideCancelledMissionsGameModification < EU4GameModification
   # Run after all other mission modifications
   def apply!

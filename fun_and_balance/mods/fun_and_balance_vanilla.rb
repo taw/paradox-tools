@@ -2,10 +2,6 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
-    patch_file!("missions/Anti_Rival_Missions.txt") do |content|
-      content.sub("FROM {", "FROM = {")
-    end
-
     soft_patch_defines_lua!([
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.FORT_MAINTENANCE_CHEAT", 0, 0],
@@ -28,12 +24,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
-      # ["NDiplomacy.PO_BECOME_VASSAL_AE", 0.5, 0.33],
-      # ["NDiplomacy.PO_CONCEDE_COLONIAL_AE", 0.25, 0.17],
-      # ["NDiplomacy.PO_DEMAND_PROVINCES_AE", 0.75, 0.5],
-      # ["NDiplomacy.PO_FORM_PU_AE", 0.1, 0.066],
-      # ["NDiplomacy.PO_RETURN_CORES_AE", 0.5, 0.33],
-      # ["NDiplomacy.PO_REVOKE_ELECTOR_AE", 25, 15],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
       ["NMilitary.FORTRESS_COST", 0.50, 0.25],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
@@ -41,7 +31,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
       ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
-      # ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, -0.6],
     ])
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
