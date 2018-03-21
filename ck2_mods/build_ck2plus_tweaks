@@ -79,6 +79,45 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
     end
   end
 
+  def minimum_tribal_reform_level1234
+    PropertyList[
+      "has_dlc", "Zeus",
+      "higher_tier_than", "baron",
+      "OR", PropertyList[
+        "holder_scope", PropertyList["is_tribal", false],
+        "has_law", "tribal_organization_1",
+        "has_law", "tribal_organization_2",
+        "has_law", "tribal_organization_3",
+        "has_law", "tribal_organization_4",
+      ],
+    ]
+  end
+
+  def minimum_tribal_reform_level234
+    PropertyList[
+      "has_dlc", "Zeus",
+      "higher_tier_than", "baron",
+      "OR", PropertyList[
+        "holder_scope", PropertyList["is_tribal", false],
+        "has_law", "tribal_organization_2",
+        "has_law", "tribal_organization_3",
+        "has_law", "tribal_organization_4",
+      ],
+    ]
+  end
+
+  def minimum_tribal_reform_level34
+    PropertyList[
+      "has_dlc", "Zeus",
+      "higher_tier_than", "baron",
+      "OR", PropertyList[
+        "holder_scope", PropertyList["is_tribal", false],
+        "has_law", "tribal_organization_3",
+        "has_law", "tribal_organization_4",
+      ],
+    ]
+  end
+
   def remove_easy_mode_laws!
     patch_mod_file!("common/laws/crown_laws.txt") do |node|
       # Inheritance always possible
@@ -114,6 +153,29 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
       laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "grant_title_voting_power_0"])
       laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "imprison_voting_power_0"])
       laws["war_voting_power_0"]["allow"].delete!(Property["has_law", "execution_voting_power_0"])
+
+      ["law_voting_power_0",
+      "law_voting_power_1",
+      "execution_voting_power_0",
+      "execution_voting_power_1"].each do |key|
+        laws[key]["potential"] = minimum_tribal_reform_level1234
+      end
+
+      ["banish_voting_power_0",
+      "banish_voting_power_1",
+      "imprison_voting_power_0",
+      "imprison_voting_power_1"].each do |key|
+        laws[key]["potential"] = minimum_tribal_reform_level234
+      end
+
+      ["revoke_title_voting_power_0",
+      "revoke_title_voting_power_1",
+      "war_voting_power_0",
+      "war_voting_power_1",
+      "grant_title_voting_power_0",
+      "grant_title_voting_power_1"].each do |key|
+        laws[key]["potential"] = minimum_tribal_reform_level34
+      end
     end
   end
 
