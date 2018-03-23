@@ -76,49 +76,51 @@ class HolySitesGameModification < EU4GameModification
     ]]
   end
 
-  def add_holy_site_mission!(religion, site, n)
-    id = site[:id]
-    mission_name = "conquest_#{religion}_holy_site_#{n}"
-    localization! "holy_sites",
-      "#{mission_name}_title" => "Conquer Holy Site #{site[:short_name]}",
-      "#{mission_name}_desc" => "We must not allow infidels to hold our holy site #{site[:name]}!"
-    Property[mission_name, PropertyList[
-      "type", "country",
-      "category", "MIL",
-      "ai_mission", true,
-      "allow", PropertyList[
-        "religion", religion,
-        Property["has_global_flag", "fun_and_balance_config.enable_holy_sites"],
-        Property::AND[
-          id, PropertyList["owner", PropertyList["is_neighbor_of", "ROOT"]],
-          "has_idea", "deus_vult",
-        ],
-        "is_subject", false,
-        id, PropertyList[
-          "owner", PropertyList[Property::NOT["religion", religion]],
-          "has_discovered", "ROOT",
-        ],
-      ],
-      "success", PropertyList[
-        id, PropertyList["owned_by", "ROOT"],
-      ],
-      "abort", PropertyList[
-        Property::OR[
-          "is_subject", true,
-          id, PropertyList["owner" , PropertyList["religion", religion]],
-          Property::NOT["religion", religion],
-        ]
-      ],
-      "immediate", PropertyList["add_claim", id],
-      "abort_effect", PropertyList["remove_claim", id],
-      "chance", PropertyList[
-        "factor", 1000,
-        "modifier", PropertyList["factor", 2, "is_neighbor_of", "ROOT"],
-        "modifier", PropertyList["factor", 2, "has_idea", "deus_vult"]
-      ],
-      "effect", PropertyList["add_adm_power", 200, "add_prestige", 40],
-    ]]
-  end
+  # only works up to 1.24
+
+  # def add_holy_site_mission!(religion, site, n)
+  #   id = site[:id]
+  #   mission_name = "conquest_#{religion}_holy_site_#{n}"
+  #   localization! "holy_sites",
+  #     "#{mission_name}_title" => "Conquer Holy Site #{site[:short_name]}",
+  #     "#{mission_name}_desc" => "We must not allow infidels to hold our holy site #{site[:name]}!"
+  #   Property[mission_name, PropertyList[
+  #     "type", "country",
+  #     "category", "MIL",
+  #     "ai_mission", true,
+  #     "allow", PropertyList[
+  #       "religion", religion,
+  #       Property["has_global_flag", "fun_and_balance_config.enable_holy_sites"],
+  #       Property::AND[
+  #         id, PropertyList["owner", PropertyList["is_neighbor_of", "ROOT"]],
+  #         "has_idea", "deus_vult",
+  #       ],
+  #       "is_subject", false,
+  #       id, PropertyList[
+  #         "owner", PropertyList[Property::NOT["religion", religion]],
+  #         "has_discovered", "ROOT",
+  #       ],
+  #     ],
+  #     "success", PropertyList[
+  #       id, PropertyList["owned_by", "ROOT"],
+  #     ],
+  #     "abort", PropertyList[
+  #       Property::OR[
+  #         "is_subject", true,
+  #         id, PropertyList["owner" , PropertyList["religion", religion]],
+  #         Property::NOT["religion", religion],
+  #       ]
+  #     ],
+  #     "immediate", PropertyList["add_claim", id],
+  #     "abort_effect", PropertyList["remove_claim", id],
+  #     "chance", PropertyList[
+  #       "factor", 1000,
+  #       "modifier", PropertyList["factor", 2, "is_neighbor_of", "ROOT"],
+  #       "modifier", PropertyList["factor", 2, "has_idea", "deus_vult"]
+  #     ],
+  #     "effect", PropertyList["add_adm_power", 200, "add_prestige", 40],
+  #   ]]
+  # end
 
   def holy_site_info
     raise "SubclassResponsibility"
@@ -171,7 +173,7 @@ class HolySitesGameModification < EU4GameModification
       sites = sites.map{|s| site_information(s)}
       sites.each_with_index do |s,i|
         triggers << add_holy_site!(religion, s, i+1)
-        missions << add_holy_site_mission!(religion, s, i+1)
+        # missions << add_holy_site_mission!(religion, s, i+1)
       end
       triggers << add_holy_sites_all!(religion, sites)
     end
@@ -196,6 +198,6 @@ class HolySitesGameModification < EU4GameModification
       "on_startup", init_script,
     ]
     create_mod_file! "common/triggered_modifiers/holy_sites.txt", PropertyList[*triggers]
-    create_mod_file! "missions/Holy_Sites_Missions.txt", PropertyList[*missions]
+    # create_mod_file! "missions/Holy_Sites_Missions.txt", PropertyList[*missions]
   end
 end
