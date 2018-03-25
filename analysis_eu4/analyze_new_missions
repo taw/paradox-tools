@@ -1,0 +1,187 @@
+#!/usr/bin/env ruby
+# this is for EU4 1.25+
+
+require_relative "../lib/paradox"
+
+class AnalyzeNewMissions < ParadoxGame
+  def each_mission_file(&block)
+    glob("missions/*").each do |path|
+      # Stupid errors in files...
+      if path.basename.to_s == "Bohemian_Missions.txt"
+        code = resolve(path).read + "}"
+        node = ParadoxModFile.new(string: code, path: path).parse!
+        yield(node)
+      else
+        yield parse(path)
+      end
+    end
+  end
+
+  def parse_potential(potential)
+    potential.delete!(Property["is_random_new_world", false])
+    if potential.keys == ["tag"]
+      return localization(potential["tag"])
+    end
+
+    if potential.keys == ["OR"] and potential["OR"].to_a.all?{|p| p.key == "tag"}
+      return potential["OR"].to_a.map{|p| localization(p.val) }.join("/")
+    end
+
+    case potential
+    when PropertyList["always", true]
+      "generic"
+    when PropertyList["capital_scope", PropertyList["continent", "europe"]]
+      "european"
+    when PropertyList["capital_scope", PropertyList["continent", "asia"]]
+      "asian"
+    when PropertyList[
+        "capital_scope", PropertyList["continent", "europe"],
+        "is_part_of_hre", true,
+        "NOT", PropertyList["is_emperor", true],
+      ]
+      "hre minor"
+    when PropertyList[
+        "OR", PropertyList[
+          "tag", "ENG",
+          "tag", "GBR",
+        ],
+        "NOT", PropertyList["has_dlc", "Rule Britannia"],
+      ]
+      [localization("ENG"), localization("GBR")].join("/") + " (no Rule Britannia)"
+    when PropertyList[
+        "OR", PropertyList[
+          "tag", "ENG",
+          "tag", "GBR",
+        ],
+        "has_dlc", "Rule Britannia",
+      ]
+      [localization("ENG"), localization("GBR")].join("/") + " (with Rule Britannia)"
+    when PropertyList[
+        "tag", "GBR",
+        "has_dlc", "Rule Britannia",
+      ]
+      localization("GBR") + " (with Rule Britannia)"
+    when PropertyList[
+        "tag", "SCO",
+        "has_dlc", "Rule Britannia",
+      ]
+      localization("SCO") + " (with Rule Britannia)"
+    when PropertyList[
+      "tag", "SCO",
+        "NOT", PropertyList["has_dlc", "Rule Britannia"],
+        "NOT", PropertyList["has_country_flag", "auld_alliance_mission_flag"],
+      ]
+      localization("SCO") + " (no Rule Britannia)"
+    when PropertyList[
+        "tag", "SCO",
+        "NOT", PropertyList["has_dlc", "Rule Britannia"],
+        "NOT", PropertyList["has_country_flag", "sco_advance_frontier_flag"],
+      ]
+      localization("SCO") + " (no Rule Britannia)"
+    when PropertyList[
+        "tag", "SCO",
+        "NOT", PropertyList["has_dlc", "Rule Britannia"],
+        "NOT", PropertyList["has_country_flag", "rb_orkney_mission"],
+      ]
+      localization("SCO") + " (no Rule Britannia)"
+    when PropertyList[
+        "has_dlc", "Rule Britannia",
+        "OR", PropertyList[
+          "tag", "ULS",
+          "tag", "TRY",
+          "tag", "TYR",
+          "tag", "MTH",
+          "tag", "SLN",
+          "tag", "FLY",
+          "tag", "KID",
+          "tag", "CNN",
+          "tag", "MNS",
+          "tag", "ORD",
+          "tag", "LEI",
+          "tag", "DMS",
+          "tag", "MCM",
+          "tag", "IRE",
+        ],
+      ]
+      "Irish minor (with Rule Britannia)"
+    when PropertyList["capital_scope", PropertyList["OR", PropertyList[
+        "region", "sahel_region",
+        "region", "niger_region",
+        "region", "guinea_region",
+        "region", "horn_of_africa_region",
+        "region", "east_africa_region",
+        "region", "central_africa_region",
+        "region", "kongo_region",
+        "region", "south_africa_region",
+      ]]]
+      "african"
+    when PropertyList[
+        "culture_group", "turko_semitic",
+        "religion_group", "muslim",
+        "NOT", PropertyList["OR", PropertyList[
+          "primary_culture", "turkish",
+          "tag", "RAS",
+          "tag", "ADE",
+        ]],
+      ]
+      "arabic (except Turkish, Rassids, Aden)"
+    when PropertyList[
+        "tag", "BYZ",
+        "NOT", PropertyList["has_dlc", "Purple Phoenix"],
+      ]
+      "Byzantium (no Purple Phoenix)"
+    when PropertyList[
+        "tag", "BYZ",
+        "has_dlc", "Purple Phoenix",
+      ]
+      "Byzantium (with Purple Phoenix)"
+    when PropertyList["religion", "coptic", "has_dlc", "Rights of Man"]
+      "coptic"
+    when PropertyList["OR", PropertyList["government", "daimyo", "government", "shogunate"]]
+      "daimyo/shogunate"
+    when PropertyList[
+        "technology_group", "high_american",
+        "capital_scope", PropertyList["OR", PropertyList[
+          "continent", "north_america",
+          "continent", "south_america",
+          "continent", "new_world",
+        ]],
+      ]
+      "High American" # (not in Europe, but whatevs)
+    when PropertyList[
+      "capital_scope", PropertyList["OR", PropertyList[
+          "continent", "north_america",
+          "continent", "south_america",
+          "continent", "new_world",
+        ]],
+        "OR", PropertyList[
+          "technology_group", "north_american",
+          "technology_group", "south_american",
+          "technology_group", "mesoamerican",
+        ],
+      ]
+      "American native"
+    when PropertyList["technology_group", "high_american"]
+      "High American" # (could be in Europe)
+    else
+      puts potential
+      binding.pry
+    end
+  end
+
+  def call
+    totals = Hash.new(0)
+    each_mission_file do |node|
+      node.each do |group_name, group|
+        potential = parse_potential(group["potential"])
+        missions = group.keys - %W[potential_on_load generic has_country_shield ai potential slot]
+        totals[potential] += missions.size
+      end
+    end
+    totals.sort_by(&:last).reverse.each do |potential, count|
+      puts "#{potential} - #{count}"
+    end
+  end
+end
+
+AnalyzeNewMissions.new(*ARGV).call

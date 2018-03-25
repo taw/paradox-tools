@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# This is for pre-1.25
 
 require_relative "../lib/paradox"
 
