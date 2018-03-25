@@ -1,0 +1,3 @@
+lucca_discipline = {
+  discipline = 0.10
+}

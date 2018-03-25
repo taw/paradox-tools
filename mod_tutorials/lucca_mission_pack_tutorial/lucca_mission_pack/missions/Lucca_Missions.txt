@@ -1,0 +1,84 @@
+lucca_mission_group = {
+  slot = 1
+  generic = no
+  ai = yes
+  potential = {
+    tag = LUC
+  }
+  has_country_shield = yes
+
+  # missions will go here
+  # Build temple in capital
+  lucca_temple_in_capital = {
+    icon = mission_european_church
+    required_missions = {  }
+    trigger = {
+      2980 = {
+        has_building = temple
+      }
+    }
+    effect = {
+      add_adm_power = 200
+    }
+  }
+
+  make_lucca_great_again = {
+    icon = mission_high_income
+    required_missions = {  }
+    trigger = {
+      capital_scope = {
+        development = 25
+        renaissance = 100
+      }
+    }
+    effect = {
+      tuscany_area = {
+        limit = {
+          NOT = { is_core = ROOT }
+          NOT = { owned_by = ROOT }
+        }
+        add_permanent_claim = ROOT
+      }
+    }
+  }
+
+  luccan_tuscany = {
+    icon = mission_cannons_firing
+    required_missions = {  make_lucca_great_again }
+    provinces_to_highlight = {
+      area = tuscany_area
+      NOT = {
+        country_or_non_sovereign_subject_holds = ROOT
+      }
+    }
+    trigger = {
+      tuscany_area = {
+        type = all
+        country_or_non_sovereign_subject_holds = ROOT
+      }
+    }
+    effect = {
+      add_mil_power = 200
+      add_legitimacy = 10
+      add_republican_tradition = 10
+    }
+  }
+
+  lucca_in_the_major_league = {
+    icon = mission_cannons_firing
+    required_missions = { luccan_tuscany }
+    trigger = {
+      OR = {
+        is_rival = FRA
+        is_rival = HAB
+        is_rival = TUR
+      }
+    }
+    effect = {
+      add_country_modifier = {
+        name = lucca_discipline
+        duration = 9125 # 25 years
+      }
+    }
+  }
+}
