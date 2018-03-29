@@ -1,0 +1,170 @@
+# TODO: make the missions exclusive
+
+bahmanis_mission_group_1 = {
+  slot = 1
+  generic = no
+  ai = yes
+  potential = {
+    tag = BAH
+  }
+  has_country_shield = yes
+
+  bahmanis_coptic = { # TEST
+    icon = mission_hands_praying
+    required_missions = { bahmanis_win }
+    position = 9
+    trigger = { }
+    effect = {
+      change_religion = coptic
+      add_country_modifier = { name = bahmanis_missionary_strength duration = 9125 }
+      horn_of_africa_region = {
+        limit = {
+          NOT = { owned_by = ROOT }
+          NOT = { is_core = ROOT  }
+        }
+        add_permanent_claim = ROOT
+      }
+      swap_non_generic_missions = yes # DOESN'T SEEM TO WORK
+    }
+  }
+}
+
+bahmanis_mission_group_2 = {
+  slot = 2
+  generic = no
+  ai = yes
+  potential = {
+    tag = BAH
+  }
+  has_country_shield = yes
+
+  bahmanis_west = { # TODO
+    icon = mission_cannons_firing
+    required_missions = { bahmanis_start }
+    position = 7
+    trigger = { }
+    effect = { add_adm_power = 100 }
+  }
+
+  bahmanis_shiite = { # TODO
+    icon = mission_mosque
+    required_missions = { bahmanis_win }
+    position = 9
+    trigger = { }
+    effect = {
+      change_religion = shiite
+      add_country_modifier = { name = bahmanis_missionary_strength duration = 9125 }
+      arabia_region = {
+        limit = {
+          NOT = { owned_by = ROOT }
+          NOT = { is_core = ROOT  }
+        }
+        add_permanent_claim = ROOT
+      }
+    }
+  }
+}
+
+bahmanis_mission_group_3 = {
+  slot = 3
+  generic = no
+  ai = yes
+  potential = {
+    tag = BAH
+  }
+  has_country_shield = yes
+
+  bahmanis_start = { # TODO
+    icon = mission_war_chest
+    required_missions = { }
+    position = 6
+    trigger = { }
+    effect = { add_adm_power = 100 }
+  }
+
+  bahmanis_south = { # TODO
+    icon = mission_cannons_firing
+    required_missions = { bahmanis_start }
+    position = 7
+    trigger = { }
+    effect = { add_adm_power = 100 }
+  }
+
+  bahmanis_win = { # TODO
+    icon = mission_empire
+    required_missions = { bahmanis_south bahmanis_west bahmanis_east }
+    position = 7
+    trigger = { }
+    effect = { add_adm_power = 100 }
+  }
+
+  bahmanis_hinduism = { # TODO
+    icon = mission_indian_soldier_elephant
+    required_missions = { bahmanis_win }
+    position = 8
+    trigger = { }
+    effect = {
+      change_religion = hinduism
+      add_country_modifier = { name = bahmanis_missionary_strength duration = 9125 }
+      # TODO: india claim
+    }
+  }
+}
+
+lucca_mission_group_4 = {
+  slot = 4
+  generic = no
+  ai = yes
+  potential = {
+    tag = BAH
+  }
+  has_country_shield = yes
+
+  bahmanis_east = { # TODO
+    icon = mission_cannons_firing
+    required_missions = { bahmanis_start }
+    position = 7
+    trigger = { }
+    effect = { add_adm_power = 100 }
+  }
+
+  bahmanis_sikhism = {
+    icon = mission_indian_soldier_elephant
+    required_missions = { bahmanis_win }
+    position = 9
+    trigger = { }
+    effect = {
+      change_religion = sikhism
+      add_country_modifier = { name = bahmanis_missionary_strength duration = 9125 }
+      # TODO: india claim
+    }
+  }
+}
+
+bahmanis_mission_group_5 = {
+  slot = 5
+  generic = no
+  ai = yes
+  potential = {
+    tag = BAH
+  }
+  has_country_shield = yes
+
+  bahmanis_shinto = { # TEST
+    icon = mission_japanese_fort
+    required_missions = { bahmanis_win }
+    position = 9
+    trigger = { }
+    effect = {
+      change_religion = shinto
+      add_country_modifier = { name = bahmanis_missionary_strength duration = 9125 }
+      japan_region = {
+        limit = {
+          NOT = { owned_by = ROOT }
+          NOT = { is_core = ROOT  }
+        }
+        add_permanent_claim = ROOT
+      }
+    }
+  }
+}
