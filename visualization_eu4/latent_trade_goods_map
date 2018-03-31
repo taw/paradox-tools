@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+require "RMagick"
+require_relative "../lib/paradox"
+require_relative "image_generation"
+require_relative "game_map"
+
+class LatentTradeGoodsMap < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def provinces
+    @provinces ||= @data["provinces"].to_h
+  end
+
+  def province_file_name_by_id
+    @province_file_name_by_id ||= begin
+      result = {}
+      glob("history/provinces/*.txt").each do |path|
+        id = path.basename.to_s.to_i
+        result[id] = path
+      end
+      result
+    end
+  end
+
+  def latent_trade_goods_by_province
+    @latent_trade_goods_by_province ||= land_province_ids.map{|id|
+      path = province_file_name_by_id[id]
+      if path
+        node = parse(path)
+        case node["latent_trade_goods"]
+        when nil
+          [id, "none"]
+        when ["coal"]
+          [id, "coal"]
+        else
+          binding.pry
+        end
+      else
+        [id, "wasteland"]
+      end
+    }.to_h
+  end
+
+  def latent_trade_goods_colors(type)
+    @colors ||= {
+      "coal" => [0, 0, 0],
+      "none" => [107, 66, 38],
+      "wasteland" => [127, 127, 127],
+    }
+    @colors[type] ||= [rand(256), rand(256), rand(256)]
+  end
+
+  def latent_trade_goods_map
+    latent_trade_goods_by_province.map{|k,v|
+      [k, latent_trade_goods_colors(v)]
+    }.to_h
+  end
+
+  def call
+    generate_map_image(build_color_map(latent_trade_goods_map))
+      .write("latent_trade_goods.png")
+  end
+end
+
+
+
+LatentTradeGoodsMap.new(*ARGV).call
