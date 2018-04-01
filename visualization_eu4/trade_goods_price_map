@@ -1,0 +1,84 @@
+#!/usr/bin/env ruby
+
+require "RMagick"
+require_relative "../lib/paradox"
+require_relative "image_generation"
+require_relative "game_map"
+
+class TradeGoodsPriceMap < ParadoxGame
+  include ImageGeneration
+  include GameMap
+
+  def base_prices
+    @base_prices ||= begin
+      map = Hash.new(0)
+      parse("common/prices/00_prices.txt").each do |name, good|
+        map[name] = good["base_price"]
+      end
+      map
+    end
+  end
+
+  def provinces
+    @provinces ||= @data["provinces"].to_h
+  end
+
+  def province_file_name_by_id
+    @province_file_name_by_id ||= begin
+      result = {}
+      glob("history/provinces/*.txt").each do |path|
+        id = path.basename.to_s.to_i
+        result[id] = path
+      end
+      result
+    end
+  end
+
+  def trade_goods_by_province
+    @latent_trade_goods_by_province ||= land_province_ids.map{|id|
+      path = province_file_name_by_id[id]
+      if path
+        node = parse(path)
+        [id, node["trade_goods"] || "unknown"]
+      else
+        [id, "wasteland"]
+      end
+    }.to_h
+  end
+
+  def trade_goods_colors(type)
+    @colors ||= {
+      "gold" => [255, 215, 0],
+      "wasteland" => [127, 127, 127],
+      "unknown" => [160, 160, 160],
+    }
+    base_price = base_prices[type]
+    raise "Base price of #{type} unknown" unless base_price
+    # paper is 3.5, rest is 4
+    if base_price >= 3.5
+      @colors[type] = [127, 255, 127]
+    elsif base_price >= 3
+      @colors[type] = [80, 160, 80]
+    elsif base_price >= 2.5
+      @colors[type] = [165, 42, 42]
+    elsif base_price >= 2
+      @colors[type] = [160, 80, 80]
+    end
+
+    # @colors[type] ||= [rand(256), rand(256), rand(256)]
+    @colors[type] or binding.pry
+  end
+
+  def trade_goods_price_map
+    trade_goods_by_province.map{|k,v|
+      [k, trade_goods_colors(v)]
+    }.to_h
+  end
+
+  def call
+    generate_map_image(build_color_map(trade_goods_price_map))
+      .write("trade_goods_price.png")
+  end
+end
+
+TradeGoodsPriceMap.new(*ARGV).call
