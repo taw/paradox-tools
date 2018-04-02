@@ -96,8 +96,9 @@ class ParadoxModFile
           else
             @tokens << s[1]
           end
-        elsif s.scan(/"([^"\\]*)"/)
+        elsif s.scan(/"((?:[^"\\]|\\n)*)"/)
           # Is there ever any weird escaping here?
+          # EU4 saves have some "Italian Aristocracy: §G+25.0%§!\n"
           @tokens << s[1]
         elsif s.scan(/"(([^"\\]|\\"|\\\\)*)"/)
           # There is some escaping
