@@ -23,7 +23,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
-      ["NDiplomacy.MONTHS_BEFORE_TOTAL_OCCUPATION", 60, 24],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
       ["NMilitary.FORTRESS_COST", 0.50, 0.25],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
