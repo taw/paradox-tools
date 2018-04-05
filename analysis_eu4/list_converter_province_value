@@ -225,7 +225,7 @@ class Map
       .force_encoding("windows-1252")
       .encode("utf-8")
       .gsub("add_permanent_province_modifier {", "add_permanent_province_modifier = {")
-    ParadoxModFile.new(string: content).parse!
+    ParadoxModFile.new(string: content, path: path).parse!
   end
 end
 
