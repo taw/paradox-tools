@@ -14,7 +14,8 @@ class ReleasableCountries < ParadoxGame
     @foreign_cores ||= begin
       map = {}
       @data["provinces"].each do |id, province|
-        cores = province.find_all("core")
+        # Old and new saves use different format
+        cores = province.find_all("core") + (province["cores"] || [])
         owner = province["owner"]
         cores.each do |core|
           next if core == owner
