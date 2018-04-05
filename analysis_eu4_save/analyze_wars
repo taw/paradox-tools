@@ -23,8 +23,17 @@ class AnalyzeWars
     @start_date ||= convert_date(@data["start_date"])
   end
 
+  def last_war_date
+    (@data.find_all("active_war") + @data.find_all("previous_war")).flat_map{|w| w["history"].keys.grep(Date)}.max
+  end
+
+  def current_date_from_save
+    @data["date"] && convert_date(@data["date"])
+  end
+
   def current_date
-    @current_date ||= convert_date(@data["date"])
+    # New save format no longer stores this information in any convenient way
+    @current_date ||= current_date_from_save || last_war_date || start_date
   end
 
   def add_war!(start_date, end_date=current_date)
@@ -32,12 +41,12 @@ class AnalyzeWars
   end
 
   def add_active_war!(war)
-    return if war["history"].empty?
+    return if war["history"].keys.grep(Date).empty?
     add_war! war["history"].keys.grep(Date).min
   end
 
   def add_previous_war!(war)
-    return if war["history"].empty?
+    return if war["history"].keys.grep(Date).empty?
     add_war! war["history"].keys.grep(Date).min,
              war["history"].keys.grep(Date).max
   end
