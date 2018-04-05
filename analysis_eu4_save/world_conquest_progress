@@ -38,7 +38,8 @@ class WorldConquestProgress < ParadoxGame
   end
 
   def player_tag
-    @player_tag ||= @data["player"]
+    # New compressed saves stopped recording this in player tag
+    @player_tag ||= @data["player"] || @data["countries"].keys.find{|tag| @data["countries"][tag]["human"]}
   end
 
   def subjects
@@ -49,7 +50,13 @@ class WorldConquestProgress < ParadoxGame
         subject_type = relation["subject_type"]
         overlord = relation["first"]
         subject = relation["second"]
-        raise if @subjects[subject]
+        if @subjects[subject]
+          relation1 = "#{subject_type} of #{overlord}"
+          overlord2, subject_type2 = @subjects[subject]
+          relation2 = "#{subject_type2} of #{overlord2}"
+          warn "#{subject} is #{relation1} but it's #{relation2} already"
+          next
+        end
         @subjects[subject] = [overlord, subject_type]
       end
     end
