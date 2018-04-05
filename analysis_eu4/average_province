@@ -23,7 +23,7 @@ class AverageProvince < ParadoxGame
       .force_encoding("windows-1252")
       .encode("utf-8")
       .gsub("add_permanent_province_modifier {", "add_permanent_province_modifier = {")
-    ParadoxModFile.new(string: content).parse!
+    ParadoxModFile.new(string: content, path: path).parse!
   end
 
   def run!
@@ -38,10 +38,17 @@ class AverageProvince < ParadoxGame
       base_tax = node["base_tax"]
       base_production = node["base_production"]
       base_manpower = node["base_manpower"]
-      next unless base_tax # probably water or wasteland
-      tax << base_tax
-      production << base_production
-      manpower << base_manpower
+       # probably water or wasteland
+      next unless base_tax or base_production or base_manpower
+
+      warn "No tax in #{id} #{name}" unless base_tax
+      tax << (base_tax || 0)
+
+      warn "No production in #{id} #{name}" unless base_production
+      production << (base_production || 0)
+
+      warn "No manpower in #{id} #{name}" unless base_manpower
+      manpower << (base_manpower || 0)
     end
 
     puts "Average Base Tax: #{tax.avg.round(2)}"
