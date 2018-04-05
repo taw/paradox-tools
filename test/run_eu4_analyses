@@ -1,0 +1,63 @@
+#!/usr/bin/env ruby
+
+require "shellwords"
+require "pathname"
+
+unless ARGV.size == 3
+  STDERR.puts "Usage: #{$0} savegame gamepath outputdir"
+  exit 1
+end
+
+save = ARGV[0]
+game = ARGV[1]
+output = Pathname(ARGV[2])
+
+list = %Q[
+analysis_eu4/analyze_custom_idea_bonuses $g
+analysis_eu4/analyze_custom_ideas $g
+analysis_eu4/analyze_idea_groups $g
+analysis_eu4/analyze_missions $g
+analysis_eu4/analyze_new_missions $g
+analysis_eu4/analyze_policies $g
+analysis_eu4/analyze_static_modifiers $g
+analysis_eu4/analyze_unit_pips $g
+analysis_eu4/average_province $g
+analysis_eu4/countries_by_date $g
+analysis_eu4/country_cultures $g
+analysis_eu4/find_cots_in_converted_campaign $g
+analysis_eu4/list_converter_province_value $g
+analysis_eu4/list_formable_countries $g
+analysis_eu4/validate_trade_nodes $g
+analysis_eu4_save/aggressive_expansion $s $g
+analysis_eu4_save/analyze_autonomy $s $g
+analysis_eu4_save/analyze_institutions $s $g
+analysis_eu4_save/analyze_save_game_economics $s $g
+analysis_eu4_save/analyze_trade $s $g
+analysis_eu4_save/analyze_trust $s $g
+analysis_eu4_save/analyze_wars $s $g
+analysis_eu4_save/analyze_wars_battles $s $g
+analysis_eu4_save/buildings $s $g
+analysis_eu4_save/buildings_by_country $s $g
+analysis_eu4_save/cultures_by_country $s $g
+analysis_eu4_save/cultures_by_development $s $g
+analysis_eu4_save/hre_religions $s $g
+analysis_eu4_save/idea_group_choices $s $g
+analysis_eu4_save/releasable_countries $s $g
+analysis_eu4_save/releasable_hre_countries $s $g
+analysis_eu4_save/world_conquest_progress $s $g
+].lines.grep(/\S/).map(&:chomp)
+
+output.mkpath
+list.each do |cmd|
+  name = cmd.split.first.split("/").last
+  save_to = output + "#{name}.txt"
+  cmd = cmd.sub("$s", save.shellescape).sub("$g", game.shellescape) + " >#{save_to.to_s.shellescape}"
+  if save_to.exist?
+    puts "#{name} already exists"
+  else
+    puts "Running #{name}"
+    puts cmd
+    system cmd
+    puts ""
+  end
+end
