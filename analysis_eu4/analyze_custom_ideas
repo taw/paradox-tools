@@ -54,6 +54,11 @@ class IdeaGroup
     custom_ideas.each do |idea_name, idea, levels|
       next unless idea[bonus_key]
       level_1_val = idea[bonus_key]
+
+      # Deal with: may_establish_frontier = yes
+      bonus_val = 1 if bonus_val == true
+      level_1_val = 1 if level_1_val == true
+
       level = (bonus_val / level_1_val).round(2) # Cut to 2 digits to avoid float nonsense
       if level.round == level and level <= levels.size
         level = level.to_i
@@ -112,8 +117,8 @@ class AnalyzeCustomIdeas < ParadoxGame
       parse(path).each do |group_name, idea_group|
         next if idea_group["category"] # Not national ideas
         raise "Not national ideas and not idea group?" unless idea_group["free"]
-        idea_group.delete "trigger"
-        idea_group.delete "free"
+        idea_group.delete! "trigger"
+        idea_group.delete! "free"
         raise "WTF" unless idea_group.keys.size == 9 and
                            idea_group.keys.include?("start") and
                            idea_group.keys.include?("bonus")
@@ -135,6 +140,8 @@ class AnalyzeCustomIdeas < ParadoxGame
           next if idea_name == "category"
           idea = idea.to_h
           idea.delete "default"
+          idea.delete "chance"
+          idea.delete "enabled"
           max_level = idea.delete("max_level") || 4
           levels = max_level.times.map do |i|
             idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
