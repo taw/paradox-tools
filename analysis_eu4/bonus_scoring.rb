@@ -80,6 +80,9 @@ class BonusScoring
     :bureaucrats_influence,
     :enuchs_influence,
     :temples_influence,
+    :rr_girondists_influence,
+    :rr_royalists_influence,
+    :rr_jacobins_influence,
 
     # Far too conditional
     :devotion,

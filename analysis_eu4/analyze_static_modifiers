@@ -11,7 +11,8 @@ class AnalyzeStaticModifiers < ParadoxGame
       colony_level core friendly_regiments harsh_treatment in_trade_company intolerance land_province
       looted manpower mild_winter national_defense nationalism native_aggressiveness native_presence
       no_adjacent_controlled non_accepted_culture non_accepted_culture_republic non_coastal non_core
-      normal_winter occupied overseas patriarch_authority_global patriarch_authority_local provincial_tax_income resource_depleted revolt_risk same_culture_group scorched_earth sea_zone severe_winter tolerance tropical under_siege
+      normal_winter occupied overseas patriarch_authority_global patriarch_authority_local provincial_tax_income
+      resource_depleted revolt_risk same_culture_group scorched_earth sea_zone severe_winter tolerance tropical under_siege
     ]
   end
 
@@ -21,6 +22,9 @@ class AnalyzeStaticModifiers < ParadoxGame
       next if name == "tutorial"
       bonuses = BonusScoring.new
       effects.each do |k,v|
+        next if %W[
+          religion religion_sub_modifier is_scholar_modifier expire_message_type picture
+        ].include?(k)
         bonuses.send(k,v)
       end
       puts [bonuses.score, name].join(" ")
