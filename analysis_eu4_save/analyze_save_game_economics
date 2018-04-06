@@ -3,6 +3,8 @@
 # This script runs some savegame analysis for better idea what's going on with
 # game economics. Primarily to calibrace bonus_scoring function
 
+# The lists change every patch
+
 require_relative "../lib/paradox_game"
 
 module Enumerable
@@ -15,6 +17,8 @@ module Enumerable
 end
 
 class Country
+  attr_reader :tag, :node
+
   def initialize(tag, node)
     @tag = tag
     @node = node
@@ -38,25 +42,76 @@ class Country
 
   # FIXME: This is no longer correct as of 1.22, there's extra thing on the list
   def income
+    return nil unless @node["ledger"]["lastyearincome"]
     # 15 vs 16
     Hash[%W[
-      trade production trade gold tariffs vassals
-      harbor_fees subsidies war_reparations interest gift
-      events spoils_of_war treasure_fleet siphon_income
+      taxation
+      production
+      trade
+      gold
+      tariffs
+      vassals
+      ?6
+      subsidies
+      war_reparations
+      interest
+      gift
+      events
+      spoils_of_war
+      ?13
+      ?14
+      ?15
+      knowledge_sharing
     ].zip(@node["ledger"]["lastyearincome"])]
   end
 
-  # FIXME: This is no longer correct as of 1.22, there's extra things on the list
+      # trade production trade gold tariffs vassals
+      # harbor_fees subsidies war_reparations interest gift
+      # events spoils_of_war treasure_fleet siphon_income
+
   def expense
-    # 25 vs 30
+    return nil unless @node["ledger"]["lastyearexpense"]
     Hash[%W[
-      advisor_upkeep interest harbor_fees subsidies war_reparations
-      army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
-      army_build fleet_build fort_build buildings rebel_support
-      repaid_loans gift advisor_recruit event peace
-      vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
+      advisors_maint
+      interest
+      state_maint
+      ?3
+      subsidies
+      war_reparations
+      army_maint
+      fleet_maint
+      fort_maitnt
+      colonies
+      missionaries
+      army_build
+      fleet_build
+      fort_build
+      buildings
+      ?15
+      repaid_loans
+      gift
+      advisor_hire
+      events
+      peace
+      vassal_fee
+      outgoing_tariffs
+      ?23
+      ?24
+      ?25
+      ?26
+      root_out_corruption
+      embrace_institutions
+      great_power_actions
+      knowledge_sharing
     ].zip(@node["ledger"]["lastyearexpense"])]
   end
+
+      # advisor_upkeep interest harbor_fees subsidies war_reparations
+      # army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
+      # army_build fleet_build fort_build buildings rebel_support
+      # repaid_loans gift advisor_recruit event peace
+      # vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
+
 end
 
 class AnalyzeSaveGameEconomics
@@ -68,25 +123,6 @@ class AnalyzeSaveGameEconomics
     @countries ||= begin
       @data["countries"].to_h.map{|tag,node| [tag, Country.new(tag, node)] }.to_h
     end
-  end
-
-  # Old save games use String not real Date
-  def convert_date(date)
-    if date.is_a?(Date)
-      date
-    elsif date.is_a?(String) and date =~ /\A(\d+)\.(\d+)\.(\d+)\z/
-      Date.new($1.to_i, $2.to_i, $3.to_i)
-    else
-      raise "Expected Date or String, got `#{date.inspect}'"
-    end
-  end
-
-  def start_date
-    @start_date ||= convert_date(@data["start_date"])
-  end
-
-  def current_date
-    @current_date ||= convert_date(@data["date"])
   end
 
   # In-game ranking like score are ridiculous, so doing this instead
@@ -120,6 +156,7 @@ class AnalyzeSaveGameEconomics
     end
     puts "Great power income:"
     totals.sort_by{|k,v| -v}.each do |type, val|
+      next if val == 0
       puts "* #{type} - #{val.round(2)}"
     end
   end
@@ -136,13 +173,14 @@ class AnalyzeSaveGameEconomics
     end
     puts "Great power expense:"
     totals.sort_by{|k,v| -v}.each do |type, val|
+      next if val == 0
       puts "* #{type} - #{val.round(2)}"
     end
   end
 
   def call
     puts "Total development: #{total_development}"
-    puts "Average base dev: #{average_base_development_cost}"
+    puts "Average base dev: #{average_base_development_cost.round(2)}"
     puts "Number of countries: #{number_of_countries}"
     report_great_powers_income!
     report_great_powers_expense!
