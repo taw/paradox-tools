@@ -20,8 +20,8 @@ class ReleasableHRECountries < ParadoxGame
         next unless province["hre"]
         cores.each do |core|
           next if core == owner
-          map[core] ||= Set[]
-          map[core] << owner
+          map[core] ||= Hash.new(0)
+          map[core][owner] += 1
         end
       end
       map
@@ -35,7 +35,8 @@ class ReleasableHRECountries < ParadoxGame
   def call
     foreign_cores.each do |country, foreigners|
       next if country_size(country) > 0
-      puts "#{localization(country)}: #{ foreigners.map{|tag| localization(tag)}.join(", ") }"
+      with_counts = foreigners.map{|tag,count| "#{localization(tag)} (#{count})"}.join(", ")
+      puts "#{localization(country)}: #{ with_counts }"
     end
   end
 end
