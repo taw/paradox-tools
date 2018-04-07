@@ -135,6 +135,7 @@ class EU4Save
         country["active_relations"].each do |tag2, relations|
           relations.find_all("opinion").each do |opinion|
             next unless opinion["modifier"] == "aggressive_expansion"
+            next if opinion["current_opinion"] == 0
             map[tag2] ||= {}
             map[tag2][tag] = -opinion["current_opinion"]
           end
