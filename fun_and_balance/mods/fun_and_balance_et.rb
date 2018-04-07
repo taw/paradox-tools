@@ -27,15 +27,17 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["NCountry.TECH_AHEAD_OF_TIME", 0.1, 0.05],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
+      ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
       ["NMilitary.FORTRESS_COST", 0.50, 0.25],
+      ["NMilitary.MERCENARY_SUPPORT_LIMIT_BASE", 20, 10],
+      ["NMilitary.MERCENARY_SUPPORT_LIMIT_FRACTION", 0.3, 0.15],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
-      ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
     ])
 
     # Extended timeline diplomatic relations per era:
