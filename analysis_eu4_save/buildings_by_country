@@ -4,6 +4,10 @@ require_relative "../lib/paradox_game"
 require_relative "eu4_save"
 
 class AnalyzeBuildingsByCountry < ParadoxGame
+  def country_name(tag)
+    @save.countries[tag]&.name || localization(tag)
+  end
+
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
@@ -48,7 +52,7 @@ class AnalyzeBuildingsByCountry < ParadoxGame
     results = []
     country_provinces.each do |tag, provinces|
       avg = (country_values[tag].to_f / provinces).round
-      results << [avg, localization(tag), provinces]
+      results << [avg, country_name(tag), provinces]
     end
     puts results.sort.reverse.map{|row| row.join(" ") }
   end

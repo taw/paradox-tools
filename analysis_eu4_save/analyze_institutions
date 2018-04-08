@@ -5,7 +5,7 @@ require_relative "eu4_save"
 
 class Array
   def average
-    inject(0.0, &:+) / size
+    sum / size
   end
 end
 

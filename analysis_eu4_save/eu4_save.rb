@@ -33,6 +33,10 @@ class Country
     @active_idea_groups ||= @node["active_idea_groups"].enum_for(:each).to_a
   end
 
+  def name
+    @node["name"]
+  end
+
   def to_s
     "Country<#{@tag}>"
   end

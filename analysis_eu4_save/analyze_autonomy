@@ -3,13 +3,11 @@
 require_relative "../lib/paradox_game"
 require_relative "eu4_save"
 
-module Enumerable
-  def sum
-    inject(0, &:+)
-  end
-end
-
 class AnalyzeAutonomy < ParadoxGame
+  def country_name(tag)
+    @save.countries[tag]&.name || localization(tag)
+  end
+
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
@@ -27,8 +25,7 @@ class AnalyzeAutonomy < ParadoxGame
       max_dev = data.map{|dev,_| dev}.sum
       lost_dev = data.map{|dev,a| dev*(a/100.0) }.sum
       avg_autonomy = 100.0 * lost_dev / max_dev
-      name = localization(tag)
-      [name, avg_autonomy.round(2)]
+      [country_name(tag), avg_autonomy.round(2)]
     end.sort.each do |name, avg_autonomy|
       puts "#{name}\t#{avg_autonomy}"
     end

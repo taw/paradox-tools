@@ -3,13 +3,11 @@
 require_relative "../lib/paradox_game"
 require_relative "eu4_save"
 
-module Enumerable
-  def sum
-    inject(0, &:+)
-  end
-end
-
 class AnalyzeAE < ParadoxGame
+  def country_name(tag)
+    @save.countries[tag]&.name || localization(tag)
+  end
+
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
@@ -17,9 +15,9 @@ class AnalyzeAE < ParadoxGame
 
   def call
     @save.aggressive_expansion.sort_by{|tag, aes| -aes.values.sum}.each do |tag, aes|
-      puts "#{localization(tag)}:"
+      puts "#{country_name(tag)}:"
       aes.sort_by(&:last).reverse.each do |tag2, ae|
-        puts "* #{localization(tag2)} #{ae}"
+        puts "* #{country_name(tag2)} #{ae}"
       end
       puts ""
     end

@@ -4,6 +4,10 @@ require_relative "../lib/paradox"
 require_relative "eu4_save"
 
 class CulturesByCountry < ParadoxGame
+  def country_name(tag)
+    @save.countries[tag]&.name || localization(tag)
+  end
+
   def initialize(save_game, *paths)
     super(*paths)
     @save = EU4Save.new(save_game)
@@ -71,7 +75,7 @@ class CulturesByCountry < ParadoxGame
 
   def call
     country_sizes.sort_by(&:last).reverse.each do |tag, size|
-      puts "#{localization(tag)}:"
+      puts "#{country_name(tag)}:"
       cultures = cultures_by_country[tag]
       cultures.sort_by(&:last).reverse.each do |culture_name, dev|
         status =  culture_status(tag, culture_name)

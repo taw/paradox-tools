@@ -3,6 +3,10 @@
 require_relative "../lib/paradox_game"
 
 class WorldConquestProgress < ParadoxGame
+  def country_name(tag)
+    @data["countries"][tag]&.[]("name") || localization(tag)
+  end
+
   def initialize(save_game, *paths)
     @data = ParadoxModFile.new(path: save_game).parse!
     super(*paths)
@@ -105,7 +109,7 @@ class WorldConquestProgress < ParadoxGame
     development_by_independent_country
       .sort_by{|tag,dev| [-dev, tag]}
       .each do |tag, dev|
-      puts "#{localization(tag)}: #{dev}"
+      puts "#{country_name(tag)}: #{dev}"
     end
   end
 end

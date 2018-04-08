@@ -4,6 +4,10 @@ require "set"
 require_relative "../lib/paradox"
 
 class ReleasableHRECountries < ParadoxGame
+  def country_name(tag)
+    @data["countries"][tag]&.[]("name") || localization(tag)
+  end
+
   def initialize(save_game, *paths)
     super(*paths)
     @path = save_game
@@ -36,7 +40,7 @@ class ReleasableHRECountries < ParadoxGame
     foreign_cores.each do |country, foreigners|
       next if country_size(country) > 0
       with_counts = foreigners.map{|tag,count| "#{localization(tag)} (#{count})"}.join(", ")
-      puts "#{localization(country)}: #{ with_counts }"
+      puts "#{country_name(country)}: #{ with_counts }"
     end
   end
 end
