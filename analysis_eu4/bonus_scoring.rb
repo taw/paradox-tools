@@ -44,12 +44,13 @@ class BonusScoring
     :prestige_from_land,
     :prestige_from_naval,
 
-    # loans are basically irrelevant
+    # loans are basically irrelevant unless you go full florrynomics, and that's no longer possible
     :interest,
 
     # unless you only own 1-2 ports, it's completely irrelevant
     :global_ship_recruit_speed,
     :global_regiment_recruit_speed,
+    :build_time,
 
     # if you have to worry about that, you're doing something wrong
     :enemy_core_creation,
@@ -83,6 +84,9 @@ class BonusScoring
     :rr_girondists_influence,
     :rr_royalists_influence,
     :rr_jacobins_influence,
+
+    # This could be a bit more exploitable, but it's still situational which direction you care about,
+    :monthly_piety,
 
     # Far too conditional
     :devotion,
@@ -218,14 +222,13 @@ class BonusScoring
 
   # Assuming +1 stab button / 15 years (base cost 100, mods apply to this not total)
   # It's not uncommon to be at permanent +2/+3 due to events, but then you could be deep in negative territory
-  # due to westernization etc.
   def stability_cost_modifier(v)
     monthly_adm_points (-v * 100.0 / 12 / 15)
   end
-  # Assuming one reduce WE button press every 25 years
-  # It's somewhat common early game, late game not really
+  # Assuming one reduce WE button press every 10 years
+  # It's somewhat common early game, often multiple presses same day on peaceout, late game not really due to absolutism
   def war_exhaustion_cost(v)
-    monthly_dip_points (-v * 75.0 / 12 / 25)
+    monthly_dip_points (-v * 75.0 / 12 / 10)
   end
   # -2 WE is worth 75 dip
   # Assume you are at positive-enough-to-care WE 50% of the time
@@ -243,6 +246,12 @@ class BonusScoring
   def inflation_reduction(v)
     monthly_adm_points v*(75.0/2.0/12)*0.25
   end
+  # This is mostly used to very quickly gain absolutism
+  # Assume only cheapest is clicked (50), once every 20 years
+  def harsh_treatment_cost(v)
+    monthly_mil_points (-v * 50.0 / 12 / 20)
+  end
+
   # Assume average of 8dev/year cored before efficiency unlocks,
   # proportionally more after efficiency
   #
@@ -287,12 +296,16 @@ class BonusScoring
     monthly_mixed_monarch_points (buttons_per_month * 65 * -v)
   end
 
-  # Assume: 16 inf, 4 cav, 6 art stacks
-  # so upkeep is: 160 inf (35%) / 100 cav (25%) / 180 art (40%)
-  # However since infantry takes most beating, and they cost most reinforce costs by far,
-  # adjust that to: 50% inf, 20% cav, 30% art
-  # For combat ability assume the same except lower artillery since it's really siege unit for most of the game to:
-  # 50% inf, 30% cav, 20% art
+  # Assumptions:
+  # * average build will be about: 50% inf, 10% cav, 40% art
+  # * of that 10% merc inf, and 40% regular inf, never any merc cav/art
+  # * inf take double the damage as other types, so double reinforcement costs
+  # * art/inf combat ability contributes same as their numbers, cavalry contributes double their numbers
+  # 
+  # * base costs ratios are: inf 500 (25%), cav 250 (13%), art 1200 (62%)
+  # * base reinforce ratios: inf 1000 (41%), cav 250 (10%), art 1200 (49%)
+  # * base combat ability ratios: inf 50 (46%), cav 20 (18%), art 40 (36%)
+  #
   # For land units cost and maintenance are proportional
 
   # For navy it's harder to make good assumptions.
@@ -324,25 +337,30 @@ class BonusScoring
 
   # http://www.eu4wiki.com/Land_warfare#Comparison
   def infantry_cost(v)
-    calculated_land_cost 0.50 * v
+    calculated_land_cost 0.25 * 0.1 * v
   end
   def cavalry_cost(v)
-    calculated_land_cost 0.20 * v
+    calculated_land_cost 0.13 * 0.1 * v
   end
   def artillery_cost(v)
-    calculated_land_cost 0.30 * v
+    calculated_land_cost 0.62 * 0.1 * v
   end
   def global_regiment_cost(v)
     calculated_land_cost v
   end
   def infantry_power(v)
-    land_unit_power 0.50 * v
+    land_unit_power 0.46 * v
   end
   def cavalry_power(v)
-    land_unit_power 0.30 * v
+    land_unit_power 0.18 * v
   end
   def artillery_power(v)
-    land_unit_power 0.20 * v
+    land_unit_power 0.36 * v
+  end
+  # Very vaguely estimate that 100% more cavalry flanking range makes your cavalry 50% more effective
+  # which is probably an overstatement in reality due to deployment logic, battles at full width etc.
+  def cavalry_flanking(v)
+    cavalry_power(0.5 * v)
   end
   # Assume 50% damage in fire and 50% in shock
   # this isn't true very early game where shock rules, but should be true overall
@@ -433,10 +451,17 @@ class BonusScoring
   def discipline(v)
     land_unit_power(2*v)
   end
-  # Estimate 10% fighting power is mercs
-  # (independent of all other military estimates)
+  # - infantry does 46% to total damage
+  # - but it takes most of damage in combat
+  #   - if art takes damage 10% of time, cav 50% of time (flanking otherwise), and inf 100% of time,
+  #     the damage reduction from infantry discipline is like 85% of total units
+  def infantry_discipline(v)
+    land_unit_power(0.46*v) # damage dealt
+    land_unit_power(0.85*v) # damage received
+  end
+  # Estimate 20% of infantry is mercs
   def mercenary_discipline(v)
-    discipline(0.1*v)
+    infantry_discipline(0.2*v)
   end
   def ship_durability(v)
     naval_unit_power(2*v)
@@ -483,7 +508,6 @@ class BonusScoring
   # I doesn't translate to anything, but let's just guess that army which instantly recovered
   # morale every monthly tick would be 10% better. That's not as good as it sounds since it still
   # won't matter during combat, or if combat happens same month as previous one.
-
   def recover_army_morale_speed(v)
     land_unit_power v*0.1
   end
@@ -584,9 +608,15 @@ class BonusScoring
   def global_trade_income_modifier(v)
     trade_efficiency v
   end
-  # I'm just guessing here...
+  # Assume 10% of your trade power will come from light ships
+  def global_ship_trade_power(v)
+    global_trade_power 0.1*v
+  end
+  # Goods produced modifier directly increases production income and (somebody's) trade income
+  # Assume that you'll capture 80% of own trade income (and 20% of others' - but it's their modifiers that apply)
   def global_trade_goods_size_modifier(v)
-    trade_efficiency v*0.5
+    trade_efficiency v*0.8
+    production_efficiency v
   end
   # This is extremely hard. Inland nodes are often extremely competitive (HRE), so this bonus matter little
   # Assume total 500 trade power in node, and that node would increase your trade income by 20% if fully controlled
@@ -605,7 +635,7 @@ class BonusScoring
   # before adding bonus
   #
   # For costs:
-  # 25% army, 25% fort, 20% advisors, 10% navy, 30% balance (which I assume goes for 20% buildings, 10% other stuff)
+  # 25% army, 5% state, 10% fort, 20% advisors, 5% navy, 35% balance (which I assume goes for 20% buildings, 5% embracement, 10% other stuff)
   # I'll assume of that army spending, 5% is mercs, 5% is reinforcement, 90% is regular maintenance
   #
   # This isn't really true, since incomes from simualion already come with many modifiers, mostly positive,
@@ -631,26 +661,38 @@ class BonusScoring
     money 0.01*v
   end
   def fort_maintenance_modifier(v)
-    money 0.25*-v
+    money 0.10*-v
   end
   def advisor_cost(v)
-    money 0.25*-v
+    money 0.20*-v
+  end
+  # Assume for applicable cultures it will affect half of advisors
+  # (most advisors will be off-culture but you'll have enough chances to reroll etc. to make pick cheaper one)
+  def same_culture_advisor_cost(v)
+    advisor_cost(0.5*v)
   end
   def calculated_land_cost(v)
     money 0.25*-v
   end
   def calculated_ship_cost(v)
-    money 0.10*-v
+    money 0.05*-v
   end
   def build_cost(v)
     money 0.20*-v
   end
+  def embracement_cost(v)
+    money 0.05*-v
+  end
+  def state_maintenance_modifier(v)
+    money 0.05*-v
+  end
+  # This bonus applies to base cost, not full merc cost, so discount is proportional to how much of your inf is mercs
   def mercenary_cost(v)
-    calculated_land_cost 0.05*v
+    infantry_cost 0.2*v
   end
   def merc_maintenance_modifier(v)
-    # For mercs I put maintenance as 50% since they tend to be disbanded when no longer needed
-    mercenary_cost 0.5*v
+    # Since professionalism, mercs tend to be kept forever rather than disbanded when no longer needed
+    mercenary_cost v
   end
   def no_cost_for_reinforcing(v)
     raise unless v == true
@@ -667,11 +709,11 @@ class BonusScoring
   end
 
   # Assumes:
-  #   2 diplomats - 25% time in travel
+  #   2 diplomats - 20% time in travel
   #   2 merchant  -  1% time in travel
   #   1 colonist  - 10% time in travel
   def envoy_travel_time(v)
-    diplomats -2*0.25*v
+    diplomats -2*0.20*v
     merchants -2*0.01*v
     colonists -1*0.10*v
   end
@@ -739,9 +781,9 @@ class BonusScoring
     naval_unit_power 0.02*v
   end
 
-  # Counting 200% range extension worth as much as extra colonist - it's extremely conditional
+  # Counting 100% range extension worth as much as 0.25 colonist - it's extremely conditional
   def range(v)
-    colonists 0.5*v
+    colonists 0.25*v
   end
 
   # Guess base numbers of 50 land, 50 naval
@@ -785,6 +827,11 @@ class BonusScoring
     province_warscore_cost(-v/0.75)
   end
 
+  # Arbitrarily assume reinforce costs are 20% of army costs
+  def reinforce_cost_modifier(v)
+    calculated_land_cost 0.2*v
+  end
+
   def score
     total = 0
     @ht.each do |k,v|
@@ -817,7 +864,8 @@ class BonusScoring
         # is much easier to achieve than it used to be
         total += 0.5*v
       when :global_missionary_strength
-        total += 50.0*v
+        # It depends on culture, but count +2% missionary strength as equivalent to +1 misionary
+        total += 25.0*v
       when :global_revolt_risk
         total -= 1.0*v
       when :global_autonomy
@@ -835,8 +883,11 @@ class BonusScoring
         # Slowing down enemy sieges x2
         total += v*1
       when :military_power
-        # Doubling military power
+        # Doubling military combat power both land and sea
         total += v*10
+      when :movement_speed
+        # Assume army that moves 100% faster is worth 5mp/month
+        total += v*5
       when :global_manpower_modifier
         # Doubling total manpower
         total += v*3
@@ -859,7 +910,8 @@ class BonusScoring
         # This is far less valuable now that you can just buy it for small amount of money
         total += 0.2*v
       when :hostile_attrition
-        total += 1*v
+        # Because of 5% attrition cap this is very poor effect, even this is probably overtating it
+        total += 0.25*v
       when :relations_decay_of_me
         total += 2*v
       when :ae_impact
@@ -871,8 +923,10 @@ class BonusScoring
         # This is going to get capped really quickly
       when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :amount_of_banners, :reduced_liberty_desire, :monthly_fervor_increase, :yearly_harmony
         # Extremely situational
-      when :cavalry_flanking
-        # Does something, but probably too weak to count
+      when :native_assimilation, :native_uprising_chance
+        # Not very meaningful since native policies are a thing
+      when :yearly_tribal_allegiance
+        # Too situational
       when :global_institution_spread
         # This makes very little difference,
         # the difficulty is just getting institutions to reach you,
