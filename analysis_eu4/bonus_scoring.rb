@@ -267,7 +267,7 @@ class BonusScoring
   end
 
   def overextension(v)
-    # trade_power_abroad v*-1.0 # TODO
+    global_foreign_trade_power v*-1.0
     stability_cost_modifier v*0.5
     mercenary_cost v*0.5
     diplomatic_reputation v*-2.0
@@ -281,9 +281,10 @@ class BonusScoring
   def diplomatic_annexation_cost(v)
     monthly_dip_points (-v * 10.0 * 4.0 / 12)
   end
-  # Assume 2 unjustified demand for base of 50 each every 10 years
+  # Assume half of your cored dev comes from unjustified demands
+  # (this also means demands on anyone except war leader)
   def unjustified_demands(v)
-    monthly_dip_points (-v * 50 * 2 / 120)
+    monthly_dip_points -v * 3 * 8.0 / 12
   end
 
   # Based on simulations average AI country presses the button 28 times during the game
@@ -856,16 +857,16 @@ class BonusScoring
         total += 0.75*v
       when :merchants
         # This also provides +5 naval force limit per merchant beyond 2nd, not counted separately
-        # They became less relevant as you can get them from CNs and trade companies, at least
-        # if you're western tech
-        total += 0.5*v
+        # I'd say they became less relevant as you can get them from CNs and trade companies,
+        # however this is only true if you have colonists (so basically included in colonist score), or very late game
+        total += 1*v
       when :missionaries
-        # Extra missionaries are no big deal, and missionary strength
-        # is much easier to achieve than it used to be
-        total += 0.5*v
+        # Extra missionaries are really good.
+        # Missionary strength is much easier to achieve than it used to be,
+        # so count +2% missionary strength as about equivalent to +1 misionary
+        total += 1*v
       when :global_missionary_strength
-        # It depends on culture, but count +2% missionary strength as equivalent to +1 misionary
-        total += 25.0*v
+        total += 50.0*v
       when :global_revolt_risk
         total -= 1.0*v
       when :global_autonomy
@@ -875,7 +876,7 @@ class BonusScoring
         total -= 10.0*v
       when :money
         # Doubling the money
-        total += v*10
+        total += v*12
       when :siege_ability
         # Doubling siege speed
         total += v*5
@@ -884,13 +885,14 @@ class BonusScoring
         total += v*1
       when :military_power
         # Doubling military combat power both land and sea
-        total += v*10
+        total += v*12
       when :movement_speed
-        # Assume army that moves 100% faster is worth 5mp/month
-        total += v*5
+        # Assume army that moves 100% faster is worth 4mp/month
+        # Sadly due to shatered retreat rules, ZoCs etc. it's not as useful as it appears
+        total += v*4
       when :global_manpower_modifier
         # Doubling total manpower
-        total += v*3
+        total += v*4
       when :global_colonial_growth
         total += v/25.0
       when :extra_minor_abilities
