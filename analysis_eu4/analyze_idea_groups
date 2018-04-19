@@ -36,7 +36,7 @@ class AnalyzeIdeaGroups < ParadoxGame
     result    
   end
 
-  def analyze_idea_groups!(details)
+  def analyze_idea_groups!(show_details)
     output = []
     each_idea_group do |name, idea_group|
       bonuses = list_of_bonuses(idea_group)
@@ -44,8 +44,10 @@ class AnalyzeIdeaGroups < ParadoxGame
     end
     output.sort_by{|s,n,d| [-s,n]}.each do |score, name, details|
       puts "• %.2f %s" % [score, name]
-      details.each do |idea_name, bonus|
-        puts "  • %.2f %s (%s)" % [bonus.score, idea_name, bonus.to_h.map{|k,v| "#{k}: #{v}"}.join(", ")]
+      if show_details
+        details.each do |idea_name, bonus|
+          puts "  • %.2f %s (%s)" % [bonus.score, idea_name, bonus.to_h.map{|k,v| "#{k}: #{v}"}.join(", ")]
+        end
       end
     end
   end
