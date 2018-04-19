@@ -99,6 +99,9 @@ class BonusScoring
     # Naval battles, they hard to model and relatively low importance
     :sunk_ship_morale_hit_recieved,
     :capture_ship_chance,
+
+    # Unless there are special events, this seems purely cosmetic
+    :female_advisor_chance,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -234,10 +237,10 @@ class BonusScoring
     monthly_dip_points (-v * 75.0 / 12 / 10)
   end
   # -2 WE is worth 75 dip
-  # Assume you are at positive-enough-to-care WE 50% of the time
+  # Assume you are at positive-enough-to-care WE 25% of the time
   # This is *monthly* number
   def war_exhaustion(v)
-    monthly_dip_points -v*(75.0/2.0)*0.50
+    monthly_dip_points -v*(75.0/2.0)*0.25
   end
   # Assuming reduce inflation button is used once / 50 years
   def inflation_action_cost(v)
@@ -370,7 +373,7 @@ class BonusScoring
   # this isn't true very early game where shock rules, but should be true overall
   #
   # Weight damage taken and damage received modifiers equally
-  # combat ability only affect damae dealt
+  # combat ability only affect damage dealt
   # discipline affects damage both taken and dealt
   def shock_damage_received(v)
     land_unit_power v*-0.50
@@ -479,22 +482,23 @@ class BonusScoring
     naval_unit_power 0.5 * v
   end
 
-  # 1 fire pip is worth 20%/20%/0%/0% (fire dmg, fire morale dmg, shock dmg, shock morale dmg)
-  # 10% discipline is worth 10%/20%/10%/20% - and you won't always have leaders
-  # So let's say leader pip is worth 5% discipline
+  # Reman claims 6 pips is worth 75% more damage dealt in gives phase
+  # Assume 80% of battles will have leaders
   #
-  # For naval units you will very rarely have leaders, so half that value again
+  # For naval units assume 25% will have leaders because who can afford admirals anyway
   def leader_land_fire(v)
-    land_unit_power 0.05 * v
+    fire_damage 0.80 * (0.75/6) * v
   end
   def leader_land_shock(v)
-    land_unit_power 0.05 * v
+    shock_damage 0.80 * (0.75/6) * v
   end
+
+  # Both phases worth the same
   def leader_naval_fire(v)
-    naval_unit_power 0.025 * v
+    naval_unit_power 0.25 * (0.75/6) * 0.50 * v
   end
   def leader_naval_shock(v)
-    naval_unit_power 0.025 * v
+    naval_unit_power 0.25 * (0.75/6) * 0.50 * v
   end
 
   # Assume 25% heretic 75% heathen
@@ -503,9 +507,9 @@ class BonusScoring
   end
 
   # Extra pip speeds up siege by about 17%
-  # Asssume 30% of sieges have leaders
+  # Asssume 80% of sieges have leaders
   def leader_siege(v)
-    siege_ability v*0.17*0.30
+    siege_ability v*0.17*0.80
   end
 
   # I assume this adds to base of 15% (20% in home territory) not 100%
@@ -757,9 +761,9 @@ class BonusScoring
     global_revolt_risk (2*0.05*v)
   end
 
-  # Assume that extra accepted culture is on average in 10% of provinces
+  # Assume that extra accepted culture is on average in 5% of provinces
   def num_accepted_cultures(v)
-    affected = v * 0.10
+    affected = v * 0.05
     global_revolt_risk -2*affected
     global_tax_modifier 0.33*affected
     global_missionary_strength 0.02*affected
@@ -825,15 +829,24 @@ class BonusScoring
   #   then: 30% (tech) + up to 40% (absolutism)
   # So if you have max absolutism all the time, base is 30%
   # Let's assume 25%. Then extra 5% is actually 6.66% discount.
+  #
+  # Conflicting claims if it affects AE or not
   def administrative_efficiency(v)
     diplomatic_annexation_cost(-v/0.75)
     core_creation_cost(-v/0.75) # just cost not time
     province_warscore_cost(-v/0.75)
+    ae_impact(-v/0.75)
   end
 
   # Arbitrarily assume reinforce costs are 20% of army costs
   def reinforce_cost_modifier(v)
     calculated_land_cost 0.2*v
+  end
+
+  # It's 2d4-2 so there's a 1/16 of natural 6
+  # If this is stacked, next one is valued less, but such stacks are unlikely
+  def monarch_admin_power(v)
+    monthly_adm_points(v*15.0/16.0)
   end
 
   def score
@@ -932,7 +945,7 @@ class BonusScoring
         # Not very meaningful since native policies are a thing
       when :yearly_tribal_allegiance
         # Too situational
-      when :global_institution_spread
+      when :global_institution_spread, :institution_spread_from_true_faith
         # This makes very little difference,
         # the difficulty is just getting institutions to reach you,
         # spread % modifiers after that is basically insignificant
