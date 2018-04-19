@@ -25,23 +25,28 @@ class AnalyzeIdeaGroups < ParadoxGame
     idea_group.delete "free"
     idea_group.delete "important"
 
-    bonuses = BonusScoring.new
-    idea_group.each do |_,idea|
+    result = {"all" => BonusScoring.new}
+    idea_group.each do |idea_name, idea|
+      result[idea_name] = BonusScoring.new
       idea.each do |k,v|
-        bonuses.send(k,v)
+        result["all"].send(k,v)
+        result[idea_name].send(k,v)
       end
     end
-    bonuses
+    result    
   end
 
-  def analyze_idea_groups!
+  def analyze_idea_groups!(details)
     output = []
     each_idea_group do |name, idea_group|
       bonuses = list_of_bonuses(idea_group)
-      output << [bonuses.score, localization(name)]
+      output << [bonuses["all"].score, localization(name), bonuses]
     end
-    output.sort_by{|s,n| [-s,n]}.each do |score, name|
-      puts "%.2f %s" % [score, name]
+    output.sort_by{|s,n,d| [-s,n]}.each do |score, name, details|
+      puts "• %.2f %s" % [score, name]
+      details.each do |idea_name, bonus|
+        puts "  • %.2f %s (%s)" % [bonus.score, idea_name, bonus.to_h.map{|k,v| "#{k}: #{v}"}.join(", ")]
+      end
     end
   end
 
@@ -51,10 +56,15 @@ class AnalyzeIdeaGroups < ParadoxGame
   end
 end
 
+details = false
 ideas = "all"
-if ARGV[0] =~ /\A--(.*)/
-  ideas = $1
+while ARGV[0] =~ /\A--(.*)/
+  if $1 == "details"
+    details = true
+  else
+    ideas = $1
+  end
   ARGV.shift
 end
 
-AnalyzeIdeaGroups.new(ideas, *ARGV).analyze_idea_groups!
+AnalyzeIdeaGroups.new(ideas, *ARGV).analyze_idea_groups!(details)

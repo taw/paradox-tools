@@ -59,7 +59,6 @@ class BonusScoring
     :rebel_support_efficiency,
     :embargo_efficiency,
     :global_spy_defence,
-    :spy_offence,
 
     # Ignored because ridiculously underpowered
     :culture_conversion_cost,
@@ -197,6 +196,10 @@ class BonusScoring
   end
   def justify_trade_conflict_cost(v)
     diplomats 2 * 1.5 * 0.01 * -v
+  end
+  # It's at least as good as fabrication cost discount
+  def spy_offence(v)
+    diplomats 2 * 0.25 * v
   end
 
   # Hard cold facts:
