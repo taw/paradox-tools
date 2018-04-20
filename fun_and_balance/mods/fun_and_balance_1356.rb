@@ -1,6 +1,6 @@
 require_relative "fun_and_balance_common"
 
-class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
+class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
   def apply!
     soft_patch_defines_lua!([
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
