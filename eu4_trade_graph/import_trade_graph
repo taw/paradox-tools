@@ -1,74 +1,17 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox"
-require_relative "../lib/paradox_mod_file_serializer"
-require "rgl/adjacency"
-require "rgl/connected_components"
-require "rgl/topsort"
+require_relative "trade_graph"
 
 class ExportTradeGraph < ParadoxGame
   def initialize(trade_graph_file, *args)
     super(*args)
-    trade_graph_data = open(trade_graph_file, &:readlines).map{|line| line.chomp.split}
-    @trade_graph = RGL::DirectedAdjacencyGraph[*trade_graph_data.flatten]
-  end
-
-  def valid?
-    inv_comp_map = {}
-    @trade_graph.strongly_connected_components.comp_map.each do |v, n|
-      (inv_comp_map[n] ||= []) << v
-    end
-    inv_comp_map.values.delete_if { |scc| scc.size == 1 }.empty?
-  end
-
-  def orig
-    @orig ||= parse("common/tradenodes/00_tradenodes.txt")
-  end
-
-  def link(a,b)
-    direct = @orig[a].find_all("outgoing").find{|n| n["name"] == b}
-    return direct if direct
-    backwards = @orig[b].find_all("outgoing").find{|n| n["name"] == a}
-    raise "No link from #{a} to #{b} or backwards" unless backwards
-    PropertyList[
-      "name", b,
-      "path", backwards["path"].reverse,
-      "control", backwards["control"].each_slice(2).to_a.reverse.flatten,
-    ]
+    @trade_graph = TradeGraph.new(parse("common/tradenodes/00_tradenodes.txt"))
+    @updated_edge_list = open(trade_graph_file, &:readlines).map{|line| line.chomp.split}
   end
 
   def call
-    if not valid?
-      raise "Trade Graph is not valid, can't rebuild"
-    end
-
-    output = PropertyList[]
-
-    @trade_graph.topsort_iterator.each do |node_name|
-      orig_node = orig[node_name]
-      raise "Unknown keys: #{orig_node.keys}" unless (
-        orig_node.keys.to_set - Set["location", "color", "outgoing", "members", "inland", "end", "ai_will_propagate_through_trade"]
-      ).empty?
-
-      node = PropertyList[]
-      node.add! "location", orig_node["location"]
-      if orig_node["inland"]
-        node.add! "inland", orig_node["inland"]
-      end
-      if orig_node["color"]
-        node.add! "color", orig_node["color"]
-      end
-      @trade_graph.each_adjacent(node_name) do |target_node_name|
-        node.add! "outgoing", link(node_name, target_node_name)
-      end
-      node.add! "members", orig_node["members"]
-      if @trade_graph.each_adjacent(node_name).to_a.empty?
-        node.add! "end", true
-      end
-      output.add! node_name, node
-    end
-
-    puts ParadoxModFileSerializer.serialize(output)
+    puts @trade_graph.rewrite(@updated_edge_list)
   end
 end
 
