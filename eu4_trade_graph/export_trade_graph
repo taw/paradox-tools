@@ -1,15 +1,13 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox"
+require_relative "trade_graph"
 
 class ExportTradeGraph < ParadoxGame
   def call
-    node = parse("common/tradenodes/00_tradenodes.txt")
-    node.each do |from, node|
-      node.find_all("outgoing").each do |link|
-        to = link["name"]
-        puts [from, to].join(" ")
-      end
+    tg = TradeGraph.new(parse("common/tradenodes/00_tradenodes.txt"))
+    tg.edges.each do |from, to|
+      puts [from, to].join(" ")
     end
   end
 end
