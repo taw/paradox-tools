@@ -13,7 +13,7 @@ class ListFormableCountries < ParadoxGame
     end
   end
   
-  def call
+  def formable_countries
     tags = Set[]
     glob("{events,decisions}/*.txt").each do |path|
       begin
@@ -26,7 +26,11 @@ class ListFormableCountries < ParadoxGame
         tags << tag
       end
     end
-    puts tags.sort
+    tags
+  end
+
+  def call
+    puts formable_countries.map{|tag| "#{tag} #{localization(tag)}"}
   end
 end
 
