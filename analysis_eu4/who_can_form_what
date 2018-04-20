@@ -1,0 +1,82 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class WhoCanFormWhat < ParadoxGame
+  def each_change_tag(node, &blk)
+    return unless node.is_a?(PropertyList)
+    node.each do |key, val|
+      if key == "change_tag"
+        yield val
+      end
+      each_change_tag(val, &blk)
+    end
+  end
+  
+  def formable_countries
+    tags = Set[]
+    glob("{events,decisions}/*.txt").each do |path|
+      begin
+        node = parse(path)
+      rescue
+        warn "#{path}: #{$!}"
+        next
+      end
+      each_change_tag(node) do |tag|
+        tags << tag
+      end
+    end
+    tags
+  end
+
+  # def each_country_primary_culture
+  #   parse("common/cultures/00_cultures.txt").each do |group_name, group|
+  #     group = group.to_h
+  #     group.delete "graphical_culture"
+  #     group.delete "dynasty_names"
+  #     group.each do |culture_name, details|
+  #       next if details.is_a?(Array)
+  #       details = details.to_h
+  #       details.delete "dynasty_names"
+  #       yield culture_name, details["primary"]
+  #     end
+  #   end
+  # end
+
+  def country_to_culture
+    @country_to_culture ||= begin
+      result = {}
+      glob("history/countries/*.txt").each do |path|
+        tag = path.basename.to_s[0,3]
+        node = parse(path)
+        result[tag] = node["primary_culture"]
+      end
+      result
+    end
+  end
+
+  def countries_by_culture
+    @countries_by_culture ||= begin
+      result = {}
+      country_to_culture.each do |tag, culture|
+        result[culture] ||= Set[]
+        result[culture] << tag
+      end
+      result
+    end
+  end
+
+  def call
+    # It's a very questionable assumption that it's all by primary culture
+    formable_countries.each do |tag|
+      culture = country_to_culture[tag]
+      puts "#{tag} #{localization(tag)} #{localization(culture)}"
+      countries_by_culture[culture].each do |other_tag|
+        next if tag == other_tag
+        puts "* #{other_tag} #{localization(other_tag)}"
+      end
+    end
+  end
+end
+
+WhoCanFormWhat.new(*ARGV).call

@@ -28,6 +28,7 @@ list = %Q[
   analysis_eu4/list_converter_province_value $g
   analysis_eu4/list_formable_countries $g
   analysis_eu4/validate_trade_nodes $g
+  analysis_eu4/who_can_form_what $g
   analysis_eu4_save/aggressive_expansion $s $g
   analysis_eu4_save/analyze_autonomy $s $g
   analysis_eu4_save/analyze_institutions $s
