@@ -47,8 +47,8 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     fix_wargoals!
     no_naval_attrition!
     patch_religion!
-    disable_burgundy_inheritance!
-    move_burgundy_capital_to_hre!
+    # disable_burgundy_inheritance! # there are other changes mod makes, so maybe it's OK
+    # move_burgundy_capital_to_hre!
     power_projection_tweaks!
     disable_call_for_peace!
     longer_cb_on_backstabbers!
@@ -58,6 +58,7 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     nerf_china!
     everybody_can_can_claim_states!
     buff_awful_idea_groups!
+    reduce_religious_zeal!
     rewrite_trade_map! do |edges|
       edges - [
         ["philippines", "panama"],

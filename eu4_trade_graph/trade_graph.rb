@@ -72,7 +72,7 @@ class TradeGraph
       output.add! node_name, node
     end
 
-    ParadoxModFileSerializer.serialize(output)
+    output
   end
 
 private

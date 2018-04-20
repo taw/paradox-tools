@@ -11,7 +11,8 @@ class ExportTradeGraph < ParadoxGame
   end
 
   def call
-    puts @trade_graph.rewrite(@updated_edge_list)
+    updated_node = @trade_graph.rewrite(@updated_edge_list)
+    puts ParadoxModFileSerializer.serialize(updated_node)
   end
 end
 

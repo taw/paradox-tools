@@ -296,7 +296,16 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/tradenodes/00_tradenodes.txt") do |node|
       trade_graph = TradeGraph.new(node)
       edges = yield(trade_graph.edges)
-      trade_graph.rewrite(edges)
+      updated_node = trade_graph.rewrite(edges)
+      # Functional / Imperative interface mismatch here ...
+      node.instance_eval{ @entries = updated_node.to_a }
+    end
+  end
+
+  def reduce_religious_zeal!
+    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
+      # -100% reduced to -5%
+      node["religious_zeal_at_conv"]["local_missionary_strength"] = -0.05
     end
   end
 end

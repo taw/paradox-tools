@@ -18,7 +18,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          NationCustomizerGameModification,
                          EU3StyleElectionsGameModification
     create_mod_descriptor!(
-      name: "Fun and Balance for 1356",
+      name: "!Fun and Balance for 1356",
       path: "mod/fun_and_balance_1356",
       supported_version: "1.25",
       picture: "fun_and_balance.jpg",
