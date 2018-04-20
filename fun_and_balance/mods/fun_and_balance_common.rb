@@ -1,4 +1,5 @@
 require_relative "base"
+require_relative "../../eu4_trade_graph/trade_graph"
 
 # This file is still a bit too big, but no longer insanely so
 class FunAndBalanceCommonGameModification < EU4GameModification
@@ -288,6 +289,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["maritime_ideas"]["merchant_marine"]["merchants"] = 1
       node["maritime_ideas"]["bonus"]["global_ship_trade_power"] = 0.5
       node["naval_ideas"]["boarding_parties"]["free_leader_pool"] = 1
+    end
+  end
+
+  def rewrite_trade_map!
+    patch_mod_file!("common/tradenodes/00_tradenodes.txt") do |node|
+      trade_graph = TradeGraph.new(node)
+      edges = yield(trade_graph.edges)
+      trade_graph.rewrite(edges)
     end
   end
 end

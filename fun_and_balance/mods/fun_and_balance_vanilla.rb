@@ -59,5 +59,14 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     nerf_china!
     everybody_can_can_claim_states!
     buff_awful_idea_groups!
+    rewrite_trade_map! do |edges|
+      edges - [
+        ["philippines", "panama"],
+        ["mexico", "panama"],
+      ] + [
+        ["panama", "mexico"],
+        ["patagonia", "lima"],
+      ]
+    end
   end
 end
