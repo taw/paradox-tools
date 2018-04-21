@@ -127,6 +127,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       RUS
       SCA
       SPA
+      TIM
       VIJ
     ]
 
