@@ -33,6 +33,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NMilitary.FORTRESS_COST", 0.50, 0.25],
       ["NMilitary.MERCENARY_SUPPORT_LIMIT_BASE", 20, 10],
       ["NMilitary.MERCENARY_SUPPORT_LIMIT_FRACTION", 0.3, 0.15],
+      ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
