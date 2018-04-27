@@ -4,48 +4,115 @@ require_relative "../lib/paradox_game"
 require_relative "eu4_save"
 require "pp"
 
+class TradeNodeCountryInformation
+  attr_reader :tag, :attrs
+  def initialize(tag, node)
+    @tag = tag
+    @attrs = node.to_h
+    @attrs.delete("max_demand") # Unclear what it even is
+    @attrs.delete("trading_policy_date") # Totally uninteresting
+  end
+
+  def empty?
+    @attrs.empty?
+  end
+
+  def inspect
+    "TradeNodeCountryInformation<#{@tag}, #{attrs.inspect}>"
+  end
+end
+
+class TradeNode
+  attr_reader :incoming, :outgoing
+  attr_reader :name, :country_info, :incoming_info, :attrs
+
+  def local_value
+    @local_value ||= @node["local_value"]
+  end
+
+  def total_power
+    @total_power ||= @node["total"]
+  end
+
+  def initialize(network, name, node)
+    @name = name
+    @incoming = {} # connect this
+    @outgoing = {} # connect this
+    @country_info = {}
+    @incoming_info = []
+    @attrs = {}
+    @attrs["steer_power"] = node.find_all("steer_power")
+    node.each do |key, value|
+      if value.is_a?(PropertyList) and value["max_demand"]
+        raise if @country_info[key]
+        ci = TradeNodeCountryInformation.new(key, value)
+        next if ci.empty?
+        @country_info[key] = ci
+      elsif key == "incoming"
+        raise "Unexpected keys for incoming link" unless value.keys == %W[add value from]
+        @incoming_info << {
+          add: value["add"],
+          value: value["value"],
+          from: network.number_to_name(value["from"]),
+        }
+      elsif key == "steer_power"
+        # already set
+      else
+        raise "Already has key for #{key}" if @attrs[key]
+        @attrs[key] = value
+      end
+    end
+  end
+end
+
+class TradeNetwork
+  attr_reader :nodes
+
+  def initialize(node)
+    @nodes = {}
+    @indexes_to_names = {}
+
+    # Awkwardly node means both "trade node" and "properly list node"
+    node_nodes = node.find_all("node")
+    node_nodes.each_with_index do |node, i|
+      name = node["definitions"]
+      @indexes_to_names[i+1] = name
+    end
+
+    node_nodes.each_with_index do |node, i|
+      name = node["definitions"]
+      @nodes[name] = TradeNode.new(self, name, node)
+    end
+  end
+
+  def number_to_name(key)
+    @indexes_to_names[key] or raise "Unknown key #{key}"
+  end
+
+  def [](key)
+    if key.is_a?(Integer)
+      key = number_to_name(key)
+    end
+    @nodes[key] or raise "Unknown key #{key}"
+  end
+end
+
+# Classes above are fairly generic and could be used by many analyses
+
 class AnalyzeTrade < ParadoxGame
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
   end
 
-  def trade_nodes
-    @trade_nodes ||= begin
-      map = {}
-      indexes_to_names = {}
-      @save.data["trade"].to_a.each_with_index do |prop, i|
-        node = prop.val
-        incoming = node.find_all("incoming")
-        node = node.to_h
-        name = node.delete("definitions")
-        node["incoming"] = incoming.map(&:to_h)
-        indexes_to_names[i+1] = name
-        map[name] = node
-        node.each do |key, val|
-          if val.is_a?(PropertyList)
-            val = val.to_h
-            val.delete "max_demand"
-            val.delete "potential"
-            if val.empty?
-              node.delete key
-            else
-              node[key] = val
-            end
-          end
-        end
-      end
-      map.each do |_, node|
-        node["incoming"].each do |incoming|
-          incoming["from"] = indexes_to_names[incoming["from"]]
-        end
-      end
-      map
+  def network
+    @network ||= begin
+      TradeNetwork.new(@save.data["trade"])
     end
   end
 
   def call
-    pp trade_nodes
+    pp network
   end
 end
 
