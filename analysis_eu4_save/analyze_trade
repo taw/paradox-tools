@@ -4,194 +4,6 @@ require_relative "../lib/paradox_game"
 require_relative "eu4_save"
 require "pp"
 
-class TradeNodeCountryInformation
-  attr_reader :tag, :attrs
-  def initialize(tag, node)
-    @tag = tag
-    @attrs = node.to_h
-    @attrs.delete("max_demand") # Unclear what it even is
-    @attrs.delete("trading_policy_date") # Totally uninteresting
-  end
-
-  def empty?
-    @attrs.empty?
-  end
-
-  def total
-    @attrs["total"]
-  end
-
-  def money
-    @attrs["money"]
-  end
-
-  def collects?
-    !!@attrs["total"]
-  end
-
-  def collection_multiplier
-    return nil unless total and money
-    (money / total).round(6)
-  end
-
-  def inspect
-    "TradeNodeCountryInformation<#{@tag}, #{attrs.inspect}>"
-  end
-end
-
-# The algorithm can't handle empty nodes correctly
-# For example, since there's no information what happens when you add value to autralia node
-# it must assume it just dissapears, while actually it would flow into the network
-
-class TradeNode
-  attr_reader :incoming, :outgoing
-  attr_reader :name, :country_info, :attrs
-  attr_reader :incoming_info, :outgoing_info
-
-  # Will be missing for completely uncolonized (like australia)
-  def local_value
-    @attrs["local_value"] || 0.0
-  end
-
-  # value_added_outgoing is always same in saves I checked
-  # This is pre-add
-  def outgoing_value
-    @attrs["outgoing"]
-  end
-
-  def incoming_value
-    # value is after add
-    @incoming_info.map{|n| n[:value]}.inject(0, &:+).round(3)
-  end
-
-  def total_value
-    (local_value + incoming_value).round(3)
-  end
-
-  def retained_value
-    (total_value - outgoing_value).round(3)
-  end
-
-  def total_power
-    @attrs["total"]
-  end
-
-  # This is post-multiplied
-  def immediate_collector_share
-    @immediate_collector_share ||= begin
-      result = Hash.new(0)
-      country_info.each do |tag, info|
-        next if total_value == 0 # treat as dead end
-        next unless info.collects?
-        result[tag] = (info.money / total_value).round(6)
-      end
-      result
-    end
-  end
-
-  # This is post-multiplied
-  def immediate_transfer_share
-    @immediate_transfer_share ||= begin
-      result = Hash.new(0)
-      outgoing_info.each do |info|
-        next if total_value == 0 # treat as dead end
-        destination_name = info[:to]
-        value = info[:value]
-        result[destination_name] = (info[:value] / total_value).round(6)
-      end
-      result
-    end
-  end
-
-  def total_collector_share
-    @total_collector_share ||= begin
-      result = immediate_collector_share.dup
-      immediate_transfer_share.each do |destination_name, destination_transfer_share|
-        next if destination_transfer_share == 0
-        destination_node = @network[destination_name]
-        destination_node.total_collector_share.each do |tag, tag_share|
-          result[tag] += tag_share * destination_transfer_share
-        end
-      end
-      result.each_key do |tag|
-        result[tag] = result[tag].round(6)
-        result.delete(tag) if result[tag] == 0
-      end
-      result
-    end
-  end
-
-  def initialize(network, name, node)
-    @network = network
-    @name = name
-    @country_info = {}
-    @incoming_info = []
-    @outgoing_info = []
-    @attrs = {}
-    @attrs["steer_power"] = node.find_all("steer_power")
-    node.each do |key, value|
-      if value.is_a?(PropertyList) and value["max_demand"]
-        raise if @country_info[key]
-        ci = TradeNodeCountryInformation.new(key, value)
-        next if ci.empty?
-        @country_info[key] = ci
-      elsif key == "incoming"
-        raise "Unexpected keys for incoming link" unless value.keys == %W[add value from]
-        @incoming_info << {
-          add: value["add"],
-          value: value["value"],
-          from: network.number_to_name(value["from"]),
-        }
-      elsif key == "steer_power"
-        # already set
-      else
-        raise "Already has key for #{key}" if @attrs[key]
-        @attrs[key] = value
-      end
-    end
-  end
-end
-
-class TradeNetwork
-  attr_reader :nodes
-
-  def initialize(node)
-    @nodes = {}
-    @indexes_to_names = {}
-
-    # Awkwardly node means both "trade node" and "properly list node"
-    node_nodes = node.find_all("node")
-    node_nodes.each_with_index do |node, i|
-      name = node["definitions"]
-      @indexes_to_names[i+1] = name
-    end
-
-    node_nodes.each_with_index do |node, i|
-      name = node["definitions"]
-      @nodes[name] = TradeNode.new(self, name, node)
-    end
-
-    @nodes.each do |name, node|
-      node.incoming_info.each do |info|
-        source_name = info[:from]
-        source_node = @nodes[source_name]
-        source_node.outgoing_info << {add: info[:add], value: info[:value], to: name}
-      end
-    end
-  end
-
-  def number_to_name(key)
-    @indexes_to_names[key] or raise "Unknown key #{key}"
-  end
-
-  def [](key)
-    if key.is_a?(Integer)
-      key = number_to_name(key)
-    end
-    @nodes[key] or raise "Unknown key #{key}"
-  end
-end
-
 # Classes above are fairly generic and could be used by many analyses
 
 class AnalyzeTrade < ParadoxGame
@@ -202,12 +14,6 @@ class AnalyzeTrade < ParadoxGame
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
-  end
-
-  def network
-    @network ||= begin
-      TradeNetwork.new(@save.data["trade"])
-    end
   end
 
   def print_node_info(node_name, node)
@@ -223,7 +29,7 @@ class AnalyzeTrade < ParadoxGame
   end
 
   def call
-    network.nodes.each do |name, node|
+    @save.trade_network.nodes.each do |name, node|
       print_node_info(name, node)
     end
   end
