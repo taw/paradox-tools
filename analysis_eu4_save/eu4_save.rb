@@ -11,12 +11,16 @@ class TradeNodeCountryInformation
     @attrs.empty?
   end
 
-  def total
+  def total # trade value - raw
     @attrs["total"]
   end
 
-  def money
+  def money # trade value - modified by trade efficiency
     @attrs["money"]
+  end
+
+  def trade_power
+    @attrs["val"] || 0.0
   end
 
   def collects?
@@ -148,6 +152,11 @@ end
 
 class TradeNetwork
   attr_reader :nodes
+
+  def inspect
+    "TradeNetwork"
+  end
+  alias_method :to_s, :inspect
 
   def initialize(node)
     @nodes = {}
