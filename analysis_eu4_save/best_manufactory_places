@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_game"
+require_relative "eu4_save"
+
+class BestManufactoryPlaces < ParadoxGame
+  def country_name(tag)
+    @save.countries[tag]&.name || localization(tag)
+  end
+  
+  def initialize(save_game, *roots)
+    super(*roots)
+    @save = EU4Save.new(save_game)
+  end
+
+  # This just analyzes trade value, not producion value
+  # Wiki says these are annual values, so converitng to monthly income
+  def call
+    results = []
+    @save.provinces.each do |id, province|
+      next unless province.owner
+      # Could also include subjects
+      # next unless province.owner == @save.player_tag
+
+      trade_goods = province.trade_goods
+      trade_node_name = province.trade_node_name
+      price = @save.trade_good_prices[trade_goods]
+      trade_node = @save.trade_network[trade_node_name]
+      owner_trade_share = trade_node.total_collector_share[province.owner]
+      owner_trade_value = (owner_trade_share * price / 12.0).round(6)
+      results << [country_name(province.owner), owner_trade_value, id, province.name]
+    end
+    results.sort.each do |row|
+      puts row.join("\t")
+    end
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
+BestManufactoryPlaces.new(*ARGV).call

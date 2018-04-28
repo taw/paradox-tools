@@ -2,9 +2,6 @@
 
 require_relative "../lib/paradox_game"
 require_relative "eu4_save"
-require "pp"
-
-# Classes above are fairly generic and could be used by many analyses
 
 class AnalyzeTrade < ParadoxGame
   def country_name(tag)

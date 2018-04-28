@@ -248,6 +248,18 @@ class Province
     (@node["base_manpower"] || 0)
   end
 
+  def base_tax
+    @node["base_tax"] || 0
+  end
+
+  def base_production
+    @node["base_production"] || 0
+  end
+
+  def base_manpower
+    @node["base_manpower"] || 0
+  end
+
   def owner
     @node["owner"]
   end
@@ -272,8 +284,20 @@ class Province
     (@node["buildings"] || {}).keys
   end
 
-  def to_s
-    "Province<#{@id}>"
+  def trade_node_name
+    @node["trade"]
+  end
+
+  def trade_goods
+    @node["trade_goods"]
+  end
+
+  def name
+    @node["name"]
+  end
+
+  def inspect
+    "Province<#{@id};#{name}>"
   end
   alias_method :to_s, :inspect
 end
@@ -339,6 +363,16 @@ class EU4Save
 
   def trade_network
     @trade_network ||= TradeNetwork.new(@data["trade"])
+  end
+
+  def trade_good_prices
+    @trade_good_prices ||= begin
+      result = {}
+      @data["change_price"].each do |key, value|
+        result[key] = value["current_price"]
+      end
+      result
+    end
   end
 
   def to_s
