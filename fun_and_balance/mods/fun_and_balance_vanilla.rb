@@ -59,7 +59,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     nerf_china!
     everybody_can_can_claim_states!
     buff_awful_idea_groups!
-    reduce_religious_zeal!
     rewrite_trade_map! do |edges|
       edges - [
         ["philippines", "panama"],

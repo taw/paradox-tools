@@ -301,11 +301,4 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node.instance_eval{ @entries = updated_node.to_a }
     end
   end
-
-  def reduce_religious_zeal!
-    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
-      # -100% reduced to -5%
-      node["religious_zeal_at_conv"]["local_missionary_strength"] = -0.05
-    end
-  end
 end
