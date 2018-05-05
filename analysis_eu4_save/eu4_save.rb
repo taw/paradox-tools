@@ -281,8 +281,39 @@ class Province
     @node["local_autonomy"] || 0
   end
 
+  def trade_company?
+    !!@node["active_trade_company"]
+  end
+
+  # This should be only of current owner, others are not saved
+  def territorial_core?
+    @node["territorial_core"]
+  end
+
+  def estate
+    estate_number = @node["estate"]
+    if estate_number
+      %W[church nobility burghers cossacks tribes dhimmi].fetch(estate_number-1)
+    else
+      nil
+    end
+  end
+
+  # This is no longer in the saves :-/
   def min_autonomy
-    @node["min_autonomy"] || 0
+    @min_autonomy ||= begin
+      if trade_company?
+        0.0
+      elsif territorial_core?
+        75.0
+      elsif estate == "tribes"
+        50.0
+      elsif estate
+        25.0
+      else
+        @node["min_autonomy"] || 0
+      end
+    end
   end
 
   def effective_autonomy
@@ -291,6 +322,11 @@ class Province
 
   def buildings
     (@node["buildings"] || {}).keys
+  end
+
+  def has_manufactory?
+    # furnace works differently
+    !(%W[farm_estate furnace mills plantations textile tradecompany weapons wharf] & buildings).empty?
   end
 
   def trade_node_name

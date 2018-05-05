@@ -7,7 +7,7 @@ class BestManufactoryPlaces < ParadoxGame
   def country_name(tag)
     @save.countries[tag]&.name || localization(tag)
   end
-  
+
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
@@ -19,8 +19,9 @@ class BestManufactoryPlaces < ParadoxGame
     results = []
     @save.provinces.each do |id, province|
       next unless province.owner
+      next if province.has_manufactory?
       # Could also include subjects
-      # next unless province.owner == @save.player_tag
+      next unless province.owner == @save.player_tag
 
       trade_goods = province.trade_goods
       trade_node_name = province.trade_node_name
@@ -28,9 +29,43 @@ class BestManufactoryPlaces < ParadoxGame
       trade_node = @save.trade_network[trade_node_name]
       owner_trade_share = trade_node.total_collector_share[province.owner]
       owner_trade_value = (owner_trade_share * price / 12.0).round(6)
-      results << [country_name(province.owner), owner_trade_value, id, province.name]
+
+      # Can't build manufactory anyway
+      next if trade_goods == "gold" or trade_goods == "unknown"
+
+      # This is not from the save, we recalculate estimate
+      autonomy = province.effective_autonomy
+      autonomy = 0 if province.estate == "burghers"
+      usefulness = 1.0 - autonomy/100.0
+      base_production_income = 1.0 * price / 12.0
+      workshop_multiplier = 1.0
+      workshop_multiplier = 1.5 if province.buildings.include?("workshop")
+      workshop_multiplier = 2.0 if province.buildings.include?("counting_house")
+
+      # This is multiplied by a lot of things
+      # - goods produced
+      #   - prosperity 25%
+      #   - production leader 10%
+      #   - war exhaustion -X%
+      #   - nearby merchant companies +X%
+      #   - happy burgers 10%
+      #   - national ideas
+      #   - furnacess
+      #   - trading in coal
+      # - local production efficiency
+      #   - workshops [TAKEN INTO ACCOUNT]
+      # - production efficiency
+      #   - adm tech bonus 0% to 20%
+      #   - ahead of time adm bonus 20%
+      # and maybe others, for ballpark figure picking 1.50x
+      estimated_production_value = (base_production_income * workshop_multiplier * usefulness)
+      estimated_production_value *= 1.50
+
+      estimated_total_value = (owner_trade_value + estimated_production_value).round(6)
+
+      results << [country_name(province.owner), estimated_total_value, trade_goods, id, province.name]
     end
-    results.sort.each do |row|
+    results.sort_by{|t,v,g,i,pn| [t,-v,g,i,pn]}.each do |row|
       puts row.join("\t")
     end
   end
