@@ -4,8 +4,13 @@ require "rgl/connected_components"
 require "rgl/topsort"
 
 class TradeGraph
+  attr_reader :node
   def initialize(node)
     @node = node
+  end
+
+  def nodes
+    @node.keys
   end
 
   def edges
