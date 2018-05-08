@@ -285,6 +285,11 @@ class Province
     !!@node["active_trade_company"]
   end
 
+  # What is being constructed is awkwardly indicated by ID not names
+  def construction_in_progress?
+    !!@node["building_construction"]
+  end
+
   # This should be only of current owner, others are not saved
   def territorial_core?
     @node["territorial_core"]
