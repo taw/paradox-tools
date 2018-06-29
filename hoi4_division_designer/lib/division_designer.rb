@@ -1,6 +1,7 @@
 require "pathname"
 require "json"
 require_relative "division"
+require_relative "unit_type"
 require_relative "unit"
 require_relative "equipment"
 
@@ -13,16 +14,29 @@ end
 
 class DivisionDesigner
   def initialize
+    @unit_types = {}
+    @equipment = {}
     db = JSON.parse(Pathname("#{__dir__}/../data/data.json").read)
-    @units = {}
     db["units"].each do |name, stats|
-      @units[name] = Unit.new(name, stats)
+      @unit_types[name] = UnitType.new(name, stats)
     end
+
+    db["equipment"].each do |name, stats|
+      @equipment[name] = Equipment.new(name, stats)
+    end
+  end
+
+  def technology
+    {
+      equipment: {"infantry_equipment" => @equipment["infantry_equipment"]},
+    }
   end
 
   def division(unit_types)
     units = unit_types.flat_map{|k,v|
-      [@units.fetch(k.to_s)] * v
+      unit_type = @unit_types.fetch(k.to_s)
+      unit = Unit.new(unit_type, technology)
+      [unit] * v
     }
     Division.new(*units)
   end

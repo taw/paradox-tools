@@ -1727,5 +1727,4264 @@
         }
       }
     }
+  },
+  "equipment": {
+    "anti_air_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "picture": "archetype_anti_air_equipment",
+      "type": [
+        "anti_air",
+        "infantry"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 1,
+      "hardness": 0,
+      "armor_value": 0,
+      "soft_attack": 3,
+      "hard_attack": 7,
+      "ap_attack": 25,
+      "air_attack": 19,
+      "lend_lease_cost": 3,
+      "build_cost_ic": 4,
+      "resources": {
+        "steel": 2
+      }
+    },
+    "anti_air_equipment_1": {
+      "year": 1936,
+      "archetype": "anti_air_equipment",
+      "priority": 80,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "anti_air_equipment_2": {
+      "year": 1940,
+      "archetype": "anti_air_equipment",
+      "parent": "anti_air_equipment_1",
+      "priority": 80,
+      "visual_level": 1,
+      "soft_attack": 3.5,
+      "hard_attack": 11,
+      "ap_attack": 60,
+      "air_attack": 25,
+      "build_cost_ic": 5,
+      "resources": {
+        "steel": 2
+      }
+    },
+    "anti_air_equipment_3": {
+      "year": 1943,
+      "archetype": "anti_air_equipment",
+      "parent": "anti_air_equipment_2",
+      "priority": 80,
+      "visual_level": 2,
+      "soft_attack": 4,
+      "hard_attack": 15,
+      "ap_attack": 88,
+      "air_attack": 32,
+      "build_cost_ic": 6,
+      "resources": {
+        "steel": 3
+      }
+    },
+    "anti_tank_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "picture": "archetype_anti_tank_equipment",
+      "type": [
+        "anti_tank",
+        "infantry"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 0,
+      "hardness": 0,
+      "armor_value": 0,
+      "soft_attack": 4,
+      "hard_attack": 15,
+      "ap_attack": 75,
+      "air_attack": 0,
+      "lend_lease_cost": 3,
+      "build_cost_ic": 4,
+      "resources": {
+        "tungsten": 2,
+        "steel": 2
+      }
+    },
+    "anti_tank_equipment_1": {
+      "year": 1936,
+      "archetype": "anti_tank_equipment",
+      "priority": 90,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "anti_tank_equipment_2": {
+      "year": 1940,
+      "archetype": "anti_tank_equipment",
+      "parent": "anti_tank_equipment_1",
+      "priority": 90,
+      "visual_level": 1,
+      "hard_attack": 22,
+      "ap_attack": 88,
+      "build_cost_ic": 5,
+      "resources": {
+        "tungsten": 2,
+        "steel": 2
+      }
+    },
+    "anti_tank_equipment_3": {
+      "year": 1943,
+      "archetype": "anti_tank_equipment",
+      "parent": "anti_tank_equipment_2",
+      "priority": 90,
+      "visual_level": 2,
+      "hard_attack": 30,
+      "ap_attack": 108,
+      "build_cost_ic": 6,
+      "resources": {
+        "tungsten": 2,
+        "steel": 3
+      }
+    },
+    "artillery_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "picture": "archetype_artillery_equipment",
+      "type": [
+        "artillery",
+        "infantry"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "reliability": 0.8,
+      "defense": 10,
+      "breakthrough": 6,
+      "hardness": 0,
+      "armor_value": 0,
+      "soft_attack": 25,
+      "hard_attack": 2,
+      "ap_attack": 5,
+      "air_attack": 0,
+      "lend_lease_cost": 4,
+      "build_cost_ic": 3.5,
+      "resources": {
+        "tungsten": 1,
+        "steel": 2
+      }
+    },
+    "artillery_equipment_1": {
+      "year": 1934,
+      "archetype": "artillery_equipment",
+      "priority": 50,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "artillery_equipment_2": {
+      "year": 1939,
+      "archetype": "artillery_equipment",
+      "parent": "artillery_equipment_1",
+      "priority": 50,
+      "visual_level": 1,
+      "defense": 15,
+      "breakthrough": 7,
+      "soft_attack": 30,
+      "build_cost_ic": 4,
+      "resources": {
+        "tungsten": 1,
+        "steel": 2
+      }
+    },
+    "artillery_equipment_3": {
+      "year": 1942,
+      "archetype": "artillery_equipment",
+      "parent": "artillery_equipment_2",
+      "priority": 50,
+      "visual_level": 2,
+      "defense": 18,
+      "breakthrough": 8,
+      "soft_attack": 34,
+      "build_cost_ic": 4.5,
+      "resources": {
+        "tungsten": 1,
+        "steel": 3
+      }
+    },
+    "rocket_artillery_equipment": {
+      "year": 1940,
+      "is_archetype": true,
+      "picture": "archetype_rocket_artillery_equipment",
+      "type": [
+        "artillery",
+        "motorized",
+        "rocket"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "reliability": 0.8,
+      "defense": 12,
+      "breakthrough": 9,
+      "hardness": 0,
+      "armor_value": 0,
+      "soft_attack": 30,
+      "hard_attack": 1,
+      "ap_attack": 2,
+      "air_attack": 0,
+      "build_cost_ic": 4,
+      "resources": {
+        "tungsten": 2,
+        "steel": 1
+      }
+    },
+    "rocket_artillery_equipment_1": {
+      "year": 1940,
+      "archetype": "rocket_artillery_equipment",
+      "priority": 60,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "rocket_artillery_equipment_2": {
+      "year": 1943,
+      "archetype": "rocket_artillery_equipment",
+      "parent": "rocket_artillery_equipment_1",
+      "priority": 60,
+      "visual_level": 1,
+      "defense": 15,
+      "breakthrough": 12,
+      "soft_attack": 38,
+      "build_cost_ic": 5,
+      "resources": {
+        "tungsten": 2,
+        "steel": 1
+      }
+    },
+    "motorized_rocket_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "picture": "archetype_motorized_rocket_equipment",
+      "type": [
+        "artillery",
+        "motorized",
+        "rocket"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "reliability": 0.8,
+      "defense": 15,
+      "breakthrough": 12,
+      "hardness": 0,
+      "armor_value": 0,
+      "soft_attack": 36,
+      "hard_attack": 1,
+      "ap_attack": 2,
+      "air_attack": 0,
+      "build_cost_ic": 12,
+      "resources": {
+        "oil": 1,
+        "rubber": 1,
+        "steel": 1
+      }
+    },
+    "motorized_rocket_equipment_1": {
+      "year": 1939,
+      "archetype": "motorized_rocket_equipment",
+      "priority": 70,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "battle_cruiser": {
+      "year": 1922,
+      "is_archetype": true,
+      "is_buildable": false,
+      "type": "capital_ship",
+      "group_by": "archetype",
+      "interface_category": "interface_category_capital_ships",
+      "upgrades": [
+        "ship_reliability_upgrade",
+        "ship_engine_upgrade",
+        "ship_armor_upgrade",
+        "ship_gun_upgrade"
+      ],
+      "ap_attack": 30,
+      "attack": 16,
+      "fire_range": 32,
+      "torpedo_attack": 0,
+      "shore_bombardment": 8,
+      "anti_air_attack": 5,
+      "armor_value": 23,
+      "evasion": 15,
+      "surface_detection": 12,
+      "sub_detection": 5,
+      "surface_visibility": 25,
+      "naval_speed": 28,
+      "reliability": 0.8,
+      "naval_range": 3000,
+      "max_strength": 350,
+      "port_capacity_usage": 1.5,
+      "build_cost_ic": 7500,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 1
+      },
+      "manpower": 3500
+    },
+    "battle_cruiser_1": {
+      "year": 1922,
+      "archetype": "battle_cruiser",
+      "priority": 50,
+      "resources": {
+      }
+    },
+    "battle_cruiser_2": {
+      "year": 1940,
+      "archetype": "battle_cruiser",
+      "parent": "battle_cruiser_1",
+      "priority": 50,
+      "ap_attack": 37,
+      "attack": 21,
+      "fire_range": 33,
+      "torpedo_attack": 0,
+      "shore_bombardment": 10,
+      "anti_air_attack": 10,
+      "armor_value": 30,
+      "evasion": 20,
+      "surface_detection": 25,
+      "sub_detection": 5,
+      "surface_visibility": 25,
+      "naval_speed": 32,
+      "reliability": 0.9,
+      "naval_range": 5000,
+      "max_strength": 400,
+      "port_capacity_usage": 1.5,
+      "build_cost_ic": 8000,
+      "resources": {
+        "oil": 1,
+        "steel": 4,
+        "chromium": 1
+      },
+      "manpower": 4000
+    },
+    "battleship": {
+      "year": 1922,
+      "is_archetype": true,
+      "is_buildable": false,
+      "type": "capital_ship",
+      "group_by": "archetype",
+      "interface_category": "interface_category_capital_ships",
+      "upgrades": [
+        "ship_reliability_upgrade",
+        "ship_engine_upgrade",
+        "ship_armor_upgrade",
+        "ship_gun_upgrade"
+      ],
+      "ap_attack": 31,
+      "attack": 18,
+      "fire_range": 32,
+      "torpedo_attack": 0,
+      "shore_bombardment": 10,
+      "anti_air_attack": 4,
+      "armor_value": 26,
+      "evasion": 10,
+      "surface_detection": 12,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 20,
+      "reliability": 0.8,
+      "naval_range": 3000,
+      "max_strength": 350,
+      "port_capacity_usage": 2,
+      "build_cost_ic": 9600,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 1
+      },
+      "manpower": 6000
+    },
+    "battleship_1": {
+      "year": 1922,
+      "archetype": "battleship",
+      "priority": 60,
+      "resources": {
+      }
+    },
+    "battleship_2": {
+      "year": 1936,
+      "archetype": "battleship",
+      "parent": "battleship_1",
+      "priority": 60,
+      "ap_attack": 36,
+      "attack": 22,
+      "fire_range": 33,
+      "torpedo_attack": 0,
+      "shore_bombardment": 12,
+      "anti_air_attack": 10,
+      "armor_value": 32,
+      "evasion": 12,
+      "surface_detection": 15,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 26,
+      "reliability": 0.85,
+      "naval_range": 4000,
+      "max_strength": 450,
+      "port_capacity_usage": 2,
+      "build_cost_ic": 10400,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "chromium": 1
+      },
+      "manpower": 6600
+    },
+    "battleship_3": {
+      "year": 1940,
+      "archetype": "battleship",
+      "parent": "battleship_2",
+      "shore_bombardment": 12,
+      "priority": 60,
+      "ap_attack": 40,
+      "attack": 26,
+      "fire_range": 34,
+      "torpedo_attack": 0,
+      "anti_air_attack": 13,
+      "armor_value": 37,
+      "evasion": 16,
+      "surface_detection": 25,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 28,
+      "reliability": 0.9,
+      "naval_range": 5000,
+      "max_strength": 500,
+      "port_capacity_usage": 2,
+      "build_cost_ic": 11200,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "chromium": 2
+      },
+      "manpower": 7000
+    },
+    "battleship_4": {
+      "year": 1944,
+      "archetype": "battleship",
+      "parent": "battleship_3",
+      "priority": 60,
+      "ap_attack": 43,
+      "attack": 30,
+      "fire_range": 35,
+      "torpedo_attack": 0,
+      "shore_bombardment": 15,
+      "anti_air_attack": 22,
+      "armor_value": 40,
+      "evasion": 20,
+      "surface_detection": 40,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 30,
+      "reliability": 0.92,
+      "naval_range": 6000,
+      "max_strength": 550,
+      "port_capacity_usage": 2,
+      "build_cost_ic": 12000,
+      "resources": {
+        "oil": 2,
+        "steel": 5,
+        "chromium": 3
+      },
+      "manpower": 7400
+    },
+    "SH_battleship_1": {
+      "year": 1936,
+      "archetype": "battleship",
+      "priority": 60,
+      "ap_attack": 50,
+      "attack": 32,
+      "fire_range": 38,
+      "torpedo_attack": 0,
+      "shore_bombardment": 16,
+      "anti_air_attack": 12,
+      "armor_value": 47,
+      "evasion": 12,
+      "surface_detection": 15,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 26,
+      "reliability": 0.85,
+      "naval_range": 4000,
+      "max_strength": 600,
+      "port_capacity_usage": 4,
+      "build_cost_ic": 18500,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "chromium": 1
+      },
+      "manpower": 9000
+    },
+    "SH_battleship_2": {
+      "year": 1944,
+      "archetype": "battleship",
+      "parent": "SH_battleship_1",
+      "priority": 60,
+      "ap_attack": 61,
+      "attack": 36,
+      "fire_range": 38,
+      "torpedo_attack": 0,
+      "shore_bombardment": 20,
+      "anti_air_attack": 14,
+      "armor_value": 58,
+      "evasion": 14,
+      "surface_detection": 25,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 28,
+      "reliability": 0.9,
+      "naval_range": 4500,
+      "max_strength": 800,
+      "port_capacity_usage": 4,
+      "build_cost_ic": 23000,
+      "resources": {
+        "oil": 2,
+        "steel": 5,
+        "chromium": 3
+      },
+      "manpower": 10000
+    },
+    "carrier": {
+      "year": 1922,
+      "is_archetype": true,
+      "is_buildable": false,
+      "type": "carrier",
+      "sprite": "carrier",
+      "group_by": "archetype",
+      "interface_category": "interface_category_capital_ships",
+      "upgrades": [
+        "ship_deckspace_upgrade",
+        "carrier_armor_upgrade",
+        "ship_engine_upgrade",
+        "ship_reliability_upgrade"
+      ],
+      "ap_attack": 0,
+      "attack": 1,
+      "fire_range": 14,
+      "torpedo_attack": 0,
+      "carrier_size": 45,
+      "anti_air_attack": 8,
+      "armor_value": 7,
+      "evasion": 8,
+      "surface_detection": 10,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 26,
+      "reliability": 0.7,
+      "naval_range": 3000,
+      "max_strength": 250,
+      "port_capacity_usage": 2,
+      "offensive_weapons": false,
+      "build_cost_ic": 8750,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 1
+      },
+      "manpower": 4500
+    },
+    "carrier_1": {
+      "year": 1922,
+      "archetype": "carrier",
+      "priority": 70,
+      "resources": {
+      }
+    },
+    "carrier_2": {
+      "year": 1936,
+      "archetype": "carrier",
+      "parent": "carrier_1",
+      "priority": 70,
+      "ap_attack": 0,
+      "attack": 1,
+      "fire_range": 15,
+      "torpedo_attack": 0,
+      "carrier_size": 55,
+      "anti_air_attack": 10,
+      "armor_value": 9,
+      "evasion": 10,
+      "surface_detection": 10,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 28,
+      "reliability": 0.8,
+      "naval_range": 4000,
+      "max_strength": 325,
+      "port_capacity_usage": 2,
+      "build_cost_ic": 9500,
+      "resources": {
+        "oil": 1,
+        "steel": 4,
+        "chromium": 1
+      },
+      "manpower": 5000
+    },
+    "carrier_3": {
+      "year": 1940,
+      "archetype": "carrier",
+      "parent": "carrier_2",
+      "priority": 70,
+      "ap_attack": 0,
+      "attack": 2,
+      "fire_range": 16,
+      "torpedo_attack": 0,
+      "carrier_size": 70,
+      "anti_air_attack": 12,
+      "armor_value": 11,
+      "evasion": 12,
+      "surface_detection": 20,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 30,
+      "reliability": 0.85,
+      "naval_range": 5000,
+      "max_strength": 350,
+      "port_capacity_usage": 2,
+      "build_cost_ic": 10250,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "chromium": 2
+      },
+      "manpower": 5500
+    },
+    "carrier_4": {
+      "year": 1944,
+      "archetype": "carrier",
+      "parent": "carrier_3",
+      "priority": 70,
+      "ap_attack": 0,
+      "attack": 2,
+      "fire_range": 17,
+      "torpedo_attack": 0,
+      "carrier_size": 85,
+      "anti_air_attack": 14,
+      "armor_value": 13,
+      "evasion": 14,
+      "surface_detection": 30,
+      "sub_detection": 5,
+      "surface_visibility": 30,
+      "naval_speed": 32,
+      "reliability": 0.9,
+      "naval_range": 6000,
+      "max_strength": 400,
+      "port_capacity_usage": 2,
+      "build_cost_ic": 11000,
+      "resources": {
+        "oil": 2,
+        "steel": 5,
+        "chromium": 2
+      },
+      "manpower": 6000
+    },
+    "convoy": {
+      "year": 1910,
+      "is_archetype": true,
+      "type": "convoy",
+      "picture": "archetype_convoy",
+      "group_by": "archetype",
+      "sprite": "convoy",
+      "interface_category": "interface_category_other_ships",
+      "surface_detection": 5,
+      "sub_detection": 5,
+      "port_capacity_usage": 0,
+      "ap_attack": 1,
+      "armor_value": 0,
+      "reliability": 0.8,
+      "surface_visibility": 10,
+      "fire_range": 1,
+      "evasion": 15,
+      "torpedo_attack": 0,
+      "attack": 0.5,
+      "naval_speed": 12,
+      "max_strength": 30,
+      "max_organisation": 30,
+      "anti_air_attack": 0.5,
+      "lend_lease_cost": 0,
+      "offensive_weapons": false,
+      "build_cost_ic": 70,
+      "resources": {
+        "oil": 1,
+        "steel": 1
+      }
+    },
+    "convoy_1": {
+      "year": 1910,
+      "archetype": "convoy",
+      "type": [
+        "convoy"
+      ],
+      "active": true,
+      "priority": 10,
+      "resources": {
+      }
+    },
+    "destroyer": {
+      "year": 1922,
+      "is_archetype": true,
+      "is_buildable": false,
+      "type": "screen_ship",
+      "interface_category": "interface_category_screen_ships",
+      "upgrades": [
+        "ship_torpedo_upgrade",
+        "destroyer_engine_upgrade",
+        "ship_ASW_upgrade",
+        "ship_anti_air_upgrade"
+      ],
+      "ap_attack": 1,
+      "attack": 1,
+      "fire_range": 14,
+      "torpedo_attack": 3,
+      "sub_attack": 10,
+      "anti_air_attack": 1.5,
+      "armor_value": 0,
+      "evasion": 70,
+      "surface_detection": 20,
+      "sub_detection": 50,
+      "surface_visibility": 10,
+      "naval_speed": 33,
+      "reliability": 0.8,
+      "naval_range": 1500,
+      "max_strength": 25,
+      "port_capacity_usage": 1,
+      "build_cost_ic": 900,
+      "resources": {
+        "oil": 1,
+        "steel": 2
+      },
+      "manpower": 250
+    },
+    "destroyer_1": {
+      "year": 1922,
+      "archetype": "destroyer",
+      "priority": 20,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "resources": {
+      }
+    },
+    "destroyer_2": {
+      "year": 1936,
+      "archetype": "destroyer",
+      "parent": "destroyer_1",
+      "priority": 20,
+      "ap_attack": 2,
+      "attack": 2.5,
+      "fire_range": 15,
+      "torpedo_attack": 6,
+      "sub_attack": 13,
+      "anti_air_attack": 2,
+      "armor_value": 0,
+      "evasion": 80,
+      "surface_detection": 25,
+      "sub_detection": 60,
+      "surface_visibility": 10,
+      "naval_speed": 36,
+      "reliability": 0.85,
+      "naval_range": 1800,
+      "max_strength": 40,
+      "port_capacity_usage": 1,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "build_cost_ic": 990,
+      "resources": {
+        "oil": 1,
+        "steel": 3
+      },
+      "manpower": 325
+    },
+    "destroyer_3": {
+      "year": 1940,
+      "archetype": "destroyer",
+      "parent": "destroyer_2",
+      "priority": 20,
+      "ap_attack": 2.5,
+      "attack": 3.5,
+      "fire_range": 16,
+      "torpedo_attack": 7,
+      "sub_attack": 16,
+      "anti_air_attack": 4.5,
+      "armor_value": 0,
+      "evasion": 88,
+      "surface_detection": 45,
+      "sub_detection": 100,
+      "surface_visibility": 10,
+      "naval_speed": 38,
+      "reliability": 0.9,
+      "naval_range": 2000,
+      "max_strength": 50,
+      "port_capacity_usage": 1,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "build_cost_ic": 1080,
+      "resources": {
+        "oil": 2,
+        "steel": 3
+      },
+      "manpower": 400
+    },
+    "destroyer_4": {
+      "year": 1944,
+      "archetype": "destroyer",
+      "parent": "destroyer_3",
+      "priority": 20,
+      "ap_attack": 2.5,
+      "attack": 4,
+      "fire_range": 17,
+      "torpedo_attack": 8,
+      "sub_attack": 20,
+      "anti_air_attack": 5,
+      "armor_value": 0,
+      "evasion": 95,
+      "surface_detection": 55,
+      "sub_detection": 140,
+      "surface_visibility": 10,
+      "naval_speed": 38,
+      "reliability": 0.92,
+      "naval_range": 2500,
+      "max_strength": 60,
+      "port_capacity_usage": 1,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "build_cost_ic": 1200,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "chromium": 1
+      },
+      "manpower": 500
+    },
+    "guided_missile_equipment": {
+      "year": 1936,
+      "is_archetype": true,
+      "is_buildable": false,
+      "can_license": false,
+      "type": "missile",
+      "group_by": "type",
+      "sprite": "missile_default",
+      "air_map_icon_frame": 9,
+      "interface_category": "interface_category_air",
+      "reliability": 0.8,
+      "naval_strike_attack": 1.5,
+      "naval_strike_targetting": 0.6,
+      "lend_lease_cost": 1.5,
+      "build_cost_ic": 54,
+      "resources": {
+        "aluminium": 3,
+        "tungsten": 3
+      }
+    },
+    "guided_missile_equipment_1": {
+      "year": 1944,
+      "archetype": "guided_missile_equipment",
+      "is_buildable": false,
+      "one_use_only": true,
+      "sprite": "missile_default",
+      "air_range": 500,
+      "maximum_speed": 640,
+      "air_agility": 10,
+      "air_bombing": 300,
+      "resources": {
+      }
+    },
+    "guided_missile_equipment_2": {
+      "year": 1945,
+      "archetype": "guided_missile_equipment",
+      "parent": "guided_missile_equipment_1",
+      "is_buildable": false,
+      "one_use_only": true,
+      "sprite": "missile_default",
+      "air_range": 640,
+      "maximum_speed": 5760,
+      "air_agility": 10,
+      "air_bombing": 450,
+      "resources": {
+      }
+    },
+    "guided_missile_equipment_3": {
+      "year": 1946,
+      "archetype": "guided_missile_equipment",
+      "parent": "guided_missile_equipment_2",
+      "is_buildable": false,
+      "one_use_only": true,
+      "sprite": "missile_default",
+      "air_range": 11000,
+      "maximum_speed": 9999,
+      "air_agility": 10,
+      "air_bombing": 600,
+      "resources": {
+      }
+    },
+    "heavy_cruiser": {
+      "year": 1922,
+      "is_archetype": true,
+      "is_buildable": false,
+      "type": "capital_ship",
+      "group_by": "archetype",
+      "interface_category": "interface_category_capital_ships",
+      "upgrades": [
+        "ship_reliability_upgrade",
+        "ship_engine_upgrade",
+        "ship_armor_upgrade",
+        "ship_gun_upgrade"
+      ],
+      "ap_attack": 11,
+      "attack": 10,
+      "fire_range": 24,
+      "torpedo_attack": 0,
+      "shore_bombardment": 3,
+      "anti_air_attack": 6,
+      "armor_value": 9,
+      "evasion": 20,
+      "surface_detection": 12,
+      "sub_detection": 5,
+      "surface_visibility": 20,
+      "naval_speed": 24,
+      "reliability": 0.8,
+      "naval_range": 3000,
+      "max_strength": 150,
+      "port_capacity_usage": 1,
+      "build_cost_ic": 4200,
+      "resources": {
+        "oil": 1,
+        "steel": 3
+      },
+      "manpower": 1500
+    },
+    "heavy_cruiser_1": {
+      "year": 1922,
+      "archetype": "heavy_cruiser",
+      "priority": 40,
+      "resources": {
+      }
+    },
+    "heavy_cruiser_2": {
+      "year": 1936,
+      "archetype": "heavy_cruiser",
+      "parent": "heavy_cruiser_1",
+      "priority": 40,
+      "ap_attack": 12,
+      "attack": 14,
+      "fire_range": 25,
+      "torpedo_attack": 0,
+      "shore_bombardment": 4,
+      "anti_air_attack": 8,
+      "armor_value": 11,
+      "evasion": 25,
+      "surface_detection": 15,
+      "sub_detection": 5,
+      "surface_visibility": 20,
+      "naval_speed": 30,
+      "reliability": 0.85,
+      "naval_range": 4000,
+      "max_strength": 175,
+      "port_capacity_usage": 1,
+      "build_cost_ic": 4600,
+      "resources": {
+        "oil": 1,
+        "steel": 4
+      },
+      "manpower": 1700
+    },
+    "heavy_cruiser_3": {
+      "year": 1940,
+      "archetype": "heavy_cruiser",
+      "parent": "heavy_cruiser_2",
+      "priority": 40,
+      "ap_attack": 13,
+      "attack": 17,
+      "fire_range": 26,
+      "torpedo_attack": 0,
+      "shore_bombardment": 5,
+      "anti_air_attack": 12,
+      "armor_value": 12,
+      "evasion": 28,
+      "surface_detection": 25,
+      "sub_detection": 5,
+      "surface_visibility": 20,
+      "naval_speed": 33,
+      "reliability": 0.9,
+      "naval_range": 4500,
+      "max_strength": 200,
+      "port_capacity_usage": 1,
+      "build_cost_ic": 5000,
+      "resources": {
+        "oil": 2,
+        "steel": 4
+      },
+      "manpower": 1900
+    },
+    "heavy_cruiser_4": {
+      "year": 1944,
+      "archetype": "heavy_cruiser",
+      "parent": "heavy_cruiser_3",
+      "priority": 40,
+      "ap_attack": 14,
+      "attack": 20,
+      "fire_range": 27,
+      "torpedo_attack": 0,
+      "shore_bombardment": 6,
+      "anti_air_attack": 18,
+      "armor_value": 13,
+      "evasion": 30,
+      "surface_detection": 40,
+      "sub_detection": 5,
+      "surface_visibility": 20,
+      "naval_speed": 33,
+      "reliability": 0.92,
+      "naval_range": 5000,
+      "max_strength": 225,
+      "port_capacity_usage": 1,
+      "build_cost_ic": 5400,
+      "resources": {
+        "oil": 2,
+        "steel": 5,
+        "chromium": 1
+      },
+      "manpower": 2200
+    },
+    "infantry_equipment": {
+      "year": 1936,
+      "is_archetype": true,
+      "picture": "archetype_infantry_equipment",
+      "is_buildable": false,
+      "type": "infantry",
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "active": true,
+      "reliability": 0.9,
+      "maximum_speed": 4,
+      "defense": 20,
+      "breakthrough": 2,
+      "hardness": 0,
+      "armor_value": 0,
+      "soft_attack": 3,
+      "hard_attack": 0.5,
+      "ap_attack": 1,
+      "air_attack": 0,
+      "lend_lease_cost": 1,
+      "build_cost_ic": 0.4,
+      "resources": {
+        "steel": 2
+      }
+    },
+    "infantry_equipment_0": {
+      "year": 1918,
+      "archetype": "infantry_equipment",
+      "active": true,
+      "priority": 5,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "infantry_equipment_1": {
+      "year": 1936,
+      "archetype": "infantry_equipment",
+      "parent": "infantry_equipment_0",
+      "priority": 10,
+      "visual_level": 1,
+      "defense": 22,
+      "breakthrough": 3,
+      "soft_attack": 6,
+      "hard_attack": 1,
+      "ap_attack": 4,
+      "air_attack": 0,
+      "build_cost_ic": 0.5,
+      "resources": {
+      }
+    },
+    "infantry_equipment_2": {
+      "year": 1939,
+      "archetype": "infantry_equipment",
+      "parent": "infantry_equipment_1",
+      "priority": 10,
+      "visual_level": 2,
+      "defense": 28,
+      "breakthrough": 4,
+      "soft_attack": 9,
+      "hard_attack": 1.5,
+      "ap_attack": 5,
+      "air_attack": 0,
+      "build_cost_ic": 0.6,
+      "resources": {
+        "steel": 3
+      }
+    },
+    "infantry_equipment_3": {
+      "year": 1942,
+      "archetype": "infantry_equipment",
+      "parent": "infantry_equipment_2",
+      "priority": 10,
+      "visual_level": 3,
+      "defense": 34,
+      "breakthrough": 5,
+      "soft_attack": 12,
+      "hard_attack": 2,
+      "ap_attack": 10,
+      "air_attack": 0,
+      "reliability": 0.8,
+      "build_cost_ic": 0.7,
+      "resources": {
+        "steel": 4
+      }
+    },
+    "light_cruiser": {
+      "year": 1922,
+      "is_archetype": true,
+      "is_buildable": false,
+      "type": "screen_ship",
+      "upgrades": [
+        "ship_reliability_upgrade",
+        "ship_engine_upgrade",
+        "ship_gun_upgrade",
+        "ship_anti_air_upgrade"
+      ],
+      "interface_category": "interface_category_screen_ships",
+      "ap_attack": 5.5,
+      "attack": 6,
+      "fire_range": 18,
+      "torpedo_attack": 5,
+      "sub_attack": 2,
+      "anti_air_attack": 3,
+      "armor_value": 5,
+      "evasion": 50,
+      "surface_detection": 15,
+      "sub_detection": 20,
+      "surface_visibility": 15,
+      "naval_speed": 28,
+      "reliability": 0.8,
+      "naval_range": 2400,
+      "max_strength": 100,
+      "port_capacity_usage": 1,
+      "build_cost_ic": 3100,
+      "resources": {
+        "oil": 1,
+        "steel": 2
+      },
+      "manpower": 600
+    },
+    "light_cruiser_1": {
+      "year": 1922,
+      "archetype": "light_cruiser",
+      "priority": 30,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "resources": {
+      }
+    },
+    "light_cruiser_2": {
+      "year": 1936,
+      "archetype": "light_cruiser",
+      "parent": "light_cruiser_1",
+      "priority": 30,
+      "ap_attack": 7,
+      "attack": 8,
+      "fire_range": 19,
+      "torpedo_attack": 8,
+      "sub_attack": 5,
+      "anti_air_attack": 9,
+      "armor_value": 6,
+      "evasion": 60,
+      "surface_detection": 20,
+      "sub_detection": 25,
+      "naval_speed": 30,
+      "reliability": 0.85,
+      "naval_range": 3000,
+      "max_strength": 120,
+      "port_capacity_usage": 1,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "build_cost_ic": 3400,
+      "resources": {
+        "oil": 1,
+        "steel": 3
+      },
+      "manpower": 800
+    },
+    "light_cruiser_3": {
+      "year": 1940,
+      "archetype": "light_cruiser",
+      "parent": "light_cruiser_2",
+      "priority": 30,
+      "ap_attack": 8,
+      "attack": 9,
+      "fire_range": 20,
+      "torpedo_attack": 9,
+      "sub_attack": 6,
+      "anti_air_attack": 14,
+      "armor_value": 7,
+      "evasion": 68,
+      "surface_detection": 50,
+      "sub_detection": 50,
+      "naval_speed": 32,
+      "reliability": 0.9,
+      "naval_range": 4000,
+      "max_strength": 140,
+      "port_capacity_usage": 1,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "build_cost_ic": 3700,
+      "resources": {
+        "oil": 2,
+        "steel": 3
+      },
+      "manpower": 960
+    },
+    "light_cruiser_4": {
+      "year": 1944,
+      "archetype": "light_cruiser",
+      "parent": "light_cruiser_3",
+      "priority": 30,
+      "ap_attack": 9,
+      "attack": 11,
+      "fire_range": 21,
+      "torpedo_attack": 10,
+      "sub_attack": 8,
+      "anti_air_attack": 17,
+      "armor_value": 8,
+      "evasion": 75,
+      "surface_detection": 70,
+      "sub_detection": 60,
+      "naval_speed": 34,
+      "reliability": 0.92,
+      "naval_range": 4500,
+      "max_strength": 160,
+      "port_capacity_usage": 1,
+      "type": [
+        "screen_ship",
+        "anti_air"
+      ],
+      "build_cost_ic": 4000,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "chromium": 1
+      },
+      "manpower": 1140
+    },
+    "torpedo_cruiser": {
+      "year": 1940,
+      "archetype": "light_cruiser",
+      "priority": 30,
+      "upgrades": [
+        "ship_torpedo_upgrade",
+        "ship_engine_upgrade",
+        "ship_gun_upgrade",
+        "torpedo_ship_reliability_upgrade"
+      ],
+      "interface_category": "interface_category_screen_ships",
+      "ap_attack": 6,
+      "attack": 5,
+      "fire_range": 20,
+      "torpedo_attack": 15,
+      "sub_attack": 6,
+      "anti_air_attack": 14,
+      "armor_value": 7,
+      "evasion": 68,
+      "surface_detection": 40,
+      "sub_detection": 50,
+      "surface_visibility": 15,
+      "naval_speed": 32,
+      "reliability": 0.9,
+      "naval_range": 4000,
+      "max_strength": 140,
+      "port_capacity_usage": 1,
+      "build_cost_ic": 3700,
+      "resources": {
+        "oil": 2,
+        "steel": 3
+      },
+      "manpower": 960
+    },
+    "mechanized_equipment": {
+      "year": 1936,
+      "is_archetype": true,
+      "picture": "archetype_motorized_equipment",
+      "is_buildable": false,
+      "type": [
+        "mechanized"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "maximum_speed": 8,
+      "reliability": 0.8,
+      "defense": 26,
+      "breakthrough": 4,
+      "hardness": 0.5,
+      "armor_value": 10,
+      "ap_attack": 11,
+      "air_attack": 0,
+      "lend_lease_cost": 5,
+      "build_cost_ic": 8,
+      "resources": {
+        "steel": 2,
+        "oil": 1,
+        "rubber": 1
+      }
+    },
+    "mechanized_equipment_1": {
+      "year": 1940,
+      "archetype": "mechanized_equipment",
+      "priority": 40,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "mechanized_equipment_2": {
+      "year": 1942,
+      "archetype": "mechanized_equipment",
+      "parent": "mechanized_equipment_1",
+      "priority": 40,
+      "visual_level": 1,
+      "maximum_speed": 10,
+      "defense": 30,
+      "breakthrough": 5,
+      "hardness": 0.6,
+      "armor_value": 15,
+      "ap_attack": 16,
+      "build_cost_ic": 10,
+      "resources": {
+        "steel": 3,
+        "rubber": 1,
+        "oil": 1
+      }
+    },
+    "mechanized_equipment_3": {
+      "year": 1944,
+      "archetype": "mechanized_equipment",
+      "parent": "mechanized_equipment_2",
+      "priority": 40,
+      "visual_level": 2,
+      "maximum_speed": 12,
+      "defense": 34,
+      "breakthrough": 6,
+      "hardness": 0.7,
+      "armor_value": 20,
+      "ap_attack": 21,
+      "build_cost_ic": 12,
+      "resources": {
+        "steel": 4,
+        "rubber": 1,
+        "oil": 2
+      }
+    },
+    "motorized_equipment": {
+      "year": 1936,
+      "is_archetype": true,
+      "picture": "archetype_motorized_equipment",
+      "is_buildable": false,
+      "type": [
+        "motorized"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "maximum_speed": 12,
+      "reliability": 0.8,
+      "hardness": 0.1,
+      "lend_lease_cost": 5,
+      "build_cost_ic": 2.5,
+      "resources": {
+        "oil": 1,
+        "rubber": 1,
+        "steel": 1
+      }
+    },
+    "motorized_equipment_1": {
+      "year": 1936,
+      "archetype": "motorized_equipment",
+      "priority": 30,
+      "resources": {
+      }
+    },
+    "strat_bomber_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_strat_bomber_equipment",
+      "is_buildable": false,
+      "type": "strategic_bomber",
+      "group_by": "archetype",
+      "sprite": "heavy_plane",
+      "air_map_icon_frame": 11,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 5,
+      "upgrades": [
+        "plane_bomb_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 1.5,
+      "naval_strike_targetting": 0.6,
+      "lend_lease_cost": 12,
+      "build_cost_ic": 60,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 2
+      },
+      "manpower": 80
+    },
+    "jet_strat_bomber_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_strat_bomber_equipment",
+      "is_buildable": false,
+      "type": "strategic_bomber",
+      "group_by": "archetype",
+      "sprite": "heavy_plane",
+      "air_map_icon_frame": 10,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 5,
+      "upgrades": [
+        "plane_bomb_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 1.5,
+      "naval_strike_targetting": 0.6,
+      "build_cost_ic": 80,
+      "resources": {
+        "aluminium": 3,
+        "tungsten": 3,
+        "rubber": 1
+      },
+      "manpower": 160
+    },
+    "strat_bomber_equipment_1": {
+      "year": 1936,
+      "archetype": "strat_bomber_equipment",
+      "priority": 140,
+      "air_range": 2500,
+      "maximum_speed": 400,
+      "air_agility": 5,
+      "air_attack": 50,
+      "air_defence": 30,
+      "air_bombing": 30,
+      "resources": {
+      }
+    },
+    "strat_bomber_equipment_2": {
+      "year": 1940,
+      "archetype": "strat_bomber_equipment",
+      "parent": "strat_bomber_equipment_1",
+      "priority": 140,
+      "air_range": 3500,
+      "maximum_speed": 450,
+      "air_agility": 7,
+      "air_attack": 100,
+      "air_defence": 45,
+      "air_bombing": 45,
+      "build_cost_ic": 62,
+      "resources": {
+        "oil": 1,
+        "aluminium": 4,
+        "rubber": 2
+      }
+    },
+    "strat_bomber_equipment_3": {
+      "year": 1944,
+      "archetype": "strat_bomber_equipment",
+      "parent": "strat_bomber_equipment_2",
+      "priority": 140,
+      "air_range": 5000,
+      "maximum_speed": 500,
+      "air_agility": 10,
+      "air_attack": 150,
+      "air_defence": 60,
+      "air_bombing": 60,
+      "build_cost_ic": 64,
+      "resources": {
+        "oil": 1,
+        "aluminium": 5,
+        "rubber": 2
+      }
+    },
+    "jet_strat_bomber_equipment_1": {
+      "year": 1950,
+      "archetype": "jet_strat_bomber_equipment",
+      "priority": 150,
+      "air_range": 7000,
+      "maximum_speed": 920,
+      "air_agility": 14,
+      "air_attack": 100,
+      "air_defence": 54,
+      "air_bombing": 64,
+      "resources": {
+      }
+    },
+    "transport_plane_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_strat_bomber_equipment",
+      "type": "air_transport",
+      "group_by": "archetype",
+      "sprite": "medium_plane",
+      "air_map_icon_frame": 12,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 6,
+      "air_superiority": 0,
+      "reliability": 0.8,
+      "naval_strike_attack": 0.0,
+      "naval_strike_targetting": 0.0,
+      "build_cost_ic": 180,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 2
+      },
+      "manpower": 80
+    },
+    "transport_plane_equipment_1": {
+      "year": 1933,
+      "archetype": "transport_plane_equipment",
+      "active": true,
+      "priority": 130,
+      "air_range": 1000,
+      "maximum_speed": 300,
+      "air_agility": 10,
+      "air_defence": 20,
+      "resources": {
+      }
+    },
+    "fighter_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_fighter_equipment",
+      "is_buildable": false,
+      "type": [
+        "fighter",
+        "interceptor"
+      ],
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "air_map_icon_frame": 1,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 1,
+      "upgrades": [
+        "plane_gun_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 1,
+      "naval_strike_targetting": 10,
+      "lend_lease_cost": 8,
+      "build_cost_ic": 22,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "manpower": 20
+    },
+    "cv_fighter_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_fighter_equipment",
+      "is_buildable": false,
+      "type": [
+        "fighter",
+        "interceptor"
+      ],
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "carrier_capable": true,
+      "default_carrier_composition_weight": 1,
+      "air_map_icon_frame": 1,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 1,
+      "upgrades": [
+        "cv_plane_gun_upgrade",
+        "cv_plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 2,
+      "naval_strike_targetting": 10,
+      "lend_lease_cost": 8,
+      "build_cost_ic": 22,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "manpower": 20
+    },
+    "CAS_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_CAS_equipment",
+      "is_buildable": false,
+      "type": [
+        "cas",
+        "fighter"
+      ],
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "air_map_icon_frame": 2,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 0,
+      "upgrades": [
+        "plane_cas_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "air_ground_attack": 1.0,
+      "naval_strike_attack": 3,
+      "naval_strike_targetting": 10,
+      "build_cost_ic": 22,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "manpower": 20
+    },
+    "cv_CAS_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_CAS_equipment",
+      "is_buildable": false,
+      "type": [
+        "cas",
+        "fighter"
+      ],
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "carrier_capable": true,
+      "air_map_icon_frame": 2,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 0,
+      "upgrades": [
+        "plane_cas_upgrade",
+        "cv_plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "air_ground_attack": 1.0,
+      "naval_strike_attack": 4,
+      "naval_strike_targetting": 10,
+      "build_cost_ic": 22,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "manpower": 20
+    },
+    "nav_bomber_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_heavy_fighter_equipment",
+      "is_buildable": false,
+      "type": "naval_bomber",
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "air_map_icon_frame": 3,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 2,
+      "upgrades": [
+        "plane_naval_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 15,
+      "naval_strike_targetting": 7.5,
+      "build_cost_ic": 26,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "manpower": 20
+    },
+    "cv_nav_bomber_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_heavy_fighter_equipment",
+      "is_buildable": false,
+      "type": "naval_bomber",
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "carrier_capable": true,
+      "default_carrier_composition_weight": 1,
+      "air_map_icon_frame": 3,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 2,
+      "upgrades": [
+        "cv_plane_naval_upgrade",
+        "cv_plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 15,
+      "naval_strike_targetting": 7.5,
+      "build_cost_ic": 26,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "manpower": 20
+    },
+    "jet_fighter_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_fighter_equipment",
+      "is_buildable": false,
+      "type": "fighter",
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "air_map_icon_frame": 4,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 1,
+      "upgrades": [
+        "plane_gun_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 5,
+      "naval_strike_targetting": 10,
+      "build_cost_ic": 30,
+      "resources": {
+        "aluminium": 2,
+        "tungsten": 3,
+        "rubber": 1
+      },
+      "manpower": 40
+    },
+    "fighter_equipment_0": {
+      "year": 1933,
+      "archetype": "fighter_equipment",
+      "priority": 5,
+      "air_range": 570,
+      "maximum_speed": 330,
+      "air_agility": 45,
+      "air_attack": 9,
+      "air_defence": 8,
+      "naval_strike_attack": 1,
+      "naval_strike_targetting": 10,
+      "resources": {
+      }
+    },
+    "fighter_equipment_1": {
+      "year": 1936,
+      "archetype": "fighter_equipment",
+      "parent": "fighter_equipment_0",
+      "priority": 10,
+      "air_range": 700,
+      "maximum_speed": 500,
+      "air_agility": 50,
+      "air_attack": 18,
+      "air_defence": 10,
+      "build_cost_ic": 24,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 2,
+      "naval_strike_targetting": 10
+    },
+    "fighter_equipment_2": {
+      "year": 1940,
+      "archetype": "fighter_equipment",
+      "parent": "fighter_equipment_1",
+      "priority": 10,
+      "air_range": 1000,
+      "maximum_speed": 650,
+      "air_agility": 65,
+      "air_attack": 27,
+      "air_defence": 12,
+      "build_cost_ic": 26,
+      "resources": {
+        "oil": 2,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 4,
+      "naval_strike_targetting": 10
+    },
+    "fighter_equipment_3": {
+      "year": 1944,
+      "archetype": "fighter_equipment",
+      "parent": "fighter_equipment_2",
+      "priority": 10,
+      "air_range": 1200,
+      "maximum_speed": 720,
+      "air_agility": 80,
+      "air_attack": 32,
+      "air_defence": 14,
+      "build_cost_ic": 28,
+      "resources": {
+        "oil": 2,
+        "aluminium": 4,
+        "rubber": 1
+      },
+      "naval_strike_attack": 6,
+      "naval_strike_targetting": 10
+    },
+    "jet_fighter_equipment_1": {
+      "year": 1945,
+      "archetype": "jet_fighter_equipment",
+      "priority": 20,
+      "air_range": 1200,
+      "maximum_speed": 950,
+      "air_agility": 72,
+      "air_attack": 36,
+      "air_defence": 15,
+      "resources": {
+      }
+    },
+    "jet_fighter_equipment_2": {
+      "year": 1950,
+      "archetype": "jet_fighter_equipment",
+      "parent": "jet_fighter_equipment_1",
+      "priority": 20,
+      "air_range": 2200,
+      "maximum_speed": 1100,
+      "air_agility": 72,
+      "air_attack": 40,
+      "air_defence": 18,
+      "build_cost_ic": 32,
+      "resources": {
+        "aluminium": 3,
+        "tungsten": 3,
+        "rubber": 1
+      }
+    },
+    "cv_fighter_equipment_0": {
+      "year": 1933,
+      "archetype": "cv_fighter_equipment",
+      "carrier_capable": true,
+      "priority": 30,
+      "air_range": 456,
+      "maximum_speed": 297,
+      "air_agility": 45,
+      "air_attack": 9,
+      "air_defence": 8,
+      "build_cost_ic": 26.4,
+      "naval_strike_attack": 2,
+      "naval_strike_targetting": 10,
+      "resources": {
+      }
+    },
+    "cv_fighter_equipment_1": {
+      "year": 1936,
+      "archetype": "cv_fighter_equipment",
+      "parent": "cv_fighter_equipment_0",
+      "carrier_capable": true,
+      "priority": 30,
+      "air_range": 560,
+      "maximum_speed": 450,
+      "air_agility": 50,
+      "air_attack": 18,
+      "air_defence": 11,
+      "build_cost_ic": 28.4,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 3,
+      "naval_strike_targetting": 10
+    },
+    "cv_fighter_equipment_2": {
+      "year": 1940,
+      "archetype": "cv_fighter_equipment",
+      "parent": "cv_fighter_equipment_1",
+      "carrier_capable": true,
+      "priority": 30,
+      "air_range": 800,
+      "maximum_speed": 585,
+      "air_agility": 65,
+      "air_attack": 27,
+      "air_defence": 13,
+      "build_cost_ic": 30.4,
+      "resources": {
+        "oil": 2,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "naval_strike_attack": 6,
+      "naval_strike_targetting": 10
+    },
+    "cv_fighter_equipment_3": {
+      "year": 1944,
+      "archetype": "cv_fighter_equipment",
+      "parent": "cv_fighter_equipment_2",
+      "carrier_capable": true,
+      "priority": 30,
+      "air_range": 960,
+      "maximum_speed": 648,
+      "air_agility": 80,
+      "air_attack": 32,
+      "air_defence": 15,
+      "build_cost_ic": 32.4,
+      "resources": {
+        "oil": 2,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 8,
+      "naval_strike_targetting": 10
+    },
+    "CAS_equipment_1": {
+      "year": 1936,
+      "archetype": "CAS_equipment",
+      "priority": 40,
+      "air_range": 700,
+      "maximum_speed": 390,
+      "air_agility": 35,
+      "air_attack": 6,
+      "air_defence": 14,
+      "air_ground_attack": 10,
+      "naval_strike_attack": 3,
+      "naval_strike_targetting": 10,
+      "resources": {
+      }
+    },
+    "CAS_equipment_2": {
+      "year": 1940,
+      "archetype": "CAS_equipment",
+      "parent": "CAS_equipment_1",
+      "priority": 40,
+      "air_range": 1000,
+      "maximum_speed": 450,
+      "air_agility": 39,
+      "air_attack": 10,
+      "air_defence": 16,
+      "air_ground_attack": 15,
+      "build_cost_ic": 24,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 5,
+      "naval_strike_targetting": 10
+    },
+    "CAS_equipment_3": {
+      "year": 1944,
+      "archetype": "CAS_equipment",
+      "parent": "CAS_equipment_2",
+      "priority": 40,
+      "air_range": 1200,
+      "maximum_speed": 550,
+      "air_agility": 44,
+      "air_attack": 14,
+      "air_defence": 20,
+      "air_ground_attack": 20,
+      "build_cost_ic": 26,
+      "resources": {
+        "oil": 2,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 10,
+      "naval_strike_targetting": 10
+    },
+    "cv_CAS_equipment_1": {
+      "year": 1936,
+      "archetype": "cv_CAS_equipment",
+      "carrier_capable": true,
+      "priority": 50,
+      "air_range": 400,
+      "maximum_speed": 351,
+      "air_agility": 35,
+      "air_attack": 6,
+      "air_defence": 14,
+      "air_ground_attack": 10,
+      "build_cost_ic": 26.4,
+      "naval_strike_attack": 4,
+      "naval_strike_targetting": 10,
+      "resources": {
+      }
+    },
+    "cv_CAS_equipment_2": {
+      "year": 1940,
+      "archetype": "cv_CAS_equipment",
+      "parent": "cv_CAS_equipment_1",
+      "carrier_capable": true,
+      "priority": 50,
+      "air_range": 640,
+      "maximum_speed": 405,
+      "air_agility": 39,
+      "air_attack": 10,
+      "air_defence": 16,
+      "air_ground_attack": 15,
+      "build_cost_ic": 28.4,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 7,
+      "naval_strike_targetting": 10
+    },
+    "cv_CAS_equipment_3": {
+      "year": 1944,
+      "archetype": "cv_CAS_equipment",
+      "parent": "cv_CAS_equipment_2",
+      "carrier_capable": true,
+      "priority": 50,
+      "air_range": 800,
+      "maximum_speed": 495,
+      "air_agility": 44,
+      "air_attack": 14,
+      "air_defence": 20,
+      "air_ground_attack": 20,
+      "build_cost_ic": 30.4,
+      "resources": {
+        "oil": 2,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 13,
+      "naval_strike_targetting": 10
+    },
+    "nav_bomber_equipment_1": {
+      "year": 1936,
+      "archetype": "nav_bomber_equipment",
+      "priority": 60,
+      "air_range": 850,
+      "maximum_speed": 230,
+      "air_agility": 30,
+      "air_attack": 6,
+      "air_defence": 12,
+      "resources": {
+      }
+    },
+    "nav_bomber_equipment_2": {
+      "year": 1940,
+      "archetype": "nav_bomber_equipment",
+      "parent": "nav_bomber_equipment_1",
+      "priority": 60,
+      "air_range": 930,
+      "maximum_speed": 300,
+      "air_agility": 35,
+      "air_attack": 10,
+      "air_defence": 14,
+      "naval_strike_attack": 20,
+      "naval_strike_targetting": 10,
+      "build_cost_ic": 28,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      }
+    },
+    "nav_bomber_equipment_3": {
+      "year": 1944,
+      "archetype": "nav_bomber_equipment",
+      "parent": "nav_bomber_equipment_2",
+      "priority": 60,
+      "air_range": 1100,
+      "maximum_speed": 400,
+      "air_agility": 40,
+      "air_attack": 14,
+      "air_defence": 16,
+      "naval_strike_attack": 25,
+      "naval_strike_targetting": 12.5,
+      "build_cost_ic": 30,
+      "resources": {
+        "oil": 2,
+        "aluminium": 3,
+        "rubber": 1
+      }
+    },
+    "cv_nav_bomber_equipment_1": {
+      "year": 1936,
+      "archetype": "cv_nav_bomber_equipment",
+      "carrier_capable": true,
+      "priority": 70,
+      "air_range": 680,
+      "maximum_speed": 207,
+      "air_agility": 30,
+      "air_attack": 6,
+      "air_defence": 13,
+      "build_cost_ic": 31.2,
+      "resources": {
+      }
+    },
+    "cv_nav_bomber_equipment_2": {
+      "year": 1940,
+      "archetype": "cv_nav_bomber_equipment",
+      "parent": "cv_nav_bomber_equipment_1",
+      "carrier_capable": true,
+      "priority": 70,
+      "air_range": 744,
+      "maximum_speed": 270,
+      "air_agility": 35,
+      "air_attack": 10,
+      "air_defence": 15,
+      "naval_strike_attack": 20,
+      "naval_strike_targetting": 10,
+      "build_cost_ic": 33.2,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      }
+    },
+    "cv_nav_bomber_equipment_3": {
+      "year": 1944,
+      "archetype": "cv_nav_bomber_equipment",
+      "parent": "cv_nav_bomber_equipment_2",
+      "carrier_capable": true,
+      "priority": 70,
+      "air_range": 880,
+      "maximum_speed": 360,
+      "air_agility": 40,
+      "air_attack": 14,
+      "air_defence": 17,
+      "naval_strike_attack": 25,
+      "naval_strike_targetting": 12.5,
+      "build_cost_ic": 35.2,
+      "resources": {
+        "oil": 2,
+        "aluminium": 3,
+        "rubber": 1
+      }
+    },
+    "rocket_interceptor_equipment": {
+      "year": 1936,
+      "is_archetype": true,
+      "is_convertable": true,
+      "can_license": false,
+      "picture": "archetype_fighter_equipment",
+      "is_buildable": false,
+      "type": "interceptor",
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "air_map_icon_frame": 5,
+      "interface_category": "interface_category_air",
+      "upgrades": [
+        "plane_gun_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "build_cost_ic": 14,
+      "resources": {
+        "aluminium": 2,
+        "tungsten": 2,
+        "rubber": 1
+      },
+      "air_superiority": 1,
+      "naval_strike_attack": 5,
+      "naval_strike_targetting": 10
+    },
+    "rocket_interceptor_equipment_1": {
+      "year": 1944,
+      "archetype": "rocket_interceptor_equipment",
+      "priority": 80,
+      "air_range": 150,
+      "maximum_speed": 950,
+      "air_agility": 30,
+      "air_attack": 47,
+      "air_defence": 5,
+      "reliability": 0.3,
+      "build_cost_ic": 16,
+      "resources": {
+        "aluminium": 3,
+        "tungsten": 2,
+        "rubber": 1
+      }
+    },
+    "rocket_interceptor_equipment_2": {
+      "year": 1945,
+      "archetype": "rocket_interceptor_equipment",
+      "parent": "rocket_interceptor_equipment_1",
+      "priority": 80,
+      "air_range": 300,
+      "maximum_speed": 1100,
+      "air_agility": 36,
+      "air_attack": 56,
+      "air_defence": 7,
+      "reliability": 0.5,
+      "build_cost_ic": 18,
+      "resources": {
+        "aluminium": 3,
+        "tungsten": 3,
+        "rubber": 1
+      }
+    },
+    "rocket_interceptor_equipment_3": {
+      "year": 1946,
+      "archetype": "rocket_interceptor_equipment",
+      "parent": "rocket_interceptor_equipment_2",
+      "priority": 80,
+      "air_range": 500,
+      "maximum_speed": 1150,
+      "air_agility": 60,
+      "air_attack": 60,
+      "air_defence": 10,
+      "reliability": 0.8,
+      "build_cost_ic": 20,
+      "resources": {
+        "aluminium": 3,
+        "tungsten": 3,
+        "rubber": 1
+      }
+    },
+    "suicide_craft_equipment": {
+      "year": 1936,
+      "is_archetype": true,
+      "is_convertable": false,
+      "can_license": false,
+      "picture": "archetype_rocket_interceptor_equipment",
+      "is_buildable": false,
+      "type": "suicide",
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "air_map_icon_frame": 5,
+      "interface_category": "interface_category_air",
+      "upgrades": "PropertyList[]",
+      "build_cost_ic": 14,
+      "resources": {
+        "aluminium": 2,
+        "tungsten": 2,
+        "rubber": 1
+      },
+      "air_superiority": 1,
+      "naval_strike_attack": 5,
+      "naval_strike_targetting": 10
+    },
+    "rocket_suicide_equipment_1": {
+      "year": 1944,
+      "archetype": "suicide_craft_equipment",
+      "priority": 90,
+      "air_range": 1000,
+      "maximum_speed": 1150,
+      "air_agility": 50,
+      "air_attack": 0,
+      "air_defence": 12,
+      "reliability": 0.8,
+      "naval_strike_attack": 20,
+      "naval_strike_targetting": 10,
+      "resources": {
+      }
+    },
+    "submarine": {
+      "year": 1922,
+      "is_archetype": true,
+      "is_buildable": false,
+      "type": "submarine",
+      "group_by": "archetype",
+      "upgrades": [
+        "ship_reliability_upgrade",
+        "sub_engine_upgrade",
+        "sub_stealth_upgrade",
+        "sub_torpedo_upgrade"
+      ],
+      "interface_category": "interface_category_other_ships",
+      "ap_attack": 0,
+      "attack": 0,
+      "fire_range": 6,
+      "torpedo_attack": 10,
+      "anti_air_attack": 0.5,
+      "armor_value": 0,
+      "evasion": 25,
+      "surface_detection": 30,
+      "sub_detection": 0,
+      "surface_visibility": 1,
+      "sub_visibility": 30,
+      "naval_speed": 14,
+      "reliability": 0.6,
+      "naval_range": 2500,
+      "max_strength": 10,
+      "port_capacity_usage": 0.5,
+      "build_cost_ic": 450,
+      "resources": {
+        "oil": 1,
+        "steel": 1
+      },
+      "manpower": 200
+    },
+    "submarine_1": {
+      "year": 1922,
+      "archetype": "submarine",
+      "priority": 80,
+      "resources": {
+        "oil": 1,
+        "steel": 1
+      },
+      "type": [
+        "submarine"
+      ]
+    },
+    "submarine_2": {
+      "year": 1936,
+      "archetype": "submarine",
+      "parent": "submarine_1",
+      "priority": 80,
+      "ap_attack": 0,
+      "attack": 0,
+      "fire_range": 7,
+      "torpedo_attack": 16,
+      "anti_air_attack": 1,
+      "armor_value": 0,
+      "evasion": 35,
+      "surface_detection": 40,
+      "sub_detection": 0,
+      "surface_visibility": 1,
+      "sub_visibility": 25,
+      "naval_speed": 14,
+      "reliability": 0.7,
+      "naval_range": 4000,
+      "max_strength": 20,
+      "port_capacity_usage": 0.5,
+      "build_cost_ic": 500,
+      "resources": {
+        "oil": 1,
+        "steel": 2
+      },
+      "type": [
+        "submarine"
+      ]
+    },
+    "submarine_3": {
+      "year": 1940,
+      "archetype": "submarine",
+      "parent": "submarine_2",
+      "priority": 80,
+      "ap_attack": 0,
+      "attack": 0,
+      "fire_range": 8,
+      "torpedo_attack": 20,
+      "anti_air_attack": 1.5,
+      "armor_value": 0,
+      "evasion": 40,
+      "surface_detection": 50,
+      "sub_detection": 0,
+      "surface_visibility": 1,
+      "sub_visibility": 15,
+      "naval_speed": 16,
+      "reliability": 0.75,
+      "naval_range": 5000,
+      "max_strength": 30,
+      "port_capacity_usage": 0.5,
+      "build_cost_ic": 550,
+      "resources": {
+        "oil": 2,
+        "steel": 2
+      },
+      "type": [
+        "submarine"
+      ]
+    },
+    "submarine_4": {
+      "year": 1944,
+      "archetype": "submarine",
+      "parent": "submarine_3",
+      "priority": 80,
+      "ap_attack": 0,
+      "attack": 0,
+      "fire_range": 9,
+      "torpedo_attack": 24,
+      "anti_air_attack": 1.5,
+      "armor_value": 0,
+      "evasion": 50,
+      "surface_detection": 70,
+      "sub_detection": 0,
+      "surface_visibility": 1,
+      "sub_visibility": 10,
+      "naval_speed": 16,
+      "reliability": 0.8,
+      "naval_range": 6000,
+      "max_strength": 35,
+      "port_capacity_usage": 0.5,
+      "build_cost_ic": 600,
+      "resources": {
+        "oil": 2,
+        "steel": 3,
+        "chromium": 1
+      },
+      "type": [
+        "submarine"
+      ]
+    },
+    "support_equipment": {
+      "year": 1918,
+      "is_archetype": true,
+      "picture": "archetype_support_equipment",
+      "is_buildable": false,
+      "type": [
+        "infantry",
+        "motorized"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_land",
+      "reliability": 0.8,
+      "lend_lease_cost": 1,
+      "build_cost_ic": 4,
+      "resources": {
+        "aluminium": 1,
+        "steel": 2
+      }
+    },
+    "support_equipment_1": {
+      "year": 1918,
+      "archetype": "support_equipment",
+      "priority": 20,
+      "resources": {
+      }
+    },
+    "heavy_tank_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": [
+        true,
+        true
+      ],
+      "picture": "archetype_heavy_tank_equipment",
+      "is_buildable": false,
+      "type": "armor",
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "maximum_speed": 5,
+      "reliability": 0.8,
+      "defense": 6,
+      "breakthrough": 36,
+      "hardness": 0.95,
+      "armor_value": 70,
+      "soft_attack": 15,
+      "hard_attack": 12,
+      "ap_attack": 35,
+      "air_attack": 0,
+      "lend_lease_cost": 14,
+      "build_cost_ic": 25,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_equipment_1": {
+      "year": 1934,
+      "archetype": "heavy_tank_equipment",
+      "priority": 90,
+      "visual_level": 0,
+      "is_convertable": true,
+      "resources": {
+      }
+    },
+    "heavy_tank_equipment_2": {
+      "year": 1941,
+      "archetype": "heavy_tank_equipment",
+      "parent": "heavy_tank_equipment_1",
+      "priority": 90,
+      "visual_level": 1,
+      "is_convertable": true,
+      "maximum_speed": 6,
+      "defense": 8,
+      "breakthrough": 52,
+      "armor_value": 110,
+      "soft_attack": 27,
+      "hard_attack": 30,
+      "ap_attack": 111,
+      "build_cost_ic": 27,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_equipment_3": {
+      "year": 1943,
+      "archetype": "heavy_tank_equipment",
+      "parent": "heavy_tank_equipment_2",
+      "priority": 90,
+      "visual_level": 2,
+      "is_convertable": true,
+      "maximum_speed": 6,
+      "defense": 9,
+      "breakthrough": 67,
+      "armor_value": 130,
+      "soft_attack": 35,
+      "hard_attack": 40,
+      "ap_attack": 131,
+      "build_cost_ic": 30,
+      "resources": {
+        "oil": 1,
+        "steel": 4,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_artillery_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_heavy_tank_equipment",
+      "is_buildable": false,
+      "family": "heavy_tank_equipment",
+      "type": [
+        "armor",
+        "artillery"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_art_upgrade"
+      ],
+      "maximum_speed": 5,
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 2,
+      "hardness": 0.8,
+      "armor_value": 45,
+      "soft_attack": 55,
+      "hard_attack": 1,
+      "ap_attack": 8,
+      "air_attack": 0,
+      "build_cost_ic": 25,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_artillery_equipment_1": {
+      "year": 1934,
+      "archetype": "heavy_tank_artillery_equipment",
+      "family": "heavy_tank_equipment_1",
+      "can_convert_from": [
+        "heavy_tank_equipment_1"
+      ],
+      "priority": 100,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "heavy_tank_artillery_equipment_2": {
+      "year": 1941,
+      "archetype": "heavy_tank_artillery_equipment",
+      "parent": "heavy_tank_artillery_equipment_1",
+      "family": "heavy_tank_equipment_2",
+      "can_convert_from": [
+        "heavy_tank_equipment_1",
+        "heavy_tank_equipment_2"
+      ],
+      "priority": 100,
+      "visual_level": 1,
+      "maximum_speed": 6,
+      "defense": 6,
+      "breakthrough": 3,
+      "armor_value": 68,
+      "soft_attack": 74,
+      "hard_attack": 2,
+      "build_cost_ic": 27,
+      "resources": {
+        "oil": 1,
+        "steel": 4,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_artillery_equipment_3": {
+      "year": 1943,
+      "archetype": "heavy_tank_artillery_equipment",
+      "parent": "heavy_tank_artillery_equipment_2",
+      "family": "heavy_tank_equipment_3",
+      "can_convert_from": [
+        "heavy_tank_equipment_2",
+        "heavy_tank_equipment_3"
+      ],
+      "priority": 100,
+      "visual_level": 2,
+      "maximum_speed": 6,
+      "defense": 7,
+      "breakthrough": 3.5,
+      "armor_value": 90,
+      "soft_attack": 80,
+      "hard_attack": 2.5,
+      "build_cost_ic": 30,
+      "resources": {
+        "oil": 1,
+        "steel": 5,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_destroyer_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_heavy_tank_equipment",
+      "is_buildable": false,
+      "family": "heavy_tank_equipment",
+      "type": [
+        "armor",
+        "anti_tank"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_at_upgrade"
+      ],
+      "maximum_speed": 5,
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 1,
+      "hardness": 0.95,
+      "armor_value": 70,
+      "soft_attack": 6,
+      "hard_attack": 25,
+      "ap_attack": 96,
+      "air_attack": 0,
+      "build_cost_ic": 25,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_destroyer_equipment_1": {
+      "year": 1934,
+      "archetype": "heavy_tank_destroyer_equipment",
+      "family": "heavy_tank_equipment_1",
+      "can_convert_from": [
+        "heavy_tank_equipment_1"
+      ],
+      "priority": 120,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "heavy_tank_destroyer_equipment_2": {
+      "year": 1941,
+      "archetype": "heavy_tank_destroyer_equipment",
+      "parent": "heavy_tank_destroyer_equipment_1",
+      "family": "heavy_tank_equipment_2",
+      "can_convert_from": [
+        "heavy_tank_equipment_1",
+        "heavy_tank_equipment_2"
+      ],
+      "priority": 120,
+      "visual_level": 1,
+      "maximum_speed": 6,
+      "defense": 6,
+      "breakthrough": 1.5,
+      "armor_value": 110,
+      "soft_attack": 8,
+      "hard_attack": 42,
+      "ap_attack": 140,
+      "air_attack": 0,
+      "build_cost_ic": 27,
+      "resources": {
+        "oil": 1,
+        "steel": 4,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_destroyer_equipment_3": {
+      "year": 1943,
+      "archetype": "heavy_tank_destroyer_equipment",
+      "parent": "heavy_tank_destroyer_equipment_2",
+      "family": "heavy_tank_equipment_3",
+      "can_convert_from": [
+        "heavy_tank_equipment_2",
+        "heavy_tank_equipment_3"
+      ],
+      "priority": 120,
+      "visual_level": 2,
+      "maximum_speed": 6,
+      "defense": 7,
+      "breakthrough": 1.8,
+      "armor_value": 130,
+      "soft_attack": 10,
+      "hard_attack": 60,
+      "ap_attack": 160,
+      "air_attack": 0,
+      "build_cost_ic": 30,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "chromium": 4
+      }
+    },
+    "heavy_tank_aa_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_heavy_tank_equipment",
+      "is_buildable": false,
+      "family": "heavy_tank_equipment",
+      "type": [
+        "armor",
+        "anti_air"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_aa_upgrade"
+      ],
+      "maximum_speed": 5,
+      "reliability": 0.8,
+      "defense": 2,
+      "breakthrough": 2,
+      "hardness": 0.8,
+      "armor_value": 45,
+      "soft_attack": 4.5,
+      "hard_attack": 4,
+      "ap_attack": 25,
+      "air_attack": 17,
+      "build_cost_ic": 25,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_aa_equipment_1": {
+      "year": 1934,
+      "archetype": "heavy_tank_aa_equipment",
+      "family": "heavy_tank_equipment_1",
+      "can_convert_from": [
+        "heavy_tank_equipment_1"
+      ],
+      "priority": 110,
+      "visual_level": 0,
+      "resources": {
+      }
+    },
+    "heavy_tank_aa_equipment_2": {
+      "year": 1941,
+      "archetype": "heavy_tank_aa_equipment",
+      "parent": "heavy_tank_aa_equipment_1",
+      "family": "heavy_tank_equipment_2",
+      "can_convert_from": [
+        "heavy_tank_equipment_1",
+        "heavy_tank_equipment_2"
+      ],
+      "priority": 110,
+      "visual_level": 1,
+      "maximum_speed": 6,
+      "defense": 3,
+      "breakthrough": 3,
+      "armor_value": 68,
+      "soft_attack": 6,
+      "hard_attack": 4.5,
+      "ap_attack": 60,
+      "air_attack": 33,
+      "build_cost_ic": 27,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 3
+      }
+    },
+    "heavy_tank_aa_equipment_3": {
+      "year": 1943,
+      "archetype": "heavy_tank_aa_equipment",
+      "parent": "heavy_tank_aa_equipment_2",
+      "family": "heavy_tank_equipment_3",
+      "can_convert_from": [
+        "heavy_tank_equipment_2",
+        "heavy_tank_equipment_3"
+      ],
+      "priority": 110,
+      "visual_level": 2,
+      "maximum_speed": 6,
+      "reliability": 0.8,
+      "defense": 3.5,
+      "breakthrough": 3.5,
+      "armor_value": 90,
+      "soft_attack": 7.5,
+      "hard_attack": 6,
+      "ap_attack": 88,
+      "air_attack": 44,
+      "build_cost_ic": 30,
+      "resources": {
+        "oil": 1,
+        "steel": 4,
+        "chromium": 3
+      }
+    },
+    "light_tank_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_buildable": false,
+      "is_convertable": true,
+      "picture": "archetype_light_tank_equipment",
+      "type": "armor",
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 26,
+      "hardness": 0.8,
+      "armor_value": 10,
+      "soft_attack": 13,
+      "hard_attack": 4,
+      "ap_attack": 10,
+      "air_attack": 0,
+      "lend_lease_cost": 10,
+      "build_cost_ic": 8,
+      "resources": {
+        "oil": 1,
+        "steel": 2
+      }
+    },
+    "gw_tank_equipment": {
+      "year": 1914,
+      "archetype": "light_tank_equipment",
+      "priority": 5,
+      "visual_level": 0,
+      "upgrades": "PropertyList[]",
+      "maximum_speed": 6,
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 18,
+      "armor_value": 5,
+      "soft_attack": 8,
+      "hard_attack": 4,
+      "ap_attack": 15,
+      "air_attack": 0,
+      "build_cost_ic": 7,
+      "resources": {
+      }
+    },
+    "light_tank_equipment_1": {
+      "year": 1934,
+      "archetype": "light_tank_equipment",
+      "parent": "gw_tank_equipment",
+      "priority": 10,
+      "visual_level": 0,
+      "is_convertable": true,
+      "resources": {
+      }
+    },
+    "light_tank_equipment_2": {
+      "year": 1936,
+      "archetype": "light_tank_equipment",
+      "parent": "light_tank_equipment_1",
+      "priority": 10,
+      "visual_level": 1,
+      "is_convertable": true,
+      "maximum_speed": 12,
+      "defense": 5,
+      "breakthrough": 36,
+      "armor_value": 15,
+      "soft_attack": 16,
+      "hard_attack": 6,
+      "ap_attack": 30,
+      "air_attack": 0,
+      "build_cost_ic": 9,
+      "resources": {
+        "oil": 1,
+        "steel": 3
+      }
+    },
+    "light_tank_equipment_3": {
+      "year": 1941,
+      "archetype": "light_tank_equipment",
+      "parent": "light_tank_equipment_2",
+      "priority": 10,
+      "visual_level": 2,
+      "is_convertable": true,
+      "maximum_speed": 14,
+      "defense": 6,
+      "breakthrough": 46,
+      "armor_value": 30,
+      "soft_attack": 22,
+      "hard_attack": 9,
+      "ap_attack": 50,
+      "air_attack": 0,
+      "build_cost_ic": 10,
+      "resources": {
+        "oil": 2,
+        "steel": 4
+      }
+    },
+    "light_tank_artillery_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_light_tank_equipment",
+      "is_buildable": false,
+      "family": "light_tank_equipment",
+      "type": [
+        "armor",
+        "artillery"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_art_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 2,
+      "hardness": 0.5,
+      "armor_value": 5,
+      "soft_attack": 34,
+      "hard_attack": 0.5,
+      "ap_attack": 4,
+      "air_attack": 0,
+      "build_cost_ic": 8,
+      "resources": {
+        "oil": 1,
+        "steel": 2,
+        "tungsten": 1
+      }
+    },
+    "light_tank_artillery_equipment_1": {
+      "year": 1934,
+      "archetype": "light_tank_artillery_equipment",
+      "family": "light_tank_equipment_1",
+      "priority": 20,
+      "visual_level": 0,
+      "can_convert_from": [
+        "light_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "light_tank_artillery_equipment_2": {
+      "year": 1936,
+      "archetype": "light_tank_artillery_equipment",
+      "parent": "light_tank_artillery_equipment_1",
+      "family": "light_tank_equipment_2",
+      "priority": 20,
+      "visual_level": 1,
+      "can_convert_from": [
+        "light_tank_equipment_1",
+        "light_tank_equipment_2"
+      ],
+      "maximum_speed": 12,
+      "defense": 5,
+      "breakthrough": 2.5,
+      "armor_value": 10,
+      "soft_attack": 42,
+      "hard_attack": 1,
+      "build_cost_ic": 9,
+      "resources": {
+        "steel": 3,
+        "oil": 1,
+        "tungsten": 1
+      }
+    },
+    "light_tank_artillery_equipment_3": {
+      "year": 1941,
+      "archetype": "light_tank_artillery_equipment",
+      "parent": "light_tank_artillery_equipment_2",
+      "family": "light_tank_equipment_3",
+      "priority": 20,
+      "visual_level": 2,
+      "can_convert_from": [
+        "light_tank_equipment_2",
+        "light_tank_equipment_3"
+      ],
+      "maximum_speed": 14,
+      "defense": 7,
+      "breakthrough": 3.5,
+      "armor_value": 25,
+      "soft_attack": 46,
+      "hard_attack": 1.5,
+      "build_cost_ic": 10,
+      "resources": {
+        "steel": 4,
+        "oil": 2,
+        "tungsten": 1
+      }
+    },
+    "light_tank_destroyer_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_light_tank_equipment",
+      "is_buildable": false,
+      "family": "light_tank_equipment",
+      "type": [
+        "armor",
+        "anti_tank"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_at_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 1,
+      "hardness": 0.8,
+      "armor_value": 10,
+      "soft_attack": 6,
+      "hard_attack": 10,
+      "ap_attack": 50,
+      "air_attack": 0,
+      "build_cost_ic": 8,
+      "resources": {
+        "oil": 1,
+        "steel": 2,
+        "tungsten": 2
+      }
+    },
+    "light_tank_destroyer_equipment_1": {
+      "year": 1934,
+      "archetype": "light_tank_destroyer_equipment",
+      "family": "light_tank_equipment_1",
+      "priority": 40,
+      "visual_level": 0,
+      "can_convert_from": [
+        "light_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "light_tank_destroyer_equipment_2": {
+      "year": 1936,
+      "archetype": "light_tank_destroyer_equipment",
+      "parent": "light_tank_destroyer_equipment_1",
+      "family": "light_tank_equipment_2",
+      "priority": 40,
+      "visual_level": 1,
+      "can_convert_from": [
+        "light_tank_equipment_1",
+        "light_tank_equipment_2"
+      ],
+      "maximum_speed": 12,
+      "defense": 5,
+      "breakthrough": 1.3,
+      "armor_value": 15,
+      "soft_attack": 6,
+      "hard_attack": 16,
+      "ap_attack": 77,
+      "build_cost_ic": 9,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "tungsten": 2
+      }
+    },
+    "light_tank_destroyer_equipment_3": {
+      "year": 1941,
+      "archetype": "light_tank_destroyer_equipment",
+      "parent": "light_tank_destroyer_equipment_2",
+      "family": "light_tank_equipment_3",
+      "priority": 40,
+      "visual_level": 2,
+      "can_convert_from": [
+        "light_tank_equipment_2",
+        "light_tank_equipment_3"
+      ],
+      "maximum_speed": 14,
+      "defense": 7,
+      "breakthrough": 1.8,
+      "armor_value": 30,
+      "soft_attack": 8,
+      "hard_attack": 24,
+      "ap_attack": 99,
+      "build_cost_ic": 10,
+      "resources": {
+        "oil": 2,
+        "steel": 4,
+        "tungsten": 2
+      }
+    },
+    "light_tank_aa_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_light_tank_equipment",
+      "is_buildable": false,
+      "family": "light_tank_equipment",
+      "type": [
+        "armor",
+        "anti_air"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_aa_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 2,
+      "breakthrough": 2,
+      "hardness": 0.5,
+      "armor_value": 5,
+      "soft_attack": 2,
+      "hard_attack": 1,
+      "ap_attack": 5,
+      "air_attack": 15,
+      "build_cost_ic": 10,
+      "resources": {
+        "oil": 1,
+        "steel": 2
+      }
+    },
+    "light_tank_aa_equipment_1": {
+      "year": 1934,
+      "archetype": "light_tank_aa_equipment",
+      "family": "light_tank_equipment_1",
+      "priority": 30,
+      "visual_level": 0,
+      "can_convert_from": [
+        "light_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "light_tank_aa_equipment_2": {
+      "year": 1936,
+      "archetype": "light_tank_aa_equipment",
+      "parent": "light_tank_aa_equipment_1",
+      "family": "light_tank_equipment_2",
+      "priority": 30,
+      "visual_level": 1,
+      "can_convert_from": [
+        "light_tank_equipment_1",
+        "light_tank_equipment_2"
+      ],
+      "maximum_speed": 12,
+      "defense": 2.5,
+      "breakthrough": 2.5,
+      "armor_value": 10,
+      "soft_attack": 3,
+      "hard_attack": 1.5,
+      "ap_attack": 20,
+      "air_attack": 17,
+      "build_cost_ic": 11,
+      "resources": {
+        "oil": 1,
+        "steel": 3
+      }
+    },
+    "light_tank_aa_equipment_3": {
+      "year": 1941,
+      "archetype": "light_tank_aa_equipment",
+      "parent": "light_tank_aa_equipment_2",
+      "family": "light_tank_equipment_3",
+      "priority": 30,
+      "visual_level": 2,
+      "can_convert_from": [
+        "light_tank_equipment_2",
+        "light_tank_equipment_3"
+      ],
+      "maximum_speed": 14,
+      "defense": 3.5,
+      "breakthrough": 3.5,
+      "armor_value": 25,
+      "soft_attack": 4.5,
+      "hard_attack": 4,
+      "ap_attack": 35,
+      "air_attack": 32,
+      "build_cost_ic": 12,
+      "resources": {
+        "oil": 2,
+        "steel": 4
+      }
+    },
+    "medium_tank_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": [
+        true,
+        true
+      ],
+      "picture": "archetype_medium_tank_equipment",
+      "is_buildable": false,
+      "type": "armor",
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "maximum_speed": 8,
+      "reliability": 0.8,
+      "defense": 5,
+      "breakthrough": 36,
+      "hardness": 0.9,
+      "armor_value": 60,
+      "soft_attack": 19,
+      "hard_attack": 14,
+      "ap_attack": 61,
+      "air_attack": 0,
+      "lend_lease_cost": 12,
+      "build_cost_ic": 12,
+      "resources": {
+        "oil": 1,
+        "tungsten": 2,
+        "steel": 2
+      }
+    },
+    "medium_tank_equipment_1": {
+      "year": 1939,
+      "archetype": "medium_tank_equipment",
+      "priority": 50,
+      "visual_level": 0,
+      "is_convertable": true,
+      "resources": {
+      }
+    },
+    "medium_tank_equipment_2": {
+      "year": 1941,
+      "archetype": "medium_tank_equipment",
+      "parent": "medium_tank_equipment_1",
+      "priority": 50,
+      "visual_level": 1,
+      "is_convertable": true,
+      "maximum_speed": 9,
+      "defense": 7,
+      "breakthrough": 51,
+      "armor_value": 80,
+      "soft_attack": 25,
+      "hard_attack": 19,
+      "ap_attack": 81,
+      "air_attack": 0,
+      "build_cost_ic": 13,
+      "resources": {
+        "oil": 1,
+        "tungsten": 2,
+        "steel": 3
+      }
+    },
+    "medium_tank_equipment_3": {
+      "year": 1943,
+      "archetype": "medium_tank_equipment",
+      "parent": "medium_tank_equipment_2",
+      "priority": 50,
+      "visual_level": 2,
+      "is_convertable": true,
+      "maximum_speed": 10,
+      "defense": 9,
+      "breakthrough": 66,
+      "armor_value": 90,
+      "soft_attack": 32,
+      "hard_attack": 24,
+      "ap_attack": 91,
+      "air_attack": 0,
+      "build_cost_ic": 14,
+      "resources": {
+        "oil": 2,
+        "tungsten": 2,
+        "steel": 4
+      }
+    },
+    "medium_tank_artillery_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_medium_tank_equipment",
+      "is_buildable": false,
+      "family": "medium_tank_equipment",
+      "type": [
+        "armor",
+        "artillery"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_art_upgrade"
+      ],
+      "maximum_speed": 8,
+      "reliability": 0.8,
+      "defense": 5,
+      "breakthrough": 3,
+      "hardness": 0.65,
+      "armor_value": 45,
+      "soft_attack": 42,
+      "hard_attack": 1,
+      "ap_attack": 5,
+      "air_attack": 0,
+      "build_cost_ic": 12,
+      "resources": {
+        "oil": 1,
+        "tungsten": 3,
+        "steel": 2
+      }
+    },
+    "medium_tank_artillery_equipment_1": {
+      "year": 1939,
+      "archetype": "medium_tank_artillery_equipment",
+      "family": "medium_tank_equipment_1",
+      "priority": 60,
+      "visual_level": 0,
+      "can_convert_from": [
+        "medium_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "medium_tank_artillery_equipment_2": {
+      "year": 1941,
+      "archetype": "medium_tank_artillery_equipment",
+      "parent": "medium_tank_artillery_equipment_1",
+      "family": "medium_tank_equipment_2",
+      "priority": 60,
+      "visual_level": 1,
+      "can_convert_from": [
+        "medium_tank_equipment_1",
+        "medium_tank_equipment_2"
+      ],
+      "maximum_speed": 9,
+      "defense": 6,
+      "breakthrough": 3,
+      "armor_value": 50,
+      "soft_attack": 50,
+      "hard_attack": 1.5,
+      "build_cost_ic": 13,
+      "resources": {
+        "steel": 3,
+        "tungsten": 3,
+        "oil": 1
+      }
+    },
+    "medium_tank_artillery_equipment_3": {
+      "year": 1943,
+      "archetype": "medium_tank_artillery_equipment",
+      "parent": "medium_tank_artillery_equipment_2",
+      "family": "medium_tank_equipment_3",
+      "priority": 60,
+      "visual_level": 2,
+      "can_convert_from": [
+        "medium_tank_equipment_2",
+        "medium_tank_equipment_3"
+      ],
+      "maximum_speed": 10,
+      "defense": 7,
+      "breakthrough": 4,
+      "armor_value": 58,
+      "soft_attack": 55,
+      "hard_attack": 2,
+      "build_cost_ic": 14,
+      "resources": {
+        "steel": 4,
+        "tungsten": 3,
+        "oil": 2
+      }
+    },
+    "medium_tank_destroyer_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_medium_tank_equipment",
+      "is_buildable": false,
+      "family": "medium_tank_equipment",
+      "type": [
+        "armor",
+        "anti_tank"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_at_upgrade"
+      ],
+      "maximum_speed": 8,
+      "reliability": 0.8,
+      "defense": 5,
+      "breakthrough": 1.3,
+      "hardness": 0.9,
+      "armor_value": 60,
+      "soft_attack": 5,
+      "hard_attack": 20,
+      "ap_attack": 88,
+      "air_attack": 0,
+      "build_cost_ic": 12,
+      "resources": {
+        "oil": 1,
+        "tungsten": 4,
+        "steel": 2
+      }
+    },
+    "medium_tank_destroyer_equipment_1": {
+      "year": 1939,
+      "archetype": "medium_tank_destroyer_equipment",
+      "family": "medium_tank_equipment_1",
+      "priority": 80,
+      "visual_level": 0,
+      "can_convert_from": [
+        "medium_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "medium_tank_destroyer_equipment_2": {
+      "year": 1941,
+      "archetype": "medium_tank_destroyer_equipment",
+      "parent": "medium_tank_destroyer_equipment_1",
+      "family": "medium_tank_equipment_2",
+      "priority": 80,
+      "visual_level": 1,
+      "can_convert_from": [
+        "medium_tank_equipment_1",
+        "medium_tank_equipment_2"
+      ],
+      "maximum_speed": 9,
+      "defense": 6,
+      "breakthrough": 1.5,
+      "armor_value": 80,
+      "soft_attack": 6,
+      "hard_attack": 26,
+      "ap_attack": 110,
+      "build_cost_ic": 13,
+      "resources": {
+        "oil": 1,
+        "tungsten": 4,
+        "steel": 3
+      }
+    },
+    "medium_tank_destroyer_equipment_3": {
+      "year": 1943,
+      "archetype": "medium_tank_destroyer_equipment",
+      "parent": "medium_tank_destroyer_equipment_2",
+      "family": "medium_tank_equipment_3",
+      "priority": 80,
+      "visual_level": 2,
+      "can_convert_from": [
+        "medium_tank_equipment_2",
+        "medium_tank_equipment_3"
+      ],
+      "maximum_speed": 10,
+      "defense": 7,
+      "breakthrough": 1.8,
+      "armor_value": 90,
+      "soft_attack": 8,
+      "hard_attack": 32,
+      "ap_attack": 120,
+      "build_cost_ic": 14,
+      "resources": {
+        "oil": 2,
+        "tungsten": 4,
+        "steel": 4
+      }
+    },
+    "medium_tank_aa_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_medium_tank_equipment",
+      "is_buildable": false,
+      "family": "medium_tank_equipment",
+      "type": [
+        "armor",
+        "anti_air"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_aa_upgrade"
+      ],
+      "maximum_speed": 8,
+      "reliability": 0.8,
+      "defense": 2.5,
+      "breakthrough": 2.5,
+      "hardness": 0.65,
+      "armor_value": 45,
+      "soft_attack": 4.5,
+      "hard_attack": 3,
+      "ap_attack": 40,
+      "air_attack": 22,
+      "build_cost_ic": 12,
+      "resources": {
+        "oil": 1,
+        "tungsten": 2,
+        "steel": 2
+      }
+    },
+    "medium_tank_aa_equipment_1": {
+      "year": 1939,
+      "archetype": "medium_tank_aa_equipment",
+      "family": "medium_tank_equipment_1",
+      "priority": 70,
+      "visual_level": 0,
+      "can_convert_from": [
+        "medium_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "medium_tank_aa_equipment_2": {
+      "year": 1941,
+      "archetype": "medium_tank_aa_equipment",
+      "parent": "medium_tank_aa_equipment_1",
+      "family": "medium_tank_equipment_2",
+      "priority": 70,
+      "visual_level": 1,
+      "can_convert_from": [
+        "medium_tank_equipment_1",
+        "medium_tank_equipment_2"
+      ],
+      "maximum_speed": 9,
+      "defense": 3,
+      "breakthrough": 3,
+      "armor_value": 50,
+      "soft_attack": 6,
+      "hard_attack": 4.5,
+      "ap_attack": 60,
+      "air_attack": 32,
+      "build_cost_ic": 13,
+      "resources": {
+        "oil": 1,
+        "tungsten": 2,
+        "steel": 3
+      }
+    },
+    "medium_tank_aa_equipment_3": {
+      "year": 1943,
+      "archetype": "medium_tank_aa_equipment",
+      "parent": "medium_tank_aa_equipment_2",
+      "family": "medium_tank_equipment_3",
+      "priority": 70,
+      "visual_level": 2,
+      "can_convert_from": [
+        "medium_tank_equipment_2",
+        "medium_tank_equipment_3"
+      ],
+      "maximum_speed": 10,
+      "defense": 3.5,
+      "breakthrough": 3.5,
+      "armor_value": 58,
+      "soft_attack": 7.5,
+      "hard_attack": 6,
+      "ap_attack": 70,
+      "air_attack": 43,
+      "build_cost_ic": 14,
+      "resources": {
+        "oil": 2,
+        "tungsten": 2,
+        "steel": 4
+      }
+    },
+    "modern_tank_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_modern_tank_equipment",
+      "is_buildable": false,
+      "type": "armor",
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 10,
+      "breakthrough": 84,
+      "hardness": 0.98,
+      "armor_value": 130,
+      "soft_attack": 40,
+      "hard_attack": 32,
+      "ap_attack": 131,
+      "air_attack": 0,
+      "lend_lease_cost": 14,
+      "build_cost_ic": 28,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "modern_tank_equipment_1": {
+      "year": 1945,
+      "archetype": "modern_tank_equipment",
+      "priority": 170,
+      "visual_level": 0,
+      "is_convertable": true,
+      "resources": {
+      }
+    },
+    "modern_tank_artillery_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_modern_tank_equipment",
+      "is_buildable": false,
+      "family": "modern_tank_equipment",
+      "type": [
+        "armor",
+        "artillery"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_art_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 8,
+      "breakthrough": 4,
+      "hardness": 0.85,
+      "armor_value": 90,
+      "soft_attack": 80,
+      "hard_attack": 3,
+      "ap_attack": 10,
+      "air_attack": 0,
+      "build_cost_ic": 28,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "modern_tank_artillery_equipment_1": {
+      "year": 1945,
+      "archetype": "modern_tank_artillery_equipment",
+      "priority": 180,
+      "visual_level": 0,
+      "can_convert_from": [
+        "modern_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "modern_tank_destroyer_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_modern_tank_equipment",
+      "is_buildable": false,
+      "family": "modern_tank_equipment",
+      "type": [
+        "armor",
+        "anti_tank"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_at_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 8,
+      "breakthrough": 2,
+      "hardness": 0.98,
+      "armor_value": 130,
+      "soft_attack": 10,
+      "hard_attack": 42,
+      "ap_attack": 165,
+      "air_attack": 0,
+      "build_cost_ic": 28,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "modern_tank_destroyer_equipment_1": {
+      "year": 1945,
+      "archetype": "modern_tank_destroyer_equipment",
+      "priority": 200,
+      "visual_level": 0,
+      "can_convert_from": [
+        "modern_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "modern_tank_aa_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_modern_tank_equipment",
+      "is_buildable": false,
+      "family": "modern_tank_equipment",
+      "type": [
+        "armor",
+        "anti_air"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_aa_upgrade"
+      ],
+      "maximum_speed": 10,
+      "reliability": 0.8,
+      "defense": 4,
+      "breakthrough": 4,
+      "hardness": 0.85,
+      "armor_value": 90,
+      "soft_attack": 9,
+      "hard_attack": 7.5,
+      "ap_attack": 100,
+      "air_attack": 50,
+      "build_cost_ic": 28,
+      "resources": {
+        "oil": 1,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "modern_tank_aa_equipment_1": {
+      "year": 1945,
+      "archetype": "modern_tank_aa_equipment",
+      "priority": 190,
+      "visual_level": 0,
+      "can_convert_from": [
+        "modern_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "super_heavy_tank_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_super_heavy_tank_equipment",
+      "is_buildable": false,
+      "type": "armor",
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "maximum_speed": 3.5,
+      "reliability": 0.8,
+      "defense": 10,
+      "breakthrough": 74,
+      "hardness": 0.99,
+      "armor_value": 145,
+      "soft_attack": 38,
+      "hard_attack": 45,
+      "ap_attack": 146,
+      "air_attack": 0,
+      "lend_lease_cost": 15,
+      "build_cost_ic": 100,
+      "resources": {
+        "oil": 2,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "super_heavy_tank_equipment_1": {
+      "year": 1943,
+      "archetype": "super_heavy_tank_equipment",
+      "priority": 130,
+      "visual_level": 0,
+      "is_convertable": true,
+      "resources": {
+      }
+    },
+    "super_heavy_tank_artillery_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_super_heavy_tank_equipment",
+      "is_buildable": false,
+      "family": "super_heavy_tank_equipment",
+      "type": [
+        "armor",
+        "artillery"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_art_upgrade"
+      ],
+      "maximum_speed": 3.5,
+      "reliability": 0.8,
+      "defense": 7,
+      "breakthrough": 3.5,
+      "hardness": 0.9,
+      "armor_value": 100,
+      "soft_attack": 85,
+      "hard_attack": 3,
+      "ap_attack": 9,
+      "air_attack": 0,
+      "build_cost_ic": 100,
+      "resources": {
+        "oil": 2,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "super_heavy_tank_artillery_equipment_1": {
+      "year": 1943,
+      "archetype": "super_heavy_tank_artillery_equipment",
+      "priority": 140,
+      "visual_level": 0,
+      "can_convert_from": [
+        "super_heavy_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "super_heavy_tank_destroyer_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_super_heavy_tank_equipment",
+      "is_buildable": false,
+      "family": "super_heavy_tank_equipment",
+      "type": [
+        "armor",
+        "anti_tank"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_at_upgrade"
+      ],
+      "maximum_speed": 3.5,
+      "reliability": 0.8,
+      "defense": 7,
+      "breakthrough": 1.8,
+      "hardness": 0.99,
+      "armor_value": 145,
+      "soft_attack": 12,
+      "hard_attack": 70,
+      "ap_attack": 170,
+      "air_attack": 0,
+      "build_cost_ic": 100,
+      "resources": {
+        "oil": 2,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "super_heavy_tank_destroyer_equipment_1": {
+      "year": 1943,
+      "archetype": "super_heavy_tank_destroyer_equipment",
+      "priority": 160,
+      "visual_level": 0,
+      "can_convert_from": [
+        "super_heavy_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "super_heavy_tank_aa_equipment": {
+      "year": 1934,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_super_heavy_tank_equipment",
+      "is_buildable": false,
+      "family": "super_heavy_tank_equipment",
+      "type": [
+        "armor",
+        "anti_air"
+      ],
+      "group_by": "archetype",
+      "interface_category": "interface_category_armor",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "tank_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_aa_upgrade"
+      ],
+      "maximum_speed": 3.5,
+      "reliability": 0.8,
+      "defense": 3.5,
+      "breakthrough": 3.5,
+      "hardness": 0.9,
+      "armor_value": 100,
+      "soft_attack": 11.5,
+      "hard_attack": 9,
+      "ap_attack": 98,
+      "air_attack": 50,
+      "build_cost_ic": 100,
+      "resources": {
+        "oil": 2,
+        "steel": 3,
+        "chromium": 4
+      }
+    },
+    "super_heavy_tank_aa_equipment_1": {
+      "year": 1943,
+      "archetype": "super_heavy_tank_aa_equipment",
+      "priority": 150,
+      "visual_level": 0,
+      "can_convert_from": [
+        "super_heavy_tank_equipment_1"
+      ],
+      "resources": {
+      }
+    },
+    "tac_bomber_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_strat_bomber_equipment",
+      "is_buildable": false,
+      "type": [
+        "tactical_bomber"
+      ],
+      "group_by": "archetype",
+      "sprite": "medium_plane",
+      "air_map_icon_frame": 6,
+      "manpower": 40,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 4,
+      "upgrades": [
+        "plane_tac_bomb_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 15,
+      "naval_strike_targetting": 6,
+      "lend_lease_cost": 10,
+      "build_cost_ic": 35,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      }
+    },
+    "jet_tac_bomber_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_strat_bomber_equipment",
+      "is_buildable": false,
+      "type": [
+        "tactical_bomber"
+      ],
+      "group_by": "archetype",
+      "sprite": "medium_plane",
+      "maximum_speed": 500,
+      "air_map_icon_frame": 7,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 4,
+      "upgrades": [
+        "plane_tac_bomb_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 15,
+      "naval_strike_targetting": 6,
+      "build_cost_ic": 45,
+      "resources": {
+        "aluminium": 2,
+        "tungsten": 3,
+        "rubber": 1
+      },
+      "manpower": 80
+    },
+    "heavy_fighter_equipment": {
+      "year": 1933,
+      "is_archetype": true,
+      "is_convertable": true,
+      "picture": "archetype_strat_bomber_equipment",
+      "is_buildable": false,
+      "type": [
+        "fighter",
+        "interceptor"
+      ],
+      "group_by": "archetype",
+      "sprite": "light_plane",
+      "air_map_icon_frame": 8,
+      "interface_category": "interface_category_air",
+      "interface_overview_category_index": 3,
+      "upgrades": [
+        "plane_gun_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "air_superiority": 1,
+      "reliability": 0.8,
+      "naval_strike_attack": 5,
+      "naval_strike_targetting": 10,
+      "build_cost_ic": 28,
+      "resources": {
+        "oil": 1,
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "manpower": 40
+    },
+    "tac_bomber_equipment_0": {
+      "year": 1933,
+      "archetype": "tac_bomber_equipment",
+      "priority": 105,
+      "air_range": 1400,
+      "maximum_speed": 250,
+      "air_agility": 16,
+      "air_attack": 5,
+      "air_defence": 15,
+      "air_bombing": 10,
+      "air_ground_attack": 3,
+      "naval_strike_attack": 4,
+      "naval_strike_targetting": 6,
+      "resources": {
+      }
+    },
+    "tac_bomber_equipment_1": {
+      "year": 1936,
+      "archetype": "tac_bomber_equipment",
+      "parent": "tac_bomber_equipment_0",
+      "priority": 110,
+      "air_range": 2400,
+      "maximum_speed": 430,
+      "air_agility": 20,
+      "air_attack": 8,
+      "air_defence": 18,
+      "air_bombing": 12,
+      "air_ground_attack": 6,
+      "build_cost_ic": 37,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 8,
+      "naval_strike_targetting": 6
+    },
+    "tac_bomber_equipment_2": {
+      "year": 1940,
+      "archetype": "tac_bomber_equipment",
+      "parent": "tac_bomber_equipment_1",
+      "priority": 110,
+      "air_range": 2500,
+      "maximum_speed": 440,
+      "air_agility": 25,
+      "air_attack": 13,
+      "air_defence": 21,
+      "air_bombing": 14,
+      "air_ground_attack": 9,
+      "build_cost_ic": 39,
+      "resources": {
+        "oil": 1,
+        "aluminium": 4,
+        "rubber": 1
+      },
+      "naval_strike_attack": 12,
+      "naval_strike_targetting": 6
+    },
+    "tac_bomber_equipment_3": {
+      "year": 1944,
+      "archetype": "tac_bomber_equipment",
+      "parent": "tac_bomber_equipment_2",
+      "priority": 110,
+      "air_range": 3000,
+      "maximum_speed": 480,
+      "air_agility": 30,
+      "air_attack": 20,
+      "air_defence": 24,
+      "air_bombing": 16,
+      "air_ground_attack": 15,
+      "build_cost_ic": 41,
+      "resources": {
+        "oil": 1,
+        "aluminium": 5,
+        "rubber": 1
+      },
+      "naval_strike_attack": 15,
+      "naval_strike_targetting": 6
+    },
+    "jet_tac_bomber_equipment_1": {
+      "year": 1945,
+      "archetype": "jet_tac_bomber_equipment",
+      "priority": 120,
+      "air_range": 1800,
+      "maximum_speed": 1000,
+      "air_agility": 57,
+      "air_attack": 18,
+      "air_defence": 24,
+      "air_bombing": 16,
+      "air_ground_attack": 15,
+      "resources": {
+      }
+    },
+    "jet_tac_bomber_equipment_2": {
+      "year": 1950,
+      "archetype": "jet_tac_bomber_equipment",
+      "parent": "jet_tac_bomber_equipment_1",
+      "priority": 120,
+      "air_range": 5000,
+      "maximum_speed": 1000,
+      "air_agility": 57,
+      "air_attack": 22,
+      "air_defence": 28,
+      "air_bombing": 20,
+      "air_ground_attack": 20,
+      "build_cost_ic": 48,
+      "resources": {
+        "aluminium": 3,
+        "tungsten": 3,
+        "rubber": 1
+      }
+    },
+    "heavy_fighter_equipment_1": {
+      "year": 1936,
+      "archetype": "heavy_fighter_equipment",
+      "priority": 100,
+      "air_range": 1300,
+      "maximum_speed": 500,
+      "air_agility": 25,
+      "air_attack": 36,
+      "air_defence": 13,
+      "naval_strike_attack": 3,
+      "naval_strike_targetting": 6,
+      "resources": {
+      }
+    },
+    "heavy_fighter_equipment_2": {
+      "year": 1940,
+      "archetype": "heavy_fighter_equipment",
+      "parent": "heavy_fighter_equipment_1",
+      "priority": 100,
+      "air_range": 1700,
+      "maximum_speed": 550,
+      "air_agility": 30,
+      "air_attack": 46,
+      "air_defence": 15,
+      "build_cost_ic": 30,
+      "resources": {
+        "oil": 1,
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "naval_strike_attack": 6,
+      "naval_strike_targetting": 10
+    },
+    "heavy_fighter_equipment_3": {
+      "year": 1944,
+      "archetype": "heavy_fighter_equipment",
+      "parent": "heavy_fighter_equipment_2",
+      "priority": 100,
+      "air_range": 2000,
+      "maximum_speed": 600,
+      "air_agility": 33,
+      "air_attack": 54,
+      "air_defence": 18,
+      "build_cost_ic": 32,
+      "resources": {
+        "oil": 1,
+        "aluminium": 4,
+        "rubber": 1
+      },
+      "naval_strike_attack": 9,
+      "naval_strike_targetting": 10
+    }
   }
 }

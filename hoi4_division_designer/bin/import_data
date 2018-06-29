@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative "../../lib/paradox_game"
+require "pathname"
 require "json"
 
 class ImportData < ParadoxGame
@@ -16,10 +17,10 @@ class ImportData < ParadoxGame
     end
   end
 
-  def call
-    data = { units: {}}
+  def units_data
+    result = {}
     each_unit do |name, unit|
-      raise "Duplicate name: #{name}" if data[:units][name]
+      raise "Duplicate name: #{name}" if result[name]
       bonuses = {}
       unit_data = {}
       unit.each do |key, value|
@@ -36,16 +37,40 @@ class ImportData < ParadoxGame
              "desert"
           bonuses[key] = value.to_h
         when "priority", "ai_priority", "sprite", "map_icon_category"
+          # Skip
         else
-          warn "Unknown key #{key}"
+          # warn "Unknown key #{key}"
         end
       end
 
       unit_data["bonuses"] = bonuses
-      data[:units][name] = unit_data
+      result[name] = unit_data
     end
+    result
+  end
 
-    puts JSON.pretty_generate(data)
+  def each_equipment
+    glob("common/units/equipment/*.txt").each do |path|
+      parse(path)["equipments"].each do |name, equipment|
+        yield(name, equipment)
+      end
+    end
+  end
+
+  def equipment_data
+    result = {}
+    each_equipment do |name, equipment|
+      equipment = equipment.to_h
+      equipment["resources"] = equipment["resources"].to_h
+      result[name] = equipment
+    end
+    # archetype inheritance
+    result
+  end
+
+  def call
+    data = { units: units_data, equipment: equipment_data }
+    Pathname("#{__dir__}/../data/data.json").write JSON.pretty_generate(data)
   end
 end
 

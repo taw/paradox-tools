@@ -39,8 +39,51 @@ class Division
     @units.map(&:supply_use).sum
   end
 
+  def soft_attack
+    @units.map(&:soft_attack).sum
+  end
+
+  def hard_attack
+    @units.map(&:hard_attack).sum
+  end
+
+  def defense
+    @units.map(&:defense).sum
+  end
+
+  def breakthrough
+    @units.map(&:breakthrough).sum
+  end
+
+  def ic_cost
+    @units.map(&:ic_cost).sum
+  end
+
+  def armor # FIXME: wrong formula
+    @units.map(&:armor).avg
+  end
+
+  def piercing # FIXME: wrong formula
+    @units.map(&:piercing).avg
+  end
+
   def bonuses
-    {}
+    sums = {}
+    @units.each do |unit|
+      unit.bonuses.each do |terrain, terrain_bonuses|
+        terrain_bonuses.each do |kind, value|
+          sums[[terrain, kind]] ||= 0
+          sums[[terrain, kind]] += value
+        end
+      end
+    end
+    result = {}
+    sums.each do |(terrain, kind), value|
+      value = (value / @units.size).round(6)
+      result[terrain] ||= {}
+      result[terrain][kind] = value
+    end
+    result
   end
 
   def speed
@@ -51,8 +94,8 @@ class Division
     result = {}
     @units.each do |unit|
       unit.equipment.each do |type, count|
-        result[type] ||= 0
-        result[type] += count
+        result[type.name] ||= 0
+        result[type.name] += count
       end
     end
     result
