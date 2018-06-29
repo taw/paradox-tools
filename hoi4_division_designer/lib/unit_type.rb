@@ -17,7 +17,7 @@ class UnitType
   end
 
   def suppression
-    @stats["suppression"]
+    @stats["suppression"] || 0
   end
 
   def hp

@@ -24,7 +24,7 @@ class Division
   end
 
   def org
-    @units.map(&:org).avg
+    @units.map(&:org).avg.round(3)
   end
 
   def weight
@@ -32,11 +32,11 @@ class Division
   end
 
   def recovery_rate
-    @units.map(&:recovery_rate).avg
+    @units.map(&:recovery_rate).avg.round(3)
   end
 
   def supply_use
-    @units.map(&:supply_use).sum
+    @units.map(&:supply_use).sum.round(6)
   end
 
   def soft_attack
@@ -59,14 +59,6 @@ class Division
     @units.map(&:ic_cost).sum
   end
 
-  def armor # FIXME: wrong formula
-    @units.map(&:armor).avg
-  end
-
-  def piercing # FIXME: wrong formula
-    @units.map(&:piercing).avg
-  end
-
   def bonuses
     sums = {}
     @units.each do |unit|
@@ -79,7 +71,7 @@ class Division
     end
     result = {}
     sums.each do |(terrain, kind), value|
-      value = (value / @units.size).round(6)
+      value = (value / @units.size).round(3)
       result[terrain] ||= {}
       result[terrain][kind] = value
     end
@@ -101,7 +93,22 @@ class Division
     result
   end
 
-  # FIXME: remove this once we're done
+  def armor
+    mx = @units.map(&:armor).max
+    wa = @units.map(&:armor).avg
+    (0.3 * mx + 0.7 * wa).round(3)
+  end
+
+  def piercing
+    mx = @units.map(&:piercing).max
+    wa = @units.map(&:piercing).avg
+    (0.4 * mx + 0.6 * wa).round(3)
+  end
+
+  def can_paradrop?
+    false
+  end
+
   def method_missing(m, *args)
     0
   end

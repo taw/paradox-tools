@@ -23,6 +23,8 @@ describe DivisionDesigner do
 
       # Adjusters
       bonuses: {},
+      special_forces: 0,
+      can_paradrop: false,
     }
   }
 
@@ -58,6 +60,8 @@ describe DivisionDesigner do
     expect(division.ic_cost).to eq stats[:ic_cost]
     # Adjusters
     expect(division.bonuses).to eq stats[:bonuses]
+    expect(division.special_forces).to eq stats[:special_forces]
+    expect(division.can_paradrop?).to eq stats[:can_paradrop]
   end
 
   describe "2inf, no tech" do
@@ -99,7 +103,6 @@ describe DivisionDesigner do
         supply_use: 0.72,
         soft_attack: 18.0,
         hard_attack: 3.0,
-        air_attack: 0.0,
         defense: 120.0,
         breakthrough: 12.0,
         piercing: 1.0,
@@ -115,6 +118,72 @@ describe DivisionDesigner do
           "urban" => {"attack" => -0.05},
           "jungle" => {"attack" => -0.10},
           "amphibious" => {"attack" => -0.40},
+        },
+      }
+    end
+  end
+
+  describe "2mnt 2inf" do
+    let(:tech) { nil }
+    let(:units) { {infantry: 2, mountaineers: 2} }
+    it do
+      expect_stats division, {
+        speed: 4.0,
+        hp: 90.0,
+        org: 65.0,
+        recovery_rate: 0.35,
+        suppression: 4.0,
+        weight: 2.0,
+        supply_use: 0.28,
+        soft_attack: 12.0,
+        hard_attack: 2.0,
+        defense: 80.0,
+        breakthrough: 9.2,
+        piercing: 1.0,
+        combat_width: 8,
+        manpower: 4000,
+        training_time: 120,
+        equipment: {"infantry_equipment" => 480},
+        ic_cost: 192,
+        bonuses: {
+          "hills" => {"movement" => 0.05, "attack" => 0.10, "defense" => 0.025},
+          "mountain" => {"movement" => 0.10, "attack" => 0.175, "movement" => 0.05},
+        },
+      }
+    end
+  end
+
+  describe "7inf 2art" do
+    let(:tech) { nil }
+    let(:units) { {infantry: 7, artillery_brigade: 2} }
+    it do
+      expect_stats division, {
+        speed: 4.0,
+        hp: 176.2,
+        org: 46.667, # displayed as 46.6
+        recovery_rate: 0.256, # displayed as 0.25
+        suppression: 7.0,
+        weight: 4.5,
+        supply_use: 0.89,
+        soft_attack: 71.0,
+        hard_attack: 7.5,
+        defense: 160.0,
+        breakthrough: 26.0,
+        piercing: 3.133, # displayed as 3.1
+        combat_width: 20,
+        manpower: 8000,
+        training_time: 120,
+        equipment: {"infantry_equipment" => 700, "artillery_equipment" => 72},
+        ic_cost: 532,
+        bonuses: {
+          "forest" => {"movement" => -0.044, "attack" => -0.044},
+          "hills" => {"movement" => -0.011},
+          "mountain" => {"movement" => -0.044},
+          "jungle" => {"movement" => -0.044, "attack" => -0.055},
+          "marsh" => {"movement" => -0.066, "attack" => -0.044},
+          "fort" => {"attack" => 0.022},
+          "river" => {"movement" => -0.044, "attack" => -0.044},
+          "amphibious" => {"attack" => -0.088},
         },
       }
     end

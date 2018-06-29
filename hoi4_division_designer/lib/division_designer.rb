@@ -8,7 +8,7 @@ require_relative "equipment"
 module Enumerable
   def avg
     return if empty?
-    sum / size
+    sum.to_f / size
   end
 end
 
@@ -28,7 +28,10 @@ class DivisionDesigner
 
   def technology
     {
-      equipment: {"infantry_equipment" => @equipment["infantry_equipment"]},
+      equipment: {
+        "infantry_equipment" => @equipment["infantry_equipment"],
+        "artillery_equipment" => @equipment["artillery_equipment"],
+      },
     }
   end
 
