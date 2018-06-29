@@ -39,4 +39,16 @@ class Unit
   def equipment
     @stats["need"]
   end
+
+  def supply_use
+    @stats["supply_consumption"]
+  end
+
+  def speed
+    if @stats["maximum_speed"]
+      4.0 * (1 + @stats["maximum_speed"])
+    else
+      4.0
+    end
+  end
 end

@@ -20,17 +20,29 @@ class ImportData < ParadoxGame
     data = { units: {}}
     each_unit do |name, unit|
       raise "Duplicate name: #{name}" if data[:units][name]
-      data[:units][name] = {
-        combat_width: unit["combat_width"],
-        max_strength: unit["max_strength"],
-        max_organisation: unit["max_organisation"],
-        default_morale: unit["default_morale"],
-        manpower: unit["manpower"],
-        training_time: unit["training_time"],
-        suppression: unit["suppression"],
-        weight: unit["weight"],
-        need: unit["need"].to_h,
-      }
+      bonuses = {}
+      unit_data = {}
+      unit.each do |key, value|
+        case key
+        when "combat_width", "max_strength", "max_organisation",
+          "default_morale", "manpower", "training_time",
+          "suppression", "weight", "supply_consumption",
+          "maximum_speed"
+          unit_data[key] = value
+        when "need"
+          unit_data["need"] = value.to_h
+        when "forest", "marsh", "hills", "urban", "mountain",
+             "jungle", "amphibious", "river", "fort", "plains",
+             "desert"
+          bonuses[key] = value.to_h
+        when "priority", "ai_priority", "sprite", "map_icon_category"
+        else
+          warn "Unknown key #{key}"
+        end
+      end
+
+      unit_data["bonuses"] = bonuses
+      data[:units][name] = unit_data
     end
 
     puts JSON.pretty_generate(data)

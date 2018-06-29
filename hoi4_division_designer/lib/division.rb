@@ -35,12 +35,16 @@ class Division
     @units.map(&:recovery_rate).avg
   end
 
+  def supply_use
+    @units.map(&:supply_use).sum
+  end
+
   def bonuses
     {}
   end
 
   def speed
-    4.0
+    @units.map(&:speed).min
   end
 
   def equipment
