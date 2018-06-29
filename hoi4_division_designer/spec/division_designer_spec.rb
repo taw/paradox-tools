@@ -25,6 +25,7 @@ describe DivisionDesigner do
       bonuses: {},
       special_forces: 0,
       can_paradrop: false,
+      hardness: 0,
     }
   }
 
@@ -62,6 +63,7 @@ describe DivisionDesigner do
     expect(division.bonuses).to eq stats[:bonuses]
     expect(division.special_forces).to eq stats[:special_forces]
     expect(division.can_paradrop?).to eq stats[:can_paradrop]
+    expect(division.hardness).to eq stats[:hardness]
   end
 
   describe "2inf, no tech" do
@@ -146,8 +148,8 @@ describe DivisionDesigner do
         equipment: {"infantry_equipment" => 480},
         ic_cost: 192,
         bonuses: {
-          "hills" => {"movement" => 0.05, "attack" => 0.10, "defense" => 0.025},
-          "mountain" => {"movement" => 0.10, "attack" => 0.175, "movement" => 0.05},
+          "hills" => {"movement" => 0.05, "attack" => 0.10, "defence" => 0.025},
+          "mountain" => {"movement" => 0.10, "attack" => 0.175, "defence" => 0.05},
         },
       }
     end
@@ -175,15 +177,15 @@ describe DivisionDesigner do
         training_time: 120,
         equipment: {"infantry_equipment" => 700, "artillery_equipment" => 72},
         ic_cost: 532,
-        bonuses: {
+        bonuses: { # different rounding in game
           "forest" => {"movement" => -0.044, "attack" => -0.044},
           "hills" => {"movement" => -0.011},
           "mountain" => {"movement" => -0.044},
-          "jungle" => {"movement" => -0.044, "attack" => -0.055},
-          "marsh" => {"movement" => -0.066, "attack" => -0.044},
+          "jungle" => {"movement" => -0.044, "attack" => -0.056},
+          "marsh" => {"movement" => -0.067, "attack" => -0.044},
           "fort" => {"attack" => 0.022},
           "river" => {"movement" => -0.044, "attack" => -0.044},
-          "amphibious" => {"attack" => -0.088},
+          "amphibious" => {"attack" => -0.089},
         },
       }
     end

@@ -55,4 +55,12 @@ class UnitType
   def bonuses
     @stats["bonuses"]
   end
+
+  def special_forces?
+    @stats["special_forces"]
+  end
+
+  def breakthrough
+    @stats["breakthrough"] || 0
+  end
 end

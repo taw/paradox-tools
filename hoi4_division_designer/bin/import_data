@@ -28,7 +28,9 @@ class ImportData < ParadoxGame
         when "combat_width", "max_strength", "max_organisation",
           "default_morale", "manpower", "training_time",
           "suppression", "weight", "supply_consumption",
-          "maximum_speed"
+          "maximum_speed", "breakthrough", "defense",
+          "soft_attack", "hard_attack",
+          "special_forces", "can_be_parachuted"
           unit_data[key] = value
         when "need"
           unit_data["need"] = value.to_h

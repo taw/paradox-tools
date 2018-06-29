@@ -11,7 +11,9 @@ class Unit
     end
   end
 
-  %i[combat_width manpower training_time suppression hp org weight recovery_rate supply_use speed bonuses].each do |key|
+  %i[
+    combat_width manpower training_time suppression hp org weight recovery_rate
+    supply_use speed bonuses special_forces?].each do |key|
     define_method(key) { @unit_type.send(key) }
   end
 
@@ -30,7 +32,8 @@ class Unit
   end
 
   def breakthrough
-    @equipment.map{|eq, count| eq.breakthrough}.sum
+    base = @equipment.map{|eq, count| eq.breakthrough}.sum
+    base * (1 + @unit_type.breakthrough)
   end
 
   def piercing
