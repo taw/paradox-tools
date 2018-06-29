@@ -1,0 +1,885 @@
+{
+  "units": {
+    "fighter": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "fighter_equipment": 1
+      }
+    },
+    "cv_fighter": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "cv_fighter_equipment": 1
+      }
+    },
+    "jet_fighter": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "jet_fighter_equipment": 1
+      }
+    },
+    "cas": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "CAS_equipment": 1
+      }
+    },
+    "cv_cas": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "cv_CAS_equipment": 1
+      }
+    },
+    "cv_nav_bomber": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "cv_nav_bomber_equipment": 1
+      }
+    },
+    "nav_bomber": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "nav_bomber_equipment": 1
+      }
+    },
+    "rocket_interceptor": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "rocket_interceptor_equipment": 1
+      }
+    },
+    "suicide_craft": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "suicide_craft_equipment": 1
+      }
+    },
+    "tac_bomber": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "tac_bomber_equipment": 1
+      }
+    },
+    "jet_tac_bomber": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "jet_tac_bomber_equipment": 1
+      }
+    },
+    "heavy_fighter": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "heavy_fighter_equipment": 1
+      }
+    },
+    "strat_bomber": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "strat_bomber_equipment": 1
+      }
+    },
+    "jet_strat_bomber": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "jet_strat_bomber_equipment": 1
+      }
+    },
+    "transport_plane": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "transport_plane_equipment": 1
+      }
+    },
+    "guided_missile": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": null,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "guided_missile_equipment": 1
+      }
+    },
+    "anti_air": {
+      "combat_width": 0,
+      "max_strength": 0.2,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 300,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "anti_air_equipment": 20
+      }
+    },
+    "anti_air_brigade": {
+      "combat_width": 1,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.5,
+      "need": {
+        "anti_air_equipment": 30
+      }
+    },
+    "anti_tank": {
+      "combat_width": 0,
+      "max_strength": 0.2,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 300,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "anti_tank_equipment": 24
+      }
+    },
+    "anti_tank_brigade": {
+      "combat_width": 1,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.5,
+      "need": {
+        "anti_tank_equipment": 36
+      }
+    },
+    "artillery": {
+      "combat_width": 0,
+      "max_strength": 0.2,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 300,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "artillery_equipment": 12
+      }
+    },
+    "rocket_artillery": {
+      "combat_width": 0,
+      "max_strength": 0.2,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 300,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "rocket_artillery_equipment": 24
+      }
+    },
+    "artillery_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.5,
+      "need": {
+        "artillery_equipment": 36
+      }
+    },
+    "rocket_artillery_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.5,
+      "need": {
+        "rocket_artillery_equipment": 36
+      }
+    },
+    "motorized_rocket_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.5,
+      "need": {
+        "motorized_rocket_equipment": 20,
+        "motorized_equipment": 15
+      }
+    },
+    "battle_cruiser": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": 40,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "battle_cruiser": 1
+      }
+    },
+    "battleship": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": 40,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "battleship": 1
+      }
+    },
+    "carrier": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": 40,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "carrier": 1
+      }
+    },
+    "cavalry": {
+      "combat_width": 2,
+      "max_strength": 25,
+      "max_organisation": 70,
+      "default_morale": 0.3,
+      "manpower": 1000,
+      "training_time": 120,
+      "suppression": 2,
+      "weight": 0.5,
+      "need": {
+        "infantry_equipment": 120
+      }
+    },
+    "destroyer": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": 40,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "destroyer": 1
+      }
+    },
+    "engineer": {
+      "combat_width": 0,
+      "max_strength": 2,
+      "max_organisation": 20,
+      "default_morale": 0.3,
+      "manpower": 300,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "infantry_equipment": 10,
+        "support_equipment": 30
+      }
+    },
+    "field_hospital": {
+      "combat_width": 0,
+      "max_strength": 2,
+      "max_organisation": 20,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "support_equipment": 30,
+        "motorized_equipment": 20
+      }
+    },
+    "heavy_armor": {
+      "combat_width": 2,
+      "max_strength": 2,
+      "max_organisation": 10,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "heavy_tank_equipment": 40
+      }
+    },
+    "heavy_cruiser": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": 40,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "heavy_cruiser": 1
+      }
+    },
+    "infantry": {
+      "combat_width": 2,
+      "max_strength": 25,
+      "max_organisation": 60,
+      "default_morale": 0.3,
+      "manpower": 1000,
+      "training_time": 90,
+      "suppression": 1,
+      "weight": 0.5,
+      "need": {
+        "infantry_equipment": 100
+      }
+    },
+    "bicycle_battalion": {
+      "combat_width": 2,
+      "max_strength": 25,
+      "max_organisation": 60,
+      "default_morale": 0.3,
+      "manpower": 1000,
+      "training_time": 90,
+      "suppression": 1,
+      "weight": 0.5,
+      "need": {
+        "infantry_equipment": 100,
+        "support_equipment": 10
+      }
+    },
+    "marine": {
+      "combat_width": 2,
+      "max_strength": 20,
+      "max_organisation": 70,
+      "default_morale": 0.4,
+      "manpower": 1000,
+      "training_time": 120,
+      "suppression": 1,
+      "weight": 0.5,
+      "need": {
+        "infantry_equipment": 150
+      }
+    },
+    "mountaineers": {
+      "combat_width": 2,
+      "max_strength": 20,
+      "max_organisation": 70,
+      "default_morale": 0.4,
+      "manpower": 1000,
+      "training_time": 120,
+      "suppression": 1,
+      "weight": 0.5,
+      "need": {
+        "infantry_equipment": 140
+      }
+    },
+    "paratrooper": {
+      "combat_width": 2,
+      "max_strength": 22,
+      "max_organisation": 70,
+      "default_morale": 0.4,
+      "manpower": 1000,
+      "training_time": 150,
+      "suppression": 1,
+      "weight": 0.5,
+      "need": {
+        "infantry_equipment": 130
+      }
+    },
+    "motorized": {
+      "combat_width": 2,
+      "max_strength": 25,
+      "max_organisation": 60,
+      "default_morale": 0.3,
+      "manpower": 1200,
+      "training_time": 90,
+      "suppression": 1,
+      "weight": 0.75,
+      "need": {
+        "infantry_equipment": 100,
+        "motorized_equipment": 50
+      }
+    },
+    "mechanized": {
+      "combat_width": 2,
+      "max_strength": 30,
+      "max_organisation": 60,
+      "default_morale": 0.3,
+      "manpower": 1200,
+      "training_time": 120,
+      "suppression": 1,
+      "weight": 1,
+      "need": {
+        "mechanized_equipment": 50,
+        "infantry_equipment": 100
+      }
+    },
+    "light_armor": {
+      "combat_width": 2,
+      "max_strength": 2,
+      "max_organisation": 10,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1,
+      "need": {
+        "light_tank_equipment": 60
+      }
+    },
+    "light_cruiser": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": 40,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "light_cruiser": 1
+      }
+    },
+    "logistics_company": {
+      "combat_width": 0,
+      "max_strength": 1,
+      "max_organisation": 10,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "support_equipment": 20,
+        "motorized_equipment": 10
+      }
+    },
+    "maintenance_company": {
+      "combat_width": 0,
+      "max_strength": 1,
+      "max_organisation": 20,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "support_equipment": 25
+      }
+    },
+    "medium_armor": {
+      "combat_width": 2,
+      "max_strength": 2,
+      "max_organisation": 10,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.25,
+      "need": {
+        "medium_tank_equipment": 50
+      }
+    },
+    "military_police": {
+      "combat_width": 0,
+      "max_strength": 1,
+      "max_organisation": 0,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "support_equipment": 10,
+        "infantry_equipment": 40
+      }
+    },
+    "modern_armor": {
+      "combat_width": 2,
+      "max_strength": 2,
+      "max_organisation": 10,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "modern_tank_equipment": 50
+      }
+    },
+    "recon": {
+      "combat_width": 0,
+      "max_strength": 2,
+      "max_organisation": 20,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "infantry_equipment": 40,
+        "support_equipment": 10
+      }
+    },
+    "signal_company": {
+      "combat_width": 0,
+      "max_strength": 1,
+      "max_organisation": 20,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 120,
+      "suppression": null,
+      "weight": 0.1,
+      "need": {
+        "support_equipment": 20,
+        "motorized_equipment": 10
+      }
+    },
+    "light_sp_anti_air_brigade": {
+      "combat_width": 1,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1,
+      "need": {
+        "light_tank_aa_equipment": 15
+      }
+    },
+    "medium_sp_anti_air_brigade": {
+      "combat_width": 1,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.25,
+      "need": {
+        "medium_tank_aa_equipment": 12
+      }
+    },
+    "heavy_sp_anti_air_brigade": {
+      "combat_width": 1,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "heavy_tank_aa_equipment": 8
+      }
+    },
+    "super_heavy_sp_anti_air_brigade": {
+      "combat_width": 1,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.75,
+      "need": {
+        "super_heavy_tank_aa_equipment": 4
+      }
+    },
+    "modern_sp_anti_air_brigade": {
+      "combat_width": 1,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "modern_tank_aa_equipment": 12
+      }
+    },
+    "light_sp_artillery_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1,
+      "need": {
+        "light_tank_artillery_equipment": 36
+      }
+    },
+    "medium_sp_artillery_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.25,
+      "need": {
+        "medium_tank_artillery_equipment": 36
+      }
+    },
+    "heavy_sp_artillery_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "heavy_tank_artillery_equipment": 24
+      }
+    },
+    "super_heavy_sp_artillery_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.75,
+      "need": {
+        "super_heavy_tank_artillery_equipment": 12
+      }
+    },
+    "modern_sp_artillery_brigade": {
+      "combat_width": 3,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.1,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "modern_tank_artillery_equipment": 40
+      }
+    },
+    "submarine": {
+      "combat_width": null,
+      "max_strength": null,
+      "max_organisation": 40,
+      "default_morale": null,
+      "manpower": null,
+      "training_time": null,
+      "suppression": null,
+      "weight": null,
+      "need": {
+        "submarine": 1
+      }
+    },
+    "super_heavy_armor": {
+      "combat_width": 2,
+      "max_strength": 2,
+      "max_organisation": 10,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.75,
+      "need": {
+        "super_heavy_tank_equipment": 15
+      }
+    },
+    "light_tank_destroyer_brigade": {
+      "combat_width": 2,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1,
+      "need": {
+        "light_tank_destroyer_equipment": 30
+      }
+    },
+    "medium_tank_destroyer_brigade": {
+      "combat_width": 2,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.25,
+      "need": {
+        "medium_tank_destroyer_equipment": 24
+      }
+    },
+    "heavy_tank_destroyer_brigade": {
+      "combat_width": 2,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "heavy_tank_destroyer_equipment": 20
+      }
+    },
+    "super_heavy_tank_destroyer_brigade": {
+      "combat_width": 2,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.75,
+      "need": {
+        "super_heavy_tank_destroyer_equipment": 7
+      }
+    },
+    "modern_tank_destroyer_brigade": {
+      "combat_width": 2,
+      "max_strength": 0.6,
+      "max_organisation": 0,
+      "default_morale": 0.3,
+      "manpower": 500,
+      "training_time": 180,
+      "suppression": null,
+      "weight": 1.5,
+      "need": {
+        "modern_tank_destroyer_equipment": 24
+      }
+    }
+  }
+}

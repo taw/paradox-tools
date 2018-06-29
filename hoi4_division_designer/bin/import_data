@@ -1,0 +1,40 @@
+#!/usr/bin/env ruby
+
+require_relative "../../lib/paradox_game"
+require "json"
+
+class ImportData < ParadoxGame
+  def initialize(*roots)
+    super(*roots)
+  end
+
+  def each_unit
+    glob("common/units/*.txt").each do |path|
+      parse(path)["sub_units"].each do |name, unit|
+        yield(name, unit)
+      end
+    end
+  end
+
+  def call
+    data = { units: {}}
+    each_unit do |name, unit|
+      raise "Duplicate name: #{name}" if data[:units][name]
+      data[:units][name] = {
+        combat_width: unit["combat_width"],
+        max_strength: unit["max_strength"],
+        max_organisation: unit["max_organisation"],
+        default_morale: unit["default_morale"],
+        manpower: unit["manpower"],
+        training_time: unit["training_time"],
+        suppression: unit["suppression"],
+        weight: unit["weight"],
+        need: unit["need"].to_h,
+      }
+    end
+
+    puts JSON.pretty_generate(data)
+  end
+end
+
+ImportData.new(*ARGV).call
