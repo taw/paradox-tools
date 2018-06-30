@@ -326,10 +326,19 @@ describe Division do
         },
         ic_cost: 946,
         bonuses: {
-          # a lot
+          "forest"=>{"movement"=>0.106, "attack"=>-0.044, "defence"=>0.25},
+          "hills"=>{"movement"=>0.089, "defence"=>0.1},
+          "mountain"=>{"movement"=>0.056},
+          "plains"=>{"movement"=>0.1},
+          "jungle"=>{"movement"=>0.056, "attack"=>-0.056, "defence"=>0.25},
+          "marsh"=>{"movement"=>0.233, "attack"=>-0.044, "defence"=>0.25},
+          "fort"=>{"attack"=>0.222, "defence"=>0.35},
+          "river"=>{"movement"=>0.306, "attack"=>-0.044, "defence"=>0.25},
+          "amphibious"=>{"attack"=>0.161}, # displayed 0.162
+          # Not displayed:
+          "desert"=>{"movement"=>0.1},
         },
       }
     end
   end
-
 end

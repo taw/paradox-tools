@@ -1,4 +1,5 @@
 class Unit
+  extend Memoist
   attr_reader :unit_type
 
   def initialize(unit_type, country)
@@ -15,34 +16,47 @@ class Unit
   %i[
     suppression hp org supply_use entrenchment
     combat_width manpower training_time weight recovery_rate
-    bonuses special_forces? can_be_parachuted? frontline? name
+    special_forces? can_be_parachuted? frontline? name
     ].each do |key|
     define_method(key) { @unit_type.send(key) }
   end
 
   attr_reader :equipment
 
-  def soft_attack
+  memoize def bonuses
+    base = {}
+    base.recursively_merge!(@unit_type.bonuses)
+    ["forest", "marsh", "hills", "urban", "mountain",
+     "jungle", "amphibious", "river", "fort", "plains",
+     "desert"].each do |key|
+      if @country_bonuses[key]
+        base.recursively_merge!(key => @country_bonuses[key]){|a,b| (a+b).round(3)}
+      end
+    end
+    base
+  end
+
+  memoize def soft_attack
     base = @equipment.map{|eq, count| eq.soft_attack || 0}.sum
     base * (1 + @unit_type.soft_attack + (@country_bonuses["soft_attack"] || 0))
   end
 
-  def hard_attack
+  memoize def hard_attack
     base = @equipment.map{|eq, count| eq.hard_attack || 0}.sum
     base * (1 + @unit_type.hard_attack + (@country_bonuses["hard_attack"] || 0))
   end
 
-  def defense
+  memoize def defense
     base = @equipment.map{|eq, count| eq.defense || 0}.sum
     base * (1 + @unit_type.defense + (@country_bonuses["defense"] || 0))
   end
 
-  def breakthrough
+  memoize def breakthrough
     base = @equipment.map{|eq, count| eq.breakthrough || 0}.sum
     base * (1 + @unit_type.breakthrough + (@country_bonuses["breakthrough"] || 0))
   end
 
-  def piercing
+  memoize def piercing
     base = @equipment.map{|eq, count| eq.ap_attack || 0}.sum
     base
   end

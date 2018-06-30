@@ -50,11 +50,11 @@ class Division
   end
 
   def defense
-    @units.map(&:defense).sum
+    @units.map(&:defense).sum.round(6)
   end
 
   def breakthrough
-    @units.map(&:breakthrough).sum
+    @units.map(&:breakthrough).sum.round(6)
   end
 
   def ic_cost
@@ -69,8 +69,12 @@ class Division
     @units.map(&:recon).sum
   end
 
-  def frontline_units
+  memoize def frontline_units
     @units.select(&:frontline?)
+  end
+
+  memoize def support_units
+    @units.reject(&:frontline?)
   end
 
   memoize def bonuses
@@ -82,6 +86,9 @@ class Division
       bonuses.each do |key, val|
         bonuses[key] = (val / frontline_units.size).round(3)
       end
+    end
+    support_units.each do |unit|
+      result.recursively_merge!(unit.bonuses){|a,b| (a+b).round(3)}
     end
     result
   end
