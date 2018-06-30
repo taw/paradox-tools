@@ -21,4 +21,10 @@ class Database
     techs = technology_names.map{|n| @technology.fetch(n) }
     Country.new(self, techs)
   end
+
+  def techs_up_to(year)
+    @technology.select do |name, tech|
+      tech.start_year && tech.start_year <= year
+    end.keys
+  end
 end

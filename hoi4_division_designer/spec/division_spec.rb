@@ -2,9 +2,14 @@ describe Division do
   let(:db) { Database.new }
   let(:country) { db.country(tech) }
   # Just lowest level equipment, no bonuses
-  let(:tech) {
-    %W[infantry_weapons gw_artillery motorised_infantry motorized_rocket_unit]
-  }
+  let(:tech_year) { nil }
+  let(:tech) do
+    if tech_year
+      db.techs_up_to(tech_year)
+    else
+      %W[infantry_weapons gw_artillery motorised_infantry motorized_rocket_unit]
+    end
+  end
   let(:division) { country.division(units) }
 
   # Some defaults for stuff that's mostly zeroes anyway
@@ -13,16 +18,16 @@ describe Division do
       # Left Column
       reliability: 0.0,
       trickleback: 0.0,
-      reconnaissance: 0.0,
+      recon: 0.0,
       exp_loss: 0.0,
       recovery_rate: 0.30,
 
       # Middle Column
       air_attack: 0.0,
+      armor: 0.0,
       initiative: 0.0,
       entrechment: 0.0,
       equipment_capture_rate: 0.0,
-      armor: 0.0,
 
       # Right Column
 
@@ -40,7 +45,7 @@ describe Division do
     expect(division.hp).to eq stats[:hp]
     expect(division.org).to eq stats[:org]
     expect(division.recovery_rate).to eq stats[:recovery_rate]
-    expect(division.reconnaissance).to eq stats[:reconnaissance]
+    expect(division.recon).to eq stats[:recon]
     expect(division.suppression).to eq stats[:suppression]
     expect(division.weight).to eq stats[:weight]
     expect(division.supply_use).to eq stats[:supply_use]

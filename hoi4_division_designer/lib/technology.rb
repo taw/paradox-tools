@@ -12,4 +12,8 @@ class Technology
   def enable_equipments
     @effects["enable_equipments"] || []
   end
+
+  def start_year
+    @effects["start_year"]
+  end
 end

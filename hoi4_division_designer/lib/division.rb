@@ -59,6 +59,14 @@ class Division
     @units.map(&:ic_cost).sum
   end
 
+  def entrenchment
+    @units.map(&:entrenchment).sum
+  end
+
+  def recon
+    @units.map(&:recon).sum
+  end
+
   def bonuses
     sums = {}
     @units.select(&:frontline?).each do |unit|

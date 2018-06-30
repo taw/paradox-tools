@@ -13,7 +13,8 @@ class Unit
 
   %i[
     combat_width manpower training_time suppression hp org weight recovery_rate
-    supply_use bonuses special_forces? can_be_parachuted? frontline? name].each do |key|
+    supply_use bonuses special_forces? can_be_parachuted? frontline? name
+    entrenchment recon].each do |key|
     define_method(key) { @unit_type.send(key) }
   end
 

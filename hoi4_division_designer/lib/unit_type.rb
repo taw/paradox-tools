@@ -78,6 +78,14 @@ class UnitType
     @stats["can_be_parachuted"]
   end
 
+  def entrenchment
+    @stats["entrenchment"] || 0
+  end
+
+  def recon
+    @stats["recon"] || 0
+  end
+
   def active?
     !!@stats["active"]
   end
