@@ -13,7 +13,7 @@ class Database
     end.to_h
 
     @technology = db["technology"].map do |name, effects|
-      [name, Technology.new(name, effects)]
+      [name, Technology.new(self, name, effects)]
     end.to_h
   end
 
@@ -26,5 +26,9 @@ class Database
     @technology.select do |name, tech|
       tech.start_year && tech.start_year <= year
     end.keys
+  end
+
+  def unit_types_and_categories
+    @unit_types.keys.to_set | @unit_types.values.flat_map(&:categories).to_set
   end
 end

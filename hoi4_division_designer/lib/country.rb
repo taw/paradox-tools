@@ -31,6 +31,30 @@ class Country
     end
   end
 
+  def unit_bonuses
+    unit_bonuses = {}
+    @technologies.each do |tech|
+      tech.unit_bonuses.each do |unit, bonuses|
+        unit_bonuses[unit] ||= {}
+        bonuses.each do |key, val|
+          if val.is_a?(Hash)
+            unit_bonuses[unit][key] ||= {}
+            # Terrain bonuses
+            val.each do |subkey, subval|
+              unit_bonuses[unit][key][subkey] ||= 0
+              unit_bonuses[unit][key][subkey] += subval
+            end
+          else
+            unit_bonuses[unit][key] ||= 0
+            unit_bonuses[unit][key] += val
+            unit_bonuses[unit][key] = unit_bonuses[unit][key].round(6)
+          end
+        end
+      end
+    end
+    unit_bonuses
+  end
+
   private
 
   def enabled_subunits

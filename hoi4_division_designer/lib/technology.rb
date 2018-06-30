@@ -1,6 +1,7 @@
 class Technology
   attr_reader :name
-  def initialize(name, effects)
+  def initialize(database, name, effects)
+    @database = database
     @name = name
     @effects = effects
   end
@@ -15,5 +16,9 @@ class Technology
 
   def start_year
     @effects["start_year"]
+  end
+
+  def unit_bonuses
+    @effects.slice(*@database.unit_types_and_categories)
   end
 end

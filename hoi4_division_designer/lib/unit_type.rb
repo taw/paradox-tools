@@ -90,6 +90,10 @@ class UnitType
     !!@stats["active"]
   end
 
+  def categories
+    @stats["categories"] || []
+  end
+
   def frontline?
     combat_width != 0
   end
