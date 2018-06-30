@@ -85,7 +85,7 @@ describe DivisionDesigner do
         combat_width: 4,
         manpower: 2000,
         training_time: 90,
-        equipment: {"infantry_equipment" => 200},
+        equipment: {"infantry_equipment_0" => 200},
         ic_cost: 80,
         bonuses: {},
       }
@@ -111,7 +111,7 @@ describe DivisionDesigner do
         combat_width: 12,
         manpower: 6000,
         training_time: 120,
-        equipment: {"infantry_equipment" => 720},
+        equipment: {"infantry_equipment_0" => 720},
         ic_cost: 288,
         bonuses: {
           "forest" => {"attack" => -0.05},
@@ -145,7 +145,7 @@ describe DivisionDesigner do
         combat_width: 8,
         manpower: 4000,
         training_time: 120,
-        equipment: {"infantry_equipment" => 480},
+        equipment: {"infantry_equipment_0" => 480},
         ic_cost: 192,
         bonuses: {
           "hills" => {"movement" => 0.05, "attack" => 0.10, "defence" => 0.025},
@@ -176,7 +176,7 @@ describe DivisionDesigner do
         combat_width: 20,
         manpower: 8000,
         training_time: 120,
-        equipment: {"infantry_equipment" => 700, "artillery_equipment" => 72},
+        equipment: {"infantry_equipment_0" => 700, "artillery_equipment_1" => 72},
         ic_cost: 532,
         bonuses: { # different rounding in game
           "forest" => {"movement" => -0.044, "attack" => -0.044},
@@ -212,7 +212,7 @@ describe DivisionDesigner do
         combat_width: 6,
         manpower: 3300,
         training_time: 150,
-        equipment: {"infantry_equipment" => 390, "artillery_equipment" => 12},
+        equipment: {"infantry_equipment_0" => 390, "artillery_equipment_1" => 12},
         ic_cost: 198,
         bonuses: {},
         special_forces: 3,
@@ -242,10 +242,10 @@ describe DivisionDesigner do
         manpower: 7100,
         training_time: 120,
         equipment: {
-          "infantry_equipment" => 400,
-          "artillery_equipment" => 12,
-          "motorized_equipment" => 260,
-          "motorized_rocket_equipment" => 80,
+          "infantry_equipment_0" => 400,
+          "artillery_equipment_1" => 12,
+          "motorized_equipment_1" => 260,
+          "motorized_rocket_equipment_1" => 80,
         },
         ic_cost: 1812,
         bonuses: {
@@ -259,6 +259,36 @@ describe DivisionDesigner do
           "river" => {"movement" => -0.15, "attack" => -0.15},
           "amphibious" => {"attack" => -0.30},
         },
+      }
+    end
+  end
+
+  describe "10inf + support art; some tech" do
+    let(:tech) { "equipment 1" }
+    let(:units) { {infantry: 10, artillery: 1} }
+    it do
+      expect_stats division, {
+        speed: 4.0,
+        hp: 250.2,
+        org: 54.545, # displayed 54.5
+        recovery_rate: 0.282, # displayed 0.28
+        suppression: 10.0,
+        weight: 5.1,
+        supply_use: 0.86,
+        soft_attack: 75.0,
+        hard_attack: 11.2,
+        defense: 226.0,
+        breakthrough: 33.6,
+        piercing: 4.4,
+        combat_width: 20,
+        manpower: 10300,
+        training_time: 120,
+        equipment: {
+          "infantry_equipment_1" => 1000,
+          "artillery_equipment_1" => 12,
+        },
+        ic_cost: 542,
+        bonuses: {},
       }
     end
   end

@@ -46,12 +46,8 @@ class UnitType
     @stats["supply_consumption"]
   end
 
-  def speed
-    if @stats["maximum_speed"]
-      4.0 * (1 + @stats["maximum_speed"])
-    else
-      4.0
-    end
+  def maximum_speed
+    @stats["maximum_speed"] || 0
   end
 
   def bonuses

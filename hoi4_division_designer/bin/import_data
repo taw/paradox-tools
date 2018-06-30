@@ -9,6 +9,14 @@ class ImportData < ParadoxGame
     super(*roots)
   end
 
+  def jsonify(obj)
+    return obj.map{|e| jsonify(e)} if obj.is_a?(Array)
+    return obj unless obj.is_a?(PropertyList)
+    obj.to_h.sort.map{|k,v|
+      [k, jsonify(v)]
+    }.to_h
+  end
+
   def each_unit
     glob("common/units/*.txt").each do |path|
       parse(path)["sub_units"].each do |name, unit|
@@ -54,24 +62,52 @@ class ImportData < ParadoxGame
   def each_equipment
     glob("common/units/equipment/*.txt").each do |path|
       parse(path)["equipments"].each do |name, equipment|
-        yield(name, equipment)
+        yield(name, jsonify(equipment))
       end
     end
   end
 
   def equipment_data
     result = {}
+    archetypes = {}
     each_equipment do |name, equipment|
       equipment = equipment.to_h
-      equipment["resources"] = equipment["resources"].to_h
-      result[name] = equipment
+      if equipment["is_archetype"]
+        equipment.delete("is_archetype")
+        archetypes[name] = equipment
+      else
+        if equipment["archetype"]
+          archetype = archetypes[equipment["archetype"]] or raise
+          equipment = archetype.merge(equipment)
+        end
+        result[name] = equipment
+      end
     end
-    # archetype inheritance
+    result
+  end
+
+  def each_technology
+    glob("common/technologies/*.txt").each do |path|
+      parse(path)["technologies"].each do |key, tech|
+        next if key =~ /\A@\d+\z/ and tech.is_a?(Integer)
+        yield(key, jsonify(tech))
+      end
+    end
+  end
+
+  def technology_data
+    result = {}
+    each_technology do |name, tech|
+      tech.delete "ai_will_do"
+      tech.delete "folder"
+      tech.delete "ai_research_weights"
+      result[name] = tech
+    end
     result
   end
 
   def call
-    data = { units: units_data, equipment: equipment_data }
+    data = { units: units_data, equipment: equipment_data, technology: technology_data }
     Pathname("#{__dir__}/../data/data.json").write JSON.pretty_generate(data)
   end
 end
