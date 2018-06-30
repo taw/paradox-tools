@@ -1,6 +1,8 @@
-describe DivisionDesigner do
-  let(:division_designer) { DivisionDesigner.new }
-  let(:division) { division_designer.division(units) }
+describe Division do
+  let(:db) { Database.new }
+  let(:country) { db.country(tech) }
+  let(:tech) { %W[] }
+  let(:division) { country.division(units) }
 
   # Some defaults for stuff that's mostly zeroes anyway
   let(:default_stats) {
@@ -67,7 +69,6 @@ describe DivisionDesigner do
   end
 
   describe "2inf, no tech" do
-    let(:tech) { nil }
     let(:units) { {infantry: 2} }
     it do
       expect_stats division, {
@@ -93,7 +94,6 @@ describe DivisionDesigner do
   end
 
   describe "6cav, no tech" do
-    let(:tech) { nil }
     let(:units) { {cavalry: 6} }
     it do
       expect_stats division, {
@@ -126,7 +126,6 @@ describe DivisionDesigner do
   end
 
   describe "2mnt 2inf" do
-    let(:tech) { nil }
     let(:units) { {infantry: 2, mountaineers: 2} }
     it do
       expect_stats division, {
@@ -157,7 +156,6 @@ describe DivisionDesigner do
   end
 
   describe "7inf 2art" do
-    let(:tech) { nil }
     let(:units) { {infantry: 7, artillery_brigade: 2} }
     it do
       expect_stats division, {
@@ -193,7 +191,6 @@ describe DivisionDesigner do
   end
 
   describe "3par + support art" do
-    let(:tech) { nil }
     let(:units) { {paratrooper: 3, artillery: 1} }
     it do
       expect_stats division, {
@@ -222,7 +219,6 @@ describe DivisionDesigner do
   end
 
   describe "4mot + 4rart + support art" do
-    let(:tech) { nil }
     let(:units) { {motorized: 4, motorized_rocket_brigade: 4, artillery: 1} }
     it do
       expect_stats division, {
@@ -264,7 +260,7 @@ describe DivisionDesigner do
   end
 
   describe "10inf + support art; some tech" do
-    let(:tech) { "equipment 1" }
+    let(:tech) { ["infantry_weapons", "infantry_weapons1"] }
     let(:units) { {infantry: 10, artillery: 1} }
     it do
       expect_stats division, {

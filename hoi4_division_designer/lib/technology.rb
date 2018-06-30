@@ -4,4 +4,8 @@ class Technology
     @name = name
     @effects = effects
   end
+
+  def enable_subunits
+    @effects["enable_subunits"] || []
+  end
 end

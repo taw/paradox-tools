@@ -1,12 +1,12 @@
 class Unit
   attr_reader :unit_type
 
-  def initialize(unit_type, technology)
+  def initialize(unit_type, country)
     @unit_type = unit_type
-    @technology = technology
+    @country = country
     @equipment = {}
     @unit_type.equipment.each do |name, count|
-      equipment = @technology[:equipment].fetch(name)
+      equipment = @country.equipment_map.fetch(name)
       @equipment[equipment] = count
     end
   end
