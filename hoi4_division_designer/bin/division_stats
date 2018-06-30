@@ -12,10 +12,6 @@ class DivisionStatsCLI
 
   def add_tech_year(year)
     @techs += @db.techs_up_to(year)
-    # @db.technology.each do |name, tech|
-    #   next if tech.start_year.nil? or tech.start_year > year
-    #   add_tech name
-    # end
   end
 
   def add_tech(arg)

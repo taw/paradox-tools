@@ -67,21 +67,19 @@ class Division
     @units.map(&:recon).sum
   end
 
+  def frontline_units
+    @units.select(&:frontline?)
+  end
+
   def bonuses
-    sums = {}
-    @units.select(&:frontline?).each do |unit|
-      unit.bonuses.each do |terrain, terrain_bonuses|
-        terrain_bonuses.each do |kind, value|
-          sums[[terrain, kind]] ||= 0
-          sums[[terrain, kind]] += value
-        end
-      end
-    end
     result = {}
-    sums.each do |(terrain, kind), value|
-      value = (value / @units.count(&:frontline?)).round(3)
-      result[terrain] ||= {}
-      result[terrain][kind] = value
+    frontline_units.each do |unit|
+      result.recursively_merge!(unit.bonuses){|a,b| a+b}
+    end
+    result.each do |terrain, bonuses|
+      bonuses.each do |key, val|
+        bonuses[key] = (val / frontline_units.size).round(3)
+      end
     end
     result
   end
