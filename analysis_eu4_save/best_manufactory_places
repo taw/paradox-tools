@@ -49,6 +49,7 @@ class BestManufactoryPlaces < ParadoxGame
       #   - production leader 10%
       #   - war exhaustion -X%
       #   - nearby merchant companies +X%
+      #   - nearby trade companies +X%
       #   - happy burgers 10%
       #   - national ideas
       #   - furnacess
