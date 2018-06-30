@@ -8,4 +8,8 @@ class Technology
   def enable_subunits
     @effects["enable_subunits"] || []
   end
+
+  def enable_equipments
+    @effects["enable_equipments"] || []
+  end
 end

@@ -5,12 +5,12 @@ class Country
   end
 
   def equipment_map
-    {
-      "infantry_equipment" => @database.equipment["infantry_equipment_0"],
-      "artillery_equipment" => @database.equipment["artillery_equipment_1"],
-      "motorized_equipment" => @database.equipment["motorized_equipment_1"],
-      "motorized_rocket_equipment" => @database.equipment["motorized_rocket_equipment_1"],
-    }
+    # Making a silly assumption that they're sorted asciibetically
+    # It seems to be right, as they're all X0, X1, X2 etc.
+    enabled_equipments
+      .map{|eq| @database.equipment[eq] }
+      .group_by(&:archetype)
+      .transform_values{|eqs| eqs.max_by(&:name) }
   end
 
   def division(unit_types)
@@ -23,6 +23,25 @@ class Country
   end
 
   def available_units
-    []
+    @database.unit_types.values.select do |unit_type|
+      next unless unit_type.active? or enabled_subunits.include?(unit_type.name)
+      unit_type.equipment.keys.all? do |equipment|
+        enabled_equipment_archetypes.include?(equipment)
+      end
+    end
+  end
+
+  private
+
+  def enabled_subunits
+    @technologies.flat_map{|x| x.enable_subunits }.to_set
+  end
+
+  def enabled_equipments
+    @technologies.flat_map{|x| x.enable_equipments }.to_set
+  end
+
+  def enabled_equipment_archetypes
+    enabled_equipments.map{|eq| @database.equipment[eq].archetype }.to_set
   end
 end

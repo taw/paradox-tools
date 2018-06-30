@@ -78,6 +78,10 @@ class UnitType
     @stats["can_be_parachuted"]
   end
 
+  def active?
+    !!@stats["active"]
+  end
+
   def frontline?
     combat_width != 0
   end

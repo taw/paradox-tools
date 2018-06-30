@@ -20,7 +20,7 @@ class ImportData < ParadoxGame
   def each_unit
     glob("common/units/*.txt").each do |path|
       parse(path)["sub_units"].each do |name, unit|
-        yield(name, unit)
+        yield(name, jsonify(unit))
       end
     end
   end
@@ -33,23 +33,14 @@ class ImportData < ParadoxGame
       unit_data = {}
       unit.each do |key, value|
         case key
-        when "combat_width", "max_strength", "max_organisation",
-          "default_morale", "manpower", "training_time",
-          "suppression", "weight", "supply_consumption",
-          "maximum_speed", "breakthrough", "defense",
-          "soft_attack", "hard_attack",
-          "special_forces", "can_be_parachuted"
-          unit_data[key] = value
-        when "need"
-          unit_data["need"] = value.to_h
         when "forest", "marsh", "hills", "urban", "mountain",
              "jungle", "amphibious", "river", "fort", "plains",
              "desert"
-          bonuses[key] = value.to_h
+          bonuses[key] = value
         when "priority", "ai_priority", "sprite", "map_icon_category"
           # Skip
         else
-          # warn "Unknown key #{key}"
+          unit_data[key] = value
         end
       end
 

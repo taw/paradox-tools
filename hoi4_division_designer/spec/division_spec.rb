@@ -1,7 +1,10 @@
 describe Division do
   let(:db) { Database.new }
   let(:country) { db.country(tech) }
-  let(:tech) { %W[] }
+  # Just lowest level equipment, no bonuses
+  let(:tech) {
+    %W[infantry_weapons gw_artillery motorised_infantry motorized_rocket_unit]
+  }
   let(:division) { country.division(units) }
 
   # Some defaults for stuff that's mostly zeroes anyway
@@ -260,7 +263,7 @@ describe Division do
   end
 
   describe "10inf + support art; some tech" do
-    let(:tech) { ["infantry_weapons", "infantry_weapons1"] }
+    let(:tech) { %W[infantry_weapons infantry_weapons1 gw_artillery] }
     let(:units) { {infantry: 10, artillery: 1} }
     it do
       expect_stats division, {
@@ -275,7 +278,7 @@ describe Division do
         hard_attack: 11.2,
         defense: 226.0,
         breakthrough: 33.6,
-        piercing: 4.4,
+        piercing: 4.455, # displayed 4.4
         combat_width: 20,
         manpower: 10300,
         training_time: 120,
