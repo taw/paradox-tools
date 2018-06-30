@@ -61,7 +61,7 @@ class Division
 
   def bonuses
     sums = {}
-    @units.each do |unit|
+    @units.select(&:frontline?).each do |unit|
       unit.bonuses.each do |terrain, terrain_bonuses|
         terrain_bonuses.each do |kind, value|
           sums[[terrain, kind]] ||= 0
@@ -71,7 +71,7 @@ class Division
     end
     result = {}
     sums.each do |(terrain, kind), value|
-      value = (value / @units.size).round(3)
+      value = (value / @units.count(&:frontline?)).round(3)
       result[terrain] ||= {}
       result[terrain][kind] = value
     end
@@ -79,7 +79,7 @@ class Division
   end
 
   def speed
-    @units.map(&:speed).min
+    @units.select(&:frontline?).map(&:speed).min
   end
 
   def equipment
@@ -105,8 +105,12 @@ class Division
     (0.4 * mx + 0.6 * wa).round(3)
   end
 
-  def can_paradrop?
-    false
+  def can_be_parachuted?
+    @units.all?(&:can_be_parachuted?)
+  end
+
+  def special_forces
+    @units.count(&:special_forces?)
   end
 
   def method_missing(m, *args)

@@ -1,4 +1,6 @@
 class UnitType
+  attr_reader :name
+
   def initialize(name, stats)
     @name = name
     @stats = stats
@@ -60,7 +62,27 @@ class UnitType
     @stats["special_forces"]
   end
 
+  def soft_attack
+    @stats["soft_attack"] || 0
+  end
+
+  def hard_attack
+    @stats["hard_attack"] || 0
+  end
+
   def breakthrough
     @stats["breakthrough"] || 0
+  end
+
+  def defense
+    @stats["defense"] || 0
+  end
+
+  def can_be_parachuted?
+    @stats["can_be_parachuted"]
+  end
+
+  def frontline?
+    combat_width != 0
   end
 end

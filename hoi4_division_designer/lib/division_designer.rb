@@ -31,6 +31,8 @@ class DivisionDesigner
       equipment: {
         "infantry_equipment" => @equipment["infantry_equipment"],
         "artillery_equipment" => @equipment["artillery_equipment"],
+        "motorized_equipment" => @equipment["motorized_equipment"],
+        "motorized_rocket_equipment" => @equipment["motorized_rocket_equipment"],
       },
     }
   end

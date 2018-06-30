@@ -24,7 +24,7 @@ describe DivisionDesigner do
       # Adjusters
       bonuses: {},
       special_forces: 0,
-      can_paradrop: false,
+      can_be_parachuted: false,
       hardness: 0,
     }
   }
@@ -62,7 +62,7 @@ describe DivisionDesigner do
     # Adjusters
     expect(division.bonuses).to eq stats[:bonuses]
     expect(division.special_forces).to eq stats[:special_forces]
-    expect(division.can_paradrop?).to eq stats[:can_paradrop]
+    expect(division.can_be_parachuted?).to eq stats[:can_be_parachuted]
     expect(division.hardness).to eq stats[:hardness]
   end
 
@@ -151,6 +151,7 @@ describe DivisionDesigner do
           "hills" => {"movement" => 0.05, "attack" => 0.10, "defence" => 0.025},
           "mountain" => {"movement" => 0.10, "attack" => 0.175, "defence" => 0.05},
         },
+        special_forces: 2,
       }
     end
   end
@@ -186,6 +187,77 @@ describe DivisionDesigner do
           "fort" => {"attack" => 0.022},
           "river" => {"movement" => -0.044, "attack" => -0.044},
           "amphibious" => {"attack" => -0.089},
+        },
+      }
+    end
+  end
+
+  describe "3par + support art" do
+    let(:tech) { nil }
+    let(:units) { {paratrooper: 3, artillery: 1} }
+    it do
+      expect_stats division, {
+        speed: 4.0,
+        hp: 66.2,
+        org: 52.5,
+        recovery_rate: 0.325, # displayed as 0.32
+        suppression: 3.0,
+        weight: 1.6,
+        supply_use: 0.34,
+        soft_attack: 24.0,
+        hard_attack: 2.7,
+        defense: 66.0,
+        breakthrough: 9.6,
+        piercing: 3.2,
+        combat_width: 6,
+        manpower: 3300,
+        training_time: 150,
+        equipment: {"infantry_equipment" => 390, "artillery_equipment" => 12},
+        ic_cost: 198,
+        bonuses: {},
+        special_forces: 3,
+        can_be_parachuted: true,
+      }
+    end
+  end
+
+  describe "4mot + 4rart + support art" do
+    let(:tech) { nil }
+    let(:units) { {motorized: 4, motorized_rocket_brigade: 4, artillery: 1} }
+    it do
+      expect_stats division, {
+        speed: 12.0,
+        hp: 102.6,
+        org: 26.667, # displayed as 26.6
+        recovery_rate: 0.189, # displayed as 0.18
+        suppression: 4.0,
+        weight: 5.1,
+        supply_use: 1.72,
+        soft_attack: 171.0,
+        hard_attack: 7.2,
+        defense: 146.0,
+        breakthrough: 59.6,
+        piercing: 3.133, # displayed 3.1
+        combat_width: 20,
+        manpower: 7100,
+        training_time: 120,
+        equipment: {
+          "infantry_equipment" => 400,
+          "artillery_equipment" => 12,
+          "motorized_equipment" => 260,
+          "motorized_rocket_equipment" => 80,
+        },
+        ic_cost: 1812,
+        bonuses: {
+          "forest" => {"movement" => -0.50, "attack" => -0.10},
+          "hills" => {"movement" => -0.025},
+          "mountain" => {"movement" => -0.10, "attack" => -0.025},
+          "urban" => {"attack" => -0.05},
+          "jungle" => {"movement" => -0.50, "attack" => -0.225},
+          "marsh" => {"movement" => -0.40, "attack" => -0.15},
+          "fort" => {"attack" => 0.05},
+          "river" => {"movement" => -0.15, "attack" => -0.15},
+          "amphibious" => {"attack" => -0.30},
         },
       }
     end
