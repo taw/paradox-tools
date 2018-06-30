@@ -13,9 +13,10 @@ class Unit
   end
 
   %i[
-    combat_width manpower training_time suppression hp org weight recovery_rate
-    supply_use bonuses special_forces? can_be_parachuted? frontline? name
-    entrenchment recon].each do |key|
+    suppression hp org supply_use entrenchment
+    combat_width manpower training_time weight recovery_rate
+    bonuses special_forces? can_be_parachuted? frontline? name
+    ].each do |key|
     define_method(key) { @unit_type.send(key) }
   end
 
@@ -23,30 +24,36 @@ class Unit
 
   def soft_attack
     base = @equipment.map{|eq, count| eq.soft_attack || 0}.sum
-    base * (1 + @unit_type.soft_attack)
+    base * (1 + @unit_type.soft_attack + (@country_bonuses["soft_attack"] || 0))
   end
 
   def hard_attack
     base = @equipment.map{|eq, count| eq.hard_attack || 0}.sum
-    base * (1 + @unit_type.hard_attack)
+    base * (1 + @unit_type.hard_attack + (@country_bonuses["hard_attack"] || 0))
   end
 
   def defense
     base = @equipment.map{|eq, count| eq.defense || 0}.sum
-    base * (1 + @unit_type.defense)
+    base * (1 + @unit_type.defense + (@country_bonuses["defense"] || 0))
   end
 
   def breakthrough
     base = @equipment.map{|eq, count| eq.breakthrough || 0}.sum
-    base * (1 + @unit_type.breakthrough)
+    base * (1 + @unit_type.breakthrough + (@country_bonuses["breakthrough"] || 0))
   end
 
   def piercing
-    @equipment.map{|eq, count| eq.ap_attack || 0}.sum
+    base = @equipment.map{|eq, count| eq.ap_attack || 0}.sum
+    base
   end
 
   def armor
     @equipment.map{|eq, count| eq.armor_value || 0}.sum
+  end
+
+  def recon
+    base = @unit_type.recon
+    base + (@country_bonuses["recon"] || 0)
   end
 
   def ic_cost

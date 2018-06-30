@@ -296,4 +296,40 @@ describe Division do
       }
     end
   end
+
+  describe "1940 tech 7/2 + supports" do
+    let(:tech_year) { 1940 }
+    let(:units) { {infantry: 7, artillery_brigade: 2, recon: 1, engineer: 1, artillery: 1} }
+    it do
+      expect_stats division, {
+        speed: 4.0,
+        hp: 180.4,
+        org: 38.333, # displayed 38.3
+        recovery_rate: 0.25,
+        recon: 3,
+        suppression: 7.0,
+        weight: 4.8,
+        supply_use: 1.09,
+        soft_attack: 170.7,
+        hard_attack: 17.35, # displayed 17.3
+        defense: 309.2,
+        breakthrough: 58.4,
+        piercing: 5.0,
+        entrenchment: 7,
+        combat_width: 20,
+        manpower: 9100,
+        training_time: 120,
+        equipment: {
+          "infantry_equipment_2" => 750,
+          "artillery_equipment_2" => 84,
+          "support_equipment_1" => 40,
+        },
+        ic_cost: 946,
+        bonuses: {
+          # a lot
+        },
+      }
+    end
+  end
+
 end
