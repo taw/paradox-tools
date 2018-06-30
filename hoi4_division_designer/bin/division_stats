@@ -1,0 +1,87 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/division_designer"
+require "set"
+
+class DivisionStatsCLI
+  def initialize
+    @db = Database.new
+    @techs = Set["infantry_weapons"]
+    @units = Hash.new(0)
+  end
+
+  def add_tech_year(year)
+    @techs += @db.techs_up_to(year)
+    # @db.technology.each do |name, tech|
+    #   next if tech.start_year.nil? or tech.start_year > year
+    #   add_tech name
+    # end
+  end
+
+  def add_tech(arg)
+    @techs << arg
+  end
+
+  def add_unit(count, type)
+    @units[type] += count
+  end
+
+  def call(args)
+    ARGV.each do |arg|
+      if arg =~ /\A(\d+)x(.*)\z/ and @db.unit_types[$2]
+        add_unit($1.to_i, $2)
+      elsif @db.unit_types[arg]
+        add_unit(1, arg)
+      elsif @db.technology[arg]
+        add_tech(arg)
+      elsif arg =~ /\A\d{4}\z/
+        add_tech_year(arg.to_i)
+      else
+        warn "No idea what this is: #{arg}"
+      end
+    end
+
+    country = @db.country(@techs)
+    division = country.division(@units)
+    print_division(division)
+  end
+
+  def print_division(division)
+    %i[
+      speed
+      hp
+      org
+      recovery_rate
+      reconnaissance
+      suppression
+      weight
+      supply_use
+      reliability
+      trickleback
+      exp_loss
+      soft_attack
+      hard_attack
+      air_attack
+      defense
+      breakthrough
+      armor
+      piercing
+      initiative
+      entrenchment
+      equipment_capture_rate
+      combat_width
+      manpower
+      training_time
+      equipment
+      ic_cost
+      bonuses
+      special_forces
+      can_be_parachuted?
+      hardness
+    ].each do |stat|
+      puts "#{stat}: #{division.send(stat)}"
+    end
+  end
+end
+
+DivisionStatsCLI.new.call(ARGV)
