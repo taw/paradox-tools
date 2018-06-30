@@ -83,6 +83,33 @@ describe Country do
         "logistics_company" => {"supply_consumption_factor" => -0.2},
         "signal_company" => {"initiative" => 0.24},
       })
+
+      # marine, category_light_infantry, category_all_infantry, category_special_forces
+      expect(country.unit_bonuses_for("marine")).to eq({
+        "acclimatization_cold_climate_gain_factor" => 0.75,
+        "acclimatization_hot_climate_gain_factor" => 0.75,
+        "ap_attack" => 1,
+        "breakthrough" => 0.12,
+        "defense" => 0.17,
+        "hard_attack" => 0.25,
+        "max_organisation" => 10,
+        "soft_attack" => 0.15,
+      })
+
+      # motorized, category_all_infantry
+      expect(country.unit_bonuses_for("motorized")).to eq({
+        "ap_attack" => 1,
+        "breakthrough" => 0.2,
+        "defense" => 0.2,
+        "hard_attack" => 0.25,
+        "hardness" => 1.0, # FIXME: ???
+        "soft_attack" => 0.1,
+      })
+
+      # Just motorized_rocket_brigade
+      expect(country.unit_bonuses_for("motorized_rocket_brigade")).to eq({
+        "soft_attack" => 0.3,
+      })
     end
   end
 end

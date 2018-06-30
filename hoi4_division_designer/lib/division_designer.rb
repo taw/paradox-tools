@@ -1,5 +1,6 @@
 require "pathname"
 require "json"
+require "memoist"
 require_relative "country"
 require_relative "database"
 require_relative "division"

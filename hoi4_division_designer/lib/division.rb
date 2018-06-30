@@ -1,4 +1,6 @@
 class Division
+  extend Memoist
+
   def initialize(*units)
     @units = units
   end
@@ -71,7 +73,7 @@ class Division
     @units.select(&:frontline?)
   end
 
-  def bonuses
+  memoize def bonuses
     result = {}
     frontline_units.each do |unit|
       result.recursively_merge!(unit.bonuses){|a,b| a+b}
@@ -88,7 +90,7 @@ class Division
     @units.select(&:frontline?).map(&:speed).min
   end
 
-  def equipment
+  memoize def equipment
     result = {}
     @units.each do |unit|
       unit.equipment.each do |type, count|

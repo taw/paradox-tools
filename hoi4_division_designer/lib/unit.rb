@@ -9,6 +9,7 @@ class Unit
       equipment = @country.equipment_map.fetch(name)
       @equipment[equipment] = count
     end
+    @country_bonuses = @country.unit_bonuses_for(@unit_type.name)
   end
 
   %i[
