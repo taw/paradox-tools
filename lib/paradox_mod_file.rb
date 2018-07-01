@@ -8,7 +8,11 @@ class ParadoxModFile
   def initialize(string: nil, path: nil)
     if string
       @data = string
-      @path = Pathname(path) # Just for better exception message
+      if path
+        @path = Pathname(path) # Just for better exception message
+      else
+        @path = "<string>"
+      end
     elsif path
       @path = Pathname(path)
     else

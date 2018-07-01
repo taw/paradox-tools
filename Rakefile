@@ -189,7 +189,10 @@ task "default" => "test"
 
 desc "Run tests"
 task "test" do
-  system %q[ruby -e 'Dir["test/*.rb"].each{|x| require "./#{x}"}']
+  sh %q[ruby -e 'Dir["test/*.rb"].each{|x| require "./#{x}"}']
+  Dir.chdir("hoi4_division_designer") do
+    sh "bundle exec rspec"
+  end
 end
 
 def fix_date(str)
