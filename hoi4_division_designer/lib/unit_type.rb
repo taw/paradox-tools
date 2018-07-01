@@ -43,7 +43,11 @@ class UnitType
   end
 
   def supply_use
-    @stats["supply_consumption"]
+    @stats["supply_consumption"] || 0
+  end
+
+  def supply_consumption_factor
+    @stats["supply_consumption_factor"] || 0
   end
 
   def maximum_speed
@@ -64,6 +68,10 @@ class UnitType
 
   def hard_attack
     @stats["hard_attack"] || 0
+  end
+
+  def air_attack
+    @stats["air_attack"] || 0
   end
 
   def breakthrough
@@ -96,5 +104,29 @@ class UnitType
 
   def frontline?
     combat_width != 0
+  end
+
+  def reliability_factor
+    @stats["reliability_factor"] || 0
+  end
+
+  def casualty_trickleback
+    @stats["casualty_trickleback"] || 0
+  end
+
+  def experience_loss_factor
+    @stats["experience_loss_factor"] || 0
+  end
+
+  def initiative
+    @stats["initiative"] || 0
+  end
+
+  def equipment_capture_factor
+    @stats["equipment_capture_factor"] || 0
+  end
+
+  def inspect
+    "UnitType<#{@name}>"
   end
 end

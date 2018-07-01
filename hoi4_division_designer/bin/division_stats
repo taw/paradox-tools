@@ -48,13 +48,13 @@ class DivisionStatsCLI
       hp
       org
       recovery_rate
-      reconnaissance
+      recon
       suppression
       weight
       supply_use
-      reliability
-      trickleback
-      exp_loss
+      reliability_factor
+      casualty_trickleback
+      experience_loss_factor
       soft_attack
       hard_attack
       air_attack
@@ -64,7 +64,7 @@ class DivisionStatsCLI
       piercing
       initiative
       entrenchment
-      equipment_capture_rate
+      equipment_capture_factor
       combat_width
       manpower
       training_time

@@ -14,7 +14,7 @@ class Unit
   end
 
   %i[
-    suppression hp org supply_use entrenchment
+    suppression hp org supply_use
     combat_width manpower training_time weight recovery_rate
     special_forces? can_be_parachuted? frontline? name
     ].each do |key|
@@ -46,6 +46,11 @@ class Unit
     base * (1 + @unit_type.hard_attack + (@country_bonuses["hard_attack"] || 0))
   end
 
+  memoize def air_attack
+    base = @equipment.map{|eq, count| eq.air_attack || 0}.sum
+    base * (1 + @unit_type.air_attack + (@country_bonuses["air_attack"] || 0))
+  end
+
   memoize def defense
     base = @equipment.map{|eq, count| eq.defense || 0}.sum
     base * (1 + @unit_type.defense + (@country_bonuses["defense"] || 0))
@@ -58,7 +63,42 @@ class Unit
 
   memoize def piercing
     base = @equipment.map{|eq, count| eq.ap_attack || 0}.sum
-    base
+    base * (1 + (@country_bonuses["ap_attack"] || 0))
+  end
+
+  memoize def hardness
+    base = @equipment.map{|eq, count| eq.hardness || 0}.sum
+    base * (1 + (@country_bonuses["hardness"] || 0))
+  end
+
+  def reliability_factor
+    base = @unit_type.reliability_factor
+    base + (@country_bonuses["reliability_factor"] || 0)
+  end
+
+  def casualty_trickleback
+    base = @unit_type.casualty_trickleback
+    base + (@country_bonuses["casualty_trickleback"] || 0)
+  end
+
+  def experience_loss_factor
+    base = @unit_type.experience_loss_factor
+    base + (@country_bonuses["experience_loss_factor"] || 0)
+  end
+
+  def initiative
+    base = @unit_type.initiative
+    base + (@country_bonuses["initiative"] || 0)
+  end
+
+  def equipment_capture_factor
+    base = @unit_type.equipment_capture_factor
+    base + (@country_bonuses["equipment_capture_factor"] || 0)
+  end
+
+  def supply_consumption_factor
+    base = unit_type.supply_consumption_factor
+    base + (@country_bonuses["supply_consumption_factor"] || 0)
   end
 
   def armor
@@ -68,6 +108,11 @@ class Unit
   def recon
     base = @unit_type.recon
     base + (@country_bonuses["recon"] || 0)
+  end
+
+  def entrenchment
+    base = @unit_type.entrenchment
+    base + (@country_bonuses["entrenchment"] || 0)
   end
 
   def ic_cost

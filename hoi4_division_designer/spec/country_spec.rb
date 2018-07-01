@@ -102,7 +102,7 @@ describe Country do
         "breakthrough" => 0.2,
         "defense" => 0.2,
         "hard_attack" => 0.25,
-        "hardness" => 1.0, # FIXME: ???
+        "hardness" => 1.0,
         "soft_attack" => 0.1,
       })
 

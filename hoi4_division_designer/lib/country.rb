@@ -52,6 +52,10 @@ class Country
     result
   end
 
+  def inspect
+    "Country<#{@technologies.sort.join(", ")}>"
+  end
+
   private
 
   memoize def enabled_subunits

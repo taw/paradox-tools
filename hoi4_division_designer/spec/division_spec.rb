@@ -16,18 +16,19 @@ describe Division do
   let(:default_stats) {
     {
       # Left Column
-      reliability: 0.0,
-      trickleback: 0.0,
+      reliability_factor: 0.0,
+      casualty_trickleback: 0.0,
       recon: 0.0,
-      exp_loss: 0.0,
+      suppression: 0.0,
+      experience_loss_factor: 0.0,
       recovery_rate: 0.30,
 
       # Middle Column
       air_attack: 0.0,
       armor: 0.0,
       initiative: 0.0,
-      entrechment: 0.0,
-      equipment_capture_rate: 0.0,
+      entrenchment: 0.0,
+      equipment_capture_factor: 0.0,
 
       # Right Column
 
@@ -49,9 +50,9 @@ describe Division do
     expect(division.suppression).to eq stats[:suppression]
     expect(division.weight).to eq stats[:weight]
     expect(division.supply_use).to eq stats[:supply_use]
-    expect(division.reliability).to eq stats[:reliability]
-    expect(division.trickleback).to eq stats[:trickleback]
-    expect(division.exp_loss).to eq stats[:exp_loss]
+    expect(division.reliability_factor).to eq stats[:reliability_factor]
+    expect(division.casualty_trickleback).to eq stats[:casualty_trickleback]
+    expect(division.experience_loss_factor).to eq stats[:experience_loss_factor]
     # Middle Column
     expect(division.soft_attack).to eq stats[:soft_attack]
     expect(division.hard_attack).to eq stats[:hard_attack]
@@ -61,8 +62,8 @@ describe Division do
     expect(division.armor).to eq stats[:armor]
     expect(division.piercing).to eq stats[:piercing]
     expect(division.initiative).to eq stats[:initiative]
-    expect(division.entrechment).to eq stats[:entrechment]
-    expect(division.equipment_capture_rate).to eq stats[:equipment_capture_rate]
+    expect(division.entrenchment).to eq stats[:entrenchment]
+    expect(division.equipment_capture_factor).to eq stats[:equipment_capture_factor]
     expect(division.combat_width).to eq stats[:combat_width]
     # Right Column
     expect(division.manpower).to eq stats[:manpower]
@@ -252,6 +253,7 @@ describe Division do
           "motorized_rocket_equipment_1" => 80,
         },
         ic_cost: 1812,
+        hardness: 0.1,
         bonuses: {
           "forest" => {"movement" => -0.50, "attack" => -0.10},
           "hills" => {"movement" => -0.025},
@@ -264,6 +266,15 @@ describe Division do
           "amphibious" => {"attack" => -0.30},
         },
       }
+    end
+  end
+
+  describe "late game bonuses" do
+    let(:tech_year) { 1950 }
+    let(:units) { {motorized: 10} }
+    it do
+      expect(division.hardness).to eq 0.2
+      expect(division.piercing).to eq 30.0
     end
   end
 
@@ -337,6 +348,70 @@ describe Division do
           "amphibious"=>{"attack"=>0.161}, # displayed 0.162
           # Not displayed:
           "desert"=>{"movement"=>0.1},
+        },
+      }
+    end
+  end
+
+  describe "1945 + doctrine + monster armored division" do
+    let(:tech_year) { 1945 }
+    let(:units) { {
+      heavy_armor: 5,
+      heavy_sp_anti_air_brigade: 5,
+      heavy_tank_destroyer_brigade: 5,
+      heavy_sp_artillery_brigade: 5,
+      maintenance_company: 1,
+      signal_company: 1,
+      field_hospital: 1,
+      logistics_company: 1,
+      rocket_artillery: 1,
+    } }
+    it do
+      expect_stats division, {
+        speed: 6.0,
+        hp: 24.2,
+        org: 9.2,
+        recovery_rate: 0.25,
+        weight: 30.5,
+        supply_use: 4.056, # displayed 4.05
+        reliability_factor: 0.20,
+        casualty_trickleback: 0.50,
+        experience_loss_factor: -0.40,
+
+        soft_attack: 779.4,
+        hard_attack: 543.0,
+        air_attack: 220.0,
+        defense: 140.0,
+        breakthrough: 422.9,
+        armor: 100.6,
+        piercing: 110.488, # displayed 110.4
+        initiative: 0.56,
+        equipment_capture_factor: 0.20,
+        combat_width: 40,
+
+        manpower: 12300,
+        training_time: 180,
+        equipment: {
+          "rocket_artillery_equipment_2" => 24,
+          "motorized_equipment_1" => 40,
+          "support_equipment_1" => 95,
+          "heavy_tank_equipment_3" => 200,
+          "heavy_tank_artillery_equipment_3" => 120,
+          "heavy_tank_destroyer_equipment_3" => 100,
+          "heavy_tank_aa_equipment_3" => 40,
+        },
+        ic_cost: 14400,
+        hardness: 0.875, # displayed 0.87
+        bonuses: {
+          "forest" => {"movement"=>-0.4, "attack"=>-0.4},
+          "hills" => {"attack"=>-0.2},
+          "mountain" => {"attack"=>-0.3},
+          "urban" => {"attack"=>-0.5, "defence"=>-0.2},
+          "jungle" => {"movement"=>-0.4, "attack"=>-0.6},
+          "marsh" => {"movement"=>-0.2, "attack"=>-0.4},
+          "fort" => {"attack"=>0.038},
+          "river" => {"movement"=>-0.4, "attack"=>-0.4},
+          "amphibious" => {"attack"=>-0.8},
         },
       }
     end

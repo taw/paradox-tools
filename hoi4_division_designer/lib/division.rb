@@ -38,7 +38,9 @@ class Division
   end
 
   def supply_use
-    @units.map(&:supply_use).sum.round(6)
+    base = @units.map(&:supply_use).sum.round(6)
+    factor = @units.map(&:supply_consumption_factor).sum
+    base * (1+factor)
   end
 
   def soft_attack
@@ -47,6 +49,10 @@ class Division
 
   def hard_attack
     @units.map(&:hard_attack).sum
+  end
+
+  def air_attack
+    @units.map(&:air_attack).sum
   end
 
   def defense
@@ -65,8 +71,28 @@ class Division
     @units.map(&:entrenchment).sum
   end
 
+  def reliability_factor
+    @units.map(&:reliability_factor).sum
+  end
+
+  def casualty_trickleback
+    @units.map(&:casualty_trickleback).sum
+  end
+
+  def equipment_capture_factor
+    @units.map(&:equipment_capture_factor).sum
+  end
+
+  def experience_loss_factor
+    @units.map(&:experience_loss_factor).sum
+  end
+
   def recon
     @units.map(&:recon).sum
+  end
+
+  def initiative
+    @units.map(&:initiative).sum
   end
 
   memoize def frontline_units
@@ -128,7 +154,7 @@ class Division
     @units.count(&:special_forces?)
   end
 
-  def method_missing(m, *args)
-    0
+  def hardness
+    frontline_units.map(&:hardness).avg.round(6)
   end
 end
