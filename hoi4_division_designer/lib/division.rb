@@ -40,19 +40,19 @@ class Division
   def supply_use
     base = @units.map(&:supply_use).sum.round(6)
     factor = @units.map(&:supply_consumption_factor).sum
-    base * (1+factor)
+    (base * (1+factor)).round(6)
   end
 
   def soft_attack
-    @units.map(&:soft_attack).sum
+    @units.map(&:soft_attack).sum.round(6)
   end
 
   def hard_attack
-    @units.map(&:hard_attack).sum
+    @units.map(&:hard_attack).sum.round(6)
   end
 
   def air_attack
-    @units.map(&:air_attack).sum
+    @units.map(&:air_attack).sum.round(6)
   end
 
   def defense

@@ -383,7 +383,9 @@ describe Division do
         casualty_trickleback: 0.50,
         experience_loss_factor: -0.40,
 
-        soft_attack: 779.4,
+        # Game seems to lose 10% bonus for rocket art here somehow
+        # applying only +90% not +100%
+        soft_attack: 783.25, # in game: 779.4
         hard_attack: 543.05, # displaed 543.0
         air_attack: 220.0,
         defense: 140.0,
