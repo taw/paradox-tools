@@ -14,8 +14,8 @@ class Unit
   end
 
   %i[
-    suppression hp org supply_use
-    combat_width manpower training_time weight recovery_rate
+    suppression hp supply_use
+    combat_width manpower training_time weight
     special_forces? can_be_parachuted? frontline? name
     ].each do |key|
     define_method(key) { @unit_type.send(key) }
@@ -69,6 +69,16 @@ class Unit
   memoize def hardness
     base = @equipment.map{|eq, count| eq.hardness || 0}.sum
     base * (1 + (@country_bonuses["hardness"] || 0))
+  end
+
+  def org
+    base = @unit_type.org
+    base + (@country_bonuses["max_organisation"] || 0)
+  end
+
+  def recovery_rate
+    base = @unit_type.recovery_rate
+    base + (@country_bonuses["default_morale"] || 0)
   end
 
   def reliability_factor

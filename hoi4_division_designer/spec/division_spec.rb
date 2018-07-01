@@ -354,7 +354,12 @@ describe Division do
   end
 
   describe "1945 + doctrine + monster armored division" do
-    let(:tech_year) { 1945 }
+    let(:tech) {
+      db.techs_up_to(1945) + %W[
+        superior_firepower sup_delay mobile_defence
+        intergrated_support regimental_combat_teams sup_mechanized_offensive
+        centralized_fire_control forward_observers advanced_firebases shock_and_awe]
+    }
     let(:units) { {
       heavy_armor: 5,
       heavy_sp_anti_air_brigade: 5,
@@ -371,7 +376,7 @@ describe Division do
         speed: 6.0,
         hp: 24.2,
         org: 9.2,
-        recovery_rate: 0.25,
+        recovery_rate: 0.252, # displayed 0.25
         weight: 30.5,
         supply_use: 4.056, # displayed 4.05
         reliability_factor: 0.20,
@@ -379,7 +384,7 @@ describe Division do
         experience_loss_factor: -0.40,
 
         soft_attack: 779.4,
-        hard_attack: 543.0,
+        hard_attack: 543.05, # displaed 543.0
         air_attack: 220.0,
         defense: 140.0,
         breakthrough: 422.9,
