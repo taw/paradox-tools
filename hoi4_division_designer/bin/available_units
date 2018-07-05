@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/division_designer"
+require "set"
+
+class AvailableUnitsCLI
+  def initialize
+    @db = Database.new
+    @techs = Set["infantry_weapons"]
+  end
+
+  def add_tech_year(year)
+    @techs += @db.techs_up_to(year)
+  end
+
+  def add_tech(arg)
+    @techs << arg
+  end
+
+  def add_unit(count, type)
+    @units[type] += count
+  end
+
+  def call(args)
+    ARGV.each do |arg|
+      if @db.unit_types[arg]
+        add_unit(1, arg)
+      elsif @db.technology[arg]
+        add_tech(arg)
+      elsif arg =~ /\A\d{4}\z/
+        add_tech_year(arg.to_i)
+      else
+        warn "No idea what this is: #{arg}"
+      end
+    end
+
+    country = @db.country(@techs)
+    @db.unit_types.each do |name, unit_type|
+      puts [
+        name,
+        unit_type.frontline? ? "" : " [support]",
+        country.available_units.include?(unit_type) ? "" : " [not available]"
+      ].join
+    end
+  end
+end
+
+AvailableUnitsCLI.new.call(ARGV)
