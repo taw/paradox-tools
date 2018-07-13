@@ -2,9 +2,9 @@ describe Country do
   let(:db) { Database.new }
   let(:country) { db.country(tech) }
   let(:equipment_map) {
-    country.equipment_map.map{|k,v| [k, v.name]}.to_h
+    country.equipment_map.map{|k,v| [k, v.key]}.to_h
   }
-  let(:available_units) { country.available_units.map(&:name) }
+  let(:available_units) { country.available_units.map(&:key) }
 
   describe "no techs" do
     let(:tech) { [] }

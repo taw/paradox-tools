@@ -127,8 +127,8 @@ class Division
     result = {}
     @units.each do |unit|
       unit.equipment.each do |type, count|
-        result[type.name] ||= 0
-        result[type.name] += count
+        result[type.key] ||= 0
+        result[type.key] += count
       end
     end
     result

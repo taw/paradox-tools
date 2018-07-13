@@ -1,8 +1,8 @@
 class UnitType
-  attr_reader :name
+  attr_reader :key
 
-  def initialize(name, stats)
-    @name = name
+  def initialize(key, stats)
+    @key = key
     @stats = stats
   end
 
@@ -126,7 +126,11 @@ class UnitType
     @stats["equipment_capture_factor"] || 0
   end
 
+  def name
+    @stats["name"]
+  end
+
   def inspect
-    "UnitType<#{@name}>"
+    "UnitType<#{@key}>"
   end
 end

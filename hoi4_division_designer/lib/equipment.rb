@@ -1,8 +1,8 @@
 class Equipment
-  attr_reader :name
+  attr_reader :key
 
-  def initialize(name, stats)
-    @name = name
+  def initialize(key, stats)
+    @key = key
     @stats = stats
   end
 
@@ -13,6 +13,6 @@ class Equipment
   end
 
   def inspect
-    "Equipment<#{@name}>"
+    "Equipment<#{@key}>"
   end
 end

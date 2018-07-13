@@ -37,7 +37,7 @@ class AvailableUnitsCLI
     country = @db.country(@techs)
     @db.unit_types.each do |name, unit_type|
       puts [
-        name,
+        "#{unit_type.name} [#{name}]",
         unit_type.frontline? ? "" : " [support]",
         country.available_units.include?(unit_type) ? "" : " [not available]"
       ].join

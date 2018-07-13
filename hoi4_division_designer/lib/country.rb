@@ -12,7 +12,7 @@ class Country
     enabled_equipments
       .map{|eq| @database.equipment[eq] }
       .group_by(&:archetype)
-      .transform_values{|eqs| eqs.max_by(&:name) }
+      .transform_values{|eqs| eqs.max_by(&:key) }
   end
 
   def division(unit_types)
@@ -26,7 +26,7 @@ class Country
 
   memoize def available_units
     @database.unit_types.values.select do |unit_type|
-      next unless unit_type.active? or enabled_subunits.include?(unit_type.name)
+      next unless unit_type.active? or enabled_subunits.include?(unit_type.key)
       unit_type.equipment.keys.all? do |equipment|
         enabled_equipment_archetypes.include?(equipment)
       end
@@ -43,7 +43,7 @@ class Country
 
   def unit_bonuses_for(unit_type_name)
     unit_type = @database.unit_types.fetch(unit_type_name)
-    categories = [unit_type.name, *unit_type.categories]
+    categories = [unit_type.key, *unit_type.categories]
     result = {}
     categories.each do |category|
       next unless unit_bonuses[category]
