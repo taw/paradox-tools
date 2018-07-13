@@ -20,7 +20,7 @@ class ImportData < ParadoxGame
   def each_unit
     glob("common/units/*.txt").each do |path|
       parse(path)["sub_units"].each do |name, unit|
-        yield(name, jsonify(unit))
+        yield(name, jsonify(unit).merge("name" => localization(name)))
       end
     end
   end
@@ -53,7 +53,7 @@ class ImportData < ParadoxGame
   def each_equipment
     glob("common/units/equipment/*.txt").each do |path|
       parse(path)["equipments"].each do |name, equipment|
-        yield(name, jsonify(equipment))
+        yield(name, jsonify(equipment).merge("name" => localization(name)))
       end
     end
   end
@@ -81,7 +81,7 @@ class ImportData < ParadoxGame
     glob("common/technologies/*.txt").each do |path|
       parse(path)["technologies"].each do |key, tech|
         next if key =~ /\A@\d+\z/ and tech.is_a?(Integer)
-        yield(key, jsonify(tech))
+        yield(key, jsonify(tech).merge("name" => localization(key)))
       end
     end
   end
@@ -98,7 +98,11 @@ class ImportData < ParadoxGame
   end
 
   def call
-    data = { units: units_data, equipment: equipment_data, technology: technology_data }
+    data = {
+      units: units_data,
+      equipment: equipment_data,
+      technology: technology_data,
+    }
     Pathname("#{__dir__}/../data/data.json").write JSON.pretty_generate(data)
   end
 end

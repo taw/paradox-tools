@@ -11,6 +11,7 @@
       "type": [
         "fighter"
       ],
+      "name": "Fighter",
       "bonuses": {
       }
     },
@@ -25,6 +26,7 @@
       "type": [
         "fighter"
       ],
+      "name": "Fighter",
       "bonuses": {
       }
     },
@@ -39,6 +41,7 @@
       "type": [
         "fighter"
       ],
+      "name": "Fighter",
       "bonuses": {
       }
     },
@@ -53,6 +56,7 @@
       "type": [
         "cas"
       ],
+      "name": "Close Air Support",
       "bonuses": {
       }
     },
@@ -67,6 +71,7 @@
       "type": [
         "cas"
       ],
+      "name": "Close Air Support",
       "bonuses": {
       }
     },
@@ -78,6 +83,7 @@
       "type": [
         "naval_bomber"
       ],
+      "name": "Naval Bomber",
       "bonuses": {
       }
     },
@@ -89,6 +95,7 @@
       "type": [
         "naval_bomber"
       ],
+      "name": "Naval Bomber",
       "bonuses": {
       }
     },
@@ -100,6 +107,7 @@
       "type": [
         "interceptor"
       ],
+      "name": "Rocket Interceptor",
       "bonuses": {
       }
     },
@@ -111,6 +119,7 @@
       "type": [
         "suicide"
       ],
+      "name": "Yokosuka MXY7 Ohka",
       "bonuses": {
       }
     },
@@ -122,6 +131,7 @@
       "type": [
         "tactical_bomber"
       ],
+      "name": "Tactical Bomber",
       "bonuses": {
       }
     },
@@ -133,6 +143,7 @@
       "type": [
         "tactical_bomber"
       ],
+      "name": "Jet Tactical Bomber",
       "bonuses": {
       }
     },
@@ -147,6 +158,7 @@
       "type": [
         "fighter"
       ],
+      "name": "Heavy Fighter",
       "bonuses": {
       }
     },
@@ -158,6 +170,7 @@
       "type": [
         "strategic_bomber"
       ],
+      "name": "Strategic Bomber",
       "bonuses": {
       }
     },
@@ -169,6 +182,7 @@
       "type": [
         "strategic_bomber"
       ],
+      "name": "Jet Strategic Bomber",
       "bonuses": {
       }
     },
@@ -180,6 +194,7 @@
       "type": [
         "air_transport"
       ],
+      "name": "Transport",
       "bonuses": {
       }
     },
@@ -191,6 +206,7 @@
       "type": [
         "missile"
       ],
+      "name": "Rocket",
       "bonuses": {
       }
     },
@@ -222,6 +238,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Support Anti-Air",
       "bonuses": {
       }
     },
@@ -247,6 +264,7 @@
         "anti_air"
       ],
       "weight": 0.5,
+      "name": "Anti-Air",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -298,6 +316,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Support Anti-Tank",
       "bonuses": {
       }
     },
@@ -324,6 +343,7 @@
         "anti_tank"
       ],
       "weight": 0.5,
+      "name": "Anti-Tank",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -383,6 +403,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Support Artillery",
       "bonuses": {
       }
     },
@@ -414,6 +435,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Support Rocket Artillery",
       "bonuses": {
       }
     },
@@ -440,6 +462,7 @@
         "artillery"
       ],
       "weight": 0.5,
+      "name": "Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -493,6 +516,7 @@
         "artillery"
       ],
       "weight": 0.5,
+      "name": "Rocket Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -548,6 +572,7 @@
         "rocket"
       ],
       "weight": 0.5,
+      "name": "Motorized Rocket Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -589,6 +614,7 @@
       "type": [
         "capital_ship"
       ],
+      "name": "Battlecruiser",
       "bonuses": {
       }
     },
@@ -602,6 +628,7 @@
       "type": [
         "capital_ship"
       ],
+      "name": "Battleship",
       "bonuses": {
       }
     },
@@ -615,6 +642,7 @@
       "type": [
         "carrier"
       ],
+      "name": "Carrier",
       "bonuses": {
       }
     },
@@ -642,6 +670,7 @@
         "infantry"
       ],
       "weight": 0.5,
+      "name": "Cavalry",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -674,6 +703,7 @@
       "type": [
         "screen_ship"
       ],
+      "name": "Destroyer",
       "bonuses": {
       }
     },
@@ -709,6 +739,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Engineer Company",
       "bonuses": {
         "amphibious": {
           "attack": 0.25
@@ -767,6 +798,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Field Hospital",
       "bonuses": {
       }
     },
@@ -793,6 +825,7 @@
         "armor"
       ],
       "weight": 1.5,
+      "name": "Heavy Tank",
       "bonuses": {
         "amphibious": {
           "attack": -0.8
@@ -838,6 +871,7 @@
       "type": [
         "capital_ship"
       ],
+      "name": "Heavy Cruiser",
       "bonuses": {
       }
     },
@@ -865,6 +899,7 @@
         "infantry"
       ],
       "weight": 0.5,
+      "name": "Infantry",
       "bonuses": {
       }
     },
@@ -894,6 +929,7 @@
         "infantry"
       ],
       "weight": 0.5,
+      "name": "Bicycle Battalion",
       "bonuses": {
         "amphibious": {
           "movement": -0.05
@@ -952,6 +988,7 @@
         "infantry"
       ],
       "weight": 0.5,
+      "name": "Marines",
       "bonuses": {
         "amphibious": {
           "attack": 0.5
@@ -992,6 +1029,7 @@
         "infantry"
       ],
       "weight": 0.5,
+      "name": "Mountaineers",
       "bonuses": {
         "hills": {
           "attack": 0.2,
@@ -1032,6 +1070,7 @@
         "infantry"
       ],
       "weight": 0.5,
+      "name": "Paratroopers",
       "bonuses": {
       }
     },
@@ -1060,6 +1099,7 @@
         "motorized"
       ],
       "weight": 0.75,
+      "name": "Motorized Infantry",
       "bonuses": {
         "amphibious": {
           "attack": -0.2
@@ -1120,6 +1160,7 @@
         "mechanized"
       ],
       "weight": 1,
+      "name": "Mechanized Infantry",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -1169,6 +1210,7 @@
         "armor"
       ],
       "weight": 1,
+      "name": "Light Tank",
       "bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -1208,6 +1250,7 @@
       "type": [
         "screen_ship"
       ],
+      "name": "Light Cruiser",
       "bonuses": {
       }
     },
@@ -1239,6 +1282,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Logistics Company",
       "bonuses": {
       }
     },
@@ -1270,6 +1314,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Maintenance Company",
       "bonuses": {
       }
     },
@@ -1296,6 +1341,7 @@
         "armor"
       ],
       "weight": 1.25,
+      "name": "Medium Tank",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -1357,6 +1403,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Military Police",
       "bonuses": {
       }
     },
@@ -1383,6 +1430,7 @@
         "armor"
       ],
       "weight": 1.5,
+      "name": "Modern Tank",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -1449,6 +1497,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Recon Company",
       "bonuses": {
         "desert": {
           "movement": 0.1
@@ -1505,6 +1554,7 @@
         "support"
       ],
       "weight": 0.1,
+      "name": "Signal Company",
       "bonuses": {
       }
     },
@@ -1531,6 +1581,7 @@
         "anti_air"
       ],
       "weight": 1,
+      "name": "Light SP Anti-Air",
       "bonuses": {
         "amphibious": {
           "attack": -0.6
@@ -1583,6 +1634,7 @@
         "anti_air"
       ],
       "weight": 1.25,
+      "name": "Medium SP Anti-Air",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -1638,6 +1690,7 @@
         "anti_air"
       ],
       "weight": 1.5,
+      "name": "Heavy SP Anti-Air",
       "bonuses": {
         "amphibious": {
           "attack": -0.8
@@ -1693,6 +1746,7 @@
         "anti_air"
       ],
       "weight": 1.75,
+      "name": "Super Heavy SP Anti-Air",
       "bonuses": {
         "amphibious": {
           "attack": -1.0
@@ -1748,6 +1802,7 @@
         "anti_air"
       ],
       "weight": 1.5,
+      "name": "Modern SP Anti-Air",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -1802,6 +1857,7 @@
         "artillery"
       ],
       "weight": 1,
+      "name": "Light SP Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -0.6
@@ -1853,6 +1909,7 @@
         "artillery"
       ],
       "weight": 1.25,
+      "name": "Medium SP Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -1907,6 +1964,7 @@
         "artillery"
       ],
       "weight": 1.5,
+      "name": "Heavy SP Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -0.8
@@ -1961,6 +2019,7 @@
         "artillery"
       ],
       "weight": 1.75,
+      "name": "Super Heavy SP Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -1.0
@@ -2015,6 +2074,7 @@
         "artillery"
       ],
       "weight": 1.5,
+      "name": "Modern SP Artillery",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -2057,6 +2117,7 @@
       "type": [
         "submarine"
       ],
+      "name": "Submarine",
       "bonuses": {
       }
     },
@@ -2083,6 +2144,7 @@
         "armor"
       ],
       "weight": 1.75,
+      "name": "Super-Heavy Tank",
       "bonuses": {
         "amphibious": {
           "attack": -1.0
@@ -2141,6 +2203,7 @@
         "anti_tank"
       ],
       "weight": 1,
+      "name": "Light Tank Destroyer",
       "bonuses": {
         "amphibious": {
           "attack": -0.6
@@ -2193,6 +2256,7 @@
         "anti_tank"
       ],
       "weight": 1.25,
+      "name": "Medium Tank Destroyer",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -2248,6 +2312,7 @@
         "anti_tank"
       ],
       "weight": 1.5,
+      "name": "Heavy Tank Destroyer",
       "bonuses": {
         "amphibious": {
           "attack": -0.8
@@ -2306,6 +2371,7 @@
         "anti_tank"
       ],
       "weight": 1.75,
+      "name": "Super Heavy Tank Destroyer",
       "bonuses": {
         "amphibious": {
           "attack": -1.0
@@ -2364,6 +2430,7 @@
         "anti_tank"
       ],
       "weight": 1.5,
+      "name": "Modern Tank Destroyer",
       "bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -2421,6 +2488,7 @@
         "infantry"
       ],
       "year": 1936,
+      "name": "Towed Anti-Air",
       "archetype": "anti_air_equipment",
       "priority": 80,
       "visual_level": 0
@@ -2448,6 +2516,7 @@
         "infantry"
       ],
       "year": 1940,
+      "name": "Improved Anti-Air",
       "archetype": "anti_air_equipment",
       "parent": "anti_air_equipment_1",
       "priority": 80,
@@ -2476,6 +2545,7 @@
         "infantry"
       ],
       "year": 1943,
+      "name": "Advanced Anti-Air",
       "archetype": "anti_air_equipment",
       "parent": "anti_air_equipment_2",
       "priority": 80,
@@ -2505,6 +2575,7 @@
         "infantry"
       ],
       "year": 1936,
+      "name": "Towed Anti-Tank",
       "archetype": "anti_tank_equipment",
       "priority": 90,
       "visual_level": 0
@@ -2533,6 +2604,7 @@
         "infantry"
       ],
       "year": 1940,
+      "name": "Improved Anti-Tank",
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_1",
       "priority": 90,
@@ -2562,6 +2634,7 @@
         "infantry"
       ],
       "year": 1943,
+      "name": "Advanced Anti-Tank",
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_2",
       "priority": 90,
@@ -2591,6 +2664,7 @@
         "infantry"
       ],
       "year": 1934,
+      "name": "Towed Artillery",
       "archetype": "artillery_equipment",
       "priority": 50,
       "visual_level": 0
@@ -2619,6 +2693,7 @@
         "infantry"
       ],
       "year": 1939,
+      "name": "Improved Artillery",
       "archetype": "artillery_equipment",
       "parent": "artillery_equipment_1",
       "priority": 50,
@@ -2648,6 +2723,7 @@
         "infantry"
       ],
       "year": 1942,
+      "name": "Advanced Artillery",
       "archetype": "artillery_equipment",
       "parent": "artillery_equipment_2",
       "priority": 50,
@@ -2677,6 +2753,7 @@
         "rocket"
       ],
       "year": 1940,
+      "name": "Towed Rocket Artillery",
       "archetype": "rocket_artillery_equipment",
       "priority": 60,
       "visual_level": 0
@@ -2705,6 +2782,7 @@
         "rocket"
       ],
       "year": 1943,
+      "name": "Advanced Rocket Artillery",
       "archetype": "rocket_artillery_equipment",
       "parent": "rocket_artillery_equipment_1",
       "priority": 60,
@@ -2735,6 +2813,7 @@
         "rocket"
       ],
       "year": 1939,
+      "name": "Motorized Rocket Artillery",
       "archetype": "motorized_rocket_equipment",
       "priority": 70,
       "visual_level": 0
@@ -2774,6 +2853,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1922,
+      "name": "Battlecruiser I",
       "archetype": "battle_cruiser",
       "priority": 50
     },
@@ -2812,6 +2892,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1940,
+      "name": "Battlecruiser II",
       "archetype": "battle_cruiser",
       "parent": "battle_cruiser_1",
       "priority": 50
@@ -2851,6 +2932,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1922,
+      "name": "Battleship I",
       "archetype": "battleship",
       "priority": 60
     },
@@ -2889,6 +2971,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1936,
+      "name": "Battleship II",
       "archetype": "battleship",
       "parent": "battleship_1",
       "priority": 60
@@ -2928,6 +3011,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1940,
+      "name": "Battleship III",
       "archetype": "battleship",
       "parent": "battleship_2",
       "priority": 60
@@ -2967,6 +3051,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1944,
+      "name": "Battleship IV",
       "archetype": "battleship",
       "parent": "battleship_3",
       "priority": 60
@@ -3006,6 +3091,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1936,
+      "name": "Super-Heavy Battleship I",
       "archetype": "battleship",
       "priority": 60
     },
@@ -3044,6 +3130,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1944,
+      "name": "Super-Heavy Battleship II",
       "archetype": "battleship",
       "parent": "SH_battleship_1",
       "priority": 60
@@ -3085,6 +3172,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1922,
+      "name": "Carrier I",
       "archetype": "carrier",
       "priority": 70
     },
@@ -3125,6 +3213,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Carrier II",
       "archetype": "carrier",
       "parent": "carrier_1",
       "priority": 70
@@ -3166,6 +3255,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Carrier III",
       "archetype": "carrier",
       "parent": "carrier_2",
       "priority": 70
@@ -3207,6 +3297,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Carrier IV",
       "archetype": "carrier",
       "parent": "carrier_3",
       "priority": 70
@@ -3242,6 +3333,7 @@
         "convoy"
       ],
       "year": 1910,
+      "name": "Convoy",
       "active": true,
       "archetype": "convoy",
       "priority": 10
@@ -3282,6 +3374,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1922,
+      "name": "Destroyer I",
       "archetype": "destroyer",
       "priority": 20
     },
@@ -3321,6 +3414,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1936,
+      "name": "Destroyer II",
       "archetype": "destroyer",
       "parent": "destroyer_1",
       "priority": 20
@@ -3361,6 +3455,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1940,
+      "name": "Destroyer III",
       "archetype": "destroyer",
       "parent": "destroyer_2",
       "priority": 20
@@ -3402,6 +3497,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1944,
+      "name": "Destroyer IV",
       "archetype": "destroyer",
       "parent": "destroyer_3",
       "priority": 20
@@ -3424,6 +3520,7 @@
       "sprite": "missile_default",
       "type": "missile",
       "year": 1944,
+      "name": "Basic Guided Missile",
       "air_agility": 10,
       "air_bombing": 300,
       "air_range": 500,
@@ -3449,6 +3546,7 @@
       "sprite": "missile_default",
       "type": "missile",
       "year": 1945,
+      "name": "Improved Guided Missile",
       "air_agility": 10,
       "air_bombing": 450,
       "air_range": 640,
@@ -3475,6 +3573,7 @@
       "sprite": "missile_default",
       "type": "missile",
       "year": 1946,
+      "name": "Advanced Guided Missile",
       "air_agility": 10,
       "air_bombing": 600,
       "air_range": 11000,
@@ -3517,6 +3616,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1922,
+      "name": "Heavy Cruiser I",
       "archetype": "heavy_cruiser",
       "priority": 40
     },
@@ -3554,6 +3654,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1936,
+      "name": "Heavy Cruiser II",
       "archetype": "heavy_cruiser",
       "parent": "heavy_cruiser_1",
       "priority": 40
@@ -3592,6 +3693,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1940,
+      "name": "Heavy Cruiser III",
       "archetype": "heavy_cruiser",
       "parent": "heavy_cruiser_2",
       "priority": 40
@@ -3631,6 +3733,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1944,
+      "name": "Heavy Cruiser IV",
       "archetype": "heavy_cruiser",
       "parent": "heavy_cruiser_3",
       "priority": 40
@@ -3658,6 +3761,7 @@
       "soft_attack": 3,
       "type": "infantry",
       "year": 1918,
+      "name": "Basic Infantry Equipment",
       "archetype": "infantry_equipment",
       "priority": 5,
       "visual_level": 0
@@ -3685,6 +3789,7 @@
       "soft_attack": 6,
       "type": "infantry",
       "year": 1936,
+      "name": "Infantry Equipment I",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_0",
       "priority": 10,
@@ -3713,6 +3818,7 @@
       "soft_attack": 9,
       "type": "infantry",
       "year": 1939,
+      "name": "Infantry Equipment II",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_1",
       "priority": 10,
@@ -3741,6 +3847,7 @@
       "soft_attack": 12,
       "type": "infantry",
       "year": 1942,
+      "name": "Infantry Equipment III",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_2",
       "priority": 10,
@@ -3782,6 +3889,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1922,
+      "name": "Light Cruiser I",
       "archetype": "light_cruiser",
       "priority": 30
     },
@@ -3821,6 +3929,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1936,
+      "name": "Light Cruiser II",
       "archetype": "light_cruiser",
       "parent": "light_cruiser_1",
       "priority": 30
@@ -3861,6 +3970,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1940,
+      "name": "Light Cruiser III",
       "archetype": "light_cruiser",
       "parent": "light_cruiser_2",
       "priority": 30
@@ -3902,6 +4012,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1944,
+      "name": "Light Cruiser IV",
       "archetype": "light_cruiser",
       "parent": "light_cruiser_3",
       "priority": 30
@@ -3939,6 +4050,7 @@
         "torpedo_ship_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Torpedo Cruiser",
       "archetype": "light_cruiser",
       "priority": 30
     },
@@ -3966,6 +4078,7 @@
         "mechanized"
       ],
       "year": 1940,
+      "name": "Mechanized Equipment I",
       "archetype": "mechanized_equipment",
       "priority": 40,
       "visual_level": 0
@@ -3994,6 +4107,7 @@
         "mechanized"
       ],
       "year": 1942,
+      "name": "Mechanized Equipment II",
       "archetype": "mechanized_equipment",
       "parent": "mechanized_equipment_1",
       "priority": 40,
@@ -4023,6 +4137,7 @@
         "mechanized"
       ],
       "year": 1944,
+      "name": "Mechanized Equipment III",
       "archetype": "mechanized_equipment",
       "parent": "mechanized_equipment_2",
       "priority": 40,
@@ -4047,6 +4162,7 @@
         "motorized"
       ],
       "year": 1936,
+      "name": "Motorized",
       "archetype": "motorized_equipment",
       "priority": 30
     },
@@ -4079,6 +4195,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Strategic Bomber I",
       "air_agility": 5,
       "air_attack": 50,
       "air_bombing": 30,
@@ -4117,6 +4234,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Strategic Bomber II",
       "air_agility": 7,
       "air_attack": 100,
       "air_bombing": 45,
@@ -4156,6 +4274,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Strategic Bomber III",
       "air_agility": 10,
       "air_attack": 150,
       "air_bombing": 60,
@@ -4194,6 +4313,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
+      "name": "Jet Strategic Bomber I",
       "air_agility": 14,
       "air_attack": 100,
       "air_bombing": 64,
@@ -4224,6 +4344,7 @@
       "sprite": "medium_plane",
       "type": "air_transport",
       "year": 1933,
+      "name": "Transport Plane I",
       "active": true,
       "air_agility": 10,
       "air_defence": 20,
@@ -4264,6 +4385,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
+      "name": "Interwar Fighter",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 8,
@@ -4304,6 +4426,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Fighter I",
       "air_agility": 50,
       "air_attack": 18,
       "air_defence": 10,
@@ -4345,6 +4468,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Fighter II",
       "air_agility": 65,
       "air_attack": 27,
       "air_defence": 12,
@@ -4386,6 +4510,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Fighter III",
       "air_agility": 80,
       "air_attack": 32,
       "air_defence": 14,
@@ -4423,6 +4548,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
+      "name": "Jet Fighter I",
       "air_agility": 72,
       "air_attack": 36,
       "air_defence": 15,
@@ -4459,6 +4585,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
+      "name": "Jet Fighter II",
       "air_agility": 72,
       "air_attack": 40,
       "air_defence": 18,
@@ -4502,6 +4629,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
+      "name": "IW Carrier Fighter",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 8,
@@ -4544,6 +4672,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Carrier Fighter I",
       "air_agility": 50,
       "air_attack": 18,
       "air_defence": 11,
@@ -4587,6 +4716,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Carrier Fighter II",
       "air_agility": 65,
       "air_attack": 27,
       "air_defence": 13,
@@ -4630,6 +4760,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Carrier Fighter III",
       "air_agility": 80,
       "air_attack": 32,
       "air_defence": 15,
@@ -4671,6 +4802,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Close Air Support I",
       "air_agility": 35,
       "air_attack": 6,
       "air_defence": 14,
@@ -4711,6 +4843,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Close Air Support II",
       "air_agility": 39,
       "air_attack": 10,
       "air_defence": 16,
@@ -4752,6 +4885,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Close Air Support III",
       "air_agility": 44,
       "air_attack": 14,
       "air_defence": 20,
@@ -4794,6 +4928,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Carrier CAS I",
       "air_agility": 35,
       "air_attack": 6,
       "air_defence": 14,
@@ -4835,6 +4970,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Carrier CAS II",
       "air_agility": 39,
       "air_attack": 10,
       "air_defence": 16,
@@ -4877,6 +5013,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Carrier CAS III",
       "air_agility": 44,
       "air_attack": 14,
       "air_defence": 20,
@@ -4914,6 +5051,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Naval Bomber I",
       "air_agility": 30,
       "air_attack": 6,
       "air_defence": 12,
@@ -4950,6 +5088,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Naval Bomber II",
       "air_agility": 35,
       "air_attack": 10,
       "air_defence": 14,
@@ -4987,6 +5126,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Naval Bomber III",
       "air_agility": 40,
       "air_attack": 14,
       "air_defence": 16,
@@ -5026,6 +5166,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Carrier Naval Bomber I",
       "air_agility": 30,
       "air_attack": 6,
       "air_defence": 13,
@@ -5064,6 +5205,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Carrier Naval Bomber II",
       "air_agility": 35,
       "air_attack": 10,
       "air_defence": 15,
@@ -5103,6 +5245,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Carrier Naval Bomber III",
       "air_agility": 40,
       "air_attack": 14,
       "air_defence": 17,
@@ -5138,6 +5281,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Rocket Interceptor I",
       "air_agility": 30,
       "air_attack": 47,
       "air_defence": 5,
@@ -5173,6 +5317,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
+      "name": "Rocket Interceptor II",
       "air_agility": 36,
       "air_attack": 56,
       "air_defence": 7,
@@ -5209,6 +5354,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1946,
+      "name": "Rocket Interceptor III",
       "air_agility": 60,
       "air_attack": 60,
       "air_defence": 10,
@@ -5241,6 +5387,7 @@
       "upgrades": {
       },
       "year": 1944,
+      "name": "Suicide Strike Craft",
       "air_agility": 50,
       "air_attack": 0,
       "air_defence": 12,
@@ -5286,6 +5433,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1922,
+      "name": "Submarine I",
       "archetype": "submarine",
       "priority": 80
     },
@@ -5325,6 +5473,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1936,
+      "name": "Submarine II",
       "archetype": "submarine",
       "parent": "submarine_1",
       "priority": 80
@@ -5365,6 +5514,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1940,
+      "name": "Submarine III",
       "archetype": "submarine",
       "parent": "submarine_2",
       "priority": 80
@@ -5406,6 +5556,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1944,
+      "name": "Submarine IV",
       "archetype": "submarine",
       "parent": "submarine_3",
       "priority": 80
@@ -5427,6 +5578,7 @@
         "motorized"
       ],
       "year": 1918,
+      "name": "Support Equipment",
       "archetype": "support_equipment",
       "priority": 20
     },
@@ -5461,6 +5613,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1934,
+      "name": "Heavy Tank I",
       "archetype": "heavy_tank_equipment",
       "priority": 90,
       "visual_level": 0
@@ -5496,6 +5649,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
+      "name": "Heavy Tank II",
       "archetype": "heavy_tank_equipment",
       "parent": "heavy_tank_equipment_1",
       "priority": 90,
@@ -5532,6 +5686,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
+      "name": "Heavy Tank III",
       "archetype": "heavy_tank_equipment",
       "parent": "heavy_tank_equipment_2",
       "priority": 90,
@@ -5571,6 +5726,7 @@
         "tank_art_upgrade"
       ],
       "year": 1934,
+      "name": "Heavy SP Artillery I",
       "archetype": "heavy_tank_artillery_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_1"
@@ -5612,6 +5768,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
+      "name": "Heavy SP Artillery II",
       "archetype": "heavy_tank_artillery_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_1",
@@ -5655,6 +5812,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
+      "name": "Heavy SP Artillery III",
       "archetype": "heavy_tank_artillery_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_2",
@@ -5698,6 +5856,7 @@
         "tank_at_upgrade"
       ],
       "year": 1934,
+      "name": "Heavy Tank Destroyer I",
       "archetype": "heavy_tank_destroyer_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_1"
@@ -5739,6 +5898,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
+      "name": "Heavy Tank Destroyer II",
       "archetype": "heavy_tank_destroyer_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_1",
@@ -5782,6 +5942,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
+      "name": "Heavy Tank Destroyer III",
       "archetype": "heavy_tank_destroyer_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_2",
@@ -5825,6 +5986,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1934,
+      "name": "Heavy SP Anti-Air I",
       "archetype": "heavy_tank_aa_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_1"
@@ -5866,6 +6028,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
+      "name": "Heavy SP Anti-Air II",
       "archetype": "heavy_tank_aa_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_1",
@@ -5909,6 +6072,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
+      "name": "Heavy SP Anti-Air III",
       "archetype": "heavy_tank_aa_equipment",
       "can_convert_from": [
         "heavy_tank_equipment_2",
@@ -5944,6 +6108,7 @@
       "upgrades": {
       },
       "year": 1914,
+      "name": "Great War Tank",
       "archetype": "light_tank_equipment",
       "priority": 5,
       "visual_level": 0
@@ -5978,6 +6143,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1934,
+      "name": "Light Tank I",
       "archetype": "light_tank_equipment",
       "parent": "gw_tank_equipment",
       "priority": 10,
@@ -6013,6 +6179,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1936,
+      "name": "Light Tank II",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_1",
       "priority": 10,
@@ -6048,6 +6215,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
+      "name": "Light Tank III",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_2",
       "priority": 10,
@@ -6087,6 +6255,7 @@
         "tank_art_upgrade"
       ],
       "year": 1934,
+      "name": "Light SP Artillery I",
       "archetype": "light_tank_artillery_equipment",
       "can_convert_from": [
         "light_tank_equipment_1"
@@ -6128,6 +6297,7 @@
         "tank_art_upgrade"
       ],
       "year": 1936,
+      "name": "Light SP Artillery II",
       "archetype": "light_tank_artillery_equipment",
       "can_convert_from": [
         "light_tank_equipment_1",
@@ -6171,6 +6341,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
+      "name": "Light SP Artillery III",
       "archetype": "light_tank_artillery_equipment",
       "can_convert_from": [
         "light_tank_equipment_2",
@@ -6214,6 +6385,7 @@
         "tank_at_upgrade"
       ],
       "year": 1934,
+      "name": "Light Tank Destroyer I",
       "archetype": "light_tank_destroyer_equipment",
       "can_convert_from": [
         "light_tank_equipment_1"
@@ -6255,6 +6427,7 @@
         "tank_at_upgrade"
       ],
       "year": 1936,
+      "name": "Light Tank Destroyer II",
       "archetype": "light_tank_destroyer_equipment",
       "can_convert_from": [
         "light_tank_equipment_1",
@@ -6298,6 +6471,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
+      "name": "Light Tank Destroyer III",
       "archetype": "light_tank_destroyer_equipment",
       "can_convert_from": [
         "light_tank_equipment_2",
@@ -6340,6 +6514,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1934,
+      "name": "Light SP Anti-Air I",
       "archetype": "light_tank_aa_equipment",
       "can_convert_from": [
         "light_tank_equipment_1"
@@ -6380,6 +6555,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1936,
+      "name": "Light SP Anti-Air II",
       "archetype": "light_tank_aa_equipment",
       "can_convert_from": [
         "light_tank_equipment_1",
@@ -6422,6 +6598,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
+      "name": "Light SP Anti-Air III",
       "archetype": "light_tank_aa_equipment",
       "can_convert_from": [
         "light_tank_equipment_2",
@@ -6462,6 +6639,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1939,
+      "name": "Medium Tank I",
       "archetype": "medium_tank_equipment",
       "priority": 50,
       "visual_level": 0
@@ -6497,6 +6675,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
+      "name": "Medium Tank II",
       "archetype": "medium_tank_equipment",
       "parent": "medium_tank_equipment_1",
       "priority": 50,
@@ -6533,6 +6712,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
+      "name": "Medium Tank III",
       "archetype": "medium_tank_equipment",
       "parent": "medium_tank_equipment_2",
       "priority": 50,
@@ -6572,6 +6752,7 @@
         "tank_art_upgrade"
       ],
       "year": 1939,
+      "name": "Medium SP Artillery I",
       "archetype": "medium_tank_artillery_equipment",
       "can_convert_from": [
         "medium_tank_equipment_1"
@@ -6613,6 +6794,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
+      "name": "Medium SP Artillery II",
       "archetype": "medium_tank_artillery_equipment",
       "can_convert_from": [
         "medium_tank_equipment_1",
@@ -6656,6 +6838,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
+      "name": "Medium SP Artillery III",
       "archetype": "medium_tank_artillery_equipment",
       "can_convert_from": [
         "medium_tank_equipment_2",
@@ -6699,6 +6882,7 @@
         "tank_at_upgrade"
       ],
       "year": 1939,
+      "name": "Medium Tank Destroyer I",
       "archetype": "medium_tank_destroyer_equipment",
       "can_convert_from": [
         "medium_tank_equipment_1"
@@ -6740,6 +6924,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
+      "name": "Medium Tank Destroyer II",
       "archetype": "medium_tank_destroyer_equipment",
       "can_convert_from": [
         "medium_tank_equipment_1",
@@ -6783,6 +6968,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
+      "name": "Medium Tank Destroyer III",
       "archetype": "medium_tank_destroyer_equipment",
       "can_convert_from": [
         "medium_tank_equipment_2",
@@ -6826,6 +7012,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1939,
+      "name": "Medium SP Anti-Air I",
       "archetype": "medium_tank_aa_equipment",
       "can_convert_from": [
         "medium_tank_equipment_1"
@@ -6867,6 +7054,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
+      "name": "Medium SP Anti-Air II",
       "archetype": "medium_tank_aa_equipment",
       "can_convert_from": [
         "medium_tank_equipment_1",
@@ -6910,6 +7098,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
+      "name": "Medium SP Anti-Air III",
       "archetype": "medium_tank_aa_equipment",
       "can_convert_from": [
         "medium_tank_equipment_2",
@@ -6950,6 +7139,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1945,
+      "name": "Modern Tank",
       "archetype": "modern_tank_equipment",
       "priority": 170,
       "visual_level": 0
@@ -6988,6 +7178,7 @@
         "tank_art_upgrade"
       ],
       "year": 1945,
+      "name": "Modern SP Artillery",
       "archetype": "modern_tank_artillery_equipment",
       "can_convert_from": [
         "modern_tank_equipment_1"
@@ -7029,6 +7220,7 @@
         "tank_at_upgrade"
       ],
       "year": 1945,
+      "name": "Modern Tank Destroyer",
       "archetype": "modern_tank_destroyer_equipment",
       "can_convert_from": [
         "modern_tank_equipment_1"
@@ -7070,6 +7262,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1945,
+      "name": "Modern SP Anti-Air",
       "archetype": "modern_tank_aa_equipment",
       "can_convert_from": [
         "modern_tank_equipment_1"
@@ -7108,6 +7301,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
+      "name": "Super Heavy Tank",
       "archetype": "super_heavy_tank_equipment",
       "priority": 130,
       "visual_level": 0
@@ -7146,6 +7340,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
+      "name": "Super Heavy SP Artillery",
       "archetype": "super_heavy_tank_artillery_equipment",
       "can_convert_from": [
         "super_heavy_tank_equipment_1"
@@ -7187,6 +7382,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
+      "name": "Super Heavy SP Tank Destroyer",
       "archetype": "super_heavy_tank_destroyer_equipment",
       "can_convert_from": [
         "super_heavy_tank_equipment_1"
@@ -7228,6 +7424,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
+      "name": "Super Heavy SP Anti-Air",
       "archetype": "super_heavy_tank_aa_equipment",
       "can_convert_from": [
         "super_heavy_tank_equipment_1"
@@ -7266,6 +7463,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
+      "name": "Interwar Bomber",
       "air_agility": 16,
       "air_attack": 5,
       "air_bombing": 10,
@@ -7307,6 +7505,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Tactical Bomber I",
       "air_agility": 20,
       "air_attack": 8,
       "air_bombing": 12,
@@ -7349,6 +7548,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Tactical Bomber II",
       "air_agility": 25,
       "air_attack": 13,
       "air_bombing": 14,
@@ -7391,6 +7591,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Tactical Bomber III",
       "air_agility": 30,
       "air_attack": 20,
       "air_bombing": 16,
@@ -7433,6 +7634,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
+      "name": "Jet Tactical Bomber I",
       "air_agility": 57,
       "air_attack": 18,
       "air_bombing": 16,
@@ -7473,6 +7675,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
+      "name": "Jet Tactical Bomber II",
       "air_agility": 57,
       "air_attack": 22,
       "air_bombing": 20,
@@ -7514,6 +7717,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
+      "name": "Heavy Fighter I",
       "air_agility": 25,
       "air_attack": 36,
       "air_defence": 13,
@@ -7553,6 +7757,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
+      "name": "Heavy Fighter II",
       "air_agility": 30,
       "air_attack": 46,
       "air_defence": 15,
@@ -7593,6 +7798,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
+      "name": "Heavy Fighter III",
       "air_agility": 33,
       "air_attack": 54,
       "air_defence": 18,
@@ -7626,7 +7832,8 @@
       "xor": [
         "force_rotation",
         "formation_flying"
-      ]
+      ],
+      "name": "Air Superiority"
     },
     "infrastructure_destruction": {
       "air_cas_present_factor": 0.1,
@@ -7640,7 +7847,8 @@
         "leads_to_tech": "naval_strike_tactics",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Infrastructure Destruction"
     },
     "home_defence": {
       "air_interception_detect_factor": 0.1,
@@ -7654,7 +7862,8 @@
         "leads_to_tech": "naval_strike_tactics",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Home Defense"
     },
     "naval_strike_tactics": {
       "air_nav_efficiency": 0.15,
@@ -7674,7 +7883,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Naval Strike Tactics"
     },
     "fighter_sweeps": {
       "air_intercept_efficiency": 0.2,
@@ -7691,7 +7901,8 @@
       "research_cost": 2,
       "xor": [
         "dogfighting_experience"
-      ]
+      ],
+      "name": "Fighter Sweeps"
     },
     "dogfighting_experience": {
       "air_superiority_efficiency": 0.2,
@@ -7708,7 +7919,8 @@
       "research_cost": 2,
       "xor": [
         "fighter_sweeps"
-      ]
+      ],
+      "name": "Dogfighting Experience"
     },
     "multialtitude_flying": {
       "categories": [
@@ -7727,7 +7939,8 @@
         "leads_to_tech": "logistical_bombing",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Multi-Altitude Flying"
     },
     "logistical_bombing": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -7747,7 +7960,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Logistical Bombing"
     },
     "night_bombing": {
       "XOR": [
@@ -7764,7 +7978,8 @@
         "leads_to_tech": "massed_bomber_formations",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Night Bombing"
     },
     "day_bombing": {
       "XOR": [
@@ -7781,7 +7996,8 @@
         "leads_to_tech": "air_offense",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Day Bombing"
     },
     "massed_bomber_formations": {
       "air_strategic_bomber_bombing_factor": 0.2,
@@ -7795,7 +8011,8 @@
         "leads_to_tech": "flying_fortress",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Massed Bomber Formations"
     },
     "air_offense": {
       "air_escort_efficiency": 0.25,
@@ -7809,7 +8026,8 @@
         "leads_to_tech": "flying_fortress",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Fighter Escorts"
     },
     "flying_fortress": {
       "air_strategic_bomber_defence_factor": 0.25,
@@ -7829,7 +8047,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Flying Fortress"
     },
     "offensive_formations": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -7839,7 +8058,8 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Offensive Formations"
     },
     "mass_destruction": {
       "air_strategic_bomber_bombing_factor": 0.2,
@@ -7849,7 +8069,8 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Mass Destruction"
     },
     "formation_flying": {
       "air_superiority_detect_factor": 0.15,
@@ -7867,7 +8088,8 @@
       "xor": [
         "force_rotation",
         "air_superiority"
-      ]
+      ],
+      "name": "Formation Flying"
     },
     "dive_bombing": {
       "air_cas_efficiency": 0.2,
@@ -7881,7 +8103,8 @@
         "leads_to_tech": "direct_ground_support",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Dive Bombing"
     },
     "direct_ground_support": {
       "air_cas_present_factor": 0.2,
@@ -7901,7 +8124,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Direct Ground Support"
     },
     "formation_fighting": {
       "air_superiority_efficiency": 0.15,
@@ -7918,7 +8142,8 @@
       "research_cost": 2,
       "xor": [
         "fighter_ace_initiative"
-      ]
+      ],
+      "name": "Formation Fighting"
     },
     "fighter_ace_initiative": {
       "air_ace_generation_chance_factor": 0.25,
@@ -7935,7 +8160,8 @@
       "research_cost": 2,
       "xor": [
         "formation_fighting"
-      ]
+      ],
+      "name": "Fighter Ace Initiative"
     },
     "hunt_and_destroy": {
       "air_cas_efficiency": 0.2,
@@ -7949,7 +8175,8 @@
         "leads_to_tech": "combat_unit_destruction",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Hunt and Destroy"
     },
     "combat_unit_destruction": {
       "army_bonus_air_superiority_factor": 0.1,
@@ -7976,7 +8203,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Combat Unit Destruction"
     },
     "battlefield_support": {
       "army_bonus_air_superiority_factor": 0.2,
@@ -7990,7 +8218,8 @@
         "leads_to_tech": "naval_strike_torpedo_tactics",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Battlefield Support"
     },
     "keypoint_bombing": {
       "categories": [
@@ -8006,7 +8235,8 @@
       "research_cost": 2,
       "tac_bomber": {
         "air_bombing": 0.1
-      }
+      },
+      "name": "Keypoint Bombing"
     },
     "ground_support_integration": {
       "air_cas_present_factor": 0.2,
@@ -8020,7 +8250,8 @@
         "leads_to_tech": "naval_strike_torpedo_tactics",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Ground Support Integration"
     },
     "naval_strike_torpedo_tactics": {
       "air_nav_efficiency": 0.1,
@@ -8034,7 +8265,8 @@
         "leads_to_tech": "strategic_destruction",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Naval Strike Torpedo Tactics"
     },
     "strategic_destruction": {
       "air_strategic_bomber_bombing_factor": 0.15,
@@ -8048,7 +8280,8 @@
         "leads_to_tech": "forward_interception",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Strategic Destruction"
     },
     "forward_interception": {
       "air_interception_detect_factor": 0.15,
@@ -8058,7 +8291,8 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Forward Interception"
     },
     "force_rotation": {
       "air_interception_detect_factor": 0.2,
@@ -8076,7 +8310,8 @@
       "xor": [
         "formation_flying",
         "air_superiority"
-      ]
+      ],
+      "name": "Force Rotation"
     },
     "fighter_baiting": {
       "air_ace_generation_chance_factor": 0.1,
@@ -8091,7 +8326,8 @@
         "leads_to_tech": "low_echelon_support",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Fighter Baiting"
     },
     "low_echelon_support": {
       "air_cas_present_factor": 0.1,
@@ -8105,7 +8341,8 @@
         "leads_to_tech": "dispersed_fighting",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Low Echelon Support"
     },
     "dispersed_fighting": {
       "air_superiority_detect_factor": 0.2,
@@ -8119,7 +8356,8 @@
         "leads_to_tech": "operational_destruction",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Dispersed Fighting"
     },
     "operational_destruction": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -8139,7 +8377,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Operational Destruction"
     },
     "fighter_veteran_initiative": {
       "categories": [
@@ -8158,7 +8397,8 @@
         "leads_to_tech": "naval_strike_torpedo_tactics_oi",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Fighter Veteran Initiative"
     },
     "naval_strike_torpedo_tactics_oi": {
       "air_nav_efficiency": 0.1,
@@ -8172,7 +8412,8 @@
         "leads_to_tech": "infiltration_bombing",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Naval Strike Torpedo Tactics"
     },
     "cas_veteran_initiative": {
       "air_cas_efficiency": 0.15,
@@ -8186,7 +8427,8 @@
         "leads_to_tech": "carousel_bombing",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Ground Attack Veteran Initiative"
     },
     "carousel_bombing": {
       "categories": [
@@ -8202,7 +8444,8 @@
       "research_cost": 2,
       "tac_bomber": {
         "air_bombing": 0.1
-      }
+      },
+      "name": "Carousel Bombing"
     },
     "infiltration_bombing": {
       "categories": [
@@ -8216,7 +8459,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "strategic_bomb_visibility": -0.5
+      "strategic_bomb_visibility": -0.5,
+      "name": "Infiltration Bombing"
     },
     "air_skirmish": {
       "air_ace_generation_chance_factor": 0.1,
@@ -8231,7 +8475,8 @@
         "leads_to_tech": "high_level_bombing",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Air Skirmish"
     },
     "high_level_bombing": {
       "air_strategic_bomber_defence_factor": 0.2,
@@ -8241,7 +8486,8 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "High Level Bombing"
     },
     "early_fighter": {
       "categories": [
@@ -8270,7 +8516,8 @@
       "start_year": 1933,
       "sub_technologies": [
         "cv_early_fighter"
-      ]
+      ],
+      "name": "early_fighter"
     },
     "cv_early_fighter": {
       "categories": [
@@ -8281,7 +8528,8 @@
         "cv_fighter_equipment_0"
       ],
       "research_cost": 1.0,
-      "start_year": 1933
+      "start_year": 1933,
+      "name": "cv_early_fighter"
     },
     "fighter1": {
       "categories": [
@@ -8300,7 +8548,8 @@
       "start_year": 1936,
       "sub_technologies": [
         "cv_fighter1"
-      ]
+      ],
+      "name": "fighter1"
     },
     "cv_fighter1": {
       "categories": [
@@ -8311,7 +8560,8 @@
         "cv_fighter_equipment_1"
       ],
       "research_cost": 1,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "cv_fighter1"
     },
     "fighter2": {
       "categories": [
@@ -8330,7 +8580,8 @@
       "start_year": 1940,
       "sub_technologies": [
         "cv_fighter2"
-      ]
+      ],
+      "name": "fighter2"
     },
     "cv_fighter2": {
       "categories": [
@@ -8341,7 +8592,8 @@
         "cv_fighter_equipment_2"
       ],
       "research_cost": 1.0,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "cv_fighter2"
     },
     "fighter3": {
       "categories": [
@@ -8360,7 +8612,8 @@
       "start_year": 1944,
       "sub_technologies": [
         "cv_fighter3"
-      ]
+      ],
+      "name": "fighter3"
     },
     "cv_fighter3": {
       "categories": [
@@ -8371,7 +8624,8 @@
         "cv_fighter_equipment_3"
       ],
       "research_cost": 1.0,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "cv_fighter3"
     },
     "jet_fighter1": {
       "categories": [
@@ -8389,7 +8643,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "jet_fighter1"
     },
     "jet_fighter2": {
       "categories": [
@@ -8400,7 +8655,8 @@
         "jet_fighter_equipment_2"
       ],
       "research_cost": 2,
-      "start_year": 1950
+      "start_year": 1950,
+      "name": "jet_fighter2"
     },
     "CAS1": {
       "categories": [
@@ -8419,7 +8675,8 @@
       "start_year": 1936,
       "sub_technologies": [
         "cv_CAS1"
-      ]
+      ],
+      "name": "CAS1"
     },
     "cv_CAS1": {
       "categories": [
@@ -8430,7 +8687,8 @@
         "cv_CAS_equipment_1"
       ],
       "research_cost": 1.0,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "cv_CAS1"
     },
     "CAS2": {
       "categories": [
@@ -8449,7 +8707,8 @@
       "start_year": 1940,
       "sub_technologies": [
         "cv_CAS2"
-      ]
+      ],
+      "name": "CAS2"
     },
     "cv_CAS2": {
       "categories": [
@@ -8460,7 +8719,8 @@
         "cv_CAS_equipment_2"
       ],
       "research_cost": 1.0,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "cv_CAS2"
     },
     "CAS3": {
       "categories": [
@@ -8479,7 +8739,8 @@
       "start_year": 1944,
       "sub_technologies": [
         "cv_CAS3"
-      ]
+      ],
+      "name": "CAS3"
     },
     "cv_CAS3": {
       "categories": [
@@ -8490,7 +8751,8 @@
         "cv_CAS_equipment_3"
       ],
       "research_cost": 1.0,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "cv_CAS3"
     },
     "naval_bomber1": {
       "categories": [
@@ -8509,7 +8771,8 @@
       "start_year": 1936,
       "sub_technologies": [
         "cv_naval_bomber1"
-      ]
+      ],
+      "name": "naval_bomber1"
     },
     "cv_naval_bomber1": {
       "categories": [
@@ -8520,7 +8783,8 @@
         "cv_nav_bomber_equipment_1"
       ],
       "research_cost": 1.0,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "cv_naval_bomber1"
     },
     "naval_bomber2": {
       "categories": [
@@ -8539,7 +8803,8 @@
       "start_year": 1940,
       "sub_technologies": [
         "cv_naval_bomber2"
-      ]
+      ],
+      "name": "naval_bomber2"
     },
     "cv_naval_bomber2": {
       "categories": [
@@ -8550,7 +8815,8 @@
         "cv_nav_bomber_equipment_2"
       ],
       "research_cost": 1.0,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "cv_naval_bomber2"
     },
     "naval_bomber3": {
       "categories": [
@@ -8569,7 +8835,8 @@
       "start_year": 1944,
       "sub_technologies": [
         "cv_naval_bomber3"
-      ]
+      ],
+      "name": "naval_bomber3"
     },
     "cv_naval_bomber3": {
       "categories": [
@@ -8580,7 +8847,8 @@
         "cv_nav_bomber_equipment_3"
       ],
       "research_cost": 1.0,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "cv_naval_bomber3"
     },
     "early_bomber": {
       "categories": [
@@ -8602,7 +8870,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1933
+      "start_year": 1933,
+      "name": "early_bomber"
     },
     "heavy_fighter1": {
       "categories": [
@@ -8618,7 +8887,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "heavy_fighter1"
     },
     "heavy_fighter2": {
       "categories": [
@@ -8634,7 +8904,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "heavy_fighter2"
     },
     "heavy_fighter3": {
       "categories": [
@@ -8646,7 +8917,8 @@
         "heavy_fighter_equipment_3"
       ],
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "heavy_fighter3"
     },
     "tactical_bomber1": {
       "categories": [
@@ -8662,7 +8934,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "tactical_bomber1"
     },
     "tactical_bomber2": {
       "categories": [
@@ -8678,7 +8951,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "tactical_bomber2"
     },
     "tactical_bomber3": {
       "categories": [
@@ -8694,7 +8968,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "tactical_bomber3"
     },
     "jet_tactical_bomber1": {
       "categories": [
@@ -8713,7 +8988,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "jet_tactical_bomber1"
     },
     "jet_tactical_bomber2": {
       "categories": [
@@ -8725,7 +9001,8 @@
         "jet_tac_bomber_equipment_2"
       ],
       "research_cost": 2,
-      "start_year": 1950
+      "start_year": 1950,
+      "name": "jet_tactical_bomber2"
     },
     "strategic_bomber1": {
       "categories": [
@@ -8741,7 +9018,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "strategic_bomber1"
     },
     "strategic_bomber2": {
       "categories": [
@@ -8757,7 +9035,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "strategic_bomber2"
     },
     "strategic_bomber3": {
       "categories": [
@@ -8773,7 +9052,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "strategic_bomber3"
     },
     "jet_strategic_bomber1": {
       "categories": [
@@ -8788,7 +9068,8 @@
         "jet_strat_bomber_equipment_1"
       ],
       "research_cost": 2,
-      "start_year": 1950
+      "start_year": 1950,
+      "name": "jet_strategic_bomber1"
     },
     "suicide_craft": {
       "allow": {
@@ -8798,7 +9079,8 @@
         "rocket_suicide_equipment_1"
       ],
       "research_cost": 1.5,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "Yokosuka MXY7 Ohka"
     },
     "gwtank": {
       "categories": [
@@ -8853,7 +9135,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1918
+      "start_year": 1918,
+      "name": "gwtank"
     },
     "basic_light_tank": {
       "categories": [
@@ -8907,7 +9190,8 @@
         "basic_light_td",
         "basic_light_art",
         "basic_light_spaa"
-      ]
+      ],
+      "name": "basic_light_tank"
     },
     "basic_light_td": {
       "categories": [
@@ -8917,7 +9201,8 @@
         "light_tank_destroyer_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1934
+      "start_year": 1934,
+      "name": "basic_light_td"
     },
     "basic_light_art": {
       "categories": [
@@ -8927,7 +9212,8 @@
         "light_tank_artillery_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1934
+      "start_year": 1934,
+      "name": "basic_light_art"
     },
     "basic_light_spaa": {
       "categories": [
@@ -8937,7 +9223,8 @@
         "light_tank_aa_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1934
+      "start_year": 1934,
+      "name": "basic_light_spaa"
     },
     "improved_light_tank": {
       "categories": [
@@ -8963,7 +9250,8 @@
         "improved_light_td",
         "improved_light_art",
         "improved_light_spaa"
-      ]
+      ],
+      "name": "improved_light_tank"
     },
     "improved_light_td": {
       "categories": [
@@ -8973,7 +9261,8 @@
         "light_tank_destroyer_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "improved_light_td"
     },
     "improved_light_art": {
       "categories": [
@@ -8983,7 +9272,8 @@
         "light_tank_artillery_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "improved_light_art"
     },
     "improved_light_spaa": {
       "categories": [
@@ -8993,7 +9283,8 @@
         "light_tank_aa_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "improved_light_spaa"
     },
     "advanced_light_tank": {
       "categories": [
@@ -9009,7 +9300,8 @@
         "advanced_light_td",
         "advanced_light_art",
         "advanced_light_spaa"
-      ]
+      ],
+      "name": "advanced_light_tank"
     },
     "advanced_light_td": {
       "categories": [
@@ -9019,7 +9311,8 @@
         "light_tank_destroyer_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "advanced_light_td"
     },
     "advanced_light_art": {
       "categories": [
@@ -9029,7 +9322,8 @@
         "light_tank_artillery_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "advanced_light_art"
     },
     "advanced_light_spaa": {
       "categories": [
@@ -9039,7 +9333,8 @@
         "light_tank_aa_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "advanced_light_spaa"
     },
     "basic_medium_tank": {
       "categories": [
@@ -9059,7 +9354,8 @@
         "basic_medium_td",
         "basic_medium_art",
         "basic_medium_spaa"
-      ]
+      ],
+      "name": "basic_medium_tank"
     },
     "basic_medium_td": {
       "categories": [
@@ -9069,7 +9365,8 @@
         "medium_tank_destroyer_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "basic_medium_td"
     },
     "basic_medium_art": {
       "categories": [
@@ -9079,7 +9376,8 @@
         "medium_tank_artillery_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "basic_medium_art"
     },
     "basic_medium_spaa": {
       "categories": [
@@ -9089,7 +9387,8 @@
         "medium_tank_aa_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "basic_medium_spaa"
     },
     "improved_medium_tank": {
       "categories": [
@@ -9115,7 +9414,8 @@
         "improved_medium_td",
         "improved_medium_art",
         "improved_medium_spaa"
-      ]
+      ],
+      "name": "improved_medium_tank"
     },
     "improved_medium_td": {
       "categories": [
@@ -9125,7 +9425,8 @@
         "medium_tank_destroyer_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "improved_medium_td"
     },
     "improved_medium_art": {
       "categories": [
@@ -9135,7 +9436,8 @@
         "medium_tank_artillery_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "improved_medium_art"
     },
     "improved_medium_spaa": {
       "categories": [
@@ -9145,7 +9447,8 @@
         "medium_tank_aa_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "improved_medium_spaa"
     },
     "advanced_medium_tank": {
       "categories": [
@@ -9171,7 +9474,8 @@
         "advanced_medium_td",
         "advanced_medium_art",
         "advanced_medium_spaa"
-      ]
+      ],
+      "name": "advanced_medium_tank"
     },
     "advanced_medium_td": {
       "categories": [
@@ -9181,7 +9485,8 @@
         "medium_tank_destroyer_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "advanced_medium_td"
     },
     "advanced_medium_art": {
       "categories": [
@@ -9191,7 +9496,8 @@
         "medium_tank_artillery_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "advanced_medium_art"
     },
     "advanced_medium_spaa": {
       "categories": [
@@ -9201,7 +9507,8 @@
         "medium_tank_aa_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "advanced_medium_spaa"
     },
     "main_battle_tank": {
       "categories": [
@@ -9217,7 +9524,8 @@
         "modern_td",
         "modern_art",
         "modern_spaa"
-      ]
+      ],
+      "name": "main_battle_tank"
     },
     "modern_td": {
       "categories": [
@@ -9227,7 +9535,8 @@
         "modern_tank_destroyer_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "modern_td"
     },
     "modern_art": {
       "categories": [
@@ -9237,7 +9546,8 @@
         "modern_tank_artillery_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "modern_art"
     },
     "modern_spaa": {
       "categories": [
@@ -9247,7 +9557,8 @@
         "modern_tank_aa_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "modern_spaa"
     },
     "basic_heavy_tank": {
       "categories": [
@@ -9301,7 +9612,8 @@
         "basic_heavy_td",
         "basic_heavy_art",
         "basic_heavy_spaa"
-      ]
+      ],
+      "name": "basic_heavy_tank"
     },
     "basic_heavy_td": {
       "categories": [
@@ -9311,7 +9623,8 @@
         "heavy_tank_destroyer_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1934
+      "start_year": 1934,
+      "name": "basic_heavy_td"
     },
     "basic_heavy_art": {
       "categories": [
@@ -9321,7 +9634,8 @@
         "heavy_tank_artillery_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1934
+      "start_year": 1934,
+      "name": "basic_heavy_art"
     },
     "basic_heavy_spaa": {
       "categories": [
@@ -9331,7 +9645,8 @@
         "heavy_tank_aa_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1934
+      "start_year": 1934,
+      "name": "basic_heavy_spaa"
     },
     "improved_heavy_tank": {
       "categories": [
@@ -9361,7 +9676,8 @@
         "improved_heavy_td",
         "improved_heavy_art",
         "improved_heavy_spaa"
-      ]
+      ],
+      "name": "improved_heavy_tank"
     },
     "improved_heavy_td": {
       "categories": [
@@ -9371,7 +9687,8 @@
         "heavy_tank_destroyer_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "improved_heavy_td"
     },
     "improved_heavy_art": {
       "categories": [
@@ -9381,7 +9698,8 @@
         "heavy_tank_artillery_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "improved_heavy_art"
     },
     "improved_heavy_spaa": {
       "categories": [
@@ -9391,7 +9709,8 @@
         "heavy_tank_aa_equipment_2"
       ],
       "research_cost": 0.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "improved_heavy_spaa"
     },
     "advanced_heavy_tank": {
       "categories": [
@@ -9417,7 +9736,8 @@
         "advanced_heavy_td",
         "advanced_heavy_art",
         "advanced_heavy_spaa"
-      ]
+      ],
+      "name": "advanced_heavy_tank"
     },
     "advanced_heavy_td": {
       "categories": [
@@ -9427,7 +9747,8 @@
         "heavy_tank_destroyer_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "advanced_heavy_td"
     },
     "advanced_heavy_art": {
       "categories": [
@@ -9437,7 +9758,8 @@
         "heavy_tank_artillery_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "advanced_heavy_art"
     },
     "advanced_heavy_spaa": {
       "categories": [
@@ -9447,7 +9769,8 @@
         "heavy_tank_aa_equipment_3"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "advanced_heavy_spaa"
     },
     "super_heavy_tank": {
       "categories": [
@@ -9463,7 +9786,8 @@
         "super_heavy_td",
         "super_heavy_art",
         "super_heavy_spaa"
-      ]
+      ],
+      "name": "super_heavy_tank"
     },
     "super_heavy_td": {
       "categories": [
@@ -9473,7 +9797,8 @@
         "super_heavy_tank_destroyer_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "super_heavy_td"
     },
     "super_heavy_art": {
       "categories": [
@@ -9483,7 +9808,8 @@
         "super_heavy_tank_artillery_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "super_heavy_art"
     },
     "super_heavy_spaa": {
       "categories": [
@@ -9493,7 +9819,8 @@
         "super_heavy_tank_aa_equipment_1"
       ],
       "research_cost": 0.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "super_heavy_spaa"
     },
     "gw_artillery": {
       "categories": [
@@ -9516,7 +9843,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 1.5
+      "research_cost": 1.5,
+      "name": "gw_artillery"
     },
     "interwar_artillery": {
       "artillery": {
@@ -9533,7 +9861,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Interwar Artillery"
     },
     "artillery1": {
       "categories": [
@@ -9547,7 +9876,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Artillery I"
     },
     "artillery2": {
       "artillery": {
@@ -9570,7 +9900,8 @@
         }
       ],
       "research_cost": 1,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Improved Artillery Upgrade I"
     },
     "artillery3": {
       "artillery": {
@@ -9587,7 +9918,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Improved Artillery Upgrade II"
     },
     "artillery4": {
       "categories": [
@@ -9601,7 +9933,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Artillery IV"
     },
     "artillery5": {
       "artillery": {
@@ -9614,7 +9947,8 @@
         "artillery"
       ],
       "research_cost": 1,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Advanced Artillery Upgrade"
     },
     "mountain_gun": {
       "allow": {
@@ -9630,7 +9964,8 @@
           "movement": 0.15
         }
       },
-      "research_cost": 1
+      "research_cost": 1,
+      "name": "Mountain Gun"
     },
     "rocket_artillery": {
       "categories": [
@@ -9644,7 +9979,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Support Rocket Artillery"
     },
     "rocket_artillery2": {
       "categories": [
@@ -9664,7 +10000,8 @@
       "rocket_artillery_brigade": {
         "soft_attack": 0.15
       },
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Rocket Artillery Upgrade I"
     },
     "rocket_artillery3": {
       "categories": [
@@ -9684,7 +10021,8 @@
       "rocket_artillery_brigade": {
         "soft_attack": 0.15
       },
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Rocket Artillery Upgrade II"
     },
     "rocket_artillery4": {
       "categories": [
@@ -9697,7 +10035,8 @@
         "soft_attack": 0.3
       },
       "research_cost": 1,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Rocket Artillery III"
     },
     "interwar_antiair": {
       "categories": [
@@ -9715,7 +10054,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "interwar_antiair"
     },
     "antiair1": {
       "anti_air": {
@@ -9732,7 +10072,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Anti-Air Upgrade"
     },
     "antiair2": {
       "categories": [
@@ -9746,7 +10087,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Anti-Air II"
     },
     "antiair3": {
       "anti_air": {
@@ -9763,7 +10105,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Improved Anti-Air Upgrade I"
     },
     "antiair4": {
       "anti_air": {
@@ -9780,7 +10123,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Improved Anti-Air Upgrade II"
     },
     "antiair5": {
       "categories": [
@@ -9790,7 +10134,8 @@
         "anti_air_equipment_3"
       ],
       "research_cost": 1,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Anti-Air V"
     },
     "interwar_antitank": {
       "categories": [
@@ -9805,7 +10150,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "interwar_antitank"
     },
     "antitank1": {
       "anti_tank": {
@@ -9825,7 +10171,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Anti-Tank Upgrade"
     },
     "antitank2": {
       "categories": [
@@ -9840,7 +10187,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Anti-Tank II"
     },
     "antitank3": {
       "anti_tank": {
@@ -9860,7 +10208,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Improved Anti-Tank Upgrade I"
     },
     "antitank4": {
       "anti_tank": {
@@ -9880,7 +10229,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Improved Anti-Tank Upgrade II"
     },
     "antitank5": {
       "categories": [
@@ -9891,7 +10241,8 @@
         "anti_tank_equipment_3"
       ],
       "research_cost": 1,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Anti-Tank V"
     },
     "electronic_mechanical_engineering": {
       "categories": [
@@ -9909,7 +10260,8 @@
       ],
       "research_cost": 1,
       "research_time_factor": -0.02,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Electronic Mechanical Engineering"
     },
     "radio": {
       "categories": [
@@ -9920,7 +10272,8 @@
         "leads_to_tech": "radio_detection",
         "research_cost_coeff": 1
       },
-      "research_cost": 1.5
+      "research_cost": 1.5,
+      "name": "Radio"
     },
     "radio_detection": {
       "categories": [
@@ -9935,7 +10288,8 @@
         "leads_to_tech": "decimetric_radar",
         "research_cost_coeff": 1
       },
-      "research_cost": 1.5
+      "research_cost": 1.5,
+      "name": "Radio Detection"
     },
     "decimetric_radar": {
       "categories": [
@@ -9951,7 +10305,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1938
+      "start_year": 1938,
+      "name": "Decimetric Radar"
     },
     "improved_decimetric_radar": {
       "categories": [
@@ -9967,7 +10322,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Improved Decimetric Radar"
     },
     "centimetric_radar": {
       "categories": [
@@ -9983,7 +10339,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2.5,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Centimetric Radar"
     },
     "improved_centimetric_radar": {
       "categories": [
@@ -9999,7 +10356,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2.5,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Improved Centimetric Radar"
     },
     "advanced_centimetric_radar": {
       "categories": [
@@ -10011,7 +10369,8 @@
         "level": 6
       },
       "research_cost": 2.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Advanced Centimetric Radar"
     },
     "mechanical_computing": {
       "categories": [
@@ -10023,7 +10382,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2.5,
-      "research_time_factor": -0.03
+      "research_time_factor": -0.03,
+      "name": "Mechanical Computing"
     },
     "computing_machine": {
       "categories": [
@@ -10048,7 +10408,8 @@
       ],
       "research_cost": 2.5,
       "research_time_factor": -0.03,
-      "start_year": 1938
+      "start_year": 1938,
+      "name": "Computing Machine"
     },
     "improved_computing_machine": {
       "categories": [
@@ -10073,7 +10434,8 @@
       ],
       "research_cost": 2.5,
       "research_time_factor": -0.05,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Improved Computing Machine"
     },
     "advanced_computing_machine": {
       "categories": [
@@ -10094,7 +10456,8 @@
       ],
       "research_cost": 2.5,
       "research_time_factor": -0.05,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Advanced Computing Machine"
     },
     "basic_encryption": {
       "categories": [
@@ -10103,7 +10466,8 @@
       ],
       "encryption": 1,
       "research_cost": 1,
-      "start_year": 1938
+      "start_year": 1938,
+      "name": "Encryption - Polyalphabetical Ciphers"
     },
     "improved_encryption": {
       "categories": [
@@ -10112,7 +10476,8 @@
       ],
       "encryption": 1,
       "research_cost": 1,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Encryption - Cyclic Permutations"
     },
     "advanced_encryption": {
       "categories": [
@@ -10121,7 +10486,8 @@
       ],
       "encryption": 1,
       "research_cost": 1,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Encryption - Pulse-code Modulation"
     },
     "basic_decryption": {
       "categories": [
@@ -10130,7 +10496,8 @@
       ],
       "decryption": 1,
       "research_cost": 1.5,
-      "start_year": 1938
+      "start_year": 1938,
+      "name": "Decryption - Frequency Analysis"
     },
     "improved_decryption": {
       "categories": [
@@ -10139,7 +10506,8 @@
       ],
       "decryption": 1,
       "research_cost": 1.5,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Decryption - Side-channel Attack"
     },
     "advanced_decryption": {
       "categories": [
@@ -10148,7 +10516,8 @@
       ],
       "decryption": 1,
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Decryption - Automated Deduction"
     },
     "experimental_rockets": {
       "categories": [
@@ -10163,7 +10532,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Experimental Rockets"
     },
     "rocket_engines": {
       "categories": [
@@ -10194,7 +10564,8 @@
         "soft_attack": 0.05
       },
       "show_equipment_icon": true,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "Rocket Engines"
     },
     "improved_rocket_engines": {
       "categories": [
@@ -10219,7 +10590,8 @@
         "soft_attack": 0.05
       },
       "show_equipment_icon": true,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Improved Rocket Engines"
     },
     "advanced_rocket_engines": {
       "categories": [
@@ -10240,7 +10612,8 @@
         "soft_attack": 0.05
       },
       "show_equipment_icon": true,
-      "start_year": 1946
+      "start_year": 1946,
+      "name": "Advanced Rocket Engines"
     },
     "jet_engines": {
       "categories": [
@@ -10252,7 +10625,8 @@
         "custom_effect_tooltip": "JET_ENGINES_RESEARCHED"
       },
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "Jet Engines"
     },
     "atomic_research": {
       "categories": [
@@ -10264,7 +10638,8 @@
       },
       "research_cost": 5,
       "research_time_factor": -0.02,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Atomic Research"
     },
     "nuclear_reactor": {
       "categories": [
@@ -10279,7 +10654,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Nuclear Reactor"
     },
     "nukes": {
       "categories": [
@@ -10287,7 +10663,8 @@
       ],
       "nuclear_production": 1,
       "research_cost": 5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Nuclear Bombs"
     },
     "basic_machine_tools": {
       "categories": [
@@ -10309,7 +10686,8 @@
       ],
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 1.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Basic Machine Tools"
     },
     "improved_machine_tools": {
       "categories": [
@@ -10327,7 +10705,8 @@
       ],
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 1.5,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Improved Machine Tools"
     },
     "advanced_machine_tools": {
       "categories": [
@@ -10339,7 +10718,8 @@
       },
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Advanced Machine Tools"
     },
     "assembly_line_production": {
       "categories": [
@@ -10357,7 +10737,8 @@
       ],
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Assembly Line Production"
     },
     "flexible_line": {
       "XOR": [
@@ -10369,7 +10750,8 @@
       "line_change_production_efficiency_factor": 0.2,
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Flexible Line"
     },
     "streamlined_line": {
       "XOR": [
@@ -10381,7 +10763,8 @@
       "production_factory_efficiency_gain_factor": 0.1,
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Streamlined Line"
     },
     "improved_equipment_conversion": {
       "allow_branch": {
@@ -10396,7 +10779,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Improved Equipment Conversion"
     },
     "advanced_equipment_conversion": {
       "categories": [
@@ -10404,7 +10788,8 @@
       ],
       "equipment_conversion_speed": 0.4,
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Advanced Equipment Conversion"
     },
     "concentrated_industry": {
       "XOR": [
@@ -10420,7 +10805,8 @@
         "leads_to_tech": "concentrated_industry2",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Concentrated Industry I"
     },
     "concentrated_industry2": {
       "categories": [
@@ -10434,7 +10820,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Concentrated Industry II"
     },
     "concentrated_industry3": {
       "categories": [
@@ -10448,7 +10835,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Concentrated Industry III"
     },
     "concentrated_industry4": {
       "categories": [
@@ -10462,7 +10850,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Concentrated Industry IV"
     },
     "concentrated_industry5": {
       "categories": [
@@ -10472,7 +10861,8 @@
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.15,
       "research_cost": 2,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Concentrated Industry V"
     },
     "dispersed_industry": {
       "XOR": [
@@ -10492,7 +10882,8 @@
         "research_cost_coeff": 1
       },
       "production_factory_start_efficiency_factor": 0.05,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Dispersed Industry I"
     },
     "dispersed_industry2": {
       "categories": [
@@ -10509,7 +10900,8 @@
       },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Dispersed Industry II"
     },
     "dispersed_industry3": {
       "categories": [
@@ -10526,7 +10918,8 @@
       },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Dispersed Industry III"
     },
     "dispersed_industry4": {
       "categories": [
@@ -10543,7 +10936,8 @@
       },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Dispersed Industry IV"
     },
     "dispersed_industry5": {
       "categories": [
@@ -10556,7 +10950,8 @@
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Dispersed Industry V"
     },
     "synth_oil_experiments": {
       "categories": [
@@ -10578,7 +10973,8 @@
         }
       ],
       "research_cost": 3,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Synthetic Oil Experiments"
     },
     "oil_processing": {
       "categories": [
@@ -10598,7 +10994,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Oil Processing"
     },
     "improved_oil_processing": {
       "categories": [
@@ -10618,7 +11015,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Improved Oil Processing"
     },
     "advanced_oil_processing": {
       "categories": [
@@ -10638,7 +11036,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Advanced Oil Processing"
     },
     "modern_oil_processing": {
       "categories": [
@@ -10654,7 +11053,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Modern Oil Processing"
     },
     "rubber_processing": {
       "categories": [
@@ -10674,7 +11074,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Rubber Processing"
     },
     "improved_rubber_processing": {
       "categories": [
@@ -10694,7 +11095,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Improved Rubber Processing"
     },
     "advanced_rubber_processing": {
       "categories": [
@@ -10714,7 +11116,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Advanced Rubber Processing"
     },
     "modern_rubber_processing": {
       "categories": [
@@ -10730,7 +11133,8 @@
       },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Modern Rubber Processing"
     },
     "construction1": {
       "categories": [
@@ -10750,7 +11154,8 @@
       ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Construction I"
     },
     "excavation1": {
       "categories": [
@@ -10762,7 +11167,8 @@
       "path": {
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Excavation I"
     },
     "construction2": {
       "categories": [
@@ -10782,7 +11188,8 @@
       ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Construction II"
     },
     "excavation2": {
       "categories": [
@@ -10795,7 +11202,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1937
+      "start_year": 1937,
+      "name": "Excavation II"
     },
     "construction3": {
       "categories": [
@@ -10815,7 +11223,8 @@
       ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Construction III"
     },
     "excavation3": {
       "categories": [
@@ -10828,7 +11237,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Excavation III"
     },
     "construction4": {
       "categories": [
@@ -10848,7 +11258,8 @@
       ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Construction IV"
     },
     "excavation4": {
       "categories": [
@@ -10861,7 +11272,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1941
+      "start_year": 1941,
+      "name": "Excavation IV"
     },
     "construction5": {
       "categories": [
@@ -10875,7 +11287,8 @@
       },
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Construction V"
     },
     "excavation5": {
       "categories": [
@@ -10888,7 +11301,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Excavation V"
     },
     "infantry_weapons": {
       "categories": [
@@ -10905,7 +11319,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1918
+      "start_year": 1918,
+      "name": "Infantry Weapons"
     },
     "infantry_weapons1": {
       "categories": [
@@ -10919,7 +11334,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "infantry_weapons1"
     },
     "infantry_weapons2": {
       "categories": [
@@ -10942,7 +11358,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1938
+      "start_year": 1938,
+      "name": "Improved Infantry Equipment I"
     },
     "improved_infantry_weapons": {
       "categories": [
@@ -10962,7 +11379,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "improved_infantry_weapons"
     },
     "improved_infantry_weapons_2": {
       "categories": [
@@ -10985,7 +11403,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Improved Infantry Equipment II"
     },
     "infantry_at": {
       "categories": [
@@ -11000,7 +11419,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Infantry Anti-Tank I"
     },
     "infantry_at2": {
       "categories": [
@@ -11011,7 +11431,8 @@
         "hard_attack": 0.25
       },
       "research_cost": 1.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Infantry Anti-Tank II"
     },
     "advanced_infantry_weapons": {
       "categories": [
@@ -11025,7 +11446,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "advanced_infantry_weapons"
     },
     "advanced_infantry_weapons2": {
       "categories": [
@@ -11044,7 +11466,8 @@
         "soft_attack": 0.1
       },
       "research_cost": 1.5,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "Improved Infantry Equipment III"
     },
     "paratroopers": {
       "categories": [
@@ -11069,7 +11492,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Paratroopers I"
     },
     "paratroopers2": {
       "categories": [
@@ -11084,7 +11508,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Paratroopers II"
     },
     "paratroopers3": {
       "categories": [
@@ -11094,7 +11519,8 @@
         "max_organisation": 5
       },
       "research_cost": 2.0,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Paratroopers III"
     },
     "marines": {
       "categories": [
@@ -11119,7 +11545,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Marines I"
     },
     "marines2": {
       "categories": [
@@ -11134,7 +11561,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Marines II"
     },
     "marines3": {
       "categories": [
@@ -11144,7 +11572,8 @@
         "max_organisation": 5
       },
       "research_cost": 2.0,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Marines III"
     },
     "tech_mountaineers": {
       "categories": [
@@ -11170,7 +11599,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Mountain Infantry I"
     },
     "tech_mountaineers2": {
       "categories": [
@@ -11186,7 +11616,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Mountain Infantry II"
     },
     "tech_mountaineers3": {
       "categories": [
@@ -11197,7 +11628,8 @@
         "max_organisation": 5
       },
       "research_cost": 2.0,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Mountain Infantry III"
     },
     "tech_special_forces": {
       "categories": [
@@ -11220,7 +11652,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1938
+      "start_year": 1938,
+      "name": "Special Forces"
     },
     "advanced_special_forces": {
       "categories": [
@@ -11241,7 +11674,8 @@
       "start_year": 1940,
       "xor": [
         "improved_special_forces"
-      ]
+      ],
+      "name": "Advanced Special Forces Training"
     },
     "improved_special_forces": {
       "categories": [
@@ -11259,7 +11693,8 @@
       "start_year": 1940,
       "xor": [
         "advanced_special_forces"
-      ]
+      ],
+      "name": "Expanded Special Forces Program"
     },
     "extreme_environment_training": {
       "categories": [
@@ -11278,7 +11713,8 @@
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
       "special_forces_training_time_factor": 0.1,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Extreme Environment Training"
     },
     "survival_training": {
       "categories": [
@@ -11296,7 +11732,8 @@
       },
       "research_cost": 2,
       "special_forces_out_of_supply_factor": -0.1,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Survival Training"
     },
     "elite_forces": {
       "categories": [
@@ -11312,7 +11749,8 @@
       },
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "Elite Forces"
     },
     "jungle_warfare": {
       "allow": {
@@ -11336,7 +11774,8 @@
           "movement": 0.1
         }
       },
-      "research_cost": 1
+      "research_cost": 1,
+      "name": "Jungle Warfare"
     },
     "HUN_light_infantry_tech": {
       "allow": {
@@ -11352,7 +11791,8 @@
           "movement": 0.05
         }
       },
-      "research_cost": 1
+      "research_cost": 1,
+      "name": "Light Infantry Divisions Doctrine"
     },
     "night_vision": {
       "categories": [
@@ -11364,7 +11804,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2.5,
-      "start_year": 1943
+      "start_year": 1943,
+      "name": "Night Vision I"
     },
     "night_vision2": {
       "categories": [
@@ -11372,7 +11813,8 @@
       ],
       "land_night_attack": 0.15,
       "research_cost": 2,
-      "start_year": 1946
+      "start_year": 1946,
+      "name": "Night Vision II"
     },
     "support_weapons": {
       "categories": [
@@ -11411,7 +11853,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1918
+      "start_year": 1918,
+      "name": "Support Weapons I"
     },
     "support_weapons2": {
       "categories": [
@@ -11450,7 +11893,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1938
+      "start_year": 1938,
+      "name": "Support Weapons II"
     },
     "support_weapons3": {
       "categories": [
@@ -11489,7 +11933,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Support Weapons III"
     },
     "support_weapons4": {
       "categories": [
@@ -11524,7 +11969,8 @@
         "defense": 0.03
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Support Weapons IV"
     },
     "motorised_infantry": {
       "categories": [
@@ -11556,7 +12002,8 @@
       "start_year": 1936,
       "sub_technologies": [
         "motorized_rocket_unit"
-      ]
+      ],
+      "name": "Motorized Infantry"
     },
     "motorized_rocket_unit": {
       "categories": [
@@ -11569,7 +12016,8 @@
         "motorized_rocket_brigade"
       ],
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Motorized Rocket Artillery"
     },
     "mechanised_infantry": {
       "categories": [
@@ -11588,7 +12036,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "mechanised_infantry"
     },
     "mechanised_infantry2": {
       "categories": [
@@ -11604,7 +12053,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "mechanised_infantry2"
     },
     "mechanised_infantry3": {
       "categories": [
@@ -11620,7 +12070,8 @@
         "soft_attack": 0.15
       },
       "research_cost": 3,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "mechanised_infantry3"
     },
     "bicycle_infantry": {
       "allow": {
@@ -11630,7 +12081,8 @@
         "bicycle_battalion"
       ],
       "research_cost": 1,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Bicycle Infantry"
     },
     "mobile_warfare": {
       "army_speed_factor": 0.1,
@@ -11654,7 +12106,8 @@
         "superior_firepower",
         "trench_warfare",
         "mass_assault"
-      ]
+      ],
+      "name": "Mobile Warfare"
     },
     "delay": {
       "categories": [
@@ -11670,7 +12123,8 @@
         "leads_to_tech": "elastic_defence",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Delay"
     },
     "elastic_defence": {
       "categories": [
@@ -11696,7 +12150,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Elastic Defense"
     },
     "mobile_infantry": {
       "categories": [
@@ -11719,7 +12174,8 @@
       "research_cost": 3,
       "xor": [
         "armored_spearhead"
-      ]
+      ],
+      "name": "Mobile Infantry"
     },
     "mass_motorization": {
       "categories": [
@@ -11734,7 +12190,8 @@
         "leads_to_tech": "mechanised_offensive",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Mass Motorization"
     },
     "mechanised_offensive": {
       "categories": [
@@ -11756,7 +12213,8 @@
         "leads_to_tech": "kampfgruppe",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Mechanized Offensive"
     },
     "armored_spearhead": {
       "categories": [
@@ -11776,7 +12234,8 @@
       "research_cost": 3,
       "xor": [
         "mobile_infantry"
-      ]
+      ],
+      "name": "Armored Spearhead"
     },
     "schwerpunk": {
       "categories": [
@@ -11794,7 +12253,8 @@
         "leads_to_tech": "blitzkrieg",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Schwerpunkt"
     },
     "blitzkrieg": {
       "categories": [
@@ -11819,7 +12279,8 @@
         "leads_to_tech": "kampfgruppe",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Blitzkrieg"
     },
     "kampfgruppe": {
       "categories": [
@@ -11843,7 +12304,8 @@
         }
       ],
       "planning_speed": 0.2,
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Kampfgruppe"
     },
     "firebrigades": {
       "categories": [
@@ -11864,7 +12326,8 @@
       "research_cost": 3,
       "xor": [
         "volkssturm"
-      ]
+      ],
+      "name": "Fire brigades"
     },
     "backhand_blow": {
       "categories": [
@@ -11877,7 +12340,8 @@
         "leads_to_tech": "modern_blitzkrieg",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Backhand Blow"
     },
     "modern_blitzkrieg": {
       "categories": [
@@ -11892,7 +12356,8 @@
         "max_organisation": 3
       },
       "doctrine": true,
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Modern Blitzkrieg"
     },
     "volkssturm": {
       "categories": [
@@ -11908,7 +12373,8 @@
       "research_cost": 3,
       "xor": [
         "firebrigades"
-      ]
+      ],
+      "name": "Volkssturm"
     },
     "nd_conscription": {
       "categories": [
@@ -11921,7 +12387,8 @@
         "leads_to_tech": "werwolf_guerillas",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Non-Discriminatory Conscription"
     },
     "werwolf_guerillas": {
       "categories": [
@@ -11931,7 +12398,8 @@
       "doctrine": true,
       "enable_tactic": "tactic_guerrilla_tactics",
       "partisan_effect": 0.1,
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Werwolf Guerrillas"
     },
     "superior_firepower": {
       "categories": [
@@ -11952,7 +12420,8 @@
         "mobile_warfare",
         "trench_warfare",
         "mass_assault"
-      ]
+      ],
+      "name": "Superior Firepower"
     },
     "sup_delay": {
       "categories": [
@@ -11968,7 +12437,8 @@
         "leads_to_tech": "mobile_defence",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Delay"
     },
     "mobile_defence": {
       "categories": [
@@ -11990,7 +12460,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Mobile Defense"
     },
     "intergrated_support": {
       "categories": [
@@ -12009,7 +12480,8 @@
       "research_cost": 3,
       "xor": [
         "dispersed_support"
-      ]
+      ],
+      "name": "Integrated Support"
     },
     "regimental_combat_teams": {
       "categories": [
@@ -12026,7 +12498,8 @@
         "leads_to_tech": "sup_mechanized_offensive",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Regimental Combat Teams"
     },
     "dispersed_support": {
       "categories": [
@@ -12044,7 +12517,8 @@
       "research_cost": 3,
       "xor": [
         "intergrated_support"
-      ]
+      ],
+      "name": "Dispersed Support"
     },
     "overwhelming_firepower": {
       "categories": [
@@ -12060,7 +12534,8 @@
         "leads_to_tech": "sup_mechanized_offensive",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Overwhelming Firepower"
     },
     "sup_mechanized_offensive": {
       "categories": [
@@ -12082,7 +12557,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Mechanized Offensive"
     },
     "concentrated_fire_plans": {
       "categories": [
@@ -12100,7 +12576,8 @@
       "research_cost": 3,
       "xor": [
         "centralized_fire_control"
-      ]
+      ],
+      "name": "Concentrated Fire Plans"
     },
     "combined_arms": {
       "categories": [
@@ -12117,7 +12594,8 @@
         "leads_to_tech": "tactical_control",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Combined Arms"
     },
     "tactical_control": {
       "categories": [
@@ -12131,7 +12609,8 @@
         "leads_to_tech": "air_land_battle",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Tactical Control"
     },
     "air_land_battle": {
       "army_bonus_air_superiority_factor": 0.2,
@@ -12143,7 +12622,8 @@
         "max_organisation": 5
       },
       "doctrine": true,
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "AirLand Battle"
     },
     "centralized_fire_control": {
       "categories": [
@@ -12164,7 +12644,8 @@
       "research_cost": 3,
       "xor": [
         "concentrated_fire_plans"
-      ]
+      ],
+      "name": "Centralized Fire Control"
     },
     "forward_observers": {
       "categories": [
@@ -12180,7 +12661,8 @@
       "recon": {
         "recon": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Forward Observers"
     },
     "advanced_firebases": {
       "categories": [
@@ -12203,7 +12685,8 @@
         "leads_to_tech": "shock_and_awe",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Advanced Firebases"
     },
     "shock_and_awe": {
       "categories": [
@@ -12220,7 +12703,8 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Shock and Awe"
     },
     "trench_warfare": {
       "categories": [
@@ -12239,7 +12723,8 @@
         "mobile_warfare",
         "superior_firepower",
         "mass_assault"
-      ]
+      ],
+      "name": "Trench Warfare"
     },
     "grand_battle_plan": {
       "categories": [
@@ -12252,7 +12737,8 @@
         "leads_to_tech": "prepared_defense",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Grand Battle Plan"
     },
     "prepared_defense": {
       "categories": [
@@ -12268,7 +12754,8 @@
         "leads_to_tech": "grand_assault",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Prepared Defense"
     },
     "grand_assault": {
       "categories": [
@@ -12291,7 +12778,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Grand Assault"
     },
     "grand_mechanized_offensive": {
       "categories": [
@@ -12316,7 +12804,8 @@
       "research_cost": 3,
       "xor": [
         "infantry_offensive"
-      ]
+      ],
+      "name": "Mechanized Offensive"
     },
     "assault_concentration": {
       "categories": [
@@ -12330,7 +12819,8 @@
         "leads_to_tech": "branch_interoperation",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Assault Concentration"
     },
     "branch_interoperation": {
       "categories": [
@@ -12348,7 +12838,8 @@
         "leads_to_tech": "assault_breakthrough",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Branch Inter-Operation"
     },
     "assault_breakthrough": {
       "categories": [
@@ -12364,7 +12855,8 @@
         "leads_to_tech": "central_planning",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Assault Breakthrough"
     },
     "central_planning": {
       "categories": [
@@ -12377,7 +12869,8 @@
         "leads_to_tech": "c3i_theory",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Central Planning"
     },
     "c3i_theory": {
       "categories": [
@@ -12392,7 +12885,8 @@
       },
       "doctrine": true,
       "land_reinforce_rate": 0.02,
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "C3I"
     },
     "infantry_offensive": {
       "categories": [
@@ -12412,7 +12906,8 @@
       "research_cost": 3,
       "xor": [
         "grand_mechanized_offensive"
-      ]
+      ],
+      "name": "Infantry Offensive"
     },
     "armored_operations": {
       "categories": [
@@ -12434,7 +12929,8 @@
         "leads_to_tech": "infiltration_assault",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Armored Operations"
     },
     "infiltration_assault": {
       "categories": [
@@ -12447,7 +12943,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 3,
-      "supply_consumption_factor": -0.1
+      "supply_consumption_factor": -0.1,
+      "name": "Infiltration Assault"
     },
     "night_assault_tactics": {
       "categories": [
@@ -12460,7 +12957,8 @@
         "leads_to_tech": "attritional_containment",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Night Assault Tactics"
     },
     "attritional_containment": {
       "categories": [
@@ -12478,7 +12976,8 @@
         "leads_to_tech": "infiltration_in_depth",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Attritional Containment"
     },
     "infiltration_in_depth": {
       "categories": [
@@ -12490,7 +12989,8 @@
       "recon": {
         "recon": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Infiltration in Depth"
     },
     "mass_assault": {
       "categories": [
@@ -12509,7 +13009,8 @@
         "mobile_warfare",
         "superior_firepower",
         "trench_warfare"
-      ]
+      ],
+      "name": "Mass Assault"
     },
     "pocket_defence": {
       "categories": [
@@ -12523,7 +13024,8 @@
         "leads_to_tech": "defence_in_depth",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Pocket Defense"
     },
     "defence_in_depth": {
       "categories": [
@@ -12545,7 +13047,8 @@
           "research_cost_coeff": 1
         }
       ],
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Defense in Depth"
     },
     "large_front_operations": {
       "categories": [
@@ -12562,7 +13065,8 @@
       "supply_consumption_factor": -0.1,
       "xor": [
         "peoples_army"
-      ]
+      ],
+      "name": "Large Front Operations"
     },
     "deep_operations": {
       "categories": [
@@ -12578,7 +13082,8 @@
         "leads_to_tech": "operational_concentration",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Deep Operations"
     },
     "operational_concentration": {
       "categories": [
@@ -12593,7 +13098,8 @@
         "leads_to_tech": "vast_offensives",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Operational Concentration"
     },
     "vast_offensives": {
       "categories": [
@@ -12610,7 +13116,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 3,
-      "supply_consumption_factor": -0.1
+      "supply_consumption_factor": -0.1,
+      "name": "Vast Offensives"
     },
     "breakthrough_priority": {
       "categories": [
@@ -12631,7 +13138,8 @@
         "leads_to_tech": "mechanized_wave",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Breakthrough Priority"
     },
     "mechanized_wave": {
       "categories": [
@@ -12657,7 +13165,8 @@
         "leads_to_tech": "continuous_offensive",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Mechanized Wave"
     },
     "continuous_offensive": {
       "categories": [
@@ -12668,7 +13177,8 @@
       "enable_tactic": "tactic_backhand_blow",
       "land_reinforce_rate": 0.05,
       "org_loss_when_moving": -0.25,
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Continuous Offensive"
     },
     "peoples_army": {
       "attrition": -0.1,
@@ -12686,7 +13196,8 @@
       "research_cost": 3,
       "xor": [
         "large_front_operations"
-      ]
+      ],
+      "name": "People's Army"
     },
     "human_infantry_offensive": {
       "categories": [
@@ -12702,7 +13213,8 @@
         "leads_to_tech": "large_front_offensive",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Infantry Offensive"
     },
     "large_front_offensive": {
       "categories": [
@@ -12720,7 +13232,8 @@
         "leads_to_tech": "human_wave_offensive",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Large Front Offensive"
     },
     "human_wave_offensive": {
       "categories": [
@@ -12737,7 +13250,8 @@
         "leads_to_tech": "guerilla_warfare",
         "research_cost_coeff": 1
       },
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Human Wave Offensive"
     },
     "guerilla_warfare": {
       "categories": [
@@ -12751,7 +13265,8 @@
       "enable_tactic": "tactic_guerrilla_tactics",
       "out_of_supply_factor": -0.3,
       "partisan_effect": 0.2,
-      "research_cost": 3
+      "research_cost": 3,
+      "name": "Guerrilla Warfare"
     },
     "early_destroyer": {
       "categories": [
@@ -12766,7 +13281,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1922
+      "start_year": 1922,
+      "name": "early_destroyer"
     },
     "basic_destroyer": {
       "categories": [
@@ -12781,7 +13297,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "basic_destroyer"
     },
     "improved_destroyer": {
       "categories": [
@@ -12796,7 +13313,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "improved_destroyer"
     },
     "advanced_destroyer": {
       "categories": [
@@ -12807,7 +13325,8 @@
         "destroyer_4"
       ],
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "advanced_destroyer"
     },
     "early_light_cruiser": {
       "categories": [
@@ -12822,7 +13341,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1922
+      "start_year": 1922,
+      "name": "early_light_cruiser"
     },
     "basic_light_cruiser": {
       "categories": [
@@ -12843,7 +13363,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "basic_light_cruiser"
     },
     "improved_light_cruiser": {
       "categories": [
@@ -12864,7 +13385,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "improved_light_cruiser"
     },
     "advanced_light_cruiser": {
       "categories": [
@@ -12879,7 +13401,8 @@
         "research_cost_coeff": 0.75
       },
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "advanced_light_cruiser"
     },
     "early_heavy_cruiser": {
       "categories": [
@@ -12894,7 +13417,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1922
+      "start_year": 1922,
+      "name": "early_heavy_cruiser"
     },
     "basic_heavy_cruiser": {
       "categories": [
@@ -12915,7 +13439,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "basic_heavy_cruiser"
     },
     "improved_heavy_cruiser": {
       "categories": [
@@ -12936,7 +13461,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "improved_heavy_cruiser"
     },
     "advanced_heavy_cruiser": {
       "categories": [
@@ -12951,7 +13477,8 @@
         "research_cost_coeff": 0.75
       },
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "advanced_heavy_cruiser"
     },
     "early_battlecruiser": {
       "categories": [
@@ -12966,7 +13493,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1922
+      "start_year": 1922,
+      "name": "early_battlecruiser"
     },
     "basic_battlecruiser": {
       "categories": [
@@ -12981,7 +13509,8 @@
         "research_cost_coeff": 0.75
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "basic_battlecruiser"
     },
     "early_battleship": {
       "categories": [
@@ -12996,7 +13525,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1922
+      "start_year": 1922,
+      "name": "early_battleship"
     },
     "basic_battleship": {
       "categories": [
@@ -13017,7 +13547,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "basic_battleship"
     },
     "improved_battleship": {
       "categories": [
@@ -13038,7 +13569,8 @@
         }
       ],
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "improved_battleship"
     },
     "advanced_battleship": {
       "categories": [
@@ -13053,7 +13585,8 @@
         "research_cost_coeff": 0.75
       },
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "advanced_battleship"
     },
     "heavy_battleship": {
       "categories": [
@@ -13068,7 +13601,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "heavy_battleship"
     },
     "heavy_battleship2": {
       "categories": [
@@ -13079,7 +13613,8 @@
         "SH_battleship_2"
       ],
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "heavy_battleship2"
     },
     "transport": {
       "categories": [
@@ -13093,7 +13628,8 @@
       },
       "research_cost": 1.5,
       "start_year": 1922,
-      "transport_capacity": -0.5
+      "transport_capacity": -0.5,
+      "name": "Transport Ship"
     },
     "landing_craft": {
       "amphibious_invasion_defence": 0.15,
@@ -13108,7 +13644,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "Landing Craft"
     },
     "tank_landing_craft": {
       "amphibious_invasion": 0.25,
@@ -13119,7 +13656,8 @@
       ],
       "naval_invasion_capacity": 100,
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "Advanced Landing Craft"
     },
     "early_carrier": {
       "categories": [
@@ -13134,7 +13672,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1922
+      "start_year": 1922,
+      "name": "early_carrier"
     },
     "basic_carrier": {
       "categories": [
@@ -13149,7 +13688,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "basic_carrier"
     },
     "improved_carrier": {
       "categories": [
@@ -13164,7 +13704,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "improved_carrier"
     },
     "advanced_carrier": {
       "categories": [
@@ -13175,7 +13716,8 @@
         "carrier_4"
       ],
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "advanced_carrier"
     },
     "early_submarine": {
       "categories": [
@@ -13190,7 +13732,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1922
+      "start_year": 1922,
+      "name": "early_submarine"
     },
     "basic_submarine": {
       "categories": [
@@ -13205,7 +13748,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "basic_submarine"
     },
     "improved_submarine": {
       "categories": [
@@ -13220,7 +13764,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1940
+      "start_year": 1940,
+      "name": "improved_submarine"
     },
     "advanced_submarine": {
       "categories": [
@@ -13231,7 +13776,8 @@
         "submarine_4"
       ],
       "research_cost": 2,
-      "start_year": 1944
+      "start_year": 1944,
+      "name": "advanced_submarine"
     },
     "torpedo_cruiser": {
       "allow": {
@@ -13241,7 +13787,8 @@
         "torpedo_cruiser"
       ],
       "research_cost": 1,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Torpedo Cruiser"
     },
     "fleet_in_being": {
       "battle_cruiser": {
@@ -13277,7 +13824,8 @@
       "xor": [
         "trade_interdiction",
         "base_strike"
-      ]
+      ],
+      "name": "Fleet In Being"
     },
     "battlefleet_concentration": {
       "battle_cruiser": {
@@ -13302,7 +13850,8 @@
         "leads_to_tech": "subsidiary_carrier_role",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Battlefleet Concentration"
     },
     "subsidiary_carrier_role": {
       "carrier": {
@@ -13319,7 +13868,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "sortie_efficiency": 0.1
+      "sortie_efficiency": 0.1,
+      "name": "Subsidiary Carrier Role"
     },
     "hunter_killer_groups": {
       "categories": [
@@ -13341,7 +13891,8 @@
         "leads_to_tech": "floating_fortress",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Hunter Killer Groups"
     },
     "floating_fortress": {
       "battleship": {
@@ -13358,7 +13909,8 @@
         "leads_to_tech": "floating_airfield",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Floating Fortress"
     },
     "floating_airfield": {
       "carrier": {
@@ -13375,7 +13927,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "sortie_efficiency": 0.1
+      "sortie_efficiency": 0.1,
+      "name": "Floating Airfield"
     },
     "grand_battlefleet": {
       "battle_cruiser": {
@@ -13395,7 +13948,8 @@
       },
       "navy_anti_air_attack_factor": 0.1,
       "navy_capital_ship_attack_factor": 0.1,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Grand Battlefleet"
     },
     "convoy_sailing": {
       "categories": [
@@ -13414,7 +13968,8 @@
         "leads_to_tech": "convoy_escorts",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Convoy Sailing"
     },
     "convoy_escorts": {
       "categories": [
@@ -13433,7 +13988,8 @@
         "leads_to_tech": "escort_carriers",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Convoy Escorts"
     },
     "escort_carriers": {
       "categories": [
@@ -13448,7 +14004,8 @@
         "leads_to_tech": "integrated_convoy_defence",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Escort Carriers"
     },
     "integrated_convoy_defence": {
       "categories": [
@@ -13466,7 +14023,8 @@
         "leads_to_tech": "floating_airfield",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Integrated Convoy Defense"
     },
     "submarine_operations": {
       "categories": [
@@ -13484,7 +14042,8 @@
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Submarine Operations"
     },
     "undersea_blockade": {
       "categories": [
@@ -13502,7 +14061,8 @@
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.2
-      }
+      },
+      "name": "Undersea Blockade"
     },
     "convoy_interdiction": {
       "categories": [
@@ -13521,7 +14081,8 @@
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Convoy Interdiction"
     },
     "submarine_offensive": {
       "categories": [
@@ -13536,7 +14097,8 @@
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Submarine Offensive"
     },
     "trade_interdiction": {
       "categories": [
@@ -13576,7 +14138,8 @@
       "xor": [
         "fleet_in_being",
         "base_strike"
-      ]
+      ],
+      "name": "Trade Interdiction"
     },
     "convoy_interdiction_ti": {
       "categories": [
@@ -13595,7 +14158,8 @@
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Convoy Interdiction"
     },
     "unrestricted_submarine_warfare": {
       "categories": [
@@ -13614,7 +14178,8 @@
       "submarine": {
         "convoy_raiding_coordination": 0.1,
         "surface_detection": 0.2
-      }
+      },
+      "name": "Unrestricted Submarine Warfare"
     },
     "wolfpacks": {
       "categories": [
@@ -13633,7 +14198,8 @@
         "convoy_raiding_coordination": 0.4,
         "max_organisation": 10,
         "surface_detection": 0.25
-      }
+      },
+      "name": "Wolf packs"
     },
     "advanced_submarine_warfare": {
       "categories": [
@@ -13653,7 +14219,8 @@
         "convoy_raiding_coordination": 0.4,
         "max_organisation": 10,
         "surface_detection": 0.25
-      }
+      },
+      "name": "Advanced Submarine Warfare"
     },
     "combined_operations_raiding": {
       "battle_cruiser": {
@@ -13683,7 +14250,8 @@
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Combined Operations Raiding"
     },
     "raider_patrols": {
       "battle_cruiser": {
@@ -13720,7 +14288,8 @@
         "leads_to_tech": "capital_ship_raiders",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Raider Patrols"
     },
     "capital_ship_raiders": {
       "battle_cruiser": {
@@ -13745,7 +14314,8 @@
         "leads_to_tech": "battlefleet_concentration_ti",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Capital Ship Raiders"
     },
     "battlefleet_concentration_ti": {
       "battle_cruiser": {
@@ -13770,7 +14340,8 @@
         "leads_to_tech": "floating_fortress_ti",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Battlefleet Concentration"
     },
     "floating_fortress_ti": {
       "battleship": {
@@ -13787,7 +14358,8 @@
         "leads_to_tech": "floating_airfield_ti",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Floating Fortress"
     },
     "floating_airfield_ti": {
       "carrier": {
@@ -13800,7 +14372,8 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "sortie_efficiency": 0.1
+      "sortie_efficiency": 0.1,
+      "name": "Floating Airfield"
     },
     "carrier_operations": {
       "carrier": {
@@ -13819,7 +14392,8 @@
         "leads_to_tech": "convoy_sailing_ti",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Carrier Operations"
     },
     "convoy_sailing_ti": {
       "categories": [
@@ -13838,7 +14412,8 @@
         "leads_to_tech": "subsidiary_carrier_role_ti",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Convoy Sailing"
     },
     "subsidiary_carrier_role_ti": {
       "carrier": {
@@ -13855,7 +14430,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "sortie_efficiency": 0.1
+      "sortie_efficiency": 0.1,
+      "name": "Subsidiary Carrier Role"
     },
     "naval_air_operations": {
       "carrier": {
@@ -13874,7 +14450,8 @@
         "leads_to_tech": "floating_airfield_ti",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Naval Air Operations"
     },
     "base_strike": {
       "carrier": {
@@ -13904,7 +14481,8 @@
       "xor": [
         "fleet_in_being",
         "trade_interdiction"
-      ]
+      ],
+      "name": "Base Strike"
     },
     "carrier_primacy": {
       "carrier": {
@@ -13924,7 +14502,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "sortie_efficiency": 0.1
+      "sortie_efficiency": 0.1,
+      "name": "Carrier Primacy"
     },
     "carrier_task_forces": {
       "carrier": {
@@ -13946,7 +14525,8 @@
         "leads_to_tech": "floating_airfield_bs",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Carrier Task Forces"
     },
     "floating_airfield_bs": {
       "carrier": {
@@ -13963,7 +14543,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "sortie_efficiency": 0.1
+      "sortie_efficiency": 0.1,
+      "name": "Floating Airfield"
     },
     "massed_strikes": {
       "carrier": {
@@ -13984,7 +14565,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "sortie_efficiency": 0.2
+      "sortie_efficiency": 0.2,
+      "name": "Massed Strikes"
     },
     "floating_fortress_bs": {
       "battleship": {
@@ -14001,7 +14583,8 @@
         "leads_to_tech": "carrier_battlegroups",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Floating Fortress"
     },
     "carrier_battlegroups": {
       "carrier": {
@@ -14017,7 +14600,8 @@
         "max_organisation": 20
       },
       "navy_carrier_air_agility_factor": 0.1,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Carrier Battlegroups"
     },
     "submarine_operations_bs": {
       "categories": [
@@ -14033,7 +14617,8 @@
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Submarine Operations"
     },
     "undersea_blockade_bs": {
       "categories": [
@@ -14049,7 +14634,8 @@
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.2
-      }
+      },
+      "name": "Undersea Blockade"
     },
     "convoy_interdiction_bs": {
       "categories": [
@@ -14066,7 +14652,8 @@
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Convoy Interdiction"
     },
     "submarine_offensive_bs": {
       "categories": [
@@ -14079,7 +14666,8 @@
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
-      }
+      },
+      "name": "Submarine Offensive"
     },
     "convoy_escorts_bs": {
       "categories": [
@@ -14097,7 +14685,8 @@
         "leads_to_tech": "escort_patrols",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Convoy Escorts"
     },
     "escort_patrols": {
       "categories": [
@@ -14119,7 +14708,8 @@
         "leads_to_tech": "convoy_sailing_bs",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Escort Patrols"
     },
     "convoy_sailing_bs": {
       "categories": [
@@ -14137,7 +14727,8 @@
         "leads_to_tech": "integrated_convoy_defence_bs",
         "research_cost_coeff": 1
       },
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Convoy Sailing"
     },
     "integrated_convoy_defence_bs": {
       "categories": [
@@ -14150,7 +14741,8 @@
         "max_organisation": 20
       },
       "doctrine": true,
-      "research_cost": 2
+      "research_cost": 2,
+      "name": "Integrated Convoy Defense"
     },
     "tech_support": {
       "categories": [
@@ -14190,7 +14782,8 @@
         }
       ],
       "research_cost": 1.0,
-      "start_year": 1918
+      "start_year": 1918,
+      "name": "tech_support"
     },
     "tech_engineers": {
       "categories": [
@@ -14205,7 +14798,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Engineer Company I"
     },
     "tech_engineers2": {
       "categories": [
@@ -14224,7 +14818,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Engineer Company II"
     },
     "tech_engineers3": {
       "categories": [
@@ -14243,7 +14838,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Engineer Company III"
     },
     "tech_engineers4": {
       "categories": [
@@ -14258,7 +14854,8 @@
         }
       },
       "research_cost": 1.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Engineer Company IV"
     },
     "tech_recon": {
       "categories": [
@@ -14273,7 +14870,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Recon Company I"
     },
     "tech_recon2": {
       "categories": [
@@ -14288,7 +14886,8 @@
         "recon": 2
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Recon Company II"
     },
     "tech_recon3": {
       "categories": [
@@ -14303,7 +14902,8 @@
         "recon": 2
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Recon Company III"
     },
     "tech_recon4": {
       "categories": [
@@ -14314,7 +14914,8 @@
         "recon": 2
       },
       "research_cost": 1.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Recon Company IV"
     },
     "tech_military_police": {
       "categories": [
@@ -14329,7 +14930,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Military Police I"
     },
     "tech_military_police2": {
       "categories": [
@@ -14344,7 +14946,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Military Police II"
     },
     "tech_military_police3": {
       "categories": [
@@ -14359,7 +14962,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Military Police III"
     },
     "tech_military_police4": {
       "categories": [
@@ -14370,7 +14974,8 @@
         "suppression_factor": 0.1
       },
       "research_cost": 1.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Military Police IV"
     },
     "tech_maintenance_company": {
       "categories": [
@@ -14385,7 +14990,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Maintenance Company I"
     },
     "tech_maintenance_company2": {
       "categories": [
@@ -14401,7 +15007,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Maintenance Company II"
     },
     "tech_maintenance_company3": {
       "categories": [
@@ -14417,7 +15024,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Maintenance Company III"
     },
     "tech_maintenance_company4": {
       "categories": [
@@ -14429,7 +15037,8 @@
         "reliability_factor": 0.05
       },
       "research_cost": 1.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Maintenance Company IV"
     },
     "tech_field_hospital": {
       "categories": [
@@ -14448,7 +15057,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Field Hospital I"
     },
     "tech_field_hospital2": {
       "categories": [
@@ -14465,7 +15075,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Field Hospital II"
     },
     "tech_field_hospital3": {
       "categories": [
@@ -14482,7 +15093,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Field Hospital III"
     },
     "tech_field_hospital4": {
       "categories": [
@@ -14495,7 +15107,8 @@
         "experience_loss_factor": -0.1
       },
       "research_cost": 1.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Field Hospital IV"
     },
     "tech_logistics_company": {
       "categories": [
@@ -14514,7 +15127,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Logistics Company I"
     },
     "tech_logistics_company2": {
       "categories": [
@@ -14530,7 +15144,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Logistics Company II"
     },
     "tech_logistics_company3": {
       "categories": [
@@ -14546,7 +15161,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Logistics Company III"
     },
     "tech_logistics_company4": {
       "categories": [
@@ -14558,7 +15174,8 @@
         "supply_consumption_factor": -0.1
       },
       "research_cost": 1.5,
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Logistics Company IV"
     },
     "tech_signal_company": {
       "categories": [
@@ -14578,7 +15195,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "start_year": 1936
+      "start_year": 1936,
+      "name": "Signal Company I"
     },
     "tech_signal_company2": {
       "categories": [
@@ -14594,7 +15212,8 @@
       "signal_company": {
         "initiative": 0.12
       },
-      "start_year": 1939
+      "start_year": 1939,
+      "name": "Signal Company II"
     },
     "tech_signal_company3": {
       "categories": [
@@ -14610,7 +15229,8 @@
       "signal_company": {
         "initiative": 0.12
       },
-      "start_year": 1942
+      "start_year": 1942,
+      "name": "Signal Company III"
     },
     "tech_signal_company4": {
       "categories": [
@@ -14622,7 +15242,8 @@
       "signal_company": {
         "initiative": 0.12
       },
-      "start_year": 1945
+      "start_year": 1945,
+      "name": "Signal Company IV"
     }
   }
 }
