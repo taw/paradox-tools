@@ -1,0 +1,9 @@
+desc "Run tests"
+task "test" do
+  sh "rspec"
+end
+
+desc "Run importer"
+task "import" do
+  sh "rescue ./bin/import_data ~/hoi4"
+end
