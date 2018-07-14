@@ -1,11 +1,27 @@
 {
   "units": {
     "fighter": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
       "categories": [
         "category_fighter"
       ],
-      "need": {
+      "equipment": {
         "fighter_equipment": 1
       },
       "type": [
@@ -16,11 +32,27 @@
       }
     },
     "cv_fighter": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
       "categories": [
         "category_fighter"
       ],
-      "need": {
+      "equipment": {
         "cv_fighter_equipment": 1
       },
       "type": [
@@ -31,11 +63,27 @@
       }
     },
     "jet_fighter": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
       "categories": [
         "category_fighter"
       ],
-      "need": {
+      "equipment": {
         "jet_fighter_equipment": 1
       },
       "type": [
@@ -46,11 +94,27 @@
       }
     },
     "cas": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
       "categories": [
         "category_cas"
       ],
-      "need": {
+      "equipment": {
         "CAS_equipment": 1
       },
       "type": [
@@ -61,11 +125,27 @@
       }
     },
     "cv_cas": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
       "categories": [
         "category_cas"
       ],
-      "need": {
+      "equipment": {
         "cv_CAS_equipment": 1
       },
       "type": [
@@ -76,8 +156,24 @@
       }
     },
     "cv_nav_bomber": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "cv_nav_bomber_equipment": 1
       },
       "type": [
@@ -88,8 +184,24 @@
       }
     },
     "nav_bomber": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "nav_bomber_equipment": 1
       },
       "type": [
@@ -100,8 +212,24 @@
       }
     },
     "rocket_interceptor": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "rocket_interceptor_equipment": 1
       },
       "type": [
@@ -112,8 +240,24 @@
       }
     },
     "suicide_craft": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "suicide_craft_equipment": 1
       },
       "type": [
@@ -124,8 +268,24 @@
       }
     },
     "tac_bomber": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "tac_bomber_equipment": 1
       },
       "type": [
@@ -136,8 +296,24 @@
       }
     },
     "jet_tac_bomber": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "jet_tac_bomber_equipment": 1
       },
       "type": [
@@ -148,11 +324,27 @@
       }
     },
     "heavy_fighter": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
       "categories": [
         "category_heavy_fighter"
       ],
-      "need": {
+      "equipment": {
         "heavy_fighter_equipment": 1
       },
       "type": [
@@ -163,8 +355,24 @@
       }
     },
     "strat_bomber": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "strat_bomber_equipment": 1
       },
       "type": [
@@ -175,8 +383,24 @@
       }
     },
     "jet_strat_bomber": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "jet_strat_bomber_equipment": 1
       },
       "type": [
@@ -187,8 +411,24 @@
       }
     },
     "transport_plane": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "transport_plane_equipment": 1
       },
       "type": [
@@ -199,8 +439,24 @@
       }
     },
     "guided_missile": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
       "active": true,
-      "need": {
+      "equipment": {
         "guided_missile_equipment": 1
       },
       "type": [
@@ -211,27 +467,37 @@
       }
     },
     "anti_air": {
-      "active": true,
       "air_attack": -0.2,
       "breakthrough": -0.4,
+      "casualty_trickleback": 0,
+      "defense": -0.4,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.4,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": -0.4,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
+      "active": true,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.1,
-      "defense": -0.4,
+      "recovery_rate": 0.1,
       "group": "support",
-      "hard_attack": -0.4,
       "manpower": 300,
-      "max_organisation": 0,
-      "max_strength": 0.2,
-      "need": {
+      "org": 0,
+      "hp": 0.2,
+      "equipment": {
         "anti_air_equipment": 20
       },
-      "soft_attack": -0.4,
-      "supply_consumption": 0.1,
       "training_time": 120,
       "type": [
         "infantry",
@@ -243,21 +509,36 @@
       }
     },
     "anti_air_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
       "categories": [
         "category_army",
         "category_line_artillery"
       ],
       "combat_width": 1,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "infantry",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "anti_air_equipment": 30
       },
-      "supply_consumption": 0.1,
       "training_time": 120,
       "type": [
         "infantry",
@@ -288,9 +569,24 @@
       }
     },
     "anti_tank": {
+      "air_attack": 0,
+      "breakthrough": -0.5,
+      "casualty_trickleback": 0,
+      "defense": -0.5,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.5,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": -0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.08,
       "active": true,
       "ap_attack": -0.15,
-      "breakthrough": -0.5,
       "can_be_parachuted": true,
       "categories": [
         "category_front_line",
@@ -298,18 +594,14 @@
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.1,
-      "defense": -0.5,
+      "recovery_rate": 0.1,
       "group": "support",
-      "hard_attack": -0.5,
       "manpower": 300,
-      "max_organisation": 0,
-      "max_strength": 0.2,
-      "need": {
+      "org": 0,
+      "hp": 0.2,
+      "equipment": {
         "anti_tank_equipment": 24
       },
-      "soft_attack": -0.5,
-      "supply_consumption": 0.08,
       "training_time": 120,
       "type": [
         "infantry",
@@ -321,6 +613,22 @@
       }
     },
     "anti_tank_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
       "categories": [
         "category_front_line",
@@ -328,15 +636,14 @@
         "category_line_artillery"
       ],
       "combat_width": 1,
-      "default_morale": 0,
+      "recovery_rate": 0,
       "group": "infantry",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "anti_tank_equipment": 36
       },
-      "supply_consumption": 0.1,
       "training_time": 120,
       "type": [
         "infantry",
@@ -376,8 +683,23 @@
       }
     },
     "artillery": {
-      "active": true,
+      "air_attack": 0,
       "breakthrough": -0.4,
+      "casualty_trickleback": 0,
+      "defense": -0.4,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.4,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": -0.4,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.16,
+      "active": true,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -385,18 +707,14 @@
         "category_artillery"
       ],
       "combat_width": 0,
-      "default_morale": 0.1,
-      "defense": -0.4,
+      "recovery_rate": 0.1,
       "group": "support",
-      "hard_attack": -0.4,
       "manpower": 300,
-      "max_organisation": 0,
-      "max_strength": 0.2,
-      "need": {
+      "org": 0,
+      "hp": 0.2,
+      "equipment": {
         "artillery_equipment": 12
       },
-      "soft_attack": -0.4,
-      "supply_consumption": 0.16,
       "training_time": 120,
       "type": [
         "infantry",
@@ -408,8 +726,23 @@
       }
     },
     "rocket_artillery": {
-      "active": true,
+      "air_attack": 0,
       "breakthrough": -0.5,
+      "casualty_trickleback": 0,
+      "defense": -0.5,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.5,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": -0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.16,
+      "active": true,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -417,18 +750,14 @@
         "category_artillery"
       ],
       "combat_width": 0,
-      "default_morale": 0.1,
-      "defense": -0.5,
+      "recovery_rate": 0.1,
       "group": "support",
-      "hard_attack": -0.5,
       "manpower": 300,
-      "max_organisation": 0,
-      "max_strength": 0.2,
-      "need": {
+      "org": 0,
+      "hp": 0.2,
+      "equipment": {
         "rocket_artillery_equipment": 24
       },
-      "soft_attack": -0.5,
-      "supply_consumption": 0.16,
       "training_time": 120,
       "type": [
         "infantry",
@@ -440,6 +769,22 @@
       }
     },
     "artillery_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.2,
       "active": true,
       "categories": [
         "category_army",
@@ -447,15 +792,14 @@
         "category_artillery"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "infantry",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "artillery_equipment": 36
       },
-      "supply_consumption": 0.2,
       "training_time": 120,
       "type": [
         "infantry",
@@ -495,21 +839,36 @@
       }
     },
     "rocket_artillery_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.2,
       "active": true,
       "categories": [
         "category_army",
         "category_line_artillery"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "infantry",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "rocket_artillery_equipment": 36
       },
-      "supply_consumption": 0.2,
       "training_time": 120,
       "type": [
         "infantry",
@@ -549,22 +908,37 @@
       }
     },
     "motorized_rocket_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.28,
       "active": false,
       "categories": [
         "category_army",
         "category_line_artillery"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "mobile",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "motorized_equipment": 15,
         "motorized_rocket_equipment": 20
       },
-      "supply_consumption": 0.28,
       "training_time": 120,
       "type": [
         "artillery",
@@ -605,12 +979,27 @@
       }
     },
     "battle_cruiser": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.12,
       "active": true,
-      "max_organisation": 40,
-      "need": {
+      "org": 40,
+      "equipment": {
         "battle_cruiser": 1
       },
-      "supply_consumption": 0.12,
       "type": [
         "capital_ship"
       ],
@@ -619,12 +1008,27 @@
       }
     },
     "battleship": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.2,
       "active": true,
-      "max_organisation": 40,
-      "need": {
+      "org": 40,
+      "equipment": {
         "battleship": 1
       },
-      "supply_consumption": 0.2,
       "type": [
         "capital_ship"
       ],
@@ -633,12 +1037,27 @@
       }
     },
     "carrier": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.3,
       "active": true,
-      "max_organisation": 40,
-      "need": {
+      "org": 40,
+      "equipment": {
         "carrier": 1
       },
-      "supply_consumption": 0.3,
       "type": [
         "carrier"
       ],
@@ -647,6 +1066,22 @@
       }
     },
     "cavalry": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0.6,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 2,
+      "supply_use": 0.12,
       "active": true,
       "categories": [
         "category_front_line",
@@ -654,17 +1089,14 @@
       ],
       "cavalry": true,
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "mobile",
       "manpower": 1000,
-      "max_organisation": 70,
-      "max_strength": 25,
-      "maximum_speed": 0.6,
-      "need": {
+      "org": 70,
+      "hp": 25,
+      "equipment": {
         "infantry_equipment": 120
       },
-      "supply_consumption": 0.12,
-      "suppression": 2,
       "training_time": 120,
       "type": [
         "infantry"
@@ -694,12 +1126,27 @@
       }
     },
     "destroyer": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.01,
       "active": true,
-      "max_organisation": 40,
-      "need": {
+      "org": 40,
+      "equipment": {
         "destroyer": 1
       },
-      "supply_consumption": 0.01,
       "type": [
         "screen_ship"
       ],
@@ -708,8 +1155,23 @@
       }
     },
     "engineer": {
-      "active": false,
+      "air_attack": 0,
       "breakthrough": 0.5,
+      "casualty_trickleback": 0,
+      "defense": 0.1,
+      "entrenchment": 5,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": -0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.02,
+      "active": false,
       "can_be_parachuted": true,
       "categories": [
         "category_front_line",
@@ -717,22 +1179,18 @@
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.3,
-      "defense": 0.1,
-      "entrenchment": 5,
+      "recovery_rate": 0.3,
       "essential": [
         "support_equipment"
       ],
       "group": "support",
       "manpower": 300,
-      "max_organisation": 20,
-      "max_strength": 2,
-      "need": {
+      "org": 20,
+      "hp": 2,
+      "equipment": {
         "infantry_equipment": 10,
         "support_equipment": 30
       },
-      "soft_attack": -0.5,
-      "supply_consumption": 0.02,
       "training_time": 120,
       "type": [
         "infantry",
@@ -769,29 +1227,42 @@
       }
     },
     "field_hospital": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0.2,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": -0.1,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.05,
       "active": false,
       "can_be_parachuted": true,
-      "casualty_trickleback": 0.2,
       "categories": [
         "category_support_battalions",
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "essential": [
         "support_equipment",
         "motorized_equipment"
       ],
-      "experience_loss_factor": -0.1,
       "group": "support",
       "manpower": 500,
-      "max_organisation": 20,
-      "max_strength": 2,
-      "need": {
+      "org": 20,
+      "hp": 2,
+      "equipment": {
         "motorized_equipment": 20,
         "support_equipment": 30
       },
-      "supply_consumption": 0.05,
       "training_time": 120,
       "type": [
         "infantry",
@@ -803,6 +1274,22 @@
       }
     },
     "heavy_armor": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.3,
       "active": true,
       "categories": [
         "category_tanks",
@@ -811,15 +1298,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 10,
-      "max_strength": 2,
-      "need": {
+      "org": 10,
+      "hp": 2,
+      "equipment": {
         "heavy_tank_equipment": 40
       },
-      "supply_consumption": 0.3,
       "training_time": 180,
       "type": [
         "armor"
@@ -862,12 +1348,27 @@
       }
     },
     "heavy_cruiser": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
-      "max_organisation": 40,
-      "need": {
+      "org": 40,
+      "equipment": {
         "heavy_cruiser": 1
       },
-      "supply_consumption": 0.1,
       "type": [
         "capital_ship"
       ],
@@ -876,6 +1377,22 @@
       }
     },
     "infantry": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 1,
+      "supply_use": 0.07,
       "active": false,
       "categories": [
         "category_front_line",
@@ -884,16 +1401,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "infantry",
       "manpower": 1000,
-      "max_organisation": 60,
-      "max_strength": 25,
-      "need": {
+      "org": 60,
+      "hp": 25,
+      "equipment": {
         "infantry_equipment": 100
       },
-      "supply_consumption": 0.07,
-      "suppression": 1,
       "training_time": 90,
       "type": [
         "infantry"
@@ -904,6 +1419,22 @@
       }
     },
     "bicycle_battalion": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0.6,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 1,
+      "supply_use": 0.07,
       "active": false,
       "categories": [
         "category_front_line",
@@ -912,18 +1443,15 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "infantry",
       "manpower": 1000,
-      "max_organisation": 60,
-      "max_strength": 25,
-      "maximum_speed": 0.6,
-      "need": {
+      "org": 60,
+      "hp": 25,
+      "equipment": {
         "infantry_equipment": 100,
         "support_equipment": 10
       },
-      "supply_consumption": 0.07,
-      "suppression": 1,
       "training_time": 90,
       "type": [
         "infantry"
@@ -961,8 +1489,23 @@
       }
     },
     "marine": {
-      "active": false,
+      "air_attack": 0,
       "breakthrough": 0.3,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 1,
+      "supply_use": 0.06,
+      "active": false,
       "categories": [
         "category_front_line",
         "category_light_infantry",
@@ -971,18 +1514,16 @@
         "category_special_forces"
       ],
       "combat_width": 2,
-      "default_morale": 0.4,
+      "recovery_rate": 0.4,
       "group": "infantry",
       "manpower": 1000,
       "marines": true,
-      "max_organisation": 70,
-      "max_strength": 20,
-      "need": {
+      "org": 70,
+      "hp": 20,
+      "equipment": {
         "infantry_equipment": 150
       },
       "special_forces": true,
-      "supply_consumption": 0.06,
-      "suppression": 1,
       "training_time": 120,
       "type": [
         "infantry"
@@ -1002,8 +1543,23 @@
       }
     },
     "mountaineers": {
-      "active": false,
+      "air_attack": 0,
       "breakthrough": 0.3,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 1,
+      "supply_use": 0.07,
+      "active": false,
       "categories": [
         "category_front_line",
         "category_light_infantry",
@@ -1012,18 +1568,16 @@
         "category_special_forces"
       ],
       "combat_width": 2,
-      "default_morale": 0.4,
+      "recovery_rate": 0.4,
       "group": "infantry",
       "manpower": 1000,
-      "max_organisation": 70,
-      "max_strength": 20,
+      "org": 70,
+      "hp": 20,
       "mountaineers": true,
-      "need": {
+      "equipment": {
         "infantry_equipment": 140
       },
       "special_forces": true,
-      "supply_consumption": 0.07,
-      "suppression": 1,
       "training_time": 120,
       "type": [
         "infantry"
@@ -1044,6 +1598,22 @@
       }
     },
     "paratrooper": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 1,
+      "supply_use": 0.06,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -1054,17 +1624,15 @@
         "category_special_forces"
       ],
       "combat_width": 2,
-      "default_morale": 0.4,
+      "recovery_rate": 0.4,
       "group": "infantry",
       "manpower": 1000,
-      "max_organisation": 70,
-      "max_strength": 22,
-      "need": {
+      "org": 70,
+      "hp": 22,
+      "equipment": {
         "infantry_equipment": 130
       },
       "special_forces": true,
-      "supply_consumption": 0.06,
-      "suppression": 1,
       "training_time": 150,
       "type": [
         "infantry"
@@ -1075,6 +1643,22 @@
       }
     },
     "motorized": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 1,
+      "supply_use": 0.11,
       "active": false,
       "categories": [
         "category_front_line",
@@ -1082,17 +1666,15 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "mobile",
       "manpower": 1200,
-      "max_organisation": 60,
-      "max_strength": 25,
-      "need": {
+      "org": 60,
+      "hp": 25,
+      "equipment": {
         "infantry_equipment": 100,
         "motorized_equipment": 50
       },
-      "supply_consumption": 0.11,
-      "suppression": 1,
       "training_time": 90,
       "transport": "motorized_equipment",
       "type": [
@@ -1129,6 +1711,22 @@
       }
     },
     "mechanized": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 4.0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0.1,
+      "supply_consumption_factor": 0,
+      "suppression": 1,
+      "supply_use": 0.18,
       "active": true,
       "categories": [
         "category_front_line",
@@ -1136,24 +1734,20 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "essential": [
         "infantry_equipment",
         "mechanized_equipment"
       ],
       "group": "mobile",
-      "hard_attack": 4.0,
       "hardness": 0.2,
       "manpower": 1200,
-      "max_organisation": 60,
-      "max_strength": 30,
-      "need": {
+      "org": 60,
+      "hp": 30,
+      "equipment": {
         "infantry_equipment": 100,
         "mechanized_equipment": 50
       },
-      "soft_attack": 0.1,
-      "supply_consumption": 0.18,
-      "suppression": 1,
       "training_time": 120,
       "transport": "mechanized_equipment",
       "type": [
@@ -1188,6 +1782,22 @@
       }
     },
     "light_armor": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.2,
       "active": true,
       "categories": [
         "category_tanks",
@@ -1196,15 +1806,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 10,
-      "max_strength": 2,
-      "need": {
+      "org": 10,
+      "hp": 2,
+      "equipment": {
         "light_tank_equipment": 60
       },
-      "supply_consumption": 0.2,
       "training_time": 180,
       "type": [
         "armor"
@@ -1241,12 +1850,27 @@
       }
     },
     "light_cruiser": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.04,
       "active": true,
-      "max_organisation": 40,
-      "need": {
+      "org": 40,
+      "equipment": {
         "light_cruiser": 1
       },
-      "supply_consumption": 0.04,
       "type": [
         "screen_ship"
       ],
@@ -1255,6 +1879,22 @@
       }
     },
     "logistics_company": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": -0.1,
+      "suppression": 0,
+      "supply_use": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -1262,20 +1902,19 @@
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "essential": [
         "support_equipment",
         "motorized_equipment"
       ],
       "group": "support",
       "manpower": 500,
-      "max_organisation": 10,
-      "max_strength": 1,
-      "need": {
+      "org": 10,
+      "hp": 1,
+      "equipment": {
         "motorized_equipment": 10,
         "support_equipment": 20
       },
-      "supply_consumption_factor": -0.1,
       "training_time": 120,
       "type": [
         "infantry",
@@ -1287,6 +1926,22 @@
       }
     },
     "maintenance_company": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0.05,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0.05,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.03,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -1294,20 +1949,17 @@
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.3,
-      "equipment_capture_factor": 0.05,
+      "recovery_rate": 0.3,
       "essential": [
         "support_equipment"
       ],
       "group": "support",
       "manpower": 500,
-      "max_organisation": 20,
-      "max_strength": 1,
-      "need": {
+      "org": 20,
+      "hp": 1,
+      "equipment": {
         "support_equipment": 25
       },
-      "reliability_factor": 0.05,
-      "supply_consumption": 0.03,
       "training_time": 120,
       "type": [
         "infantry",
@@ -1319,6 +1971,22 @@
       }
     },
     "medium_armor": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.22,
       "active": true,
       "categories": [
         "category_tanks",
@@ -1327,15 +1995,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 10,
-      "max_strength": 2,
-      "need": {
+      "org": 10,
+      "hp": 2,
+      "equipment": {
         "medium_tank_equipment": 50
       },
-      "supply_consumption": 0.22,
       "training_time": 180,
       "type": [
         "armor"
@@ -1375,6 +2042,22 @@
       }
     },
     "military_police": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.02,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -1382,20 +2065,19 @@
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "essential": [
         "infantry_equipment",
         "support_equipment"
       ],
       "group": "support",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 1,
-      "need": {
+      "org": 0,
+      "hp": 1,
+      "equipment": {
         "infantry_equipment": 40,
         "support_equipment": 10
       },
-      "supply_consumption": 0.02,
       "suppression_factor": 0.2,
       "training_time": 180,
       "type": [
@@ -1408,6 +2090,22 @@
       }
     },
     "modern_armor": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.25,
       "active": true,
       "categories": [
         "category_tanks",
@@ -1416,15 +2114,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 10,
-      "max_strength": 2,
-      "need": {
+      "org": 10,
+      "hp": 2,
+      "equipment": {
         "modern_tank_equipment": 50
       },
-      "supply_consumption": 0.25,
       "training_time": 180,
       "type": [
         "armor"
@@ -1464,8 +2161,23 @@
       }
     },
     "recon": {
-      "active": false,
+      "air_attack": 0,
       "breakthrough": -0.5,
+      "casualty_trickleback": 0,
+      "defense": -0.5,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.9,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 1,
+      "reliability_factor": 0,
+      "soft_attack": -0.9,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.02,
+      "active": false,
       "can_be_parachuted": true,
       "categories": [
         "category_front_line",
@@ -1473,24 +2185,19 @@
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.3,
-      "defense": -0.5,
+      "recovery_rate": 0.3,
       "essential": [
         "infantry_equipment",
         "support_equipment"
       ],
       "group": "support",
-      "hard_attack": -0.9,
       "manpower": 500,
-      "max_organisation": 20,
-      "max_strength": 2,
-      "need": {
+      "org": 20,
+      "hp": 2,
+      "equipment": {
         "infantry_equipment": 40,
         "support_equipment": 10
       },
-      "recon": 1,
-      "soft_attack": -0.9,
-      "supply_consumption": 0.02,
       "training_time": 120,
       "type": [
         "infantry",
@@ -1526,6 +2233,22 @@
       }
     },
     "signal_company": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0.2,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.02,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -1533,21 +2256,19 @@
         "category_army"
       ],
       "combat_width": 0,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "essential": [
         "support_equipment",
         "motorized_equipment"
       ],
       "group": "support",
-      "initiative": 0.2,
       "manpower": 500,
-      "max_organisation": 20,
-      "max_strength": 1,
-      "need": {
+      "org": 20,
+      "hp": 1,
+      "equipment": {
         "motorized_equipment": 10,
         "support_equipment": 20
       },
-      "supply_consumption": 0.02,
       "training_time": 120,
       "type": [
         "infantry",
@@ -1559,22 +2280,36 @@
       }
     },
     "light_sp_anti_air_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 1,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "light_tank_aa_equipment": 15
       },
-      "soft_attack": 0.5,
-      "supply_consumption": 0.1,
       "training_time": 180,
       "type": [
         "armor",
@@ -1612,22 +2347,36 @@
       }
     },
     "medium_sp_anti_air_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 1,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "medium_tank_aa_equipment": 12
       },
-      "soft_attack": 0.5,
-      "supply_consumption": 0.1,
       "training_time": 180,
       "type": [
         "armor",
@@ -1668,22 +2417,36 @@
       }
     },
     "heavy_sp_anti_air_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 1,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "heavy_tank_aa_equipment": 8
       },
-      "soft_attack": 0.5,
-      "supply_consumption": 0.1,
       "training_time": 180,
       "type": [
         "armor",
@@ -1724,22 +2487,36 @@
       }
     },
     "super_heavy_sp_anti_air_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 1,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "super_heavy_tank_aa_equipment": 4
       },
-      "soft_attack": 0.5,
-      "supply_consumption": 0.1,
       "training_time": 180,
       "type": [
         "armor",
@@ -1780,22 +2557,36 @@
       }
     },
     "modern_sp_anti_air_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0.5,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.1,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 1,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "modern_tank_aa_equipment": 12
       },
-      "soft_attack": 0.5,
-      "supply_consumption": 0.1,
       "training_time": 180,
       "type": [
         "armor",
@@ -1836,21 +2627,36 @@
       }
     },
     "light_sp_artillery_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.4,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "light_tank_artillery_equipment": 36
       },
-      "supply_consumption": 0.4,
       "training_time": 180,
       "type": [
         "armor",
@@ -1888,21 +2694,36 @@
       }
     },
     "medium_sp_artillery_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.44,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "medium_tank_artillery_equipment": 36
       },
-      "supply_consumption": 0.44,
       "training_time": 180,
       "type": [
         "armor",
@@ -1943,21 +2764,36 @@
       }
     },
     "heavy_sp_artillery_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.6,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "heavy_tank_artillery_equipment": 24
       },
-      "supply_consumption": 0.6,
       "training_time": 180,
       "type": [
         "armor",
@@ -1998,21 +2834,36 @@
       }
     },
     "super_heavy_sp_artillery_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.8,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "super_heavy_tank_artillery_equipment": 12
       },
-      "supply_consumption": 0.8,
       "training_time": 180,
       "type": [
         "armor",
@@ -2053,21 +2904,36 @@
       }
     },
     "modern_sp_artillery_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.5,
       "active": true,
       "categories": [
         "category_all_armor",
         "category_army"
       ],
       "combat_width": 3,
-      "default_morale": 0.1,
+      "recovery_rate": 0.1,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "modern_tank_artillery_equipment": 40
       },
-      "supply_consumption": 0.5,
       "training_time": 180,
       "type": [
         "armor",
@@ -2108,12 +2974,27 @@
       }
     },
     "submarine": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.01,
       "active": true,
-      "max_organisation": 40,
-      "need": {
+      "org": 40,
+      "equipment": {
         "submarine": 1
       },
-      "supply_consumption": 0.01,
       "type": [
         "submarine"
       ],
@@ -2122,6 +3003,22 @@
       }
     },
     "super_heavy_armor": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.4,
       "active": true,
       "categories": [
         "category_tanks",
@@ -2130,15 +3027,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 10,
-      "max_strength": 2,
-      "need": {
+      "org": 10,
+      "hp": 2,
+      "equipment": {
         "super_heavy_tank_equipment": 15
       },
-      "supply_consumption": 0.4,
       "training_time": 180,
       "type": [
         "armor"
@@ -2181,6 +3077,22 @@
       }
     },
     "light_tank_destroyer_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.2,
       "active": true,
       "categories": [
         "category_front_line",
@@ -2188,15 +3100,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "light_tank_destroyer_equipment": 30
       },
-      "supply_consumption": 0.2,
       "training_time": 180,
       "type": [
         "armor",
@@ -2234,6 +3145,22 @@
       }
     },
     "medium_tank_destroyer_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.22,
       "active": true,
       "categories": [
         "category_front_line",
@@ -2241,15 +3168,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "medium_tank_destroyer_equipment": 24
       },
-      "supply_consumption": 0.22,
       "training_time": 180,
       "type": [
         "armor",
@@ -2290,6 +3216,22 @@
       }
     },
     "heavy_tank_destroyer_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.3,
       "active": true,
       "categories": [
         "category_front_line",
@@ -2297,15 +3239,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "heavy_tank_destroyer_equipment": 20
       },
-      "supply_consumption": 0.3,
       "training_time": 180,
       "type": [
         "armor",
@@ -2349,6 +3290,22 @@
       }
     },
     "super_heavy_tank_destroyer_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.4,
       "active": true,
       "categories": [
         "category_front_line",
@@ -2356,15 +3313,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "super_heavy_tank_destroyer_equipment": 7
       },
-      "supply_consumption": 0.4,
       "training_time": 180,
       "type": [
         "armor",
@@ -2408,6 +3364,22 @@
       }
     },
     "modern_tank_destroyer_brigade": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.25,
       "active": true,
       "categories": [
         "category_front_line",
@@ -2415,15 +3387,14 @@
         "category_army"
       ],
       "combat_width": 2,
-      "default_morale": 0.3,
+      "recovery_rate": 0.3,
       "group": "armor",
       "manpower": 500,
-      "max_organisation": 0,
-      "max_strength": 0.6,
-      "need": {
+      "org": 0,
+      "hp": 0.6,
+      "equipment": {
         "modern_tank_destroyer_equipment": 24
       },
-      "supply_consumption": 0.25,
       "training_time": 180,
       "type": [
         "armor",
