@@ -4902,7 +4902,7 @@
     },
     "strat_bomber_equipment_1": {
       "air_map_icon_frame": 11,
-      "air_superiority": 1,
+      "air_superiority": 0.01,
       "build_cost_ic": 60,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -4934,7 +4934,7 @@
     },
     "strat_bomber_equipment_2": {
       "air_map_icon_frame": 11,
-      "air_superiority": 1,
+      "air_superiority": 0.01,
       "build_cost_ic": 62,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -4967,7 +4967,7 @@
     },
     "strat_bomber_equipment_3": {
       "air_map_icon_frame": 11,
-      "air_superiority": 1,
+      "air_superiority": 0.01,
       "build_cost_ic": 64,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -5000,7 +5000,7 @@
     },
     "jet_strat_bomber_equipment_1": {
       "air_map_icon_frame": 10,
-      "air_superiority": 1,
+      "air_superiority": 0.01,
       "build_cost_ic": 80,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -7765,7 +7765,7 @@
     },
     "heavy_fighter_equipment_1": {
       "air_map_icon_frame": 8,
-      "air_superiority": 1,
+      "air_superiority": 1.25,
       "build_cost_ic": 28,
       "interface_overview_category_index": 3,
       "is_convertable": true,
@@ -7799,7 +7799,7 @@
     },
     "heavy_fighter_equipment_2": {
       "air_map_icon_frame": 8,
-      "air_superiority": 1,
+      "air_superiority": 1.25,
       "build_cost_ic": 30,
       "interface_overview_category_index": 3,
       "is_convertable": true,
@@ -7834,7 +7834,7 @@
     },
     "heavy_fighter_equipment_3": {
       "air_map_icon_frame": 8,
-      "air_superiority": 1,
+      "air_superiority": 1.25,
       "build_cost_ic": 32,
       "interface_overview_category_index": 3,
       "is_convertable": true,
@@ -10126,6 +10126,7 @@
       "categories": [
         "artillery"
       ],
+      "industry_air_damage_factor": -0.08,
       "path": {
         "leads_to_tech": "antiair2",
         "research_cost_coeff": 1
@@ -10147,6 +10148,7 @@
       },
       "research_cost": 1,
       "start_year": 1940,
+      "static_anti_air_damage_factor": 0.1,
       "name": "Anti-Air II"
     },
     "antiair3": {
@@ -10159,6 +10161,7 @@
       "categories": [
         "artillery"
       ],
+      "industry_air_damage_factor": -0.08,
       "path": {
         "leads_to_tech": "antiair4",
         "research_cost_coeff": 1
@@ -10177,6 +10180,7 @@
       "categories": [
         "artillery"
       ],
+      "industry_air_damage_factor": -0.08,
       "path": {
         "leads_to_tech": "antiair5",
         "research_cost_coeff": 1
@@ -10194,6 +10198,7 @@
       ],
       "research_cost": 1,
       "start_year": 1943,
+      "static_anti_air_damage_factor": 0.1,
       "name": "Anti-Air V"
     },
     "interwar_antitank": {
@@ -10399,6 +10404,7 @@
       },
       "research_cost": 2.5,
       "start_year": 1940,
+      "static_anti_air_hit_chance_factor": 0.2,
       "name": "Centimetric Radar"
     },
     "improved_centimetric_radar": {
@@ -10416,6 +10422,7 @@
       },
       "research_cost": 2.5,
       "start_year": 1941,
+      "static_anti_air_hit_chance_factor": 0.2,
       "name": "Improved Centimetric Radar"
     },
     "advanced_centimetric_radar": {
@@ -10429,6 +10436,7 @@
       },
       "research_cost": 2.5,
       "start_year": 1942,
+      "static_anti_air_hit_chance_factor": 0.2,
       "name": "Advanced Centimetric Radar"
     },
     "mechanical_computing": {
@@ -12160,7 +12168,7 @@
         "research_cost_coeff": 1
       },
       "planning_speed": 0.5,
-      "research_cost": 3,
+      "research_cost": 1.5,
       "xor": [
         "superior_firepower",
         "trench_warfare",
@@ -12474,7 +12482,7 @@
         "leads_to_tech": "sup_delay",
         "research_cost_coeff": 1
       },
-      "research_cost": 3,
+      "research_cost": 1.5,
       "xor": [
         "mobile_warfare",
         "trench_warfare",
@@ -12777,7 +12785,7 @@
         "leads_to_tech": "grand_battle_plan",
         "research_cost_coeff": 1
       },
-      "research_cost": 3,
+      "research_cost": 1.5,
       "xor": [
         "mobile_warfare",
         "superior_firepower",
@@ -13063,7 +13071,7 @@
         "leads_to_tech": "pocket_defence",
         "research_cost_coeff": 1
       },
-      "research_cost": 3,
+      "research_cost": 1.5,
       "xor": [
         "mobile_warfare",
         "superior_firepower",
