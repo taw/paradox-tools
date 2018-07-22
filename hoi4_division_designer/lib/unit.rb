@@ -14,8 +14,7 @@ class Unit
   end
 
   %i[
-    suppression hp supply_use
-    combat_width manpower training_time weight
+    suppression hp supply_use manpower training_time weight
     special_forces? can_be_parachuted? frontline? name
     ].each do |key|
     define_method(key) { @unit_type.send(key) }
@@ -107,8 +106,13 @@ class Unit
   end
 
   def supply_consumption_factor
-    base = unit_type.supply_consumption_factor
+    base = @unit_type.supply_consumption_factor
     base + (@country_bonuses["supply_consumption_factor"] || 0)
+  end
+
+  def combat_width
+    base = @unit_type.combat_width
+    base + (@country_bonuses["combat_width"] || 0)
   end
 
   def armor

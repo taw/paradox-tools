@@ -1,5 +1,5 @@
 class Database
-  attr_reader :unit_types, :equipment, :technology
+  attr_reader :unit_types, :equipment, :technology, :doctrines
 
   def initialize
     db = JSON.parse(Pathname("#{__dir__}/../data/data.json").read)
@@ -15,6 +15,8 @@ class Database
     @technology = db["technology"].map do |name, effects|
       [name, Technology.new(self, name, effects)]
     end.to_h
+
+    @doctrines = db["doctrines"]
   end
 
   def country(technology_names)
@@ -26,6 +28,10 @@ class Database
     @technology.select do |name, tech|
       tech.start_year && tech.start_year <= year
     end.keys
+  end
+
+  def techs_for_doctrine(name)
+    @doctrines.fetch(name)
   end
 
   def unit_types_and_categories

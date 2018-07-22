@@ -30,6 +30,8 @@ class DivisionStatsCLI
         add_unit(1, arg)
       elsif @db.technology[arg]
         add_tech(arg)
+      elsif @db.doctrines[arg]
+        @techs += @db.techs_for_doctrine(arg)
       elsif arg =~ /\A\d{4}\z/
         add_tech_year(arg.to_i)
       else

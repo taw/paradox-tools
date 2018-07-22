@@ -3,11 +3,16 @@ describe Division do
   let(:country) { db.country(tech) }
   # Just lowest level equipment, no bonuses
   let(:tech_year) { nil }
+  let(:doctrine) { nil }
   let(:tech) do
     if tech_year
       db.techs_up_to(tech_year)
     else
       %W[infantry_weapons gw_artillery motorised_infantry motorized_rocket_unit]
+    end + if doctrine
+      db.techs_for_doctrine(doctrine)
+    else
+      []
     end
   end
   let(:division) { country.division(units) }
@@ -354,12 +359,8 @@ describe Division do
   end
 
   describe "1945 + doctrine + monster armored division" do
-    let(:tech) {
-      db.techs_up_to(1945) + %W[
-        superior_firepower sup_delay mobile_defence
-        intergrated_support regimental_combat_teams sup_mechanized_offensive
-        centralized_fire_control forward_observers advanced_firebases shock_and_awe]
-    }
+    let(:tech_year) { 1945 }
+    let(:doctrine) { "Superior Firepower / Integrated Support / Centralized Fire Control" }
     let(:units) { {
       heavy_armor: 5,
       heavy_sp_anti_air_brigade: 5,
