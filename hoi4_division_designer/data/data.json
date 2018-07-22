@@ -9903,7 +9903,8 @@
         }
       ],
       "research_cost": 1.5,
-      "name": "gw_artillery"
+      "name": "gw_artillery",
+      "start_year": 1934
     },
     "interwar_artillery": {
       "artillery": {
@@ -10337,7 +10338,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "name": "Radio"
+      "name": "Radio",
+      "start_year": 1936
     },
     "radio_detection": {
       "categories": [
@@ -10353,7 +10355,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 1.5,
-      "name": "Radio Detection"
+      "name": "Radio Detection",
+      "start_year": 1936
     },
     "decimetric_radar": {
       "categories": [
@@ -10450,7 +10453,8 @@
       },
       "research_cost": 2.5,
       "research_time_factor": -0.03,
-      "name": "Mechanical Computing"
+      "name": "Mechanical Computing",
+      "start_year": 1936
     },
     "computing_machine": {
       "categories": [
@@ -10873,7 +10877,8 @@
         "research_cost_coeff": 1
       },
       "research_cost": 2,
-      "name": "Concentrated Industry I"
+      "name": "Concentrated Industry I",
+      "start_year": 1936
     },
     "concentrated_industry2": {
       "categories": [
@@ -10950,7 +10955,8 @@
       },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
-      "name": "Dispersed Industry I"
+      "name": "Dispersed Industry I",
+      "start_year": 1936
     },
     "dispersed_industry2": {
       "categories": [

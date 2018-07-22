@@ -21,4 +21,12 @@ class Technology
   def unit_bonuses
     @effects.slice(*@database.unit_types_and_categories)
   end
+
+  # There's some nonsense in files with Excavation techs having path without destination
+  def leads_to
+    path = @effects["path"]
+    return [] unless path
+    path = [path] unless path.is_a?(Array)
+    path.map{|x| x["leads_to_tech"]}.compact
+  end
 end

@@ -41,4 +41,8 @@ class Database
   def years
     @technology.values.map(&:start_year).compact.uniq.sort
   end
+
+  def inspect
+    "Database"
+  end
 end
