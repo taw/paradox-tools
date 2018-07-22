@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/division_designer"
+require "set"
+
+class AvailableUnitsCLI
+  def initialize
+    @db = Database.new
+  end
+
+  def call(args)
+    raise "This command takes no arguments" unless args.empty?
+    ARGV.each do |arg|
+      warn "No idea what this is: #{arg}"
+    end
+    puts @db.doctrines.keys
+  end
+end
+
+AvailableUnitsCLI.new.call(ARGV)
