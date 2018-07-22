@@ -2,6 +2,7 @@ require_relative "../../lib/paradox_game"
 require_relative "equipment_data"
 require_relative "technology_data"
 require_relative "units_data"
+require_relative "doctrine_data"
 require "pathname"
 require "json"
 
@@ -23,6 +24,7 @@ class Importer < ParadoxGame
       units: UnitsData.new(self).data,
       equipment: EquipmentData.new(self).data,
       technology: TechnologyData.new(self).data,
+      doctrines: DoctrineData.new(self).data,
     }
     Pathname("#{__dir__}/../data/data.json").write JSON.pretty_generate(data)
   end

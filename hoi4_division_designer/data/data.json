@@ -15312,5 +15312,149 @@
       "start_year": 1945,
       "name": "Signal Company IV"
     }
+  },
+  "doctrines": {
+    "Mobile Warfare / Mobile Infantry / Fire brigades": [
+      "mobile_warfare",
+      "delay",
+      "elastic_defence",
+      "mobile_infantry",
+      "mass_motorization",
+      "mechanised_offensive",
+      "kampfgruppe",
+      "firebrigades",
+      "backhand_blow",
+      "modern_blitzkrieg"
+    ],
+    "Mobile Warfare / Mobile Infantry / Volkssturm": [
+      "mobile_warfare",
+      "delay",
+      "elastic_defence",
+      "mobile_infantry",
+      "mass_motorization",
+      "mechanised_offensive",
+      "kampfgruppe",
+      "volkssturm",
+      "nd_conscription",
+      "werwolf_guerillas"
+    ],
+    "Mobile Warfare / Armored Spearhead / Fire brigades": [
+      "mobile_warfare",
+      "delay",
+      "elastic_defence",
+      "armored_spearhead",
+      "schwerpunk",
+      "blitzkrieg",
+      "kampfgruppe",
+      "firebrigades",
+      "backhand_blow",
+      "modern_blitzkrieg"
+    ],
+    "Mobile Warfare / Armored Spearhead / Volkssturm": [
+      "mobile_warfare",
+      "delay",
+      "elastic_defence",
+      "armored_spearhead",
+      "schwerpunk",
+      "blitzkrieg",
+      "kampfgruppe",
+      "volkssturm",
+      "nd_conscription",
+      "werwolf_guerillas"
+    ],
+    "Superior Firepower / Integrated Support / Concentrated Fire Plans": [
+      "superior_firepower",
+      "sup_delay",
+      "mobile_defence",
+      "intergrated_support",
+      "regimental_combat_teams",
+      "sup_mechanized_offensive",
+      "concentrated_fire_plans",
+      "combined_arms",
+      "tactical_control",
+      "air_land_battle"
+    ],
+    "Superior Firepower / Integrated Support / Centralized Fire Control": [
+      "superior_firepower",
+      "sup_delay",
+      "mobile_defence",
+      "intergrated_support",
+      "regimental_combat_teams",
+      "sup_mechanized_offensive",
+      "centralized_fire_control",
+      "forward_observers",
+      "advanced_firebases",
+      "shock_and_awe"
+    ],
+    "Superior Firepower / Dispersed Support / Concentrated Fire Plans": [
+      "superior_firepower",
+      "sup_delay",
+      "mobile_defence",
+      "dispersed_support",
+      "overwhelming_firepower",
+      "sup_mechanized_offensive",
+      "concentrated_fire_plans",
+      "combined_arms",
+      "tactical_control",
+      "air_land_battle"
+    ],
+    "Superior Firepower / Dispersed Support / Centralized Fire Control": [
+      "superior_firepower",
+      "sup_delay",
+      "mobile_defence",
+      "dispersed_support",
+      "overwhelming_firepower",
+      "sup_mechanized_offensive",
+      "centralized_fire_control",
+      "forward_observers",
+      "advanced_firebases",
+      "shock_and_awe"
+    ],
+    "Trench Warfare / Mechanized Offensive": [
+      "trench_warfare",
+      "grand_battle_plan",
+      "prepared_defense",
+      "grand_assault",
+      "grand_mechanized_offensive",
+      "assault_concentration",
+      "branch_interoperation",
+      "assault_breakthrough",
+      "central_planning",
+      "c3i_theory"
+    ],
+    "Trench Warfare / Infantry Offensive": [
+      "trench_warfare",
+      "grand_battle_plan",
+      "prepared_defense",
+      "grand_assault",
+      "infantry_offensive",
+      "armored_operations",
+      "infiltration_assault",
+      "night_assault_tactics",
+      "attritional_containment",
+      "infiltration_in_depth"
+    ],
+    "Mass Assault / Large Front Operations": [
+      "mass_assault",
+      "pocket_defence",
+      "defence_in_depth",
+      "large_front_operations",
+      "deep_operations",
+      "operational_concentration",
+      "vast_offensives",
+      "breakthrough_priority",
+      "mechanized_wave",
+      "continuous_offensive"
+    ],
+    "Mass Assault / People's Army": [
+      "mass_assault",
+      "pocket_defence",
+      "defence_in_depth",
+      "peoples_army",
+      "human_infantry_offensive",
+      "large_front_offensive",
+      "human_wave_offensive",
+      "guerilla_warfare"
+    ]
   }
 }
