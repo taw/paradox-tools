@@ -32,10 +32,6 @@ class UnitsData
     }
   end
 
-  def terrain_types
-    ["forest", "marsh", "hills", "urban", "mountain", "jungle", "amphibious", "river", "fort", "plains", "desert"]
-  end
-
   # Some awkward names changed
   def renamed
     {
@@ -55,7 +51,7 @@ class UnitsData
       unit_data = default_values
       unit.each do |key, value|
         case key
-        when *terrain_types
+        when *@game.terrain_types
           bonuses[key] = value
         when "priority", "ai_priority", "sprite", "map_icon_category"
           # Skip
@@ -64,7 +60,7 @@ class UnitsData
         end
       end
 
-      unit_data["bonuses"] = jsonify(bonuses)
+      unit_data["terrain_bonuses"] = jsonify(bonuses)
       result[name] = unit_data
     end
     result

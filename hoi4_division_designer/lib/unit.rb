@@ -22,15 +22,11 @@ class Unit
 
   attr_reader :equipment
 
-  memoize def bonuses
+  memoize def terrain_bonuses
     base = {}
-    base.recursively_merge!(@unit_type.bonuses)
-    ["forest", "marsh", "hills", "urban", "mountain",
-     "jungle", "amphibious", "river", "fort", "plains",
-     "desert"].each do |key|
-      if @country_bonuses[key]
-        base.recursively_merge!(key => @country_bonuses[key]){|a,b| (a+b).round(3)}
-      end
+    base.recursively_merge!(@unit_type.terrain_bonuses)
+    if @country_bonuses["terrain_bonuses"]
+      base.recursively_merge!(@country_bonuses["terrain_bonuses"]){|a,b| (a+b).round(3)}
     end
     base
   end

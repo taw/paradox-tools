@@ -19,7 +19,7 @@ class Technology
   end
 
   def unit_bonuses
-    @effects.slice(*@database.unit_types_and_categories)
+    @effects["unit_bonuses"] || {}
   end
 
   # There's some nonsense in files with Excavation techs having path without destination

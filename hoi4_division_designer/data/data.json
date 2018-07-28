@@ -28,7 +28,7 @@
         "fighter"
       ],
       "name": "Fighter",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "cv_fighter": {
@@ -59,7 +59,7 @@
         "fighter"
       ],
       "name": "Fighter",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "jet_fighter": {
@@ -90,7 +90,7 @@
         "fighter"
       ],
       "name": "Fighter",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "cas": {
@@ -121,7 +121,7 @@
         "cas"
       ],
       "name": "Close Air Support",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "cv_cas": {
@@ -152,7 +152,7 @@
         "cas"
       ],
       "name": "Close Air Support",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "cv_nav_bomber": {
@@ -180,7 +180,7 @@
         "naval_bomber"
       ],
       "name": "Naval Bomber",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "nav_bomber": {
@@ -208,7 +208,7 @@
         "naval_bomber"
       ],
       "name": "Naval Bomber",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "rocket_interceptor": {
@@ -236,7 +236,7 @@
         "interceptor"
       ],
       "name": "Rocket Interceptor",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "suicide_craft": {
@@ -264,7 +264,7 @@
         "suicide"
       ],
       "name": "Yokosuka MXY7 Ohka",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "tac_bomber": {
@@ -292,7 +292,7 @@
         "tactical_bomber"
       ],
       "name": "Tactical Bomber",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "jet_tac_bomber": {
@@ -320,7 +320,7 @@
         "tactical_bomber"
       ],
       "name": "Jet Tactical Bomber",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "heavy_fighter": {
@@ -351,7 +351,7 @@
         "fighter"
       ],
       "name": "Heavy Fighter",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "strat_bomber": {
@@ -379,7 +379,7 @@
         "strategic_bomber"
       ],
       "name": "Strategic Bomber",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "jet_strat_bomber": {
@@ -407,7 +407,7 @@
         "strategic_bomber"
       ],
       "name": "Jet Strategic Bomber",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "transport_plane": {
@@ -435,7 +435,7 @@
         "air_transport"
       ],
       "name": "Transport",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "guided_missile": {
@@ -463,7 +463,7 @@
         "missile"
       ],
       "name": "Rocket",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "anti_air": {
@@ -505,7 +505,7 @@
       ],
       "weight": 0.1,
       "name": "Support Anti-Air",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "anti_air_brigade": {
@@ -546,7 +546,7 @@
       ],
       "weight": 0.5,
       "name": "Anti-Air",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -609,7 +609,7 @@
       ],
       "weight": 0.1,
       "name": "Support Anti-Tank",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "anti_tank_brigade": {
@@ -651,7 +651,7 @@
       ],
       "weight": 0.5,
       "name": "Anti-Tank",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -722,7 +722,7 @@
       ],
       "weight": 0.1,
       "name": "Support Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "rocket_artillery": {
@@ -765,7 +765,7 @@
       ],
       "weight": 0.1,
       "name": "Support Rocket Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "artillery_brigade": {
@@ -807,7 +807,7 @@
       ],
       "weight": 0.5,
       "name": "Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -876,7 +876,7 @@
       ],
       "weight": 0.5,
       "name": "Rocket Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -947,7 +947,7 @@
       ],
       "weight": 0.5,
       "name": "Motorized Rocket Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -1004,7 +1004,7 @@
         "capital_ship"
       ],
       "name": "Battlecruiser",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "battleship": {
@@ -1033,7 +1033,7 @@
         "capital_ship"
       ],
       "name": "Battleship",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "carrier": {
@@ -1062,7 +1062,7 @@
         "carrier"
       ],
       "name": "Carrier",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "cavalry": {
@@ -1103,7 +1103,7 @@
       ],
       "weight": 0.5,
       "name": "Cavalry",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -1151,7 +1151,7 @@
         "screen_ship"
       ],
       "name": "Destroyer",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "engineer": {
@@ -1198,7 +1198,7 @@
       ],
       "weight": 0.1,
       "name": "Engineer Company",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": 0.25
         },
@@ -1270,7 +1270,7 @@
       ],
       "weight": 0.1,
       "name": "Field Hospital",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "heavy_armor": {
@@ -1312,7 +1312,7 @@
       ],
       "weight": 1.5,
       "name": "Heavy Tank",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.8
         },
@@ -1373,7 +1373,7 @@
         "capital_ship"
       ],
       "name": "Heavy Cruiser",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "infantry": {
@@ -1415,7 +1415,7 @@
       ],
       "weight": 0.5,
       "name": "Infantry",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "bicycle_battalion": {
@@ -1458,7 +1458,7 @@
       ],
       "weight": 0.5,
       "name": "Bicycle Battalion",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "movement": -0.05
         },
@@ -1530,7 +1530,7 @@
       ],
       "weight": 0.5,
       "name": "Marines",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": 0.5
         },
@@ -1584,7 +1584,7 @@
       ],
       "weight": 0.5,
       "name": "Mountaineers",
-      "bonuses": {
+      "terrain_bonuses": {
         "hills": {
           "attack": 0.2,
           "defence": 0.05,
@@ -1639,7 +1639,7 @@
       ],
       "weight": 0.5,
       "name": "Paratroopers",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "motorized": {
@@ -1682,7 +1682,7 @@
       ],
       "weight": 0.75,
       "name": "Motorized Infantry",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.2
         },
@@ -1755,7 +1755,7 @@
       ],
       "weight": 1,
       "name": "Mechanized Infantry",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -1820,7 +1820,7 @@
       ],
       "weight": 1,
       "name": "Light Tank",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
         },
@@ -1875,7 +1875,7 @@
         "screen_ship"
       ],
       "name": "Light Cruiser",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "logistics_company": {
@@ -1922,7 +1922,7 @@
       ],
       "weight": 0.1,
       "name": "Logistics Company",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "maintenance_company": {
@@ -1967,7 +1967,7 @@
       ],
       "weight": 0.1,
       "name": "Maintenance Company",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "medium_armor": {
@@ -2009,7 +2009,7 @@
       ],
       "weight": 1.25,
       "name": "Medium Tank",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -2086,7 +2086,7 @@
       ],
       "weight": 0.1,
       "name": "Military Police",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "modern_armor": {
@@ -2128,7 +2128,7 @@
       ],
       "weight": 1.5,
       "name": "Modern Tank",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -2205,7 +2205,7 @@
       ],
       "weight": 0.1,
       "name": "Recon Company",
-      "bonuses": {
+      "terrain_bonuses": {
         "desert": {
           "movement": 0.1
         },
@@ -2276,7 +2276,7 @@
       ],
       "weight": 0.1,
       "name": "Signal Company",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "light_sp_anti_air_brigade": {
@@ -2317,7 +2317,7 @@
       ],
       "weight": 1,
       "name": "Light SP Anti-Air",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.6
         },
@@ -2384,7 +2384,7 @@
       ],
       "weight": 1.25,
       "name": "Medium SP Anti-Air",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -2454,7 +2454,7 @@
       ],
       "weight": 1.5,
       "name": "Heavy SP Anti-Air",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.8
         },
@@ -2524,7 +2524,7 @@
       ],
       "weight": 1.75,
       "name": "Super Heavy SP Anti-Air",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -1.0
         },
@@ -2594,7 +2594,7 @@
       ],
       "weight": 1.5,
       "name": "Modern SP Anti-Air",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -2664,7 +2664,7 @@
       ],
       "weight": 1,
       "name": "Light SP Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.6
         },
@@ -2731,7 +2731,7 @@
       ],
       "weight": 1.25,
       "name": "Medium SP Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -2801,7 +2801,7 @@
       ],
       "weight": 1.5,
       "name": "Heavy SP Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.8
         },
@@ -2871,7 +2871,7 @@
       ],
       "weight": 1.75,
       "name": "Super Heavy SP Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -1.0
         },
@@ -2941,7 +2941,7 @@
       ],
       "weight": 1.5,
       "name": "Modern SP Artillery",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -2999,7 +2999,7 @@
         "submarine"
       ],
       "name": "Submarine",
-      "bonuses": {
+      "terrain_bonuses": {
       }
     },
     "super_heavy_armor": {
@@ -3041,7 +3041,7 @@
       ],
       "weight": 1.75,
       "name": "Super-Heavy Tank",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -1.0
         },
@@ -3115,7 +3115,7 @@
       ],
       "weight": 1,
       "name": "Light Tank Destroyer",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.6
         },
@@ -3183,7 +3183,7 @@
       ],
       "weight": 1.25,
       "name": "Medium Tank Destroyer",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -3254,7 +3254,7 @@
       ],
       "weight": 1.5,
       "name": "Heavy Tank Destroyer",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.8
         },
@@ -3328,7 +3328,7 @@
       ],
       "weight": 1.75,
       "name": "Super Heavy Tank Destroyer",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -1.0
         },
@@ -3402,7 +3402,7 @@
       ],
       "weight": 1.5,
       "name": "Modern Tank Destroyer",
-      "bonuses": {
+      "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
         },
@@ -7886,7 +7886,9 @@
       "leads_to": [
         "infrastructure_destruction",
         "home_defence"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "infrastructure_destruction": {
       "air_cas_present_factor": 0.1,
@@ -7900,7 +7902,9 @@
       "name": "Infrastructure Destruction",
       "leads_to": [
         "naval_strike_tactics"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "home_defence": {
       "air_interception_detect_factor": 0.1,
@@ -7914,7 +7918,9 @@
       "name": "Home Defense",
       "leads_to": [
         "naval_strike_tactics"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "naval_strike_tactics": {
       "air_nav_efficiency": 0.15,
@@ -7929,7 +7935,9 @@
       "leads_to": [
         "fighter_sweeps",
         "dogfighting_experience"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fighter_sweeps": {
       "air_intercept_efficiency": 0.2,
@@ -7946,7 +7954,9 @@
       "name": "Fighter Sweeps",
       "leads_to": [
         "multialtitude_flying"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dogfighting_experience": {
       "air_superiority_efficiency": 0.2,
@@ -7963,7 +7973,9 @@
       "name": "Dogfighting Experience",
       "leads_to": [
         "multialtitude_flying"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "multialtitude_flying": {
       "categories": [
@@ -7971,18 +7983,20 @@
         "strategic_destruction_tree",
         "cat_strategic_destruction"
       ],
-      "category_fighter": {
-        "air_agility": 0.1
-      },
-      "category_heavy_fighter": {
-        "air_agility": 0.1
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Multi-Altitude Flying",
       "leads_to": [
         "logistical_bombing"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_fighter": {
+          "air_agility": 0.1
+        },
+        "category_heavy_fighter": {
+          "air_agility": 0.1
+        }
+      }
     },
     "logistical_bombing": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -7997,7 +8011,9 @@
       "leads_to": [
         "night_bombing",
         "day_bombing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "night_bombing": {
       "XOR": [
@@ -8014,7 +8030,9 @@
       "name": "Night Bombing",
       "leads_to": [
         "massed_bomber_formations"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "day_bombing": {
       "XOR": [
@@ -8031,7 +8049,9 @@
       "name": "Day Bombing",
       "leads_to": [
         "air_offense"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "massed_bomber_formations": {
       "air_strategic_bomber_bombing_factor": 0.2,
@@ -8045,7 +8065,9 @@
       "name": "Massed Bomber Formations",
       "leads_to": [
         "flying_fortress"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "air_offense": {
       "air_escort_efficiency": 0.25,
@@ -8059,7 +8081,9 @@
       "name": "Fighter Escorts",
       "leads_to": [
         "flying_fortress"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "flying_fortress": {
       "air_strategic_bomber_defence_factor": 0.25,
@@ -8074,7 +8098,9 @@
       "leads_to": [
         "offensive_formations",
         "mass_destruction"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "offensive_formations": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -8088,7 +8114,9 @@
       "name": "Offensive Formations",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "mass_destruction": {
       "air_strategic_bomber_bombing_factor": 0.2,
@@ -8102,7 +8130,9 @@
       "name": "Mass Destruction",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "formation_flying": {
       "air_superiority_detect_factor": 0.15,
@@ -8120,7 +8150,9 @@
       "name": "Formation Flying",
       "leads_to": [
         "dive_bombing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dive_bombing": {
       "air_cas_efficiency": 0.2,
@@ -8134,7 +8166,9 @@
       "name": "Dive Bombing",
       "leads_to": [
         "direct_ground_support"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "direct_ground_support": {
       "air_cas_present_factor": 0.2,
@@ -8149,7 +8183,9 @@
       "leads_to": [
         "formation_fighting",
         "fighter_ace_initiative"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "formation_fighting": {
       "air_superiority_efficiency": 0.15,
@@ -8166,7 +8202,9 @@
       "name": "Formation Fighting",
       "leads_to": [
         "hunt_and_destroy"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fighter_ace_initiative": {
       "air_ace_generation_chance_factor": 0.25,
@@ -8183,7 +8221,9 @@
       "name": "Fighter Ace Initiative",
       "leads_to": [
         "hunt_and_destroy"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "hunt_and_destroy": {
       "air_cas_efficiency": 0.2,
@@ -8197,7 +8237,9 @@
       "name": "Hunt and Destroy",
       "leads_to": [
         "combat_unit_destruction"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "combat_unit_destruction": {
       "army_bonus_air_superiority_factor": 0.1,
@@ -8206,9 +8248,6 @@
         "battlefield_support_tree",
         "cat_battlefield_support"
       ],
-      "category_cas": {
-        "air_agility": 0.2
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Combat Unit Destruction",
@@ -8216,7 +8255,12 @@
         "battlefield_support",
         "keypoint_bombing",
         "ground_support_integration"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_cas": {
+          "air_agility": 0.2
+        }
+      }
     },
     "battlefield_support": {
       "army_bonus_air_superiority_factor": 0.2,
@@ -8230,7 +8274,9 @@
       "name": "Battlefield Support",
       "leads_to": [
         "naval_strike_torpedo_tactics"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "keypoint_bombing": {
       "categories": [
@@ -8240,13 +8286,15 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "tac_bomber": {
-        "air_bombing": 0.1
-      },
       "name": "Keypoint Bombing",
       "leads_to": [
         "naval_strike_torpedo_tactics"
-      ]
+      ],
+      "unit_bonuses": {
+        "tac_bomber": {
+          "air_bombing": 0.1
+        }
+      }
     },
     "ground_support_integration": {
       "air_cas_present_factor": 0.2,
@@ -8260,7 +8308,9 @@
       "name": "Ground Support Integration",
       "leads_to": [
         "naval_strike_torpedo_tactics"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "naval_strike_torpedo_tactics": {
       "air_nav_efficiency": 0.1,
@@ -8274,7 +8324,9 @@
       "name": "Naval Strike Torpedo Tactics",
       "leads_to": [
         "strategic_destruction"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "strategic_destruction": {
       "air_strategic_bomber_bombing_factor": 0.15,
@@ -8288,7 +8340,9 @@
       "name": "Strategic Destruction",
       "leads_to": [
         "forward_interception"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "forward_interception": {
       "air_interception_detect_factor": 0.15,
@@ -8302,7 +8356,9 @@
       "name": "Forward Interception",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "force_rotation": {
       "air_interception_detect_factor": 0.2,
@@ -8320,7 +8376,9 @@
       "name": "Force Rotation",
       "leads_to": [
         "fighter_baiting"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fighter_baiting": {
       "air_ace_generation_chance_factor": 0.1,
@@ -8335,7 +8393,9 @@
       "name": "Fighter Baiting",
       "leads_to": [
         "low_echelon_support"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "low_echelon_support": {
       "air_cas_present_factor": 0.1,
@@ -8349,7 +8409,9 @@
       "name": "Low Echelon Support",
       "leads_to": [
         "dispersed_fighting"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dispersed_fighting": {
       "air_superiority_detect_factor": 0.2,
@@ -8363,7 +8425,9 @@
       "name": "Dispersed Fighting",
       "leads_to": [
         "operational_destruction"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "operational_destruction": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -8378,7 +8442,9 @@
       "leads_to": [
         "fighter_veteran_initiative",
         "cas_veteran_initiative"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fighter_veteran_initiative": {
       "categories": [
@@ -8386,18 +8452,20 @@
         "operational_integrity_tree",
         "cat_operational_integrity"
       ],
-      "category_fighter": {
-        "air_agility": 0.2
-      },
-      "category_heavy_fighter": {
-        "air_agility": 0.2
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Fighter Veteran Initiative",
       "leads_to": [
         "naval_strike_torpedo_tactics_oi"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_fighter": {
+          "air_agility": 0.2
+        },
+        "category_heavy_fighter": {
+          "air_agility": 0.2
+        }
+      }
     },
     "naval_strike_torpedo_tactics_oi": {
       "air_nav_efficiency": 0.1,
@@ -8411,7 +8479,9 @@
       "name": "Naval Strike Torpedo Tactics",
       "leads_to": [
         "infiltration_bombing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cas_veteran_initiative": {
       "air_cas_efficiency": 0.15,
@@ -8425,7 +8495,9 @@
       "name": "Ground Attack Veteran Initiative",
       "leads_to": [
         "carousel_bombing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "carousel_bombing": {
       "categories": [
@@ -8435,13 +8507,15 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "tac_bomber": {
-        "air_bombing": 0.1
-      },
       "name": "Carousel Bombing",
       "leads_to": [
         "infiltration_bombing"
-      ]
+      ],
+      "unit_bonuses": {
+        "tac_bomber": {
+          "air_bombing": 0.1
+        }
+      }
     },
     "infiltration_bombing": {
       "categories": [
@@ -8455,7 +8529,9 @@
       "name": "Infiltration Bombing",
       "leads_to": [
         "air_skirmish"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "air_skirmish": {
       "air_ace_generation_chance_factor": 0.1,
@@ -8470,7 +8546,9 @@
       "name": "Air Skirmish",
       "leads_to": [
         "high_level_bombing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "high_level_bombing": {
       "air_strategic_bomber_defence_factor": 0.2,
@@ -8484,7 +8562,9 @@
       "name": "High Level Bombing",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_fighter": {
       "categories": [
@@ -8505,7 +8585,9 @@
         "fighter1",
         "CAS1",
         "naval_bomber1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_early_fighter": {
       "categories": [
@@ -8520,7 +8602,9 @@
       "name": "cv_early_fighter",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fighter1": {
       "categories": [
@@ -8539,7 +8623,9 @@
       "name": "fighter1",
       "leads_to": [
         "fighter2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_fighter1": {
       "categories": [
@@ -8554,7 +8640,9 @@
       "name": "cv_fighter1",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fighter2": {
       "categories": [
@@ -8573,7 +8661,9 @@
       "name": "fighter2",
       "leads_to": [
         "fighter3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_fighter2": {
       "categories": [
@@ -8588,7 +8678,9 @@
       "name": "cv_fighter2",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fighter3": {
       "categories": [
@@ -8607,7 +8699,9 @@
       "name": "fighter3",
       "leads_to": [
         "jet_fighter1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_fighter3": {
       "categories": [
@@ -8622,7 +8716,9 @@
       "name": "cv_fighter3",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "jet_fighter1": {
       "categories": [
@@ -8640,7 +8736,9 @@
       "name": "jet_fighter1",
       "leads_to": [
         "jet_fighter2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "jet_fighter2": {
       "categories": [
@@ -8655,7 +8753,9 @@
       "name": "jet_fighter2",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "CAS1": {
       "categories": [
@@ -8674,7 +8774,9 @@
       "name": "CAS1",
       "leads_to": [
         "CAS2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_CAS1": {
       "categories": [
@@ -8689,7 +8791,9 @@
       "name": "cv_CAS1",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "CAS2": {
       "categories": [
@@ -8708,7 +8812,9 @@
       "name": "CAS2",
       "leads_to": [
         "CAS3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_CAS2": {
       "categories": [
@@ -8723,7 +8829,9 @@
       "name": "cv_CAS2",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "CAS3": {
       "categories": [
@@ -8742,7 +8850,9 @@
       "name": "CAS3",
       "leads_to": [
         "jet_fighter1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_CAS3": {
       "categories": [
@@ -8757,7 +8867,9 @@
       "name": "cv_CAS3",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "naval_bomber1": {
       "categories": [
@@ -8776,7 +8888,9 @@
       "name": "naval_bomber1",
       "leads_to": [
         "naval_bomber2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_naval_bomber1": {
       "categories": [
@@ -8791,7 +8905,9 @@
       "name": "cv_naval_bomber1",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "naval_bomber2": {
       "categories": [
@@ -8810,7 +8926,9 @@
       "name": "naval_bomber2",
       "leads_to": [
         "naval_bomber3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_naval_bomber2": {
       "categories": [
@@ -8825,7 +8943,9 @@
       "name": "cv_naval_bomber2",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "naval_bomber3": {
       "categories": [
@@ -8844,7 +8964,9 @@
       "name": "naval_bomber3",
       "leads_to": [
         "jet_fighter1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "cv_naval_bomber3": {
       "categories": [
@@ -8859,7 +8981,9 @@
       "name": "cv_naval_bomber3",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_bomber": {
       "categories": [
@@ -8876,7 +9000,9 @@
       "leads_to": [
         "heavy_fighter1",
         "tactical_bomber1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "heavy_fighter1": {
       "categories": [
@@ -8892,7 +9018,9 @@
       "name": "heavy_fighter1",
       "leads_to": [
         "heavy_fighter2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "heavy_fighter2": {
       "categories": [
@@ -8908,7 +9036,9 @@
       "name": "heavy_fighter2",
       "leads_to": [
         "heavy_fighter3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "heavy_fighter3": {
       "categories": [
@@ -8924,7 +9054,9 @@
       "name": "heavy_fighter3",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tactical_bomber1": {
       "categories": [
@@ -8940,7 +9072,9 @@
       "name": "tactical_bomber1",
       "leads_to": [
         "tactical_bomber2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tactical_bomber2": {
       "categories": [
@@ -8956,7 +9090,9 @@
       "name": "tactical_bomber2",
       "leads_to": [
         "tactical_bomber3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tactical_bomber3": {
       "categories": [
@@ -8972,7 +9108,9 @@
       "name": "tactical_bomber3",
       "leads_to": [
         "jet_tactical_bomber1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "jet_tactical_bomber1": {
       "categories": [
@@ -8991,7 +9129,9 @@
       "name": "jet_tactical_bomber1",
       "leads_to": [
         "jet_tactical_bomber2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "jet_tactical_bomber2": {
       "categories": [
@@ -9007,7 +9147,9 @@
       "name": "jet_tactical_bomber2",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "strategic_bomber1": {
       "categories": [
@@ -9023,7 +9165,9 @@
       "name": "strategic_bomber1",
       "leads_to": [
         "strategic_bomber2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "strategic_bomber2": {
       "categories": [
@@ -9039,7 +9183,9 @@
       "name": "strategic_bomber2",
       "leads_to": [
         "strategic_bomber3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "strategic_bomber3": {
       "categories": [
@@ -9055,7 +9201,9 @@
       "name": "strategic_bomber3",
       "leads_to": [
         "jet_strategic_bomber1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "jet_strategic_bomber1": {
       "categories": [
@@ -9074,7 +9222,9 @@
       "name": "jet_strategic_bomber1",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "suicide_craft": {
       "allow": {
@@ -9088,7 +9238,9 @@
       "name": "Yokosuka MXY7 Ohka",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "gwtank": {
       "categories": [
@@ -9138,7 +9290,9 @@
       "leads_to": [
         "basic_light_tank",
         "basic_heavy_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_light_tank": {
       "categories": [
@@ -9192,7 +9346,9 @@
       "name": "basic_light_tank",
       "leads_to": [
         "improved_light_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_light_td": {
       "categories": [
@@ -9206,7 +9362,9 @@
       "name": "basic_light_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_light_art": {
       "categories": [
@@ -9220,7 +9378,9 @@
       "name": "basic_light_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_light_spaa": {
       "categories": [
@@ -9234,7 +9394,9 @@
       "name": "basic_light_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_light_tank": {
       "categories": [
@@ -9255,7 +9417,9 @@
       "leads_to": [
         "advanced_light_tank",
         "basic_medium_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_light_td": {
       "categories": [
@@ -9269,7 +9433,9 @@
       "name": "improved_light_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_light_art": {
       "categories": [
@@ -9283,7 +9449,9 @@
       "name": "improved_light_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_light_spaa": {
       "categories": [
@@ -9297,7 +9465,9 @@
       "name": "improved_light_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_light_tank": {
       "categories": [
@@ -9317,7 +9487,9 @@
       "name": "advanced_light_tank",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_light_td": {
       "categories": [
@@ -9331,7 +9503,9 @@
       "name": "advanced_light_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_light_art": {
       "categories": [
@@ -9345,7 +9519,9 @@
       "name": "advanced_light_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_light_spaa": {
       "categories": [
@@ -9359,7 +9535,9 @@
       "name": "advanced_light_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_medium_tank": {
       "categories": [
@@ -9379,7 +9557,9 @@
       "name": "basic_medium_tank",
       "leads_to": [
         "improved_medium_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_medium_td": {
       "categories": [
@@ -9393,7 +9573,9 @@
       "name": "basic_medium_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_medium_art": {
       "categories": [
@@ -9407,7 +9589,9 @@
       "name": "basic_medium_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_medium_spaa": {
       "categories": [
@@ -9421,7 +9605,9 @@
       "name": "basic_medium_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_medium_tank": {
       "categories": [
@@ -9442,7 +9628,9 @@
       "leads_to": [
         "advanced_medium_tank",
         "improved_heavy_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_medium_td": {
       "categories": [
@@ -9456,7 +9644,9 @@
       "name": "improved_medium_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_medium_art": {
       "categories": [
@@ -9470,7 +9660,9 @@
       "name": "improved_medium_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_medium_spaa": {
       "categories": [
@@ -9484,7 +9676,9 @@
       "name": "improved_medium_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_medium_tank": {
       "categories": [
@@ -9505,7 +9699,9 @@
       "leads_to": [
         "main_battle_tank",
         "advanced_heavy_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_medium_td": {
       "categories": [
@@ -9519,7 +9715,9 @@
       "name": "advanced_medium_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_medium_art": {
       "categories": [
@@ -9533,7 +9731,9 @@
       "name": "advanced_medium_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_medium_spaa": {
       "categories": [
@@ -9547,7 +9747,9 @@
       "name": "advanced_medium_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "main_battle_tank": {
       "categories": [
@@ -9567,7 +9769,9 @@
       "name": "main_battle_tank",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "modern_td": {
       "categories": [
@@ -9581,7 +9785,9 @@
       "name": "modern_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "modern_art": {
       "categories": [
@@ -9595,7 +9801,9 @@
       "name": "modern_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "modern_spaa": {
       "categories": [
@@ -9609,7 +9817,9 @@
       "name": "modern_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_heavy_tank": {
       "categories": [
@@ -9663,7 +9873,9 @@
       "name": "basic_heavy_tank",
       "leads_to": [
         "improved_heavy_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_heavy_td": {
       "categories": [
@@ -9677,7 +9889,9 @@
       "name": "basic_heavy_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_heavy_art": {
       "categories": [
@@ -9691,7 +9905,9 @@
       "name": "basic_heavy_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_heavy_spaa": {
       "categories": [
@@ -9705,7 +9921,9 @@
       "name": "basic_heavy_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_heavy_tank": {
       "categories": [
@@ -9727,7 +9945,9 @@
         "advanced_heavy_tank",
         "improved_medium_tank",
         "super_heavy_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_heavy_td": {
       "categories": [
@@ -9741,7 +9961,9 @@
       "name": "improved_heavy_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_heavy_art": {
       "categories": [
@@ -9755,7 +9977,9 @@
       "name": "improved_heavy_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_heavy_spaa": {
       "categories": [
@@ -9769,7 +9993,9 @@
       "name": "improved_heavy_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_heavy_tank": {
       "categories": [
@@ -9790,7 +10016,9 @@
       "leads_to": [
         "main_battle_tank",
         "advanced_medium_tank"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_heavy_td": {
       "categories": [
@@ -9804,7 +10032,9 @@
       "name": "advanced_heavy_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_heavy_art": {
       "categories": [
@@ -9818,7 +10048,9 @@
       "name": "advanced_heavy_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_heavy_spaa": {
       "categories": [
@@ -9832,7 +10064,9 @@
       "name": "advanced_heavy_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "super_heavy_tank": {
       "categories": [
@@ -9852,7 +10086,9 @@
       "name": "super_heavy_tank",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "super_heavy_td": {
       "categories": [
@@ -9866,7 +10102,9 @@
       "name": "super_heavy_td",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "super_heavy_art": {
       "categories": [
@@ -9880,7 +10118,9 @@
       "name": "super_heavy_art",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "super_heavy_spaa": {
       "categories": [
@@ -9894,7 +10134,9 @@
       "name": "super_heavy_spaa",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "gw_artillery": {
       "categories": [
@@ -9910,15 +10152,11 @@
         "interwar_artillery",
         "interwar_antitank",
         "interwar_antiair"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "interwar_artillery": {
-      "artillery": {
-        "soft_attack": 0.1
-      },
-      "artillery_brigade": {
-        "soft_attack": 0.1
-      },
       "categories": [
         "artillery"
       ],
@@ -9927,7 +10165,15 @@
       "name": "Interwar Artillery",
       "leads_to": [
         "artillery1"
-      ]
+      ],
+      "unit_bonuses": {
+        "artillery": {
+          "soft_attack": 0.1
+        },
+        "artillery_brigade": {
+          "soft_attack": 0.1
+        }
+      }
     },
     "artillery1": {
       "categories": [
@@ -9941,15 +10187,11 @@
       "name": "Artillery I",
       "leads_to": [
         "artillery2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "artillery2": {
-      "artillery": {
-        "soft_attack": 0.1
-      },
-      "artillery_brigade": {
-        "soft_attack": 0.1
-      },
       "categories": [
         "artillery"
       ],
@@ -9959,15 +10201,17 @@
       "leads_to": [
         "artillery3",
         "rocket_artillery"
-      ]
+      ],
+      "unit_bonuses": {
+        "artillery": {
+          "soft_attack": 0.1
+        },
+        "artillery_brigade": {
+          "soft_attack": 0.1
+        }
+      }
     },
     "artillery3": {
-      "artillery": {
-        "soft_attack": 0.1
-      },
-      "artillery_brigade": {
-        "soft_attack": 0.1
-      },
       "categories": [
         "artillery"
       ],
@@ -9976,7 +10220,15 @@
       "name": "Improved Artillery Upgrade II",
       "leads_to": [
         "artillery4"
-      ]
+      ],
+      "unit_bonuses": {
+        "artillery": {
+          "soft_attack": 0.1
+        },
+        "artillery_brigade": {
+          "soft_attack": 0.1
+        }
+      }
     },
     "artillery4": {
       "categories": [
@@ -9990,15 +10242,11 @@
       "name": "Artillery IV",
       "leads_to": [
         "artillery5"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "artillery5": {
-      "artillery": {
-        "soft_attack": 0.1
-      },
-      "artillery_brigade": {
-        "soft_attack": 0.1
-      },
       "categories": [
         "artillery"
       ],
@@ -10007,27 +10255,41 @@
       "name": "Advanced Artillery Upgrade",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "artillery": {
+          "soft_attack": 0.1
+        },
+        "artillery_brigade": {
+          "soft_attack": 0.1
+        }
+      }
     },
     "mountain_gun": {
       "allow": {
         "always": false
       },
-      "anti_tank_brigade": {
-        "mountain": {
-          "movement": 0.15
-        }
-      },
-      "artillery_brigade": {
-        "mountain": {
-          "movement": 0.15
-        }
-      },
       "research_cost": 1,
       "name": "Mountain Gun",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "anti_tank_brigade": {
+          "terrain_bonuses": {
+            "mountain": {
+              "movement": 0.15
+            }
+          }
+        },
+        "artillery_brigade": {
+          "terrain_bonuses": {
+            "mountain": {
+              "movement": 0.15
+            }
+          }
+        }
+      }
     },
     "rocket_artillery": {
       "categories": [
@@ -10041,47 +10303,53 @@
       "name": "Support Rocket Artillery",
       "leads_to": [
         "rocket_artillery2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "rocket_artillery2": {
       "categories": [
         "rocketry"
       ],
-      "motorized_rocket_brigade": {
-        "soft_attack": 0.15
-      },
       "research_cost": 1,
-      "rocket_artillery": {
-        "soft_attack": 0.15
-      },
-      "rocket_artillery_brigade": {
-        "soft_attack": 0.15
-      },
       "start_year": 1941,
       "name": "Rocket Artillery Upgrade I",
       "leads_to": [
         "rocket_artillery3"
-      ]
+      ],
+      "unit_bonuses": {
+        "rocket_artillery": {
+          "soft_attack": 0.15
+        },
+        "rocket_artillery_brigade": {
+          "soft_attack": 0.15
+        },
+        "motorized_rocket_brigade": {
+          "soft_attack": 0.15
+        }
+      }
     },
     "rocket_artillery3": {
       "categories": [
         "rocketry"
       ],
-      "motorized_rocket_brigade": {
-        "soft_attack": 0.15
-      },
       "research_cost": 1,
-      "rocket_artillery": {
-        "soft_attack": 0.15
-      },
-      "rocket_artillery_brigade": {
-        "soft_attack": 0.15
-      },
       "start_year": 1942,
       "name": "Rocket Artillery Upgrade II",
       "leads_to": [
         "rocket_artillery4"
-      ]
+      ],
+      "unit_bonuses": {
+        "rocket_artillery": {
+          "soft_attack": 0.15
+        },
+        "rocket_artillery_brigade": {
+          "soft_attack": 0.15
+        },
+        "motorized_rocket_brigade": {
+          "soft_attack": 0.15
+        }
+      }
     },
     "rocket_artillery4": {
       "categories": [
@@ -10090,15 +10358,17 @@
       "enable_equipments": [
         "rocket_artillery_equipment_2"
       ],
-      "motorized_rocket_brigade": {
-        "soft_attack": 0.3
-      },
       "research_cost": 1,
       "start_year": 1943,
       "name": "Rocket Artillery III",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "motorized_rocket_brigade": {
+          "soft_attack": 0.3
+        }
+      }
     },
     "interwar_antiair": {
       "categories": [
@@ -10116,15 +10386,11 @@
       "name": "interwar_antiair",
       "leads_to": [
         "antiair1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "antiair1": {
-      "anti_air": {
-        "air_attack": 0.1
-      },
-      "anti_air_brigade": {
-        "air_attack": 0.1
-      },
       "categories": [
         "artillery"
       ],
@@ -10134,7 +10400,15 @@
       "name": "Anti-Air Upgrade",
       "leads_to": [
         "antiair2"
-      ]
+      ],
+      "unit_bonuses": {
+        "anti_air": {
+          "air_attack": 0.1
+        },
+        "anti_air_brigade": {
+          "air_attack": 0.1
+        }
+      }
     },
     "antiair2": {
       "categories": [
@@ -10149,15 +10423,11 @@
       "name": "Anti-Air II",
       "leads_to": [
         "antiair3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "antiair3": {
-      "anti_air": {
-        "air_attack": 0.1
-      },
-      "anti_air_brigade": {
-        "air_attack": 0.1
-      },
       "categories": [
         "artillery"
       ],
@@ -10167,15 +10437,17 @@
       "name": "Improved Anti-Air Upgrade I",
       "leads_to": [
         "antiair4"
-      ]
+      ],
+      "unit_bonuses": {
+        "anti_air": {
+          "air_attack": 0.1
+        },
+        "anti_air_brigade": {
+          "air_attack": 0.1
+        }
+      }
     },
     "antiair4": {
-      "anti_air": {
-        "air_attack": 0.1
-      },
-      "anti_air_brigade": {
-        "air_attack": 0.1
-      },
       "categories": [
         "artillery"
       ],
@@ -10185,7 +10457,15 @@
       "name": "Improved Anti-Air Upgrade II",
       "leads_to": [
         "antiair5"
-      ]
+      ],
+      "unit_bonuses": {
+        "anti_air": {
+          "air_attack": 0.1
+        },
+        "anti_air_brigade": {
+          "air_attack": 0.1
+        }
+      }
     },
     "antiair5": {
       "categories": [
@@ -10200,7 +10480,9 @@
       "name": "Anti-Air V",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "interwar_antitank": {
       "categories": [
@@ -10215,17 +10497,11 @@
       "name": "interwar_antitank",
       "leads_to": [
         "antitank1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "antitank1": {
-      "anti_tank": {
-        "ap_attack": 0.2,
-        "hard_attack": 0.1
-      },
-      "anti_tank_brigade": {
-        "ap_attack": 0.2,
-        "hard_attack": 0.1
-      },
       "categories": [
         "artillery",
         "cat_anti_tank"
@@ -10235,7 +10511,17 @@
       "name": "Anti-Tank Upgrade",
       "leads_to": [
         "antitank2"
-      ]
+      ],
+      "unit_bonuses": {
+        "anti_tank": {
+          "ap_attack": 0.2,
+          "hard_attack": 0.1
+        },
+        "anti_tank_brigade": {
+          "ap_attack": 0.2,
+          "hard_attack": 0.1
+        }
+      }
     },
     "antitank2": {
       "categories": [
@@ -10250,17 +10536,11 @@
       "name": "Anti-Tank II",
       "leads_to": [
         "antitank3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "antitank3": {
-      "anti_tank": {
-        "ap_attack": 0.1,
-        "hard_attack": 0.1
-      },
-      "anti_tank_brigade": {
-        "ap_attack": 0.1,
-        "hard_attack": 0.1
-      },
       "categories": [
         "artillery",
         "cat_anti_tank"
@@ -10270,17 +10550,19 @@
       "name": "Improved Anti-Tank Upgrade I",
       "leads_to": [
         "antitank4"
-      ]
+      ],
+      "unit_bonuses": {
+        "anti_tank": {
+          "ap_attack": 0.1,
+          "hard_attack": 0.1
+        },
+        "anti_tank_brigade": {
+          "ap_attack": 0.1,
+          "hard_attack": 0.1
+        }
+      }
     },
     "antitank4": {
-      "anti_tank": {
-        "ap_attack": 0.1,
-        "hard_attack": 0.1
-      },
-      "anti_tank_brigade": {
-        "ap_attack": 0.1,
-        "hard_attack": 0.1
-      },
       "categories": [
         "artillery",
         "cat_anti_tank"
@@ -10290,7 +10572,17 @@
       "name": "Improved Anti-Tank Upgrade II",
       "leads_to": [
         "antitank5"
-      ]
+      ],
+      "unit_bonuses": {
+        "anti_tank": {
+          "ap_attack": 0.1,
+          "hard_attack": 0.1
+        },
+        "anti_tank_brigade": {
+          "ap_attack": 0.1,
+          "hard_attack": 0.1
+        }
+      }
     },
     "antitank5": {
       "categories": [
@@ -10305,7 +10597,9 @@
       "name": "Anti-Tank V",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "electronic_mechanical_engineering": {
       "categories": [
@@ -10318,7 +10612,9 @@
       "leads_to": [
         "radio",
         "mechanical_computing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "radio": {
       "categories": [
@@ -10330,7 +10626,9 @@
       "start_year": 1936,
       "leads_to": [
         "radio_detection"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "radio_detection": {
       "categories": [
@@ -10346,7 +10644,9 @@
       "start_year": 1936,
       "leads_to": [
         "decimetric_radar"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "decimetric_radar": {
       "categories": [
@@ -10362,7 +10662,9 @@
       "name": "Decimetric Radar",
       "leads_to": [
         "improved_decimetric_radar"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_decimetric_radar": {
       "categories": [
@@ -10378,7 +10680,9 @@
       "name": "Improved Decimetric Radar",
       "leads_to": [
         "centimetric_radar"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "centimetric_radar": {
       "categories": [
@@ -10395,7 +10699,9 @@
       "name": "Centimetric Radar",
       "leads_to": [
         "improved_centimetric_radar"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_centimetric_radar": {
       "categories": [
@@ -10412,7 +10718,9 @@
       "name": "Improved Centimetric Radar",
       "leads_to": [
         "advanced_centimetric_radar"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_centimetric_radar": {
       "categories": [
@@ -10429,7 +10737,9 @@
       "name": "Advanced Centimetric Radar",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "mechanical_computing": {
       "categories": [
@@ -10442,7 +10752,9 @@
       "start_year": 1936,
       "leads_to": [
         "computing_machine"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "computing_machine": {
       "categories": [
@@ -10459,7 +10771,9 @@
         "improved_computing_machine",
         "basic_encryption",
         "basic_decryption"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_computing_machine": {
       "categories": [
@@ -10476,7 +10790,9 @@
         "advanced_computing_machine",
         "improved_encryption",
         "improved_decryption"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_computing_machine": {
       "categories": [
@@ -10492,7 +10808,9 @@
       "leads_to": [
         "advanced_encryption",
         "advanced_decryption"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_encryption": {
       "categories": [
@@ -10505,7 +10823,9 @@
       "name": "Encryption - Polyalphabetical Ciphers",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_encryption": {
       "categories": [
@@ -10518,7 +10838,9 @@
       "name": "Encryption - Cyclic Permutations",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_encryption": {
       "categories": [
@@ -10531,7 +10853,9 @@
       "name": "Encryption - Pulse-code Modulation",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_decryption": {
       "categories": [
@@ -10544,7 +10868,9 @@
       "name": "Decryption - Frequency Analysis",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_decryption": {
       "categories": [
@@ -10557,7 +10883,9 @@
       "name": "Decryption - Side-channel Attack",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_decryption": {
       "categories": [
@@ -10570,7 +10898,9 @@
       "name": "Decryption - Automated Deduction",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "experimental_rockets": {
       "categories": [
@@ -10585,7 +10915,9 @@
       "name": "Experimental Rockets",
       "leads_to": [
         "rocket_engines"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "rocket_engines": {
       "categories": [
@@ -10595,23 +10927,25 @@
         "rocket_interceptor_equipment_1",
         "guided_missile_equipment_1"
       ],
-      "motorized_rocket_brigade": {
-        "soft_attack": 0.05
-      },
       "research_cost": 2,
-      "rocket_artillery": {
-        "soft_attack": 0.05
-      },
-      "rocket_artillery_brigade": {
-        "soft_attack": 0.05
-      },
       "show_equipment_icon": true,
       "start_year": 1944,
       "name": "Rocket Engines",
       "leads_to": [
         "improved_rocket_engines",
         "jet_engines"
-      ]
+      ],
+      "unit_bonuses": {
+        "rocket_artillery": {
+          "soft_attack": 0.05
+        },
+        "rocket_artillery_brigade": {
+          "soft_attack": 0.05
+        },
+        "motorized_rocket_brigade": {
+          "soft_attack": 0.05
+        }
+      }
     },
     "improved_rocket_engines": {
       "categories": [
@@ -10621,22 +10955,24 @@
         "rocket_interceptor_equipment_2",
         "guided_missile_equipment_2"
       ],
-      "motorized_rocket_brigade": {
-        "soft_attack": 0.05
-      },
       "research_cost": 1.5,
-      "rocket_artillery": {
-        "soft_attack": 0.05
-      },
-      "rocket_artillery_brigade": {
-        "soft_attack": 0.05
-      },
       "show_equipment_icon": true,
       "start_year": 1945,
       "name": "Improved Rocket Engines",
       "leads_to": [
         "advanced_rocket_engines"
-      ]
+      ],
+      "unit_bonuses": {
+        "rocket_artillery": {
+          "soft_attack": 0.05
+        },
+        "rocket_artillery_brigade": {
+          "soft_attack": 0.05
+        },
+        "motorized_rocket_brigade": {
+          "soft_attack": 0.05
+        }
+      }
     },
     "advanced_rocket_engines": {
       "categories": [
@@ -10646,22 +10982,24 @@
         "rocket_interceptor_equipment_3",
         "guided_missile_equipment_3"
       ],
-      "motorized_rocket_brigade": {
-        "soft_attack": 0.05
-      },
       "research_cost": 1.5,
-      "rocket_artillery": {
-        "soft_attack": 0.05
-      },
-      "rocket_artillery_brigade": {
-        "soft_attack": 0.05
-      },
       "show_equipment_icon": true,
       "start_year": 1946,
       "name": "Advanced Rocket Engines",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "rocket_artillery": {
+          "soft_attack": 0.05
+        },
+        "rocket_artillery_brigade": {
+          "soft_attack": 0.05
+        },
+        "motorized_rocket_brigade": {
+          "soft_attack": 0.05
+        }
+      }
     },
     "jet_engines": {
       "categories": [
@@ -10677,7 +11015,9 @@
       "name": "Jet Engines",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "atomic_research": {
       "categories": [
@@ -10689,7 +11029,9 @@
       "name": "Atomic Research",
       "leads_to": [
         "nuclear_reactor"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "nuclear_reactor": {
       "categories": [
@@ -10704,7 +11046,9 @@
       "name": "Nuclear Reactor",
       "leads_to": [
         "nukes"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "nukes": {
       "categories": [
@@ -10716,7 +11060,9 @@
       "name": "Nuclear Bombs",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_machine_tools": {
       "categories": [
@@ -10730,7 +11076,9 @@
         "improved_machine_tools",
         "concentrated_industry",
         "dispersed_industry"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_machine_tools": {
       "categories": [
@@ -10743,7 +11091,9 @@
       "leads_to": [
         "advanced_machine_tools",
         "improved_equipment_conversion"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_machine_tools": {
       "categories": [
@@ -10755,7 +11105,9 @@
       "name": "Advanced Machine Tools",
       "leads_to": [
         "assembly_line_production"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "assembly_line_production": {
       "categories": [
@@ -10768,7 +11120,9 @@
       "leads_to": [
         "flexible_line",
         "streamlined_line"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "flexible_line": {
       "XOR": [
@@ -10784,7 +11138,9 @@
       "name": "Flexible Line",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "streamlined_line": {
       "XOR": [
@@ -10800,7 +11156,9 @@
       "name": "Streamlined Line",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_equipment_conversion": {
       "allow_branch": {
@@ -10815,7 +11173,9 @@
       "name": "Improved Equipment Conversion",
       "leads_to": [
         "advanced_equipment_conversion"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_equipment_conversion": {
       "categories": [
@@ -10827,7 +11187,9 @@
       "name": "Advanced Equipment Conversion",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "concentrated_industry": {
       "XOR": [
@@ -10844,7 +11206,9 @@
       "start_year": 1936,
       "leads_to": [
         "concentrated_industry2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "concentrated_industry2": {
       "categories": [
@@ -10858,7 +11222,9 @@
       "name": "Concentrated Industry II",
       "leads_to": [
         "concentrated_industry3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "concentrated_industry3": {
       "categories": [
@@ -10872,7 +11238,9 @@
       "name": "Concentrated Industry III",
       "leads_to": [
         "concentrated_industry4"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "concentrated_industry4": {
       "categories": [
@@ -10886,7 +11254,9 @@
       "name": "Concentrated Industry IV",
       "leads_to": [
         "concentrated_industry5"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "concentrated_industry5": {
       "categories": [
@@ -10900,7 +11270,9 @@
       "name": "Concentrated Industry V",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dispersed_industry": {
       "XOR": [
@@ -10921,7 +11293,9 @@
       "start_year": 1936,
       "leads_to": [
         "dispersed_industry2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dispersed_industry2": {
       "categories": [
@@ -10938,7 +11312,9 @@
       "name": "Dispersed Industry II",
       "leads_to": [
         "dispersed_industry3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dispersed_industry3": {
       "categories": [
@@ -10955,7 +11331,9 @@
       "name": "Dispersed Industry III",
       "leads_to": [
         "dispersed_industry4"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dispersed_industry4": {
       "categories": [
@@ -10972,7 +11350,9 @@
       "name": "Dispersed Industry IV",
       "leads_to": [
         "dispersed_industry5"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "dispersed_industry5": {
       "categories": [
@@ -10989,7 +11369,9 @@
       "name": "Dispersed Industry V",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "synth_oil_experiments": {
       "categories": [
@@ -11006,7 +11388,9 @@
       "leads_to": [
         "oil_processing",
         "rubber_processing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "oil_processing": {
       "categories": [
@@ -11026,7 +11410,9 @@
       "name": "Oil Processing",
       "leads_to": [
         "improved_oil_processing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_oil_processing": {
       "categories": [
@@ -11046,7 +11432,9 @@
       "name": "Improved Oil Processing",
       "leads_to": [
         "advanced_oil_processing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_oil_processing": {
       "categories": [
@@ -11066,7 +11454,9 @@
       "name": "Advanced Oil Processing",
       "leads_to": [
         "modern_oil_processing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "modern_oil_processing": {
       "categories": [
@@ -11086,7 +11476,9 @@
       "name": "Modern Oil Processing",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "rubber_processing": {
       "categories": [
@@ -11106,7 +11498,9 @@
       "name": "Rubber Processing",
       "leads_to": [
         "improved_rubber_processing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_rubber_processing": {
       "categories": [
@@ -11126,7 +11520,9 @@
       "name": "Improved Rubber Processing",
       "leads_to": [
         "advanced_rubber_processing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_rubber_processing": {
       "categories": [
@@ -11146,7 +11542,9 @@
       "name": "Advanced Rubber Processing",
       "leads_to": [
         "modern_rubber_processing"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "modern_rubber_processing": {
       "categories": [
@@ -11166,7 +11564,9 @@
       "name": "Modern Rubber Processing",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "construction1": {
       "categories": [
@@ -11181,7 +11581,9 @@
       "leads_to": [
         "construction2",
         "excavation1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "excavation1": {
       "categories": [
@@ -11194,7 +11596,9 @@
       "name": "Excavation I",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "construction2": {
       "categories": [
@@ -11209,7 +11613,9 @@
       "leads_to": [
         "construction3",
         "excavation2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "excavation2": {
       "categories": [
@@ -11223,7 +11629,9 @@
       "name": "Excavation II",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "construction3": {
       "categories": [
@@ -11238,7 +11646,9 @@
       "leads_to": [
         "construction4",
         "excavation3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "excavation3": {
       "categories": [
@@ -11252,7 +11662,9 @@
       "name": "Excavation III",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "construction4": {
       "categories": [
@@ -11267,7 +11679,9 @@
       "leads_to": [
         "construction5",
         "excavation4"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "excavation4": {
       "categories": [
@@ -11281,7 +11695,9 @@
       "name": "Excavation IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "construction5": {
       "categories": [
@@ -11295,7 +11711,9 @@
       "name": "Construction V",
       "leads_to": [
         "excavation5"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "excavation5": {
       "categories": [
@@ -11309,7 +11727,9 @@
       "name": "Excavation V",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "infantry_weapons": {
       "categories": [
@@ -11326,7 +11746,9 @@
       "name": "Infantry Weapons",
       "leads_to": [
         "infantry_weapons1"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "infantry_weapons1": {
       "categories": [
@@ -11340,30 +11762,34 @@
       "name": "infantry_weapons1",
       "leads_to": [
         "infantry_weapons2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "infantry_weapons2": {
       "categories": [
         "infantry_weapons"
       ],
-      "category_light_infantry": {
-        "soft_attack": 0.05
-      },
-      "cavalry": {
-        "soft_attack": 0.05
-      },
-      "mechanized": {
-        "soft_attack": 0.05
-      },
-      "motorized": {
-        "soft_attack": 0.05
-      },
       "research_cost": 1.5,
       "start_year": 1938,
       "name": "Improved Infantry Equipment I",
       "leads_to": [
         "improved_infantry_weapons"
-      ]
+      ],
+      "unit_bonuses": {
+        "cavalry": {
+          "soft_attack": 0.05
+        },
+        "motorized": {
+          "soft_attack": 0.05
+        },
+        "mechanized": {
+          "soft_attack": 0.05
+        },
+        "category_light_infantry": {
+          "soft_attack": 0.05
+        }
+      }
     },
     "improved_infantry_weapons": {
       "categories": [
@@ -11378,60 +11804,68 @@
       "leads_to": [
         "improved_infantry_weapons_2",
         "infantry_at"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_infantry_weapons_2": {
       "categories": [
         "infantry_weapons"
       ],
-      "category_light_infantry": {
-        "soft_attack": 0.05
-      },
-      "cavalry": {
-        "soft_attack": 0.05
-      },
-      "mechanized": {
-        "soft_attack": 0.05
-      },
-      "motorized": {
-        "soft_attack": 0.05
-      },
       "research_cost": 2,
       "start_year": 1940,
       "name": "Improved Infantry Equipment II",
       "leads_to": [
         "advanced_infantry_weapons"
-      ]
+      ],
+      "unit_bonuses": {
+        "cavalry": {
+          "soft_attack": 0.05
+        },
+        "motorized": {
+          "soft_attack": 0.05
+        },
+        "mechanized": {
+          "soft_attack": 0.05
+        },
+        "category_light_infantry": {
+          "soft_attack": 0.05
+        }
+      }
     },
     "infantry_at": {
       "categories": [
         "infantry_weapons"
       ],
-      "category_all_infantry": {
-        "ap_attack": 1,
-        "hard_attack": 0.25
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Infantry Anti-Tank I",
       "leads_to": [
         "infantry_at2"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_infantry": {
+          "ap_attack": 1,
+          "hard_attack": 0.25
+        }
+      }
     },
     "infantry_at2": {
       "categories": [
         "infantry_weapons"
       ],
-      "category_all_infantry": {
-        "ap_attack": 1,
-        "hard_attack": 0.25
-      },
       "research_cost": 1.5,
       "start_year": 1943,
       "name": "Infantry Anti-Tank II",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_infantry": {
+          "ap_attack": 1,
+          "hard_attack": 0.25
+        }
+      }
     },
     "advanced_infantry_weapons": {
       "categories": [
@@ -11445,30 +11879,34 @@
       "name": "advanced_infantry_weapons",
       "leads_to": [
         "advanced_infantry_weapons2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_infantry_weapons2": {
       "categories": [
         "infantry_weapons"
       ],
-      "category_light_infantry": {
-        "soft_attack": 0.05
-      },
-      "cavalry": {
-        "soft_attack": 0.1
-      },
-      "mechanized": {
-        "soft_attack": 0.1
-      },
-      "motorized": {
-        "soft_attack": 0.1
-      },
       "research_cost": 1.5,
       "start_year": 1944,
       "name": "Improved Infantry Equipment III",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "cavalry": {
+          "soft_attack": 0.1
+        },
+        "motorized": {
+          "soft_attack": 0.1
+        },
+        "mechanized": {
+          "soft_attack": 0.1
+        },
+        "category_light_infantry": {
+          "soft_attack": 0.05
+        }
+      }
     },
     "paratroopers": {
       "categories": [
@@ -11493,36 +11931,42 @@
       "name": "Paratroopers I",
       "leads_to": [
         "paratroopers2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "paratroopers2": {
       "categories": [
         "para_tech"
       ],
-      "paratrooper": {
-        "max_organisation": 5,
-        "soft_attack": 0.05
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Paratroopers II",
       "leads_to": [
         "paratroopers3"
-      ]
+      ],
+      "unit_bonuses": {
+        "paratrooper": {
+          "max_organisation": 5,
+          "soft_attack": 0.05
+        }
+      }
     },
     "paratroopers3": {
       "categories": [
         "para_tech"
       ],
-      "paratrooper": {
-        "max_organisation": 5
-      },
       "research_cost": 2.0,
       "start_year": 1943,
       "name": "Paratroopers III",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "paratrooper": {
+          "max_organisation": 5
+        }
+      }
     },
     "marines": {
       "categories": [
@@ -11547,36 +11991,42 @@
       "name": "Marines I",
       "leads_to": [
         "marines2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "marines2": {
       "categories": [
         "marine_tech"
       ],
-      "marine": {
-        "max_organisation": 5,
-        "soft_attack": 0.05
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Marines II",
       "leads_to": [
         "marines3"
-      ]
+      ],
+      "unit_bonuses": {
+        "marine": {
+          "max_organisation": 5,
+          "soft_attack": 0.05
+        }
+      }
     },
     "marines3": {
       "categories": [
         "marine_tech"
       ],
-      "marine": {
-        "max_organisation": 5
-      },
       "research_cost": 2.0,
       "start_year": 1943,
       "name": "Marines III",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "marine": {
+          "max_organisation": 5
+        }
+      }
     },
     "tech_mountaineers": {
       "categories": [
@@ -11602,38 +12052,44 @@
       "name": "Mountain Infantry I",
       "leads_to": [
         "tech_mountaineers2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_mountaineers2": {
       "categories": [
         "infantry_tech",
         "mountaineers_tech"
       ],
-      "mountaineers": {
-        "max_organisation": 5,
-        "soft_attack": 0.05
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Mountain Infantry II",
       "leads_to": [
         "tech_mountaineers3"
-      ]
+      ],
+      "unit_bonuses": {
+        "mountaineers": {
+          "max_organisation": 5,
+          "soft_attack": 0.05
+        }
+      }
     },
     "tech_mountaineers3": {
       "categories": [
         "infantry_tech",
         "mountaineers_tech"
       ],
-      "mountaineers": {
-        "max_organisation": 5
-      },
       "research_cost": 2.0,
       "start_year": 1943,
       "name": "Mountain Infantry III",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "mountaineers": {
+          "max_organisation": 5
+        }
+      }
     },
     "tech_special_forces": {
       "categories": [
@@ -11641,17 +12097,19 @@
         "marine_tech",
         "para_tech"
       ],
-      "category_special_forces": {
-        "acclimatization_cold_climate_gain_factor": 0.05,
-        "acclimatization_hot_climate_gain_factor": 0.05
-      },
       "research_cost": 2,
       "start_year": 1938,
       "name": "Special Forces",
       "leads_to": [
         "advanced_special_forces",
         "improved_special_forces"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_special_forces": {
+          "acclimatization_cold_climate_gain_factor": 0.05,
+          "acclimatization_hot_climate_gain_factor": 0.05
+        }
+      }
     },
     "advanced_special_forces": {
       "categories": [
@@ -11659,10 +12117,6 @@
         "marine_tech",
         "para_tech"
       ],
-      "category_special_forces": {
-        "defense": 0.05,
-        "max_organisation": 5
-      },
       "research_cost": 2,
       "special_forces_training_time_factor": 0.1,
       "start_year": 1940,
@@ -11672,7 +12126,13 @@
       "name": "Advanced Special Forces Training",
       "leads_to": [
         "extreme_environment_training"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_special_forces": {
+          "defense": 0.05,
+          "max_organisation": 5
+        }
+      }
     },
     "improved_special_forces": {
       "categories": [
@@ -11690,7 +12150,9 @@
       "name": "Expanded Special Forces Program",
       "leads_to": [
         "survival_training"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "extreme_environment_training": {
       "categories": [
@@ -11698,10 +12160,6 @@
         "marine_tech",
         "para_tech"
       ],
-      "category_special_forces": {
-        "acclimatization_cold_climate_gain_factor": 0.5,
-        "acclimatization_hot_climate_gain_factor": 0.5
-      },
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
       "special_forces_training_time_factor": 0.1,
@@ -11709,7 +12167,13 @@
       "name": "Extreme Environment Training",
       "leads_to": [
         "elite_forces"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_special_forces": {
+          "acclimatization_cold_climate_gain_factor": 0.5,
+          "acclimatization_hot_climate_gain_factor": 0.5
+        }
+      }
     },
     "survival_training": {
       "categories": [
@@ -11717,17 +12181,19 @@
         "marine_tech",
         "para_tech"
       ],
-      "category_special_forces": {
-        "acclimatization_cold_climate_gain_factor": 0.2,
-        "acclimatization_hot_climate_gain_factor": 0.2
-      },
       "research_cost": 2,
       "special_forces_out_of_supply_factor": -0.1,
       "start_year": 1942,
       "name": "Survival Training",
       "leads_to": [
         "elite_forces"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_special_forces": {
+          "acclimatization_cold_climate_gain_factor": 0.2,
+          "acclimatization_hot_climate_gain_factor": 0.2
+        }
+      }
     },
     "elite_forces": {
       "categories": [
@@ -11735,67 +12201,81 @@
         "marine_tech",
         "para_tech"
       ],
-      "category_special_forces": {
-        "acclimatization_cold_climate_gain_factor": 0.2,
-        "acclimatization_hot_climate_gain_factor": 0.2,
-        "max_organisation": 5,
-        "soft_attack": 0.05
-      },
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
       "start_year": 1944,
       "name": "Elite Forces",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "category_special_forces": {
+          "acclimatization_cold_climate_gain_factor": 0.2,
+          "acclimatization_hot_climate_gain_factor": 0.2,
+          "max_organisation": 5,
+          "soft_attack": 0.05
+        }
+      }
     },
     "jungle_warfare": {
       "allow": {
         "always": false
       },
-      "marine": {
-        "jungle": {
-          "attack": 0.05,
-          "movement": 0.1
-        }
-      },
-      "mountaineers": {
-        "jungle": {
-          "attack": 0.05,
-          "movement": 0.1
-        }
-      },
-      "paratrooper": {
-        "jungle": {
-          "attack": 0.05,
-          "movement": 0.1
-        }
-      },
       "research_cost": 1,
       "name": "Jungle Warfare",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "marine": {
+          "terrain_bonuses": {
+            "jungle": {
+              "attack": 0.05,
+              "movement": 0.1
+            }
+          }
+        },
+        "mountaineers": {
+          "terrain_bonuses": {
+            "jungle": {
+              "attack": 0.05,
+              "movement": 0.1
+            }
+          }
+        },
+        "paratrooper": {
+          "terrain_bonuses": {
+            "jungle": {
+              "attack": 0.05,
+              "movement": 0.1
+            }
+          }
+        }
+      }
     },
     "HUN_light_infantry_tech": {
       "allow": {
         "always": false
       },
-      "infantry": {
-        "forest": {
-          "attack": 0.02,
-          "movement": 0.05
-        },
-        "urban": {
-          "attack": 0.05,
-          "movement": 0.05
-        }
-      },
       "research_cost": 1,
       "name": "Light Infantry Divisions Doctrine",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "infantry": {
+          "terrain_bonuses": {
+            "forest": {
+              "attack": 0.02,
+              "movement": 0.05
+            },
+            "urban": {
+              "attack": 0.05,
+              "movement": 0.05
+            }
+          }
+        }
+      }
     },
     "night_vision": {
       "categories": [
@@ -11807,7 +12287,9 @@
       "name": "Night Vision I",
       "leads_to": [
         "night_vision2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "night_vision2": {
       "categories": [
@@ -11819,163 +12301,173 @@
       "name": "Night Vision II",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "support_weapons": {
       "categories": [
         "infantry_weapons"
       ],
-      "cavalry": {
-        "breakthrough": 0.02,
-        "defense": 0.02
-      },
-      "infantry": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "marine": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "mechanized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "motorized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "mountaineers": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "paratrooper": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
       "research_cost": 1.5,
       "start_year": 1918,
       "name": "Support Weapons I",
       "leads_to": [
         "support_weapons2"
-      ]
+      ],
+      "unit_bonuses": {
+        "cavalry": {
+          "breakthrough": 0.02,
+          "defense": 0.02
+        },
+        "infantry": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "marine": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "mountaineers": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "paratrooper": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "motorized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "mechanized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        }
+      }
     },
     "support_weapons2": {
       "categories": [
         "infantry_weapons"
       ],
-      "cavalry": {
-        "breakthrough": 0.02,
-        "defense": 0.02
-      },
-      "infantry": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "marine": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "mechanized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "motorized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "mountaineers": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "paratrooper": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
       "research_cost": 1.5,
       "start_year": 1938,
       "name": "Support Weapons II",
       "leads_to": [
         "support_weapons3"
-      ]
+      ],
+      "unit_bonuses": {
+        "cavalry": {
+          "breakthrough": 0.02,
+          "defense": 0.02
+        },
+        "infantry": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "marine": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "mountaineers": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "paratrooper": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "motorized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "mechanized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        }
+      }
     },
     "support_weapons3": {
       "categories": [
         "infantry_weapons"
       ],
-      "cavalry": {
-        "breakthrough": 0.02,
-        "defense": 0.02
-      },
-      "infantry": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "marine": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "mechanized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "motorized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "mountaineers": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "paratrooper": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
       "research_cost": 1.5,
       "start_year": 1940,
       "name": "Support Weapons III",
       "leads_to": [
         "support_weapons4"
-      ]
+      ],
+      "unit_bonuses": {
+        "cavalry": {
+          "breakthrough": 0.02,
+          "defense": 0.02
+        },
+        "infantry": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "marine": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "mountaineers": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "paratrooper": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "motorized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "mechanized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        }
+      }
     },
     "support_weapons4": {
       "categories": [
         "infantry_weapons"
       ],
-      "cavalry": {
-        "breakthrough": 0.02,
-        "defense": 0.02
-      },
-      "infantry": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "marine": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "mechanized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "motorized": {
-        "breakthrough": 0.05,
-        "defense": 0.05
-      },
-      "mountaineers": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
-      "paratrooper": {
-        "breakthrough": 0.03,
-        "defense": 0.03
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Support Weapons IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "cavalry": {
+          "breakthrough": 0.02,
+          "defense": 0.02
+        },
+        "infantry": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "marine": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "mountaineers": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "paratrooper": {
+          "breakthrough": 0.03,
+          "defense": 0.03
+        },
+        "motorized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        },
+        "mechanized": {
+          "breakthrough": 0.05,
+          "defense": 0.05
+        }
+      }
     },
     "motorised_infantry": {
       "categories": [
@@ -12007,7 +12499,9 @@
       "name": "Motorized Infantry",
       "leads_to": [
         "mechanised_infantry"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "motorized_rocket_unit": {
       "categories": [
@@ -12024,7 +12518,9 @@
       "name": "Motorized Rocket Artillery",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "mechanised_infantry": {
       "categories": [
@@ -12035,15 +12531,17 @@
       "enable_equipments": [
         "mechanized_equipment_1"
       ],
-      "motorized": {
-        "hardness": 1.0
-      },
       "research_cost": 2,
       "start_year": 1940,
       "name": "mechanised_infantry",
       "leads_to": [
         "mechanised_infantry2"
-      ]
+      ],
+      "unit_bonuses": {
+        "motorized": {
+          "hardness": 1.0
+        }
+      }
     },
     "mechanised_infantry2": {
       "categories": [
@@ -12059,7 +12557,9 @@
       "name": "mechanised_infantry2",
       "leads_to": [
         "mechanised_infantry3"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "mechanised_infantry3": {
       "categories": [
@@ -12070,16 +12570,18 @@
       "enable_equipments": [
         "mechanized_equipment_3"
       ],
-      "mechanized": {
-        "hard_attack": 0.15,
-        "soft_attack": 0.15
-      },
       "research_cost": 3,
       "start_year": 1944,
       "name": "mechanised_infantry3",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "mechanized": {
+          "hard_attack": 0.15,
+          "soft_attack": 0.15
+        }
+      }
     },
     "bicycle_infantry": {
       "allow": {
@@ -12093,7 +12595,9 @@
       "name": "Bicycle Infantry",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "mobile_warfare": {
       "army_speed_factor": 0.1,
@@ -12101,9 +12605,6 @@
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_armor": {
-        "breakthrough": 0.2
-      },
       "doctrine": true,
       "enable_tactic": "tactic_unexpected_thrust",
       "org_loss_when_moving": -0.1,
@@ -12117,35 +12618,36 @@
       "name": "Mobile Warfare",
       "leads_to": [
         "delay"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_armor": {
+          "breakthrough": 0.2
+        }
+      }
     },
     "delay": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_infantry": {
-        "max_organisation": 15
-      },
       "doctrine": true,
       "enable_tactic": "tactic_delay",
       "research_cost": 3,
       "name": "Delay",
       "leads_to": [
         "elastic_defence"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_infantry": {
+          "max_organisation": 15
+        }
+      }
     },
     "elastic_defence": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_armor": {
-        "maximum_speed": 0.1
-      },
-      "category_tanks": {
-        "max_organisation": 1
-      },
       "doctrine": true,
       "enable_tactic": "tactic_elastic_defense",
       "land_reinforce_rate": 0.02,
@@ -12154,7 +12656,15 @@
       "leads_to": [
         "mobile_infantry",
         "armored_spearhead"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 1
+        },
+        "category_all_armor": {
+          "maximum_speed": 0.1
+        }
+      }
     },
     "mobile_infantry": {
       "categories": [
@@ -12162,14 +12672,6 @@
         "cat_mobile_warfare"
       ],
       "doctrine": true,
-      "mechanized": {
-        "default_morale": 0.2,
-        "maximum_speed": 0.1
-      },
-      "motorized": {
-        "default_morale": 0.2,
-        "maximum_speed": 0.1
-      },
       "research_cost": 3,
       "xor": [
         "armored_spearhead"
@@ -12177,54 +12679,64 @@
       "name": "Mobile Infantry",
       "leads_to": [
         "mass_motorization"
-      ]
+      ],
+      "unit_bonuses": {
+        "motorized": {
+          "default_morale": 0.2,
+          "maximum_speed": 0.1
+        },
+        "mechanized": {
+          "default_morale": 0.2,
+          "maximum_speed": 0.1
+        }
+      }
     },
     "mass_motorization": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_infantry": {
-        "max_organisation": 10
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "Mass Motorization",
       "leads_to": [
         "mechanised_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_infantry": {
+          "max_organisation": 10
+        }
+      }
     },
     "mechanised_offensive": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_tanks": {
-        "max_organisation": 3
-      },
       "doctrine": true,
       "enable_tactic": "tactic_blitz",
-      "mechanized": {
-        "max_organisation": 15
-      },
-      "motorized": {
-        "max_organisation": 15
-      },
       "research_cost": 3,
       "name": "Mechanized Offensive",
       "leads_to": [
         "kampfgruppe"
-      ]
+      ],
+      "unit_bonuses": {
+        "motorized": {
+          "max_organisation": 15
+        },
+        "mechanized": {
+          "max_organisation": 15
+        },
+        "category_tanks": {
+          "max_organisation": 3
+        }
+      }
     },
     "armored_spearhead": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_tanks": {
-        "breakthrough": 0.2,
-        "max_organisation": 3
-      },
       "doctrine": true,
       "enable_tactic": "tactic_blitz",
       "research_cost": 3,
@@ -12234,60 +12746,66 @@
       "name": "Armored Spearhead",
       "leads_to": [
         "schwerpunk"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "breakthrough": 0.2,
+          "max_organisation": 3
+        }
+      }
     },
     "schwerpunk": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_armor": {
-        "default_morale": 0.1
-      },
-      "category_tanks": {
-        "max_organisation": 2
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "Schwerpunkt",
       "leads_to": [
         "blitzkrieg"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 2
+        },
+        "category_all_armor": {
+          "default_morale": 0.1
+        }
+      }
     },
     "blitzkrieg": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_armor": {
-        "default_morale": 0.1
-      },
-      "category_tanks": {
-        "max_organisation": 1
-      },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
-      "mechanized": {
-        "max_organisation": 5
-      },
-      "motorized": {
-        "max_organisation": 5
-      },
       "research_cost": 3,
       "name": "Blitzkrieg",
       "leads_to": [
         "kampfgruppe"
-      ]
+      ],
+      "unit_bonuses": {
+        "motorized": {
+          "max_organisation": 5
+        },
+        "mechanized": {
+          "max_organisation": 5
+        },
+        "category_tanks": {
+          "max_organisation": 1
+        },
+        "category_all_armor": {
+          "default_morale": 0.1
+        }
+      }
     },
     "kampfgruppe": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_infantry": {
-        "default_morale": 0.2,
-        "max_organisation": 10
-      },
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
       "planning_speed": 0.2,
@@ -12296,19 +12814,19 @@
       "leads_to": [
         "firebrigades",
         "volkssturm"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_infantry": {
+          "default_morale": 0.2,
+          "max_organisation": 10
+        }
+      }
     },
     "firebrigades": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_infantry": {
-        "max_organisation": 10
-      },
-      "category_tanks": {
-        "max_organisation": 2
-      },
       "doctrine": true,
       "research_cost": 3,
       "xor": [
@@ -12317,7 +12835,15 @@
       "name": "Fire brigades",
       "leads_to": [
         "backhand_blow"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 2
+        },
+        "category_all_infantry": {
+          "max_organisation": 10
+        }
+      }
     },
     "backhand_blow": {
       "categories": [
@@ -12330,26 +12856,30 @@
       "name": "Backhand Blow",
       "leads_to": [
         "modern_blitzkrieg"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "modern_blitzkrieg": {
       "categories": [
         "land_doctrine",
         "cat_mobile_warfare"
       ],
-      "category_all_armor": {
-        "default_morale": 0.2
-      },
-      "category_tanks": {
-        "breakthrough": 0.2,
-        "max_organisation": 3
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "Modern Blitzkrieg",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "breakthrough": 0.2,
+          "max_organisation": 3
+        },
+        "category_all_armor": {
+          "default_morale": 0.2
+        }
+      }
     },
     "volkssturm": {
       "categories": [
@@ -12365,7 +12895,9 @@
       "name": "Volkssturm",
       "leads_to": [
         "nd_conscription"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "nd_conscription": {
       "categories": [
@@ -12378,7 +12910,9 @@
       "name": "Non-Discriminatory Conscription",
       "leads_to": [
         "werwolf_guerillas"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "werwolf_guerillas": {
       "categories": [
@@ -12392,16 +12926,15 @@
       "name": "Werwolf Guerrillas",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "superior_firepower": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_front_line": {
-        "soft_attack": 0.2
-      },
       "doctrine": true,
       "enable_tactic": "tactic_barrage",
       "research_cost": 1.5,
@@ -12413,32 +12946,36 @@
       "name": "Superior Firepower",
       "leads_to": [
         "sup_delay"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_front_line": {
+          "soft_attack": 0.2
+        }
+      }
     },
     "sup_delay": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_light_infantry": {
-        "max_organisation": 10
-      },
       "doctrine": true,
       "enable_tactic": "tactic_delay",
       "research_cost": 3,
       "name": "Delay",
       "leads_to": [
         "mobile_defence"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_light_infantry": {
+          "max_organisation": 10
+        }
+      }
     },
     "mobile_defence": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_all_infantry": {
-        "defense": 0.2
-      },
       "doctrine": true,
       "enable_tactic": "tactic_elastic_defense",
       "research_cost": 3,
@@ -12446,17 +12983,18 @@
       "leads_to": [
         "intergrated_support",
         "dispersed_support"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_infantry": {
+          "defense": 0.2
+        }
+      }
     },
     "intergrated_support": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_support_battalions": {
-        "max_organisation": 10,
-        "soft_attack": 0.25
-      },
       "doctrine": true,
       "research_cost": 3,
       "xor": [
@@ -12465,33 +13003,38 @@
       "name": "Integrated Support",
       "leads_to": [
         "regimental_combat_teams"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_support_battalions": {
+          "max_organisation": 10,
+          "soft_attack": 0.25
+        }
+      }
     },
     "regimental_combat_teams": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_support_battalions": {
-        "max_organisation": 10,
-        "soft_attack": 0.25
-      },
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
       "research_cost": 3,
       "name": "Regimental Combat Teams",
       "leads_to": [
         "sup_mechanized_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_support_battalions": {
+          "max_organisation": 10,
+          "soft_attack": 0.25
+        }
+      }
     },
     "dispersed_support": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_line_artillery": {
-        "default_morale": 0.2
-      },
       "doctrine": true,
       "research_cost": 3,
       "xor": [
@@ -12500,32 +13043,36 @@
       "name": "Dispersed Support",
       "leads_to": [
         "overwhelming_firepower"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_line_artillery": {
+          "default_morale": 0.2
+        }
+      }
     },
     "overwhelming_firepower": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_line_artillery": {
-        "soft_attack": 0.1
-      },
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
       "research_cost": 3,
       "name": "Overwhelming Firepower",
       "leads_to": [
         "sup_mechanized_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_line_artillery": {
+          "soft_attack": 0.1
+        }
+      }
     },
     "sup_mechanized_offensive": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_all_armor": {
-        "breakthrough": 0.1
-      },
       "doctrine": true,
       "enable_tactic": "tactic_blitz",
       "research_cost": 3,
@@ -12533,16 +13080,18 @@
       "leads_to": [
         "concentrated_fire_plans",
         "centralized_fire_control"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_armor": {
+          "breakthrough": 0.1
+        }
+      }
     },
     "concentrated_fire_plans": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_army": {
-        "hard_attack": 0.1
-      },
       "doctrine": true,
       "research_cost": 3,
       "xor": [
@@ -12551,24 +13100,31 @@
       "name": "Concentrated Fire Plans",
       "leads_to": [
         "combined_arms"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_army": {
+          "hard_attack": 0.1
+        }
+      }
     },
     "combined_arms": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_all_armor": {
-        "hard_attack": 0.1,
-        "soft_attack": 0.1
-      },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
       "research_cost": 3,
       "name": "Combined Arms",
       "leads_to": [
         "tactical_control"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_armor": {
+          "hard_attack": 0.1,
+          "soft_attack": 0.1
+        }
+      }
     },
     "tactical_control": {
       "categories": [
@@ -12582,7 +13138,9 @@
       "name": "Tactical Control",
       "leads_to": [
         "air_land_battle"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "air_land_battle": {
       "army_bonus_air_superiority_factor": 0.2,
@@ -12590,27 +13148,23 @@
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_front_line": {
-        "max_organisation": 5
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "AirLand Battle",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "category_front_line": {
+          "max_organisation": 5
+        }
+      }
     },
     "centralized_fire_control": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_all_infantry": {
-        "soft_attack": 0.05
-      },
-      "category_artillery": {
-        "soft_attack": 0.05
-      },
       "doctrine": true,
       "research_cost": 3,
       "xor": [
@@ -12619,7 +13173,15 @@
       "name": "Centralized Fire Control",
       "leads_to": [
         "forward_observers"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_artillery": {
+          "soft_attack": 0.05
+        },
+        "category_all_infantry": {
+          "soft_attack": 0.05
+        }
+      }
     },
     "forward_observers": {
       "categories": [
@@ -12628,58 +13190,64 @@
       ],
       "doctrine": true,
       "land_reinforce_rate": 0.02,
-      "recon": {
-        "recon": 1
-      },
       "research_cost": 3,
       "name": "Forward Observers",
       "leads_to": [
         "advanced_firebases"
-      ]
+      ],
+      "unit_bonuses": {
+        "recon": {
+          "recon": 1
+        }
+      }
     },
     "advanced_firebases": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_all_armor": {
-        "default_morale": 0.05
-      },
-      "category_all_infantry": {
-        "default_morale": 0.05,
-        "max_organisation": 10
-      },
-      "category_tanks": {
-        "max_organisation": 2
-      },
       "doctrine": true,
       "enable_tactic": "tactic_tactical_withdrawal",
       "research_cost": 3,
       "name": "Advanced Firebases",
       "leads_to": [
         "shock_and_awe"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 2
+        },
+        "category_all_armor": {
+          "default_morale": 0.05
+        },
+        "category_all_infantry": {
+          "default_morale": 0.05,
+          "max_organisation": 10
+        }
+      }
     },
     "shock_and_awe": {
       "categories": [
         "land_doctrine",
         "cat_superior_firepower"
       ],
-      "category_all_infantry": {
-        "hard_attack": 0.05,
-        "soft_attack": 0.05
-      },
-      "category_artillery": {
-        "hard_attack": 0.05,
-        "soft_attack": 0.05
-      },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
       "research_cost": 3,
       "name": "Shock and Awe",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "category_artillery": {
+          "hard_attack": 0.05,
+          "soft_attack": 0.05
+        },
+        "category_all_infantry": {
+          "hard_attack": 0.05,
+          "soft_attack": 0.05
+        }
+      }
     },
     "trench_warfare": {
       "categories": [
@@ -12698,7 +13266,9 @@
       "name": "Trench Warfare",
       "leads_to": [
         "grand_battle_plan"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "grand_battle_plan": {
       "categories": [
@@ -12711,33 +13281,33 @@
       "name": "Grand Battle Plan",
       "leads_to": [
         "prepared_defense"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "prepared_defense": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_all_infantry": {
-        "defense": 0.1,
-        "max_organisation": 10
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "Prepared Defense",
       "leads_to": [
         "grand_assault"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_all_infantry": {
+          "defense": 0.1,
+          "max_organisation": 10
+        }
+      }
     },
     "grand_assault": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_army": {
-        "breakthrough": 0.1,
-        "soft_attack": 0.05
-      },
       "doctrine": true,
       "enable_tactic": "tactic_planned_attack",
       "research_cost": 3,
@@ -12745,7 +13315,13 @@
       "leads_to": [
         "grand_mechanized_offensive",
         "infantry_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_army": {
+          "breakthrough": 0.1,
+          "soft_attack": 0.05
+        }
+      }
     },
     "grand_mechanized_offensive": {
       "categories": [
@@ -12757,12 +13333,6 @@
         "tactic_blitz",
         "tactic_elastic_defense"
       ],
-      "mechanized": {
-        "max_organisation": 5
-      },
-      "motorized": {
-        "max_organisation": 5
-      },
       "research_cost": 3,
       "xor": [
         "infantry_offensive"
@@ -12770,7 +13340,15 @@
       "name": "Mechanized Offensive",
       "leads_to": [
         "assault_concentration"
-      ]
+      ],
+      "unit_bonuses": {
+        "motorized": {
+          "max_organisation": 5
+        },
+        "mechanized": {
+          "max_organisation": 5
+        }
+      }
     },
     "assault_concentration": {
       "categories": [
@@ -12784,41 +13362,47 @@
       "name": "Assault Concentration",
       "leads_to": [
         "branch_interoperation"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "branch_interoperation": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_all_infantry": {
-        "max_organisation": 5
-      },
-      "category_tanks": {
-        "max_organisation": 1
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "Branch Inter-Operation",
       "leads_to": [
         "assault_breakthrough"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 1
+        },
+        "category_all_infantry": {
+          "max_organisation": 5
+        }
+      }
     },
     "assault_breakthrough": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_army": {
-        "breakthrough": 0.1
-      },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
       "research_cost": 3,
       "name": "Assault Breakthrough",
       "leads_to": [
         "central_planning"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_army": {
+          "breakthrough": 0.1
+        }
+      }
     },
     "central_planning": {
       "categories": [
@@ -12831,36 +13415,36 @@
       "name": "Central Planning",
       "leads_to": [
         "c3i_theory"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "c3i_theory": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_all_infantry": {
-        "max_organisation": 5
-      },
-      "category_tanks": {
-        "max_organisation": 1
-      },
       "doctrine": true,
       "land_reinforce_rate": 0.02,
       "research_cost": 3,
       "name": "C3I",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 1
+        },
+        "category_all_infantry": {
+          "max_organisation": 5
+        }
+      }
     },
     "infantry_offensive": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_light_infantry": {
-        "breakthrough": 0.1,
-        "max_organisation": 5
-      },
       "doctrine": true,
       "enable_tactic": "tactic_infantry_charge",
       "research_cost": 3,
@@ -12870,19 +13454,19 @@
       "name": "Infantry Offensive",
       "leads_to": [
         "armored_operations"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_light_infantry": {
+          "breakthrough": 0.1,
+          "max_organisation": 5
+        }
+      }
     },
     "armored_operations": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_all_armor": {
-        "default_morale": 0.1
-      },
-      "category_tanks": {
-        "max_organisation": 2
-      },
       "doctrine": true,
       "enable_tactic": [
         "tactic_blitz",
@@ -12892,7 +13476,15 @@
       "name": "Armored Operations",
       "leads_to": [
         "infiltration_assault"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 2
+        },
+        "category_all_armor": {
+          "default_morale": 0.1
+        }
+      }
     },
     "infiltration_assault": {
       "categories": [
@@ -12905,7 +13497,9 @@
       "name": "Infiltration Assault",
       "leads_to": [
         "night_assault_tactics"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "night_assault_tactics": {
       "categories": [
@@ -12918,25 +13512,29 @@
       "name": "Night Assault Tactics",
       "leads_to": [
         "attritional_containment"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "attritional_containment": {
       "categories": [
         "land_doctrine",
         "cat_grand_battle_plan"
       ],
-      "category_all_infantry": {
-        "max_organisation": 5
-      },
-      "category_tanks": {
-        "max_organisation": 1
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "Attritional Containment",
       "leads_to": [
         "infiltration_in_depth"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 1
+        },
+        "category_all_infantry": {
+          "max_organisation": 5
+        }
+      }
     },
     "infiltration_in_depth": {
       "categories": [
@@ -12945,14 +13543,16 @@
       ],
       "doctrine": true,
       "land_reinforce_rate": 0.02,
-      "recon": {
-        "recon": 1
-      },
       "research_cost": 3,
       "name": "Infiltration in Depth",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "recon": {
+          "recon": 1
+        }
+      }
     },
     "mass_assault": {
       "categories": [
@@ -12971,7 +13571,9 @@
       "name": "Mass Assault",
       "leads_to": [
         "pocket_defence"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "pocket_defence": {
       "categories": [
@@ -12985,16 +13587,15 @@
       "name": "Pocket Defense",
       "leads_to": [
         "defence_in_depth"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "defence_in_depth": {
       "categories": [
         "land_doctrine",
         "cat_mass_assault"
       ],
-      "category_light_infantry": {
-        "max_organisation": 5
-      },
       "doctrine": true,
       "max_dig_in": 5,
       "research_cost": 3,
@@ -13002,7 +13603,12 @@
       "leads_to": [
         "large_front_operations",
         "peoples_army"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_light_infantry": {
+          "max_organisation": 5
+        }
+      }
     },
     "large_front_operations": {
       "categories": [
@@ -13019,23 +13625,27 @@
       "name": "Large Front Operations",
       "leads_to": [
         "deep_operations"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "deep_operations": {
       "categories": [
         "land_doctrine",
         "cat_mass_assault"
       ],
-      "category_tanks": {
-        "max_organisation": 2
-      },
       "doctrine": true,
       "enable_tactic": "tactic_blitz",
       "research_cost": 3,
       "name": "Deep Operations",
       "leads_to": [
         "operational_concentration"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 2
+        }
+      }
     },
     "operational_concentration": {
       "categories": [
@@ -13050,7 +13660,9 @@
       "name": "Operational Concentration",
       "leads_to": [
         "vast_offensives"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "vast_offensives": {
       "categories": [
@@ -13059,62 +13671,68 @@
       ],
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
-      "infantry": {
-        "combat_width": -0.4
-      },
       "research_cost": 3,
       "supply_consumption_factor": -0.1,
       "name": "Vast Offensives",
       "leads_to": [
         "breakthrough_priority"
-      ]
+      ],
+      "unit_bonuses": {
+        "infantry": {
+          "combat_width": -0.4
+        }
+      }
     },
     "breakthrough_priority": {
       "categories": [
         "land_doctrine",
         "cat_mass_assault"
       ],
-      "category_all_infantry": {
-        "breakthrough": 0.1,
-        "max_organisation": 5
-      },
-      "category_tanks": {
-        "breakthrough": 0.1,
-        "max_organisation": 1
-      },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
       "research_cost": 3,
       "name": "Breakthrough Priority",
       "leads_to": [
         "mechanized_wave"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "breakthrough": 0.1,
+          "max_organisation": 1
+        },
+        "category_all_infantry": {
+          "breakthrough": 0.1,
+          "max_organisation": 5
+        }
+      }
     },
     "mechanized_wave": {
       "categories": [
         "land_doctrine",
         "cat_mass_assault"
       ],
-      "category_all_armor": {
-        "default_morale": 0.1
-      },
-      "category_tanks": {
-        "max_organisation": 2
-      },
       "doctrine": true,
-      "mechanized": {
-        "default_morale": 0.1,
-        "max_organisation": 10
-      },
-      "motorized": {
-        "default_morale": 0.1,
-        "max_organisation": 10
-      },
       "research_cost": 3,
       "name": "Mechanized Wave",
       "leads_to": [
         "continuous_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "motorized": {
+          "default_morale": 0.1,
+          "max_organisation": 10
+        },
+        "mechanized": {
+          "default_morale": 0.1,
+          "max_organisation": 10
+        },
+        "category_tanks": {
+          "max_organisation": 2
+        },
+        "category_all_armor": {
+          "default_morale": 0.1
+        }
+      }
     },
     "continuous_offensive": {
       "categories": [
@@ -13129,7 +13747,9 @@
       "name": "Continuous Offensive",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "peoples_army": {
       "attrition": -0.1,
@@ -13147,7 +13767,9 @@
       "name": "People's Army",
       "leads_to": [
         "human_infantry_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "human_infantry_offensive": {
       "categories": [
@@ -13155,33 +13777,37 @@
         "cat_mass_assault"
       ],
       "doctrine": true,
-      "infantry": {
-        "default_morale": 0.3
-      },
       "land_reinforce_rate": 0.05,
       "research_cost": 3,
       "name": "Infantry Offensive",
       "leads_to": [
         "large_front_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "infantry": {
+          "default_morale": 0.3
+        }
+      }
     },
     "large_front_offensive": {
       "categories": [
         "land_doctrine",
         "cat_mass_assault"
       ],
-      "category_all_infantry": {
-        "max_organisation": 10
-      },
-      "category_tanks": {
-        "max_organisation": 2
-      },
       "doctrine": true,
       "research_cost": 3,
       "name": "Large Front Offensive",
       "leads_to": [
         "human_wave_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "category_tanks": {
+          "max_organisation": 2
+        },
+        "category_all_infantry": {
+          "max_organisation": 10
+        }
+      }
     },
     "human_wave_offensive": {
       "categories": [
@@ -13190,24 +13816,23 @@
       ],
       "conscription": 0.05,
       "doctrine": true,
-      "infantry": {
-        "combat_width": -0.4
-      },
       "land_reinforce_rate": 0.15,
       "research_cost": 3,
       "name": "Human Wave Offensive",
       "leads_to": [
         "guerilla_warfare"
-      ]
+      ],
+      "unit_bonuses": {
+        "infantry": {
+          "combat_width": -0.4
+        }
+      }
     },
     "guerilla_warfare": {
       "categories": [
         "land_doctrine",
         "cat_mass_assault"
       ],
-      "category_army": {
-        "default_morale": 0.2
-      },
       "doctrine": true,
       "enable_tactic": "tactic_guerrilla_tactics",
       "out_of_supply_factor": -0.3,
@@ -13216,7 +13841,12 @@
       "name": "Guerrilla Warfare",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "category_army": {
+          "default_morale": 0.2
+        }
+      }
     },
     "early_destroyer": {
       "categories": [
@@ -13231,7 +13861,9 @@
       "name": "early_destroyer",
       "leads_to": [
         "basic_destroyer"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_destroyer": {
       "categories": [
@@ -13246,7 +13878,9 @@
       "name": "basic_destroyer",
       "leads_to": [
         "improved_destroyer"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_destroyer": {
       "categories": [
@@ -13261,7 +13895,9 @@
       "name": "improved_destroyer",
       "leads_to": [
         "advanced_destroyer"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_destroyer": {
       "categories": [
@@ -13276,7 +13912,9 @@
       "name": "advanced_destroyer",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_light_cruiser": {
       "categories": [
@@ -13291,7 +13929,9 @@
       "name": "early_light_cruiser",
       "leads_to": [
         "basic_light_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_light_cruiser": {
       "categories": [
@@ -13307,7 +13947,9 @@
       "leads_to": [
         "improved_light_cruiser",
         "basic_heavy_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_light_cruiser": {
       "categories": [
@@ -13323,7 +13965,9 @@
       "leads_to": [
         "advanced_light_cruiser",
         "improved_heavy_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_light_cruiser": {
       "categories": [
@@ -13338,7 +13982,9 @@
       "name": "advanced_light_cruiser",
       "leads_to": [
         "advanced_heavy_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_heavy_cruiser": {
       "categories": [
@@ -13353,7 +13999,9 @@
       "name": "early_heavy_cruiser",
       "leads_to": [
         "basic_heavy_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_heavy_cruiser": {
       "categories": [
@@ -13369,7 +14017,9 @@
       "leads_to": [
         "improved_heavy_cruiser",
         "basic_light_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_heavy_cruiser": {
       "categories": [
@@ -13385,7 +14035,9 @@
       "leads_to": [
         "advanced_heavy_cruiser",
         "improved_light_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_heavy_cruiser": {
       "categories": [
@@ -13400,7 +14052,9 @@
       "name": "advanced_heavy_cruiser",
       "leads_to": [
         "advanced_light_cruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_battlecruiser": {
       "categories": [
@@ -13415,7 +14069,9 @@
       "name": "early_battlecruiser",
       "leads_to": [
         "basic_battlecruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_battlecruiser": {
       "categories": [
@@ -13430,7 +14086,9 @@
       "name": "basic_battlecruiser",
       "leads_to": [
         "improved_battleship"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_battleship": {
       "categories": [
@@ -13445,7 +14103,9 @@
       "name": "early_battleship",
       "leads_to": [
         "basic_battleship"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_battleship": {
       "categories": [
@@ -13461,7 +14121,9 @@
       "leads_to": [
         "improved_battleship",
         "heavy_battleship"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_battleship": {
       "categories": [
@@ -13477,7 +14139,9 @@
       "leads_to": [
         "advanced_battleship",
         "basic_battlecruiser"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_battleship": {
       "categories": [
@@ -13492,7 +14156,9 @@
       "name": "advanced_battleship",
       "leads_to": [
         "heavy_battleship2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "heavy_battleship": {
       "categories": [
@@ -13507,7 +14173,9 @@
       "name": "heavy_battleship",
       "leads_to": [
         "heavy_battleship2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "heavy_battleship2": {
       "categories": [
@@ -13522,7 +14190,9 @@
       "name": "heavy_battleship2",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "transport": {
       "categories": [
@@ -13536,7 +14206,9 @@
       "name": "Transport Ship",
       "leads_to": [
         "landing_craft"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "landing_craft": {
       "amphibious_invasion_defence": 0.15,
@@ -13551,7 +14223,9 @@
       "name": "Landing Craft",
       "leads_to": [
         "tank_landing_craft"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tank_landing_craft": {
       "amphibious_invasion": 0.25,
@@ -13566,7 +14240,9 @@
       "name": "Advanced Landing Craft",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_carrier": {
       "categories": [
@@ -13581,7 +14257,9 @@
       "name": "early_carrier",
       "leads_to": [
         "basic_carrier"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_carrier": {
       "categories": [
@@ -13596,7 +14274,9 @@
       "name": "basic_carrier",
       "leads_to": [
         "improved_carrier"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_carrier": {
       "categories": [
@@ -13611,7 +14291,9 @@
       "name": "improved_carrier",
       "leads_to": [
         "advanced_carrier"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_carrier": {
       "categories": [
@@ -13626,7 +14308,9 @@
       "name": "advanced_carrier",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "early_submarine": {
       "categories": [
@@ -13641,7 +14325,9 @@
       "name": "early_submarine",
       "leads_to": [
         "basic_submarine"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "basic_submarine": {
       "categories": [
@@ -13656,7 +14342,9 @@
       "name": "basic_submarine",
       "leads_to": [
         "improved_submarine"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "improved_submarine": {
       "categories": [
@@ -13671,7 +14359,9 @@
       "name": "improved_submarine",
       "leads_to": [
         "advanced_submarine"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "advanced_submarine": {
       "categories": [
@@ -13686,7 +14376,9 @@
       "name": "advanced_submarine",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "torpedo_cruiser": {
       "allow": {
@@ -13700,24 +14392,17 @@
       "name": "Torpedo Cruiser",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "fleet_in_being": {
-      "battle_cruiser": {
-        "max_organisation": 10
-      },
-      "battleship": {
-        "max_organisation": 10
-      },
       "categories": [
         "naval_doctrine",
         "fleet_in_being_tree",
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "heavy_cruiser": {
-        "max_organisation": 10
-      },
       "research_cost": 2,
       "xor": [
         "trade_interdiction",
@@ -13728,37 +14413,47 @@
         "battlefleet_concentration",
         "convoy_sailing",
         "submarine_operations"
-      ]
+      ],
+      "unit_bonuses": {
+        "battle_cruiser": {
+          "max_organisation": 10
+        },
+        "battleship": {
+          "max_organisation": 10
+        },
+        "heavy_cruiser": {
+          "max_organisation": 10
+        }
+      }
     },
     "battlefleet_concentration": {
-      "battle_cruiser": {
-        "max_organisation": 10,
-        "search_and_destroy_coordination": 0.5
-      },
-      "battleship": {
-        "max_organisation": 10,
-        "search_and_destroy_coordination": 0.5
-      },
       "categories": [
         "naval_doctrine",
         "fleet_in_being_tree",
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "heavy_cruiser": {
-        "max_organisation": 10,
-        "search_and_destroy_coordination": 0.5
-      },
       "research_cost": 2,
       "name": "Battlefleet Concentration",
       "leads_to": [
         "subsidiary_carrier_role"
-      ]
+      ],
+      "unit_bonuses": {
+        "battle_cruiser": {
+          "max_organisation": 10,
+          "search_and_destroy_coordination": 0.5
+        },
+        "battleship": {
+          "max_organisation": 10,
+          "search_and_destroy_coordination": 0.5
+        },
+        "heavy_cruiser": {
+          "max_organisation": 10,
+          "search_and_destroy_coordination": 0.5
+        }
+      }
     },
     "subsidiary_carrier_role": {
-      "carrier": {
-        "max_organisation": 10
-      },
       "categories": [
         "naval_doctrine",
         "fleet_in_being_tree",
@@ -13770,7 +14465,12 @@
       "name": "Subsidiary Carrier Role",
       "leads_to": [
         "hunter_killer_groups"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 10
+        }
+      }
     },
     "hunter_killer_groups": {
       "categories": [
@@ -13779,25 +14479,24 @@
         "cat_fleet_in_being"
       ],
       "convoy_escort_efficiency": 0.1,
-      "destroyer": {
-        "max_organisation": 20,
-        "sub_detection": 0.2
-      },
       "doctrine": true,
-      "light_cruiser": {
-        "max_organisation": 10,
-        "sub_detection": 0.2
-      },
       "research_cost": 2,
       "name": "Hunter Killer Groups",
       "leads_to": [
         "floating_fortress"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 20,
+          "sub_detection": 0.2
+        },
+        "light_cruiser": {
+          "max_organisation": 10,
+          "sub_detection": 0.2
+        }
+      }
     },
     "floating_fortress": {
-      "battleship": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "fleet_in_being_tree",
@@ -13809,12 +14508,14 @@
       "name": "Floating Fortress",
       "leads_to": [
         "floating_airfield"
-      ]
+      ],
+      "unit_bonuses": {
+        "battleship": {
+          "max_organisation": 20
+        }
+      }
     },
     "floating_airfield": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "fleet_in_being_tree",
@@ -13826,31 +14527,38 @@
       "name": "Floating Airfield",
       "leads_to": [
         "grand_battlefleet"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        }
+      }
     },
     "grand_battlefleet": {
-      "battle_cruiser": {
-        "max_organisation": 20
-      },
-      "battleship": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "fleet_in_being_tree",
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "heavy_cruiser": {
-        "max_organisation": 20
-      },
       "navy_anti_air_attack_factor": 0.1,
       "navy_capital_ship_attack_factor": 0.1,
       "research_cost": 2,
       "name": "Grand Battlefleet",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "battle_cruiser": {
+          "max_organisation": 20
+        },
+        "battleship": {
+          "max_organisation": 20
+        },
+        "heavy_cruiser": {
+          "max_organisation": 20
+        }
+      }
     },
     "convoy_sailing": {
       "categories": [
@@ -13860,16 +14568,18 @@
         "cat_fleet_in_being"
       ],
       "convoy_escort_efficiency": 0.1,
-      "destroyer": {
-        "max_organisation": 10,
-        "sub_detection": 0.1
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Convoy Sailing",
       "leads_to": [
         "convoy_escorts"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 10,
+          "sub_detection": 0.1
+        }
+      }
     },
     "convoy_escorts": {
       "categories": [
@@ -13879,16 +14589,18 @@
         "cat_fleet_in_being"
       ],
       "convoy_escort_efficiency": 0.15,
-      "destroyer": {
-        "max_organisation": 10,
-        "sub_detection": 0.2
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Convoy Escorts",
       "leads_to": [
         "escort_carriers"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 10,
+          "sub_detection": 0.2
+        }
+      }
     },
     "escort_carriers": {
       "categories": [
@@ -13903,7 +14615,9 @@
       "name": "Escort Carriers",
       "leads_to": [
         "integrated_convoy_defence"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "integrated_convoy_defence": {
       "categories": [
@@ -13913,15 +14627,17 @@
         "cat_fleet_in_being"
       ],
       "convoy_escort_efficiency": 0.25,
-      "destroyer": {
-        "max_organisation": 20
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Integrated Convoy Defense",
       "leads_to": [
         "floating_airfield"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 20
+        }
+      }
     },
     "submarine_operations": {
       "categories": [
@@ -13932,14 +14648,16 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Submarine Operations",
       "leads_to": [
         "undersea_blockade"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "undersea_blockade": {
       "categories": [
@@ -13950,14 +14668,16 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "max_organisation": 10,
-        "surface_detection": 0.2
-      },
       "name": "Undersea Blockade",
       "leads_to": [
         "convoy_interdiction"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "max_organisation": 10,
+          "surface_detection": 0.2
+        }
+      }
     },
     "convoy_interdiction": {
       "categories": [
@@ -13968,15 +14688,17 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.1,
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Convoy Interdiction",
       "leads_to": [
         "submarine_offensive"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.1,
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "submarine_offensive": {
       "categories": [
@@ -13987,15 +14709,17 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.1,
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Submarine Offensive",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.1,
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "trade_interdiction": {
       "categories": [
@@ -14005,19 +14729,7 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "heavy_cruiser": {
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
-      "light_cruiser": {
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "research_cost": 2,
-      "submarine": {
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "xor": [
         "fleet_in_being",
         "base_strike"
@@ -14027,7 +14739,21 @@
         "convoy_interdiction_ti",
         "raider_patrols",
         "carrier_operations"
-      ]
+      ],
+      "unit_bonuses": {
+        "heavy_cruiser": {
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        },
+        "light_cruiser": {
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        },
+        "submarine": {
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "convoy_interdiction_ti": {
       "categories": [
@@ -14038,15 +14764,17 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.1,
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Convoy Interdiction",
       "leads_to": [
         "unrestricted_submarine_warfare"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.1,
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "unrestricted_submarine_warfare": {
       "categories": [
@@ -14058,14 +14786,16 @@
       "doctrine": true,
       "navy_submarine_attack_factor": 0.1,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.1,
-        "surface_detection": 0.2
-      },
       "name": "Unrestricted Submarine Warfare",
       "leads_to": [
         "wolfpacks"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.1,
+          "surface_detection": 0.2
+        }
+      }
     },
     "wolfpacks": {
       "categories": [
@@ -14076,15 +14806,17 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.4,
-        "max_organisation": 10,
-        "surface_detection": 0.25
-      },
       "name": "Wolf packs",
       "leads_to": [
         "advanced_submarine_warfare"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.4,
+          "max_organisation": 10,
+          "surface_detection": 0.25
+        }
+      }
     },
     "advanced_submarine_warfare": {
       "categories": [
@@ -14096,22 +14828,19 @@
       "doctrine": true,
       "navy_submarine_defence_factor": 0.1,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.4,
-        "max_organisation": 10,
-        "surface_detection": 0.25
-      },
       "name": "Advanced Submarine Warfare",
       "leads_to": [
         "combined_operations_raiding"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.4,
+          "max_organisation": 10,
+          "surface_detection": 0.25
+        }
+      }
     },
     "combined_operations_raiding": {
-      "battle_cruiser": {
-        "convoy_raiding_coordination": 0.7,
-        "max_organisation": 10,
-        "surface_detection": 0.25
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
@@ -14119,77 +14848,74 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "heavy_cruiser": {
-        "convoy_raiding_coordination": 0.7,
-        "max_organisation": 10,
-        "surface_detection": 0.25
-      },
-      "light_cruiser": {
-        "convoy_raiding_coordination": 0.7,
-        "max_organisation": 10,
-        "surface_detection": 0.25
-      },
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.1,
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Combined Operations Raiding",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "battle_cruiser": {
+          "convoy_raiding_coordination": 0.7,
+          "max_organisation": 10,
+          "surface_detection": 0.25
+        },
+        "heavy_cruiser": {
+          "convoy_raiding_coordination": 0.7,
+          "max_organisation": 10,
+          "surface_detection": 0.25
+        },
+        "light_cruiser": {
+          "convoy_raiding_coordination": 0.7,
+          "max_organisation": 10,
+          "surface_detection": 0.25
+        },
+        "submarine": {
+          "convoy_raiding_coordination": 0.1,
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "raider_patrols": {
-      "battle_cruiser": {
-        "convoy_raiding_coordination": 0.3,
-        "max_organisation": 10,
-        "surface_detection": 0.25,
-        "surface_visibility": -0.25
-      },
-      "battleship": {
-        "convoy_raiding_coordination": 0.3,
-        "max_organisation": 10,
-        "surface_detection": 0.25,
-        "surface_visibility": -0.25
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "heavy_cruiser": {
-        "convoy_raiding_coordination": 0.3,
-        "max_organisation": 10,
-        "surface_detection": 0.25,
-        "surface_visibility": -0.25
-      },
-      "light_cruiser": {
-        "convoy_raiding_coordination": 0.3,
-        "max_organisation": 10,
-        "surface_detection": 0.25,
-        "surface_visibility": -0.25
-      },
       "research_cost": 2,
       "name": "Raider Patrols",
       "leads_to": [
         "capital_ship_raiders"
-      ]
+      ],
+      "unit_bonuses": {
+        "battle_cruiser": {
+          "convoy_raiding_coordination": 0.3,
+          "max_organisation": 10,
+          "surface_detection": 0.25,
+          "surface_visibility": -0.25
+        },
+        "battleship": {
+          "convoy_raiding_coordination": 0.3,
+          "max_organisation": 10,
+          "surface_detection": 0.25,
+          "surface_visibility": -0.25
+        },
+        "heavy_cruiser": {
+          "convoy_raiding_coordination": 0.3,
+          "max_organisation": 10,
+          "surface_detection": 0.25,
+          "surface_visibility": -0.25
+        },
+        "light_cruiser": {
+          "convoy_raiding_coordination": 0.3,
+          "max_organisation": 10,
+          "surface_detection": 0.25,
+          "surface_visibility": -0.25
+        }
+      }
     },
     "capital_ship_raiders": {
-      "battle_cruiser": {
-        "convoy_raiding_coordination": 0.6,
-        "max_organisation": 10,
-        "surface_detection": 0.25,
-        "surface_visibility": -0.25
-      },
-      "battleship": {
-        "convoy_raiding_coordination": 0.6,
-        "max_organisation": 10,
-        "surface_detection": 0.25,
-        "surface_visibility": -0.5
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
@@ -14200,37 +14926,50 @@
       "name": "Capital Ship Raiders",
       "leads_to": [
         "battlefleet_concentration_ti"
-      ]
+      ],
+      "unit_bonuses": {
+        "battle_cruiser": {
+          "convoy_raiding_coordination": 0.6,
+          "max_organisation": 10,
+          "surface_detection": 0.25,
+          "surface_visibility": -0.25
+        },
+        "battleship": {
+          "convoy_raiding_coordination": 0.6,
+          "max_organisation": 10,
+          "surface_detection": 0.25,
+          "surface_visibility": -0.5
+        }
+      }
     },
     "battlefleet_concentration_ti": {
-      "battle_cruiser": {
-        "max_organisation": 10,
-        "search_and_destroy_coordination": 0.5
-      },
-      "battleship": {
-        "max_organisation": 10,
-        "search_and_destroy_coordination": 0.5
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "heavy_cruiser": {
-        "max_organisation": 10,
-        "search_and_destroy_coordination": 0.5
-      },
       "research_cost": 2,
       "name": "Battlefleet Concentration",
       "leads_to": [
         "floating_fortress_ti"
-      ]
+      ],
+      "unit_bonuses": {
+        "battle_cruiser": {
+          "max_organisation": 10,
+          "search_and_destroy_coordination": 0.5
+        },
+        "battleship": {
+          "max_organisation": 10,
+          "search_and_destroy_coordination": 0.5
+        },
+        "heavy_cruiser": {
+          "max_organisation": 10,
+          "search_and_destroy_coordination": 0.5
+        }
+      }
     },
     "floating_fortress_ti": {
-      "battleship": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
@@ -14242,12 +14981,14 @@
       "name": "Floating Fortress",
       "leads_to": [
         "floating_airfield_ti"
-      ]
+      ],
+      "unit_bonuses": {
+        "battleship": {
+          "max_organisation": 20
+        }
+      }
     },
     "floating_airfield_ti": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
@@ -14259,12 +15000,14 @@
       "name": "Floating Airfield",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        }
+      }
     },
     "carrier_operations": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
@@ -14278,7 +15021,12 @@
       "name": "Carrier Operations",
       "leads_to": [
         "convoy_sailing_ti"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        }
+      }
     },
     "convoy_sailing_ti": {
       "categories": [
@@ -14288,21 +15036,20 @@
         "cat_trade_interdiction"
       ],
       "convoy_escort_efficiency": 0.1,
-      "destroyer": {
-        "max_organisation": 10,
-        "sub_detection": 0.1
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Convoy Sailing",
       "leads_to": [
         "subsidiary_carrier_role_ti"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 10,
+          "sub_detection": 0.1
+        }
+      }
     },
     "subsidiary_carrier_role_ti": {
-      "carrier": {
-        "max_organisation": 10
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
@@ -14314,12 +15061,14 @@
       "name": "Subsidiary Carrier Role",
       "leads_to": [
         "naval_air_operations"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 10
+        }
+      }
     },
     "naval_air_operations": {
-      "carrier": {
-        "max_organisation": 10
-      },
       "categories": [
         "naval_doctrine",
         "trade_interdiction_tree",
@@ -14333,12 +15082,14 @@
       "name": "Naval Air Operations",
       "leads_to": [
         "floating_airfield_ti"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 10
+        }
+      }
     },
     "base_strike": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "cat_base_strike"
@@ -14355,12 +15106,14 @@
         "carrier_primacy",
         "submarine_operations_bs",
         "convoy_escorts_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        }
+      }
     },
     "carrier_primacy": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "base_strike_main",
@@ -14375,21 +15128,20 @@
       "name": "Carrier Primacy",
       "leads_to": [
         "carrier_task_forces"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        }
+      }
     },
     "carrier_task_forces": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "base_strike_main",
         "cat_base_strike"
       ],
       "doctrine": true,
-      "light_cruiser": {
-        "max_organisation": 20
-      },
       "modifier": {
         "naval_strike_targetting_factor": 0.1
       },
@@ -14397,12 +15149,17 @@
       "name": "Carrier Task Forces",
       "leads_to": [
         "floating_airfield_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        },
+        "light_cruiser": {
+          "max_organisation": 20
+        }
+      }
     },
     "floating_airfield_bs": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "base_strike_main",
@@ -14414,12 +15171,14 @@
       "name": "Floating Airfield",
       "leads_to": [
         "massed_strikes"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        }
+      }
     },
     "massed_strikes": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "carrier_capacity_penalty_reduction": -0.5,
       "categories": [
         "naval_doctrine",
@@ -14435,12 +15194,14 @@
       "name": "Massed Strikes",
       "leads_to": [
         "floating_fortress_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        }
+      }
     },
     "floating_fortress_bs": {
-      "battleship": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "base_strike_main",
@@ -14452,27 +15213,34 @@
       "name": "Floating Fortress",
       "leads_to": [
         "carrier_battlegroups"
-      ]
+      ],
+      "unit_bonuses": {
+        "battleship": {
+          "max_organisation": 20
+        }
+      }
     },
     "carrier_battlegroups": {
-      "carrier": {
-        "max_organisation": 20
-      },
       "categories": [
         "naval_doctrine",
         "base_strike_main",
         "cat_base_strike"
       ],
       "doctrine": true,
-      "light_cruiser": {
-        "max_organisation": 20
-      },
       "navy_carrier_air_agility_factor": 0.1,
       "research_cost": 2,
       "name": "Carrier Battlegroups",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "carrier": {
+          "max_organisation": 20
+        },
+        "light_cruiser": {
+          "max_organisation": 20
+        }
+      }
     },
     "submarine_operations_bs": {
       "categories": [
@@ -14481,14 +15249,16 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Submarine Operations",
       "leads_to": [
         "undersea_blockade_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "undersea_blockade_bs": {
       "categories": [
@@ -14497,14 +15267,16 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "max_organisation": 10,
-        "surface_detection": 0.2
-      },
       "name": "Undersea Blockade",
       "leads_to": [
         "convoy_interdiction_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "max_organisation": 10,
+          "surface_detection": 0.2
+        }
+      }
     },
     "convoy_interdiction_bs": {
       "categories": [
@@ -14513,15 +15285,17 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.1,
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Convoy Interdiction",
       "leads_to": [
         "submarine_offensive_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.1,
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "submarine_offensive_bs": {
       "categories": [
@@ -14530,15 +15304,17 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "submarine": {
-        "convoy_raiding_coordination": 0.1,
-        "max_organisation": 10,
-        "surface_detection": 0.1
-      },
       "name": "Submarine Offensive",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "submarine": {
+          "convoy_raiding_coordination": 0.1,
+          "max_organisation": 10,
+          "surface_detection": 0.1
+        }
+      }
     },
     "convoy_escorts_bs": {
       "categories": [
@@ -14547,16 +15323,18 @@
         "cat_base_strike"
       ],
       "convoy_escort_efficiency": 0.15,
-      "destroyer": {
-        "max_organisation": 10,
-        "sub_detection": 0.2
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Convoy Escorts",
       "leads_to": [
         "escort_patrols"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 10,
+          "sub_detection": 0.2
+        }
+      }
     },
     "escort_patrols": {
       "categories": [
@@ -14565,20 +15343,22 @@
         "cat_base_strike"
       ],
       "convoy_escort_efficiency": 0.1,
-      "destroyer": {
-        "max_organisation": 10,
-        "sub_detection": 0.1
-      },
       "doctrine": true,
-      "light_cruiser": {
-        "max_organisation": 10,
-        "sub_detection": 0.1
-      },
       "research_cost": 2,
       "name": "Escort Patrols",
       "leads_to": [
         "convoy_sailing_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 10,
+          "sub_detection": 0.1
+        },
+        "light_cruiser": {
+          "max_organisation": 10,
+          "sub_detection": 0.1
+        }
+      }
     },
     "convoy_sailing_bs": {
       "categories": [
@@ -14587,16 +15367,18 @@
         "cat_base_strike"
       ],
       "convoy_escort_efficiency": 0.1,
-      "destroyer": {
-        "max_organisation": 10,
-        "sub_detection": 0.1
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Convoy Sailing",
       "leads_to": [
         "integrated_convoy_defence_bs"
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 10,
+          "sub_detection": 0.1
+        }
+      }
     },
     "integrated_convoy_defence_bs": {
       "categories": [
@@ -14605,15 +15387,17 @@
         "cat_base_strike"
       ],
       "convoy_escort_efficiency": 0.25,
-      "destroyer": {
-        "max_organisation": 20
-      },
       "doctrine": true,
       "research_cost": 2,
       "name": "Integrated Convoy Defense",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "destroyer": {
+          "max_organisation": 20
+        }
+      }
     },
     "tech_support": {
       "categories": [
@@ -14633,7 +15417,9 @@
         "tech_military_police",
         "tech_signal_company",
         "tech_maintenance_company"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_engineers": {
       "categories": [
@@ -14648,64 +15434,78 @@
       "name": "Engineer Company I",
       "leads_to": [
         "tech_engineers2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_engineers2": {
       "categories": [
         "support_tech",
         "engineers_tech"
       ],
-      "engineer": {
-        "entrenchment": 2,
-        "fort": {
-          "attack": 0.1,
-          "defence": 0.1
-        }
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Engineer Company II",
       "leads_to": [
         "tech_engineers3"
-      ]
+      ],
+      "unit_bonuses": {
+        "engineer": {
+          "entrenchment": 2,
+          "terrain_bonuses": {
+            "fort": {
+              "attack": 0.1,
+              "defence": 0.1
+            }
+          }
+        }
+      }
     },
     "tech_engineers3": {
       "categories": [
         "support_tech",
         "engineers_tech"
       ],
-      "engineer": {
-        "entrenchment": 2,
-        "river": {
-          "attack": 0.1,
-          "defence": 0.1
-        }
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Engineer Company III",
       "leads_to": [
         "tech_engineers4"
-      ]
+      ],
+      "unit_bonuses": {
+        "engineer": {
+          "entrenchment": 2,
+          "terrain_bonuses": {
+            "river": {
+              "attack": 0.1,
+              "defence": 0.1
+            }
+          }
+        }
+      }
     },
     "tech_engineers4": {
       "categories": [
         "support_tech",
         "engineers_tech"
       ],
-      "engineer": {
-        "entrenchment": 2,
-        "urban": {
-          "attack": 0.1,
-          "defence": 0.1
-        }
-      },
       "research_cost": 1.5,
       "start_year": 1945,
       "name": "Engineer Company IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "engineer": {
+          "entrenchment": 2,
+          "terrain_bonuses": {
+            "urban": {
+              "attack": 0.1,
+              "defence": 0.1
+            }
+          }
+        }
+      }
     },
     "tech_recon": {
       "categories": [
@@ -14720,52 +15520,60 @@
       "name": "Recon Company I",
       "leads_to": [
         "tech_recon2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_recon2": {
       "categories": [
         "support_tech",
         "recon_tech"
       ],
-      "recon": {
-        "recon": 2
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Recon Company II",
       "leads_to": [
         "tech_recon3"
-      ]
+      ],
+      "unit_bonuses": {
+        "recon": {
+          "recon": 2
+        }
+      }
     },
     "tech_recon3": {
       "categories": [
         "support_tech",
         "recon_tech"
       ],
-      "recon": {
-        "recon": 2
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Recon Company III",
       "leads_to": [
         "tech_recon4"
-      ]
+      ],
+      "unit_bonuses": {
+        "recon": {
+          "recon": 2
+        }
+      }
     },
     "tech_recon4": {
       "categories": [
         "support_tech",
         "recon_tech"
       ],
-      "recon": {
-        "recon": 2
-      },
       "research_cost": 1.5,
       "start_year": 1945,
       "name": "Recon Company IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "recon": {
+          "recon": 2
+        }
+      }
     },
     "tech_military_police": {
       "categories": [
@@ -14780,52 +15588,60 @@
       "name": "Military Police I",
       "leads_to": [
         "tech_military_police2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_military_police2": {
       "categories": [
         "support_tech",
         "military_police_tech"
       ],
-      "military_police": {
-        "suppression_factor": 0.1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Military Police II",
       "leads_to": [
         "tech_military_police3"
-      ]
+      ],
+      "unit_bonuses": {
+        "military_police": {
+          "suppression_factor": 0.1
+        }
+      }
     },
     "tech_military_police3": {
       "categories": [
         "support_tech",
         "military_police_tech"
       ],
-      "military_police": {
-        "suppression_factor": 0.1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Military Police III",
       "leads_to": [
         "tech_military_police4"
-      ]
+      ],
+      "unit_bonuses": {
+        "military_police": {
+          "suppression_factor": 0.1
+        }
+      }
     },
     "tech_military_police4": {
       "categories": [
         "support_tech",
         "military_police_tech"
       ],
-      "military_police": {
-        "suppression_factor": 0.1
-      },
       "research_cost": 1.5,
       "start_year": 1945,
       "name": "Military Police IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "military_police": {
+          "suppression_factor": 0.1
+        }
+      }
     },
     "tech_maintenance_company": {
       "categories": [
@@ -14840,55 +15656,63 @@
       "name": "Maintenance Company I",
       "leads_to": [
         "tech_maintenance_company2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_maintenance_company2": {
       "categories": [
         "support_tech",
         "maintenance_company_tech"
       ],
-      "maintenance_company": {
-        "equipment_capture_factor": 0.05,
-        "reliability_factor": 0.05
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Maintenance Company II",
       "leads_to": [
         "tech_maintenance_company3"
-      ]
+      ],
+      "unit_bonuses": {
+        "maintenance_company": {
+          "equipment_capture_factor": 0.05,
+          "reliability_factor": 0.05
+        }
+      }
     },
     "tech_maintenance_company3": {
       "categories": [
         "support_tech",
         "maintenance_company_tech"
       ],
-      "maintenance_company": {
-        "equipment_capture_factor": 0.05,
-        "reliability_factor": 0.05
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Maintenance Company III",
       "leads_to": [
         "tech_maintenance_company4"
-      ]
+      ],
+      "unit_bonuses": {
+        "maintenance_company": {
+          "equipment_capture_factor": 0.05,
+          "reliability_factor": 0.05
+        }
+      }
     },
     "tech_maintenance_company4": {
       "categories": [
         "support_tech",
         "maintenance_company_tech"
       ],
-      "maintenance_company": {
-        "equipment_capture_factor": 0.05,
-        "reliability_factor": 0.05
-      },
       "research_cost": 1.5,
       "start_year": 1945,
       "name": "Maintenance Company IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "maintenance_company": {
+          "equipment_capture_factor": 0.05,
+          "reliability_factor": 0.05
+        }
+      }
     },
     "tech_field_hospital": {
       "categories": [
@@ -14907,7 +15731,9 @@
       "name": "Field Hospital I",
       "leads_to": [
         "tech_field_hospital2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_field_hospital2": {
       "categories": [
@@ -14915,16 +15741,18 @@
         "hospital_tech",
         "motorized_equipment"
       ],
-      "field_hospital": {
-        "casualty_trickleback": 0.1,
-        "experience_loss_factor": -0.1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Field Hospital II",
       "leads_to": [
         "tech_field_hospital3"
-      ]
+      ],
+      "unit_bonuses": {
+        "field_hospital": {
+          "casualty_trickleback": 0.1,
+          "experience_loss_factor": -0.1
+        }
+      }
     },
     "tech_field_hospital3": {
       "categories": [
@@ -14932,16 +15760,18 @@
         "hospital_tech",
         "motorized_equipment"
       ],
-      "field_hospital": {
-        "casualty_trickleback": 0.1,
-        "experience_loss_factor": -0.1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Field Hospital III",
       "leads_to": [
         "tech_field_hospital4"
-      ]
+      ],
+      "unit_bonuses": {
+        "field_hospital": {
+          "casualty_trickleback": 0.1,
+          "experience_loss_factor": -0.1
+        }
+      }
     },
     "tech_field_hospital4": {
       "categories": [
@@ -14949,16 +15779,18 @@
         "hospital_tech",
         "motorized_equipment"
       ],
-      "field_hospital": {
-        "casualty_trickleback": 0.1,
-        "experience_loss_factor": -0.1
-      },
       "research_cost": 1.5,
       "start_year": 1945,
       "name": "Field Hospital IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "field_hospital": {
+          "casualty_trickleback": 0.1,
+          "experience_loss_factor": -0.1
+        }
+      }
     },
     "tech_logistics_company": {
       "categories": [
@@ -14977,7 +15809,9 @@
       "name": "Logistics Company I",
       "leads_to": [
         "tech_logistics_company2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_logistics_company2": {
       "categories": [
@@ -14985,15 +15819,17 @@
         "logistics_tech",
         "motorized_equipment"
       ],
-      "logistics_company": {
-        "supply_consumption_factor": -0.1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Logistics Company II",
       "leads_to": [
         "tech_logistics_company3"
-      ]
+      ],
+      "unit_bonuses": {
+        "logistics_company": {
+          "supply_consumption_factor": -0.1
+        }
+      }
     },
     "tech_logistics_company3": {
       "categories": [
@@ -15001,15 +15837,17 @@
         "logistics_tech",
         "motorized_equipment"
       ],
-      "logistics_company": {
-        "supply_consumption_factor": -0.1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
       "name": "Logistics Company III",
       "leads_to": [
         "tech_logistics_company4"
-      ]
+      ],
+      "unit_bonuses": {
+        "logistics_company": {
+          "supply_consumption_factor": -0.1
+        }
+      }
     },
     "tech_logistics_company4": {
       "categories": [
@@ -15017,15 +15855,17 @@
         "logistics_tech",
         "motorized_equipment"
       ],
-      "logistics_company": {
-        "supply_consumption_factor": -0.1
-      },
       "research_cost": 1.5,
       "start_year": 1945,
       "name": "Logistics Company IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "logistics_company": {
+          "supply_consumption_factor": -0.1
+        }
+      }
     },
     "tech_signal_company": {
       "categories": [
@@ -15045,7 +15885,9 @@
       "name": "Signal Company I",
       "leads_to": [
         "tech_signal_company2"
-      ]
+      ],
+      "unit_bonuses": {
+      }
     },
     "tech_signal_company2": {
       "categories": [
@@ -15054,14 +15896,16 @@
         "electronics"
       ],
       "research_cost": 1.5,
-      "signal_company": {
-        "initiative": 0.12
-      },
       "start_year": 1939,
       "name": "Signal Company II",
       "leads_to": [
         "tech_signal_company3"
-      ]
+      ],
+      "unit_bonuses": {
+        "signal_company": {
+          "initiative": 0.12
+        }
+      }
     },
     "tech_signal_company3": {
       "categories": [
@@ -15070,14 +15914,16 @@
         "electronics"
       ],
       "research_cost": 1.5,
-      "signal_company": {
-        "initiative": 0.12
-      },
       "start_year": 1942,
       "name": "Signal Company III",
       "leads_to": [
         "tech_signal_company4"
-      ]
+      ],
+      "unit_bonuses": {
+        "signal_company": {
+          "initiative": 0.12
+        }
+      }
     },
     "tech_signal_company4": {
       "categories": [
@@ -15086,14 +15932,16 @@
         "electronics"
       ],
       "research_cost": 1.5,
-      "signal_company": {
-        "initiative": 0.12
-      },
       "start_year": 1945,
       "name": "Signal Company IV",
       "leads_to": [
 
-      ]
+      ],
+      "unit_bonuses": {
+        "signal_company": {
+          "initiative": 0.12
+        }
+      }
     }
   },
   "doctrines": {

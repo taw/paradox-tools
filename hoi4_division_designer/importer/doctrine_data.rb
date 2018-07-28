@@ -1,30 +1,26 @@
 class DoctrineData
+  extend Memoist
+
   def initialize(game)
     @game = game
-    @technology = TechnologyData.new(@game).data
   end
 
-  def land_doctrine_tech
-    @land_doctrine_tech ||= begin
-      @technology
-        .select{|k,v| v["doctrine"] and v["categories"].include?("land_doctrine") }
-    end
+  memoize def land_doctrine_tech
+    @game.technology.land_doctrines
   end
 
-  def dependencies
-    @dependencies ||= begin
-      result = []
-      land_doctrine_tech.each do |k, v|
-        v["leads_to"].each do |vv|
-          result << [k, vv]
-        end
+  memoize def dependencies
+    result = []
+    land_doctrine_tech.each do |k, v|
+      v["leads_to"].each do |vv|
+        result << [k, vv]
       end
-      result
     end
+    result
   end
 
-  def roots
-    @roots ||= (land_doctrine_tech.keys - dependencies.map(&:last))
+  memoize def roots
+    land_doctrine_tech.keys - dependencies.map(&:last)
   end
 
   def each_tree(choices, path, &blk)
@@ -40,17 +36,15 @@ class DoctrineData
     end
   end
 
-  def doctrines
-    @doctrines ||= begin
-      results = {}
-      roots.each do |root|
-        each_tree([root], [root]) do |names, doctrines|
-          name = names.map{|n| @game.localization(n) }.join(" / ")
-          results[name] = doctrines
-        end
+  memoize def doctrines
+    results = {}
+    roots.each do |root|
+      each_tree([root], [root]) do |names, doctrines|
+        name = names.map{|n| @game.localization(n) }.join(" / ")
+        results[name] = doctrines
       end
-      results
     end
+    results
   end
 
   def data

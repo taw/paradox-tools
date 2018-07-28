@@ -1,10 +1,11 @@
+require "pathname"
+require "json"
+require "memoist"
 require_relative "../../lib/paradox_game"
 require_relative "equipment_data"
 require_relative "technology_data"
 require_relative "units_data"
 require_relative "doctrine_data"
-require "pathname"
-require "json"
 
 def jsonify(obj)
   return obj.map{|e| jsonify(e)} if obj.is_a?(Array)
@@ -15,17 +16,49 @@ def jsonify(obj)
 end
 
 class Importer < ParadoxGame
+  extend Memoist
+
   def initialize(*roots)
     super(*roots)
   end
 
+  # This could be based on game files in case mods change it
+  def terrain_types
+    ["forest", "marsh", "hills", "urban", "mountain", "jungle", "amphibious", "river", "fort", "plains", "desert"]
+  end
+
+  memoize def units
+    UnitsData.new(self)
+  end
+
+  memoize def equipment
+    EquipmentData.new(self)
+  end
+
+  memoize def unit_types_and_categories
+    (units.data.keys + units.data.values.flat_map{|unit| unit["categories"] || [] }).uniq
+  end
+
+  memoize def technology
+    TechnologyData.new(self)
+  end
+
+  memoize def doctrines
+    DoctrineData.new(self)
+  end
+
   def call
     data = {
-      units: UnitsData.new(self).data,
-      equipment: EquipmentData.new(self).data,
-      technology: TechnologyData.new(self).data,
-      doctrines: DoctrineData.new(self).data,
+      units: units.data,
+      equipment: equipment.data,
+      technology: technology.data,
+      doctrines: doctrines.data,
     }
     Pathname("#{__dir__}/../data/data.json").write JSON.pretty_generate(data)
   end
+
+  def inspect
+    "Importer"
+  end
 end
+

@@ -1,4 +1,6 @@
 class TechnologyData
+  extend Memoist
+
   def initialize(game)
     @game = game
   end
@@ -12,7 +14,7 @@ class TechnologyData
     end
   end
 
-  def data
+  memoize def data
     result = {}
     each_technology do |name, tech|
       ## Fixes for vanilla data
@@ -22,15 +24,39 @@ class TechnologyData
       when "concentrated_industry", "dispersed_industry", "radio", "radio_detection", "mechanical_computing"
         tech["start_year"] ||= 1936
       end
+
       tech.delete "ai_will_do"
       tech.delete "folder"
       tech.delete "ai_research_weights"
+
       paths = tech.delete("path") || []
       paths = [paths] unless paths.is_a?(Array)
       # There's some nonsense in files with Excavation techs having path without destination
       tech["leads_to"] = paths.map{|t| t["leads_to_tech"]}.compact
+      tech["unit_bonuses"] = {}
+
+      @game.unit_types_and_categories.each do |type|
+        if tech[type]
+          unit_bonus = tech.delete(type)
+          terrain_bonuses = {}
+          @game.terrain_types.each do |terrain_type|
+            if unit_bonus[terrain_type]
+              terrain_bonuses[terrain_type] = unit_bonus.delete(terrain_type)
+            end
+          end
+          unit_bonus["terrain_bonuses"] = terrain_bonuses unless terrain_bonuses.empty?
+          tech["unit_bonuses"][type] = unit_bonus
+        end
+      end
+
       result[name] = tech
     end
     result
+  end
+
+  def land_doctrines
+    data.select do |name, tech|
+      tech["doctrine"] and tech["categories"].include?("land_doctrine")
+    end
   end
 end

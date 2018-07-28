@@ -34,10 +34,6 @@ class Database
     @doctrines.fetch(name)
   end
 
-  def unit_types_and_categories
-    @unit_types.keys.to_set | @unit_types.values.flat_map(&:categories).to_set
-  end
-
   def years
     @technology.values.map(&:start_year).compact.uniq.sort
   end

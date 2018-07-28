@@ -72,7 +72,7 @@ class DivisionStatsCLI
       training_time
       equipment
       ic_cost
-      bonuses
+      terrain_bonuses
       special_forces
       can_be_parachuted?
       hardness

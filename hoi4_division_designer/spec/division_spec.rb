@@ -38,7 +38,7 @@ describe Division do
       # Right Column
 
       # Adjusters
-      bonuses: {},
+      terrain_bonuses: {},
       special_forces: 0,
       can_be_parachuted: false,
       hardness: 0,
@@ -76,7 +76,7 @@ describe Division do
     expect(division.equipment).to eq stats[:equipment]
     expect(division.ic_cost).to eq stats[:ic_cost]
     # Adjusters
-    expect(division.bonuses).to eq stats[:bonuses]
+    expect(division.terrain_bonuses).to eq stats[:terrain_bonuses]
     expect(division.special_forces).to eq stats[:special_forces]
     expect(division.can_be_parachuted?).to eq stats[:can_be_parachuted]
     expect(division.hardness).to eq stats[:hardness]
@@ -102,7 +102,7 @@ describe Division do
         training_time: 90,
         equipment: {"infantry_equipment_0" => 200},
         ic_cost: 80,
-        bonuses: {},
+        terrain_bonuses: {},
       }
     end
   end
@@ -127,7 +127,7 @@ describe Division do
         training_time: 120,
         equipment: {"infantry_equipment_0" => 720},
         ic_cost: 288,
-        bonuses: {
+        terrain_bonuses: {
           "forest" => {"attack" => -0.05},
           "hills" => {"attack" => -0.05},
           "mountain" => {"attack" => -0.10, "movement" => -0.05},
@@ -160,7 +160,7 @@ describe Division do
         training_time: 120,
         equipment: {"infantry_equipment_0" => 480},
         ic_cost: 192,
-        bonuses: {
+        terrain_bonuses: {
           "hills" => {"movement" => 0.05, "attack" => 0.10, "defence" => 0.025},
           "mountain" => {"movement" => 0.10, "attack" => 0.175, "defence" => 0.05},
         },
@@ -190,7 +190,7 @@ describe Division do
         training_time: 120,
         equipment: {"infantry_equipment_0" => 700, "artillery_equipment_1" => 72},
         ic_cost: 532,
-        bonuses: { # different rounding in game
+        terrain_bonuses: { # different rounding in game
           "forest" => {"movement" => -0.044, "attack" => -0.044},
           "hills" => {"movement" => -0.011},
           "mountain" => {"movement" => -0.044},
@@ -225,7 +225,7 @@ describe Division do
         training_time: 150,
         equipment: {"infantry_equipment_0" => 390, "artillery_equipment_1" => 12},
         ic_cost: 198,
-        bonuses: {},
+        terrain_bonuses: {},
         special_forces: 3,
         can_be_parachuted: true,
       }
@@ -259,7 +259,7 @@ describe Division do
         },
         ic_cost: 1812,
         hardness: 0.1,
-        bonuses: {
+        terrain_bonuses: {
           "forest" => {"movement" => -0.50, "attack" => -0.10},
           "hills" => {"movement" => -0.025},
           "mountain" => {"movement" => -0.10, "attack" => -0.025},
@@ -308,7 +308,7 @@ describe Division do
           "artillery_equipment_1" => 12,
         },
         ic_cost: 542,
-        bonuses: {},
+        terrain_bonuses: {},
       }
     end
   end
@@ -341,7 +341,7 @@ describe Division do
           "support_equipment_1" => 40,
         },
         ic_cost: 946,
-        bonuses: {
+        terrain_bonuses: {
           "forest"=>{"movement"=>0.106, "attack"=>-0.044, "defence"=>0.25},
           "hills"=>{"movement"=>0.089, "defence"=>0.1},
           "mountain"=>{"movement"=>0.056},
@@ -410,7 +410,7 @@ describe Division do
         },
         ic_cost: 14400,
         hardness: 0.875, # displayed 0.87
-        bonuses: {
+        terrain_bonuses: {
           "forest" => {"movement"=>-0.4, "attack"=>-0.4},
           "hills" => {"attack"=>-0.2},
           "mountain" => {"attack"=>-0.3},

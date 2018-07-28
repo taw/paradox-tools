@@ -103,10 +103,10 @@ class Division
     @units.reject(&:frontline?)
   end
 
-  memoize def bonuses
+  memoize def terrain_bonuses
     result = {}
     frontline_units.each do |unit|
-      result.recursively_merge!(unit.bonuses){|a,b| a+b}
+      result.recursively_merge!(unit.terrain_bonuses){|a,b| a+b}
     end
     result.each do |terrain, bonuses|
       bonuses.each do |key, val|
@@ -114,7 +114,7 @@ class Division
       end
     end
     support_units.each do |unit|
-      result.recursively_merge!(unit.bonuses){|a,b| (a+b).round(3)}
+      result.recursively_merge!(unit.terrain_bonuses){|a,b| (a+b).round(3)}
     end
     result
   end

@@ -73,8 +73,10 @@ describe Country do
         "infantry" => {"breakthrough" => 0.2, "defense" => 0.2},
         "engineer" => {
           "entrenchment" => 4,
-          "fort" => {"attack" => 0.1, "defence" => 0.1},
-          "river" => {"attack" => 0.1, "defence" => 0.1}
+          "terrain_bonuses" => {
+            "fort" => {"attack" => 0.1, "defence" => 0.1},
+            "river" => {"attack" => 0.1, "defence" => 0.1},
+          },
         },
         "recon" => {"recon" => 4},
         "military_police" => {"suppression_factor" => 0.2},
