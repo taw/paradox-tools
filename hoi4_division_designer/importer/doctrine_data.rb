@@ -15,10 +15,8 @@ class DoctrineData
     @dependencies ||= begin
       result = []
       land_doctrine_tech.each do |k, v|
-        next unless v["path"]
-        v["path"] = [v["path"]] unless v[ "path"].is_a?(Array)
-        v["path"].each do |path|
-          result << [k, path["leads_to_tech"]]
+        v["leads_to"].each do |vv|
+          result << [k, vv]
         end
       end
       result

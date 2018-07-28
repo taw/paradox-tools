@@ -1,5 +1,5 @@
 class Technology
-  attr_reader :name
+  attr_reader :name, :effects
   def initialize(database, name, effects)
     @database = database
     @name = name
@@ -24,9 +24,6 @@ class Technology
 
   # There's some nonsense in files with Excavation techs having path without destination
   def leads_to
-    path = @effects["path"]
-    return [] unless path
-    path = [path] unless path.is_a?(Array)
-    path.map{|x| x["leads_to_tech"]}.compact
+    @effects["leads_to"]
   end
 end

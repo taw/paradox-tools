@@ -7877,22 +7877,16 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "infrastructure_destruction",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "home_defence",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 1.5,
       "xor": [
         "force_rotation",
         "formation_flying"
       ],
-      "name": "Air Superiority"
+      "name": "Air Superiority",
+      "leads_to": [
+        "infrastructure_destruction",
+        "home_defence"
+      ]
     },
     "infrastructure_destruction": {
       "air_cas_present_factor": 0.1,
@@ -7902,12 +7896,11 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "naval_strike_tactics",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Infrastructure Destruction"
+      "name": "Infrastructure Destruction",
+      "leads_to": [
+        "naval_strike_tactics"
+      ]
     },
     "home_defence": {
       "air_interception_detect_factor": 0.1,
@@ -7917,12 +7910,11 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "naval_strike_tactics",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Home Defense"
+      "name": "Home Defense",
+      "leads_to": [
+        "naval_strike_tactics"
+      ]
     },
     "naval_strike_tactics": {
       "air_nav_efficiency": 0.15,
@@ -7932,18 +7924,12 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "fighter_sweeps",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "dogfighting_experience",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
-      "name": "Naval Strike Tactics"
+      "name": "Naval Strike Tactics",
+      "leads_to": [
+        "fighter_sweeps",
+        "dogfighting_experience"
+      ]
     },
     "fighter_sweeps": {
       "air_intercept_efficiency": 0.2,
@@ -7953,15 +7939,14 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "multialtitude_flying",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "xor": [
         "dogfighting_experience"
       ],
-      "name": "Fighter Sweeps"
+      "name": "Fighter Sweeps",
+      "leads_to": [
+        "multialtitude_flying"
+      ]
     },
     "dogfighting_experience": {
       "air_superiority_efficiency": 0.2,
@@ -7971,15 +7956,14 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "multialtitude_flying",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "xor": [
         "fighter_sweeps"
       ],
-      "name": "Dogfighting Experience"
+      "name": "Dogfighting Experience",
+      "leads_to": [
+        "multialtitude_flying"
+      ]
     },
     "multialtitude_flying": {
       "categories": [
@@ -7994,12 +7978,11 @@
         "air_agility": 0.1
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "logistical_bombing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Multi-Altitude Flying"
+      "name": "Multi-Altitude Flying",
+      "leads_to": [
+        "logistical_bombing"
+      ]
     },
     "logistical_bombing": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -8009,18 +7992,12 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "night_bombing",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "day_bombing",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
-      "name": "Logistical Bombing"
+      "name": "Logistical Bombing",
+      "leads_to": [
+        "night_bombing",
+        "day_bombing"
+      ]
     },
     "night_bombing": {
       "XOR": [
@@ -8033,12 +8010,11 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "massed_bomber_formations",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Night Bombing"
+      "name": "Night Bombing",
+      "leads_to": [
+        "massed_bomber_formations"
+      ]
     },
     "day_bombing": {
       "XOR": [
@@ -8051,12 +8027,11 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "air_offense",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Day Bombing"
+      "name": "Day Bombing",
+      "leads_to": [
+        "air_offense"
+      ]
     },
     "massed_bomber_formations": {
       "air_strategic_bomber_bombing_factor": 0.2,
@@ -8066,12 +8041,11 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "flying_fortress",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Massed Bomber Formations"
+      "name": "Massed Bomber Formations",
+      "leads_to": [
+        "flying_fortress"
+      ]
     },
     "air_offense": {
       "air_escort_efficiency": 0.25,
@@ -8081,12 +8055,11 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "flying_fortress",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Fighter Escorts"
+      "name": "Fighter Escorts",
+      "leads_to": [
+        "flying_fortress"
+      ]
     },
     "flying_fortress": {
       "air_strategic_bomber_defence_factor": 0.25,
@@ -8096,18 +8069,12 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "offensive_formations",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "mass_destruction",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
-      "name": "Flying Fortress"
+      "name": "Flying Fortress",
+      "leads_to": [
+        "offensive_formations",
+        "mass_destruction"
+      ]
     },
     "offensive_formations": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -8118,7 +8085,10 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "name": "Offensive Formations"
+      "name": "Offensive Formations",
+      "leads_to": [
+
+      ]
     },
     "mass_destruction": {
       "air_strategic_bomber_bombing_factor": 0.2,
@@ -8129,7 +8099,10 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "name": "Mass Destruction"
+      "name": "Mass Destruction",
+      "leads_to": [
+
+      ]
     },
     "formation_flying": {
       "air_superiority_detect_factor": 0.15,
@@ -8139,16 +8112,15 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "dive_bombing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "xor": [
         "force_rotation",
         "air_superiority"
       ],
-      "name": "Formation Flying"
+      "name": "Formation Flying",
+      "leads_to": [
+        "dive_bombing"
+      ]
     },
     "dive_bombing": {
       "air_cas_efficiency": 0.2,
@@ -8158,12 +8130,11 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "direct_ground_support",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Dive Bombing"
+      "name": "Dive Bombing",
+      "leads_to": [
+        "direct_ground_support"
+      ]
     },
     "direct_ground_support": {
       "air_cas_present_factor": 0.2,
@@ -8173,18 +8144,12 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "formation_fighting",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "fighter_ace_initiative",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
-      "name": "Direct Ground Support"
+      "name": "Direct Ground Support",
+      "leads_to": [
+        "formation_fighting",
+        "fighter_ace_initiative"
+      ]
     },
     "formation_fighting": {
       "air_superiority_efficiency": 0.15,
@@ -8194,15 +8159,14 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "hunt_and_destroy",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "xor": [
         "fighter_ace_initiative"
       ],
-      "name": "Formation Fighting"
+      "name": "Formation Fighting",
+      "leads_to": [
+        "hunt_and_destroy"
+      ]
     },
     "fighter_ace_initiative": {
       "air_ace_generation_chance_factor": 0.25,
@@ -8212,15 +8176,14 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "hunt_and_destroy",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "xor": [
         "formation_fighting"
       ],
-      "name": "Fighter Ace Initiative"
+      "name": "Fighter Ace Initiative",
+      "leads_to": [
+        "hunt_and_destroy"
+      ]
     },
     "hunt_and_destroy": {
       "air_cas_efficiency": 0.2,
@@ -8230,12 +8193,11 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "combat_unit_destruction",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Hunt and Destroy"
+      "name": "Hunt and Destroy",
+      "leads_to": [
+        "combat_unit_destruction"
+      ]
     },
     "combat_unit_destruction": {
       "army_bonus_air_superiority_factor": 0.1,
@@ -8248,22 +8210,13 @@
         "air_agility": 0.2
       },
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "battlefield_support",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "keypoint_bombing",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "ground_support_integration",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
-      "name": "Combat Unit Destruction"
+      "name": "Combat Unit Destruction",
+      "leads_to": [
+        "battlefield_support",
+        "keypoint_bombing",
+        "ground_support_integration"
+      ]
     },
     "battlefield_support": {
       "army_bonus_air_superiority_factor": 0.2,
@@ -8273,12 +8226,11 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "naval_strike_torpedo_tactics",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Battlefield Support"
+      "name": "Battlefield Support",
+      "leads_to": [
+        "naval_strike_torpedo_tactics"
+      ]
     },
     "keypoint_bombing": {
       "categories": [
@@ -8287,15 +8239,14 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "naval_strike_torpedo_tactics",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "tac_bomber": {
         "air_bombing": 0.1
       },
-      "name": "Keypoint Bombing"
+      "name": "Keypoint Bombing",
+      "leads_to": [
+        "naval_strike_torpedo_tactics"
+      ]
     },
     "ground_support_integration": {
       "air_cas_present_factor": 0.2,
@@ -8305,12 +8256,11 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "naval_strike_torpedo_tactics",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Ground Support Integration"
+      "name": "Ground Support Integration",
+      "leads_to": [
+        "naval_strike_torpedo_tactics"
+      ]
     },
     "naval_strike_torpedo_tactics": {
       "air_nav_efficiency": 0.1,
@@ -8320,12 +8270,11 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "strategic_destruction",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Naval Strike Torpedo Tactics"
+      "name": "Naval Strike Torpedo Tactics",
+      "leads_to": [
+        "strategic_destruction"
+      ]
     },
     "strategic_destruction": {
       "air_strategic_bomber_bombing_factor": 0.15,
@@ -8335,12 +8284,11 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "forward_interception",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Strategic Destruction"
+      "name": "Strategic Destruction",
+      "leads_to": [
+        "forward_interception"
+      ]
     },
     "forward_interception": {
       "air_interception_detect_factor": 0.15,
@@ -8351,7 +8299,10 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "name": "Forward Interception"
+      "name": "Forward Interception",
+      "leads_to": [
+
+      ]
     },
     "force_rotation": {
       "air_interception_detect_factor": 0.2,
@@ -8361,16 +8312,15 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "fighter_baiting",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "xor": [
         "formation_flying",
         "air_superiority"
       ],
-      "name": "Force Rotation"
+      "name": "Force Rotation",
+      "leads_to": [
+        "fighter_baiting"
+      ]
     },
     "fighter_baiting": {
       "air_ace_generation_chance_factor": 0.1,
@@ -8381,12 +8331,11 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "low_echelon_support",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Fighter Baiting"
+      "name": "Fighter Baiting",
+      "leads_to": [
+        "low_echelon_support"
+      ]
     },
     "low_echelon_support": {
       "air_cas_present_factor": 0.1,
@@ -8396,12 +8345,11 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "dispersed_fighting",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Low Echelon Support"
+      "name": "Low Echelon Support",
+      "leads_to": [
+        "dispersed_fighting"
+      ]
     },
     "dispersed_fighting": {
       "air_superiority_detect_factor": 0.2,
@@ -8411,12 +8359,11 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "operational_destruction",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Dispersed Fighting"
+      "name": "Dispersed Fighting",
+      "leads_to": [
+        "operational_destruction"
+      ]
     },
     "operational_destruction": {
       "army_bonus_air_superiority_factor": 0.15,
@@ -8426,18 +8373,12 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "fighter_veteran_initiative",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "cas_veteran_initiative",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
-      "name": "Operational Destruction"
+      "name": "Operational Destruction",
+      "leads_to": [
+        "fighter_veteran_initiative",
+        "cas_veteran_initiative"
+      ]
     },
     "fighter_veteran_initiative": {
       "categories": [
@@ -8452,12 +8393,11 @@
         "air_agility": 0.2
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "naval_strike_torpedo_tactics_oi",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Fighter Veteran Initiative"
+      "name": "Fighter Veteran Initiative",
+      "leads_to": [
+        "naval_strike_torpedo_tactics_oi"
+      ]
     },
     "naval_strike_torpedo_tactics_oi": {
       "air_nav_efficiency": 0.1,
@@ -8467,12 +8407,11 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "infiltration_bombing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Naval Strike Torpedo Tactics"
+      "name": "Naval Strike Torpedo Tactics",
+      "leads_to": [
+        "infiltration_bombing"
+      ]
     },
     "cas_veteran_initiative": {
       "air_cas_efficiency": 0.15,
@@ -8482,12 +8421,11 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "carousel_bombing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Ground Attack Veteran Initiative"
+      "name": "Ground Attack Veteran Initiative",
+      "leads_to": [
+        "carousel_bombing"
+      ]
     },
     "carousel_bombing": {
       "categories": [
@@ -8496,15 +8434,14 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "infiltration_bombing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "tac_bomber": {
         "air_bombing": 0.1
       },
-      "name": "Carousel Bombing"
+      "name": "Carousel Bombing",
+      "leads_to": [
+        "infiltration_bombing"
+      ]
     },
     "infiltration_bombing": {
       "categories": [
@@ -8513,13 +8450,12 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "air_skirmish",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "strategic_bomb_visibility": -0.5,
-      "name": "Infiltration Bombing"
+      "name": "Infiltration Bombing",
+      "leads_to": [
+        "air_skirmish"
+      ]
     },
     "air_skirmish": {
       "air_ace_generation_chance_factor": 0.1,
@@ -8530,12 +8466,11 @@
         "cat_operational_integrity"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "high_level_bombing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Air Skirmish"
+      "name": "Air Skirmish",
+      "leads_to": [
+        "high_level_bombing"
+      ]
     },
     "high_level_bombing": {
       "air_strategic_bomber_defence_factor": 0.2,
@@ -8546,7 +8481,10 @@
       ],
       "doctrine": true,
       "research_cost": 2,
-      "name": "High Level Bombing"
+      "name": "High Level Bombing",
+      "leads_to": [
+
+      ]
     },
     "early_fighter": {
       "categories": [
@@ -8557,26 +8495,17 @@
       "enable_equipments": [
         "fighter_equipment_0"
       ],
-      "path": [
-        {
-          "leads_to_tech": "fighter1",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "CAS1",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "naval_bomber1",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "start_year": 1933,
       "sub_technologies": [
         "cv_early_fighter"
       ],
-      "name": "early_fighter"
+      "name": "early_fighter",
+      "leads_to": [
+        "fighter1",
+        "CAS1",
+        "naval_bomber1"
+      ]
     },
     "cv_early_fighter": {
       "categories": [
@@ -8588,7 +8517,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1933,
-      "name": "cv_early_fighter"
+      "name": "cv_early_fighter",
+      "leads_to": [
+
+      ]
     },
     "fighter1": {
       "categories": [
@@ -8599,16 +8531,15 @@
       "enable_equipments": [
         "fighter_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "fighter2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
       "sub_technologies": [
         "cv_fighter1"
       ],
-      "name": "fighter1"
+      "name": "fighter1",
+      "leads_to": [
+        "fighter2"
+      ]
     },
     "cv_fighter1": {
       "categories": [
@@ -8620,7 +8551,10 @@
       ],
       "research_cost": 1,
       "start_year": 1936,
-      "name": "cv_fighter1"
+      "name": "cv_fighter1",
+      "leads_to": [
+
+      ]
     },
     "fighter2": {
       "categories": [
@@ -8631,16 +8565,15 @@
       "enable_equipments": [
         "fighter_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "fighter3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
       "sub_technologies": [
         "cv_fighter2"
       ],
-      "name": "fighter2"
+      "name": "fighter2",
+      "leads_to": [
+        "fighter3"
+      ]
     },
     "cv_fighter2": {
       "categories": [
@@ -8652,7 +8585,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1940,
-      "name": "cv_fighter2"
+      "name": "cv_fighter2",
+      "leads_to": [
+
+      ]
     },
     "fighter3": {
       "categories": [
@@ -8663,16 +8599,15 @@
       "enable_equipments": [
         "fighter_equipment_3"
       ],
-      "path": {
-        "leads_to_tech": "jet_fighter1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1944,
       "sub_technologies": [
         "cv_fighter3"
       ],
-      "name": "fighter3"
+      "name": "fighter3",
+      "leads_to": [
+        "jet_fighter1"
+      ]
     },
     "cv_fighter3": {
       "categories": [
@@ -8684,7 +8619,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1944,
-      "name": "cv_fighter3"
+      "name": "cv_fighter3",
+      "leads_to": [
+
+      ]
     },
     "jet_fighter1": {
       "categories": [
@@ -8697,13 +8635,12 @@
       "enable_equipments": [
         "jet_fighter_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "jet_fighter2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1945,
-      "name": "jet_fighter1"
+      "name": "jet_fighter1",
+      "leads_to": [
+        "jet_fighter2"
+      ]
     },
     "jet_fighter2": {
       "categories": [
@@ -8715,7 +8652,10 @@
       ],
       "research_cost": 2,
       "start_year": 1950,
-      "name": "jet_fighter2"
+      "name": "jet_fighter2",
+      "leads_to": [
+
+      ]
     },
     "CAS1": {
       "categories": [
@@ -8726,16 +8666,15 @@
       "enable_equipments": [
         "CAS_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "CAS2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
       "sub_technologies": [
         "cv_CAS1"
       ],
-      "name": "CAS1"
+      "name": "CAS1",
+      "leads_to": [
+        "CAS2"
+      ]
     },
     "cv_CAS1": {
       "categories": [
@@ -8747,7 +8686,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1936,
-      "name": "cv_CAS1"
+      "name": "cv_CAS1",
+      "leads_to": [
+
+      ]
     },
     "CAS2": {
       "categories": [
@@ -8758,16 +8700,15 @@
       "enable_equipments": [
         "CAS_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "CAS3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
       "sub_technologies": [
         "cv_CAS2"
       ],
-      "name": "CAS2"
+      "name": "CAS2",
+      "leads_to": [
+        "CAS3"
+      ]
     },
     "cv_CAS2": {
       "categories": [
@@ -8779,7 +8720,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1940,
-      "name": "cv_CAS2"
+      "name": "cv_CAS2",
+      "leads_to": [
+
+      ]
     },
     "CAS3": {
       "categories": [
@@ -8790,16 +8734,15 @@
       "enable_equipments": [
         "CAS_equipment_3"
       ],
-      "path": {
-        "leads_to_tech": "jet_fighter1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1944,
       "sub_technologies": [
         "cv_CAS3"
       ],
-      "name": "CAS3"
+      "name": "CAS3",
+      "leads_to": [
+        "jet_fighter1"
+      ]
     },
     "cv_CAS3": {
       "categories": [
@@ -8811,7 +8754,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1944,
-      "name": "cv_CAS3"
+      "name": "cv_CAS3",
+      "leads_to": [
+
+      ]
     },
     "naval_bomber1": {
       "categories": [
@@ -8822,16 +8768,15 @@
       "enable_equipments": [
         "nav_bomber_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "naval_bomber2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
       "sub_technologies": [
         "cv_naval_bomber1"
       ],
-      "name": "naval_bomber1"
+      "name": "naval_bomber1",
+      "leads_to": [
+        "naval_bomber2"
+      ]
     },
     "cv_naval_bomber1": {
       "categories": [
@@ -8843,7 +8788,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1936,
-      "name": "cv_naval_bomber1"
+      "name": "cv_naval_bomber1",
+      "leads_to": [
+
+      ]
     },
     "naval_bomber2": {
       "categories": [
@@ -8854,16 +8802,15 @@
       "enable_equipments": [
         "nav_bomber_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "naval_bomber3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
       "sub_technologies": [
         "cv_naval_bomber2"
       ],
-      "name": "naval_bomber2"
+      "name": "naval_bomber2",
+      "leads_to": [
+        "naval_bomber3"
+      ]
     },
     "cv_naval_bomber2": {
       "categories": [
@@ -8875,7 +8822,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1940,
-      "name": "cv_naval_bomber2"
+      "name": "cv_naval_bomber2",
+      "leads_to": [
+
+      ]
     },
     "naval_bomber3": {
       "categories": [
@@ -8886,16 +8836,15 @@
       "enable_equipments": [
         "nav_bomber_equipment_3"
       ],
-      "path": {
-        "leads_to_tech": "jet_fighter1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1944,
       "sub_technologies": [
         "cv_naval_bomber3"
       ],
-      "name": "naval_bomber3"
+      "name": "naval_bomber3",
+      "leads_to": [
+        "jet_fighter1"
+      ]
     },
     "cv_naval_bomber3": {
       "categories": [
@@ -8907,7 +8856,10 @@
       ],
       "research_cost": 1.0,
       "start_year": 1944,
-      "name": "cv_naval_bomber3"
+      "name": "cv_naval_bomber3",
+      "leads_to": [
+
+      ]
     },
     "early_bomber": {
       "categories": [
@@ -8918,19 +8870,13 @@
       "enable_equipments": [
         "tac_bomber_equipment_0"
       ],
-      "path": [
-        {
-          "leads_to_tech": "heavy_fighter1",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "tactical_bomber1",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "start_year": 1933,
-      "name": "early_bomber"
+      "name": "early_bomber",
+      "leads_to": [
+        "heavy_fighter1",
+        "tactical_bomber1"
+      ]
     },
     "heavy_fighter1": {
       "categories": [
@@ -8941,13 +8887,12 @@
       "enable_equipments": [
         "heavy_fighter_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "heavy_fighter2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "heavy_fighter1"
+      "name": "heavy_fighter1",
+      "leads_to": [
+        "heavy_fighter2"
+      ]
     },
     "heavy_fighter2": {
       "categories": [
@@ -8958,13 +8903,12 @@
       "enable_equipments": [
         "heavy_fighter_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "heavy_fighter3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "heavy_fighter2"
+      "name": "heavy_fighter2",
+      "leads_to": [
+        "heavy_fighter3"
+      ]
     },
     "heavy_fighter3": {
       "categories": [
@@ -8977,7 +8921,10 @@
       ],
       "research_cost": 2,
       "start_year": 1944,
-      "name": "heavy_fighter3"
+      "name": "heavy_fighter3",
+      "leads_to": [
+
+      ]
     },
     "tactical_bomber1": {
       "categories": [
@@ -8988,13 +8935,12 @@
       "enable_equipments": [
         "tac_bomber_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "tactical_bomber2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "tactical_bomber1"
+      "name": "tactical_bomber1",
+      "leads_to": [
+        "tactical_bomber2"
+      ]
     },
     "tactical_bomber2": {
       "categories": [
@@ -9005,13 +8951,12 @@
       "enable_equipments": [
         "tac_bomber_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "tactical_bomber3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "tactical_bomber2"
+      "name": "tactical_bomber2",
+      "leads_to": [
+        "tactical_bomber3"
+      ]
     },
     "tactical_bomber3": {
       "categories": [
@@ -9022,13 +8967,12 @@
       "enable_equipments": [
         "tac_bomber_equipment_3"
       ],
-      "path": {
-        "leads_to_tech": "jet_tactical_bomber1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1944,
-      "name": "tactical_bomber3"
+      "name": "tactical_bomber3",
+      "leads_to": [
+        "jet_tactical_bomber1"
+      ]
     },
     "jet_tactical_bomber1": {
       "categories": [
@@ -9042,13 +8986,12 @@
       "enable_equipments": [
         "jet_tac_bomber_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "jet_tactical_bomber2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1945,
-      "name": "jet_tactical_bomber1"
+      "name": "jet_tactical_bomber1",
+      "leads_to": [
+        "jet_tactical_bomber2"
+      ]
     },
     "jet_tactical_bomber2": {
       "categories": [
@@ -9061,7 +9004,10 @@
       ],
       "research_cost": 2,
       "start_year": 1950,
-      "name": "jet_tactical_bomber2"
+      "name": "jet_tactical_bomber2",
+      "leads_to": [
+
+      ]
     },
     "strategic_bomber1": {
       "categories": [
@@ -9072,13 +9018,12 @@
       "enable_equipments": [
         "strat_bomber_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "strategic_bomber2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "strategic_bomber1"
+      "name": "strategic_bomber1",
+      "leads_to": [
+        "strategic_bomber2"
+      ]
     },
     "strategic_bomber2": {
       "categories": [
@@ -9089,13 +9034,12 @@
       "enable_equipments": [
         "strat_bomber_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "strategic_bomber3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "strategic_bomber2"
+      "name": "strategic_bomber2",
+      "leads_to": [
+        "strategic_bomber3"
+      ]
     },
     "strategic_bomber3": {
       "categories": [
@@ -9106,13 +9050,12 @@
       "enable_equipments": [
         "strat_bomber_equipment_3"
       ],
-      "path": {
-        "leads_to_tech": "jet_strategic_bomber1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1944,
-      "name": "strategic_bomber3"
+      "name": "strategic_bomber3",
+      "leads_to": [
+        "jet_strategic_bomber1"
+      ]
     },
     "jet_strategic_bomber1": {
       "categories": [
@@ -9128,7 +9071,10 @@
       ],
       "research_cost": 2,
       "start_year": 1950,
-      "name": "jet_strategic_bomber1"
+      "name": "jet_strategic_bomber1",
+      "leads_to": [
+
+      ]
     },
     "suicide_craft": {
       "allow": {
@@ -9139,7 +9085,10 @@
       ],
       "research_cost": 1.5,
       "start_year": 1944,
-      "name": "Yokosuka MXY7 Ohka"
+      "name": "Yokosuka MXY7 Ohka",
+      "leads_to": [
+
+      ]
     },
     "gwtank": {
       "categories": [
@@ -9183,19 +9132,13 @@
           ]
         }
       },
-      "path": [
-        {
-          "leads_to_tech": "basic_light_tank",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "basic_heavy_tank",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "start_year": 1918,
-      "name": "gwtank"
+      "name": "gwtank",
+      "leads_to": [
+        "basic_light_tank",
+        "basic_heavy_tank"
+      ]
     },
     "basic_light_tank": {
       "categories": [
@@ -9239,10 +9182,6 @@
           ]
         }
       },
-      "path": {
-        "leads_to_tech": "improved_light_tank",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1934,
       "sub_technologies": [
@@ -9250,7 +9189,10 @@
         "basic_light_art",
         "basic_light_spaa"
       ],
-      "name": "basic_light_tank"
+      "name": "basic_light_tank",
+      "leads_to": [
+        "improved_light_tank"
+      ]
     },
     "basic_light_td": {
       "categories": [
@@ -9261,7 +9203,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1934,
-      "name": "basic_light_td"
+      "name": "basic_light_td",
+      "leads_to": [
+
+      ]
     },
     "basic_light_art": {
       "categories": [
@@ -9272,7 +9217,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1934,
-      "name": "basic_light_art"
+      "name": "basic_light_art",
+      "leads_to": [
+
+      ]
     },
     "basic_light_spaa": {
       "categories": [
@@ -9283,7 +9231,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1934,
-      "name": "basic_light_spaa"
+      "name": "basic_light_spaa",
+      "leads_to": [
+
+      ]
     },
     "improved_light_tank": {
       "categories": [
@@ -9293,16 +9244,6 @@
       "enable_equipments": [
         "light_tank_equipment_2"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_light_tank",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "basic_medium_tank",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "start_year": 1936,
       "sub_technologies": [
@@ -9310,7 +9251,11 @@
         "improved_light_art",
         "improved_light_spaa"
       ],
-      "name": "improved_light_tank"
+      "name": "improved_light_tank",
+      "leads_to": [
+        "advanced_light_tank",
+        "basic_medium_tank"
+      ]
     },
     "improved_light_td": {
       "categories": [
@@ -9321,7 +9266,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1936,
-      "name": "improved_light_td"
+      "name": "improved_light_td",
+      "leads_to": [
+
+      ]
     },
     "improved_light_art": {
       "categories": [
@@ -9332,7 +9280,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1936,
-      "name": "improved_light_art"
+      "name": "improved_light_art",
+      "leads_to": [
+
+      ]
     },
     "improved_light_spaa": {
       "categories": [
@@ -9343,7 +9294,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1936,
-      "name": "improved_light_spaa"
+      "name": "improved_light_spaa",
+      "leads_to": [
+
+      ]
     },
     "advanced_light_tank": {
       "categories": [
@@ -9360,7 +9314,10 @@
         "advanced_light_art",
         "advanced_light_spaa"
       ],
-      "name": "advanced_light_tank"
+      "name": "advanced_light_tank",
+      "leads_to": [
+
+      ]
     },
     "advanced_light_td": {
       "categories": [
@@ -9371,7 +9328,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "advanced_light_td"
+      "name": "advanced_light_td",
+      "leads_to": [
+
+      ]
     },
     "advanced_light_art": {
       "categories": [
@@ -9382,7 +9342,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "advanced_light_art"
+      "name": "advanced_light_art",
+      "leads_to": [
+
+      ]
     },
     "advanced_light_spaa": {
       "categories": [
@@ -9393,7 +9356,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "advanced_light_spaa"
+      "name": "advanced_light_spaa",
+      "leads_to": [
+
+      ]
     },
     "basic_medium_tank": {
       "categories": [
@@ -9403,10 +9369,6 @@
       "enable_equipments": [
         "medium_tank_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "improved_medium_tank",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1939,
       "sub_technologies": [
@@ -9414,7 +9376,10 @@
         "basic_medium_art",
         "basic_medium_spaa"
       ],
-      "name": "basic_medium_tank"
+      "name": "basic_medium_tank",
+      "leads_to": [
+        "improved_medium_tank"
+      ]
     },
     "basic_medium_td": {
       "categories": [
@@ -9425,7 +9390,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1939,
-      "name": "basic_medium_td"
+      "name": "basic_medium_td",
+      "leads_to": [
+
+      ]
     },
     "basic_medium_art": {
       "categories": [
@@ -9436,7 +9404,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1939,
-      "name": "basic_medium_art"
+      "name": "basic_medium_art",
+      "leads_to": [
+
+      ]
     },
     "basic_medium_spaa": {
       "categories": [
@@ -9447,7 +9418,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1939,
-      "name": "basic_medium_spaa"
+      "name": "basic_medium_spaa",
+      "leads_to": [
+
+      ]
     },
     "improved_medium_tank": {
       "categories": [
@@ -9457,16 +9431,6 @@
       "enable_equipments": [
         "medium_tank_equipment_2"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_medium_tank",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_heavy_tank",
-          "research_cost_coeff": 0.9
-        }
-      ],
       "research_cost": 2,
       "start_year": 1941,
       "sub_technologies": [
@@ -9474,7 +9438,11 @@
         "improved_medium_art",
         "improved_medium_spaa"
       ],
-      "name": "improved_medium_tank"
+      "name": "improved_medium_tank",
+      "leads_to": [
+        "advanced_medium_tank",
+        "improved_heavy_tank"
+      ]
     },
     "improved_medium_td": {
       "categories": [
@@ -9485,7 +9453,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "improved_medium_td"
+      "name": "improved_medium_td",
+      "leads_to": [
+
+      ]
     },
     "improved_medium_art": {
       "categories": [
@@ -9496,7 +9467,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "improved_medium_art"
+      "name": "improved_medium_art",
+      "leads_to": [
+
+      ]
     },
     "improved_medium_spaa": {
       "categories": [
@@ -9507,7 +9481,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "improved_medium_spaa"
+      "name": "improved_medium_spaa",
+      "leads_to": [
+
+      ]
     },
     "advanced_medium_tank": {
       "categories": [
@@ -9517,16 +9494,6 @@
       "enable_equipments": [
         "medium_tank_equipment_3"
       ],
-      "path": [
-        {
-          "leads_to_tech": "main_battle_tank",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "advanced_heavy_tank",
-          "research_cost_coeff": 0.9
-        }
-      ],
       "research_cost": 2,
       "start_year": 1943,
       "sub_technologies": [
@@ -9534,7 +9501,11 @@
         "advanced_medium_art",
         "advanced_medium_spaa"
       ],
-      "name": "advanced_medium_tank"
+      "name": "advanced_medium_tank",
+      "leads_to": [
+        "main_battle_tank",
+        "advanced_heavy_tank"
+      ]
     },
     "advanced_medium_td": {
       "categories": [
@@ -9545,7 +9516,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "advanced_medium_td"
+      "name": "advanced_medium_td",
+      "leads_to": [
+
+      ]
     },
     "advanced_medium_art": {
       "categories": [
@@ -9556,7 +9530,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "advanced_medium_art"
+      "name": "advanced_medium_art",
+      "leads_to": [
+
+      ]
     },
     "advanced_medium_spaa": {
       "categories": [
@@ -9567,7 +9544,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "advanced_medium_spaa"
+      "name": "advanced_medium_spaa",
+      "leads_to": [
+
+      ]
     },
     "main_battle_tank": {
       "categories": [
@@ -9584,7 +9564,10 @@
         "modern_art",
         "modern_spaa"
       ],
-      "name": "main_battle_tank"
+      "name": "main_battle_tank",
+      "leads_to": [
+
+      ]
     },
     "modern_td": {
       "categories": [
@@ -9595,7 +9578,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1945,
-      "name": "modern_td"
+      "name": "modern_td",
+      "leads_to": [
+
+      ]
     },
     "modern_art": {
       "categories": [
@@ -9606,7 +9592,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1945,
-      "name": "modern_art"
+      "name": "modern_art",
+      "leads_to": [
+
+      ]
     },
     "modern_spaa": {
       "categories": [
@@ -9617,7 +9606,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1945,
-      "name": "modern_spaa"
+      "name": "modern_spaa",
+      "leads_to": [
+
+      ]
     },
     "basic_heavy_tank": {
       "categories": [
@@ -9661,10 +9653,6 @@
           ]
         }
       },
-      "path": {
-        "leads_to_tech": "improved_heavy_tank",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1934,
       "sub_technologies": [
@@ -9672,7 +9660,10 @@
         "basic_heavy_art",
         "basic_heavy_spaa"
       ],
-      "name": "basic_heavy_tank"
+      "name": "basic_heavy_tank",
+      "leads_to": [
+        "improved_heavy_tank"
+      ]
     },
     "basic_heavy_td": {
       "categories": [
@@ -9683,7 +9674,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1934,
-      "name": "basic_heavy_td"
+      "name": "basic_heavy_td",
+      "leads_to": [
+
+      ]
     },
     "basic_heavy_art": {
       "categories": [
@@ -9694,7 +9688,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1934,
-      "name": "basic_heavy_art"
+      "name": "basic_heavy_art",
+      "leads_to": [
+
+      ]
     },
     "basic_heavy_spaa": {
       "categories": [
@@ -9705,7 +9702,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1934,
-      "name": "basic_heavy_spaa"
+      "name": "basic_heavy_spaa",
+      "leads_to": [
+
+      ]
     },
     "improved_heavy_tank": {
       "categories": [
@@ -9715,20 +9715,6 @@
       "enable_equipments": [
         "heavy_tank_equipment_2"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_heavy_tank",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_medium_tank",
-          "research_cost_coeff": 0.9
-        },
-        {
-          "leads_to_tech": "super_heavy_tank",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2.5,
       "start_year": 1941,
       "sub_technologies": [
@@ -9736,7 +9722,12 @@
         "improved_heavy_art",
         "improved_heavy_spaa"
       ],
-      "name": "improved_heavy_tank"
+      "name": "improved_heavy_tank",
+      "leads_to": [
+        "advanced_heavy_tank",
+        "improved_medium_tank",
+        "super_heavy_tank"
+      ]
     },
     "improved_heavy_td": {
       "categories": [
@@ -9747,7 +9738,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "improved_heavy_td"
+      "name": "improved_heavy_td",
+      "leads_to": [
+
+      ]
     },
     "improved_heavy_art": {
       "categories": [
@@ -9758,7 +9752,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "improved_heavy_art"
+      "name": "improved_heavy_art",
+      "leads_to": [
+
+      ]
     },
     "improved_heavy_spaa": {
       "categories": [
@@ -9769,7 +9766,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1941,
-      "name": "improved_heavy_spaa"
+      "name": "improved_heavy_spaa",
+      "leads_to": [
+
+      ]
     },
     "advanced_heavy_tank": {
       "categories": [
@@ -9779,16 +9779,6 @@
       "enable_equipments": [
         "heavy_tank_equipment_3"
       ],
-      "path": [
-        {
-          "leads_to_tech": "main_battle_tank",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "advanced_medium_tank",
-          "research_cost_coeff": 0.9
-        }
-      ],
       "research_cost": 2.5,
       "start_year": 1943,
       "sub_technologies": [
@@ -9796,7 +9786,11 @@
         "advanced_heavy_art",
         "advanced_heavy_spaa"
       ],
-      "name": "advanced_heavy_tank"
+      "name": "advanced_heavy_tank",
+      "leads_to": [
+        "main_battle_tank",
+        "advanced_medium_tank"
+      ]
     },
     "advanced_heavy_td": {
       "categories": [
@@ -9807,7 +9801,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "advanced_heavy_td"
+      "name": "advanced_heavy_td",
+      "leads_to": [
+
+      ]
     },
     "advanced_heavy_art": {
       "categories": [
@@ -9818,7 +9815,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "advanced_heavy_art"
+      "name": "advanced_heavy_art",
+      "leads_to": [
+
+      ]
     },
     "advanced_heavy_spaa": {
       "categories": [
@@ -9829,7 +9829,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "advanced_heavy_spaa"
+      "name": "advanced_heavy_spaa",
+      "leads_to": [
+
+      ]
     },
     "super_heavy_tank": {
       "categories": [
@@ -9846,7 +9849,10 @@
         "super_heavy_art",
         "super_heavy_spaa"
       ],
-      "name": "super_heavy_tank"
+      "name": "super_heavy_tank",
+      "leads_to": [
+
+      ]
     },
     "super_heavy_td": {
       "categories": [
@@ -9857,7 +9863,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "super_heavy_td"
+      "name": "super_heavy_td",
+      "leads_to": [
+
+      ]
     },
     "super_heavy_art": {
       "categories": [
@@ -9868,7 +9877,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "super_heavy_art"
+      "name": "super_heavy_art",
+      "leads_to": [
+
+      ]
     },
     "super_heavy_spaa": {
       "categories": [
@@ -9879,7 +9891,10 @@
       ],
       "research_cost": 0.5,
       "start_year": 1943,
-      "name": "super_heavy_spaa"
+      "name": "super_heavy_spaa",
+      "leads_to": [
+
+      ]
     },
     "gw_artillery": {
       "categories": [
@@ -9888,23 +9903,14 @@
       "enable_equipments": [
         "artillery_equipment_1"
       ],
-      "path": [
-        {
-          "leads_to_tech": "interwar_artillery",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "interwar_antitank",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "interwar_antiair",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 1.5,
       "name": "gw_artillery",
-      "start_year": 1934
+      "start_year": 1934,
+      "leads_to": [
+        "interwar_artillery",
+        "interwar_antitank",
+        "interwar_antiair"
+      ]
     },
     "interwar_artillery": {
       "artillery": {
@@ -9916,13 +9922,12 @@
       "categories": [
         "artillery"
       ],
-      "path": {
-        "leads_to_tech": "artillery1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "Interwar Artillery"
+      "name": "Interwar Artillery",
+      "leads_to": [
+        "artillery1"
+      ]
     },
     "artillery1": {
       "categories": [
@@ -9931,13 +9936,12 @@
       "enable_equipments": [
         "artillery_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "artillery2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1939,
-      "name": "Artillery I"
+      "name": "Artillery I",
+      "leads_to": [
+        "artillery2"
+      ]
     },
     "artillery2": {
       "artillery": {
@@ -9949,19 +9953,13 @@
       "categories": [
         "artillery"
       ],
-      "path": [
-        {
-          "leads_to_tech": "artillery3",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "rocket_artillery",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 1,
       "start_year": 1940,
-      "name": "Improved Artillery Upgrade I"
+      "name": "Improved Artillery Upgrade I",
+      "leads_to": [
+        "artillery3",
+        "rocket_artillery"
+      ]
     },
     "artillery3": {
       "artillery": {
@@ -9973,13 +9971,12 @@
       "categories": [
         "artillery"
       ],
-      "path": {
-        "leads_to_tech": "artillery4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1941,
-      "name": "Improved Artillery Upgrade II"
+      "name": "Improved Artillery Upgrade II",
+      "leads_to": [
+        "artillery4"
+      ]
     },
     "artillery4": {
       "categories": [
@@ -9988,13 +9985,12 @@
       "enable_equipments": [
         "artillery_equipment_3"
       ],
-      "path": {
-        "leads_to_tech": "artillery5",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1942,
-      "name": "Artillery IV"
+      "name": "Artillery IV",
+      "leads_to": [
+        "artillery5"
+      ]
     },
     "artillery5": {
       "artillery": {
@@ -10008,7 +10004,10 @@
       ],
       "research_cost": 1,
       "start_year": 1943,
-      "name": "Advanced Artillery Upgrade"
+      "name": "Advanced Artillery Upgrade",
+      "leads_to": [
+
+      ]
     },
     "mountain_gun": {
       "allow": {
@@ -10025,7 +10024,10 @@
         }
       },
       "research_cost": 1,
-      "name": "Mountain Gun"
+      "name": "Mountain Gun",
+      "leads_to": [
+
+      ]
     },
     "rocket_artillery": {
       "categories": [
@@ -10034,13 +10036,12 @@
       "enable_equipments": [
         "rocket_artillery_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "rocket_artillery2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "Support Rocket Artillery"
+      "name": "Support Rocket Artillery",
+      "leads_to": [
+        "rocket_artillery2"
+      ]
     },
     "rocket_artillery2": {
       "categories": [
@@ -10048,10 +10049,6 @@
       ],
       "motorized_rocket_brigade": {
         "soft_attack": 0.15
-      },
-      "path": {
-        "leads_to_tech": "rocket_artillery3",
-        "research_cost_coeff": 1
       },
       "research_cost": 1,
       "rocket_artillery": {
@@ -10061,7 +10058,10 @@
         "soft_attack": 0.15
       },
       "start_year": 1941,
-      "name": "Rocket Artillery Upgrade I"
+      "name": "Rocket Artillery Upgrade I",
+      "leads_to": [
+        "rocket_artillery3"
+      ]
     },
     "rocket_artillery3": {
       "categories": [
@@ -10069,10 +10069,6 @@
       ],
       "motorized_rocket_brigade": {
         "soft_attack": 0.15
-      },
-      "path": {
-        "leads_to_tech": "rocket_artillery4",
-        "research_cost_coeff": 1
       },
       "research_cost": 1,
       "rocket_artillery": {
@@ -10082,7 +10078,10 @@
         "soft_attack": 0.15
       },
       "start_year": 1942,
-      "name": "Rocket Artillery Upgrade II"
+      "name": "Rocket Artillery Upgrade II",
+      "leads_to": [
+        "rocket_artillery4"
+      ]
     },
     "rocket_artillery4": {
       "categories": [
@@ -10096,7 +10095,10 @@
       },
       "research_cost": 1,
       "start_year": 1943,
-      "name": "Rocket Artillery III"
+      "name": "Rocket Artillery III",
+      "leads_to": [
+
+      ]
     },
     "interwar_antiair": {
       "categories": [
@@ -10109,13 +10111,12 @@
       "enable_equipments": [
         "anti_air_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "antiair1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "interwar_antiair"
+      "name": "interwar_antiair",
+      "leads_to": [
+        "antiair1"
+      ]
     },
     "antiair1": {
       "anti_air": {
@@ -10128,13 +10129,12 @@
         "artillery"
       ],
       "industry_air_damage_factor": -0.08,
-      "path": {
-        "leads_to_tech": "antiair2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1939,
-      "name": "Anti-Air Upgrade"
+      "name": "Anti-Air Upgrade",
+      "leads_to": [
+        "antiair2"
+      ]
     },
     "antiair2": {
       "categories": [
@@ -10143,14 +10143,13 @@
       "enable_equipments": [
         "anti_air_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "antiair3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1940,
       "static_anti_air_damage_factor": 0.1,
-      "name": "Anti-Air II"
+      "name": "Anti-Air II",
+      "leads_to": [
+        "antiair3"
+      ]
     },
     "antiair3": {
       "anti_air": {
@@ -10163,13 +10162,12 @@
         "artillery"
       ],
       "industry_air_damage_factor": -0.08,
-      "path": {
-        "leads_to_tech": "antiair4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1941,
-      "name": "Improved Anti-Air Upgrade I"
+      "name": "Improved Anti-Air Upgrade I",
+      "leads_to": [
+        "antiair4"
+      ]
     },
     "antiair4": {
       "anti_air": {
@@ -10182,13 +10180,12 @@
         "artillery"
       ],
       "industry_air_damage_factor": -0.08,
-      "path": {
-        "leads_to_tech": "antiair5",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1942,
-      "name": "Improved Anti-Air Upgrade II"
+      "name": "Improved Anti-Air Upgrade II",
+      "leads_to": [
+        "antiair5"
+      ]
     },
     "antiair5": {
       "categories": [
@@ -10200,7 +10197,10 @@
       "research_cost": 1,
       "start_year": 1943,
       "static_anti_air_damage_factor": 0.1,
-      "name": "Anti-Air V"
+      "name": "Anti-Air V",
+      "leads_to": [
+
+      ]
     },
     "interwar_antitank": {
       "categories": [
@@ -10210,13 +10210,12 @@
       "enable_equipments": [
         "anti_tank_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "antitank1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "interwar_antitank"
+      "name": "interwar_antitank",
+      "leads_to": [
+        "antitank1"
+      ]
     },
     "antitank1": {
       "anti_tank": {
@@ -10231,13 +10230,12 @@
         "artillery",
         "cat_anti_tank"
       ],
-      "path": {
-        "leads_to_tech": "antitank2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1939,
-      "name": "Anti-Tank Upgrade"
+      "name": "Anti-Tank Upgrade",
+      "leads_to": [
+        "antitank2"
+      ]
     },
     "antitank2": {
       "categories": [
@@ -10247,13 +10245,12 @@
       "enable_equipments": [
         "anti_tank_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "antitank3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1940,
-      "name": "Anti-Tank II"
+      "name": "Anti-Tank II",
+      "leads_to": [
+        "antitank3"
+      ]
     },
     "antitank3": {
       "anti_tank": {
@@ -10268,13 +10265,12 @@
         "artillery",
         "cat_anti_tank"
       ],
-      "path": {
-        "leads_to_tech": "antitank4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1941,
-      "name": "Improved Anti-Tank Upgrade I"
+      "name": "Improved Anti-Tank Upgrade I",
+      "leads_to": [
+        "antitank4"
+      ]
     },
     "antitank4": {
       "anti_tank": {
@@ -10289,13 +10285,12 @@
         "artillery",
         "cat_anti_tank"
       ],
-      "path": {
-        "leads_to_tech": "antitank5",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1,
       "start_year": 1942,
-      "name": "Improved Anti-Tank Upgrade II"
+      "name": "Improved Anti-Tank Upgrade II",
+      "leads_to": [
+        "antitank5"
+      ]
     },
     "antitank5": {
       "categories": [
@@ -10307,39 +10302,35 @@
       ],
       "research_cost": 1,
       "start_year": 1943,
-      "name": "Anti-Tank V"
+      "name": "Anti-Tank V",
+      "leads_to": [
+
+      ]
     },
     "electronic_mechanical_engineering": {
       "categories": [
         "electronics"
       ],
-      "path": [
-        {
-          "leads_to_tech": "radio",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "mechanical_computing",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 1,
       "research_time_factor": -0.02,
       "start_year": 1936,
-      "name": "Electronic Mechanical Engineering"
+      "name": "Electronic Mechanical Engineering",
+      "leads_to": [
+        "radio",
+        "mechanical_computing"
+      ]
     },
     "radio": {
       "categories": [
         "electronics"
       ],
       "land_reinforce_rate": 0.05,
-      "path": {
-        "leads_to_tech": "radio_detection",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "name": "Radio",
-      "start_year": 1936
+      "start_year": 1936,
+      "leads_to": [
+        "radio_detection"
+      ]
     },
     "radio_detection": {
       "categories": [
@@ -10350,13 +10341,12 @@
         "building": "radar_station",
         "level": 1
       },
-      "path": {
-        "leads_to_tech": "decimetric_radar",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "name": "Radio Detection",
-      "start_year": 1936
+      "start_year": 1936,
+      "leads_to": [
+        "decimetric_radar"
+      ]
     },
     "decimetric_radar": {
       "categories": [
@@ -10367,13 +10357,12 @@
         "building": "radar_station",
         "level": 2
       },
-      "path": {
-        "leads_to_tech": "improved_decimetric_radar",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1938,
-      "name": "Decimetric Radar"
+      "name": "Decimetric Radar",
+      "leads_to": [
+        "improved_decimetric_radar"
+      ]
     },
     "improved_decimetric_radar": {
       "categories": [
@@ -10384,13 +10373,12 @@
         "building": "radar_station",
         "level": 3
       },
-      "path": {
-        "leads_to_tech": "centimetric_radar",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1939,
-      "name": "Improved Decimetric Radar"
+      "name": "Improved Decimetric Radar",
+      "leads_to": [
+        "centimetric_radar"
+      ]
     },
     "centimetric_radar": {
       "categories": [
@@ -10401,14 +10389,13 @@
         "building": "radar_station",
         "level": 4
       },
-      "path": {
-        "leads_to_tech": "improved_centimetric_radar",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2.5,
       "start_year": 1940,
       "static_anti_air_hit_chance_factor": 0.2,
-      "name": "Centimetric Radar"
+      "name": "Centimetric Radar",
+      "leads_to": [
+        "improved_centimetric_radar"
+      ]
     },
     "improved_centimetric_radar": {
       "categories": [
@@ -10419,14 +10406,13 @@
         "building": "radar_station",
         "level": 5
       },
-      "path": {
-        "leads_to_tech": "advanced_centimetric_radar",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2.5,
       "start_year": 1941,
       "static_anti_air_hit_chance_factor": 0.2,
-      "name": "Improved Centimetric Radar"
+      "name": "Improved Centimetric Radar",
+      "leads_to": [
+        "advanced_centimetric_radar"
+      ]
     },
     "advanced_centimetric_radar": {
       "categories": [
@@ -10440,21 +10426,23 @@
       "research_cost": 2.5,
       "start_year": 1942,
       "static_anti_air_hit_chance_factor": 0.2,
-      "name": "Advanced Centimetric Radar"
+      "name": "Advanced Centimetric Radar",
+      "leads_to": [
+
+      ]
     },
     "mechanical_computing": {
       "categories": [
         "electronics",
         "computing_tech"
       ],
-      "path": {
-        "leads_to_tech": "computing_machine",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2.5,
       "research_time_factor": -0.03,
       "name": "Mechanical Computing",
-      "start_year": 1936
+      "start_year": 1936,
+      "leads_to": [
+        "computing_machine"
+      ]
     },
     "computing_machine": {
       "categories": [
@@ -10463,24 +10451,15 @@
         "decryption_tech",
         "computing_tech"
       ],
-      "path": [
-        {
-          "leads_to_tech": "improved_computing_machine",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "basic_encryption",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "basic_decryption",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2.5,
       "research_time_factor": -0.03,
       "start_year": 1938,
-      "name": "Computing Machine"
+      "name": "Computing Machine",
+      "leads_to": [
+        "improved_computing_machine",
+        "basic_encryption",
+        "basic_decryption"
+      ]
     },
     "improved_computing_machine": {
       "categories": [
@@ -10489,24 +10468,15 @@
         "decryption_tech",
         "computing_tech"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_computing_machine",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_encryption",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_decryption",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2.5,
       "research_time_factor": -0.05,
       "start_year": 1940,
-      "name": "Improved Computing Machine"
+      "name": "Improved Computing Machine",
+      "leads_to": [
+        "advanced_computing_machine",
+        "improved_encryption",
+        "improved_decryption"
+      ]
     },
     "advanced_computing_machine": {
       "categories": [
@@ -10515,20 +10485,14 @@
         "decryption_tech",
         "computing_tech"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_encryption",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "advanced_decryption",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2.5,
       "research_time_factor": -0.05,
       "start_year": 1942,
-      "name": "Advanced Computing Machine"
+      "name": "Advanced Computing Machine",
+      "leads_to": [
+        "advanced_encryption",
+        "advanced_decryption"
+      ]
     },
     "basic_encryption": {
       "categories": [
@@ -10538,7 +10502,10 @@
       "encryption": 1,
       "research_cost": 1,
       "start_year": 1938,
-      "name": "Encryption - Polyalphabetical Ciphers"
+      "name": "Encryption - Polyalphabetical Ciphers",
+      "leads_to": [
+
+      ]
     },
     "improved_encryption": {
       "categories": [
@@ -10548,7 +10515,10 @@
       "encryption": 1,
       "research_cost": 1,
       "start_year": 1940,
-      "name": "Encryption - Cyclic Permutations"
+      "name": "Encryption - Cyclic Permutations",
+      "leads_to": [
+
+      ]
     },
     "advanced_encryption": {
       "categories": [
@@ -10558,7 +10528,10 @@
       "encryption": 1,
       "research_cost": 1,
       "start_year": 1942,
-      "name": "Encryption - Pulse-code Modulation"
+      "name": "Encryption - Pulse-code Modulation",
+      "leads_to": [
+
+      ]
     },
     "basic_decryption": {
       "categories": [
@@ -10568,7 +10541,10 @@
       "decryption": 1,
       "research_cost": 1.5,
       "start_year": 1938,
-      "name": "Decryption - Frequency Analysis"
+      "name": "Decryption - Frequency Analysis",
+      "leads_to": [
+
+      ]
     },
     "improved_decryption": {
       "categories": [
@@ -10578,7 +10554,10 @@
       "decryption": 1,
       "research_cost": 1.5,
       "start_year": 1940,
-      "name": "Decryption - Side-channel Attack"
+      "name": "Decryption - Side-channel Attack",
+      "leads_to": [
+
+      ]
     },
     "advanced_decryption": {
       "categories": [
@@ -10588,7 +10567,10 @@
       "decryption": 1,
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Decryption - Automated Deduction"
+      "name": "Decryption - Automated Deduction",
+      "leads_to": [
+
+      ]
     },
     "experimental_rockets": {
       "categories": [
@@ -10598,13 +10580,12 @@
         "building": "rocket_site",
         "level": 2
       },
-      "path": {
-        "leads_to_tech": "rocket_engines",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1943,
-      "name": "Experimental Rockets"
+      "name": "Experimental Rockets",
+      "leads_to": [
+        "rocket_engines"
+      ]
     },
     "rocket_engines": {
       "categories": [
@@ -10617,16 +10598,6 @@
       "motorized_rocket_brigade": {
         "soft_attack": 0.05
       },
-      "path": [
-        {
-          "leads_to_tech": "improved_rocket_engines",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "jet_engines",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "rocket_artillery": {
         "soft_attack": 0.05
@@ -10636,7 +10607,11 @@
       },
       "show_equipment_icon": true,
       "start_year": 1944,
-      "name": "Rocket Engines"
+      "name": "Rocket Engines",
+      "leads_to": [
+        "improved_rocket_engines",
+        "jet_engines"
+      ]
     },
     "improved_rocket_engines": {
       "categories": [
@@ -10649,10 +10624,6 @@
       "motorized_rocket_brigade": {
         "soft_attack": 0.05
       },
-      "path": {
-        "leads_to_tech": "advanced_rocket_engines",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "rocket_artillery": {
         "soft_attack": 0.05
@@ -10662,7 +10633,10 @@
       },
       "show_equipment_icon": true,
       "start_year": 1945,
-      "name": "Improved Rocket Engines"
+      "name": "Improved Rocket Engines",
+      "leads_to": [
+        "advanced_rocket_engines"
+      ]
     },
     "advanced_rocket_engines": {
       "categories": [
@@ -10684,7 +10658,10 @@
       },
       "show_equipment_icon": true,
       "start_year": 1946,
-      "name": "Advanced Rocket Engines"
+      "name": "Advanced Rocket Engines",
+      "leads_to": [
+
+      ]
     },
     "jet_engines": {
       "categories": [
@@ -10697,20 +10674,22 @@
       },
       "research_cost": 2,
       "start_year": 1944,
-      "name": "Jet Engines"
+      "name": "Jet Engines",
+      "leads_to": [
+
+      ]
     },
     "atomic_research": {
       "categories": [
         "nuclear"
       ],
-      "path": {
-        "leads_to_tech": "nuclear_reactor",
-        "research_cost_coeff": 1
-      },
       "research_cost": 5,
       "research_time_factor": -0.02,
       "start_year": 1940,
-      "name": "Atomic Research"
+      "name": "Atomic Research",
+      "leads_to": [
+        "nuclear_reactor"
+      ]
     },
     "nuclear_reactor": {
       "categories": [
@@ -10720,13 +10699,12 @@
         "building": "nuclear_reactor",
         "level": 1
       },
-      "path": {
-        "leads_to_tech": "nukes",
-        "research_cost_coeff": 1
-      },
       "research_cost": 5,
       "start_year": 1943,
-      "name": "Nuclear Reactor"
+      "name": "Nuclear Reactor",
+      "leads_to": [
+        "nukes"
+      ]
     },
     "nukes": {
       "categories": [
@@ -10735,81 +10713,62 @@
       "nuclear_production": 1,
       "research_cost": 5,
       "start_year": 1945,
-      "name": "Nuclear Bombs"
+      "name": "Nuclear Bombs",
+      "leads_to": [
+
+      ]
     },
     "basic_machine_tools": {
       "categories": [
         "industry"
       ],
-      "path": [
-        {
-          "leads_to_tech": "improved_machine_tools",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "concentrated_industry",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "dispersed_industry",
-          "research_cost_coeff": 1
-        }
-      ],
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "Basic Machine Tools"
+      "name": "Basic Machine Tools",
+      "leads_to": [
+        "improved_machine_tools",
+        "concentrated_industry",
+        "dispersed_industry"
+      ]
     },
     "improved_machine_tools": {
       "categories": [
         "industry"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_machine_tools",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_equipment_conversion",
-          "research_cost_coeff": 1
-        }
-      ],
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 1.5,
       "start_year": 1937,
-      "name": "Improved Machine Tools"
+      "name": "Improved Machine Tools",
+      "leads_to": [
+        "advanced_machine_tools",
+        "improved_equipment_conversion"
+      ]
     },
     "advanced_machine_tools": {
       "categories": [
         "industry"
       ],
-      "path": {
-        "leads_to_tech": "assembly_line_production",
-        "research_cost_coeff": 1
-      },
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2,
       "start_year": 1939,
-      "name": "Advanced Machine Tools"
+      "name": "Advanced Machine Tools",
+      "leads_to": [
+        "assembly_line_production"
+      ]
     },
     "assembly_line_production": {
       "categories": [
         "industry"
       ],
-      "path": [
-        {
-          "leads_to_tech": "flexible_line",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "streamlined_line",
-          "research_cost_coeff": 1
-        }
-      ],
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2,
       "start_year": 1941,
-      "name": "Assembly Line Production"
+      "name": "Assembly Line Production",
+      "leads_to": [
+        "flexible_line",
+        "streamlined_line"
+      ]
     },
     "flexible_line": {
       "XOR": [
@@ -10822,7 +10781,10 @@
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2.5,
       "start_year": 1943,
-      "name": "Flexible Line"
+      "name": "Flexible Line",
+      "leads_to": [
+
+      ]
     },
     "streamlined_line": {
       "XOR": [
@@ -10835,7 +10797,10 @@
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2.5,
       "start_year": 1943,
-      "name": "Streamlined Line"
+      "name": "Streamlined Line",
+      "leads_to": [
+
+      ]
     },
     "improved_equipment_conversion": {
       "allow_branch": {
@@ -10845,13 +10810,12 @@
         "industry"
       ],
       "equipment_conversion_speed": 0.4,
-      "path": {
-        "leads_to_tech": "advanced_equipment_conversion",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1937,
-      "name": "Improved Equipment Conversion"
+      "name": "Improved Equipment Conversion",
+      "leads_to": [
+        "advanced_equipment_conversion"
+      ]
     },
     "advanced_equipment_conversion": {
       "categories": [
@@ -10860,7 +10824,10 @@
       "equipment_conversion_speed": 0.4,
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Advanced Equipment Conversion"
+      "name": "Advanced Equipment Conversion",
+      "leads_to": [
+
+      ]
     },
     "concentrated_industry": {
       "XOR": [
@@ -10872,13 +10839,12 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.15,
-      "path": {
-        "leads_to_tech": "concentrated_industry2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "name": "Concentrated Industry I",
-      "start_year": 1936
+      "start_year": 1936,
+      "leads_to": [
+        "concentrated_industry2"
+      ]
     },
     "concentrated_industry2": {
       "categories": [
@@ -10887,13 +10853,12 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.15,
-      "path": {
-        "leads_to_tech": "concentrated_industry3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1937,
-      "name": "Concentrated Industry II"
+      "name": "Concentrated Industry II",
+      "leads_to": [
+        "concentrated_industry3"
+      ]
     },
     "concentrated_industry3": {
       "categories": [
@@ -10902,13 +10867,12 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.15,
-      "path": {
-        "leads_to_tech": "concentrated_industry4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1939,
-      "name": "Concentrated Industry III"
+      "name": "Concentrated Industry III",
+      "leads_to": [
+        "concentrated_industry4"
+      ]
     },
     "concentrated_industry4": {
       "categories": [
@@ -10917,13 +10881,12 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.15,
-      "path": {
-        "leads_to_tech": "concentrated_industry5",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1941,
-      "name": "Concentrated Industry IV"
+      "name": "Concentrated Industry IV",
+      "leads_to": [
+        "concentrated_industry5"
+      ]
     },
     "concentrated_industry5": {
       "categories": [
@@ -10934,7 +10897,10 @@
       "industrial_capacity_factory": 0.15,
       "research_cost": 2,
       "start_year": 1943,
-      "name": "Concentrated Industry V"
+      "name": "Concentrated Industry V",
+      "leads_to": [
+
+      ]
     },
     "dispersed_industry": {
       "XOR": [
@@ -10949,14 +10915,13 @@
       "industrial_capacity_factory": 0.1,
       "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
-      "path": {
-        "leads_to_tech": "dispersed_industry2",
-        "research_cost_coeff": 1
-      },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
       "name": "Dispersed Industry I",
-      "start_year": 1936
+      "start_year": 1936,
+      "leads_to": [
+        "dispersed_industry2"
+      ]
     },
     "dispersed_industry2": {
       "categories": [
@@ -10967,14 +10932,13 @@
       "industrial_capacity_factory": 0.1,
       "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
-      "path": {
-        "leads_to_tech": "dispersed_industry3",
-        "research_cost_coeff": 1
-      },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
       "start_year": 1937,
-      "name": "Dispersed Industry II"
+      "name": "Dispersed Industry II",
+      "leads_to": [
+        "dispersed_industry3"
+      ]
     },
     "dispersed_industry3": {
       "categories": [
@@ -10985,14 +10949,13 @@
       "industrial_capacity_factory": 0.1,
       "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
-      "path": {
-        "leads_to_tech": "dispersed_industry4",
-        "research_cost_coeff": 1
-      },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
       "start_year": 1939,
-      "name": "Dispersed Industry III"
+      "name": "Dispersed Industry III",
+      "leads_to": [
+        "dispersed_industry4"
+      ]
     },
     "dispersed_industry4": {
       "categories": [
@@ -11003,14 +10966,13 @@
       "industrial_capacity_factory": 0.1,
       "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
-      "path": {
-        "leads_to_tech": "dispersed_industry5",
-        "research_cost_coeff": 1
-      },
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
       "start_year": 1941,
-      "name": "Dispersed Industry IV"
+      "name": "Dispersed Industry IV",
+      "leads_to": [
+        "dispersed_industry5"
+      ]
     },
     "dispersed_industry5": {
       "categories": [
@@ -11024,7 +10986,10 @@
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
       "start_year": 1943,
-      "name": "Dispersed Industry V"
+      "name": "Dispersed Industry V",
+      "leads_to": [
+
+      ]
     },
     "synth_oil_experiments": {
       "categories": [
@@ -11035,19 +11000,13 @@
         "building": "synthetic_refinery",
         "level": 3
       },
-      "path": [
-        {
-          "leads_to_tech": "oil_processing",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "rubber_processing",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 3,
       "start_year": 1936,
-      "name": "Synthetic Oil Experiments"
+      "name": "Synthetic Oil Experiments",
+      "leads_to": [
+        "oil_processing",
+        "rubber_processing"
+      ]
     },
     "oil_processing": {
       "categories": [
@@ -11061,14 +11020,13 @@
           "resource": "oil"
         }
       },
-      "path": {
-        "leads_to_tech": "improved_oil_processing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1937,
-      "name": "Oil Processing"
+      "name": "Oil Processing",
+      "leads_to": [
+        "improved_oil_processing"
+      ]
     },
     "improved_oil_processing": {
       "categories": [
@@ -11082,14 +11040,13 @@
           "resource": "oil"
         }
       },
-      "path": {
-        "leads_to_tech": "advanced_oil_processing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1939,
-      "name": "Improved Oil Processing"
+      "name": "Improved Oil Processing",
+      "leads_to": [
+        "advanced_oil_processing"
+      ]
     },
     "advanced_oil_processing": {
       "categories": [
@@ -11103,14 +11060,13 @@
           "resource": "oil"
         }
       },
-      "path": {
-        "leads_to_tech": "modern_oil_processing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1941,
-      "name": "Advanced Oil Processing"
+      "name": "Advanced Oil Processing",
+      "leads_to": [
+        "modern_oil_processing"
+      ]
     },
     "modern_oil_processing": {
       "categories": [
@@ -11127,7 +11083,10 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1943,
-      "name": "Modern Oil Processing"
+      "name": "Modern Oil Processing",
+      "leads_to": [
+
+      ]
     },
     "rubber_processing": {
       "categories": [
@@ -11141,14 +11100,13 @@
           "resource": "rubber"
         }
       },
-      "path": {
-        "leads_to_tech": "improved_rubber_processing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1937,
-      "name": "Rubber Processing"
+      "name": "Rubber Processing",
+      "leads_to": [
+        "improved_rubber_processing"
+      ]
     },
     "improved_rubber_processing": {
       "categories": [
@@ -11162,14 +11120,13 @@
           "resource": "rubber"
         }
       },
-      "path": {
-        "leads_to_tech": "advanced_rubber_processing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1939,
-      "name": "Improved Rubber Processing"
+      "name": "Improved Rubber Processing",
+      "leads_to": [
+        "advanced_rubber_processing"
+      ]
     },
     "advanced_rubber_processing": {
       "categories": [
@@ -11183,14 +11140,13 @@
           "resource": "rubber"
         }
       },
-      "path": {
-        "leads_to_tech": "modern_rubber_processing",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1941,
-      "name": "Advanced Rubber Processing"
+      "name": "Advanced Rubber Processing",
+      "leads_to": [
+        "modern_rubber_processing"
+      ]
     },
     "modern_rubber_processing": {
       "categories": [
@@ -11207,7 +11163,10 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1943,
-      "name": "Modern Rubber Processing"
+      "name": "Modern Rubber Processing",
+      "leads_to": [
+
+      ]
     },
     "construction1": {
       "categories": [
@@ -11215,20 +11174,14 @@
         "construction_tech"
       ],
       "industry_repair_factor": 0.1,
-      "path": [
-        {
-          "leads_to_tech": "construction2",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "excavation1",
-          "research_cost_coeff": 1
-        }
-      ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Construction I"
+      "name": "Construction I",
+      "leads_to": [
+        "construction2",
+        "excavation1"
+      ]
     },
     "excavation1": {
       "categories": [
@@ -11237,11 +11190,11 @@
         "excavation_tech"
       ],
       "local_resources_factor": 0.1,
-      "path": {
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Excavation I"
+      "name": "Excavation I",
+      "leads_to": [
+
+      ]
     },
     "construction2": {
       "categories": [
@@ -11249,20 +11202,14 @@
         "construction_tech"
       ],
       "industry_repair_factor": 0.1,
-      "path": [
-        {
-          "leads_to_tech": "construction3",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "excavation2",
-          "research_cost_coeff": 1
-        }
-      ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
       "start_year": 1937,
-      "name": "Construction II"
+      "name": "Construction II",
+      "leads_to": [
+        "construction3",
+        "excavation2"
+      ]
     },
     "excavation2": {
       "categories": [
@@ -11271,12 +11218,12 @@
         "excavation_tech"
       ],
       "local_resources_factor": 0.1,
-      "path": {
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1937,
-      "name": "Excavation II"
+      "name": "Excavation II",
+      "leads_to": [
+
+      ]
     },
     "construction3": {
       "categories": [
@@ -11284,20 +11231,14 @@
         "construction_tech"
       ],
       "industry_repair_factor": 0.1,
-      "path": [
-        {
-          "leads_to_tech": "construction4",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "excavation3",
-          "research_cost_coeff": 1
-        }
-      ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
       "start_year": 1939,
-      "name": "Construction III"
+      "name": "Construction III",
+      "leads_to": [
+        "construction4",
+        "excavation3"
+      ]
     },
     "excavation3": {
       "categories": [
@@ -11306,12 +11247,12 @@
         "excavation_tech"
       ],
       "local_resources_factor": 0.1,
-      "path": {
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1939,
-      "name": "Excavation III"
+      "name": "Excavation III",
+      "leads_to": [
+
+      ]
     },
     "construction4": {
       "categories": [
@@ -11319,20 +11260,14 @@
         "construction_tech"
       ],
       "industry_repair_factor": 0.1,
-      "path": [
-        {
-          "leads_to_tech": "construction5",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "excavation4",
-          "research_cost_coeff": 1
-        }
-      ],
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
       "start_year": 1941,
-      "name": "Construction IV"
+      "name": "Construction IV",
+      "leads_to": [
+        "construction5",
+        "excavation4"
+      ]
     },
     "excavation4": {
       "categories": [
@@ -11341,12 +11276,12 @@
         "excavation_tech"
       ],
       "local_resources_factor": 0.1,
-      "path": {
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1941,
-      "name": "Excavation IV"
+      "name": "Excavation IV",
+      "leads_to": [
+
+      ]
     },
     "construction5": {
       "categories": [
@@ -11354,14 +11289,13 @@
         "construction_tech"
       ],
       "industry_repair_factor": 0.1,
-      "path": {
-        "leads_to_tech": "excavation5",
-        "research_cost_coeff": 1
-      },
       "production_speed_buildings_factor": 0.1,
       "research_cost": 2,
       "start_year": 1943,
-      "name": "Construction V"
+      "name": "Construction V",
+      "leads_to": [
+        "excavation5"
+      ]
     },
     "excavation5": {
       "categories": [
@@ -11370,12 +11304,12 @@
         "excavation_tech"
       ],
       "local_resources_factor": 0.1,
-      "path": {
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1943,
-      "name": "Excavation V"
+      "name": "Excavation V",
+      "leads_to": [
+
+      ]
     },
     "infantry_weapons": {
       "categories": [
@@ -11387,13 +11321,12 @@
       "enable_subunits": [
         "infantry"
       ],
-      "path": {
-        "leads_to_tech": "infantry_weapons1",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1918,
-      "name": "Infantry Weapons"
+      "name": "Infantry Weapons",
+      "leads_to": [
+        "infantry_weapons1"
+      ]
     },
     "infantry_weapons1": {
       "categories": [
@@ -11402,13 +11335,12 @@
       "enable_equipments": [
         "infantry_equipment_1"
       ],
-      "path": {
-        "leads_to_tech": "infantry_weapons2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "infantry_weapons1"
+      "name": "infantry_weapons1",
+      "leads_to": [
+        "infantry_weapons2"
+      ]
     },
     "infantry_weapons2": {
       "categories": [
@@ -11426,13 +11358,12 @@
       "motorized": {
         "soft_attack": 0.05
       },
-      "path": {
-        "leads_to_tech": "improved_infantry_weapons",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1938,
-      "name": "Improved Infantry Equipment I"
+      "name": "Improved Infantry Equipment I",
+      "leads_to": [
+        "improved_infantry_weapons"
+      ]
     },
     "improved_infantry_weapons": {
       "categories": [
@@ -11441,19 +11372,13 @@
       "enable_equipments": [
         "infantry_equipment_2"
       ],
-      "path": [
-        {
-          "leads_to_tech": "improved_infantry_weapons_2",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "infantry_at",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "start_year": 1939,
-      "name": "improved_infantry_weapons"
+      "name": "improved_infantry_weapons",
+      "leads_to": [
+        "improved_infantry_weapons_2",
+        "infantry_at"
+      ]
     },
     "improved_infantry_weapons_2": {
       "categories": [
@@ -11471,13 +11396,12 @@
       "motorized": {
         "soft_attack": 0.05
       },
-      "path": {
-        "leads_to_tech": "advanced_infantry_weapons",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "Improved Infantry Equipment II"
+      "name": "Improved Infantry Equipment II",
+      "leads_to": [
+        "advanced_infantry_weapons"
+      ]
     },
     "infantry_at": {
       "categories": [
@@ -11487,13 +11411,12 @@
         "ap_attack": 1,
         "hard_attack": 0.25
       },
-      "path": {
-        "leads_to_tech": "infantry_at2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Infantry Anti-Tank I"
+      "name": "Infantry Anti-Tank I",
+      "leads_to": [
+        "infantry_at2"
+      ]
     },
     "infantry_at2": {
       "categories": [
@@ -11505,7 +11428,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1943,
-      "name": "Infantry Anti-Tank II"
+      "name": "Infantry Anti-Tank II",
+      "leads_to": [
+
+      ]
     },
     "advanced_infantry_weapons": {
       "categories": [
@@ -11514,13 +11440,12 @@
       "enable_equipments": [
         "infantry_equipment_3"
       ],
-      "path": {
-        "leads_to_tech": "advanced_infantry_weapons2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1942,
-      "name": "advanced_infantry_weapons"
+      "name": "advanced_infantry_weapons",
+      "leads_to": [
+        "advanced_infantry_weapons2"
+      ]
     },
     "advanced_infantry_weapons2": {
       "categories": [
@@ -11540,7 +11465,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1944,
-      "name": "Improved Infantry Equipment III"
+      "name": "Improved Infantry Equipment III",
+      "leads_to": [
+
+      ]
     },
     "paratroopers": {
       "categories": [
@@ -11560,13 +11488,12 @@
           }
         }
       },
-      "path": {
-        "leads_to_tech": "paratroopers2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Paratroopers I"
+      "name": "Paratroopers I",
+      "leads_to": [
+        "paratroopers2"
+      ]
     },
     "paratroopers2": {
       "categories": [
@@ -11576,13 +11503,12 @@
         "max_organisation": 5,
         "soft_attack": 0.05
       },
-      "path": {
-        "leads_to_tech": "paratroopers3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Paratroopers II"
+      "name": "Paratroopers II",
+      "leads_to": [
+        "paratroopers3"
+      ]
     },
     "paratroopers3": {
       "categories": [
@@ -11593,7 +11519,10 @@
       },
       "research_cost": 2.0,
       "start_year": 1943,
-      "name": "Paratroopers III"
+      "name": "Paratroopers III",
+      "leads_to": [
+
+      ]
     },
     "marines": {
       "categories": [
@@ -11613,13 +11542,12 @@
           }
         }
       },
-      "path": {
-        "leads_to_tech": "marines2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Marines I"
+      "name": "Marines I",
+      "leads_to": [
+        "marines2"
+      ]
     },
     "marines2": {
       "categories": [
@@ -11629,13 +11557,12 @@
         "max_organisation": 5,
         "soft_attack": 0.05
       },
-      "path": {
-        "leads_to_tech": "marines3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Marines II"
+      "name": "Marines II",
+      "leads_to": [
+        "marines3"
+      ]
     },
     "marines3": {
       "categories": [
@@ -11646,7 +11573,10 @@
       },
       "research_cost": 2.0,
       "start_year": 1943,
-      "name": "Marines III"
+      "name": "Marines III",
+      "leads_to": [
+
+      ]
     },
     "tech_mountaineers": {
       "categories": [
@@ -11667,13 +11597,12 @@
           }
         }
       },
-      "path": {
-        "leads_to_tech": "tech_mountaineers2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Mountain Infantry I"
+      "name": "Mountain Infantry I",
+      "leads_to": [
+        "tech_mountaineers2"
+      ]
     },
     "tech_mountaineers2": {
       "categories": [
@@ -11684,13 +11613,12 @@
         "max_organisation": 5,
         "soft_attack": 0.05
       },
-      "path": {
-        "leads_to_tech": "tech_mountaineers3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Mountain Infantry II"
+      "name": "Mountain Infantry II",
+      "leads_to": [
+        "tech_mountaineers3"
+      ]
     },
     "tech_mountaineers3": {
       "categories": [
@@ -11702,7 +11630,10 @@
       },
       "research_cost": 2.0,
       "start_year": 1943,
-      "name": "Mountain Infantry III"
+      "name": "Mountain Infantry III",
+      "leads_to": [
+
+      ]
     },
     "tech_special_forces": {
       "categories": [
@@ -11714,19 +11645,13 @@
         "acclimatization_cold_climate_gain_factor": 0.05,
         "acclimatization_hot_climate_gain_factor": 0.05
       },
-      "path": [
-        {
-          "leads_to_tech": "advanced_special_forces",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_special_forces",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "start_year": 1938,
-      "name": "Special Forces"
+      "name": "Special Forces",
+      "leads_to": [
+        "advanced_special_forces",
+        "improved_special_forces"
+      ]
     },
     "advanced_special_forces": {
       "categories": [
@@ -11738,17 +11663,16 @@
         "defense": 0.05,
         "max_organisation": 5
       },
-      "path": {
-        "leads_to_tech": "extreme_environment_training",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "special_forces_training_time_factor": 0.1,
       "start_year": 1940,
       "xor": [
         "improved_special_forces"
       ],
-      "name": "Advanced Special Forces Training"
+      "name": "Advanced Special Forces Training",
+      "leads_to": [
+        "extreme_environment_training"
+      ]
     },
     "improved_special_forces": {
       "categories": [
@@ -11756,10 +11680,6 @@
         "marine_tech",
         "para_tech"
       ],
-      "path": {
-        "leads_to_tech": "survival_training",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "special_forces_cap": 0.05,
       "special_forces_training_time_factor": -0.1,
@@ -11767,7 +11687,10 @@
       "xor": [
         "advanced_special_forces"
       ],
-      "name": "Expanded Special Forces Program"
+      "name": "Expanded Special Forces Program",
+      "leads_to": [
+        "survival_training"
+      ]
     },
     "extreme_environment_training": {
       "categories": [
@@ -11779,15 +11702,14 @@
         "acclimatization_cold_climate_gain_factor": 0.5,
         "acclimatization_hot_climate_gain_factor": 0.5
       },
-      "path": {
-        "leads_to_tech": "elite_forces",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
       "special_forces_training_time_factor": 0.1,
       "start_year": 1942,
-      "name": "Extreme Environment Training"
+      "name": "Extreme Environment Training",
+      "leads_to": [
+        "elite_forces"
+      ]
     },
     "survival_training": {
       "categories": [
@@ -11799,14 +11721,13 @@
         "acclimatization_cold_climate_gain_factor": 0.2,
         "acclimatization_hot_climate_gain_factor": 0.2
       },
-      "path": {
-        "leads_to_tech": "elite_forces",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "special_forces_out_of_supply_factor": -0.1,
       "start_year": 1942,
-      "name": "Survival Training"
+      "name": "Survival Training",
+      "leads_to": [
+        "elite_forces"
+      ]
     },
     "elite_forces": {
       "categories": [
@@ -11823,7 +11744,10 @@
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
       "start_year": 1944,
-      "name": "Elite Forces"
+      "name": "Elite Forces",
+      "leads_to": [
+
+      ]
     },
     "jungle_warfare": {
       "allow": {
@@ -11848,7 +11772,10 @@
         }
       },
       "research_cost": 1,
-      "name": "Jungle Warfare"
+      "name": "Jungle Warfare",
+      "leads_to": [
+
+      ]
     },
     "HUN_light_infantry_tech": {
       "allow": {
@@ -11865,20 +11792,22 @@
         }
       },
       "research_cost": 1,
-      "name": "Light Infantry Divisions Doctrine"
+      "name": "Light Infantry Divisions Doctrine",
+      "leads_to": [
+
+      ]
     },
     "night_vision": {
       "categories": [
         "night_vision"
       ],
       "land_night_attack": 0.1,
-      "path": {
-        "leads_to_tech": "night_vision2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2.5,
       "start_year": 1943,
-      "name": "Night Vision I"
+      "name": "Night Vision I",
+      "leads_to": [
+        "night_vision2"
+      ]
     },
     "night_vision2": {
       "categories": [
@@ -11887,7 +11816,10 @@
       "land_night_attack": 0.15,
       "research_cost": 2,
       "start_year": 1946,
-      "name": "Night Vision II"
+      "name": "Night Vision II",
+      "leads_to": [
+
+      ]
     },
     "support_weapons": {
       "categories": [
@@ -11921,13 +11853,12 @@
         "breakthrough": 0.03,
         "defense": 0.03
       },
-      "path": {
-        "leads_to_tech": "support_weapons2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1918,
-      "name": "Support Weapons I"
+      "name": "Support Weapons I",
+      "leads_to": [
+        "support_weapons2"
+      ]
     },
     "support_weapons2": {
       "categories": [
@@ -11961,13 +11892,12 @@
         "breakthrough": 0.03,
         "defense": 0.03
       },
-      "path": {
-        "leads_to_tech": "support_weapons3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1938,
-      "name": "Support Weapons II"
+      "name": "Support Weapons II",
+      "leads_to": [
+        "support_weapons3"
+      ]
     },
     "support_weapons3": {
       "categories": [
@@ -12001,13 +11931,12 @@
         "breakthrough": 0.03,
         "defense": 0.03
       },
-      "path": {
-        "leads_to_tech": "support_weapons4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1940,
-      "name": "Support Weapons III"
+      "name": "Support Weapons III",
+      "leads_to": [
+        "support_weapons4"
+      ]
     },
     "support_weapons4": {
       "categories": [
@@ -12043,7 +11972,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Support Weapons IV"
+      "name": "Support Weapons IV",
+      "leads_to": [
+
+      ]
     },
     "motorised_infantry": {
       "categories": [
@@ -12067,16 +11999,15 @@
           }
         }
       },
-      "path": {
-        "leads_to_tech": "mechanised_infantry",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
       "sub_technologies": [
         "motorized_rocket_unit"
       ],
-      "name": "Motorized Infantry"
+      "name": "Motorized Infantry",
+      "leads_to": [
+        "mechanised_infantry"
+      ]
     },
     "motorized_rocket_unit": {
       "categories": [
@@ -12090,7 +12021,10 @@
       ],
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Motorized Rocket Artillery"
+      "name": "Motorized Rocket Artillery",
+      "leads_to": [
+
+      ]
     },
     "mechanised_infantry": {
       "categories": [
@@ -12104,13 +12038,12 @@
       "motorized": {
         "hardness": 1.0
       },
-      "path": {
-        "leads_to_tech": "mechanised_infantry2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "mechanised_infantry"
+      "name": "mechanised_infantry",
+      "leads_to": [
+        "mechanised_infantry2"
+      ]
     },
     "mechanised_infantry2": {
       "categories": [
@@ -12121,13 +12054,12 @@
       "enable_equipments": [
         "mechanized_equipment_2"
       ],
-      "path": {
-        "leads_to_tech": "mechanised_infantry3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1942,
-      "name": "mechanised_infantry2"
+      "name": "mechanised_infantry2",
+      "leads_to": [
+        "mechanised_infantry3"
+      ]
     },
     "mechanised_infantry3": {
       "categories": [
@@ -12144,7 +12076,10 @@
       },
       "research_cost": 3,
       "start_year": 1944,
-      "name": "mechanised_infantry3"
+      "name": "mechanised_infantry3",
+      "leads_to": [
+
+      ]
     },
     "bicycle_infantry": {
       "allow": {
@@ -12155,7 +12090,10 @@
       ],
       "research_cost": 1,
       "start_year": 1936,
-      "name": "Bicycle Infantry"
+      "name": "Bicycle Infantry",
+      "leads_to": [
+
+      ]
     },
     "mobile_warfare": {
       "army_speed_factor": 0.1,
@@ -12169,10 +12107,6 @@
       "doctrine": true,
       "enable_tactic": "tactic_unexpected_thrust",
       "org_loss_when_moving": -0.1,
-      "path": {
-        "leads_to_tech": "delay",
-        "research_cost_coeff": 1
-      },
       "planning_speed": 0.5,
       "research_cost": 1.5,
       "xor": [
@@ -12180,7 +12114,10 @@
         "trench_warfare",
         "mass_assault"
       ],
-      "name": "Mobile Warfare"
+      "name": "Mobile Warfare",
+      "leads_to": [
+        "delay"
+      ]
     },
     "delay": {
       "categories": [
@@ -12192,12 +12129,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_delay",
-      "path": {
-        "leads_to_tech": "elastic_defence",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Delay"
+      "name": "Delay",
+      "leads_to": [
+        "elastic_defence"
+      ]
     },
     "elastic_defence": {
       "categories": [
@@ -12213,18 +12149,12 @@
       "doctrine": true,
       "enable_tactic": "tactic_elastic_defense",
       "land_reinforce_rate": 0.02,
-      "path": [
-        {
-          "leads_to_tech": "mobile_infantry",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "armored_spearhead",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 3,
-      "name": "Elastic Defense"
+      "name": "Elastic Defense",
+      "leads_to": [
+        "mobile_infantry",
+        "armored_spearhead"
+      ]
     },
     "mobile_infantry": {
       "categories": [
@@ -12240,15 +12170,14 @@
         "default_morale": 0.2,
         "maximum_speed": 0.1
       },
-      "path": {
-        "leads_to_tech": "mass_motorization",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "armored_spearhead"
       ],
-      "name": "Mobile Infantry"
+      "name": "Mobile Infantry",
+      "leads_to": [
+        "mass_motorization"
+      ]
     },
     "mass_motorization": {
       "categories": [
@@ -12259,12 +12188,11 @@
         "max_organisation": 10
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "mechanised_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Mass Motorization"
+      "name": "Mass Motorization",
+      "leads_to": [
+        "mechanised_offensive"
+      ]
     },
     "mechanised_offensive": {
       "categories": [
@@ -12282,12 +12210,11 @@
       "motorized": {
         "max_organisation": 15
       },
-      "path": {
-        "leads_to_tech": "kampfgruppe",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Mechanized Offensive"
+      "name": "Mechanized Offensive",
+      "leads_to": [
+        "kampfgruppe"
+      ]
     },
     "armored_spearhead": {
       "categories": [
@@ -12300,15 +12227,14 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_blitz",
-      "path": {
-        "leads_to_tech": "schwerpunk",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "mobile_infantry"
       ],
-      "name": "Armored Spearhead"
+      "name": "Armored Spearhead",
+      "leads_to": [
+        "schwerpunk"
+      ]
     },
     "schwerpunk": {
       "categories": [
@@ -12322,12 +12248,11 @@
         "max_organisation": 2
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "blitzkrieg",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Schwerpunkt"
+      "name": "Schwerpunkt",
+      "leads_to": [
+        "blitzkrieg"
+      ]
     },
     "blitzkrieg": {
       "categories": [
@@ -12348,12 +12273,11 @@
       "motorized": {
         "max_organisation": 5
       },
-      "path": {
-        "leads_to_tech": "kampfgruppe",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Blitzkrieg"
+      "name": "Blitzkrieg",
+      "leads_to": [
+        "kampfgruppe"
+      ]
     },
     "kampfgruppe": {
       "categories": [
@@ -12366,19 +12290,13 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
-      "path": [
-        {
-          "leads_to_tech": "firebrigades",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "volkssturm",
-          "research_cost_coeff": 1
-        }
-      ],
       "planning_speed": 0.2,
       "research_cost": 3,
-      "name": "Kampfgruppe"
+      "name": "Kampfgruppe",
+      "leads_to": [
+        "firebrigades",
+        "volkssturm"
+      ]
     },
     "firebrigades": {
       "categories": [
@@ -12392,15 +12310,14 @@
         "max_organisation": 2
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "backhand_blow",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "volkssturm"
       ],
-      "name": "Fire brigades"
+      "name": "Fire brigades",
+      "leads_to": [
+        "backhand_blow"
+      ]
     },
     "backhand_blow": {
       "categories": [
@@ -12409,12 +12326,11 @@
       ],
       "doctrine": true,
       "enable_tactic": "tactic_backhand_blow",
-      "path": {
-        "leads_to_tech": "modern_blitzkrieg",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Backhand Blow"
+      "name": "Backhand Blow",
+      "leads_to": [
+        "modern_blitzkrieg"
+      ]
     },
     "modern_blitzkrieg": {
       "categories": [
@@ -12430,7 +12346,10 @@
       },
       "doctrine": true,
       "research_cost": 3,
-      "name": "Modern Blitzkrieg"
+      "name": "Modern Blitzkrieg",
+      "leads_to": [
+
+      ]
     },
     "volkssturm": {
       "categories": [
@@ -12439,15 +12358,14 @@
       ],
       "conscription": 0.02,
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "nd_conscription",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "firebrigades"
       ],
-      "name": "Volkssturm"
+      "name": "Volkssturm",
+      "leads_to": [
+        "nd_conscription"
+      ]
     },
     "nd_conscription": {
       "categories": [
@@ -12456,12 +12374,11 @@
       ],
       "conscription": 0.03,
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "werwolf_guerillas",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Non-Discriminatory Conscription"
+      "name": "Non-Discriminatory Conscription",
+      "leads_to": [
+        "werwolf_guerillas"
+      ]
     },
     "werwolf_guerillas": {
       "categories": [
@@ -12472,7 +12389,10 @@
       "enable_tactic": "tactic_guerrilla_tactics",
       "partisan_effect": 0.1,
       "research_cost": 3,
-      "name": "Werwolf Guerrillas"
+      "name": "Werwolf Guerrillas",
+      "leads_to": [
+
+      ]
     },
     "superior_firepower": {
       "categories": [
@@ -12484,17 +12404,16 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_barrage",
-      "path": {
-        "leads_to_tech": "sup_delay",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "xor": [
         "mobile_warfare",
         "trench_warfare",
         "mass_assault"
       ],
-      "name": "Superior Firepower"
+      "name": "Superior Firepower",
+      "leads_to": [
+        "sup_delay"
+      ]
     },
     "sup_delay": {
       "categories": [
@@ -12506,12 +12425,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_delay",
-      "path": {
-        "leads_to_tech": "mobile_defence",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Delay"
+      "name": "Delay",
+      "leads_to": [
+        "mobile_defence"
+      ]
     },
     "mobile_defence": {
       "categories": [
@@ -12523,18 +12441,12 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_elastic_defense",
-      "path": [
-        {
-          "leads_to_tech": "intergrated_support",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "dispersed_support",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 3,
-      "name": "Mobile Defense"
+      "name": "Mobile Defense",
+      "leads_to": [
+        "intergrated_support",
+        "dispersed_support"
+      ]
     },
     "intergrated_support": {
       "categories": [
@@ -12546,15 +12458,14 @@
         "soft_attack": 0.25
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "regimental_combat_teams",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "dispersed_support"
       ],
-      "name": "Integrated Support"
+      "name": "Integrated Support",
+      "leads_to": [
+        "regimental_combat_teams"
+      ]
     },
     "regimental_combat_teams": {
       "categories": [
@@ -12567,12 +12478,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
-      "path": {
-        "leads_to_tech": "sup_mechanized_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Regimental Combat Teams"
+      "name": "Regimental Combat Teams",
+      "leads_to": [
+        "sup_mechanized_offensive"
+      ]
     },
     "dispersed_support": {
       "categories": [
@@ -12583,15 +12493,14 @@
         "default_morale": 0.2
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "overwhelming_firepower",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "intergrated_support"
       ],
-      "name": "Dispersed Support"
+      "name": "Dispersed Support",
+      "leads_to": [
+        "overwhelming_firepower"
+      ]
     },
     "overwhelming_firepower": {
       "categories": [
@@ -12603,12 +12512,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
-      "path": {
-        "leads_to_tech": "sup_mechanized_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Overwhelming Firepower"
+      "name": "Overwhelming Firepower",
+      "leads_to": [
+        "sup_mechanized_offensive"
+      ]
     },
     "sup_mechanized_offensive": {
       "categories": [
@@ -12620,18 +12528,12 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_blitz",
-      "path": [
-        {
-          "leads_to_tech": "concentrated_fire_plans",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "centralized_fire_control",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 3,
-      "name": "Mechanized Offensive"
+      "name": "Mechanized Offensive",
+      "leads_to": [
+        "concentrated_fire_plans",
+        "centralized_fire_control"
+      ]
     },
     "concentrated_fire_plans": {
       "categories": [
@@ -12642,15 +12544,14 @@
         "hard_attack": 0.1
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "combined_arms",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "centralized_fire_control"
       ],
-      "name": "Concentrated Fire Plans"
+      "name": "Concentrated Fire Plans",
+      "leads_to": [
+        "combined_arms"
+      ]
     },
     "combined_arms": {
       "categories": [
@@ -12663,12 +12564,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
-      "path": {
-        "leads_to_tech": "tactical_control",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Combined Arms"
+      "name": "Combined Arms",
+      "leads_to": [
+        "tactical_control"
+      ]
     },
     "tactical_control": {
       "categories": [
@@ -12678,12 +12578,11 @@
       "doctrine": true,
       "enable_tactic": "tactic_tactical_withdrawal",
       "land_reinforce_rate": 0.02,
-      "path": {
-        "leads_to_tech": "air_land_battle",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Tactical Control"
+      "name": "Tactical Control",
+      "leads_to": [
+        "air_land_battle"
+      ]
     },
     "air_land_battle": {
       "army_bonus_air_superiority_factor": 0.2,
@@ -12696,7 +12595,10 @@
       },
       "doctrine": true,
       "research_cost": 3,
-      "name": "AirLand Battle"
+      "name": "AirLand Battle",
+      "leads_to": [
+
+      ]
     },
     "centralized_fire_control": {
       "categories": [
@@ -12710,15 +12612,14 @@
         "soft_attack": 0.05
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "forward_observers",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "concentrated_fire_plans"
       ],
-      "name": "Centralized Fire Control"
+      "name": "Centralized Fire Control",
+      "leads_to": [
+        "forward_observers"
+      ]
     },
     "forward_observers": {
       "categories": [
@@ -12727,15 +12628,14 @@
       ],
       "doctrine": true,
       "land_reinforce_rate": 0.02,
-      "path": {
-        "leads_to_tech": "advanced_firebases",
-        "research_cost_coeff": 1
-      },
       "recon": {
         "recon": 1
       },
       "research_cost": 3,
-      "name": "Forward Observers"
+      "name": "Forward Observers",
+      "leads_to": [
+        "advanced_firebases"
+      ]
     },
     "advanced_firebases": {
       "categories": [
@@ -12754,12 +12654,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_tactical_withdrawal",
-      "path": {
-        "leads_to_tech": "shock_and_awe",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Advanced Firebases"
+      "name": "Advanced Firebases",
+      "leads_to": [
+        "shock_and_awe"
+      ]
     },
     "shock_and_awe": {
       "categories": [
@@ -12777,7 +12676,10 @@
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
       "research_cost": 3,
-      "name": "Shock and Awe"
+      "name": "Shock and Awe",
+      "leads_to": [
+
+      ]
     },
     "trench_warfare": {
       "categories": [
@@ -12787,17 +12689,16 @@
       "dig_in_speed_factor": 0.25,
       "doctrine": true,
       "max_dig_in": 10,
-      "path": {
-        "leads_to_tech": "grand_battle_plan",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "xor": [
         "mobile_warfare",
         "superior_firepower",
         "mass_assault"
       ],
-      "name": "Trench Warfare"
+      "name": "Trench Warfare",
+      "leads_to": [
+        "grand_battle_plan"
+      ]
     },
     "grand_battle_plan": {
       "categories": [
@@ -12806,12 +12707,11 @@
       ],
       "doctrine": true,
       "max_planning": 0.1,
-      "path": {
-        "leads_to_tech": "prepared_defense",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Grand Battle Plan"
+      "name": "Grand Battle Plan",
+      "leads_to": [
+        "prepared_defense"
+      ]
     },
     "prepared_defense": {
       "categories": [
@@ -12823,12 +12723,11 @@
         "max_organisation": 10
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "grand_assault",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Prepared Defense"
+      "name": "Prepared Defense",
+      "leads_to": [
+        "grand_assault"
+      ]
     },
     "grand_assault": {
       "categories": [
@@ -12841,18 +12740,12 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_planned_attack",
-      "path": [
-        {
-          "leads_to_tech": "grand_mechanized_offensive",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "infantry_offensive",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 3,
-      "name": "Grand Assault"
+      "name": "Grand Assault",
+      "leads_to": [
+        "grand_mechanized_offensive",
+        "infantry_offensive"
+      ]
     },
     "grand_mechanized_offensive": {
       "categories": [
@@ -12870,15 +12763,14 @@
       "motorized": {
         "max_organisation": 5
       },
-      "path": {
-        "leads_to_tech": "assault_concentration",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "infantry_offensive"
       ],
-      "name": "Mechanized Offensive"
+      "name": "Mechanized Offensive",
+      "leads_to": [
+        "assault_concentration"
+      ]
     },
     "assault_concentration": {
       "categories": [
@@ -12888,12 +12780,11 @@
       "doctrine": true,
       "enable_tactic": "tactic_overwhelming_fire",
       "max_planning": 0.1,
-      "path": {
-        "leads_to_tech": "branch_interoperation",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Assault Concentration"
+      "name": "Assault Concentration",
+      "leads_to": [
+        "branch_interoperation"
+      ]
     },
     "branch_interoperation": {
       "categories": [
@@ -12907,12 +12798,11 @@
         "max_organisation": 1
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "assault_breakthrough",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Branch Inter-Operation"
+      "name": "Branch Inter-Operation",
+      "leads_to": [
+        "assault_breakthrough"
+      ]
     },
     "assault_breakthrough": {
       "categories": [
@@ -12924,12 +12814,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
-      "path": {
-        "leads_to_tech": "central_planning",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Assault Breakthrough"
+      "name": "Assault Breakthrough",
+      "leads_to": [
+        "central_planning"
+      ]
     },
     "central_planning": {
       "categories": [
@@ -12938,12 +12827,11 @@
       ],
       "doctrine": true,
       "max_planning": 0.1,
-      "path": {
-        "leads_to_tech": "c3i_theory",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Central Planning"
+      "name": "Central Planning",
+      "leads_to": [
+        "c3i_theory"
+      ]
     },
     "c3i_theory": {
       "categories": [
@@ -12959,7 +12847,10 @@
       "doctrine": true,
       "land_reinforce_rate": 0.02,
       "research_cost": 3,
-      "name": "C3I"
+      "name": "C3I",
+      "leads_to": [
+
+      ]
     },
     "infantry_offensive": {
       "categories": [
@@ -12972,15 +12863,14 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_infantry_charge",
-      "path": {
-        "leads_to_tech": "armored_operations",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "grand_mechanized_offensive"
       ],
-      "name": "Infantry Offensive"
+      "name": "Infantry Offensive",
+      "leads_to": [
+        "armored_operations"
+      ]
     },
     "armored_operations": {
       "categories": [
@@ -12998,12 +12888,11 @@
         "tactic_blitz",
         "tactic_elastic_defense"
       ],
-      "path": {
-        "leads_to_tech": "infiltration_assault",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Armored Operations"
+      "name": "Armored Operations",
+      "leads_to": [
+        "infiltration_assault"
+      ]
     },
     "infiltration_assault": {
       "categories": [
@@ -13011,13 +12900,12 @@
         "cat_grand_battle_plan"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "night_assault_tactics",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "supply_consumption_factor": -0.1,
-      "name": "Infiltration Assault"
+      "name": "Infiltration Assault",
+      "leads_to": [
+        "night_assault_tactics"
+      ]
     },
     "night_assault_tactics": {
       "categories": [
@@ -13026,12 +12914,11 @@
       ],
       "doctrine": true,
       "land_night_attack": 0.25,
-      "path": {
-        "leads_to_tech": "attritional_containment",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Night Assault Tactics"
+      "name": "Night Assault Tactics",
+      "leads_to": [
+        "attritional_containment"
+      ]
     },
     "attritional_containment": {
       "categories": [
@@ -13045,12 +12932,11 @@
         "max_organisation": 1
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "infiltration_in_depth",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Attritional Containment"
+      "name": "Attritional Containment",
+      "leads_to": [
+        "infiltration_in_depth"
+      ]
     },
     "infiltration_in_depth": {
       "categories": [
@@ -13063,7 +12949,10 @@
         "recon": 1
       },
       "research_cost": 3,
-      "name": "Infiltration in Depth"
+      "name": "Infiltration in Depth",
+      "leads_to": [
+
+      ]
     },
     "mass_assault": {
       "categories": [
@@ -13073,17 +12962,16 @@
       "doctrine": true,
       "land_reinforce_rate": 0.02,
       "minimum_training_level": -0.1,
-      "path": {
-        "leads_to_tech": "pocket_defence",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "xor": [
         "mobile_warfare",
         "superior_firepower",
         "trench_warfare"
       ],
-      "name": "Mass Assault"
+      "name": "Mass Assault",
+      "leads_to": [
+        "pocket_defence"
+      ]
     },
     "pocket_defence": {
       "categories": [
@@ -13093,12 +12981,11 @@
       "doctrine": true,
       "no_supply_grace": 48,
       "out_of_supply_factor": -0.1,
-      "path": {
-        "leads_to_tech": "defence_in_depth",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Pocket Defense"
+      "name": "Pocket Defense",
+      "leads_to": [
+        "defence_in_depth"
+      ]
     },
     "defence_in_depth": {
       "categories": [
@@ -13110,18 +12997,12 @@
       },
       "doctrine": true,
       "max_dig_in": 5,
-      "path": [
-        {
-          "leads_to_tech": "large_front_operations",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "peoples_army",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 3,
-      "name": "Defense in Depth"
+      "name": "Defense in Depth",
+      "leads_to": [
+        "large_front_operations",
+        "peoples_army"
+      ]
     },
     "large_front_operations": {
       "categories": [
@@ -13130,16 +13011,15 @@
       ],
       "doctrine": true,
       "enable_tactic": "tactic_relentless_assault",
-      "path": {
-        "leads_to_tech": "deep_operations",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "supply_consumption_factor": -0.1,
       "xor": [
         "peoples_army"
       ],
-      "name": "Large Front Operations"
+      "name": "Large Front Operations",
+      "leads_to": [
+        "deep_operations"
+      ]
     },
     "deep_operations": {
       "categories": [
@@ -13151,12 +13031,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_blitz",
-      "path": {
-        "leads_to_tech": "operational_concentration",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Deep Operations"
+      "name": "Deep Operations",
+      "leads_to": [
+        "operational_concentration"
+      ]
     },
     "operational_concentration": {
       "categories": [
@@ -13167,12 +13046,11 @@
       "enable_tactic": "tactic_elastic_defense",
       "land_reinforce_rate": 0.05,
       "max_planning": 0.1,
-      "path": {
-        "leads_to_tech": "vast_offensives",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Operational Concentration"
+      "name": "Operational Concentration",
+      "leads_to": [
+        "vast_offensives"
+      ]
     },
     "vast_offensives": {
       "categories": [
@@ -13184,13 +13062,12 @@
       "infantry": {
         "combat_width": -0.4
       },
-      "path": {
-        "leads_to_tech": "breakthrough_priority",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "supply_consumption_factor": -0.1,
-      "name": "Vast Offensives"
+      "name": "Vast Offensives",
+      "leads_to": [
+        "breakthrough_priority"
+      ]
     },
     "breakthrough_priority": {
       "categories": [
@@ -13207,12 +13084,11 @@
       },
       "doctrine": true,
       "enable_tactic": "tactic_breakthrough",
-      "path": {
-        "leads_to_tech": "mechanized_wave",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Breakthrough Priority"
+      "name": "Breakthrough Priority",
+      "leads_to": [
+        "mechanized_wave"
+      ]
     },
     "mechanized_wave": {
       "categories": [
@@ -13234,12 +13110,11 @@
         "default_morale": 0.1,
         "max_organisation": 10
       },
-      "path": {
-        "leads_to_tech": "continuous_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Mechanized Wave"
+      "name": "Mechanized Wave",
+      "leads_to": [
+        "continuous_offensive"
+      ]
     },
     "continuous_offensive": {
       "categories": [
@@ -13251,7 +13126,10 @@
       "land_reinforce_rate": 0.05,
       "org_loss_when_moving": -0.25,
       "research_cost": 3,
-      "name": "Continuous Offensive"
+      "name": "Continuous Offensive",
+      "leads_to": [
+
+      ]
     },
     "peoples_army": {
       "attrition": -0.1,
@@ -13262,15 +13140,14 @@
       "doctrine": true,
       "enable_tactic": "tactic_human_wave_tactics",
       "partisan_effect": 0.1,
-      "path": {
-        "leads_to_tech": "human_infantry_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
       "xor": [
         "large_front_operations"
       ],
-      "name": "People's Army"
+      "name": "People's Army",
+      "leads_to": [
+        "human_infantry_offensive"
+      ]
     },
     "human_infantry_offensive": {
       "categories": [
@@ -13282,12 +13159,11 @@
         "default_morale": 0.3
       },
       "land_reinforce_rate": 0.05,
-      "path": {
-        "leads_to_tech": "large_front_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Infantry Offensive"
+      "name": "Infantry Offensive",
+      "leads_to": [
+        "large_front_offensive"
+      ]
     },
     "large_front_offensive": {
       "categories": [
@@ -13301,12 +13177,11 @@
         "max_organisation": 2
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "human_wave_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Large Front Offensive"
+      "name": "Large Front Offensive",
+      "leads_to": [
+        "human_wave_offensive"
+      ]
     },
     "human_wave_offensive": {
       "categories": [
@@ -13319,12 +13194,11 @@
         "combat_width": -0.4
       },
       "land_reinforce_rate": 0.15,
-      "path": {
-        "leads_to_tech": "guerilla_warfare",
-        "research_cost_coeff": 1
-      },
       "research_cost": 3,
-      "name": "Human Wave Offensive"
+      "name": "Human Wave Offensive",
+      "leads_to": [
+        "guerilla_warfare"
+      ]
     },
     "guerilla_warfare": {
       "categories": [
@@ -13339,7 +13213,10 @@
       "out_of_supply_factor": -0.3,
       "partisan_effect": 0.2,
       "research_cost": 3,
-      "name": "Guerrilla Warfare"
+      "name": "Guerrilla Warfare",
+      "leads_to": [
+
+      ]
     },
     "early_destroyer": {
       "categories": [
@@ -13349,13 +13226,12 @@
       "enable_equipments": [
         "destroyer_1"
       ],
-      "path": {
-        "leads_to_tech": "basic_destroyer",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_destroyer"
+      "name": "early_destroyer",
+      "leads_to": [
+        "basic_destroyer"
+      ]
     },
     "basic_destroyer": {
       "categories": [
@@ -13365,13 +13241,12 @@
       "enable_equipments": [
         "destroyer_2"
       ],
-      "path": {
-        "leads_to_tech": "improved_destroyer",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_destroyer"
+      "name": "basic_destroyer",
+      "leads_to": [
+        "improved_destroyer"
+      ]
     },
     "improved_destroyer": {
       "categories": [
@@ -13381,13 +13256,12 @@
       "enable_equipments": [
         "destroyer_3"
       ],
-      "path": {
-        "leads_to_tech": "advanced_destroyer",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "improved_destroyer"
+      "name": "improved_destroyer",
+      "leads_to": [
+        "advanced_destroyer"
+      ]
     },
     "advanced_destroyer": {
       "categories": [
@@ -13399,7 +13273,10 @@
       ],
       "research_cost": 2,
       "start_year": 1944,
-      "name": "advanced_destroyer"
+      "name": "advanced_destroyer",
+      "leads_to": [
+
+      ]
     },
     "early_light_cruiser": {
       "categories": [
@@ -13409,13 +13286,12 @@
       "enable_equipments": [
         "light_cruiser_1"
       ],
-      "path": {
-        "leads_to_tech": "basic_light_cruiser",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_light_cruiser"
+      "name": "early_light_cruiser",
+      "leads_to": [
+        "basic_light_cruiser"
+      ]
     },
     "basic_light_cruiser": {
       "categories": [
@@ -13425,19 +13301,13 @@
       "enable_equipments": [
         "light_cruiser_2"
       ],
-      "path": [
-        {
-          "leads_to_tech": "improved_light_cruiser",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "basic_heavy_cruiser",
-          "research_cost_coeff": 0.75
-        }
-      ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_light_cruiser"
+      "name": "basic_light_cruiser",
+      "leads_to": [
+        "improved_light_cruiser",
+        "basic_heavy_cruiser"
+      ]
     },
     "improved_light_cruiser": {
       "categories": [
@@ -13447,19 +13317,13 @@
       "enable_equipments": [
         "light_cruiser_3"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_light_cruiser",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_heavy_cruiser",
-          "research_cost_coeff": 0.75
-        }
-      ],
       "research_cost": 2,
       "start_year": 1940,
-      "name": "improved_light_cruiser"
+      "name": "improved_light_cruiser",
+      "leads_to": [
+        "advanced_light_cruiser",
+        "improved_heavy_cruiser"
+      ]
     },
     "advanced_light_cruiser": {
       "categories": [
@@ -13469,13 +13333,12 @@
       "enable_equipments": [
         "light_cruiser_4"
       ],
-      "path": {
-        "leads_to_tech": "advanced_heavy_cruiser",
-        "research_cost_coeff": 0.75
-      },
       "research_cost": 2,
       "start_year": 1944,
-      "name": "advanced_light_cruiser"
+      "name": "advanced_light_cruiser",
+      "leads_to": [
+        "advanced_heavy_cruiser"
+      ]
     },
     "early_heavy_cruiser": {
       "categories": [
@@ -13485,13 +13348,12 @@
       "enable_equipments": [
         "heavy_cruiser_1"
       ],
-      "path": {
-        "leads_to_tech": "basic_heavy_cruiser",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_heavy_cruiser"
+      "name": "early_heavy_cruiser",
+      "leads_to": [
+        "basic_heavy_cruiser"
+      ]
     },
     "basic_heavy_cruiser": {
       "categories": [
@@ -13501,19 +13363,13 @@
       "enable_equipments": [
         "heavy_cruiser_2"
       ],
-      "path": [
-        {
-          "leads_to_tech": "improved_heavy_cruiser",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "basic_light_cruiser",
-          "research_cost_coeff": 0.75
-        }
-      ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_heavy_cruiser"
+      "name": "basic_heavy_cruiser",
+      "leads_to": [
+        "improved_heavy_cruiser",
+        "basic_light_cruiser"
+      ]
     },
     "improved_heavy_cruiser": {
       "categories": [
@@ -13523,19 +13379,13 @@
       "enable_equipments": [
         "heavy_cruiser_3"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_heavy_cruiser",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "improved_light_cruiser",
-          "research_cost_coeff": 0.75
-        }
-      ],
       "research_cost": 2,
       "start_year": 1940,
-      "name": "improved_heavy_cruiser"
+      "name": "improved_heavy_cruiser",
+      "leads_to": [
+        "advanced_heavy_cruiser",
+        "improved_light_cruiser"
+      ]
     },
     "advanced_heavy_cruiser": {
       "categories": [
@@ -13545,13 +13395,12 @@
       "enable_equipments": [
         "heavy_cruiser_4"
       ],
-      "path": {
-        "leads_to_tech": "advanced_light_cruiser",
-        "research_cost_coeff": 0.75
-      },
       "research_cost": 2,
       "start_year": 1944,
-      "name": "advanced_heavy_cruiser"
+      "name": "advanced_heavy_cruiser",
+      "leads_to": [
+        "advanced_light_cruiser"
+      ]
     },
     "early_battlecruiser": {
       "categories": [
@@ -13561,13 +13410,12 @@
       "enable_equipments": [
         "battle_cruiser_1"
       ],
-      "path": {
-        "leads_to_tech": "basic_battlecruiser",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_battlecruiser"
+      "name": "early_battlecruiser",
+      "leads_to": [
+        "basic_battlecruiser"
+      ]
     },
     "basic_battlecruiser": {
       "categories": [
@@ -13577,13 +13425,12 @@
       "enable_equipments": [
         "battle_cruiser_2"
       ],
-      "path": {
-        "leads_to_tech": "improved_battleship",
-        "research_cost_coeff": 0.75
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "basic_battlecruiser"
+      "name": "basic_battlecruiser",
+      "leads_to": [
+        "improved_battleship"
+      ]
     },
     "early_battleship": {
       "categories": [
@@ -13593,13 +13440,12 @@
       "enable_equipments": [
         "battleship_1"
       ],
-      "path": {
-        "leads_to_tech": "basic_battleship",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_battleship"
+      "name": "early_battleship",
+      "leads_to": [
+        "basic_battleship"
+      ]
     },
     "basic_battleship": {
       "categories": [
@@ -13609,19 +13455,13 @@
       "enable_equipments": [
         "battleship_2"
       ],
-      "path": [
-        {
-          "leads_to_tech": "improved_battleship",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "heavy_battleship",
-          "research_cost_coeff": 0.75
-        }
-      ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_battleship"
+      "name": "basic_battleship",
+      "leads_to": [
+        "improved_battleship",
+        "heavy_battleship"
+      ]
     },
     "improved_battleship": {
       "categories": [
@@ -13631,19 +13471,13 @@
       "enable_equipments": [
         "battleship_3"
       ],
-      "path": [
-        {
-          "leads_to_tech": "advanced_battleship",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "basic_battlecruiser",
-          "research_cost_coeff": 0.75
-        }
-      ],
       "research_cost": 2,
       "start_year": 1940,
-      "name": "improved_battleship"
+      "name": "improved_battleship",
+      "leads_to": [
+        "advanced_battleship",
+        "basic_battlecruiser"
+      ]
     },
     "advanced_battleship": {
       "categories": [
@@ -13653,13 +13487,12 @@
       "enable_equipments": [
         "battleship_4"
       ],
-      "path": {
-        "leads_to_tech": "heavy_battleship2",
-        "research_cost_coeff": 0.75
-      },
       "research_cost": 2,
       "start_year": 1944,
-      "name": "advanced_battleship"
+      "name": "advanced_battleship",
+      "leads_to": [
+        "heavy_battleship2"
+      ]
     },
     "heavy_battleship": {
       "categories": [
@@ -13669,13 +13502,12 @@
       "enable_equipments": [
         "SH_battleship_1"
       ],
-      "path": {
-        "leads_to_tech": "heavy_battleship2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "heavy_battleship"
+      "name": "heavy_battleship",
+      "leads_to": [
+        "heavy_battleship2"
+      ]
     },
     "heavy_battleship2": {
       "categories": [
@@ -13687,7 +13519,10 @@
       ],
       "research_cost": 2,
       "start_year": 1944,
-      "name": "heavy_battleship2"
+      "name": "heavy_battleship2",
+      "leads_to": [
+
+      ]
     },
     "transport": {
       "categories": [
@@ -13695,14 +13530,13 @@
         "tp_tech"
       ],
       "naval_invasion_capacity": 10,
-      "path": {
-        "leads_to_tech": "landing_craft",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
       "transport_capacity": -0.5,
-      "name": "Transport Ship"
+      "name": "Transport Ship",
+      "leads_to": [
+        "landing_craft"
+      ]
     },
     "landing_craft": {
       "amphibious_invasion_defence": 0.15,
@@ -13712,13 +13546,12 @@
       ],
       "invasion_preparation": -0.5,
       "naval_invasion_capacity": 40,
-      "path": {
-        "leads_to_tech": "tank_landing_craft",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "Landing Craft"
+      "name": "Landing Craft",
+      "leads_to": [
+        "tank_landing_craft"
+      ]
     },
     "tank_landing_craft": {
       "amphibious_invasion": 0.25,
@@ -13730,7 +13563,10 @@
       "naval_invasion_capacity": 100,
       "research_cost": 2,
       "start_year": 1944,
-      "name": "Advanced Landing Craft"
+      "name": "Advanced Landing Craft",
+      "leads_to": [
+
+      ]
     },
     "early_carrier": {
       "categories": [
@@ -13740,13 +13576,12 @@
       "enable_equipments": [
         "carrier_1"
       ],
-      "path": {
-        "leads_to_tech": "basic_carrier",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_carrier"
+      "name": "early_carrier",
+      "leads_to": [
+        "basic_carrier"
+      ]
     },
     "basic_carrier": {
       "categories": [
@@ -13756,13 +13591,12 @@
       "enable_equipments": [
         "carrier_2"
       ],
-      "path": {
-        "leads_to_tech": "improved_carrier",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_carrier"
+      "name": "basic_carrier",
+      "leads_to": [
+        "improved_carrier"
+      ]
     },
     "improved_carrier": {
       "categories": [
@@ -13772,13 +13606,12 @@
       "enable_equipments": [
         "carrier_3"
       ],
-      "path": {
-        "leads_to_tech": "advanced_carrier",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "improved_carrier"
+      "name": "improved_carrier",
+      "leads_to": [
+        "advanced_carrier"
+      ]
     },
     "advanced_carrier": {
       "categories": [
@@ -13790,7 +13623,10 @@
       ],
       "research_cost": 2,
       "start_year": 1944,
-      "name": "advanced_carrier"
+      "name": "advanced_carrier",
+      "leads_to": [
+
+      ]
     },
     "early_submarine": {
       "categories": [
@@ -13800,13 +13636,12 @@
       "enable_equipments": [
         "submarine_1"
       ],
-      "path": {
-        "leads_to_tech": "basic_submarine",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_submarine"
+      "name": "early_submarine",
+      "leads_to": [
+        "basic_submarine"
+      ]
     },
     "basic_submarine": {
       "categories": [
@@ -13816,13 +13651,12 @@
       "enable_equipments": [
         "submarine_2"
       ],
-      "path": {
-        "leads_to_tech": "improved_submarine",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_submarine"
+      "name": "basic_submarine",
+      "leads_to": [
+        "improved_submarine"
+      ]
     },
     "improved_submarine": {
       "categories": [
@@ -13832,13 +13666,12 @@
       "enable_equipments": [
         "submarine_3"
       ],
-      "path": {
-        "leads_to_tech": "advanced_submarine",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1940,
-      "name": "improved_submarine"
+      "name": "improved_submarine",
+      "leads_to": [
+        "advanced_submarine"
+      ]
     },
     "advanced_submarine": {
       "categories": [
@@ -13850,7 +13683,10 @@
       ],
       "research_cost": 2,
       "start_year": 1944,
-      "name": "advanced_submarine"
+      "name": "advanced_submarine",
+      "leads_to": [
+
+      ]
     },
     "torpedo_cruiser": {
       "allow": {
@@ -13861,7 +13697,10 @@
       ],
       "research_cost": 1,
       "start_year": 1936,
-      "name": "Torpedo Cruiser"
+      "name": "Torpedo Cruiser",
+      "leads_to": [
+
+      ]
     },
     "fleet_in_being": {
       "battle_cruiser": {
@@ -13879,26 +13718,17 @@
       "heavy_cruiser": {
         "max_organisation": 10
       },
-      "path": [
-        {
-          "leads_to_tech": "battlefleet_concentration",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "convoy_sailing",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "submarine_operations",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "xor": [
         "trade_interdiction",
         "base_strike"
       ],
-      "name": "Fleet In Being"
+      "name": "Fleet In Being",
+      "leads_to": [
+        "battlefleet_concentration",
+        "convoy_sailing",
+        "submarine_operations"
+      ]
     },
     "battlefleet_concentration": {
       "battle_cruiser": {
@@ -13919,12 +13749,11 @@
         "max_organisation": 10,
         "search_and_destroy_coordination": 0.5
       },
-      "path": {
-        "leads_to_tech": "subsidiary_carrier_role",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Battlefleet Concentration"
+      "name": "Battlefleet Concentration",
+      "leads_to": [
+        "subsidiary_carrier_role"
+      ]
     },
     "subsidiary_carrier_role": {
       "carrier": {
@@ -13936,13 +13765,12 @@
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "hunter_killer_groups",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "sortie_efficiency": 0.1,
-      "name": "Subsidiary Carrier Role"
+      "name": "Subsidiary Carrier Role",
+      "leads_to": [
+        "hunter_killer_groups"
+      ]
     },
     "hunter_killer_groups": {
       "categories": [
@@ -13960,12 +13788,11 @@
         "max_organisation": 10,
         "sub_detection": 0.2
       },
-      "path": {
-        "leads_to_tech": "floating_fortress",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Hunter Killer Groups"
+      "name": "Hunter Killer Groups",
+      "leads_to": [
+        "floating_fortress"
+      ]
     },
     "floating_fortress": {
       "battleship": {
@@ -13978,12 +13805,11 @@
       ],
       "doctrine": true,
       "navy_capital_ship_defence_factor": 0.1,
-      "path": {
-        "leads_to_tech": "floating_airfield",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Floating Fortress"
+      "name": "Floating Fortress",
+      "leads_to": [
+        "floating_airfield"
+      ]
     },
     "floating_airfield": {
       "carrier": {
@@ -13995,13 +13821,12 @@
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "grand_battlefleet",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "sortie_efficiency": 0.1,
-      "name": "Floating Airfield"
+      "name": "Floating Airfield",
+      "leads_to": [
+        "grand_battlefleet"
+      ]
     },
     "grand_battlefleet": {
       "battle_cruiser": {
@@ -14022,7 +13847,10 @@
       "navy_anti_air_attack_factor": 0.1,
       "navy_capital_ship_attack_factor": 0.1,
       "research_cost": 2,
-      "name": "Grand Battlefleet"
+      "name": "Grand Battlefleet",
+      "leads_to": [
+
+      ]
     },
     "convoy_sailing": {
       "categories": [
@@ -14037,12 +13865,11 @@
         "sub_detection": 0.1
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "convoy_escorts",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Convoy Sailing"
+      "name": "Convoy Sailing",
+      "leads_to": [
+        "convoy_escorts"
+      ]
     },
     "convoy_escorts": {
       "categories": [
@@ -14057,12 +13884,11 @@
         "sub_detection": 0.2
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "escort_carriers",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Convoy Escorts"
+      "name": "Convoy Escorts",
+      "leads_to": [
+        "escort_carriers"
+      ]
     },
     "escort_carriers": {
       "categories": [
@@ -14073,12 +13899,11 @@
       ],
       "convoy_escort_efficiency": 0.3,
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "integrated_convoy_defence",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Escort Carriers"
+      "name": "Escort Carriers",
+      "leads_to": [
+        "integrated_convoy_defence"
+      ]
     },
     "integrated_convoy_defence": {
       "categories": [
@@ -14092,12 +13917,11 @@
         "max_organisation": 20
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "floating_airfield",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Integrated Convoy Defense"
+      "name": "Integrated Convoy Defense",
+      "leads_to": [
+        "floating_airfield"
+      ]
     },
     "submarine_operations": {
       "categories": [
@@ -14107,16 +13931,15 @@
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "undersea_blockade",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Submarine Operations"
+      "name": "Submarine Operations",
+      "leads_to": [
+        "undersea_blockade"
+      ]
     },
     "undersea_blockade": {
       "categories": [
@@ -14126,16 +13949,15 @@
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "convoy_interdiction",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.2
       },
-      "name": "Undersea Blockade"
+      "name": "Undersea Blockade",
+      "leads_to": [
+        "convoy_interdiction"
+      ]
     },
     "convoy_interdiction": {
       "categories": [
@@ -14145,17 +13967,16 @@
         "cat_fleet_in_being"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "submarine_offensive",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Convoy Interdiction"
+      "name": "Convoy Interdiction",
+      "leads_to": [
+        "submarine_offensive"
+      ]
     },
     "submarine_offensive": {
       "categories": [
@@ -14171,7 +13992,10 @@
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Submarine Offensive"
+      "name": "Submarine Offensive",
+      "leads_to": [
+
+      ]
     },
     "trade_interdiction": {
       "categories": [
@@ -14189,20 +14013,6 @@
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "path": [
-        {
-          "leads_to_tech": "convoy_interdiction_ti",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "raider_patrols",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "carrier_operations",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 2,
       "submarine": {
         "max_organisation": 10,
@@ -14212,7 +14022,12 @@
         "fleet_in_being",
         "base_strike"
       ],
-      "name": "Trade Interdiction"
+      "name": "Trade Interdiction",
+      "leads_to": [
+        "convoy_interdiction_ti",
+        "raider_patrols",
+        "carrier_operations"
+      ]
     },
     "convoy_interdiction_ti": {
       "categories": [
@@ -14222,17 +14037,16 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "unrestricted_submarine_warfare",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Convoy Interdiction"
+      "name": "Convoy Interdiction",
+      "leads_to": [
+        "unrestricted_submarine_warfare"
+      ]
     },
     "unrestricted_submarine_warfare": {
       "categories": [
@@ -14243,16 +14057,15 @@
       ],
       "doctrine": true,
       "navy_submarine_attack_factor": 0.1,
-      "path": {
-        "leads_to_tech": "wolfpacks",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "convoy_raiding_coordination": 0.1,
         "surface_detection": 0.2
       },
-      "name": "Unrestricted Submarine Warfare"
+      "name": "Unrestricted Submarine Warfare",
+      "leads_to": [
+        "wolfpacks"
+      ]
     },
     "wolfpacks": {
       "categories": [
@@ -14262,17 +14075,16 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "advanced_submarine_warfare",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "convoy_raiding_coordination": 0.4,
         "max_organisation": 10,
         "surface_detection": 0.25
       },
-      "name": "Wolf packs"
+      "name": "Wolf packs",
+      "leads_to": [
+        "advanced_submarine_warfare"
+      ]
     },
     "advanced_submarine_warfare": {
       "categories": [
@@ -14283,17 +14095,16 @@
       ],
       "doctrine": true,
       "navy_submarine_defence_factor": 0.1,
-      "path": {
-        "leads_to_tech": "combined_operations_raiding",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "convoy_raiding_coordination": 0.4,
         "max_organisation": 10,
         "surface_detection": 0.25
       },
-      "name": "Advanced Submarine Warfare"
+      "name": "Advanced Submarine Warfare",
+      "leads_to": [
+        "combined_operations_raiding"
+      ]
     },
     "combined_operations_raiding": {
       "battle_cruiser": {
@@ -14324,7 +14135,10 @@
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Combined Operations Raiding"
+      "name": "Combined Operations Raiding",
+      "leads_to": [
+
+      ]
     },
     "raider_patrols": {
       "battle_cruiser": {
@@ -14357,12 +14171,11 @@
         "surface_detection": 0.25,
         "surface_visibility": -0.25
       },
-      "path": {
-        "leads_to_tech": "capital_ship_raiders",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Raider Patrols"
+      "name": "Raider Patrols",
+      "leads_to": [
+        "capital_ship_raiders"
+      ]
     },
     "capital_ship_raiders": {
       "battle_cruiser": {
@@ -14383,12 +14196,11 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "battlefleet_concentration_ti",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Capital Ship Raiders"
+      "name": "Capital Ship Raiders",
+      "leads_to": [
+        "battlefleet_concentration_ti"
+      ]
     },
     "battlefleet_concentration_ti": {
       "battle_cruiser": {
@@ -14409,12 +14221,11 @@
         "max_organisation": 10,
         "search_and_destroy_coordination": 0.5
       },
-      "path": {
-        "leads_to_tech": "floating_fortress_ti",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Battlefleet Concentration"
+      "name": "Battlefleet Concentration",
+      "leads_to": [
+        "floating_fortress_ti"
+      ]
     },
     "floating_fortress_ti": {
       "battleship": {
@@ -14427,12 +14238,11 @@
       ],
       "doctrine": true,
       "navy_capital_ship_defence_factor": 0.1,
-      "path": {
-        "leads_to_tech": "floating_airfield_ti",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Floating Fortress"
+      "name": "Floating Fortress",
+      "leads_to": [
+        "floating_airfield_ti"
+      ]
     },
     "floating_airfield_ti": {
       "carrier": {
@@ -14446,7 +14256,10 @@
       "doctrine": true,
       "research_cost": 2,
       "sortie_efficiency": 0.1,
-      "name": "Floating Airfield"
+      "name": "Floating Airfield",
+      "leads_to": [
+
+      ]
     },
     "carrier_operations": {
       "carrier": {
@@ -14461,12 +14274,11 @@
       "modifier": {
         "naval_strike_targetting_factor": 0.1
       },
-      "path": {
-        "leads_to_tech": "convoy_sailing_ti",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Carrier Operations"
+      "name": "Carrier Operations",
+      "leads_to": [
+        "convoy_sailing_ti"
+      ]
     },
     "convoy_sailing_ti": {
       "categories": [
@@ -14481,12 +14293,11 @@
         "sub_detection": 0.1
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "subsidiary_carrier_role_ti",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Convoy Sailing"
+      "name": "Convoy Sailing",
+      "leads_to": [
+        "subsidiary_carrier_role_ti"
+      ]
     },
     "subsidiary_carrier_role_ti": {
       "carrier": {
@@ -14498,13 +14309,12 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "naval_air_operations",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "sortie_efficiency": 0.1,
-      "name": "Subsidiary Carrier Role"
+      "name": "Subsidiary Carrier Role",
+      "leads_to": [
+        "naval_air_operations"
+      ]
     },
     "naval_air_operations": {
       "carrier": {
@@ -14519,12 +14329,11 @@
       "modifier": {
         "naval_strike_targetting_factor": 0.1
       },
-      "path": {
-        "leads_to_tech": "floating_airfield_ti",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Naval Air Operations"
+      "name": "Naval Air Operations",
+      "leads_to": [
+        "floating_airfield_ti"
+      ]
     },
     "base_strike": {
       "carrier": {
@@ -14535,27 +14344,18 @@
         "cat_base_strike"
       ],
       "doctrine": true,
-      "path": [
-        {
-          "leads_to_tech": "carrier_primacy",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "submarine_operations_bs",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "convoy_escorts_bs",
-          "research_cost_coeff": 1
-        }
-      ],
       "port_strike": 0.5,
       "research_cost": 2,
       "xor": [
         "fleet_in_being",
         "trade_interdiction"
       ],
-      "name": "Base Strike"
+      "name": "Base Strike",
+      "leads_to": [
+        "carrier_primacy",
+        "submarine_operations_bs",
+        "convoy_escorts_bs"
+      ]
     },
     "carrier_primacy": {
       "carrier": {
@@ -14570,13 +14370,12 @@
       "modifier": {
         "naval_strike_targetting_factor": 0.1
       },
-      "path": {
-        "leads_to_tech": "carrier_task_forces",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "sortie_efficiency": 0.1,
-      "name": "Carrier Primacy"
+      "name": "Carrier Primacy",
+      "leads_to": [
+        "carrier_task_forces"
+      ]
     },
     "carrier_task_forces": {
       "carrier": {
@@ -14594,12 +14393,11 @@
       "modifier": {
         "naval_strike_targetting_factor": 0.1
       },
-      "path": {
-        "leads_to_tech": "floating_airfield_bs",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Carrier Task Forces"
+      "name": "Carrier Task Forces",
+      "leads_to": [
+        "floating_airfield_bs"
+      ]
     },
     "floating_airfield_bs": {
       "carrier": {
@@ -14611,13 +14409,12 @@
         "cat_base_strike"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "massed_strikes",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "sortie_efficiency": 0.1,
-      "name": "Floating Airfield"
+      "name": "Floating Airfield",
+      "leads_to": [
+        "massed_strikes"
+      ]
     },
     "massed_strikes": {
       "carrier": {
@@ -14633,13 +14430,12 @@
       "modifier": {
         "naval_strike_targetting_factor": 0.2
       },
-      "path": {
-        "leads_to_tech": "floating_fortress_bs",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "sortie_efficiency": 0.2,
-      "name": "Massed Strikes"
+      "name": "Massed Strikes",
+      "leads_to": [
+        "floating_fortress_bs"
+      ]
     },
     "floating_fortress_bs": {
       "battleship": {
@@ -14652,12 +14448,11 @@
       ],
       "doctrine": true,
       "navy_capital_ship_defence_factor": 0.1,
-      "path": {
-        "leads_to_tech": "carrier_battlegroups",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Floating Fortress"
+      "name": "Floating Fortress",
+      "leads_to": [
+        "carrier_battlegroups"
+      ]
     },
     "carrier_battlegroups": {
       "carrier": {
@@ -14674,7 +14469,10 @@
       },
       "navy_carrier_air_agility_factor": 0.1,
       "research_cost": 2,
-      "name": "Carrier Battlegroups"
+      "name": "Carrier Battlegroups",
+      "leads_to": [
+
+      ]
     },
     "submarine_operations_bs": {
       "categories": [
@@ -14682,16 +14480,15 @@
         "cat_base_strike"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "undersea_blockade_bs",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Submarine Operations"
+      "name": "Submarine Operations",
+      "leads_to": [
+        "undersea_blockade_bs"
+      ]
     },
     "undersea_blockade_bs": {
       "categories": [
@@ -14699,16 +14496,15 @@
         "cat_base_strike"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "convoy_interdiction_bs",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "max_organisation": 10,
         "surface_detection": 0.2
       },
-      "name": "Undersea Blockade"
+      "name": "Undersea Blockade",
+      "leads_to": [
+        "convoy_interdiction_bs"
+      ]
     },
     "convoy_interdiction_bs": {
       "categories": [
@@ -14716,17 +14512,16 @@
         "cat_base_strike"
       ],
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "submarine_offensive_bs",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "submarine": {
         "convoy_raiding_coordination": 0.1,
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Convoy Interdiction"
+      "name": "Convoy Interdiction",
+      "leads_to": [
+        "submarine_offensive_bs"
+      ]
     },
     "submarine_offensive_bs": {
       "categories": [
@@ -14740,7 +14535,10 @@
         "max_organisation": 10,
         "surface_detection": 0.1
       },
-      "name": "Submarine Offensive"
+      "name": "Submarine Offensive",
+      "leads_to": [
+
+      ]
     },
     "convoy_escorts_bs": {
       "categories": [
@@ -14754,12 +14552,11 @@
         "sub_detection": 0.2
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "escort_patrols",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Convoy Escorts"
+      "name": "Convoy Escorts",
+      "leads_to": [
+        "escort_patrols"
+      ]
     },
     "escort_patrols": {
       "categories": [
@@ -14777,12 +14574,11 @@
         "max_organisation": 10,
         "sub_detection": 0.1
       },
-      "path": {
-        "leads_to_tech": "convoy_sailing_bs",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Escort Patrols"
+      "name": "Escort Patrols",
+      "leads_to": [
+        "convoy_sailing_bs"
+      ]
     },
     "convoy_sailing_bs": {
       "categories": [
@@ -14796,12 +14592,11 @@
         "sub_detection": 0.1
       },
       "doctrine": true,
-      "path": {
-        "leads_to_tech": "integrated_convoy_defence_bs",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
-      "name": "Convoy Sailing"
+      "name": "Convoy Sailing",
+      "leads_to": [
+        "integrated_convoy_defence_bs"
+      ]
     },
     "integrated_convoy_defence_bs": {
       "categories": [
@@ -14815,7 +14610,10 @@
       },
       "doctrine": true,
       "research_cost": 2,
-      "name": "Integrated Convoy Defense"
+      "name": "Integrated Convoy Defense",
+      "leads_to": [
+
+      ]
     },
     "tech_support": {
       "categories": [
@@ -14824,39 +14622,18 @@
       "enable_equipments": [
         "support_equipment_1"
       ],
-      "path": [
-        {
-          "leads_to_tech": "tech_engineers",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "tech_recon",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "tech_field_hospital",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "tech_logistics_company",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "tech_military_police",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "tech_signal_company",
-          "research_cost_coeff": 1
-        },
-        {
-          "leads_to_tech": "tech_maintenance_company",
-          "research_cost_coeff": 1
-        }
-      ],
       "research_cost": 1.0,
       "start_year": 1918,
-      "name": "tech_support"
+      "name": "tech_support",
+      "leads_to": [
+        "tech_engineers",
+        "tech_recon",
+        "tech_field_hospital",
+        "tech_logistics_company",
+        "tech_military_police",
+        "tech_signal_company",
+        "tech_maintenance_company"
+      ]
     },
     "tech_engineers": {
       "categories": [
@@ -14866,13 +14643,12 @@
       "enable_subunits": [
         "engineer"
       ],
-      "path": {
-        "leads_to_tech": "tech_engineers2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Engineer Company I"
+      "name": "Engineer Company I",
+      "leads_to": [
+        "tech_engineers2"
+      ]
     },
     "tech_engineers2": {
       "categories": [
@@ -14886,13 +14662,12 @@
           "defence": 0.1
         }
       },
-      "path": {
-        "leads_to_tech": "tech_engineers3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Engineer Company II"
+      "name": "Engineer Company II",
+      "leads_to": [
+        "tech_engineers3"
+      ]
     },
     "tech_engineers3": {
       "categories": [
@@ -14906,13 +14681,12 @@
           "defence": 0.1
         }
       },
-      "path": {
-        "leads_to_tech": "tech_engineers4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Engineer Company III"
+      "name": "Engineer Company III",
+      "leads_to": [
+        "tech_engineers4"
+      ]
     },
     "tech_engineers4": {
       "categories": [
@@ -14928,7 +14702,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1945,
-      "name": "Engineer Company IV"
+      "name": "Engineer Company IV",
+      "leads_to": [
+
+      ]
     },
     "tech_recon": {
       "categories": [
@@ -14938,45 +14715,42 @@
       "enable_subunits": [
         "recon"
       ],
-      "path": {
-        "leads_to_tech": "tech_recon2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Recon Company I"
+      "name": "Recon Company I",
+      "leads_to": [
+        "tech_recon2"
+      ]
     },
     "tech_recon2": {
       "categories": [
         "support_tech",
         "recon_tech"
       ],
-      "path": {
-        "leads_to_tech": "tech_recon3",
-        "research_cost_coeff": 1
-      },
       "recon": {
         "recon": 2
       },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Recon Company II"
+      "name": "Recon Company II",
+      "leads_to": [
+        "tech_recon3"
+      ]
     },
     "tech_recon3": {
       "categories": [
         "support_tech",
         "recon_tech"
       ],
-      "path": {
-        "leads_to_tech": "tech_recon4",
-        "research_cost_coeff": 1
-      },
       "recon": {
         "recon": 2
       },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Recon Company III"
+      "name": "Recon Company III",
+      "leads_to": [
+        "tech_recon4"
+      ]
     },
     "tech_recon4": {
       "categories": [
@@ -14988,7 +14762,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1945,
-      "name": "Recon Company IV"
+      "name": "Recon Company IV",
+      "leads_to": [
+
+      ]
     },
     "tech_military_police": {
       "categories": [
@@ -14998,13 +14775,12 @@
       "enable_subunits": [
         "military_police"
       ],
-      "path": {
-        "leads_to_tech": "tech_military_police2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Military Police I"
+      "name": "Military Police I",
+      "leads_to": [
+        "tech_military_police2"
+      ]
     },
     "tech_military_police2": {
       "categories": [
@@ -15014,13 +14790,12 @@
       "military_police": {
         "suppression_factor": 0.1
       },
-      "path": {
-        "leads_to_tech": "tech_military_police3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Military Police II"
+      "name": "Military Police II",
+      "leads_to": [
+        "tech_military_police3"
+      ]
     },
     "tech_military_police3": {
       "categories": [
@@ -15030,13 +14805,12 @@
       "military_police": {
         "suppression_factor": 0.1
       },
-      "path": {
-        "leads_to_tech": "tech_military_police4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Military Police III"
+      "name": "Military Police III",
+      "leads_to": [
+        "tech_military_police4"
+      ]
     },
     "tech_military_police4": {
       "categories": [
@@ -15048,7 +14822,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1945,
-      "name": "Military Police IV"
+      "name": "Military Police IV",
+      "leads_to": [
+
+      ]
     },
     "tech_maintenance_company": {
       "categories": [
@@ -15058,13 +14835,12 @@
       "enable_subunits": [
         "maintenance_company"
       ],
-      "path": {
-        "leads_to_tech": "tech_maintenance_company2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Maintenance Company I"
+      "name": "Maintenance Company I",
+      "leads_to": [
+        "tech_maintenance_company2"
+      ]
     },
     "tech_maintenance_company2": {
       "categories": [
@@ -15075,13 +14851,12 @@
         "equipment_capture_factor": 0.05,
         "reliability_factor": 0.05
       },
-      "path": {
-        "leads_to_tech": "tech_maintenance_company3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Maintenance Company II"
+      "name": "Maintenance Company II",
+      "leads_to": [
+        "tech_maintenance_company3"
+      ]
     },
     "tech_maintenance_company3": {
       "categories": [
@@ -15092,13 +14867,12 @@
         "equipment_capture_factor": 0.05,
         "reliability_factor": 0.05
       },
-      "path": {
-        "leads_to_tech": "tech_maintenance_company4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Maintenance Company III"
+      "name": "Maintenance Company III",
+      "leads_to": [
+        "tech_maintenance_company4"
+      ]
     },
     "tech_maintenance_company4": {
       "categories": [
@@ -15111,7 +14885,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1945,
-      "name": "Maintenance Company IV"
+      "name": "Maintenance Company IV",
+      "leads_to": [
+
+      ]
     },
     "tech_field_hospital": {
       "categories": [
@@ -15125,13 +14902,12 @@
       "enable_subunits": [
         "field_hospital"
       ],
-      "path": {
-        "leads_to_tech": "tech_field_hospital2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Field Hospital I"
+      "name": "Field Hospital I",
+      "leads_to": [
+        "tech_field_hospital2"
+      ]
     },
     "tech_field_hospital2": {
       "categories": [
@@ -15143,13 +14919,12 @@
         "casualty_trickleback": 0.1,
         "experience_loss_factor": -0.1
       },
-      "path": {
-        "leads_to_tech": "tech_field_hospital3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Field Hospital II"
+      "name": "Field Hospital II",
+      "leads_to": [
+        "tech_field_hospital3"
+      ]
     },
     "tech_field_hospital3": {
       "categories": [
@@ -15161,13 +14936,12 @@
         "casualty_trickleback": 0.1,
         "experience_loss_factor": -0.1
       },
-      "path": {
-        "leads_to_tech": "tech_field_hospital4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Field Hospital III"
+      "name": "Field Hospital III",
+      "leads_to": [
+        "tech_field_hospital4"
+      ]
     },
     "tech_field_hospital4": {
       "categories": [
@@ -15181,7 +14955,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1945,
-      "name": "Field Hospital IV"
+      "name": "Field Hospital IV",
+      "leads_to": [
+
+      ]
     },
     "tech_logistics_company": {
       "categories": [
@@ -15195,13 +14972,12 @@
       "enable_subunits": [
         "logistics_company"
       ],
-      "path": {
-        "leads_to_tech": "tech_logistics_company2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Logistics Company I"
+      "name": "Logistics Company I",
+      "leads_to": [
+        "tech_logistics_company2"
+      ]
     },
     "tech_logistics_company2": {
       "categories": [
@@ -15212,13 +14988,12 @@
       "logistics_company": {
         "supply_consumption_factor": -0.1
       },
-      "path": {
-        "leads_to_tech": "tech_logistics_company3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Logistics Company II"
+      "name": "Logistics Company II",
+      "leads_to": [
+        "tech_logistics_company3"
+      ]
     },
     "tech_logistics_company3": {
       "categories": [
@@ -15229,13 +15004,12 @@
       "logistics_company": {
         "supply_consumption_factor": -0.1
       },
-      "path": {
-        "leads_to_tech": "tech_logistics_company4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "start_year": 1942,
-      "name": "Logistics Company III"
+      "name": "Logistics Company III",
+      "leads_to": [
+        "tech_logistics_company4"
+      ]
     },
     "tech_logistics_company4": {
       "categories": [
@@ -15248,7 +15022,10 @@
       },
       "research_cost": 1.5,
       "start_year": 1945,
-      "name": "Logistics Company IV"
+      "name": "Logistics Company IV",
+      "leads_to": [
+
+      ]
     },
     "tech_signal_company": {
       "categories": [
@@ -15263,13 +15040,12 @@
       "enable_subunits": [
         "signal_company"
       ],
-      "path": {
-        "leads_to_tech": "tech_signal_company2",
-        "research_cost_coeff": 1
-      },
       "research_cost": 2,
       "start_year": 1936,
-      "name": "Signal Company I"
+      "name": "Signal Company I",
+      "leads_to": [
+        "tech_signal_company2"
+      ]
     },
     "tech_signal_company2": {
       "categories": [
@@ -15277,16 +15053,15 @@
         "signal_company_tech",
         "electronics"
       ],
-      "path": {
-        "leads_to_tech": "tech_signal_company3",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "signal_company": {
         "initiative": 0.12
       },
       "start_year": 1939,
-      "name": "Signal Company II"
+      "name": "Signal Company II",
+      "leads_to": [
+        "tech_signal_company3"
+      ]
     },
     "tech_signal_company3": {
       "categories": [
@@ -15294,16 +15069,15 @@
         "signal_company_tech",
         "electronics"
       ],
-      "path": {
-        "leads_to_tech": "tech_signal_company4",
-        "research_cost_coeff": 1
-      },
       "research_cost": 1.5,
       "signal_company": {
         "initiative": 0.12
       },
       "start_year": 1942,
-      "name": "Signal Company III"
+      "name": "Signal Company III",
+      "leads_to": [
+        "tech_signal_company4"
+      ]
     },
     "tech_signal_company4": {
       "categories": [
@@ -15316,7 +15090,10 @@
         "initiative": 0.12
       },
       "start_year": 1945,
-      "name": "Signal Company IV"
+      "name": "Signal Company IV",
+      "leads_to": [
+
+      ]
     }
   },
   "doctrines": {
