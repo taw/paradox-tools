@@ -424,4 +424,33 @@ describe Division do
       }
     end
   end
+
+  describe "Kaiserreich" do
+    let(:db) { Database.new("kaiserreich") }
+    describe "2 militia, no tech" do
+      let(:units) { {militia: 2} }
+      it do
+        expect_stats division, {
+          speed: 4.0,
+          hp: 40.0,
+          org: 40.0,
+          suppression: 2.0,
+          weight: 1.0,
+          supply_use: 0.08,
+          soft_attack: 3.0,
+          hard_attack: 0.5,
+          defense: 28.0,
+          breakthrough: 2.8,
+          piercing: 1.0,
+          combat_width: 4,
+          manpower: 2000,
+          training_time: 40,
+          equipment: {"infantry_equipment_0" => 100},
+          ic_cost: 40,
+          terrain_bonuses: {},
+          recovery_rate: 0.35,
+        }
+      end
+    end
+  end
 end
