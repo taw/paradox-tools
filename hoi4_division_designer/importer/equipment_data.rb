@@ -1,4 +1,6 @@
 class EquipmentData
+  extend Memoist
+
   def initialize(game)
     @game = game
   end
@@ -11,7 +13,11 @@ class EquipmentData
     end
   end
 
-  def data
+  memoize def archetype_names
+    data.map{|name, eq| eq["archetype"]}.uniq
+  end
+
+  memoize def data
     valid_keys = %W[
       soft_attack hard_attack air_attack
       defense breakthrough ap_attack armor_value
@@ -32,7 +38,7 @@ class EquipmentData
         equipment.delete("is_archetype")
         raise "Archetype is buildable" if equipment.delete("is_buildable")
         archetypes[name] = equipment
-      else
+      elsif equipment["active"] or @game.technology.enabled_equipments.include?(name)
         if equipment["archetype"]
           archetype = archetypes[equipment["archetype"]] or raise
           equipment = archetype.merge(equipment)
@@ -45,6 +51,8 @@ class EquipmentData
         end
         # There's still a lot of keys we copy without using
         # Mostly air/naval stuff
+      else
+        # warn "Equipment #{name} is #{@game.mod} is never enabled"
       end
     end
     result

@@ -47,6 +47,17 @@ class UnitsData
     result = {}
     each_unit do |name, unit|
       raise "Duplicate name: #{name}" if result[name]
+
+      unless unit["active"] or @game.technology.enabled_subunits.include?(name)
+        warn "Unit #{name} is #{@game.mod} is never enabled"
+        next
+      end
+
+      unless unit["need"].keys.all?{|eq| @game.equipment.archetype_names.include?(eq) }
+        # warn "Unit #{name} is #{@game.mod} is never enabled because of equipment"
+        next
+      end
+
       bonuses = {}
       unit_data = default_values
       unit.each do |key, value|

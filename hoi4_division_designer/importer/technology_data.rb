@@ -14,7 +14,19 @@ class TechnologyData
     end
   end
 
-  def fix_start_year(name, tech)
+  memoize def raw_data
+    enum_for(:each_technology).to_a
+  end
+
+  memoize def enabled_equipments
+    raw_data.flat_map{|name, tech| tech["enable_equipments"] || []}
+  end
+
+  memoize def enabled_subunits
+    raw_data.flat_map{|k,v| v["enable_subunits"] || [] }
+  end
+
+  private def fix_start_year(name, tech)
     # Doctrines have no year
     return if tech["doctrine"]
     # Special non-researchable "techs"
@@ -40,7 +52,7 @@ class TechnologyData
 
   memoize def data
     result = {}
-    each_technology do |name, tech|
+    raw_data.each do |name, tech|
       tech.delete "ai_will_do"
       tech.delete "ai_research_weights"
       tech.delete "folder"
@@ -76,7 +88,7 @@ class TechnologyData
     result
   end
 
-  def land_doctrines
+  memoize def land_doctrines
     data.select do |name, tech|
       tech["doctrine"] and tech["categories"].include?("land_doctrine")
     end
