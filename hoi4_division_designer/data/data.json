@@ -15945,7 +15945,7 @@
     }
   },
   "doctrines": {
-    "Mobile Warfare / Mobile Infantry / Fire brigades": [
+    "Mobile Warfare / Mobile Infantry / Modern Blitzkrieg": [
       "mobile_warfare",
       "delay",
       "elastic_defence",
@@ -15957,7 +15957,7 @@
       "backhand_blow",
       "modern_blitzkrieg"
     ],
-    "Mobile Warfare / Mobile Infantry / Volkssturm": [
+    "Mobile Warfare / Mobile Infantry / Desperate Defense": [
       "mobile_warfare",
       "delay",
       "elastic_defence",
@@ -15969,7 +15969,7 @@
       "nd_conscription",
       "werwolf_guerillas"
     ],
-    "Mobile Warfare / Armored Spearhead / Fire brigades": [
+    "Mobile Warfare / Blitzkrieg / Modern Blitzkrieg": [
       "mobile_warfare",
       "delay",
       "elastic_defence",
@@ -15981,7 +15981,7 @@
       "backhand_blow",
       "modern_blitzkrieg"
     ],
-    "Mobile Warfare / Armored Spearhead / Volkssturm": [
+    "Mobile Warfare / Blitzkrieg / Desperate Defense": [
       "mobile_warfare",
       "delay",
       "elastic_defence",
@@ -15993,7 +15993,7 @@
       "nd_conscription",
       "werwolf_guerillas"
     ],
-    "Superior Firepower / Integrated Support / Concentrated Fire Plans": [
+    "Superior Firepower / Integrated Support / Airland Batle": [
       "superior_firepower",
       "sup_delay",
       "mobile_defence",
@@ -16005,7 +16005,7 @@
       "tactical_control",
       "air_land_battle"
     ],
-    "Superior Firepower / Integrated Support / Centralized Fire Control": [
+    "Superior Firepower / Integrated Support / Shock & Awe": [
       "superior_firepower",
       "sup_delay",
       "mobile_defence",
@@ -16017,7 +16017,7 @@
       "advanced_firebases",
       "shock_and_awe"
     ],
-    "Superior Firepower / Dispersed Support / Concentrated Fire Plans": [
+    "Superior Firepower / Dispersed Support / Airland Batle": [
       "superior_firepower",
       "sup_delay",
       "mobile_defence",
@@ -16029,7 +16029,7 @@
       "tactical_control",
       "air_land_battle"
     ],
-    "Superior Firepower / Dispersed Support / Centralized Fire Control": [
+    "Superior Firepower / Dispersed Support / Shock & Awe": [
       "superior_firepower",
       "sup_delay",
       "mobile_defence",
@@ -16041,7 +16041,7 @@
       "advanced_firebases",
       "shock_and_awe"
     ],
-    "Trench Warfare / Mechanized Offensive": [
+    "Grand Battleplan / Assault": [
       "trench_warfare",
       "grand_battle_plan",
       "prepared_defense",
@@ -16053,7 +16053,7 @@
       "central_planning",
       "c3i_theory"
     ],
-    "Trench Warfare / Infantry Offensive": [
+    "Grand Battleplan / Infiltration": [
       "trench_warfare",
       "grand_battle_plan",
       "prepared_defense",
@@ -16065,7 +16065,7 @@
       "attritional_containment",
       "infiltration_in_depth"
     ],
-    "Mass Assault / Large Front Operations": [
+    "Mass Assault / Deep Battle": [
       "mass_assault",
       "pocket_defence",
       "defence_in_depth",
@@ -16077,7 +16077,7 @@
       "mechanized_wave",
       "continuous_offensive"
     ],
-    "Mass Assault / People's Army": [
+    "Mass Assault / Mass Mobilization": [
       "mass_assault",
       "pocket_defence",
       "defence_in_depth",

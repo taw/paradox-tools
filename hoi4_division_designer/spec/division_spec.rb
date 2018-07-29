@@ -360,7 +360,7 @@ describe Division do
 
   describe "1945 + doctrine + monster armored division" do
     let(:tech_year) { 1945 }
-    let(:doctrine) { "Superior Firepower / Integrated Support / Centralized Fire Control" }
+    let(:doctrine) { "Superior Firepower / Integrated Support / Shock & Awe" }
     let(:units) { {
       heavy_armor: 5,
       heavy_sp_anti_air_brigade: 5,
