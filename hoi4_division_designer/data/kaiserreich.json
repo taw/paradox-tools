@@ -16379,5 +16379,23 @@
       "human_wave_offensive",
       "guerilla_warfare"
     ]
+  },
+  "default_year": 1936,
+  "default_units": [
+    [
+      7,
+      "infantry"
+    ],
+    [
+      2,
+      "artillery_brigade"
+    ],
+    [
+      0,
+      "infantry"
+    ]
+  ],
+  "default_support": {
+    "artillery": true
   }
 }

@@ -50,12 +50,46 @@ class Importer < ParadoxGame
     DoctrineData.new(self)
   end
 
+  def default_year
+    if @mod == "millennium_dawn"
+      2000
+    else
+      1936
+    end
+  end
+
+  def default_support
+    if @mod == "millennium_dawn"
+      {}
+    else
+      {"artillery" => true}
+    end
+  end
+
+  def default_units
+    if @mod == "millennium_dawn"
+      [
+        [10, "infantry"],
+        [0, "infantry"],
+      ]
+    else
+      [
+        [7, "infantry"],
+        [2, "artillery_brigade"],
+        [0, "infantry"],
+      ]
+    end
+  end
+
   def call
     data = {
       units: units.data,
       equipment: equipment.data,
       technology: technology.data,
       doctrines: doctrines.data,
+      default_year: default_year,
+      default_units: default_units,
+      default_support: default_support,
     }
     @save_path.write JSON.pretty_generate(data)
   end

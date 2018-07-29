@@ -14531,5 +14531,18 @@
       "human_wave_offensive",
       "guerilla_warfare"
     ]
+  },
+  "default_year": 2000,
+  "default_units": [
+    [
+      10,
+      "infantry"
+    ],
+    [
+      0,
+      "infantry"
+    ]
+  ],
+  "default_support": {
   }
 }
