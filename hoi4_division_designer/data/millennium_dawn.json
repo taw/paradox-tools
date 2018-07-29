@@ -2198,7 +2198,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_1",
+      "name": "Gen 2 Multirole",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 6,
@@ -2228,7 +2228,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_2",
+      "name": "Gen 3 Multirole",
       "air_agility": 50,
       "air_attack": 18,
       "air_defence": 10,
@@ -2259,7 +2259,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_3",
+      "name": "Gen 4 Multirole",
       "air_agility": 65,
       "air_attack": 27,
       "air_defence": 16,
@@ -2290,7 +2290,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_4",
+      "name": "Gen 4.5 Multirole",
       "air_agility": 72,
       "air_attack": 27,
       "air_defence": 20,
@@ -2321,7 +2321,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_5",
+      "name": "Gen 5 Multirole",
       "air_agility": 80,
       "air_attack": 36,
       "air_defence": 20,
@@ -2352,7 +2352,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_6",
+      "name": "Modern Gen 5 Multirole",
       "air_agility": 88,
       "air_attack": 36,
       "air_defence": 26,
@@ -2383,7 +2383,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_7",
+      "name": "Future Gen 5 Multirole",
       "air_agility": 96,
       "air_attack": 45,
       "air_defence": 26,
@@ -2414,7 +2414,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_multirole_equipment_8",
+      "name": "Gen 6 Multirole",
       "air_agility": 100,
       "air_attack": 50,
       "air_defence": 30,
@@ -2449,7 +2449,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_attack_equipment_1",
+      "name": "Gen 2 Attack",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 16,
@@ -2483,7 +2483,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_attack_equipment_2",
+      "name": "Gen 3 Attack",
       "air_agility": 49,
       "air_attack": 16,
       "air_defence": 20,
@@ -2518,7 +2518,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_attack_equipment_3",
+      "name": "Gen 4 Attack",
       "air_agility": 60,
       "air_attack": 16,
       "air_defence": 24,
@@ -2548,7 +2548,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_mpa_equipment_1",
+      "name": "Gen 2 MPA",
       "air_agility": 38,
       "air_attack": 9,
       "air_defence": 16,
@@ -2577,7 +2577,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_mpa_equipment_2",
+      "name": "Gen 3 MPA",
       "air_agility": 48,
       "air_attack": 16,
       "air_defence": 20,
@@ -2607,7 +2607,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_mpa_equipment_3",
+      "name": "Gen 4 MPA",
       "air_agility": 48,
       "air_attack": 16,
       "air_defence": 20,
@@ -2637,7 +2637,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_mpa_equipment_4",
+      "name": "Gen 5 MPA",
       "air_agility": 56,
       "air_attack": 16,
       "air_defence": 24,
@@ -2667,7 +2667,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_mpa_equipment_5",
+      "name": "Modern Gen 5 MPA",
       "air_agility": 56,
       "air_attack": 16,
       "air_defence": 24,
@@ -2697,7 +2697,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_mpa_equipment_6",
+      "name": "Gen 6 MPA",
       "air_agility": 62,
       "air_attack": 18,
       "air_defence": 34,
@@ -2727,7 +2727,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_bomber_equipment_1",
+      "name": "Gen 3 Bomber",
       "air_agility": 5,
       "air_attack": 14,
       "air_bombing": 30,
@@ -2757,7 +2757,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_bomber_equipment_2",
+      "name": "Modern Gen 3 Bomber",
       "air_agility": 7,
       "air_attack": 28,
       "air_bombing": 45,
@@ -2788,7 +2788,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_bomber_equipment_3",
+      "name": "Gen 4 Bomber",
       "air_agility": 10,
       "air_attack": 42,
       "air_bombing": 60,
@@ -2819,7 +2819,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_bomber_equipment_4",
+      "name": "Gen 5 Bomber",
       "air_agility": 20,
       "air_attack": 60,
       "air_bombing": 70,
@@ -2850,7 +2850,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "jet_bomber_equipment_5",
+      "name": "Gen 6 Bomber",
       "air_agility": 24,
       "air_attack": 64,
       "air_bombing": 74,
@@ -2884,7 +2884,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "ucav_equipment_1",
+      "name": "Gen 1 UCAV",
       "air_agility": 20,
       "air_attack": 0,
       "air_bombing": 6,
@@ -2917,7 +2917,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "ucav_equipment_2",
+      "name": "Gen 2 UCAV",
       "air_agility": 25,
       "air_attack": 0,
       "air_bombing": 8,
@@ -2951,7 +2951,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "ucav_equipment_3",
+      "name": "Gen 3 UCAV",
       "air_agility": 30,
       "air_attack": 0,
       "air_bombing": 10,
@@ -2985,7 +2985,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "ucav_equipment_4",
+      "name": "Gen 3.5 UCAV",
       "air_agility": 35,
       "air_attack": 0,
       "air_bombing": 12,
@@ -3019,7 +3019,7 @@
         "plane_engine_upgrade",
         "plane_reliability_upgrade"
       ],
-      "name": "ucav_equipment_5",
+      "name": "Gen 4 UCAV",
       "air_agility": 40,
       "air_attack": 0,
       "air_bombing": 14,
@@ -3425,7 +3425,7 @@
         "ship_engine_upgrade",
         "ship_reliability_upgrade"
       ],
-      "name": "Carrier I",
+      "name": "Carrier I\" #1960",
       "archetype": "carrier"
     },
     "carrier_2": {
@@ -3460,7 +3460,7 @@
         "ship_engine_upgrade",
         "ship_reliability_upgrade"
       ],
-      "name": "Carrier II",
+      "name": "Carrier II\" #1980",
       "archetype": "carrier",
       "parent": "carrier_1"
     },
@@ -3496,7 +3496,7 @@
         "ship_engine_upgrade",
         "ship_reliability_upgrade"
       ],
-      "name": "Carrier III",
+      "name": "Carrier III\" #2004",
       "archetype": "carrier",
       "parent": "carrier_2"
     },
@@ -3532,7 +3532,7 @@
         "ship_engine_upgrade",
         "ship_reliability_upgrade"
       ],
-      "name": "Carrier IV",
+      "name": "Carrier IV\" #2012",
       "archetype": "carrier",
       "parent": "carrier_3"
     },
@@ -3568,7 +3568,7 @@
         "ship_engine_upgrade",
         "ship_reliability_upgrade"
       ],
-      "name": "Carrier V",
+      "name": "Carrier V\" #2018",
       "archetype": "carrier",
       "parent": "carrier_4"
     },
@@ -3604,7 +3604,7 @@
         "ship_engine_upgrade",
         "ship_reliability_upgrade"
       ],
-      "name": "Carrier VI",
+      "name": "Carrier VI\" #2030",
       "archetype": "carrier",
       "parent": "carrier_5"
     },
@@ -3872,7 +3872,7 @@
         "ship_ASW_upgrade",
         "ship_anti_air_upgrade"
       ],
-      "name": "Destroyer I",
+      "name": "Destroyer I\" #1960",
       "archetype": "destroyer"
     },
     "destroyer_2": {
@@ -3910,7 +3910,7 @@
         "ship_ASW_upgrade",
         "ship_anti_air_upgrade"
       ],
-      "name": "Destroyer II",
+      "name": "Destroyer II\" #1980",
       "archetype": "destroyer",
       "parent": "destroyer_1"
     },
@@ -3949,7 +3949,7 @@
         "ship_ASW_upgrade",
         "ship_anti_air_upgrade"
       ],
-      "name": "Destroyer III",
+      "name": "Destroyer III\" #2000",
       "archetype": "destroyer",
       "parent": "destroyer_2"
     },
@@ -3988,7 +3988,7 @@
         "ship_ASW_upgrade",
         "ship_anti_air_upgrade"
       ],
-      "name": "Destroyer IV",
+      "name": "Destroyer IV\" #2008",
       "archetype": "destroyer",
       "parent": "destroyer_3"
     },
@@ -4027,7 +4027,7 @@
         "ship_ASW_upgrade",
         "ship_anti_air_upgrade"
       ],
-      "name": "Destroyer V",
+      "name": "Destroyer V\" #2020",
       "archetype": "destroyer",
       "parent": "destroyer_4"
     },
@@ -4066,7 +4066,7 @@
         "ship_ASW_upgrade",
         "ship_anti_air_upgrade"
       ],
-      "name": "Destroyer VI",
+      "name": "Destroyer VI\" #2030",
       "archetype": "destroyer",
       "parent": "destroyer_5"
     },
@@ -4471,7 +4471,7 @@
       },
       "soft_attack": 18,
       "type": "infantry",
-      "name": "infantry_equipment_5",
+      "name": "Future Equipment",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_4"
     },
@@ -4492,7 +4492,7 @@
       },
       "soft_attack": 21,
       "type": "infantry",
-      "name": "infantry_equipment_6",
+      "name": "Cyborg Equipment",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_5"
     },
@@ -4517,7 +4517,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "infantry_fighting_vehicle_1",
+      "name": "Gen 1 Mechanized",
       "archetype": "mechanized_equipment"
     },
     "infantry_fighting_vehicle_2": {
@@ -4541,7 +4541,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "infantry_fighting_vehicle_2",
+      "name": "Gen 2 Mechanized",
       "archetype": "mechanized_equipment",
       "parent": "infantry_fighting_vehicle_1"
     },
@@ -4566,7 +4566,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "infantry_fighting_vehicle_3",
+      "name": "Modern Gen 2 Mechanized",
       "archetype": "mechanized_equipment",
       "parent": "infantry_fighting_vehicle_2"
     },
@@ -4591,7 +4591,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "infantry_fighting_vehicle_4",
+      "name": "Gen 3 Mechanized",
       "archetype": "mechanized_equipment",
       "parent": "infantry_fighting_vehicle_3"
     },
@@ -4616,7 +4616,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "infantry_fighting_vehicle_5",
+      "name": "Gen 4 Mechanized",
       "archetype": "mechanized_equipment",
       "parent": "infantry_fighting_vehicle_4"
     },
@@ -4641,7 +4641,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "armored_personnel_carrier_1",
+      "name": "Gen 1 Light Mechanized",
       "archetype": "light_mechanized_equipment"
     },
     "armored_personnel_carrier_2": {
@@ -4665,7 +4665,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "armored_personnel_carrier_2",
+      "name": "Gen 2 Light Mechanized",
       "archetype": "light_mechanized_equipment",
       "parent": "armored_personnel_carrier_1"
     },
@@ -4690,7 +4690,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "armored_personnel_carrier_3",
+      "name": "Gen 3 Light Mechanized",
       "archetype": "light_mechanized_equipment",
       "parent": "armored_personnel_carrier_2"
     },
@@ -4715,7 +4715,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "armored_personnel_carrier_4",
+      "name": "Modern Gen 3 Light Mechanized",
       "archetype": "light_mechanized_equipment",
       "parent": "armored_personnel_carrier_3"
     },
@@ -4740,7 +4740,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "armored_personnel_carrier_5",
+      "name": "Gen 4 Light Mechanized",
       "archetype": "light_mechanized_equipment",
       "parent": "armored_personnel_carrier_4"
     },
@@ -4765,7 +4765,7 @@
         "infantry",
         "mechanized"
       ],
-      "name": "armored_personnel_carrier_6",
+      "name": "Gen 5 Light Mechanized",
       "archetype": "light_mechanized_equipment",
       "parent": "armored_personnel_carrier_5"
     },
@@ -4800,7 +4800,7 @@
         "ship_armor_upgrade",
         "ship_gun_upgrade"
       ],
-      "name": "Missile Cruiser I",
+      "name": "Missile Cruiser I\" #1960",
       "archetype": "missile_cruiser"
     },
     "missile_cruiser_2": {
@@ -4834,7 +4834,7 @@
         "ship_armor_upgrade",
         "ship_gun_upgrade"
       ],
-      "name": "Missile Cruiser II",
+      "name": "Missile Cruiser II\" #2000",
       "archetype": "missile_cruiser",
       "parent": "missile_cruiser_1"
     },
@@ -4869,7 +4869,7 @@
         "ship_armor_upgrade",
         "ship_gun_upgrade"
       ],
-      "name": "Missile Cruiser III",
+      "name": "Missile Cruiser III\" #2006",
       "archetype": "missile_cruiser",
       "parent": "missile_cruiser_2"
     },
@@ -4904,7 +4904,7 @@
         "ship_armor_upgrade",
         "ship_gun_upgrade"
       ],
-      "name": "Missile Cruiser IV",
+      "name": "Missile Cruiser IV\" #2010",
       "archetype": "missile_cruiser",
       "parent": "missile_cruiser_3"
     },
@@ -4939,7 +4939,7 @@
         "ship_armor_upgrade",
         "ship_gun_upgrade"
       ],
-      "name": "Missile Cruiser V",
+      "name": "Missile Cruiser V\" #2020",
       "archetype": "missile_cruiser",
       "parent": "missile_cruiser_4"
     },
@@ -4974,7 +4974,7 @@
         "ship_armor_upgrade",
         "ship_gun_upgrade"
       ],
-      "name": "Missile Cruiser VI",
+      "name": "Missile Cruiser VI\" #2030",
       "archetype": "missile_cruiser",
       "parent": "missile_cruiser_5"
     },
@@ -5133,7 +5133,7 @@
         "sub_stealth_upgrade",
         "sub_torpedo_upgrade"
       ],
-      "name": "Submarine I",
+      "name": "Submarine I\" #1960",
       "archetype": "submarine"
     },
     "submarine_2": {
@@ -5168,7 +5168,7 @@
         "sub_stealth_upgrade",
         "sub_torpedo_upgrade"
       ],
-      "name": "Submarine II",
+      "name": "Submarine II\" #1980",
       "archetype": "submarine",
       "parent": "submarine_1"
     },
@@ -5204,7 +5204,7 @@
         "sub_stealth_upgrade",
         "sub_torpedo_upgrade"
       ],
-      "name": "Submarine III",
+      "name": "Submarine III\" #2006",
       "archetype": "submarine",
       "parent": "submarine_2"
     },
@@ -5241,7 +5241,7 @@
         "sub_stealth_upgrade",
         "sub_torpedo_upgrade"
       ],
-      "name": "Submarine IV",
+      "name": "Submarine IV\" #2014",
       "archetype": "submarine",
       "parent": "submarine_3"
     },
@@ -5278,7 +5278,7 @@
         "sub_stealth_upgrade",
         "sub_torpedo_upgrade"
       ],
-      "name": "Submarine V",
+      "name": "Submarine V\" #2025",
       "archetype": "submarine",
       "parent": "submarine_4"
     },
@@ -5315,7 +5315,7 @@
         "sub_stealth_upgrade",
         "sub_torpedo_upgrade"
       ],
-      "name": "Submarine VI",
+      "name": "Submarine VI\" #2030",
       "archetype": "submarine",
       "parent": "submarine_5"
     },
@@ -5356,7 +5356,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "light_tank_equipment_1",
+      "name": "Gen 3 Light Tank",
       "archetype": "light_tank_equipment"
     },
     "light_tank_equipment_2": {
@@ -5382,7 +5382,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "light_tank_equipment_2",
+      "name": "Modern Gen 3 Light Tank",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_1"
     },
@@ -5409,7 +5409,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "light_tank_equipment_3",
+      "name": "Gen 4 Light Tank",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_2"
     },
@@ -5436,7 +5436,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "light_tank_equipment_4",
+      "name": "Gen 5 Light Tank",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_3"
     },
@@ -5463,7 +5463,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "light_tank_equipment_5",
+      "name": "Gen 6 Light Tank",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_4"
     },
@@ -5491,7 +5491,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_1",
+      "name": "Gen 1 Main Battle Tank",
       "archetype": "modern_tank_equipment"
     },
     "modern_tank_equipment_2": {
@@ -5518,7 +5518,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_2",
+      "name": "Gen 2 Main Battle Tank",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_1"
     },
@@ -5546,7 +5546,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_3",
+      "name": "Gen 3 Main Battle Tank",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_2"
     },
@@ -5574,7 +5574,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_4",
+      "name": "Modern Gen 3 Main Battle Tank",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_3"
     },
@@ -5602,7 +5602,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_5",
+      "name": "Advanced Gen 3 Main Battle Tank",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_4"
     },
@@ -5630,7 +5630,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_6",
+      "name": "Gen 4 Main Battle Tank",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_5"
     },
@@ -5658,7 +5658,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_7",
+      "name": "Gen 5 Main Battle Tank",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_6"
     },
@@ -5686,7 +5686,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "modern_tank_equipment_8",
+      "name": "Gen 6 Main Battle Tank",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_7"
     }

@@ -27,7 +27,7 @@
       "type": [
         "fighter"
       ],
-      "name": "fighter",
+      "name": "Fighter",
       "terrain_bonuses": {
       }
     },
@@ -58,7 +58,7 @@
       "type": [
         "fighter"
       ],
-      "name": "cv_fighter",
+      "name": "Fighter",
       "terrain_bonuses": {
       }
     },
@@ -89,7 +89,7 @@
       "type": [
         "fighter"
       ],
-      "name": "jet_fighter",
+      "name": "Fighter",
       "terrain_bonuses": {
       }
     },
@@ -120,7 +120,7 @@
       "type": [
         "cas"
       ],
-      "name": "cas",
+      "name": "Close Air Support",
       "terrain_bonuses": {
       }
     },
@@ -151,7 +151,7 @@
       "type": [
         "cas"
       ],
-      "name": "cv_cas",
+      "name": "Close Air Support",
       "terrain_bonuses": {
       }
     },
@@ -179,7 +179,7 @@
       "type": [
         "naval_bomber"
       ],
-      "name": "cv_nav_bomber",
+      "name": "Naval Bomber",
       "terrain_bonuses": {
       }
     },
@@ -207,7 +207,7 @@
       "type": [
         "naval_bomber"
       ],
-      "name": "nav_bomber",
+      "name": "Naval Bomber",
       "terrain_bonuses": {
       }
     },
@@ -291,7 +291,7 @@
       "type": [
         "tactical_bomber"
       ],
-      "name": "tac_bomber",
+      "name": "Tactical Bomber",
       "terrain_bonuses": {
       }
     },
@@ -319,7 +319,7 @@
       "type": [
         "tactical_bomber"
       ],
-      "name": "jet_tac_bomber",
+      "name": "Jet Tactical Bomber",
       "terrain_bonuses": {
       }
     },
@@ -350,7 +350,7 @@
       "type": [
         "fighter"
       ],
-      "name": "heavy_fighter",
+      "name": "Heavy Fighter",
       "terrain_bonuses": {
       }
     },
@@ -378,7 +378,7 @@
       "type": [
         "strategic_bomber"
       ],
-      "name": "strat_bomber",
+      "name": "Strategic Bomber",
       "terrain_bonuses": {
       }
     },
@@ -406,7 +406,7 @@
       "type": [
         "strategic_bomber"
       ],
-      "name": "jet_strat_bomber",
+      "name": "Jet Strategic Bomber",
       "terrain_bonuses": {
       }
     },
@@ -434,7 +434,7 @@
       "type": [
         "air_transport"
       ],
-      "name": "transport_plane",
+      "name": "Transport",
       "terrain_bonuses": {
       }
     },
@@ -462,7 +462,7 @@
       "type": [
         "missile"
       ],
-      "name": "guided_missile",
+      "name": "Rocket",
       "terrain_bonuses": {
       }
     },
@@ -1003,7 +1003,7 @@
       "type": [
         "capital_ship"
       ],
-      "name": "battle_cruiser",
+      "name": "Battlecruiser",
       "terrain_bonuses": {
       }
     },
@@ -1032,7 +1032,7 @@
       "type": [
         "capital_ship"
       ],
-      "name": "battleship",
+      "name": "Battleship",
       "terrain_bonuses": {
       }
     },
@@ -1061,7 +1061,7 @@
       "type": [
         "carrier"
       ],
-      "name": "carrier",
+      "name": "Carrier",
       "terrain_bonuses": {
       }
     },
@@ -1150,7 +1150,7 @@
       "type": [
         "screen_ship"
       ],
-      "name": "destroyer",
+      "name": "Destroyer",
       "terrain_bonuses": {
       }
     },
@@ -1372,7 +1372,7 @@
       "type": [
         "capital_ship"
       ],
-      "name": "heavy_cruiser",
+      "name": "Heavy Cruiser",
       "terrain_bonuses": {
       }
     },
@@ -1874,7 +1874,7 @@
       "type": [
         "screen_ship"
       ],
-      "name": "light_cruiser",
+      "name": "Light Cruiser",
       "terrain_bonuses": {
       }
     },
@@ -2128,7 +2128,7 @@
         "infantry"
       ],
       "weight": 0.5,
-      "name": "militia",
+      "name": "Militia",
       "terrain_bonuses": {
       }
     },
@@ -3041,7 +3041,7 @@
       "type": [
         "submarine"
       ],
-      "name": "submarine",
+      "name": "Submarine",
       "terrain_bonuses": {
       }
     },
@@ -3498,7 +3498,7 @@
         "infantry"
       ],
       "year": 1936,
-      "name": "anti_air_equipment_1",
+      "name": "Towed Anti-Air",
       "archetype": "anti_air_equipment"
     },
     "anti_air_equipment_2": {
@@ -3520,7 +3520,7 @@
         "infantry"
       ],
       "year": 1940,
-      "name": "anti_air_equipment_2",
+      "name": "Improved Anti-Air",
       "archetype": "anti_air_equipment",
       "parent": "anti_air_equipment_1"
     },
@@ -3543,7 +3543,7 @@
         "infantry"
       ],
       "year": 1943,
-      "name": "anti_air_equipment_3",
+      "name": "Advanced Anti-Air",
       "archetype": "anti_air_equipment",
       "parent": "anti_air_equipment_2"
     },
@@ -3567,7 +3567,7 @@
         "infantry"
       ],
       "year": 1936,
-      "name": "anti_tank_equipment_1",
+      "name": "Towed Anti-Tank",
       "archetype": "anti_tank_equipment"
     },
     "anti_tank_equipment_2": {
@@ -3590,7 +3590,7 @@
         "infantry"
       ],
       "year": 1940,
-      "name": "anti_tank_equipment_2",
+      "name": "Improved Anti-Tank",
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_1"
     },
@@ -3614,7 +3614,7 @@
         "infantry"
       ],
       "year": 1943,
-      "name": "anti_tank_equipment_3",
+      "name": "Advanced Anti-Tank",
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_2"
     },
@@ -3638,7 +3638,7 @@
         "infantry"
       ],
       "year": 1934,
-      "name": "artillery_equipment_1",
+      "name": "Towed Artillery",
       "archetype": "artillery_equipment"
     },
     "artillery_equipment_2": {
@@ -3661,7 +3661,7 @@
         "infantry"
       ],
       "year": 1939,
-      "name": "artillery_equipment_2",
+      "name": "Improved Artillery",
       "archetype": "artillery_equipment",
       "parent": "artillery_equipment_1"
     },
@@ -3685,7 +3685,7 @@
         "infantry"
       ],
       "year": 1942,
-      "name": "artillery_equipment_3",
+      "name": "Advanced Artillery",
       "archetype": "artillery_equipment",
       "parent": "artillery_equipment_2"
     },
@@ -3710,7 +3710,7 @@
         "rocket"
       ],
       "year": 1940,
-      "name": "rocket_artillery_equipment_1",
+      "name": "Towed Rocket Artillery",
       "archetype": "rocket_artillery_equipment"
     },
     "rocket_artillery_equipment_2": {
@@ -3734,7 +3734,7 @@
         "rocket"
       ],
       "year": 1943,
-      "name": "rocket_artillery_equipment_2",
+      "name": "Advanced Rocket Artillery",
       "archetype": "rocket_artillery_equipment",
       "parent": "rocket_artillery_equipment_1"
     },
@@ -3760,7 +3760,7 @@
         "rocket"
       ],
       "year": 1939,
-      "name": "motorized_rocket_equipment_1",
+      "name": "Motorised Rocket Artillery",
       "archetype": "motorized_rocket_equipment"
     },
     "battle_cruiser_pre": {
@@ -3795,7 +3795,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1922,
-      "name": "battle_cruiser_pre",
+      "name": "Pre-Weltkrieg Battle Cruiser",
       "archetype": "battle_cruiser",
       "is_buildable": false
     },
@@ -3831,7 +3831,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1930,
-      "name": "battle_cruiser_1",
+      "name": "Battlecruiser I",
       "archetype": "battle_cruiser"
     },
     "battle_cruiser_2": {
@@ -3866,7 +3866,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1940,
-      "name": "battle_cruiser_2",
+      "name": "Battlecruiser II",
       "archetype": "battle_cruiser",
       "parent": "battle_cruiser_1"
     },
@@ -3902,7 +3902,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1922,
-      "name": "battleship_pre",
+      "name": "Pre-Weltkrieg Battleship",
       "archetype": "battleship",
       "is_buildable": false
     },
@@ -3938,7 +3938,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1930,
-      "name": "battleship_1",
+      "name": "Battleship I",
       "archetype": "battleship"
     },
     "battleship_2": {
@@ -3973,7 +3973,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1936,
-      "name": "battleship_2",
+      "name": "Battleship II",
       "archetype": "battleship",
       "parent": "battleship_1"
     },
@@ -4009,7 +4009,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1940,
-      "name": "battleship_3",
+      "name": "Battleship III",
       "archetype": "battleship",
       "parent": "battleship_2"
     },
@@ -4045,7 +4045,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1944,
-      "name": "battleship_4",
+      "name": "Battleship IV",
       "archetype": "battleship",
       "parent": "battleship_3"
     },
@@ -4081,7 +4081,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1936,
-      "name": "SH_battleship_1",
+      "name": "Super-Heavy Battleship I",
       "archetype": "battleship"
     },
     "SH_battleship_2": {
@@ -4116,7 +4116,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1944,
-      "name": "SH_battleship_2",
+      "name": "Super-Heavy Battleship II",
       "archetype": "battleship",
       "parent": "SH_battleship_1"
     },
@@ -4153,7 +4153,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1922,
-      "name": "carrier_pre",
+      "name": "Pre-Weltkrieg Carrier",
       "archetype": "carrier",
       "is_buildable": false
     },
@@ -4190,7 +4190,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1930,
-      "name": "carrier_1",
+      "name": "Carrier I",
       "archetype": "carrier"
     },
     "carrier_2": {
@@ -4226,7 +4226,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "carrier_2",
+      "name": "Carrier II",
       "archetype": "carrier",
       "parent": "carrier_1"
     },
@@ -4263,7 +4263,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "carrier_3",
+      "name": "Carrier III",
       "archetype": "carrier",
       "parent": "carrier_2"
     },
@@ -4300,7 +4300,7 @@
         "ship_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "carrier_4",
+      "name": "Carrier IV",
       "archetype": "carrier",
       "parent": "carrier_3"
     },
@@ -4330,7 +4330,7 @@
         "convoy"
       ],
       "year": 1910,
-      "name": "convoy_1",
+      "name": "Convoy",
       "active": true,
       "archetype": "convoy"
     },
@@ -4368,7 +4368,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1922,
-      "name": "destroyer_pre",
+      "name": "Pre-Weltkrieg Destroyer",
       "archetype": "destroyer",
       "is_buildable": false
     },
@@ -4406,7 +4406,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1930,
-      "name": "destroyer_1",
+      "name": "Destroyer I",
       "archetype": "destroyer"
     },
     "destroyer_2": {
@@ -4443,7 +4443,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1936,
-      "name": "destroyer_2",
+      "name": "Destroyer II",
       "archetype": "destroyer",
       "parent": "destroyer_1"
     },
@@ -4481,7 +4481,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1940,
-      "name": "destroyer_3",
+      "name": "Destroyer III",
       "archetype": "destroyer",
       "parent": "destroyer_2"
     },
@@ -4520,7 +4520,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1944,
-      "name": "destroyer_4",
+      "name": "Destroyer IV",
       "archetype": "destroyer",
       "parent": "destroyer_3"
     },
@@ -4537,7 +4537,7 @@
       },
       "type": "missile",
       "year": 1944,
-      "name": "guided_missile_equipment_1",
+      "name": "Basic Guided Missile",
       "air_agility": 10,
       "air_bombing": 300,
       "air_range": 500,
@@ -4559,7 +4559,7 @@
       },
       "type": "missile",
       "year": 1945,
-      "name": "guided_missile_equipment_2",
+      "name": "Improved Guided Missile",
       "air_agility": 10,
       "air_bombing": 450,
       "air_range": 640,
@@ -4582,7 +4582,7 @@
       },
       "type": "missile",
       "year": 1946,
-      "name": "guided_missile_equipment_3",
+      "name": "Advanced Guided Missile",
       "air_agility": 10,
       "air_bombing": 600,
       "air_range": 11000,
@@ -4623,7 +4623,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1922,
-      "name": "heavy_cruiser_pre",
+      "name": "Pre-Weltkrieg Heavy Cruiser",
       "archetype": "heavy_cruiser",
       "is_buildable": false
     },
@@ -4658,7 +4658,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1930,
-      "name": "heavy_cruiser_1",
+      "name": "Heavy Cruiser I",
       "archetype": "heavy_cruiser"
     },
     "heavy_cruiser_2": {
@@ -4692,7 +4692,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1936,
-      "name": "heavy_cruiser_2",
+      "name": "Heavy Cruiser II",
       "archetype": "heavy_cruiser",
       "parent": "heavy_cruiser_1"
     },
@@ -4727,7 +4727,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1940,
-      "name": "heavy_cruiser_3",
+      "name": "Heavy Cruiser III",
       "archetype": "heavy_cruiser",
       "parent": "heavy_cruiser_2"
     },
@@ -4763,7 +4763,7 @@
         "ship_gun_upgrade"
       ],
       "year": 1944,
-      "name": "heavy_cruiser_4",
+      "name": "Heavy Cruiser IV",
       "archetype": "heavy_cruiser",
       "parent": "heavy_cruiser_3"
     },
@@ -4785,7 +4785,7 @@
       "soft_attack": 3,
       "type": "infantry",
       "year": 1918,
-      "name": "infantry_equipment_0",
+      "name": "Basic Infantry equipment",
       "archetype": "infantry_equipment"
     },
     "infantry_equipment_1": {
@@ -4806,7 +4806,7 @@
       "soft_attack": 6,
       "type": "infantry",
       "year": 1936,
-      "name": "infantry_equipment_1",
+      "name": "Infantry Equipment I",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_0"
     },
@@ -4828,7 +4828,7 @@
       "soft_attack": 9,
       "type": "infantry",
       "year": 1939,
-      "name": "infantry_equipment_2",
+      "name": "Infantry Equipment II",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_1"
     },
@@ -4850,7 +4850,7 @@
       "soft_attack": 12,
       "type": "infantry",
       "year": 1942,
-      "name": "infantry_equipment_3",
+      "name": "Infantry Equipment III",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_2"
     },
@@ -4888,7 +4888,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1922,
-      "name": "light_cruiser_pre",
+      "name": "Pre-Weltkrieg Light Cruiser",
       "archetype": "light_cruiser",
       "is_buildable": false
     },
@@ -4926,7 +4926,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1930,
-      "name": "light_cruiser_1",
+      "name": "Light Cruiser I",
       "archetype": "light_cruiser"
     },
     "light_cruiser_2": {
@@ -4963,7 +4963,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1936,
-      "name": "light_cruiser_2",
+      "name": "Light Cruiser II",
       "archetype": "light_cruiser",
       "parent": "light_cruiser_1"
     },
@@ -5001,7 +5001,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1940,
-      "name": "light_cruiser_3",
+      "name": "Light Cruiser III",
       "archetype": "light_cruiser",
       "parent": "light_cruiser_2"
     },
@@ -5040,7 +5040,7 @@
         "ship_anti_air_upgrade"
       ],
       "year": 1944,
-      "name": "light_cruiser_4",
+      "name": "Light Cruiser IV",
       "archetype": "light_cruiser",
       "parent": "light_cruiser_3"
     },
@@ -5063,7 +5063,7 @@
         "mechanized"
       ],
       "year": 1940,
-      "name": "mechanized_equipment_1",
+      "name": "Mechanised Equipment I",
       "archetype": "mechanized_equipment"
     },
     "mechanized_equipment_2": {
@@ -5085,7 +5085,7 @@
         "mechanized"
       ],
       "year": 1942,
-      "name": "mechanized_equipment_2",
+      "name": "Mechanised Equipment II",
       "archetype": "mechanized_equipment",
       "parent": "mechanized_equipment_1"
     },
@@ -5108,7 +5108,7 @@
         "mechanized"
       ],
       "year": 1944,
-      "name": "mechanized_equipment_3",
+      "name": "Mechanised Equipment III",
       "archetype": "mechanized_equipment",
       "parent": "mechanized_equipment_2"
     },
@@ -5126,7 +5126,7 @@
         "motorized"
       ],
       "year": 1936,
-      "name": "motorized_equipment_1",
+      "name": "Motorised",
       "archetype": "motorized_equipment"
     },
     "strat_bomber_equipment_1": {
@@ -5152,7 +5152,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "strat_bomber_equipment_1",
+      "name": "Strategic Bomber I",
       "air_agility": 5,
       "air_attack": 50,
       "air_bombing": 30,
@@ -5184,7 +5184,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "strat_bomber_equipment_2",
+      "name": "Strategic Bomber II",
       "air_agility": 7,
       "air_attack": 100,
       "air_bombing": 45,
@@ -5217,7 +5217,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "strat_bomber_equipment_3",
+      "name": "Strategic Bomber III",
       "air_agility": 10,
       "air_attack": 150,
       "air_bombing": 60,
@@ -5250,7 +5250,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
-      "name": "jet_strat_bomber_equipment_1",
+      "name": "Jet Strategic Bomber I",
       "air_agility": 14,
       "air_attack": 100,
       "air_bombing": 64,
@@ -5276,7 +5276,7 @@
       },
       "type": "air_transport",
       "year": 1933,
-      "name": "transport_plane_equipment_1",
+      "name": "Transport Plane I",
       "active": true,
       "air_agility": 10,
       "air_defence": 20,
@@ -5310,7 +5310,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
-      "name": "fighter_equipment_0",
+      "name": "Interwar Fighter",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 8,
@@ -5344,7 +5344,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "fighter_equipment_1",
+      "name": "Fighter I",
       "air_agility": 50,
       "air_attack": 18,
       "air_defence": 10,
@@ -5379,7 +5379,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "fighter_equipment_2",
+      "name": "Fighter II",
       "air_agility": 65,
       "air_attack": 27,
       "air_defence": 12,
@@ -5414,7 +5414,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "fighter_equipment_3",
+      "name": "Fighter III",
       "air_agility": 80,
       "air_attack": 32,
       "air_defence": 14,
@@ -5446,7 +5446,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
-      "name": "jet_fighter_equipment_1",
+      "name": "Jet Fighter I",
       "air_agility": 72,
       "air_attack": 36,
       "air_defence": 15,
@@ -5477,7 +5477,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
-      "name": "jet_fighter_equipment_2",
+      "name": "Jet Fighter II",
       "air_agility": 72,
       "air_attack": 40,
       "air_defence": 18,
@@ -5514,7 +5514,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
-      "name": "cv_fighter_equipment_0",
+      "name": "IW Carrier Fighter",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 8,
@@ -5550,7 +5550,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "cv_fighter_equipment_1",
+      "name": "Carrier Fighter I",
       "air_agility": 50,
       "air_attack": 18,
       "air_defence": 11,
@@ -5587,7 +5587,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "cv_fighter_equipment_2",
+      "name": "Carrier Fighter II",
       "air_agility": 65,
       "air_attack": 27,
       "air_defence": 13,
@@ -5624,7 +5624,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "cv_fighter_equipment_3",
+      "name": "Carrier Fighter III",
       "air_agility": 80,
       "air_attack": 32,
       "air_defence": 15,
@@ -5660,7 +5660,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "CAS_equipment_1",
+      "name": "Close Air Support I",
       "air_agility": 35,
       "air_attack": 6,
       "air_defence": 14,
@@ -5695,7 +5695,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "CAS_equipment_2",
+      "name": "Close Air Support II",
       "air_agility": 39,
       "air_attack": 10,
       "air_defence": 16,
@@ -5731,7 +5731,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "CAS_equipment_3",
+      "name": "Close Air Support III",
       "air_agility": 44,
       "air_attack": 14,
       "air_defence": 20,
@@ -5768,7 +5768,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "cv_CAS_equipment_1",
+      "name": "Carrier CAS I",
       "air_agility": 35,
       "air_attack": 6,
       "air_defence": 14,
@@ -5804,7 +5804,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "cv_CAS_equipment_2",
+      "name": "Carrier CAS II",
       "air_agility": 39,
       "air_attack": 10,
       "air_defence": 16,
@@ -5841,7 +5841,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "cv_CAS_equipment_3",
+      "name": "Carrier CAS III",
       "air_agility": 44,
       "air_attack": 14,
       "air_defence": 20,
@@ -5873,7 +5873,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "nav_bomber_equipment_1",
+      "name": "Naval Bomber I",
       "air_agility": 30,
       "air_attack": 6,
       "air_defence": 12,
@@ -5904,7 +5904,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "nav_bomber_equipment_2",
+      "name": "Naval Bomber II",
       "air_agility": 35,
       "air_attack": 10,
       "air_defence": 14,
@@ -5936,7 +5936,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "nav_bomber_equipment_3",
+      "name": "Naval Bomber III",
       "air_agility": 40,
       "air_attack": 14,
       "air_defence": 16,
@@ -5970,7 +5970,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "cv_nav_bomber_equipment_1",
+      "name": "Carrier Naval Bomber I",
       "air_agility": 30,
       "air_attack": 6,
       "air_defence": 13,
@@ -6003,7 +6003,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "cv_nav_bomber_equipment_2",
+      "name": "Carrier Naval Bomber II",
       "air_agility": 35,
       "air_attack": 10,
       "air_defence": 15,
@@ -6037,7 +6037,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "cv_nav_bomber_equipment_3",
+      "name": "Carrier Naval Bomber III",
       "air_agility": 40,
       "air_attack": 14,
       "air_defence": 17,
@@ -6067,7 +6067,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "rocket_interceptor_equipment_1",
+      "name": "Rocket Interceptor I",
       "air_agility": 30,
       "air_attack": 47,
       "air_defence": 5,
@@ -6097,7 +6097,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
-      "name": "rocket_interceptor_equipment_2",
+      "name": "Rocket Interceptor II",
       "air_agility": 36,
       "air_attack": 56,
       "air_defence": 7,
@@ -6128,7 +6128,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1946,
-      "name": "rocket_interceptor_equipment_3",
+      "name": "Rocket Interceptor III",
       "air_agility": 60,
       "air_attack": 60,
       "air_defence": 10,
@@ -6155,7 +6155,7 @@
       "upgrades": {
       },
       "year": 1944,
-      "name": "rocket_suicide_equipment_1",
+      "name": "Suicide Strike Craft",
       "air_agility": 50,
       "air_attack": 0,
       "air_defence": 12,
@@ -6197,7 +6197,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1922,
-      "name": "submarine_pre",
+      "name": "Pre-Weltkrieg U-boat",
       "archetype": "submarine",
       "is_buildable": false
     },
@@ -6234,7 +6234,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1930,
-      "name": "submarine_1",
+      "name": "Submarine I",
       "archetype": "submarine"
     },
     "submarine_2": {
@@ -6270,7 +6270,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1936,
-      "name": "submarine_2",
+      "name": "Submarine II",
       "archetype": "submarine",
       "parent": "submarine_1"
     },
@@ -6307,7 +6307,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1940,
-      "name": "submarine_3",
+      "name": "Submarine III",
       "archetype": "submarine",
       "parent": "submarine_2"
     },
@@ -6345,7 +6345,7 @@
         "sub_torpedo_upgrade"
       ],
       "year": 1944,
-      "name": "submarine_4",
+      "name": "Submarine IV",
       "archetype": "submarine",
       "parent": "submarine_3"
     },
@@ -6361,7 +6361,7 @@
         "motorized"
       ],
       "year": 1918,
-      "name": "support_equipment_1",
+      "name": "Support Equipment",
       "archetype": "support_equipment"
     },
     "heavy_tank_equipment_1": {
@@ -6390,7 +6390,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1934,
-      "name": "heavy_tank_equipment_1",
+      "name": "Heavy Tank I",
       "archetype": "heavy_tank_equipment"
     },
     "heavy_tank_equipment_2": {
@@ -6419,7 +6419,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
-      "name": "heavy_tank_equipment_2",
+      "name": "Heavy Tank II",
       "archetype": "heavy_tank_equipment",
       "parent": "heavy_tank_equipment_1"
     },
@@ -6449,7 +6449,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
-      "name": "heavy_tank_equipment_3",
+      "name": "Heavy Tank III",
       "archetype": "heavy_tank_equipment",
       "parent": "heavy_tank_equipment_2"
     },
@@ -6483,7 +6483,7 @@
         "tank_art_upgrade"
       ],
       "year": 1934,
-      "name": "heavy_tank_artillery_equipment_1",
+      "name": "Heavy SP Artillery I",
       "archetype": "heavy_tank_artillery_equipment"
     },
     "heavy_tank_artillery_equipment_2": {
@@ -6516,7 +6516,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
-      "name": "heavy_tank_artillery_equipment_2",
+      "name": "Heavy SP Artillery II",
       "archetype": "heavy_tank_artillery_equipment",
       "parent": "heavy_tank_artillery_equipment_1"
     },
@@ -6550,7 +6550,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
-      "name": "heavy_tank_artillery_equipment_3",
+      "name": "Heavy SP Artillery III",
       "archetype": "heavy_tank_artillery_equipment",
       "parent": "heavy_tank_artillery_equipment_2"
     },
@@ -6584,7 +6584,7 @@
         "tank_at_upgrade"
       ],
       "year": 1934,
-      "name": "heavy_tank_destroyer_equipment_1",
+      "name": "Heavy Tank Destroyer I",
       "archetype": "heavy_tank_destroyer_equipment"
     },
     "heavy_tank_destroyer_equipment_2": {
@@ -6617,7 +6617,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
-      "name": "heavy_tank_destroyer_equipment_2",
+      "name": "Heavy Tank Destroyer II",
       "archetype": "heavy_tank_destroyer_equipment",
       "parent": "heavy_tank_destroyer_equipment_1"
     },
@@ -6651,7 +6651,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
-      "name": "heavy_tank_destroyer_equipment_3",
+      "name": "Heavy Tank Destroyer III",
       "archetype": "heavy_tank_destroyer_equipment",
       "parent": "heavy_tank_destroyer_equipment_2"
     },
@@ -6685,7 +6685,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1934,
-      "name": "heavy_tank_aa_equipment_1",
+      "name": "Heavy SP Anti-Air I",
       "archetype": "heavy_tank_aa_equipment"
     },
     "heavy_tank_aa_equipment_2": {
@@ -6718,7 +6718,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
-      "name": "heavy_tank_aa_equipment_2",
+      "name": "Heavy SP Anti-Air II",
       "archetype": "heavy_tank_aa_equipment",
       "parent": "heavy_tank_aa_equipment_1"
     },
@@ -6752,7 +6752,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
-      "name": "heavy_tank_aa_equipment_3",
+      "name": "Heavy SP Anti-Air III",
       "archetype": "heavy_tank_aa_equipment",
       "parent": "heavy_tank_aa_equipment_2"
     },
@@ -6777,7 +6777,7 @@
       "upgrades": {
       },
       "year": 1914,
-      "name": "gw_tank_equipment",
+      "name": "Weltkrieg-era Tank",
       "archetype": "light_tank_equipment"
     },
     "light_tank_equipment_1": {
@@ -6805,7 +6805,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1934,
-      "name": "light_tank_equipment_1",
+      "name": "Light Tank I",
       "archetype": "light_tank_equipment",
       "parent": "gw_tank_equipment"
     },
@@ -6834,7 +6834,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1936,
-      "name": "light_tank_equipment_2",
+      "name": "Light Tank II",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_1"
     },
@@ -6863,7 +6863,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
-      "name": "light_tank_equipment_3",
+      "name": "Light Tank III",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_2"
     },
@@ -6897,7 +6897,7 @@
         "tank_art_upgrade"
       ],
       "year": 1934,
-      "name": "light_tank_artillery_equipment_1",
+      "name": "Light SP Artillery I",
       "archetype": "light_tank_artillery_equipment"
     },
     "light_tank_artillery_equipment_2": {
@@ -6930,7 +6930,7 @@
         "tank_art_upgrade"
       ],
       "year": 1936,
-      "name": "light_tank_artillery_equipment_2",
+      "name": "Light SP Artillery II",
       "archetype": "light_tank_artillery_equipment",
       "parent": "light_tank_artillery_equipment_1"
     },
@@ -6964,7 +6964,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
-      "name": "light_tank_artillery_equipment_3",
+      "name": "Light SP Artillery III",
       "archetype": "light_tank_artillery_equipment",
       "parent": "light_tank_artillery_equipment_2"
     },
@@ -6998,7 +6998,7 @@
         "tank_at_upgrade"
       ],
       "year": 1934,
-      "name": "light_tank_destroyer_equipment_1",
+      "name": "Light Tank Destroyer I",
       "archetype": "light_tank_destroyer_equipment"
     },
     "light_tank_destroyer_equipment_2": {
@@ -7031,7 +7031,7 @@
         "tank_at_upgrade"
       ],
       "year": 1936,
-      "name": "light_tank_destroyer_equipment_2",
+      "name": "Light Tank Destroyer II",
       "archetype": "light_tank_destroyer_equipment",
       "parent": "light_tank_destroyer_equipment_1"
     },
@@ -7065,7 +7065,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
-      "name": "light_tank_destroyer_equipment_3",
+      "name": "Light Tank Destroyer III",
       "archetype": "light_tank_destroyer_equipment",
       "parent": "light_tank_destroyer_equipment_2"
     },
@@ -7098,7 +7098,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1934,
-      "name": "light_tank_aa_equipment_1",
+      "name": "Light SP Anti-Air I",
       "archetype": "light_tank_aa_equipment"
     },
     "light_tank_aa_equipment_2": {
@@ -7130,7 +7130,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1936,
-      "name": "light_tank_aa_equipment_2",
+      "name": "Light SP Anti-Air II",
       "archetype": "light_tank_aa_equipment",
       "parent": "light_tank_aa_equipment_1"
     },
@@ -7163,7 +7163,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
-      "name": "light_tank_aa_equipment_3",
+      "name": "Light SP Anti-Air III",
       "archetype": "light_tank_aa_equipment",
       "parent": "light_tank_aa_equipment_2"
     },
@@ -7193,7 +7193,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1939,
-      "name": "medium_tank_equipment_1",
+      "name": "Medium Tank I",
       "archetype": "medium_tank_equipment"
     },
     "medium_tank_equipment_2": {
@@ -7222,7 +7222,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
-      "name": "medium_tank_equipment_2",
+      "name": "Medium Tank II",
       "archetype": "medium_tank_equipment",
       "parent": "medium_tank_equipment_1"
     },
@@ -7252,7 +7252,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
-      "name": "medium_tank_equipment_3",
+      "name": "Medium Tank III",
       "archetype": "medium_tank_equipment",
       "parent": "medium_tank_equipment_2"
     },
@@ -7286,7 +7286,7 @@
         "tank_art_upgrade"
       ],
       "year": 1939,
-      "name": "medium_tank_artillery_equipment_1",
+      "name": "Medium SP Artillery I",
       "archetype": "medium_tank_artillery_equipment"
     },
     "medium_tank_artillery_equipment_2": {
@@ -7319,7 +7319,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
-      "name": "medium_tank_artillery_equipment_2",
+      "name": "Medium SP Artillery II",
       "archetype": "medium_tank_artillery_equipment",
       "parent": "medium_tank_artillery_equipment_1"
     },
@@ -7353,7 +7353,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
-      "name": "medium_tank_artillery_equipment_3",
+      "name": "Medium SP Artillery III",
       "archetype": "medium_tank_artillery_equipment",
       "parent": "medium_tank_artillery_equipment_2"
     },
@@ -7387,7 +7387,7 @@
         "tank_at_upgrade"
       ],
       "year": 1939,
-      "name": "medium_tank_destroyer_equipment_1",
+      "name": "Medium Tank Destroyer I",
       "archetype": "medium_tank_destroyer_equipment"
     },
     "medium_tank_destroyer_equipment_2": {
@@ -7420,7 +7420,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
-      "name": "medium_tank_destroyer_equipment_2",
+      "name": "Medium Tank Destroyer II",
       "archetype": "medium_tank_destroyer_equipment",
       "parent": "medium_tank_destroyer_equipment_1"
     },
@@ -7454,7 +7454,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
-      "name": "medium_tank_destroyer_equipment_3",
+      "name": "Medium Tank Destroyer III",
       "archetype": "medium_tank_destroyer_equipment",
       "parent": "medium_tank_destroyer_equipment_2"
     },
@@ -7488,7 +7488,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1939,
-      "name": "medium_tank_aa_equipment_1",
+      "name": "Medium SP Anti-Air I",
       "archetype": "medium_tank_aa_equipment"
     },
     "medium_tank_aa_equipment_2": {
@@ -7521,7 +7521,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
-      "name": "medium_tank_aa_equipment_2",
+      "name": "Medium SP Anti-Air II",
       "archetype": "medium_tank_aa_equipment",
       "parent": "medium_tank_aa_equipment_1"
     },
@@ -7555,7 +7555,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
-      "name": "medium_tank_aa_equipment_3",
+      "name": "Medium SP Anti-Air III",
       "archetype": "medium_tank_aa_equipment",
       "parent": "medium_tank_aa_equipment_2"
     },
@@ -7585,7 +7585,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1945,
-      "name": "modern_tank_equipment_1",
+      "name": "Modern Tank",
       "archetype": "modern_tank_equipment"
     },
     "modern_tank_artillery_equipment_1": {
@@ -7618,7 +7618,7 @@
         "tank_art_upgrade"
       ],
       "year": 1945,
-      "name": "modern_tank_artillery_equipment_1",
+      "name": "Modern SP Artillery",
       "archetype": "modern_tank_artillery_equipment"
     },
     "modern_tank_destroyer_equipment_1": {
@@ -7651,7 +7651,7 @@
         "tank_at_upgrade"
       ],
       "year": 1945,
-      "name": "modern_tank_destroyer_equipment_1",
+      "name": "Modern Tank Destroyer",
       "archetype": "modern_tank_destroyer_equipment"
     },
     "modern_tank_aa_equipment_1": {
@@ -7684,7 +7684,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1945,
-      "name": "modern_tank_aa_equipment_1",
+      "name": "Modern SP Anti-Air",
       "archetype": "modern_tank_aa_equipment"
     },
     "super_heavy_tank_equipment_1": {
@@ -7713,7 +7713,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
-      "name": "super_heavy_tank_equipment_1",
+      "name": "Super Heavy Tank",
       "archetype": "super_heavy_tank_equipment"
     },
     "super_heavy_tank_artillery_equipment_1": {
@@ -7746,7 +7746,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
-      "name": "super_heavy_tank_artillery_equipment_1",
+      "name": "Super Heavy SP Artillery",
       "archetype": "super_heavy_tank_artillery_equipment"
     },
     "super_heavy_tank_destroyer_equipment_1": {
@@ -7779,7 +7779,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
-      "name": "super_heavy_tank_destroyer_equipment_1",
+      "name": "Super Heavy SP Tank Destroyer",
       "archetype": "super_heavy_tank_destroyer_equipment"
     },
     "super_heavy_tank_aa_equipment_1": {
@@ -7812,7 +7812,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
-      "name": "super_heavy_tank_aa_equipment_1",
+      "name": "Super Heavy SP Anti-Air",
       "archetype": "super_heavy_tank_aa_equipment"
     },
     "tac_bomber_equipment_0": {
@@ -7840,7 +7840,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
-      "name": "tac_bomber_equipment_0",
+      "name": "Interwar Bomber",
       "air_agility": 16,
       "air_attack": 5,
       "air_bombing": 10,
@@ -7875,7 +7875,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "tac_bomber_equipment_1",
+      "name": "Tactical Bomber I",
       "air_agility": 20,
       "air_attack": 8,
       "air_bombing": 12,
@@ -7911,7 +7911,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "tac_bomber_equipment_2",
+      "name": "Tactical Bomber II",
       "air_agility": 25,
       "air_attack": 13,
       "air_bombing": 14,
@@ -7947,7 +7947,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "tac_bomber_equipment_3",
+      "name": "Tactical Bomber III",
       "air_agility": 30,
       "air_attack": 20,
       "air_bombing": 16,
@@ -7984,7 +7984,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
-      "name": "jet_tac_bomber_equipment_1",
+      "name": "Jet Tactical Bomber I",
       "air_agility": 57,
       "air_attack": 18,
       "air_bombing": 16,
@@ -8019,7 +8019,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
-      "name": "jet_tac_bomber_equipment_2",
+      "name": "Jet Tactical Bomber II",
       "air_agility": 57,
       "air_attack": 22,
       "air_bombing": 20,
@@ -8055,7 +8055,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "heavy_fighter_equipment_1",
+      "name": "Heavy Fighter I",
       "air_agility": 25,
       "air_attack": 36,
       "air_defence": 13,
@@ -8089,7 +8089,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "heavy_fighter_equipment_2",
+      "name": "Heavy Fighter II",
       "air_agility": 30,
       "air_attack": 46,
       "air_defence": 15,
@@ -8124,7 +8124,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "heavy_fighter_equipment_3",
+      "name": "Heavy Fighter III",
       "air_agility": 33,
       "air_attack": 54,
       "air_defence": 18,
@@ -11173,7 +11173,7 @@
       "desc": "JET_ENGINES_SPECIAL",
       "research_cost": 2,
       "start_year": 1944,
-      "name": "jet_engines",
+      "name": "Jet Engines",
       "leads_to": [
 
       ],
@@ -11253,7 +11253,7 @@
         "always": false
       },
       "research_cost": 1,
-      "name": "camel_corpse",
+      "name": "Imperial Camel Corps",
       "leads_to": [
 
       ],
@@ -11316,7 +11316,7 @@
         "always": false
       },
       "research_cost": 1,
-      "name": "Jungle Warfare",
+      "name": "Jungle Combat Training",
       "leads_to": [
 
       ],
@@ -11373,7 +11373,7 @@
         "always": false
       },
       "research_cost": 1,
-      "name": "Valkyrie_tech",
+      "name": "Ride of the Valkyries",
       "leads_to": [
 
       ],
@@ -11389,7 +11389,7 @@
         "always": false
       },
       "research_cost": 1,
-      "name": "sapper_tactic_tech",
+      "name": "Sapper Tactics",
       "leads_to": [
 
       ],
@@ -11405,7 +11405,7 @@
         "always": false
       },
       "research_cost": 1,
-      "name": "asymmetrical_warfare",
+      "name": "Asymmetrical Warfare Trainng",
       "leads_to": [
 
       ],
@@ -11462,7 +11462,7 @@
         "always": false
       },
       "research_cost": 1,
-      "name": "desert_warfare",
+      "name": "Desert Combat Training",
       "leads_to": [
 
       ],
@@ -14150,7 +14150,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_destroyer",
+      "name": "Early Destroyer",
       "leads_to": [
         "basic_destroyer"
       ],
@@ -14167,7 +14167,7 @@
       ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_destroyer",
+      "name": "Basic Destroyer",
       "leads_to": [
         "improved_destroyer"
       ],
@@ -14218,7 +14218,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_light_cruiser",
+      "name": "Early Light Cruiser",
       "leads_to": [
         "basic_light_cruiser"
       ],
@@ -14235,7 +14235,7 @@
       ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "basic_light_cruiser",
+      "name": "Basic Light Cruiser",
       "leads_to": [
         "improved_light_cruiser",
         "basic_heavy_cruiser"
@@ -14614,7 +14614,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1922,
-      "name": "early_submarine",
+      "name": "Early Submarine",
       "leads_to": [
         "basic_submarine"
       ],
