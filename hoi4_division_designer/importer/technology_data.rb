@@ -19,7 +19,7 @@ class TechnologyData
   end
 
   memoize def enabled_equipments
-    raw_data.flat_map{|name, tech| tech["enable_equipments"] || []}
+    raw_data.flat_map{|name, tech| tech["enable_equipments"] || []} & @game.equipment.equipment_names
   end
 
   memoize def enabled_subunits
@@ -65,6 +65,10 @@ class TechnologyData
 
       unless tech["start_year"]
         fix_start_year(name, tech)
+      end
+
+      if tech["enable_equipments"]
+        tech["enable_equipments"] &= @game.equipment.equipment_names
       end
 
       tech["unit_bonuses"] = {}

@@ -13,8 +13,16 @@ class EquipmentData
     end
   end
 
+  memoize def raw_data
+    enum_for(:each_equipment).to_a
+  end
+
   memoize def archetype_names
     data.map{|name, eq| eq["archetype"]}.uniq
+  end
+
+  memoize def equipment_names
+    raw_data.map(&:first)
   end
 
   memoize def data
@@ -32,7 +40,7 @@ class EquipmentData
     ]
     result = {}
     archetypes = {}
-    each_equipment do |name, equipment|
+    raw_data.each do |name, equipment|
       equipment = equipment.to_h
       if equipment["is_archetype"]
         equipment.delete("is_archetype")

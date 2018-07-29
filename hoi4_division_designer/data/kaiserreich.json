@@ -14677,7 +14677,7 @@
         "always": false
       },
       "enable_equipments": [
-        "torpedo_cruiser"
+
       ],
       "research_cost": 1,
       "start_year": 1936,
