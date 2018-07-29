@@ -106,6 +106,11 @@ class Unit
     base + (@country_bonuses["supply_consumption_factor"] || 0)
   end
 
+  def suppression_factor
+    base = @unit_type.suppression_factor || 0
+    base + (@country_bonuses["suppression_factor"] || 0)
+  end
+
   def combat_width
     base = @unit_type.combat_width
     base + (@country_bonuses["combat_width"] || 0)

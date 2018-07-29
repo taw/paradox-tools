@@ -17,10 +17,6 @@ class Division
     @units.map(&:combat_width).sum
   end
 
-  def suppression
-    @units.map(&:suppression).sum
-  end
-
   def hp
     @units.map(&:hp).sum
   end
@@ -35,6 +31,12 @@ class Division
 
   def recovery_rate
     @units.map(&:recovery_rate).avg.round(3)
+  end
+
+  def suppression
+    base = @units.map(&:suppression).sum
+    factor = @units.map(&:suppression_factor).sum
+    (base * (1+factor)).round(6)
   end
 
   def supply_use
