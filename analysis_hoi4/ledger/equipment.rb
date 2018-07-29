@@ -21,7 +21,10 @@ class Equipment
       end
     end
     @category = "tanks" if name == "gw_tank_equipment" # fake category we made up
-    raise unless @category
+    unless @category
+      warn "Unknown equipment category for #{name}"
+      @category = archetype.name
+    end
   end
 
   def inspect
