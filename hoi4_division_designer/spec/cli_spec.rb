@@ -18,6 +18,6 @@ describe "CLI" do
 
   # division stats
   it "division_stats" do
-    expect(`#{bin}/division_stats millenium_dawn 2000 10xinfantry`).to include "soft_attack: 138.0\n"
+    expect(`#{bin}/division_stats millennium_dawn 2000 10xinfantry`).to include "soft_attack: 101.25\n"
   end
 end
