@@ -1,9 +1,13 @@
 class Technology
-  attr_reader :name, :effects
-  def initialize(database, name, effects)
+  attr_reader :key, :effects
+  def initialize(database, key, effects)
     @database = database
-    @name = name
+    @key = key
     @effects = effects
+  end
+
+  def name
+    @effects["name"]
   end
 
   def enable_subunits

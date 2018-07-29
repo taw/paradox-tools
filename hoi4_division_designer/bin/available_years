@@ -4,14 +4,24 @@ require_relative "../lib/division_designer"
 require "set"
 
 class AvailableYearsCLI
-  def initialize
-    @db = Database.new
+  def initialize(*args)
+    mod = args.shift || "vanilla"
+    unless args.empty?
+      STDERR.puts "Usage: #{$0} mod_name"
+      STDERR.puts "   or: #{$0}"
+      exit 1
+    end
+    @db = Database.new(mod)
   end
 
-  def call(args)
-    raise "This command takes no arguments" unless args.empty?
-    puts @db.years
+  def call
+    @db.years.each do |year|
+      puts year
+      @db.technology.select{|k,v| v.start_year == year }.each do |k,v|
+        puts "* #{v.name}"
+      end
+    end
   end
 end
 
-AvailableYearsCLI.new.call(ARGV)
+AvailableYearsCLI.new(*ARGV).call

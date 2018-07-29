@@ -4,14 +4,19 @@ require_relative "../lib/division_designer"
 require "set"
 
 class AvailableDoctrinesCLI
-  def initialize
-    @db = Database.new
+  def initialize(*args)
+    mod = args.shift || "vanilla"
+    unless args.empty?
+      STDERR.puts "Usage: #{$0} mod_name"
+      STDERR.puts "   or: #{$0}"
+      exit 1
+    end
+    @db = Database.new(mod)
   end
 
-  def call(args)
-    raise "This command takes no arguments" unless args.empty?
+  def call
     puts @db.doctrines.keys
   end
 end
 
-AvailableDoctrinesCLI.new.call(ARGV)
+AvailableDoctrinesCLI.new(*ARGV).call

@@ -1,5 +1,5 @@
 describe Country do
-  let(:db) { Database.new }
+  let(:db) { Database.new("vanilla") }
   let(:country) { db.country(tech) }
   let(:equipment_map) {
     country.equipment_map.map{|k,v| [k, v.key]}.to_h

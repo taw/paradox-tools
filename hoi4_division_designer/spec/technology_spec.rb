@@ -1,5 +1,5 @@
 describe Technology do
-  let(:db) { Database.new }
+  let(:db) { Database.new("vanilla") }
 
   it "groups unit bonuses, terrain bonuses, and paths" do
     expect(db.technology["tech_engineers3"].effects).to eq({

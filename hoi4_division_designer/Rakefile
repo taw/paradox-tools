@@ -3,7 +3,9 @@ task "test" do
   sh "rspec"
 end
 
-desc "Run importer"
+desc "Run importer - Vanilla"
 task "import" do
-  sh "rescue ./bin/import_data ~/hoi4"
+  sh "rescue ./bin/import_data vanilla ~/hoi4"
+  sh "rescue ./bin/import_data kaiserreich ~/hoi4 ~/px/source/KR-0.7.0"
+  sh "rescue ./bin/import_data millennium_dawn ~/hoi4 ~/dx/inbox/millennium_dawn"
 end

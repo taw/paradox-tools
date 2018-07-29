@@ -4,15 +4,20 @@ require_relative "../lib/division_designer"
 require "set"
 
 class VerifyTechnologyYears
-  def initialize
-    @db = Database.new
+  def initialize(*args)
+    mod = args.shift || "vanilla"
+    unless args.empty?
+      STDERR.puts "Usage: #{$0} mod_name"
+      STDERR.puts "   or: #{$0}"
+      exit 1
+    end
+    @db = Database.new(mod)
   end
 
-  def call(args)
-    raise "This command takes no arguments" unless args.empty?
+  def call
     problem_techs = @db.technology.values.select{|t| t.leads_to != [] and !t.start_year and t.leads_to.any?{|t2| @db.technology[t2].start_year} }
     puts problem_techs.map(&:name)
   end
 end
 
-VerifyTechnologyYears.new.call(ARGV)
+VerifyTechnologyYears.new(*ARGV).call

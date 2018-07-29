@@ -4,8 +4,13 @@ require_relative "../lib/division_designer"
 require "set"
 
 class AvailableUnitsCLI
-  def initialize
-    @db = Database.new
+  def initialize(*args)
+    @args = args
+    if Database.available_mods.include?(args.first)
+      @db = Database.new(@args.shift)
+    else
+      @db = Database.new("vanilla")
+    end
     @techs = Set["infantry_weapons"]
   end
 
@@ -21,8 +26,8 @@ class AvailableUnitsCLI
     @units[type] += count
   end
 
-  def call(args)
-    ARGV.each do |arg|
+  def call
+    @args.each do |arg|
       if @db.unit_types[arg]
         add_unit(1, arg)
       elsif @db.technology[arg]
@@ -45,4 +50,4 @@ class AvailableUnitsCLI
   end
 end
 
-AvailableUnitsCLI.new.call(ARGV)
+AvailableUnitsCLI.new(*ARGV).call

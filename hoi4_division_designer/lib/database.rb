@@ -1,8 +1,9 @@
 class Database
   attr_reader :unit_types, :equipment, :technology, :doctrines
 
-  def initialize
-    db = JSON.parse(Pathname("#{__dir__}/../data/data.json").read)
+  def initialize(mod)
+    path = Database.mod_path_for(mod)
+    db = JSON.parse(path.read)
 
     @unit_types = db["units"].map do |name, stats|
       [name, UnitType.new(name, stats)]
@@ -40,5 +41,22 @@ class Database
 
   def inspect
     "Database"
+  end
+
+  class << self
+    def mod_base_path
+      Pathname("#{__dir__}/../data/")
+    end
+
+    def available_mods
+      mod_base_path.glob("*.json").map{|n| n.basename(".json").to_s}
+    end
+
+    def mod_path_for(mod)
+      unless available_mods.include?(mod)
+        raise "No such mod #{mod} - available mods are: #{available_mods.join(" ")}"
+      end
+      mod_base_path + "#{mod}.json"
+    end
   end
 end

@@ -1,5 +1,5 @@
 describe Division do
-  let(:db) { Database.new }
+  let(:db) { Database.new("vanilla") }
   let(:country) { db.country(tech) }
   # Just lowest level equipment, no bonuses
   let(:tech_year) { nil }

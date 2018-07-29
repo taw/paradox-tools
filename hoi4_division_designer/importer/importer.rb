@@ -17,9 +17,12 @@ end
 
 class Importer < ParadoxGame
   extend Memoist
+  attr_reader :mod
 
-  def initialize(*roots)
+  def initialize(mod, *roots)
     super(*roots)
+    @save_path = Pathname("#{__dir__}/../data/#{mod}.json")
+    @mod = mod
   end
 
   # This could be based on game files in case mods change it
@@ -54,7 +57,7 @@ class Importer < ParadoxGame
       technology: technology.data,
       doctrines: doctrines.data,
     }
-    Pathname("#{__dir__}/../data/data.json").write JSON.pretty_generate(data)
+    @save_path.write JSON.pretty_generate(data)
   end
 
   def inspect
