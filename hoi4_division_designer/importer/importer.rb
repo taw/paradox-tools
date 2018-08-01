@@ -6,6 +6,7 @@ require_relative "equipment_data"
 require_relative "technology_data"
 require_relative "units_data"
 require_relative "doctrine_data"
+require_relative "upgrade_data"
 
 def jsonify(obj)
   return obj.map{|e| jsonify(e)} if obj.is_a?(Array)
@@ -50,6 +51,10 @@ class Importer < ParadoxGame
     DoctrineData.new(self)
   end
 
+  memoize def upgrades
+    UpgradeData.new(self)
+  end
+
   def default_year
     if @mod == "millennium_dawn"
       2000
@@ -87,6 +92,7 @@ class Importer < ParadoxGame
       equipment: equipment.data,
       technology: technology.data,
       doctrines: doctrines.data,
+      upgrades: upgrades.data,
       default_year: default_year,
       default_units: default_units,
       default_support: default_support,
