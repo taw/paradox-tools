@@ -2,7 +2,7 @@
 
 require_relative "../lib/division_designer"
 
-class AvailableYearsCLI
+class AvailableUpgradesCLI
   def initialize(*args)
     mod = args.shift || "vanilla"
     unless args.empty?
@@ -14,13 +14,12 @@ class AvailableYearsCLI
   end
 
   def call
-    @db.years.each do |year|
-      puts year
-      @db.technology.select{|k,v| v.start_year == year }.each do |k,v|
-        puts "* #{v.name}"
-      end
+    @db.equipment.each do |key, equipment|
+      upgrades = equipment.available_upgrades or next
+      puts "#{equipment.name}"
+      puts upgrades.map{|key, upgrade| "* #{upgrade["name"]}"}.sort
     end
   end
 end
 
-AvailableYearsCLI.new(*ARGV).call
+AvailableUpgradesCLI.new(*ARGV).call

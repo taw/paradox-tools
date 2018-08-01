@@ -16,6 +16,11 @@ describe "CLI" do
     expect(`#{bin}/available_years millennium_dawn`).to include "2030\n"
   end
 
+  it "available_upgrades" do
+    expect(`#{bin}/available_upgrades`).to include("* Artillery Armament\n")
+    expect(`#{bin}/available_upgrades millennium_dawn`).to include "Gen 5 Main Battle Tank\n* Armor\n"
+  end
+
   # division stats
   it "division_stats" do
     expect(`#{bin}/division_stats millennium_dawn 2000 10xinfantry`).to include "soft_attack: 101.25\n"

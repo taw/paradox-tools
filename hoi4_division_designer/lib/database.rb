@@ -1,5 +1,5 @@
 class Database
-  attr_reader :unit_types, :equipment, :technology, :doctrines
+  attr_reader :unit_types, :equipment, :technology, :doctrines, :upgrades
 
   def initialize(mod)
     path = Database.mod_path_for(mod)
@@ -10,7 +10,7 @@ class Database
     end.to_h
 
     @equipment = db["equipment"].map do |name, stats|
-      [name, Equipment.new(name, stats)]
+      [name, Equipment.new(self, name, stats)]
     end.to_h
 
     @technology = db["technology"].map do |name, effects|
@@ -18,6 +18,8 @@ class Database
     end.to_h
 
     @doctrines = db["doctrines"]
+
+    @upgrades = db["upgrades"]
   end
 
   def country(technology_names)
