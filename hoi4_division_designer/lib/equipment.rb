@@ -1,15 +1,11 @@
-class Equipment < OpenStruct
-  def initialize(database, key, stats)
+class Equipment
+  def initialize(database, equipment_type, upgrades)
     @database = database
-    super(stats.merge("key" => key))
+    @equipment_type = equipment_type
+    @upgrades = upgrades
   end
 
-  def inspect
-    "Equipment<#{key}>"
-  end
-
-  def available_upgrades
-    return unless upgrades
-    @database.upgrades.select{|k,v| upgrades.include?(k)}
+  def method_missing(m, *args, &block)
+    @equipment_type.send(m, *args, &block)
   end
 end

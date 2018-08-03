@@ -4,15 +4,17 @@ class Country
   def initialize(database, technologies)
     @database = database
     @technologies = technologies
+    @upgrades = {}
   end
 
   def equipment_map
     # Making a silly assumption that they're sorted asciibetically
     # It seems to be right, as they're all X0, X1, X2 etc.
     enabled_equipments
-      .map{|eq| @database.equipment[eq] }
+      .map{|eq| @database.equipment_types[eq] }
       .group_by(&:archetype)
       .transform_values{|eqs| eqs.max_by(&:key) }
+      .transform_values{|eq| Equipment.new(@database, eq, @upgrades[eq.key]) }
   end
 
   def division(unit_types)
@@ -67,6 +69,6 @@ class Country
   end
 
   memoize def enabled_equipment_archetypes
-    enabled_equipments.map{|eq| @database.equipment[eq].archetype }.to_set
+    enabled_equipments.map{|eq| @database.equipment_types[eq].archetype }.to_set
   end
 end

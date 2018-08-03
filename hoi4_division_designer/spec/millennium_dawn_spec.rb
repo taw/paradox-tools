@@ -2,7 +2,7 @@ describe Division do
   let(:db) { Database.new("millennium_dawn") }
 
   it "does not include impossible equipments" do
-    expect(db.equipment["CAS_equipment_2"]).to be_nil
+    expect(db.equipment_types["CAS_equipment_2"]).to be_nil
   end
 
   it "does not include impossible units" do

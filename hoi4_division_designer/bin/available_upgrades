@@ -14,7 +14,7 @@ class AvailableUpgradesCLI
   end
 
   def call
-    @db.equipment.each do |key, equipment|
+    @db.equipment_types.each do |key, equipment|
       upgrades = equipment.available_upgrades or next
       puts "#{equipment.name}"
       puts upgrades.map{|key, upgrade| "* #{upgrade["name"]}"}.sort
