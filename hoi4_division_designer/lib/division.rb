@@ -159,4 +159,29 @@ class Division
   def hardness
     frontline_units.map(&:hardness).avg.round(6)
   end
+
+  memoize def warnings
+    results = []
+    infantry = frontline_units.select{|u| u.group == "infantry" }.size
+    mobile = frontline_units.select{|u| u.group == "mobile" }.size
+    armored = frontline_units.select{|u| u.group == "armor" }.size
+    brigades = (infantry + 4) / 5 + (mobile + 4) / 5 + (armored + 4) / 5
+
+    if frontline_units.size == 0
+      results << "No frontline battalions"
+    end
+
+    if frontline_units.size > 25
+      results << "#{frontline_units.size}/25 frontline battalions"
+    elsif brigades > 5
+      # No need to use this warning if there's just too many units
+      results << "#{brigades}/5 brigades"
+    end
+
+    if support_units.size > 5
+      results << "#{support_units.size}/5 support companies"
+    end
+
+    results
+  end
 end

@@ -453,4 +453,50 @@ describe Division do
       end
     end
   end
+
+  describe "Warnings" do
+    let(:tech_year) { 1945 }
+    let(:warnings) { division.warnings }
+    describe "No units" do
+      let(:units) { {} }
+      it do
+        expect(warnings).to eq(["No frontline battalions"])
+      end
+    end
+
+    describe "Only support units" do
+      let(:units) { { recon: 1, artillery: 1 } }
+      it do
+        expect(warnings).to eq(["No frontline battalions"])
+      end
+    end
+
+    describe "Too many frontline units" do
+      let(:units) { { cavalry: 35 } }
+      it do
+        expect(warnings).to eq(["35/25 frontline battalions"])
+      end
+    end
+
+    describe "Too many supports" do
+      let(:units) { { infantry: 5, recon: 1, artillery: 1, anti_air: 1, engineer: 1, maintenance_company: 1, anti_tank: 1 } }
+      it do
+        expect(warnings).to eq(["6/5 support companies"])
+      end
+    end
+
+    describe "Too many frontline and support units" do
+      let(:units) { { cavalry: 35, recon: 1, artillery: 1, anti_air: 1, engineer: 1, maintenance_company: 1, anti_tank: 1 } }
+      it do
+        expect(warnings).to match_array(["35/25 frontline battalions", "6/5 support companies"])
+      end
+    end
+
+    describe "Too many brigades" do
+      let(:units) { { infantry: 6, cavalry: 6, light_armor: 6 } }
+      it do
+        expect(warnings).to eq(["6/5 brigades"])
+      end
+    end
+  end
 end

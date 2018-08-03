@@ -84,6 +84,9 @@ class DivisionStatsCLI
     ].each do |stat|
       puts "#{stat}: #{division.send(stat)}"
     end
+    division.warnings.each do |warning|
+      puts "Warning: #{warning}"
+    end
   end
 end
 

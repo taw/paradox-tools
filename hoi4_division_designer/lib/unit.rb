@@ -15,7 +15,7 @@ class Unit
 
   %i[
     suppression hp supply_use manpower training_time weight
-    special_forces? can_be_parachuted? frontline? name
+    special_forces? can_be_parachuted? frontline? name group
     ].each do |key|
     define_method(key) { @unit_type.send(key) }
   end
