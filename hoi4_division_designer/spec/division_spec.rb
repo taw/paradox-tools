@@ -16,6 +16,7 @@ describe Division do
     end
   end
   let(:division) { country.division(units) }
+  let(:warnings) { division.warnings }
 
   # Some defaults for stuff that's mostly zeroes anyway
   let(:default_stats) {
@@ -456,7 +457,6 @@ describe Division do
 
   describe "Warnings" do
     let(:tech_year) { 1945 }
-    let(:warnings) { division.warnings }
     describe "No units" do
       let(:units) { {} }
       it do
@@ -497,6 +497,26 @@ describe Division do
       it do
         expect(warnings).to eq(["6/5 brigades"])
       end
+    end
+  end
+
+  describe "Fallback equipment" do
+    let(:tech_year) { 1933 }
+    # let(:tech_year) { 1942 }
+    let(:units) { { medium_armor: 5, motorized: 5, artillery: 1, engineer: 1 } }
+    it do
+      expect(warnings).to match_array([
+        "Missing equipment: Medium Tank I",
+        "Missing equipment: Motorized",
+        "Missing equipment: Towed Artillery",
+      ])
+      expect(division.equipment).to eq({
+        "artillery_equipment_1" => 12,
+        "infantry_equipment_0" => 510,
+        "medium_tank_equipment_1" => 250,
+        "motorized_equipment_1" => 250,
+        "support_equipment_1" => 30,
+      })
     end
   end
 end

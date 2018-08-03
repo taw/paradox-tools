@@ -160,6 +160,10 @@ class Division
     frontline_units.map(&:hardness).avg.round(6)
   end
 
+  memoize def missing_equipment
+    @units.map(&:missing_equipment).reduce(Set.new, &:|)
+  end
+
   memoize def warnings
     results = []
     infantry = frontline_units.select{|u| u.group == "infantry" }.size
@@ -180,6 +184,10 @@ class Division
 
     if support_units.size > 5
       results << "#{support_units.size}/5 support companies"
+    end
+
+    missing_equipment.each do |eq|
+      results << "Missing equipment: #{eq.name}"
     end
 
     results

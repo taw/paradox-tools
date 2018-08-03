@@ -1,13 +1,19 @@
 class Unit
   extend Memoist
-  attr_reader :unit_type
+  attr_reader :unit_type, :missing_equipment
 
   def initialize(unit_type, country)
+    @database = country.database
     @unit_type = unit_type
     @country = country
     @equipment = {}
+    @missing_equipment = Set.new
     @unit_type.equipment.each do |name, count|
-      equipment = @country.equipment_map.fetch(name)
+      equipment = @country.equipment_map[name]
+      unless equipment
+        equipment = @database.fallback_equipment_map.fetch(name)
+        @missing_equipment << equipment
+      end
       @equipment[equipment] = count
     end
     @country_bonuses = @country.unit_bonuses_for(@unit_type.key)

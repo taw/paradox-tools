@@ -1,4 +1,6 @@
 class Database
+  extend Memoist
+
   attr_reader :unit_types, :equipment_types, :technology, :doctrines, :upgrades
 
   def initialize(mod)
@@ -20,6 +22,8 @@ class Database
     @doctrines = db["doctrines"]
 
     @upgrades = db["upgrades"]
+
+    fallback_equipment_map
   end
 
   def country(technology_names)
@@ -37,9 +41,33 @@ class Database
     @doctrines.fetch(name)
   end
 
-  def years
+  memoize def years
     @technology.values.map(&:start_year).compact.uniq.sort
   end
+
+  # Assume key order within archetype
+  memoize def fallback_equipment_map
+    @equipment_types
+      .values
+      .group_by(&:archetype)
+      .transform_values{|eqs| eqs.min_by(&:key)}
+      .transform_values{|eq| Equipment.new(self, eq, {}) }
+  end
+
+
+  # // Using any of these results in invalid division, but it won't crash app
+  # // Pick oldest equipment for eacsh archetype
+  # calculateFallbackEquipmentMap() {
+  #   let result = {};
+  #   for(let name in this.equipment) {
+  #     let equipment = this.equipment[name];
+  #     let archetype = equipment.archetype;
+  #     if(!result[archetype] || (equipment.key < result[archetype].key)) {
+  #       result[archetype] = equipment;
+  #     }
+  #   }
+  #   return result;
+  # }
 
   def inspect
     "Database"

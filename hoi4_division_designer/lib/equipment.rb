@@ -4,9 +4,10 @@ class Equipment
   def initialize(database, equipment_type, upgrades)
     @database = database
     @equipment_type = equipment_type
-    @upgrades = upgrades
+    @upgrades = upgrades || {}
 
-    bad_upgrades = @upgrades.keys - @equipment_type.available_upgrades.keys
+    valid_upgrades = (@equipment_type.available_upgrades || {}).keys
+    bad_upgrades = @upgrades.keys - valid_upgrades
     unless bad_upgrades.empty?
       raise "Bad upgrades for #{@equipment_type} requested: #{bad_upgrades.join(", ")}"
     end

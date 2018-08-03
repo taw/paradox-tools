@@ -1,6 +1,8 @@
 class Country
   extend Memoist
 
+  attr_reader :database
+
   def initialize(database, technologies)
     @database = database
     @technologies = technologies
