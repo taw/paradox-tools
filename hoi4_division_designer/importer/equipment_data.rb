@@ -8,9 +8,14 @@ class EquipmentData
   def each_equipment
     @game.glob("common/units/equipment/*.txt").each do |path|
       @game.parse(path)["equipments"].each do |name, equipment|
-        yield(name, jsonify(equipment).merge("name" => @game.localization(name)))
+        yield(name, jsonify(equipment).merge("name" => name_for(name)))
       end
     end
+  end
+
+  def name_for(key)
+    @game.localization(key)
+      .gsub("Main Battle Tank", "MBT")
   end
 
   memoize def raw_data

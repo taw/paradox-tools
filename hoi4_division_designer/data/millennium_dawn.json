@@ -5491,7 +5491,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Gen 1 Main Battle Tank",
+      "name": "Gen 1 MBT",
       "archetype": "modern_tank_equipment"
     },
     "modern_tank_equipment_2": {
@@ -5518,7 +5518,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Gen 2 Main Battle Tank",
+      "name": "Gen 2 MBT",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_1"
     },
@@ -5546,7 +5546,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Gen 3 Main Battle Tank",
+      "name": "Gen 3 MBT",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_2"
     },
@@ -5574,7 +5574,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Modern Gen 3 Main Battle Tank",
+      "name": "Modern Gen 3 MBT",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_3"
     },
@@ -5602,7 +5602,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Advanced Gen 3 Main Battle Tank",
+      "name": "Advanced Gen 3 MBT",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_4"
     },
@@ -5630,7 +5630,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Gen 4 Main Battle Tank",
+      "name": "Gen 4 MBT",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_5"
     },
@@ -5658,7 +5658,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Gen 5 Main Battle Tank",
+      "name": "Gen 5 MBT",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_6"
     },
@@ -5686,7 +5686,7 @@
         "tank_armor_upgrade",
         "tank_gun_upgrade"
       ],
-      "name": "Gen 6 Main Battle Tank",
+      "name": "Gen 6 MBT",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_7"
     }
