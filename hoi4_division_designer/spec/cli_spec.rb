@@ -18,7 +18,7 @@ describe "CLI" do
 
   it "available_upgrades" do
     expect(`#{bin}/available_upgrades`).to include("* Artillery Armament\n")
-    expect(`#{bin}/available_upgrades millennium_dawn`).to include "Gen 5 Main Battle Tank\n* Armor\n"
+    expect(`#{bin}/available_upgrades millennium_dawn`).to include "Gen 5 MBT\n* Armor\n"
   end
 
   it "division_stats" do
