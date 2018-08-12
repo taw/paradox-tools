@@ -18,11 +18,12 @@ class FakeYaml
         .gsub(/^\s*/, " ")
         .gsub(/[ \t]*$/, "")
         .gsub(/^ +/, " ")
-        .sub(/\A\s*/, "")
         .sub(/\s*\z/, "\n")
-        .gsub(/^\s+#.*\n/, "")
+        .gsub(/^\s*#.*\n/, "")
+        .sub(/\A\s*/, "")
 
       data = data.gsub(/^ *\S+?:\K\d+ ?/){ " " } # strip version codes
+        .gsub(/^ *[^:]+:\K */){ " " }
 
       data = data.lines[0] + data.lines[1..-1].join.gsub(/"?\n/, "\"\n")
       data = data.gsub(/^ *\S+?:[ \t]"\K(.*)(?="$)/){ fix_quotes($1) }
@@ -35,7 +36,7 @@ class FakeYaml
         raise "Not a Hash" unless parsed.is_a?(Hash)
       end
     rescue
-      bad_line = (1...data.lines.size).bsearch{|x| !(YAML.load(data.lines[0,x].join) rescue false) }
+      bad_line = (1..data.lines.size).bsearch{|x| !(YAML.load(data.lines[0,x].join) rescue false) }
       binding.pry
       warn "#{path}:#{bad_line}: #{$!}"
       {}
