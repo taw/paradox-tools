@@ -92,7 +92,7 @@ class ParadoxModFile
             ">=" => :ge,
             "==" => :eqeq,
           }[s[1]])
-        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\+|\p{Letter}|\p{Digit})+)/)
+        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\+|\$|\p{Letter}|\p{Digit})+)/)
           if s[1] == "yes"
             @tokens << true
           elsif s[1] == "no"

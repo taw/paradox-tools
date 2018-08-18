@@ -6,12 +6,6 @@ require_relative "paradox_game"
 require_relative "paradox_mod_file_serializer"
 require_relative "paradox_game_modification"
 
-class Pathname
-  def write(content)
-    open("w"){|fh| fh.write(content)}
-  end
-end
-
 class ParadoxModBuilder
   def initialize(game, target)
     @game = game

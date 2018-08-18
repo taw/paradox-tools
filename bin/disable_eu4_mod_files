@@ -1,0 +1,225 @@
+#!/usr/bin/env ruby
+
+# Removing a mod mid-campaign causes instant crash,
+# so this script can instead make it do nothing
+
+require_relative "../lib/paradox"
+require_relative "../lib/paradox_mod_file_serializer"
+
+class DisableEU4File
+  def initialize(relpath, source_path, destination_path)
+    @relpath = relpath
+    @source_path = source_path
+    @destination_path = destination_path
+  end
+
+  def ignore
+  end
+
+  def copy
+    save source_content
+  end
+
+  def zero
+    save ""
+  end
+
+  def unknown
+    warn "Don't know how to deal with #{@relpath}, copying"
+    copy
+  end
+
+  def event
+    process_node do |node|
+      node.each do |key, val|
+        case key
+        when "namespace"
+        when "country_event", "province_event"
+          val["trigger"] = always_false
+        else
+          warn "Unknown event node type: #{key}"
+        end
+      end
+    end
+  end
+
+  def decision
+    process_node do |node|
+      raise unless node.keys == ["country_decisions"]
+      node["country_decisions"].each do |key, val|
+        val["potential"] = always_false
+      end
+    end
+  end
+
+  def estates
+    process_node do |node|
+      node.each do |key, val|
+        val["trigger"] = always_false
+      end
+    end
+  end
+
+  def disasters
+    process_node do |node|
+      node.each do |key, val|
+        val["potential"] = always_false
+      end
+    end
+  end
+
+  def scripted_effects
+    process_node do |node|
+      node.each do |key, val|
+        val.delete!{true}
+      end
+    end
+  end
+
+  def event_modifiers
+    process_node do |node|
+      node.each do |key, val|
+        val.delete!{true}
+      end
+    end
+  end
+
+  def static_modifiers
+    process_node do |node|
+      node.each do |key, val|
+        val.delete!{true}
+      end
+    end
+  end
+
+  def triggered_modifiers
+    process_node do |node|
+      node.each do |key, val|
+        val["potential"] = always_false
+      end
+    end
+  end
+
+  def new_diplomatic_actions
+    process_node do |node|
+      node.each do |key, val|
+        node["is_visible"] = always_false
+        node["ins_allowed"] = always_false
+      end
+    end
+  end
+
+  def method_missing(m, *)
+    warn "Unknown strategy: #{m}"
+  end
+
+  private
+
+  def always_false
+    PropertyList["always", false]
+  end
+
+  def process_node
+    node = source_node
+    yield(source_node)
+    save_node node
+  end
+
+  def save_node(node)
+    save ParadoxModFileSerializer.serialize(node).encode("windows-1252", undef: :replace)
+  end
+
+  def source_node
+    ParadoxModFile.new(
+      string: source_content.force_encoding("windows-1252").encode("UTF-8", undef: :replace),
+      path: @relpath,
+    ).parse!
+  end
+
+  def source_content
+    @source_path.read
+  end
+
+  def save(content)
+    @destination_path.parent.mkpath
+    @destination_path.write(content)
+  end
+end
+
+class DisableEU4Mod
+  def initialize(base_path, mod_path, output_path)
+    @base_path = Pathname(base_path)
+    @mod_path = Pathname(mod_path)
+    @output_path = Pathname(output_path)
+  end
+
+  def each_mod_file
+    @mod_path.find do |path|
+      next if path.directory?
+      yield(path.relative_path_from(@mod_path))
+    end
+  end
+
+  def choose_strategy(path)
+    exists_in_base = (@base_path + path).exist?
+    pattern = (path.dirname + "#{path.extname}").to_s
+
+    return :base if exists_in_base
+
+    case pattern
+    when ".txt", ".mod", ".yml"
+      # Various readmes etc.
+      :ignore
+    when "localisation/.yml", "gfx/interface/.dds"
+      # Harmless files that don't cause any is-game issues
+      :copy
+    when "common/wargoal_types/.txt",
+      "common/scripted_triggers/.txt"
+      # They should do nothing on their own, I think
+      :copy
+    when "common/defines/.lua"
+      :zero
+    when "common/on_actions/.txt"
+      :zero
+    when "common/diplomatic_actions/.txt"
+      :zero
+    when "common/new_diplomatic_actions/.txt"
+      :new_diplomatic_actions
+    when "events/.txt"
+      :event
+    when "decisions/.txt"
+      :decision
+    when "common/estates/.txt"
+      :estates
+    when "common/event_modifiers/.txt"
+      :event_modifiers
+    when "common/disasters/.txt"
+      :disasters
+    when "common/scripted_effects/.txt"
+      :scripted_effects
+    when "common/triggered_modifiers/.txt"
+      :triggered_modifiers
+    when "common/static_modifiers/.txt"
+      :static_modifiers
+    else
+      :unknown
+    end
+  end
+
+  def call
+    each_mod_file do |path|
+      DisableEU4File.new(
+        path,
+        @mod_path + path,
+        @output_path + path
+      ).send(choose_strategy(path))
+    end
+  end
+end
+
+unless ARGV.size == 3
+  STDERR.puts "Usage: #{$0} base_path, mod_path output_path"
+  exit 1
+end
+
+DisableEU4Mod.new(*ARGV).call
