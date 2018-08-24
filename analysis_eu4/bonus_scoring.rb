@@ -901,7 +901,7 @@ class BonusScoring
       when :global_revolt_risk
         total -= 1.0*v
       when :global_autonomy
-        total += -10.0*v
+        total += -5.0*v
       when :province_warscore_cost
         # 20% discount would be worth 2 mp
         total -= 10.0*v
@@ -941,14 +941,16 @@ class BonusScoring
         total += v*2
       when :advisor_pool
         # This is far less valuable now that you can just buy it for small amount of money
-        total += 0.2*v
+        # and estates provide free overpowered advisors
+        total += 0.05*v
       when :hostile_attrition
-        # Because of 5% attrition cap this is very poor effect, even this is probably overtating it
-        total += 0.25*v
+        # Because of 5% attrition cap this is very poor effect, even this is probably overvaluing it
+        total += 0.1*v
       when :relations_decay_of_me
         total += 2*v
       when :ae_impact
-        total -= 2*v
+        # Especially when stacking, this can be amazing
+        total -= 5*v
       when :diplomatic_reputation
         # This is back to being good
         total += v

@@ -65,9 +65,9 @@ class AnalyzePersonalities < ParadoxGame
       personality.each do |k,v|
         bonuses.send(k,v)
       end
-      results << [bonuses.score, name, personality.inspect]
+      results << [bonuses.score, localization(name), personality.inspect]
     end
-    puts results.sort.map{|r| r.join(" ")}
+    puts results.sort.reverse.map{|r| r.join(" ")}
   end
 end
 
