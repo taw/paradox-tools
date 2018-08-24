@@ -29,7 +29,7 @@ class DisableEU4File
     copy
   end
 
-  def event
+  def events
     process_node do |node|
       node.each do |key, val|
         case key
@@ -43,7 +43,7 @@ class DisableEU4File
     end
   end
 
-  def decision
+  def decisions
     process_node do |node|
       raise unless node.keys == ["country_decisions"]
       node["country_decisions"].each do |key, val|
@@ -121,7 +121,7 @@ class DisableEU4File
 
   def process_node
     node = source_node
-    yield(source_node)
+    yield(node)
     save_node node
   end
 
@@ -186,9 +186,9 @@ class DisableEU4Mod
     when "common/new_diplomatic_actions/.txt"
       :new_diplomatic_actions
     when "events/.txt"
-      :event
+      :events
     when "decisions/.txt"
-      :decision
+      :decisions
     when "common/estates/.txt"
       :estates
     when "common/event_modifiers/.txt"

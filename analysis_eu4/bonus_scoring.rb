@@ -279,7 +279,16 @@ class BonusScoring
     diplomatic_reputation v*-2.0
     improve_relation_modifier v*-0.5
     global_unrest v*5.0
-    # yearly_corruption v*0.5 # TODO
+    yearly_corruption v*0.5
+  end
+
+  # Fighting it costs 0.05 gold / effective dev
+  # Typical incomes are of order of magnitude of 0.25 gold / effective dev
+  #
+  # Assume there's half a chance you're at positive corruption
+  # And half that you're debating to not lose your bonus (and debasing gives you half as much)
+  def yearly_corruption(v)
+    money -v * 0.20 * 0.75
   end
 
   # Assume average of 4dev/year diploannexed before efficiency unlocks,
@@ -308,7 +317,7 @@ class BonusScoring
   # * of that 10% merc inf, and 40% regular inf, never any merc cav/art
   # * inf take double the damage as other types, so double reinforcement costs
   # * art/inf combat ability contributes same as their numbers, cavalry contributes double their numbers
-  # 
+  #
   # * base costs ratios are: inf 500 (25%), cav 250 (13%), art 1200 (62%)
   # * base reinforce ratios: inf 1000 (41%), cav 250 (10%), art 1200 (49%)
   # * base combat ability ratios: inf 50 (46%), cav 20 (18%), art 40 (36%)
@@ -422,6 +431,10 @@ class BonusScoring
   end
   def transport_power(v)
     naval_unit_power 0.10 * v
+  end
+  # Assume 50% of naval battles are at full width
+  def global_naval_engagement_modifier(v)
+    naval_unit_power 0.5 * v
   end
 
   # Assume ships spend 20% of time in repairs
@@ -578,11 +591,12 @@ class BonusScoring
     calculated_ship_cost -0.2*v
   end
 
+  # Scaled roughly with how good the CBs are
   def cb_on_primitives(v)
-    extra_cbs 1
+    extra_cbs 0.25
   end
   def cb_on_overseas(v)
-    extra_cbs 1
+    extra_cbs 0.25
   end
   # Holy War and Cleansing of Heresy are two great CBs
   # Defender of the Faith not counted as it only gives you CB on people you already have good CBs on (one of two above)
@@ -590,7 +604,7 @@ class BonusScoring
     extra_cbs 2
   end
   def idea_claim_colonies(v)
-    extra_cbs 1
+    extra_cbs 0.25
   end
 
   # Assuming half of your trade power is spent on steering, and you capture half of the value of trade steered again
@@ -726,9 +740,10 @@ class BonusScoring
     colonists -1*0.10*v
   end
 
-  # Probably should test it more, estimated value 2 colonist
+  # It has ridiculous abuse ceiling (moving to New World etc.)
+  # but in normal start it's roughly comparable to one colonist
   def may_establish_frontier(v)
-    colonists 2
+    colonists 1
   end
 
   # This is potentially useful, but it's so extremely conditional (only emperor) I'm not going to score it
@@ -937,9 +952,14 @@ class BonusScoring
       when :diplomatic_reputation
         # This is back to being good
         total += v
+      when :reduced_liberty_desire
+        # 3 points are as good as 1 point of diplomatic reputation when it comes to subjects
+        # It does nothing for all other uses of diplomatic reputation
+        # For total assume 25% of relations you care about are subject relations
+        total += v / 12.0
       when :yearly_absolutism
         # This is going to get capped really quickly
-      when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :amount_of_banners, :reduced_liberty_desire, :monthly_fervor_increase, :yearly_harmony
+      when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :amount_of_banners, :monthly_fervor_increase, :yearly_harmony
         # Extremely situational
       when :native_assimilation, :native_uprising_chance
         # Not very meaningful since native policies are a thing

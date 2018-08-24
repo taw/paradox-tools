@@ -1,0 +1,74 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "bonus_scoring"
+
+class AnalyzePersonalities < ParadoxGame
+  def each_personality
+    glob("common/ruler_personalities/*.txt").each do |path|
+      parse(path).each do |name, personality|
+        yield(name, personality)
+      end
+    end
+  end
+
+  def call
+    results = []
+    each_personality do |name, personality|
+      personality = personality.to_h
+      # There's a lot of AI modifiers here
+      # We ignore them all
+      #
+      # immortal is super important, but basically unscorables
+      bad_keys = %W[
+        alliance_acceptance
+        allow
+        building_budget_multiplier
+        chance
+        consort_allow
+        custom_ai_explanation
+        different_religion_war_multiplier
+        easy_war_chance_multiplier
+        enemy_strength_multiplier
+        fair_fights
+        gift_chance
+        heathen_ally_acceptance
+        heir_allow
+        heretic_ally_acceptance
+        immortal
+        knowledge_sharing
+        lower_autonomy
+        nation_designer_cost
+        other_ai_help_us_multiplier
+        other_ai_peace_term_bonus
+        other_ai_war_chance_multiplier
+        peace_desire
+        random_insults
+        razing
+        royal_marriage_acceptance
+        ruler_allow
+        send_warning_desire
+        static
+        trade_league_acceptance
+        underestimate_ae
+        war_chance_multiplier
+        war_priority
+      ]
+
+      personality.each_key do |key|
+        if bad_keys.include?(key) or key =~ /\Awants_/
+          personality.delete(key)
+        end
+      end
+
+      bonuses = BonusScoring.new
+      personality.each do |k,v|
+        bonuses.send(k,v)
+      end
+      results << [bonuses.score, name, personality.inspect]
+    end
+    puts results.sort.map{|r| r.join(" ")}
+  end
+end
+
+AnalyzePersonalities.new(*ARGV).call
