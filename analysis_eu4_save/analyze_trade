@@ -7,20 +7,19 @@ class AnalyzeTrade < ParadoxGame
   def country_name(tag)
     @save.countries[tag]&.name || localization(tag)
   end
-  
+
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
   end
 
   def print_node_info(node_name, node)
-    puts "#{node_name}:"
     node
       .total_collector_share
       .map{|tag, share| [country_name(tag), share]}
       .sort_by{|name, share| [-share, name]}
       .each do |name, share|
-        puts "#{name} #{"%.6f" % share}"
+        puts "#{localization(node_name)} - #{name} - #{"%.6f" % share}"
       end
     puts ""
   end
