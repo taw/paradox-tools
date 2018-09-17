@@ -1,24 +1,6 @@
 require_relative "base"
 
 class NationCustomizerGameModification < EU4GameModification
-  # Patch 1.12 incorporated most of that into vanilla
-  def fix_custom_idea_extra_governments!
-    extra_government_costs = {
-      # Use at your own risk:
-      "siberian_native_council" => 0,
-      "colonial_government" => 20,
-      # Not available:
-      # "papal_government",
-      # "celestial_empire",
-    }
-    patch_mod_file!("common/governments/00_governments.txt") do |node|
-      extra_government_costs.each do |gov, cost|
-        node[gov]["valid_for_nation_designer"] = true
-        node[gov]["nation_designer_cost"] = cost
-      end
-    end
-  end
-
   def fix_custom_idea_extra_ideas!
     extra_custom_ideas = {
       "adm_tech_cost_modifier"             => [-0.05,  "adm", loc: "Innovative Administration"],
@@ -127,7 +109,7 @@ class NationCustomizerGameModification < EU4GameModification
   end
 
   def apply!
-    fix_custom_idea_extra_governments!
+    # fix_custom_idea_extra_governments!
     fix_custom_idea_extra_ideas!
   end
 end
