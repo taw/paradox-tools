@@ -1,5 +1,7 @@
 require_relative "base"
 
+# This is a good change, but it conflicts with too many mods to be left as default
+
 class DisableNormalOrHistoricalCheck < EU4GameModification
   def apply!
     # Hotfix 1.23 / 1.24

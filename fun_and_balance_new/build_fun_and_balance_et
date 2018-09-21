@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox_mod_builder"
+Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
+
+class FunAndBalanceETModBuilder < ParadoxModBuilder
+  def initialize
+    super(
+      ParadoxGame.new(
+        "source/eu4-1.26.1",
+        "source/ExtendedTimeline 1.8.2/ExtendedTimeline.mod"
+      ),
+      "output/fun_and_balance_et_new"
+    )
+  end
+  def build_mod_files!
+    apply_modifications! FunAndBalanceETGameModification
+    create_mod_descriptor!(
+      # name starts with space to make sure it is alphabetically before "Extended Timeline"
+      # space used to work, but Steam started stripping it
+      name: "!Fun and Balance for Extended Timeline",
+      path: "mod/fun_and_balance_et_new",
+      supported_version: "1.26",
+      picture: "fun_and_balance_et.jpg",
+    )
+  end
+end
+
+FunAndBalanceETModBuilder.new.build!

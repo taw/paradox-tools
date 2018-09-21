@@ -13,8 +13,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     )
   end
   def build_mod_files!
-    apply_modifications! DisableNormalOrHistoricalCheck,
-                         FunAndBalanceGameModification,
+    apply_modifications! FunAndBalanceGameModification,
                          HolySitesVanillaGameModification,
                          ReligiousLeaguesGameModification,
                          NationCustomizerGameModification,

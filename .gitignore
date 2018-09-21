@@ -2,8 +2,8 @@
 *.ck2
 /eu4
 /source/*
-/output
-/ref
+/output*/
+/ref*/
 /build
 *.7z
 .DS_Store
