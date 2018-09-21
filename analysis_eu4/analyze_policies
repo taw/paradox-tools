@@ -12,7 +12,7 @@ class AnalyzePolicies < ParadoxGame
     end
   end
 
-  def analyze_policies!
+  def call
     results = []
     each_policy do |name, policy|
       policy = policy.to_h
@@ -23,7 +23,8 @@ class AnalyzePolicies < ParadoxGame
       requirements = policy.delete("allow").to_h["full_idea_group"].map{|i| i.sub("_ideas", "")}
 
       bonuses = BonusScoring.new
-      bonuses.send("monthly_#{point_type}_points", -1.0)
+      # Some are free, so biasing is no longer great idea
+      # bonuses.send("monthly_#{point_type}_points", -1.0)
       policy.each do |k,v|
         bonuses.send(k,v)
       end
@@ -33,4 +34,4 @@ class AnalyzePolicies < ParadoxGame
   end
 end
 
-AnalyzePolicies.new(*ARGV).analyze_policies!
+AnalyzePolicies.new(*ARGV).call

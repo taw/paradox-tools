@@ -54,6 +54,7 @@ class BonusScoring
 
     # if you have to worry about that, you're doing something wrong
     :enemy_core_creation,
+    :core_decay_on_your_own,
 
     # These are so godawfully underpowered we might just as well ignore them
     :rebel_support_efficiency,
@@ -102,6 +103,7 @@ class BonusScoring
 
     # Unless there are special events, this seems purely cosmetic
     :female_advisor_chance,
+    :may_recruit_female_generals,
   ].each do |k|
     define_method(k){|_| }
   end
@@ -127,7 +129,7 @@ class BonusScoring
   end
   def auto_explore_adjacent_to_colony(v)
     # Very weak explore variant, might be good enough for some countries
-    may_explore 0.25
+    @ht[:may_explore] += 0.25
   end
 
   # Assume used 75% of the time
@@ -150,18 +152,16 @@ class BonusScoring
     global_manpower_modifier -0.2*v
   end
 
-  # Assume provinces are 80% your religion, 5% heretic, 15% heathen
-  # Usually much higher your religion, but weighting critical times higher.
+  # Since conversion in territories, estimate 50% own, 10% heretic, 40% heathen
   def tolerance_own(v)
-    global_revolt_risk -v * 0.80
+    global_revolt_risk -v * 0.50
   end
   def tolerance_heretic(v)
-    global_revolt_risk -v * 0.05
+    global_revolt_risk -v * 0.10
   end
   def tolerance_heathen(v)
-    global_revolt_risk -v * 0.15
+    global_revolt_risk -v * 0.40
   end
-  # Assume they map 1:1 in value between 1.7 and 1.8
   def global_unrest(v)
     global_revolt_risk v
   end
@@ -372,6 +372,14 @@ class BonusScoring
   end
   def artillery_power(v)
     land_unit_power 0.36 * v
+  end
+  # Artillery fires from backrow 95% of time
+  # Mostly in very long battles you can sometimes have artillery front row
+  # because infantry got beaten up so bad
+  # I'm assuming this scales with base damage
+  # (and isn't sneakily double, changing 50% to 65%)
+  def backrow_artillery_damage(v)
+    artillery_power(v*0.95)
   end
   # Very vaguely estimate that 100% more cavalry flanking range makes your cavalry 50% more effective
   # which is probably an overstatement in reality due to deployment logic, battles at full width etc.
@@ -688,6 +696,10 @@ class BonusScoring
   def advisor_cost(v)
     money 0.20*-v
   end
+  # Assume 20% of forts on rival borders
+  def rival_border_fort_maintenance(v)
+    fort_maintenance_modifier 0.2*v
+  end
   # Assume for applicable cultures it will affect half of advisors
   # (most advisors will be off-culture but you'll have enough chances to reroll etc. to make pick cheaper one)
   def same_culture_advisor_cost(v)
@@ -853,6 +865,17 @@ class BonusScoring
     ae_impact(-v/0.75)
   end
 
+  # Asssume cap is reachable 25% of the time
+  def max_absolutism(v)
+    absolutism 0.75 * v
+  end
+
+  def absolutism(v)
+    administrative_efficiency (v/100.0)*0.4
+    discipline (v/100.0)*0.05
+    core_decay_on_your_own (v/100.0)*-0.5
+  end
+
   # Arbitrarily assume reinforce costs are 20% of army costs
   def reinforce_cost_modifier(v)
     calculated_land_cost 0.2*v
@@ -862,6 +885,25 @@ class BonusScoring
   # If this is stacked, next one is valued less, but such stacks are unlikely
   def monarch_admin_power(v)
     monthly_adm_points(v*15.0/16.0)
+  end
+
+  # This assumes you never take any policies beyond cap
+  # (since there are so few really good ones)
+  # so it's estimated value of extra policy
+  def free_adm_policy(v)
+    monthly_mixed_monarch_points 0.5*v
+  end
+  def free_dip_policy(v)
+    monthly_mixed_monarch_points 0.5*v
+  end
+  def free_mil_policy(v)
+    monthly_mixed_monarch_points 0.5*v
+  end
+
+  # Assume 60% the enemies are wrong religion
+  # It increases as game goes
+  def warscore_cost_vs_other_religion(v)
+    province_warscore_cost(v*0.6)
   end
 
   def score
@@ -974,6 +1016,10 @@ class BonusScoring
         #
         # Unless of course you're just spamming development to
         # get them without spread, then it matters even less
+      when :possible_policy, :possible_adm_policy, :possible_dip_policy, :possible_mil_policy
+        # going over cap would be really unusual
+      when :maintain_dynasty
+        # mostly bad as it prevents PUs, but it's so conditional either way it's best to score as zero
       else
         warn "#{k} not scored"
       end

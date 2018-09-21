@@ -16,7 +16,7 @@ class AnalyzeStaticModifiers < ParadoxGame
     ]
   end
 
-  def analyze!
+  def call
     parse("common/static_modifiers/00_static_modifiers.txt").each do |name, effects|
       next if province_modifiers.include?(name)
       next if name == "tutorial"
@@ -32,4 +32,4 @@ class AnalyzeStaticModifiers < ParadoxGame
   end
 end
 
-AnalyzeStaticModifiers.new(*ARGV).analyze!
+AnalyzeStaticModifiers.new(*ARGV).call

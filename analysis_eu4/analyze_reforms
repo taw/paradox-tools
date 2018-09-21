@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "bonus_scoring"
+
+class AnalyzeReforms < ParadoxGame
+  def each_reform
+    glob("common/government_reforms/*").each do |path|
+      # syntax errors
+      content = resolve(path)
+        .read
+        .force_encoding("windows-1252")
+        .encode("utf-8")
+        .gsub('icon "', 'icon = "')
+      data = ParadoxModFile.new(string: content, path: path).parse!
+
+      data.each do |name, reform|
+        yield(name, reform)
+      end
+    end
+  end
+
+  def call
+    results = []
+    each_reform do |name, reform|
+      reform = reform.to_h
+      %W[
+        icon
+        allow_normal_conversion
+        legacy_government
+        valid_for_new_country
+        valid_for_nation_designer
+        nation_designer_cost
+        ai
+        potential
+        conditional
+        trigger
+        effect
+        removed_effect
+        legacy_equivalent
+        nation_designer_trigger
+        start_territory_to_estates
+        allow_convert
+        factions
+        allow_convert
+        custom_attributes
+      ].each do |key|
+        reform.delete(key)
+      end
+      mods = reform.delete("modifiers") || {}
+
+      bonuses = BonusScoring.new
+      mods.each do |k,v|
+        bonuses.send(k,v)
+      end
+      results << [bonuses.score, name, reform]
+    end
+    puts results.sort.map{|r| r.join(" ")}
+  end
+end
+
+AnalyzeReforms.new(*ARGV).call
