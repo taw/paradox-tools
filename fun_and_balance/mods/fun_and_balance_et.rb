@@ -8,7 +8,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
   end
 
   def apply!
-    soft_patch_defines_lua!([
+    soft_patch_defines_lua!("fun_and_balance",
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.FORT_MAINTENANCE_CHEAT", 0, 0],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
@@ -19,14 +19,12 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.MERCHANT_REPUBLIC_SIZE_LIMIT", 20, 10000],
-      # ["NCountry.POLICY_COST", 1, 0],
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
       ["NCountry.RANDOM_LUCKY_DEVELOPMENT_WEIGHT", 0.4, 0],
       ["NCountry.RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
       ["NCountry.RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
-      # ["NCountry.TECH_AHEAD_OF_TIME", 0.1, 0.05],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
@@ -39,8 +37,8 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
-      ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
-    ])
+      ["NNationDesigner.RULER_BASE_SKILL", 2, 3]
+    )
 
     # Extended timeline diplomatic relations per era:
     # classical   3-2   -> 6-4
@@ -92,6 +90,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ]
     end
     # ET sperific
-    fix_adopt_secularism_decision!
+    # fix_adopt_secularism_decision!
   end
 end
