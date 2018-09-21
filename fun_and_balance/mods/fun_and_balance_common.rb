@@ -3,16 +3,33 @@ require_relative "../../eu4_trade_graph/trade_graph"
 
 # This file is still a bit too big, but no longer insanely so
 class FunAndBalanceCommonGameModification < EU4GameModification
-  def no_naval_attrition!
-    patch_mod_file!("common/technologies/dip.txt") do |node|
-      node.find_all("technology").each_with_index do |tech,i|
-        if i == 0
-          tech["reduced_naval_attrition"] = true
-        else
-          tech.delete! "reduced_naval_attrition"
-        end
+  def anyone_can_form_byzantium!
+    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
+      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! do |prop|
+        prop.key == "NOT" and (prop.val == PropertyList["tag", "HLR"] or prop.val == PropertyList["tag", "TUR"])
       end
     end
+  end
+
+  def buff_awful_idea_groups!
+    patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node|
+      node["maritime_ideas"]["merchant_marine"]["merchants"] = 1
+      node["maritime_ideas"]["bonus"]["global_ship_trade_power"] = 0.5
+      node["naval_ideas"]["boarding_parties"]["free_leader_pool"] = 1
+    end
+  end
+
+  def can_convert_in_territories!
+    soft_patch_defines_lua!("fun_and_balance_fewer_mercs",
+      ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 0, 1],
+      ["NCountry.CAN_CONVERT_TERRITORY_RELIGION", 0, 1],
+    )
+  end
+
+  def cheaper_fort_maintenance!
+    soft_patch_defines_lua!("fun_and_balance_cheaper_forts",
+      ["NMilitary.FORTRESS_COST", 0.50, 0.25],
+    )
   end
 
   def disable_burgundy_inheritance!
@@ -21,15 +38,38 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         # Events: flavor_bur.(3|4|5|6|19)
         # are part of the chain but trigger from other events within it so they don't need the fix
         next unless key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|7)\z/
-        val["trigger"].add! Property["has_global_flag", "fun_and_balance_config.enable_burgundian_succession_crisis"]
+        val["trigger"].add! Property["always", false]
       end
     end
   end
 
-  def move_burgundy_capital_to_hre!
-    patch_mod_file!("history/countries/BUR - Burgundy.txt") do |node|
-      node["capital"] = 193
+  def disable_call_for_peace!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["call_for_peace"].delete!{true}
     end
+  end
+
+  def everybody_can_can_claim_states!
+    patch_mod_files!("common/governments/*.txt") do |node|
+      node.each do |name, government|
+        next if government["claim_states"]
+        government["claim_states"] = true
+        # I tried to make this locked to empire rank, but game just ignore that
+        # next unless government["rank"]
+        # government["rank"].each do |rank, rank_bonuses|
+        #   if rank >= 3
+        #     rank_bonuses["claim_states"] = true
+        #   end
+        # end
+      end
+    end
+  end
+
+  def fewer_mercs!
+    soft_patch_defines_lua!("fun_and_balance_fewer_mercs",
+      ["NMilitary.MERCENARY_SUPPORT_LIMIT_BASE", 20, 10],
+      ["NMilitary.MERCENARY_SUPPORT_LIMIT_FRACTION", 0.3, 0.15],
+    )
   end
 
   def fix_opinions!
@@ -79,10 +119,26 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def anyone_can_form_byzantium!
-    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
-      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! do |prop|
-        prop.key == "NOT" and (prop.val == PropertyList["tag", "HLR"] or prop.val == PropertyList["tag", "TUR"])
+  def longer_cb_on_backstabbers!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      node["cb_dishonored_call"]["months"] = 120
+    end
+  end
+
+  def more_building_slots!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["development"]["allowed_num_of_buildings"] = 0.2
+    end
+  end
+
+  def no_naval_attrition!
+    patch_mod_file!("common/technologies/dip.txt") do |node|
+      node.find_all("technology").each_with_index do |tech,i|
+        if i == 0
+          tech["reduced_naval_attrition"] = true
+        else
+          tech.delete! "reduced_naval_attrition"
+        end
       end
     end
   end
@@ -140,20 +196,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def rescale(val, range_a, range_b)
-    position_in_range = (val-range_a.begin).to_f /  range_a.size
-    (range_b.begin + position_in_range * range_b.size).round
-  end
-
-  def rescale_tech_times_to_1399_1820_timeframe!
-    patch_mod_files!("common/technologies/*.txt") do |node|
-      node.find_all("technology").each_with_index do |tech,i|
-        # p [tech["year"], rescale(tech["year"], 1444..1820, 1399..1820)]
-        tech["year"] = rescale(tech["year"], 1444..1820, 1399..1820)
-      end
-    end
-  end
-
   def power_projection_tweaks!
     patch_mod_file!("common/powerprojection/00_static.txt") do |node|
       modify_node! node,
@@ -173,28 +215,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ["great_power_6",             "power",         14,  32],
         ["great_power_7",             "power",         12,  29],
         ["great_power_8",             "power",         10,  25]
-    end
-  end
-
-  def disable_call_for_peace!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["call_for_peace"].delete!{true}
-    end
-  end
-
-  def longer_cb_on_backstabbers!
-    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
-      node["cb_dishonored_call"]["months"] = 120
-    end
-  end
-
-  def faster_institution_spread!
-    patch_mod_file!("common/institutions/00_Core.txt") do |node|
-      node.each do |name, institution|
-        institution["embracement_speed"].find_all("modifier").each do |mod|
-          mod["factor"] *= 2
-        end
-      end
     end
   end
 
@@ -218,52 +238,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       # to balance LD from relative power (also tariffs, mercantilism etc.)
       types["colony"]["relative_power_class"] = 1
       types["colony"]["base_liberty_desire"] = -25.0
-    end
-  end
-
-  def more_building_slots!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["development"]["allowed_num_of_buildings"] = 0.2
-    end
-  end
-
-  def nerf_china!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["negative_mandate"]["global_unrest"] = 10
-    end
-  end
-
-  def everybody_can_can_claim_states!
-    patch_mod_files!("common/governments/*.txt") do |node|
-      node.each do |name, government|
-        next if government["claim_states"]
-        government["claim_states"] = true
-        # I tried to make this locked to empire rank, but game just ignore that
-        # next unless government["rank"]
-        # government["rank"].each do |rank, rank_bonuses|
-        #   if rank >= 3
-        #     rank_bonuses["claim_states"] = true
-        #   end
-        # end
-      end
-    end
-  end
-
-  def buff_awful_idea_groups!
-    patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node|
-      node["maritime_ideas"]["merchant_marine"]["merchants"] = 1
-      node["maritime_ideas"]["bonus"]["global_ship_trade_power"] = 0.5
-      node["naval_ideas"]["boarding_parties"]["free_leader_pool"] = 1
-    end
-  end
-
-  def rewrite_trade_map!
-    patch_mod_file!("common/tradenodes/00_tradenodes.txt") do |node|
-      trade_graph = TradeGraph.new(node)
-      edges = yield(trade_graph.edges)
-      updated_node = trade_graph.rewrite(edges)
-      # Functional / Imperative interface mismatch here ...
-      node.instance_eval{ @entries = updated_node.to_a }
     end
   end
 end

@@ -144,7 +144,6 @@ class ExtraFormableCountriesGameModification < EU4GameModification
         "extra_formable_form_#{tag}", PropertyList[
           "major", true,
           "potential", PropertyList[
-            Property::NOT["has_global_flag", "fun_and_balance_config.disable_extra_formable_countries"],
             Property::NOT["has_country_flag", "fun_and_balance.formed_#{tag}"],
             Property::NOT["exists", tag],
             *cant_by_formed_by.map{|ct| Property::NOT["tag", ct] },

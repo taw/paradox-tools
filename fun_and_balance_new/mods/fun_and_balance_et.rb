@@ -2,12 +2,16 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
   def apply!
-    more_base_relations!
-    fewer_mercs!
+    buff_awful_idea_groups!
+    can_convert_in_territories!
     cheaper_fort_maintenance!
-    reduce_ai_cheats!
-    no_naval_attrition!
     disable_call_for_peace!
+    fewer_mercs!
+    more_base_relations!
+    more_building_slots!
+    no_naval_attrition!
+    power_projection_tweaks!
+    reduce_ai_cheats!
   end
 
   # FIXME: This should be era-specific

@@ -18,10 +18,6 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
                          HolySitesETGameModification,
                          ReligiousLeaguesGameModification,
                          NationCustomizerGameModification,
-                         # No achievements - map would need too many fixes
-                         # No extra foramble countries, makes little sense it this mod
-                         EU3StyleElectionsGameModification,
-                         ConfigMenuETGameModification,
                          ChangeGovernmentGameModification
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"

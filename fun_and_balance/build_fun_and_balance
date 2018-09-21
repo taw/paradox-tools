@@ -18,8 +18,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          ReligiousLeaguesGameModification,
                          NationCustomizerGameModification,
                          ExtraFormableCountriesGameModification,
-                         EU3StyleElectionsGameModification,
-                         ConfigMenuVanillaGameModification
                          ChangeGovernmentGameModification
     create_mod_descriptor!(
       name: "Fun and Balance",
