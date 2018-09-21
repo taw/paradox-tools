@@ -22,9 +22,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
-      ["NCountry.RANDOM_LUCKY_DEVELOPMENT_WEIGHT", 0.4, 0],
-      ["NCountry.RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
-      ["NCountry.RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
@@ -82,7 +79,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
         # ["patagonia", "lima"], # already there
       ]
     end
-    # ET sperific
+    # ET specific
     # fix_adopt_secularism_decision!
   end
 end

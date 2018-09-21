@@ -13,7 +13,8 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     )
   end
   def build_mod_files!
-    apply_modifications! FunAndBalanceGameModification
+    apply_modifications! FunAndBalanceGameModification,
+                         ChangeGovernmentGameModification
     create_mod_descriptor!(
       name: "Fun and Balance (new build)",
       path: "mod/fun_and_balance_new",

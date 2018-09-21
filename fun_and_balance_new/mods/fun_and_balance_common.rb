@@ -29,6 +29,22 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def everybody_can_can_claim_states!
+    patch_mod_files!("common/governments/*.txt") do |node|
+      node.each do |name, government|
+        next if government["claim_states"]
+        government["claim_states"] = true
+        # I tried to make this locked to empire rank, but game just ignore that
+        # next unless government["rank"]
+        # government["rank"].each do |rank, rank_bonuses|
+        #   if rank >= 3
+        #     rank_bonuses["claim_states"] = true
+        #   end
+        # end
+      end
+    end
+  end
+
   def fewer_mercs!
     soft_patch_defines_lua!("fun_and_balance_fewer_mercs",
       ["NMilitary.MERCENARY_SUPPORT_LIMIT_BASE", 20, 10],

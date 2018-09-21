@@ -14,7 +14,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
     )
   end
   def build_mod_files!
-    apply_modifications! FunAndBalanceETGameModification
+    apply_modifications! FunAndBalanceETGameModification,
+                         ChangeGovernmentGameModification
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"
       # space used to work, but Steam started stripping it

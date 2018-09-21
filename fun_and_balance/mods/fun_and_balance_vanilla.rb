@@ -8,7 +8,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
 
     soft_patch_defines_lua!("fun_and_balance",
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
-      ["NAI.FORT_MAINTENANCE_CHEAT", 0, 0],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 0, 1],
@@ -20,9 +19,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
-      ["NCountry.RANDOM_LUCKY_DEVELOPMENT_WEIGHT", 0.4, 0],
-      ["NCountry.RANDOM_LUCKY_SLOW_TECH_PENALTY", 0.33, 1],
-      ["NCountry.RANDOM_LUCKY_TECH_WEIGHT", 1, 0],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
