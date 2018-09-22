@@ -125,6 +125,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def lower_defender_ae!
+    soft_patch_defines_lua!("fun_and_balance_lower_defender_ae",
+      ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
+    )
+  end
+
   def more_building_slots!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["development"]["allowed_num_of_buildings"] = 0.2
@@ -144,23 +150,9 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def patch_religion!
-    patch_mod_file!("common/religions/00_religion.txt") do |node|
-      node.each do |group_name, group|
-        group.each do |name, religion|
-          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier", "ai_will_propagate_through_trade"].include?(name)
-          if group_name == "pagan"
-            religion["province"] ||= PropertyList[]
-            religion["province"]["local_missionary_strength"] = 0.03
-          else
-            religion["province"].delete!("local_missionary_strength") if religion["province"]
-          end
-        end
-      end
-
     localization! "religious_shift",
       "religious_shift_title" => "Accept Religious Shift",
       "religious_shift_desc"  => "Religious beliefs of the ruling elite are shifting, as our $COUNTRY_RELIGION$ heritage is gradually losing ground to the religion of $CAPITAL$."
-    end
 
     create_mod_file! "decisions/ReligiousShift.txt", PropertyList[
       "country_decisions", PropertyList[
@@ -215,6 +207,35 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ["great_power_6",             "power",         14,  32],
         ["great_power_7",             "power",         12,  29],
         ["great_power_8",             "power",         10,  25]
+    end
+  end
+
+  def rebalance_conversion_rates!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["base_values", "global_missionary_strength", 0.02, 0.01],
+        ["base_values", "global_heretic_missionary_strength", nil, 0.01]
+    end
+
+    patch_mod_file!("common/religions/00_religion.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |name, religion|
+          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier", "ai_will_propagate_through_trade"].include?(name)
+          if group_name == "pagan"
+            religion["province"] ||= PropertyList[]
+            religion["province"]["local_missionary_strength"] = 0.03
+          else
+            religion["province"].delete!("local_missionary_strength") if religion["province"]
+          end
+        end
+      end
+    end
+  end
+
+  def reduce_ai_cheats!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["ai_nation", "free_leader_pool", 1, 0]
     end
   end
 

@@ -8,9 +8,19 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
   end
 
   def apply!
+    buff_awful_idea_groups!
     can_convert_in_territories!
     cheaper_fort_maintenance!
+    disable_call_for_peace!
+    everybody_can_can_claim_states!
     fewer_mercs!
+    lower_defender_ae!
+    more_building_slots!
+    no_naval_attrition!
+    power_projection_tweaks!
+    reduce_ai_cheats!
+    trade_map_fixes!
+
     soft_patch_defines_lua!("fun_and_balance",
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
@@ -23,7 +33,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
-      ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
       ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
@@ -45,7 +54,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
         ["base_values", "diplomatic_upkeep", 3, 6],
-        ["ai_nation", "free_leader_pool", 1, 0],
         ["war", "war_exhaustion_cost", nil, 100]
     end
     # We could do something fancier here
@@ -60,16 +68,15 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     anyone_can_form_byzantium!
     fix_opinions!
     fix_wargoals!
-    no_naval_attrition!
     # patch_religion! - TODO
     disable_burgundy_inheritance!
-    power_projection_tweaks!
-    disable_call_for_peace!
     longer_cb_on_backstabbers!
     subject_tweaks!
-    more_building_slots!
-    everybody_can_can_claim_states!
-    buff_awful_idea_groups!
+    # ET specific
+    # fix_adopt_secularism_decision!
+  end
+
+  def trade_map_fixes!
     rewrite_trade_map! do |edges|
       edges - [
         ["philippines", "panama"],
@@ -79,7 +86,5 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
         # ["patagonia", "lima"], # already there
       ]
     end
-    # ET specific
-    # fix_adopt_secularism_decision!
   end
 end

@@ -2,16 +2,25 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
+    buff_awful_idea_groups!
     can_convert_in_territories!
     cheaper_fort_maintenance!
+    disable_call_for_peace!
+    everybody_can_can_claim_states!
     fewer_mercs!
+    lower_defender_ae!
+    more_base_relations!
+    more_building_slots!
+    no_naval_attrition!
+    power_projection_tweaks!
+    rebalance_conversion_rates!
+    reduce_ai_cheats!
+    trade_map_fixes!
 
     soft_patch_defines_lua!("fun_and_balance",
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
-      ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 0, 1],
-      ["NCountry.CAN_CONVERT_TERRITORY_RELIGION", 0, 1],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
@@ -20,8 +29,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
-      ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
-      ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
       ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
@@ -33,26 +40,26 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
-        ["base_values", "global_missionary_strength", 0.02, 0.01],
-        ["base_values", "global_heretic_missionary_strength", nil, 0.01],
-        ["base_values", "diplomatic_upkeep", 4, 8],
-        ["ai_nation", "free_leader_pool", 1, 0],
         ["war", "war_exhaustion_cost", nil, 100]
     end
 
     anyone_can_form_byzantium!
     fix_opinions!
     fix_wargoals!
-    no_naval_attrition!
     patch_religion!
     disable_burgundy_inheritance!
-    power_projection_tweaks!
-    disable_call_for_peace!
     longer_cb_on_backstabbers!
     subject_tweaks!
-    more_building_slots!
-    everybody_can_can_claim_states!
-    buff_awful_idea_groups!
+  end
+
+  def more_base_relations!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["base_values", "diplomatic_upkeep", 4, 8]
+    end
+  end
+
+  def trade_map_fixes!
     rewrite_trade_map! do |edges|
       edges - [
         ["philippines", "panama"],

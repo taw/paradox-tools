@@ -2,9 +2,20 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
   def apply!
+    buff_awful_idea_groups!
     # can_convert_in_territories!
     cheaper_fort_maintenance!
+    disable_call_for_peace!
+    everybody_can_can_claim_states!
     fewer_mercs!
+    lower_defender_ae!
+    more_building_slots!
+    no_naval_attrition!
+    power_projection_tweaks!
+    rebalance_conversion_rates!
+    reduce_ai_cheats!
+    trade_map_fixes!
+
     soft_patch_defines_lua!("fun_and_balance",
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
@@ -18,7 +29,6 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0.1],
-      ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
       ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
@@ -30,26 +40,20 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
-        ["base_values", "global_missionary_strength", 0.02, 0.01],
-        ["base_values", "global_heretic_missionary_strength", nil, 0.01],
         ["base_values", "diplomatic_upkeep", 4, 8],
-        ["ai_nation", "free_leader_pool", 1, 0],
         ["war", "war_exhaustion_cost", nil, 100]
     end
 
     anyone_can_form_byzantium!
     fix_opinions!
     fix_wargoals!
-    no_naval_attrition!
     patch_religion!
     # disable_burgundy_inheritance! # there are other changes mod makes, so maybe it's OK
-    power_projection_tweaks!
-    disable_call_for_peace!
     longer_cb_on_backstabbers!
     subject_tweaks!
-    more_building_slots!
-    everybody_can_can_claim_states!
-    buff_awful_idea_groups!
+  end
+
+  def trade_map_fixes!
     rewrite_trade_map! do |edges|
       edges - [
         ["philippines", "panama"],
