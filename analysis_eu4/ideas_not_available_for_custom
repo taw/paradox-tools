@@ -1,0 +1,76 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class IdeasNotAvailableForCustom < ParadoxGame
+  def bonuses_from_custom_ideas
+    unless @bonuses_from_custom_ideas
+      @bonuses_from_custom_ideas = {}
+      glob("common/custom_ideas/*").each do |path|
+        parse(path).each do |group_name, node|
+          node.each do |idea_name, bonuses|
+            next if idea_name == "category"
+            bonuses = bonuses.to_h
+            %W[
+              level_cost_1
+              level_cost_2
+              level_cost_3
+              level_cost_4
+              level_cost_5
+              level_cost_6
+              level_cost_7
+              level_cost_8
+              level_cost_9
+              level_cost_10
+              default
+              chance
+              max_level
+              enabled
+            ].each do |key|
+              bonuses.delete(key)
+            end
+            binding.pry if bonuses.size != 1
+            bonus, val = bonuses.to_a[0]
+            @bonuses_from_custom_ideas[bonus] ||= []
+            @bonuses_from_custom_ideas[bonus] << [idea_name, val]
+          end
+        end
+      end
+    end
+    @bonuses_from_custom_ideas
+  end
+
+  def bonuses_from_national_ideas
+    unless @bonuses_from_national_ideas
+      @bonuses_from_national_ideas = {}
+      glob("common/ideas/*").each do |path|
+        parse(path).each do |group_name, idea_group|
+          next unless idea_group["free"] # skip basic ones
+          idea_group.each do |idea_name, idea|
+            next if idea_name == "free"
+            next if idea_name == "trigger"
+            idea.each do |bonus, bonus_level|
+              @bonuses_from_national_ideas[bonus] ||= []
+              @bonuses_from_national_ideas[bonus] << [group_name, idea_name, bonus_level]
+            end
+          end
+        end
+      end
+    end
+    @bonuses_from_national_ideas
+  end
+
+  def call
+    bonuses_from_national_ideas
+    bonuses_from_custom_ideas
+    all = (bonuses_from_national_ideas.keys | bonuses_from_custom_ideas.keys)
+    all.each do |key|
+      next if bonuses_from_national_ideas[key] and bonuses_from_custom_ideas[key]
+      puts "#{key}:"
+      puts "  #{bonuses_from_national_ideas[key].inspect}"
+      puts "  #{bonuses_from_custom_ideas[key].inspect}"
+    end
+  end
+end
+
+IdeasNotAvailableForCustom.new(*ARGV).call
