@@ -15,6 +15,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     power_projection_tweaks!
     rebalance_conversion_rates!
     reduce_ai_cheats!
+    religious_shift_decision!
     trade_map_fixes!
   end
 

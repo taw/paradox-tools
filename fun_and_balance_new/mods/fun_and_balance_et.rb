@@ -13,6 +13,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     more_building_slots!
     no_naval_attrition!
     power_projection_tweaks!
+    religious_shift_decision!
     reduce_ai_cheats!
     trade_map_fixes!
   end

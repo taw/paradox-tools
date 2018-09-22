@@ -126,4 +126,34 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ["ai_nation", "free_leader_pool", 1, 0]
     end
   end
+
+  def religious_shift_decision!
+    localization! "religious_shift",
+      "religious_shift_title" => "Accept Religious Shift",
+      "religious_shift_desc"  => "Religious beliefs of the ruling elite are shifting, as our $COUNTRY_RELIGION$ heritage is gradually losing ground to the religion of $CAPITAL$."
+
+    create_mod_file! "decisions/ReligiousShift.txt", PropertyList[
+      "country_decisions", PropertyList[
+        "religious_shift", PropertyList[
+          "potential", PropertyList[
+            "capital_scope", PropertyList[
+              "NOT", PropertyList["religion", "ROOT"],
+            ],
+            "NOT", PropertyList["tag", "PAP"],
+          ],
+          "allow", PropertyList[
+            "stability", 1,
+            "is_at_war", false,
+            "is_subject", false,
+          ],
+          "effect", PropertyList[
+            "change_religion", "capital",
+            "add_stability", -2,
+            "add_country_modifier", PropertyList["name", "conversion_zeal", "duration", 3650],
+          ],
+          "ai_will_do", PropertyList["factor", 0],
+        ]
+      ]
+    ]
+  end
 end

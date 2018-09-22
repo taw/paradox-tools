@@ -19,6 +19,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     no_naval_attrition!
     power_projection_tweaks!
     reduce_ai_cheats!
+    religious_shift_decision!
     trade_map_fixes!
 
     soft_patch_defines_lua!("fun_and_balance",
