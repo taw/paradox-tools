@@ -5,10 +5,14 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     buff_awful_idea_groups!
     can_convert_in_territories!
     cheaper_fort_maintenance!
+    coalition_cb_defend_capital!
+    disable_burgundy_inheritance!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
+    double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     fewer_mercs!
+    longer_cb_on_backstabbers!
     lower_defender_ae!
     more_base_relations!
     more_building_slots!
@@ -16,6 +20,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     power_projection_tweaks!
     reduce_ai_cheats!
     religious_shift_decision!
+    subject_religious_cbs!
     trade_map_fixes!
   end
 

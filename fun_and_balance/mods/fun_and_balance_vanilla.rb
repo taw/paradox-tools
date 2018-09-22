@@ -5,10 +5,14 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     buff_awful_idea_groups!
     can_convert_in_territories!
     cheaper_fort_maintenance!
+    coalition_cb_defend_capital!
+    disable_burgundy_inheritance!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
+    double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     fewer_mercs!
+    longer_cb_on_backstabbers!
     lower_defender_ae!
     more_base_relations!
     more_building_slots!
@@ -17,6 +21,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     rebalance_conversion_rates!
     reduce_ai_cheats!
     religious_shift_decision!
+    subject_religious_cbs!
     trade_map_fixes!
 
     soft_patch_defines_lua!("fun_and_balance",
@@ -33,7 +38,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
-      ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
@@ -49,8 +53,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     fix_opinions!
     fix_wargoals!
     patch_religion!
-    disable_burgundy_inheritance!
-    longer_cb_on_backstabbers!
     subject_tweaks!
   end
 

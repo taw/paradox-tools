@@ -20,7 +20,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def can_convert_in_territories!
-    soft_patch_defines_lua!("fun_and_balance_fewer_mercs",
+    soft_patch_defines_lua!("fun_and_balance_convert_in_territories",
       ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 0, 1],
       ["NCountry.CAN_CONVERT_TERRITORY_RELIGION", 0, 1],
     )
@@ -32,13 +32,25 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     )
   end
 
+  def coalition_cb_defend_capital!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      # Make Punitive Wars into Take Capital
+      node["cb_super_badboy"]["war_goal"] = "take_capital_punitive"
+    end
+    # Imperial Ban CB adjust down
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
+      # Description doesn't match what it does
+      node["take_capital_punitive"]["prov_desc"] = "ALL_CORES"
+    end
+  end
+
   def disable_burgundy_inheritance!
     patch_mod_file!("events/FlavorBUR.txt") do |node|
       node.each do |key, val|
         # Events: flavor_bur.(3|4|5|6|19)
         # are part of the chain but trigger from other events within it so they don't need the fix
         next unless key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|7)\z/
-        val["trigger"].add! Property["always", false]
+        val["trigger"] = PropertyList["always", false]
       end
     end
   end
@@ -53,6 +65,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
       node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
     end
+  end
+
+  def double_tradition_gain_from_battles!
+    soft_patch_defines_lua!("fun_and_balance_more_tradition_from_battles",
+      ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
+      ["NMilitary.TRADITION_GAIN_NAVAL", 40, 80]
+    )
   end
 
   def everybody_can_can_claim_states!
@@ -86,7 +105,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def fix_wargoals!
+  def subject_religious_cbs!
     patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
       # Press vassal's religious CBs
       node["cb_crusade"]["prerequisites"].delete! "is_neighbor_of"
@@ -109,19 +128,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           "cb_on_religious_enemies", true,
         ],
       ]
-      # Make Punitive Wars into Take Capital
-      node["cb_super_badboy"]["war_goal"] = "take_capital_punitive"
     end
+  end
 
+  def fix_wargoals!
     # Imperial Ban CB adjust down
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       modify_node! node,
         ["take_province_ban", "badboy_factor", 1.0, 0.1]
-      # Could use fancier logic, but let's leave it for now...
-      node["superiority_primitives"]["allowed_provinces"] = PropertyList["always", true]
-      node["superiority_overseas"]["allowed_provinces"] = PropertyList["always", true]
       # Description doesn't match what it does
-      node["take_capital_punitive"]["prov_desc"] = "ALL_CORES"
     end
   end
 

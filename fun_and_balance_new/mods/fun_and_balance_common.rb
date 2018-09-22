@@ -11,7 +11,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def can_convert_in_territories!
-    soft_patch_defines_lua!("fun_and_balance_fewer_mercs",
+    soft_patch_defines_lua!("fun_and_balance_convert_in_territories",
       ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 0, 1],
       ["NCountry.CAN_CONVERT_TERRITORY_RELIGION", 0, 1],
     )
@@ -21,6 +21,29 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     soft_patch_defines_lua!("fun_and_balance_cheaper_forts",
       ["NMilitary.FORTRESS_COST", 0.50, 0.25],
     )
+  end
+
+  def coalition_cb_defend_capital!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      # Make Punitive Wars into Take Capital
+      node["cb_super_badboy"]["war_goal"] = "take_capital_punitive"
+    end
+    # Imperial Ban CB adjust down
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
+      # Description doesn't match what it does
+      node["take_capital_punitive"]["prov_desc"] = "ALL_CORES"
+    end
+  end
+
+  def disable_burgundy_inheritance!
+    patch_mod_file!("events/FlavorBUR.txt") do |node|
+      node.each do |key, val|
+        # Events: flavor_bur.(3|4|5|6|19)
+        # are part of the chain but trigger from other events within it so they don't need the fix
+        next unless key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|7)\z/
+        val["trigger"] = PropertyList["always", false]
+      end
+    end
   end
 
   def disable_call_for_peace!
@@ -33,6 +56,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
       node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
     end
+  end
+
+  def double_tradition_gain_from_battles!
+    soft_patch_defines_lua!("fun_and_balance_more_tradition_from_battles",
+      ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
+      ["NMilitary.TRADITION_GAIN_NAVAL", 40, 80]
+    )
   end
 
   def everybody_can_can_claim_states!
@@ -56,6 +86,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       ["NMilitary.MERCENARY_SUPPORT_LIMIT_BASE", 20, 10],
       ["NMilitary.MERCENARY_SUPPORT_LIMIT_FRACTION", 0.3, 0.15],
     )
+  end
+
+  def longer_cb_on_backstabbers!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      node["cb_dishonored_call"]["months"] = 120
+    end
   end
 
   def lower_defender_ae!
@@ -161,5 +197,31 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ]
       ]
     ]
+  end
+
+  def subject_religious_cbs!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      # Press vassal's religious CBs
+      node["cb_crusade"]["prerequisites"].delete! "is_neighbor_of"
+      node["cb_crusade"]["prerequisites"].prepend! Property::OR[
+        "is_neighbor_of", "FROM",
+        "any_country", PropertyList[
+          "is_subject_of", "ROOT",
+          "religion_group", "ROOT",
+          "is_neighbor_of", "FROM",
+          "cb_on_religious_enemies", true,
+        ],
+      ]
+      node["cb_heretic"]["prerequisites"].delete! "is_neighbor_of"
+      node["cb_heretic"]["prerequisites"].prepend! Property::OR[
+        "is_neighbor_of", "FROM",
+        "any_country", PropertyList[
+          "is_subject_of", "ROOT",
+          "religion", "ROOT",
+          "is_neighbor_of", "FROM",
+          "cb_on_religious_enemies", true,
+        ],
+      ]
+    end
   end
 end
