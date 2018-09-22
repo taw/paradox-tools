@@ -7,18 +7,32 @@ class AnalyzeNewMissions < ParadoxGame
   def each_mission_file(&block)
     glob("missions/*").each do |path|
       # Stupid errors in files...
-      if path.basename.to_s == "Bohemian_Missions.txt"
-        code = resolve(path).read + "}"
-        node = ParadoxModFile.new(string: code, path: path).parse!
-        yield(node)
-      else
+      # if path.basename.to_s == "Bohemian_Missions.txt"
+      #   # code = resolve(path).read + "}"
+      #   node = ParadoxModFile.new(string: code, path: path).parse!
+      #   yield(node)
+      # else
         yield parse(path)
-      end
+      # end
     end
   end
 
   def parse_potential(potential)
+    # Let's just assume all DLCs are on
+
+    # Just those affecting missions
+    dlcs = [
+      "Purple Phoenix",
+      "Third Rome",
+      "Rule Britannia",
+      "Rights of Man",
+      "Dharma",
+    ]
+    return if dlcs.any?{|dlc| potential.to_a.include? Property::NOT["has_dlc", dlc] }
+    potential.delete!("has_dlc")
+
     potential.delete!(Property["is_random_new_world", false])
+    potential.delete!(Property::NOT["map_setup", "map_setup_random"])
     if potential.keys == ["tag"]
       return localization(potential["tag"])
     end
@@ -40,70 +54,6 @@ class AnalyzeNewMissions < ParadoxGame
         "NOT", PropertyList["is_emperor", true],
       ]
       "hre minor"
-    when PropertyList[
-        "OR", PropertyList[
-          "tag", "ENG",
-          "tag", "GBR",
-        ],
-        "NOT", PropertyList["has_dlc", "Rule Britannia"],
-      ]
-      [localization("ENG"), localization("GBR")].join("/") + " (no Rule Britannia)"
-    when PropertyList[
-        "OR", PropertyList[
-          "tag", "ENG",
-          "tag", "GBR",
-        ],
-        "has_dlc", "Rule Britannia",
-      ]
-      [localization("ENG"), localization("GBR")].join("/") + " (with Rule Britannia)"
-    when PropertyList[
-        "tag", "GBR",
-        "has_dlc", "Rule Britannia",
-      ]
-      localization("GBR") + " (with Rule Britannia)"
-    when PropertyList[
-        "tag", "SCO",
-        "has_dlc", "Rule Britannia",
-      ]
-      localization("SCO") + " (with Rule Britannia)"
-    when PropertyList[
-      "tag", "SCO",
-        "NOT", PropertyList["has_dlc", "Rule Britannia"],
-        "NOT", PropertyList["has_country_flag", "auld_alliance_mission_flag"],
-      ]
-      localization("SCO") + " (no Rule Britannia)"
-    when PropertyList[
-        "tag", "SCO",
-        "NOT", PropertyList["has_dlc", "Rule Britannia"],
-        "NOT", PropertyList["has_country_flag", "sco_advance_frontier_flag"],
-      ]
-      localization("SCO") + " (no Rule Britannia)"
-    when PropertyList[
-        "tag", "SCO",
-        "NOT", PropertyList["has_dlc", "Rule Britannia"],
-        "NOT", PropertyList["has_country_flag", "rb_orkney_mission"],
-      ]
-      localization("SCO") + " (no Rule Britannia)"
-    when PropertyList[
-        "has_dlc", "Rule Britannia",
-        "OR", PropertyList[
-          "tag", "ULS",
-          "tag", "TRY",
-          "tag", "TYR",
-          "tag", "MTH",
-          "tag", "SLN",
-          "tag", "FLY",
-          "tag", "KID",
-          "tag", "CNN",
-          "tag", "MNS",
-          "tag", "ORD",
-          "tag", "LEI",
-          "tag", "DMS",
-          "tag", "MCM",
-          "tag", "IRE",
-        ],
-      ]
-      "Irish minor (with Rule Britannia)"
     when PropertyList["capital_scope", PropertyList["OR", PropertyList[
         "region", "sahel_region",
         "region", "niger_region",
@@ -125,19 +75,9 @@ class AnalyzeNewMissions < ParadoxGame
         ]],
       ]
       "arabic (except Turkish, Rassids, Aden)"
-    when PropertyList[
-        "tag", "BYZ",
-        "NOT", PropertyList["has_dlc", "Purple Phoenix"],
-      ]
-      "Byzantium (no Purple Phoenix)"
-    when PropertyList[
-        "tag", "BYZ",
-        "has_dlc", "Purple Phoenix",
-      ]
-      "Byzantium (with Purple Phoenix)"
-    when PropertyList["religion", "coptic", "has_dlc", "Rights of Man"]
+    when PropertyList["religion", "coptic"]
       "coptic"
-    when PropertyList["OR", PropertyList["government", "daimyo", "government", "shogunate"]]
+    when PropertyList["OR", PropertyList["has_reform", "daimyo", "has_reform", "shogunate"]]
       "daimyo/shogunate"
     when PropertyList[
         "technology_group", "high_american",
@@ -165,7 +105,8 @@ class AnalyzeNewMissions < ParadoxGame
       "High American" # (could be in Europe)
     else
       puts potential
-      binding.pry
+      # binding.pry
+      "Unknown"
     end
   end
 
@@ -173,7 +114,7 @@ class AnalyzeNewMissions < ParadoxGame
     totals = Hash.new(0)
     each_mission_file do |node|
       node.each do |group_name, group|
-        potential = parse_potential(group["potential"])
+        potential = parse_potential(group["potential"]) or next
         missions = group.keys - %W[potential_on_load generic has_country_shield ai potential slot]
         totals[potential] += missions.size
       end
