@@ -49,6 +49,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def disable_end_game_tag_check_for_player!
+    patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
+      node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
+    end
+  end
+
   def everybody_can_can_claim_states!
     patch_mod_files!("common/governments/*.txt") do |node|
       node.each do |name, government|

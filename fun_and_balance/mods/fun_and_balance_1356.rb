@@ -6,6 +6,7 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     # can_convert_in_territories!
     cheaper_fort_maintenance!
     disable_call_for_peace!
+    # disable_end_game_tag_check_for_player!
     everybody_can_can_claim_states!
     fewer_mercs!
     lower_defender_ae!
