@@ -75,6 +75,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def double_corruption_slider!
+    soft_patch_defines_lua!("fun_and_balance_corruption",
+      ["NCountry.CORRUPTION_COST", 0.05, 0.10],
+    )
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["root_out_corruption"]["yearly_corruption"] = -2.0
+    end
+  end
+
   def double_tradition_gain_from_battles!
     soft_patch_defines_lua!("fun_and_balance_more_tradition_from_battles",
       ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
@@ -150,6 +159,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def more_building_slots!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["development"]["allowed_num_of_buildings"] = 0.2
+    end
+  end
+
+  def nerf_china!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["negative_mandate"]["global_unrest"] = 10
     end
   end
 

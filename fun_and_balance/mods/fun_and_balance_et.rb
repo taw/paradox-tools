@@ -11,6 +11,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     disable_burgundy_inheritance!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
+    double_corruption_slider!
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     fewer_mercs!
@@ -23,6 +24,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     merchant_republic_province_limit_remove!
     more_base_relations!
     more_building_slots!
+    nerf_china!
     no_naval_attrition!
     power_projection_tweaks!
     reduce_ai_cheats!

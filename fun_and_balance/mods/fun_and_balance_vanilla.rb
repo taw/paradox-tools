@@ -11,6 +11,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     disable_burgundy_inheritance!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
+    double_corruption_slider!
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     fewer_mercs!
@@ -22,6 +23,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     merchant_republic_province_limit_remove!
     more_base_relations!
     more_building_slots!
+    nerf_china!
     no_naval_attrition!
     power_projection_tweaks!
     rebalance_conversion_rates!
@@ -35,7 +37,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     soft_patch_defines_lua!("fun_and_balance",
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
-      ["NCountry.MERCHANT_REPUBLIC_SIZE_LIMIT", 20, 10000],
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
