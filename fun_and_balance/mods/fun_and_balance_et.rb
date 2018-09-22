@@ -12,6 +12,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     can_convert_in_territories!
     cheaper_fort_maintenance!
     coalition_cb_defend_capital!
+    custom_nation_tweaks!
     disable_burgundy_inheritance!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
@@ -32,7 +33,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     soft_patch_defines_lua!("fun_and_balance",
       ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
-      ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
@@ -43,10 +43,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
-      ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
-      ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
-      ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
-      ["NNationDesigner.RULER_BASE_SKILL", 2, 3]
     )
 
     # Extended timeline diplomatic relations per era:

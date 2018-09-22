@@ -35,6 +35,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def custom_nation_tweaks!
+    soft_patch_defines_lua!("fun_and_balance_custom_nations",
+      ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
+      ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
+      ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
+      ["NNationDesigner.RULER_BASE_SKILL", 2, 3]
+    )
+  end
+
   def disable_burgundy_inheritance!
     patch_mod_file!("events/FlavorBUR.txt") do |node|
       node.each do |key, val|
@@ -174,6 +183,9 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       modify_node! node,
         ["war", "war_exhaustion_cost", nil, 100]
     end
+    soft_patch_defines_lua!("fun_and_balance_war_exhaustion",
+        ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
+    )
   end
 
   def religious_shift_decision!

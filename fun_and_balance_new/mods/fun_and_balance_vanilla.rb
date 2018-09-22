@@ -6,6 +6,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     can_convert_in_territories!
     cheaper_fort_maintenance!
     coalition_cb_defend_capital!
+    custom_nation_tweaks!
     disable_burgundy_inheritance!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!

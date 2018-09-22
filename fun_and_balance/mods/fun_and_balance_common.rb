@@ -44,6 +44,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def custom_nation_tweaks!
+    soft_patch_defines_lua!("fun_and_balance_custom_nations",
+      ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
+      ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
+      ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
+      ["NNationDesigner.RULER_BASE_SKILL", 2, 3]
+    )
+  end
+
   def disable_burgundy_inheritance!
     patch_mod_file!("events/FlavorBUR.txt") do |node|
       node.each do |key, val|
@@ -102,32 +111,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       modify_node! node,
         ["opinion_annex_vassal", "min", nil, -100],
         ["broke_march", "opinion", -50, -50]
-    end
-  end
-
-  def subject_religious_cbs!
-    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
-      # Press vassal's religious CBs
-      node["cb_crusade"]["prerequisites"].delete! "is_neighbor_of"
-      node["cb_crusade"]["prerequisites"].prepend! Property::OR[
-        "is_neighbor_of", "FROM",
-        "any_country", PropertyList[
-          "is_subject_of", "ROOT",
-          "religion_group", "ROOT",
-          "is_neighbor_of", "FROM",
-          "cb_on_religious_enemies", true,
-        ],
-      ]
-      node["cb_heretic"]["prerequisites"].delete! "is_neighbor_of"
-      node["cb_heretic"]["prerequisites"].prepend! Property::OR[
-        "is_neighbor_of", "FROM",
-        "any_country", PropertyList[
-          "is_subject_of", "ROOT",
-          "religion", "ROOT",
-          "is_neighbor_of", "FROM",
-          "cb_on_religious_enemies", true,
-        ],
-      ]
     end
   end
 
@@ -237,6 +220,9 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       modify_node! node,
         ["war", "war_exhaustion_cost", nil, 100]
     end
+    soft_patch_defines_lua!("fun_and_balance_war_exhaustion",
+        ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
+    )
   end
 
   def religious_shift_decision!
@@ -289,6 +275,32 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       # to balance LD from relative power (also tariffs, mercantilism etc.)
       types["colony"]["relative_power_class"] = 1
       types["colony"]["base_liberty_desire"] = -25.0
+    end
+  end
+
+  def subject_religious_cbs!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      # Press vassal's religious CBs
+      node["cb_crusade"]["prerequisites"].delete! "is_neighbor_of"
+      node["cb_crusade"]["prerequisites"].prepend! Property::OR[
+        "is_neighbor_of", "FROM",
+        "any_country", PropertyList[
+          "is_subject_of", "ROOT",
+          "religion_group", "ROOT",
+          "is_neighbor_of", "FROM",
+          "cb_on_religious_enemies", true,
+        ],
+      ]
+      node["cb_heretic"]["prerequisites"].delete! "is_neighbor_of"
+      node["cb_heretic"]["prerequisites"].prepend! Property::OR[
+        "is_neighbor_of", "FROM",
+        "any_country", PropertyList[
+          "is_subject_of", "ROOT",
+          "religion", "ROOT",
+          "is_neighbor_of", "FROM",
+          "cb_on_religious_enemies", true,
+        ],
+      ]
     end
   end
 end
