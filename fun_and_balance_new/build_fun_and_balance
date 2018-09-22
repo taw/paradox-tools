@@ -19,7 +19,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          ExtraFormableCountriesGameModification,
                          ChangeGovernmentGameModification
     create_mod_descriptor!(
-      name: "Fun and Balance (new build)",
+      name: "Fun and Balance",
       path: "mod/fun_and_balance_new",
       supported_version: "1.26",
       picture: "fun_and_balance.jpg",

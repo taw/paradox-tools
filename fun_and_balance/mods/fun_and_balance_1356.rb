@@ -2,6 +2,7 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
   def apply!
+    anyone_can_form_byzantium!
     buff_awful_idea_groups!
     # can_convert_in_territories!
     cheaper_fort_maintenance!
@@ -15,6 +16,7 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     fewer_mercs!
     longer_cb_on_backstabbers!
     lower_defender_ae!
+    make_constantinople_capital_ignore_culture_and_religion!
     more_base_relations!
     more_building_slots!
     no_naval_attrition!
@@ -40,11 +42,8 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
       ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
     )
-
-    anyone_can_form_byzantium!
     fix_opinions!
     fix_wargoals!
-    patch_religion!
     subject_tweaks!
   end
 

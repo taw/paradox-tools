@@ -2,6 +2,7 @@ require_relative "fun_and_balance_common"
 
 class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
+    anyone_can_form_byzantium!
     buff_awful_idea_groups!
     can_convert_in_territories!
     cheaper_fort_maintenance!
@@ -15,6 +16,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     fewer_mercs!
     longer_cb_on_backstabbers!
     lower_defender_ae!
+    make_constantinople_capital_ignore_culture_and_religion!
     more_base_relations!
     more_building_slots!
     no_naval_attrition!

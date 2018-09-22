@@ -2,6 +2,14 @@ require_relative "base"
 require_relative "../../eu4_trade_graph/trade_graph"
 
 class FunAndBalanceCommonGameModification < EU4GameModification
+  def anyone_can_form_byzantium!
+    patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
+      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! do |prop|
+        prop.key == "NOT" and (prop.val == PropertyList["tag", "HLR"] or prop.val == PropertyList["tag", "TUR"] or prop.val == PropertyList["tag", "ROM"])
+      end
+    end
+  end
+
   def buff_awful_idea_groups!
     patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node|
       node["maritime_ideas"]["merchant_marine"]["merchants"] = 1
@@ -107,6 +115,17 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     soft_patch_defines_lua!("fun_and_balance_lower_defender_ae",
       ["NDiplomacy.DEFENDER_AE_MULT", 0.75, 0.5],
     )
+  end
+
+  def make_constantinople_capital_ignore_culture_and_religion!
+    # Because Orthodox Ottomans are a thing now
+    patch_mod_file!("decisions/Ottoman.txt") do |node|
+      constantinople_decision = node["country_decisions"]["make_constantinople_capital"]
+      constantinople_decision["allow"].delete! "primary_culture"
+      constantinople_decision["allow"].delete! "religion_group"
+      constantinople_decision["effect"][151]["change_culture"] = "ROOT"
+      constantinople_decision["effect"][151]["change_religion"] = "ROOT"
+    end
   end
 
   def more_building_slots!

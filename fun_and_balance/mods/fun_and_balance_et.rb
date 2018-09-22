@@ -8,6 +8,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
   end
 
   def apply!
+    anyone_can_form_byzantium!
     buff_awful_idea_groups!
     can_convert_in_territories!
     cheaper_fort_maintenance!
@@ -21,6 +22,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     fewer_mercs!
     longer_cb_on_backstabbers!
     lower_defender_ae!
+    make_constantinople_capital_ignore_culture_and_religion!
     more_building_slots!
     no_naval_attrition!
     power_projection_tweaks!
@@ -67,10 +69,8 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     #     ["modern_times",   "diplomatic_upkeep",  6,  8]
     # end
 
-    anyone_can_form_byzantium!
     fix_opinions!
     fix_wargoals!
-    # patch_religion! - TODO
     subject_tweaks!
     # ET specific
     # fix_adopt_secularism_decision!

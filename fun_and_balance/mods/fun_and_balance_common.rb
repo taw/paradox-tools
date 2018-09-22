@@ -1,12 +1,11 @@
 require_relative "base"
 require_relative "../../eu4_trade_graph/trade_graph"
 
-# This file is still a bit too big, but no longer insanely so
 class FunAndBalanceCommonGameModification < EU4GameModification
   def anyone_can_form_byzantium!
     patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
       node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! do |prop|
-        prop.key == "NOT" and (prop.val == PropertyList["tag", "HLR"] or prop.val == PropertyList["tag", "TUR"])
+        prop.key == "NOT" and (prop.val == PropertyList["tag", "HLR"] or prop.val == PropertyList["tag", "TUR"] or prop.val == PropertyList["tag", "ROM"])
       end
     end
   end
@@ -135,6 +134,17 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     )
   end
 
+  def make_constantinople_capital_ignore_culture_and_religion!
+    # Because Orthodox Ottomans are a thing now
+    patch_mod_file!("decisions/Ottoman.txt") do |node|
+      constantinople_decision = node["country_decisions"]["make_constantinople_capital"]
+      constantinople_decision["allow"].delete! "primary_culture"
+      constantinople_decision["allow"].delete! "religion_group"
+      constantinople_decision["effect"][151]["change_culture"] = "ROOT"
+      constantinople_decision["effect"][151]["change_religion"] = "ROOT"
+    end
+  end
+
   def more_building_slots!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["development"]["allowed_num_of_buildings"] = 0.2
@@ -150,17 +160,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           tech.delete! "reduced_naval_attrition"
         end
       end
-    end
-  end
-
-  def patch_religion!
-    # Because Orthodox Ottomans are a thing now
-    patch_mod_file!("decisions/Ottoman.txt") do |node|
-      constantinople_decision = node["country_decisions"]["make_constantinople_capital"]
-      constantinople_decision["allow"].delete! "primary_culture"
-      constantinople_decision["allow"].delete! "religion"
-      constantinople_decision["effect"][151]["change_culture"] = "ROOT"
-      constantinople_decision["effect"][151]["change_religion"] = "ROOT"
     end
   end
 
