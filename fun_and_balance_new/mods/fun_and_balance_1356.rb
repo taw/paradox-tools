@@ -14,9 +14,12 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     fewer_mercs!
+    imperial_ban_cb_low_ae!
+    increase_rival_distance!
     longer_cb_on_backstabbers!
     lower_defender_ae!
     make_constantinople_capital_ignore_culture_and_religion!
+    merchant_republic_province_limit_remove!
     more_base_relations!
     more_building_slots!
     no_naval_attrition!
@@ -26,6 +29,7 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     reduce_we_only_at_peace!
     religious_shift_decision!
     subject_religious_cbs!
+    subject_tweaks!
     trade_map_fixes!
   end
 

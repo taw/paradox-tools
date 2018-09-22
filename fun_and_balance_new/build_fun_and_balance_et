@@ -15,6 +15,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   end
   def build_mod_files!
     apply_modifications! FunAndBalanceETGameModification,
+                         ReligiousLeaguesGameModification,
                          NationCustomizerGameModification,
                          ChangeGovernmentGameModification
     create_mod_descriptor!(

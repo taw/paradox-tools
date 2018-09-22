@@ -105,21 +105,17 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     )
   end
 
-  def fix_opinions!
-    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+  def imperial_ban_cb_low_ae!
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       modify_node! node,
-        ["opinion_annex_vassal", "min", nil, -100],
-        ["broke_march", "opinion", -50, -50]
+        ["take_province_ban", "badboy_factor", 1.0, 0.25]
     end
   end
 
-  def fix_wargoals!
-    # Imperial Ban CB adjust down
-    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
-      modify_node! node,
-        ["take_province_ban", "badboy_factor", 1.0, 0.1]
-      # Description doesn't match what it does
-    end
+  def increase_rival_distance!
+    soft_patch_defines_lua!("fun_and_balance_rival_distance",
+      ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
+    )
   end
 
   def longer_cb_on_backstabbers!
@@ -143,6 +139,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       constantinople_decision["effect"][151]["change_culture"] = "ROOT"
       constantinople_decision["effect"][151]["change_religion"] = "ROOT"
     end
+  end
+
+  def merchant_republic_province_limit_remove!
+    soft_patch_defines_lua!("fun_and_balance_merchant_republics",
+      ["NCountry.MERCHANT_REPUBLIC_SIZE_LIMIT", 20, 10000],
+    )
   end
 
   def more_building_slots!
@@ -254,29 +256,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     ]
   end
 
-  def subject_tweaks!
-    patch_mod_file!("common/subject_types/00_subject_types.txt") do |node|
-      # Due to forward declarations, it's a bit weird
-      types = {}
-      node.each do |subject_type, subject|
-        next if subject.empty?
-        raise "Multiple declarations, wtf" if types[subject_type]
-        types[subject_type] = subject
-      end
-
-      # Reduced by a lot to allow vassal game
-      types["vassal"]["liberty_desire_development_ratio"] = 0.1
-      types["march"]["relative_power_class"] = 1
-
-      # A bit more
-      types["tributary_state"]["liberty_desire_development_ratio"] = 0.2
-
-      # to balance LD from relative power (also tariffs, mercantilism etc.)
-      types["colony"]["relative_power_class"] = 1
-      types["colony"]["base_liberty_desire"] = -25.0
-    end
-  end
-
   def subject_religious_cbs!
     patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
       # Press vassal's religious CBs
@@ -300,6 +279,42 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           "cb_on_religious_enemies", true,
         ],
       ]
+    end
+  end
+
+ def subject_tweaks!
+    soft_patch_defines_lua!("fun_and_balance_subjcet_tweaks",
+      ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
+      ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
+      ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
+      ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
+      ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300]
+    )
+
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+      modify_node! node,
+        ["opinion_annex_vassal", "min", nil, -100]
+    end
+
+    patch_mod_file!("common/subject_types/00_subject_types.txt") do |node|
+      # Due to forward declarations, it's a bit weird
+      types = {}
+      node.each do |subject_type, subject|
+        next if subject.empty?
+        raise "Multiple declarations, wtf" if types[subject_type]
+        types[subject_type] = subject
+      end
+
+      # Reduced by a lot to allow vassal game
+      types["vassal"]["liberty_desire_development_ratio"] = 0.1
+      types["march"]["relative_power_class"] = 1
+
+      # A bit more
+      types["tributary_state"]["liberty_desire_development_ratio"] = 0.2
+
+      # to balance LD from relative power (also tariffs, mercantilism etc.)
+      types["colony"]["relative_power_class"] = 1
+      types["colony"]["base_liberty_desire"] = -25.0
     end
   end
 end

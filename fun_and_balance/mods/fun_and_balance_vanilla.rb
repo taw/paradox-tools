@@ -14,9 +14,12 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     fewer_mercs!
+    imperial_ban_cb_low_ae!
+    increase_rival_distance!
     longer_cb_on_backstabbers!
     lower_defender_ae!
     make_constantinople_capital_ignore_culture_and_religion!
+    merchant_republic_province_limit_remove!
     more_base_relations!
     more_building_slots!
     no_naval_attrition!
@@ -26,26 +29,17 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     reduce_we_only_at_peace!
     religious_shift_decision!
     subject_religious_cbs!
+    subject_tweaks!
     trade_map_fixes!
 
     soft_patch_defines_lua!("fun_and_balance",
-      ["NAI.DIPLOMATIC_INTEREST_DISTANCE", 150, 200],
       ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
-      ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
-      ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
       ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
       ["NCountry.MERCHANT_REPUBLIC_SIZE_LIMIT", 20, 10000],
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
-      ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
-      ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
-      ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300],
     )
-
-    fix_opinions!
-    fix_wargoals!
-    subject_tweaks!
   end
 
   def more_base_relations!
