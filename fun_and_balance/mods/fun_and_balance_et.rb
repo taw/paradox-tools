@@ -24,6 +24,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     no_naval_attrition!
     power_projection_tweaks!
     reduce_ai_cheats!
+    reduce_we_only_at_peace!
     religious_shift_decision!
     subject_religious_cbs!
     trade_map_fixes!
@@ -59,8 +60,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
-        ["base_values", "diplomatic_upkeep", 3, 6],
-        ["war", "war_exhaustion_cost", nil, 100]
+        ["base_values", "diplomatic_upkeep", 3, 6]
     end
     # We could do something fancier here
     # patch_mod_file!("common/triggered_modifiers/et_triggered_modifiers.txt") do |node|

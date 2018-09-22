@@ -20,6 +20,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     power_projection_tweaks!
     rebalance_conversion_rates!
     reduce_ai_cheats!
+    reduce_we_only_at_peace!
     religious_shift_decision!
     subject_religious_cbs!
     trade_map_fixes!

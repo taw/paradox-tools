@@ -14,11 +14,13 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     fewer_mercs!
     longer_cb_on_backstabbers!
     lower_defender_ae!
+    more_base_relations!
     more_building_slots!
     no_naval_attrition!
     power_projection_tweaks!
     rebalance_conversion_rates!
     reduce_ai_cheats!
+    reduce_we_only_at_peace!
     religious_shift_decision!
     subject_religious_cbs!
     trade_map_fixes!
@@ -44,18 +46,18 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
     )
 
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node! node,
-        ["base_values", "diplomatic_upkeep", 4, 8],
-        ["war", "war_exhaustion_cost", nil, 100]
-    end
-
     anyone_can_form_byzantium!
     fix_opinions!
     fix_wargoals!
     patch_religion!
-    # disable_burgundy_inheritance! # there are other changes mod makes, so maybe it's OK
     subject_tweaks!
+  end
+
+  def more_base_relations!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["base_values", "diplomatic_upkeep", 4, 8]
+    end
   end
 
   def trade_map_fixes!

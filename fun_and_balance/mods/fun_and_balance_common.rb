@@ -232,6 +232,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def reduce_we_only_at_peace!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["war", "war_exhaustion_cost", nil, 100]
+    end
+  end
+
   def religious_shift_decision!
     localization! "religious_shift",
       "religious_shift_title" => "Accept Religious Shift",

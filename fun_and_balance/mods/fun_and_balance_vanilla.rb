@@ -20,6 +20,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     power_projection_tweaks!
     rebalance_conversion_rates!
     reduce_ai_cheats!
+    reduce_we_only_at_peace!
     religious_shift_decision!
     subject_religious_cbs!
     trade_map_fixes!
@@ -43,11 +44,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3],
     )
-
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node! node,
-        ["war", "war_exhaustion_cost", nil, 100]
-    end
 
     anyone_can_form_byzantium!
     fix_opinions!
