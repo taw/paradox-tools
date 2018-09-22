@@ -48,6 +48,8 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       CHL
       COL
       CRO
+      DEC
+      DLH
       EGY
       ENG
       FRA
@@ -66,31 +68,40 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       IRE
       ITA
       JAP
+      KLK
       KOJ
+      KSD
       KUR
       LAP
       LOU
       MAM
+      MAR
       MAY
       MCH
       MEX
       MOR
       MSA
       MUG
+      NAG
       NED
+      NPL
+      ORI
       PER
       PEU
       PLC
       POL
       PRG
       PRU
+      PUN
       QNG
       QUE
+      RJP
       RMN
       ROM
       RUM
       RUS
       SCA
+      SCO
       SOK
       SPA
       SPI
@@ -107,6 +118,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       WES
       YEM
       YUA
+      ZUN
     ]
     cant_by_formed_by = %W[
       BHA
@@ -147,10 +159,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
             Property::NOT["has_country_flag", "fun_and_balance.formed_#{tag}"],
             Property::NOT["exists", tag],
             *cant_by_formed_by.map{|ct| Property::NOT["tag", ct] },
-            Property::OR[
-              "culture_group", culture_group,
-              "accepted_culture", culture,
-            ],
+            "primary_culture", culture,
           ],
           "allow", PropertyList[
             "adm_tech", 10,
