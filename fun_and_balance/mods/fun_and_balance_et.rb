@@ -20,6 +20,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     increase_rival_distance!
     longer_cb_on_backstabbers!
     lower_defender_ae!
+    lower_piracy_penalty!
     make_constantinople_capital_ignore_culture_and_religion!
     merchant_republic_province_limit_remove!
     more_base_relations!

@@ -139,6 +139,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     )
   end
 
+  def lower_piracy_penalty!
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+      modify_node! node,
+        ["pirated_us", "min", -100, -25]
+    end
+  end
+
   def make_constantinople_capital_ignore_culture_and_religion!
     # Because Orthodox Ottomans are a thing now
     patch_mod_file!("decisions/Ottoman.txt") do |node|
