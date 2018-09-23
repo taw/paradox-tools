@@ -117,17 +117,45 @@ class ListCountries < ParadoxGame
     @history_provinces
   end
 
-  def call
-    history_countries
-    history_provinces
-    development_by_tag
+  def culture_group
+    unless @culture_group
+      @culture_group = {}
+      glob("common/cultures/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |key, val|
+            next unless val.is_a?(PropertyList)
+            @culture_group[key] = group_name
+          end
+        end
+      end
+    end
+    @culture_group
+  end
 
+  def religion_group
+    unless @religion_group
+      @religion_group = {}
+      glob("common/religions/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |key, val|
+            next unless val.is_a?(PropertyList)
+            @religion_group[key] = group_name
+          end
+        end
+      end
+    end
+    @religion_group
+  end
+
+  def call
     headers = [
       "tag",
       "name",
       "development",
       "religion",
+      "religion group",
       "culture",
+      "culture group",
       "government",
       "rank",
       "technology group",
@@ -143,7 +171,9 @@ class ListCountries < ParadoxGame
         localization(tag),
         dev,
         localization(country.religion),
+        localization(religion_group[country.religion]),
         localization(country.primary_culture),
+        localization(culture_group[country.primary_culture]),
         localization(country.government),
         country.government_rank,
         localization(country.technology_group),
