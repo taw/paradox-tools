@@ -47,7 +47,7 @@ class ParadoxModFile
     load_data!
     tokenize!
     rv = parse_obj
-    raise "Parse error - leftover tokens #{@tokens[0,30].inspect}..." unless @tokens.empty?
+    raise "Parse error in #{path || 'passed string'} - leftover tokens #{@tokens[0,30].inspect}..." unless @tokens.empty?
     rv
   end
 

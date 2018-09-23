@@ -1,0 +1,161 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class CountryHistory
+  attr_reader :tag
+  attr_accessor :government, :government_rank, :technology_group, :religion, :primary_culture
+
+  def initialize(tag, node, date)
+    @tag = tag
+    @date = date
+    add(node)
+  end
+
+  def add(node)
+    node.each do |key, val|
+      case key
+      when Date
+        next if key > @date
+        add(val)
+      when "government", "government_rank", "technology_group", "religion", "primary_culture"
+        send(:"#{key}=", val)
+      else
+        # Ignore for now
+      end
+    end
+  end
+end
+
+class ProvinceHistory
+  attr_reader :id
+  attr_accessor :base_tax, :base_production, :base_manpower, :culture, :religion, :hre
+  attr_accessor :owner, :controller, :capital, :trade_goods
+  attr_accessor :native_size, :native_ferocity, :native_hostileness
+
+  def initialize(id, node, date)
+    @id = id
+    @date = date
+
+    @base_tax = 0
+    @base_production = 0
+    @base_manpower = 0
+    @owner = nil
+    @controller = nil
+    @capital = nil
+    @trade_goods = nil
+    @hre = false
+
+    add(node)
+  end
+
+  def add(node)
+    node.each do |key, val|
+      case key
+      when Date
+        next if key > @date
+        add(val)
+      when "base_tax", "base_production", "base_manpower", "culture", "religion", "hre", "controller",
+           "capital", "trade_goods", "native_size", "native_ferocity", "native_hostileness", "owner"
+        send(:"#{key}=", val)
+      else
+        # Ignore for now
+      end
+    end
+  end
+
+  def development
+    @base_tax + @base_production + @base_manpower
+  end
+end
+
+class ListCountries < ParadoxGame
+  def date
+    @date ||= Date.parse("1444.11.11")
+  end
+
+  def development_by_tag
+    unless @development_by_tag
+      @development_by_tag = Hash.new(0)
+      history_provinces.each do |id, prov|
+        next unless prov.owner
+        @development_by_tag[prov.owner] += prov.development
+      end
+    end
+    @development_by_tag
+  end
+
+  def history_countries
+    unless @history_countries
+      @history_countries = {}
+      glob("history/countries/*.txt").each do |path|
+        begin
+          tag = File.basename(path)[0,3]
+          node = parse(path)
+          @history_countries[tag] = CountryHistory.new(tag, node, date)
+        rescue
+          warn "#{path} failed: #{$!}"
+        end
+      end
+    end
+    @history_countries
+  end
+
+  def history_provinces
+    unless @history_provinces
+      @history_provinces = {}
+      glob("history/provinces/*.txt").each do |path|
+        begin
+          id = File.basename(path)[/\d+/].to_i
+          node = parse(path)
+          @history_provinces[id] = ProvinceHistory.new(id, node, date)
+        rescue
+          warn "#{path} failed: #{$!}"
+        end
+      end
+    end
+    @history_provinces
+  end
+
+  def call
+    history_countries
+    history_provinces
+    development_by_tag
+
+    headers = [
+      "tag",
+      "name",
+      "development",
+      "religion",
+      "culture",
+      "government",
+      "rank",
+      "technology group",
+    ]
+
+    result = []
+    history_countries.each do |tag, country|
+      dev = development_by_tag[tag]
+      next if dev == 0
+
+      result << [
+        tag,
+        localization(tag),
+        dev,
+        localization(country.religion),
+        localization(country.primary_culture),
+        localization(country.government),
+        country.government_rank,
+        localization(country.technology_group),
+      ]
+    end
+
+    result.sort_by!{|row| [-row[2], row[1]] }
+    puts headers.join("\t")
+    result.each do |row|
+      puts row.join("\t")
+    end
+  end
+end
+
+ListCountries.new(*ARGV).call
