@@ -92,18 +92,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def everybody_can_can_claim_states!
-    patch_mod_files!("common/governments/*.txt") do |node|
-      node.each do |name, government|
-        next if government["claim_states"]
-        government["claim_states"] = true
-        # I tried to make this locked to empire rank, but game just ignore that
-        # next unless government["rank"]
-        # government["rank"].each do |rank, rank_bonuses|
-        #   if rank >= 3
-        #     rank_bonuses["claim_states"] = true
-        #   end
-        # end
-      end
+    patch_file!("common/government_reforms/00_government_reforms.txt") do |content|
+      content.gsub('icon "', 'icon = "')
+    end
+    patch_mod_file!("common/government_reforms/00_government_reforms.txt") do |node|
+      node["defaults_reform"]["claim_states"] = true
     end
   end
 
