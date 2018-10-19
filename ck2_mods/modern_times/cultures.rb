@@ -28,6 +28,9 @@ ModernTimesDatabase::CULTURES = {
   "d_yatviags"     => "belarusian",
   "d_polotsk"      => "belarusian",
   "c_pinsk"        => "belarusian",
+  "c_turov"        => "belarusian",
+  "c_lyubech"      => "belarusian",
+  "c_beresty"      => "belarusian",
   # Just remove mongols, all of these horde cultures feel temporary
   "k_cuman"        => "cuman",
   "k_turkestan"    => "cuman",
@@ -47,4 +50,7 @@ ModernTimesDatabase::CULTURES = {
   "c_thessalia"    => "greek",
   "c_cephalonia"   => "greek",
   "d_cherson"      => "alan", # Tartar ?
+  "c_derbent"      => "turkish", # azeri
+  "c_shirvan"      => "turkish", # azeri
+  "c_shemakha"     => "turkish", # azeri
 }

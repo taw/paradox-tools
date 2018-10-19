@@ -484,7 +484,7 @@ ModernTimesDatabase::TITLES = {
     liege: {annexation_latvia: "e_russia", fall_soviet_union: nil},
   },
   d_azerbaijan: {
-    culture: :persian, # close enough
+    culture: :turkish, # close enough
     religion: :shiite,
     liege: { annexation_azerbaijan: "e_russia", fall_soviet_union: nil },
   },

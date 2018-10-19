@@ -9,6 +9,7 @@ ModernTimesDatabase::LAND = {
   d_sanaa:        { times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
   d_taizz:        { times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_kathiri:      { times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
+  c_mahra:        { times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa" },
   c_aden:         { times_immemorial: "e_arabia",aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa" },
 
   c_abkhazia:     { times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", abkhazia_war: "e_russia" },
@@ -138,8 +139,8 @@ ModernTimesDatabase::LAND = {
   c_tadjoura:   { times_immemorial: "d_harer", djibouti_french: "e_france", djibouti_independence: "d_afar" },
   d_harer:      { times_immemorial: "d_harer", british_somaliland: "e_britannia", somalia_independence: "d_harer" },
   c_busaso:     { times_immemorial: "d_harer", italian_somaliland: "e_italy", somalia_independence: "d_harer"  },
-  c_idjil:      { times_immemorial: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
-  c_ouadane:    { times_immemorial: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
+  c_idjil:      { times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
+  c_ouadane:    { times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu" },
   c_tharasset:  { times_immemorial: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania" },
 
   c_urbino:     { times_immemorial: "c_urbino", urbino_papal: "k_papal_state", treaty_of_zurich: "k_italy", italy_unification: "e_italy" },
@@ -177,7 +178,7 @@ ModernTimesDatabase::LAND = {
   k_brittany:   { times_immemorial: "e_france" },
 
   d_lithuanians: { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians" },
-  c_yatvyagi:    { times_immemorial: "e_wendish_empire", poland_3_partition: "k_pomerania", duchy_warsaw: "k_poland", end_ww1: "d_lithuanians" },
+  c_yatvyagi:    { times_immemorial: "e_wendish_empire", poland_3_partition: "k_pomerania", duchy_warsaw: "k_poland" },
   c_aukshayts:   { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "d_lithuanians" },
   c_zhmud:       { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_lithuanians" },
   c_jacwiez:     { times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_belarus"},
@@ -217,7 +218,6 @@ ModernTimesDatabase::LAND = {
 
   d_dihistan:  { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_konjikala: { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
-  c_tus:       { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_merv:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_amol:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan" },
   c_aral:      { forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva" },
@@ -269,6 +269,8 @@ ModernTimesDatabase::LAND = {
   c_kemi:       { forever_ago: "k_sweden", end_of_swedish_finland: "k_finland" },
 
   k_perm:           { forever_ago: "e_russia" },
+  c_erchis:         { forever_ago: "e_russia" },
+  c_gorgol:         { forever_ago: "e_russia" },
   k_volga_bulgaria: { forever_ago: "e_russia" },
   k_rus:            { forever_ago: "e_russia" },
   d_alania:         { forever_ago: "e_russia" },
@@ -281,6 +283,7 @@ ModernTimesDatabase::LAND = {
   d_tabriz:       { forever_ago: "k_persia" },
   d_mazandaran:   { forever_ago: "k_persia" },
   c_sarakhs:      { forever_ago: "k_persia" },
+  c_tus:          { forever_ago: "k_persia" },
   c_kermanshah:   { forever_ago: "k_persia" },
   d_khorasan:     { forever_ago: "k_persia" },
 
@@ -390,7 +393,7 @@ ModernTimesDatabase::LAND = {
 
   c_bryansk:     { forever_ago: "e_russia" },
   c_chernigov:   { forever_ago: "e_russia", end_ww1: "k_ruthenia"},
-  c_lyubech:     { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_ruthenia"},
+  c_lyubech:     { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
   c_vodi:        { forever_ago: "k_sweden", st_petersburg_founding: "e_russia" },
 
   d_itil:      { forever_ago: "e_russia", end_ww1: "k_cuman" }, # GeaCron says it was Russian in 1700, other sources not so sure
@@ -404,6 +407,7 @@ ModernTimesDatabase::LAND = {
   c_polotsk:   { forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
   c_lepiel:    { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_belarus"},
   c_pinsk:     { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_belarus"},
+  c_beresty:   { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_belarus"},
 
   c_salzburg:     { forever_ago: "c_salzburg", peace_of_pressburg: "e_carpathia", treaty_of_shoenbrunn: "d_bavaria", congress_of_vienna: "e_carpathia", end_ww1: "k_bavaria", anschluss: "e_germany", end_ww2: "k_bavaria" },
 
@@ -420,6 +424,7 @@ ModernTimesDatabase::LAND = {
   d_moldau:       { forever_ago: "e_arabia", treaty_of_jassy: "e_russia", end_ww1: "k_ruthenia"},
 
   d_verona:       { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
+  c_aquileia:     { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
   d_venice:       { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy" },
   c_zadar:        { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia" },
   c_split:        { forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia" },
@@ -444,8 +449,8 @@ ModernTimesDatabase::LAND = {
 
   c_peremyshl:         { forever_ago: "e_wendish_empire", poland_1_partition: "e_carpathia", end_ww1: "k_poland" },
   c_galich:            { forever_ago: "e_wendish_empire", poland_1_partition: "e_carpathia", end_ww1: "k_poland", end_ww2: "k_ruthenia" },
-  c_turov:             { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_ruthenia"},
-  d_volhynia:          { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_ruthenia" },
+  c_turov:             { forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_belarus"},
+  c_vladimir_volynsky: { forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_ruthenia" },
 
   c_holstein:     { forever_ago: "k_denmark", treaty_of_vienna_1864: "k_pomerania", german_unification: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany" },
 
@@ -467,7 +472,6 @@ ModernTimesDatabase::LAND = {
   # Muscat and Oman
   d_oman:     { forever_ago: "d_oman", oman_persian: "k_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
   c_dhofar: { forever_ago: "d_oman", oman_persian: "k_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
-  c_mahra: { forever_ago: "d_oman", oman_persian: "k_persia", oman_not_persian: "d_oman", oman_british: "e_britannia", oman_independence: "d_oman" },
   c_dhu_zabi:  { forever_ago: "d_oman", general_maritime_treaty: "e_britannia", oman_independence: "c_dhu_zabi" },
 
   c_taizz:   { forever_ago: "e_arabia", north_yemen_independence: "d_arabia_felix", yemen_unification: "d_sanaa" },
