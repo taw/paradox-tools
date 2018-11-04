@@ -27,6 +27,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     nerf_china!
     no_naval_attrition!
     power_projection_tweaks!
+    primary_greek_tag_is_byz!
     rebalance_conversion_rates!
     reduce_ai_cheats!
     reduce_we_only_at_peace!

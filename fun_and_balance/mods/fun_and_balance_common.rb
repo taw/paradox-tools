@@ -170,7 +170,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   def no_naval_attrition!
     patch_mod_file!("common/technologies/dip.txt") do |node|
-      node.find_all("technology").each_with_index do |tech,i|
+      node.find_all("technology").each_with_index do |tech, i|
         if i == 0
           tech["reduced_naval_attrition"] = true
         else
@@ -199,6 +199,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ["great_power_6",             "power",         14,  32],
         ["great_power_7",             "power",         12,  29],
         ["great_power_8",             "power",         10,  25]
+    end
+  end
+
+  def primary_greek_tag_is_byz!
+    patch_mod_file!("common/cultures/00_cultures.txt") do |node|
+      node.each do |group_name, group|
+        next unless group_name == "byzantine"
+        group["greek"]["primary"] = "BYZ"
+      end
     end
   end
 
@@ -297,7 +306,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
- def subject_tweaks!
+  def subject_tweaks!
     soft_patch_defines_lua!("fun_and_balance_subjcet_tweaks",
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
