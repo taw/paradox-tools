@@ -13,6 +13,7 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
       "output/fun_and_balance_et"
     )
   end
+
   def build_mod_files!
     apply_modifications! FunAndBalanceETGameModification,
                          ReligiousLeaguesGameModification,

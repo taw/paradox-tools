@@ -37,12 +37,11 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     trade_map_fixes!
 
     soft_patch_defines_lua!("fun_and_balance",
-      ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
-      ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
-      ["NCountry.PS_CHANGE_CULTURE", 10, 5],
-      ["NCountry.PS_MOVE_CAPITAL", 200, 100],
-      ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
-    )
+                            ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
+                            ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
+                            ["NCountry.PS_CHANGE_CULTURE", 10, 5],
+                            ["NCountry.PS_MOVE_CAPITAL", 200, 100],
+                            ["NCountry.PS_MOVE_TRADE_PORT", 200, 100])
   end
 
   def fix_adopt_secularism_decision!
@@ -66,7 +65,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
         ["mexico", "panama"],
       ] + [
         ["panama", "mexico"],
-        # ["patagonia", "lima"], # already there
+      # ["patagonia", "lima"], # already there
       ]
     end
   end
