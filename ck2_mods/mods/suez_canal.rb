@@ -14,8 +14,8 @@ class SuezCanalGameModification < CK2GameModification
     end
     # Merge both oceans
     patch_mod_file!("map/default.map") do |map|
-      map.delete! Property["ocean_region", PropertyList["sea_zones", [5, 6, 7, 8]]]
-      map["ocean_region"]["sea_zones"] = [1,2,3,4,5,6,7,8]
+      map.delete! Property["ocean_region", PropertyList["sea_zones", [*14..17]]]
+      map["ocean_region"]["sea_zones"] = [*1..17]
     end
   end
 end
