@@ -137,13 +137,13 @@ class Division
   end
 
   def armor
-    mx = @units.map(&:armor).max
+    mx = @units.map(&:armor).max || 0.0
     wa = @units.map(&:armor).avg
     (0.3 * mx + 0.7 * wa).round(3)
   end
 
   def piercing
-    mx = @units.map(&:piercing).max
+    mx = @units.map(&:piercing).max || 0.0
     wa = @units.map(&:piercing).avg
     (0.4 * mx + 0.6 * wa).round(3)
   end

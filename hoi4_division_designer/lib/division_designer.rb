@@ -12,7 +12,7 @@ require_relative "unit"
 
 module Enumerable
   def avg
-    return if empty?
+    return 0.0 if empty?
     sum.to_f / size
   end
 end
