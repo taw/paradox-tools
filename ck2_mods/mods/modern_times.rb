@@ -52,12 +52,12 @@ class ModernTimesGameModification < CK2GameModification
     @dynasties[name][:id]
   end
 
-  def add_holders!(node, holders, min_date=nil, max_date=nil)
+  def add_holders!(node, holders, min_date = nil, max_date = nil)
     # max date is time when next country gets it so strict <
-    holders = holders.select{|d,id| d < max_date} if max_date
+    holders = holders.select { |d, id| d < max_date } if max_date
     # min date is when this country gets it so >=
     # If multiple characters with same date (due to date compression, take the last one)
-    holders = holders.map{|d,id| [[d,min_date].max, id]}.reverse.uniq(&:first).reverse if min_date
+    holders = holders.map { |d, id| [[d, min_date].max, id] }.reverse.uniq(&:first).reverse if min_date
     holders.each do |date, id|
       node.add! date, PropertyList["holder", id]
     end
@@ -76,14 +76,14 @@ class ModernTimesGameModification < CK2GameModification
     # If liege's culture is in the duchy even as minority, choose it
     return liege_culture if cultures.include?(liege_culture)
     # Else choose dominant culture
-    cultures.group_by(&:itself).map{|c,xx| [-xx.size, c]}.sort[0][1]
+    cultures.group_by(&:itself).map { |c, xx| [-xx.size, c] }.sort[0][1]
   end
 
   def regional_vassals(liege, duchy)
     unless @regional_vassals[[liege, duchy]]
       @regional_vassals[[liege, duchy]] = []
       # We need to break long stretches of time into 15 year fragments
-      @db.liege_has_land_in_active(liege, duchy).to_list.each do |s,e|
+      @db.liege_has_land_in_active(liege, duchy).to_list.each do |s, e|
         xe = e || @db.resolve_date(:title_holders_until)
         while true
           # Always liege religion but could be local culture
@@ -99,7 +99,7 @@ class ModernTimesGameModification < CK2GameModification
           )
           @character_manager.generate_family!(id)
           @regional_vassals[[liege, duchy]] << [s, id]
-          s >>= (12*15)  # 40..55 years
+          s >>= (12 * 15)  # 40..55 years
           break if s >= xe
         end
         @regional_vassals[[liege, duchy]] << [e, 0] if e
@@ -132,6 +132,11 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_county_history!(title, node)
+    unless map.landed_titles_lookup[title]
+      STDERR.puts "Bad title: #{title}"
+      return
+    end
+
     node.each do |date, props|
       next unless props.is_a?(PropertyList)
       props.delete! "set_tribute_suzerain"
@@ -155,7 +160,7 @@ class ModernTimesGameModification < CK2GameModification
 
     land.size.times do |i|
       start_date, liege = land[i]
-      end_date = land[i+1] && land[i+1][0]
+      end_date = land[i + 1] && land[i + 1][0]
       allocate_title!(title, node, liege, start_date, end_date)
     end
   end
@@ -175,17 +180,17 @@ class ModernTimesGameModification < CK2GameModification
       when "d_zealots"
         # Israel restores Zealots
         node.add! @db.resolve_date(:israel_independence), PropertyList[
-          "active", true,
-          "liege", "k_israel"
-        ]
+                    "active", true,
+                    "liege", "k_israel"
+                  ]
         node.add! @db.resolve_date(:israel_independence), PropertyList[]
       when "d_mamluks"
         node.add! @db.resolve_date(:times_immemorial), PropertyList[
-          "liege", "e_arabia"
-        ]
+                    "liege", "e_arabia"
+                  ]
         node.add! @db.resolve_date(:end_of_ottoman_empire), PropertyList[
-          "liege", "k_egypt"
-        ]
+                    "liege", "k_egypt"
+                  ]
       when "d_hashshashin"
         # We really want to resurrect assassins, dated at Iranian Revolution
         node.add! @db.resolve_date(:iranian_revolution), PropertyList[
@@ -207,7 +212,12 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_barony!(title, node)
-    county = @map.landed_titles_lookup[title].find{|t| t =~ /\Ac_/}
+    unless @map.landed_titles_lookup[title]
+      warn "Bad barony title: #{title}"
+      return
+    end
+    county = @map.landed_titles_lookup[title].find { |t| t =~ /\Ac_/ }
+
     # No actual holders, just set lieges and let game automatically fill in
     node.add! reset_date, PropertyList["holder", 0]
     if @db.land[title]
@@ -217,7 +227,7 @@ class ModernTimesGameModification < CK2GameModification
       land = @db.land[title]
       land.size.times do |i|
         start_date, liege = land[i]
-        end_date = land[i+1] && land[i+1][0]
+        end_date = land[i + 1] && land[i + 1][0]
         add_holders! node, holders[liege], start_date, end_date
       end
       # @db.land[title].each do |date, liege|
@@ -234,7 +244,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_title_history!
     # This is a silly trick of creating node if it doesn't exist, reusing it otherwise
-    @db.titles.keys.each do |title|
+    @db.titles.keys.sort.each do |title|
       path = path_for_title(title)
       begin
         parse(path)
@@ -279,8 +289,8 @@ class ModernTimesGameModification < CK2GameModification
   # This only generates warnings, it doesn't affect execution
   def check_if_automatic_holders_ok!(title)
     autoholders = @db.titles[title][:autoholders]
-    no_holders  = (@db.holders[title] || {}).empty?
-    has_holders         = autoholders & @db.title_has_holder[title]
+    no_holders = (@db.holders[title] || {}).empty?
+    has_holders = autoholders & @db.title_has_holder[title]
     needs_extra_holders = @db.title_needs_extra_holders[title]
 
     case autoholders
@@ -307,14 +317,14 @@ class ModernTimesGameModification < CK2GameModification
   # TODO: move most of it to Database class
   def holders
     unless @holders
-      @holders  = {}
+      @holders = {}
       @db.titles.each do |title, data|
         rng = Random.keyed("vassal terms: #{title}")
-        title    = title
-        holders  = @db.holders[title] || {}
+        title = title
+        holders = @db.holders[title] || {}
         check_if_automatic_holders_ok!(title)
         unless @db.title_needs_extra_holders[title].empty?
-          @db.title_needs_extra_holders[title].to_list.each do |s,e|
+          @db.title_needs_extra_holders[title].to_list.each do |s, e|
             xe = e || @db.resolve_date(:title_holders_until)
             while true
               holders[s] = {
@@ -322,7 +332,7 @@ class ModernTimesGameModification < CK2GameModification
                 religion: data[:religion],
                 female: :maybe,
               }
-              s += rng.rand(5*365..20*365) # start at 25..40, term 5..20, end at 30..60
+              s += rng.rand(5 * 365..20 * 365) # start at 25..40, term 5..20, end at 30..60
               break if s >= xe
             end
             # This can mean two things:
@@ -340,9 +350,9 @@ class ModernTimesGameModification < CK2GameModification
             @holders[title] << [date, id]
           else
             id = @character_manager.add_ruler(holder.merge(key: {
-              crowning: date,
-              title: title,
-            }))
+                                                             crowning: date,
+                                                             title: title,
+                                                           }))
             @character_manager.generate_family!(id) unless title == "k_papal_state"
             @holders[title] << [date, id]
           end
@@ -354,9 +364,9 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_defines!
     patch_mod_file!("common/defines.txt") do |node|
-      node["start_date"]      = @db.min_date
+      node["start_date"] = @db.min_date
       node["last_start_date"] = @db.resolve_date(:today)
-      node["end_date"]        = @db.resolve_date(:game_end)
+      node["end_date"] = @db.resolve_date(:game_end)
     end
   end
 
@@ -364,8 +374,8 @@ class ModernTimesGameModification < CK2GameModification
     duchies = []
     patch_mod_files!("history/technology/*.txt") do |node|
       # Could get them from map, just sanity check to get them here
-      duchies += node.find_all("technology").map{|x| x["titles"]}.flatten
-      node.delete!{true}
+      duchies += node.find_all("technology").map { |x| x["titles"] }.flatten
+      node.delete! { true }
     end
 
     tech_groups = {}
@@ -381,44 +391,43 @@ class ModernTimesGameModification < CK2GameModification
       end
     end
 
-    plist = tech_groups.sort.map do |(m1,e1,c1,m2,e2,c2,m3,e3,c3), titles|
+    plist = tech_groups.sort.map do |(m1, e1, c1, m2, e2, c2, m3, e3, c3), titles|
       Property["technology", PropertyList[
-          "titles", titles,
-          1700, PropertyList[
-            "military", m1,
-            "economy", e1,
-            "culture", c1,
-          ],
-          1900, PropertyList[
-            "military", m2,
-            "economy", e2,
-            "culture", c2,
-          ],
-          2016, PropertyList[
-            "military", m3,
-            "economy", e3,
-            "culture", c3,
-          ],
-        ]
+                 "titles", titles,
+                 1700, PropertyList[
+                   "military", m1,
+                   "economy", e1,
+                   "culture", c1,
+                 ],
+                 1900, PropertyList[
+                   "military", m2,
+                   "economy", e2,
+                   "culture", c2,
+                 ],
+                 2016, PropertyList[
+                   "military", m3,
+                   "economy", e3,
+                   "culture", c3,
+                 ],
+               ]
       ]
     end
 
     create_mod_file! "history/technology/modern_times.txt", PropertyList[*plist]
 
     override_defines_lua!("modern_times",
-      "NTechnology.DONT_EXECUTE_TECH_BEFORE" => 1700,
-      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_YEAR" => 1700,
-      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_MONTH" => 1,
-      "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_DAY" => 1,
-    )
+                          "NTechnology.DONT_EXECUTE_TECH_BEFORE" => 1700,
+                          "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_YEAR" => 1700,
+                          "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_MONTH" => 1,
+                          "NEngine.MISSING_SCRIPTED_SUCCESSOR_ERROR_CUTOFF_DAY" => 1)
   end
 
   def cleanup_history_node!(node)
     # Presumably not needed but for sake of convention
     # Maybe merge nodes with same date?
-    unless node.keys.all?{|k| k.is_a?(Date)}
+    unless node.keys.all? { |k| k.is_a?(Date) }
       node.instance_eval do
-        @list = @list.map do |k,v|
+        @list = @list.map do |k, v|
           case k
           when Date
             [k, v]
@@ -430,8 +439,8 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
     end
-    node.delete!{|prop| prop.val == []}
-    node.sort_by!{|prop| [prop.key, prop.val.to_s]}
+    node.delete! { |prop| prop.val == [] }
+    node.sort_by! { |prop| [prop.key, prop.val.to_s] }
   end
 
   def path_for_title(title)
@@ -637,7 +646,6 @@ class ModernTimesGameModification < CK2GameModification
         ],
       ],
 
-
       # Indian vassals should be content by law of British Empire
       # This just delays rebellion a generation, but that's exactly what we want
       "character_event", PropertyList[
@@ -729,8 +737,8 @@ class ModernTimesGameModification < CK2GameModification
     end
 
     return if title == "c_roma"
-    first_castle = holdings.keys.find{|c| holdings[c] == "castle"}
-    first_city   = holdings.keys.find{|c| holdings[c] == "city"}
+    first_castle = holdings.keys.find { |c| holdings[c] == "castle" }
+    first_city = holdings.keys.find { |c| holdings[c] == "city" }
 
     if holdings[capital] == "temple" or ["c_pskov", "c_novgorod"].include?(title)
       if first_castle
@@ -750,9 +758,9 @@ class ModernTimesGameModification < CK2GameModification
       else
         warn "No city in #{title}"
       end
-    # Check and it's good
-    # elsif holdings[capital] == "city"
-    #   warn "#{@map.landed_titles_lookup[title].reverse.join(" / ")} is city, should it be?"
+      # Check and it's good
+      # elsif holdings[capital] == "city"
+      #   warn "#{@map.landed_titles_lookup[title].reverse.join(" / ")} is city, should it be?"
     end
   end
 
@@ -772,11 +780,11 @@ class ModernTimesGameModification < CK2GameModification
     patch_mod_files!("history/provinces/*.txt") do |node|
       title = node["title"]
       changes = node.values.grep(PropertyList)
-      culture  = [node["culture"], *changes.map{|v| v["culture"] }].compact.last
-      religion = [node["religion"], *changes.map{|v| v["religion"] }].compact.last
+      culture = [node["culture"], *changes.map { |v| v["culture"] }].compact.last
+      religion = [node["religion"], *changes.map { |v| v["religion"] }].compact.last
 
       new_religion = @db.province_religion(title) || :keep
-      new_culture  = @db.province_culture(title) || :keep
+      new_culture = @db.province_culture(title) || :keep
 
       if new_culture != culture and new_culture != :keep
         node.add! @db.resolve_date(:forever_ago), PropertyList["culture", new_culture]
@@ -805,7 +813,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def save_dynasties!
     create_mod_file!("common/dynasties/01_modern_times.txt", PropertyList[
-      *@dynasties.values.map{|d|
+      *@dynasties.values.map { |d|
         Property[d[:id], PropertyList["name", d[:name], "culture", d[:culture]]]
       }.sort
     ])
@@ -815,7 +823,7 @@ class ModernTimesGameModification < CK2GameModification
     if title == "c_krakowskie"
       "Krakow"
     elsif @db.titles[title][:name]
-      title_changes = @db.titles[title][:name].select{|d,n| d <= date}[-1]
+      title_changes = @db.titles[title][:name].select { |d, n| d <= date }[-1]
       if title_changes and title_changes[1]
         title_changes[1].split("/")[0].strip
       else
@@ -828,26 +836,25 @@ class ModernTimesGameModification < CK2GameModification
 
   def selected_character_node(character_id, title, date)
     character_info = @character_manager.main_plist[character_id]
-    birth = character_info.to_a.find{|prop| prop.val.is_a?(PropertyList) and prop.val["birth"]}.key
+    birth = character_info.to_a.find { |prop| prop.val.is_a?(PropertyList) and prop.val["birth"] }.key
     age = (date - birth).to_i / 365
     title_name = localized_title_name(title, date)
     character_name = [
       character_info["name"],
-      @dynasties.keys.find{|k| @dynasties[k][:id] == character_info["dynasty"]},
+      @dynasties.keys.find { |k| @dynasties[k][:id] == character_info["dynasty"] },
     ].compact.join(" ")
     loc = "Play as #{character_name} of #{title_name}"
     # Strip Unicode diacritical characters
-    loc = loc.unicode_normalize(:nfd).gsub(/[^\000-\177]/,"")
+    loc = loc.unicode_normalize(:nfd).gsub(/[^\000-\177]/, "")
     localization!("modern_times_bookmarks",
-      "ERA_CHAR_INFO_#{character_id}" => loc,
-    )
+                  "ERA_CHAR_INFO_#{character_id}" => loc)
     if character_info["religion"] == "sunni"
       government = "muslim_government"
     else
       government = "feudal_government"
     end
     character_node = PropertyList[
-      "dna", "a"*11, # hack
+      "dna", "a" * 11, # hack
       "properties", "aj00bc00000", # hack
       "religion", character_info["religion"],
       "culture", character_info["culture"],
@@ -867,7 +874,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_bookmarks!
     patch_mod_file!("common/bookmarks/00_bookmarks.txt") do |node|
-      node.delete!{true}
+      node.delete! { true }
       @db.bookmarks.each do |date, bookmark|
         next unless date >= @db.min_date
         name = bookmark[:name]
@@ -887,7 +894,7 @@ class ModernTimesGameModification < CK2GameModification
         end
         if bookmark[:characters]
           bookmark[:characters].each do |title|
-            _, ruler_id = @holders[title].select{|d,id| d<=date}[-1]
+            _, ruler_id = @holders[title].select { |d, id| d <= date }[-1]
             unless ruler_id
               warn "No ruler of #{title} at #{date} but marked as key character"
             end
@@ -897,14 +904,12 @@ class ModernTimesGameModification < CK2GameModification
         node.add! bm_code.downcase, bookmark_node
 
         localization!("modern_times_bookmarks",
-          bm_code => name,
-          bm_desc => desc,
-        )
+                      bm_code => name,
+                      bm_desc => desc)
         if bookmark[:key]
           localization!("modern_times_bookmarks",
-            "#{bm_code}_ERA" => name,
-            "#{bm_code}_ERA_INFO" => desc,
-          )
+                        "#{bm_code}_ERA" => name,
+                        "#{bm_code}_ERA_INFO" => desc)
         end
       end
     end
@@ -912,15 +917,14 @@ class ModernTimesGameModification < CK2GameModification
 
   def change_localization!
     localization!("!aaa_vanilla_overrides",
-      "romanian" => "Romanian", # Not Vlach
-      "cuman" => "Kazakh",
-      "karluk" => "Uzbek",
-      "PROV870" => "Abu Dhabi",
-      "PROV653" => "Qatar",
-      "PROV603" => "Chechnya",
-      "PROV468" => "Montenegro",
-      "PROV1531" => "Bahrain",
-     )
+                  "romanian" => "Romanian", # Not Vlach
+                  "cuman" => "Kazakh",
+                  "karluk" => "Uzbek",
+                  "PROV870" => "Abu Dhabi",
+                  "PROV653" => "Qatar",
+                  "PROV603" => "Chechnya",
+                  "PROV468" => "Montenegro",
+                  "PROV1531" => "Bahrain")
   end
 
   def warn(msg)
@@ -937,7 +941,7 @@ class ModernTimesGameModification < CK2GameModification
       next unless liege_duchy_control
       vassals.size.times do |i|
         sd, sv = vassals[i]
-        ed, ev = vassals[i+1]
+        ed, ev = vassals[i + 1]
         vassal_reign_dates = MultiRange.new([sd, ed])
         vassal_gets_duchy = vassal_reign_dates & liege_duchy_control
         next if vassal_gets_duchy.empty?
@@ -961,7 +965,7 @@ class ModernTimesGameModification < CK2GameModification
   def move_de_jure_capitals!
     patch_mod_file!("common/landed_titles/landed_titles.txt") do |node|
       @db.titles.each do |title, title_data|
-        actual_capital  = title_data[:capital]
+        actual_capital = title_data[:capital]
         de_jure_capital = map.title_capitals[title]
         next if actual_capital == de_jure_capital
         next if actual_capital == title # county-tier, skip
@@ -971,7 +975,7 @@ class ModernTimesGameModification < CK2GameModification
         # end
         # FIXME: New titles like Belarus don't work
         next unless @map.landed_titles_lookup[title]
-        title_node = @map.landed_titles_lookup[title].reverse.inject(node){|n,t| n[t]}
+        title_node = @map.landed_titles_lookup[title].reverse.inject(node) { |n, t| n[t] }
         title_node["capital"] = @map.title_to_province_id[actual_capital]
       end
     end
@@ -999,31 +1003,24 @@ class ModernTimesGameModification < CK2GameModification
 
     create_mod_file!("events/modern_times_canada_invasion.txt", CanadaInvasionEvents)
     localization!("canada_invasion",
-      "EVTDESC_CANADA_001" => "Canadian envoys arrive on important diplomatic mission",
-      "EVTOPTA_CANADA_001" => "Such nice and polite people",
-
-      "EVTNAME_CANADA_002" => "Strangers from Beyond the Sea",
-      "EVTDESC_CANADA_002" => "Canadian embassy declares whole Arctic as Canadian, threatens severe consequences to any European country wishing to challenge this claim.",
-      "EVTOPTA_CANADA_002" => "I'm sure this will get resolved peacefully somehow",
-
-      "EVTDESC_CANADA_003" => "With no agreement on Arctic ownership, Canadians decided to launch surprise attack on Europe",
-      "EVTOPTA_CANADA_003" => "We'll push them back into the cold ocean!",
-
-      "EVTNAME_CANADA_004" => "Canadian Invasion",
-      "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of mounted policemen - some rumored to ride moose and use hockey sticks as lances. These invaders from beyond the sunset will kill everyone standing in their way, but at least they'll do it politely...",
-      "EVTOPTA_CANADA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
-      "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Canadian scourge has reached our shores!",
-      "EVTOPTA_CANADA_005" => "Saddle my Horse!",
-
-      "EVTNAME_CANADA_006" => "Canadian Invasion",
-      "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Canadians has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear.",
-      "EVTOPTA_CANADA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
-      "EVTNAME_CANADA_105" => "The Canadians Meet With Defeat",
-      "EVTDESC_CANADA_105" => "The great Canadian warhost that crossed the ocean in their mad bid to claim all the Artcic riches has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Toronto to lick their wounds and inform the Canadian Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
-      "EVTOPTA_CANADA_105" => "There shall be a reckoning.",
-    )
+                  "EVTDESC_CANADA_001" => "Canadian envoys arrive on important diplomatic mission",
+                  "EVTOPTA_CANADA_001" => "Such nice and polite people",
+                  "EVTNAME_CANADA_002" => "Strangers from Beyond the Sea",
+                  "EVTDESC_CANADA_002" => "Canadian embassy declares whole Arctic as Canadian, threatens severe consequences to any European country wishing to challenge this claim.",
+                  "EVTOPTA_CANADA_002" => "I'm sure this will get resolved peacefully somehow",
+                  "EVTDESC_CANADA_003" => "With no agreement on Arctic ownership, Canadians decided to launch surprise attack on Europe",
+                  "EVTOPTA_CANADA_003" => "We'll push them back into the cold ocean!",
+                  "EVTNAME_CANADA_004" => "Canadian Invasion",
+                  "EVTDESC_CANADA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of mounted policemen - some rumored to ride moose and use hockey sticks as lances. These invaders from beyond the sunset will kill everyone standing in their way, but at least they'll do it politely...",
+                  "EVTOPTA_CANADA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+                  "EVTDESC_CANADA_005" => "A forest of sails has appeared on the horizon - the terrible Canadian scourge has reached our shores!",
+                  "EVTOPTA_CANADA_005" => "Saddle my Horse!",
+                  "EVTNAME_CANADA_006" => "Canadian Invasion",
+                  "EVTDESC_CANADA_006" => "Another huge fleet of the bloodthirsty Canadians has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear.",
+                  "EVTOPTA_CANADA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+                  "EVTNAME_CANADA_105" => "The Canadians Meet With Defeat",
+                  "EVTDESC_CANADA_105" => "The great Canadian warhost that crossed the ocean in their mad bid to claim all the Artcic riches has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Toronto to lick their wounds and inform the Canadian Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
+                  "EVTOPTA_CANADA_105" => "There shall be a reckoning.")
   end
 
   def brazil_invasion!
@@ -1038,30 +1035,24 @@ class ModernTimesGameModification < CK2GameModification
     create_mod_file!("events/modern_times_brazil_invasion.txt", BrazilInvasionEvents)
 
     localization!("canada_invasion",
-      "EVTDESC_BRAZIL_001" => "Envoys from Emperor of Brazil arrive on important diplomatic mission",
-      "EVTOPTA_BRAZIL_001" => "They have kings and emperors on the other side of Atlantic as well?",
-
-      "EVTNAME_BRAZIL_002" => "Strangers from Beyond the Sea",
-      "EVTDESC_BRAZIL_002" => "Emperor of Brazil presents his dynastic claim to throne of Portugal, and all lands which were ever Portuguese, and demands immediate answer",
-      "EVTOPTA_BRAZIL_002" => "Don't we have enough succession crises in Europe?",
-
-      "EVTDESC_BRAZIL_003" => "With the Portuguese showing little interest in accepting Brazilian claims, Empire of Brazil declares war!",
-      "EVTOPTA_BRAZIL_003" => "We'll push them back into the cold ocean!",
-      "EVTNAME_BRAZIL_004" => "Brazilian Invasion",
-
-      "EVTDESC_BRAZIL_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of soldiers fanatically dedicated to Brazilian emperor, who will stop at nothing less than total subjugation of his ancestral lands and who know what else.",
-      "EVTOPTA_BRAZIL_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
-      "EVTDESC_BRAZIL_005" => "A forest of sails has appeared on the horizon - the terrible Brazilian scourge has reached our shores!",
-      "EVTOPTA_BRAZIL_005" => "Saddle my Horse!",
-      "EVTNAME_BRAZIL_006" => "Brazilian Invasion",
-      "EVTDESC_BRAZIL_006" => "Another huge fleet of the bloodthirsty Brazilians has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear.",
-      "EVTOPTA_BRAZIL_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
-      "EVTNAME_BRAZIL_105" => "The Brazilians Meet With Defeat",
-      "EVTDESC_BRAZIL_105" => "The great Brazilian warhost that crossed the ocean in their mad bid to press their illegitimate dynastic claims has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Rio de Janeiro to lick their wounds and inform the Brazilian Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
-      "EVTOPTA_BRAZIL_105" => "There shall be a reckoning.",
-    )
+                  "EVTDESC_BRAZIL_001" => "Envoys from Emperor of Brazil arrive on important diplomatic mission",
+                  "EVTOPTA_BRAZIL_001" => "They have kings and emperors on the other side of Atlantic as well?",
+                  "EVTNAME_BRAZIL_002" => "Strangers from Beyond the Sea",
+                  "EVTDESC_BRAZIL_002" => "Emperor of Brazil presents his dynastic claim to throne of Portugal, and all lands which were ever Portuguese, and demands immediate answer",
+                  "EVTOPTA_BRAZIL_002" => "Don't we have enough succession crises in Europe?",
+                  "EVTDESC_BRAZIL_003" => "With the Portuguese showing little interest in accepting Brazilian claims, Empire of Brazil declares war!",
+                  "EVTOPTA_BRAZIL_003" => "We'll push them back into the cold ocean!",
+                  "EVTNAME_BRAZIL_004" => "Brazilian Invasion",
+                  "EVTDESC_BRAZIL_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of soldiers fanatically dedicated to Brazilian emperor, who will stop at nothing less than total subjugation of his ancestral lands and who know what else.",
+                  "EVTOPTA_BRAZIL_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+                  "EVTDESC_BRAZIL_005" => "A forest of sails has appeared on the horizon - the terrible Brazilian scourge has reached our shores!",
+                  "EVTOPTA_BRAZIL_005" => "Saddle my Horse!",
+                  "EVTNAME_BRAZIL_006" => "Brazilian Invasion",
+                  "EVTDESC_BRAZIL_006" => "Another huge fleet of the bloodthirsty Brazilians has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear.",
+                  "EVTOPTA_BRAZIL_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+                  "EVTNAME_BRAZIL_105" => "The Brazilians Meet With Defeat",
+                  "EVTDESC_BRAZIL_105" => "The great Brazilian warhost that crossed the ocean in their mad bid to press their illegitimate dynastic claims has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Rio de Janeiro to lick their wounds and inform the Brazilian Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
+                  "EVTOPTA_BRAZIL_105" => "There shall be a reckoning.")
   end
 
   def usa_invasion!
@@ -1076,31 +1067,24 @@ class ModernTimesGameModification < CK2GameModification
     create_mod_file!("events/modern_times_america_invasion.txt", UsaInvasionEvents)
 
     localization!("canada_invasion",
-      "EVTDESC_USA_001" => "Envoys from United States arrive on important diplomatic mission with message of democracy",
-      "EVTOPTA_USA_001" => "What is this democracy thing? I thought it died out in ancient Greece...",
-
-      "EVTNAME_USA_002" => "Strangers from Beyond the Sea",
-      "EVTDESC_USA_002" => "American envoys demand installation of democracy and immediate ending of all Weapons of Mass Destruction development",
-      "EVTOPTA_USA_002" => "Weapons of Mass what? No such thing exists in Modern Times...",
-
-      "EVTDESC_USA_003" => "Not giving much time for diplomacy, Americans decided to advance case for democracy and WMD-free world by force!",
-      "EVTOPTA_USA_003" => "We'll push them back into the cold ocean!",
-
-      "EVTNAME_USA_004" => "American Invasion",
-      "EVTDESC_USA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of marines in heavy gear. Whatever those Weapons of Mass Destruction they were looking for might be, it is pretty clear destruction they're going to bring to anyone standing in their way will be mass enough.",
-      "EVTOPTA_USA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
-      "EVTDESC_USA_005" => "A forest of sails has appeared on the horizon - the terrible American scourge has reached our shores!",
-      "EVTOPTA_USA_005" => "Saddle my Horse!",
-
-      "EVTNAME_USA_006" => "American Invasion",
-      "EVTDESC_USA_006" => "Another huge fleet of the bloodthirsty Americans has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear.",
-      "EVTOPTA_USA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
-
-      "EVTNAME_USA_105" => "The Americans Meet With Defeat",
-      "EVTDESC_USA_105" => "The great Aztec warhost that crossed the ocean in their mad bid to spread so called democracy has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Washington to lick their wounds and inform the American Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
-      "EVTOPTA_USA_105" => "There shall be a reckoning.",
-    )
+                  "EVTDESC_USA_001" => "Envoys from United States arrive on important diplomatic mission with message of democracy",
+                  "EVTOPTA_USA_001" => "What is this democracy thing? I thought it died out in ancient Greece...",
+                  "EVTNAME_USA_002" => "Strangers from Beyond the Sea",
+                  "EVTDESC_USA_002" => "American envoys demand installation of democracy and immediate ending of all Weapons of Mass Destruction development",
+                  "EVTOPTA_USA_002" => "Weapons of Mass what? No such thing exists in Modern Times...",
+                  "EVTDESC_USA_003" => "Not giving much time for diplomacy, Americans decided to advance case for democracy and WMD-free world by force!",
+                  "EVTOPTA_USA_003" => "We'll push them back into the cold ocean!",
+                  "EVTNAME_USA_004" => "American Invasion",
+                  "EVTDESC_USA_004" => "Thousands of exotic ships have arrived in [From.SeaZone.GetName], spewing out numberless hordes of marines in heavy gear. Whatever those Weapons of Mass Destruction they were looking for might be, it is pretty clear destruction they're going to bring to anyone standing in their way will be mass enough.",
+                  "EVTOPTA_USA_004" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+                  "EVTDESC_USA_005" => "A forest of sails has appeared on the horizon - the terrible American scourge has reached our shores!",
+                  "EVTOPTA_USA_005" => "Saddle my Horse!",
+                  "EVTNAME_USA_006" => "American Invasion",
+                  "EVTDESC_USA_006" => "Another huge fleet of the bloodthirsty Americans has been sighted in [From.SeaZone.GetName]. The populace is fleeing in fear.",
+                  "EVTOPTA_USA_006" => "[This.Religion.GetRandomGodNameCap] have Mercy!",
+                  "EVTNAME_USA_105" => "The Americans Meet With Defeat",
+                  "EVTDESC_USA_105" => "The great Aztec warhost that crossed the ocean in their mad bid to spread so called democracy has been thrown back into the sea. Their colonies have been lost and their armies vanquished. The pitiful remnants of their invasion force has set sail back towards their homeland of Washington to lick their wounds and inform the American Emperor of their defeat.\\n\\nThere may come a time when their own shores are visited by fleets from the Old World, and when that happens the debt they have incurred with their former victims will no doubt be collected in full... with interest.",
+                  "EVTOPTA_USA_105" => "There shall be a reckoning.")
   end
 
   def setup_cbs_for_new_invasions!
@@ -1113,41 +1097,41 @@ class ModernTimesGameModification < CK2GameModification
       target_effects.add! "if", PropertyList[
         "limit", PropertyList["e_canada", PropertyList["holder", "ROOT"]],
         "ROOT", PropertyList["any_realm_province", PropertyList[
-          "limit", PropertyList["OR", PropertyList[
-            "has_province_flag", "canadian_explorers",
-            "has_province_flag", "canadian_second_wave",
-          ]],
-          "culture", "canadian",
-          "religion", "protestant",
-          "clr_province_flag", "canadian_explorers",
-          "clr_province_flag", "canadian_second_wave",
-        ]],
+                               "limit", PropertyList["OR", PropertyList[
+                                                       "has_province_flag", "canadian_explorers",
+                                                       "has_province_flag", "canadian_second_wave",
+                                                     ]],
+                               "culture", "canadian",
+                               "religion", "protestant",
+                               "clr_province_flag", "canadian_explorers",
+                               "clr_province_flag", "canadian_second_wave",
+                             ]],
       ]
       target_effects.add! "if", PropertyList[
         "limit", PropertyList["e_united_states", PropertyList["holder", "ROOT"]],
         "ROOT", PropertyList["any_realm_province", PropertyList[
-          "limit", PropertyList["OR", PropertyList[
-            "has_province_flag", "american_explorers",
-            "has_province_flag", "american_second_wave",
-          ]],
-          "culture", "american",
-          "religion", "protestant",
-          "clr_province_flag", "american_explorers",
-          "clr_province_flag", "american_second_wave",
-        ]],
+                               "limit", PropertyList["OR", PropertyList[
+                                                       "has_province_flag", "american_explorers",
+                                                       "has_province_flag", "american_second_wave",
+                                                     ]],
+                               "culture", "american",
+                               "religion", "protestant",
+                               "clr_province_flag", "american_explorers",
+                               "clr_province_flag", "american_second_wave",
+                             ]],
       ]
       target_effects.add! "if", PropertyList[
         "limit", PropertyList["e_brazil", PropertyList["holder", "ROOT"]],
         "ROOT", PropertyList["any_realm_province", PropertyList[
-          "limit", PropertyList["OR", PropertyList[
-            "has_province_flag", "brazilian_explorers",
-            "has_province_flag", "brazilian_second_wave",
-          ]],
-          "culture", "brazilian",
-          "religion", "catholic",
-          "clr_province_flag", "brazilian_explorers",
-          "clr_province_flag", "brazilian_second_wave",
-        ]],
+                               "limit", PropertyList["OR", PropertyList[
+                                                       "has_province_flag", "brazilian_explorers",
+                                                       "has_province_flag", "brazilian_second_wave",
+                                                     ]],
+                               "culture", "brazilian",
+                               "religion", "catholic",
+                               "clr_province_flag", "brazilian_explorers",
+                               "clr_province_flag", "brazilian_second_wave",
+                             ]],
       ]
 
       # CBs
@@ -1239,9 +1223,9 @@ class ModernTimesGameModification < CK2GameModification
     @db.republics.each do |title|
       path = "history/titles/#{title}.txt"
       holders = parse(path)
-              .to_a
-              .map{|prop| [prop.key, prop.val["holder"]]}
-      holders.each_cons(2) do |(d,h),(d2,_)|
+        .to_a
+        .map { |prop| [prop.key, prop.val["holder"]] }
+      holders.each_cons(2) do |(d, h), (d2, _)|
         next unless h and h != 0
         dynasty = (dynasty_map[h] or next)
         patrician_title = title.sub(/^[dke]_/, "b_") + "_#{dynasty}"
@@ -1251,7 +1235,7 @@ class ModernTimesGameModification < CK2GameModification
 
       patrician_titles.each do |patrician_title, data|
         node = PropertyList[]
-        data[:holders].each do |d1,d2,h|
+        data[:holders].each do |d1, d2, h|
           node.add! d1, PropertyList["holder", h]
           node.add! d2, PropertyList["holder", 0]
         end
@@ -1346,7 +1330,7 @@ class ModernTimesGameModification < CK2GameModification
     @cultures = CultureManager.new(self)
     @character_manager = CharacterManager.new(self)
     @regional_vassals = {}
-    @dynasties        = {}
+    @dynasties = {}
     initialize_empty_title_histories!
     setup_title_history!
     setup_title_names!
@@ -1378,8 +1362,8 @@ class ModernTimesGameModification < CK2GameModification
     change_localization!
 
     code_warnings!
-    @warnings.sort.each_with_index do |w,i|
-      puts "% 3d %s" % [i+1,w]
+    @warnings.sort.each_with_index do |w, i|
+      puts "% 3d %s" % [i + 1, w]
     end
   end
 end

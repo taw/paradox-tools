@@ -18,23 +18,24 @@ class ModernTimesDatabase
       max_date = resolve_date(:title_holders_until)
 
       control = {}
-      map.landed_titles_lookup.each do |county, path|
+      map.landed_titles_lookup.sort.each do |county, path|
         next unless county =~ /\Ac_/
+        puts "CO: #{county}"
         ownership = county_ownership(county)
         ownership.size.times do |i|
           start_date, start_owner = ownership[i]
-          end_date, = ownership[i+1]
+          end_date, = ownership[i + 1]
           path[1..-1].each do |title|
             (control[title] ||= []) << [start_owner, start_date, end_date || max_date]
           end
         end
       end
       control.each do |title, points|
-        dates = control[title].map{|t,s,e| [s,e]}.flatten(1).uniq.sort
+        dates = control[title].map { |t, s, e| [s, e] }.flatten(1).uniq.sort
         county_counts_by_date_range = {}
-        (dates.size-1).times do |i|
+        (dates.size - 1).times do |i|
           start_date = dates[i]
-          end_date   = dates[i+1]
+          end_date = dates[i + 1]
           points.each do |liege, s, e|
             if e > start_date and start_date >= s
               county_counts_by_date_range[[start_date, end_date]] ||= Hash.new(0)
@@ -44,9 +45,9 @@ class ModernTimesDatabase
         end
         title_size = map.counties_in[title].size
         control_ranges = {}
-        county_counts_by_date_range.each do |(sd,ed), ctl|
-          t,c = ctl.sort_by(&:last)[-1]
-          next unless c > title_size/2.0
+        county_counts_by_date_range.each do |(sd, ed), ctl|
+          t, c = ctl.sort_by(&:last)[-1]
+          next unless c > title_size / 2.0
           control_ranges[t] ||= MultiRange.new
           control_ranges[t] += MultiRange.new(sd..ed)
         end
@@ -60,13 +61,13 @@ class ModernTimesDatabase
     unless @land
       @land = {}
       ModernTimesDatabase::LAND.merge(holy_orders).each do |title, ownership|
-        ownership = ownership.map{|k,v| [[min_date, resolve_date(k)].max, v.to_s] }
+        ownership = ownership.map { |k, v| [[min_date, resolve_date(k)].max, v.to_s] }
         # Strip changes which happened before start of game
         while ownership.size >= 2 and ownership[1][0] == ownership[0][0] and ownership[0][0] == min_date
           ownership.shift
         end
         # Anything else weird is a bug
-        unless ownership.map(&:first).each_cons(2).all?{|a,b| a < b}
+        unless ownership.map(&:first).each_cons(2).all? { |a, b| a < b }
           raise "Ownership of #{title} is inconsistent"
         end
         @land[title.to_s] = ownership.reverse.uniq(&:first).reverse
@@ -85,7 +86,7 @@ class ModernTimesDatabase
         end
         counties.each do |county|
           capital, holdings = map.analyze_province_holdings(county)
-          first_minor_castle = holdings.keys.find{|barony| holdings[barony] == "castle" and barony != capital }
+          first_minor_castle = holdings.keys.find { |barony| holdings[barony] == "castle" and barony != capital }
           unless first_minor_castle
             warn "No minor castle in #{county} for #{holy_order}"
             next
@@ -109,14 +110,14 @@ class ModernTimesDatabase
         raise "Religion must be specified for every title: #{title}" unless data[:religion]
 
         capital = if data[:capital]
-          data[:capital].to_s
-        elsif title =~ /\Ac_/
-          title
-        elsif title =~ /\Ae_offmap/
-          nil
-        else
-          map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
-        end
+                    data[:capital].to_s
+                  elsif title =~ /\Ac_/
+                    title
+                  elsif title =~ /\Ae_offmap/
+                    nil
+                  else
+                    map.title_capitals[title] or raise "Can't autodetect capital for #{title}"
+                  end
 
         if data[:demesne] and title !~ /\A[ke]_/
           warn "Only king/emperor level titles should have demesne specified: #{title}"
@@ -131,14 +132,14 @@ class ModernTimesDatabase
         if data[:name]
           names = data[:name]
           names = {forever_ago: names} if names.is_a?(String)
-          names = names.map{|d,n| [resolve_date(d), n] }
+          names = names.map { |d, n| [resolve_date(d), n] }
         else
           names = nil
         end
 
         autoholders = data[:autoholders]
         if autoholders.is_a?(Array)
-          autoholders = MultiRange.new(*autoholders.map{|range| [resolve_date(range.begin), resolve_date(range.end)]})
+          autoholders = MultiRange.new(*autoholders.map { |range| [resolve_date(range.begin), resolve_date(range.end)] })
         else
           autoholders = !!autoholders
         end
@@ -149,7 +150,7 @@ class ModernTimesDatabase
           autoholders: autoholders,
           capital: capital,
           demesne: demesne,
-          liege: data[:liege] && data[:liege].map{|d,n| [resolve_date(d), n] },
+          liege: data[:liege] && data[:liege].map { |d, n| [resolve_date(d), n] },
           name: names,
           male: !!data[:male],
         }
@@ -166,11 +167,11 @@ class ModernTimesDatabase
     ModernTimesDatabase.constants.grep(/\AHOLDERS_/).each do |holder_group_key|
       ModernTimesDatabase.const_get(holder_group_key).each do |title, data|
         raise if results[title]
-        results[title.to_s] = data.map{|date,holder_data| [resolve_date(date), holder_data]}
+        results[title.to_s] = data.map { |date, holder_data| [resolve_date(date), holder_data] }
       end
     end
     order = titles.keys
-    results.sort_by{|k,v| order.index(k)}
+    results.sort_by { |k, v| order.index(k) }
   end
 
   def holders
@@ -184,7 +185,7 @@ class ModernTimesDatabase
           elsif holder_data.keys == [:use]
             @holders[title][date] = {use: fully_quality_reference(title, holder_data[:use])}
           elsif holder_data.keys == [:use_all]
-            next_date = data[i+1] && resolve_date(data[i+1][0])
+            next_date = data[i + 1] && resolve_date(data[i + 1][0])
             @holders[holder_data[:use_all]].each do |copy_date, holder|
               break if next_date and copy_date >= next_date
               if holder[:use]
@@ -250,7 +251,7 @@ class ModernTimesDatabase
           if i == ownership.size - 1
             @title_has_land[start_owner] << [start_date, nil]
           else
-            end_date = ownership[i+1][0]
+            end_date = ownership[i + 1][0]
             raise unless start_date < end_date
             @title_has_land[start_owner] << [start_date, end_date]
           end
@@ -278,7 +279,7 @@ class ModernTimesDatabase
       raise "Can't find history for #{county} in #{title}" unless land
       land.size.times do |i|
         start_date, owner = land[i]
-        end_date = land[i+1] && land[i+1][0]
+        end_date = land[i + 1] && land[i + 1][0]
         if owner == liege
           ranges << [start_date, end_date]
         end
@@ -300,15 +301,15 @@ class ModernTimesDatabase
   end
 
   def county_ownership(county)
-    map.landed_titles_lookup[county].map{|t| land[t] }.find(&:itself)
+    map.landed_titles_lookup[county].map { |t| land[t] }.find(&:itself)
   end
 
   def province_religion(county)
-    map.landed_titles_lookup[county].map{|t| religions[t] }.find(&:itself)
+    map.landed_titles_lookup[county].map { |t| religions[t] }.find(&:itself)
   end
 
   def province_culture(county)
-    map.landed_titles_lookup[county].map{|t| cultures[t] }.find(&:itself)
+    map.landed_titles_lookup[county].map { |t| cultures[t] }.find(&:itself)
   end
 
   def capital_duchy(title)
@@ -316,7 +317,7 @@ class ModernTimesDatabase
   end
 
   def title_technology(title)
-    map.landed_titles_lookup[title].map{|t| technology[t] }.find(&:itself)
+    map.landed_titles_lookup[title].map { |t| technology[t] }.find(&:itself)
   end
 
   # This should sort of be private except magic constants use same system:
@@ -331,13 +332,13 @@ class ModernTimesDatabase
       @title_has_holder = {}
       holders.keys.each do |title|
         # After writing MultiRange library, I'd have hoped for better API than this...
-        holder_times = holders[title].map{|d,h| [d,!!h]}
+        holder_times = holders[title].map { |d, h| [d, !!h] }
         @title_has_holder[title] = MultiRange.new(
-          *holder_times.size.times.map{|i|
-            d0, active0 = holder_times[i]
-            d1, _       = holder_times[i+1]
-            [d0, d1] if active0
-          }.select(&:itself)
+          *holder_times.size.times.map { |i|
+          d0, active0 = holder_times[i]
+          d1, _ = holder_times[i + 1]
+          [d0, d1] if active0
+        }.select(&:itself)
         )
       end
     end
@@ -347,7 +348,7 @@ class ModernTimesDatabase
   def title_needs_extra_holders
     unless @title_needs_extra_holders
       time_limit = MultiRange.new([min_date, nil])
-      @title_needs_extra_holders = Hash.new do |ht,title|
+      @title_needs_extra_holders = Hash.new do |ht, title|
         has_land = (title_has_land[title] || MultiRange.new)
         has_holder = (title_has_holder[title] || MultiRange.new)
         ht[title] = (has_land - has_holder) & time_limit
@@ -361,7 +362,7 @@ class ModernTimesDatabase
     !(map.landed_titles_lookup[county] & titles[liege][:demesne]).empty?
   end
 
-private
+  private
 
   def validate_holders!
     # This is obviously error, but we can't fix it due to engine limitations
@@ -377,7 +378,7 @@ private
 
     holders.keys.each do |title|
       time_limit = MultiRange.new([min_date, nil])
-      has_land   = title_has_land[title] & time_limit
+      has_land = title_has_land[title] & time_limit
       has_holder = title_has_holder[title] & time_limit
       # d_sunni is one such title as it is territorial for ISIS, but non-territorial for Ottoman caliphate
       # if has_land != has_holder
@@ -385,17 +386,17 @@ private
       # end
     end
     holders.each do |title, characters|
-      characters = characters.map{|d,c| [d,c] }
+      characters = characters.map { |d, c| [d, c] }
       characters.size.times do |i|
         d0, c = characters[i]
-        d1,   = characters[i+1]
+        d1, = characters[i + 1]
         # If it's no-holder time, it's OK
         next if c.nil? or c[:use]
         # These will be autofilled this way later, TODO: move logic to this class?
         id = c[:historical_id]
         # This validator is problematic as actual numbers are random, used to be 35 and 90
-        birth = c[:birth] || (d0 << 12*35) # actual number is random 25-40
-        death = c[:death] || (birth >> 12*80) # actual number is random 80-90
+        birth = c[:birth] || (d0 << 12 * 35) # actual number is random 25-40
+        death = c[:death] || (birth >> 12 * 80) # actual number is random 80-90
         death = Date.parse("2020.1.1") if death == :never
         d1 ||= Date.parse("2020.1.1")
 
@@ -472,23 +473,23 @@ private
     raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
     name, dynasty = parse_name(holder_data[:name])
     holder = {
-      name:          name,
-      dynasty:       dynasty,
-      health:        holder_data[:health],
-      traits:        holder_data[:traits],
-      culture:       (holder_data[:culture]  || titles[title][:culture]).to_s,
-      religion:      (holder_data[:religion] || titles[title][:religion]).to_s,
-      female:        !!holder_data[:female],
-      mother:        fully_quality_reference(title, holder_data[:mother]),
-      father:        fully_quality_reference(title, holder_data[:father]),
+      name: name,
+      dynasty: dynasty,
+      health: holder_data[:health],
+      traits: holder_data[:traits],
+      culture: (holder_data[:culture] || titles[title][:culture]).to_s,
+      religion: (holder_data[:religion] || titles[title][:religion]).to_s,
+      female: !!holder_data[:female],
+      mother: fully_quality_reference(title, holder_data[:mother]),
+      father: fully_quality_reference(title, holder_data[:father]),
       historical_id: character_manager.allocate_historical_id(title, name),
     }
     holder[:birth], holder[:death] = parse_lived(holder_data[:lived])
     unless holder[:death] or holder_data[:lived] == "?"
       warn "Historical characters should have lived specified: #{holder[:historical_id]}"
     end
-    holder[:events] = holder_data[:events].map do |d,e|
-      [(if d == :crowning then crowning_date else resolve_date(d) end), e]
+    holder[:events] = holder_data[:events].map do |d, e|
+      [(if d == :crowning then crowning_date       else resolve_date(d) end), e]
     end if holder_data[:events]
     holder
   end
@@ -503,4 +504,4 @@ private
 end
 
 # This is fairly silly. Load last so we have class loaded already
-Pathname(__dir__).glob("*.rb").each{|rb| require_relative rb}
+Pathname(__dir__).glob("*.rb").each { |rb| require_relative rb }

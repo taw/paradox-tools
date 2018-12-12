@@ -1,17 +1,18 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox_mod_builder"
-Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
+Pathname(__dir__).glob("mods/*.rb").each { |rb| require_relative rb }
 
 class ModernTimesPlusModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/ck2_2.8.1",
+        "source/ck2_3.0.0",
       ),
       "output/modern_times_plus",
     )
   end
+
   # Should always be same as in ModernTimesModBuilder
   def apply_modern_times!
     # Hotfix 2.8
@@ -28,6 +29,7 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          BrazilianCultureGameModification,
                          ModernTimesGameModification
   end
+
   def apply_ck2tweaks!
     apply_modifications! CK2TweaksGameModification,
                          UITweaksGameModification,
@@ -39,6 +41,7 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
                          RulerDesignerResetGameModification,
                          FactionResistanceGameModification
   end
+
   def build_mod_files!
     apply_modern_times!
     apply_ck2tweaks!

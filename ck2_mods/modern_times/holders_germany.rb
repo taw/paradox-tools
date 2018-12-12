@@ -119,7 +119,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     end_ww1: nil,
   },
   e_germany: {
-    "1871.1.18" => { use: "k_pomerania Wilhelm 1" },
+    "1871.1.18" => {use: "k_pomerania Wilhelm 1"},
     "1888.3.9" => {
       name: "Friedrich | Hohenzollern",
       lived: "1831.10.18 - 1888.6.15",
@@ -160,7 +160,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       religion: :protestant,
     },
     end_ww2: nil,
-    german_reunification: { use: "k_germany Helmut 2" },
+    german_reunification: {use: "k_germany Helmut 2"},
     "1998.10.27" => {
       name: "Gerhard | Schroeder",
       lived: "1944.4.7 -",
@@ -254,7 +254,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     },
     end_ww1: nil,
   },
-  d_saxony: {
+  d_lausitz: {
     "1763.12.17" => {
       name: "Frederick Augustus | Wettin",
       lived: "1750.12.23 - 1827.5.5",
@@ -262,17 +262,17 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1827.5.5" => {
       name: "Anthon | Wettin",
       lived: "1755.12.27 - 1836.6.6",
-      # brother of previous
+    # brother of previous
     },
     "1836.6.6" => {
       name: "Frederick Augustus | Wettin",
       lived: "1797.5.18 - 1854.8.9",
-      # nephew of previous
+    # nephew of previous
     },
     "1854.8.9" => {
       name: "John | Wettin",
       lived: "1801.12.12 - 1873.10.29",
-      # brother of previous
+    # brother of previous
     },
     "1873.10.29" => {
       name: "Albert | Wettin",
@@ -310,7 +310,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   k_bavaria: {
     # Backfill
     "1918.11.11" => {name: "Karl | Seitz", lived: "1869.9.4 – 1950.2.3"},
-    "1920.12.9"  => {name: "Michael | Hainisch", lived: "1858.8.15 – 1940.2.26"},
+    "1920.12.9" => {name: "Michael | Hainisch", lived: "1858.8.15 – 1940.2.26"},
     "1928.12.10" => {name: "Wilhelm | Miklas", lived: "1872.10.15 – 1956.3.20"},
     anschluss: nil,
     end_ww2: {name: "Karl | Renner", lived: "- 1950.12.31"},
@@ -349,18 +349,18 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1891.10.6" => {
       name: "William | Württemberg", # 2
       lived: "1848.2.25 – 1921.10.2",
-      # nephew of previous
+    # nephew of previous
     },
     end_ww1: nil,
   },
   d_baden: {
-    "1738.5.12" => { name: "Charles Frederick | Zähringen", lived: "1728.11.22 – 1811.6.10" },
-    "1811.6.10" => { name: "Charles | Zähringen", lived: "1786.7.8 – 1818.12.8" },
-    "1818.12.8" => { name: "Louis | Zähringen", lived: "1763.2.9 – 1830.3.30", father: "Charles Frederick 1" },
-    "1830.3.30" => { name: "Leopold | Zähringen", lived: "1790.8.29 – 1852.4.24", father: "Charles Frederick 1" },
-    "1852.4.24" => { name: "Louis | Zähringen", lived: "1824.8.15 – 1858.1.22", father: "Leopold 1" },
-    "1858.1.22" => { name: "Frederick | Zähringen", lived: "1826.9.9 – 1907.9.28", father: "Leopold 1" },
-    "1907.9.28" => { name: "Frederick | Zähringen", lived: "1857.7.9 – 1928.8.9", father: "Frederick 1" },
+    "1738.5.12" => {name: "Charles Frederick | Zähringen", lived: "1728.11.22 – 1811.6.10"},
+    "1811.6.10" => {name: "Charles | Zähringen", lived: "1786.7.8 – 1818.12.8"},
+    "1818.12.8" => {name: "Louis | Zähringen", lived: "1763.2.9 – 1830.3.30", father: "Charles Frederick 1"},
+    "1830.3.30" => {name: "Leopold | Zähringen", lived: "1790.8.29 – 1852.4.24", father: "Charles Frederick 1"},
+    "1852.4.24" => {name: "Louis | Zähringen", lived: "1824.8.15 – 1858.1.22", father: "Leopold 1"},
+    "1858.1.22" => {name: "Frederick | Zähringen", lived: "1826.9.9 – 1907.9.28", father: "Leopold 1"},
+    "1907.9.28" => {name: "Frederick | Zähringen", lived: "1857.7.9 – 1928.8.9", father: "Frederick 1"},
     end_ww1: nil,
   },
   c_anhalt: { # There were like 5 gavelkinded Anhalts

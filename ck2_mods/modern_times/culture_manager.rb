@@ -15,9 +15,10 @@ class CultureManager
       @builder.parse(path).each do |group_name, group|
         group.each do |name, culture|
           next unless culture.is_a?(PropertyList)
-          @male_names[name]   = culture["male_names"].map{|n| n.sub(/_.*/, "")}
-          @female_names[name] = culture["female_names"].map{|n| n.sub(/_.*/, "")}
-          @dynasties[name]    = []
+          next if name == "alternate_start"
+          @male_names[name] = culture["male_names"].map { |n| n.sub(/_.*/, "") }
+          @female_names[name] = culture["female_names"].map { |n| n.sub(/_.*/, "") }
+          @dynasties[name] = []
         end
       end
     end
@@ -39,7 +40,7 @@ class CultureManager
     rng.sample(@dynasties.fetch(culture))
   end
 
-private
+  private
 
   def name_pool(culture, female)
     if female

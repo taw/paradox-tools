@@ -1,9 +1,9 @@
 ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
   e_carpathia: {
-    "1804.8.11"  => {name: "Francis | Habsburg", lived: "1768.2.12 - 1835.3.2"},
-    "1835.3.2"   => {name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29"},
+    "1804.8.11" => {name: "Francis | Habsburg", lived: "1768.2.12 - 1835.3.2"},
+    "1835.3.2" => {name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29"},
     # Can't find day date, just month
-    "1848.12.1"  => {name: "Francis Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21", health: 6},
+    "1848.12.1" => {name: "Francis Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21", health: 6},
     "1916.11.21" => {name: "Charles | Habsburg", lived: "1911.10.21 - 1922.4.1"},
     "1918.11.11" => nil,
   },
@@ -83,7 +83,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "2014.6.15" => {name: "Andrej | Kiska", lived: "1963.2.2 -"},
   },
   k_poland: {
-    duchy_warsaw: { use_all: "d_saxony" },
+    duchy_warsaw: {use_all: "d_lausitz"},
     congress_of_vienna: nil, # Generate
     end_ww1: {name: "Jozef | Pilsudski", lived: "1867.12.5 - 1935.5.12", health: 6},
     "1922.12.11" => {name: "Gabriel | Narutowicz", lived: "1865.3.17 - 1922.12.16"},
@@ -111,10 +111,10 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "2015.8.6" => {name: "Andrzej | Duda", lived: "1972.5.16 -"},
   },
   c_krakowskie: {
-    congress_of_vienna: { name: "Stanislaw | Wodzicki", lived: "1764.7.27 - 1843.3.14" },
-    "1833.3.24" => { name: "Kasper | Wieloglowski", lived: "- 1847" },
-    "1836.2.25" => { name: "Jozef | Haller", lived: "1783 - 1850.12.3" },
-    "1839.4.27" => { name: "Jan | Schindler", lived: "1802.9.3 - 1890.4.4" },
+    congress_of_vienna: {name: "Stanislaw | Wodzicki", lived: "1764.7.27 - 1843.3.14"},
+    "1833.3.24" => {name: "Kasper | Wieloglowski", lived: "- 1847"},
+    "1836.2.25" => {name: "Jozef | Haller", lived: "1783 - 1850.12.3"},
+    "1839.4.27" => {name: "Jan | Schindler", lived: "1802.9.3 - 1890.4.4"},
     fall_krakow_uprising: nil,
   },
   c_danzig: {
@@ -154,7 +154,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1927.7.20" => {
       name: "Michael | Hohenzollern-Sigmaringen",
       lived: "1921.10.25-",
-      # father: "Carol 2",
+    # father: "Carol 2",
     },
     "1930.6.8" => {
       name: "Carol | Hohenzollern-Sigmaringen",
@@ -200,7 +200,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
       name: "Emil Constantinescu",
       lived: "1939–",
     },
-    "2000.12.20" => { use: "Ion 1" },
+    "2000.12.20" => {use: "Ion 1"},
     # Twice suspended by parliament, we don't care about that
     "2004.12.20" => {
       name: "Traian Băsescu",
@@ -213,24 +213,24 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
   },
   k_bohemia: {
     # backdating from "1918.11.14"
-    "1918.10.28" => { name: "Tomáš Garrigue | Masaryk", lived: "1850.3.7 – 1937.9.14" },
-    "1935.12.18" => { name: "Edvard Beneš", lived: "1884.5.17 – 1948.9.3" },
+    "1918.10.28" => {name: "Tomáš Garrigue | Masaryk", lived: "1850.3.7 – 1937.9.14"},
+    "1935.12.18" => {name: "Edvard Beneš", lived: "1884.5.17 – 1948.9.3"},
     # backdating
-    "1938.10.5" => { name: "Emil Hácha", lived: "1872.7.12 – 1945.6.27" },
+    "1938.10.5" => {name: "Emil Hácha", lived: "1872.7.12 – 1945.6.27"},
     "1939.3.15" => nil,
 
     # Communist
-    "1945.5.8" => { name: "Klement Gottwald", lived: "1896.11.23 – 1953.3.14" },
-    "1953.3.14" => { name: "Antonín Novotný", lived: "1904.12.10 – 1975.1.28" },
-    "1968.1.5" => { name: "Alexander Dubček", lived: "1921.11.27 – 1992.11.7" },
-    "1969.4.17" => { name: "Gustáv Husák", lived: "1913.1.10 – 1991.11.18" },
-    "1987.12.17" => { name: "Miloš Jakeš", lived: "1922.8.12 -" },
-    "1989.11.24" => { name: "Karel Urbánek", lived: "1941.3.22 -" },
+    "1945.5.8" => {name: "Klement Gottwald", lived: "1896.11.23 – 1953.3.14"},
+    "1953.3.14" => {name: "Antonín Novotný", lived: "1904.12.10 – 1975.1.28"},
+    "1968.1.5" => {name: "Alexander Dubček", lived: "1921.11.27 – 1992.11.7"},
+    "1969.4.17" => {name: "Gustáv Husák", lived: "1913.1.10 – 1991.11.18"},
+    "1987.12.17" => {name: "Miloš Jakeš", lived: "1922.8.12 -"},
+    "1989.11.24" => {name: "Karel Urbánek", lived: "1941.3.22 -"},
 
     # Post-Communist since 1989;
     # Chech Republic from 1993
-    "1989.12.10" => { name: "Václav Havel", lived: "1936.10.5 – 2011.12.18" },
-    "2003.3.7" => { name: "Václav Klaus", lived: "1941.6.19 -" },
-    "2013.3.8" => { name: "Miloš Zeman", lived: "1944.9.28 -" },
+    "1989.12.10" => {name: "Václav Havel", lived: "1936.10.5 – 2011.12.18"},
+    "2003.3.7" => {name: "Václav Klaus", lived: "1941.6.19 -"},
+    "2013.3.8" => {name: "Miloš Zeman", lived: "1944.9.28 -"},
   },
 }

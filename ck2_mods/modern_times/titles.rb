@@ -3,13 +3,13 @@ ModernTimesDatabase::TITLES = {
     culture: :karluk,
     religion: :sunni,
     name: "Kyrgyzstan / Kyrgyz",
-    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    liege: {end_ww1: "e_russia", fall_soviet_union: nil},
   },
   d_khuttal: {
     culture: :persian,
     religion: :sunni,
     name: "Tajikistan / Tajik",
-    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    liege: {end_ww1: "e_russia", fall_soviet_union: nil},
   },
   d_gloucester: { # "Hwicce"
     culture: :english,
@@ -29,12 +29,12 @@ ModernTimesDatabase::TITLES = {
   e_offmap_china: {
     culture: :han,
     religion: :taoist,
-    name: { times_immemorial: "Qing / Qing", end_of_qing: "China / Chinese" },
+    name: {times_immemorial: "Qing / Qing", end_of_qing: "China / Chinese"},
   },
   e_china_west_governor: {
     culture: :han,
     religion: :taoist,
-    name: { times_immemorial: "Qing / Qing", end_of_qing: "China / Chinese" },
+    name: {times_immemorial: "Qing / Qing", end_of_qing: "China / Chinese"},
   },
   d_bhutan: {
     culture: :nepali,
@@ -65,14 +65,14 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
     capital: :c_dublin,
     name: "Ireland / Irish",
-    demesne: ["d_leinster"]
+    demesne: ["d_leinster"],
   },
   d_iceland: {
     culture: :norwegian,
     religion: :protestant,
     capital: :c_vestisland,
     name: "Iceland / Icelandic",
-    liege: { times_immemorial: "k_denmark", iceland_independence: nil },
+    liege: {times_immemorial: "k_denmark", iceland_independence: nil},
     autoholders: [:times_immemorial..:iceland_independence],
   },
   k_portugal: {
@@ -105,7 +105,7 @@ ModernTimesDatabase::TITLES = {
     culture: :italian,
     religion: :catholic,
     capital: :c_piemonte,
-    name: { times_immemorial: "Piedmont-Sardinia / Piedmontese-Sardinian", italy_unification: "North Italy / North Italian"},
+    name: {times_immemorial: "Piedmont-Sardinia / Piedmontese-Sardinian", italy_unification: "North Italy / North Italian"},
     demesne: ["d_sardinia"],
   },
   e_italy: {
@@ -191,7 +191,7 @@ ModernTimesDatabase::TITLES = {
     culture: :russian,
     religion: :orthodox,
     capital: :c_moskva,
-    name: { end_ww1: "Soviet Union / Soviet", fall_soviet_union: nil},
+    name: {end_ww1: "Soviet Union / Soviet", fall_soviet_union: nil},
     demesne: ["d_tver", "c_ingria"],
   },
   d_flanders: {
@@ -225,13 +225,13 @@ ModernTimesDatabase::TITLES = {
     culture: :german,
     religion: :protestant,
     capital: :c_brandenburg,
-    name: { times_immemorial: "Prussia / Prussian", end_ww2: "East Germany / East German" },
+    name: {times_immemorial: "Prussia / Prussian", end_ww2: "East Germany / East German"},
     demesne: ["d_prussia"],
   },
   k_germany: {
     culture: :german,
     religion: :catholic,
-    name: { end_ww2: "West Germany / West Germany" },
+    name: {end_ww2: "West Germany / West Germany"},
   },
   e_germany: {
     culture: :german,
@@ -239,7 +239,7 @@ ModernTimesDatabase::TITLES = {
     # It was outside country (as Berlin was 1945-1990)
     # b_bonn is non-existent barony in d_koln/c_koln
     capital: :c_brandenburg,
-    name: {times_immemorial: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German" },
+    name: {times_immemorial: "Germany / German", end_ww2: "West Germany / West German", german_reunification: "Germany / German"},
     demesne: ["d_koln"],
   },
   c_danzig: {
@@ -268,7 +268,7 @@ ModernTimesDatabase::TITLES = {
     culture: :german,
     religion: :protestant,
   },
-  c_bremen: {
+  d_bremen: {
     culture: :german,
     religion: :protestant,
   },
@@ -321,7 +321,7 @@ ModernTimesDatabase::TITLES = {
     culture: :bohemian,
     religion: :catholic,
     capital: :c_praha,
-    name: { czechoslovakia_independence: "Czechoslovakia / Czechoslovak",  czechoslovakia_dissolution: nil},
+    name: {czechoslovakia_independence: "Czechoslovakia / Czechoslovak", czechoslovakia_dissolution: nil},
     demesne: [], # 5 counties is enough
   },
   d_nyitra: {
@@ -341,7 +341,7 @@ ModernTimesDatabase::TITLES = {
     culture: :turkish,
     religion: :sunni,
     capital: :c_byzantion,
-    name: { times_immemorial: "Ottoman Empire / Ottoman", end_of_ottoman_empire: nil},
+    name: {times_immemorial: "Ottoman Empire / Ottoman", end_of_ottoman_empire: nil},
     demesne: ["d_paphlagonia"],
   },
   k_anatolia: {
@@ -398,7 +398,7 @@ ModernTimesDatabase::TITLES = {
     culture: :sindhi,
     religion: :sunni,
     capital: :c_makran,
-    name: { india_independence: "Pakistan / Pakistani" },
+    name: {india_independence: "Pakistan / Pakistani"},
   },
   k_afghanistan: {
     culture: :afghan,
@@ -431,27 +431,27 @@ ModernTimesDatabase::TITLES = {
     culture: :bengali,
     religion: :sunni,
     capital: :c_bikrampur,
-    name: { india_independence: "Bangladesh / Bangladeshi" },
+    name: {india_independence: "Bangladesh / Bangladeshi"},
   },
   d_dihistan: {
     culture: :turkish,
     religion: :sunni,
     name: "Turkmenistan / Turkmenistani",
-    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    liege: {end_ww1: "e_russia", fall_soviet_union: nil},
   },
   k_cuman: {
     culture: :cuman, # localized as Kazakh
     religion: :sunni,
     name: "Kazakhstan / Kazakh",
     capital: "c_kimak",
-    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    liege: {end_ww1: "e_russia", fall_soviet_union: nil},
     demesne: ["d_zhetysu"],
   },
   k_khiva: {
     culture: :karluk, # localized as Uzbek
     religion: :sunni,
     name: "Uzbekisan / Uzkekistani",
-    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    liege: {end_ww1: "e_russia", fall_soviet_union: nil},
   },
   k_khotan: {
     culture: :uyghur, # China, but autonomous region is mostly Uyghur
@@ -474,7 +474,7 @@ ModernTimesDatabase::TITLES = {
     religion: :protestant,
     capital: :c_finland,
     name: "Finland / Finnish",
-    liege: { end_of_swedish_finland: "e_russia", end_ww1: nil },
+    liege: {end_of_swedish_finland: "e_russia", end_ww1: nil},
   },
   d_courland: {
     culture: :lettigallish,
@@ -486,12 +486,12 @@ ModernTimesDatabase::TITLES = {
   d_azerbaijan: {
     culture: :turkish, # close enough
     religion: :shiite,
-    liege: { annexation_azerbaijan: "e_russia", fall_soviet_union: nil },
+    liege: {annexation_azerbaijan: "e_russia", fall_soviet_union: nil},
   },
   d_armenia: {
     culture: :armenian,
     religion: :orthodox,
-    liege: { annexation_armenia: "e_russia", fall_soviet_union: nil },
+    liege: {annexation_armenia: "e_russia", fall_soviet_union: nil},
   },
   d_nefoud: {
     culture: :bedouin_arabic,
@@ -521,13 +521,13 @@ ModernTimesDatabase::TITLES = {
   k_georgia: {
     culture: :georgian,
     religion: :orthodox,
-    liege: { annexation_georgia: "e_russia", fall_soviet_union: nil },
+    liege: {annexation_georgia: "e_russia", fall_soviet_union: nil},
   },
   k_ruthenia: {
     culture: :ukrainian, # Unique Ukrainian culture
     religion: :orthodox,
     name: "Ukraine / Ukrainian",
-    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    liege: {end_ww1: "e_russia", fall_soviet_union: nil},
     demesne: ["d_pereyaslavl"],
   },
   k_belarus: {
@@ -535,7 +535,7 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     capital: :c_minsk,
     name: "Belarus / Belarussian",
-    liege: { end_ww1: "e_russia", fall_soviet_union: nil },
+    liege: {end_ww1: "e_russia", fall_soviet_union: nil},
   },
   k_mongolia: {
     culture: :mongol,
@@ -561,7 +561,7 @@ ModernTimesDatabase::TITLES = {
     culture: :serbian,
     religion: :orthodox,
     capital: :c_belgrade,
-    name: { end_ww1: "Yugoslavia / Yugoslavian", montenegro_independence: nil}
+    name: {end_ww1: "Yugoslavia / Yugoslavian", montenegro_independence: nil},
   },
   d_dyrrachion: {
     culture: :serbian,
@@ -572,7 +572,7 @@ ModernTimesDatabase::TITLES = {
   k_egypt: {
     culture: :egyptian_arabic,
     religion: :sunni,
-    liege: { times_immemorial: "e_arabia", british_egypt: "e_britannia", egypt_independence: nil },
+    liege: {times_immemorial: "e_arabia", british_egypt: "e_britannia", egypt_independence: nil},
     demesne: ["d_alexandria"],
   },
   k_syria: {
@@ -606,13 +606,13 @@ ModernTimesDatabase::TITLES = {
     culture: :bedouin_arabic,
     religion: :sunni,
     capital: :c_aden,
-    name: { times_immemorial: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni" },
+    name: {times_immemorial: "Yemen / Yemeni", south_yemen_independence: "South Yemen / South Yemeni", yemen_unification: "Yemen / Yemeni"},
   },
   d_afar: {
     culture: :somali,
     religion: :sunni,
     capital: :c_tadjoura,
-    name: "Djibouti / Djiboutian"
+    name: "Djibouti / Djiboutian",
   },
   d_hayya: {
     culture: :nubian,
@@ -625,7 +625,7 @@ ModernTimesDatabase::TITLES = {
     religion: :sunni,
     name: "Somalia / Somali",
   },
-  k_abyssinia:  {
+  k_abyssinia: {
     culture: :ethiopian,
     religion: :miaphysite,
     name: "Ethiopia / Ethiopian",
@@ -661,7 +661,7 @@ ModernTimesDatabase::TITLES = {
     culture: :nubian,
     religion: :sunni,
     name: "Sudan / Sudanese",
-    liege: { sudan_turkish: "e_arabia", british_egypt: "e_britannia", sudan_independence: nil},
+    liege: {sudan_turkish: "e_arabia", british_egypt: "e_britannia", sudan_independence: nil},
     autoholders: [:times_immemorial..:sudan_independence],
   },
   k_dacia: {
@@ -675,7 +675,7 @@ ModernTimesDatabase::TITLES = {
     religion: :orthodox,
     capital: :c_torki,
     name: "Moldova / Moldovan",
-    liege: { soviet_partition_of_romania: "e_russia", fall_soviet_union: nil },
+    liege: {soviet_partition_of_romania: "e_russia", fall_soviet_union: nil},
   },
   d_dioclea: {
     culture: :serbian,
@@ -698,9 +698,11 @@ ModernTimesDatabase::TITLES = {
     name: "Abu Dhabi / Abu Dhabian",
   },
   # Yes, this is Catholic ruler and Protestant population
-  d_saxony: {
+  # This was Saxony before 3.0 :-/
+  d_lausitz: {
     culture: :german,
     religion: :catholic,
+    name: "Saxony / Saxon",
     liege: {german_unification: "e_germany", end_ww1: nil},
   },
   k_poland: {
@@ -708,14 +710,14 @@ ModernTimesDatabase::TITLES = {
     religion: :catholic,
     capital: :c_plock, # Not Krakow
     demesne: ["d_lesser_poland"],
-    liege: { congress_of_vienna: "e_russia", end_ww1: nil },
+    liege: {congress_of_vienna: "e_russia", end_ww1: nil},
   },
   d_bavaria: {
     culture: :german,
     religion: :catholic,
     liege: {german_unification: "e_germany", end_ww1: nil},
   },
-  c_salzburg: {
+  d_salzburg: {
     culture: :german,
     religion: :catholic,
   },
@@ -785,12 +787,12 @@ ModernTimesDatabase::TITLES = {
   k_scotland: {
     culture: :scottish,
     religion: :reformed,
-    liege: { scotland_devolution: "e_britannia" },
+    liege: {scotland_devolution: "e_britannia"},
   },
   d_abkhazia: {
     culture: :georgian,
     religion: :sunni,
-    name: { forever_ago: "Circassia / Circassian", russia_circassia_war: nil },
+    name: {forever_ago: "Circassia / Circassian", russia_circassia_war: nil},
   },
   k_punjab: {
     culture: :panjabi,
@@ -808,86 +810,86 @@ ModernTimesDatabase::TITLES = {
   k_bihar: {
     culture: :bengali,
     religion: :buddhist,
-    liege: { battle_of_buxar: "e_britannia", india_independence: nil },
+    liege: {battle_of_buxar: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_gondwana: {
     culture: :hindustani,
     religion: :hindu,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: {third_maratha_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_kamarupa: {
     culture: :assamese,
     religion: :buddhist,
-    liege: { british_assam: "e_britannia", india_independence: nil },
+    liege: {british_assam: "e_britannia", india_independence: nil},
     name: "Assam / Assamese",
     autoholders: true,
   },
   k_andhra: {
     culture: :telugu,
     religion: :hindu,
-    liege: { andhra_british: "e_britannia", india_independence: nil },
+    liege: {andhra_british: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_karnata: {
     culture: :kannada,
     religion: :jain,
-    liege: { fourth_mysore_war: "e_britannia", india_independence: nil },
+    liege: {fourth_mysore_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_telingana: {
     culture: :telugu,
     religion: :hindu,
-    liege: { hyderabad_british: "e_britannia", india_independence: nil },
+    liege: {hyderabad_british: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_tamilakam: {
     culture: :tamil,
     religion: :hindu,
-    liege: { fourth_mysore_war: "e_britannia", india_independence: nil },
+    liege: {fourth_mysore_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_orissa: {
     culture: :oriya,
     religion: :hindu,
-    liege: { orissa_british: "e_britannia", india_independence: nil },
+    liege: {orissa_british: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_malwa: {
     culture: :english,
     religion: :hindu,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: {third_maratha_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_gujarat: {
     culture: :gujurati,
     religion: :jain,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: {third_maratha_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_delhi: {
     culture: :hindustani,
     religion: :buddhist,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: {third_maratha_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_kosala: {
     culture: :hindustani,
     religion: :buddhist,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: {third_maratha_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_maharastra: {
     culture: :marathi,
     religion: :jain,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: {third_maratha_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   k_rajputana: {
     culture: :rajput,
     religion: :jain,
-    liege: { third_maratha_war: "e_britannia", india_independence: nil },
+    liege: {third_maratha_war: "e_britannia", india_independence: nil},
     autoholders: true,
   },
   d_jerusalem: {
@@ -900,31 +902,31 @@ ModernTimesDatabase::TITLES = {
   ### Holy orders
   # d_huitzilopochtli: { culture: :nahuatl, religion: :aztec_reformed, autoholders: true, male: true},
   # d_chosen_perkunas: { culture: :lettigallish, religion: :baltic_pagan_reformed, autoholders: true, male: true},
-  d_ashokas_chosen: { culture: :marathi, religion: :buddhist, autoholders: true, male: true},
-  d_knights_santiago: { culture: :castillan, religion: :catholic, autoholders: true, male: true},
-  d_knights_hospitaler: { culture: :occitan, religion: :catholic, autoholders: true, male: true},
-  d_teutonic_order: { culture: :german, religion: :catholic, autoholders: true, male: true},
-  d_knights_templar: { culture: :frankish, religion: :catholic, autoholders: true, male: true},
-  d_knights_calatrava: { culture: :castillan, religion: :catholic, autoholders: true, male: true},
+  d_ashokas_chosen: {culture: :marathi, religion: :buddhist, autoholders: true, male: true},
+  d_knights_santiago: {culture: :castillan, religion: :catholic, autoholders: true, male: true},
+  d_knights_hospitaler: {culture: :occitan, religion: :catholic, autoholders: true, male: true},
+  d_teutonic_order: {culture: :german, religion: :catholic, autoholders: true, male: true},
+  d_knights_templar: {culture: :frankish, religion: :catholic, autoholders: true, male: true},
+  d_knights_calatrava: {culture: :castillan, religion: :catholic, autoholders: true, male: true},
   # d_sons_kaleva: { culture: :finnish, religion: :finnish_pagan_reformed, autoholders: true, male: true},
-  d_followers_arjuna: { culture: :hindustani, religion: :hindu, autoholders: true, male: true},
-  d_haruriyyah: { culture: :bedouin_arabic, religion: :ibadi, autoholders: true, male: true},
-  d_bulls_rishabha: { culture: :kannada, religion: :jain, autoholders: true, male: true},
-  d_zealots: { culture: :ashkenazi, religion: :jewish, autoholders: true, male: true},
-  d_saint_anthony: { culture: :ethiopian, religion: :miaphysite, autoholders: true, male: true},
-  d_saint_addai: { culture: :persian, religion: :nestorian, autoholders: true, male: true},
+  d_followers_arjuna: {culture: :hindustani, religion: :hindu, autoholders: true, male: true},
+  d_haruriyyah: {culture: :bedouin_arabic, religion: :ibadi, autoholders: true, male: true},
+  d_bulls_rishabha: {culture: :kannada, religion: :jain, autoholders: true, male: true},
+  d_zealots: {culture: :ashkenazi, religion: :jewish, autoholders: true, male: true},
+  d_saint_anthony: {culture: :ethiopian, religion: :miaphysite, autoholders: true, male: true},
+  d_saint_addai: {culture: :persian, religion: :nestorian, autoholders: true, male: true},
   # d_jomsvikings: { culture: :norse, religion: :norse_pagan, autoholders: true, male: true},
-  d_holy_sepulchre: { culture: :greek, religion: :orthodox, autoholders: true, male: true},
-  d_hashshashin: { culture: :persian, religion: :shiite, autoholders: true, male: true},
+  d_holy_sepulchre: {culture: :greek, religion: :orthodox, autoholders: true, male: true},
+  d_hashshashin: {culture: :persian, religion: :shiite, autoholders: true, male: true},
   # d_warriors_perun: { culture: :russian, religion: :slavic_pagan_reformed, autoholders: true, male: true},
-  d_bektashi: { culture: :persian, religion: :sunni, autoholders: true, male: true},
+  d_bektashi: {culture: :persian, religion: :sunni, autoholders: true, male: true},
   # d_sky_lords: { culture: :cuman, religion: :tengri_pagan_reformed, autoholders: true, male: true},
   # d_spirit_guardians: { culture: :manden, religion: :west_african_pagan_reformed, autoholders: true, male: true},
   # d_immortals: { culture: :persian, religion: :zoroastrian, autoholders: true, male: true},
   # d_zun_warriors: { culture: :afghan, religion: :zun_pagan_reformed, autoholders: true, male: true},
 
   ### Just renames or capital moves, not actual countries
-  k_taurica: {
+  k_crimea: {
     culture: :bolghar,
     religion: :sunni,
     name: "Crimea / Crimean",
