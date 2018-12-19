@@ -20,8 +20,11 @@ class ModernTimesDatabase
       control = {}
       map.landed_titles_lookup.sort.each do |county, path|
         next unless county =~ /\Ac_/
-        puts "CO: #{county}"
         ownership = county_ownership(county)
+        unless ownership
+          puts "MISSING: #{county}"
+          ownership = county_ownership("c_roma")
+        end
         ownership.size.times do |i|
           start_date, start_owner = ownership[i]
           end_date, = ownership[i + 1]

@@ -1318,6 +1318,10 @@ class ModernTimesGameModification < CK2GameModification
   def apply!
     @warnings = []
 
+    # Bugfixes
+    patch_file!("history/titles/c_lyzha.txt") { |x| x.sub("1121.1. ", "1121.1.1 ") }
+    patch_file!("history/titles/c_izhma.txt") { |x| x.sub("1121.1. ", "1121.1.1 ") }
+
     @map = MapManager.new(self)
     @db = ModernTimesDatabase.new(self)
 
