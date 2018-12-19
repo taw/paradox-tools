@@ -30,6 +30,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "d_iceland" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_rus" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_ruthenia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  "k_galicia-volhynia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_crimea" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_bulgaria" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_serbia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
@@ -49,6 +50,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "e_rajastan" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "e_bengal" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "k_perm" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
+  "k_nenets" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "k_georgia" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "k_alania" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "d_sarkel" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
@@ -59,6 +61,8 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_khazaria" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "k_turkestan" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "e_tibet" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
+  "e_kanem" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
+  "e_maghreb" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   # Israel tech group - some catch up
   "k_jerusalem" => [2, 2, 2, 3, 3, 3, 5, 5, 5],
 }

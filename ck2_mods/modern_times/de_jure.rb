@@ -5,7 +5,9 @@ ModernTimesDatabase::DE_JURE = {
   "d_granada" => "k_castille",
   "d_brandenburg" => "k_pomerania",
   "k_ruthenia" => "e_wendish_empire",
+  "k_galicia-volhynia" => "e_wendish_empire",
   "k_croatia" => "e_carpathia",
+  "k_carinthia" => "e_carpathia",
   "d_ryazan" => "k_rus",
   "d_livonia" => "k_lithuania",
   "d_iceland" => "k_denmark",
@@ -19,6 +21,8 @@ ModernTimesDatabase::DE_JURE = {
   "k_georgia" => "e_persia",
   "d_sarkel" => "k_alania",
   "k_volga_bulgaria" => "e_russia",
+  "k_perm" => "e_russia",
+  "k_nenets" => "e_russia",
   "k_sindh" => "e_india",
   "k_punjab" => "e_india",
   "k_delhi" => "e_india",
@@ -55,6 +59,7 @@ ModernTimesDatabase::DE_JURE = {
   "d_capua" => "k_sicily",
   "d_salerno" => "k_sicily",
   "d_sicily" => "k_sicily",
+  "d_abruzzo" => "k_sicily",
 
   # This region has 3 situations:
   # - HRE (Prussia under Poland)

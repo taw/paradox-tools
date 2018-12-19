@@ -330,12 +330,10 @@ ModernTimesDatabase::TITLES = {
     capital: :c_pressburg,
     name: "Slovakia / Slovak",
   },
-  k_burgundy: {
+  k_switzerland: {
     culture: :german,
     religion: :reformed,
     capital: :c_bern,
-    name: "Switzerland / Swiss",
-    demesne: [],
   },
   e_arabia: {
     culture: :turkish,
@@ -945,5 +943,15 @@ ModernTimesDatabase::TITLES = {
     culture: :bolghar,
     religion: :finnish_pagan,
     name: "Volga / Volgan",
+  },
+  k_kanem: {
+    name: "Chad / Chadian",
+    culture: :kanuri, # ???
+    religion: :sunni,
+  },
+  k_hausaland: {
+    name: "Niger / Nigerien",
+    culture: :hausa, # ???
+    religion: :sunni,
   },
 }

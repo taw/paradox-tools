@@ -18,6 +18,7 @@ ModernTimesDatabase::LAND = {
   c_imeretia: {times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia"},
 
   d_nikaea: {times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
+  d_cappadocia: {times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
   d_optimatoi: {times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
   c_kyzikos: {times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
   c_byzantion: {times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
@@ -82,13 +83,14 @@ ModernTimesDatabase::LAND = {
   c_nisibin: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
   d_tunis: {times_immemorial: "e_arabia", tunisia_french: "e_france", tunisia_independence: "d_tunis"},
   d_jerid: {times_immemorial: "e_arabia", tunisia_french: "e_france", tunisia_independence: "d_tunis"},
-  d_syrte: {times_immemorial: "e_arabia", tunisia_french: "e_france", tunisia_independence: "d_tunis"},
   d_alger: {times_immemorial: "e_arabia", algeria_french: "e_france", algeria_indepnedence: "d_alger"},
   d_mzab: {times_immemorial: "e_arabia", algeria_french: "e_france", algeria_indepnedence: "d_alger"},
   d_kabylia: {times_immemorial: "e_arabia", algeria_french: "e_france", algeria_indepnedence: "d_alger"},
   d_tlemcen: {times_immemorial: "e_arabia", algeria_french: "e_france", algeria_indepnedence: "d_alger"},
+  d_tahert: {times_immemorial: "e_arabia", algeria_french: "e_france", algeria_indepnedence: "d_alger"},
   d_tripolitania: {times_immemorial: "e_arabia", libya_italian: "e_italy", libya_independence: "d_tripolitania"},
   d_cyrenaica: {times_immemorial: "e_arabia", libya_italian: "e_italy", libya_independence: "d_tripolitania"},
+  d_syrte: {times_immemorial: "e_arabia", libya_italian: "e_italy", libya_independence: "d_tripolitania"},
 
   d_oltenia: {times_immemorial: "e_arabia", treaty_of_berlin: "k_dacia"},
   c_tirgoviste: {times_immemorial: "e_arabia", treaty_of_berlin: "k_dacia"},
@@ -101,7 +103,7 @@ ModernTimesDatabase::LAND = {
   d_rashka: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
   c_rama: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
   c_soli: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
-  c_bilino_polje: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
+  c_syrmia: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
   c_naissus: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
 
   d_turnovo: {times_immemorial: "e_arabia", treaty_of_berlin: "k_bulgaria"},
@@ -114,6 +116,7 @@ ModernTimesDatabase::LAND = {
   c_rhodos: {times_immemorial: "e_arabia", libya_italian: "e_italy", end_ww2: "k_byzantium"},
   d_epirus: {times_immemorial: "e_arabia", treaty_of_london: "k_byzantium"},
   d_thessalonika: {times_immemorial: "e_arabia", treaty_of_london: "k_byzantium"},
+  c_maroneia: {times_immemorial: "e_arabia", treaty_of_london: "k_byzantium"},
   d_ohrid: {times_immemorial: "e_arabia", treaty_of_london: "k_byzantium"},
   c_philippopolis: {times_immemorial: "e_arabia", treaty_of_london: "k_byzantium"},
   c_thessalia: {times_immemorial: "e_arabia", convention_of_constantinople: "k_byzantium"},
@@ -143,6 +146,8 @@ ModernTimesDatabase::LAND = {
   # GeaCron has no countries there so just shatter it into duchies before Europeans show up
   d_songhay: {times_immemorial: "d_songhay", french_mali: "e_france", mali_independence: "k_mali"},
   d_mali: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
+  d_gurma: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
+
   d_bambuk: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
   d_yatenga: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
   d_timbuktu: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu"},
@@ -198,6 +203,7 @@ ModernTimesDatabase::LAND = {
   c_podlasie: {times_immemorial: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "k_poland", end_ww2: "k_belarus"},
 
   c_plock: {times_immemorial: "e_wendish_empire", poland_3_partition: "k_pomerania", duchy_warsaw: "k_poland"},
+  c_lomzynska: {times_immemorial: "e_wendish_empire", poland_3_partition: "k_pomerania", duchy_warsaw: "k_poland"},
   c_czersk: {times_immemorial: "e_wendish_empire", poland_3_partition: "e_carpathia", duchy_warsaw_expansion: "k_poland"},
   c_sandomierskie: {times_immemorial: "e_wendish_empire", poland_3_partition: "e_carpathia", duchy_warsaw_expansion: "k_poland"},
   c_lubelska: {times_immemorial: "e_wendish_empire", poland_3_partition: "e_carpathia", duchy_warsaw_expansion: "k_poland"},
@@ -246,6 +252,9 @@ ModernTimesDatabase::LAND = {
   d_iceland: {forever_ago: "d_iceland"},
   c_algeciras: {forever_ago: "e_spain", treaty_of_utrech: "e_britannia"},
   k_portugal: {forever_ago: "k_portugal"},
+  d_beja: {forever_ago: "k_portugal"},
+  d_algarve: {forever_ago: "k_portugal"},
+
   c_goa: {forever_ago: "k_portugal", goa_annexation: "e_india"}, # 1505 or so
   e_spain: {forever_ago: "e_spain"},
   d_barcelona: {forever_ago: "e_spain", napoleon_barcelona_annexation: "e_france", congress_of_vienna: "e_spain"},
@@ -260,10 +269,10 @@ ModernTimesDatabase::LAND = {
   d_sapmi: {forever_ago: "k_sweden"},
   c_rosello: {forever_ago: "e_france"}, # 1659+
 
-  d_savoie: {forever_ago: "k_burgundy"},
-  d_upper_burgundy: {forever_ago: "k_burgundy"},
-  d_thurgau: {forever_ago: "k_burgundy"},
-  d_raetia: {forever_ago: "k_burgundy"},
+  d_savoie: {forever_ago: "k_switzerland"},
+  d_upper_burgundy: {forever_ago: "k_switzerland"},
+  d_thurgau: {forever_ago: "k_switzerland"},
+  d_raetia: {forever_ago: "k_switzerland"},
   k_france: {forever_ago: "e_france"},
   k_aquitaine: {forever_ago: "e_france"},
   c_boulogne: {forever_ago: "e_france"},
@@ -387,6 +396,7 @@ ModernTimesDatabase::LAND = {
   d_kuyavia: {forever_ago: "e_wendish_empire", poland_1_partition: "k_pomerania", duchy_warsaw: "k_poland", end_ww1: "k_poland"},
 
   d_pereyaslavl: {forever_ago: "e_russia", end_ww1: "k_ruthenia"},
+  c_chortitza: {forever_ago: "e_russia", end_ww1: "k_ruthenia"},
   c_sharukan: {forever_ago: "e_russia", end_ww1: "k_ruthenia"},
   :"c_desht-i-kipchak" => {forever_ago: "e_russia", end_ww1: "k_ruthenia"},
 
@@ -449,17 +459,20 @@ ModernTimesDatabase::LAND = {
   d_wild_fields: {forever_ago: "e_arabia", treaty_of_kucuk_kaynarca: "e_russia", end_ww1: "k_ruthenia"},
   c_tmutarakan: {forever_ago: "e_arabia", treaty_of_kucuk_kaynarca: "e_russia"},
 
-  # Maybe I sohuld just not have Moldova in the game.
   c_torki: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
   d_bessarabia: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
-  c_galaz: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "k_ruthenia"},
-  d_moldau: {forever_ago: "e_arabia", treaty_of_jassy: "e_russia", end_ww1: "k_ruthenia"},
+  c_galaz: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
+  # FIXME: parts of d_moldau to k_ruthenia ???
+  # d_moldau: {forever_ago: "e_arabia", treaty_of_jassy: "e_russia", end_ww1: "k_ruthenia"},
+  # FIXME: treaty of Jassy vs Bucharest ???
+  d_moldau: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
 
   d_verona: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy"},
   d_friuli: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy"},
   c_aquileia: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy"},
   d_venice: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy"},
   c_zadar: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia"},
+  c_vukovar: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia"},
   c_split: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia"},
 
   c_istria: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia"},
@@ -468,6 +481,7 @@ ModernTimesDatabase::LAND = {
   d_croatia: {forever_ago: "e_carpathia", end_ww1: "k_serbia", croatia_independence: "k_croatia"},
   d_dalmatia: {forever_ago: "e_arabia", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia"},
   c_usora: {forever_ago: "e_arabia", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia"},
+  c_bilino_polje: {forever_ago: "e_arabia", treaty_of_berlin: "e_carpathia", end_ww1: "k_serbia", bosnia_independence: "d_bosnia"},
   c_terebovl: {forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_ruthenia"},
 
   d_upper_lorraine: {forever_ago: "e_france"},
@@ -533,7 +547,6 @@ ModernTimesDatabase::LAND = {
   d_aqtobe: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_sakmara: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_atyrau: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
-  d_tobol: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_ubagan: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
   c_itil: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_turgay: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
@@ -679,5 +692,4 @@ ModernTimesDatabase::LAND = {
   # VERY TEMPORARY to get 3.0 to build:
   k_hausaland: {times_immemorial: "k_papal_state"},
   k_kanem: {times_immemorial: "k_papal_state"},
-  k_songhay: {times_immemorial: "k_papal_state"},
 }
