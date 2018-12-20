@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require_relative "../ck2/ck2_analyses"
+require "pry"
+
+class ListLandedTitles < CK2GameAnalysis
+  def add_titles(node, *prefix)
+    node.each do |key, value|
+      next if %W[allow].include?(key)
+      next unless value.is_a?(PropertyList)
+      title = [*prefix, key]
+      @titles << title
+      add_titles value, *title
+    end
+  end
+
+  def titles
+    unless @titles
+      @titles = []
+      glob("common/landed_titles/*.txt").each do |path|
+        # Syntax errors in 2.8
+        code = resolve(path).binread.gsub("b_qobadhiyan {}".b, "b_qobadhiyan = {}".b)
+          .force_encoding("windows-1252").encode("utf-8")
+
+        node = ParadoxModFile.new(string: code, path: path).parse!
+        add_titles node
+      end
+    end
+    @titles
+  end
+
+  def call
+    titles.sort.each do |title|
+      puts title.reverse.join(" / ")
+    end
+  end
+end
+
+ListLandedTitles.new(*ARGV).call
