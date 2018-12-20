@@ -13,7 +13,7 @@ class BuildingSitesAnalysis < CK2GameAndSaveAnalysis
     ]
   end
 
-  def run!
+  def call
     buildables = []
 
     @data["provinces"].each do |id, province|
@@ -47,4 +47,4 @@ class BuildingSitesAnalysis < CK2GameAndSaveAnalysis
   end
 end
 
-BuildingSitesAnalysis.new(*ARGV).run!
+BuildingSitesAnalysis.new(*ARGV).call

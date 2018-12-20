@@ -19,7 +19,7 @@ class RecreateBaseline
       FileUtils.cp (@game + path), (@new + path), verbose: true
     end
   end
-  def run!
+  def call
     @old.find do |path|
       recreate! path.relative_path_from(@old)
     end
@@ -32,4 +32,4 @@ unless ARGV.size == 3
 end
 
 rb = RecreateBaseline.new(*ARGV)
-rb.run!
+rb.call

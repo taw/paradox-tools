@@ -26,7 +26,7 @@ class AverageProvince < ParadoxGame
     ParadoxModFile.new(string: content, path: path).parse!
   end
 
-  def run!
+  def call
     tax = []
     production = []
     manpower = []
@@ -57,4 +57,4 @@ class AverageProvince < ParadoxGame
   end
 end
 
-AverageProvince.new(*ARGV).run!
+AverageProvince.new(*ARGV).call

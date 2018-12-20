@@ -39,7 +39,7 @@ class MapTraits
     character["traits"] = character["traits"].map{|t| traits_map[t] || t}.select{|t| t != 0}.uniq
   end
 
-  def run!
+  def call
     @save = ParadoxModFile.new(path: @save_in).parse!
     @save["character"].each do |character_id, character|
       map_traits! character
@@ -51,4 +51,4 @@ class MapTraits
   end
 end
 
-MapTraits.new(*ARGV).run!
+MapTraits.new(*ARGV).call

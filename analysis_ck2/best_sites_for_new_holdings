@@ -42,7 +42,7 @@ class BestSitesForNewHoldingsAnalysis < CK2SaveAnalysis
   end
 
   # Not sure how it deals with nomad counties
-  def run!
+  def call
     @realms = {}
     @data["provinces"].each do |id, province|
       next if province == []
@@ -57,4 +57,4 @@ class BestSitesForNewHoldingsAnalysis < CK2SaveAnalysis
   end
 end
 
-BestSitesForNewHoldingsAnalysis.new(*ARGV).run!
+BestSitesForNewHoldingsAnalysis.new(*ARGV).call

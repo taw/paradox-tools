@@ -4,7 +4,7 @@ require_relative "../lib/paradox_game"
 require "json"
 
 class ExportShipData < ParadoxGame
-  def run!
+  def call
     equipments = {}
 
     glob("common/units/equipment/*.txt").each do |path|
@@ -36,4 +36,4 @@ unless ARGV.size >= 1
   exit 1
 end
 
-ExportShipData.new(*ARGV).run!
+ExportShipData.new(*ARGV).call

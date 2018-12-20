@@ -6,7 +6,7 @@
 require_relative "../lib/paradox"
 
 class FindCotsInConvertedCampaign < ParadoxGame
-  def run!
+  def call
     cots = []
     glob("history/provinces/*.txt").each do |path|
       id = path.basename.to_s.to_i
@@ -25,4 +25,4 @@ class FindCotsInConvertedCampaign < ParadoxGame
   end
 end
 
-FindCotsInConvertedCampaign.new(*ARGV).run!
+FindCotsInConvertedCampaign.new(*ARGV).call

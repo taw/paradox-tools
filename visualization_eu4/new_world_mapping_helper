@@ -10,7 +10,7 @@ class NewWorldMappingHelper < ParadoxModBuilder
     [r,g,b].map{|x| x / 255.0 } # Some assumptions about rounding here...
   end
 
-  def run!(save_game)
+  def call(save_game)
     province_ids = save_game["provinces"].keys.map{|i| -i}
 
     create_mod_file! "common/religions/zz_new_world_mapping_helper.txt", PropertyList[
@@ -44,4 +44,4 @@ end
 
 save_game = ParadoxModFile.new(path: ARGV[0]).parse!
 nwmh = NewWorldMappingHelper.new(ParadoxGame.new("eu4"), "output/new_world_mapping_helper")
-nwmh.run!(save_game)
+nwmh.call(save_game)

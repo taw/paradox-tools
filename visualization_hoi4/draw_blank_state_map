@@ -30,7 +30,7 @@ class DrawBlankStateMap < ParadoxGame
     ]
   end
 
-  def run!
+  def call
     pixels = generate_map_image_pixels(random_state_color_map)
     # pixels = generate_map_image_pixels(land_sea_color_map)
     add_state_borders(pixels)
@@ -38,4 +38,4 @@ class DrawBlankStateMap < ParadoxGame
   end
 end
 
-DrawBlankStateMap.new(*ARGV).run!
+DrawBlankStateMap.new(*ARGV).call

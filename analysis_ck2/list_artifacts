@@ -48,7 +48,7 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
     end
   end
 
-  def run!
+  def call
     load_characters!
 
     report = []
@@ -84,4 +84,4 @@ class ListArtifactsAnalysis < CK2GameAndSaveAnalysis
   end
 end
 
-ListArtifactsAnalysis.new(*ARGV).run!
+ListArtifactsAnalysis.new(*ARGV).call

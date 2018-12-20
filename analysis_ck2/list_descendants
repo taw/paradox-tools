@@ -77,7 +77,7 @@ class ListDescendants
     @dynasties
   end
 
-  def run!
+  def call
     print_family characters[@character_id]
   end
 
@@ -120,4 +120,4 @@ unless ARGV.size == 2
   exit 1
 end
 
-ListDescendants.new(ARGV[0], ARGV[1].to_i).run!
+ListDescendants.new(ARGV[0], ARGV[1].to_i).call

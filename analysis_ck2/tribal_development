@@ -13,7 +13,7 @@ class TribalDevelopmentAnalysis < CK2SaveAnalysis
     top_realms.sort.join(" / ")
   end
 
-  def run!
+  def call
     realms = {}
     @data["provinces"].each do |id, province|
       next if province == []
@@ -40,4 +40,4 @@ class TribalDevelopmentAnalysis < CK2SaveAnalysis
   end
 end
 
-TribalDevelopmentAnalysis.new(*ARGV).run!
+TribalDevelopmentAnalysis.new(*ARGV).call

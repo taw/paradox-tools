@@ -3,11 +3,11 @@
 require_relative "../ck2/ck2_analyses"
 
 class RealmTechAnalysis < CK2SaveAnalysis
-  def run!
+  def call
     realm_techs.sort_by{|info| [-info[:tech], info[:name], info[:size]]}.each do |info|
       puts "#{info[:tech]}\t#{info[:name]}\t#{info[:size]}"
     end
   end
 end
 
-RealmTechAnalysis.new(*ARGV).run!
+RealmTechAnalysis.new(*ARGV).call

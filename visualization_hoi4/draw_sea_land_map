@@ -7,9 +7,9 @@ require_relative "game_map"
 class DrawSeaLandMap < ParadoxGame
   include GameMap
 
-  def run!
+  def call
     write_image(generate_map_image(land_sea_color_map), "output/sea_land_map.png")
   end
 end
 
-DrawSeaLandMap.new(*ARGV).run!
+DrawSeaLandMap.new(*ARGV).call

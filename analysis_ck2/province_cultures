@@ -3,7 +3,7 @@
 require_relative "../ck2/ck2_analyses"
 
 class ProvinceCulturesAnalysis < CK2SaveAnalysis
-  def run!
+  def call
     cultures = Hash.new(0)
     @data["provinces"].each do |id, province|
       culture = province["culture"]
@@ -16,4 +16,4 @@ class ProvinceCulturesAnalysis < CK2SaveAnalysis
   end
 end
 
-ProvinceCulturesAnalysis.new(*ARGV).run!
+ProvinceCulturesAnalysis.new(*ARGV).call

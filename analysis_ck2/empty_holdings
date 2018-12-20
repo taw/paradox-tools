@@ -4,7 +4,7 @@ require_relative "../ck2/ck2_analyses"
 
 class EmptyHoldingsAnalysis < CK2SaveAnalysis
   # Not sure how it deals with nomad counties
-  def run!
+  def call
     realms = Hash.new(0)
     @data["provinces"].each do |id, province|
       next if province == []
@@ -27,4 +27,4 @@ class EmptyHoldingsAnalysis < CK2SaveAnalysis
   end
 end
 
-EmptyHoldingsAnalysis.new(*ARGV).run!
+EmptyHoldingsAnalysis.new(*ARGV).call

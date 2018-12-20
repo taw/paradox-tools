@@ -20,7 +20,7 @@ class ProvinceDevelopmentAnalysis < CK2GameAndSaveAnalysis
     end
   end
 
-  def run!
+  def call
     totals = Hash.new(0)
     @data["provinces"].each do |id, province|
       next if province == []
@@ -44,4 +44,4 @@ class ProvinceDevelopmentAnalysis < CK2GameAndSaveAnalysis
 end
 
 
-ProvinceDevelopmentAnalysis.new(*ARGV).run!
+ProvinceDevelopmentAnalysis.new(*ARGV).call

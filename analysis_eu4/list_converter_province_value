@@ -294,7 +294,7 @@ class ListConverterProvinceValue < ParadoxGame
     @map ||= Map.new(self)
   end
 
-  def run!
+  def call
     map.provinces.sort.each do |id, province|
       puts "#{id}\t#{province.name}\t#{province.value}"
     end
@@ -305,4 +305,4 @@ class ListConverterProvinceValue < ParadoxGame
   end
 end
 
-ListConverterProvinceValue.new(*ARGV).run!
+ListConverterProvinceValue.new(*ARGV).call

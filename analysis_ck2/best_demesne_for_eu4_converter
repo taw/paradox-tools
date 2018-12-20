@@ -103,7 +103,7 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
     end
   end
 
-  def run!
+  def call
     best_titles = titles.keys.sort_by{|t|
       [-title_value[t] / title_size[t], -title_size[t], t]
     }
@@ -116,4 +116,4 @@ class BestDemesneForEU4ConverterAnalysis < ParadoxGame
   end
 end
 
-BestDemesneForEU4ConverterAnalysis.new(*ARGV).run!
+BestDemesneForEU4ConverterAnalysis.new(*ARGV).call

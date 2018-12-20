@@ -39,10 +39,10 @@ class HolderCultureMap < ParadoxGame
     "output/ck2_holder_culture_#{@data["date"]}.png"
   end
 
-  def run!
+  def call
     Pathname("output").mkpath
     generate_map_image(build_color_map(holder_culture_map)).write(save_path)
   end
 end
 
-HolderCultureMap.new(*ARGV).run!
+HolderCultureMap.new(*ARGV).call

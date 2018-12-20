@@ -47,7 +47,7 @@ class DrawSuppressionMap < ParadoxGame
     end
   end
 
-  def run!
+  def call
     {
       "harshest" => 1.0,
       "harsh" => 0.8,
@@ -63,4 +63,4 @@ class DrawSuppressionMap < ParadoxGame
   end
 end
 
-DrawSuppressionMap.new(*ARGV).run!
+DrawSuppressionMap.new(*ARGV).call

@@ -171,7 +171,7 @@ class GenerateLedger < ParadoxGame
     end
   end
 
-  def run!
+  def call
     setup_equipment_mapping!
     setup_technology_mapping!
     analyze_country_information!
@@ -191,4 +191,4 @@ unless ARGV.size >= 2
   exit 1
 end
 
-GenerateLedger.new(*ARGV).run!
+GenerateLedger.new(*ARGV).call

@@ -95,7 +95,7 @@ class DrawIndustryMap < ParadoxGame
     end
   end
 
-  def run!
+  def call
     ["total", "civ", "mil", "dock"].each do |type|
       pixels = generate_map_image_pixels(industry_color_map(type))
       add_state_borders(pixels)
@@ -106,4 +106,4 @@ class DrawIndustryMap < ParadoxGame
   end
 end
 
-DrawIndustryMap.new(*ARGV).run!
+DrawIndustryMap.new(*ARGV).call

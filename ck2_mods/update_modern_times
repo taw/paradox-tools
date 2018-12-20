@@ -21,7 +21,7 @@ class UpdateModernTimes < ParadoxGame
     @character_manager = CharacterManager.new(self)
   end
 
-  def run!
+  def call
     out = []
     @db.holders.each do |title, holders|
       last_date, last_holder = holders.sort.last
@@ -40,4 +40,4 @@ class UpdateModernTimes < ParadoxGame
   end
 end
 
-UpdateModernTimes.new.run!
+UpdateModernTimes.new.call

@@ -3,7 +3,7 @@
 require_relative "../ck2/ck2_analyses"
 
 class TraitsStatisticsAnalysis < CK2GameAndSaveAnalysis
-  def run!
+  def call
     alive = Hash.new(0)
     dead  = Hash.new(0)
     total = Hash.new(0)
@@ -28,4 +28,4 @@ class TraitsStatisticsAnalysis < CK2GameAndSaveAnalysis
   end
 end
 
-TraitsStatisticsAnalysis.new(*ARGV).run!
+TraitsStatisticsAnalysis.new(*ARGV).call

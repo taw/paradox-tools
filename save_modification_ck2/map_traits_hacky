@@ -44,7 +44,7 @@ class MapTraits
     traits.join(" ")
   end
 
-  def run!
+  def call
     save = @save_in.read.force_encoding("windows-1252").encode("UTF-8")
     save.gsub!(/traits\s*=\s*\{\s*\K[\d ]*?(?=\s*\})/) do
       map_traits($&)
@@ -54,4 +54,4 @@ class MapTraits
   end
 end
 
-MapTraits.new(*ARGV).run!
+MapTraits.new(*ARGV).call

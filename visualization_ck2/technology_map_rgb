@@ -47,10 +47,10 @@ class TechnologyMap < ParadoxGame
     "output/ck2_technologies_rgb_#{@data["date"]}.png"
   end
 
-  def run!
+  def call
     Pathname("output").mkpath
     generate_map_image(build_color_map(technology_map)).write(save_path)
   end
 end
 
-TechnologyMap.new(*ARGV).run!
+TechnologyMap.new(*ARGV).call

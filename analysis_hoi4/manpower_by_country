@@ -25,7 +25,7 @@ class ManpowerByCountry < ParadoxGame
     end
   end
 
-  def run!
+  def call
     countries = Hash.new{|ht,k| ht[k] = {
       "core"=>0, "colony"=>0, "unowned"=>0,
     }}
@@ -65,4 +65,4 @@ unless ARGV.size >= 1
   exit 1
 end
 
-ManpowerByCountry.new(*ARGV).run!
+ManpowerByCountry.new(*ARGV).call

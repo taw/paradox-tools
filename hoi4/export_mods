@@ -60,7 +60,7 @@ class ExportMods
     Pathname("output/hoi4_mods")
   end
 
-  def run!
+  def call
     if export_path.exist?
       system *%W[trash #{export_path}]
     end
@@ -72,4 +72,4 @@ class ExportMods
   end
 end
 
-ExportMods.new.run!
+ExportMods.new.call

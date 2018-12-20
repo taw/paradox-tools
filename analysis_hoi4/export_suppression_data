@@ -78,7 +78,7 @@ class ExportSuppressionData < ParadoxGame
     @states_by_vp_total
   end
 
-  def run!
+  def call
     puts "{"
     states_by_vp_total.sort.each do |t,n|
       puts "  #{t} => #{n.sort.inspect},"
@@ -87,4 +87,4 @@ class ExportSuppressionData < ParadoxGame
   end
 end
 
-ExportSuppressionData.new(*ARGV).run!
+ExportSuppressionData.new(*ARGV).call

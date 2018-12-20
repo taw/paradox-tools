@@ -83,7 +83,7 @@ class RelativesMap < ParadoxGame
     end
   end
 
-  def run!
+  def call
     load_characters!
     calculate_relatives!(player_id)
     Pathname("output").mkpath
@@ -91,4 +91,4 @@ class RelativesMap < ParadoxGame
   end
 end
 
-RelativesMap.new(*ARGV).run!
+RelativesMap.new(*ARGV).call

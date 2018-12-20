@@ -4,7 +4,7 @@ require "pathname"
 require "rmagick"
 
 class AddReligionIcons
-  def run!
+  def call
     medium_path = Pathname("data/vanilla/religion_icon_strip.dds")
     small_path  = Pathname("data/vanilla/religion_icon_strip_small.dds")
     big_path    = Pathname("data/vanilla/religion_icon_strip_big.dds")
@@ -39,4 +39,4 @@ class AddReligionIcons
   end
 end
 
-AddReligionIcons.new.run!
+AddReligionIcons.new.call

@@ -3,11 +3,11 @@
 require_relative "../ck2/ck2_analyses"
 
 class TraitsTranslationTableAnalysis < CK2GameAnalysis
-  def run!
+  def call
     traits.each do |i, name|
       puts "#{i} #{localization(name)}"
     end
   end
 end
 
-TraitsTranslationTableAnalysis.new(*ARGV).run!
+TraitsTranslationTableAnalysis.new(*ARGV).call

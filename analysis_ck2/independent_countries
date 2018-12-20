@@ -69,7 +69,7 @@ class IndependentCountrieshAnalysis < CK2GameAndSaveAnalysis
     end
   end
 
-  def run!
+  def call
     independent_rulers
       .values
       .map{|k| [k[:size], *k[:titles].sort]}
@@ -80,4 +80,4 @@ class IndependentCountrieshAnalysis < CK2GameAndSaveAnalysis
   end
 end
 
-IndependentCountrieshAnalysis.new(*ARGV).run!
+IndependentCountrieshAnalysis.new(*ARGV).call

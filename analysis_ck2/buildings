@@ -15,7 +15,7 @@ class BuildingsAnalysis < CK2SaveAnalysis
     end
   end
 
-  def run!
+  def call
     @by_type = {}
 
     @data["provinces"].each do |id, province|
@@ -46,4 +46,4 @@ class BuildingsAnalysis < CK2SaveAnalysis
   end
 end
 
-BuildingsAnalysis.new(*ARGV).run!
+BuildingsAnalysis.new(*ARGV).call

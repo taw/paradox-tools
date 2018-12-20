@@ -9,7 +9,7 @@ class ListSocietyMembers < CK2GameAndSaveAnalysis
     "#{c.full_name} #{of_title}"
   end
 
-  def run!
+  def call
     load_characters!
 
     @data["society"].each do |id, society|
@@ -30,4 +30,4 @@ class ListSocietyMembers < CK2GameAndSaveAnalysis
   end
 end
 
-ListSocietyMembers.new(*ARGV).run!
+ListSocietyMembers.new(*ARGV).call

@@ -22,10 +22,10 @@ class Character
 end
 
 class VassalCulturesAnalysis < CK2SaveAnalysis
-  def run!
+  def call
     load_characters!
     player.print_vassal_tree
   end
 end
 
-VassalCulturesAnalysis.new(*ARGV).run!
+VassalCulturesAnalysis.new(*ARGV).call

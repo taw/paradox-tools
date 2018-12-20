@@ -3,7 +3,7 @@
 require_relative "../ck2/ck2_analyses"
 
 class ProvinceTechAnalysis < CK2SaveAnalysis
-  def run!
+  def call
     province_techs.sort_by{|info| [-info[:tech], info[:name]] }.each do |info|
       province_realms = realms(info[:id]).map{|realm| realm_name(realm)}
       puts [info[:tech], info[:name], province_realms.join("\t"), info[:id]].join("\t")
@@ -11,4 +11,4 @@ class ProvinceTechAnalysis < CK2SaveAnalysis
   end
 end
 
-ProvinceTechAnalysis.new(*ARGV).run!
+ProvinceTechAnalysis.new(*ARGV).call

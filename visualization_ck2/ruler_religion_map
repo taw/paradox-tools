@@ -40,10 +40,10 @@ class RulerReligionMap < ParadoxGame
     "output/ck2_ruler_religion_#{@data["date"]}.png"
   end
 
-  def run!
+  def call
     Pathname("output").mkpath
     generate_map_image(build_color_map(ruler_religion_map)).write(save_path)
   end
 end
 
-RulerReligionMap.new(*ARGV).run!
+RulerReligionMap.new(*ARGV).call

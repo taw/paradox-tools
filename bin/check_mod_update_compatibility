@@ -89,7 +89,7 @@ class ModUpdateCompatibility
     end
   end
 
-  def run!
+  def call
     add_files!
     analyze_potential_conflicts!
   end
@@ -105,4 +105,4 @@ if ARGV.size != 3
   exit 1
 end
 
-ModUpdateCompatibility.new(ARGV[0], ARGV[1], ARGV[2]).run!
+ModUpdateCompatibility.new(ARGV[0], ARGV[1], ARGV[2]).call

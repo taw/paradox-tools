@@ -61,7 +61,7 @@ class CleanupScenarioMap
     end
   end
 
-  def run!
+  def call
     @scenario.glob("history/provinces/*").each do |path|
       next if @scenario.resolve(path) == @baseline.resolve(path)
       sync_province! path
@@ -75,4 +75,4 @@ cleanup = CleanupScenarioMap.new(
   "output/cleaned_up_map_data"
 )
 
-cleanup.run!
+cleanup.call
