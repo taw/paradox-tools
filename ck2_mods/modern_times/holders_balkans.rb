@@ -299,11 +299,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "2009.3.1"  => { name: "Valentin Inzko", lived: "1949.5.22 -", culture: :german },
   },
   # Montenegro
-  c_ragusa: {
+  d_dioclea: {
     "2006.6.3" => { name: "Filip Vujanović", lived: "1954.9.1 -" },
   },
   # Macedonia
-  d_dyrrachion:  {
+  d_strymon:  {
     "1991.9.8"  => { name: "Kiro Gligorov", lived: "1917.5.3 – 2012.1.1" },
     "1995.10.4"  => { name: "Stojan Andov", lived: "1935.11.30 -" },
     "1995.11.17" => { use: "Kiro 1" },
@@ -314,7 +314,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "2009.5.12"  => { name: "Gjorge Ivanov", lived: "1960.5.2 -" },
   },
   # Albania
-  d_dioclea: {
+  d_dyrrachion: {
     # Chairmen of provisional/central government
     "1913.5.30" => { name: "Ismail Qemali", lived: "1844.1.16 – 1919.1.24" },
     "1914.1.22" => { name: "Fejzi Alizoti", lived: "1874.9.22 - 1945.4.14" },

@@ -206,7 +206,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1927.5.7" => { use: "Vilgelm 1" },
     "1928.12.4" => { name: "Yakov Gamarnik", lived: "June 2 1894 – 1937.5.31" },
     "1930.1.3" => { name: "Konstantin Gey", lived: "1896 - 1939.2.25" },
-    # FIXME: He was azerbaijak and uzbek SSR too, wtf?
+    # FIXME: He was azerbaijan and uzbek SSR too, wtf?
     "1932.1.18" => { name: "Nikolay Gikalo", lived: "1897.3.8 – 1938.4.25" },
     "1937.3.18" => { name: "Vasily Sharangovich", lived: "1897–1938" },
     "1937.7.27" => { name: "Yakov Yakovlev", lived: "1896.6.9 - 1938.7.29" },

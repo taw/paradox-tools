@@ -8,6 +8,7 @@ ModernTimesDatabase::LAND = {
   # Level of actualy Ottoman control was fairly minor
   d_sanaa: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
   d_taizz: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
+  d_socotra: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
   c_kathiri: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
   c_mahra: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
   c_aden: {times_immemorial: "e_arabia", aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa"},
@@ -97,8 +98,9 @@ ModernTimesDatabase::LAND = {
   d_wallachia: {times_immemorial: "e_arabia", treaty_of_berlin: "k_dacia"},
   c_constantia: {times_immemorial: "e_arabia", treaty_of_berlin: "k_dacia"},
 
-  d_dyrrachion: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion"},
-  d_strymon: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia", macedonia_independence: "d_dyrrachion"},
+  c_ochrid: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia", macedonia_independence: "d_strymon"},
+  d_strymon: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia", macedonia_independence: "d_strymon"},
+
   c_belgrade: {times_immemorial: "e_arabia", treaty_of_berlin: "k_serbia"},
   d_rashka: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
   c_rama: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
@@ -296,11 +298,13 @@ ModernTimesDatabase::LAND = {
   c_saris: {forever_ago: "e_carpathia", czechoslovakia_independence: "k_bohemia", protectorate_of_bohemia_and_moravia: "d_nyitra", end_ww2: "k_bohemia", czechoslovakia_dissolution: "d_nyitra"},
 
   c_aland: {forever_ago: "k_sweden", end_of_swedish_finland: "k_finland"},
+  c_rovaniemi: {forever_ago: "k_sweden", end_of_swedish_finland: "k_finland"},
   d_finland: {forever_ago: "k_sweden", end_of_swedish_finland: "k_finland"},
   d_ostrobothnia: {forever_ago: "k_sweden", end_of_swedish_finland: "k_finland"},
   c_kemi: {forever_ago: "k_sweden", end_of_swedish_finland: "k_finland"},
 
   k_vladimir: {forever_ago: "e_russia"},
+  k_chernigov: {forever_ago: "e_russia"},
   k_perm: {forever_ago: "e_russia"},
   k_nenets: {forever_ago: "e_russia"},
   k_sibir: {forever_ago: "e_russia"},
@@ -358,13 +362,13 @@ ModernTimesDatabase::LAND = {
   d_sarkel: {forever_ago: "e_russia"},
 
   d_courland: {forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_courland"},
+  d_livonia: {forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_courland"},
 
   d_esthonia: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia"},
-  d_livonia: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia"},
+  d_sakala: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia"},
   c_kexholm: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_of_swedish_finland: "k_finland", finland_independence: "k_finland"},
   d_savonia: {forever_ago: "k_sweden", end_of_swedish_finland: "k_finland"},
 
-  c_lettigalians: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland"},
   d_latgale: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland"},
 
   d_kola: {forever_ago: "e_russia"},
@@ -386,6 +390,11 @@ ModernTimesDatabase::LAND = {
   d_esztergom: {forever_ago: "e_carpathia", end_ww1: "k_hungary"},
   d_pecs: {forever_ago: "e_carpathia", end_ww1: "k_hungary"},
   d_transylvania: {forever_ago: "e_carpathia", end_ww1: "k_dacia"},
+  c_bacau: {forever_ago: "e_carpathia", end_ww1: "k_dacia"},
+  c_torki: {forever_ago: "e_carpathia", end_ww1: "k_dacia"},
+  c_birlad: {forever_ago: "e_carpathia", end_ww1: "k_dacia"},
+  c_galaz: {forever_ago: "e_carpathia", end_ww1: "k_dacia"},
+
   d_pest: {forever_ago: "e_carpathia", end_ww1: "k_hungary"},
   c_abauj: {forever_ago: "e_carpathia", end_ww1: "k_hungary"},
   c_marmaros: {forever_ago: "e_carpathia", end_ww1: "k_dacia"},
@@ -459,12 +468,9 @@ ModernTimesDatabase::LAND = {
   d_wild_fields: {forever_ago: "e_arabia", treaty_of_kucuk_kaynarca: "e_russia", end_ww1: "k_ruthenia"},
   c_tmutarakan: {forever_ago: "e_arabia", treaty_of_kucuk_kaynarca: "e_russia"},
 
-  c_torki: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
-  d_bessarabia: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
-  c_galaz: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
   # FIXME: parts of d_moldau to k_ruthenia ???
-  # d_moldau: {forever_ago: "e_arabia", treaty_of_jassy: "e_russia", end_ww1: "k_ruthenia"},
   # FIXME: treaty of Jassy vs Bucharest ???
+  d_bessarabia: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
   d_moldau: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
 
   d_verona: {forever_ago: "k_venice", treaty_of_campo_formio: "e_carpathia", treaty_of_vienna_1866: "e_italy"},
@@ -487,12 +493,9 @@ ModernTimesDatabase::LAND = {
   d_upper_lorraine: {forever_ago: "e_france"},
   c_verdun: {forever_ago: "e_france"},
 
-  c_zeta: {forever_ago: "e_arabia", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea"},
-  c_travunia: {forever_ago: "e_arabia", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea"},
+  d_dyrrachion: {forever_ago: "e_arabia", treaty_of_london: "d_dyrrachion", albania_italian: "e_italy", end_ww2: "d_dyrrachion"},
 
-  c_dyrrachion: {forever_ago: "e_arabia", treaty_of_london: "d_dioclea", albania_italian: "e_italy", end_ww2: "d_dioclea"},
-
-  c_ragusa: {forever_ago: "e_arabia", treaty_of_berlin: "c_ragusa", montenegro_serbian: "k_serbia", montenegro_independence: "c_ragusa"},
+  d_dioclea: {forever_ago: "e_arabia", treaty_of_berlin: "d_dioclea", montenegro_serbian: "k_serbia", montenegro_independence: "d_dioclea"},
   # "It was the capital of the Kingdom of Hungary's Bereg County up until 1919 and between 1938-1944. From 1919 until 1938 it was part of Czechoslovakia."
   c_bereg: {forever_ago: "e_carpathia", end_ww1: "k_bohemia", protectorate_of_bohemia_and_moravia: "k_hungary", end_ww2: "k_ruthenia"},
 
@@ -533,7 +536,6 @@ ModernTimesDatabase::LAND = {
   c_lausitz: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
 
   d_khiva: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva"},
-  c_kyzylkum: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva"},
 
   d_samarkand: {forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "k_khiva"},
   d_khuttal: {forever_ago: "d_samarkand", bukhara_russian: "e_russia", end_ww1: "d_khuttal"},
@@ -558,6 +560,7 @@ ModernTimesDatabase::LAND = {
   d_kazakh: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_ob: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_kirghiz: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
+  d_irtysh: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_sibir: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_ishim: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_kipchak: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
@@ -630,7 +633,6 @@ ModernTimesDatabase::LAND = {
   k_kashmir: {sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "k_baluchistan"},
   d_uttaranchal: {sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india"},
   c_trigarta: {sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india"},
-  d_sakala: {sikh_empire_founded: "k_punjab", second_sikh_war: "e_britannia", india_independence: "e_india"},
 
   #########################################
   # READY FOR CONGRESS OF VIENNA BOOKMARK
@@ -684,12 +686,13 @@ ModernTimesDatabase::LAND = {
   k_telingana: {hyderabad_british: "k_telingana", india_independence: "e_india"},
   k_orissa: {orissa_british: "k_orissa", india_independence: "e_india"},
 
-  # FIXME:
+  # FIXME: c_saargau: was independent for a while
+
   e_tibet: {forever_ago: "e_tibet", tibet_chinese: "e_china_west_governor"},
   d_bhutan: {forever_ago: "d_bhutan"},
   k_nepal: {forever_ago: "k_nepal"},
 
-  # VERY TEMPORARY to get 3.0 to build:
-  k_hausaland: {times_immemorial: "k_papal_state"},
-  k_kanem: {times_immemorial: "k_papal_state"},
+  # ALL FIXME, it's OK for 2016 but history is not correct:
+  k_hausaland: {forever_ago: "k_hausaland"},
+  k_kanem: {forever_ago: "k_kanem"},
 }

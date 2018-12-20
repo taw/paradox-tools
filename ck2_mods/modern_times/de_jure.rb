@@ -47,7 +47,8 @@ ModernTimesDatabase::DE_JURE = {
 
   "k_belarus" => "e_wendish_empire",
   "d_vitebsk" => "k_belarus",
-  "d_smolensk" => "k_belarus",
+  "d_minsk" => "k_belarus",
+  "d_turov" => "k_belarus",
   "d_yatviags" => "k_belarus",
   "d_polotsk" => "k_belarus",
   "d_kola" => "k_finland",
@@ -75,6 +76,7 @@ ModernTimesDatabase::DE_JURE = {
   "k_frisia" => {hre_disbanded: "e_germany"},
   "k_germany" => {hre_disbanded: "e_germany"},
   "k_lotharingia" => {hre_disbanded: "e_germany"},
+  "k_switzerland" => {hre_disbanded: "e_germany"},
   "k_bavaria" => {hre_disbanded: "e_carpathia"},
   "k_bohemia" => {hre_disbanded: "e_carpathia"},
   "d_lausitz" => {end_ww2: "k_pomerania"},
@@ -85,8 +87,10 @@ ModernTimesDatabase::DE_JURE = {
   "d_brabant" => "k_frisia",
   "d_flanders" => "k_frisia",
   "d_upper_lorraine" => "k_france",
-  "d_lower_lorraine" => {times_immemorial: "k_germany", end_ww2: "k_france"}, # This shape...
+  "d_lower_lorraine" => "k_frisia",
   "d_alsace" => {times_immemorial: "k_germany", end_ww2: "k_france"},
+  "d_trier" => "k_germany",
+  "d_koln" => "k_germany",
 
   # Reverting 2.7 de jure map changes
   "d_samos" => "k_byzantium",
@@ -114,4 +118,6 @@ ModernTimesDatabase::DE_JURE = {
   "d_mudar" => "k_syria",
   "d_jazira" => "k_iraq",
   "d_sistan" => "k_afghanistan",
+
+  "d_paphlagonia" => "k_anatolia",
 }

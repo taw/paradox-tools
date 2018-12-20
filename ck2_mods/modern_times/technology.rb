@@ -11,11 +11,15 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_pomerania" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "d_prussia" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_italy" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
+  "k_papacy" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_sardinia" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_venice" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_denmark" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_norway" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_sweden" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
+  # Due to de jure changes, we need to list both names
+  "d_raetia" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
+  "d_swiss" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   # Paris, Berlin, Vienna tech group gets +1/+1/+1 over Western Europe
   "d_brandenburg" => [4, 4, 4, 5.5, 5.5, 5.5, 7, 7, 7],
   "d_valois" => [4, 4, 4, 5.5, 5.5, 5.5, 7, 7, 7],
@@ -25,6 +29,7 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_sicily" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "e_carpathia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "e_wendish_empire" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  "k_estonia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_finland" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_sapmi" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "d_iceland" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
@@ -36,9 +41,13 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_serbia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_croatia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_byzantium" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  "k_epirus" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_anatolia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  "k_thrace" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_trebizond" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   "k_armenia" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  "k_chernigov" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
+  "k_vladimir" => [3, 3, 3, 4, 4, 4, 5, 5, 5],
   # Moscow gets +1 mil over its group
   "d_moskva" => [4, 3, 3, 5, 4, 4, 6, 5, 5],
   # Rest of the world
@@ -63,6 +72,9 @@ ModernTimesDatabase::TECHNOLOGY = {
   "e_tibet" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "e_kanem" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   "e_maghreb" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
+  "k_sibir" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
+  "k_zhetysu" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
+  "k_khiva" => [2, 2, 2, 3, 3, 3, 4, 4, 4],
   # Israel tech group - some catch up
   "k_jerusalem" => [2, 2, 2, 3, 3, 3, 5, 5, 5],
 }

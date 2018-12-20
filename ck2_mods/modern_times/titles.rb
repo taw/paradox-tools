@@ -561,7 +561,7 @@ ModernTimesDatabase::TITLES = {
     capital: :c_belgrade,
     name: {end_ww1: "Yugoslavia / Yugoslavian", montenegro_independence: nil},
   },
-  d_dyrrachion: {
+  d_strymon: {
     culture: :serbian,
     religion: :orthodox,
     capital: :c_ochrid,
@@ -675,13 +675,13 @@ ModernTimesDatabase::TITLES = {
     name: "Moldova / Moldovan",
     liege: {soviet_partition_of_romania: "e_russia", fall_soviet_union: nil},
   },
-  d_dioclea: {
+  d_dyrrachion: {
     culture: :serbian,
     religion: :sunni,
     capital: :c_zeta,
     name: "Albania / Albanian",
   },
-  c_ragusa: {
+  d_dioclea: {
     culture: :serbian,
     religion: :orthodox,
     name: "Montenegro / Montenegrin",
