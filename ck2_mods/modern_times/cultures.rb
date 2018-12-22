@@ -20,7 +20,6 @@ ModernTimesDatabase::CULTURES = {
   "d_ryazan" => "russian",
   "d_novgorod-seversk" => "russian",
   "d_crimea" => "ukrainian",
-  "d_vitebsk" => "belarusian",
   "d_turov" => "belarusian",
   "d_yatviags" => "belarusian",
   "d_polotsk" => "belarusian",

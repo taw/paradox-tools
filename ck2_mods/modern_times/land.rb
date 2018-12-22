@@ -66,7 +66,6 @@ ModernTimesDatabase::LAND = {
   c_oromieh: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   d_baghdad: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   d_samarra: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
-  d_tigris: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   d_basra: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   d_kurdistan: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   c_bira: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
@@ -80,7 +79,6 @@ ModernTimesDatabase::LAND = {
   c_safed: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
   c_tell_bashir: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni", fall_of_raqqa: "k_syria"},
   k_syria: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
-  d_jazira: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
   c_nisibin: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
   d_tunis: {times_immemorial: "e_arabia", tunisia_french: "e_france", tunisia_independence: "d_tunis"},
   d_jerid: {times_immemorial: "e_arabia", tunisia_french: "e_france", tunisia_independence: "d_tunis"},
@@ -104,10 +102,10 @@ ModernTimesDatabase::LAND = {
   c_lyncestis: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia", macedonia_independence: "d_strymon"},
 
   c_belgrade: {times_immemorial: "e_arabia", treaty_of_berlin: "k_serbia"},
+  c_soli: {times_immemorial: "e_arabia", treaty_of_berlin: "k_serbia"},
+  c_syrmia: {times_immemorial: "e_arabia", treaty_of_berlin: "k_serbia"},
+  c_rama: {times_immemorial: "e_arabia", treaty_of_berlin: "k_serbia"},
   d_rashka: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
-  c_rama: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
-  c_soli: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
-  c_syrmia: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
   c_naissus: {times_immemorial: "e_arabia", treaty_of_london: "k_serbia"},
 
   d_turnovo: {times_immemorial: "e_arabia", treaty_of_berlin: "k_bulgaria"},
@@ -151,18 +149,18 @@ ModernTimesDatabase::LAND = {
   # GeaCron has no countries there so just shatter it into duchies before Europeans show up
   d_songhay: {times_immemorial: "d_songhay", french_mali: "e_france", mali_independence: "k_mali"},
   d_mali: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
-  d_gurma: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
-
+  d_gurma: {times_immemorial: "d_gurma", french_mali: "e_france", mali_independence: "k_mali"},
   d_bambuk: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
   d_yatenga: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
-  d_timbuktu: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu"},
-  d_ghana: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu"},
-  d_tagant: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu"},
+  d_timbuktu: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
+  d_ghana: {times_immemorial: "d_ghana", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
+  d_tagant: {times_immemorial: "d_tagant", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
+
   c_tadjoura: {times_immemorial: "d_harer", djibouti_french: "e_france", djibouti_independence: "d_afar"},
   d_harer: {times_immemorial: "d_harer", british_somaliland: "e_britannia", somalia_independence: "d_harer"},
   c_busaso: {times_immemorial: "d_harer", italian_somaliland: "e_italy", somalia_independence: "d_harer"},
-  c_idjil: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu"},
-  c_ouadane: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "d_timbuktu"},
+  c_idjil: {times_immemorial: "d_tagant", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
+  c_ouadane: {times_immemorial: "d_tagant", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
   c_tharasset: {times_immemorial: "d_ghana", spanish_sahara: "e_spain", madrid_accords: "k_mauretania"},
 
   c_urbino: {times_immemorial: "c_urbino", urbino_papal: "k_papal_state", treaty_of_zurich: "k_italy", italy_unification: "e_italy"},
@@ -250,7 +248,6 @@ ModernTimesDatabase::LAND = {
   c_merv: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan"},
   c_amol: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "d_dihistan"},
   c_aral: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_cuman"},
-  d_turkestan: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_cuman"},
   d_usturt: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_cuman"},
   c_usturt: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva"},
   c_kusbulak: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva"},
@@ -459,7 +456,6 @@ ModernTimesDatabase::LAND = {
 
   c_mstislavl: {forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
   c_vitebsk: {forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
-  d_vitebsk: {forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_belarus"},
   d_minsk: {forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_belarus"},
   d_polotsk: {forever_ago: "e_wendish_empire", poland_1_partition: "e_russia", end_ww1: "k_belarus"},
   c_lepiel: {forever_ago: "e_wendish_empire", poland_2_partition: "e_russia", end_ww1: "k_belarus"},
@@ -572,12 +568,9 @@ ModernTimesDatabase::LAND = {
   c_turkestan: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_bandja: {forever_ago: "k_cuman", junior_juz_russian: "e_russia", end_ww1: "k_cuman"},
 
-  d_kimak: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_kazakh: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
-  d_kirghiz: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_irtysh: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_ishim: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
-  d_kipchak: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   c_otrar: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   c_chach: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
   d_syr_darya: {forever_ago: "k_cuman", middle_juz_russian: "e_russia", end_ww1: "k_cuman"},
@@ -699,13 +692,19 @@ ModernTimesDatabase::LAND = {
   k_telingana: {hyderabad_british: "k_telingana", india_independence: "e_india"},
   k_orissa: {orissa_british: "k_orissa", india_independence: "e_india"},
 
-  # FIXME: c_saargau: was independent for a while
+  c_saargau: {forever_ago: "d_bavaria", end_ww1: "c_saargau", saar_unification_1: "e_germany", end_ww2: "c_saargau", saar_unification_2: "k_germany", german_reunification: "e_germany"},
 
   e_tibet: {forever_ago: "e_tibet", tibet_chinese: "e_china_west_governor"},
   d_bhutan: {forever_ago: "d_bhutan"},
   k_nepal: {forever_ago: "k_nepal"},
 
+  d_kanem: {forever_ago: "d_kanem", chad_french: "e_france", chad_independence: "k_kanem"},
+  d_bornu: {forever_ago: "d_bornu", chad_french: "e_france", chad_independence: "k_kanem"},
+  d_wadai: {forever_ago: "d_wadai", chad_french: "e_france", chad_independence: "k_kanem"},
+
   # ALL FIXME, it's OK for 2017 but history is not correct:
-  k_hausaland: {forever_ago: "e_france", niger_independence: "k_hausaland"},
-  k_kanem: {forever_ago: "e_france", chad_independence: "k_kanem"},
+  d_kebbi: {forever_ago: "d_kebbi", niger_french: "e_france", niger_independence: "k_hausaland"},
+  d_air: {forever_ago: "d_air", niger_french: "e_france", niger_independence: "k_hausaland"},
+  d_hausaland: {forever_ago: "d_hausaland", niger_french: "e_france", niger_independence: "k_hausaland"},
+
 }

@@ -205,6 +205,12 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     "2011.4.7" => { name: "Mahamadou Issoufou", lived: "1952 -" },
   },
   k_kanem: { # Chad
-
+    "1960.8.11" => {name: "François Tombalbaye", lived: "1918.6.15 – 1975.4.13"},
+    "1975.4.13" => { name: "Félix Malloum", lived: "1932.9.10 – 2009.6.12"},
+    "1979.3.23" => {name: "Goukouni Oueddei", lived: "1944 -" },
+    "1979.4.29" => {name: "Lol Mahamat | Choua", lived: "1939.6.15 -" },
+    "1979.9.3" => {use: "Goukouni 1"},
+    "1982.6.7" => {name: "Hissène Habré", lived: "1942.9.13 -" },
+    "1990.12.2" => {name: "Idriss Déby", lived: "1952.6.18 -"},
   }
 }

@@ -71,6 +71,7 @@ class ModernTimesDatabase
         end
         @land[title.to_s] = ownership.reverse.uniq(&:first).reverse
       end
+      validate_land!
     end
     @land
   end
@@ -288,11 +289,19 @@ class ModernTimesDatabase
   end
 
   def cultures
-    ModernTimesDatabase::CULTURES
+    unless @cultures
+      @cultures = ModernTimesDatabase::CULTURES
+      validate_cultures!
+    end
+    @cultures
   end
 
   def religions
-    ModernTimesDatabase::RELIGIONS
+    unless @religions
+      @religions = ModernTimesDatabase::RELIGIONS
+      validate_religions!
+    end
+    @religions
   end
 
   def republics
@@ -504,6 +513,36 @@ class ModernTimesDatabase
     # Guessing "safe" characters
     Kernel::warn "Still unicode left in #{name}" if cleaned_up =~ /[^\000-\177ÉáüöäèéÁóðçšåýÓí]/
     cleaned_up
+  end
+
+  def validate_land!
+    all_rules = @land.keys.grep_v(/\Ab_/)
+    used_rules = map.landed_titles_lookup.map{|title, path|
+      path.find{|t| @land[t]} if title =~ /\Ac_/
+    }.compact.uniq
+    (all_rules - used_rules).each do |title_rule|
+      warn "Data for land #{title_rule} not used"
+    end
+  end
+
+  def validate_cultures!
+    all_rules = @cultures.keys
+    used_rules = map.landed_titles_lookup.map{|title, path|
+      path.find{|t| @cultures[t]} if title =~ /\Ac_/
+    }.compact.uniq
+    (all_rules - used_rules).each do |title_rule|
+      warn "Data for culture #{title_rule} not used"
+    end
+  end
+
+  def validate_religions!
+    all_rules = @religions.keys
+    used_rules = map.landed_titles_lookup.map{|title, path|
+      path.find{|t| @religions[t]} if title =~ /\Ac_/
+    }.compact.uniq
+    (all_rules - used_rules).each do |title_rule|
+      warn "Data for religion #{title_rule} not used"
+    end
   end
 end
 

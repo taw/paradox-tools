@@ -216,6 +216,10 @@ module ModernTimesDatabase::Dates
     fall_of_raqqa: "2017.10.17",
     chad_independence: "1960.8.11",
     niger_independence: "1960.8.3",
+    saar_unification_1: "1935.3.1",
+    saar_unification_2: "1957.1.1",
+    chad_french: "1900.9.5",
+    niger_french: "1900.7.23",
   }
 
   def self.[](date)

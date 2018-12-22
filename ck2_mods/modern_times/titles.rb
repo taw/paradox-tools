@@ -629,7 +629,7 @@ ModernTimesDatabase::TITLES = {
     name: "Ethiopia / Ethiopian",
     demesne: ["d_gojjam"],
   },
-  d_timbuktu: {
+  k_ghana: {
     culture: :manden,
     religion: :sunni,
     name: "Mauritania / Mauritanian",
@@ -637,23 +637,76 @@ ModernTimesDatabase::TITLES = {
   d_ghana: {
     culture: :manden,
     religion: :sunni,
-    # tribal region
     autoholders: true, # 1818.6.3..1884.12.26
   },
   d_songhay: {
-    culture: :manden,
+    culture: :songhay,
     religion: :sunni,
   },
-  d_mali: {
+  d_gurma: {
+    culture: :songhay,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_mali: { # Fake pre-colonization state
     culture: :manden,
     religion: :sunni,
-    # tribal region
     autoholders: true, # 1818.6.3..1892.1.1
+  },
+  d_tagant: {
+    culture: :soninke,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_timbuktu: {
+    culture: :soninke,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_yatenga: {
+    culture: :manden,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_bambuk: {
+    culture: :manden,
+    religion: :sunni,
+    autoholders: true,
   },
   k_mali: {
     culture: :manden,
     religion: :sunni,
     capital: :c_mali,
+  },
+  d_kanem: {
+    culture: :kanuri,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_bornu: {
+    culture: :zaghawa,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_wadai: {
+    culture: :daju,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_kebbi: {
+    culture: :hausa,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_air: {
+    culture: :maghreb_arabic,
+    religion: :sunni,
+    autoholders: true,
+  },
+  d_hausaland: {
+    culture: :hausa,
+    religion: :sunni,
+    autoholders: true,
   },
   k_nubia: {
     culture: :nubian,
@@ -959,5 +1012,9 @@ ModernTimesDatabase::TITLES = {
     name: "Niger / Nigerien",
     culture: :hausa, # ???
     religion: :sunni,
+  },
+  c_saargau: {
+    culture: :german,
+    religion: :catholic,
   },
 }
