@@ -3,7 +3,6 @@ class BelarusianCultureGameModification < CK2GameModification
     # Based on severian
     PropertyList[
       "graphical_cultures", ["easternslavicgfx"],
-      "graphical_unit_culture", "western",
       "color", [0.5, 0.8, 0.3],
       "male_names", ["Briachislav_Bretislaus", "Demid", "Dobrynia", "Fedot_Theodat", "Gleb", "Igor", "Iliya", "Iziaslav", "Lev_Leo", "Mitrofan", "Mstislav_Mstislav", "Nikita", "Putiata", "Radoslav", "Rodislav", "Rogvolod", "Rostislav", "Ruslan", "Stanislav_Stanislav", "Sudislav", "Svetozar", "Sviatopolk_Svatopluk", "Sviatoslav_Sviatoslav", "Terentiy", "Trifon", "Viacheslav", "Vladimir_Vladimir", "Vladislav_Vladislav", "Voislav", "Volodar", "Vseslav", "Vsevolod", "Vyshata", "Vysheslav", "Yaropolk", "Yaroslav_Jaroslav", "Yefimiy", "Yelisey", "Yeremey", "Yevstafiy"],
       "female_names", ["Boleslava", "Darya", "Dobrava", "Dobronega", "Dobroslava", "Yefimia_Euphemia", "Yefrosinia_Euphrosyne", "Fevronia", "Gorislava", "Gradislava", "Gremislava", "Liubava", "Liudmila", "Malfrida", "Malusha", "Maria_Maria", "Marina", "Olena_Helen", "Olga", "Pereyaslava", "Praskovya", "Praxida", "Prebrana", "Predslava", "Premyslava", "Pribislava", "Rogneda", "Rostislava", "Sbyslava", "Sviatoslava", "Tatyana", "Ulita", "Ulyana", "Varvara", "Vasilisa", "Veleslava", "Verkhoslava", "Vseslava", "Viacheslava", "Yaroslava", "Zabava", "Zvenislava"],

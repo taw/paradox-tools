@@ -2,13 +2,13 @@ class ProtestantismGameModification < CK2GameModification
   def add_holy_sites!(sites)
     found = Set[]
     add_sites = proc do |node|
-      node.each do |k,v|
+      node.each do |k, v|
         if sites[k]
           found << k
           # This is nasty but produces better looking output that add!
           entries = v.send(:entries)
-          idx = entries.index{|prop| prop.key == "color2" } or raise
-          entries[idx+1,0] = sites[k].map{|rel| Property["holy_site", rel] }
+          idx = entries.index { |prop| prop.key == "color2" } or raise
+          entries[idx + 1, 0] = sites[k].map { |rel| Property["holy_site", rel] }
         elsif v.is_a?(PropertyList) and k =~ /\A[dke]/
           add_sites[v]
         end
@@ -25,7 +25,7 @@ class ProtestantismGameModification < CK2GameModification
       Date.parse("0020.1.1"), PropertyList["active", false],
     ]
     create_file! "common/landed_titles/modern_times_protestant.txt",
-    'd_protestant = {
+                 'd_protestant = {
       color={ 180 137 97 }
       color2={ 220 220 0 }
       capital = 333 # Rome
@@ -42,7 +42,7 @@ class ProtestantismGameModification < CK2GameModification
       dynasty_title_names = no # Will not be named "Seljuk", etc.
     }'
     create_file! "decisions/modern_times_protesant.txt",
-    'decisions = {
+                 "decisions = {
       create_protestant_papacy = {
         is_high_prio = yes
         potential = {
@@ -91,7 +91,7 @@ class ProtestantismGameModification < CK2GameModification
           factor = 1
         }
       }
-    }'
+    }"
     create_mod_file! "common/religions/01_modern_times.txt", PropertyList[
       "christian", PropertyList[
         "protestant", PropertyList[
@@ -136,28 +136,27 @@ class ProtestantismGameModification < CK2GameModification
       ],
     ]
     localization!("modern_times_religions",
-      "protestant" => "Protestant",
-      "protestant_DESC" => "Lutheran/Anglican branch of Protestantism",
-      "d_protestant" => "Ecumenical Primacy",
-      "d_protestant_adj" => "Primatial",
-      "PROTESTANT_PRIMATE" => "Ecumenical Primate",
-      "reformed" => "Reformed",
-      "reformed_DESC" => "Reformed/Calvinist branch of Protestantism",
-      "create_protestant_papacy" => "Establish Ecumenical Primate in Rome",
-      "create_protestant_papacy_desc" => "With Rome under Protestant control, pious Protestant ruler can establish Ecumenical Primate as leader of Protestants living in countries without established national churches.",
-    )
+                  "protestant" => "Protestant",
+                  "protestant_DESC" => "Lutheran/Anglican branch of Protestantism",
+                  "d_protestant" => "Ecumenical Primacy",
+                  "d_protestant_adj" => "Primatial",
+                  "PROTESTANT_PRIMATE" => "Ecumenical Primate",
+                  "reformed" => "Reformed",
+                  "reformed_DESC" => "Reformed/Calvinist branch of Protestantism",
+                  "create_protestant_papacy" => "Establish Ecumenical Primate in Rome",
+                  "create_protestant_papacy_desc" => "With Rome under Protestant control, pious Protestant ruler can establish Ecumenical Primate as leader of Protestants living in countries without established national churches.")
     add_holy_sites!(
-      "c_kent"      => ["protestant", "reformed"],
-      "c_roma"      => ["protestant", "reformed"],
-      "c_koln"      => ["protestant", "reformed"],
+      "c_kent" => ["protestant", "reformed"],
+      "c_roma" => ["protestant", "reformed"],
+      "c_koln" => ["protestant", "reformed"],
       "c_jerusalem" => ["protestant", "reformed"],
-      "c_santiago"  => ["protestant", "reformed"],
+      "c_santiago" => ["protestant", "reformed"],
     )
   end
 
   def setup_peace_of_westphalia_cbs!
     patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
-      ["religious", "crusade"].each do |cb_name|
+      ["religious", "crusade", "new_crusade"].each do |cb_name|
         node[cb_name]["can_use"].add! "OR", PropertyList[
           "has_global_flag", "end_of_peace_of_westphalia",
           "FROM", PropertyList[

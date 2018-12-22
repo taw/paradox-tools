@@ -91,9 +91,6 @@ ModernTimesDatabase::DE_JURE = {
   "d_trier" => "k_germany",
   "d_koln" => "k_germany",
 
-  # Reverting 2.7 de jure map changes
-  "d_samos" => "k_byzantium",
-  "d_cibyrrhaeot" => "k_byzantium",
   "d_cherson" => "k_crimea",
   "d_crimea" => "k_crimea",
 
@@ -123,4 +120,16 @@ ModernTimesDatabase::DE_JURE = {
   "d_volhynia" => "k_belarus",
   "d_galich" => "k_ruthenia",
   "d_cherven_cities" => "k_poland",
+
+  "d_epirus" => "k_byzantium",
+  "d_cephalonia" => "k_byzantium",
+  "d_ohrid" => "k_serbia",
+  "d_dyrrachion" => "k_serbia",
+
+  "d_cibyrrhaeot" => "k_anatolia",
+  "d_samos" => "k_anatolia",
+  "d_abydos" => "k_anatolia",
+  "d_adrianopolis" => "k_bulgaria",
+  "d_thrace" => "k_byzantium",
+  "d_optimatoi" => "k_anatolia",
 }

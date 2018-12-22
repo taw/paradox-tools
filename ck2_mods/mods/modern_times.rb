@@ -379,7 +379,6 @@ class ModernTimesGameModification < CK2GameModification
     end
     # Mess due to de jure changes
     duchies += ["d_swiss"]
-    duchies -= ["d_raetia"]
 
     tech_groups = {}
 

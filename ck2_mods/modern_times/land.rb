@@ -150,8 +150,8 @@ ModernTimesDatabase::LAND = {
   d_songhay: {times_immemorial: "d_songhay", french_mali: "e_france", mali_independence: "k_mali"},
   d_mali: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
   d_gurma: {times_immemorial: "d_gurma", french_mali: "e_france", mali_independence: "k_mali"},
-  d_bambuk: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
-  d_yatenga: {times_immemorial: "d_mali", french_mali: "e_france", mali_independence: "k_mali"},
+  d_bambuk: {times_immemorial: "d_bambuk", french_mali: "e_france", mali_independence: "k_mali"},
+  d_yatenga: {times_immemorial: "d_yatenga", french_mali: "e_france", mali_independence: "k_mali"},
   d_timbuktu: {times_immemorial: "d_timbuktu", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
   d_ghana: {times_immemorial: "d_ghana", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
   d_tagant: {times_immemorial: "d_tagant", mauritania_french: "e_france", mauritania_independence: "k_ghana"},
@@ -521,6 +521,7 @@ ModernTimesDatabase::LAND = {
   c_menorca: {forever_ago: "e_spain", treaty_of_utrech: "e_britannia", treaty_of_versailles: "e_spain"},
 
   d_bavaria: {forever_ago: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany"},
+  c_kempten: {forever_ago: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany"},
   d_nordgau: {forever_ago: "d_bavaria", end_ww1: "e_germany", end_ww2: "k_germany", german_reunification: "e_germany"},
 
   d_nefoud: {forever_ago: "d_nefoud", end_ww1: "k_arabia"},
@@ -543,8 +544,8 @@ ModernTimesDatabase::LAND = {
   c_plauen: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   d_meissen: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_lausitz: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  c_altmark: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  c_magdeburg: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
+  c_altmark: {forever_ago: "k_pomerania", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
+  c_magdeburg: {forever_ago: "k_pomerania", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
 
   d_khiva: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva"},
 
@@ -701,10 +702,7 @@ ModernTimesDatabase::LAND = {
   d_kanem: {forever_ago: "d_kanem", chad_french: "e_france", chad_independence: "k_kanem"},
   d_bornu: {forever_ago: "d_bornu", chad_french: "e_france", chad_independence: "k_kanem"},
   d_wadai: {forever_ago: "d_wadai", chad_french: "e_france", chad_independence: "k_kanem"},
-
-  # ALL FIXME, it's OK for 2017 but history is not correct:
   d_kebbi: {forever_ago: "d_kebbi", niger_french: "e_france", niger_independence: "k_hausaland"},
   d_air: {forever_ago: "d_air", niger_french: "e_france", niger_independence: "k_hausaland"},
   d_hausaland: {forever_ago: "d_hausaland", niger_french: "e_france", niger_independence: "k_hausaland"},
-
 }

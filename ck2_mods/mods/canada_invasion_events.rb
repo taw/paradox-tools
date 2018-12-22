@@ -30,25 +30,25 @@ CanadaInvasionEvents = PropertyList[
         "status", true,
       ],
       "k_papal_state", PropertyList["holder_scope", PropertyList[
-        "create_random_soldier", PropertyList[
-          "dynasty", 1035000,
-          "random_traits", true,
-          "culture", "canadian",
-          "religion", "protestant",
-        ],
-        "new_character", PropertyList[
-          "e_canada", PropertyList["grant_title", "PREV"],
-          "set_government_type", "feudal_government",
-          "set_defacto_liege", "THIS",
-          "narrative_event", PropertyList[
-            "id", "CANADA.2",
-            "days", 7,
-          ],
-        ],
-      ]],
+                                      "create_random_soldier", PropertyList[
+                                        "dynasty", 1035000,
+                                        "random_traits", true,
+                                        "culture", "canadian",
+                                        "religion", "protestant",
+                                      ],
+                                      "new_character", PropertyList[
+                                        "e_canada", PropertyList["grant_title", "PREV"],
+                                        "set_government_type", "feudal_government",
+                                        "set_defacto_liege", "THIS",
+                                        "narrative_event", PropertyList[
+                                          "id", "CANADA.2",
+                                          "days", 7,
+                                        ],
+                                      ],
+                                    ]],
     ],
     "mean_time_to_happen", PropertyList[
-      "months", 720,
+      "months", 7200,
       "modifier", PropertyList[
         "factor", 0.5,
         "year", 2050,
@@ -108,10 +108,10 @@ CanadaInvasionEvents = PropertyList[
       ],
       "wealth", 10000,
       "FROM", PropertyList["kingdom", PropertyList["ROOT", PropertyList["war", PropertyList[
-        "casus_belli", "tribal_invasion",
-        "target", "PREVPREV",
-        "thirdparty_title", "PREV",
-      ]]]],
+                                                                          "casus_belli", "tribal_invasion",
+                                                                          "target", "PREVPREV",
+                                                                          "thirdparty_title", "PREV",
+                                                                        ]]]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -123,13 +123,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -141,13 +141,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -159,13 +159,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -177,13 +177,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -195,13 +195,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -213,13 +213,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -231,13 +231,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -249,13 +249,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -267,13 +267,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -285,13 +285,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -303,13 +303,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -321,13 +321,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "random", PropertyList[
         "chance", 50,
         "create_character", PropertyList[
@@ -341,13 +341,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -359,13 +359,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -377,13 +377,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
       ],
       "random", PropertyList[
         "chance", 50,
@@ -398,13 +398,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -416,13 +416,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -434,13 +434,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
       ],
       "random", PropertyList[
         "chance", 50,
@@ -455,13 +455,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -473,13 +473,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -491,28 +491,28 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
       ],
       "if", PropertyList[
         "limit", PropertyList["FROM", PropertyList["OR", PropertyList[
-          "province_id", 1,
-          "province_id", 9,
-          "province_id", 35,
-          "province_id", 31,
-        ]]],
+                                                     "province_id", 1,
+                                                     "province_id", 9,
+                                                     "province_id", 35,
+                                                     "province_id", 31,
+                                                   ]]],
         "FROM", PropertyList["sea_zone", PropertyList["ROOT", PropertyList["spawn_unit", PropertyList[
-          "province", "PREV",
-          "home", "FROM",
-          "owner", "ROOT",
-          "earmark", "canadian_invasion_fleet",
-          "troops", PropertyList["galleys", [1000, 1000]],
-        ]]]],
+                                                                             "province", "PREV",
+                                                                             "home", "FROM",
+                                                                             "owner", "ROOT",
+                                                                             "earmark", "canadian_invasion_fleet",
+                                                                             "troops", PropertyList["galleys", [1000, 1000]],
+                                                                           ]]]],
       ],
       "create_character", PropertyList[
         "random_traits", true,
@@ -703,10 +703,10 @@ CanadaInvasionEvents = PropertyList[
     "major_trigger", PropertyList["FROM", PropertyList["owner", PropertyList["NOT", PropertyList["character", "PREVPREV"]]]],
     "immediate", PropertyList[
       "FROM", PropertyList["kingdom", PropertyList["ROOT", PropertyList["war", PropertyList[
-        "casus_belli", "tribal_invasion",
-        "target", "PREVPREV",
-        "thirdparty_title", "PREV",
-      ]]]],
+                                                                          "casus_belli", "tribal_invasion",
+                                                                          "target", "PREVPREV",
+                                                                          "thirdparty_title", "PREV",
+                                                                        ]]]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -718,13 +718,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -736,13 +736,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -754,13 +754,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -772,13 +772,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -790,13 +790,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -808,13 +808,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -826,13 +826,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -844,13 +844,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -862,13 +862,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -880,13 +880,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -898,13 +898,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "create_character", PropertyList[
         "random_traits", true,
         "dynasty", "random",
@@ -916,13 +916,13 @@ CanadaInvasionEvents = PropertyList[
         "trait", "brilliant_strategist",
       ],
       "new_character", PropertyList["spawn_unit", PropertyList[
-        "province", "FROM",
-        "home", "FROM",
-        "troops", PropertyList[
-          "horse_archers", [1500, 1500],
-          "light_cavalry", [1500, 1500],
-        ],
-      ]],
+                                      "province", "FROM",
+                                      "home", "FROM",
+                                      "troops", PropertyList[
+                                        "horse_archers", [1500, 1500],
+                                        "light_cavalry", [1500, 1500],
+                                      ],
+                                    ]],
       "random", PropertyList[
         "chance", 50,
         "create_character", PropertyList[
@@ -936,13 +936,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -954,13 +954,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -972,70 +972,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
-      ],
-      "random", PropertyList[
-        "chance", 50,
-        "create_character", PropertyList[
-          "random_traits", true,
-          "dynasty", "random",
-          "religion", "protestant",
-          "culture", "canadian",
-          "female", false,
-          "age", 30,
-          "attributes", PropertyList["martial", 12],
-          "trait", "brilliant_strategist",
-        ],
-        "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
-        "create_character", PropertyList[
-          "random_traits", true,
-          "dynasty", "random",
-          "religion", "protestant",
-          "culture", "canadian",
-          "female", false,
-          "age", 25,
-          "attributes", PropertyList["martial", 12],
-          "trait", "brilliant_strategist",
-        ],
-        "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
-        "create_character", PropertyList[
-          "random_traits", true,
-          "dynasty", "random",
-          "religion", "protestant",
-          "culture", "canadian",
-          "female", false,
-          "age", 22,
-          "attributes", PropertyList["martial", 12],
-          "trait", "brilliant_strategist",
-        ],
-        "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
       ],
       "random", PropertyList[
         "chance", 50,
@@ -1050,13 +993,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -1068,13 +1011,13 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
         "create_character", PropertyList[
           "random_traits", true,
           "dynasty", "random",
@@ -1086,28 +1029,85 @@ CanadaInvasionEvents = PropertyList[
           "trait", "brilliant_strategist",
         ],
         "new_character", PropertyList["spawn_unit", PropertyList[
-          "province", "FROM",
-          "home", "FROM",
-          "troops", PropertyList[
-            "horse_archers", [1500, 1500],
-            "light_cavalry", [1500, 1500],
-          ],
-        ]],
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
+      ],
+      "random", PropertyList[
+        "chance", 50,
+        "create_character", PropertyList[
+          "random_traits", true,
+          "dynasty", "random",
+          "religion", "protestant",
+          "culture", "canadian",
+          "female", false,
+          "age", 30,
+          "attributes", PropertyList["martial", 12],
+          "trait", "brilliant_strategist",
+        ],
+        "new_character", PropertyList["spawn_unit", PropertyList[
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
+        "create_character", PropertyList[
+          "random_traits", true,
+          "dynasty", "random",
+          "religion", "protestant",
+          "culture", "canadian",
+          "female", false,
+          "age", 25,
+          "attributes", PropertyList["martial", 12],
+          "trait", "brilliant_strategist",
+        ],
+        "new_character", PropertyList["spawn_unit", PropertyList[
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
+        "create_character", PropertyList[
+          "random_traits", true,
+          "dynasty", "random",
+          "religion", "protestant",
+          "culture", "canadian",
+          "female", false,
+          "age", 22,
+          "attributes", PropertyList["martial", 12],
+          "trait", "brilliant_strategist",
+        ],
+        "new_character", PropertyList["spawn_unit", PropertyList[
+                                        "province", "FROM",
+                                        "home", "FROM",
+                                        "troops", PropertyList[
+                                          "horse_archers", [1500, 1500],
+                                          "light_cavalry", [1500, 1500],
+                                        ],
+                                      ]],
       ],
       "if", PropertyList[
         "limit", PropertyList["FROM", PropertyList["OR", PropertyList[
-          "province_id", 1,
-          "province_id", 9,
-          "province_id", 35,
-          "province_id", 31,
-        ]]],
+                                                     "province_id", 1,
+                                                     "province_id", 9,
+                                                     "province_id", 35,
+                                                     "province_id", 31,
+                                                   ]]],
         "FROM", PropertyList["sea_zone", PropertyList["ROOT", PropertyList["spawn_unit", PropertyList[
-          "province", "PREV",
-          "home", "FROM",
-          "owner", "ROOT",
-          "earmark", "canadian_invasion_fleet",
-          "troops", PropertyList["galleys", [1000, 1000]],
-        ]]]],
+                                                                             "province", "PREV",
+                                                                             "home", "FROM",
+                                                                             "owner", "ROOT",
+                                                                             "earmark", "canadian_invasion_fleet",
+                                                                             "troops", PropertyList["galleys", [1000, 1000]],
+                                                                           ]]]],
       ],
     ],
     "option", PropertyList["name", "EVTOPTA_CANADA_006"],
