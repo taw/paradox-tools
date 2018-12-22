@@ -358,7 +358,8 @@ class ModernTimesDatabase
 
   def in_historical_demesne?(liege, county)
     return true unless liege =~ /\A[ke]_/
-    !(map.landed_titles_lookup[county] & titles[liege][:demesne]).empty?
+    liege_data = titles[liege] or raise "Invalid liege #{liege} for #{county}"
+    !(map.landed_titles_lookup[county] & liege_data[:demesne]).empty?
   end
 
   private

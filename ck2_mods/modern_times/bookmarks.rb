@@ -33,7 +33,7 @@ ModernTimesDatabase::BOOKMARKS = {
     characters: ["e_britannia", "k_punjab", "k_frisia", "k_byzantium"],
   },
   "1861.3.17" => {
-    name:  "Kingdom of Italy",
+    name: "Kingdom of Italy",
     desc: "With Italy united, Prussia clearly has similar ambitions to unify Germany. Will its neighbours allow new great power to emerge, or will they try to stop it?",
     characters: ["e_france", "k_pomerania", "e_italy", "e_carpathia"],
   },
@@ -76,7 +76,7 @@ ModernTimesDatabase::BOOKMARKS = {
     desc: "Collapse of the Soviet Union freed nations of Soviet periphery, but also woke up dormant national conflicts. Will Russia continue its descent into chaos, or is it just a temporary setback?",
     characters: ["k_poland", "c_alania", "k_cuman"],
   },
-  "2016.8.12" => {
+  "2017.7.1" => {
     name: "Modern Times",
     desc: "After a brief period of calm following breakup of Soviet Union, new trouble is stirring. Putin challenges borders in former Soviet sphere, radical Islamists rally around a new caliph.",
     key: true,

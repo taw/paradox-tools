@@ -328,6 +328,8 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "2004.7.6" => {name: "Heinz | Fischer", lived: "1938.10.9 -"},
     # Member of presidential council, pick one of three arbitrarily
     "2016.7.8" => {name: "Doris | Bures", lived: "1962.8.3 -", female: true},
+    # New president
+    "2017.1.26" => {name: "Alexander | Van der Bellen", lived: "1944.1.18 -"},
   },
   # Württemberg
   d_swabia: {

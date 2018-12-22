@@ -182,7 +182,9 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "1998.11.24" => { name: "Émile Lahoud", lived: "1936.1.12 -" },
     "2007.11.24" => { name: "Fouad Siniora", lived: "1943.11.22 -" },
     "2008.5.5"   => { name: "Michel Suleiman", lived: "1948.11.21 -" },
+    # Acting President
     "2014.5.25"  => { name: "Tammam Salam", lived: "1945.5.13 -" },
+    "2016.10.31" =>  {name: "Michel Aoun", lived: "1935.2.18 -"},
   },
   c_bahrein: { # Qatar
     # Start count from independence, there were sheiks under British protectorate before that

@@ -93,7 +93,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "2012.5.31" => {
       name: "Tomislav Nikolić",
       lived: "1952–",
-    }
+    },
+    "2017.5.31" =>  {
+      name: "Aleksandar Vučić",
+      lived: "1970.3.5 -",
+    },
   },
   d_cyprus: {
     # Actually "1960.8.16"
@@ -184,6 +188,10 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       name: "Rosen Plevneliev",
       lived: "1964–",
     },
+    "2017.1.22" => {
+      name: "Rumen Radev",
+      lived: "1963.6.18 -",
+    }
   },
   k_byzantium: {
     # backdating

@@ -191,4 +191,10 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # backdating
     "2013.7.3" => { name: "Abdel Fattah | el-Sisi", lived: "1954.11.19 -" },
   },
+  k_hausaland: { # Niger
+
+  },
+  k_kanem: { # Chad
+
+  }
 }

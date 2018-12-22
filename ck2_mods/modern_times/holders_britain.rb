@@ -212,5 +212,9 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
       name: "Enda Kenny",
       lived: "1951–",
     },
+    "2017.6.14" => {
+      name: "Leo Varadkar",
+      lived: "1979.1.18 -",
+    }
   },
 }

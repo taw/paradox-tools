@@ -247,21 +247,21 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # End date is somewhat dubious
     # Communists
     # Grigory Kaminsky started 24 October 1920, backdating a bit
-    "1920.5.11"  => { name: "Grigory Kaminsky", lived: "1895.11.1 - 1938.2.10" },
-    "1921.7.24"     => { name: "Sergey Kirov", lived: "1886.3.27 - 1934.12.1" },
-    "1925.1.5"   => { name: "Ruhulla Akhundov", lived: "1897.1.1 - 1938.4.21" },
-    "1926.1.21"  => { name: "Levon Mirzoyan", lived: "December 1887 - 1939.2.26" },
-    "1929.7.11"     => { name: "Nikolay Gikalo", lived: "1897.3.8 - 1938.4.25" },
-    "1930.8.5"    => { name: "Vladimir Polonsky", lived: "1893.6.17 - 1937.10.30" },
-    "1933.2.7"  => { name: "Ruben Rubenov", lived: "1894 - 1937.11.27" },
+    "1920.5.11" => { name: "Grigory Kaminsky", lived: "1895.11.1 - 1938.2.10" },
+    "1921.7.24" => { name: "Sergey Kirov", lived: "1886.3.27 - 1934.12.1" },
+    "1925.1.5"  => { name: "Ruhulla Akhundov", lived: "1897.1.1 - 1938.4.21" },
+    "1926.1.21" => { name: "Levon Mirzoyan", lived: "December 1887 - 1939.2.26" },
+    "1929.7.11" => { name: "Nikolay Gikalo", lived: "1897.3.8 - 1938.4.25" },
+    "1930.8.5" => { name: "Vladimir Polonsky", lived: "1893.6.17 - 1937.10.30" },
+    "1933.2.7" => { name: "Ruben Rubenov", lived: "1894 - 1937.11.27" },
     "1933.12.10" => { name: "Mir Jafar | Baghirov", lived: "1896.9.17 - 1956.5.7" },
-    "1953.4.6"     => { name: "Mir Teymur | Yaqubov", lived: "1904.11.6 - 1970.2.17" },
+    "1953.4.6" => { name: "Mir Teymur | Yaqubov", lived: "1904.11.6 - 1970.2.17" },
     "1954.2.17" => { name: "Imam Mustafayev", lived: "1910.2.25 - 1997.3.10" },
-    "1959.7.10"     => { name: "Vali Akhundov", lived: "1916.5.14 - 1986.8.22" },
+    "1959.7.10" => { name: "Vali Akhundov", lived: "1916.5.14 - 1986.8.22" },
 
     "1969.7.14" => { name: "Heydar | Aliyev", lived: "1923.5.10 - 2003.12.12" },
     "1982.12.3" => {name: "Kamran Baghirov", lived: "1933.1.24 - 2000.10.25" },
-    "1988.5.21"     => {name: "Abdurrahman Vazirov", lived: "1930.5.26 -" },
+    "1988.5.21" => {name: "Abdurrahman Vazirov", lived: "1930.5.26 -" },
     "1990.1.25" => {name: "Ayaz Mutallibov", lived: "1938.5.12 -" },
     # After Communism (but still same people mostly)
     "1992.6.16" => { name: "Abulfaz Elchibey", lived: "1938.6.24 - 2000.8.22"},
@@ -277,6 +277,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     fall_soviet_union: {name: "Lennart Georg | Meri", lived: "1929.3.29 – 2006.3.14"},
     "2001.10.8" => {name: "Arnold | Rüütel", lived: "1928.5.10 -"},
     "2006.10.9" => {name: "Toomas Hendrik | Ilves", lived: "1953.12.26 -"},
+    "2016.10.10" => {name: "Kersti Kaljulaid", female: true, lived: "1969.12.30 -"},
   },
   d_lithuanians: {
     # Presidents
@@ -313,28 +314,29 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   },
   d_ferghana: { # Kyrgyzstan
     "1990.10.27" => {name: "Askar Akayev", lived: "1944.11.10 -"},
-    "2005.3.25"  => {name: "Kurmanbek Bakiyev", lived: "1949.8.1 -"},
-    "2010.4.7"   => {name: "Roza Otunbayeva", lived: "1950.8.23 -", female: true},
-    "2011.12.1"  => {name: "Almazbek Atambayev", lived: "1956.9.17 -"},
+    "2005.3.25" => {name: "Kurmanbek Bakiyev", lived: "1949.8.1 -"},
+    "2010.4.7"  => {name: "Roza Otunbayeva", lived: "1950.8.23 -", female: true},
+    "2011.12.1" => {name: "Almazbek Atambayev", lived: "1956.9.17 -"},
     "2017.11.24" => {name: "Sooronbay Jeenbekov", lived: "1958.11.16 -"},
   },
   d_dihistan: { # Turkmenistan
     "1958.12.14" => { name: "Dzhuma Durdy | Karayev", lived: "1910-1960.5.4" },
     # backdating from "1960.6.13"
-    "1960.5.4"  => { name: "Balysh Ovezov", lived: "1915-1975" },
+    "1960.5.4" => { name: "Balysh Ovezov", lived: "1915-1975" },
     "1969.12.24" => { name: "Muhammetnazar Gapurow", lived: "1922.2.15 – 1999.7.13" },
     "1985.12.21" => { name: "Saparmurat | Niyazov", lived: "1940.2.19 - 2006.12.21"},
     "2006.12.21" => { name: "Gurbanguly | Berdimuhamedow", lived: "1957.6.29-"},
   },
   d_moldau: { # Moldova
-    "1990.4.27"  => { name: "Mircea Snegur", lived: "1940.1.17 -" },
-    "1997.1.15"  => { name: "Petru Lucinschi", lived: "1940.1.27 -" },
-    "2001.4.7"   => { name: "Vladimir Voronin", lived: "1941.5.25 -" },
+    "1990.4.27" => { name: "Mircea Snegur", lived: "1940.1.17 -" },
+    "1997.1.15" => { name: "Petru Lucinschi", lived: "1940.1.27 -" },
+    "2001.4.7"  => { name: "Vladimir Voronin", lived: "1941.5.25 -" },
     # 3 acting presidents
-    "2009.9.11"  => { name: "Mihai Ghimpu", lived: "1951.11.19 -" },
+    "2009.9.11" => { name: "Mihai Ghimpu", lived: "1951.11.19 -" },
     "2010.12.28" => { name: "Vladimir Filat", lived: "1969.5.6 -" },
     "2010.12.30" => { name: "Marian Lupu", lived: "1966.6.20 -" },
-    "2012.3.23"  => { name: "Nicolae Timofti", lived: "1948.12.22 -" },
+    "2012.3.23" => { name: "Nicolae Timofti", lived: "1948.12.22 -" },
+    "2016.12.27" => {name: "Igor Dodon", lived: "1975.2.18 -"},
   },
   d_armenia: {
     # From 11 November 1991 presidents
@@ -351,20 +353,20 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     annexation_latvia: { name: "Augusts Kirhenšteins", lived: "1872.9.18 - 1963.11.3" },
     "1952.4.11" => { name: "Kārlis Ozoliņš", lived: "1905.8.31 - 1987.8.15" },
     "1959.11.27"=> { name: "Jānis Kalnbērziņš", lived: "1893.9.17 - 1986.2.4" },
-    "1970.5.5"  => { name: "Vitālijs Rubenis", lived: "1914.2.26 - 1994.1.2" },
+    "1970.5.5" => { name: "Vitālijs Rubenis", lived: "1914.2.26 - 1994.1.2" },
     "1974.8.20" => { name: "Pēteris Strautmanis", lived: "1919.4.24 - 2007.6.27" },
     "1985.6.22" => { name: "Jānis Vagris", lived: "1930.10.17 -" },
     "1988.10.6" => { name: "Anatolijs Gorbunovs", lived: "1942.2.10 -" },
-    "1993.7.8"  => { name: "Guntis Ulmanis", lived: "1939.9.13 -" },
-    "1999.7.8"  => { name: "Vaira Vīķe-Freiberga", lived: "1937.12.1 -", female: true },
-    "2007.7.8"  => { name: "Valdis Zatlers", lived: "1955.3.22 -" },
-    "2011.7.8"  => { name: "Andris Bērziņš", lived: "1944.12.10 -" },
-    "2015.7.8"  => { name: "Raimonds Vējonis", lived: "1966.6.15 -" },
+    "1993.7.8" => { name: "Guntis Ulmanis", lived: "1939.9.13 -" },
+    "1999.7.8" => { name: "Vaira Vīķe-Freiberga", lived: "1937.12.1 -", female: true },
+    "2007.7.8" => { name: "Valdis Zatlers", lived: "1955.3.22 -" },
+    "2011.7.8" => { name: "Andris Bērziņš", lived: "1944.12.10 -" },
+    "2015.7.8" => { name: "Raimonds Vējonis", lived: "1966.6.15 -" },
   },
   d_abkhazia: { # Circassia
     # There weren't any real rulers, so just pick someone up instead of generating fully random one
     # really lived 1777–1840 - https://en.wikipedia.org/wiki/Tuguzhuko_Kyzbech
     "1829.9.14" => { name: "Kazbech Tuguzhoko", lived: "1800-1865" },
-    "1864.6.2"  => nil,
+    "1864.6.2" => nil,
   },
 }

@@ -275,6 +275,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
         ],
       },
     },
+    fall_of_raqqa: nil,
   },
   k_afghanistan: {
     # There's a lot of year dates, fixing them all at 1.1. arbitrarily

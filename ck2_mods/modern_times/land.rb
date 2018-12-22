@@ -71,14 +71,14 @@ ModernTimesDatabase::LAND = {
   d_kurdistan: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
   c_bira: {times_immemorial: "e_arabia", british_iraq: "k_iraq"},
 
-  c_mosul: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
-  c_druz: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
-  c_sinjar: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
-  c_rahbah: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni"},
+  c_mosul: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni", fall_of_mosul: "k_iraq"},
+  c_druz: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni", fall_of_mosul: "k_iraq"},
+  c_sinjar: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni", fall_of_mosul: "k_iraq"},
+  c_rahbah: {times_immemorial: "e_arabia", british_iraq: "k_iraq", caliphate_reborn: "d_sunni", fall_of_mosul: "k_iraq"},
 
   c_tiberias: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", six_day_war: "k_israel"},
   c_safed: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
-  c_tell_bashir: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"},
+  c_tell_bashir: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni", fall_of_raqqa: "k_syria"},
   k_syria: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
   d_jazira: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
   c_nisibin: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria"},
@@ -132,10 +132,10 @@ ModernTimesDatabase::LAND = {
   d_cyprus: {times_immemorial: "e_arabia", cyprus_convention: "e_britannia", cyprus_independence: "d_cyprus"},
   c_famagusta: {times_immemorial: "e_arabia", cyprus_convention: "e_britannia", cyprus_independence: "d_cyprus", north_cyprus_invasion: "k_anatolia"},
 
-  d_palmyra: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"},
-  d_mudar: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"},
-  c_palmyra: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"},
-  c_asas: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni"},
+  d_palmyra: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni", fall_of_raqqa: "k_syria"},
+  d_mudar: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni", fall_of_raqqa: "k_syria"},
+  c_palmyra: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni", fall_of_raqqa: "k_syria"},
+  c_asas: {times_immemorial: "e_arabia", end_ww1: "e_france", syria_independence: "k_syria", caliphate_reborn: "d_sunni", fall_of_raqqa: "k_syria"},
 
   d_oultrejourdain: {times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain"},
   c_maan: {times_immemorial: "e_arabia", end_ww1: "d_oultrejourdain"},
@@ -707,6 +707,6 @@ ModernTimesDatabase::LAND = {
   k_nepal: {forever_ago: "k_nepal"},
 
   # ALL FIXME, it's OK for 2016 but history is not correct:
-  k_hausaland: {forever_ago: "k_hausaland"},
-  k_kanem: {forever_ago: "k_kanem"},
+  k_hausaland: {forever_ago: "e_france", niger_independence: "k_hausaland"},
+  k_kanem: {forever_ago: "e_france", chad_independence: "k_kanem"},
 }

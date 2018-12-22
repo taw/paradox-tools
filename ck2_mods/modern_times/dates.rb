@@ -7,7 +7,7 @@ module ModernTimesDatabase::Dates
   @dates = {
     ### Special tags
     reset_date: "1450.1.1",
-    today: "2016.8.12",
+    today: "2017.7.1",
     game_end: "2999.12.31",
 
     times_immemorial: "1600.1.1",
@@ -212,6 +212,10 @@ module ModernTimesDatabase::Dates
     montenegro_independence: "2006.6.3",
     crimea_invasion: "2014.4.17",
     caliphate_reborn: "2014.6.29",
+    fall_of_mosul: "2017.7.20",
+    fall_of_raqqa: "2017.10.17",
+    chad_independence: "1960.8.11",
+    niger_independence: "1960.8.3",
   }
 
   def self.[](date)

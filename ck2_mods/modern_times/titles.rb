@@ -1,6 +1,6 @@
 ModernTimesDatabase::TITLES = {
   d_ferghana: {
-    culture: :karluk,
+    culture: :kirghiz,
     religion: :sunni,
     name: "Kyrgyzstan / Kyrgyz",
     liege: {end_ww1: "e_russia", fall_soviet_union: nil},
@@ -565,7 +565,7 @@ ModernTimesDatabase::TITLES = {
     culture: :serbian,
     religion: :orthodox,
     capital: :c_ochrid,
-    name: "1nia / Macedonian",
+    name: "Macedonia / Macedonian",
   },
   k_egypt: {
     culture: :egyptian_arabic,
@@ -701,13 +701,13 @@ ModernTimesDatabase::TITLES = {
   d_lausitz: {
     culture: :german,
     religion: :catholic,
-    name: "Brunswick / Brunswickian",
+    name: "Saxony / Saxon",
     liege: {german_unification: "e_germany", end_ww1: nil},
   },
   d_saxony: {
     culture: :german,
     religion: :protestant,
-    name: "Bruns / Magdeburgian",
+    name: "Brunswick / Brunswickian",
   },
   k_poland: {
     culture: :polish,

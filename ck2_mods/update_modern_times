@@ -14,7 +14,7 @@ class UpdateModernTimes < ParadoxGame
   end
 
   def initialize
-    super("source/ck2_2.5.1")
+    super("source/ck2_3.0.0")
     @warnings = []
     @map = MapManager.new(self)
     @db = ModernTimesDatabase.new(self)

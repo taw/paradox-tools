@@ -24,19 +24,20 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
     "1931.6.13" =>  {name: "Paul | Doumer", lived: "1857 - 1932"},
     "1932.5.10" =>  {name: "Albert | Lebrun", lived: "1871 - 1950"},
     # Vichy
-    "1940.7.11"=>{name: "Philippe | Pétain", lived: "1856 - 1951"},
+    "1940.7.11" => {name: "Philippe | Pétain", lived: "1856 - 1951"},
     # 4th Republic
     # 1947.1.16, backdated
     end_ww2: {name: "Vincent | Auriol", lived: "1884 - 1966"},
-    "1954.1.16"=>{name: "René | Coty", lived: "1882 - 1962"},
+    "1954.1.16" => {name: "René | Coty", lived: "1882 - 1962"},
     # 5th Republic
-    "1959.1.8"=>{name: "Charles | de Gaulle", lived: "1890 - 1970"},
-    "1969.6.20"=>{name: "Georges | Pompidou", lived: "1911 - 1974"},
-    "1974.5.27"=>{name: "Valéry Giscard | d'Estaing", lived: "1926 -"},
-    "1981.5.21"=>{name: "François | Mitterrand", lived: "1916 - 1996"},
-    "1995.5.17"=>{name: "Jacques | Chirac", lived: "1932 -"},
-    "2007.5.16"=>{name: "Nicolas | Sarkozy", lived: "1955 -"},
-    "2012.5.15"=>{name: "François | Hollande", lived: "1954 -"},
+    "1959.1.8" => {name: "Charles | de Gaulle", lived: "1890 - 1970"},
+    "1969.6.20" => {name: "Georges | Pompidou", lived: "1911 - 1974"},
+    "1974.5.27" => {name: "Valéry Giscard | d'Estaing", lived: "1926 -"},
+    "1981.5.21" => {name: "François | Mitterrand", lived: "1916 - 1996"},
+    "1995.5.17" => {name: "Jacques | Chirac", lived: "1932 -"},
+    "2007.5.16" => {name: "Nicolas | Sarkozy", lived: "1955 -"},
+    "2012.5.15" => {name: "François | Hollande", lived: "1954 -"},
+    "2017.5.14" => {name: "Emmanuel Macron", lived: "1977.12.21 -"},
   },
   e_spain: {
     "1665.9.17"   => {name: "Charles | Habsburg", lived: "1661.11.6 - 1700.11.1"},
