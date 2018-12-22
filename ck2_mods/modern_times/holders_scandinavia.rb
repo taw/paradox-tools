@@ -134,24 +134,24 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
   d_iceland: {
     "1944.6.17" => {
       name: "Sveinn Björnsson",
-      lived: "1881–1952",
+      lived: "1881-1952",
     },
     "1952.8.1" => {
       name: "Ásgeir Ásgeirsson",
-      lived: "1894–1972",
+      lived: "1894-1972",
     },
     "1968.8.1" => {
       name: "Kristján Eldjárn",
-      lived: "1916–1982",
+      lived: "1916-1982",
       female: true,
     },
     "1980.8.1" => {
       name: "Vigdís Finnbogadóttir",
-      lived: "1930–",
+      lived: "1930-",
     },
     "1996.8.1" => {
       name: "Ólafur Ragnar | Grímsson",
-      lived: "1943–",
+      lived: "1943-",
     },
     "2016.8.1" => {
       name: "Guðni Thorlacius | Jóhannesson",

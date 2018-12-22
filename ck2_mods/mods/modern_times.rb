@@ -133,7 +133,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_county_history!(title, node)
     unless map.landed_titles_lookup[title]
-      STDERR.puts "Bad title: #{title}"
+      warn "County #{title} in history files but not in landed titles"
       return
     end
 
@@ -923,10 +923,12 @@ class ModernTimesGameModification < CK2GameModification
                   "romanian" => "Romanian", # Not Vlach
                   "cuman" => "Kazakh",
                   "karluk" => "Uzbek",
+                  "arberian" => "Albanian",
+                  "carantanian" => "Slovene",
+                  "lettigallish" => "Latvian",
                   "PROV870" => "Abu Dhabi",
                   "PROV653" => "Qatar",
                   "PROV603" => "Chechnya",
-                  "PROV468" => "Montenegro",
                   "PROV1531" => "Bahrain")
   end
 

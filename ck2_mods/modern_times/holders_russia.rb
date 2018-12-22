@@ -84,24 +84,24 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     "1953.3.5" => {
       name: "Georgy | Malenkov",
-      lived: "1902.1.8 – 1988.1.14",
+      lived: "1902.1.8 - 1988.1.14",
     },
     "1955.2.8" => {
       name: "Nikita | Khrushchev",
-      lived: "April 15 1894 – 1971.9.11",
+      lived: "April 15 1894 - 1971.9.11",
     },
     "1964.10.14" => {
       name: "Leonid | Brezhnev",
-      lived: "1906.12.19 – 1982.11.10",
+      lived: "1906.12.19 - 1982.11.10",
     },
     "1982.10.12" => {
       name: "Yuri | Andropov",
-      lived: "1914.6.15 – 1984.2.9",
+      lived: "1914.6.15 - 1984.2.9",
     },
     # backdating from 1984.2.13
     "1984.2.9" => {
       name: "Konstantin | Chernenko",
-      lived: "1911.9.24 – 1985.3.10",
+      lived: "1911.9.24 - 1985.3.10",
     },
     # Skipping Gennady Yanayev 3-day plot silliness
     # backdating one day
@@ -204,22 +204,22 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # Spelled Nikolay on English wikipedia, use consistent spelling instead
     "1925.12.22" => { name: "Nikolai Goloded", lived: "1894-1937" },
     "1927.5.7" => { use: "Vilgelm 1" },
-    "1928.12.4" => { name: "Yakov Gamarnik", lived: "June 2 1894 – 1937.5.31" },
+    "1928.12.4" => { name: "Yakov Gamarnik", lived: "June 2 1894 - 1937.5.31" },
     "1930.1.3" => { name: "Konstantin Gey", lived: "1896 - 1939.2.25" },
     # FIXME: He was azerbaijan and uzbek SSR too, wtf?
-    "1932.1.18" => { name: "Nikolay Gikalo", lived: "1897.3.8 – 1938.4.25" },
-    "1937.3.18" => { name: "Vasily Sharangovich", lived: "1897–1938" },
+    "1932.1.18" => { name: "Nikolay Gikalo", lived: "1897.3.8 - 1938.4.25" },
+    "1937.3.18" => { name: "Vasily Sharangovich", lived: "1897-1938" },
     "1937.7.27" => { name: "Yakov Yakovlev", lived: "1896.6.9 - 1938.7.29" },
-    "1937.8.11" => { name: "Aleksei Alekseyevich | Volkov", lived: "1890–1942" },
-    "1938.6.18" => { name: "Panteleimon Ponomarenko", lived: "1902.8.9 – 1984.1.18" },
+    "1937.8.11" => { name: "Aleksei Alekseyevich | Volkov", lived: "1890-1942" },
+    "1938.6.18" => { name: "Panteleimon Ponomarenko", lived: "1902.8.9 - 1984.1.18" },
     "1947.3.7" => { name: "Nikolai Gusarov", lived: "1905.8.16 - 1985.3.17" },
-    "1950.5.31" => { name: "Nikolai Patolichev", lived: "1908.9.10 – 1989.12.1" },
-    "1953.3.8" => { name: "Mikhail Zimyanin", lived: "1914–1995" },
+    "1950.5.31" => { name: "Nikolai Patolichev", lived: "1908.9.10 - 1989.12.1" },
+    "1953.3.8" => { name: "Mikhail Zimyanin", lived: "1914-1995" },
     "1953.6.25" => { use:"Nikolai 3" },
-    "1956.7.28" => { name: "Kirill Mazurov", lived: "1914.3.25 – 1989.12.19" },
+    "1956.7.28" => { name: "Kirill Mazurov", lived: "1914.3.25 - 1989.12.19" },
     "1965.3.30" => { name: "Pyotr Masherov", lived: "February 26 1918 - 1980.10.4" },
     # backdating from 1980.10.15
-    "1980.10.4" => { name: "Tikhon Kiselyov", lived: "1917.8.12 – 1983.1.11" },
+    "1980.10.4" => { name: "Tikhon Kiselyov", lived: "1917.8.12 - 1983.1.11" },
     # backdating from 1983.1.13
     "1983.1.11" => { name: "Nikolay Slyunkov", lived: "1929-" },
     "1987.2.6" => { name: "Yefrem Sokolov", lived: "1926.4.26-" },
@@ -269,12 +269,12 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2003.10.31" => { name: "Ilham | Aliyev", father: "Heydar 1", lived: "1961.12.24-" },
   },
   d_esthonia: {
-    "1933.10.21" => {name: "Konstantin Päts", lived: "1874.2.23 – 1956.1.18"},
+    "1933.10.21" => {name: "Konstantin Päts", lived: "1874.2.23 - 1956.1.18"},
     "1940.7.23" => nil,
     # Communists
 
     # 6 October 1992, backdating
-    fall_soviet_union: {name: "Lennart Georg | Meri", lived: "1929.3.29 – 2006.3.14"},
+    fall_soviet_union: {name: "Lennart Georg | Meri", lived: "1929.3.29 - 2006.3.14"},
     "2001.10.8" => {name: "Arnold | Rüütel", lived: "1928.5.10 -"},
     "2006.10.9" => {name: "Toomas Hendrik | Ilves", lived: "1953.12.26 -"},
     "2016.10.10" => {name: "Kersti Kaljulaid", female: true, lived: "1969.12.30 -"},
@@ -308,8 +308,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1989.6.23" => {name: "Islam | Karimov", lived: "1938.1.30-"},
   },
   d_khuttal: { # Tajikistan
-    "1990.11.30" => { name: "Qahhor | Mahkamov", lived: "1932.4.16 – 2016.6.8"},
-    "1991.9.23" => { name: "Rahmon | Nabiyev", lived: "1930.10.5 – 1993.4.11"},
+    "1990.11.30" => { name: "Qahhor | Mahkamov", lived: "1932.4.16 - 2016.6.8"},
+    "1991.9.23" => { name: "Rahmon | Nabiyev", lived: "1930.10.5 - 1993.4.11"},
     "1992.11.20" => { name: "Emomali | Rahmon", lived: "1952.10.5 -"},
   },
   d_ferghana: { # Kyrgyzstan
@@ -323,7 +323,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1958.12.14" => { name: "Dzhuma Durdy | Karayev", lived: "1910-1960.5.4" },
     # backdating from "1960.6.13"
     "1960.5.4" => { name: "Balysh Ovezov", lived: "1915-1975" },
-    "1969.12.24" => { name: "Muhammetnazar Gapurow", lived: "1922.2.15 – 1999.7.13" },
+    "1969.12.24" => { name: "Muhammetnazar Gapurow", lived: "1922.2.15 - 1999.7.13" },
     "1985.12.21" => { name: "Saparmurat | Niyazov", lived: "1940.2.19 - 2006.12.21"},
     "2006.12.21" => { name: "Gurbanguly | Berdimuhamedow", lived: "1957.6.29-"},
   },
@@ -345,8 +345,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2008.4.9" => { name: "Serzh Sargsyan", lived: "1954.6.30 -" },
   },
   d_courland: { # Latvia
-    end_ww1: { name: "Jānis Čakste", lived: "1859.9.14 – 1927.3.14" },
-    "1927.3.14" => { name: "Gustavs Zemgals", lived: "1871.8.12 – 1939.1.6" },
+    end_ww1: { name: "Jānis Čakste", lived: "1859.9.14 - 1927.3.14" },
+    "1927.3.14" => { name: "Gustavs Zemgals", lived: "1871.8.12 - 1939.1.6" },
     "1930.9.4" => { name: "Alberts Kviesis", lived: "1881.12.22 - 1944.8.9" },
     "1936.11.4" => { name:  "Kārlis Ulmanis", lived: "1877.9.4 - 1942.9.20" },
     # Dates of both adjusted a bit so transition and occupation cooccur same day
@@ -365,7 +365,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   },
   d_abkhazia: { # Circassia
     # There weren't any real rulers, so just pick someone up instead of generating fully random one
-    # really lived 1777–1840 - https://en.wikipedia.org/wiki/Tuguzhuko_Kyzbech
+    # really lived 1777-1840 - https://en.wikipedia.org/wiki/Tuguzhuko_Kyzbech
     "1829.9.14" => { name: "Kazbech Tuguzhoko", lived: "1800-1865" },
     "1864.6.2" => nil,
   },

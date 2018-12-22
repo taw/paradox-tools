@@ -40,39 +40,39 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     # Preidents
     "1946.6.12" => {
       name: "Enrico | De Nicola",
-      lived: "1877.11.9 – 1959.10.1",
+      lived: "1877.11.9 - 1959.10.1",
     },
     "1948.5.12" => {
       name: "Luigi | Einaudi",
-      lived: "1874.3.24 – 1961.10.30",
+      lived: "1874.3.24 - 1961.10.30",
     },
     "1955.5.11" => {
       name: "Giovanni | Gronchi",
-      lived: "1887.9.10 – 1978.10.17",
+      lived: "1887.9.10 - 1978.10.17",
     },
     "1962.5.11" => {
       name: "Antonio | Segni",
-      lived: "1891.2.2 – 1972.12.1",
+      lived: "1891.2.2 - 1972.12.1",
     },
     "1964.12.29" => {
       name: "Giuseppe | Saragat",
-      lived: "1898.9.19 – 1988.6.11",
+      lived: "1898.9.19 - 1988.6.11",
     },
     "1971.12.29" => {
       name: "Giovanni | Leone",
-      lived: "1908.11.3 – 2001.11.9",
+      lived: "1908.11.3 - 2001.11.9",
     },
     "1978.7.9" => {
       name: "Sandro | Pertini",
-      lived: "1896.9.25 – 1990.2.24",
+      lived: "1896.9.25 - 1990.2.24",
     },
     "1985.7.3" => {
       name: "Francesco | Cosiga",
-      lived: "1928.7.26 – 2010.8.17",
+      lived: "1928.7.26 - 2010.8.17",
     },
     "1992.5.28" => {
       name: "Oscar Luigi | Scalfaro",
-      lived: "1918.9.9 – 2012.1.29",
+      lived: "1918.9.9 - 2012.1.29",
     },
     "1999.5.18" => {
       name: "Carlo Azeglio | Ciampi",
@@ -90,7 +90,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
   k_sicily: {
     "1734.6.2" => {
       name: "Charles | Bourbon",
-      lived: "1716.1.20 – 1788.12.14",
+      lived: "1716.1.20 - 1788.12.14",
     },
     "1759.10.6" => {
       name: "Ferdinand | Bourbon",
@@ -99,11 +99,11 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     "1806.3.30" => {
       name: "Joseph | Bonaparte",
-      lived: "1768.1.7 – 1844.7.28",
+      lived: "1768.1.7 - 1844.7.28",
     },
     "1808.8.1" => {
       name: "Joachim | Murat",
-      lived: "1767.3.25 – 1815.10.13",
+      lived: "1767.3.25 - 1815.10.13",
     },
     congress_of_vienna: {
       use: "Ferdinand 1",
@@ -136,7 +136,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
   c_lucca: {
     "1815.6.9" => {
       name: "Maria Luisa | Bourbon",
-      lived: "1782.7.6 – 1824.3.13",
+      lived: "1782.7.6 - 1824.3.13",
       female: true,
     },
     "1824.3.13" => {
@@ -276,11 +276,11 @@ ModernTimesDatabase::HOLDERS_ITALY = {
   c_malta: {
     "1964.9.21" => {
       name: "Giorgio | Borg Olivier",
-      lived: "1911.7.5 – 1980.10.29",
+      lived: "1911.7.5 - 1980.10.29",
     },
     "1971.6.21" => {
       name: "Dom Mintoff",
-      lived: "1916.8.6 – 2012.8.20",
+      lived: "1916.8.6 - 2012.8.20",
     },
     "1984.12.22" => {
       name: "Karmenu | Mifsud Bonnici",
@@ -305,9 +305,9 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
   },
   d_toscana: {
-    "1814.4.27" => { name: "Ferdinando | Habsburg", lived: "1769.5.6 – 1824.6.18" },
-    "1824.6.18" => { name: "Leopoldo | Habsburg", lived: "1797.10.3 – 1870.1.29", father: "Ferdinando 1" },
-    "1859.7.21" => { name: "Ferdinando | Habsburg", lived: "1835.6.10 – 1908.1.17", father: "Leopoldo 1" },
+    "1814.4.27" => { name: "Ferdinando | Habsburg", lived: "1769.5.6 - 1824.6.18" },
+    "1824.6.18" => { name: "Leopoldo | Habsburg", lived: "1797.10.3 - 1870.1.29", father: "Ferdinando 1" },
+    "1859.7.21" => { name: "Ferdinando | Habsburg", lived: "1835.6.10 - 1908.1.17", father: "Leopoldo 1" },
     "1859.11.10" => nil,
   },
 }

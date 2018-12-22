@@ -32,15 +32,15 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Reboot as East Germany
     end_ww2: {
       name: "Wilhelm | Pieck",
-      lived: "1876–1960",
+      lived: "1876-1960",
     },
     "1950.7.25" => {
       name: "Walter | Ulbricht",
-      lived: "1893–1973",
+      lived: "1893-1973",
     },
     "1971.5.3" => {
       name: "Erich | Honecker",
-      lived: "1912–1994",
+      lived: "1912-1994",
     },
     "1989.10.18" => {
       name: "Egon | Krenz",
@@ -51,26 +51,26 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   c_weimar: {
     "1707.5.10" => {
       name: "Ernest Augustus | Saxe-Weimar-Eisenach",
-      lived: "1688.4.19 – 1748.1.19",
+      lived: "1688.4.19 - 1748.1.19",
     },
     "1748.1.19" => {
       name: "Ernest Augustus | Saxe-Weimar-Eisenach",
-      lived: "1737.6.2 – 1758.5.28",
+      lived: "1737.6.2 - 1758.5.28",
       father: "Ernest Augustus 1",
     },
     "1758.5.28" => {
       name: "Charles Augustus | Saxe-Weimar-Eisenach",
-      lived: "1757.9.3 – 1828.6.14",
+      lived: "1757.9.3 - 1828.6.14",
       father: "Ernest Augustus 2",
     },
     "1828.6.14" => {
       name: "Charles Frederick | Saxe-Weimar-Eisenach",
-      lived: "1783.2.2 – 1853.7.8",
+      lived: "1783.2.2 - 1853.7.8",
       father: "Charles Augustus 1",
     },
     "1853.7.8" => {
       name: "Charles Alexander | Saxe-Weimar-Eisenach",
-      lived: "1818.6.24 – 1901.1.5",
+      lived: "1818.6.24 - 1901.1.5",
       father: "Charles Frederick 1",
     },
     german_unification: nil,
@@ -108,12 +108,12 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     },
     "1883.4.15" => {
       name: "Frederick Francis | Mecklenburg-Schwerin", # 3
-      lived: "1851.3.19 – 1897.4.10",
+      lived: "1851.3.19 - 1897.4.10",
       father: "Frederick Francis 2",
     },
     "1897.4.10" => {
       name: "Frederick Francis | Mecklenburg-Schwerin", # 4
-      lived: "1882.4.9 – 1945.11.17",
+      lived: "1882.4.9 - 1945.11.17",
       father: "Frederick Francis 3",
     },
     end_ww1: nil,
@@ -135,7 +135,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backdate, ignore interregnum
     "1918.11.28" => {
       name: "Friedrich | Ebert",
-      lived: "1871.2.4 – 1925.2.28",
+      lived: "1871.2.4 - 1925.2.28",
       religion: :catholic,
     },
     # Ignore temporary ones, backdating
@@ -179,22 +179,22 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backdating a lot
     end_ww2: {
       name: "Konrad | Adenauer",
-      lived: "1876.1.5 – 1967.4.19",
+      lived: "1876.1.5 - 1967.4.19",
       religion: :catholic,
     },
     "1963.10.17" => {
       name: "Ludwig | Erhard",
-      lived: "1897.2.4 – 1977.5.5",
+      lived: "1897.2.4 - 1977.5.5",
       religion: :protestant,
     },
     "1966.12.1" => {
       name: "Kurt Georg | Kiesinger",
-      lived: "1904.4.6 – 1988.3.9",
+      lived: "1904.4.6 - 1988.3.9",
       religion: :catholic,
     },
     "1969.10.22" => {
       name: "Willy | Brandt",
-      lived: "1913.12.18 – 1992.10.8",
+      lived: "1913.12.18 - 1992.10.8",
       religion: :protestant,
     },
     "1974.5.16" => { # 1
@@ -212,45 +212,45 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   d_bavaria: {
     "1679.5.26" => {
       name: "Maximilian Emanuel | Wittelsbach",
-      lived: "1662.7.11 – 1726.2.26",
+      lived: "1662.7.11 - 1726.2.26",
     },
     "1726.2.26" => {
       name: "Charles Albert | Wittelsbach",
-      lived: "1697.8.6 – 1745.1.20",
+      lived: "1697.8.6 - 1745.1.20",
     },
     "1745.1.20" => {
       name: "Maximilian Joseph | Wittelsbach",
-      lived: "1727.3.28 – 1777.12.30",
+      lived: "1727.3.28 - 1777.12.30",
     },
     "1777.12.30" => {
       name: "Charles Theodore | Wittelsbach",
-      lived: "1724.12.11 – 1799.2.16",
+      lived: "1724.12.11 - 1799.2.16",
     },
     "1799.2.16" => {
       name: "Maximilian | Wittelsbach", # 1
-      lived: "1756.5.27 – 1825.10.13",
+      lived: "1756.5.27 - 1825.10.13",
     },
     "1825.10.13" => {
       name: "Ludwig | Wittelsbach", # 1
-      lived: "1786.8.25 – 1868.2.29",
+      lived: "1786.8.25 - 1868.2.29",
     },
     "1848.3.20" => {
       name: "Maximilian | Wittelsbach", # 2
-      lived: "1811.11.28 – 1864.3.10",
+      lived: "1811.11.28 - 1864.3.10",
     },
     "1864.3.10" => {
       name: "Ludwig | Wittelsbach", # 2
-      lived: "1845.8.25 – 1886.6.13",
+      lived: "1845.8.25 - 1886.6.13",
       father: "Maximilian 2",
     },
     "1886.6.13" => {
       name: "Otto | Wittelsbach",
-      lived: "1848.4.27 – 1916.10.11",
+      lived: "1848.4.27 - 1916.10.11",
       father: "Maximilian 2",
     },
     "1913.11.5" => {
       name: "Ludwig | Wittelsbach", # 3
-      lived: "1845.1.7 – 1921.10.18",
+      lived: "1845.1.7 - 1921.10.18",
     },
     end_ww1: nil,
   },
@@ -276,17 +276,17 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     },
     "1873.10.29" => {
       name: "Albert | Wettin",
-      lived: "1828.4.23 – 1902.6.19",
+      lived: "1828.4.23 - 1902.6.19",
       father: "John 1",
     },
     "1902.6.19" => {
       name: "George | Wettin",
-      lived: "1832.8.8 – 1904.10.15",
+      lived: "1832.8.8 - 1904.10.15",
       father: "John 1",
     },
     "1904.10.15" => {
       name: "Frederick Augustus | Wettin",
-      lived: "1865.5.25 – 1932.2.18",
+      lived: "1865.5.25 - 1932.2.18",
       father: "George 1",
     },
     end_ww1: nil,
@@ -309,9 +309,9 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   },
   k_bavaria: {
     # Backfill
-    "1918.11.11" => {name: "Karl | Seitz", lived: "1869.9.4 – 1950.2.3"},
-    "1920.12.9" => {name: "Michael | Hainisch", lived: "1858.8.15 – 1940.2.26"},
-    "1928.12.10" => {name: "Wilhelm | Miklas", lived: "1872.10.15 – 1956.3.20"},
+    "1918.11.11" => {name: "Karl | Seitz", lived: "1869.9.4 - 1950.2.3"},
+    "1920.12.9" => {name: "Michael | Hainisch", lived: "1858.8.15 - 1940.2.26"},
+    "1928.12.10" => {name: "Wilhelm | Miklas", lived: "1872.10.15 - 1956.3.20"},
     anschluss: nil,
     end_ww2: {name: "Karl | Renner", lived: "- 1950.12.31"},
     # Backfill, predecessor died in office
@@ -319,11 +319,11 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Backfill, predecessor died in office
     "1957.1.4" => {name: "Adolf | Schärf", lived: "- 1965.2.28"},
     # Backfill, predecessor died in office
-    "1965.2.28" => {name: "Franz | Jonas", lived: "1899.10.4 – 1974.4.24"},
+    "1965.2.28" => {name: "Franz | Jonas", lived: "1899.10.4 - 1974.4.24"},
     # Backfill, predecessor died in office
-    "1974.4.24" => {name: "Rudolf | Kirchschläger", lived: "1915.3.20 – 2000.3.30"},
-    "1986.7.8" => {name: "Kurt | Waldheim", lived: "1918.12.21 – 2007.6.14"},
-    "1992.7.8" => {name: "Thomas | Klestil", lived: "1932.11.4 – 2004.7.6"},
+    "1974.4.24" => {name: "Rudolf | Kirchschläger", lived: "1915.3.20 - 2000.3.30"},
+    "1986.7.8" => {name: "Kurt | Waldheim", lived: "1918.12.21 - 2007.6.14"},
+    "1992.7.8" => {name: "Thomas | Klestil", lived: "1932.11.4 - 2004.7.6"},
     # Backfill, predecessor died in office, why the fuck do they keep electing barely alive presidents?
     "2004.7.6" => {name: "Heinz | Fischer", lived: "1938.10.9 -"},
     # Member of presidential council, pick one of three arbitrarily
@@ -336,48 +336,48 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # as duke, elector, then king
     "1797.12.23" => {
       name: "Frederick | Württemberg",
-      lived: "1754.11.6 – 1816.10.30",
+      lived: "1754.11.6 - 1816.10.30",
     },
     "1816.10.30" => {
       name: "William | Württemberg", # 1
-      lived: "1781.9.27 – 1864.6.25",
+      lived: "1781.9.27 - 1864.6.25",
       father: "Frederick 1",
     },
     "1864.6.25" => {
       name: "Charles | Württemberg",
-      lived: "1823.3.6 – 1891.10.6",
+      lived: "1823.3.6 - 1891.10.6",
       father: "William 1",
     },
     "1891.10.6" => {
       name: "William | Württemberg", # 2
-      lived: "1848.2.25 – 1921.10.2",
+      lived: "1848.2.25 - 1921.10.2",
     # nephew of previous
     },
     end_ww1: nil,
   },
   d_baden: {
-    "1738.5.12" => {name: "Charles Frederick | Zähringen", lived: "1728.11.22 – 1811.6.10"},
-    "1811.6.10" => {name: "Charles | Zähringen", lived: "1786.7.8 – 1818.12.8"},
-    "1818.12.8" => {name: "Louis | Zähringen", lived: "1763.2.9 – 1830.3.30", father: "Charles Frederick 1"},
-    "1830.3.30" => {name: "Leopold | Zähringen", lived: "1790.8.29 – 1852.4.24", father: "Charles Frederick 1"},
-    "1852.4.24" => {name: "Louis | Zähringen", lived: "1824.8.15 – 1858.1.22", father: "Leopold 1"},
-    "1858.1.22" => {name: "Frederick | Zähringen", lived: "1826.9.9 – 1907.9.28", father: "Leopold 1"},
-    "1907.9.28" => {name: "Frederick | Zähringen", lived: "1857.7.9 – 1928.8.9", father: "Frederick 1"},
+    "1738.5.12" => {name: "Charles Frederick | Zähringen", lived: "1728.11.22 - 1811.6.10"},
+    "1811.6.10" => {name: "Charles | Zähringen", lived: "1786.7.8 - 1818.12.8"},
+    "1818.12.8" => {name: "Louis | Zähringen", lived: "1763.2.9 - 1830.3.30", father: "Charles Frederick 1"},
+    "1830.3.30" => {name: "Leopold | Zähringen", lived: "1790.8.29 - 1852.4.24", father: "Charles Frederick 1"},
+    "1852.4.24" => {name: "Louis | Zähringen", lived: "1824.8.15 - 1858.1.22", father: "Leopold 1"},
+    "1858.1.22" => {name: "Frederick | Zähringen", lived: "1826.9.9 - 1907.9.28", father: "Leopold 1"},
+    "1907.9.28" => {name: "Frederick | Zähringen", lived: "1857.7.9 - 1928.8.9", father: "Frederick 1"},
     end_ww1: nil,
   },
   c_anhalt: { # There were like 5 gavelkinded Anhalts
     "1693.8.7" => {
       name: "Leopold | Ascania", # 1
-      lived: "1676.7.3 – 1747.4.7",
+      lived: "1676.7.3 - 1747.4.7",
     },
     "1747.4.7" => {
       name: "Leopold | Ascania", # 2
-      lived: "1700.12.25 – 1751.12.16",
+      lived: "1700.12.25 - 1751.12.16",
       father: "Leopold 1",
     },
     "1751.12.16" => {
       name: "Leopold | Ascania", # 3
-      lived: "1740.8.10 – 1817.8.9",
+      lived: "1740.8.10 - 1817.8.9",
       father: "Leopold 2",
     },
     # Anhalt-Dessau initially
@@ -387,7 +387,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # grandfather of previous
     "1817.8.9" => {
       name: "Leopold | Ascania", # 4
-      lived: "1794.10.1 – 1871.5.22",
+      lived: "1794.10.1 - 1871.5.22",
     },
     german_unification: nil,
   },

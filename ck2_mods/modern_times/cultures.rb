@@ -67,4 +67,5 @@ ModernTimesDatabase::CULTURES = {
   "d_chernigov" => "ukrainian",
   "c_podlasie" => "belarusian",
   "c_sudovia" => "polish",
+  "c_cornwall" => "english",
 }

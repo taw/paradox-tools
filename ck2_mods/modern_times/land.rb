@@ -479,7 +479,6 @@ ModernTimesDatabase::LAND = {
   d_wild_fields: {forever_ago: "e_arabia", treaty_of_kucuk_kaynarca: "e_russia", end_ww1: "k_ruthenia"},
   c_tmutarakan: {forever_ago: "e_arabia", treaty_of_kucuk_kaynarca: "e_russia"},
 
-  # FIXME: parts of d_moldau to k_ruthenia ???
   # FIXME: treaty of Jassy vs Bucharest ???
   d_bessarabia: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
   d_moldau: {forever_ago: "e_arabia", treaty_of_bucharest_1812: "e_russia", end_ww1: "k_dacia", soviet_partition_of_romania: "d_moldau"},
@@ -706,7 +705,7 @@ ModernTimesDatabase::LAND = {
   d_bhutan: {forever_ago: "d_bhutan"},
   k_nepal: {forever_ago: "k_nepal"},
 
-  # ALL FIXME, it's OK for 2016 but history is not correct:
+  # ALL FIXME, it's OK for 2017 but history is not correct:
   k_hausaland: {forever_ago: "e_france", niger_independence: "k_hausaland"},
   k_kanem: {forever_ago: "e_france", chad_independence: "k_kanem"},
 }

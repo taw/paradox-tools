@@ -112,23 +112,23 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
   k_scotland: {
     "1999.5.7" => {
       name: "Donald | Dewar",
-      lived: "1937–2000",
+      lived: "1937-2000",
     },
     "2000.10.27" => {
       name: "Henry | McLeish",
-      lived: "1948–",
+      lived: "1948-",
     },
     "2001.11.22" => {
       name: "Jack | McConnell",
-      lived: "1960–",
+      lived: "1960-",
     },
     "2007.5.16" => {
       name: "Alex | Salmond",
-      lived: "1954–",
+      lived: "1954-",
     },
     "2014.11.20" => {
       name: "Nicola | Sturgeon",
-      lived: "1970–",
+      lived: "1970-",
       female: true,
     },
   },
@@ -149,68 +149,68 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
   k_ireland: {
     ireland_independence: {
       name: "Éamon | de Valera",
-      lived: "1882.10.14 – 1975.8.29",
+      lived: "1882.10.14 - 1975.8.29",
     },
     "1922.1.9" => {
       name: "Michael Collins",
-      lived: "1890.10.16 – 1922.8.22",
+      lived: "1890.10.16 - 1922.8.22",
     },
     # Before that it's a bit messy
     "1922.8.22" => {
       name: "William Thomas | Cosgrave",
-      lived: "1880–1965",
+      lived: "1880-1965",
     },
     "1932.3.9" => {use: "Éamon 1"},
     "1948.2.18" => {
       name: "John Aloysius | Costello",
-      lived: "1891–1976",
+      lived: "1891-1976",
     },
     "1951.6.13" => {use: "Éamon 1"},
     "1954.6.2" => {use: "John Aloysius 1"},
     "1957.3.20" => {use: "Éamon 1"},
     "1959.6.23" => {
       name: "Seán Lemass",
-      lived: "1899–1971",
+      lived: "1899-1971",
     },
     "1966.11.10" => {
       name: "Jack Lynch",
-      lived: "1917–1999",
+      lived: "1917-1999",
     },
     "1973.3.14" => {
       name: "Liam Cosgrave",
-      lived: "1920–",
+      lived: "1920-",
     },
     "1977.7.5" => {use: "Jack 1"},
     "1979.12.11" => {
       name: "Charles Haughey",
-      lived: "1925–2006",
+      lived: "1925-2006",
     },
     "1981.6.30" => {
       name: "Garret FitzGerald",
-      lived: "1926–2011",
+      lived: "1926-2011",
     },
     "1982.3.9" => {use: "Charles 1"},
     "1982.12.14" => {use: "Garret 1"},
     "1987.3.10" => {use: "Charles 1"},
     "1992.2.11" => {
       name: "Albert Reynolds",
-      lived: "1932–2014",
+      lived: "1932-2014",
     },
     "1994.12.15" => {
       name: "John Bruton",
-      lived: "1947–",
+      lived: "1947-",
     },
     "1997.6.26" => {
       name: "Bertie Ahern",
-      lived: "1951–",
+      lived: "1951-",
     },
     "2008.5.7" => {
       name: "Brian Cowen",
-      lived: "1960–",
+      lived: "1960-",
     },
     "2011.3.9" => {
       name: "Enda Kenny",
-      lived: "1951–",
+      lived: "1951-",
     },
     "2017.6.14" => {
       name: "Leo Varadkar",
