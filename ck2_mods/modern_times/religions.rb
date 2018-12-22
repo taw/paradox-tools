@@ -60,4 +60,16 @@ ModernTimesDatabase::RELIGIONS = {
   # Uniate
   "d_galich" => "catholic",
   "d_volhynia" => "catholic",
+  "d_dyrrachion" => "sunni",
+  "c_ragusa" => "catholic",
+  "d_taizz" => "shiite",
+  "d_hadramut" => "shiite",
+  "d_nobatia" => "sunni",
+  "d_nubia" => "sunni",
+  "d_cherven_cities" => "catholic",
+  "d_bosnia" => "sunni",
+  "d_azov" => "orthodox",
+  "d_sarkel" => "orthodox",
+  "d_wild_fields" => "orthodox",
+  "c_sortavala" => "orthodox",
 }

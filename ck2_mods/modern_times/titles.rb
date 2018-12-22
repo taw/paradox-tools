@@ -541,7 +541,7 @@ ModernTimesDatabase::TITLES = {
     liege: nil,
   },
   d_carinthia: {
-    culture: :croatian,
+    culture: :carantanian,
     religion: :catholic,
     name: "Slovenia / Slovenian",
     capital: :c_steiermark,
@@ -565,7 +565,7 @@ ModernTimesDatabase::TITLES = {
     culture: :serbian,
     religion: :orthodox,
     capital: :c_ochrid,
-    name: "Macedonia / Macedonian",
+    name: "1nia / Macedonian",
   },
   k_egypt: {
     culture: :egyptian_arabic,
@@ -676,7 +676,7 @@ ModernTimesDatabase::TITLES = {
     liege: {soviet_partition_of_romania: "e_russia", fall_soviet_union: nil},
   },
   d_dyrrachion: {
-    culture: :serbian,
+    culture: :arberian,
     religion: :sunni,
     capital: :c_zeta,
     name: "Albania / Albanian",
@@ -684,6 +684,7 @@ ModernTimesDatabase::TITLES = {
   d_dioclea: {
     culture: :serbian,
     religion: :orthodox,
+    capital: :c_travunia,
     name: "Montenegro / Montenegrin",
   },
   d_oman: {
@@ -700,8 +701,13 @@ ModernTimesDatabase::TITLES = {
   d_lausitz: {
     culture: :german,
     religion: :catholic,
-    name: "Saxony / Saxon",
+    name: "Brunswick / Brunswickian",
     liege: {german_unification: "e_germany", end_ww1: nil},
+  },
+  d_saxony: {
+    culture: :german,
+    religion: :protestant,
+    name: "Bruns / Magdeburgian",
   },
   k_poland: {
     culture: :polish,
@@ -929,7 +935,7 @@ ModernTimesDatabase::TITLES = {
     religion: :sunni,
     name: "Crimea / Crimean",
   },
-  k_rus: {
+  k_vladimir: {
     culture: :russian,
     religion: :orthodox,
     name: "Muscovy / Muscovite",

@@ -17,8 +17,6 @@ ModernTimesDatabase::TECHNOLOGY = {
   "k_denmark" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_norway" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "k_sweden" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
-  # Due to de jure changes, we need to list both names
-  "d_raetia" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   "d_swiss" => [3, 3, 3, 4.5, 4.5, 4.5, 6, 6, 6],
   # Paris, Berlin, Vienna tech group gets +1/+1/+1 over Western Europe
   "d_brandenburg" => [4, 4, 4, 5.5, 5.5, 5.5, 7, 7, 7],

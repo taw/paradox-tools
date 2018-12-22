@@ -6,7 +6,7 @@ require "pry"
 class ListLandedTitles < CK2GameAnalysis
   def add_titles(node, *prefix)
     node.each do |key, value|
-      next if %W[allow].include?(key)
+      next if %W[allow gain_effect].include?(key)
       next unless value.is_a?(PropertyList)
       title = [*prefix, key]
       @titles << title

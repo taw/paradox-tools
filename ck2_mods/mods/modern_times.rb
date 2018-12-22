@@ -377,6 +377,9 @@ class ModernTimesGameModification < CK2GameModification
       duchies += node.find_all("technology").map { |x| x["titles"] }.flatten
       node.delete! { true }
     end
+    # Mess due to de jure changes
+    duchies += ["d_swiss"]
+    duchies -= ["d_raetia"]
 
     tech_groups = {}
 

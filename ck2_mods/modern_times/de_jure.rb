@@ -8,7 +8,6 @@ ModernTimesDatabase::DE_JURE = {
   "k_galicia-volhynia" => "e_wendish_empire",
   "k_croatia" => "e_carpathia",
   "k_carinthia" => "e_carpathia",
-  "d_ryazan" => "k_rus",
   "d_livonia" => "k_lithuania",
   "d_iceland" => "k_denmark",
   "d_nikaea" => "k_anatolia",
@@ -95,7 +94,6 @@ ModernTimesDatabase::DE_JURE = {
   # Reverting 2.7 de jure map changes
   "d_samos" => "k_byzantium",
   "d_cibyrrhaeot" => "k_byzantium",
-  "d_itil" => "k_cuman",
   "d_cherson" => "k_crimea",
   "d_crimea" => "k_crimea",
 
@@ -120,4 +118,9 @@ ModernTimesDatabase::DE_JURE = {
   "d_sistan" => "k_afghanistan",
 
   "d_paphlagonia" => "k_anatolia",
+  "d_wild_fields" => "k_ruthenia",
+  "d_smolensk" => "k_vladimir",
+  "d_volhynia" => "k_belarus",
+  "d_galich" => "k_ruthenia",
+  "d_cherven_cities" => "k_poland",
 }

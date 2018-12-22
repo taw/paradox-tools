@@ -81,6 +81,7 @@ module ModernTimesDatabase::Dates
     treaty_of_shoenbrunn: "1809.10.14",
     duchy_warsaw_expansion: "1809.10.14",
     end_of_swedish_finland: "1809.9.17",
+    moscow_peace_treaty: "1940.3.12",
     treaty_of_bucharest_1812: "1812.5.28",
     treaty_of_gulistan: "1813.1.1",
     free_danzig_napoleonic_end: "1814.1.2",
