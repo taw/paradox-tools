@@ -477,7 +477,7 @@ ModernTimesDatabase::TITLES = {
   d_courland: {
     culture: :lettigallish,
     religion: :protestant,
-    capital: :c_zemigalians,
+    capital: :c_riga,
     name: "Latvia / Latvian",
     liege: {annexation_latvia: "e_russia", fall_soviet_union: nil},
   },

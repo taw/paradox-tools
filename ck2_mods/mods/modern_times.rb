@@ -426,7 +426,6 @@ class ModernTimesGameModification < CK2GameModification
 
   def cleanup_history_node!(node)
     # Presumably not needed but for sake of convention
-    # Maybe merge nodes with same date?
     unless node.keys.all? { |k| k.is_a?(Date) }
       node.instance_eval do
         @list = @list.map do |k, v|
@@ -441,8 +440,20 @@ class ModernTimesGameModification < CK2GameModification
         end
       end
     end
-    node.delete! { |prop| prop.val == [] }
-    node.sort_by! { |prop| [prop.key, prop.val.to_s] }
+
+    raise "Expected just dates to sort" unless node.keys.all? { |k| k.is_a?(Date) }
+
+    entries = {}
+    node.each do |key, value|
+      next if value.empty?
+      entries[key] ||= PropertyList[]
+      entries[key].add_many! *value.to_a
+    end
+
+    node.delete! { true }
+    entries.sort.each do |key, val|
+      node.add! key, val
+    end
   end
 
   def path_for_title(title)
@@ -919,16 +930,18 @@ class ModernTimesGameModification < CK2GameModification
 
   def change_localization!
     localization!("!aaa_vanilla_overrides",
-                  "romanian" => "Romanian", # Not Vlach
-                  "cuman" => "Kazakh",
-                  "karluk" => "Uzbek",
-                  "arberian" => "Albanian",
-                  "carantanian" => "Slovene",
-                  "lettigallish" => "Latvian",
-                  "PROV870" => "Abu Dhabi",
-                  "PROV653" => "Qatar",
-                  "PROV603" => "Chechnya",
-                  "PROV1531" => "Bahrain")
+      "romanian" => "Romanian", # Not Vlach
+      "cuman" => "Kazakh",
+      "karluk" => "Uzbek",
+      "arberian" => "Albanian",
+      "carantanian" => "Slovene",
+      "lettigallish" => "Latvian",
+      "PROV870" => "Abu Dhabi",
+      "PROV653" => "Qatar",
+      "PROV603" => "Chechnya",
+      "PROV1531" => "Bahrain",
+      "Finland" => "Finland"
+    )
   end
 
   def warn(msg)
@@ -1355,13 +1368,16 @@ class ModernTimesGameModification < CK2GameModification
     setup_patrician_houses!
     fix_russia_colors!
     move_diseases_into_the_future!
+
+    # Run after other title history changes, to make sure any new titles get covered
+    setup_title_laws!
+    # These need to run after title laws
     patch_mod_files!("history/titles/*.txt") do |node|
       cleanup_history_node!(node)
     end
     patch_mod_files!("history/offmap_powers/*.txt") do |node|
       cleanup_history_node!(node)
     end
-    setup_title_laws! # Run after other title history changes, to make sure any new titles get covered
 
     # Order of transformations matters
     setup_technology!
