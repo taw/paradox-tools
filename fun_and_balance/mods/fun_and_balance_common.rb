@@ -73,6 +73,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
       node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
     end
+    # However, we reeable it for Mughals into Delhi
+    patch_mod_file!("decisions/DelhiNation.txt") do |node|
+      node["country_decisions"]["sultan_of_delhi"]["potential"].add! "NOT", PropertyList["tag", "MUG"]
+    end
   end
 
   def double_corruption_slider!
