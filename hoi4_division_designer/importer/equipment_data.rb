@@ -7,7 +7,9 @@ class EquipmentData
 
   def each_equipment
     @game.glob("common/units/equipment/*.txt").each do |path|
-      @game.parse(path)["equipments"].each do |name, equipment|
+      node = @game.parse(path)
+      next if node.empty?
+      node["equipments"].each do |name, equipment|
         yield(name, jsonify(equipment).merge("name" => name_for(name)))
       end
     end

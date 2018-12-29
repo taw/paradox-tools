@@ -5,7 +5,9 @@ class UnitsData
 
   def each_unit
     @game.glob("common/units/*.txt").each do |path|
-      @game.parse(path)["sub_units"].each do |name, unit|
+      node = @game.parse(path)
+      next if node.empty?
+      node["sub_units"].each do |name, unit|
         yield(name, jsonify(unit).merge("name" => @game.localization(name)))
       end
     end

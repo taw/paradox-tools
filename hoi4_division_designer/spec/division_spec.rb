@@ -444,10 +444,10 @@ describe Division do
           breakthrough: 2.8,
           piercing: 1.0,
           combat_width: 4,
-          manpower: 2000,
+          manpower: 3000,
           training_time: 40,
-          equipment: {"infantry_equipment_0" => 100},
-          ic_cost: 40,
+          equipment: {"infantry_equipment_0" => 150},
+          ic_cost: 60,
           terrain_bonuses: {},
           recovery_rate: 0.35,
         }
