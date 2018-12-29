@@ -241,7 +241,7 @@ end
 
 desc "Generate HOI4 maps"
 task "hoi4:maps" do
-  system "visualization_hoi4/draw_blank_state_map source/hoi4-1.4.0"
-  system "visualization_hoi4/draw_sea_land_map source/hoi4-1.4.0"
-  system "visualization_hoi4/draw_suppression_maps source/hoi4-1.4.0"
+  system "visualization_hoi4/draw_blank_state_map source/hoi4-1.5.4"
+  system "visualization_hoi4/draw_sea_land_map source/hoi4-1.5.4"
+  system "visualization_hoi4/draw_suppression_maps source/hoi4-1.5.4"
 end
