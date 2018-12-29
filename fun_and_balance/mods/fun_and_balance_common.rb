@@ -19,9 +19,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def can_convert_in_territories!
+    # Vanilla reverted these in 1.28
     soft_patch_defines_lua!("fun_and_balance_convert_in_territories",
-      ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 0, 1],
-      ["NCountry.CAN_CONVERT_TERRITORY_RELIGION", 0, 1],
+      ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 1, 1],
+      ["NCountry.CAN_CONVERT_TERRITORY_RELIGION", 1, 1],
     )
   end
 

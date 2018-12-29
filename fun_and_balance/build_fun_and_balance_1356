@@ -7,7 +7,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/eu4-1.27.2",
+        "source/eu4-1.28.2",
         "source/1356",
       ),
       "output/fun_and_balance_1356",
@@ -20,7 +20,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     create_mod_descriptor!(
       name: "!Fun and Balance for 1356",
       path: "mod/fun_and_balance_1356",
-      supported_version: "1.27",
+      supported_version: "1.28",
       picture: "fun_and_balance_1356.jpg",
     )
   end
