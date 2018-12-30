@@ -164,6 +164,7 @@ module SimpleTerrainMapMod
       # There's no deep reason to change height of seas
       next if current_province[1] == "sea"
       next if province_terrain == "lakes"
+      next if province_terrain == "lake"
 
       if province_terrain == "mountain"
         heightmap[x,y] = "\x90".b
