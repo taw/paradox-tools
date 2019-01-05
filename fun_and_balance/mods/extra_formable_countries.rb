@@ -114,6 +114,12 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       next if culture_group == "east_slavic" # Form Russia instead
       next if culture_group == "japanese_g" # Form Japan instead
       next if culture_group == "east_asian" # Become Empire of China instead
+      # Indians have enough formable paths already
+      next if culture_group == "eastern_aryan"
+      next if culture_group == "western_aryan"
+      next if culture_group == "hindusthani"
+      next if culture_group == "dravidian"
+      next if culture_group == "central_indic"
 
       decisions << "country_decisions"
       decisions << PropertyList[
