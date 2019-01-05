@@ -344,7 +344,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1998.2.4" => { name: "Robert Kocharyan", lived: "1954.8.31 -" },
     "2008.4.9" => { name: "Serzh Sargsyan", lived: "1954.6.30 -" },
   },
-  d_courland: { # Latvia
+  d_livonia: { # Latvia
     end_ww1: { name: "Jānis Čakste", lived: "1859.9.14 - 1927.3.14" },
     "1927.3.14" => { name: "Gustavs Zemgals", lived: "1871.8.12 - 1939.1.6" },
     "1930.9.4" => { name: "Alberts Kviesis", lived: "1881.12.22 - 1944.8.9" },

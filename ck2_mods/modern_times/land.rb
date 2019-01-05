@@ -13,7 +13,7 @@ ModernTimesDatabase::LAND = {
   c_mahra: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
   c_aden: {times_immemorial: "e_arabia", aden_city_british: "e_britannia", south_yemen_independence: "d_sanaa"},
 
-  c_egrisi: {times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", abkhazia_war: "e_russia"},
+  c_egrisi: {times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia"},
   c_abkhazia: {times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia", abkhazia_war: "e_russia"},
   c_guria: {times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia"},
   c_imeretia: {times_immemorial: "e_arabia", treaty_of_adrianople: "d_abkhazia", russia_circassia_war: "e_russia", end_ww1: "k_georgia"},
@@ -366,15 +366,15 @@ ModernTimesDatabase::LAND = {
   d_ryazan: {forever_ago: "e_russia"},
   d_sarkel: {forever_ago: "e_russia"},
 
-  d_courland: {forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_courland"},
-  d_livonia: {forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_courland"},
+  d_courland: {forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_livonia"},
+  d_livonia: {forever_ago: "e_wendish_empire", poland_3_partition: "e_russia", end_ww1: "d_livonia"},
 
   d_esthonia: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia"},
   d_sakala: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_esthonia"},
   c_kexholm: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_of_swedish_finland: "k_finland", finland_independence: "k_finland", moscow_peace_treaty: "e_russia"},
   d_savonia: {forever_ago: "k_sweden", end_of_swedish_finland: "k_finland"},
 
-  d_latgale: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_courland"},
+  d_latgale: {forever_ago: "k_sweden", treaty_of_nystad: "e_russia", end_ww1: "d_livonia"},
 
   d_kola: {forever_ago: "e_russia"},
   d_karelia: {forever_ago: "e_russia"},

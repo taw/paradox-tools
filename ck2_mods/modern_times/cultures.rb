@@ -67,4 +67,9 @@ ModernTimesDatabase::CULTURES = {
   "c_podlasie" => "belarusian",
   "c_sudovia" => "polish",
   "c_cornwall" => "english",
+  "d_skane" => "swedish",
+  "c_graz" => "carantanian",
+  "c_albania" => "georgian",
+  "c_azerbaijan" => "turkish",
+  "c_suenik" => "armenian",
 }

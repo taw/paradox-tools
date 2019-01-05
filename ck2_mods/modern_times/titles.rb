@@ -474,7 +474,7 @@ ModernTimesDatabase::TITLES = {
     name: "Finland / Finnish",
     liege: {end_of_swedish_finland: "e_russia", end_ww1: nil},
   },
-  d_courland: {
+  d_livonia: {
     culture: :lettigallish,
     religion: :protestant,
     capital: :c_riga,
@@ -537,7 +537,7 @@ ModernTimesDatabase::TITLES = {
   },
   k_mongolia: {
     culture: :mongol,
-    religion: :sunni,
+    religion: :buddhist,
     liege: nil,
   },
   d_carinthia: {
@@ -580,7 +580,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_galilee: {
     culture: :levantine_arabic,
-    religion: :sunni,
+    religion: :monothelite,
     name: "Lebanon / Lebanese",
   },
   d_oultrejourdain: {
