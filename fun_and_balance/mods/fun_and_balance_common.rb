@@ -322,7 +322,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
     patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
       modify_node! node,
-        ["opinion_annex_vassal", "min", nil, -100]
+        ["opinion_annex_vassal", "min", nil, -100],
+        ["supporting_independence", "opinion", 50, 100]
     end
 
     patch_mod_file!("common/subject_types/00_subject_types.txt") do |node|
@@ -344,6 +345,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       # to balance LD from relative power (also tariffs, mercantilism etc.)
       types["colony"]["relative_power_class"] = 1
       types["colony"]["base_liberty_desire"] = -25.0
+    end
+  end
+  def rebalance_unrest!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["prosperity"]["local_unrest"] = -2
+      node["devastation"]["local_unrest"] = 5
+      node["non_accepted_culture"]["local_unrest"] = 4
+      node["non_accepted_culture_republic"]["local_unrest"] = -1
     end
   end
 end

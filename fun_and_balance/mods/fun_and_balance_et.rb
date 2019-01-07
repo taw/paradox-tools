@@ -35,13 +35,18 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     subject_religious_cbs!
     subject_tweaks!
     trade_map_fixes!
+    rebalance_unrest!
 
-    soft_patch_defines_lua!("fun_and_balance",
-                            ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
-                            ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
-                            ["NCountry.PS_CHANGE_CULTURE", 10, 5],
-                            ["NCountry.PS_MOVE_CAPITAL", 200, 100],
-                            ["NCountry.PS_MOVE_TRADE_PORT", 200, 100])
+    soft_patch_defines_lua!(
+      "fun_and_balance",
+      ["NAI.PEACE_TIME_EARLY_FACTOR", 0.75, 0.50],
+      ["NCountry.MAX_IDEA_GROUPS_FROM_SAME_CATEGORY", 0.5, 1.0],
+      ["NCountry.PS_CHANGE_CULTURE", 10, 5],
+      ["NCountry.PS_MOVE_CAPITAL", 200, 100],
+      ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
+      ["NAI.SUPPORT_INDEPENDENCE_DESIRE_TOO_MANY_RELATIONS", -20, 0],
+      ["NDiplomacy.MIN_RELATIONS_TO_SUPPORT_INDEPENDENCE", -25, -50],
+    )
   end
 
   def fix_adopt_secularism_decision!
