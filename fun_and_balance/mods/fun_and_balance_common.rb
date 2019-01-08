@@ -167,10 +167,30 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def nerf_china!
+  def rebalance_china!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["negative_mandate"]["global_unrest"] = 10
+      modify_node!(node,
+        ["negative_mandate", "global_unrest", 5, 10],
+      )
     end
+
+    # # Vanilla mandate system makes emergence of new Chinese power impossible, so try something else
+    # soft_patch_defines_lua!("fun_and_balance_china",
+    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0],
+    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, 0],
+    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_STABILITY", 0.24, 0.24],
+    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_STATE_WITH_PROSPERITY", 0.06, 0.20],
+    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_DEVASTATION", -5.0, -10.0],
+    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_FROM_DEFENDING", 5, 10],
+    # )
+
+    # patch_mod_file! "common/on_actions/00_on_actions.txt" do |node|
+    #   # go for Just Chinese culture instead ? (plus that Manchu coastline)
+    #   node["on_mandate_of_heaven_gained"]["china_superregion"] = PropertyList[
+    #     "limit", PropertyList["NOT", PropertyList["is_core", "ROOT"]],
+    #     "add_core", "ROOT",
+    #   ]
+    # end
   end
 
   def no_naval_attrition!
@@ -312,7 +332,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def subject_tweaks!
-    soft_patch_defines_lua!("fun_and_balance_subjcet_tweaks",
+    soft_patch_defines_lua!("fun_and_balance_subject_tweaks",
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
       ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
       ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
@@ -335,8 +355,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         types[subject_type] = subject
       end
 
-      # Reduced by a lot to allow vassal game
-      types["vassal"]["liberty_desire_development_ratio"] = 0.1
+      # Reduced slightly to help vassal game
+      types["vassal"]["liberty_desire_development_ratio"] = 0.2
       types["march"]["relative_power_class"] = 1
 
       # A bit more
@@ -353,6 +373,33 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["devastation"]["local_unrest"] = 5
       node["non_accepted_culture"]["local_unrest"] = 4
       node["non_accepted_culture_republic"]["local_unrest"] = -1
+      node["under_siege"]["local_unrest"] = 5
+      node["occupied"]["local_unrest"] = 5
+    end
+  end
+
+  # Massively increase benefits of being emperor
+  # as a very indirect Ottoman / France nerf
+  #
+  # Tax income from 5 free cities and 30 other states will be 10/month
+  # Gemeiner Pfennig increased from 1.66/month to 5/month
+  #
+  # It doesn't even have to represent a tax, just funding to levies provided by members
+  def rebalance_hre!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node!(node,
+        ["states_in_hre", "land_forcelimit", 0.5, 1],
+        ["states_in_hre", "global_manpower", 0.5, 1],
+        ["states_in_hre", "global_tax_income", nil, 3],
+        ["free_cities_in_hre", "land_forcelimit", 0.5, 1],
+        ["free_cities_in_hre", "global_manpower", 1, 2],
+        ["free_cities_in_hre", "global_tax_income", 2, 6],
+      )
+    end
+    patch_mod_file!("common/imperial_reforms/00_hre.txt") do |node|
+      modify_node!(node,
+        ["gemeinerpfennig", "emperor", "global_tax_income", 20, 60],
+      )
     end
   end
 end

@@ -25,7 +25,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     merchant_republic_province_limit_remove!
     more_base_relations!
     more_building_slots!
-    nerf_china!
+    rebalance_china!
     no_naval_attrition!
     power_projection_tweaks!
     primary_greek_tag_is_byz!
@@ -36,6 +36,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     subject_tweaks!
     trade_map_fixes!
     rebalance_unrest!
+    rebalance_hre!
 
     soft_patch_defines_lua!(
       "fun_and_balance",
