@@ -367,6 +367,61 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       types["colony"]["base_liberty_desire"] = -25.0
     end
   end
+
+  ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE
+  def bring_tech_groups_back!
+    patch_mod_file!("common/institutions/00_Core.txt") do |node|
+      node.each do |name, institution|
+        institution["penalty"] = 0.25
+
+        # Any non-Europe start really messes up with historical tech spread
+        if institution["can_start"]
+          institution["can_start"].add! "continent", "europe"
+        end
+      end
+
+      # TODO: fix node[*]["embracement_speed"]
+    end
+
+    soft_patch_defines_lua!("fun_and_balance_tech",
+      ["NCountry.EMBRACE_INSTITUTION_COST", 2.5, 5.0],
+    )
+
+    groups = [
+      # ["western",         0.00, 0.00, 0.00],
+      # ["high_american",   0.00, 0.00, 0.00],
+      ["eastern",         0.10, 0.10, 0.20, -0.10, 0.20], # avg 15 %
+      ["ottoman",         0.20, 0.20, 0.40, -0.20, 0.40], # avg 25 %
+      ["muslim",          0.30, 0.30, 0.60, -0.30, 0.60], # avg 40 %
+      ["indian",          0.40, 0.40, 0.80, -0.40, 0.80], # avg 60 %
+      ["chinese",         0.45, 0.45, 0.90, -0.45, 0.90], # avg 60 %
+      ["east_african",    0.45, 0.45, 0.90, -0.45, 0.90], # avg 60 %
+      ["central_african", 0.60, 0.60, 1.20, -0.60, 1.20], # avg 80 %
+      ["sub_saharan",     0.60, 0.60, 1.20, -0.60, 1.20], # avg 80 %
+      ["nomad_group",     0.60, 0.60, 1.20, -0.60, 1.20], # avg 80 %
+      ["mesoamerican",    0.75, 0.75, 1.50, -0.75, 1.50], # avg 100 %
+      ["andean",          0.75, 0.75, 1.50, -0.75, 1.50], # avg 100 %
+      ["north_american",  1.00, 1.00, 2.00, -0.90, 2.00], # avg 135 %
+      ["south_american",  1.00, 1.00, 2.00, -0.90, 2.00], # avg 135 %
+    ]
+
+    node = PropertyList[]
+    groups.each do |tech, adm, dip, mil, spread, emb|
+      node.add! "has_#{tech}", PropertyList[
+        "potential", PropertyList["technology_group", tech],
+        "trigger", PropertyList["technology_group", tech],
+        "adm_tech_cost_modifier", adm,
+        "dip_tech_cost_modifier", dip,
+        "mil_tech_cost_modifier", mil,
+        "global_institution_spread", spread,
+        # "embracement_cost", emb,
+      ]
+    end
+
+    create_mod_file! "common/triggered_modifiers/01_tech_groups.txt", node
+    # TODO: localization
+  end
+
   def rebalance_unrest!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["prosperity"]["local_unrest"] = -2
