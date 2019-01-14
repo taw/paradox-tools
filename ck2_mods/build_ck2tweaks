@@ -7,7 +7,7 @@ class CK2TweaksModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/ck2_2.7.0",
+        "source/ck2_3.0.0",
       ),
       "output/ck2tweaks",
     )

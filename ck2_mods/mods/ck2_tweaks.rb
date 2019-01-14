@@ -1140,7 +1140,7 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
-  def makes_title_creation_expensive!
+  def make_title_creation_expensive!
     override_defines_lua!("expensive_title_creation",
       "NTitle.DUKE_PIETY_CREATION_COST" => 200,
       "NTitle.KING_PIETY_CREATION_COST" => 1000,
@@ -1152,49 +1152,49 @@ class CK2TweaksGameModification < CK2GameModification
   end
 
   def apply!
-    ### General fixes:
-    extra_cb_de_jure_duchy_conquest!
+    ### Definitely still want:
+    allow_everyone_river_access!
+    preserve_culture_buildings!
+    dont_call_duke_kings_ever!
+    allow_more_commanders!
+    more_zoom!
     extra_cb_abolish_title!
+    no_foreign_conqueror_penalty!
+    increase_trade_post_limit!
+    nerf_demand_conversion!
     allow_intermarriage!
     fix_gavelkind!
-    reduce_wrong_gov_type_penalties!
-    seduce_any_religion!
-    preserve_culture_buildings!
     pagans_can_go_feudal!
     setup_sensible_ai_for_demesne_laws! # Obsolete with Conclave but whatever, just keep it
-    fast_de_jure_drift! # This is now in game rules, but maybe custom values are better?
-    allow_everyone_river_access!
-    no_foreign_conqueror_penalty!
-    increase_vassal_limit!
-    increase_trade_post_limit!
-    allow_feasts_at_minor_wars!
-    no_multiple_empires!
-    more_plots!
-    dont_call_duke_kings_ever!
-    stronger_claims_on_rebels!
-    fix_de_jure_map!
-    easier_culture_conversion! # could be too much...
-    easier_title_creation!
-    allow_more_commanders!
-    nerf_demand_conversion!
-    easier_seduction!
-    fix_council_positions!
-    more_battle_captives!
     fix_hostile_supply!
-    allow_settle_tribe_job!
     reduce_revocation_timer!
     divine_blood_full_fertility!
-    fix_regency!
-    more_zoom!
     no_random_coas!
+    easier_seduction!
     # TODO: de jure drift by title_decisions
+
+    ### Less sure:
+    extra_cb_de_jure_duchy_conquest!
+    reduce_wrong_gov_type_penalties!
+    seduce_any_religion!
+    increase_vassal_limit!
+    allow_feasts_at_minor_wars!
+    more_plots!
+    stronger_claims_on_rebels!
+    fix_council_positions!
 
     ### Specific things for specific campaign, kept for reference:
     nerf_holy_wars_cb!
-    # create_minimal_hunie_trait!
     allow_heir_designation!
-    # rebalance_faction_priorities!
     allow_joining_all_wars!
+
+    # fix_regency! # Is it fixed in 3.0 ???
+    # no_multiple_empires!
+    # more_battle_captives!
+    # allow_settle_tribe_job!
+    # easier_culture_conversion! # could be too much...
+    # create_minimal_hunie_trait!
+    # rebalance_faction_priorities!
     # nerf_nomads!
     # rebalance_conclave!
     # remove_all_anachronistic_factions!
@@ -1205,12 +1205,15 @@ class CK2TweaksGameModification < CK2GameModification
     # extend_timeline!
     # fix_eu4_converter_merchant_republics!
     # open_societies!
+    # fast_de_jure_drift! # This is now in game rules, but maybe custom values are better?
+    # fix_de_jure_map! # still needed in 3.0 ?
+    # easier_title_creation!
 
     # Trying to make late game work:
     # unhappy_late_vassals!
-    adventurers_cap!
-    much_less_attriton!
-    remove_siege_defense_bonus!
-    makes_title_creation_expensive!
+    # adventurers_cap!
+    # much_less_attriton!
+    # remove_siege_defense_bonus!
+    make_title_creation_expensive!
   end
 end
