@@ -73,7 +73,7 @@ class CK2CustomScenarioGameModification < CK2GameModification
         first_settlement = entries.index{|prop| prop.key =~ /\Ab_/ }
         first_city       = entries.index{|prop| prop.key =~ /\Ab_/ and prop.val == "city"}
         first_castle     = entries.index{|prop| prop.key =~ /\Ab_/ and prop.val == "castle"}
-        raise unless first_city and first_settlement == first_castle
+        raise "Can't make #{path} a republic" unless first_city and first_settlement == first_castle
         city = entries[first_city,1]
         entries[first_city,1]   = []
         entries[first_castle,0] = city

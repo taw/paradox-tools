@@ -15,10 +15,6 @@ class ModernTimesPlusModBuilder < ParadoxModBuilder
 
   # Should always be same as in ModernTimesModBuilder
   def apply_modern_times!
-    # Hotfix 2.8
-    patch_file!("common/landed_titles/landed_titles.txt") do |content|
-      content.sub("b_qobadhiyan {}", " b_qobadhiyan = {}")
-    end
     apply_modifications! SuezCanalGameModification,
                          NoDynasticNamesGameModification,
                          ProtestantismGameModification,

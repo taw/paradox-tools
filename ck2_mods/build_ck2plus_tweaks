@@ -203,7 +203,7 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
     # adventurers_cap! # not sure if still needed
     # much_less_attriton! # not sure if still needed
     # remove_siege_defense_bonus!
-    makes_title_creation_expensive!
+    make_title_creation_expensive!
     # open_societies! # probably still needed
 
     # CK2+ specific
