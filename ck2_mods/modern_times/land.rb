@@ -544,8 +544,8 @@ ModernTimesDatabase::LAND = {
   c_plauen: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   d_meissen: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
   c_lausitz: {forever_ago: "d_lausitz", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  c_altmark: {forever_ago: "k_pomerania", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
-  c_magdeburg: {forever_ago: "k_pomerania", end_ww1: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
+  c_altmark: {forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
+  c_magdeburg: {forever_ago: "k_pomerania", german_unification: "e_germany", end_ww2: "k_pomerania", german_reunification: "e_germany"},
 
   d_khiva: {forever_ago: "d_khiva", khiva_russian: "e_russia", end_ww1: "k_khiva"},
 
