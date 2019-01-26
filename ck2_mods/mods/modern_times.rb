@@ -796,14 +796,27 @@ class ModernTimesGameModification < CK2GameModification
       culture = [node["culture"], *changes.map { |v| v["culture"] }].compact.last
       religion = [node["religion"], *changes.map { |v| v["religion"] }].compact.last
 
-      new_religion = @db.province_religion(title) || :keep
-      new_culture = @db.province_culture(title) || :keep
+      new_religion = @db.county_religion_history(title) || :keep
+      new_culture = @db.county_culture_history(title) || :keep
 
       if new_culture != culture and new_culture != :keep
-        node.add! @db.resolve_date(:forever_ago), PropertyList["culture", new_culture]
+        if new_culture.is_a?(String)
+          node.add! @db.resolve_date(:forever_ago), PropertyList["culture", new_culture]
+        else
+          new_culture.each do |k, v|
+            node.add! @db.resolve_date(k), PropertyList["culture", v]
+          end
+        end
       end
+
       if new_religion != religion and new_religion != :keep
-        node.add! @db.resolve_date(:forever_ago), PropertyList["religion", new_religion]
+        if new_religion.is_a?(String)
+          node.add! @db.resolve_date(:forever_ago), PropertyList["religion", new_religion]
+        else
+          new_religion.each do |k, v|
+            node.add! @db.resolve_date(k), PropertyList["religion", v]
+          end
+        end
       end
     end
   end

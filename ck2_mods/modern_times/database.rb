@@ -312,12 +312,20 @@ class ModernTimesDatabase
     map.landed_titles_lookup[county].map { |t| land[t] }.find(&:itself)
   end
 
-  def province_religion(county)
+  def county_religion_history(county)
     map.landed_titles_lookup[county].map { |t| religions[t] }.find(&:itself)
   end
 
-  def province_culture(county)
+  def county_culture_history(county)
     map.landed_titles_lookup[county].map { |t| cultures[t] }.find(&:itself)
+  end
+
+  def county_dominant_religion(county, date=nil)
+    raise "TODO"
+  end
+
+  def county_dominant_culture(county, date=nil)
+    raise "TODO"
   end
 
   def capital_duchy(title)

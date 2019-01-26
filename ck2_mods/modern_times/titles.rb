@@ -614,7 +614,7 @@ ModernTimesDatabase::TITLES = {
   },
   d_hayya: {
     culture: :nubian,
-    religion: :orthodox,
+    religion: :miaphysite,
     capital: :c_massawa,
     name: "Eritrea / Eritrean",
   },
