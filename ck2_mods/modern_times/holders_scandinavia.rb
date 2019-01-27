@@ -1,57 +1,64 @@
 ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
   k_denmark: {
+    # All numbers below fake
     "1699.8.25" => {
-      name: "Frederick | Oldenburg",
+      name: "Frederick | Oldenburg", # 1, actually 4
       lived: "1671.10.11 - 1730.10.12",
     },
     "1730.10.12" => {
-      name: "Christian | Oldenburg",
+      name: "Christian | Oldenburg", # 1, actually 6
       lived: "1699.11.30 - 1746.8.6",
+      father: "Frederick 1",
     },
     "1746.8.6" => {
-      name: "Frederick | Oldenburg",
+      name: "Frederick | Oldenburg", # 2, actually 5
       lived: "1723.3.31 - 1766.1.14",
+      father: "Christian 1",
     },
     "1766.1.14" => {
-      name: "Christian | Oldenburg",
+      name: "Christian | Oldenburg", # 2, actually 7
       lived: "1749.1.29 - 1808.3.13",
+      father: "Frederick 2",
     },
     "1808.3.13" => {
-      name: "Frederick | Oldenburg",
+      name: "Frederick | Oldenburg", # 3, actually 6
       lived: "1768.1.28 - 1839.12.3",
+      father: "Christian 2",
     },
     "1839.12.3" => {
-      name: "Christian | Oldenburg",
+      name: "Christian | Oldenburg", # 3, actually 8
       lived: "1786.9.18 - 1848.1.20",
+      father: "Frederick 3",
     },
     "1848.1.20" => {
-      name: "Frederick | Oldenburg",
+      name: "Frederick | Oldenburg", # 4, actually 7
       lived: "1808.10.6 - 1863.11.15",
+      father: "Christian 3",
     },
     "1863.11.15" => {
-      name: "Christian | Schleswig-Holstein-Sonderburg-Glücksburg",
+      name: "Christian | Schleswig-Holstein-Sonderburg-Glücksburg", # 4, actually 9
       lived: "1818.4.8 - 1906.1.29",
     },
     "1906.1.29" => {
-      name: "Frederick | Schleswig-Holstein-Sonderburg-Glücksburg",
+      name: "Frederick | Schleswig-Holstein-Sonderburg-Glücksburg", # 5, actually 8
       lived: "1843.6.3 - 1912.5.14",
-      father: "Christian 1",
+      father: "Christian 4",
     },
     "1912.5.14" => {
-      name: "Christian | Schleswig-Holstein-Sonderburg-Glücksburg",
+      name: "Christian | Schleswig-Holstein-Sonderburg-Glücksburg", # 5, actually 10
       lived: "1870.9.26 - 1947.4.20",
-      father: "Frederick 1",
+      father: "Frederick 5",
     },
     "1947.4.20" => {
-      name: "Frederick | Schleswig-Holstein-Sonderburg-Glücksburg",
+      name: "Frederick | Schleswig-Holstein-Sonderburg-Glücksburg", # 6, actually 9
       lived: "1899.3.11 - 1972.1.14",
-      father: "Christian 2",
+      father: "Christian 5",
     },
     "1972.1.14" => {
-      name: "Margrethe | Schleswig-Holstein-Sonderburg-Glücksburg",
+      name: "Margrethe | Schleswig-Holstein-Sonderburg-Glücksburg", # 1, actually 2
       female: true,
       lived: "1940.4.16 -",
-      father: "Frederick 2",
+      father: "Frederick 6",
     }
   },
   # Wikipedia uses these spellings, however inconsistent they are

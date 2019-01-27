@@ -217,10 +217,12 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1726.2.26" => {
       name: "Charles Albert | Wittelsbach",
       lived: "1697.8.6 - 1745.1.20",
+      father: "Maximilian Emanuel",
     },
     "1745.1.20" => {
       name: "Maximilian Joseph | Wittelsbach",
       lived: "1727.3.28 - 1777.12.30",
+      father: "Charles Albert 1",
     },
     "1777.12.30" => {
       name: "Charles Theodore | Wittelsbach",
@@ -229,14 +231,17 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1799.2.16" => {
       name: "Maximilian | Wittelsbach", # 1
       lived: "1756.5.27 - 1825.10.13",
+      # distant cousin of previous rulers
     },
     "1825.10.13" => {
       name: "Ludwig | Wittelsbach", # 1
       lived: "1786.8.25 - 1868.2.29",
+      father: "Maximilian 1",
     },
     "1848.3.20" => {
       name: "Maximilian | Wittelsbach", # 2
       lived: "1811.11.28 - 1864.3.10",
+      father: "Ludwig 1",
     },
     "1864.3.10" => {
       name: "Ludwig | Wittelsbach", # 2
@@ -251,6 +256,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1913.11.5" => {
       name: "Ludwig | Wittelsbach", # 3
       lived: "1845.1.7 - 1921.10.18",
+      # grandson of Ludwig 1
     },
     end_ww1: nil,
   },

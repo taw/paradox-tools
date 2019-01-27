@@ -8,57 +8,72 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       name: "Catherine | Romanov",
       lived: "1684.4.15 - 1727.5.17",
       female: true,
+      # Wife of Peter I, Skowroński not Romanov
     },
     "1727.5.17" => {
       name: "Peter | Romanov",
       lived: "1715.10.23 - 1730.1.30",
+      # Grandson of Peter I via the murdered Tsesarevich Alexei. Last of the direct male Romanov line.
     },
     "1730.1.30" => {
       name: "Anna | Romanov",
       lived: "1693.2.7 - 1740.10.28",
       female: true,
+      # Daughter of Ivan V
     },
     "1740.10.28" => {
-      name: "Ivan | Romanov",
+      name: "Ivan | Romanov", # 6
       lived: "1740.8.23 - 1764.7.16",
+      # Great-grandson of Ivan V
     },
     "1741.12.6" => {
       name: "Elizabeth | Romanov",
       lived: "1709.12.29 - 1762.1.5",
       female: true,
+      father: "Peter 1",
+      mother: "Catherine 1",
     },
     "1762.1.5" => {
       name: "Peter | Romanov",
       lived: "1728.2.21 - 1762.7.17",
+      # grandson of Peter 1
     },
     "1762.7.9" => {
       name: "Catherine | Romanov",
       lived: "1729.5.2 - 1796.11.17",
       female: true,
+      # Wife of Peter 3, coup, not real Romanov but keep it for gameplay reasons
     },
     "1796.11.17" => {
       name: "Paul | Romanov",
       lived: "1754.10.1 - 1801.3.23",
+      father: "Peter 3",
+      mother: "Catherine 2",
     },
     "1801.3.23" => {
       name: "Alexander | Romanov",
       lived: "1777.12.23 - 1825.12.1",
+      father: "Paul 1",
     },
     "1825.12.1" => {
       name: "Nicholas | Romanov",
       lived: "1796.7.6 - 1855.3.2",
+      father: "Paul 1",
     },
     "1855.3.2" => {
       name: "Alexander | Romanov",
       lived: "1818.4.29 - 1881.3.13",
+      father: "Nicholas 1",
     },
     "1881.3.13" => {
       name: "Alexander | Romanov",
       lived: "1845.3.10 - 1894.11.1",
+      father: "Alexander 2",
     },
     "1894.11.1" => {
       name: "Nicholas | Romanov",
       lived: "1868.5.6 - 1918.7.17",
+      father: "Alexander 3",
     },
     # Not really ruling ever, but alternative is interregnum
     "1917.3.15" => {

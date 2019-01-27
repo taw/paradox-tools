@@ -31,14 +31,17 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1896.5.1" => {
       name: "Mozaffar al-Din | Qajar",
       lived: "1853.3.23 - 1907.1.3",
+      father: "Naser al-Din"
     },
     "1907.1.3" => {
       name: "Mohammad Ali | Qajar",
       lived: "1872.6.21 - 1925.4.5",
+      father: "Mozaffar al-Din 1",
     },
     "1909.6.16" => {
       name: "Ahmad | Qajar",
       lived: "1898.1.21 - 1930.2.21",
+      father: "Mohammad Ali 1",
     },
     "1925.12.15" => {
       name: "Reza | Pahlavi",

@@ -170,15 +170,16 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
   },
   k_egypt: {
     "1805.6.18"  => { name: "Muhammad Ali | Muhammad Ali", lived: "1769.3.4 - 1849.8.2" },
+    # Wikipedia lists Ibrahim as "presumed son" of Muhammad Ali
     "1848.7.20"  => { name: "Ibrahim | Muhammad Ali", lived: "1789 - 1848.11.10", father: "Muhammad Ali 1" },
-    "1848.11.10"  => { name: "Abbas Helmi | Muhammad Ali", lived: "1812.7.1 - 1854.7.13" },
-    "1854.7.13"  => { name: "Muhammad Sa'id | Muhammad Ali", lived: "1822.3.17 - 1863.1.18" },
-    "1863.1.18"   => { name: "Isma'il | Muhammad Ali", lived: "1830.12.31 - 1895.3.2" },
-    "1879.6.26"  => { name: "Muhammad Tawfiq | Muhammad Ali", lived: "1852.11.15 - 1892.1.7" },
-    "1892.1.7"   => { name: "Abbas Helmi | Muhammad Ali", lived: "1874.7.14 - 1944.12.19" },
-    "1914.12.19" => { name: "Hussein Kamel | Muhammad Ali", lived: "November 1853 - 1917.10.9" },
+    "1848.11.10"  => { name: "Abbas Helmi | Muhammad Ali", lived: "1812.7.1 - 1854.7.13" }, # father: Tusun
+    "1854.7.13"  => { name: "Muhammad Sa'id | Muhammad Ali", lived: "1822.3.17 - 1863.1.18", father: "Muhammad Ali 1" },
+    "1863.1.18"   => { name: "Isma'il | Muhammad Ali", lived: "1830.12.31 - 1895.3.2", father: "Ibrahim 1" },
+    "1879.6.26"  => { name: "Muhammad Tawfiq | Muhammad Ali", lived: "1852.11.15 - 1892.1.7", father: "Isma'il 1" },
+    "1892.1.7"   => { name: "Abbas Helmi | Muhammad Ali", lived: "1874.7.14 - 1944.12.19", father: "Muhammad Tawfiq 1" },
+    "1914.12.19" => { name: "Hussein Kamel | Muhammad Ali", lived: "November 1853 - 1917.10.9", father: "Isma'il 1" },
     # Kings
-    "1917.10.9" => { name: "Ahmed Fuad | Muhammad Ali", lived: "1868.3.26 - 1936.4.28" },
+    "1917.10.9" => { name: "Ahmed Fuad | Muhammad Ali", lived: "1868.3.26 - 1936.4.28", father: "Isma'il 1" },
     "1936.4.28" => { name: "Farouk | Muhammad Ali", lived: "1920.2.11 - 1965.3.18", father: "Ahmed Fuad 1" }, # 1
     "1952.7.26" => { name: "Ahmed Fuad | Muhammad Ali", lived: "1952.1.16 -", father: "Farouk 1" },
     # Peres"residents
