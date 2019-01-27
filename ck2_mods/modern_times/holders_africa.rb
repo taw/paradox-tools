@@ -206,12 +206,35 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     "2011.4.7" => { name: "Mahamadou Issoufou", lived: "1952 -" },
   },
   k_kanem: { # Chad
-    "1960.8.11" => {name: "François Tombalbaye", lived: "1918.6.15 – 1975.4.13"},
-    "1975.4.13" => { name: "Félix Malloum", lived: "1932.9.10 – 2009.6.12"},
-    "1979.3.23" => {name: "Goukouni Oueddei", lived: "1944 -" },
-    "1979.4.29" => {name: "Lol Mahamat | Choua", lived: "1939.6.15 -" },
-    "1979.9.3" => {use: "Goukouni 1"},
-    "1982.6.7" => {name: "Hissène Habré", lived: "1942.9.13 -" },
-    "1990.12.2" => {name: "Idriss Déby", lived: "1952.6.18 -"},
-  }
+    "1960.8.11" => { name: "François Tombalbaye", lived: "1918.6.15 – 1975.4.13" },
+    "1975.4.13" => { name: "Félix Malloum", lived: "1932.9.10 – 2009.6.12" },
+    "1979.3.23" => { name: "Goukouni Oueddei", lived: "1944 -" },
+    "1979.4.29" => { name: "Lol Mahamat | Choua", lived: "1939.6.15 -" },
+    "1979.9.3" => { use: "Goukouni 1" },
+    "1982.6.7" => { name: "Hissène Habré", lived: "1942.9.13 -" },
+    "1990.12.2" => { name: "Idriss Déby", lived: "1952.6.18 -" },
+  },
+  k_abyssinia: { # Ethiopia
+    # Ethiopian history before 1855 is total mess
+    "1855.2.11" => { name: "Tewodros | Solomonid", lived: "1818 – 1868.4.13" },
+    "1868.6.11" => { name: "Tekle Giyorgis | Zagwe", lived: "- 1873" },
+    "1871.7.11" => { name: "Yohannes | Solomonid", lived: "1837.7.11 – 1889.3.10" },
+    "1889.3.10" => { name: "Menelik | Solomonid", lived: "1844.8.17 – 1913.12.12" },
+    "1913.12.12" => { name: "Iyasu | Solomonid", lived: "1895.2.4 – 1935.11.25" },
+    "1916.9.27" => { name: "Zewditu | Solomonid", lived: "1876.4.29 – 1930.4.2", female: true, father: "Menelik 1" },
+    "1930.4.2" => { name: "Haile Selassie | Solomonid", lived: "1892.7.23 – 1975.8.27" },
+    "1936.5.9" => { use: "e_italy Victor Emmanuel 1" },
+    "1941.5.5" => { use: "Haile Selassie 1" },
+    "1974.9.12" => { name: "Amha Selassie | Solomonid", lived: "1916.7.27 – 1997.2.17", father: "Haile Selassie 1" },
+    # There's some interim/transitional mess, cleaned up view here
+    # Which one is given vs family name ???
+    "1975.3.21" => { name: "Tafari Benti", lived: "October 1921 – 1977.2.3" },
+    "1977.2.3" => { name: "Mengistu Haile | Mariam", lived: "1937.5.21 -" },
+    "1991.5.21" => { name: "Tesfaye Gebre | Kidan", lived: "1935 – 2004.6.2" },
+    "1991.5.27" => { name: "Meles Zenawi", lived: "1955.5.9 – 2012.8.20" },
+    "1995.8.22" => { name: "Negasso Gidada", lived: "1943.9.3 -" },
+    "2001.10.8" => { name: "Girma Wolde-Giorgis", lived: "1924.12.28 – 2018.12.15" },
+    "2013.10.7" => { name: "Mulatu Teshome", lived: "1957 -" },
+    "2018.10.25" => { name: "Sahle-Work Zewde", lived: "1950.2.21 -" },
+  },
 }
