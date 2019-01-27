@@ -201,6 +201,7 @@ class ModernTimesDatabase
         end
       end
       validate_holders!
+      validate_holders_dynasties!
     end
     @holders
   end
@@ -320,14 +321,6 @@ class ModernTimesDatabase
     map.landed_titles_lookup[county].map { |t| cultures[t] }.find(&:itself)
   end
 
-  def county_dominant_religion(county, date=nil)
-    raise "TODO"
-  end
-
-  def county_dominant_culture(county, date=nil)
-    raise "TODO"
-  end
-
   def capital_duchy(title)
     map.duchy_for_county(titles[title][:capital])
   end
@@ -437,6 +430,21 @@ class ModernTimesDatabase
     end
   end
 
+  def validate_holders_dynasties!
+    all_characters = @holders.values.flat_map(&:values).grep(Hash).reject{|c| c[:use]}
+    by_dynasty = all_characters.group_by{|c| c[:dynasty] }.select{|dn, cs| cs.size > 1}
+    total = 0
+    by_dynasty.each do |dynasty_name, characters|
+      # This is a somewhat questionable bad check
+      parentless = characters.reject{|c| c[:father] or c[:mother] }
+      if parentless.size > 1
+        warn "Dynasty data for #{dynasty_name} incomplete. Of #{characters.size} characters #{parentless.size} have no parents"
+        total += parentless.size - 1
+      end
+    end
+    warn "Total number of characters who should get parents: #{total}"
+  end
+
   def resolve_start_date(date)
     date = date.to_s if date.is_a?(Integer)
     return Date.parse("#{date}.1.1") if date =~ /\A\d{4}\z/
@@ -506,7 +514,7 @@ class ModernTimesDatabase
       warn "Historical characters should have lived specified: #{holder[:historical_id]}"
     end
     holder[:events] = holder_data[:events].map do |d, e|
-      [(if d == :crowning then crowning_date       else resolve_date(d) end), e]
+      [(if d == :crowning then crowning_date else resolve_date(d) end), e]
     end if holder_data[:events]
     holder
   end
