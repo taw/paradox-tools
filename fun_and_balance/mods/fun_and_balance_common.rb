@@ -468,13 +468,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["prosperity"]["local_unrest"] = -2
       node["devastation"]["local_unrest"] = 5
       node["non_accepted_culture"]["local_unrest"] = 4
-      node["non_accepted_culture_republic"]["local_unrest"] = -1
-      node["under_siege"]["local_unrest"] = 5
-      node["occupied"]["local_unrest"] = 5
+      node["non_accepted_culture_republic"]["local_unrest"] = -2
+      node["under_siege"]["local_unrest"] = 4
+      node["occupied"]["local_unrest"] = 4
 
-      node["base_values"]["tolerance_own"] = 2 # from +3
-      node["base_values"]["tolerance_heathen"] = -4 # from -3
-      node["base_values"]["tolerance_heretic"] = -3 # from -2
+      # node["base_values"]["tolerance_own"] = 2 # from +3
+      # node["base_values"]["tolerance_heathen"] = -4 # from -3
+      # node["base_values"]["tolerance_heretic"] = -3 # from -2
     end
 
     patch_mod_files!("common/rebel_types/*.txt") do |node|
@@ -512,14 +512,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       "rebels_age_of_discovery", PropertyList[
         "potential", PropertyList["current_age", "age_of_discovery"],
         "trigger", PropertyList["current_age", "age_of_discovery"],
-        "tolerance_heathen", -2,
+        "tolerance_heathen", -1,
+        "tolerance_own", 1,
       ],
       "rebels_age_of_reformation", PropertyList[
         "potential", PropertyList["current_age", "age_of_reformation"],
         "trigger", PropertyList["current_age", "age_of_reformation"],
-        "tolerance_heretic", -2,
-        "tolerance_heathen", -2,
-        "tolerance_own", 2,
+        "tolerance_heretic", -1,
+        "tolerance_own", 1,
       ],
       "rebels_age_of_absolutism", PropertyList[
         "potential", PropertyList["current_age", "age_of_absolutism"],
@@ -547,6 +547,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node.each do |key, cb|
         # It mostly just makes those CBs unusable
         cb.delete! "attacker_disabled_po"
+      end
+    end
+
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
+      node.each do |name, wargoal|
+        wargoal.delete! "allowed_provinces_are_eligible"
       end
     end
 
