@@ -368,11 +368,47 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # Massively increase benefits of being emperor
+  # as a very indirect Ottoman / France nerf
+  #
+  # Tax income from 5 free cities and 30 other states will be 10/month
+  # Gemeiner Pfennig increased from 1.66/month to 5/month
+  #
+  # It doesn't even have to represent a tax, just funding to levies provided by members
+  def rebalance_hre!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node!(node,
+        ["states_in_hre", "land_forcelimit", 0.5, 1],
+        ["states_in_hre", "global_manpower", 0.5, 1],
+        ["states_in_hre", "global_tax_income", nil, 3],
+        ["free_cities_in_hre", "land_forcelimit", 0.5, 1],
+        ["free_cities_in_hre", "global_manpower", 1, 2],
+        ["free_cities_in_hre", "global_tax_income", 2, 6],
+      )
+    end
+    patch_mod_file!("common/imperial_reforms/00_hre.txt") do |node|
+      modify_node!(node,
+        ["gemeinerpfennig", "emperor", "global_tax_income", 20, 60],
+      )
+    end
+
+    patch_mod_file!("decisions/ShadowKingdom.txt") do |node|
+      decision = node["country_decisions"]["stop_shadow_kingdom"]
+      decision["potential"].delete! Property["ai", false]
+      decision["ai_will_do"]["factor"] = 1
+    end
+  end
+
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE
+
   def bring_tech_groups_back!
+    warn "Experimental code. Do not enable in release."
+
     patch_mod_file!("common/institutions/00_Core.txt") do |node|
       node.each do |name, institution|
-        institution["penalty"] = 0.25
+        if name != "feudalism"
+          institution["penalty"] = 0.25
+        end
 
         # Any non-Europe start really messes up with historical tech spread
         if institution["can_start"]
@@ -385,6 +421,9 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
     soft_patch_defines_lua!("fun_and_balance_tech",
       ["NCountry.EMBRACE_INSTITUTION_COST", 2.5, 5.0],
+      ["NCountry.POWER_MAX", 999, 3000],
+      # For institution balance testing:
+      # ["NGame.END_DATE", '"1821.1.2"', '"1750.1.2"'],
     )
 
     groups = [
@@ -414,7 +453,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         "dip_tech_cost_modifier", dip,
         "mil_tech_cost_modifier", mil,
         "global_institution_spread", spread,
-        # "embracement_cost", emb,
+        "embracement_cost", emb,
       ]
     end
 
@@ -423,6 +462,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def rebalance_unrest!
+    warn "Experimental code. Do not enable in release."
+
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["prosperity"]["local_unrest"] = -2
       node["devastation"]["local_unrest"] = 5
@@ -430,31 +471,98 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["non_accepted_culture_republic"]["local_unrest"] = -1
       node["under_siege"]["local_unrest"] = 5
       node["occupied"]["local_unrest"] = 5
+
+      node["base_values"]["tolerance_own"] = 2 # from +3
+      node["base_values"]["tolerance_heathen"] = -4 # from -3
+      node["base_values"]["tolerance_heretic"] = -3 # from -2
     end
+
+    patch_mod_files!("common/rebel_types/*.txt") do |node|
+      node.each do |name, rebels|
+        if rebels["religion"]
+          rebels["spawn_chance"]["factor"] *= 10
+        elsif name == "particularist_rebels"
+          rebels["spawn_chance"]["factor"] /= 2
+        elsif name == "nationalist_rebels"
+          # accepted culture does not block it
+          req = rebels["spawn_chance"].find_all("modifier").find{|x| x["factor"] == 0.01} or raise
+          req["owner"] = PropertyList[
+            "primary_culture", "ROOT",
+            "OR", PropertyList[
+              "NOT", PropertyList["has_reform", "celestial_empire"],
+              "has_country_modifier", "the_mandate_of_heaven",
+              "AND", PropertyList[
+                "has_reform", "celestial_empire",
+                "has_dlc", "Mandate of Heaven",
+                "imperial_mandate", 80,
+              ],
+            ],
+          ]
+          rebels["spawn_chance"].add! "modifier", PropertyList[
+            "factor", 0.1,
+            "owner", PropertyList[
+              "culture_group", "ROOT",
+            ],
+          ]
+        end
+      end
+    end
+
+    create_mod_file! "common/triggered_modifiers/02_age_rebels.txt", PropertyList[
+      "rebels_age_of_discovery", PropertyList[
+        "potential", PropertyList["current_age", "age_of_discovery"],
+        "trigger", PropertyList["current_age", "age_of_discovery"],
+        "tolerance_heathen", -2,
+      ],
+      "rebels_age_of_reformation", PropertyList[
+        "potential", PropertyList["current_age", "age_of_reformation"],
+        "trigger", PropertyList["current_age", "age_of_reformation"],
+        "tolerance_heretic", -2,
+        "tolerance_heathen", -2,
+        "tolerance_own", 2,
+      ],
+      "rebels_age_of_absolutism", PropertyList[
+        "potential", PropertyList["current_age", "age_of_absolutism"],
+        "trigger", PropertyList["current_age", "age_of_absolutism"],
+        "global_unrest", 2,
+      ],
+      "rebels_age_of_revolutions", PropertyList[
+        "potential", PropertyList["current_age", "age_of_revolutions"],
+        "trigger", PropertyList["current_age", "age_of_revolutions"],
+        "global_unrest", 4,
+      ],
+    ]
+    # TODO: localization
+    # triggered extra unrest
   end
 
-  # Massively increase benefits of being emperor
-  # as a very indirect Ottoman / France nerf
-  #
-  # Tax income from 5 free cities and 30 other states will be 10/month
-  # Gemeiner Pfennig increased from 1.66/month to 5/month
-  #
-  # It doesn't even have to represent a tax, just funding to levies provided by members
-  def rebalance_hre!
+  def rebalance_expansion!
+    warn "Experimental code. Do not enable in release."
+
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node!(node,
-        ["states_in_hre", "land_forcelimit", 0.5, 1],
-        ["states_in_hre", "global_manpower", 0.5, 1],
-        ["states_in_hre", "global_tax_income", nil, 3],
-        ["free_cities_in_hre", "land_forcelimit", 0.5, 1],
-        ["free_cities_in_hre", "global_manpower", 1, 2],
-        ["free_cities_in_hre", "global_tax_income", 2, 6],
-      )
+      node["land_province"]["max_attrition"] = 10
     end
-    patch_mod_file!("common/imperial_reforms/00_hre.txt") do |node|
-      modify_node!(node,
-        ["gemeinerpfennig", "emperor", "global_tax_income", 20, 60],
-      )
+
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      node.each do |key, cb|
+        # It mostly just makes those CBs unusable
+        cb.delete! "attacker_disabled_po"
+      end
     end
+
+    soft_patch_defines_lua!("fun_and_balance_expansion",
+      ["NCountry.EMBRACE_INSTITUTION_COST", 2.5, 5.0],
+      ["NEconomy.OVERSEAS_MIN_AUTONOMY", 75, 60],
+      ["NDiplomacy.PEACE_COST_DEMAND_PROVINCE", 1, 1.5],
+      ["NDiplomacy.PEACE_COST_RETURN_CORE", 1, 0.5],
+      ["NDiplomacy.PEACE_COST_REVOKE_CORE", 0.5, 0.25],
+      ["NDiplomacy.PEACE_COST_RELEASE_ANNEXED", 1, 0.5],
+      ["NDiplomacy.PEACE_COST_RELEASE_VASSAL", 0.5, 0.25],
+      ["NDiplomacy.PEACE_COST_CONVERSION", 1, 0.5],
+      ["NDiplomacy.PEACE_COST_RELEASE", 2, 1],
+      ["NDiplomacy.PEACE_COST_GIVE_UP_CLAIM", 20, 5],
+      ["NDiplomacy.PEACE_COST_TRADE_POWER", 30, 10],
+      ["NDiplomacy.PEACE_COST_STEER_TRADE", 60, 20],
+    )
   end
 end

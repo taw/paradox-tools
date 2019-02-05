@@ -35,8 +35,12 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     subject_religious_cbs!
     subject_tweaks!
     trade_map_fixes!
-    rebalance_unrest!
     rebalance_hre!
+
+    # Experimental:
+    bring_tech_groups_back!
+    rebalance_unrest!
+    rebalance_expansion!
 
     soft_patch_defines_lua!(
       "fun_and_balance",
