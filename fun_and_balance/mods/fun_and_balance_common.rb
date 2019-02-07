@@ -571,4 +571,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       ["NDiplomacy.PEACE_COST_STEER_TRADE", 60, 20],
     )
   end
+
+  def all_religions_propagate_by_trade!
+    warn "Experimental code. Do not enable in release."
+
+    patch_mod_file!("common/trading_policies/00_trading_policies.txt") do |node|
+      node["propagate_religion"]["can_select"].delete! "religion_group"
+      node["propagate_religion"]["can_maintain"].delete! "religion_group"
+    end
+  end
 end

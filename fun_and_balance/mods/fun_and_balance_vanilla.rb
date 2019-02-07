@@ -35,12 +35,17 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     subject_religious_cbs!
     subject_tweaks!
     trade_map_fixes!
-    rebalance_hre!
+    if ENV["EXPERIMENTAL"]
+      rebalance_hre!
+    end
 
     # Experimental:
-    bring_tech_groups_back!
-    rebalance_unrest!
-    rebalance_expansion!
+    if ENV["VERY_EXPERIMENTAL"]
+      bring_tech_groups_back!
+      rebalance_unrest!
+      rebalance_expansion!
+      all_religions_propagate_by_trade!
+    end
 
     soft_patch_defines_lua!(
       "fun_and_balance",
