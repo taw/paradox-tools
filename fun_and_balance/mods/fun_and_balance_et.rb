@@ -47,6 +47,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
       ["NAI.SUPPORT_INDEPENDENCE_DESIRE_TOO_MANY_RELATIONS", -20, 0],
       ["NDiplomacy.MIN_RELATIONS_TO_SUPPORT_INDEPENDENCE", -25, -50],
+      ["NDiplomacy.PEACE_COST_GOLD_MAX", 5, 10],
     )
   end
 
