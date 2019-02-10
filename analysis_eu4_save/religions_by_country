@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "eu4_save"
+
+class ReligionsByCountry < ParadoxGame
+  def country_name(tag)
+    @save.countries[tag]&.name || localization(tag)
+  end
+
+  def initialize(save_game, *paths)
+    super(*paths)
+    @save = EU4Save.new(save_game)
+  end
+
+  def religion_to_religion_group
+    @religion_to_religion_group ||= begin
+      map = {}
+      glob("common/religions/*.txt").each do |path|
+        parse(path).each do |group_name, group|
+          group.each do |religion_name, religion|
+            next unless religion.is_a?(PropertyList)
+            map[religion_name] = group_name
+          end
+        end
+      end
+      map
+    end
+  end
+
+  def religions_by_country
+    @religions_by_country ||= begin
+      totals = {}
+      @save.provinces.each do |id, province|
+        next unless province.city?
+        raise if province.development == 0
+        next unless province.owner
+        totals[province.owner] ||= Hash.new(0)
+        totals[province.owner][province.religion] += province.development
+      end
+      totals
+    end
+  end
+
+  def same_religion_group?(a, b)
+    religion_to_religion_group[a] == religion_to_religion_group[b]
+  end
+
+  def country_sizes
+    @country_sizes ||= begin
+      totals = Hash.new(0)
+      @save.provinces.each do |id, province|
+        next unless province.city?
+        raise if province.development == 0
+        totals[province.owner] += province.development
+      end
+      totals
+    end
+  end
+
+  def religion_status(tag, religion)
+    country = @save.countries[tag]
+    return nil if religion == country.religion
+    if same_religion_group?(religion, country.religion)
+      "heretics"
+    else
+      "heathens"
+    end
+  end
+
+  def call
+    country_sizes.sort_by(&:last).reverse.each do |tag, size|
+      puts "#{country_name(tag)}:"
+      religions = religions_by_country[tag]
+      religions.sort_by(&:last).reverse.each do |religion_name, dev|
+        status = religion_status(tag, religion_name)
+        status = " [#{status}]" if status
+        puts "* #{localization(religion_name)}#{status} - #{dev.round}"
+      end
+      puts ""
+    end
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
+ReligionsByCountry.new(*ARGV).call

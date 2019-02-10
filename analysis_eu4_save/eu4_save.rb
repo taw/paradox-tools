@@ -234,6 +234,10 @@ class Country
     @node["name"]
   end
 
+  def religion
+    @node["religion"]
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
@@ -275,6 +279,10 @@ class Province
 
   def culture
     @node["culture"]
+  end
+
+  def religion
+    @node["religion"]
   end
 
   def local_autonomy
