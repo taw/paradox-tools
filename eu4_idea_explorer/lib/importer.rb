@@ -1,0 +1,93 @@
+require "pathname"
+require "json"
+require_relative "../../lib/paradox_game"
+
+class Importer < ParadoxGame
+  def initialize(*roots)
+    super(*roots)
+    @localization_export = {}
+    @basic = []
+    @national = []
+  end
+
+  def each_idea_group(&blk)
+    glob("common/ideas/*.txt").each do |path|
+      parse(path).each(&blk)
+    end
+  end
+
+  def ensure_loc(name)
+    @localization_export[name] ||= localization(name)
+  end
+
+  def parse_idea(name, idea)
+    ensure_loc(name)
+    result = {
+      name: name,
+      bonuses: [],
+    }
+    idea.each do |key, val|
+      raise unless val.is_a?(Float) or val.is_a?(Integer) or val == true
+      ensure_loc(key)
+      result[:bonuses] << [key, val]
+    end
+    result
+  end
+
+  def parse_national(name, group)
+    result = {
+      name: name,
+      ideas: [],
+      start: parse_idea("start", group["bonus"]),
+      bonus: parse_idea("bonus", group["bonus"]),
+    }
+    group.each do |idea_name, idea|
+      next if ["category", "start", "bonus", "free"].include?(idea_name)
+      result[:ideas] << parse_idea(idea_name, idea)
+    end
+    raise "National group #{name} has wrong size" unless result[:ideas].size == 7
+    result
+  end
+
+  def parse_basic(name, group)
+    result = {
+      name: name,
+      category: group["category"],
+      ideas: [],
+      bonus: parse_idea("bonus", group["bonus"]),
+    }
+    group.each do |idea_name, idea|
+      next if ["category", "bonus"].include?(idea_name)
+      result[:ideas] << parse_idea(idea_name, idea)
+    end
+    raise "Basic group #{name} has wrong size" unless result[:ideas].size == 7
+    result
+  end
+
+  def call
+    each_idea_group do |name, group|
+      next if name =~ /\Acompatibility_\d+\z/
+      ensure_loc(name)
+      group.delete! "ai_will_do"
+      group.delete! "trigger"
+      group.delete! "important"
+
+      if group["category"]
+        @basic << parse_basic(name, group)
+      else
+        @national << parse_national(name, group)
+      end
+    end
+
+    data = {
+      basic: @basic,
+      national: @national,
+      loc: @localization_export,
+    }
+    puts JSON.pretty_generate(data)
+  end
+
+  def inspect
+    "Importer"
+  end
+end
