@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "pathname"
 require "zip"
 Zip.warn_invalid_date = false
 
