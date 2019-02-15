@@ -34,15 +34,28 @@ class Importer < ParadoxGame
     result
   end
 
+  def parse_trigger(trigger)
+    if trigger == nil
+      ["default"]
+    elsif trigger.keys == ["tag"]
+      tag = trigger["tag"]
+      ensure_loc(tag)
+      ["country", tag]
+    else
+      ["special"]
+    end
+  end
+
   def parse_national(name, group)
     result = {
       name: name,
       ideas: [],
       start: parse_idea("start", group["bonus"]),
       bonus: parse_idea("bonus", group["bonus"]),
+      trigger: parse_trigger(group["trigger"]),
     }
     group.each do |idea_name, idea|
-      next if ["category", "start", "bonus", "free"].include?(idea_name)
+      next if ["category", "start", "bonus", "free", "trigger"].include?(idea_name)
       result[:ideas] << parse_idea(idea_name, idea)
     end
     raise "National group #{name} has wrong size" unless result[:ideas].size == 7
@@ -57,7 +70,7 @@ class Importer < ParadoxGame
       bonus: parse_idea("bonus", group["bonus"]),
     }
     group.each do |idea_name, idea|
-      next if ["category", "bonus"].include?(idea_name)
+      next if ["category", "bonus", "trigger"].include?(idea_name)
       result[:ideas] << parse_idea(idea_name, idea)
     end
     raise "Basic group #{name} has wrong size" unless result[:ideas].size == 7
@@ -69,7 +82,6 @@ class Importer < ParadoxGame
       next if name =~ /\Acompatibility_\d+\z/
       ensure_loc(name)
       group.delete! "ai_will_do"
-      group.delete! "trigger"
       group.delete! "important"
 
       if group["category"]
