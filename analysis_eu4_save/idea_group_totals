@@ -4,7 +4,7 @@
 require_relative "../lib/paradox_game"
 require_relative "eu4_save"
 
-class IdeaGroupChoices < ParadoxGame
+class IdeaGroupTotals < ParadoxGame
   def initialize(save_game, *roots)
     super(*roots)
     @save = EU4Save.new(save_game)
@@ -56,4 +56,4 @@ class IdeaGroupChoices < ParadoxGame
   end
 end
 
-IdeaGroupChoices.new(*ARGV).call
+IdeaGroupTotals.new(*ARGV).call
