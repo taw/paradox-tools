@@ -306,7 +306,8 @@ class Province
   def estate
     estate_number = @node["estate"]
     if estate_number
-      %W[church nobility burghers cossacks tribes dhimmi].fetch(estate_number-1)
+      # There's a lot of new estates now, just count them as "unknown"
+      %W[church nobility burghers cossacks tribes dhimmi][estate_number-1] || "unknown"
     else
       nil
     end
