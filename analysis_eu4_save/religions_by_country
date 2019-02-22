@@ -33,8 +33,11 @@ class ReligionsByCountry < ParadoxGame
       totals = {}
       @save.provinces.each do |id, province|
         next unless province.city?
-        raise if province.development == 0
         next unless province.owner
+        if province.development == 0
+          # warn "Zero development province #{province.id} #{province.name}"
+          next
+        end
         totals[province.owner] ||= Hash.new(0)
         totals[province.owner][province.religion] += province.development
       end
@@ -51,7 +54,10 @@ class ReligionsByCountry < ParadoxGame
       totals = Hash.new(0)
       @save.provinces.each do |id, province|
         next unless province.city?
-        raise if province.development == 0
+        if province.development == 0
+          # warn "Zero development province #{province.id} #{province.name}"
+          next
+        end
         totals[province.owner] += province.development
       end
       totals
