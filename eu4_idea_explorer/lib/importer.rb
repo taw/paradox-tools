@@ -8,6 +8,7 @@ class Importer < ParadoxGame
     @localization_export = {}
     @basic = []
     @national = []
+    @effects = {}
   end
 
   def each_idea_group(&blk)
@@ -20,7 +21,12 @@ class Importer < ParadoxGame
     @localization_export[name] ||= localization(name)
   end
 
-  def parse_idea(name, idea)
+  # There's no logic to that
+  def ensure_effect_loc(name)
+    @localization_export[name] ||= name.split("_").map(&:capitalize).join(" ")
+  end
+
+  def parse_idea(kind, group_name, name, idea)
     ensure_loc(name)
     result = {
       name: name,
@@ -28,8 +34,10 @@ class Importer < ParadoxGame
     }
     idea.each do |key, val|
       raise unless val.is_a?(Float) or val.is_a?(Integer) or val == true
-      ensure_loc(key)
+      ensure_effect_loc(key)
       result[:bonuses] << [key, val]
+      @effects[key] ||= []
+      @effects[key] << [val, kind, group_name, name]
     end
     result
   end
@@ -50,13 +58,13 @@ class Importer < ParadoxGame
     result = {
       name: name,
       ideas: [],
-      start: parse_idea("start", group["bonus"]),
-      bonus: parse_idea("bonus", group["bonus"]),
+      start: parse_idea("national", name, "start", group["bonus"]),
+      bonus: parse_idea("national", name, "bonus", group["bonus"]),
       trigger: parse_trigger(group["trigger"]),
     }
-    group.each do |idea_name, idea|
+    group.enum_for(:each).each_with_index do |(idea_name, idea), i|
       next if ["category", "start", "bonus", "free", "trigger"].include?(idea_name)
-      result[:ideas] << parse_idea(idea_name, idea)
+      result[:ideas] << parse_idea("national", name, idea_name, idea)
     end
     raise "National group #{name} has wrong size" unless result[:ideas].size == 7
     result
@@ -67,11 +75,11 @@ class Importer < ParadoxGame
       name: name,
       category: group["category"],
       ideas: [],
-      bonus: parse_idea("bonus", group["bonus"]),
+      bonus: parse_idea("basic", name, "bonus", group["bonus"]),
     }
-    group.each do |idea_name, idea|
+    group.enum_for(:each).each_with_index do |(idea_name, idea), i|
       next if ["category", "bonus", "trigger"].include?(idea_name)
-      result[:ideas] << parse_idea(idea_name, idea)
+      result[:ideas] << parse_idea("basic", name, idea_name, idea)
     end
     raise "Basic group #{name} has wrong size" unless result[:ideas].size == 7
     result
@@ -95,6 +103,7 @@ class Importer < ParadoxGame
       basic: @basic,
       national: @national,
       loc: @localization_export,
+      effects: @effects,
     }
     puts JSON.pretty_generate(data)
   end
