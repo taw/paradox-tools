@@ -58,7 +58,7 @@ class Importer < ParadoxGame
     result = {
       name: name,
       ideas: [],
-      start: parse_idea("national", name, "start", group["bonus"]),
+      start: parse_idea("national", name, "start", group["start"]),
       bonus: parse_idea("national", name, "bonus", group["bonus"]),
       trigger: parse_trigger(group["trigger"]),
     }
