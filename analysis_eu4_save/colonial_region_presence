@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "eu4_save"
+require "memoist"
+
+class ColonialRegionPresence < ParadoxGame
+  extend Memoist
+
+  def country_name(tag)
+    @save.countries[tag]&.name || localization(tag)
+  end
+
+  def initialize(save_game, *paths)
+    super(*paths)
+    @save = EU4Save.new(save_game)
+  end
+
+  memoize def colonial_regions
+    result = {}
+    glob("common/colonial_regions/*.txt").each do |path|
+      parse(path).each do |name, region|
+        next unless region["provinces"]
+        result[name] = region["provinces"]
+      end
+    end
+    result
+  end
+
+  memoize def province_to_colonial_region
+    result = {}
+    colonial_regions.each do |name, ids|
+      ids.each do |id|
+        result[id] = name
+      end
+    end
+    result
+  end
+
+  memoize def trade_companies
+    result = {}
+    glob("common/trade_companies/*.txt").each do |path|
+      parse(path).each do |name, region|
+        next unless region["provinces"]
+        result[name] = region["provinces"]
+      end
+    end
+    result
+  end
+
+  memoize def province_to_trade_company
+    result = {}
+    trade_companies.each do |name, ids|
+      ids.each do |id|
+        result[id] = name
+      end
+    end
+    result
+  end
+
+
+  def call
+    presence = {}
+    @save.provinces.each do |id, province|
+      next if province.development == 0
+      where = province_to_trade_company[id] || province_to_colonial_region[id]
+      presence[where] ||= Hash.new(0)
+      presence[where][province.owner] += province.development
+    end
+
+    [*colonial_regions.keys, *trade_companies.keys].each do |name|
+      puts "#{ localization(name) }:"
+      totals = presence[name]
+      totals.map{|tag, total| [total, country_name(tag)] if tag }.compact.sort_by{|a,b| [-a,b] }.each do |total, tag_name|
+        puts "* #{tag_name} - #{total.round}"
+      end
+      unless totals[nil] == 0
+        puts "* Uncolonized - #{ totals[nil].round }"
+      end
+      puts ""
+    end
+  end
+end
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
+ColonialRegionPresence.new(*ARGV).call
