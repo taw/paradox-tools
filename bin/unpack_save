@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 
 require "pathname"
+# There are too many "zip" libraries for ruby :-/
+gem "zip-zip"
 require "zip"
 Zip.warn_invalid_date = false
 
