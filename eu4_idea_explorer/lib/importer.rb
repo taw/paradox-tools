@@ -43,15 +43,8 @@ class Importer < ParadoxGame
   end
 
   def parse_trigger(trigger)
-    if trigger == nil
-      ["default"]
-    elsif trigger.keys == ["tag"]
-      tag = trigger["tag"]
-      ensure_loc(tag)
-      ["country", tag]
-    else
-      ["special"]
-    end
+    # We cound pre-parse plist nodes here
+    trigger
   end
 
   def parse_national(name, group)

@@ -218,6 +218,10 @@ class PropertyList
 
   attr_reader :entries
   private :entries
+
+  def to_json(*options)
+    { plist: @entries.map{|e| [e.key, e.val] } }.to_json(*options)
+  end
 end
 
 class Hash
