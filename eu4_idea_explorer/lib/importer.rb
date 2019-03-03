@@ -5,7 +5,16 @@ require_relative "../../lib/paradox_game"
 class Importer < ParadoxGame
   def initialize(*roots)
     super(*roots)
-    @localization_export = {}
+    @localization_export = {
+      "tag" => "Country Tag",
+      "TAG" => "Country Tag",
+      "primary_culture" => "Primary Culture",
+      "culture_group" => "Culture Group",
+      "has_reform" => "Has Government Reform",
+      "religion_group" => "Religion Group",
+      "religion" => "Religion",
+      "government" => "Government"
+    }
     @basic = []
     @national = []
     @effects = {}
@@ -19,6 +28,20 @@ class Importer < ParadoxGame
 
   def ensure_loc(name)
     @localization_export[name] ||= localization(name)
+  end
+
+  def ensure_loc_plist(obj)
+    case obj
+    when PropertyList
+      obj.each do |key, val|
+        ensure_loc_plist(key)
+        ensure_loc_plist(val)
+      end
+    when String
+      ensure_loc(obj)
+    when Numeric, TrueClass, FalseClass, Date
+      # skip
+    end
   end
 
   # There's no logic to that
@@ -43,6 +66,7 @@ class Importer < ParadoxGame
   end
 
   def parse_trigger(trigger)
+    ensure_loc_plist(trigger)
     # We cound pre-parse plist nodes here
     trigger
   end
