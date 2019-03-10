@@ -13,7 +13,11 @@ class Importer < ParadoxGame
       "has_reform" => "Has Government Reform",
       "religion_group" => "Religion Group",
       "religion" => "Religion",
-      "government" => "Government"
+      "government" => "Government",
+      "ae_impact" => "AE Impact",
+      "cb_on_overseas" => "CB On Overseas",
+      "cb_on_primitives" => "CB On Primitives",
+      "cb_on_religious_enemies" => "CB On Religious Enemies",
     }
     @basic = []
     @national = []
@@ -46,7 +50,7 @@ class Importer < ParadoxGame
 
   # There's no logic to that
   def ensure_effect_loc(name)
-    @localization_export[name] ||= name.split("_").map(&:capitalize).join(" ")
+    @localization_export[name] ||= name.split("_").map(&:capitalize).join(" ").gsub(/\bOf\b/, "of")
   end
 
   def parse_idea(kind, group_name, name, idea)
