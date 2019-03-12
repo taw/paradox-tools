@@ -22,6 +22,11 @@ class FakeYaml
         .gsub(/^\s*#.*\n/, "")
         .sub(/\A\s*/, "")
 
+      # There's separate l_english: mid-file sometimes
+      # ( hoi4 1.6 localisation/designer_l_english.yml )
+      data = data
+        .gsub(/\n l_english:/, "")
+
       data = data.gsub(/^ *\S+?:\K\d+ ?/){ " " } # strip version codes
         .gsub(/^ *[^:]+:\K */){ " " }
 

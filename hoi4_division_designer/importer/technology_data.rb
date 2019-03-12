@@ -38,6 +38,9 @@ class TechnologyData
         tech["start_year"] ||= 1934
       when "concentrated_industry", "dispersed_industry", "radio", "radio_detection", "mechanical_computing", "excavation1"
         tech["start_year"] ||= 1936
+      # 1.6 DLC Modules, just ignore as it's navy only
+      when "damage_control_1", "damage_control_2", "damage_control_3", "fire_control_methods_1", "fire_control_methods_2", "fire_control_methods_3", "basic_fire_control_system", "improved_fire_control_system", "advanced_fire_control_system"
+        tech["start_year"] ||= 1941
       end
     elsif @game.mod == "millennium_dawn"
       case name

@@ -37,7 +37,6 @@ class UnitsData
   # Some awkward names changed
   def renamed
     {
-      "need" => "equipment",
       "supply_consumption" => "supply_use",
       "max_organisation" => "org",
       "max_strength" => "hp",
@@ -55,8 +54,10 @@ class UnitsData
         next
       end
 
-      unless unit["need"].keys.all?{|eq| @game.equipment.archetype_names.include?(eq) }
-        # warn "Unit #{name} is #{@game.mod} is never enabled because of equipment"
+      equipment = (unit["need"] || {}).merge(unit["need_equipment"] || {})
+
+      unless equipment.keys.all?{|eq| @game.equipment.archetype_names.include?(eq) }
+        warn "Unit #{name} is #{@game.mod} is never enabled because of equipment"
         next
       end
 
@@ -68,11 +69,14 @@ class UnitsData
           bonuses[key] = value
         when "priority", "ai_priority", "sprite", "map_icon_category"
           # Skip
+        when "need", "need_equipment"
+          # 1.5 / 1.6 merge
         else
           unit_data[renamed[key] || key] = value
         end
       end
 
+      unit_data["equipment"] = equipment
       unit_data["terrain_bonuses"] = jsonify(bonuses)
       result[name] = unit_data
     end

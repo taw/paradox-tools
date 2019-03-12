@@ -19,13 +19,13 @@
       "supply_use": 0.2,
       "active": true,
       "org": 40,
-      "equipment": {
-        "LHD": 1
-      },
       "type": [
         "capital_ship"
       ],
       "name": "LHD",
+      "equipment": {
+        "LHD": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -50,13 +50,13 @@
       "categories": [
         "category_fighter"
       ],
-      "equipment": {
-        "jet_multirole_equipment": 1
-      },
       "type": [
         "fighter"
       ],
       "name": "Fighter",
+      "equipment": {
+        "jet_multirole_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -81,13 +81,13 @@
       "categories": [
         "category_cas"
       ],
-      "equipment": {
-        "jet_attack_equipment": 1
-      },
       "type": [
         "cas"
       ],
       "name": "Close Air Support",
+      "equipment": {
+        "jet_attack_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -109,13 +109,13 @@
       "suppression": 0,
       "supply_use": 0,
       "active": true,
-      "equipment": {
-        "jet_mpa_equipment": 1
-      },
       "type": [
         "naval_bomber"
       ],
       "name": "Naval Bomber",
+      "equipment": {
+        "jet_mpa_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -137,13 +137,13 @@
       "suppression": 0,
       "supply_use": 0,
       "active": true,
-      "equipment": {
-        "rocket_interceptor_equipment": 1
-      },
       "type": [
         "interceptor"
       ],
       "name": "Rocket Interceptor",
+      "equipment": {
+        "rocket_interceptor_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -165,13 +165,13 @@
       "suppression": 0,
       "supply_use": 0,
       "active": true,
-      "equipment": {
-        "ucav_equipment": 1
-      },
       "type": [
         "tactical_bomber"
       ],
       "name": "Tactical Bomber",
+      "equipment": {
+        "ucav_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -193,13 +193,13 @@
       "suppression": 0,
       "supply_use": 0,
       "active": true,
-      "equipment": {
-        "jet_bomber_equipment": 1
-      },
       "type": [
         "strategic_bomber"
       ],
       "name": "Strategic Bomber",
+      "equipment": {
+        "jet_bomber_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -221,13 +221,13 @@
       "suppression": 0,
       "supply_use": 0,
       "active": true,
-      "equipment": {
-        "transport_plane_equipment": 1
-      },
       "type": [
         "air_transport"
       ],
       "name": "Transport",
+      "equipment": {
+        "transport_plane_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -249,13 +249,13 @@
       "suppression": 0,
       "supply_use": 0,
       "active": true,
-      "equipment": {
-        "guided_missile_equipment": 1
-      },
       "type": [
         "missile"
       ],
       "name": "Rocket",
+      "equipment": {
+        "guided_missile_equipment": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -288,9 +288,6 @@
       "manpower": 300,
       "org": 0,
       "hp": 0.2,
-      "equipment": {
-        "anti_air_equipment": 20
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -298,6 +295,9 @@
       ],
       "weight": 0.1,
       "name": "Support Anti-Air",
+      "equipment": {
+        "anti_air_equipment": 20
+      },
       "terrain_bonuses": {
       }
     },
@@ -329,9 +329,6 @@
       "manpower": 500,
       "org": 0,
       "hp": 0.6,
-      "equipment": {
-        "anti_air_equipment": 30
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -339,6 +336,9 @@
       ],
       "weight": 0.5,
       "name": "Anti-Air",
+      "equipment": {
+        "anti_air_equipment": 30
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -392,9 +392,6 @@
       "manpower": 300,
       "org": 0,
       "hp": 0.2,
-      "equipment": {
-        "anti_tank_equipment": 24
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -402,6 +399,9 @@
       ],
       "weight": 0.1,
       "name": "Support Anti-Tank",
+      "equipment": {
+        "anti_tank_equipment": 24
+      },
       "terrain_bonuses": {
       }
     },
@@ -434,9 +434,6 @@
       "manpower": 500,
       "org": 0,
       "hp": 0.6,
-      "equipment": {
-        "anti_tank_equipment": 36
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -444,6 +441,9 @@
       ],
       "weight": 0.5,
       "name": "Anti-Tank",
+      "equipment": {
+        "anti_tank_equipment": 36
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -505,9 +505,6 @@
       "manpower": 300,
       "org": 0,
       "hp": 0.2,
-      "equipment": {
-        "artillery_equipment": 24
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -515,6 +512,9 @@
       ],
       "weight": 0.1,
       "name": "Support Artillery",
+      "equipment": {
+        "artillery_equipment": 24
+      },
       "terrain_bonuses": {
       }
     },
@@ -548,9 +548,6 @@
       "manpower": 300,
       "org": 0,
       "hp": 0.2,
-      "equipment": {
-        "rocket_artillery_equipment": 24
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -558,6 +555,9 @@
       ],
       "weight": 0.1,
       "name": "Support Rocket Artillery",
+      "equipment": {
+        "rocket_artillery_equipment": 24
+      },
       "terrain_bonuses": {
       }
     },
@@ -590,9 +590,6 @@
       "manpower": 500,
       "org": 0,
       "hp": 0.6,
-      "equipment": {
-        "artillery_equipment": 36
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -600,6 +597,9 @@
       ],
       "weight": 0.5,
       "name": "Artillery",
+      "equipment": {
+        "artillery_equipment": 36
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -659,9 +659,6 @@
       "manpower": 500,
       "org": 0,
       "hp": 0.6,
-      "equipment": {
-        "rocket_artillery_equipment": 36
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -669,6 +666,9 @@
       ],
       "weight": 0.5,
       "name": "Rocket Artillery",
+      "equipment": {
+        "rocket_artillery_equipment": 36
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -728,10 +728,6 @@
       "manpower": 500,
       "org": 0,
       "hp": 0.6,
-      "equipment": {
-        "motorized_equipment": 15,
-        "motorized_rocket_equipment": 20
-      },
       "training_time": 120,
       "type": [
         "artillery",
@@ -740,6 +736,10 @@
       ],
       "weight": 0.5,
       "name": "Motorized Rocket Artillery",
+      "equipment": {
+        "motorized_equipment": 15,
+        "motorized_rocket_equipment": 20
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -799,9 +799,6 @@
       "manpower": 500,
       "org": 0,
       "hp": 0.6,
-      "equipment": {
-        "sp_artillery_equipment": 20
-      },
       "training_time": 180,
       "type": [
         "armor",
@@ -809,6 +806,9 @@
       ],
       "weight": 1.5,
       "name": "SP. Artillery",
+      "equipment": {
+        "sp_artillery_equipment": 20
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -860,13 +860,13 @@
       "supply_use": 0.3,
       "active": true,
       "org": 40,
-      "equipment": {
-        "carrier": 1
-      },
       "type": [
         "carrier"
       ],
       "name": "Carrier",
+      "equipment": {
+        "carrier": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -899,15 +899,15 @@
       "manpower": 1000,
       "org": 70,
       "hp": 25,
-      "equipment": {
-        "infantry_equipment": 120
-      },
       "training_time": 120,
       "type": [
         "infantry"
       ],
       "weight": 0.5,
       "name": "Cavalry",
+      "equipment": {
+        "infantry_equipment": 120
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -949,13 +949,13 @@
       "supply_use": 0.01,
       "active": true,
       "org": 30,
-      "equipment": {
-        "corvette": 1
-      },
       "type": [
         "screen_ship"
       ],
       "name": "Corvette",
+      "equipment": {
+        "corvette": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -978,13 +978,13 @@
       "supply_use": 0.01,
       "active": true,
       "org": 40,
-      "equipment": {
-        "destroyer": 1
-      },
       "type": [
         "capital_ship"
       ],
       "name": "Destroyer",
+      "equipment": {
+        "destroyer": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -1021,10 +1021,6 @@
       "manpower": 300,
       "org": 20,
       "hp": 2,
-      "equipment": {
-        "infantry_equipment": 10,
-        "support_equipment": 30
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -1032,6 +1028,10 @@
       ],
       "weight": 0.1,
       "name": "Engineer Company",
+      "equipment": {
+        "infantry_equipment": 10,
+        "support_equipment": 30
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": 0.25
@@ -1093,10 +1093,6 @@
       "manpower": 500,
       "org": 20,
       "hp": 2,
-      "equipment": {
-        "motorized_equipment": 20,
-        "support_equipment": 30
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -1104,6 +1100,10 @@
       ],
       "weight": 0.1,
       "name": "Field Hospital",
+      "equipment": {
+        "motorized_equipment": 20,
+        "support_equipment": 30
+      },
       "terrain_bonuses": {
       }
     },
@@ -1126,13 +1126,13 @@
       "supply_use": 0.01,
       "active": true,
       "org": 35,
-      "equipment": {
-        "frigate": 1
-      },
       "type": [
         "screen_ship"
       ],
       "name": "Frigate",
+      "equipment": {
+        "frigate": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -1166,15 +1166,15 @@
       "manpower": 1000,
       "org": 50,
       "hp": 25,
-      "equipment": {
-        "infantry_equipment": 100
-      },
       "training_time": 105,
       "type": [
         "infantry"
       ],
       "weight": 0.5,
       "name": "Infantry",
+      "equipment": {
+        "infantry_equipment": 100
+      },
       "terrain_bonuses": {
       }
     },
@@ -1209,9 +1209,6 @@
       "marines": true,
       "org": 60,
       "hp": 20,
-      "equipment": {
-        "infantry_equipment": 150
-      },
       "special_forces": true,
       "training_time": 150,
       "type": [
@@ -1219,6 +1216,9 @@
       ],
       "weight": 0.5,
       "name": "Marines",
+      "equipment": {
+        "infantry_equipment": 150
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": 0.5
@@ -1262,9 +1262,6 @@
       "org": 60,
       "hp": 20,
       "mountaineers": true,
-      "equipment": {
-        "infantry_equipment": 150
-      },
       "special_forces": true,
       "training_time": 120,
       "type": [
@@ -1272,6 +1269,9 @@
       ],
       "weight": 0.5,
       "name": "Mountaineers",
+      "equipment": {
+        "infantry_equipment": 150
+      },
       "terrain_bonuses": {
         "hills": {
           "attack": 0.2,
@@ -1316,9 +1316,6 @@
       "manpower": 1000,
       "org": 70,
       "hp": 25,
-      "equipment": {
-        "infantry_equipment": 150
-      },
       "special_forces": true,
       "training_time": 150,
       "type": [
@@ -1326,6 +1323,9 @@
       ],
       "weight": 0.5,
       "name": "Paratroopers",
+      "equipment": {
+        "infantry_equipment": 150
+      },
       "terrain_bonuses": {
       }
     },
@@ -1358,10 +1358,6 @@
       "manpower": 1200,
       "org": 60,
       "hp": 25,
-      "equipment": {
-        "infantry_equipment": 100,
-        "motorized_equipment": 100
-      },
       "training_time": 90,
       "transport": "motorized_equipment",
       "type": [
@@ -1369,6 +1365,10 @@
       ],
       "weight": 0.75,
       "name": "Motorized Infantry",
+      "equipment": {
+        "infantry_equipment": 100,
+        "motorized_equipment": 100
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.25
@@ -1432,10 +1432,6 @@
       "manpower": 1200,
       "org": 60,
       "hp": 30,
-      "equipment": {
-        "infantry_equipment": 100,
-        "mechanized_equipment": 100
-      },
       "training_time": 120,
       "transport": "mechanized_equipment",
       "type": [
@@ -1443,6 +1439,10 @@
       ],
       "weight": 1,
       "name": "Mechanized Infantry",
+      "equipment": {
+        "infantry_equipment": 100,
+        "mechanized_equipment": 100
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.1
@@ -1505,10 +1505,6 @@
       "manpower": 1200,
       "org": 60,
       "hp": 30,
-      "equipment": {
-        "infantry_equipment": 100,
-        "light_mechanized_equipment": 100
-      },
       "training_time": 120,
       "transport": "light_mechanized_equipment",
       "type": [
@@ -1516,6 +1512,10 @@
       ],
       "weight": 1,
       "name": "Light Mechanized",
+      "equipment": {
+        "infantry_equipment": 100,
+        "light_mechanized_equipment": 100
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.1
@@ -1574,15 +1574,15 @@
       "manpower": 500,
       "org": 10,
       "hp": 2,
-      "equipment": {
-        "light_tank_equipment": 60
-      },
       "training_time": 180,
       "type": [
         "armor"
       ],
       "weight": 1,
       "name": "Light Tank",
+      "equipment": {
+        "light_tank_equipment": 60
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.4
@@ -1645,10 +1645,6 @@
       "manpower": 500,
       "org": 10,
       "hp": 1,
-      "equipment": {
-        "motorized_equipment": 10,
-        "support_equipment": 20
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -1656,6 +1652,10 @@
       ],
       "weight": 0.1,
       "name": "Logistics Company",
+      "equipment": {
+        "motorized_equipment": 10,
+        "support_equipment": 20
+      },
       "terrain_bonuses": {
       }
     },
@@ -1691,9 +1691,6 @@
       "manpower": 500,
       "org": 20,
       "hp": 1,
-      "equipment": {
-        "support_equipment": 25
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -1701,6 +1698,9 @@
       ],
       "weight": 0.1,
       "name": "Maintenance Company",
+      "equipment": {
+        "support_equipment": 25
+      },
       "terrain_bonuses": {
       }
     },
@@ -1737,10 +1737,6 @@
       "manpower": 500,
       "org": 0,
       "hp": 1,
-      "equipment": {
-        "infantry_equipment": 40,
-        "support_equipment": 10
-      },
       "suppression_factor": 0.2,
       "training_time": 180,
       "type": [
@@ -1749,6 +1745,10 @@
       ],
       "weight": 0.1,
       "name": "Military Police",
+      "equipment": {
+        "infantry_equipment": 40,
+        "support_equipment": 10
+      },
       "terrain_bonuses": {
       }
     },
@@ -1771,13 +1771,13 @@
       "supply_use": 0.15,
       "active": true,
       "org": 35,
-      "equipment": {
-        "missile_cruiser": 1
-      },
       "type": [
         "capital_ship"
       ],
       "name": "Missile Cruiser",
+      "equipment": {
+        "missile_cruiser": 1
+      },
       "terrain_bonuses": {
       }
     },
@@ -1811,15 +1811,15 @@
       "manpower": 500,
       "org": 10,
       "hp": 2,
-      "equipment": {
-        "modern_tank_equipment": 50
-      },
       "training_time": 180,
       "type": [
         "armor"
       ],
       "weight": 1.5,
       "name": "Modern Tank",
+      "equipment": {
+        "modern_tank_equipment": 50
+      },
       "terrain_bonuses": {
         "amphibious": {
           "attack": -0.7
@@ -1886,10 +1886,6 @@
       "manpower": 500,
       "org": 20,
       "hp": 2,
-      "equipment": {
-        "infantry_equipment": 40,
-        "support_equipment": 10
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -1897,6 +1893,10 @@
       ],
       "weight": 0.1,
       "name": "Recon Company",
+      "equipment": {
+        "infantry_equipment": 40,
+        "support_equipment": 10
+      },
       "terrain_bonuses": {
         "desert": {
           "movement": 0.1
@@ -1957,10 +1957,6 @@
       "manpower": 500,
       "org": 20,
       "hp": 1,
-      "equipment": {
-        "motorized_equipment": 10,
-        "support_equipment": 50
-      },
       "training_time": 120,
       "type": [
         "infantry",
@@ -1968,6 +1964,10 @@
       ],
       "weight": 0.1,
       "name": "Signal Company",
+      "equipment": {
+        "motorized_equipment": 10,
+        "support_equipment": 50
+      },
       "terrain_bonuses": {
       }
     },
@@ -1990,13 +1990,13 @@
       "supply_use": 0.01,
       "active": true,
       "org": 40,
-      "equipment": {
-        "submarine": 1
-      },
       "type": [
         "submarine"
       ],
       "name": "Submarine",
+      "equipment": {
+        "submarine": 1
+      },
       "terrain_bonuses": {
       }
     }
