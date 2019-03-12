@@ -2,6 +2,20 @@ require "pathname"
 require "json"
 require_relative "../../lib/paradox_game"
 
+def json_normalize(data)
+  if data.is_a?(Array)
+    data.map do |elem|
+      json_normalize(elem)
+    end
+  elsif data.is_a?(Hash)
+    Hash[data.map{|k,v|
+      [k, json_normalize(v)]
+    }.sort]
+  else
+    data
+  end
+end
+
 class Importer < ParadoxGame
   def initialize(*roots)
     super(*roots)
@@ -120,13 +134,33 @@ class Importer < ParadoxGame
       end
     end
 
+    effect_types = {}
+    @effects.each do |name, effect_data|
+      vals = effect_data.map(&:first).uniq
+      if vals.all?{|v| v == true}
+        effect_types[name] = "true"
+      elsif vals.all?{|v| v.is_a?(Integer) and v != 0 }
+        effect_types[name] = "int"
+      elsif vals.all?{|v| v.is_a?(Numeric) and v != 0 and v <= 1 and v >= -1 }
+        # Not always
+        effect_types[name] = "percent"
+      else
+        raise "Unknown type: #{name}"
+      end
+    end
+
     data = {
       basic: @basic,
       national: @national,
       loc: @localization_export,
       effects: @effects,
+      effect_types: effect_types,
     }
-    puts JSON.pretty_generate(data)
+    data.each do |name, data_part|
+      Pathname("data/#{name}.json").open("w") do |fh|
+        fh.puts JSON.pretty_generate(json_normalize(data_part))
+      end
+    end
   end
 
   def inspect

@@ -1,7 +1,4 @@
-desc "Run tests"
-task "test" do
-  sh "rspec"
-end
+task "default" => "import"
 
 desc "Run importer"
 task "import" do

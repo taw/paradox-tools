@@ -1,0 +1,1580 @@
+[
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "leader_siege",
+          1
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "MIL",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "cavalry_power",
+            0.1
+          ],
+          [
+            "cavalry_cost",
+            -0.1
+          ]
+        ],
+        "name": "noble_knights"
+      },
+      {
+        "bonuses": [
+          [
+            "mil_tech_cost_modifier",
+            -0.1
+          ]
+        ],
+        "name": "military_traditions"
+      },
+      {
+        "bonuses": [
+          [
+            "global_autonomy",
+            -0.025
+          ],
+          [
+            "yearly_absolutism",
+            0.1
+          ]
+        ],
+        "name": "local_nobility"
+      },
+      {
+        "bonuses": [
+          [
+            "global_manpower_modifier",
+            0.33
+          ]
+        ],
+        "name": "serfdom"
+      },
+      {
+        "bonuses": [
+          [
+            "army_tradition_decay",
+            -0.01
+          ],
+          [
+            "navy_tradition_decay",
+            -0.01
+          ]
+        ],
+        "name": "noble_officers"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomats",
+            1
+          ],
+          [
+            "free_leader_pool",
+            1
+          ]
+        ],
+        "name": "international_nobility"
+      },
+      {
+        "bonuses": [
+          [
+            "possible_mercenaries",
+            0.2
+          ]
+        ],
+        "name": "noble_resilience"
+      }
+    ],
+    "name": "aristocracy_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "global_institution_spread",
+          0.1
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "MIL",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "possible_mercenaries",
+            0.1
+          ],
+          [
+            "mercenary_discipline",
+            0.025
+          ]
+        ],
+        "name": "tradition_of_payment"
+      },
+      {
+        "bonuses": [
+          [
+            "land_morale",
+            0.1
+          ]
+        ],
+        "name": "abolished_serfdom"
+      },
+      {
+        "bonuses": [
+          [
+            "global_unrest",
+            -2
+          ]
+        ],
+        "name": "bill_of_rights"
+      },
+      {
+        "bonuses": [
+          [
+            "merchants",
+            1
+          ]
+        ],
+        "name": "free_merchants"
+      },
+      {
+        "bonuses": [
+          [
+            "global_trade_goods_size_modifier",
+            0.1
+          ]
+        ],
+        "name": "free_subjects"
+      },
+      {
+        "bonuses": [
+          [
+            "caravan_power",
+            0.25
+          ]
+        ],
+        "name": "free_cities"
+      },
+      {
+        "bonuses": [
+          [
+            "manpower_recovery_speed",
+            0.2
+          ]
+        ],
+        "name": "emancipation"
+      }
+    ],
+    "name": "plutocracy_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "advisor_cost",
+          -0.25
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "ADM",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "prestige_decay",
+            -0.01
+          ]
+        ],
+        "name": "patron_of_art"
+      },
+      {
+        "bonuses": [
+          [
+            "innovativeness_gain",
+            0.5
+          ]
+        ],
+        "name": "empiricism"
+      },
+      {
+        "bonuses": [
+          [
+            "technology_cost",
+            -0.1
+          ],
+          [
+            "embracement_cost",
+            -0.1
+          ]
+        ],
+        "name": "scientific_revolution"
+      },
+      {
+        "bonuses": [
+          [
+            "advisor_pool",
+            1
+          ]
+        ],
+        "name": "dynamic_court"
+      },
+      {
+        "bonuses": [
+          [
+            "global_institution_spread",
+            0.25
+          ]
+        ],
+        "name": "print_culture"
+      },
+      {
+        "bonuses": [
+          [
+            "war_exhaustion",
+            -0.05
+          ]
+        ],
+        "name": "optimism"
+      },
+      {
+        "bonuses": [
+          [
+            "free_leader_pool",
+            1
+          ]
+        ],
+        "name": "formalized_officer_corps"
+      }
+    ],
+    "name": "innovativeness_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "culture_conversion_cost",
+          -0.25
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "ADM",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "missionaries",
+            1
+          ]
+        ],
+        "name": "missionary_schools"
+      },
+      {
+        "bonuses": [
+          [
+            "stability_cost_modifier",
+            -0.25
+          ]
+        ],
+        "name": "church_attendance_duty"
+      },
+      {
+        "bonuses": [
+          [
+            "global_missionary_strength",
+            0.03
+          ]
+        ],
+        "name": "divine_supremacy"
+      },
+      {
+        "bonuses": [
+          [
+            "tolerance_own",
+            2
+          ],
+          [
+            "papal_influence",
+            2
+          ],
+          [
+            "devotion",
+            0.5
+          ],
+          [
+            "monthly_fervor_increase",
+            0.25
+          ],
+          [
+            "church_power_modifier",
+            0.1
+          ]
+        ],
+        "name": "devoutness"
+      },
+      {
+        "bonuses": [
+          [
+            "prestige",
+            1
+          ]
+        ],
+        "name": "religious_tradition"
+      },
+      {
+        "bonuses": [
+          [
+            "missionary_maintenance_cost",
+            -0.5
+          ]
+        ],
+        "name": "inquisition"
+      },
+      {
+        "bonuses": [
+          [
+            "cb_on_religious_enemies",
+            true
+          ]
+        ],
+        "name": "deus_vult"
+      }
+    ],
+    "name": "religious_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "rebel_support_efficiency",
+          0.5
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "DIP",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "spy_offence",
+            0.5
+          ],
+          [
+            "advisor_cost",
+            -0.1
+          ]
+        ],
+        "name": "efficient_spies"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomats",
+            1
+          ]
+        ],
+        "name": "agent_training"
+      },
+      {
+        "bonuses": [
+          [
+            "global_spy_defence",
+            0.33
+          ]
+        ],
+        "name": "vetting"
+      },
+      {
+        "bonuses": [
+          [
+            "ae_impact",
+            -0.2
+          ]
+        ],
+        "name": "state_propaganda"
+      },
+      {
+        "bonuses": [
+          [
+            "fabricate_claims_cost",
+            -0.25
+          ],
+          [
+            "can_fabricate_for_vassals",
+            true
+          ]
+        ],
+        "name": "claim_fabrication"
+      },
+      {
+        "bonuses": [
+          [
+            "embargo_efficiency",
+            0.25
+          ],
+          [
+            "privateer_efficiency",
+            0.33
+          ]
+        ],
+        "name": "privateers"
+      },
+      {
+        "bonuses": [
+          [
+            "yearly_corruption",
+            -0.1
+          ]
+        ],
+        "name": "audit_checks"
+      }
+    ],
+    "name": "spy_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "reduced_stab_impacts",
+          true
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "DIP",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "diplomats",
+            1
+          ]
+        ],
+        "name": "foreign_embassies"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomatic_upkeep",
+            1
+          ]
+        ],
+        "name": "cabinet"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomats",
+            1
+          ]
+        ],
+        "name": "grand_banquets"
+      },
+      {
+        "bonuses": [
+          [
+            "improve_relation_modifier",
+            0.25
+          ]
+        ],
+        "name": "benign_diplomats"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomatic_reputation",
+            2
+          ]
+        ],
+        "name": "experienced_diplomats"
+      },
+      {
+        "bonuses": [
+          [
+            "province_warscore_cost",
+            -0.2
+          ]
+        ],
+        "name": "flexible_negotiation"
+      },
+      {
+        "bonuses": [
+          [
+            "dip_tech_cost_modifier",
+            -0.1
+          ]
+        ],
+        "name": "diplomatic_corps"
+      }
+    ],
+    "name": "diplomatic_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "recover_army_morale_speed",
+          0.05
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "MIL",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "leader_land_shock",
+            1
+          ]
+        ],
+        "name": "bayonet_leaders"
+      },
+      {
+        "bonuses": [
+          [
+            "global_regiment_recruit_speed",
+            -0.1
+          ]
+        ],
+        "name": "national_conscripts"
+      },
+      {
+        "bonuses": [
+          [
+            "leader_land_fire",
+            1
+          ]
+        ],
+        "name": "superior_firepower"
+      },
+      {
+        "bonuses": [
+          [
+            "prestige_from_land",
+            1.0
+          ]
+        ],
+        "name": "glorious_arms"
+      },
+      {
+        "bonuses": [
+          [
+            "siege_ability",
+            0.2
+          ]
+        ],
+        "name": "engineer_corps"
+      },
+      {
+        "bonuses": [
+          [
+            "land_forcelimit_modifier",
+            0.2
+          ]
+        ],
+        "name": "grand_army"
+      },
+      {
+        "bonuses": [
+          [
+            "discipline",
+            0.05
+          ]
+        ],
+        "name": "napoleonic_warfare"
+      }
+    ],
+    "name": "offensive_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "hostile_attrition",
+          1
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "MIL",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "army_tradition",
+            1
+          ]
+        ],
+        "name": "battlefield_commisions"
+      },
+      {
+        "bonuses": [
+          [
+            "land_morale",
+            0.15
+          ]
+        ],
+        "name": "military_drill"
+      },
+      {
+        "bonuses": [
+          [
+            "leader_land_manuever",
+            1
+          ]
+        ],
+        "name": "improved_manuever"
+      },
+      {
+        "bonuses": [
+          [
+            "land_maintenance_modifier",
+            -0.05
+          ]
+        ],
+        "name": "regimental_system"
+      },
+      {
+        "bonuses": [
+          [
+            "defensiveness",
+            0.2
+          ],
+          [
+            "fort_maintenance_modifier",
+            -0.1
+          ]
+        ],
+        "name": "defensive_mentality"
+      },
+      {
+        "bonuses": [
+          [
+            "reinforce_speed",
+            0.33
+          ]
+        ],
+        "name": "supply_trains"
+      },
+      {
+        "bonuses": [
+          [
+            "land_attrition",
+            -0.25
+          ]
+        ],
+        "name": "improved_foraging"
+      }
+    ],
+    "name": "defensive_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "merchants",
+          1
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "DIP",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "global_trade_power",
+            0.2
+          ]
+        ],
+        "name": "shrewd_commerce_practise"
+      },
+      {
+        "bonuses": [
+          [
+            "merchants",
+            1
+          ]
+        ],
+        "name": "free_trade"
+      },
+      {
+        "bonuses": [
+          [
+            "trade_range_modifier",
+            0.25
+          ]
+        ],
+        "name": "merchant_adventures"
+      },
+      {
+        "bonuses": [
+          [
+            "trade_efficiency",
+            0.1
+          ]
+        ],
+        "name": "national_trade_policy"
+      },
+      {
+        "bonuses": [
+          [
+            "merchants",
+            1
+          ]
+        ],
+        "name": "overseas_merchants"
+      },
+      {
+        "bonuses": [
+          [
+            "trade_steering",
+            0.25
+          ]
+        ],
+        "name": "trade_manipulation"
+      },
+      {
+        "bonuses": [
+          [
+            "caravan_power",
+            0.25
+          ]
+        ],
+        "name": "fast_negotiations"
+      }
+    ],
+    "name": "trade_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "development_cost",
+          -0.2
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "ADM",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "global_tax_modifier",
+            0.1
+          ]
+        ],
+        "name": "bureaucracy"
+      },
+      {
+        "bonuses": [
+          [
+            "build_cost",
+            -0.1
+          ]
+        ],
+        "name": "organised_construction"
+      },
+      {
+        "bonuses": [
+          [
+            "inflation_reduction",
+            0.1
+          ]
+        ],
+        "name": "national_bank"
+      },
+      {
+        "bonuses": [
+          [
+            "interest",
+            -0.5
+          ]
+        ],
+        "name": "debt_and_loans"
+      },
+      {
+        "bonuses": [
+          [
+            "global_autonomy",
+            -0.05
+          ]
+        ],
+        "name": "centralization"
+      },
+      {
+        "bonuses": [
+          [
+            "land_maintenance_modifier",
+            -0.05
+          ]
+        ],
+        "name": "nationalistic_enthusiasm"
+      },
+      {
+        "bonuses": [
+          [
+            "production_efficiency",
+            0.1
+          ]
+        ],
+        "name": "smithian_economics"
+      }
+    ],
+    "name": "economic_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "cb_on_primitives",
+          true
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "DIP",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "may_explore",
+            true
+          ]
+        ],
+        "name": "quest_for_the_new_world"
+      },
+      {
+        "bonuses": [
+          [
+            "colonists",
+            1
+          ]
+        ],
+        "name": "colonial_ventures"
+      },
+      {
+        "bonuses": [
+          [
+            "range",
+            0.5
+          ]
+        ],
+        "name": "overseas_exploration"
+      },
+      {
+        "bonuses": [
+          [
+            "global_colonial_growth",
+            10
+          ]
+        ],
+        "name": "land_of_opportunity"
+      },
+      {
+        "bonuses": [
+          [
+            "global_tariffs",
+            0.1
+          ],
+          [
+            "envoy_travel_time",
+            -0.2
+          ]
+        ],
+        "name": "vice_roys"
+      },
+      {
+        "bonuses": [
+          [
+            "expel_minorities_cost",
+            -0.25
+          ]
+        ],
+        "name": "free_colonies"
+      },
+      {
+        "bonuses": [
+          [
+            "naval_forcelimit_modifier",
+            0.25
+          ]
+        ],
+        "name": "global_empire"
+      }
+    ],
+    "name": "exploration_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "sea_repair",
+          true
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "DIP",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "naval_tradition_from_trade",
+            1.0
+          ]
+        ],
+        "name": "merchant_traditions"
+      },
+      {
+        "bonuses": [
+          [
+            "global_sailors_modifier",
+            0.5
+          ]
+        ],
+        "name": "merchant_marine"
+      },
+      {
+        "bonuses": [
+          [
+            "global_ship_repair",
+            0.1
+          ],
+          [
+            "sailor_maintenance_modifer",
+            -0.1
+          ]
+        ],
+        "name": "sheltered_ports"
+      },
+      {
+        "bonuses": [
+          [
+            "naval_forcelimit_modifier",
+            0.5
+          ]
+        ],
+        "name": "grand_navy"
+      },
+      {
+        "bonuses": [
+          [
+            "global_ship_cost",
+            -0.1
+          ]
+        ],
+        "name": "ships_penny"
+      },
+      {
+        "bonuses": [
+          [
+            "free_leader_pool",
+            1
+          ],
+          [
+            "admiral_cost",
+            -0.25
+          ]
+        ],
+        "name": "sea_hawks"
+      },
+      {
+        "bonuses": [
+          [
+            "blockade_efficiency",
+            0.5
+          ],
+          [
+            "privateer_efficiency",
+            0.25
+          ]
+        ],
+        "name": "naval_fighting_instruction"
+      }
+    ],
+    "name": "maritime_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "discipline",
+          0.05
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "MIL",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "infantry_power",
+            0.1
+          ]
+        ],
+        "name": "private_to_marshal"
+      },
+      {
+        "bonuses": [
+          [
+            "army_tradition",
+            1
+          ]
+        ],
+        "name": "quality_education"
+      },
+      {
+        "bonuses": [
+          [
+            "cavalry_power",
+            0.1
+          ]
+        ],
+        "name": "finest_of_horses"
+      },
+      {
+        "bonuses": [
+          [
+            "ship_durability",
+            0.05
+          ]
+        ],
+        "name": "escort_ships"
+      },
+      {
+        "bonuses": [
+          [
+            "naval_morale",
+            0.1
+          ]
+        ],
+        "name": "naval_drill"
+      },
+      {
+        "bonuses": [
+          [
+            "naval_attrition",
+            -0.25
+          ]
+        ],
+        "name": "copper_bottoms"
+      },
+      {
+        "bonuses": [
+          [
+            "artillery_power",
+            0.1
+          ]
+        ],
+        "name": "massed_battery"
+      }
+    ],
+    "name": "quality_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "land_forcelimit_modifier",
+          0.5
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "MIL",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "global_manpower_modifier",
+            0.5
+          ]
+        ],
+        "name": "mass_army"
+      },
+      {
+        "bonuses": [
+          [
+            "manpower_recovery_speed",
+            0.2
+          ]
+        ],
+        "name": "the_young_can_serve"
+      },
+      {
+        "bonuses": [
+          [
+            "global_regiment_cost",
+            -0.1
+          ]
+        ],
+        "name": "enforced_service"
+      },
+      {
+        "bonuses": [
+          [
+            "land_maintenance_modifier",
+            -0.05
+          ]
+        ],
+        "name": "the_old_and_infirm"
+      },
+      {
+        "bonuses": [
+          [
+            "global_supply_limit_modifier",
+            0.33
+          ]
+        ],
+        "name": "camp_followers"
+      },
+      {
+        "bonuses": [
+          [
+            "garrison_size",
+            0.25
+          ]
+        ],
+        "name": "garrison_conscription"
+      },
+      {
+        "bonuses": [
+          [
+            "land_attrition",
+            -0.1
+          ]
+        ],
+        "name": "expanded_supply_trains"
+      }
+    ],
+    "name": "quantity_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "cb_on_overseas",
+          true
+        ],
+        [
+          "max_states",
+          5
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "ADM",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "colonists",
+            1
+          ]
+        ],
+        "name": "additional_colonists"
+      },
+      {
+        "bonuses": [
+          [
+            "merchants",
+            1
+          ]
+        ],
+        "name": "additional_merchants"
+      },
+      {
+        "bonuses": [
+          [
+            "global_colonial_growth",
+            20
+          ]
+        ],
+        "name": "faster_colonists"
+      },
+      {
+        "bonuses": [
+          [
+            "rival_border_fort_maintenance",
+            -0.5
+          ],
+          [
+            "center_of_trade_upgrade_cost",
+            -0.2
+          ]
+        ],
+        "name": "factories"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomatic_upkeep",
+            1
+          ]
+        ],
+        "name": "additional_diplomats"
+      },
+      {
+        "bonuses": [
+          [
+            "colonists",
+            1
+          ],
+          [
+            "colonist_placement_chance",
+            0.05
+          ]
+        ],
+        "name": "general_colonization_law"
+      },
+      {
+        "bonuses": [
+          [
+            "global_trade_power",
+            0.2
+          ]
+        ],
+        "name": "competetive_merchants"
+      }
+    ],
+    "name": "expansion_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "max_states",
+          5
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "ADM",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "mercenary_cost",
+            -0.25
+          ]
+        ],
+        "name": "organised_mercenary_payment"
+      },
+      {
+        "bonuses": [
+          [
+            "core_creation",
+            -0.25
+          ]
+        ],
+        "name": "adaptability"
+      },
+      {
+        "bonuses": [
+          [
+            "merc_maintenance_modifier",
+            -0.15
+          ]
+        ],
+        "name": "benefits_for_mercenaries"
+      },
+      {
+        "bonuses": [
+          [
+            "interest",
+            -0.5
+          ]
+        ],
+        "name": "bookkeeping"
+      },
+      {
+        "bonuses": [
+          [
+            "possible_mercenaries",
+            0.25
+          ]
+        ],
+        "name": "organised_mercenary_recruitment"
+      },
+      {
+        "bonuses": [
+          [
+            "advisor_pool",
+            1
+          ]
+        ],
+        "name": "administrative_efficiency_idea"
+      },
+      {
+        "bonuses": [
+          [
+            "adm_tech_cost_modifier",
+            -0.1
+          ]
+        ],
+        "name": "civil_servants"
+      }
+    ],
+    "name": "administrative_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "idea_cost",
+          -0.1
+        ],
+        [
+          "yearly_harmony",
+          0.25
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "ADM",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "religious_unity",
+            0.25
+          ]
+        ],
+        "name": "tolerance_idea"
+      },
+      {
+        "bonuses": [
+          [
+            "global_unrest",
+            -2
+          ]
+        ],
+        "name": "local_traditions"
+      },
+      {
+        "bonuses": [
+          [
+            "tolerance_heretic",
+            2
+          ]
+        ],
+        "name": "ecumenism"
+      },
+      {
+        "bonuses": [
+          [
+            "years_of_nationalism",
+            -10
+          ]
+        ],
+        "name": "indirect_rule"
+      },
+      {
+        "bonuses": [
+          [
+            "num_accepted_cultures",
+            2
+          ]
+        ],
+        "name": "cultural_ties"
+      },
+      {
+        "bonuses": [
+          [
+            "improve_relation_modifier",
+            0.3
+          ]
+        ],
+        "name": "benevolence"
+      },
+      {
+        "bonuses": [
+          [
+            "tolerance_heathen",
+            2
+          ]
+        ],
+        "name": "humanist_tolerance"
+      }
+    ],
+    "name": "humanist_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "unjustified_demands",
+          -0.5
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "DIP",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "vassal_income",
+            0.25
+          ]
+        ],
+        "name": "tribute_system"
+      },
+      {
+        "bonuses": [
+          [
+            "reduced_liberty_desire",
+            15
+          ]
+        ],
+        "name": "additional_loyalist_recruitment"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomatic_annexation_cost",
+            -0.25
+          ]
+        ],
+        "name": "integrated_elites"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomatic_upkeep",
+            1
+          ]
+        ],
+        "name": "buffer_states"
+      },
+      {
+        "bonuses": [
+          [
+            "diplomatic_reputation",
+            2
+          ]
+        ],
+        "name": "diplomatic_influence"
+      },
+      {
+        "bonuses": [
+          [
+            "envoy_travel_time",
+            -0.25
+          ]
+        ],
+        "name": "postal_service"
+      },
+      {
+        "bonuses": [
+          [
+            "vassal_forcelimit_bonus",
+            1
+          ]
+        ],
+        "name": "marcher_lords"
+      }
+    ],
+    "name": "influence_ideas"
+  },
+  {
+    "bonus": {
+      "bonuses": [
+        [
+          "ship_durability",
+          0.1
+        ]
+      ],
+      "name": "bonus"
+    },
+    "category": "MIL",
+    "ideas": [
+      {
+        "bonuses": [
+          [
+            "leader_naval_shock",
+            1
+          ]
+        ],
+        "name": "boarding_parties"
+      },
+      {
+        "bonuses": [
+          [
+            "galley_power",
+            0.25
+          ]
+        ],
+        "name": "improved_rams"
+      },
+      {
+        "bonuses": [
+          [
+            "leader_naval_fire",
+            1
+          ],
+          [
+            "sunk_ship_morale_hit_recieved",
+            -0.33
+          ]
+        ],
+        "name": "naval_cadets"
+      },
+      {
+        "bonuses": [
+          [
+            "navy_tradition",
+            1
+          ]
+        ],
+        "name": "naval_glory"
+      },
+      {
+        "bonuses": [
+          [
+            "sailors_recovery_speed",
+            0.25
+          ]
+        ],
+        "name": "press_gangs"
+      },
+      {
+        "bonuses": [
+          [
+            "heavy_ship_power",
+            0.2
+          ]
+        ],
+        "name": "oak_forests_for_ships"
+      },
+      {
+        "bonuses": [
+          [
+            "naval_morale",
+            0.1
+          ],
+          [
+            "global_naval_engagement_modifier",
+            0.1
+          ]
+        ],
+        "name": "superior_seamanship"
+      }
+    ],
+    "name": "naval_ideas"
+  }
+]
