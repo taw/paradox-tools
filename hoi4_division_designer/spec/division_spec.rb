@@ -37,6 +37,8 @@ describe Division do
       equipment_capture_factor: 0.0,
 
       # Right Column
+      fuel_consumption: 0.0,
+      fuel_capacity: 0.0,
 
       # Adjusters
       terrain_bonuses: {},
@@ -76,6 +78,8 @@ describe Division do
     expect(division.training_time).to eq stats[:training_time]
     expect(division.equipment).to eq stats[:equipment]
     expect(division.ic_cost).to eq stats[:ic_cost]
+    expect(division.fuel_consumption).to eq stats[:fuel_consumption]
+    expect(division.fuel_capacity).to eq stats[:fuel_capacity]
     # Adjusters
     expect(division.terrain_bonuses).to eq stats[:terrain_bonuses]
     expect(division.special_forces).to eq stats[:special_forces]
@@ -271,6 +275,8 @@ describe Division do
           "river" => {"movement" => -0.15, "attack" => -0.15},
           "amphibious" => {"attack" => -0.30},
         },
+        fuel_consumption: 10.08,
+        fuel_capacity: 290.3,
       }
     end
   end
@@ -422,6 +428,8 @@ describe Division do
           "river" => {"movement"=>-0.4, "attack"=>-0.4},
           "amphibious" => {"attack"=>-0.8},
         },
+        fuel_consumption: 39.6,
+        fuel_capacity: 1425.6,
       }
     end
   end

@@ -45,6 +45,21 @@ class Division
     (base * (1+factor)).round(6)
   end
 
+  def fuel_consumption
+    base = @units.map(&:fuel_consumption).sum.round(6)
+    factor = @units.map(&:fuel_consumption_factor).sum
+    (base * (1+factor)).round(6)
+  end
+
+  def fuel_capacity
+    # No idea where this 28.8 factor is coming from
+    # It's 6/5 of 24
+    # fuel_consumption_factor does not affect capacity so we need to reverse it
+    factor = 28.8
+    base = @units.map(&:fuel_consumption).sum.round(6)
+    (factor * base).round(2)
+  end
+
   def soft_attack
     @units.map(&:soft_attack).sum.round(6)
   end

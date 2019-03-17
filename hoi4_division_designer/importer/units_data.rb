@@ -29,8 +29,10 @@ class UnitsData
       "reliability_factor" => 0,
       "soft_attack" => 0,
       "supply_consumption_factor" => 0,
+      "fuel_consumption_factor" => 0,
       "suppression" => 0,
       "supply_use" => 0,
+      "fuel_consumption" => 0,
     }
   end
 

@@ -15,8 +15,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_fighter"
@@ -46,8 +48,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_fighter"
@@ -77,8 +81,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_heavy_fighter"
@@ -108,8 +114,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_fighter"
@@ -139,8 +147,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_cas"
@@ -170,8 +180,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_cas"
@@ -201,8 +213,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_nav_bomber"
@@ -232,8 +246,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_nav_bomber"
@@ -263,8 +279,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tac_bomber"
@@ -294,8 +312,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tac_bomber"
@@ -325,8 +345,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_strat_bomber"
@@ -356,8 +378,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_strat_bomber"
@@ -387,8 +411,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "type": [
         "air_transport"
@@ -415,8 +441,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "type": [
         "interceptor"
@@ -443,8 +471,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "type": [
         "missile"
@@ -471,8 +501,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": true,
       "type": [
         "suicide"
@@ -499,8 +531,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.2,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tanks",
@@ -571,8 +605,10 @@
       "reliability_factor": 0,
       "soft_attack": 0.1,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.18,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -644,8 +680,10 @@
       "reliability_factor": 0,
       "soft_attack": -0.4,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "can_be_parachuted": true,
       "categories": [
@@ -686,8 +724,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_army",
@@ -746,8 +786,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.15,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_army",
@@ -808,8 +850,10 @@
       "reliability_factor": 0,
       "soft_attack": -0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.08,
+      "fuel_consumption": 0,
       "active": true,
       "ap_attack": -0.15,
       "can_be_parachuted": true,
@@ -852,8 +896,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -922,8 +968,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.15,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -994,8 +1042,10 @@
       "reliability_factor": 0,
       "soft_attack": -0.4,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.16,
+      "fuel_consumption": 0,
       "active": true,
       "can_be_parachuted": true,
       "categories": [
@@ -1037,8 +1087,10 @@
       "reliability_factor": 0,
       "soft_attack": -0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.16,
+      "fuel_consumption": 0,
       "active": true,
       "can_be_parachuted": true,
       "categories": [
@@ -1080,8 +1132,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.2,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_army",
@@ -1150,8 +1204,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.3,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_army",
@@ -1222,8 +1278,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.2,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_army",
@@ -1291,8 +1349,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.3,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_army",
@@ -1362,8 +1422,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.28,
+      "fuel_consumption": 0,
       "active": false,
       "categories": [
         "category_army",
@@ -1433,8 +1495,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.12,
+      "fuel_consumption": 0,
       "active": true,
       "critical_part_damage_chance_mult": 1,
       "critical_parts": [
@@ -1477,8 +1541,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.2,
+      "fuel_consumption": 0,
       "active": true,
       "critical_part_damage_chance_mult": 1,
       "critical_parts": [
@@ -1522,8 +1588,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.3,
+      "fuel_consumption": 0,
       "active": true,
       "critical_part_damage_chance_mult": 1,
       "critical_parts": [
@@ -1558,8 +1626,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 2,
       "supply_use": 0.12,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -1618,8 +1688,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.01,
+      "fuel_consumption": 0,
       "active": true,
       "critical_part_damage_chance_mult": 1,
       "critical_parts": [
@@ -1655,8 +1727,10 @@
       "reliability_factor": 0,
       "soft_attack": -0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.02,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -1727,8 +1801,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.05,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -1775,8 +1851,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.3,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tanks",
@@ -1849,8 +1927,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "critical_part_damage_chance_mult": 1,
       "critical_parts": [
@@ -1886,8 +1966,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.07,
+      "fuel_consumption": 0,
       "active": false,
       "categories": [
         "category_front_line",
@@ -1928,8 +2010,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.07,
+      "fuel_consumption": 0,
       "active": false,
       "categories": [
         "category_front_line",
@@ -1998,8 +2082,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.06,
+      "fuel_consumption": 0,
       "active": false,
       "categories": [
         "category_front_line",
@@ -2052,8 +2138,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.07,
+      "fuel_consumption": 0,
       "active": false,
       "categories": [
         "category_front_line",
@@ -2107,8 +2195,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.06,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -2152,8 +2242,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.11,
+      "fuel_consumption": 0,
       "active": false,
       "categories": [
         "category_front_line",
@@ -2220,8 +2312,10 @@
       "reliability_factor": 0,
       "soft_attack": 0.1,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 1,
       "supply_use": 0.18,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -2291,8 +2385,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.2,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tanks",
@@ -2359,8 +2455,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.04,
+      "fuel_consumption": 0,
       "active": true,
       "critical_part_damage_chance_mult": 1,
       "critical_parts": [
@@ -2396,8 +2494,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": -0.1,
+      "fuel_consumption_factor": -0.05,
       "suppression": 0,
       "supply_use": 0,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -2410,7 +2510,6 @@
         "support_equipment",
         "motorized_equipment"
       ],
-      "fuel_consumption_factor": -0.05,
       "group": "support",
       "manpower": 500,
       "org": 10,
@@ -2445,8 +2544,10 @@
       "reliability_factor": 0.05,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.03,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -2490,8 +2591,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.22,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tanks",
@@ -2561,8 +2664,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.02,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -2609,8 +2714,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.25,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tanks",
@@ -2680,8 +2787,10 @@
       "reliability_factor": 0,
       "soft_attack": -0.9,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.02,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -2752,8 +2861,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.02,
+      "fuel_consumption": 0,
       "active": false,
       "can_be_parachuted": true,
       "categories": [
@@ -2800,8 +2911,10 @@
       "reliability_factor": 0,
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -2867,8 +2980,10 @@
       "reliability_factor": 0,
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -2937,8 +3052,10 @@
       "reliability_factor": 0,
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3007,8 +3124,10 @@
       "reliability_factor": 0,
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3077,8 +3196,10 @@
       "reliability_factor": 0,
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.1,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3147,8 +3268,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.4,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3214,8 +3337,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.44,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3284,8 +3409,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.6,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3354,8 +3481,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.8,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3424,8 +3553,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.5,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_all_armor",
@@ -3494,8 +3625,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.01,
+      "fuel_consumption": 0,
       "active": true,
       "critical_part_damage_chance_mult": 1,
       "critical_parts": [
@@ -3532,8 +3665,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.4,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_tanks",
@@ -3606,8 +3741,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.2,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -3674,8 +3811,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.22,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -3745,8 +3884,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.3,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -3819,8 +3960,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.4,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -3893,8 +4036,10 @@
       "reliability_factor": 0,
       "soft_attack": 0,
       "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
       "suppression": 0,
       "supply_use": 0.25,
+      "fuel_consumption": 0,
       "active": true,
       "categories": [
         "category_front_line",
@@ -4728,7 +4873,7 @@
       "max_strength": 250,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": "inherit",
       "naval_range": 3000,
@@ -4773,7 +4918,7 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -4842,7 +4987,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -4918,7 +5063,7 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -4987,7 +5132,7 @@
       "max_strength": 125,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -5048,7 +5193,7 @@
       "max_strength": 250,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -5147,7 +5292,7 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -5247,7 +5392,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -5298,7 +5443,7 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014eed958>"
+        "count": "#<Property::LT:0x00007fd1ec8f2440>"
       },
       "module_slots": "inherit",
       "naval_range": 6000,
@@ -5352,11 +5497,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": "inherit",
@@ -5394,11 +5539,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": {
@@ -5479,11 +5624,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": {
@@ -5574,11 +5719,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": {
@@ -5664,11 +5809,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": [
@@ -5725,11 +5870,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": "inherit",
@@ -5778,11 +5923,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": [
@@ -5834,11 +5979,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": [
@@ -5892,11 +6037,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": {
@@ -5997,11 +6142,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": "inherit",
@@ -6049,11 +6194,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": "inherit",
@@ -6102,11 +6247,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": "inherit",
@@ -6155,11 +6300,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": "inherit",
@@ -6212,11 +6357,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": {
@@ -6296,11 +6441,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": {
@@ -6378,11 +6523,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff0134e4958>"
+          "count": "#<Property::LT:0x00007fd1ec721878>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff0134e43b8>"
+          "count": "#<Property::LT:0x00007fd1ec721670>"
         }
       ],
       "module_slots": {
@@ -6458,7 +6603,7 @@
       "max_strength": 300,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6541,7 +6686,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -6657,7 +6802,7 @@
       "max_strength": 370,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6735,7 +6880,7 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6813,7 +6958,7 @@
       "max_strength": 450,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6895,7 +7040,7 @@
       "max_strength": 700,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7025,7 +7170,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7143,7 +7288,7 @@
       "max_strength": 450,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": "inherit",
       "naval_range": 4000,
@@ -7196,7 +7341,7 @@
       "max_strength": 500,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -7249,7 +7394,7 @@
       "max_strength": 550,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": "inherit",
       "naval_range": 6000,
@@ -7302,7 +7447,7 @@
       "max_strength": 600,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7433,7 +7578,7 @@
       "max_strength": 800,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7564,7 +7709,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": "inherit",
       "naval_range": 3000,
@@ -7616,7 +7761,7 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff0134ae4e8>"
+        "count": "#<Property::LT:0x00007fd1ebbc2900>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -7668,11 +7813,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": "inherit",
@@ -7717,11 +7862,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": {
@@ -7792,11 +7937,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": {
@@ -7885,11 +8030,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": {
@@ -7980,11 +8125,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": "inherit",
@@ -8035,11 +8180,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": "inherit",
@@ -8094,11 +8239,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": "inherit",
@@ -8153,11 +8298,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007ff013760f60>"
+          "count": "#<Property::LT:0x00007fd1ec8d0340>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007ff013760d30>"
+          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
         }
       ],
       "module_slots": "inherit",
@@ -8206,7 +8351,7 @@
       "max_strength": 10,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": "inherit",
       "naval_range": 2500,
@@ -8248,7 +8393,7 @@
       "max_strength": 20,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8309,7 +8454,7 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8374,7 +8519,7 @@
       "max_strength": 35,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8440,7 +8585,7 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8514,7 +8659,7 @@
       "max_strength": 10,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": "inherit",
       "naval_range": 2500,
@@ -8558,7 +8703,7 @@
       "max_strength": 20,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": "inherit",
       "naval_range": 4000,
@@ -8605,7 +8750,7 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -8652,7 +8797,7 @@
       "max_strength": 35,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007ff014c21ff8>"
+        "count": "#<Property::LT:0x00007fd1ebf027c8>"
       },
       "module_slots": "inherit",
       "naval_range": 6000,

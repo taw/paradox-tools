@@ -112,6 +112,11 @@ class Unit
     base + (@country_bonuses["supply_consumption_factor"] || 0)
   end
 
+  def fuel_consumption_factor
+    base = @unit_type.fuel_consumption_factor
+    base + (@country_bonuses["fuel_consumption_factor"] || 0)
+  end
+
   def suppression_factor
     base = @unit_type.suppression_factor || 0
     base + (@country_bonuses["suppression_factor"] || 0)
@@ -124,6 +129,11 @@ class Unit
 
   def armor
     @equipment.map{|eq, count| eq.armor_value || 0}.sum
+  end
+
+  def fuel_consumption
+    base = @equipment.map{|eq, count| eq.fuel_consumption || 0}.sum
+    base * (@unit_type.own_equipment_fuel_consumption_mult || 1)
   end
 
   def recon
