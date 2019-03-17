@@ -144,6 +144,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def lower_culture_conversion_penalty!
+    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
+      modify_node! node,
+        ["converted_our_culture", "opinion", -30, -5],
+        ["converted_our_culture", "min", nil, -100]
+    end
+  end
+
   def make_constantinople_capital_ignore_culture_and_religion!
     # Because Orthodox Ottomans are a thing now
     patch_mod_file!("decisions/Ottoman.txt") do |node|
@@ -402,7 +410,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE
 
   def bring_tech_groups_back!
-    warn "Experimental code. Do not enable in release."
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_mod_file!("common/institutions/00_Core.txt") do |node|
       node.each do |name, institution|
@@ -462,8 +470,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def rebalance_unrest!
-    warn "Experimental code. Do not enable in release."
-
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["prosperity"]["local_unrest"] = -2
       node["devastation"]["local_unrest"] = 5
@@ -471,19 +477,20 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["non_accepted_culture_republic"]["local_unrest"] = -2
       node["under_siege"]["local_unrest"] = 4
       node["occupied"]["local_unrest"] = 4
-
-      # node["base_values"]["tolerance_own"] = 2 # from +3
-      # node["base_values"]["tolerance_heathen"] = -4 # from -3
-      # node["base_values"]["tolerance_heretic"] = -3 # from -2
     end
 
     patch_mod_files!("common/rebel_types/*.txt") do |node|
       node.each do |name, rebels|
         if rebels["religion"]
           rebels["spawn_chance"]["factor"] *= 10
+          rebels["defect_delay"] = 60 # from 120
+          rebels["defection"] = "religion" # from "none"
         elsif name == "particularist_rebels"
+          # Do not defect
           rebels["spawn_chance"]["factor"] /= 2
         elsif name == "nationalist_rebels"
+          rebels["defect_delay"] = 36 # from 60
+
           # accepted culture does not block it
           req = rebels["spawn_chance"].find_all("modifier").find{|x| x["factor"] == 0.01} or raise
           req["owner"] = PropertyList[
@@ -504,10 +511,16 @@ class FunAndBalanceCommonGameModification < EU4GameModification
               "culture_group", "ROOT",
             ],
           ]
+        else
+          # warn "What are: #{name}? #{rebels["defect_delay"]} #{rebels["defection"]}"
+          # It's OK for the rest to not defect
         end
       end
     end
+  end
 
+  def rebalance_unrest_experimental!
+    # This is experimental code:
     create_mod_file! "common/triggered_modifiers/02_age_rebels.txt", PropertyList[
       "rebels_age_of_discovery", PropertyList[
         "potential", PropertyList["current_age", "age_of_discovery"],
@@ -537,7 +550,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def rebalance_expansion!
-    warn "Experimental code. Do not enable in release."
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["land_province"]["max_attrition"] = 10
@@ -573,7 +586,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def all_religions_propagate_by_trade!
-    warn "Experimental code. Do not enable in release."
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_mod_file!("common/trading_policies/00_trading_policies.txt") do |node|
       node["propagate_religion"]["can_select"].delete! "religion_group"

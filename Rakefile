@@ -50,7 +50,7 @@ end
 
 ####
 # Just make it match base game version (plus maybe a/b/c for hotfixes)
-FUN_AND_BALANCE_VERSION = "1.28.2"
+FUN_AND_BALANCE_VERSION = "1.28.3"
 
 desc "Build all packages"
 task "all" => ["ck2", "eu4", "hoi4"]
@@ -153,7 +153,7 @@ task "vanilla" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance",
-    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.28.2.7z",
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.28.3.7z",
   ).build!
 end
 
@@ -161,8 +161,8 @@ desc "Build Fun and Balance for 1356"
 task "1356" do
   ModBuilder.new(
     "fun_and_balance",
-    "fun_and_balance",
-    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.28.2_and_1356.7z",
+    "fun_and_balance_1356",
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.28.3_and_1356.7z",
   ).build!
 end
 
@@ -171,7 +171,7 @@ task "extended_timeline" do
   ModBuilder.new(
     "fun_and_balance",
     "fun_and_balance_et",
-    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.28.2_and_extended_timeline_1.9.2.7z"
+    "fun_and_balance_#{FUN_AND_BALANCE_VERSION}_for_eu4_1.28.3_and_extended_timeline_1.9.3.7z"
   ).build!
 end
 

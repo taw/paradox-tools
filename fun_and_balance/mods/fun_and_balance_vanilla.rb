@@ -20,6 +20,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     longer_cb_on_backstabbers!
     lower_defender_ae!
     lower_piracy_penalty!
+    lower_culture_conversion_penalty!
     make_constantinople_capital_ignore_culture_and_religion!
     merchant_republic_province_limit_remove!
     more_base_relations!
@@ -35,16 +36,14 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     subject_religious_cbs!
     subject_tweaks!
     trade_map_fixes!
-    if ENV["EXPERIMENTAL"]
-      rebalance_hre!
-    end
+    rebalance_hre!
+    rebalance_unrest!
 
     # Experimental:
     if ENV["VERY_EXPERIMENTAL"]
-      bring_tech_groups_back!
-      rebalance_unrest!
       rebalance_expansion!
       all_religions_propagate_by_trade!
+      rebalance_unrest_experimental!
     end
 
     soft_patch_defines_lua!(
