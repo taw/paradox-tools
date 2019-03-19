@@ -88,6 +88,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     "1924.1.21" => {
       name: "Joseph | Stalin", lived: "1878.12.18 - 1953.3.5",
+      culture: :georgian,
       health: 7,
       traits: ["ambitious", "cynical"],
       events: {
@@ -103,10 +104,12 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     "1955.2.8" => {
       name: "Nikita | Khrushchev",
+      culture: :ukrainian,
       lived: "April 15 1894 - 1971.9.11",
     },
     "1964.10.14" => {
       name: "Leonid | Brezhnev",
+      culture: :ukrainian,
       lived: "1906.12.19 - 1982.11.10",
     },
     "1982.10.12" => {
