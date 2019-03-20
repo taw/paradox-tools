@@ -25,7 +25,7 @@ class Country
       unit = Unit.new(unit_type, self)
       [unit] * v
     }
-    Division.new(*units)
+    Division.new(self, *units)
   end
 
   memoize def available_units

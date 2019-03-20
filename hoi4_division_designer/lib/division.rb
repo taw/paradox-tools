@@ -1,7 +1,8 @@
 class Division
   extend Memoist
 
-  def initialize(*units)
+  def initialize(country, *units)
+    @country = country
     @units = units
   end
 

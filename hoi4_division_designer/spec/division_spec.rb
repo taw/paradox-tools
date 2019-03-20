@@ -320,23 +320,24 @@ describe Division do
     end
   end
 
-  describe "1940 tech 7/2 + supports" do
+  describe "1940 tech 7/2 + supports + grand battleplan" do
     let(:tech_year) { 1940 }
+    let(:doctrine) { "Grand Battleplan / Infiltration" }
     let(:units) { {infantry: 7, artillery_brigade: 2, recon: 1, engineer: 1, artillery: 1} }
     it do
       expect_stats division, {
         speed: 4.0,
         hp: 180.4,
-        org: 38.333, # displayed 38.3
+        org: 50.0,
         recovery_rate: 0.25,
-        recon: 3,
+        recon: 4,
         suppression: 7.0,
         weight: 4.8,
         supply_use: 1.09,
-        soft_attack: 170.7,
+        soft_attack: 179.25,
         hard_attack: 17.35, # displayed 17.3
-        defense: 309.2,
-        breakthrough: 58.4,
+        defense: 328.8,
+        breakthrough: 66.9,
         piercing: 5.0,
         entrenchment: 7,
         combat_width: 20,
