@@ -33,7 +33,7 @@ describe Division do
       air_attack: 0.0,
       armor: 0.0,
       initiative: 0.0,
-      entrenchment: 0.0,
+      entrenchment: 5.0,
       equipment_capture_factor: 0.0,
 
       # Right Column
@@ -339,7 +339,7 @@ describe Division do
         defense: 328.8,
         breakthrough: 66.9,
         piercing: 5.0,
-        entrenchment: 7,
+        entrenchment: 5 + 7 + 10,
         combat_width: 20,
         manpower: 9100,
         training_time: 120,

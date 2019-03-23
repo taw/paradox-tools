@@ -45,6 +45,14 @@ class Country
     unit_bonuses
   end
 
+  memoize def division_bonuses
+    division_bonuses = {}
+    @technologies.each do |tech|
+      division_bonuses.recursively_merge!(tech.division_bonuses){ |a,b| (a+b).round(6) }
+    end
+    division_bonuses
+  end
+
   def unit_bonuses_for(unit_type_name)
     unit_type = @database.unit_types.fetch(unit_type_name)
     categories = [unit_type.key, *unit_type.categories]

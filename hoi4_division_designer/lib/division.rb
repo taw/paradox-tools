@@ -86,7 +86,10 @@ class Division
   end
 
   def entrenchment
-    @units.map(&:entrenchment).sum
+    base = 5 # from defines.lua, so could vary by mod
+    units_bonus = @units.map(&:entrenchment).sum
+    doctrine_bonus = @country.division_bonuses["max_dig_in"] || 0
+    base + units_bonus + doctrine_bonus
   end
 
   def reliability_factor
