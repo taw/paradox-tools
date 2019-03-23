@@ -40,10 +40,13 @@ class Division
     (base * (1+factor)).round(6)
   end
 
+  # Doctrine bonus is only shown in Unit Details not in Division Designer
+  # They stack multiplicatively
   def supply_use
     base = @units.map(&:supply_use).sum.round(6)
-    factor = @units.map(&:supply_consumption_factor).sum
-    (base * (1+factor)).round(6)
+    company_bonus = @units.map(&:supply_consumption_factor).sum
+    doctrine_bonus = @country.division_bonuses["supply_consumption_factor"] || 0
+    (base * (1 + company_bonus) * (1 + doctrine_bonus)).round(6)
   end
 
   def fuel_consumption
@@ -140,8 +143,11 @@ class Division
     result
   end
 
+  # It doesn't stack quite right, but it's more helpful this way
   def speed
-    @units.select(&:frontline?).map(&:speed).min
+    base_speed = @units.select(&:frontline?).map(&:speed).min
+    doctrine_bonus = @country.division_bonuses["army_speed_factor"] || 0
+    (base_speed * (1 + doctrine_bonus)).round(2)
   end
 
   memoize def equipment

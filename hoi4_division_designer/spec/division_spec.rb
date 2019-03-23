@@ -281,6 +281,16 @@ describe Division do
     end
   end
 
+  # This is not how it's displayed in the UI and it doesn't stack the same way
+  # but it might be useful to show it like this anyway
+  describe "division bonuses - speed" do
+    let(:doctrine) { "Mobile Warfare / Mobile Infantry / Modern Blitzkrieg" }
+    let(:units) { {motorized: 10} }
+    it do
+      expect(division.speed).to eq 13.2
+    end
+  end
+
   describe "late game bonuses" do
     let(:tech_year) { 1950 }
     let(:units) { {motorized: 10} }
@@ -333,7 +343,7 @@ describe Division do
         recon: 4,
         suppression: 7.0,
         weight: 4.8,
-        supply_use: 1.09,
+        supply_use: 0.981, # diplayed incorrectly as 1.09 in Division Designer, but correctly 0.98 in unit details
         soft_attack: 179.25,
         hard_attack: 17.35, # displayed 17.3
         defense: 328.8,
