@@ -7,6 +7,10 @@ BrazilInvasionEvents = PropertyList[
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
       "has_dlc", "Sunset Invasion",
+      "NOT", PropertyList["has_game_rule", PropertyList[
+        "name", "aztec_invasion",
+        "value", false,
+      ]],
       "year", 1860,
       "NOT", PropertyList["year", 1960],
       "NOT", PropertyList["has_global_flag", "brazilian_explorers"],

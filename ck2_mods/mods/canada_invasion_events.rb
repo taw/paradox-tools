@@ -7,6 +7,10 @@ CanadaInvasionEvents = PropertyList[
     "border", "GFX_event_normal_frame_war",
     "trigger", PropertyList[
       "has_dlc", "Sunset Invasion",
+      "NOT", PropertyList["has_game_rule", PropertyList[
+        "name", "aztec_invasion",
+        "value", false,
+      ]],
       "year", 2000,
       "NOT", PropertyList["year", 2100],
       "NOT", PropertyList["has_global_flag", "canadian_explorers"],
