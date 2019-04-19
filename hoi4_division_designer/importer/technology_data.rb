@@ -7,7 +7,8 @@ class TechnologyData
 
   def each_technology
     @game.glob("common/technologies/*.txt").each do |path|
-      @game.parse(path)["technologies"].each do |key, tech|
+      node = @game.parse(path)
+      (node["technologies"] || []).each do |key, tech|
         next if key =~ /\A@/ and tech.is_a?(Integer)
         yield(key, jsonify(tech).merge("name" => @game.localization(key)))
       end

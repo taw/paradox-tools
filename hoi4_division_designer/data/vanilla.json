@@ -191,7 +191,7 @@
       "type": [
         "cas"
       ],
-      "name": "Close Air Support",
+      "name": "Close Air Support (Carrier)",
       "equipment": {
         "cv_CAS_equipment": 1
       },
@@ -4426,12 +4426,12 @@
       "archetype": "motorized_rocket_equipment"
     },
     "convoy_1": {
-      "anti_air_attack": 0.2,
+      "anti_air_attack": 0.05,
       "armor_value": 0,
       "build_cost_ic": 70,
       "fuel_consumption": 0,
       "lg_armor_piercing": 1,
-      "lg_attack": 0.5,
+      "lg_attack": 0.25,
       "max_organisation": 30,
       "max_strength": 60,
       "naval_speed": 12,
@@ -4456,7 +4456,7 @@
       "air_map_icon_frame": 9,
       "build_cost_ic": 54,
       "can_license": false,
-      "fuel_consumption": 1,
+      "fuel_consumption": 0,
       "naval_strike_attack": 1.5,
       "naval_strike_targetting": 0.6,
       "reliability": 0.8,
@@ -4479,7 +4479,7 @@
       "air_map_icon_frame": 9,
       "build_cost_ic": 54,
       "can_license": false,
-      "fuel_consumption": 1,
+      "fuel_consumption": 0,
       "naval_strike_attack": 1.5,
       "naval_strike_targetting": 0.6,
       "reliability": 0.8,
@@ -4503,7 +4503,7 @@
       "air_map_icon_frame": 9,
       "build_cost_ic": 54,
       "can_license": false,
-      "fuel_consumption": 1,
+      "fuel_consumption": 0,
       "naval_strike_attack": 1.5,
       "naval_strike_targetting": 0.6,
       "reliability": 0.8,
@@ -4873,7 +4873,7 @@
       "max_strength": 250,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": "inherit",
       "naval_range": 3000,
@@ -4918,7 +4918,7 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -4987,7 +4987,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -5063,7 +5063,7 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -5090,7 +5090,7 @@
       "naval_range": 4000,
       "naval_speed": 23,
       "offensive_weapons": false,
-      "reliability": 0.7,
+      "reliability": 0.65,
       "resources": {
         "chromium": 1,
         "steel": 4
@@ -5132,7 +5132,7 @@
       "max_strength": 125,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -5151,7 +5151,7 @@
       "naval_range": 4000,
       "naval_speed": 20,
       "offensive_weapons": false,
-      "reliability": 0.7,
+      "reliability": 0.65,
       "resources": {
         "steel": 3
       },
@@ -5193,7 +5193,7 @@
       "max_strength": 250,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -5292,7 +5292,7 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -5392,7 +5392,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -5443,7 +5443,7 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ec8f2440>"
+        "count": "#<Property::LT:0x00007fea8ccdeac8>"
       },
       "module_slots": "inherit",
       "naval_range": 6000,
@@ -5497,11 +5497,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": "inherit",
@@ -5539,11 +5539,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": {
@@ -5589,7 +5589,7 @@
       },
       "naval_range": 3000,
       "naval_speed": 25,
-      "reliability": 0.8,
+      "reliability": 0.85,
       "resources": {
         "steel": 2
       },
@@ -5624,11 +5624,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": {
@@ -5684,7 +5684,7 @@
       },
       "naval_range": 4000,
       "naval_speed": 27,
-      "reliability": 0.8,
+      "reliability": 0.9,
       "resources": {
         "steel": 2
       },
@@ -5719,11 +5719,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": {
@@ -5769,7 +5769,7 @@
       },
       "naval_range": 4500,
       "naval_speed": 28,
-      "reliability": 0.8,
+      "reliability": 0.95,
       "resources": {
         "steel": 3
       },
@@ -5809,11 +5809,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": [
@@ -5821,13 +5821,13 @@
         "inherit"
       ],
       "naval_range": 2500,
-      "naval_speed": 28,
+      "naval_speed": 20,
       "reliability": 0.8,
       "resources": {
-        "steel": 1
+        "steel": 2
       },
       "sub_attack": 0,
-      "sub_detection": 20,
+      "sub_detection": 5,
       "surface_detection": 15,
       "surface_visibility": 15,
       "torpedo_attack": 2,
@@ -5849,7 +5849,7 @@
       "alias": "light_cruiser",
       "anti_air_attack": 0,
       "armor_value": 6,
-      "build_cost_ic": 2000,
+      "build_cost_ic": 1650,
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_3",
         "fixed_ship_battery_slot": "ship_light_medium_battery_2",
@@ -5870,22 +5870,22 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": "inherit",
       "naval_range": 3000,
-      "naval_speed": 30,
+      "naval_speed": 25,
       "reliability": 0.85,
       "resources": {
-        "steel": 1
+        "steel": 3
       },
       "sub_attack": 5,
-      "sub_detection": 25,
+      "sub_detection": 5,
       "surface_detection": 20,
       "surface_visibility": 15,
       "torpedo_attack": 2,
@@ -5923,11 +5923,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": [
@@ -5935,14 +5935,14 @@
         "inherit"
       ],
       "naval_range": 4000,
-      "naval_speed": 32,
+      "naval_speed": 28,
       "reliability": 0.9,
       "resources": {
         "steel": 3
       },
       "sub_attack": 6,
-      "sub_detection": 50,
-      "surface_detection": 50,
+      "sub_detection": 10,
+      "surface_detection": 30,
       "surface_visibility": 15,
       "torpedo_attack": 2,
       "type": [
@@ -5979,11 +5979,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": [
@@ -5991,15 +5991,15 @@
         "inherit"
       ],
       "naval_range": 4500,
-      "naval_speed": 34,
+      "naval_speed": 30,
       "reliability": 0.92,
       "resources": {
         "chromium": 1,
-        "steel": 2
+        "steel": 4
       },
       "sub_attack": 8,
-      "sub_detection": 60,
-      "surface_detection": 70,
+      "sub_detection": 10,
+      "surface_detection": 40,
       "surface_visibility": 15,
       "torpedo_attack": 2,
       "type": [
@@ -6037,11 +6037,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": {
@@ -6098,7 +6098,7 @@
       "naval_speed": 24,
       "reliability": 0.8,
       "resources": {
-        "steel": 2
+        "steel": 3
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -6142,11 +6142,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": "inherit",
@@ -6154,7 +6154,7 @@
       "naval_speed": 30,
       "reliability": 0.85,
       "resources": {
-        "steel": 2
+        "steel": 4
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -6194,11 +6194,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": "inherit",
@@ -6206,7 +6206,7 @@
       "naval_speed": 33,
       "reliability": 0.9,
       "resources": {
-        "steel": 2
+        "steel": 4
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -6247,11 +6247,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": "inherit",
@@ -6260,7 +6260,7 @@
       "reliability": 0.92,
       "resources": {
         "chromium": 1,
-        "steel": 3
+        "steel": 5
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -6283,7 +6283,6 @@
         "fixed_ship_battery_slot": "ship_light_medium_battery_1",
         "fixed_ship_engine_slot": "cruiser_ship_engine_2",
         "fixed_ship_fire_control_system_slot": "ship_fire_control_system_0",
-        "fixed_ship_radar_slot": "empty",
         "front_1_custom_slot": "ship_anti_air_1",
         "mid_1_custom_slot": "ship_torpedo_2",
         "mid_2_custom_slot": "ship_torpedo_2",
@@ -6300,22 +6299,77 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
-      "module_slots": "inherit",
+      "module_slots": {
+        "fixed_ship_anti_air_slot": {
+          "allowed_module_categories": [
+            "ship_anti_air"
+          ],
+          "required": false
+        },
+        "fixed_ship_battery_slot": {
+          "allowed_module_categories": [
+            "ship_medium_battery"
+          ],
+          "required": false
+        },
+        "fixed_ship_engine_slot": {
+          "allowed_module_categories": [
+            "cruiser_ship_engine"
+          ],
+          "required": false
+        },
+        "fixed_ship_fire_control_system_slot": {
+          "allowed_module_categories": [
+            "ship_fire_control_system"
+          ],
+          "required": false
+        },
+        "front_1_custom_slot": {
+          "allowed_module_categories": [
+            "ship_anti_air"
+          ],
+          "required": false
+        },
+        "mid_1_custom_slot": {
+          "allowed_module_categories": [
+            "ship_torpedo"
+          ],
+          "required": false
+        },
+        "mid_2_custom_slot": {
+          "allowed_module_categories": [
+            "ship_torpedo"
+          ],
+          "required": false
+        },
+        "rear_1_custom_slot": {
+          "allowed_module_categories": [
+            "ship_torpedo"
+          ],
+          "required": false
+        },
+        "rear_2_custom_slot": {
+          "allowed_module_categories": [
+            "ship_anti_air"
+          ],
+          "required": false
+        }
+      },
       "naval_range": 4000,
-      "naval_speed": 32,
+      "naval_speed": 25,
       "reliability": 0.9,
       "resources": {
         "steel": 2
       },
       "sub_attack": 6,
-      "sub_detection": 50,
+      "sub_detection": 10,
       "surface_detection": 40,
       "surface_visibility": 15,
       "torpedo_attack": 0,
@@ -6327,7 +6381,7 @@
         "ship_torpedo_upgrade",
         "ship_engine_upgrade",
         "ship_gun_upgrade",
-        "torpedo_ship_reliability_upgrade"
+        "ship_reliability_upgrade"
       ]
     },
     "ship_hull_torpedo_cruiser": {
@@ -6357,11 +6411,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": {
@@ -6411,7 +6465,7 @@
         "steel": 3
       },
       "sub_attack": 0,
-      "sub_detection": 20,
+      "sub_detection": 1,
       "surface_detection": 20,
       "surface_visibility": 15,
       "torpedo_attack": 0,
@@ -6441,11 +6495,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": {
@@ -6523,11 +6577,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec721878>"
+          "count": "#<Property::LT:0x00007fea8c220398>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec721670>"
+          "count": "#<Property::LT:0x00007fea8b19ffa0>"
         }
       ],
       "module_slots": {
@@ -6603,7 +6657,7 @@
       "max_strength": 300,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6686,7 +6740,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -6802,7 +6856,7 @@
       "max_strength": 370,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6880,7 +6934,7 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6958,7 +7012,7 @@
       "max_strength": 450,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -7040,7 +7094,7 @@
       "max_strength": 700,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7122,7 +7176,7 @@
         }
       },
       "naval_range": 4500,
-      "naval_speed": 20,
+      "naval_speed": 22,
       "reliability": 0.8,
       "resources": {
         "chromium": 1,
@@ -7142,7 +7196,8 @@
       ],
       "year": 1940,
       "name": "Super Heavy Battleship Hull",
-      "archetype": "ship_hull_heavy"
+      "archetype": "ship_hull_heavy",
+      "model": "super_heavy_battleship"
     },
     "battleship_1": {
       "anti_air_attack": 0,
@@ -7170,7 +7225,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7244,7 +7299,7 @@
       "reliability": 0.8,
       "resources": {
         "chromium": 1,
-        "steel": 1
+        "steel": 3
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -7270,7 +7325,7 @@
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bb_2",
         "fixed_ship_battery_slot": "ship_heavy_battery_2",
-        "fixed_ship_engine_slot": "heavy_ship_engine_1",
+        "fixed_ship_engine_slot": "heavy_ship_engine_2",
         "fixed_ship_fire_control_system_slot": "ship_fire_control_system_0",
         "fixed_ship_radar_slot": "empty",
         "fixed_ship_secondaries_slot": "ship_secondaries_2",
@@ -7288,15 +7343,15 @@
       "max_strength": 450,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": "inherit",
       "naval_range": 4000,
-      "naval_speed": 20,
+      "naval_speed": 25,
       "reliability": 0.85,
       "resources": {
         "chromium": 1,
-        "steel": 1
+        "steel": 4
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -7323,7 +7378,7 @@
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bb_3",
         "fixed_ship_battery_slot": "ship_heavy_battery_3",
-        "fixed_ship_engine_slot": "heavy_ship_engine_2",
+        "fixed_ship_engine_slot": "heavy_ship_engine_3",
         "fixed_ship_fire_control_system_slot": "ship_fire_control_system_0",
         "fixed_ship_radar_slot": "empty",
         "fixed_ship_secondaries_slot": "ship_secondaries_2",
@@ -7341,15 +7396,15 @@
       "max_strength": 500,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
-      "naval_speed": 21,
+      "naval_speed": 28,
       "reliability": 0.9,
       "resources": {
-        "chromium": 1,
-        "steel": 1
+        "chromium": 2,
+        "steel": 4
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -7376,7 +7431,7 @@
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bb_3",
         "fixed_ship_battery_slot": "ship_heavy_battery_4",
-        "fixed_ship_engine_slot": "heavy_ship_engine_1",
+        "fixed_ship_engine_slot": "heavy_ship_engine_4",
         "fixed_ship_fire_control_system_slot": "ship_fire_control_system_0",
         "fixed_ship_radar_slot": "empty",
         "fixed_ship_secondaries_slot": "dp_ship_secondaries",
@@ -7394,15 +7449,15 @@
       "max_strength": 550,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": "inherit",
       "naval_range": 6000,
       "naval_speed": 30,
       "reliability": 0.92,
       "resources": {
-        "chromium": 1,
-        "steel": 1
+        "chromium": 3,
+        "steel": 5
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -7429,7 +7484,7 @@
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_shbb",
         "fixed_ship_battery_slot": "ship_super_heavy_battery_1",
-        "fixed_ship_engine_slot": "heavy_ship_engine_1",
+        "fixed_ship_engine_slot": "heavy_ship_engine_4",
         "fixed_ship_fire_control_system_slot": "ship_fire_control_system_0",
         "fixed_ship_radar_slot": "empty",
         "fixed_ship_secondaries_slot": "ship_secondaries_2",
@@ -7447,7 +7502,7 @@
       "max_strength": 600,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7529,7 +7584,7 @@
         }
       },
       "naval_range": 4000,
-      "naval_speed": 26,
+      "naval_speed": 20,
       "reliability": 0.85,
       "resources": {
         "chromium": 1,
@@ -7549,7 +7604,8 @@
       ],
       "year": 1936,
       "name": "Super-Heavy Battleship I",
-      "archetype": "ship_hull_heavy"
+      "archetype": "ship_hull_heavy",
+      "model": "super_heavy_battleship"
     },
     "SH_battleship_2": {
       "anti_air_attack": 0,
@@ -7559,7 +7615,7 @@
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_shbb",
         "fixed_ship_battery_slot": "ship_super_heavy_battery_1",
-        "fixed_ship_engine_slot": "heavy_ship_engine_1",
+        "fixed_ship_engine_slot": "heavy_ship_engine_4",
         "fixed_ship_fire_control_system_slot": "ship_fire_control_system_0",
         "fixed_ship_radar_slot": "empty",
         "fixed_ship_secondaries_slot": "dp_ship_secondaries",
@@ -7578,7 +7634,7 @@
       "max_strength": 800,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7660,11 +7716,11 @@
         }
       },
       "naval_range": 4500,
-      "naval_speed": 28,
+      "naval_speed": 23,
       "reliability": 0.9,
       "resources": {
-        "chromium": 1,
-        "steel": 1
+        "chromium": 3,
+        "steel": 5
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -7681,6 +7737,7 @@
       "year": 1944,
       "name": "Super-Heavy Battleship II",
       "archetype": "ship_hull_heavy",
+      "model": "super_heavy_battleship",
       "parent": "SH_battleship_1"
     },
     "battle_cruiser_1": {
@@ -7709,7 +7766,7 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": "inherit",
       "naval_range": 3000,
@@ -7717,7 +7774,7 @@
       "reliability": 0.8,
       "resources": {
         "chromium": 1,
-        "steel": 1
+        "steel": 3
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -7761,7 +7818,7 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebbc2900>"
+        "count": "#<Property::LT:0x00007fea8b248790>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -7769,7 +7826,7 @@
       "reliability": 0.9,
       "resources": {
         "chromium": 1,
-        "steel": 1
+        "steel": 4
       },
       "sub_attack": 0,
       "sub_detection": 5,
@@ -7813,11 +7870,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": "inherit",
@@ -7862,11 +7919,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": {
@@ -7937,11 +7994,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": {
@@ -8030,11 +8087,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": {
@@ -8125,11 +8182,11 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": "inherit",
@@ -8140,7 +8197,7 @@
         "steel": 2
       },
       "sub_attack": 1,
-      "sub_detection": 50,
+      "sub_detection": 5,
       "surface_detection": 20,
       "surface_visibility": 10,
       "torpedo_attack": 0,
@@ -8180,22 +8237,22 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": "inherit",
       "naval_range": 1800,
-      "naval_speed": 30,
+      "naval_speed": 25,
       "reliability": 0.85,
       "resources": {
         "steel": 3
       },
       "sub_attack": 1,
-      "sub_detection": 60,
+      "sub_detection": 10,
       "surface_detection": 25,
       "surface_visibility": 10,
       "torpedo_attack": 0,
@@ -8218,7 +8275,7 @@
       "alias": "destroyer",
       "anti_air_attack": 0,
       "armor_value": 0,
-      "build_cost_ic": 1080,
+      "build_cost_ic": 500,
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_3",
         "fixed_ship_battery_slot": "ship_light_battery_3",
@@ -8239,23 +8296,23 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": "inherit",
       "naval_range": 2000,
-      "naval_speed": 38,
+      "naval_speed": 25,
       "reliability": 0.9,
       "resources": {
         "steel": 3
       },
       "sub_attack": 1,
-      "sub_detection": 100,
-      "surface_detection": 45,
+      "sub_detection": 10,
+      "surface_detection": 40,
       "surface_visibility": 10,
       "torpedo_attack": 0,
       "type": [
@@ -8298,24 +8355,24 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fd1ec8d0340>"
+          "count": "#<Property::LT:0x00007fea8c55a108>"
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fd1ec8d00c0>"
+          "count": "#<Property::LT:0x00007fea8c559f78>"
         }
       ],
       "module_slots": "inherit",
       "naval_range": 2500,
-      "naval_speed": 38,
+      "naval_speed": 25,
       "reliability": 0.92,
       "resources": {
         "chromium": 1,
         "steel": 4
       },
       "sub_attack": 1,
-      "sub_detection": 140,
-      "surface_detection": 55,
+      "sub_detection": 10,
+      "surface_detection": 40,
       "surface_visibility": 10,
       "torpedo_attack": 0,
       "type": [
@@ -8351,7 +8408,7 @@
       "max_strength": 10,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": "inherit",
       "naval_range": 2500,
@@ -8393,7 +8450,7 @@
       "max_strength": 20,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8454,7 +8511,7 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8519,7 +8576,7 @@
       "max_strength": 35,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8585,7 +8642,7 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8659,7 +8716,7 @@
       "max_strength": 10,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": "inherit",
       "naval_range": 2500,
@@ -8703,7 +8760,7 @@
       "max_strength": 20,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": "inherit",
       "naval_range": 4000,
@@ -8735,7 +8792,7 @@
     "submarine_3": {
       "anti_air_attack": 0,
       "armor_value": 0,
-      "build_cost_ic": 550,
+      "build_cost_ic": 350,
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_1",
         "fixed_ship_torpedo_slot": "ship_torpedo_sub_2",
@@ -8750,7 +8807,7 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -8764,7 +8821,7 @@
       "sub_visibility": 15,
       "surface_detection": 50,
       "surface_visibility": 1,
-      "torpedo_attack": 20,
+      "torpedo_attack": 12,
       "type": [
         "submarine"
       ],
@@ -8782,7 +8839,7 @@
     "submarine_4": {
       "anti_air_attack": 0,
       "armor_value": 0,
-      "build_cost_ic": 200,
+      "build_cost_ic": 400,
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_1",
         "fixed_ship_torpedo_slot": "ship_torpedo_sub_2",
@@ -8797,7 +8854,7 @@
       "max_strength": 35,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fd1ebf027c8>"
+        "count": "#<Property::LT:0x00007fea8be2e618>"
       },
       "module_slots": "inherit",
       "naval_range": 6000,
@@ -8812,7 +8869,7 @@
       "sub_visibility": 10,
       "surface_detection": 70,
       "surface_visibility": 1,
-      "torpedo_attack": 0,
+      "torpedo_attack": 20,
       "type": [
         "submarine"
       ],
@@ -11833,7 +11890,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "basic_ship_hull_cruiser",
+      "name": "1936 Cruiser Hull",
       "leads_to": [
         "improved_ship_hull_cruiser",
         "basic_cruiser_armor_scheme"
@@ -12797,7 +12854,7 @@
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
       "xp_research_type": "navy",
-      "name": "Super-Heavy Armor Piering Shell",
+      "name": "Super-Heavy Armor Piercing Shell",
       "leads_to": [
 
       ],
@@ -15932,9 +15989,9 @@
       "categories": [
         "artillery"
       ],
-      "industry_air_damage_factor": -0.08,
       "research_cost": 1,
       "start_year": 1939,
+      "tech_air_damage_factor": -0.02,
       "name": "Anti-Air Upgrade",
       "leads_to": [
         "antiair2"
@@ -15975,9 +16032,9 @@
       "categories": [
         "artillery"
       ],
-      "industry_air_damage_factor": -0.08,
       "research_cost": 1,
       "start_year": 1941,
+      "tech_air_damage_factor": -0.02,
       "name": "Improved Anti-Air Upgrade I",
       "leads_to": [
         "antiair4"
@@ -15998,9 +16055,9 @@
       "categories": [
         "artillery"
       ],
-      "industry_air_damage_factor": -0.08,
       "research_cost": 1,
       "start_year": 1942,
+      "tech_air_damage_factor": -0.02,
       "name": "Improved Anti-Air Upgrade II",
       "leads_to": [
         "antiair5"
@@ -16174,7 +16231,7 @@
         "ship_fire_control_system_0"
       ],
       "research_cost": 1,
-      "research_speed_factor": 0.02,
+      "research_speed_factor": 0.03,
       "start_year": 1936,
       "name": "Electronic Mechanical Engineering",
       "leads_to": [
@@ -16327,7 +16384,7 @@
         "computing_tech"
       ],
       "research_cost": 2.5,
-      "research_speed_factor": 0.03,
+      "research_speed_factor": 0.04,
       "name": "Mechanical Computing",
       "leads_to": [
         "computing_machine",
@@ -16345,7 +16402,7 @@
         "computing_tech"
       ],
       "research_cost": 2.5,
-      "research_speed_factor": 0.03,
+      "research_speed_factor": 0.05,
       "start_year": 1938,
       "name": "Computing Machine",
       "leads_to": [
@@ -16365,7 +16422,7 @@
         "computing_tech"
       ],
       "research_cost": 2.5,
-      "research_speed_factor": 0.05,
+      "research_speed_factor": 0.08,
       "start_year": 1940,
       "name": "Improved Computing Machine",
       "leads_to": [
@@ -16385,7 +16442,7 @@
         "computing_tech"
       ],
       "research_cost": 2.5,
-      "research_speed_factor": 0.05,
+      "research_speed_factor": 0.08,
       "start_year": 1942,
       "name": "Advanced Computing Machine",
       "leads_to": [
@@ -16676,7 +16733,7 @@
         "nuclear"
       ],
       "research_cost": 5,
-      "research_speed_factor": 0.02,
+      "research_speed_factor": 0.04,
       "start_year": 1940,
       "name": "Atomic Research",
       "leads_to": [
@@ -16943,7 +17000,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.1,
+      "industry_air_damage_factor": -0.12,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -16963,7 +17020,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.1,
+      "industry_air_damage_factor": -0.12,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -16983,7 +17040,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.1,
+      "industry_air_damage_factor": -0.12,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -17003,7 +17060,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.1,
+      "industry_air_damage_factor": -0.12,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -17023,7 +17080,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.1,
+      "industry_air_damage_factor": -0.12,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -22361,6 +22418,8 @@
     },
     "ship_gun_upgrade": {
       "cost": "naval",
+      "hg_armor_piercing": 0.05,
+      "hg_attack": 0.04,
       "lg_armor_piercing": 0.05,
       "lg_attack": 0.04,
       "max_level": 5,
@@ -22462,6 +22521,7 @@
       "carrier_size": -0.04,
       "cost": "naval",
       "max_level": 5,
+      "max_strength": 0.01,
       "name": "Armor"
     }
   },

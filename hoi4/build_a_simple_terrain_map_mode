@@ -7,7 +7,7 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/hoi4-1.6.0",
+        "source/hoi4-1.6.2",
       ),
       "output/#{mod_name}"
     )

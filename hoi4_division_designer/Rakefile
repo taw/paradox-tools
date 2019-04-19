@@ -6,6 +6,6 @@ end
 desc "Run importer - Vanilla"
 task "import" do
   sh "rescue ./bin/import_data vanilla ~/hoi4"
-  sh "rescue ./bin/import_data kaiserreich ~/px/source/hoi4-1.5.4 ~/px/source/KR-0.8.3"
+  sh "rescue ./bin/import_data kaiserreich ~/px/source/hoi4-1.6.2 ~/px/source/KR-0.8.5"
   sh "rescue ./bin/import_data millennium_dawn ~/px/source/hoi4-1.5.4 ~/px/source/MD-0.30"
 end
