@@ -4873,7 +4873,9 @@
       "max_strength": 250,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 3000,
@@ -4918,7 +4920,9 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -4987,7 +4991,9 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -5063,7 +5069,9 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -5132,7 +5140,9 @@
       "max_strength": 125,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -5193,7 +5203,9 @@
       "max_strength": 250,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -5292,7 +5304,9 @@
       "max_strength": 325,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -5392,7 +5406,9 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -5443,7 +5459,9 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8ccdeac8>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 6000,
@@ -5497,11 +5515,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -5539,11 +5561,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -5624,11 +5650,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -5719,11 +5749,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -5809,11 +5843,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": [
@@ -5870,11 +5908,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -5923,11 +5965,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": [
@@ -5979,11 +6025,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": [
@@ -6037,11 +6087,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -6142,11 +6196,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -6194,11 +6252,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -6247,11 +6309,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -6299,11 +6365,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -6411,11 +6481,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -6495,11 +6569,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -6577,11 +6655,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c220398>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8b19ffa0>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -6657,7 +6739,9 @@
       "max_strength": 300,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6740,7 +6824,9 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -6856,7 +6942,9 @@
       "max_strength": 370,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -6934,7 +7022,9 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -7012,7 +7102,9 @@
       "max_strength": 450,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": "inherit",
@@ -7094,7 +7186,9 @@
       "max_strength": 700,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7225,7 +7319,9 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7343,7 +7439,9 @@
       "max_strength": 450,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 4000,
@@ -7396,7 +7494,9 @@
       "max_strength": 500,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -7449,7 +7549,9 @@
       "max_strength": 550,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 6000,
@@ -7502,7 +7604,9 @@
       "max_strength": 600,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7634,7 +7738,9 @@
       "max_strength": 800,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_anti_air_slot": {
@@ -7766,7 +7872,9 @@
       "max_strength": 350,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 3000,
@@ -7818,7 +7926,9 @@
       "max_strength": 400,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8b248790>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -7870,11 +7980,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -7919,11 +8033,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -7994,11 +8112,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -8087,11 +8209,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": {
@@ -8182,11 +8308,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -8237,11 +8367,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -8296,11 +8430,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -8355,11 +8493,15 @@
       "module_count_limit": [
         {
           "category": "ship_radar",
-          "count": "#<Property::LT:0x00007fea8c55a108>"
+          "count": {
+            "<": 2
+          }
         },
         {
           "category": "ship_sonar",
-          "count": "#<Property::LT:0x00007fea8c559f78>"
+          "count": {
+            "<": 2
+          }
         }
       ],
       "module_slots": "inherit",
@@ -8408,7 +8550,9 @@
       "max_strength": 10,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 2500,
@@ -8450,7 +8594,9 @@
       "max_strength": 20,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8511,7 +8657,9 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8576,7 +8724,9 @@
       "max_strength": 35,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8642,7 +8792,9 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": {
         "fixed_ship_engine_slot": "inherit",
@@ -8716,7 +8868,9 @@
       "max_strength": 10,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 2500,
@@ -8760,7 +8914,9 @@
       "max_strength": 20,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 4000,
@@ -8807,7 +8963,9 @@
       "max_strength": 30,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 5000,
@@ -8854,7 +9012,9 @@
       "max_strength": 35,
       "module_count_limit": {
         "category": "ship_radar",
-        "count": "#<Property::LT:0x00007fea8be2e618>"
+        "count": {
+          "<": 2
+        }
       },
       "module_slots": "inherit",
       "naval_range": 6000,

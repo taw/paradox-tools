@@ -74,6 +74,10 @@ class Property
     def hash
       [self.class, @val].hash
     end
+
+    def to_json(*options)
+      { op => @val }.to_json(*options)
+    end
   end
 
   class GT < SpecialValue
