@@ -254,6 +254,7 @@ ModernTimesDatabase::LAND = {
   k_portugal: {forever_ago: "k_portugal"},
   d_beja: {forever_ago: "k_portugal"},
   d_algarve: {forever_ago: "k_portugal"},
+  d_balata: {forever_ago: "k_portugal"},
 
   c_goa: {forever_ago: "k_portugal", goa_annexation: "e_india"}, # 1505 or so
   e_spain: {forever_ago: "e_spain"},

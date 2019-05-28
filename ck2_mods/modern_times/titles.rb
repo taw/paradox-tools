@@ -191,7 +191,7 @@ ModernTimesDatabase::TITLES = {
     culture: :russian,
     religion: :orthodox,
     capital: :c_moskva,
-    name: {end_ww1: "Soviet Union / Soviet", fall_soviet_union: nil},
+    name: {times_immemorial: "Russia / Russian", end_ww1: "Soviet Union / Soviet", fall_soviet_union: "Russia / Russian"},
     demesne: ["d_tver", "c_ingria"],
   },
   d_flanders: {
