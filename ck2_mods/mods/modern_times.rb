@@ -700,7 +700,7 @@ class ModernTimesGameModification < CK2GameModification
   # We need to remove county-level bishops as game will make them duchy-level bishops
   # with current automatic vassal creation system
   # Might get them back if we switch to a different system
-  def setup_province_holdings!(node)
+  def setup_province_holdings!(node, path)
     title = node["title"]
     holdings = {}
     capital = nil
@@ -721,6 +721,11 @@ class ModernTimesGameModification < CK2GameModification
 
     # If a tribe, we really don't care
     return if holdings[capital] == "tribal"
+
+    unless map.baronies_in[title]
+      Kernel::warn "FAIL: No baronies in title: #{title} in #{path}"
+      return
+    end
 
     add_me = node["max_settlements"] - holdings.size
     if add_me < 0
@@ -778,8 +783,8 @@ class ModernTimesGameModification < CK2GameModification
   end
 
   def setup_provinces_holdings!
-    patch_mod_files!("history/provinces/*.txt") do |node|
-      setup_province_holdings!(node)
+    patch_mod_files!("history/provinces/*.txt") do |node, path|
+      setup_province_holdings!(node, path)
     end
   end
 
@@ -790,8 +795,14 @@ class ModernTimesGameModification < CK2GameModification
   # kazakhs -> cuman
   # tatars -> bolghar
   def setup_provinces_population!
-    patch_mod_files!("history/provinces/*.txt") do |node|
+    patch_mod_files!("history/provinces/*.txt") do |node, path|
       title = node["title"]
+
+      unless map.landed_titles_lookup[title]
+        Kernel::warn "FAIL: Invalid title #{title} in #{path}"
+        next
+      end
+
       changes = node.values.grep(PropertyList)
       culture = [node["culture"], *changes.map { |v| v["culture"] }].compact.last
       religion = [node["religion"], *changes.map { |v| v["religion"] }].compact.last
@@ -1385,10 +1396,10 @@ class ModernTimesGameModification < CK2GameModification
     # Run after other title history changes, to make sure any new titles get covered
     setup_title_laws!
     # These need to run after title laws
-    patch_mod_files!("history/titles/*.txt") do |node|
+    patch_mod_files!("history/titles/*.txt") do |node, path|
       cleanup_history_node!(node)
     end
-    patch_mod_files!("history/offmap_powers/*.txt") do |node|
+    patch_mod_files!("history/offmap_powers/*.txt") do |node, path|
       cleanup_history_node!(node)
     end
 

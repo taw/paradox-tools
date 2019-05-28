@@ -37,7 +37,10 @@ class CultureManager
   def random_dynasty(culture, rng)
     culture = "volhynian" if culture == "ukrainian"
     culture = "severian" if culture == "belarusian"
-    rng.sample(@dynasties.fetch(culture))
+    culture = "italian" if culture == "sardinian"
+    dynasties = @dynasties.fetch(culture)
+    raise "No dynasties for culture #{culture}" if dynasties.empty?
+    rng.sample(dynasties)
   end
 
   private

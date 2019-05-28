@@ -43,10 +43,7 @@ ModernTimesDatabase::LAND = {
   c_amida: {times_immemorial: "e_arabia", end_of_ottoman_empire: "k_anatolia"},
   d_thrace: {times_immemorial: "e_arabia", treaty_of_sevres: "k_byzantium", treaty_of_lausanne: "k_anatolia"},
 
-  d_alexandria: {times_immemorial: "k_egypt"},
-  d_cairo: {times_immemorial: "k_egypt"},
-  d_aswan: {times_immemorial: "k_egypt"},
-  d_damietta: {times_immemorial: "k_egypt"},
+  k_egypt: {times_immemorial: "k_egypt"},
 
   c_sinai: {times_immemorial: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt"},
   c_farama: {times_immemorial: "k_egypt", six_day_war: "k_israel", egypt_israel_peace: "k_egypt"},

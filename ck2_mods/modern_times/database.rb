@@ -21,6 +21,11 @@ class ModernTimesDatabase
       map.landed_titles_lookup.sort.each do |county, path|
         next unless county =~ /\Ac_/
         ownership = county_ownership(county)
+        unless ownership
+          Kernel::warn "No ownership information for #{county} in #{path.join("/")}"
+          next
+        end
+
         ownership.size.times do |i|
           start_date, start_owner = ownership[i]
           end_date, = ownership[i + 1]

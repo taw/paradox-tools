@@ -121,7 +121,9 @@ class ParadoxModBuilder
     matches = (@game.glob(pattern) | @target.glob(pattern))
     raise "No matches found for `#{pattern}'" if matches.size == 0
     matches.each do |path|
-      patch_mod_file!(path, &blk)
+      patch_mod_file!(path) do |node|
+        yield(node, path)
+      end
     end
   end
   def patch_mod_file!(path, **args)
