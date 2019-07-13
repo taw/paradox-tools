@@ -4,6 +4,7 @@ require "set"
 require "pathname"
 require "shellwords"
 require "digest/sha1"
+gem "zip-zip"
 require "zip"
 # Zip.warn_invalid_date = false
 
@@ -33,6 +34,7 @@ class ModCompatibility
   end
 
   def add_mod_dir!(mod_dir)
+    mod_dir = Pathname("#{mod_dir}/")
     mod_name = mod_dir.basename.to_s
     mod_dir.find.select(&:file?).each do |file_path|
       add_file! mod_name, file_path.relative_path_from(mod_dir)
@@ -50,7 +52,7 @@ class ModCompatibility
 
   def add_files!
     @path.children.each do |mod|
-      if mod.directory?
+      if mod.directory? or mod.symlink?
         add_mod_dir!(mod)
       elsif mod.file? and mod.extname == ".zip"
         add_mod_pack!(mod)
