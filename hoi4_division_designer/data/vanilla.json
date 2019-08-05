@@ -2119,7 +2119,7 @@
           "attack": 0.3
         },
         "river": {
-          "attack": 0.4
+          "attack": 0.3
         }
       }
     },
@@ -4426,7 +4426,7 @@
       "archetype": "motorized_rocket_equipment"
     },
     "convoy_1": {
-      "anti_air_attack": 0.05,
+      "anti_air_attack": 0.1,
       "armor_value": 0,
       "build_cost_ic": 70,
       "fuel_consumption": 0,
@@ -4442,7 +4442,7 @@
       },
       "sub_detection": 1,
       "surface_detection": 10,
-      "surface_visibility": 10,
+      "surface_visibility": 14,
       "torpedo_attack": 0,
       "type": [
         "convoy"
@@ -4722,7 +4722,7 @@
       "air_agility": 5,
       "air_attack": 50,
       "air_bombing": 30,
-      "air_defence": 30,
+      "air_defence": 25,
       "air_range": 2500,
       "archetype": "strat_bomber_equipment",
       "maximum_speed": 400
@@ -4754,7 +4754,7 @@
       "air_agility": 7,
       "air_attack": 100,
       "air_bombing": 45,
-      "air_defence": 45,
+      "air_defence": 35,
       "air_range": 3500,
       "archetype": "strat_bomber_equipment",
       "maximum_speed": 450,
@@ -4787,7 +4787,7 @@
       "air_agility": 10,
       "air_attack": 150,
       "air_bombing": 60,
-      "air_defence": 60,
+      "air_defence": 50,
       "air_range": 5000,
       "archetype": "strat_bomber_equipment",
       "maximum_speed": 500,
@@ -4856,13 +4856,7 @@
       "armor_value": 0,
       "build_cost_ic": 2450,
       "default_modules": {
-        "fixed_ship_anti_air_slot": "empty",
-        "fixed_ship_deck_slot_1": "empty",
-        "fixed_ship_deck_slot_2": "empty",
-        "fixed_ship_engine_slot": "carrier_ship_engine_1",
-        "fixed_ship_radar_slot": "empty",
-        "fixed_ship_secondaries_slot": "empty",
-        "front_1_custom_slot": "empty"
+        "fixed_ship_engine_slot": "carrier_ship_engine_2"
       },
       "fuel_consumption": 87,
       "hg_armor_piercing": 0,
@@ -4887,7 +4881,7 @@
         "steel": 3
       },
       "sub_attack": 0,
-      "sub_detection": 1,
+      "sub_detection": 5,
       "surface_detection": 20,
       "surface_visibility": 30,
       "torpedo_attack": 0,
@@ -4908,6 +4902,7 @@
       "armor_value": 0,
       "build_cost_ic": 2600,
       "default_modules": {
+        "fixed_ship_engine_slot": "carrier_ship_engine_3",
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty"
       },
@@ -4957,7 +4952,7 @@
         "steel": 4
       },
       "sub_attack": 0,
-      "sub_detection": 1,
+      "sub_detection": 5,
       "surface_detection": 20,
       "surface_visibility": 30,
       "torpedo_attack": 0,
@@ -5036,7 +5031,7 @@
         "steel": 4
       },
       "sub_attack": 0,
-      "sub_detection": 1,
+      "sub_detection": 5,
       "surface_detection": 20,
       "surface_visibility": 30,
       "torpedo_attack": 0,
@@ -5104,7 +5099,7 @@
         "steel": 4
       },
       "sub_attack": 0,
-      "sub_detection": 1,
+      "sub_detection": 5,
       "surface_detection": 20,
       "surface_visibility": 30,
       "torpedo_attack": 0,
@@ -5166,7 +5161,7 @@
         "steel": 3
       },
       "sub_attack": 0,
-      "sub_detection": 1,
+      "sub_detection": 5,
       "surface_detection": 20,
       "surface_visibility": 30,
       "torpedo_attack": 0,
@@ -5549,6 +5544,7 @@
       "armor_value": 0,
       "build_cost_ic": 1900,
       "default_modules": {
+        "fixed_ship_engine_slot": "cruiser_ship_engine_2",
         "front_1_custom_slot": "empty"
       },
       "fuel_consumption": 20,
@@ -6931,6 +6927,7 @@
       "armor_value": 0,
       "build_cost_ic": 3400,
       "default_modules": {
+        "fixed_ship_engine_slot": "heavy_ship_engine_2",
         "rear_1_custom_slot": "empty"
       },
       "fuel_consumption": 67,
@@ -8020,6 +8017,7 @@
       "armor_value": 0,
       "build_cost_ic": 500,
       "default_modules": {
+        "fixed_ship_engine_slot": "light_ship_engine_2",
         "mid_1_custom_slot": "empty",
         "rear_1_custom_slot": "empty"
       },
@@ -8093,12 +8091,7 @@
       "armor_value": 0,
       "build_cost_ic": 550,
       "default_modules": {
-        "fixed_ship_anti_air_slot": "empty",
-        "fixed_ship_battery_slot": "empty",
-        "fixed_ship_engine_slot": "light_ship_engine_1",
-        "fixed_ship_fire_control_system_slot": "empty",
-        "fixed_ship_radar_slot": "empty",
-        "fixed_ship_torpedo_slot": "empty",
+        "fixed_ship_engine_slot": "light_ship_engine_3",
         "mid_1_custom_slot": "empty",
         "rear_1_custom_slot": "empty"
       },
@@ -8583,6 +8576,7 @@
       "armor_value": 0,
       "build_cost_ic": 250,
       "default_modules": {
+        "fixed_ship_engine_slot": "sub_ship_engine_2",
         "rear_1_custom_slot": "empty"
       },
       "fuel_consumption": 1,
@@ -8756,7 +8750,7 @@
       },
       "sub_attack": 0,
       "sub_detection": 0,
-      "sub_visibility": 10,
+      "sub_visibility": 12,
       "surface_detection": 20,
       "surface_visibility": 1,
       "torpedo_attack": 0,
@@ -20624,8 +20618,14 @@
         "battleship": {
           "max_organisation": 10
         },
+        "destroyer": {
+          "surface_detection": 0.1
+        },
         "heavy_cruiser": {
           "max_organisation": 10
+        },
+        "light_cruiser": {
+          "surface_detection": 0.1
         }
       }
     },
@@ -20736,7 +20736,7 @@
       ],
       "doctrine": true,
       "research_cost": 3,
-      "sortie_efficiency": 0.1,
+      "sortie_efficiency": 0.2,
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "navy",
@@ -20846,6 +20846,9 @@
         "integrated_convoy_defence"
       ],
       "unit_bonuses": {
+        "carrier": {
+          "sub_detection": 0.25
+        }
       }
     },
     "integrated_convoy_defence": {
@@ -20866,13 +20869,16 @@
         "floating_airfield"
       ],
       "unit_bonuses": {
+        "carrier": {
+          "sub_detection": 0.25
+        },
         "destroyer": {
           "max_organisation": 20,
-          "sub_detection": 0.05
+          "sub_detection": 0.1
         },
         "light_cruiser": {
           "max_organisation": 10,
-          "sub_detection": 0.1
+          "sub_detection": 0.15
         }
       }
     },
@@ -21082,7 +21088,7 @@
         "submarine": {
           "convoy_raiding_coordination": 0.15,
           "max_organisation": 10,
-          "surface_detection": 0.15
+          "surface_detection": 0.1
         }
       }
     },
@@ -21269,7 +21275,7 @@
       ],
       "doctrine": true,
       "research_cost": 3,
-      "sortie_efficiency": 0.1,
+      "sortie_efficiency": 0.2,
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "navy",
@@ -21467,7 +21473,7 @@
       ],
       "doctrine": true,
       "research_cost": 3,
-      "sortie_efficiency": 0.1,
+      "sortie_efficiency": 0.2,
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "navy",
@@ -21732,13 +21738,16 @@
 
       ],
       "unit_bonuses": {
+        "carrier": {
+          "sub_detection": 0.25
+        },
         "destroyer": {
           "max_organisation": 20,
-          "sub_detection": 0.05
+          "sub_detection": 0.1
         },
         "light_cruiser": {
           "max_organisation": 10,
-          "sub_detection": 0.1
+          "sub_detection": 0.15
         }
       }
     },
