@@ -70,7 +70,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       name: "Josip Broz | Tito",
       lived: "1892.5.7 - 1980.5.4",
     },
-    "1987.5.4" => {
+    "1980.5.4" => {
       name: "Lazar Koliševski",
       culture: "bulgarian",
       lived: "1914.2.12 - 2000.7.6",
@@ -82,7 +82,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "1981.5.15" => {
       name: "Sergej Kraigher",
-      culture: "carantanian"
+      culture: "carantanian",
       lived: "1914.5.30 - 2001.1.17",
     },
     "1982.5.15" => {
@@ -262,7 +262,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1832.5.7" => {
       name: "Otto | Wittelsbach",
       culture: "german",
-      father: "d_bavaria Ludwig 1",
+      # father: "d_bavaria Ludwig 1", # FIXME, doesn't work ?
       lived: "1815.6.1 - 1867.7.26",
     },
     # backdating, actually 30 March 1863

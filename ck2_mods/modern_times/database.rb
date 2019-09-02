@@ -530,7 +530,7 @@ class ModernTimesDatabase
 
   def cleanup_unicode(name)
     # Remove "CK2-unsafe" characters
-    cleaned_up = name.tr("đćűőșăčīķēņāČĐïņã", "dcuosacikenaCDina")
+    cleaned_up = name.tr("đćűőșăčīķēņāČĐïņãŠĆć", "dcuosacikenaCDinaSCc")
     # Guessing "safe" characters
     Kernel::warn "Still unicode left in #{name}" if cleaned_up =~ /[^\000-\177ÉáüöäèéÁóðçšåýÓí]/
     cleaned_up
