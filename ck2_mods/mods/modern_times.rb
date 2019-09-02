@@ -33,7 +33,7 @@ class ModernTimesGameModification < CK2GameModification
       culture = "panjabi"
     when "Hashemite", "Muhammad"
       culture = "bedouin_arabic"
-    when "Saxe-Coburg and Gotha"
+    when "Sachsen-Coburg und Gotha"
       culture = "dutch"
     when "Gikalo"
       # FIXME: This isn't even separate dynasties, just one vassal who got moved around Soviet Union a lot

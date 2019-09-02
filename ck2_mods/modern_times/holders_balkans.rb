@@ -140,16 +140,16 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     # backdating
     "1886.9.7" => {
-      name: "Ferdinand | Saxe-Coburg and Gotha",
+      name: "Ferdinand | Sachsen-Coburg und Gotha",
       lived: "1861.2.26 - 1948.9.10"
     },
     "1918.10.3" => {
-      name: "Boris | Saxe-Coburg and Gotha",
+      name: "Boris | Sachsen-Coburg und Gotha",
       lived: "1894.1.30 - 1943.8.28",
       father: "Ferdinand 1",
     },
     "1943.8.28" => {
-      name: "Simeon | Saxe-Coburg and Gotha",
+      name: "Simeon | Sachsen-Coburg und Gotha",
       lived: "1937.6.16-",
       father: "Boris 1",
     },
