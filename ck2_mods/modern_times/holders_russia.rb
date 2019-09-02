@@ -1,24 +1,40 @@
 ModernTimesDatabase::HOLDERS_RUSSIA = {
   e_russia: {
+    "1645.6.12" => {
+      name: "Aleksey | Romanov", #1
+      lived: "1629.5.9 - 1676.1.29",
+    },
+    "1676.1.29" => {
+      name: "Fyodor | Romanov", #1
+      lived: "1661.6.9 - 1682.5.7",
+      father: "Aleksey"
+    },
+    "1682.5.7" => {
+      name: "Ivan | Romanov", #1
+      lived: "1666.9.6 - 1696.2.8",
+      father: "Aleksey"
+    },
     "1682.6.2" => {
-      name: "Peter | Romanov",
+      name: "Pyotr | Romanov", #1
       lived: "1672.6.9 - 1725.2.8",
+      father: "Aleksey"
     },
     "1725.2.8" => {
-      name: "Catherine | Romanov",
+      name: "Yekaterina | Romanov",
       lived: "1684.4.15 - 1727.5.17",
       female: true,
-      # Wife of Peter I, Skowroński not Romanov
+      # Wife of Pyotr I, Skowroński not Romanov
     },
     "1727.5.17" => {
-      name: "Peter | Romanov",
+      name: "Pyotr | Romanov", #2
       lived: "1715.10.23 - 1730.1.30",
-      # Grandson of Peter I via the murdered Tsesarevich Alexei. Last of the direct male Romanov line.
+      # Grandson of Pyotr I via the murdered Tsesarevich Alexei. Last of the direct male Romanov line.
     },
     "1730.1.30" => {
       name: "Anna | Romanov",
       lived: "1693.2.7 - 1740.10.28",
       female: true,
+      father: "Ivan 1
       # Daughter of Ivan V
     },
     "1740.10.28" => {
@@ -27,57 +43,58 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       # Great-grandson of Ivan V
     },
     "1741.12.6" => {
-      name: "Elizabeth | Romanov",
+      name: "Yelizaveta | Romanov",
       lived: "1709.12.29 - 1762.1.5",
       female: true,
-      father: "Peter 1",
-      mother: "Catherine 1",
+      father: "Pyotr 1",
+      mother: "Yekaterina 1",
     },
     "1762.1.5" => {
-      name: "Peter | Romanov",
+      name: "Pyotr | Romanov",
       lived: "1728.2.21 - 1762.7.17",
       # grandson of Peter 1
     },
     "1762.7.9" => {
-      name: "Catherine | Romanov",
+      name: "Katharina | Romanov",
       lived: "1729.5.2 - 1796.11.17",
       female: true,
+      culture: "german",
       # Wife of Peter 3, coup, not real Romanov but keep it for gameplay reasons
     },
     "1796.11.17" => {
-      name: "Paul | Romanov",
+      name: "Pavel | Romanov",
       lived: "1754.10.1 - 1801.3.23",
-      father: "Peter 3",
-      mother: "Catherine 2",
+      father: "Pyotr 3",
+      mother: "Katharina",
     },
     "1801.3.23" => {
-      name: "Alexander | Romanov",
+      name: "Aleksandr | Romanov",
       lived: "1777.12.23 - 1825.12.1",
-      father: "Paul 1",
+      father: "Pavel 1",
     },
     "1825.12.1" => {
-      name: "Nicholas | Romanov",
+      name: "Nikolay | Romanov",
       lived: "1796.7.6 - 1855.3.2",
-      father: "Paul 1",
+      father: "Pavel 1",
     },
     "1855.3.2" => {
-      name: "Alexander | Romanov",
+      name: "Aleksandr | Romanov",
       lived: "1818.4.29 - 1881.3.13",
-      father: "Nicholas 1",
+      father: "Nikolay 1",
     },
     "1881.3.13" => {
-      name: "Alexander | Romanov",
+      name: "Aleksandr | Romanov",
       lived: "1845.3.10 - 1894.11.1",
-      father: "Alexander 2",
+      father: "Aleksandr 2",
     },
     "1894.11.1" => {
-      name: "Nicholas | Romanov",
+      name: "Nikolay | Romanov",
       lived: "1868.5.6 - 1918.7.17",
-      father: "Alexander 3",
+      father: "Aleksandr 3",
     },
     # Not really ruling ever, but alternative is interregnum
     "1917.3.15" => {
-      name: "Michael | Romanov",
+      name: "Michail | Romanov",
       lived: "1878.10.22 - 1918.6.12",
     },
     # Backdating
@@ -87,7 +104,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       health: 6,
     },
     "1924.1.21" => {
-      name: "Joseph | Stalin", lived: "1878.12.18 - 1953.3.5",
+      name: "Ioseb | Stalin", lived: "1878.12.18 - 1953.3.5",
       culture: :georgian,
       health: 7,
       traits: ["ambitious", "cynical"],
@@ -103,7 +120,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       lived: "1902.1.8 - 1988.1.14",
     },
     "1955.2.8" => {
-      name: "Nikita | Khrushchev",
+      name: "Nikita | Khrushchyov"
       culture: :ukrainian,
       lived: "April 15 1894 - 1971.9.11",
     },
@@ -124,8 +141,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # Skipping Gennady Yanayev 3-day plot silliness
     # backdating one day
     "1985.3.10" => {
-      name: "Mikhail | Gorbachev",
-      lived: "1931.3.2 -",
+      name: "Mikhail | Gorbachyov",
+      lived: "1931.3.2-",
     },
     "1991.12.25" => {
       name: "Boris | Yeltsin",
@@ -212,6 +229,10 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
         ],
       },
     },
+    "2019.5.20" => {
+      name: "Volodymyr | Zelensky",
+      lived: "1978.1.25 -",
+    },
   },
   k_belarus: {
     # backdating from "1920.8.9"
@@ -248,7 +269,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     },
     # Skipping two acting chairmen of supreme soviet, not backdating
     "1994.7.20" => {
-      name: "Alexander | Lukashenko",
+      name: "Aleksandr | Lukashenko",
       lived: "1954.8.30 -",
     }
   },
@@ -358,7 +379,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   },
   d_armenia: {
     # From 11 November 1991 presidents
-    "1990.8.4" => { name: "Levon Ter-Petrossian", lived: "1945.1.9 -" },
+    "1990.8.4" => { name: "Levon Ter-Petrossyan", lived: "1945.1.9 -" },
     "1998.2.4" => { name: "Robert Kocharyan", lived: "1954.8.31 -" },
     "2008.4.9" => { name: "Serzh Sargsyan", lived: "1954.6.30 -" },
   },
