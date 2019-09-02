@@ -198,14 +198,14 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # backdating
     "1878.7.13" => {
       name: "Alexander | Battenberg",
-      culture: "german"
+      culture: "german",
       lived: "1857.4.5 - 1893.10.23",
     },
     # backdating
     "1886.9.7" => {
       name: "Ferdinand | Sachsen-Coburg und Gotha",
-      culture: "german"
-      lived: "1861.2.26 - 1948.9.10"
+      culture: "german",
+      lived: "1861.2.26 - 1948.9.10",
     },
     "1918.10.3" => {
       name: "Boris | Sachsen-Coburg und Gotha",
@@ -261,21 +261,21 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # backdating
     "1832.5.7" => {
       name: "Otto | Wittelsbach",
-      culture: "german"
-      father: "d_bavaria Ludwig 1"
+      culture: "german",
+      father: "d_bavaria Ludwig 1",
       lived: "1815.6.1 - 1867.7.26",
     },
     # backdating, actually 30 March 1863
     "1862.10.23" => {
       name: "Georg | Glücksburg",
-      father: "k_denmark Christian 5"
-      culture: "danish"
-      religion: "protestant"
+      father: "k_denmark Christian 5",
+      culture: "danish",
+      religion: "protestant",
       lived: "1845.12.24 - 1913.3.18",
     },
     "1913.3.18" => {
       name: "Konstantinos | Glücksburg",
-      religion: "orthodox"
+      religion: "orthodox",
       lived: "1868.8.2 - 1923.1.11",
     },
     "1917.6.11" => {
@@ -315,7 +315,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1947.4.1" => {
       name: "Pavlos | Glücksburg",
       lived: "1901.12.14 - 1964.3.6",
-      father: "Konstantinos 1"
+      father: "Konstantinos 1",
     },
     "1964.3.6" => {
       name: "Konstantinos | Glücksburg",
