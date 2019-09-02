@@ -3,7 +3,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # 21 December 1898, backdating to foundation
     "1898.12.13" => {
       # He's a royal but it was High Commissioner post
-      name: "George | Schleswig-Holstein-Sonderburg-Glücksburg",
+      name: "Georg | Schleswig-Holstein-Sonderburg-Glücksburg",
       lived: "1869.6.24 - 1957.11.25",
     },
     "1906.10.1" => {
@@ -15,11 +15,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
   d_carinthia: {
     # Backdating, actually 23 December 1991
     "1991.7.7" => {
-      name: "Milan | Kucan",
+      name: "Milan | Kučan",
       lived: "1941.1.14 -",
     },
     "2002.12.22" => {
-      name: "Janez | Drnovsek",
+      name: "Janez | Drnovšek",
       lived: "1950.5.17 - 2008.2.23",
     },
     "2007.12.23" => {
@@ -32,11 +32,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
   },
   k_croatia: {
-    croatia_independence: {name: "Franjo | Tudman", lived: "1922 - 1999"},
+    croatia_independence: {name: "Franjo | Tuđman", lived: "1922.5.14 - 1999.12.10"},
     # Backdated from 18 February 2000, skipping two active presidents
-    "1999.12.10" => {name: "Stjepan | Mesic", lived: "1934-" },
-    "2010.2.19" => {name: "Ivo | Josipovic", lived: "1957-" },
-    "2015.2.19" => {name: "Kolinda | Grabar-Kitarovic", female: true, lived: "1968-"},
+    "1999.12.10" => {name: "Stjepan | Mesić", lived: "1934.12.24-" },
+    "2010.2.19" => {name: "Ivo | Josipović", lived: "1957.8.28-" },
+    "2015.2.19" => {name: "Kolinda | Grabar-Kitarović", female: true, lived: "1968.4.29-"},
   },
   # Serbia/Yugoslavia. There was a lot of silliness about rulers of Serbia vs "Yugoslavia" or "Serbia and Montenegro"
   # Just a simplified view here
@@ -48,32 +48,94 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       lived: "1854.8.22 - 1901.2.11",
     },
     "1889.3.6" => {
-      name: "Alexander | Obrenović",
+      name: "Aleksandar | Obrenović",
       lived: "1876.8.14 - 1903.6.11",
       father: "Milan 1",
     },
     "1903.6.11" => {
-      name: "Peter | Karađorđević",
+      name: "Petar | Karađorđević",
       lived: "1844.6.29 - 1921.8.16",
     },
     "1921.8.16" => {
-      name: "Alexander | Karađorđević",
+      name: "Aleksandar | Karađorđević",
       lived: "1888.12.16 - 1934.10.9",
-      father: "Peter 1",
+      father: "Petar 1",
     },
     "1934.10.9" => {
-      name: "Peter | Karađorđević",
+      name: "Petar | Karađorđević",
       lived: "1923.9.6 - 1970.11.3",
-      father: "Alexander 2",
+      father: "Aleksandar 2",
     },
     end_ww2: {
       name: "Josip Broz | Tito",
       lived: "1892.5.7 - 1980.5.4",
     },
-    # Who the hell ruled between Tito and Milosevic?
-    # No matter which post I pick here, half of them were too insignificant to have wikipedia article
-    # So I'll just drop them and backdate Milošević hard
-    "1980.5.4" => {
+    "1987.5.4" => {
+      name: "Lazar Koliševski",
+      culture: "bulgarian",
+      lived: "1914.2.12 - 2000.7.6",
+    },
+    "1980.5.15" => {
+      name: "Cvijetin Mijatović",
+      culture: "bosnian",
+      lived: "1913.1.8 - 1993.11.15",
+    },
+    "1981.5.15" => {
+      name: "Sergej Kraigher",
+      culture: "carantanian"
+      lived: "1914.5.30 - 2001.1.17",
+    },
+    "1982.5.15" => {
+      name: "Petar Stambolić",
+      lived: "1912.7.12 - 2007.9.21",
+    },
+    "1983.5.15" => {
+      name: "Mika Špiljak",
+      culture: "croatian",
+      lived: "1916.11.28 - 2007.5.18",
+    },
+    "1984.5.15" => {
+      name: "Veselin Đuranović",
+      lived: "1925.5.17 - 1997.8.30",
+    },
+    "1985.5.15" => {
+      name: "Radovan Vlajković",
+      lived: "1924.11.8 - 2001.11.12",
+    },
+    "1986.5.15" => {
+      name: "Sinan Hasani",
+      culture: "arberian",
+      lived: "1922.5.14 - 2010.8.28",
+    },
+    "1987.5.15" => {
+      name: "Lazar Mojsov",
+      culture: "bulgarian",
+      lived: "1920.12.19 - 2011.8.25",
+    },
+    "1988.5.15" => {
+      name: "Raif Dizdarević",
+      culture: "bosnian",
+      lived: "1926.12.9-",
+    },
+    "1989.5.15"  => {use: "d_carinthia Janez"},
+    "1990.5.15" => {
+      name: "Borisav Jović",
+      lived: "1928.10.19-",
+    },
+    "1991.6.30"  => {use: "k_croatia Stjepan"},
+    "1991.12.5" => {
+      name: "Branko Kostić",
+      lived: "1939.8.28-",
+    },
+    "1992.6.15" => {
+      name: "Dobrica Ćosić",
+      lived: "1921.12.29 - 2014.5.18",
+    },
+    "1993.6.25" => {
+      name: "Zoran Lilić",
+      lived: "1953.8.27-",
+    },
+    "1997.7.23" => {
     # Reasonably true from "1989.5.8" onwards
       name: "Slobodan Milošević",
       lived: "1941.8.20 - 2006.3.11",
@@ -112,11 +174,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       lived: "1932-2002",
     },
     "1988.2.28" => {
-      name: "George Vasiliou",
+      name: "Georgios Vasiliou",
       lived: "1931-",
     },
     "1993.2.28" => {
-      name: "Glafcos Clerides",
+      name: "Glafkos Klirides",
       lived: "1919-2013",
     },
     "2003.2.28" => {
@@ -124,11 +186,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       lived: "1934-2008",
     },
     "2008.2.28" => {
-      name: "Demetris Christofias",
+      name: "Dimitris Khristophias",
       lived: "1946-",
     },
     "2013.2.28" => {
-      name: "Nicos Anastasiades",
+      name: "Nikos Anastasiadis",
       lived: "1946-",
     },
   },
@@ -136,11 +198,13 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # backdating
     "1878.7.13" => {
       name: "Alexander | Battenberg",
+      culture: "german"
       lived: "1857.4.5 - 1893.10.23",
     },
     # backdating
     "1886.9.7" => {
       name: "Ferdinand | Sachsen-Coburg und Gotha",
+      culture: "german"
       lived: "1861.2.26 - 1948.9.10"
     },
     "1918.10.3" => {
@@ -197,30 +261,36 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # backdating
     "1832.5.7" => {
       name: "Otto | Wittelsbach",
+      culture: "german"
+      father: "d_bavaria Ludwig 1"
       lived: "1815.6.1 - 1867.7.26",
     },
     # backdating, actually 30 March 1863
     "1862.10.23" => {
-      name: "George | Glücksburg",
+      name: "Georg | Glücksburg",
+      father: "k_denmark Christian 5"
+      culture: "danish"
+      religion: "protestant"
       lived: "1845.12.24 - 1913.3.18",
     },
     "1913.3.18" => {
-      name: "Constantine | Glücksburg",
+      name: "Konstantinos | Glücksburg",
+      religion: "orthodox"
       lived: "1868.8.2 - 1923.1.11",
     },
     "1917.6.11" => {
-      name: "Alexander | Glücksburg",
+      name: "Alexandros | Glücksburg",
       lived: "1893.8.1 - 1920.10.25",
-      father: "Constantine 1",
+      father: "Konstantinos 1",
     },
     # Backdating restoration
     "1920.10.25" => {
-      use: "Constantine 1",
+      use: "Konstantinos 1",
     },
     "1922.9.27" => {
-      name: "George | Glücksburg",
+      name: "Georgios | Glücksburg",
       lived: "1890.7.19 - 1947.4.1",
-      father: "Constantine 1",
+      father: "Konstantinos 1",
     },
     # second hellenic republic
     "1924.3.25" => {
@@ -240,32 +310,32 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     # restored monarchy
     "1935.11.25" => {
-      use: "George 2", # king restored
+      use: "Georgios", # king restored
     },
     "1947.4.1" => {
-      name: "Paul | Glücksburg",
+      name: "Pavlos | Glücksburg",
       lived: "1901.12.14 - 1964.3.6",
-      father: "Constantine 1"
+      father: "Konstantinos 1"
     },
     "1964.3.6" => {
-      name: "Constantine | Glücksburg",
-      lived: "1940-",
-      father: "Paul 1",
+      name: "Konstantinos | Glücksburg",
+      lived: "1940.6.2-",
+      father: "Pavlos 1",
     },
     # junta
     "1973.6.1" => {
       name: "Georgios Papadopoulos",
-      lived: "1919-1999",
+      lived: "1919.5.5 - 1999.6.27",
     },
     "1973.11.25" => {
       name: "Phaedon Gizikis",
-      lived: "1917-1999",
+      lived: "1917.6.16 - 1999.7.27",
     },
     # post-junta
     # provisional
     "1974.12.18" => {
       name: "Michail Stasinopoulos",
-      lived: "1903-2002",
+      lived: "1903.7.27 - 2002.10.31",
     },
     "1975.7.19" => {
       name: "Konstantinos Tsatsos",
