@@ -7,17 +7,17 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     "1796.5.24" => {
       name: "Carlo Emanuele | Savoia",
       lived: "1751.5.24 - 1819.10.6",
-      father: "Vittorio  Amadeo"
+      father: "Vittorio Amadeo"
     },
     "1802.6.4" => {
       name: "Vittorio Emanuele | Savoia",
       lived: "1759.7.24 - 1824.1.10",
-      father: "Vittorio  Amadeo"
+      father: "Vittorio Amadeo"
     },
     "1821.3.12" => {
       name: "Carlo Felice | Savoia",
       lived: "1765.4.6 - 1831.4.27",
-      father: "Vittorio  Amadeo"
+      father: "Vittorio Amadeo"
     },
     "1831.4.27" => {
       name: "Carlo Alberto | Savoia",
@@ -107,12 +107,12 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     "1806.3.30" => {
       name: "Joseph | Bonaparte",
-      culture: "frankish"
+      culture: "frankish",
       lived: "1768.1.7 - 1844.7.28",
     },
     "1808.8.1" => {
       name: "Joachim | Murat",
-      culture: "frankish"
+      culture: "frankish",
       lived: "1767.3.25 - 1815.10.13",
     },
     congress_of_vienna: {
@@ -147,14 +147,14 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     "1815.6.9" => {
       name: "Maria Luisa | Bourbon",
       lived: "1782.7.6 - 1824.3.13",
-      culture: "castillian",
+      culture: "castillan",
       father: "e_spain Carlos 3",
       female: true,
     },
     "1824.3.13" => {
       name: "Carlo | Bourbon",
       lived: "1799.12.22 - 1883.4.16",
-      father: "d_toscana Lodovico",
+      # father: "d_toscana Lodovico 1", # doesn't work? FIXME
       mother: "Maria Luisa 1",
     },
     # Actually deposed two months earlier ???
@@ -163,7 +163,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
   c_parma: {
     "1748.10.18" => {
       name: "Felipe | Bourbon",
-      culture: "castillian"
+      culture: "castillan",
       father: "e_spain Felipe 1",
       lived: "1720.3.15 - 1765.7.18",
     },

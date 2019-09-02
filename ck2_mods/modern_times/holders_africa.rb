@@ -223,7 +223,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     "1913.12.12" => { name: "Iyasu | Solomonid", lived: "1895.2.4 – 1935.11.25" },
     "1916.9.27" => { name: "Zewditu | Solomonid", lived: "1876.4.29 – 1930.4.2", female: true, father: "Menelik 1" },
     "1930.4.2" => { name: "Haile Selassie | Solomonid", lived: "1892.7.23 – 1975.8.27" },
-    "1936.5.9" => { use: "e_italy Victor Emmanuel 1" },
+    "1936.5.9" => { use: "e_italy Vittorio Emanuele 1" },
     "1941.5.5" => { use: "Haile Selassie 1" },
     "1974.9.12" => { name: "Amha Selassie | Solomonid", lived: "1916.7.27 – 1997.2.17", father: "Haile Selassie 1" },
     # There's some interim/transitional mess, cleaned up view here
