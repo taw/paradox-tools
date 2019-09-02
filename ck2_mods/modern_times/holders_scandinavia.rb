@@ -42,6 +42,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1863.11.15" => {
       name: "Christian | Schleswig-Holstein-Sonderburg-Glücksburg", # 5, actually 9
+      culture: "german",
       lived: "1818.4.8 - 1906.1.29",
     },
     "1906.1.29" => {
@@ -68,9 +69,24 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
   },
   # Wikipedia uses these spellings, however inconsistent they are
   k_sweden: {
+    "1654.6.6" => {
+      name: "Karl Gustav | Wittelsbach",
+      culture: "german",
+      lived: "1622.11.8 - 1660.2.13",
+    },
+    "1660.2.13" => {
+      name: "Karl | Wittelsbach",
+      father: "Karl Gustav",
+      lived: "1655.11.24 - 1697.4.5",
+    },
+    "1697.4.5" => {
+      name: "Karl | Wittelsbach",
+      lived: "1682.6.17 - 1718.11.30",
+    },
     "1718.12.5" => {
       name: "Ulrika Eleonora | Wittelsbach",
       female: true,
+      father: "Karl 1",
       lived: "1688.1.23 - 1741.11.24",
     },
     "1720.3.24" => {
@@ -131,7 +147,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
       father: "Gustaf",
     },
     "1973.9.15" => {
-      name: "Charles Gustaf | Bernadotte",
+      name: "Karl Gustaf | Bernadotte",
       lived: "1946.4.30 -",
     },
   },
