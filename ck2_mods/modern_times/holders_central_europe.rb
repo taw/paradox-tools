@@ -1,7 +1,7 @@
 ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
   e_carpathia: {
     "1804.8.11" => {name: "Franz | Habsburg", lived: "1768.2.12 - 1835.3.2"},
-    "1835.3.2" => {name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29", father: "Francis 1"},
+    "1835.3.2" => {name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29", father: "Franz 1"},
     # Can't find day date, just month
     "1848.12.1" => {name: "Franz Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21", health: 6},
     "1916.11.21" => {name: "Karl | Habsburg", lived: "1911.10.21 - 1922.4.1"},
@@ -141,13 +141,13 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # actually "1866.4.20", ignore until he gets independent
     treaty_of_berlin: {
       name: "Karl | Hohenzollern-Sigmaringen",
-      culture: "german"
+      culture: "german",
       lived: "1839.4.20 - 1914.10.10",
     },
     # nephew of Carol 1
     "1914.10.10" => {
       name: "Ferdinand | Hohenzollern-Sigmaringen",
-      culture: "german"
+      culture: "german",
       lived: "1865.8.24 - 1927.7.20",
     },
     # This is just dumb, Ferdinand's son Carol renounced right to throne
@@ -155,13 +155,13 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # DSL can't currently support this
     "1927.7.20" => {
       name: "Michael | Hohenzollern-Sigmaringen",
-      culture: "german"
+      culture: "german",
       lived: "1921.10.25 - 2017.12.5",
     # father: "Carol 2",
     },
     "1930.6.8" => {
       name: "Karl | Hohenzollern-Sigmaringen",
-      culture: "german"
+      culture: "german",
       lived: "1893.10.15 - 1953.4.4",
       father: "Ferdinand 1",
     },

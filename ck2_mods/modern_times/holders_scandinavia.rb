@@ -75,7 +75,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1720.3.24" => {
       name: "Friedrich | Hessen",
-      culture: "german"
+      culture: "german",
       lived: "1676.4.23 - 1751.3.25",
     },
     "1751.3.25" => {
@@ -93,7 +93,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
       father: "Gustav 1",
     },
     "1809.6.6" => {
-      name: "Karl | Holstein-Gottorp",
+      name: "Charles | Holstein-Gottorp",
       lived: "1748.10.7 - 1818.2.5",
       father: "Adolf Fredrik 1",
     },
@@ -106,19 +106,19 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     "1844.3.8" => {
       name: "Oscar | Bernadotte",
       lived: "1763.1.26 - 1859.7.8",
-      culture: "frankish"
+      culture: "frankish",
       father: "Charles Jean",
     },
     "1859.7.8" => {
       name: "Charles | Bernadotte",
       lived: "May 1826 - 1872.9.18",
-      culture: "frankish"
-      father: "Oscar 1"
+      culture: "frankish",
+      father: "Oscar 1",
     },
     "1872.9.18" => {
       name: "Oscar | Bernadotte",
       lived: "1829.1.21 - 1907.12.8",
-      father: "Oscar 1"
+      father: "Oscar 1",
     },
     "1907.12.8" => {
       name: "Gustaf | Bernadotte",
@@ -142,12 +142,12 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     "1746.8.6"   => {use: "k_denmark Frederik 2"},
     "1766.1.14"  => {use: "k_denmark Christian 3"},
     "1808.3.13"  => {use: "k_denmark Frederik 3"},
-    "1814.5.17"  => {use: "k_sweden Karl 1"},
+    "1814.5.17"  => {use: "k_sweden Charles 1"},
     "1818.2.5"   => {use: "k_sweden Charles Jean 1"},
     "1844.3.8"   => {use: "k_sweden Oscar 1"},
     "1859.7.8"   => {use: "k_sweden Charles 2"},
     "1872.9.18"  => {use: "k_sweden Oscar 2"},
-    "1905.6.7"   => {name: "Haakon | Schleswig-Holstein-Sonderburg-Glücksburg", culture: "danish" lived: "1872.8.3 - 1957.9.21"},
+    "1905.6.7"   => {name: "Haakon | Schleswig-Holstein-Sonderburg-Glücksburg", culture: "danish", lived: "1872.8.3 - 1957.9.21"},
     "1957.9.21"  => {name: "Olav | Schleswig-Holstein-Sonderburg-Glücksburg", father: "Haakon 1", lived: "1903.7.2 - 1991.1.17"},
     "1991.1.17"  => {name: "Harald | Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", lived: "1937.2.21 -"},
   },
@@ -190,7 +190,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1931.3.2" => {
       name: "Pehr Evind | Svinhufvud",
-      culture: "swedish"
+      culture: "swedish",
       lived: "1861.12.15 - 1944.2.29",
     },
     "1937.3.1" => {
@@ -203,7 +203,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1944.8.4" => {
       name: "Carl Gustaf Emil | Mannerheim",
-      culture: "swedish"
+      culture: "swedish",
       lived: "1867.6.4 - 1951.1.27",
     },
     "1946.3.11" => {

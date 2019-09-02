@@ -367,7 +367,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
   },
   # Württemberg
   d_swabia: {
-    "1793.10.24" => {
+    "1733.10.31" => {
       name: "Karl Alexander | Württemberg",
       lived: "1684.5.24 - 1737.3.12",
     },
@@ -471,6 +471,6 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       lived: "1852.11.16 - 1931.2.24",
       father: "Peter 2",
     },
-    german_unification: nil,
+    end_ww1: nil,
   },
 }
