@@ -42,7 +42,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1863.11.15" => {
       name: "Christian | Schleswig-Holstein-Sonderburg-Glücksburg", # 5, actually 9
-      culture: "german"
+      culture: "german",
       lived: "1818.4.8 - 1906.1.29",
     },
     "1906.1.29" => {
