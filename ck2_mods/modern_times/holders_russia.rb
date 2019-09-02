@@ -34,7 +34,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       name: "Anna | Romanov",
       lived: "1693.2.7 - 1740.10.28",
       female: true,
-      father: "Ivan 1
+      father: "Ivan 1",
       # Daughter of Ivan V
     },
     "1740.10.28" => {
@@ -104,7 +104,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       health: 6,
     },
     "1924.1.21" => {
-      name: "Ioseb | Stalin", lived: "1878.12.18 - 1953.3.5",
+      name: "Joseph | Stalin", lived: "1878.12.18 - 1953.3.5",
       culture: :georgian,
       health: 7,
       traits: ["ambitious", "cynical"],
@@ -120,7 +120,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       lived: "1902.1.8 - 1988.1.14",
     },
     "1955.2.8" => {
-      name: "Nikita | Khrushchyov"
+      name: "Nikita | Khrushchyov",
       culture: :ukrainian,
       lived: "April 15 1894 - 1971.9.11",
     },
