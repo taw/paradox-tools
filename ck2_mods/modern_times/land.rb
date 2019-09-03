@@ -280,7 +280,7 @@ ModernTimesDatabase::LAND = {
   c_artois: {forever_ago: "e_france"},
   c_guines: {forever_ago: "e_france"},
 
-  c_faereyar: {forever_ago: "k_norway"},
+  c_faereyar: {forever_ago: "k_denmark"},
   d_ostlandet: {forever_ago: "k_norway"},
   d_oppland: {forever_ago: "k_norway"},
   d_vestlandet: {forever_ago: "k_norway"},
