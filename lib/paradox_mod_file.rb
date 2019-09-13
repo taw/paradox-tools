@@ -72,7 +72,8 @@ class ParadoxModFile
       until s.eos?
         if s.scan(/(\p{Space})+|#.*$/)
           # pass
-        elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b/)
+        elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b\.?/)
+          # That extra "." in some CK2 province history files
           begin
             @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
           rescue ArgumentError

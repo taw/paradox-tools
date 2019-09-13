@@ -35,7 +35,10 @@ module Ck2Analyses
 
   def top_realm_by_title(title)
     title_data = @data["title"][title]
-    raise "No such title `#{title}'" unless title_data
+    unless title_data
+      warn "No such title `#{title}'"
+      return nil
+    end
     liege = title_data["liege"]
     if liege
       # This double coding is 2.7.0 thing
@@ -86,13 +89,38 @@ module Ck2Analyses
     end
   end
 
-  def province_id_to_title
-    @province_id_to_title ||= begin
+  # CK2 2.x
+  def province_id_to_title_v2
+    @province_id_to_title_v2 ||= begin
       map = {}
       node = parse("common/province_setup/00_province_setup.txt")
       node.each do |id, province|
         map[id] = province["title"]
       end
+      map
+    end
+  end
+
+  # CK2 3.x
+  def province_id_to_title_v3
+    @province_id_to_title_v3 ||= begin
+      map = {}
+      glob("history/provinces/*.txt").each do |path|
+        id = path.basename.to_s.to_i
+        title = parse(path)["title"]
+        if map[id]
+          warn "Multiple titles for id #{id} - #{map[id]} #{title}"
+        end
+        map[id] = title
+      end
+      map
+    end
+  end
+
+  def province_id_to_title
+    @province_id_to_title ||= begin
+      map = province_id_to_title_v2
+      map = province_id_to_title_v3 if map.empty?
       map
     end
   end
@@ -119,7 +147,6 @@ module Ck2Analyses
   rescue
     "unknown"
   end
-
 
   def load_characters!
     @data["dynasties"].each do |id, node|
