@@ -66,6 +66,7 @@ class ParadoxModFile
           .sub(/\AEU4txt/, "")
           .sub(/\AHOI4txt/, "")
           .sub(/\ACK2txt(.*)\}\s*\z/m){$1} # CK2 saves have unbalanced {}s
+          .sub(/\ACK2txt(.*)\}\s*(checksum.*\s*)\z/m){$1 + "\n" + $2} # even worse at some point they added checksum after the broken }
           .sub("map_area_data{", "map_area_data={") # EU4 1.23 save bugfix
       )
       until s.eos?
