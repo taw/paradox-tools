@@ -26,3 +26,6 @@ end
 class Pathname
   alias_method :to_str, :to_s
 end
+
+class MagicString < String
+end

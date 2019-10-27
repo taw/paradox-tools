@@ -30,6 +30,8 @@ class ParadoxModFileSerializer
       "%d.%d.%d" % [val.year, val.month, val.day]
     when Symbol
       serialize_primitive(val.to_s)
+    when MagicString # Hasty hack
+      val
     when /\A[A-Za-z0-9_\.:\[\]\<\>\*@\$]+\z/
       val
     when /\A(\p{Alpha}|\p{Number}|[_\.\-\/\u00A0 '’`\?\\%!:,\[\]\(\)<>+&$])*\z/
