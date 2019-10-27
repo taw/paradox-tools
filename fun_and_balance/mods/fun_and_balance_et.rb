@@ -26,7 +26,6 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     merchant_republic_province_limit_remove!
     more_base_relations!
     more_building_slots!
-    rebalance_china!
     no_naval_attrition!
     power_projection_tweaks!
     primary_greek_tag_is_byz!

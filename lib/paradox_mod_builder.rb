@@ -147,10 +147,11 @@ class ParadoxModBuilder
     end
   end
   def create_mod_descriptor!(dsc)
-    create_mod_file! "../#{@target.basename}.mod", PropertyList[*dsc.to_a.flatten(1)]
     if dsc[:picture]
       create_file! dsc[:picture], (Pathname("pictures") + dsc[:picture]).read
+      dsc[:picture] = MagicString.new(dsc[:picture].inspect)
     end
+    create_mod_file! "../#{@target.basename}.mod", PropertyList[*dsc.to_a.flatten(1)]
   end
   def localization(*args)
     @game.localization(*args)

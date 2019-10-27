@@ -175,32 +175,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def rebalance_china!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node!(node,
-        ["negative_mandate", "global_unrest", 5, 10],
-      )
-    end
-
-    # # Vanilla mandate system makes emergence of new Chinese power impossible, so try something else
-    # soft_patch_defines_lua!("fun_and_balance_china",
-    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_TRIBUTARY_DEV", 0.15, 0],
-    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_NONTRIBUTARY_DEV", -0.3, 0],
-    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_STABILITY", 0.24, 0.24],
-    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_STATE_WITH_PROSPERITY", 0.06, 0.20],
-    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_PER_HUNDRED_DEVASTATION", -5.0, -10.0],
-    #   ["NDiplomacy.CELESTIAL_EMPIRE_MANDATE_FROM_DEFENDING", 5, 10],
-    # )
-
-    # patch_mod_file! "common/on_actions/00_on_actions.txt" do |node|
-    #   # go for Just Chinese culture instead ? (plus that Manchu coastline)
-    #   node["on_mandate_of_heaven_gained"]["china_superregion"] = PropertyList[
-    #     "limit", PropertyList["NOT", PropertyList["is_core", "ROOT"]],
-    #     "add_core", "ROOT",
-    #   ]
-    # end
-  end
-
   def no_naval_attrition!
     patch_mod_file!("common/technologies/dip.txt") do |node|
       node.find_all("technology").each_with_index do |tech, i|
