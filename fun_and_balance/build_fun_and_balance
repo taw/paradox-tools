@@ -19,7 +19,6 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
                          ExtraFormableCountriesGameModification,
                          ChangeGovernmentGameModification
     create_mod_file! "descriptor.mod", PropertyList[
-      "version", "1.29",
       "tags", [MagicString.new('"Balance"')],
       "name", "Fun and Balance",
     ]
