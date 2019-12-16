@@ -37,6 +37,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     trade_map_fixes!
     rebalance_hre!
     rebalance_unrest!
+    allow_peace_terms_for_all_cbs!
 
     # Experimental:
     if ENV["VERY_EXPERIMENTAL"]

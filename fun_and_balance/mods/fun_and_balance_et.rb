@@ -37,6 +37,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     trade_map_fixes!
     rebalance_unrest!
     rebalance_hre!
+    allow_peace_terms_for_all_cbs!
 
     soft_patch_defines_lua!(
       "fun_and_balance",

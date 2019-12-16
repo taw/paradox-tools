@@ -523,18 +523,20 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     # triggered extra unrest
   end
 
-  def rebalance_expansion!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
-
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["land_province"]["max_attrition"] = 10
-    end
-
+  def allow_peace_terms_for_all_cbs!
     patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
       node.each do |key, cb|
         # It mostly just makes those CBs unusable
         cb.delete! "attacker_disabled_po"
       end
+    end
+  end
+
+  def rebalance_expansion!
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["land_province"]["max_attrition"] = 10
     end
 
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
