@@ -530,6 +530,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         cb.delete! "attacker_disabled_po"
       end
     end
+
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
+      node["humiliate_rotw"].delete! "allowed_provinces_are_eligible"
+    end
   end
 
   def rebalance_expansion!
@@ -537,12 +541,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["land_province"]["max_attrition"] = 10
-    end
-
-    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
-      node.each do |name, wargoal|
-        wargoal.delete! "allowed_provinces_are_eligible"
-      end
     end
 
     soft_patch_defines_lua!("fun_and_balance_expansion",
