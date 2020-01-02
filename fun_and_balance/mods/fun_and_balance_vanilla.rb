@@ -36,7 +36,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     subject_tweaks!
     trade_map_fixes!
     rebalance_hre!
-    rebalance_unrest!
+    # rebalance_unrest!
     allow_peace_terms_for_all_cbs!
 
     # Experimental:

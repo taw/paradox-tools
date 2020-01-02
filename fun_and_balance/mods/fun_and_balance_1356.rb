@@ -35,7 +35,7 @@ class FunAndBalance1356GameModification < FunAndBalanceCommonGameModification
     subject_religious_cbs!
     subject_tweaks!
     trade_map_fixes!
-    rebalance_unrest!
+    # rebalance_unrest!
     rebalance_hre!
     allow_peace_terms_for_all_cbs!
 
