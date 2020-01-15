@@ -338,11 +338,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       end
 
       # Reduced slightly to help vassal game
-      types["vassal"]["liberty_desire_development_ratio"] = 0.2
-      types["march"]["relative_power_class"] = 1
+      # This makes Timurids unbreakable, and that's bad
+      # types["vassal"]["liberty_desire_development_ratio"] = 0.2
+      # types["march"]["relative_power_class"] = 1
 
       # A bit more
-      types["tributary_state"]["liberty_desire_development_ratio"] = 0.2
+      # 0.175 to 0.2 is barely worth the difference
+      # types["tributary_state"]["liberty_desire_development_ratio"] = 0.2
 
       # to balance LD from relative power (also tariffs, mercantilism etc.)
       types["colony"]["relative_power_class"] = 1
