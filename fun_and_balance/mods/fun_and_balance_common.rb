@@ -501,14 +501,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       "rebels_age_of_discovery", PropertyList[
         "potential", PropertyList["current_age", "age_of_discovery"],
         "trigger", PropertyList["current_age", "age_of_discovery"],
-        "tolerance_heathen", -1,
-        "tolerance_own", 1,
+        "tolerance_heathen", -2,
+        "tolerance_own", 2,
       ],
       "rebels_age_of_reformation", PropertyList[
         "potential", PropertyList["current_age", "age_of_reformation"],
         "trigger", PropertyList["current_age", "age_of_reformation"],
-        "tolerance_heretic", -1,
-        "tolerance_own", 1,
+        "tolerance_heretic", -2,
+        "tolerance_own", 2,
       ],
       "rebels_age_of_absolutism", PropertyList[
         "potential", PropertyList["current_age", "age_of_absolutism"],
