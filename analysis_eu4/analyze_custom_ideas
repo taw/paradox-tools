@@ -119,6 +119,7 @@ class AnalyzeCustomIdeas < ParadoxGame
         raise "Not national ideas and not idea group?" unless idea_group["free"]
         idea_group.delete! "trigger"
         idea_group.delete! "free"
+        next if idea_group.to_h.values.all?(&:empty?) # Empty compatibility group
         raise "WTF" unless idea_group.keys.size == 9 and
                            idea_group.keys.include?("start") and
                            idea_group.keys.include?("bonus")
