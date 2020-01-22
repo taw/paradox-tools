@@ -28,6 +28,18 @@ class CulturesByCountry < ParadoxGame
     end
   end
 
+  def cultures_by_development
+    @cultures_by_development ||= begin
+      totals = Hash.new(0)
+      @save.provinces.each do |id, province|
+        next unless province.city?
+        next unless province.owner
+        totals[province.culture] += province.development
+      end
+      totals
+    end
+  end
+
   def cultures_by_country
     @cultures_by_country ||= begin
       totals = {}
@@ -86,7 +98,8 @@ class CulturesByCountry < ParadoxGame
       cultures.sort_by(&:last).reverse.each do |culture_name, dev|
         status =  culture_status(tag, culture_name)
         status = " [#{status}]" if status
-        puts "* #{localization(culture_name)}#{status} - #{dev.round}"
+        total = cultures_by_development[culture_name]
+        puts "* #{localization(culture_name)}#{status} - #{dev.round} / #{total.round}"
       end
       puts ""
     end
