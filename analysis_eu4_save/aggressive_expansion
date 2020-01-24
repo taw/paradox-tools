@@ -13,11 +13,48 @@ class AnalyzeAE < ParadoxGame
     @save = EU4Save.new(save_game)
   end
 
+  def relation_name(rel)
+    rel.split("_").map(&:capitalize).join(" ")
+  end
+
+  def relation(tag1, tag2)
+    if @save.subjects[tag2]
+      overlord, relation = @save.subjects[tag2]
+      if overlord == tag1
+        return relation_name(relation)
+      elsif relation != "tributary_state"
+        # Tributaries can join against everyone except their overlord
+        return "#{relation_name(relation)} of #{country_name(overlord)}"
+      end
+    end
+
+    if @save.allies?(tag1, tag2)
+      return "Ally"
+    end
+
+    # Truces are not always symmetric
+    c1 = @save.countries[tag1]
+    c2 = @save.countries[tag2]
+    if c1.truces.include?(tag2) and c2.truces.include?(tag1)
+      return "Truce"
+    end
+
+    # Which side is this?
+    if c1.truces.include?(tag2) or c2.truces.include?(tag1)
+      return "One Sided Truce"
+    end
+  end
+
   def call
     @save.aggressive_expansion.sort_by{|tag, aes| -aes.values.sum}.each do |tag, aes|
       puts "#{country_name(tag)}:"
       aes.sort_by(&:last).reverse.each do |tag2, ae|
-        puts "* #{country_name(tag2)} #{ae}"
+        rel = relation(tag, tag2)
+        if rel
+          puts "* #{country_name(tag2)} #{ae} [#{rel}]"
+        else
+          puts "* #{country_name(tag2)} #{ae}"
+        end
       end
       puts ""
     end

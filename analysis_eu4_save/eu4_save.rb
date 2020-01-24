@@ -238,6 +238,10 @@ class Country
     @node["religion"]
   end
 
+  def truces
+    @truces ||= @node["active_relations"].to_a.select{|x| x.val["truce"]}.map(&:key).to_set
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
@@ -418,6 +422,39 @@ class EU4Save
       end
       map
     end
+  end
+
+  def allies
+    @allies ||= @data["diplomacy"]
+      .find_all("alliance")
+      .map{|x| [x["first"], x["second"]] }
+      .flat_map{|a,b| [[a,b],[b,a]] }
+      .to_set
+  end
+
+  def allies?(tag1, tag2)
+    allies.include?([tag1, tag2])
+  end
+
+  def subjects
+    unless @subjects
+      @subjects = {}
+      @data["diplomacy"].each do |type, relation|
+        next unless relation["subject_type"]
+        subject_type = relation["subject_type"]
+        overlord = relation["first"]
+        subject = relation["second"]
+        if @subjects[subject]
+          relation1 = "#{subject_type} of #{overlord}"
+          overlord2, subject_type2 = @subjects[subject]
+          relation2 = "#{subject_type2} of #{overlord2}"
+          warn "#{subject} is #{relation1} but it's #{relation2} already"
+          next
+        end
+        @subjects[subject] = [overlord, subject_type]
+      end
+    end
+    @subjects
   end
 
   def trade_network
