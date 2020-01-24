@@ -36,7 +36,8 @@ class AnalyzeAE < ParadoxGame
     c1 = @save.countries[tag1]
     c2 = @save.countries[tag2]
     if c1.truces.include?(tag2) and c2.truces.include?(tag1)
-      return "Truce"
+      c1.estimated_truce_time
+      return "Truce until #{c1.estimated_truce_time[tag2]}"
     end
 
     # Which side is this?

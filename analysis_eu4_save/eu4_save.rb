@@ -242,6 +242,21 @@ class Country
     @truces ||= @node["active_relations"].to_a.select{|x| x.val["truce"]}.map(&:key).to_set
   end
 
+  # This will be only approximate
+  def estimated_truce_time
+    unless @estimated_truce_time
+      @estimated_truce_time = {}
+      @node["active_relations"].to_a.select{|x| x.val["truce"]}.each do |ar|
+        start = ar.val["last_war"]
+        warscore = ar.val["last_warscore"] || 0
+        len = 5 + warscore * 0.1
+        expires = start + (365.25 * len).round
+        @estimated_truce_time[ar.key] = expires
+      end
+    end
+    @estimated_truce_time
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
