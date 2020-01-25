@@ -1,3 +1,5 @@
+require "set"
+
 class TradeNodeCountryInformation
   attr_reader :tag, :attrs
   def initialize(tag, node)
