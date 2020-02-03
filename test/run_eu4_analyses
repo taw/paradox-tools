@@ -22,6 +22,7 @@ list = %Q[
   analysis_eu4_save/analyze_trust $s
   analysis_eu4_save/analyze_wars $s
   analysis_eu4_save/analyze_wars_battles $s
+  analysis_eu4_save/best_manufactory_places $s $g
   analysis_eu4_save/buildings $s $g
   analysis_eu4_save/buildings_by_country $s $g
   analysis_eu4_save/cultures_by_country $s $g

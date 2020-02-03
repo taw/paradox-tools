@@ -27,6 +27,7 @@ class AnalyzeNewMissions < ParadoxGame
       "Rule Britannia",
       "Rights of Man",
       "Dharma",
+      "Golden Century",
     ]
     return if dlcs.any?{|dlc| potential.to_a.include? Property::NOT["has_dlc", dlc] }
     potential.delete!("has_dlc")
@@ -103,6 +104,8 @@ class AnalyzeNewMissions < ParadoxGame
       "American native"
     when PropertyList["technology_group", "high_american"]
       "High American" # (could be in Europe)
+    when PropertyList["has_reform", "pirate_republic_reform"]
+      "Pirate"
     else
       puts potential
       # binding.pry
