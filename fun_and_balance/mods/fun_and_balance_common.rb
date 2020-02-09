@@ -569,4 +569,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["propagate_religion"]["can_maintain"].delete! "religion_group"
     end
   end
+
+  def holy_orders_for_all!
+    patch_mod_files!("common/holy_orders/00_holy_orders.txt") do |node|
+      ["jesuit_order", "dominican_order", "franciscan_order"].each do |k|
+        node[k]["trigger"] =  PropertyList[
+          "religion", "catholic",
+        ]
+      end
+    end
+  end
 end

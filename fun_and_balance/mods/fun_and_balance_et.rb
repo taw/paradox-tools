@@ -38,6 +38,7 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
     # rebalance_unrest!
     rebalance_hre!
     allow_peace_terms_for_all_cbs!
+    holy_orders_for_all!
 
     soft_patch_defines_lua!(
       "fun_and_balance",
