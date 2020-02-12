@@ -1,0 +1,99 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "../lib/paradox_mod_file_serializer"
+
+class UseVanillaDevelopmentForConverterCampaign
+  def initialize(game_path, mod_source_path, mod_destination_path)
+    @game_path = Pathname(game_path)
+    @mod_source_path = Pathname(mod_source_path)
+    @mod_destination_path = Pathname(mod_destination_path)
+  end
+
+  def call
+    if @mod_destination_path.exist?
+      STDERR.puts "#{@mod_destination_path} already exists, quitting"
+      exit 1
+    end
+
+    @mod_destination_path.mkpath
+
+    @mod_source_path.find do |path|
+      relpath = path.relative_path_from(@mod_source_path)
+      if path.directory?
+        create_directory relpath
+      elsif relpath.to_s.start_with?("history/provinces")
+        update_province_file(relpath)
+      else
+        copy_file(relpath)
+      end
+    end
+  end
+
+  private
+
+  def create_directory(relpath)
+    (@mod_destination_path + relpath).mkpath
+  end
+
+  def copy_file(relpath)
+    (@mod_destination_path + relpath).write((@mod_source_path + relpath).read)
+  end
+
+  def update_province_file(relpath)
+    # There are some extra files
+    modfile = parse_mod_file(relpath)
+    unless modfile["ck2_converter_generated"]
+      copy_file(relpath)
+      return
+    end
+
+    devs = find_game_dev_for(relpath)
+    raise "Can't find values for #{relpath}" unless devs.all?(&:itself)
+
+    setup_node = modfile.find_all(Date.parse("1444.11.11")).first
+    unless setup_node and setup_node["base_tax"] and setup_node["base_production"] and setup_node["base_manpower"]
+      raise "No setup node found for #{relpath}"
+    end
+
+    setup_node["base_tax"] = devs[0]
+    setup_node["base_production"] = devs[1]
+    setup_node["base_manpower"] = devs[2]
+
+    save_file relpath, modfile
+  end
+
+  def save_file(relpath, node)
+    content = ParadoxModFileSerializer.serialize(node).encode("windows-1252", undef: :replace)
+    (@mod_destination_path + relpath).write(content)
+  end
+
+  def find_game_dev_for(relpath)
+    gamefile = ParadoxModFile.new(path: find_game_province_file(relpath)).parse!
+    [gamefile["base_tax"], gamefile["base_production"], gamefile["base_manpower"]]
+  end
+
+  def find_game_province_file(relpath)
+    id = relpath.basename.to_s.to_i
+    # Should be a warning really
+    game_provinces_files[id] or raise "Can't find vanilla file for province #{id}"
+  end
+
+  def game_provinces_directory
+    @game_path + "history/provinces"
+  end
+
+  def game_provinces_files
+    @game_provinces_files ||=
+      game_provinces_directory
+        .children
+        .select{|x| x.extname == ".txt"}
+        .to_h{|x| [x.basename.to_s.to_i, x]}
+  end
+
+  def parse_mod_file(relpath)
+    ParadoxModFile.new(path: (@mod_source_path + relpath)).parse!
+  end
+end
+
+UseVanillaDevelopmentForConverterCampaign.new(*ARGV).call
