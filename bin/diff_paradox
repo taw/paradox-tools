@@ -68,6 +68,9 @@ class DiffParadox
   end
 
   def diff_paradox!(path1, path2)
+    # First check if they're byte for byte equal, to save a lot of computing
+    return if path1.read == path2.read
+
     mod1 = ParadoxModFile.new(path: path1).parse!
     mod2 = ParadoxModFile.new(path: path2).parse!
     return if mod1 == mod2 # OK
