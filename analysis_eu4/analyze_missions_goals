@@ -1,0 +1,107 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+
+class Mission
+  attr_reader :node, :goals
+
+  def initialize(node)
+    @node = node
+    @goals = node["trigger"]
+  end
+
+  def categorize_goal(g)
+    if g.val.is_a?(PropertyList)
+      val_keys = g.val.keys
+      case val_keys
+      when ["type", "owned_by"]
+        return "own"
+      when ["type", "country_or_non_sovereign_subject_holds"]
+        return "own or vassal"
+      end
+    end
+
+    case g.key
+    when /_area\z/, /_region\z/, /_superregion\z/, Integer
+      return "own or vassal" if g.val.keys == ["type", "country_or_non_sovereign_subject_holds"]
+      return "own or vassal" if g.val.keys == ["country_or_non_sovereign_subject_holds"]
+      return "own" if g.val.keys == ["type", "owned_by"]
+      return "own" if g.val.keys == ["owned_by"]
+      "unknown"
+    when "is_at_war"
+      return "at peace" if g.val == false
+      "unknown"
+    when "owns", "owns_core_province"
+      "own"
+    when "owns_or_non_sovereign_subject_of"
+      "own or vassal"
+    when "manpower_percentage"
+      "manpower"
+    when "army_size_percentage", "army_size"
+      "army size"
+    when "navy_size_percentage", "num_of_light_ship", "naval_forcelimit", "num_of_galley"
+      "navy size"
+    when "stability", "prestige", "religious_unity", "absolutism", "has_institution"
+      g.key
+    when "cathedral", "university", "temple", "workshop", "plantations", "textile", "grand_shipyard", "barracks"
+      "buildings"
+    when "num_of_cities"
+      "provinces"
+    when "total_development"
+      "development"
+    when "num_of_states"
+      "states"
+    when "has_mil_advisor_2", "has_adm_advisor_2", "has_dip_advisor_2"
+      "advisor level"
+    else
+      p g
+      "unknown"
+    end
+  end
+
+  def goal_types
+    goals.to_a.map do |g|
+      categorize_goal(g)
+    end.flatten.uniq.sort
+  end
+end
+
+class AnalyzeMissionGoals < ParadoxGame
+  def each_mission_file(&block)
+    glob("missions/*").each do |path|
+      yield parse(path)
+    end
+  end
+
+  def each_mission(&block)
+    each_mission_file do |node|
+      node.each do |group_name, group|
+        group.each do |name, mission|
+          next if %W[
+            ai
+            generic
+            has_country_shield
+            potential
+            potential_on_load
+            slot
+          ].include?(name)
+          yield(Mission.new(mission))
+        end
+      end
+    end
+  end
+
+  def call
+    totals = Hash.new(0)
+    each_mission do |mission|
+      totals["total missions"] += 1
+      mission.goal_types.each do |t|
+        totals["total goals"] += 1
+        totals[t] += 1
+      end
+    end
+    pp totals.sort_by(&:last).to_h
+  end
+end
+
+AnalyzeMissionGoals.new(*ARGV).call

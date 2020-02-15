@@ -142,7 +142,7 @@ class Mission
   end
 end
 
-class AnalyzeNewMissions < ParadoxGame
+class AnalyzeMissionRewards < ParadoxGame
   def each_mission_file(&block)
     glob("missions/*").each do |path|
       yield parse(path)
@@ -180,4 +180,4 @@ class AnalyzeNewMissions < ParadoxGame
   end
 end
 
-AnalyzeNewMissions.new(*ARGV).call
+AnalyzeMissionRewards.new(*ARGV).call
