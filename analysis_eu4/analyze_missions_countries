@@ -3,7 +3,7 @@
 
 require_relative "../lib/paradox"
 
-class AnalyzeNewMissions < ParadoxGame
+class AnalyzeMissionsCountries < ParadoxGame
   def each_mission_file(&block)
     glob("missions/*").each do |path|
       # Stupid errors in files...
@@ -128,4 +128,4 @@ class AnalyzeNewMissions < ParadoxGame
   end
 end
 
-AnalyzeNewMissions.new(*ARGV).call
+AnalyzeMissionsCountries.new(*ARGV).call
