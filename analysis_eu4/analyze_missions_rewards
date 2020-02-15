@@ -43,6 +43,10 @@ class Mission
         return "building"
       when ["add_center_of_trade_level"]
         return "CoT level"
+      when ["change_province_name", "rename_capital"]
+        return []
+      when ["rename_capital", "change_province_name"]
+        return []
       end
     end
 
@@ -87,7 +91,7 @@ class Mission
       "prestige"
     when "add_imperial_influence"
       "HRE IA"
-    when "add_innovativeness_big_effect"
+    when "change_innovativeness", "add_innovativeness_big_effect"
       "innovativeness"
     when "add_mandate"
       "Chinese mandate"
@@ -95,12 +99,24 @@ class Mission
       "permaclaim"
     when "add_claim"
       "claims"
+    when "add_yearly_sailors"
+      "sailors"
+    when "add_yearly_manpower"
+      "manpower"
+    when "define_advisor"
+      "advisor"
+    when "add_estate_loyalty", "add_estate_loyalty_modifier", "add_estate_jains_loyalty_effect", "add_estate_nobles_loyalty_effect", "add_estate_rajput_loyalty_effect"
+      "estate_loyalty"
+    when "add_harmonization_progress"
+      "harmonization_progress"
     when "add_horde_unity", "add_meritocracy", "add_legitimacy", "increase_legitimacy_small_effect"
       "legitimacy/etc."
     when "add_army_tradition", "add_navy_tradition"
       "military tradition"
     when "add_karma"
       "karma"
+    when "add_casus_belli"
+      e.val["type"]
     when "add_piety"
       "piety"
     when "add_patriarch_authority"
