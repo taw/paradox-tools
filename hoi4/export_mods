@@ -34,7 +34,7 @@ class ExportMod
     (@export_path + @basename)
   end
 
-  def export!
+  def call
     export_data_path.mkpath
     if @archive
       Dir.chdir(export_data_path){ system *%W[7za x #{@archive}]}
@@ -46,7 +46,8 @@ class ExportMod
 
   def steam_workshop_dir
     # Pathname("/cygdrive/d/Games/Steam/steamapps/workshop/content/394360/")
-    Pathname("/cygdrive/d/Games/Steam/steamapps/")
+    # Pathname("/cygdrive/d/Games/Steam/steamapps/")
+    Pathname("/cygdrive/c/Program Files (x86)/Steam/")
   end
 end
 
@@ -67,7 +68,7 @@ class ExportMods
     export_path.mkpath
     mod_dir.children.each do |path|
       next unless path.file? and path.extname == ".mod"
-      ExportMod.new(path, export_path).export!
+      ExportMod.new(path, export_path).call
     end
   end
 end

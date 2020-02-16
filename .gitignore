@@ -1,6 +1,5 @@
 *.eu4
 *.ck2
-/eu4
 /source/*
 /output*/
 /ref*/
