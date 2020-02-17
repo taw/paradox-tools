@@ -3,6 +3,7 @@
 require "fileutils"
 require_relative "../lib/paradox"
 
+
 class ExportMod
   def initialize(mod_path, export_path)
     @mod_path = mod_path
@@ -56,7 +57,7 @@ class ExportMod
 
   def basename
     @basename ||= if archive?
-      Pathname(archive_path).basename(".zip").to_s
+      Pathname(archive_path).basename("_legacy.bin").to_s
     else
       Pathname(data_path).basename.to_s
     end
@@ -87,20 +88,18 @@ class ExportMod
   end
 
   def steam_workshop_dir
-    # Pathname("/cygdrive/d/Games/Steam/steamapps/workshop/content/394360/")
-    # Pathname("/cygdrive/d/Games/Steam/steamapps/")
     Pathname("/cygdrive/c/Program Files (x86)/Steam/")
   end
 end
-
+  
 class ExportMods
   # These don't seem to be directly in win32 registry
   def mod_dir
-    Pathname("/cygdrive/c/Users/taw/Documents/Paradox Interactive/Hearts of Iron IV/mod")
+    Pathname("/cygdrive/c/Users/taw/Documents/Paradox Interactive/Europa Universalis IV/mod")
   end
 
   def export_path
-    Pathname("output/hoi4_mods")
+    Pathname("output/eu4_mods")
   end
 
   def call
