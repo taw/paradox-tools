@@ -59,6 +59,16 @@ class PropertyList
     end
   end
 
+  def map(&blk)
+    result = PropertyList.new
+    @entries.each do |prop|
+      prop = yield(prop)
+      raise "#map block must return Property objects" unless prop.is_a?(Property)
+      result.add! prop
+    end
+    result
+  end
+
   def uniq!
     @entries = @entries.uniq
   end
