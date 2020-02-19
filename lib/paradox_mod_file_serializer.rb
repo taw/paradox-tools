@@ -39,7 +39,8 @@ class ParadoxModFileSerializer
       '"' + val + '"'
     else
       # Could be String that needs escaping, or something else unusual
-      raise "No idea how to serialize #{val.inspect}"
+      warn "No idea how to serialize #{val.inspect}, encoding might be wrong"
+      '"' + val + '"'
     end
   end
 
