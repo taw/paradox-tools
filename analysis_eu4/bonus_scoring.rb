@@ -918,9 +918,9 @@ class BonusScoring
       when :monthly_dip_points
         total += v*1.0
       when :monthly_adm_points
-        total += v*1.2
+        total += v*1.3
       when :monthly_mil_points
-        total += v*0.8
+        total += v*0.7
       when :colonists
         # Definitely the most important agent type by huge margin
         total += 3*v
@@ -941,7 +941,7 @@ class BonusScoring
       when :global_missionary_strength
         total += 50.0*v
       when :global_revolt_risk
-        total -= 1.0*v
+        total -= 0.75*v
       when :global_autonomy
         total += -5.0*v
       when :province_warscore_cost
@@ -967,9 +967,9 @@ class BonusScoring
         # Doubling total manpower
         total += v*4
       when :global_colonial_growth
-        total += v/25.0
+        total += v/50.0
       when :extra_minor_abilities
-        total += v*0.5
+        total += v*0.25
       when :extra_cbs
         # Tech group based CBs got nerfed
         # and good CBs are less important now that you'll get universal CBs late game
