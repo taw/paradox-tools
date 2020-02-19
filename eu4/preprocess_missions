@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "./partial_evaluator"
+
+class PreprocessMissions < ParadoxGame
+  def initialize(*args)
+    super
+    @pe = PartialEvaluator.new
+  end
+
+  def call
+    glob("missions/*").each do |path|
+      node = ParadoxModFile.new(string: resolve(path).read.gsub("î", "i")).parse!
+      node_out = @pe.call(node)
+      output_path = Pathname("output/preprocessed/#{path}")
+      output_path.parent.mkpath
+      output_path.write(ParadoxModFileSerializer.serialize(node_out))
+    end
+  end
+end
+
+PreprocessMissions.new(*ARGV).call

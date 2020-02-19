@@ -69,6 +69,10 @@ class PropertyList
     result
   end
 
+  def include?(prop)
+    @entries.include?(prop)
+  end
+
   def uniq!
     @entries = @entries.uniq
   end
