@@ -39,6 +39,7 @@ class BonusScoring
     :heir_chance,
 
     # Presitge is just so irrelevant let's not bother tracking it
+    # FIXME: I'm not totally convinced of this anymore
     :prestige,
     :prestige_decay,
     :prestige_from_land,
@@ -84,6 +85,7 @@ class BonusScoring
     :rr_girondists_influence,
     :rr_royalists_influence,
     :rr_jacobins_influence,
+    :pr_captains_influence,
 
     # This could be a bit more exploitable, but it's still situational which direction you care about,
     :monthly_piety,
@@ -530,6 +532,12 @@ class BonusScoring
   # Extra pip speeds up siege by about 17%
   # Asssume 80% of sieges have leaders
   def leader_siege(v)
+    siege_ability v*0.17*0.80
+  end
+
+  # Extra pip speeds up siege by about 17%
+  # Asssume 80% of sieges are blockaded
+  def siege_blockade_progress(v)
     siege_ability v*0.17*0.80
   end
 
@@ -1028,6 +1036,8 @@ class BonusScoring
         # going over cap would be really unusual
       when :maintain_dynasty
         # mostly bad as it prevents PUs, but it's so conditional either way it's best to score as zero
+      when :expel_minorities_cost
+        # not really worth it ever
       else
         warn "#{k} not scored"
       end

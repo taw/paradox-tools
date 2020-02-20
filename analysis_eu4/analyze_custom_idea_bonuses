@@ -9,7 +9,7 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
   def call
     print_scores!
     [50, 100, 150, 200, 300, 400, 600].each do |max_cost|
-     puts ""
+      puts ""
       puts "Simplex for cost=#{max_cost}"
       run_simplex!(max_cost)
     end

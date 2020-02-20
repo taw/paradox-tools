@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/paradox"
+require_relative "bonus_scoring"
+
+class EvaluateCustomNation < ParadoxGame
+  # from common/defines.lua
+  def default_custom_idea_costs
+    [0, 5, 15, 30]
+  end
+
+  def multipliers
+    [
+      2.0, 2.0,
+      2.0, 1.8, 1.6, 1.4, 1.2, 1.0, 1.0,
+      1.0,
+    ]
+  end
+
+  def custom_ideas
+    unless @custom_ideas
+      @custom_ideas = []
+      glob("common/custom_ideas/*").each do |path|
+        parse(path).each do |subnode_name, subnode|
+          subnode.each do |idea_name, idea|
+            next if idea_name == "category"
+            idea = idea.to_h
+            idea.delete "default"
+            idea.delete "chance"
+            idea.delete "enabled"
+            max_level = idea.delete("max_level") || 4
+            levels = max_level.times.map do |i|
+              idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+            end
+            @custom_ideas << [idea_name, idea, levels]
+          end
+        end
+      end
+    end
+    @custom_ideas
+  end
+
+  def eu4_scoring(ideas)
+    puts "EU4 Scoring:"
+    total = 0
+    ideas.each_with_index do |(name, level), index|
+      idea = custom_ideas.find{|x| x[0] == name} or raise "Cannot find idea: #{name}"
+      value = idea[2][level-1] * multipliers[index]
+      puts "* #{name} #{level} - #{value}"
+      total += value
+    end
+    puts "Total: #{total}"
+  end
+
+  def our_scoring(ideas)
+    puts "Our Scoring:"
+    total = 0
+    ideas.each_with_index do |(name, level), index|
+      idea = custom_ideas.find{|x| x[0] == name} or raise "Cannot find idea: #{name}"
+      bonus = BonusScoring.new
+      idea[1].each do |k,v|
+        bonus.send(k,v)
+      end
+      value = bonus.score * level
+      puts "* #{name} #{level} - #{value}"
+      total += value
+    end
+    puts "Total: #{total.round(3)}"
+  end
+
+  def call(*ideas)
+    eu4_scoring(ideas)
+    puts ""
+    our_scoring(ideas)
+  end
+end
+
+EvaluateCustomNation.new(*ARGV).call(
+  ["custom_idea_slave_raiders", 1],
+  ["custom_global_trade_goods_size_modifier", 2],
+  ["custom_idea_core_creation", 2],
+  ["custom_idea_siege_ability", 2],
+  ["custom_siege_blockade_progress", 1],
+  ["custom_idea_years_of_nationalism", 1],
+  ["custom_idea_army_tradition", 2],
+  ["custom_improve_relation_modifier", 4],
+  ["custom_idea_colonists", 1],
+  ["custom_administrative_efficiency", 2],
+)
