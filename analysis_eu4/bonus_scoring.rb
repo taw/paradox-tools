@@ -887,6 +887,14 @@ class BonusScoring
     monthly_adm_points(v*15.0/16.0)
   end
 
+  def monarch_diplomatic_power(v)
+    monthly_dip_points(v*15.0/16.0)
+  end
+
+  def monarch_military_power(v)
+    monthly_mil_points(v*15.0/16.0)
+  end
+
   # This assumes you never take any policies beyond cap
   # (since there are so few really good ones)
   # so it's estimated value of extra policy

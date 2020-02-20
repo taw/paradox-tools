@@ -100,20 +100,22 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
     unless @custom_ideas
       @custom_ideas = []
       glob("common/custom_ideas/*").each do |path|
-        parse(path).values[0].each do |idea_name, idea|
-          next if idea_name == "category"
-          idea = idea.to_h
-          idea.delete "default"
-          idea.delete "chance"
-          idea.delete "enabled"
-          max_level = idea.delete("max_level") || default_max_level
-          levels = max_level.times.map do |i|
-            idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+        parse(path).each do |subnode_name, subnode|
+          subnode.each do |idea_name, idea|
+            next if idea_name == "category"
+            idea = idea.to_h
+            idea.delete "default"
+            idea.delete "chance"
+            idea.delete "enabled"
+            max_level = idea.delete("max_level") || default_max_level
+            levels = max_level.times.map do |i|
+              idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+            end
+            @custom_ideas << [idea_name, idea, idea_score(idea), levels]
           end
-          @custom_ideas << [idea_name, idea, idea_score(idea), levels]
         end
+        @custom_ideas.sort_by!{|u| -u[2]}
       end
-      @custom_ideas.sort_by!{|u| -u[2]}
     end
     @custom_ideas
   end

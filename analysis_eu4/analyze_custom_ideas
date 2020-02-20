@@ -60,6 +60,12 @@ class IdeaGroup
       level_1_val = 1 if level_1_val == true
 
       level = (bonus_val / level_1_val).round(2) # Cut to 2 digits to avoid float nonsense
+
+      if level < 0
+        warn "Level is negative! #{bonus_key} #{bonus_val}"
+        next
+      end
+
       if level.round == level and level <= levels.size
         level = level.to_i
         add_cost! levels[level.round-1], position_mult
@@ -137,17 +143,19 @@ class AnalyzeCustomIdeas < ParadoxGame
     unless @custom_ideas
       @custom_ideas = []
       glob("common/custom_ideas/*").each do |path|
-        parse(path).values[0].each do |idea_name, idea|
-          next if idea_name == "category"
-          idea = idea.to_h
-          idea.delete "default"
-          idea.delete "chance"
-          idea.delete "enabled"
-          max_level = idea.delete("max_level") || 4
-          levels = max_level.times.map do |i|
-            idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+        parse(path).each do |subnode_name, subnode|
+          subnode.each do |idea_name, idea|
+            next if idea_name == "category"
+            idea = idea.to_h
+            idea.delete "default"
+            idea.delete "chance"
+            idea.delete "enabled"
+            max_level = idea.delete("max_level") || 4
+            levels = max_level.times.map do |i|
+              idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+            end
+            @custom_ideas << [idea_name, idea, levels]
           end
-          @custom_ideas << [idea_name, idea, levels]
         end
       end
     end
