@@ -1,0 +1,16 @@
+# This is often needed when setting up new country by console
+# For example in 1.29 setting up custom daimyo is broken and needs this fix
+
+country_decisions = {
+	fix_missions = {
+		potential = {
+			ai = no
+		}
+		allow = {
+			always = yes
+		}
+		effect = {
+			swap_non_generic_missions = yes
+		}
+	}
+}

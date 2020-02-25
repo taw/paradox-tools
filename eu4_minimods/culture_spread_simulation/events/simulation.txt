@@ -1,0 +1,91 @@
+namespace = simulation
+
+province_event = {
+  id = simulation.1
+  title = "automatic_culture_conversion_title"
+  desc = "automatic_culture_conversion_description"
+  picture = BUDDHA_eventPicture
+  #hidden = yes
+
+  trigger = {
+    NOT = { culture = owner }
+    NOT = { unrest = 0 }
+    NOT = { nationalism = 1 }
+    is_core = owner
+    controlled_by = owner
+    OR = {
+      is_capital = yes
+      any_neighbor_province = {
+        has_owner_culture = yes
+        owned_by = ROOT
+      }
+    }
+  }
+
+  option = {
+    name = "automatic_culture_conversion_option"
+    change_culture = owner
+    ai_chance = { factor = 100 }
+  }
+
+  mean_time_to_happen = {
+    months = 1200
+    modifier = {
+      factor = 0.5
+      religion_group = owner
+    }
+    modifier = {
+      factor = 0.5
+      religion = owner
+    }
+    modifier = {
+      factor = 0.5
+      culture_group = owner
+    }
+  }
+}
+
+province_event = {
+  id = simulation.2
+  title = "automatic_religion_conversion_title"
+  desc = "automatic_religion_conversion_description"
+  picture = BUDDHA_eventPicture
+  #hidden = yes
+
+  trigger = {
+    NOT = { religion = owner }
+    NOT = { unrest = 0 }
+    NOT = { nationalism = 1 }
+    controlled_by = owner
+    is_core = owner
+    OR = {
+      is_capital = yes
+      any_neighbor_province = {
+        has_owner_religion = yes
+        owned_by = ROOT
+      }
+    }
+  }
+
+  option = {
+    name = "automatic_religion_conversion_option"
+    change_religion = owner
+    ai_chance = { factor = 100 }
+  }
+
+  mean_time_to_happen = {
+    months = 1200
+    modifier = {
+      factor = 0.5
+      religion_group = owner
+    }
+    modifier = {
+      factor = 0.5
+      culture = owner
+    }
+    modifier = {
+      factor = 0.5
+      culture_group = owner
+    }
+  }
+}
