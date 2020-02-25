@@ -579,4 +579,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       end
     end
   end
+
+  # Goes away in 1.30
+  def unlimited_states!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["base_values"]["max_states"] = 1000
+    end
+  end
 end

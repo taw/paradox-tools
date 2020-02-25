@@ -39,6 +39,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     # rebalance_unrest!
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
+    unlimited_states!
 
     # Experimental:
     if ENV["VERY_EXPERIMENTAL"]

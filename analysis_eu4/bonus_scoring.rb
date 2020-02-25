@@ -93,6 +93,9 @@ class BonusScoring
     # Far too conditional
     :devotion,
     :church_power_modifier,
+    :harmonization_speed,
+    :meritocracy,
+    :monthly_militarized_society,
 
     # Sailors seriously just don't matter
     :global_sailors_modifier,
@@ -118,20 +121,12 @@ class BonusScoring
     land_forcelimit(12*v)
   end
 
-  # They aren't worth the same, but very conditional and hard to judge value
-  def may_perform_slave_raid(v)
-    extra_minor_abilities 1
-  end
-  def reduced_stab_impacts(v)
-    extra_minor_abilities 1
-  end
-
   def may_explore(v)
     @ht[:may_explore] += 1.0
   end
   def auto_explore_adjacent_to_colony(v)
     # Very weak explore variant, might be good enough for some countries
-    @ht[:may_explore] += 0.25
+    @ht[:may_explore] += 0.1
   end
 
   # Assume used 75% of the time
@@ -195,9 +190,6 @@ class BonusScoring
   # Signs opposite since it's time vs modifier
   def fabricate_claims_cost(v)
     diplomats 2 * 1.5 * 0.25 * -v
-  end
-  def improve_relation_modifier(v)
-    diplomats 2 * 1.5 * 0.25 * v
   end
   def justify_trade_conflict_cost(v)
     diplomats 2 * 1.5 * 0.01 * -v
@@ -529,6 +521,11 @@ class BonusScoring
     global_missionary_strength 0.25 * v
   end
 
+  # Assume 2% of your budget goes on missionary maintenance
+  def missionary_maintenance_cost(v)
+    money -0.02*v
+  end
+
   # Extra pip speeds up siege by about 17%
   # Asssume 80% of sieges have leaders
   def leader_siege(v)
@@ -536,9 +533,10 @@ class BonusScoring
   end
 
   # Extra pip speeds up siege by about 17%
-  # Asssume 80% of sieges are blockaded
+  # It used to treat inland sieges as blockaded but they changed it
+  # Asssume 30% of sieges are coastal and blockaded
   def siege_blockade_progress(v)
-    siege_ability v*0.17*0.80
+    siege_ability v*0.17*0.30
   end
 
   # I assume this adds to base of 15% (20% in home territory) not 100%
@@ -770,6 +768,9 @@ class BonusScoring
   def imperial_authority(v)
   end
 
+  def imperial_mandate(v)
+  end
+
   # Growth triggers once a year
   # Settler chance triggers once a month for chance of 1% of +25 colonists
   # Assume 90% of colonies have settlers, and 75% of them are under cap where this is relevant
@@ -873,9 +874,10 @@ class BonusScoring
     ae_impact(-v/0.75)
   end
 
-  # Asssume cap is reachable 25% of the time
+  # Asssume cap is reachable 75% of the time
+  # After government reforms it's pretty much true
   def max_absolutism(v)
-    absolutism 0.75 * v
+    absolutism 0.25 * v
   end
 
   def absolutism(v)
@@ -905,15 +907,16 @@ class BonusScoring
 
   # This assumes you never take any policies beyond cap
   # (since there are so few really good ones)
-  # so it's estimated value of extra policy
+  # so it's estimated value of extra policy 50%
+  # Another 50% because you won't get a chance to use it until second half of the game
   def free_adm_policy(v)
-    monthly_mixed_monarch_points 0.5*v
+    monthly_mixed_monarch_points 0.5 * 0.5 * v
   end
   def free_dip_policy(v)
-    monthly_mixed_monarch_points 0.5*v
+    monthly_mixed_monarch_points 0.5 * 0.5 * v
   end
   def free_mil_policy(v)
-    monthly_mixed_monarch_points 0.5*v
+    monthly_mixed_monarch_points 0.5 * 0.5 * v
   end
 
   # Assume 60% the enemies are wrong religion
@@ -984,8 +987,11 @@ class BonusScoring
         total += v*4
       when :global_colonial_growth
         total += v/50.0
-      when :extra_minor_abilities
-        total += v*0.25
+      # They aren't worth the same, but very conditional and hard to judge value
+      when :may_perform_slave_raid
+        total += 0.5 # true
+      when :reduced_stab_impacts
+        total += 0.5 # true
       when :extra_cbs
         # Tech group based CBs got nerfed
         # and good CBs are less important now that you'll get universal CBs late game
@@ -1004,7 +1010,7 @@ class BonusScoring
       when :hostile_attrition
         # Because of 5% attrition cap this is very poor effect, even this is probably overvaluing it
         total += 0.1*v
-      when :relations_decay_of_me
+      when :improve_relation_modifier
         total += 2*v
       when :ae_impact
         # Especially when stacking, this can be amazing
@@ -1015,8 +1021,8 @@ class BonusScoring
       when :reduced_liberty_desire
         # 3 points are as good as 1 point of diplomatic reputation when it comes to subjects
         # It does nothing for all other uses of diplomatic reputation
-        # For total assume 25% of relations you care about are subject relations
-        total += v / 12.0
+        # For total assume 10% of relations you care about are subject LD
+        total += v / 3.0 * 0.1
       when :yearly_absolutism
         # This is going to get capped really quickly
       when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :amount_of_banners, :monthly_fervor_increase, :yearly_harmony
@@ -1038,6 +1044,11 @@ class BonusScoring
         # mostly bad as it prevents PUs, but it's so conditional either way it's best to score as zero
       when :expel_minorities_cost
         # not really worth it ever
+      when :possible_condottieri
+        # condottieri are basically useless
+      when :center_of_trade_upgrade_cost
+        # this is almost never worth it except for dev pushing institutions
+        # or for completing missions
       else
         warn "#{k} not scored"
       end

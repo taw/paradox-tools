@@ -45,9 +45,16 @@ class EvaluateCustomNation < ParadoxGame
     total = 0
     ideas.each_with_index do |(name, level), index|
       idea = custom_ideas.find{|x| x[0] == name} or raise "Cannot find idea: #{name}"
-      value = idea[2][level-1] * multipliers[index]
-      puts "* #{name} #{level} - #{value}"
-      total += value
+      base_cost = idea[2][level-1]
+      extra_cost = base_cost * (multipliers[index] - 1).round(1)
+      base_cost = base_cost.to_i if base_cost == base_cost.to_i
+      extra_cost = extra_cost.to_i if extra_cost == extra_cost.to_i
+      if extra_cost > 0
+        puts "* #{name} #{level} - #{base_cost} + #{extra_cost}"
+      else
+        puts "* #{name} #{level} - #{base_cost}"
+      end
+      total += base_cost + extra_cost
     end
     puts "Total: #{total}"
   end
@@ -61,8 +68,10 @@ class EvaluateCustomNation < ParadoxGame
       idea[1].each do |k,v|
         bonus.send(k,v)
       end
-      value = bonus.score * level
-      puts "* #{name} #{level} - #{value}"
+      value = (bonus.score * level)
+      eu4_cost = idea[2][level-1] * multipliers[index]
+      roi = 100 * value / eu4_cost
+      puts "* #{name} #{level} - #{value.round(3)} [ROI: #{roi.round(1)}]"
       total += value
     end
     puts "Total: #{total.round(3)}"
@@ -77,13 +86,13 @@ end
 
 EvaluateCustomNation.new(*ARGV).call(
   ["custom_idea_slave_raiders", 1],
-  ["custom_global_trade_goods_size_modifier", 2],
   ["custom_idea_core_creation", 2],
+  ["custom_global_trade_goods_size_modifier", 2],
   ["custom_idea_siege_ability", 2],
   ["custom_siege_blockade_progress", 1],
-  ["custom_idea_years_of_nationalism", 1],
   ["custom_idea_army_tradition", 2],
-  ["custom_improve_relation_modifier", 4],
+  ["custom_improve_relation_modifier", 3],
+  ["custom_province_warscore_cost", 2],
   ["custom_idea_colonists", 1],
   ["custom_administrative_efficiency", 2],
 )
