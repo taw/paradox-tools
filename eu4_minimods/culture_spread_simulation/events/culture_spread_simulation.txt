@@ -1,3 +1,8 @@
+# This is a cool idea, but it makes Ming too stable even at low settings
+# And at low it makes too little difference anywhere else
+# Maybe something interesting can be made of it
+# (or just block it for China)
+
 namespace = simulation
 
 province_event = {
@@ -28,8 +33,9 @@ province_event = {
     ai_chance = { factor = 100 }
   }
 
+  # mtth best case scenario = 20y
   mean_time_to_happen = {
-    months = 1200
+    months = 960
     modifier = {
       factor = 0.5
       religion_group = owner
@@ -41,6 +47,25 @@ province_event = {
     modifier = {
       factor = 0.5
       culture_group = owner
+    }
+    modifier = {
+      factor = 4
+      has_terrain = mountain
+    }
+    modifier = {
+      factor = 2
+      has_terrain = highlands
+    }
+    modifier = {
+      factor = 2
+      has_terrain = hills
+    }
+    # for border gore avoidance, clean up enclaves really fast
+    modifier = {
+      factor = 4
+      any_neighbor_province = {
+        culture = ROOT
+      }
     }
   }
 }
@@ -73,8 +98,9 @@ province_event = {
     ai_chance = { factor = 100 }
   }
 
+  # mtth best case scenario = 50y
   mean_time_to_happen = {
-    months = 1200
+    months = 2400
     modifier = {
       factor = 0.5
       religion_group = owner
@@ -86,6 +112,25 @@ province_event = {
     modifier = {
       factor = 0.5
       culture_group = owner
+    }
+    modifier = {
+      factor = 4
+      has_terrain = mountain
+    }
+    modifier = {
+      factor = 2
+      has_terrain = highlands
+    }
+    modifier = {
+      factor = 2
+      has_terrain = hills
+    }
+    # for border gore avoidance, clean up enclaves really fast
+    modifier = {
+      factor = 4
+      any_neighbor_province = {
+        religion = ROOT
+      }
     }
   }
 }
