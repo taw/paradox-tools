@@ -1151,6 +1151,19 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def change_focus_any_time!
+    override_defines_lua!("change_focus_any_time",
+      "NDefines.NCharacter.CHANGE_FOCUS_YEARS" => 0
+    )
+  end
+
+  def no_artifact_loss_on_succession!
+    override_defines_lua!("no_artifact_loss_on_succession",
+      "NDefines.NCharacter.TREASURY_CHANCE_TO_DISAPPEAR_STANDARD" => 0,
+      "NDefines.NCharacter.TREASURY_CHANCE_TO_DISAPPEAR_NO_HEIR" => 0,
+    )
+  end
+
   def apply!
     ### Definitely still want:
     allow_everyone_river_access!
@@ -1171,6 +1184,9 @@ class CK2TweaksGameModification < CK2GameModification
     divine_blood_full_fertility!
     no_random_coas!
     easier_seduction!
+    change_focus_any_time!
+    no_artifact_loss_on_succession!
+
     # TODO: de jure drift by title_decisions
 
     ### Less sure:
