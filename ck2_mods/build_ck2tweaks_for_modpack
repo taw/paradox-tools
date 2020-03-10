@@ -8,8 +8,9 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     super(
       ParadoxGame.new(
         "source/ck2_3.2.0",
+        "ck2_modpack/base",
       ),
-      "output/ck2tweaks",
+      "ck2_modpack/ck2tweaks_unmerged",
     )
   end
   def build_mod_files!

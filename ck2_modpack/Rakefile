@@ -13,7 +13,7 @@ require "shellwords"
   "claim_sayyid",
   "colored buttons",
   "songs",
-  "!bigger_lists", # this is expected conflict with arumbamodpack but I don't want to complicate things
+  "!bigger_lists", # this is expected conflict with arumbamodpack but I don"t want to complicate things
   "aao",
   "biggerinterface", # in arumbamodpack
   "childhood",
@@ -161,12 +161,12 @@ task "mods:gavelkind:fetch" do
     sh "git clone https://github.com/gavelkind/vassal_culture_alerts"
     sh "git clone https://github.com/gavelkind/pact_traits"
     # https://github.com/gavelkind/invitation_traits # in base game now?
-    # https://github.com/gavelkind/challenge_traits # don't want
+    # https://github.com/gavelkind/challenge_traits # don"t want
     sh "git clone https://github.com/gavelkind/title_info"
     # https://github.com/gavelkind/fitna_fracture # using Steam version
     sh "git clone https://github.com/gavelkind/show_council"
     sh "git clone https://github.com/gavelkind/notify_on_adulthood"
-    # https://github.com/gavelkind/elective_leagues # don't want
+    # https://github.com/gavelkind/elective_leagues # don"t want
   end
 end
 
@@ -180,20 +180,40 @@ task "cleanup" do
   sh "trash", "mods_unpacked"
 end
 
+def copy_all_files(source_dir, target_dir)
+  source_dir.find do |source_file|
+    next if source_file.directory?
+    relpath = source_file.relative_path_from(source_dir)
+    target_file = target_dir + relpath
+    target_file.parent.mkpath
+    if target_file.exist?
+      warn "#{target_file} already exists"
+    end
+    FileUtils.cp source_file, target_file
+  end
+end
+
 desc "Create base modpack"
 task "base" do
   fresh_dir("base")
   Pathname("mods_unpacked").children.sort.reverse.each do |mod|
     next unless mod.directory? # ignore .mod files
-    mod.find do |source_file|
-      next if source_file.directory?
-      relpath = source_file.relative_path_from(mod)
-      target_file = Pathname("base") + relpath
-      target_file.parent.mkpath
-      if target_file.exist?
-        warn "#{target_file} already exists"
-      end
-      FileUtils.cp source_file, target_file
-    end
+    copy_all_files(mod, Pathname("base"))
   end
+end
+
+desc "Create CK2 Tweaks for modpack"
+task "ck2tweaks" => "base" do
+  Dir.chdir("..") do
+    sh "./ck2_mods/build_ck2tweaks_for_modpack"
+  end
+end
+
+desc "Build full modpack"
+task "build" => "ck2tweaks" do
+  target_dir = Pathname("ck2tweaks")
+  fresh_dir target_dir
+  copy_all_files Pathname("base"), target_dir
+  copy_all_files Pathname("ck2tweaks_unmerged"), target_dir
+  FileUtils.cp "ck2tweaks_unmerged.mod", "ck2tweaks.mod"
 end

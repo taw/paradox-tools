@@ -1191,7 +1191,7 @@ class CK2TweaksGameModification < CK2GameModification
 
     ### Less sure:
     extra_cb_de_jure_duchy_conquest!
-    reduce_wrong_gov_type_penalties!
+    # reduce_wrong_gov_type_penalties!
     seduce_any_religion!
     increase_vassal_limit!
     allow_feasts_at_minor_wars!
@@ -1200,10 +1200,10 @@ class CK2TweaksGameModification < CK2GameModification
     fix_council_positions!
 
     ### Specific things for specific campaign, kept for reference:
-    nerf_holy_wars_cb!
     allow_heir_designation!
     allow_joining_all_wars!
 
+    # nerf_holy_wars_cb!
     # fix_regency! # Is it fixed in 3.0 ???
     # no_multiple_empires!
     # more_battle_captives!
@@ -1230,6 +1230,6 @@ class CK2TweaksGameModification < CK2GameModification
     # adventurers_cap!
     # much_less_attriton!
     # remove_siege_defense_bonus!
-    make_title_creation_expensive!
+    # make_title_creation_expensive!
   end
 end
