@@ -1,41 +1,144 @@
 require "pathname"
+require "shellwords"
+
+# Explicit include list
+@included_mods = [
+  "animeportraits",
+  "assumethecaliphate",
+  "bastards",
+  "better forts",
+  "bibliophile",
+  "blueduke",
+  "bringchild",
+  "claim_sayyid",
+  "colored buttons",
+  "songs",
+  "!bigger_lists", # this is expected conflict with arumbamodpack but I don't want to complicate things
+  "aao",
+  "biggerinterface", # in arumbamodpack
+  "childhood",
+  "culturalbonuses", # a lot of complexity for trivial bonuses ?
+  "destroy and convert settlement",
+  "fitna_fracture",
+  "goldforfavors",
+  "gonzo republics mod",
+  "impossible_invitation_warning",
+  "interface_century_gothic", # in arumbamodpack
+  "jk_meaningful_borders",
+  "mc01",
+  "mend the eastern schisms",
+  "mistress",
+  "moreambitionsfindpurpose",
+  "morebuildablewonders",
+  "nicknames+++",
+  "orangeransom",
+  "patron_deities",
+  "prisonermarriage",
+  "randomhordes",
+  "realistic battles",
+  "reformation_more_doctrines_six",
+  "release_vassal",
+  "same succussion",
+  "simple_terrain",
+  "take_artifacts_decisions",
+  "the_great_trade_league", # maybe too complicated?
+  "vhf", # better mod replaces this one, can I get it? (real fathers)
+  "you_ain't_getting_anything_from_me",
+]
 
 # These do not belong in any modpack (total conversions etc.)
 # or conflict with other mods
-excluded_mods = [
+@excluded_mods = [
+  "court assistant", # CK2+
+  "arumbamodpack", # too old, doesn't work
+  "fotranytier", # too old
+  "advanced trade systems", # "This mod is currently undergoing a major overhaul."
+  "attribute", # cute idea but really complicated
+  "ck2tweaks", # that's my tweaks, will apply afterwards
+  "cow", # conflicts
+  "fixed_smith_prices", # conflicts with aao
   "mnr ck2plus", # ck2+ submod
-  "modern_flags", # submod for modern_times
+  "modern_flags.mod", # submod for modern_times, also weird name
   "modern_times", # total conversion
   "no_artifact_losing", # already included
   "no_localized_ranks", # already included
+  "no_lowborn", # no idea what are implications of this
   "no_satan_masks_red_cloth", # animeportraits
   "paganwomengetconsorts", # too many conflicts
+  "personal_castle", # great works system is basically same in vanilla
+  "piousreformation", # vanilla system is fine I guess
+  "reformationreform", # too big of a change unless playing campaign focused on this
+  "relatable_borders", # feels too modern timesy?
+  "six_religious_doctrines", # got renamed to reformation_more_doctrines_six
+  "thickandthinborder", # outdated according to Steam Workshop comments
+  "unique_buildings", # CK2+ submod
   "unlimited focus", # already included
+  "way_of_play", # presumably outdated
   "world of ideologies", # modern times stuff
 ]
+
+def fresh_dir(dir)
+  dir = Pathname(dir)
+  sh "trash", dir.to_s if dir.exist?
+  dir.mkpath
+end
+
+def what_to_do_with(mod)
+  @seen ||= {}
+  return :skip if @excluded_mods.include?(mod)
+  return :keep if @included_mods.include?(mod)
+  unless @seen[mod]
+    warn "What to do with #{mod}?"
+    @seen[mod] = true
+  end
+  :keep
+end
+
+def unpack_file(path)
+  dest_path = Pathname("mods_unpacked") + path.basename(".zip")
+  dest_path.mkpath
+  Dir.chdir(dest_path) do
+    sh "7za x -aou ../../#{path.to_s.shellescape} >/dev/null"
+    # Steam weird stuff, two descriptors in same zip
+    # Actually we should kill all root level files
+    [
+      # Weird files
+      "thumb.jpg",
+      "Thumbs.db",
+      "descriptor.mod",
+      "descriptor_1.mod",
+      "changelog.txt",
+      # Weird dirs
+      "---- options ----",
+      "CK2PlusCulture",
+      "EMFCulture",
+      "IBLCulture",
+      "Look here for compatibility",
+      "SWMHCulture",
+      "backup",
+      "decisionsold",
+      "patches",
+      "interfaceold",
+    ].each do |bad_file|
+      if File.exist?(bad_file)
+        FileUtils.rm_rf bad_file
+      end
+    end
+  end
+end
 
 desc "Unpack Steam and mods"
 task "mods:unpack:steam" do
   Pathname("mods_unpacked").mkpath
-  Pathname("steam_mods").children.each do |path|
+  Pathname("steam_mods").children.sort. each do |path|
     if path.extname == ".mod"
       bn = path.basename(".mod").basename(".mod").to_s
-      next if excluded_mods.include?(bn)
+      next if what_to_do_with(bn) == :skip
       FileUtils.cp path, Pathname("mods_unpacked") + path.basename
     elsif path.extname == ".zip"
       bn = path.basename(".zip").to_s
-      next if excluded_mods.include?(bn)
-      dest_path = Pathname("mods_unpacked") + path.basename(".zip")
-      dest_path.mkpath
-      Dir.chdir(dest_path) do
-        sh "7za", "x", "-aou", "../../#{path}"
-        # Steam weird stuff, two descriptors in same zip
-        ["thumb.jpg", "descriptor.mod", "descriptor_1.mod", "changelog.txt"].each do |bad_file|
-          if File.exist?(bad_file)
-            FileUtils.rm bad_file
-          end
-        end
-      end
+      next if what_to_do_with(bn) == :skip
+      unpack_file(path)
     end
   end
 end
@@ -43,8 +146,10 @@ end
 task "mods:unpack" => ["cleanup", "mods:unpack:steam", "mods:unpack:gavelkind"]
 
 desc "Unpack mods from gavelkind"
-task "mods:gavelkind:unpack" do
-  # ...
+task "mods:unpack:gavelkind" do
+  Pathname("gavelkind_mods").children.each do |path|
+    sh "cp -a #{path}/mod/* mods_unpacked/"
+  end
 end
 
 desc "Get mods from gavelkind"
@@ -73,4 +178,22 @@ end
 desc "Cleanup"
 task "cleanup" do
   sh "trash", "mods_unpacked"
+end
+
+desc "Create base modpack"
+task "base" do
+  fresh_dir("base")
+  Pathname("mods_unpacked").children.sort.reverse.each do |mod|
+    next unless mod.directory? # ignore .mod files
+    mod.find do |source_file|
+      next if source_file.directory?
+      relpath = source_file.relative_path_from(mod)
+      target_file = Pathname("base") + relpath
+      target_file.parent.mkpath
+      if target_file.exist?
+        warn "#{target_file} already exists"
+      end
+      FileUtils.cp source_file, target_file
+    end
+  end
 end
