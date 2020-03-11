@@ -315,10 +315,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   def subject_tweaks!
     soft_patch_defines_lua!("fun_and_balance_subject_tweaks",
-      ["NCountry.LIBERTY_DESIRE_HISTORICAL_FRIEND", -50, -30],
-      ["NCountry.LIBERTY_DESIRE_HISTORICAL_RIVAL", 50, 30],
-      ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
-      ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
+      # With state limit this made sense, but we no longer have that:
+      # ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
+
+      # This nerfs Japan real hard, and that's bad
+      # This also nerfs Timurids, and that's good
+      # So I'm undecided about it
+      # ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
+
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300]
     )
 
@@ -383,7 +387,39 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE
+  def holy_orders_for_all!
+    patch_mod_files!("common/holy_orders/00_holy_orders.txt") do |node|
+      ["jesuit_order", "dominican_order", "franciscan_order"].each do |k|
+        node[k]["trigger"] =  PropertyList[
+          "religion", "catholic",
+        ]
+      end
+    end
+  end
+
+  # Goes away in 1.30 anyway
+  def unlimited_states!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["base_values"]["max_states"] = 1000
+    end
+  end
+
+  def allow_peace_terms_for_all_cbs!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      node.each do |key, cb|
+        # It mostly just makes those CBs unusable
+        cb.delete! "attacker_disabled_po"
+      end
+    end
+
+    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
+      node["humiliate_rotw"].delete! "allowed_provinces_are_eligible"
+    end
+  end
+
+  ###################################################################
+  ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
+  ###################################################################
 
   def bring_tech_groups_back!
     warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
@@ -446,11 +482,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def rebalance_unrest!
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["prosperity"]["local_unrest"] = -2
-      node["devastation"]["local_unrest"] = 5
-      node["non_accepted_culture"]["local_unrest"] = 4
-      node["non_accepted_culture_republic"]["local_unrest"] = -2
+      # node["prosperity"]["local_unrest"] = -2
+      node["devastation"]["local_unrest"] = 4
+      # node["non_accepted_culture"]["local_unrest"] = 4
+      # node["non_accepted_culture_republic"]["local_unrest"] = -2
       node["under_siege"]["local_unrest"] = 4
       node["occupied"]["local_unrest"] = 4
     end
@@ -496,19 +534,21 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def rebalance_unrest_experimental!
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
     # This is experimental code:
     create_mod_file! "common/triggered_modifiers/02_age_rebels.txt", PropertyList[
       "rebels_age_of_discovery", PropertyList[
         "potential", PropertyList["current_age", "age_of_discovery"],
         "trigger", PropertyList["current_age", "age_of_discovery"],
         "tolerance_heathen", -2,
-        "tolerance_own", 2,
+        # "tolerance_own", 2,
       ],
       "rebels_age_of_reformation", PropertyList[
         "potential", PropertyList["current_age", "age_of_reformation"],
         "trigger", PropertyList["current_age", "age_of_reformation"],
         "tolerance_heretic", -2,
-        "tolerance_own", 2,
+        # "tolerance_own", 2,
       ],
       "rebels_age_of_absolutism", PropertyList[
         "potential", PropertyList["current_age", "age_of_absolutism"],
@@ -525,65 +565,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     # triggered extra unrest
   end
 
-  def allow_peace_terms_for_all_cbs!
-    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
-      node.each do |key, cb|
-        # It mostly just makes those CBs unusable
-        cb.delete! "attacker_disabled_po"
-      end
-    end
-
-    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
-      node["humiliate_rotw"].delete! "allowed_provinces_are_eligible"
-    end
-  end
-
-  def rebalance_expansion!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
-
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["land_province"]["max_attrition"] = 10
-    end
-
-    soft_patch_defines_lua!("fun_and_balance_expansion",
-      ["NCountry.EMBRACE_INSTITUTION_COST", 2.5, 5.0],
-      ["NEconomy.OVERSEAS_MIN_AUTONOMY", 75, 60],
-      ["NDiplomacy.PEACE_COST_DEMAND_PROVINCE", 1, 1.5],
-      ["NDiplomacy.PEACE_COST_RETURN_CORE", 1, 0.5],
-      ["NDiplomacy.PEACE_COST_REVOKE_CORE", 0.5, 0.25],
-      ["NDiplomacy.PEACE_COST_RELEASE_ANNEXED", 1, 0.5],
-      ["NDiplomacy.PEACE_COST_RELEASE_VASSAL", 0.5, 0.25],
-      ["NDiplomacy.PEACE_COST_CONVERSION", 1, 0.5],
-      ["NDiplomacy.PEACE_COST_RELEASE", 2, 1],
-      ["NDiplomacy.PEACE_COST_GIVE_UP_CLAIM", 20, 5],
-      ["NDiplomacy.PEACE_COST_TRADE_POWER", 30, 10],
-      ["NDiplomacy.PEACE_COST_STEER_TRADE", 60, 20],
-    )
-  end
-
   def all_religions_propagate_by_trade!
     warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_mod_file!("common/trading_policies/00_trading_policies.txt") do |node|
       node["propagate_religion"]["can_select"].delete! "religion_group"
       node["propagate_religion"]["can_maintain"].delete! "religion_group"
-    end
-  end
-
-  def holy_orders_for_all!
-    patch_mod_files!("common/holy_orders/00_holy_orders.txt") do |node|
-      ["jesuit_order", "dominican_order", "franciscan_order"].each do |k|
-        node[k]["trigger"] =  PropertyList[
-          "religion", "catholic",
-        ]
-      end
-    end
-  end
-
-  # Goes away in 1.30
-  def unlimited_states!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["base_values"]["max_states"] = 1000
     end
   end
 end

@@ -8,7 +8,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     cheaper_fort_maintenance!
     coalition_cb_defend_capital!
     custom_nation_tweaks!
-    disable_burgundy_inheritance!
+    # disable_burgundy_inheritance! # it goes away in 1.30
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
     double_corruption_slider!
@@ -36,17 +36,14 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     subject_tweaks!
     trade_map_fixes!
     rebalance_hre!
-    # rebalance_unrest!
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
     unlimited_states!
 
     # Experimental:
-    if ENV["VERY_EXPERIMENTAL"]
-      rebalance_expansion!
-      all_religions_propagate_by_trade!
-      rebalance_unrest_experimental!
-    end
+    rebalance_unrest!
+    rebalance_unrest_experimental!
+    # all_religions_propagate_by_trade!
 
     soft_patch_defines_lua!(
       "fun_and_balance",
