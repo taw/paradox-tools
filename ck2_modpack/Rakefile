@@ -7,7 +7,6 @@ require "shellwords"
   "assumethecaliphate",
   "bastards",
   "better forts",
-  "bibliophile",
   "blueduke",
   "bringchild",
   "claim_sayyid",
@@ -49,14 +48,15 @@ require "shellwords"
 # These do not belong in any modpack (total conversions etc.)
 # or conflict with other mods
 @excluded_mods = [
-  "court assistant", # CK2+
-  "arumbamodpack", # too old, doesn't work
-  "fotranytier", # too old
   "advanced trade systems", # "This mod is currently undergoing a major overhaul."
+  "arumbamodpack", # too old, doesn't work
   "attribute", # cute idea but really complicated
+  "bibliophile", # too many error.log entries
   "ck2tweaks", # that's my tweaks, will apply afterwards
+  "court assistant", # CK2+
   "cow", # conflicts
   "fixed_smith_prices", # conflicts with aao
+  "fotranytier", # too old
   "mnr ck2plus", # ck2+ submod
   "modern_flags.mod", # submod for modern_times, also weird name
   "modern_times", # total conversion
@@ -203,7 +203,8 @@ task "base" do
 end
 
 desc "Create CK2 Tweaks for modpack"
-task "ck2tweaks" => "base" do
+task "ck2tweaks" do
+  sh "trash", "ck2tweaks_unmerged"
   Dir.chdir("..") do
     sh "./ck2_mods/build_ck2tweaks_for_modpack"
   end
@@ -216,4 +217,9 @@ task "build" => "ck2tweaks" do
   copy_all_files Pathname("base"), target_dir
   copy_all_files Pathname("ck2tweaks_unmerged"), target_dir
   FileUtils.cp "ck2tweaks_unmerged.mod", "ck2tweaks.mod"
+end
+
+desc "Upload"
+task "upload" do
+  sh "upload_ck2_mod ck2tweaks ck2tweaks.mod"
 end

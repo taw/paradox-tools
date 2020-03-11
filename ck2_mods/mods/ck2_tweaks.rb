@@ -1153,14 +1153,14 @@ class CK2TweaksGameModification < CK2GameModification
 
   def change_focus_any_time!
     override_defines_lua!("change_focus_any_time",
-      "NDefines.NCharacter.CHANGE_FOCUS_YEARS" => 0
+      "NCharacter.CHANGE_FOCUS_YEARS" => 0,
     )
   end
 
   def no_artifact_loss_on_succession!
     override_defines_lua!("no_artifact_loss_on_succession",
-      "NDefines.NCharacter.TREASURY_CHANCE_TO_DISAPPEAR_STANDARD" => 0,
-      "NDefines.NCharacter.TREASURY_CHANCE_TO_DISAPPEAR_NO_HEIR" => 0,
+      "NCharacter.TREASURY_CHANCE_TO_DISAPPEAR_STANDARD" => 0,
+      "NCharacter.TREASURY_CHANCE_TO_DISAPPEAR_NO_HEIR" => 0,
     )
   end
 
@@ -1191,7 +1191,6 @@ class CK2TweaksGameModification < CK2GameModification
 
     ### Less sure:
     extra_cb_de_jure_duchy_conquest!
-    # reduce_wrong_gov_type_penalties!
     seduce_any_religion!
     increase_vassal_limit!
     allow_feasts_at_minor_wars!
@@ -1199,11 +1198,12 @@ class CK2TweaksGameModification < CK2GameModification
     stronger_claims_on_rebels!
     fix_council_positions!
 
-    ### Specific things for specific campaign, kept for reference:
+    # ### Specific things for specific campaign, kept for reference:
     allow_heir_designation!
     allow_joining_all_wars!
 
     # nerf_holy_wars_cb!
+    # reduce_wrong_gov_type_penalties!
     # fix_regency! # Is it fixed in 3.0 ???
     # no_multiple_empires!
     # more_battle_captives!

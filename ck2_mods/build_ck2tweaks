@@ -13,14 +13,16 @@ class CK2TweaksModBuilder < ParadoxModBuilder
     )
   end
   def build_mod_files!
-    apply_modifications! CK2TweaksGameModification,
-                         UITweaksGameModification,
-                         BecomeRepublicGameModification,
-                         VassalTransferGameModification,
-                         DynasticDecisionsGameModification,
-                         RulerDesignerResetGameModification,
-                         SuezCanalGameModification,
-                         FactionResistanceGameModification
+    apply_modifications!(
+      CK2TweaksGameModification,
+      UITweaksGameModification,
+      BecomeRepublicGameModification,
+      VassalTransferGameModification,
+      DynasticDecisionsGameModification,
+      RulerDesignerResetGameModification,
+      SuezCanalGameModification,
+      FactionResistanceGameModification,
+    )
     create_mod_descriptor!(
       name: "CK2 Tweaks",
       path: "mod/ck2tweaks",
