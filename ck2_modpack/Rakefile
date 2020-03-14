@@ -6,7 +6,6 @@ require "shellwords"
 # Explicit include list
 @included_mods = [
   "animeportraits",
-  "assumethecaliphate",
   "bastards",
   "better forts",
   "blueduke",
@@ -52,6 +51,7 @@ require "shellwords"
 @excluded_mods = [
   "advanced trade systems", # "This mod is currently undergoing a major overhaul."
   "arumbamodpack", # too old, doesn't work
+  "assumethecaliphate", # not compatible with latest version, breaks CBs etc.
   "attribute", # cute idea but really complicated
   "bibliophile", # too many error.log entries
   "ck2tweaks", # that's my tweaks, will apply afterwards
@@ -152,7 +152,7 @@ task "mods:unpack:steam" do
   end
 end
 
-task "mods:unpack" => ["cleanup", "mods:unpack:steam", "mods:unpack:gavelkind"]
+task "mods:unpack" => ["clean", "mods:unpack:steam", "mods:unpack:gavelkind"]
 
 desc "Unpack mods from gavelkind"
 task "mods:unpack:gavelkind" do
@@ -184,9 +184,15 @@ task "mods:conflicts" do
   sh "../bin/check_mod_compatibility mods_unpacked"
 end
 
-desc "Cleanup"
-task "cleanup" do
-  sh "trash", "mods_unpacked" if Pathname("mods_unpacked").exist?
+desc "Clean up"
+task "clean" do
+  %w[
+    base
+    ck2tweaks
+    ck2tweaks_unmerged
+  ].each do |path|
+    sh "trash", path if Pathname(path).exist?
+  end
 end
 
 def copy_all_files(source_dir, target_dir)

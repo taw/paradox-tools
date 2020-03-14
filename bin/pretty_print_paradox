@@ -25,4 +25,3 @@ end
 ARGV.each do |path|
   PrettyPrintParadox.new(path).call
 end
-
