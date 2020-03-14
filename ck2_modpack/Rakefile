@@ -1,4 +1,6 @@
 require "pathname"
+require "pathname-glob"
+require "pry"
 require "shellwords"
 
 # Explicit include list
@@ -98,7 +100,8 @@ def unpack_file(path)
   dest_path = Pathname("mods_unpacked") + path.basename(".zip")
   dest_path.mkpath
   Dir.chdir(dest_path) do
-    sh "7za x -aou ../../#{path.to_s.shellescape} >/dev/null"
+    # A lot of stupid shit here, multiple same name files:
+    sh "7za x -aoa ../../#{path.to_s.shellescape} >/dev/null"
     # Steam weird stuff, two descriptors in same zip
     # Actually we should kill all root level files
     [
@@ -124,13 +127,19 @@ def unpack_file(path)
         FileUtils.rm_rf bad_file
       end
     end
+    Pathname(".")
+      .children
+      .select{|x| x.extname =~ /\A\.(jpg|jpeg|png|txt|mod)\z/i }
+      .each do |bad_file|
+        FileUtils.rm_rf bad_file
+      end
   end
 end
 
 desc "Unpack Steam and mods"
 task "mods:unpack:steam" do
   Pathname("mods_unpacked").mkpath
-  Pathname("steam_mods").children.sort. each do |path|
+  Pathname("steam_mods").children.sort.each do |path|
     if path.extname == ".mod"
       bn = path.basename(".mod").basename(".mod").to_s
       next if what_to_do_with(bn) == :skip
@@ -177,7 +186,7 @@ end
 
 desc "Cleanup"
 task "cleanup" do
-  sh "trash", "mods_unpacked"
+  sh "trash", "mods_unpacked" if Pathname("mods_unpacked").exist?
 end
 
 def copy_all_files(source_dir, target_dir)
@@ -204,7 +213,7 @@ end
 
 desc "Create CK2 Tweaks for modpack"
 task "ck2tweaks" do
-  sh "trash", "ck2tweaks_unmerged"
+  sh "trash", "ck2tweaks_unmerged" if Pathname("ck2tweaks_unmerged").exist?
   Dir.chdir("..") do
     sh "./ck2_mods/build_ck2tweaks_for_modpack"
   end
