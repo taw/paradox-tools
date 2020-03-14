@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+
+require_relative "../lib/paradox_mod_file_serializer"
+require_relative "../lib/paradox_mod_file"
+require_relative "../lib/paradox"
+
+class PrettyPrintParadox
+  def initialize(path)
+    @path = Pathname(path)
+  end
+
+  def call
+    mod = ParadoxModFile.new(path: @path).parse!
+    puts ParadoxModFileSerializer.serialize(mod)
+  end
+end
+
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <path1.txt> ..."
+  exit 1
+end
+
+ARGV.each do |path|
+  PrettyPrintParadox.new(path).call
+end
+
