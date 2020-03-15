@@ -7,6 +7,7 @@ class FactionResistanceGameModification < CK2GameModification
     patch_mod_file!("events/plot_events.txt") do |node|
       node.find_all("letter_event").select{|x| x["trigger"]}.each do |ultimatum|
         faction = ultimatum["trigger"]["FROM"]["in_faction"]
+        next unless faction # modded
         case faction.sub(/\Afaction_/, "")
         when "succ_seniority", "succ_primogeniture", "succ_gavelkind"
           # These are harmless, keep 20%

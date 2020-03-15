@@ -5,45 +5,53 @@ require "shellwords"
 
 # Explicit include list
 @included_mods = [
+  # UI only
+  "!bigger_lists", # this is expected conflict with arumbamodpack but I don"t want to complicate things
   "animeportraits",
+  "biggerinterface", # in arumbamodpack
+  "blueduke",
+  "colored buttons",
+  "interface_century_gothic", # in arumbamodpack
+  "jk_meaningful_borders",
+  "orangeransom",
+  "simple_terrain",
+  "songs",
+  "you_ain't_getting_anything_from_me",
+
+  # Other mods
+  "aao",
+  "advancedplottermod",
+  "baptize grandchildren",
   "bastards",
   "better forts",
-  "blueduke",
   "bringchild",
-  "claim_sayyid",
-  "colored buttons",
-  "songs",
-  "!bigger_lists", # this is expected conflict with arumbamodpack but I don"t want to complicate things
-  "aao",
-  "biggerinterface", # in arumbamodpack
+  "canonize parents",
   "childhood",
+  "claim_sayyid",
+  "cuckolddecision",
   "culturalbonuses", # a lot of complexity for trivial bonuses ?
   "destroy and convert settlement",
+  "easyheresy",
   "fitna_fracture",
   "goldforfavors",
   "gonzo republics mod",
   "impossible_invitation_warning",
-  "interface_century_gothic", # in arumbamodpack
-  "jk_meaningful_borders",
   "mc01",
   "mend the eastern schisms",
   "mistress",
   "moreambitionsfindpurpose",
   "morebuildablewonders",
   "nicknames+++",
-  "orangeransom",
   "patron_deities",
   "prisonermarriage",
   "randomhordes",
   "realistic battles",
   "reformation_more_doctrines_six",
   "release_vassal",
-  "same succussion",
-  "simple_terrain",
   "take_artifacts_decisions",
   "the_great_trade_league", # maybe too complicated?
   "vhf", # better mod replaces this one, can I get it? (real fathers)
-  "you_ain't_getting_anything_from_me",
+  "ws_warrior_societies",
 ]
 
 # These do not belong in any modpack (total conversions etc.)
@@ -57,6 +65,7 @@ require "shellwords"
   "ck2tweaks", # that's my tweaks, will apply afterwards
   "court assistant", # CK2+
   "cow", # conflicts
+  "feudal can join lodges", # ws_warrior_societies already does it?
   "fixed_smith_prices", # conflicts with aao
   "fotranytier", # too old
   "mnr ck2plus", # ck2+ submod
@@ -71,6 +80,7 @@ require "shellwords"
   "piousreformation", # vanilla system is fine I guess
   "reformationreform", # too big of a change unless playing campaign focused on this
   "relatable_borders", # feels too modern timesy?
+  "same succussion", # this sort of breaks the game in HRE, only good for modded enatic campaigns
   "six_religious_doctrines", # got renamed to reformation_more_doctrines_six
   "thickandthinborder", # outdated according to Steam Workshop comments
   "unique_buildings", # CK2+ submod
@@ -137,7 +147,7 @@ def unpack_file(path)
 end
 
 desc "Unpack Steam and mods"
-task "mods:unpack:steam" do
+task "unpack:steam" do
   Pathname("mods_unpacked").mkpath
   Pathname("steam_mods").children.sort.each do |path|
     if path.extname == ".mod"
@@ -152,17 +162,17 @@ task "mods:unpack:steam" do
   end
 end
 
-task "mods:unpack" => ["clean", "mods:unpack:steam", "mods:unpack:gavelkind"]
+task "unpack" => ["clean", "unpack:steam", "unpack:gavelkind"]
 
 desc "Unpack mods from gavelkind"
-task "mods:unpack:gavelkind" do
+task "unpack:gavelkind" do
   Pathname("gavelkind_mods").children.each do |path|
     sh "cp -a #{path}/mod/* mods_unpacked/"
   end
 end
 
 desc "Get mods from gavelkind"
-task "mods:gavelkind:fetch" do
+task "gavelkind:fetch" do
   Pathname("gavelkind_mods").mkpath
   Dir.chdir("gavelkind_mods") do
     sh "git clone https://github.com/gavelkind/transfer_empty_province"
@@ -180,7 +190,7 @@ task "mods:gavelkind:fetch" do
 end
 
 desc "Show mod conflicts"
-task "mods:conflicts" do
+task "conflicts" do
   sh "../bin/check_mod_compatibility mods_unpacked"
 end
 
@@ -221,7 +231,7 @@ desc "Create CK2 Tweaks for modpack"
 task "ck2tweaks" do
   sh "trash", "ck2tweaks_unmerged" if Pathname("ck2tweaks_unmerged").exist?
   Dir.chdir("..") do
-    sh "./ck2_mods/build_ck2tweaks_for_modpack"
+    sh "rescue ./ck2_mods/build_ck2tweaks_for_modpack"
   end
 end
 
