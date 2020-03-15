@@ -198,6 +198,7 @@ desc "Clean up"
 task "clean" do
   %w[
     base
+    mods_unpacked
     ck2tweaks
     ck2tweaks_unmerged
   ].each do |path|
@@ -228,7 +229,7 @@ task "base" do
 end
 
 desc "Create CK2 Tweaks for modpack"
-task "ck2tweaks" do
+task "ck2tweaks_unmerged" do
   sh "trash", "ck2tweaks_unmerged" if Pathname("ck2tweaks_unmerged").exist?
   Dir.chdir("..") do
     sh "rescue ./ck2_mods/build_ck2tweaks_for_modpack"
@@ -236,13 +237,16 @@ task "ck2tweaks" do
 end
 
 desc "Build full modpack"
-task "build" => "ck2tweaks" do
+task "ck2tweaks" do
   target_dir = Pathname("ck2tweaks")
   fresh_dir target_dir
   copy_all_files Pathname("base"), target_dir
   copy_all_files Pathname("ck2tweaks_unmerged"), target_dir
   FileUtils.cp "ck2tweaks_unmerged.mod", "ck2tweaks.mod"
 end
+
+desc "Build"
+task "build" => ["clean", "unpack", "base", "ck2tweaks_unmerged", "ck2tweaks"]
 
 desc "Upload"
 task "upload" do

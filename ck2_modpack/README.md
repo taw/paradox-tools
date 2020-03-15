@@ -6,5 +6,4 @@ How to prepare a modpack for campaign:
 * `rake unpack` to generate `mods_unpacked`
 * `rake conflicts` until list is clean
 * If this is good, then proceed
-* `rake base` to create base
-* `rake build` to create ck2tweaks and merge with base
+* `rake build` to build the modpack
