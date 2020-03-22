@@ -8,7 +8,7 @@ class TraitsStatisticsAnalysis < CK2GameAndSaveAnalysis
     dead  = Hash.new(0)
     total = Hash.new(0)
     @data["character"].each do |character_id, character|
-      character_traits = character["traits"] or next
+      character_traits = (character["traits"] or character["tr"] or next)
       character_alive = !character["d_d"]
       character_traits.each do |trait_id|
         if character_alive
@@ -19,6 +19,8 @@ class TraitsStatisticsAnalysis < CK2GameAndSaveAnalysis
         total[trait_id] += 1
       end
     end
+
+    raise if total.empty?
 
     (1...total.keys.max).each do |id|
       trait_name = traits[id]
