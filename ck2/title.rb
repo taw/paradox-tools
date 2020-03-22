@@ -29,7 +29,11 @@ class Title
 
   def link!
     if @node["liege"]
-      liege_title = @node["liege"]["title"]
+      if @node["liege"].is_a?(String)
+        liege_title = @node["liege"]
+      else
+        liege_title = @node["liege"]["title"]
+      end
       @liege = Title[liege_title]
     end
     @liege.vassals << self if @liege
