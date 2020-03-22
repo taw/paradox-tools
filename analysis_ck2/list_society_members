@@ -15,13 +15,17 @@ class ListSocietyMembers < CK2GameAndSaveAnalysis
     @data["society"].each do |id, society|
       type = society["type"]
       leader_id = society["society_leader"]
-      leader = Character[leader_id]
+      leader = leader_id && Character[leader_id]
       members = society.find_all("member").map{|m|
         [m["society_rank"], full_title(Character[m["character"]])]
       }.sort_by{|r,m| [-r,m]}
 
       puts "#{id} #{type}"
-      puts "* Leader: #{full_title(leader)}"
+
+      if leader
+        puts "* Leader: #{full_title(leader)}"
+      end
+
       members.each do |r, m|
         puts "* Rank #{r}: #{m}"
       end

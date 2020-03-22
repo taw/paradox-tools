@@ -26,19 +26,19 @@ list = %Q[
   analysis_ck2/independent_countries $s $g
   analysis_ck2/list_artifacts $s $g
   analysis_ck2/list_descendants $s
-  analysis_ck2/list_landed_titles $s $g
   analysis_ck2/list_secret_believers $s $g
   analysis_ck2/list_society_members $s $g
   analysis_ck2/province_cultures $s
+  analysis_ck2/province_development $s $g
   analysis_ck2/province_religions $s
   analysis_ck2/province_tech $s
+  analysis_ck2/realm_tech $s
   analysis_ck2/religions_by_realm $s $g
   analysis_ck2/traits_statistics $s $g
   analysis_ck2/tribal_development $s
   analysis_ck2/vassal_cultures $s
 
-  analysis_ck2/province_development $s $g
-  analysis_ck2/realm_tech $s
+  analysis_ck2/list_landed_titles $g
   analysis_ck2/traits_translation_table $g
 ].lines.grep(/\S/).map(&:chomp).map(&:strip)
 
