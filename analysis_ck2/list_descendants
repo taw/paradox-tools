@@ -52,7 +52,15 @@ class ListDescendants
   def initialize(path, character_id)
     @path = path
     @data = ParadoxModFile.new(path: @path).parse!
-    @character_id = character_id
+    @character_id = character_id || first_player_id
+  end
+
+  def current_player_id
+    @data["player"]["id"]
+  end
+
+  def first_player_id
+    @data["character_history"].first["identity"]
   end
 
   def characters
@@ -115,9 +123,10 @@ class ListDescendants
   end
 end
 
-unless ARGV.size == 2
-  STDERR.puts "Usage: #{$0} <save.ck2> <character id> # non-compressed save only"
+unless ARGV.size == 1 or ARGV.size == 2
+  STDERR.puts "Usage: #{$0} <save.ck2> [<character id>] # non-compressed save only"
+  STDERR.puts "First character will be used if none is given"
   exit 1
 end
 
-ListDescendants.new(ARGV[0], ARGV[1].to_i).call
+ListDescendants.new(ARGV[0], ARGV[1]&.to_i).call
