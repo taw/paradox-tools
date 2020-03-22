@@ -8,10 +8,16 @@ class IndependentCountrieshAnalysis < CK2GameAndSaveAnalysis
       map = {}
       @data["title"].each do |name, title|
         next unless title["holder"]
-        if title["liege"]
-          map[name] = title["liege"]["title"]
-        else
+        liege = title["liege"]
+        if liege.is_a?(String)
+          map[name] = liege
+        elsif liege.is_a?(PropertyList) and liege["title"]
+
+          map[name] = liege["title"]
+        elsif liege.nil?
           map[name] = nil # own realm, but keep key
+        else
+          raise "Invalid liege data: #{liege}"
         end
       end
       map
