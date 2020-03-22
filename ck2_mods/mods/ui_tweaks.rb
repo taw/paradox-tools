@@ -8,6 +8,8 @@ class UITweaksGameModification < CK2GameModification
         # No special reason to be an ass
         # Titles with 0 opinion are mostly special stuff
         next unless (title["opinion_effect"] || 0) > 0
+        # this one backfires horribly if used
+        next if title_name == "teacher"
         title["is_high_prio"] = true
       end
     end
