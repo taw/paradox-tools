@@ -1082,6 +1082,13 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_file!("common/laws/ze_demesne_laws.txt") do |node|
       node["laws"]["ze_administration_laws_2"]["feudal_opinion"] = -30
     end
+    patch_mod_file!("common/laws/ze_council_power_laws.txt") do |node|
+      node["laws"].each do |law_name, law|
+        if law_name =~ /0/
+          law["vassal_opinion"] = -5
+        end
+      end
+    end
   end
 
   def increase_cap!(event)
@@ -1226,7 +1233,7 @@ class CK2TweaksGameModification < CK2GameModification
     # easier_title_creation!
 
     # Trying to make late game work:
-    # unhappy_late_vassals!
+    unhappy_late_vassals!
     # adventurers_cap!
     # much_less_attriton!
     # remove_siege_defense_bonus!
