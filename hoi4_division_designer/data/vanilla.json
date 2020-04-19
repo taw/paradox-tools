@@ -33,6 +33,39 @@
       "terrain_bonuses": {
       }
     },
+    "scout_plane": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0,
+      "fuel_consumption": 0,
+      "active": true,
+      "categories": [
+        "category_scout_plane"
+      ],
+      "type": [
+        "scout_plane"
+      ],
+      "name": "Scout Plane",
+      "equipment": {
+        "scout_plane_equipment": 1
+      },
+      "terrain_bonuses": {
+      }
+    },
     "cv_fighter": {
       "air_attack": 0,
       "breakthrough": 0,
@@ -561,7 +594,7 @@
       },
       "terrain_bonuses": {
         "amphibious": {
-          "attack": 0.5
+          "attack": 0.6
         },
         "forest": {
           "attack": -0.2,
@@ -572,7 +605,7 @@
           "movement": -0.4
         },
         "marsh": {
-          "attack": 0.2
+          "attack": 0.3
         },
         "mountain": {
           "attack": -0.1
@@ -582,7 +615,7 @@
           "movement": -0.1
         },
         "river": {
-          "attack": 0.3
+          "attack": 0.4
         },
         "urban": {
           "attack": -0.4,
@@ -623,7 +656,6 @@
         "amphibious_mechanized_equipment"
       ],
       "group": "mobile",
-      "hardness": 0.2,
       "manpower": 1200,
       "marines": true,
       "org": 60,
@@ -685,6 +717,7 @@
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -855,6 +888,7 @@
       "supply_use": 0.08,
       "fuel_consumption": 0,
       "active": true,
+      "affects_speed": false,
       "ap_attack": -0.15,
       "can_be_parachuted": true,
       "categories": [
@@ -1027,6 +1061,77 @@
         }
       }
     },
+    "armored_car": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
+      "suppression": 2.5,
+      "supply_use": 0.14,
+      "fuel_consumption": 0,
+      "active": true,
+      "categories": [
+        "category_front_line",
+        "category_army"
+      ],
+      "combat_width": 2,
+      "recovery_rate": 0.3,
+      "group": "mobile",
+      "manpower": 500,
+      "org": 10,
+      "hp": 2,
+      "training_time": 180,
+      "type": [
+        "motorized"
+      ],
+      "weight": 0.8,
+      "name": "Armored Car",
+      "equipment": {
+        "armored_car_equipment": 60
+      },
+      "terrain_bonuses": {
+        "amphibious": {
+          "attack": -0.4
+        },
+        "desert": {
+          "movement": 0.15
+        },
+        "forest": {
+          "attack": -0.2,
+          "movement": -0.4
+        },
+        "jungle": {
+          "attack": -0.3,
+          "movement": -0.5
+        },
+        "marsh": {
+          "attack": -0.1,
+          "movement": -0.2
+        },
+        "mountain": {
+          "attack": -0.1,
+          "movement": -0.1
+        },
+        "river": {
+          "attack": -0.2,
+          "movement": -0.2
+        },
+        "urban": {
+          "attack": -0.3
+        }
+      }
+    },
     "artillery": {
       "air_attack": 0,
       "breakthrough": -0.4,
@@ -1047,6 +1152,7 @@
       "supply_use": 0.16,
       "fuel_consumption": 0,
       "active": true,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -1092,6 +1198,7 @@
       "supply_use": 0.16,
       "fuel_consumption": 0,
       "active": true,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -1112,7 +1219,7 @@
       "weight": 0.1,
       "name": "Support Rocket Artillery",
       "equipment": {
-        "rocket_artillery_equipment": 24
+        "rocket_artillery_equipment": 12
       },
       "terrain_bonuses": {
       }
@@ -1285,7 +1392,8 @@
       "active": true,
       "categories": [
         "category_army",
-        "category_line_artillery"
+        "category_line_artillery",
+        "category_artillery"
       ],
       "combat_width": 3,
       "recovery_rate": 0.1,
@@ -1356,7 +1464,8 @@
       "active": true,
       "categories": [
         "category_army",
-        "category_line_artillery"
+        "category_line_artillery",
+        "category_artillery"
       ],
       "combat_width": 3,
       "recovery_rate": 0.1,
@@ -1429,7 +1538,8 @@
       "active": false,
       "categories": [
         "category_army",
-        "category_line_artillery"
+        "category_line_artillery",
+        "category_artillery"
       ],
       "combat_width": 3,
       "recovery_rate": 0.1,
@@ -1732,6 +1842,7 @@
       "supply_use": 0.02,
       "fuel_consumption": 0,
       "active": false,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_front_line",
@@ -1806,6 +1917,7 @@
       "supply_use": 0.05,
       "fuel_consumption": 0,
       "active": false,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -1852,7 +1964,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2.5,
       "supply_use": 0.3,
       "fuel_consumption": 0,
       "active": true,
@@ -1879,7 +1991,7 @@
       },
       "terrain_bonuses": {
         "amphibious": {
-          "attack": -0.8
+          "attack": -0.9
         },
         "forest": {
           "attack": -0.4,
@@ -1967,7 +2079,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 1,
+      "suppression": 1.5,
       "supply_use": 0.07,
       "fuel_consumption": 0,
       "active": false,
@@ -2011,7 +2123,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 1,
+      "suppression": 2,
       "supply_use": 0.07,
       "fuel_consumption": 0,
       "active": false,
@@ -2243,7 +2355,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 1,
+      "suppression": 2.2,
       "supply_use": 0.11,
       "fuel_consumption": 0,
       "active": false,
@@ -2313,7 +2425,7 @@
       "soft_attack": 0.1,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 1,
+      "suppression": 2,
       "supply_use": 0.18,
       "fuel_consumption": 0,
       "active": true,
@@ -2329,7 +2441,6 @@
         "mechanized_equipment"
       ],
       "group": "mobile",
-      "hardness": 0.2,
       "manpower": 1200,
       "org": 60,
       "hp": 30,
@@ -2386,7 +2497,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2.5,
       "supply_use": 0.2,
       "fuel_consumption": 0,
       "active": true,
@@ -2499,6 +2610,7 @@
       "supply_use": 0,
       "fuel_consumption": 0,
       "active": false,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -2549,6 +2661,7 @@
       "supply_use": 0.03,
       "fuel_consumption": 0,
       "active": false,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -2592,7 +2705,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2.5,
       "supply_use": 0.22,
       "fuel_consumption": 0,
       "active": true,
@@ -2619,7 +2732,7 @@
       },
       "terrain_bonuses": {
         "amphibious": {
-          "attack": -0.7
+          "attack": -0.8
         },
         "forest": {
           "attack": -0.3,
@@ -2669,6 +2782,7 @@
       "supply_use": 0.02,
       "fuel_consumption": 0,
       "active": false,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -2715,7 +2829,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2.5,
       "supply_use": 0.25,
       "fuel_consumption": 0,
       "active": true,
@@ -2782,6 +2896,232 @@
       "experience_loss_factor": 0,
       "hard_attack": -0.9,
       "initiative": 0,
+      "maximum_speed": 0.6,
+      "recon": 1,
+      "reliability_factor": 0,
+      "soft_attack": -0.9,
+      "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.02,
+      "fuel_consumption": 0,
+      "active": false,
+      "can_be_parachuted": true,
+      "categories": [
+        "category_front_line",
+        "category_support_battalions",
+        "category_army",
+        "category_recon"
+      ],
+      "combat_width": 0,
+      "recovery_rate": 0.3,
+      "essential": [
+        "infantry_equipment",
+        "support_equipment"
+      ],
+      "group": "support",
+      "manpower": 500,
+      "org": 20,
+      "hp": 2,
+      "same_support_type": "recon",
+      "training_time": 120,
+      "type": [
+        "infantry",
+        "support"
+      ],
+      "weight": 0.1,
+      "name": "Cavalry Recon Detachment",
+      "equipment": {
+        "infantry_equipment": 40,
+        "support_equipment": 10
+      },
+      "terrain_bonuses": {
+        "desert": {
+          "movement": 0.05
+        },
+        "forest": {
+          "movement": 0.05
+        },
+        "hills": {
+          "movement": 0.1
+        },
+        "jungle": {
+          "movement": 0.1
+        },
+        "marsh": {
+          "movement": 0.1
+        },
+        "mountain": {
+          "movement": 0.1
+        },
+        "plains": {
+          "movement": 0.05
+        },
+        "river": {
+          "movement": 0.1
+        }
+      }
+    },
+    "mot_recon": {
+      "air_attack": 0,
+      "breakthrough": -0.5,
+      "casualty_trickleback": 0,
+      "defense": -0.09,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.9,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 1.5,
+      "reliability_factor": 0,
+      "soft_attack": -0.9,
+      "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.02,
+      "fuel_consumption": 0,
+      "active": false,
+      "can_be_parachuted": true,
+      "categories": [
+        "category_front_line",
+        "category_support_battalions",
+        "category_army",
+        "category_recon"
+      ],
+      "combat_width": 0,
+      "recovery_rate": 0.3,
+      "essential": [
+        "infantry_equipment",
+        "support_equipment",
+        "motorized_equipment"
+      ],
+      "group": "support",
+      "manpower": 500,
+      "org": 20,
+      "hp": 2,
+      "same_support_type": "recon",
+      "training_time": 120,
+      "transport": "motorized_equipment",
+      "type": [
+        "infantry",
+        "support"
+      ],
+      "weight": 0.1,
+      "name": "Motorized Recon Company",
+      "equipment": {
+        "infantry_equipment": 40,
+        "motorized_equipment": 20,
+        "support_equipment": 10
+      },
+      "terrain_bonuses": {
+        "desert": {
+          "movement": 0.2
+        },
+        "forest": {
+          "movement": 0.05
+        },
+        "hills": {
+          "movement": 0.1
+        },
+        "jungle": {
+          "movement": 0.05
+        },
+        "marsh": {
+          "movement": 0.1
+        },
+        "mountain": {
+          "movement": 0.1
+        },
+        "plains": {
+          "movement": 0.15
+        },
+        "river": {
+          "movement": 0.1
+        }
+      }
+    },
+    "armored_car_recon": {
+      "air_attack": 0,
+      "breakthrough": -0.5,
+      "casualty_trickleback": 0,
+      "defense": -0.5,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.9,
+      "initiative": 0,
+      "maximum_speed": 0,
+      "recon": 2,
+      "reliability_factor": 0,
+      "soft_attack": -0.9,
+      "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
+      "suppression": 0,
+      "supply_use": 0.02,
+      "fuel_consumption": 0,
+      "active": false,
+      "can_be_parachuted": true,
+      "categories": [
+        "category_front_line",
+        "category_support_battalions",
+        "category_army",
+        "category_recon"
+      ],
+      "combat_width": 0,
+      "recovery_rate": 0.3,
+      "essential": [
+        "armored_car_equipment"
+      ],
+      "group": "support",
+      "manpower": 500,
+      "org": 20,
+      "hp": 2,
+      "same_support_type": "recon",
+      "training_time": 120,
+      "type": [
+        "infantry",
+        "support"
+      ],
+      "weight": 0.1,
+      "name": "Light Armored Recon Company",
+      "equipment": {
+        "armored_car_equipment": 24
+      },
+      "terrain_bonuses": {
+        "desert": {
+          "movement": 0.15
+        },
+        "forest": {
+          "movement": 0.05
+        },
+        "hills": {
+          "movement": 0.1
+        },
+        "jungle": {
+          "movement": 0.05
+        },
+        "mountain": {
+          "movement": 0.05
+        },
+        "plains": {
+          "movement": 0.15
+        },
+        "river": {
+          "movement": 0.1
+        }
+      }
+    },
+    "light_tank_recon": {
+      "air_attack": 0,
+      "breakthrough": -0.5,
+      "casualty_trickleback": 0,
+      "defense": -0.5,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": -0.9,
+      "initiative": 0,
       "maximum_speed": 0,
       "recon": 1,
       "reliability_factor": 0,
@@ -2796,28 +3136,29 @@
       "categories": [
         "category_front_line",
         "category_support_battalions",
-        "category_army"
+        "category_army",
+        "category_all_armor",
+        "category_recon"
       ],
       "combat_width": 0,
       "recovery_rate": 0.3,
       "essential": [
-        "infantry_equipment",
-        "support_equipment"
+        "light_tank_equipment"
       ],
       "group": "support",
       "manpower": 500,
       "org": 20,
       "hp": 2,
+      "same_support_type": "recon",
       "training_time": 120,
       "type": [
         "infantry",
         "support"
       ],
       "weight": 0.1,
-      "name": "Recon Company",
+      "name": "Armored Recon Company",
       "equipment": {
-        "infantry_equipment": 40,
-        "support_equipment": 10
+        "light_tank_equipment": 24
       },
       "terrain_bonuses": {
         "desert": {
@@ -2866,6 +3207,7 @@
       "supply_use": 0.02,
       "fuel_consumption": 0,
       "active": false,
+      "affects_speed": false,
       "can_be_parachuted": true,
       "categories": [
         "category_support_battalions",
@@ -2912,7 +3254,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -2981,7 +3323,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3053,7 +3395,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3125,7 +3467,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3197,7 +3539,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3269,7 +3611,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.4,
       "fuel_consumption": 0,
       "active": true,
@@ -3338,7 +3680,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.44,
       "fuel_consumption": 0,
       "active": true,
@@ -3410,7 +3752,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.6,
       "fuel_consumption": 0,
       "active": true,
@@ -3482,7 +3824,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.8,
       "fuel_consumption": 0,
       "active": true,
@@ -3554,7 +3896,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2,
       "supply_use": 0.5,
       "fuel_consumption": 0,
       "active": true,
@@ -3666,7 +4008,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 2.5,
       "supply_use": 0.4,
       "fuel_consumption": 0,
       "active": true,
@@ -3742,7 +4084,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 1.5,
       "supply_use": 0.2,
       "fuel_consumption": 0,
       "active": true,
@@ -3812,7 +4154,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 1.5,
       "supply_use": 0.22,
       "fuel_consumption": 0,
       "active": true,
@@ -3885,7 +4227,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 1.5,
       "supply_use": 0.3,
       "fuel_consumption": 0,
       "active": true,
@@ -4104,7 +4446,7 @@
       "build_cost_ic": 8,
       "defense": 26,
       "fuel_consumption": 4.0,
-      "hardness": 0.5,
+      "hardness": 0.6,
       "maximum_speed": 7,
       "reliability": 0.8,
       "resources": {
@@ -4126,7 +4468,7 @@
       "build_cost_ic": 10,
       "defense": 30,
       "fuel_consumption": 4.0,
-      "hardness": 0.6,
+      "hardness": 0.7,
       "maximum_speed": 10,
       "reliability": 0.8,
       "resources": {
@@ -4279,6 +4621,124 @@
       "name": "Advanced Anti-Tank",
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_2"
+    },
+    "gw_armored_car_equipment": {
+      "air_attack": 0,
+      "ap_attack": 6,
+      "armor_value": 3,
+      "breakthrough": 12,
+      "build_cost_ic": 4,
+      "defense": 2,
+      "fuel_consumption": 0.8,
+      "hard_attack": 2,
+      "hardness": 0.65,
+      "is_convertable": true,
+      "maximum_speed": 9,
+      "reliability": 0.8,
+      "resources": {
+        "steel": 2
+      },
+      "soft_attack": 6,
+      "type": "motorized",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "ac_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "year": 1914,
+      "name": "Interwar Armored Car",
+      "archetype": "armored_car_equipment"
+    },
+    "armored_car_equipment_1": {
+      "air_attack": 0,
+      "ap_attack": 8,
+      "armor_value": 10,
+      "breakthrough": 16,
+      "build_cost_ic": 6,
+      "defense": 3,
+      "fuel_consumption": 1.8,
+      "hard_attack": 4,
+      "hardness": 0.65,
+      "is_convertable": true,
+      "maximum_speed": 12,
+      "reliability": 0.8,
+      "resources": {
+        "steel": 2
+      },
+      "soft_attack": 13,
+      "type": "motorized",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "ac_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "year": 1934,
+      "name": "Basic Armored Car",
+      "archetype": "armored_car_equipment",
+      "parent": "gw_armored_car_equipment"
+    },
+    "armored_car_equipment_2": {
+      "air_attack": 0,
+      "ap_attack": 36,
+      "armor_value": 20,
+      "breakthrough": 28,
+      "build_cost_ic": 8,
+      "defense": 5,
+      "fuel_consumption": 1.8,
+      "hard_attack": 8,
+      "hardness": 0.7,
+      "is_convertable": true,
+      "maximum_speed": 15,
+      "reliability": 0.8,
+      "resources": {
+        "steel": 2,
+        "tungsten": 1
+      },
+      "soft_attack": 16,
+      "type": "motorized",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "ac_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "year": 1941,
+      "name": "Improved Armored Car",
+      "archetype": "armored_car_equipment",
+      "parent": "armored_car_equipment_1"
+    },
+    "armored_car_at_equipment": {
+      "air_attack": 0,
+      "ap_attack": 62,
+      "armor_value": 20,
+      "breakthrough": 28,
+      "build_cost_ic": 9,
+      "defense": 6,
+      "fuel_consumption": 1.8,
+      "hard_attack": 14,
+      "hardness": 0.7,
+      "is_convertable": true,
+      "maximum_speed": 16,
+      "reliability": 0.8,
+      "resources": {
+        "steel": 2,
+        "tungsten": 1
+      },
+      "soft_attack": 12,
+      "type": "motorized",
+      "upgrades": [
+        "tank_reliability_upgrade",
+        "ac_engine_upgrade",
+        "tank_armor_upgrade",
+        "tank_gun_upgrade"
+      ],
+      "year": 1941,
+      "name": "Anti-Tank Armored Car",
+      "archetype": "armored_car_equipment",
+      "parent": "armored_car_equipment_2",
+      "recon": 1
     },
     "artillery_equipment_1": {
       "air_attack": 0,
@@ -4440,7 +4900,7 @@
       "resources": {
         "steel": 1
       },
-      "sub_detection": 1,
+      "sub_detection": 0,
       "surface_detection": 10,
       "surface_visibility": 14,
       "torpedo_attack": 0,
@@ -4529,7 +4989,7 @@
       "ap_attack": 1,
       "armor_value": 0,
       "breakthrough": 2,
-      "build_cost_ic": 0.4,
+      "build_cost_ic": 0.43,
       "defense": 20,
       "hard_attack": 0.5,
       "hardness": 0,
@@ -4572,7 +5032,7 @@
       "ap_attack": 5,
       "armor_value": 0,
       "breakthrough": 4,
-      "build_cost_ic": 0.6,
+      "build_cost_ic": 0.58,
       "defense": 28,
       "hard_attack": 1.5,
       "hardness": 0,
@@ -4594,7 +5054,7 @@
       "ap_attack": 10,
       "armor_value": 0,
       "breakthrough": 5,
-      "build_cost_ic": 0.7,
+      "build_cost_ic": 0.69,
       "defense": 34,
       "hard_attack": 2,
       "hardness": 0,
@@ -4618,7 +5078,7 @@
       "build_cost_ic": 8,
       "defense": 26,
       "fuel_consumption": 2.4,
-      "hardness": 0.5,
+      "hardness": 0.6,
       "maximum_speed": 8,
       "reliability": 0.8,
       "resources": {
@@ -4640,7 +5100,7 @@
       "build_cost_ic": 10,
       "defense": 30,
       "fuel_consumption": 2.4,
-      "hardness": 0.6,
+      "hardness": 0.7,
       "maximum_speed": 10,
       "reliability": 0.8,
       "resources": {
@@ -4663,7 +5123,7 @@
       "build_cost_ic": 12,
       "defense": 34,
       "fuel_consumption": 2.4,
-      "hardness": 0.7,
+      "hardness": 0.8,
       "maximum_speed": 12,
       "reliability": 0.8,
       "resources": {
@@ -6553,7 +7013,7 @@
         "fixed_ship_battery_slot": "ship_heavy_battery_1",
         "fixed_ship_secondaries_slot": "ship_secondaries_1",
         "front_1_custom_slot": "ship_anti_air_1",
-        "rear_1_custom_slot": "ship_torpedo"
+        "rear_1_custom_slot": "ship_torpedo_1"
       },
       "fuel_consumption": 20,
       "hg_armor_piercing": 0,
@@ -6561,7 +7021,7 @@
       "lg_armor_piercing": 0,
       "lg_attack": 0,
       "manpower": 1800,
-      "max_strength": 100,
+      "max_strength": 220,
       "module_count_limit": [
         {
           "category": "ship_radar",
@@ -8636,7 +9096,7 @@
     "ship_hull_submarine_3": {
       "anti_air_attack": 0,
       "armor_value": 0,
-      "build_cost_ic": 270,
+      "build_cost_ic": 320,
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -8703,7 +9163,7 @@
     "ship_hull_submarine_4": {
       "anti_air_attack": 0,
       "armor_value": 0,
-      "build_cost_ic": 300,
+      "build_cost_ic": 450,
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -8771,7 +9231,7 @@
     "ship_hull_cruiser_submarine": {
       "anti_air_attack": 0,
       "armor_value": 0,
-      "build_cost_ic": 370,
+      "build_cost_ic": 390,
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -9942,7 +10402,7 @@
     "amphibious_tank_equipment_1": {
       "air_attack": 0,
       "ap_attack": 10,
-      "armor_value": 10,
+      "armor_value": 20,
       "breakthrough": 26,
       "build_cost_ic": 10,
       "defense": 4,
@@ -9970,7 +10430,7 @@
     "amphibious_tank_equipment_2": {
       "air_attack": 0,
       "ap_attack": 61,
-      "armor_value": 60,
+      "armor_value": 80,
       "breakthrough": 36,
       "build_cost_ic": 13,
       "defense": 5,
@@ -11779,6 +12239,73 @@
       "archetype": "heavy_fighter_equipment",
       "maximum_speed": 600,
       "parent": "heavy_fighter_equipment_2"
+    },
+    "scout_plane_equipment_1": {
+      "air_map_icon_frame": 13,
+      "air_superiority": 0,
+      "fuel_consumption": 0.26,
+      "interface_overview_category_index": 3,
+      "is_convertable": true,
+      "manpower": 40,
+      "naval_strike_attack": 0,
+      "naval_strike_targetting": 0,
+      "reliability": 0.8,
+      "resources": {
+        "aluminium": 2,
+        "rubber": 1
+      },
+      "type": [
+        "scout_plane"
+      ],
+      "upgrades": [
+        "plane_armor_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "year": 1936,
+      "name": "Scout Plane I",
+      "air_agility": 25,
+      "air_attack": 0,
+      "air_defence": 13,
+      "air_range": 1300,
+      "archetype": "scout_plane_equipment",
+      "build_cost_ic": 20,
+      "maximum_speed": 500
+    },
+    "scout_plane_equipment_2": {
+      "air_map_icon_frame": 13,
+      "air_superiority": 0,
+      "fuel_consumption": 0.26,
+      "interface_overview_category_index": 3,
+      "is_convertable": true,
+      "manpower": 40,
+      "naval_strike_attack": 0,
+      "naval_strike_targetting": 0,
+      "reliability": 0.8,
+      "resources": {
+        "aluminium": 3,
+        "rubber": 1
+      },
+      "type": [
+        "scout_plane"
+      ],
+      "upgrades": [
+        "plane_armor_upgrade",
+        "plane_range_upgrade",
+        "plane_engine_upgrade",
+        "plane_reliability_upgrade"
+      ],
+      "year": 1940,
+      "name": "Scout Plane II",
+      "air_agility": 30,
+      "air_attack": 0,
+      "air_defence": 15,
+      "air_range": 1700,
+      "archetype": "scout_plane_equipment",
+      "build_cost_ic": 20,
+      "maximum_speed": 550,
+      "parent": "scout_plane_equipment_1"
     }
   },
   "technology": {
@@ -12612,7 +13139,8 @@
       "start_year": 1940,
       "name": "improved_ship_hull_submarine",
       "leads_to": [
-        "advanced_ship_hull_submarine"
+        "advanced_ship_hull_submarine",
+        "basic_submarine_snorkel"
       ],
       "unit_bonuses": {
       }
@@ -12906,7 +13434,7 @@
         "naval_equipment"
       ],
       "research_cost": 2.5,
-      "start_year": 1940,
+      "start_year": 1942,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
       "xp_research_type": "navy",
@@ -13526,6 +14054,7 @@
         "cat_strategic_destruction"
       ],
       "doctrine": true,
+      "doctrine_name": "TITLE_STRATEGIC_DESTRUCTION",
       "research_cost": 2.25,
       "xor": [
         "force_rotation",
@@ -13602,7 +14131,7 @@
     },
     "fighter_sweeps": {
       "air_intercept_efficiency": 0.2,
-      "air_mission_xp_gain_factor": 0.1,
+      "air_mission_xp_gain_factor": 0.05,
       "categories": [
         "air_doctrine",
         "strategic_destruction_tree",
@@ -13624,7 +14153,7 @@
       }
     },
     "dogfighting_experience": {
-      "air_mission_xp_gain_factor": 0.1,
+      "air_mission_xp_gain_factor": 0.05,
       "air_superiority_efficiency": 0.2,
       "categories": [
         "air_doctrine",
@@ -13831,7 +14360,7 @@
       }
     },
     "formation_flying": {
-      "air_mission_xp_gain_factor": 0.1,
+      "air_mission_xp_gain_factor": 0.05,
       "air_superiority_detect_factor": 0.15,
       "categories": [
         "air_doctrine",
@@ -13839,6 +14368,7 @@
         "cat_battlefield_support"
       ],
       "doctrine": true,
+      "doctrine_name": "TITLE_BATTLEFIELD_SUPPORT",
       "research_cost": 2.25,
       "xor": [
         "force_rotation",
@@ -13900,7 +14430,7 @@
       }
     },
     "formation_fighting": {
-      "air_mission_xp_gain_factor": 0.1,
+      "air_mission_xp_gain_factor": 0.05,
       "air_superiority_efficiency": 0.15,
       "categories": [
         "air_doctrine",
@@ -13924,7 +14454,7 @@
     },
     "fighter_ace_initiative": {
       "air_ace_generation_chance_factor": 0.25,
-      "air_mission_xp_gain_factor": 0.1,
+      "air_mission_xp_gain_factor": 0.05,
       "categories": [
         "air_doctrine",
         "battlefield_support_tree",
@@ -14106,13 +14636,14 @@
     },
     "force_rotation": {
       "air_interception_detect_factor": 0.2,
-      "air_mission_xp_gain_factor": 0.1,
+      "air_mission_xp_gain_factor": 0.05,
       "categories": [
         "air_doctrine",
         "operational_integrity_tree",
         "cat_operational_integrity"
       ],
       "doctrine": true,
+      "doctrine_name": "TITLE_OPERATIONAL_INTEGRITY",
       "research_cost": 2.25,
       "xor": [
         "formation_flying",
@@ -14844,6 +15375,45 @@
       "unit_bonuses": {
       }
     },
+    "scout_plane1": {
+      "allow_branch": {
+        "has_dlc": "La Resistance"
+      },
+      "categories": [
+        "medium_air",
+        "air_equipment",
+        "cat_scout_plane"
+      ],
+      "enable_equipments": [
+        "scout_plane_equipment_1"
+      ],
+      "research_cost": 2,
+      "start_year": 1936,
+      "name": "Scout Plane I",
+      "leads_to": [
+        "scout_plane2"
+      ],
+      "unit_bonuses": {
+      }
+    },
+    "scout_plane2": {
+      "categories": [
+        "medium_air",
+        "air_equipment",
+        "cat_scout_plane"
+      ],
+      "enable_equipments": [
+        "scout_plane_equipment_2"
+      ],
+      "research_cost": 2,
+      "start_year": 1940,
+      "name": "Scout Plane II",
+      "leads_to": [
+
+      ],
+      "unit_bonuses": {
+      }
+    },
     "tactical_bomber1": {
       "categories": [
         "medium_air",
@@ -15036,6 +15606,9 @@
       "enable_equipments": [
         "gw_tank_equipment"
       ],
+      "enable_subunits": [
+        "light_armor"
+      ],
       "research_cost": 2,
       "start_year": 1918,
       "name": "gwtank",
@@ -15053,6 +15626,9 @@
       ],
       "enable_equipments": [
         "light_tank_equipment_1"
+      ],
+      "enable_subunits": [
+        "light_armor"
       ],
       "research_cost": 2,
       "start_year": 1934,
@@ -15075,6 +15651,9 @@
       "enable_equipments": [
         "light_tank_destroyer_equipment_1"
       ],
+      "enable_subunits": [
+        "light_tank_destroyer_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1934,
       "name": "basic_light_td",
@@ -15091,6 +15670,9 @@
       "enable_equipments": [
         "light_tank_artillery_equipment_1"
       ],
+      "enable_subunits": [
+        "light_sp_artillery_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1934,
       "name": "basic_light_art",
@@ -15106,6 +15688,9 @@
       ],
       "enable_equipments": [
         "light_tank_aa_equipment_1"
+      ],
+      "enable_subunits": [
+        "light_sp_anti_air_brigade"
       ],
       "research_cost": 0.5,
       "start_year": 1934,
@@ -15306,6 +15891,9 @@
       "enable_equipments": [
         "medium_tank_equipment_1"
       ],
+      "enable_subunits": [
+        "medium_armor"
+      ],
       "research_cost": 2,
       "start_year": 1939,
       "sub_technologies": [
@@ -15327,6 +15915,9 @@
       "enable_equipments": [
         "medium_tank_destroyer_equipment_1"
       ],
+      "enable_subunits": [
+        "medium_tank_destroyer_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1939,
       "name": "basic_medium_td",
@@ -15343,6 +15934,9 @@
       "enable_equipments": [
         "medium_tank_artillery_equipment_1"
       ],
+      "enable_subunits": [
+        "medium_sp_artillery_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1939,
       "name": "basic_medium_art",
@@ -15358,6 +15952,9 @@
       ],
       "enable_equipments": [
         "medium_tank_aa_equipment_1"
+      ],
+      "enable_subunits": [
+        "medium_sp_anti_air_brigade"
       ],
       "research_cost": 0.5,
       "start_year": 1939,
@@ -15518,6 +16115,9 @@
       "enable_equipments": [
         "modern_tank_equipment_1"
       ],
+      "enable_subunits": [
+        "modern_armor"
+      ],
       "research_cost": 2.5,
       "start_year": 1945,
       "sub_technologies": [
@@ -15539,6 +16139,9 @@
       "enable_equipments": [
         "modern_tank_destroyer_equipment_1"
       ],
+      "enable_subunits": [
+        "modern_tank_destroyer_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1945,
       "name": "modern_td",
@@ -15554,6 +16157,9 @@
       ],
       "enable_equipments": [
         "modern_tank_artillery_equipment_1"
+      ],
+      "enable_subunits": [
+        "modern_sp_artillery_brigade"
       ],
       "research_cost": 0.5,
       "start_year": 1945,
@@ -15571,6 +16177,9 @@
       "enable_equipments": [
         "modern_tank_aa_equipment_1"
       ],
+      "enable_subunits": [
+        "modern_sp_anti_air_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1945,
       "name": "modern_spaa",
@@ -15587,6 +16196,9 @@
       ],
       "enable_equipments": [
         "heavy_tank_equipment_1"
+      ],
+      "enable_subunits": [
+        "heavy_armor"
       ],
       "research_cost": 2,
       "start_year": 1934,
@@ -15609,6 +16221,9 @@
       "enable_equipments": [
         "heavy_tank_destroyer_equipment_1"
       ],
+      "enable_subunits": [
+        "heavy_tank_destroyer_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1934,
       "name": "basic_heavy_td",
@@ -15625,6 +16240,9 @@
       "enable_equipments": [
         "heavy_tank_artillery_equipment_1"
       ],
+      "enable_subunits": [
+        "heavy_sp_artillery_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1934,
       "name": "basic_heavy_art",
@@ -15640,6 +16258,9 @@
       ],
       "enable_equipments": [
         "heavy_tank_aa_equipment_1"
+      ],
+      "enable_subunits": [
+        "heavy_sp_anti_air_brigade"
       ],
       "research_cost": 0.5,
       "start_year": 1934,
@@ -15801,6 +16422,9 @@
       "enable_equipments": [
         "super_heavy_tank_equipment_1"
       ],
+      "enable_subunits": [
+        "super_heavy_armor"
+      ],
       "research_cost": 2.5,
       "start_year": 1943,
       "sub_technologies": [
@@ -15822,6 +16446,9 @@
       "enable_equipments": [
         "super_heavy_tank_destroyer_equipment_1"
       ],
+      "enable_subunits": [
+        "super_heavy_tank_destroyer_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1943,
       "name": "super_heavy_td",
@@ -15838,6 +16465,9 @@
       "enable_equipments": [
         "super_heavy_tank_artillery_equipment_1"
       ],
+      "enable_subunits": [
+        "super_heavy_sp_artillery_brigade"
+      ],
       "research_cost": 0.5,
       "start_year": 1943,
       "name": "super_heavy_art",
@@ -15853,6 +16483,9 @@
       ],
       "enable_equipments": [
         "super_heavy_tank_aa_equipment_1"
+      ],
+      "enable_subunits": [
+        "super_heavy_sp_anti_air_brigade"
       ],
       "research_cost": 0.5,
       "start_year": 1943,
@@ -16607,6 +17240,11 @@
       }
     },
     "basic_encryption": {
+      "allow_branch": {
+        "NOT": {
+          "has_dlc": "La Resistance"
+        }
+      },
       "categories": [
         "electronics",
         "encryption_tech"
@@ -16622,6 +17260,11 @@
       }
     },
     "improved_encryption": {
+      "allow_branch": {
+        "NOT": {
+          "has_dlc": "La Resistance"
+        }
+      },
       "categories": [
         "electronics",
         "encryption_tech"
@@ -16637,6 +17280,11 @@
       }
     },
     "advanced_encryption": {
+      "allow_branch": {
+        "NOT": {
+          "has_dlc": "La Resistance"
+        }
+      },
       "categories": [
         "electronics",
         "encryption_tech"
@@ -16652,6 +17300,11 @@
       }
     },
     "basic_decryption": {
+      "allow_branch": {
+        "NOT": {
+          "has_dlc": "La Resistance"
+        }
+      },
       "categories": [
         "electronics",
         "decryption_tech"
@@ -16667,6 +17320,11 @@
       }
     },
     "improved_decryption": {
+      "allow_branch": {
+        "NOT": {
+          "has_dlc": "La Resistance"
+        }
+      },
       "categories": [
         "electronics",
         "decryption_tech"
@@ -16682,6 +17340,11 @@
       }
     },
     "advanced_decryption": {
+      "allow_branch": {
+        "NOT": {
+          "has_dlc": "La Resistance"
+        }
+      },
       "categories": [
         "electronics",
         "decryption_tech"
@@ -16927,6 +17590,20 @@
       "unit_bonuses": {
       }
     },
+    "lar_decryption_bonus_tech": {
+      "allow": {
+        "always": false
+      },
+      "decryption_power": 10,
+      "research_cost": 1.5,
+      "start_year": 1944,
+      "name": "Decryption Bonus",
+      "leads_to": [
+
+      ],
+      "unit_bonuses": {
+      }
+    },
     "basic_machine_tools": {
       "categories": [
         "industry"
@@ -17154,7 +17831,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.12,
+      "industry_air_damage_factor": -0.15,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -17174,7 +17851,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.12,
+      "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -17194,7 +17871,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.12,
+      "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -17214,7 +17891,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.12,
+      "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -17234,7 +17911,7 @@
       "global_building_slots_factor": 0.2,
       "industrial_capacity_dockyard": 0.1,
       "industrial_capacity_factory": 0.1,
-      "industry_air_damage_factor": -0.12,
+      "industry_air_damage_factor": -0.1,
       "line_change_production_efficiency_factor": 0.1,
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2,
@@ -18416,7 +19093,8 @@
       ],
       "name": "Motorized Infantry",
       "leads_to": [
-        "mechanised_infantry"
+        "mechanised_infantry",
+        "armored_car1"
       ],
       "unit_bonuses": {
       }
@@ -18434,6 +19112,84 @@
       "research_cost": 1.5,
       "start_year": 1939,
       "name": "Motorized Rocket Artillery",
+      "leads_to": [
+
+      ],
+      "unit_bonuses": {
+      }
+    },
+    "armored_car1": {
+      "allow_branch": {
+        "has_dlc": "La Resistance"
+      },
+      "categories": [
+        "motorized_equipment",
+        "armor"
+      ],
+      "enable_equipments": [
+        "gw_armored_car_equipment"
+      ],
+      "enable_subunits": [
+        "armored_car"
+      ],
+      "research_cost": 2,
+      "start_year": 1914,
+      "name": "armored_car1",
+      "leads_to": [
+        "armored_car2"
+      ],
+      "unit_bonuses": {
+      }
+    },
+    "armored_car2": {
+      "categories": [
+        "motorized_equipment",
+        "armor"
+      ],
+      "enable_equipments": [
+        "armored_car_equipment_1"
+      ],
+      "research_cost": 2,
+      "start_year": 1940,
+      "name": "armored_car2",
+      "leads_to": [
+        "armored_car3"
+      ],
+      "unit_bonuses": {
+      }
+    },
+    "armored_car3": {
+      "categories": [
+        "motorized_equipment",
+        "armor"
+      ],
+      "enable_equipments": [
+        "armored_car_equipment_2"
+      ],
+      "research_cost": 2,
+      "start_year": 1942,
+      "sub_technologies": [
+        "armored_car_at_upgrade"
+      ],
+      "name": "armored_car3",
+      "leads_to": [
+
+      ],
+      "unit_bonuses": {
+      }
+    },
+    "armored_car_at_upgrade": {
+      "categories": [
+        "motorized_equipment",
+        "armor"
+      ],
+      "enable_equipments": [
+        "armored_car_at_equipment"
+      ],
+      "research_cost": 1,
+      "start_year": 1942,
+      "sub_tech_index": 1,
+      "name": "armored_car_at_upgrade",
       "leads_to": [
 
       ],
@@ -18581,6 +19337,7 @@
         "cat_mobile_warfare"
       ],
       "doctrine": true,
+      "doctrine_name": "MOBILE_WARFARE_DOCTRINE",
       "enable_tactic": "tactic_unexpected_thrust",
       "org_loss_when_moving": -0.1,
       "planning_speed": 0.5,
@@ -18642,6 +19399,9 @@
         "armored_spearhead"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "max_organisation": 2
+        },
         "category_tanks": {
           "max_organisation": 1
         },
@@ -18677,6 +19437,10 @@
           "maximum_speed": 0.1
         },
         "mot_anti_tank_brigade": {
+          "default_morale": 0.2,
+          "maximum_speed": 0.1
+        },
+        "armored_car": {
           "default_morale": 0.2,
           "maximum_speed": 0.1
         },
@@ -18732,6 +19496,9 @@
       "unit_bonuses": {
         "amphibious_mechanized": {
           "max_organisation": 15
+        },
+        "armored_car": {
+          "max_organisation": 3
         },
         "motorized": {
           "max_organisation": 15
@@ -18811,6 +19578,10 @@
         "amphibious_mechanized": {
           "max_organisation": 5
         },
+        "armored_car": {
+          "default_morale": 0.1,
+          "max_organisation": 7
+        },
         "motorized": {
           "max_organisation": 5
         },
@@ -18867,6 +19638,9 @@
         "backhand_blow"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "max_organisation": 2
+        },
         "category_tanks": {
           "max_organisation": 2
         },
@@ -18908,6 +19682,11 @@
 
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "breakthrough": 0.2,
+          "default_morale": 0.2,
+          "max_organisation": 3
+        },
         "category_tanks": {
           "breakthrough": 0.2,
           "max_organisation": 3
@@ -18963,8 +19742,8 @@
       ],
       "doctrine": true,
       "enable_tactic": "tactic_guerrilla_tactics",
-      "partisan_effect": 0.1,
       "research_cost": 4.5,
+      "resistance_damage_to_garrison_on_our_occupied_states": 0.1,
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
@@ -18981,6 +19760,7 @@
         "cat_superior_firepower"
       ],
       "doctrine": true,
+      "doctrine_name": "SUPERIOR_FIREPOWER_DOCTRINE",
       "enable_tactic": "tactic_barrage",
       "research_cost": 2.25,
       "xor": [
@@ -18997,7 +19777,7 @@
       ],
       "unit_bonuses": {
         "category_front_line": {
-          "soft_attack": 0.2
+          "soft_attack": 0.1
         }
       }
     },
@@ -19040,7 +19820,7 @@
       ],
       "unit_bonuses": {
         "category_all_infantry": {
-          "defense": 0.2
+          "defense": 0.1
         }
       }
     },
@@ -19283,7 +20063,7 @@
         "advanced_firebases"
       ],
       "unit_bonuses": {
-        "recon": {
+        "category_recon": {
           "recon": 1
         }
       }
@@ -19304,6 +20084,10 @@
         "shock_and_awe"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "default_morale": 0.05,
+          "max_organisation": 2
+        },
         "category_tanks": {
           "max_organisation": 2
         },
@@ -19332,6 +20116,9 @@
 
       ],
       "unit_bonuses": {
+        "category_front_line": {
+          "soft_attack": 0.05
+        },
         "category_all_infantry": {
           "hard_attack": 0.05,
           "soft_attack": 0.05
@@ -19349,6 +20136,7 @@
       ],
       "dig_in_speed_factor": 0.25,
       "doctrine": true,
+      "doctrine_name": "GRAND_BATTLEPLAN_DOCTRINE",
       "max_dig_in": 10,
       "research_cost": 2.25,
       "xor": [
@@ -19453,6 +20241,9 @@
         "amphibious_mechanized": {
           "max_organisation": 5
         },
+        "armored_car": {
+          "max_organisation": 5
+        },
         "motorized": {
           "max_organisation": 5
         },
@@ -19495,6 +20286,9 @@
         "assault_breakthrough"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "max_organisation": 1
+        },
         "category_tanks": {
           "max_organisation": 1
         },
@@ -19558,6 +20352,9 @@
 
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "max_organisation": 2
+        },
         "category_tanks": {
           "max_organisation": 1
         },
@@ -19610,6 +20407,10 @@
         "infiltration_assault"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "default_morale": 0.1,
+          "max_organisation": 2
+        },
         "category_tanks": {
           "max_organisation": 2
         },
@@ -19669,6 +20470,9 @@
         "infiltration_in_depth"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "max_organisation": 1
+        },
         "category_tanks": {
           "max_organisation": 1
         },
@@ -19693,7 +20497,7 @@
 
       ],
       "unit_bonuses": {
-        "recon": {
+        "category_recon": {
           "recon": 1
         }
       }
@@ -19704,6 +20508,7 @@
         "cat_mass_assault"
       ],
       "doctrine": true,
+      "doctrine_name": "MASS_ASSAULT_DOCTRINE",
       "land_reinforce_rate": 0.02,
       "minimum_training_level": -0.1,
       "research_cost": 2.25,
@@ -19801,6 +20606,9 @@
         "operational_concentration"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "max_organisation": 2
+        },
         "category_tanks": {
           "max_organisation": 2
         }
@@ -19864,6 +20672,10 @@
         "mechanized_wave"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "breakthrough": 0.1,
+          "max_organisation": 1
+        },
         "category_tanks": {
           "breakthrough": 0.1,
           "max_organisation": 1
@@ -19892,6 +20704,10 @@
         "amphibious_mechanized": {
           "default_morale": 0.1,
           "max_organisation": 10
+        },
+        "armored_car": {
+          "default_morale": 0.1,
+          "max_organisation": 3
         },
         "motorized": {
           "default_morale": 0.1,
@@ -19937,8 +20753,8 @@
       ],
       "doctrine": true,
       "enable_tactic": "tactic_human_wave_tactics",
-      "partisan_effect": 0.1,
       "research_cost": 4.5,
+      "resistance_damage_to_garrison_on_our_occupied_states": 0.1,
       "xor": [
         "large_front_operations"
       ],
@@ -19988,6 +20804,9 @@
         "human_wave_offensive"
       ],
       "unit_bonuses": {
+        "armored_car": {
+          "max_organisation": 2
+        },
         "category_tanks": {
           "max_organisation": 2
         },
@@ -20026,8 +20845,8 @@
       "doctrine": true,
       "enable_tactic": "tactic_guerrilla_tactics",
       "out_of_supply_factor": -0.3,
-      "partisan_effect": 0.2,
       "research_cost": 4.5,
+      "resistance_growth_on_our_occupied_states": 0.25,
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
@@ -20596,6 +21415,7 @@
         "cat_fleet_in_being"
       ],
       "doctrine": true,
+      "doctrine_name": "TITLE_FLEET_IN_BEING",
       "mines_planting_by_fleets_factor": 0.1,
       "research_cost": 3,
       "xor": [
@@ -20986,6 +21806,7 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
+      "doctrine_name": "TITLE_TRADE_INTERDICTION",
       "research_cost": 3,
       "xor": [
         "fleet_in_being",
@@ -21075,7 +21896,7 @@
         "cat_trade_interdiction"
       ],
       "doctrine": true,
-      "naval_torpedo_reveal_chance_factor": -0.15,
+      "naval_torpedo_reveal_chance_factor": -0.1,
       "research_cost": 3,
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
@@ -21389,6 +22210,7 @@
         "cat_base_strike"
       ],
       "doctrine": true,
+      "doctrine_name": "TITLE_BASE_STRIKE",
       "port_strike": 0.5,
       "research_cost": 3,
       "xor": [
@@ -21865,7 +22687,10 @@
         "recon_tech"
       ],
       "enable_subunits": [
-        "recon"
+        "recon",
+        "mot_recon",
+        "armored_car_recon",
+        "light_tank_recon"
       ],
       "research_cost": 2,
       "start_year": 1936,
@@ -21888,7 +22713,7 @@
         "tech_recon3"
       ],
       "unit_bonuses": {
-        "recon": {
+        "category_recon": {
           "recon": 2
         }
       }
@@ -21905,7 +22730,7 @@
         "tech_recon4"
       ],
       "unit_bonuses": {
-        "recon": {
+        "category_recon": {
           "recon": 2
         }
       }
@@ -21922,7 +22747,7 @@
 
       ],
       "unit_bonuses": {
-        "recon": {
+        "category_recon": {
           "recon": 2
         }
       }
@@ -22529,6 +23354,13 @@
       "reliability": -0.1,
       "name": "Attack"
     },
+    "plane_armor_upgrade": {
+      "air_defence": 0.05,
+      "air_range": -0.05,
+      "cost": "air",
+      "max_level": 5,
+      "name": "Armor"
+    },
     "tank_gun_upgrade": {
       "ap_attack": 0.05,
       "cost": "land",
@@ -22551,6 +23383,12 @@
       "cost": "land",
       "max_level": 5,
       "maximum_speed": 0.04,
+      "name": "Engine"
+    },
+    "ac_engine_upgrade": {
+      "cost": "land",
+      "max_level": 5,
+      "maximum_speed": 0.02,
       "name": "Engine"
     },
     "tank_reliability_upgrade": {

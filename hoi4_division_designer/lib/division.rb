@@ -85,7 +85,7 @@ class Division
   end
 
   def ic_cost
-    @units.map(&:ic_cost).sum
+    @units.map(&:ic_cost).sum.round(6)
   end
 
   def entrenchment

@@ -94,7 +94,7 @@ describe Country do
         "motorized" =>  {"soft_attack" => 0.1, "breakthrough" => 0.2, "defense" => 0.2, "hardness" => 1.0},
         "mountaineers" => {"max_organisation" => 5, "soft_attack" => 0.05, "breakthrough" => 0.12, "defense" => 0.12},
         "paratrooper" =>  {"max_organisation" => 5, "soft_attack" => 0.05, "breakthrough" => 0.12, "defense" => 0.12},
-        "recon" => {"recon" => 4},
+        "category_recon" => {"recon" => 4},
         "rocket_artillery_brigade" => {"soft_attack" => 0.3},
         "rocket_artillery" => {"soft_attack" => 0.3},
         "signal_company" => {"initiative" => 0.24},

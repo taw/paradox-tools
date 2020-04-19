@@ -94,7 +94,7 @@ describe Division do
         speed: 4.0,
         hp: 50.0,
         org: 60.0,
-        suppression: 2.0,
+        suppression: 3.0,
         weight: 1.0,
         supply_use: 0.14,
         soft_attack: 6.0,
@@ -106,7 +106,7 @@ describe Division do
         manpower: 2000,
         training_time: 90,
         equipment: {"infantry_equipment_0" => 200},
-        ic_cost: 80,
+        ic_cost: 86,
         terrain_bonuses: {},
       }
     end
@@ -131,7 +131,7 @@ describe Division do
         manpower: 6000,
         training_time: 120,
         equipment: {"infantry_equipment_0" => 720},
-        ic_cost: 288,
+        ic_cost: 309.6,
         terrain_bonuses: {
           "forest" => {"attack" => -0.05},
           "hills" => {"attack" => -0.05},
@@ -152,7 +152,7 @@ describe Division do
         hp: 90.0,
         org: 65.0,
         recovery_rate: 0.35,
-        suppression: 4.0,
+        suppression: 5.0,
         weight: 2.0,
         supply_use: 0.28,
         soft_attack: 12.0,
@@ -164,7 +164,7 @@ describe Division do
         manpower: 4000,
         training_time: 120,
         equipment: {"infantry_equipment_0" => 480},
-        ic_cost: 192,
+        ic_cost: 206.4,
         terrain_bonuses: {
           "hills" => {"movement" => 0.05, "attack" => 0.10, "defence" => 0.025},
           "mountain" => {"movement" => 0.10, "attack" => 0.175, "defence" => 0.05},
@@ -182,7 +182,7 @@ describe Division do
         hp: 176.2,
         org: 46.667, # displayed as 46.6
         recovery_rate: 0.256, # displayed as 0.25
-        suppression: 7.0,
+        suppression: 10.5,
         weight: 4.5,
         supply_use: 0.89,
         soft_attack: 71.0,
@@ -194,7 +194,7 @@ describe Division do
         manpower: 8000,
         training_time: 120,
         equipment: {"infantry_equipment_0" => 700, "artillery_equipment_1" => 72},
-        ic_cost: 532,
+        ic_cost: 553,
         terrain_bonuses: { # different rounding in game
           "forest" => {"movement" => -0.044, "attack" => -0.044},
           "hills" => {"movement" => -0.011},
@@ -229,7 +229,7 @@ describe Division do
         manpower: 3300,
         training_time: 150,
         equipment: {"infantry_equipment_0" => 390, "artillery_equipment_1" => 12},
-        ic_cost: 198,
+        ic_cost: 209.7,
         terrain_bonuses: {},
         special_forces: 3,
         can_be_parachuted: true,
@@ -245,7 +245,7 @@ describe Division do
         hp: 102.6,
         org: 26.667, # displayed as 26.6
         recovery_rate: 0.189, # displayed as 0.18
-        suppression: 4.0,
+        suppression: 8.8,
         weight: 5.1,
         supply_use: 1.72,
         soft_attack: 171.0,
@@ -262,7 +262,7 @@ describe Division do
           "motorized_equipment_1" => 260,
           "motorized_rocket_equipment_1" => 80,
         },
-        ic_cost: 1812,
+        ic_cost: 1824,
         hardness: 0.1,
         terrain_bonuses: {
           "forest" => {"movement" => -0.50, "attack" => -0.10},
@@ -309,7 +309,7 @@ describe Division do
         hp: 250.2,
         org: 54.545, # displayed 54.5
         recovery_rate: 0.282, # displayed 0.28
-        suppression: 10.0,
+        suppression: 15.0,
         weight: 5.1,
         supply_use: 0.86,
         soft_attack: 75.0,
@@ -341,7 +341,7 @@ describe Division do
         org: 50.0,
         recovery_rate: 0.25,
         recon: 4,
-        suppression: 7.0,
+        suppression: 10.5,
         weight: 4.8,
         supply_use: 0.981, # diplayed incorrectly as 1.09 in Division Designer, but correctly 0.98 in unit details
         soft_attack: 179.25,
@@ -358,19 +358,19 @@ describe Division do
           "artillery_equipment_2" => 84,
           "support_equipment_1" => 40,
         },
-        ic_cost: 946,
+        ic_cost: 931,
         terrain_bonuses: {
-          "forest"=>{"movement"=>0.106, "attack"=>-0.044, "defence"=>0.25},
+          "forest"=>{"movement"=>0.056, "attack"=>-0.044, "defence"=>0.25},
           "hills"=>{"movement"=>0.089, "defence"=>0.1},
           "mountain"=>{"movement"=>0.056},
-          "plains"=>{"movement"=>0.1},
+          "plains"=>{"movement"=>0.05},
           "jungle"=>{"movement"=>0.056, "attack"=>-0.056, "defence"=>0.25},
           "marsh"=>{"movement"=>0.233, "attack"=>-0.044, "defence"=>0.25},
           "fort"=>{"attack"=>0.222, "defence"=>0.35},
           "river"=>{"movement"=>0.306, "attack"=>-0.044, "defence"=>0.25},
           "amphibious"=>{"attack"=>0.161}, # displayed 0.162
           # Not displayed:
-          "desert"=>{"movement"=>0.1},
+          "desert"=>{"movement"=>0.05},
         },
       }
     end
@@ -396,15 +396,14 @@ describe Division do
         hp: 24.2,
         org: 9.2,
         recovery_rate: 0.252, # displayed 0.25
+        suppression: 40, # wiki is incorrect
         weight: 30.5,
         supply_use: 4.056, # displayed 4.05
         reliability_factor: 0.20,
         casualty_trickleback: 0.50,
         experience_loss_factor: -0.40,
 
-        # Game seems to lose 10% bonus for rocket art here somehow
-        # applying only +90% not +100%
-        soft_attack: 783.25, # in game: 779.4
+        soft_attack: 772.0,
         hard_attack: 543.05, # displaed 543.0
         air_attack: 220.0,
         defense: 140.0,
@@ -418,7 +417,7 @@ describe Division do
         manpower: 12300,
         training_time: 180,
         equipment: {
-          "rocket_artillery_equipment_2" => 24,
+          "rocket_artillery_equipment_2" => 12,
           "motorized_equipment_1" => 40,
           "support_equipment_1" => 95,
           "heavy_tank_equipment_3" => 200,
@@ -426,7 +425,7 @@ describe Division do
           "heavy_tank_destroyer_equipment_3" => 100,
           "heavy_tank_aa_equipment_3" => 40,
         },
-        ic_cost: 14400,
+        ic_cost: 14340,
         hardness: 0.875, # displayed 0.87
         terrain_bonuses: {
           "forest" => {"movement"=>-0.4, "attack"=>-0.4},
@@ -437,7 +436,7 @@ describe Division do
           "marsh" => {"movement"=>-0.2, "attack"=>-0.4},
           "fort" => {"attack"=>0.038},
           "river" => {"movement"=>-0.4, "attack"=>-0.4},
-          "amphibious" => {"attack"=>-0.8},
+          "amphibious" => {"attack"=>-0.825},
         },
         fuel_consumption: 39.6,
         fuel_capacity: 1425.6,
