@@ -80,6 +80,13 @@ class TechnologyData
       @game.unit_types_and_categories.each do |type|
         if tech[type]
           unit_bonus = tech.delete(type)
+          # Multiple entries with bonus for same type, annoying
+          if unit_bonus.is_a?(Array)
+            unit_bonus = unit_bonus.inject{|a,b|
+              raise unless (a.keys & b.keys).empty?
+              a.merge(b)
+            }
+          end
           terrain_bonuses = {}
           @game.terrain_types.each do |terrain_type|
             if unit_bonus[terrain_type]
