@@ -44,10 +44,7 @@ class TechnologyData
         tech["start_year"] ||= 1941
       end
     elsif @game.mod == "millennium_dawn"
-      case name
-      when "gw_artillery"
-        tech["start_year"] ||= 1960
-      end
+      tech["start_year"] ||= 1960
     end
 
     return if tech["start_year"]
@@ -72,6 +69,7 @@ class TechnologyData
       end
 
       if tech["enable_equipments"]
+        tech["enable_equipments"] = [] if tech["enable_equipments"] == {}
         tech["enable_equipments"] &= @game.equipment.equipment_names
       end
 

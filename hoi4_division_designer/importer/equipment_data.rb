@@ -51,7 +51,7 @@ class EquipmentData
       equipment = equipment.to_h
       if equipment["is_archetype"]
         equipment.delete("is_archetype")
-        raise "Archetype is buildable" if equipment.delete("is_buildable")
+        warn "Archetype #{name} is buildable, ignoring that for now" if equipment.delete("is_buildable")
         archetypes[name] = equipment
       elsif equipment["active"] or @game.technology.enabled_equipments.include?(name)
         if equipment["archetype"]

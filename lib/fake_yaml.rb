@@ -18,6 +18,7 @@ class FakeYaml
         .gsub(/^\s*/, " ")
         .gsub(/[ \t]*$/, "")
         .gsub(/^ +/, " ")
+        .gsub(/\\"$/, '"') # MD \" at end
         .sub(/\s*\z/, "\n")
         .gsub(/^\s*#.*\n/, "")
         .sub(/\A\s*/, "")
