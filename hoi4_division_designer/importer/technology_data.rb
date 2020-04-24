@@ -81,8 +81,12 @@ class TechnologyData
           # Multiple entries with bonus for same type, annoying
           if unit_bonus.is_a?(Array)
             unit_bonus = unit_bonus.inject{|a,b|
-              raise unless (a.keys & b.keys).empty?
-              a.merge(b)
+              c = a.merge(b)
+              # Only works if both are numbers
+              (a.keys & b.keys).each do |k|
+                c[k] = a[k] + b[k]
+              end
+              c
             }
           end
           terrain_bonuses = {}

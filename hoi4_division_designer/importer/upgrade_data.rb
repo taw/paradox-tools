@@ -7,7 +7,9 @@ class UpgradeData
 
   def each_upgrade
     @game.glob("common/units/equipment/upgrades/*.txt").each do |path|
-      @game.parse(path)["upgrades"].each do |key, upgrade|
+      data = @game.parse(path)
+      next unless data["upgrades"]
+      data["upgrades"].each do |key, upgrade|
         yield key, jsonify(upgrade).merge("name" => @game.localization(key))
       end
     end

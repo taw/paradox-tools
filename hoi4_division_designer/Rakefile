@@ -7,3 +7,8 @@ desc "Run importer - Vanilla"
 task "import" do
   sh "rescue ./bin/import_data vanilla ~/hoi4"
 end
+
+desc "Run importer - Millennium Dawn"
+task "import:md" do
+  sh "rescue ./bin/import_data millennium_dawn ~/px/source/MD-1.9.1"
+end
