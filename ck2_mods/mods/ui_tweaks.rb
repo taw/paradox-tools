@@ -55,3 +55,5 @@ class UITweaksGameModification < CK2GameModification
     stop_join_war_spam!
   end
 end
+
+# Can I hide 72012 "Vassal refused to come to the feast" ???

@@ -1085,7 +1085,7 @@ class CK2TweaksGameModification < CK2GameModification
     patch_mod_file!("common/laws/ze_council_power_laws.txt") do |node|
       node["laws"].each do |law_name, law|
         if law_name =~ /0/
-          law["vassal_opinion"] = -5
+          law["vassal_opinion"] = -6
         end
       end
     end
@@ -1171,6 +1171,51 @@ class CK2TweaksGameModification < CK2GameModification
     )
   end
 
+  def more_heresies!
+    # I might need to tone it down by a lot
+    patch_mod_file!("events/soa_heresy_events.txt") do |node|
+      events = node.find_all("province_event")
+      heresy = events.find{|n| n["id"] == "SoA.4000"}
+      heresy["trigger"].delete! Property["NOT", PropertyList["religion_authority", 0.9]]
+      heresy["mean_time_to_happen"].add! Property[
+        "modifier", PropertyList[
+          "factor", 0.5,
+          "year", 1250,
+        ]
+      ]
+      # That's going to collapse
+      heresy["mean_time_to_happen"].add! Property[
+        "modifier", PropertyList[
+          "factor", 0.5,
+          "year", 1250,
+          "religion", "orthodox",
+        ]
+      ]
+      heresy["mean_time_to_happen"].add! Property[
+        "modifier", PropertyList[
+          "factor", 0.5,
+          "year", 1250,
+          "any_neighbor_province", PropertyList[
+            "is_land", true,
+            "is_heresy_of", "ROOT",
+          ],
+        ]
+      ]
+      # This is likely excessive af, I should stop if heresies get to >20% of Catholics
+      heresy["mean_time_to_happen"].add! Property[
+        "modifier", PropertyList[
+          "factor", 0.5,
+          "year", 1250,
+          "religion", "orthodox",
+          "any_neighbor_province", PropertyList[
+            "is_land", true,
+            "is_heresy_of", "ROOT",
+          ],
+        ]
+      ]
+    end
+  end
+
   def apply!
     ### Definitely still want:
     allow_everyone_river_access!
@@ -1234,7 +1279,8 @@ class CK2TweaksGameModification < CK2GameModification
 
     # Trying to make late game work:
     unhappy_late_vassals!
-    # adventurers_cap!
+    adventurers_cap!
+    more_heresies!
     # much_less_attriton!
     # remove_siege_defense_bonus!
     # make_title_creation_expensive!
