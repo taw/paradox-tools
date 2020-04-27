@@ -1,0 +1,47 @@
+targetted_decisions = {
+  force_vassalize = {
+    filter = all
+    ai_target_filter = all
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = {
+      set_defacto_liege = FROM
+    }
+    ai_will_do = { factor = 0 }
+  }
+
+  give_me_your_stuff_1 = {
+    filter = all
+    ai_target_filter = all
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = {
+      ROOT = { FROM = { abdicate = yes } }
+    }
+    ai_will_do = { factor = 0 }
+  }
+
+  give_me_your_stuff_2 = {
+    filter = all
+    ai_target_filter = all
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = {
+      FROM = { ROOT = { abdicate = yes } }
+    }
+    ai_will_do = { factor = 0 }
+  }
+
+  give_me_your_stuff_3 = {
+    filter = all
+    ai_target_filter = all
+    from_potential = { ai = no }
+    potential = { always = yes }
+    effect = {
+      any_demesne_title = {
+        grant_title = FROM
+      }
+    }
+    ai_will_do = { factor = 0 }
+  }
+}
