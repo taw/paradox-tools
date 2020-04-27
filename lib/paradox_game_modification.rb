@@ -7,7 +7,7 @@ class ParadoxGameModification
   def apply!
     raise "SubclassResponsibility"
   end
-  def method_missing(*args, &blk)
-    @builder.send(*args, &blk)
+  def method_missing(*args, **kwargs, &blk)
+    @builder.send(*args, **kwargs, &blk)
   end
 end
