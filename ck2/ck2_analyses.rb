@@ -170,7 +170,7 @@ module Ck2Analyses
     @title_paths ||= begin
       map = {}
       deep_search(landed_titles) do |node, path|
-        if path[-1] =~ /\A[ekdcb]_/
+        if path[-1].is_a?(String) and path[-1] =~ /\A[ekdcb]_/
           map[path[-1]] = path.reverse
         end
       end
