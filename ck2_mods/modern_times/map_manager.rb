@@ -21,6 +21,7 @@ class MapManager
     end
 
     deep_search_direct(landed_titles) do |node, path|
+      next unless path[-1].is_a?(String)
       if path[-1] =~ /\A[ekdcb]_/
         @landed_titles_lookup[path[-1]] = path.reverse
       end
@@ -82,7 +83,7 @@ class MapManager
     holdings = {}
     capital = nil
     node.each do |k, v|
-      if k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
+      if k.is_a?(String) and k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
         holdings[k] = v
         capital ||= k
       end

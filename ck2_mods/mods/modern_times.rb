@@ -709,7 +709,7 @@ class ModernTimesGameModification < CK2GameModification
     holdings = {}
     capital = nil
     node.each do |k, v|
-      if k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
+      if k.is_a?(String) and k =~ /\Ab_/ and v =~ /\A(city|castle|temple|tribal)\z/
         holdings[k] = v
         capital ||= k
       end
