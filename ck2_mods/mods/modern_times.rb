@@ -410,7 +410,7 @@ class ModernTimesGameModification < CK2GameModification
                    "economy", e2,
                    "culture", c2,
                  ],
-                 2016, PropertyList[
+                 2017, PropertyList[
                    "military", m3,
                    "economy", e3,
                    "culture", c3,
