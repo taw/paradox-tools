@@ -12,3 +12,8 @@ desc "Run importer - Millennium Dawn"
 task "import:md" do
   sh "rescue ./bin/import_data millennium_dawn ~/px/source/MD-1.9.1"
 end
+
+desc "Run importer - Kaiserreich"
+task "import:kr" do
+  sh "rescue ./bin/import_data kaiserreich ~/hoi4 ~/px/source/KR-1.9.1"
+end
