@@ -145,7 +145,7 @@ class Division
 
   # It doesn't stack quite right, but it's more helpful this way
   def speed
-    base_speed = @units.select(&:frontline?).map(&:speed).min || 0
+    base_speed = @units.select(&:affects_speed?).map(&:speed).min || 0
     doctrine_bonus = @country.division_bonuses["army_speed_factor"] || 0
     (base_speed * (1 + doctrine_bonus)).round(2)
   end

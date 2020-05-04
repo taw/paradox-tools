@@ -300,6 +300,19 @@ describe Division do
     end
   end
 
+  describe "speed affecting support companies" do
+    let(:units) {
+      {
+        motorized: 10,
+        recon: 1,
+        artillery: 1,
+      }
+    }
+    it do
+      expect(division.speed).to eq 6.4
+    end
+  end
+
   describe "10inf + support art; some tech" do
     let(:tech) { %W[infantry_weapons infantry_weapons1 gw_artillery] }
     let(:units) { {infantry: 10, artillery: 1} }
@@ -465,7 +478,7 @@ describe Division do
           manpower: 3000,
           training_time: 40,
           equipment: {"infantry_equipment_0" => 150},
-          ic_cost: 60,
+          ic_cost: 64.5,
           terrain_bonuses: {},
           recovery_rate: 0.35,
         }

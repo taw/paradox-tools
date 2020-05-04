@@ -22,4 +22,9 @@ class UnitType < OpenStruct
   def active?
     !!active
   end
+
+  # Weirdly defaults to true
+  def affects_speed?
+    affects_speed != false
+  end
 end
