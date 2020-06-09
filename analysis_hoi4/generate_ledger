@@ -56,6 +56,7 @@ class GenerateLedger < ParadoxGame
         @id_to_equipment[id] = @equipments[type]
       else
         # Seems like a weird bug. Assume creating archetype is same as creating level 0
+        raise "Archetype #{type} not found" unless @archetypes[type]
         @id_to_equipment[id] = @archetypes[type].default_level
       end
     end
