@@ -50,7 +50,7 @@ end
 
 ####
 # Just make it match base game version (plus maybe a/b/c for hotfixes)
-FUN_AND_BALANCE_VERSION = "1.28.3"
+FUN_AND_BALANCE_VERSION = "1.30.1"
 
 desc "Build all packages"
 task "all" => ["ck2", "eu4", "hoi4"]

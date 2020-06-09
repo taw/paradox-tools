@@ -18,14 +18,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def can_convert_in_territories!
-    # Vanilla reverted these in 1.28
-    soft_patch_defines_lua!("fun_and_balance_convert_in_territories",
-      ["NCountry.CAN_CONVERT_TERRITORY_CULTURE", 1, 1],
-      ["NCountry.CAN_CONVERT_TERRITORY_RELIGION", 1, 1],
-    )
-  end
-
   def cheaper_fort_maintenance!
     soft_patch_defines_lua!("fun_and_balance_cheaper_forts",
       ["NMilitary.FORTRESS_COST", 0.50, 0.25],
@@ -51,17 +43,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
       ["NNationDesigner.RULER_BASE_SKILL", 2, 3]
     )
-  end
-
-  def disable_burgundy_inheritance!
-    patch_mod_file!("events/FlavorBUR.txt") do |node|
-      node.each do |key, val|
-        # Events: flavor_bur.(3|4|5|6|19)
-        # are part of the chain but trigger from other events within it so they don't need the fix
-        next unless key == "country_event" and val["id"] =~ /\Aflavor_bur\.(1|2|7)\z/
-        val["trigger"] = PropertyList["always", false]
-      end
-    end
   end
 
   def disable_call_for_peace!
@@ -103,13 +84,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/government_reforms/00_government_reforms.txt") do |node|
       node["defaults_reform"]["claim_states"] = true
     end
-  end
-
-  def fewer_mercs!
-    soft_patch_defines_lua!("fun_and_balance_fewer_mercs",
-      ["NMilitary.MERCENARY_SUPPORT_LIMIT_BASE", 20, 10],
-      ["NMilitary.MERCENARY_SUPPORT_LIMIT_FRACTION", 0.3, 0.15],
-    )
   end
 
   def imperial_ban_cb_low_ae!
@@ -161,12 +135,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       constantinople_decision["effect"][151]["change_culture"] = "ROOT"
       constantinople_decision["effect"][151]["change_religion"] = "ROOT"
     end
-  end
-
-  def merchant_republic_province_limit_remove!
-    soft_patch_defines_lua!("fun_and_balance_merchant_republics",
-      ["NCountry.MERCHANT_REPUBLIC_SIZE_LIMIT", 20, 10000],
-    )
   end
 
   def more_building_slots!
@@ -356,37 +324,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  # Massively increase benefits of being emperor
-  # as a very indirect Ottoman / France nerf
-  #
-  # Tax income from 5 free cities and 30 other states will be 10/month
-  # Gemeiner Pfennig increased from 1.66/month to 5/month
-  #
-  # It doesn't even have to represent a tax, just funding to levies provided by members
-  def rebalance_hre!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node!(node,
-        ["states_in_hre", "land_forcelimit", 0.5, 1],
-        ["states_in_hre", "global_manpower", 0.5, 1],
-        ["states_in_hre", "global_tax_income", nil, 3],
-        ["free_cities_in_hre", "land_forcelimit", 0.5, 1],
-        ["free_cities_in_hre", "global_manpower", 1, 2],
-        ["free_cities_in_hre", "global_tax_income", 2, 6],
-      )
-    end
-    patch_mod_file!("common/imperial_reforms/00_hre.txt") do |node|
-      modify_node!(node,
-        ["gemeinerpfennig", "emperor", "global_tax_income", 20, 60],
-      )
-    end
-
-    patch_mod_file!("decisions/ShadowKingdom.txt") do |node|
-      decision = node["country_decisions"]["stop_shadow_kingdom"]
-      decision["potential"].delete! Property["ai", false]
-      decision["ai_will_do"]["factor"] = 1
-    end
-  end
-
   def holy_orders_for_all!
     patch_mod_files!("common/holy_orders/00_holy_orders.txt") do |node|
       ["jesuit_order", "dominican_order", "franciscan_order"].each do |k|
@@ -394,13 +331,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           "religion", "catholic",
         ]
       end
-    end
-  end
-
-  # Goes away in 1.30 anyway
-  def unlimited_states!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["base_values"]["max_states"] = 1000
     end
   end
 
