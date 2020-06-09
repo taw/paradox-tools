@@ -127,7 +127,7 @@
         "fighter",
         "cas"
       ],
-      "name": "fighter_bomber",
+      "name": "Fighter-Bomber",
       "equipment": {
         "fighter_bomber_equipment": 1
       },
@@ -194,7 +194,7 @@
       "type": [
         "cas"
       ],
-      "name": "Close Air Support",
+      "name": "Dive Bomber",
       "equipment": {
         "CAS_equipment": 1
       },
@@ -227,7 +227,7 @@
       "type": [
         "cas"
       ],
-      "name": "Close Air Support (Carrier)",
+      "name": "Carrier Dive Bomber",
       "equipment": {
         "cv_CAS_equipment": 1
       },
@@ -293,7 +293,7 @@
       "type": [
         "naval_bomber"
       ],
-      "name": "Naval Bomber",
+      "name": "Torpedo Bomber",
       "equipment": {
         "nav_bomber_equipment": 1
       },
@@ -324,7 +324,7 @@
         "naval_bomber",
         "scout_plane"
       ],
-      "name": "flying_boat",
+      "name": "Maritime Patrol",
       "equipment": {
         "flying_boat_equipment": 1
       },
@@ -357,7 +357,7 @@
       "type": [
         "tactical_bomber"
       ],
-      "name": "Tactical Bomber",
+      "name": "Medium Bomber",
       "equipment": {
         "tac_bomber_equipment": 1
       },
@@ -391,7 +391,7 @@
         "tactical_bomber",
         "naval_bomber"
       ],
-      "name": "med_maritime",
+      "name": "Medium Maritime Bomber",
       "equipment": {
         "med_maritime_equipment": 1
       },
@@ -492,7 +492,7 @@
         "fighter",
         "cas"
       ],
-      "name": "hfighter_bomber",
+      "name": "Heavy Fighter-Bomber",
       "equipment": {
         "hfighter_bomber_equipment": 1
       },
@@ -525,7 +525,7 @@
       "type": [
         "strategic_bomber"
       ],
-      "name": "Strategic Bomber",
+      "name": "Heavy Bomber",
       "equipment": {
         "strat_bomber_equipment": 1
       },
@@ -558,7 +558,7 @@
       "type": [
         "naval_bomber"
       ],
-      "name": "strat_maritime",
+      "name": "Heavy Maritime Bomber",
       "equipment": {
         "strat_maritime_equipment": 1
       },
@@ -591,7 +591,7 @@
       "type": [
         "strategic_bomber"
       ],
-      "name": "Jet Strategic Bomber",
+      "name": "Jet Heavy Bomber",
       "equipment": {
         "jet_strat_bomber_equipment": 1
       },
@@ -2584,7 +2584,7 @@
         "infantry"
       ],
       "weight": 0.5,
-      "name": "jaeger",
+      "name": "Jaeger Infantry",
       "equipment": {
         "infantry_equipment": 100,
         "support_equipment": 5
@@ -2641,7 +2641,7 @@
         "infantry"
       ],
       "weight": 0.5,
-      "name": "jungletroop",
+      "name": "Jungle Infantry",
       "equipment": {
         "infantry_equipment": 100,
         "support_equipment": 5
@@ -2698,7 +2698,7 @@
         "infantry"
       ],
       "weight": 0.5,
-      "name": "desertinfantry",
+      "name": "Desert Infantry",
       "equipment": {
         "infantry_equipment": 100,
         "support_equipment": 5
@@ -3303,7 +3303,7 @@
         "infantry"
       ],
       "weight": 0.5,
-      "name": "militia",
+      "name": "Militia",
       "equipment": {
         "infantry_equipment": 85
       },
@@ -4927,7 +4927,7 @@
         "MECH_attack_upgrade"
       ],
       "year": 1940,
-      "name": "Basic Amphibious Tractor",
+      "name": "Amphibious Tractor 41",
       "archetype": "amphibious_mechanized_equipment"
     },
     "amphibious_mechanized_equipment_2": {
@@ -4956,7 +4956,7 @@
         "MECH_attack_upgrade"
       ],
       "year": 1942,
-      "name": "Improved Amphibious Tractor",
+      "name": "Amphibious Tractor 43",
       "archetype": "amphibious_mechanized_equipment",
       "parent": "amphibious_mechanized_equipment_1"
     },
@@ -4985,7 +4985,7 @@
         "AA_defence_upgrade"
       ],
       "year": 1936,
-      "name": "Towed Anti-Air",
+      "name": "Light Anti-Air 30",
       "archetype": "anti_air_equipment",
       "is_convertable": true
     },
@@ -5014,7 +5014,7 @@
         "AA_defence_upgrade"
       ],
       "year": 1940,
-      "name": "Improved Anti-Air",
+      "name": "Light Anti-Air 38",
       "archetype": "anti_air_equipment",
       "is_convertable": true,
       "parent": "anti_air_equipment_1"
@@ -5044,7 +5044,7 @@
         "AA_defence_upgrade"
       ],
       "year": 1943,
-      "name": "Advanced Anti-Air",
+      "name": "Light Anti-Air 43",
       "archetype": "anti_air_equipment",
       "is_convertable": true,
       "parent": "anti_air_equipment_2"
@@ -5074,7 +5074,7 @@
         "AA_defence_upgrade"
       ],
       "year": 1948,
-      "name": "anti_air_equipment_x",
+      "name": "Light Anti-Air 48",
       "archetype": "anti_air_equipment",
       "parent": "anti_air_equipment_3"
     },
@@ -5104,7 +5104,7 @@
         "AT_defence_upgrade"
       ],
       "year": 1936,
-      "name": "Towed Anti-Tank",
+      "name": "Anti-Tank 30",
       "archetype": "anti_tank_equipment",
       "is_convertable": true
     },
@@ -5134,7 +5134,7 @@
         "AT_defence_upgrade"
       ],
       "year": 1940,
-      "name": "Improved Anti-Tank",
+      "name": "Anti-Tank 39",
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_1"
     },
@@ -5164,7 +5164,7 @@
         "AT_defence_upgrade"
       ],
       "year": 1943,
-      "name": "Advanced Anti-Tank",
+      "name": "Anti-Tank 43",
       "archetype": "anti_tank_equipment",
       "is_convertable": true,
       "parent": "anti_tank_equipment_2"
@@ -5195,7 +5195,7 @@
         "AT_defence_upgrade"
       ],
       "year": 1948,
-      "name": "anti_tank_equipment_x",
+      "name": "Anti-Tank 48",
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_3"
     },
@@ -5343,7 +5343,7 @@
         "ART_defence_upgrade"
       ],
       "year": 1934,
-      "name": "Towed Artillery",
+      "name": "Field Artillery 30",
       "archetype": "artillery_equipment",
       "is_convertable": true
     },
@@ -5373,7 +5373,7 @@
         "ART_defence_upgrade"
       ],
       "year": 1939,
-      "name": "Improved Artillery",
+      "name": "Field Artillery 36",
       "archetype": "artillery_equipment",
       "is_convertable": true,
       "parent": "artillery_equipment_1"
@@ -5404,7 +5404,7 @@
         "ART_defence_upgrade"
       ],
       "year": 1942,
-      "name": "Advanced Artillery",
+      "name": "Field Artillery 40",
       "archetype": "artillery_equipment",
       "is_convertable": true,
       "parent": "artillery_equipment_2"
@@ -5435,7 +5435,7 @@
         "RART_BR_upgrade"
       ],
       "year": 1940,
-      "name": "Towed Rocket Artillery",
+      "name": "Rocket Artillery 41",
       "archetype": "rocket_artillery_equipment",
       "is_convertable": true
     },
@@ -5465,7 +5465,7 @@
         "RART_BR_upgrade"
       ],
       "year": 1943,
-      "name": "Advanced Rocket Artillery",
+      "name": "Rocket Artillery 43",
       "archetype": "rocket_artillery_equipment",
       "is_convertable": true,
       "parent": "rocket_artillery_equipment_1"
@@ -5496,7 +5496,7 @@
         "ART_defence_upgrade"
       ],
       "year": 1945,
-      "name": "artillery_equipment_x",
+      "name": "Field Artillery 45",
       "archetype": "artillery_equipment",
       "parent": "artillery_equipment_3"
     },
@@ -5526,7 +5526,7 @@
         "RART_BR_upgrade"
       ],
       "year": 1948,
-      "name": "rocket_artillery_equipment_x",
+      "name": "Rocket Artillery 48",
       "archetype": "rocket_artillery_equipment",
       "parent": "rocket_artillery_equipment_2"
     },
@@ -5646,7 +5646,7 @@
       },
       "type": "missile",
       "year": 1955,
-      "name": "guided_missile_equipment_4",
+      "name": "Early ICBM",
       "air_agility": 10,
       "air_bombing": 800,
       "air_range": 16000,
@@ -5665,7 +5665,7 @@
         "missile"
       ],
       "year": 1959,
-      "name": "icbm_missile_equipment_1",
+      "name": "Nuclear ICBM",
       "air_agility": 10,
       "air_bombing": 999,
       "air_range": 20000,
@@ -5704,7 +5704,7 @@
         "INF_defence_upgrade"
       ],
       "year": 1918,
-      "name": "Basic Infantry Equipment",
+      "name": "Small Arms 30",
       "archetype": "infantry_equipment",
       "is_convertable": true
     },
@@ -5732,7 +5732,7 @@
         "INF_defence_upgrade"
       ],
       "year": 1936,
-      "name": "Infantry Equipment I",
+      "name": "Small Arms 36",
       "archetype": "infantry_equipment",
       "is_convertable": true,
       "parent": "infantry_equipment_0"
@@ -5761,7 +5761,7 @@
         "INF_defence_upgrade"
       ],
       "year": 1939,
-      "name": "Infantry Equipment II",
+      "name": "Small Arms 39",
       "archetype": "infantry_equipment",
       "is_convertable": true,
       "parent": "infantry_equipment_1"
@@ -5790,7 +5790,7 @@
         "INF_defence_upgrade"
       ],
       "year": 1942,
-      "name": "Infantry Equipment III",
+      "name": "Small Arms 42",
       "archetype": "infantry_equipment",
       "is_convertable": true,
       "parent": "infantry_equipment_2"
@@ -5819,7 +5819,7 @@
         "INF_defence_upgrade"
       ],
       "year": 1945,
-      "name": "infantry_equipment_x",
+      "name": "Small Arms 45",
       "archetype": "infantry_equipment",
       "is_convertable": true,
       "parent": "infantry_equipment_3"
@@ -5848,7 +5848,7 @@
         "INF_defence_upgrade"
       ],
       "year": 1948,
-      "name": "infantry_equipment_x_2",
+      "name": "Small Arms 48",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_x"
     },
@@ -5876,7 +5876,7 @@
         "INF_defence_upgrade"
       ],
       "year": 1952,
-      "name": "infantry_equipment_x_3",
+      "name": "Infantry Kit 52",
       "archetype": "infantry_equipment",
       "parent": "infantry_equipment_x"
     },
@@ -5905,7 +5905,7 @@
         "MECH_attack_upgrade"
       ],
       "year": 1941,
-      "name": "Mechanized Equipment I",
+      "name": "Armored Personnel Carrier 1938",
       "archetype": "mechanized_equipment",
       "is_convertable": true
     },
@@ -5934,7 +5934,7 @@
         "MECH_attack_upgrade"
       ],
       "year": 1942,
-      "name": "Mechanized Equipment II",
+      "name": "Armored Personnel Carrier 1942",
       "archetype": "mechanized_equipment",
       "is_convertable": true,
       "parent": "mechanized_equipment_1"
@@ -5964,7 +5964,7 @@
         "MECH_attack_upgrade"
       ],
       "year": 1944,
-      "name": "Mechanized Equipment III",
+      "name": "Armored Personnel Carrier 1944",
       "archetype": "mechanized_equipment",
       "is_convertable": true,
       "parent": "mechanized_equipment_2"
@@ -5994,7 +5994,7 @@
         "MECH_attack_upgrade"
       ],
       "year": 1949,
-      "name": "mechanized_equipment_x",
+      "name": "Armored Personnel Carrier 1949",
       "archetype": "mechanized_equipment",
       "is_convertable": true,
       "parent": "mechanized_equipment_3"
@@ -6076,7 +6076,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Strategic Bomber I",
+      "name": "Heavy Bomber 36",
       "air_agility": 5,
       "air_attack": 50,
       "air_bombing": 30,
@@ -6108,7 +6108,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Strategic Bomber II",
+      "name": "Heavy Bomber 40",
       "air_agility": 7,
       "air_attack": 100,
       "air_bombing": 45,
@@ -6141,7 +6141,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Strategic Bomber III",
+      "name": "Heavy Bomber 44",
       "air_agility": 10,
       "air_attack": 150,
       "air_bombing": 60,
@@ -6175,7 +6175,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
-      "name": "Jet Strategic Bomber I",
+      "name": "Jet Heavy Bomber 50",
       "air_agility": 14,
       "air_attack": 100,
       "air_bombing": 64,
@@ -6207,7 +6207,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1955,
-      "name": "jet_strat_bomber_equipment_x",
+      "name": "Jet Heavy Bomber 55",
       "air_agility": 15,
       "air_attack": 150,
       "air_bombing": 75,
@@ -6240,7 +6240,7 @@
         "plane_transport_defense_upgrade"
       ],
       "year": 1933,
-      "name": "Transport Plane I",
+      "name": "Transport Plane",
       "active": true,
       "air_agility": 10,
       "air_defence": 20,
@@ -6274,7 +6274,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "fighter_bomber_equipment_2",
+      "name": "Fighter-Bomber 40",
       "air_agility": 60,
       "air_attack": 27,
       "air_defence": 16,
@@ -6309,7 +6309,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "fighter_bomber_equipment_3",
+      "name": "Fighter-Bomber 44",
       "air_agility": 75,
       "air_attack": 32,
       "air_defence": 20,
@@ -6342,7 +6342,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
-      "name": "flying_boat_equipment_0",
+      "name": "Maritime Patrol 30",
       "air_agility": 5,
       "air_attack": 20,
       "air_defence": 15,
@@ -6373,7 +6373,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "flying_boat_equipment_1",
+      "name": "Maritime Patrol 36",
       "air_agility": 7,
       "air_attack": 35,
       "air_defence": 17,
@@ -6405,7 +6405,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "flying_boat_equipment_2",
+      "name": "Maritime Patrol 40",
       "air_agility": 7,
       "air_attack": 50,
       "air_defence": 19,
@@ -6437,7 +6437,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "flying_boat_equipment_3",
+      "name": "Maritime Patrol 44",
       "air_agility": 10,
       "air_attack": 65,
       "air_defence": 21,
@@ -6469,7 +6469,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "strat_maritime_equipment_1",
+      "name": "Heavy Maritime 36",
       "air_agility": 5,
       "air_attack": 50,
       "air_bombing": 15,
@@ -6501,7 +6501,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "strat_maritime_equipment_2",
+      "name": "Heavy Maritime 40",
       "air_agility": 7,
       "air_attack": 100,
       "air_bombing": 20,
@@ -6534,7 +6534,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "strat_maritime_equipment_3",
+      "name": "Heavy Maritime 44",
       "air_agility": 10,
       "air_attack": 150,
       "air_bombing": 25,
@@ -6571,7 +6571,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "hfighter_bomber_equipment_1",
+      "name": "Heavy Fighter-Bomber 36",
       "air_agility": 21,
       "air_attack": 36,
       "air_defence": 30,
@@ -6606,7 +6606,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "hfighter_bomber_equipment_2",
+      "name": "Heavy Fighter-Bomber 40",
       "air_agility": 26,
       "air_attack": 46,
       "air_defence": 37,
@@ -6640,7 +6640,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "med_maritime_equipment_1",
+      "name": "Medium Maritime 36",
       "air_agility": 20,
       "air_attack": 8,
       "air_bombing": 8,
@@ -6675,7 +6675,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "med_maritime_equipment_2",
+      "name": "Medium Maritime 40",
       "air_agility": 25,
       "air_attack": 13,
       "air_bombing": 8,
@@ -6711,7 +6711,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "med_maritime_equipment_3",
+      "name": "Medium Maritime 44",
       "air_agility": 30,
       "air_attack": 20,
       "air_bombing": 12,
@@ -10936,7 +10936,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
-      "name": "Interwar Fighter",
+      "name": "Fighter 30",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 8,
@@ -10971,7 +10971,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Fighter I",
+      "name": "Fighter 36",
       "air_agility": 50,
       "air_attack": 18,
       "air_defence": 10,
@@ -11007,7 +11007,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Fighter II",
+      "name": "Fighter 40",
       "air_agility": 65,
       "air_attack": 27,
       "air_defence": 12,
@@ -11043,7 +11043,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Fighter III",
+      "name": "Fighter 44",
       "air_agility": 80,
       "air_attack": 32,
       "air_defence": 14,
@@ -11076,7 +11076,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
-      "name": "Jet Fighter I",
+      "name": "Jet Fighter 45",
       "air_agility": 72,
       "air_attack": 36,
       "air_defence": 15,
@@ -11109,7 +11109,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
-      "name": "Jet Fighter II",
+      "name": "Jet Fighter 50",
       "air_agility": 72,
       "air_attack": 40,
       "air_defence": 18,
@@ -11147,7 +11147,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
-      "name": "IW Carrier Fighter",
+      "name": "Carrier Fighter 30",
       "air_agility": 45,
       "air_attack": 9,
       "air_defence": 8,
@@ -11183,7 +11183,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Carrier Fighter I",
+      "name": "Carrier Fighter 36",
       "air_agility": 50,
       "air_attack": 18,
       "air_defence": 11,
@@ -11221,7 +11221,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Carrier Fighter II",
+      "name": "Carrier Fighter 40",
       "air_agility": 65,
       "air_attack": 27,
       "air_defence": 13,
@@ -11259,7 +11259,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Carrier Fighter III",
+      "name": "Carrier Fighter 44",
       "air_agility": 80,
       "air_attack": 32,
       "air_defence": 15,
@@ -11296,7 +11296,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Close Air Support I",
+      "name": "Dive Bomber 36",
       "air_agility": 35,
       "air_attack": 6,
       "air_defence": 14,
@@ -11337,7 +11337,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Close Air Support II",
+      "name": "Dive Bomber 40",
       "air_agility": 39,
       "air_attack": 10,
       "air_defence": 16,
@@ -11379,7 +11379,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Close Air Support III",
+      "name": "Dive Bomber 44",
       "air_agility": 44,
       "air_attack": 14,
       "air_defence": 20,
@@ -11416,7 +11416,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Carrier CAS I",
+      "name": "Carrier Dive Bomber 36",
       "air_agility": 35,
       "air_attack": 6,
       "air_defence": 14,
@@ -11452,7 +11452,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Carrier CAS II",
+      "name": "Carrier Dive Bomber II",
       "air_agility": 39,
       "air_attack": 10,
       "air_defence": 16,
@@ -11495,7 +11495,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Carrier CAS III",
+      "name": "Carrier Dive Bomber 44",
       "air_agility": 44,
       "air_attack": 14,
       "air_defence": 20,
@@ -11531,7 +11531,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Naval Bomber I",
+      "name": "Torpedo Bomber 36",
       "air_agility": 30,
       "air_attack": 6,
       "air_defence": 12,
@@ -11566,7 +11566,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Naval Bomber II",
+      "name": "Torpedo Bomber 40",
       "air_agility": 35,
       "air_attack": 10,
       "air_defence": 14,
@@ -11602,7 +11602,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Naval Bomber III",
+      "name": "Torpedo Bomber 44",
       "air_agility": 40,
       "air_attack": 14,
       "air_defence": 16,
@@ -11633,7 +11633,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Rocket Interceptor I",
+      "name": "Rocket Interceptor 43",
       "air_agility": 30,
       "air_attack": 47,
       "air_defence": 5,
@@ -11664,7 +11664,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
-      "name": "Rocket Interceptor II",
+      "name": "Rocket Interceptor 45",
       "air_agility": 36,
       "air_attack": 56,
       "air_defence": 7,
@@ -11696,7 +11696,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1946,
-      "name": "Rocket Interceptor III",
+      "name": "Rocket Interceptor 48",
       "air_agility": 60,
       "air_attack": 60,
       "air_defence": 10,
@@ -11765,7 +11765,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
-      "name": "cv_jet_fighter_equipment_1",
+      "name": "Carrier Jet Fighter 45",
       "air_agility": 72,
       "air_attack": 36,
       "air_defence": 20,
@@ -11804,7 +11804,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
-      "name": "cv_jet_fighter_equipment_2",
+      "name": "Carrier Jet Fighter 50",
       "air_agility": 72,
       "air_attack": 40,
       "air_defence": 26,
@@ -11843,7 +11843,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1955,
-      "name": "cv_jet_fighter_equipment_x",
+      "name": "Carrier Jet Fighter 55",
       "air_agility": 75,
       "air_attack": 44,
       "air_defence": 31,
@@ -11877,7 +11877,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1955,
-      "name": "jet_fighter_equipment_x",
+      "name": "Jet Fighter 55",
       "air_agility": 75,
       "air_attack": 44,
       "air_defence": 31,
@@ -12021,7 +12021,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1934,
-      "name": "Heavy Tank I",
+      "name": "Heavy Tank 34",
       "archetype": "heavy_tank_equipment"
     },
     "heavy_tank_equipment_2": {
@@ -12050,7 +12050,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
-      "name": "Heavy Tank II",
+      "name": "Heavy Tank 41",
       "archetype": "heavy_tank_equipment",
       "parent": "heavy_tank_equipment_1"
     },
@@ -12080,7 +12080,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
-      "name": "Heavy Tank III",
+      "name": "Heavy Tank 43",
       "archetype": "heavy_tank_equipment",
       "parent": "heavy_tank_equipment_2"
     },
@@ -12114,7 +12114,7 @@
         "tank_art_upgrade"
       ],
       "year": 1934,
-      "name": "Heavy SP Artillery I",
+      "name": "Heavy SP Artillery 34",
       "archetype": "heavy_tank_artillery_equipment"
     },
     "heavy_tank_artillery_equipment_2": {
@@ -12147,7 +12147,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
-      "name": "Heavy SP Artillery II",
+      "name": "Heavy SP Artillery 41",
       "archetype": "heavy_tank_artillery_equipment",
       "parent": "heavy_tank_artillery_equipment_1"
     },
@@ -12181,7 +12181,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
-      "name": "Heavy SP Artillery III",
+      "name": "Heavy SP Artillery 43",
       "archetype": "heavy_tank_artillery_equipment",
       "parent": "heavy_tank_artillery_equipment_2"
     },
@@ -12215,7 +12215,7 @@
         "tank_at_upgrade"
       ],
       "year": 1934,
-      "name": "Heavy Tank Destroyer I",
+      "name": "Heavy Tank Destroyer 34",
       "archetype": "heavy_tank_destroyer_equipment"
     },
     "heavy_tank_destroyer_equipment_2": {
@@ -12248,7 +12248,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
-      "name": "Heavy Tank Destroyer II",
+      "name": "Heavy Tank Destroyer 41",
       "archetype": "heavy_tank_destroyer_equipment",
       "parent": "heavy_tank_destroyer_equipment_1"
     },
@@ -12282,7 +12282,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
-      "name": "Heavy Tank Destroyer III",
+      "name": "Heavy Tank Destroyer 43",
       "archetype": "heavy_tank_destroyer_equipment",
       "parent": "heavy_tank_destroyer_equipment_2"
     },
@@ -12316,7 +12316,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1934,
-      "name": "Heavy SP Anti-Air I",
+      "name": "Heavy SP Anti-Air 34",
       "archetype": "heavy_tank_aa_equipment"
     },
     "heavy_tank_aa_equipment_2": {
@@ -12349,7 +12349,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
-      "name": "Heavy SP Anti-Air II",
+      "name": "Heavy SP Anti-Air 41",
       "archetype": "heavy_tank_aa_equipment",
       "parent": "heavy_tank_aa_equipment_1"
     },
@@ -12383,7 +12383,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
-      "name": "Heavy SP Anti-Air III",
+      "name": "Heavy SP Anti-Air 43",
       "archetype": "heavy_tank_aa_equipment",
       "parent": "heavy_tank_aa_equipment_2"
     },
@@ -12408,7 +12408,7 @@
       "upgrades": {
       },
       "year": 1914,
-      "name": "Great War Tank",
+      "name": "Light Tank 30",
       "archetype": "light_tank_equipment"
     },
     "light_tank_equipment_1": {
@@ -12436,7 +12436,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1934,
-      "name": "Light Tank I",
+      "name": "Light Tank 34",
       "archetype": "light_tank_equipment",
       "parent": "gw_tank_equipment"
     },
@@ -12465,7 +12465,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1936,
-      "name": "Light Tank II",
+      "name": "Light Tank 36",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_1"
     },
@@ -12494,7 +12494,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
-      "name": "Light Tank III",
+      "name": "Light Tank 41",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_2"
     },
@@ -12528,7 +12528,7 @@
         "tank_art_upgrade"
       ],
       "year": 1934,
-      "name": "Light SP Artillery I",
+      "name": "Light SP Artillery 34",
       "archetype": "light_tank_artillery_equipment"
     },
     "light_tank_artillery_equipment_2": {
@@ -12561,7 +12561,7 @@
         "tank_art_upgrade"
       ],
       "year": 1936,
-      "name": "Light SP Artillery II",
+      "name": "Light SP Artillery 36",
       "archetype": "light_tank_artillery_equipment",
       "parent": "light_tank_artillery_equipment_1"
     },
@@ -12595,7 +12595,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
-      "name": "Light SP Artillery III",
+      "name": "Light SP Artillery 41",
       "archetype": "light_tank_artillery_equipment",
       "parent": "light_tank_artillery_equipment_2"
     },
@@ -12629,7 +12629,7 @@
         "tank_at_upgrade"
       ],
       "year": 1934,
-      "name": "Light Tank Destroyer I",
+      "name": "Light Tank Destroyer 34",
       "archetype": "light_tank_destroyer_equipment"
     },
     "light_tank_destroyer_equipment_2": {
@@ -12662,7 +12662,7 @@
         "tank_at_upgrade"
       ],
       "year": 1936,
-      "name": "Light Tank Destroyer II",
+      "name": "Light Tank Destroyer 36",
       "archetype": "light_tank_destroyer_equipment",
       "parent": "light_tank_destroyer_equipment_1"
     },
@@ -12696,7 +12696,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
-      "name": "Light Tank Destroyer III",
+      "name": "Light Tank Destroyer 41",
       "archetype": "light_tank_destroyer_equipment",
       "parent": "light_tank_destroyer_equipment_2"
     },
@@ -12729,7 +12729,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1934,
-      "name": "Light SP Anti-Air I",
+      "name": "Light SP Anti-Air 34",
       "archetype": "light_tank_aa_equipment"
     },
     "light_tank_aa_equipment_2": {
@@ -12761,7 +12761,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1936,
-      "name": "Light SP Anti-Air II",
+      "name": "Light SP Anti-Air 36",
       "archetype": "light_tank_aa_equipment",
       "parent": "light_tank_aa_equipment_1"
     },
@@ -12794,7 +12794,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
-      "name": "Light SP Anti-Air III",
+      "name": "Light SP Anti-Air 41",
       "archetype": "light_tank_aa_equipment",
       "parent": "light_tank_aa_equipment_2"
     },
@@ -12824,7 +12824,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1945,
-      "name": "light_tank_equipment_x",
+      "name": "Light Tank 45",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_3"
     },
@@ -12854,7 +12854,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1949,
-      "name": "light_tank_equipment_x_2",
+      "name": "Light Tank 49",
       "archetype": "light_tank_equipment",
       "parent": "light_tank_equipment_x"
     },
@@ -12887,7 +12887,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1945,
-      "name": "light_tank_aa_equipment_x",
+      "name": "Light SP Anti-Air 45",
       "archetype": "light_tank_aa_equipment",
       "parent": "light_tank_aa_equipment_3"
     },
@@ -12921,7 +12921,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1949,
-      "name": "light_tank_aa_equipment_x_2",
+      "name": "Light SP Anti-Air 49",
       "archetype": "light_tank_aa_equipment",
       "parent": "light_tank_aa_equipment_x"
     },
@@ -12955,7 +12955,7 @@
         "tank_art_upgrade"
       ],
       "year": 1945,
-      "name": "light_tank_artillery_equipment_x",
+      "name": "Light SP Artillery 45",
       "archetype": "light_tank_artillery_equipment",
       "parent": "light_tank_artillery_equipment_3"
     },
@@ -12989,7 +12989,7 @@
         "tank_art_upgrade"
       ],
       "year": 1949,
-      "name": "light_tank_artillery_equipment_x_2",
+      "name": "Light SP Artillery 49",
       "archetype": "light_tank_artillery_equipment",
       "parent": "light_tank_artillery_equipment_x"
     },
@@ -13023,7 +13023,7 @@
         "tank_at_upgrade"
       ],
       "year": 1945,
-      "name": "light_tank_destroyer_equipment_x",
+      "name": "Light Tank Destroyer 45",
       "archetype": "light_tank_destroyer_equipment",
       "parent": "light_tank_destroyer_equipment_3"
     },
@@ -13057,7 +13057,7 @@
         "tank_at_upgrade"
       ],
       "year": 1949,
-      "name": "light_tank_destroyer_equipment_x_2",
+      "name": "Light Tank Destroyer 49",
       "archetype": "light_tank_destroyer_equipment",
       "parent": "light_tank_destroyer_equipment_x"
     },
@@ -13087,7 +13087,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1939,
-      "name": "Medium Tank I",
+      "name": "Medium Tank 39",
       "archetype": "medium_tank_equipment"
     },
     "medium_tank_equipment_2": {
@@ -13116,7 +13116,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1941,
-      "name": "Medium Tank II",
+      "name": "Medium Tank 41",
       "archetype": "medium_tank_equipment",
       "parent": "medium_tank_equipment_1"
     },
@@ -13146,7 +13146,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1943,
-      "name": "Medium Tank III",
+      "name": "Medium Tank 43",
       "archetype": "medium_tank_equipment",
       "parent": "medium_tank_equipment_2"
     },
@@ -13180,7 +13180,7 @@
         "tank_art_upgrade"
       ],
       "year": 1939,
-      "name": "Medium SP Artillery I",
+      "name": "Medium SP Artillery 39",
       "archetype": "medium_tank_artillery_equipment"
     },
     "medium_tank_artillery_equipment_2": {
@@ -13213,7 +13213,7 @@
         "tank_art_upgrade"
       ],
       "year": 1941,
-      "name": "Medium SP Artillery II",
+      "name": "Medium SP Artillery 41",
       "archetype": "medium_tank_artillery_equipment",
       "parent": "medium_tank_artillery_equipment_1"
     },
@@ -13247,7 +13247,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
-      "name": "Medium SP Artillery III",
+      "name": "Medium SP Artillery 43",
       "archetype": "medium_tank_artillery_equipment",
       "parent": "medium_tank_artillery_equipment_2"
     },
@@ -13281,7 +13281,7 @@
         "tank_at_upgrade"
       ],
       "year": 1939,
-      "name": "Medium Tank Destroyer I",
+      "name": "Medium Tank Destroyer 39",
       "archetype": "medium_tank_destroyer_equipment"
     },
     "medium_tank_destroyer_equipment_2": {
@@ -13314,7 +13314,7 @@
         "tank_at_upgrade"
       ],
       "year": 1941,
-      "name": "Medium Tank Destroyer II",
+      "name": "Medium Tank Destroyer 41",
       "archetype": "medium_tank_destroyer_equipment",
       "parent": "medium_tank_destroyer_equipment_1"
     },
@@ -13348,7 +13348,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
-      "name": "Medium Tank Destroyer III",
+      "name": "Medium Tank Destroyer 43",
       "archetype": "medium_tank_destroyer_equipment",
       "parent": "medium_tank_destroyer_equipment_2"
     },
@@ -13382,7 +13382,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1939,
-      "name": "Medium SP Anti-Air I",
+      "name": "Medium SP Anti-Air 39",
       "archetype": "medium_tank_aa_equipment"
     },
     "medium_tank_aa_equipment_2": {
@@ -13415,7 +13415,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1941,
-      "name": "Medium SP Anti-Air II",
+      "name": "Medium SP Anti-Air 41",
       "archetype": "medium_tank_aa_equipment",
       "parent": "medium_tank_aa_equipment_1"
     },
@@ -13449,7 +13449,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
-      "name": "Medium SP Anti-Air III",
+      "name": "Medium SP Anti-Air 43",
       "archetype": "medium_tank_aa_equipment",
       "parent": "medium_tank_aa_equipment_2"
     },
@@ -13479,7 +13479,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1945,
-      "name": "Modern Tank",
+      "name": "Modern Tank 45",
       "archetype": "modern_tank_equipment"
     },
     "modern_tank_artillery_equipment_1": {
@@ -13512,7 +13512,7 @@
         "tank_art_upgrade"
       ],
       "year": 1945,
-      "name": "Modern SP Artillery",
+      "name": "Modern SP Artillery 45",
       "archetype": "modern_tank_artillery_equipment"
     },
     "modern_tank_destroyer_equipment_1": {
@@ -13545,7 +13545,7 @@
         "tank_at_upgrade"
       ],
       "year": 1945,
-      "name": "Modern Tank Destroyer",
+      "name": "Modern Tank Destroyer 45",
       "archetype": "modern_tank_destroyer_equipment"
     },
     "modern_tank_aa_equipment_1": {
@@ -13578,7 +13578,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1945,
-      "name": "Modern SP Anti-Air",
+      "name": "Modern SP Anti-Air 45",
       "archetype": "modern_tank_aa_equipment"
     },
     "modern_tank_equipment_x": {
@@ -13607,7 +13607,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1947,
-      "name": "modern_tank_equipment_x",
+      "name": "Modern Tank 47",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_1"
     },
@@ -13637,7 +13637,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1949,
-      "name": "modern_tank_equipment_x_2",
+      "name": "Modern Tank 49",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_x"
     },
@@ -13667,7 +13667,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1951,
-      "name": "modern_tank_equipment_x_3",
+      "name": "Modern Tank 51",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_x_2"
     },
@@ -13697,7 +13697,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1953,
-      "name": "modern_tank_equipment_x_4",
+      "name": "Modern Tank 53",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_x_3"
     },
@@ -13727,7 +13727,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1955,
-      "name": "modern_tank_equipment_x_5",
+      "name": "Modern Tank 55",
       "archetype": "modern_tank_equipment",
       "parent": "modern_tank_equipment_x_4"
     },
@@ -13761,7 +13761,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1947,
-      "name": "modern_tank_aa_equipment_x",
+      "name": "Modern SP Anti-Air 47",
       "archetype": "modern_tank_aa_equipment",
       "parent": "modern_tank_aa_equipment_1"
     },
@@ -13795,7 +13795,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1949,
-      "name": "modern_tank_aa_equipment_x_2",
+      "name": "Modern SP Anti-Air 49",
       "archetype": "modern_tank_aa_equipment",
       "parent": "modern_tank_aa_equipment_x"
     },
@@ -13829,7 +13829,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1951,
-      "name": "modern_tank_aa_equipment_x_3",
+      "name": "Modern SP Anti-Air 51",
       "archetype": "modern_tank_aa_equipment",
       "parent": "modern_tank_aa_equipment_x_2"
     },
@@ -13863,7 +13863,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1953,
-      "name": "modern_tank_aa_equipment_x_4",
+      "name": "Modern SP Anti-Air 53",
       "archetype": "modern_tank_aa_equipment",
       "parent": "modern_tank_aa_equipment_x_3"
     },
@@ -13897,7 +13897,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1955,
-      "name": "modern_tank_aa_equipment_x_5",
+      "name": "Modern SP Anti-Air 55",
       "archetype": "modern_tank_aa_equipment",
       "parent": "modern_tank_aa_equipment_x_4"
     },
@@ -13931,7 +13931,7 @@
         "tank_art_upgrade"
       ],
       "year": 1947,
-      "name": "modern_tank_artillery_equipment_x",
+      "name": "Modern SP Artillery 47",
       "archetype": "modern_tank_artillery_equipment",
       "parent": "modern_tank_artillery_equipment_1"
     },
@@ -13965,7 +13965,7 @@
         "tank_art_upgrade"
       ],
       "year": 1949,
-      "name": "modern_tank_artillery_equipment_x_2",
+      "name": "Modern SP Artillery 49",
       "archetype": "modern_tank_artillery_equipment",
       "parent": "modern_tank_artillery_equipment_x"
     },
@@ -13999,7 +13999,7 @@
         "tank_art_upgrade"
       ],
       "year": 1951,
-      "name": "modern_tank_artillery_equipment_x_3",
+      "name": "Modern SP Artillery 51",
       "archetype": "modern_tank_artillery_equipment",
       "parent": "modern_tank_artillery_equipment_x_2"
     },
@@ -14033,7 +14033,7 @@
         "tank_art_upgrade"
       ],
       "year": 1953,
-      "name": "modern_tank_artillery_equipment_x_4",
+      "name": "Modern SP Artillery 53",
       "archetype": "modern_tank_artillery_equipment",
       "parent": "modern_tank_artillery_equipment_x_3"
     },
@@ -14067,7 +14067,7 @@
         "tank_art_upgrade"
       ],
       "year": 1955,
-      "name": "modern_tank_artillery_equipment_x_5",
+      "name": "Modern SP Artillery 55",
       "archetype": "modern_tank_artillery_equipment",
       "parent": "modern_tank_artillery_equipment_x_4"
     },
@@ -14101,7 +14101,7 @@
         "tank_at_upgrade"
       ],
       "year": 1947,
-      "name": "modern_tank_destroyer_equipment_x",
+      "name": "Modern Tank Destroyer 47",
       "archetype": "modern_tank_destroyer_equipment",
       "parent": "modern_tank_destroyer_equipment_1"
     },
@@ -14135,7 +14135,7 @@
         "tank_at_upgrade"
       ],
       "year": 1949,
-      "name": "modern_tank_destroyer_equipment_x_2",
+      "name": "Modern Tank Destroyer 49",
       "archetype": "modern_tank_destroyer_equipment",
       "parent": "modern_tank_destroyer_equipment_x"
     },
@@ -14169,7 +14169,7 @@
         "tank_at_upgrade"
       ],
       "year": 1951,
-      "name": "modern_tank_destroyer_equipment_x_3",
+      "name": "Modern Tank Destroyer 51",
       "archetype": "modern_tank_destroyer_equipment",
       "parent": "modern_tank_destroyer_equipment_x_2"
     },
@@ -14203,7 +14203,7 @@
         "tank_at_upgrade"
       ],
       "year": 1953,
-      "name": "modern_tank_destroyer_equipment_x_4",
+      "name": "Modern Tank Destroyer 53",
       "archetype": "modern_tank_destroyer_equipment",
       "parent": "modern_tank_destroyer_equipment_x_3"
     },
@@ -14237,7 +14237,7 @@
         "tank_at_upgrade"
       ],
       "year": 1955,
-      "name": "modern_tank_destroyer_equipment_x_5",
+      "name": "Modern Tank Destroyer 55",
       "archetype": "modern_tank_destroyer_equipment",
       "parent": "modern_tank_destroyer_equipment_x_4"
     },
@@ -14300,7 +14300,7 @@
         "tank_art_upgrade"
       ],
       "year": 1943,
-      "name": "Super Heavy SP Artillery",
+      "name": "Super Heavy SP Artillery 43",
       "archetype": "super_heavy_tank_artillery_equipment"
     },
     "super_heavy_tank_destroyer_equipment_1": {
@@ -14333,7 +14333,7 @@
         "tank_at_upgrade"
       ],
       "year": 1943,
-      "name": "Super Heavy SP Tank Destroyer",
+      "name": "Super Heavy Tank Destroyer 43",
       "archetype": "super_heavy_tank_destroyer_equipment"
     },
     "super_heavy_tank_aa_equipment_1": {
@@ -14366,7 +14366,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1943,
-      "name": "Super Heavy SP Anti-Air",
+      "name": "Super Heavy SP Anti-Air 43",
       "archetype": "super_heavy_tank_aa_equipment"
     },
     "super_heavy_tank_equipment_x": {
@@ -14395,7 +14395,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1947,
-      "name": "super_heavy_tank_equipment_x",
+      "name": "Super Heavy Tank 47",
       "archetype": "super_heavy_tank_equipment",
       "parent": "super_heavy_tank_equipment_1"
     },
@@ -14425,7 +14425,7 @@
         "tank_gun_upgrade"
       ],
       "year": 1951,
-      "name": "super_heavy_tank_equipment_x_2",
+      "name": "Super Heavy Tank 51",
       "archetype": "super_heavy_tank_equipment",
       "parent": "super_heavy_tank_equipment_x"
     },
@@ -14459,7 +14459,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1947,
-      "name": "super_heavy_tank_aa_equipment_x",
+      "name": "Super Heavy SP Anti-Air 47",
       "archetype": "super_heavy_tank_aa_equipment",
       "parent": "super_heavy_tank_aa_equipment_1"
     },
@@ -14493,7 +14493,7 @@
         "tank_aa_upgrade"
       ],
       "year": 1951,
-      "name": "super_heavy_tank_aa_equipment_x_2",
+      "name": "Super Heavy SP Anti-Air 51",
       "archetype": "super_heavy_tank_aa_equipment",
       "parent": "super_heavy_tank_aa_equipment_x"
     },
@@ -14527,7 +14527,7 @@
         "tank_art_upgrade"
       ],
       "year": 1947,
-      "name": "super_heavy_tank_artillery_equipment_x",
+      "name": "Super Heavy SP Artillery 47",
       "archetype": "super_heavy_tank_artillery_equipment",
       "parent": "super_heavy_tank_artillery_equipment_1"
     },
@@ -14561,7 +14561,7 @@
         "tank_art_upgrade"
       ],
       "year": 1951,
-      "name": "super_heavy_tank_artillery_equipment_x_2",
+      "name": "Super Heavy SP Artillery 51",
       "archetype": "super_heavy_tank_artillery_equipment",
       "parent": "super_heavy_tank_artillery_equipment_x"
     },
@@ -14595,7 +14595,7 @@
         "tank_at_upgrade"
       ],
       "year": 1947,
-      "name": "super_heavy_tank_destroyer_equipment_x",
+      "name": "Super Heavy Tank Destroyer 47",
       "archetype": "super_heavy_tank_destroyer_equipment",
       "parent": "super_heavy_tank_destroyer_equipment_1"
     },
@@ -14629,7 +14629,7 @@
         "tank_at_upgrade"
       ],
       "year": 1951,
-      "name": "super_heavy_tank_destroyer_equipment_x_2",
+      "name": "Super Heavy Tank Destroyer 51",
       "archetype": "super_heavy_tank_destroyer_equipment",
       "parent": "super_heavy_tank_destroyer_equipment_x"
     },
@@ -14658,7 +14658,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1933,
-      "name": "Interwar Bomber",
+      "name": "Medium Bomber 30",
       "air_agility": 16,
       "air_attack": 5,
       "air_bombing": 10,
@@ -14693,7 +14693,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Tactical Bomber I",
+      "name": "Medium Bomber 36",
       "air_agility": 20,
       "air_attack": 8,
       "air_bombing": 12,
@@ -14729,7 +14729,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Tactical Bomber II",
+      "name": "Medium Bomber 40",
       "air_agility": 25,
       "air_attack": 13,
       "air_bombing": 14,
@@ -14765,7 +14765,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Tactical Bomber III",
+      "name": "Medium Bomber 44",
       "air_agility": 30,
       "air_attack": 20,
       "air_bombing": 16,
@@ -14803,7 +14803,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1945,
-      "name": "Jet Tactical Bomber I",
+      "name": "Jet Tactical Bomber 45",
       "air_agility": 57,
       "air_attack": 18,
       "air_bombing": 16,
@@ -14839,7 +14839,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1950,
-      "name": "Jet Tactical Bomber II",
+      "name": "Jet Tactical Bomber 50",
       "air_agility": 57,
       "air_attack": 22,
       "air_bombing": 20,
@@ -14876,7 +14876,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1936,
-      "name": "Heavy Fighter I",
+      "name": "Heavy Fighter 36",
       "air_agility": 25,
       "air_attack": 36,
       "air_defence": 13,
@@ -14911,7 +14911,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1940,
-      "name": "Heavy Fighter II",
+      "name": "Heavy Fighter 40",
       "air_agility": 30,
       "air_attack": 46,
       "air_defence": 15,
@@ -14947,7 +14947,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1944,
-      "name": "Heavy Fighter III",
+      "name": "Heavy Fighter 44",
       "air_agility": 33,
       "air_attack": 54,
       "air_defence": 18,
@@ -15050,7 +15050,7 @@
         "plane_reliability_upgrade"
       ],
       "year": 1955,
-      "name": "jet_tac_bomber_equipment_x",
+      "name": "Jet Tactical Bomber 55",
       "air_agility": 60,
       "air_attack": 25,
       "air_bombing": 25,
@@ -18530,7 +18530,7 @@
       ],
       "research_cost": 1.7,
       "start_year": 1933,
-      "name": "flying_boat",
+      "name": "Maritime Patrol",
       "leads_to": [
         "flying_boat1"
       ],
@@ -21081,7 +21081,7 @@
       ],
       "research_cost": 1,
       "start_year": 1944,
-      "name": "antitank_a",
+      "name": "Advanced Anti-Tank Upgrade",
       "leads_to": [
         "antitank_b"
       ],
@@ -21107,7 +21107,7 @@
       ],
       "research_cost": 1,
       "start_year": 1945,
-      "name": "antitank_b",
+      "name": "Advanced Anti-Tank Upgrade II",
       "leads_to": [
         "antitank_c"
       ],
@@ -21150,7 +21150,7 @@
       ],
       "research_cost": 1,
       "start_year": 1951,
-      "name": "antitank_d",
+      "name": "Semi-Modern Anti-Tank Artillery Upgrade",
       "leads_to": [
         "antitank_e"
       ],
@@ -21176,7 +21176,7 @@
       ],
       "research_cost": 1,
       "start_year": 1954,
-      "name": "antitank_e",
+      "name": "Semi-Modern Anti-Tank Artillery Upgrade II",
       "leads_to": [
 
       ],
@@ -21201,7 +21201,7 @@
       ],
       "research_cost": 1,
       "start_year": 1944,
-      "name": "artillery_a",
+      "name": "Advanced Artillery Upgrade II",
       "leads_to": [
         "artillery_b"
       ],
@@ -21239,7 +21239,7 @@
       ],
       "research_cost": 1,
       "start_year": 1948,
-      "name": "artillery_c",
+      "name": "Semi-Modern Artillery Upgrade I",
       "leads_to": [
         "artillery_d"
       ],
@@ -21261,7 +21261,7 @@
       ],
       "research_cost": 1,
       "start_year": 1951,
-      "name": "artillery_d",
+      "name": "Semi-Modern Artillery Upgrade II",
       "leads_to": [
         "artillery_e"
       ],
@@ -21283,7 +21283,7 @@
       ],
       "research_cost": 1,
       "start_year": 1954,
-      "name": "artillery_e",
+      "name": "Semi-Modern Artillery Upgrade III",
       "leads_to": [
 
       ],
@@ -21305,7 +21305,7 @@
       ],
       "research_cost": 1.1,
       "start_year": 1944,
-      "name": "rocket_artillery_a",
+      "name": "Advanced Rocket Artillery Upgrade",
       "leads_to": [
         "rocket_artillery_b"
       ],
@@ -21330,7 +21330,7 @@
       ],
       "research_cost": 1.1,
       "start_year": 1945,
-      "name": "rocket_artillery_b",
+      "name": "Advanced Rocket Artillery Upgrade II",
       "leads_to": [
         "rocket_artillery_c"
       ],
@@ -21380,7 +21380,7 @@
       ],
       "research_cost": 1.1,
       "start_year": 1951,
-      "name": "rocket_artillery_d",
+      "name": "Semi-Modern Rocket Artillery Upgrade",
       "leads_to": [
         "rocket_artillery_e"
       ],
@@ -21405,7 +21405,7 @@
       ],
       "research_cost": 1.1,
       "start_year": 1954,
-      "name": "rocket_artillery_e",
+      "name": "Semi-Modern Rocket Artillery Upgrade II",
       "leads_to": [
 
       ],
@@ -21431,7 +21431,7 @@
       "research_cost": 1.1,
       "start_year": 1944,
       "tech_air_damage_factor": -0.02,
-      "name": "antiair_a",
+      "name": "Advanced Anti-Air Upgrade",
       "leads_to": [
         "antiair_b"
       ],
@@ -21454,7 +21454,7 @@
       "research_cost": 1.1,
       "start_year": 1945,
       "tech_air_damage_factor": -0.02,
-      "name": "antiair_b",
+      "name": "Advanced Anti-Air Upgrade II",
       "leads_to": [
         "antiair_c"
       ],
@@ -21494,7 +21494,7 @@
       "research_cost": 1.1,
       "start_year": 1951,
       "tech_air_damage_factor": -0.02,
-      "name": "antiair_d",
+      "name": "Semi-Modern Anti-Air Upgrade",
       "leads_to": [
         "antiair_e"
       ],
@@ -21517,7 +21517,7 @@
       "research_cost": 1.1,
       "start_year": 1954,
       "tech_air_damage_factor": -0.02,
-      "name": "antiair_e",
+      "name": "Semi-Modern Anti-Air Upgrade II",
       "leads_to": [
 
       ],
@@ -22119,7 +22119,7 @@
       "research_cost": 7,
       "research_speed_factor": 0.02,
       "start_year": 1948,
-      "name": "nuke_naval",
+      "name": "Naval Power",
       "leads_to": [
         "nukes_2"
       ],
@@ -22134,7 +22134,7 @@
       "research_cost": 7,
       "research_speed_factor": 0.05,
       "start_year": 1951,
-      "name": "nukes_2",
+      "name": "Thermonuclear Experiments",
       "leads_to": [
         "nukes_3"
       ],
@@ -22149,7 +22149,7 @@
       "research_cost": 7,
       "research_speed_factor": 0.075,
       "start_year": 1955,
-      "name": "nukes_3",
+      "name": "Miniaturized Nukes",
       "leads_to": [
         "nuke_rocket_engines"
       ],
@@ -22165,7 +22165,7 @@
       "research_cost": 2.5,
       "start_year": 1945,
       "static_anti_air_hit_chance_factor": 0.1,
-      "name": "future_radar",
+      "name": "AN/APS-2",
       "leads_to": [
         "future_radar_2"
       ],
@@ -22181,7 +22181,7 @@
       "research_cost": 2.5,
       "start_year": 1949,
       "static_anti_air_hit_chance_factor": 0.1,
-      "name": "future_radar_2",
+      "name": "AN/APS-4",
       "leads_to": [
         "future_radar_3"
       ],
@@ -22197,7 +22197,7 @@
       "research_cost": 2.5,
       "start_year": 1953,
       "static_anti_air_hit_chance_factor": 0.1,
-      "name": "future_radar_3",
+      "name": "AN/APS-6",
       "leads_to": [
 
       ],
@@ -22214,7 +22214,7 @@
       "research_cost": 2.5,
       "research_speed_factor": 0.1,
       "start_year": 1944,
-      "name": "future_computing_machine",
+      "name": "Colossus Series",
       "leads_to": [
         "future_encryption",
         "future_decryption",
@@ -22233,7 +22233,7 @@
       "research_cost": 2.5,
       "research_speed_factor": 0.1,
       "start_year": 1947,
-      "name": "future_computing_machine_2",
+      "name": "ENIAC",
       "leads_to": [
         "future_encryption_2",
         "future_decryption_2",
@@ -22255,7 +22255,7 @@
       "research_cost": 2.5,
       "research_speed_factor": 0.1,
       "start_year": 1951,
-      "name": "future_computing_machine_3",
+      "name": "LEO I",
       "leads_to": [
         "future_encryption_3",
         "future_decryption_3",
@@ -22277,7 +22277,7 @@
       "research_cost": 5,
       "research_speed_factor": 0.15,
       "start_year": 1955,
-      "name": "future_computing_machine_4",
+      "name": "Early Transistors",
       "leads_to": [
         "nuke_rocket_engines"
       ],
@@ -22297,7 +22297,7 @@
       "encryption": 1,
       "research_cost": 1.1,
       "start_year": 1944,
-      "name": "future_encryption",
+      "name": "Mk-1 Encryption",
       "leads_to": [
 
       ],
@@ -22317,7 +22317,7 @@
       "decryption": 1,
       "research_cost": 1.6,
       "start_year": 1944,
-      "name": "future_decryption",
+      "name": "Mk-1 Decryption",
       "leads_to": [
 
       ],
@@ -22337,7 +22337,7 @@
       "encryption": 1,
       "research_cost": 1.1,
       "start_year": 1947,
-      "name": "future_encryption_2",
+      "name": "Mk-2 Encryption",
       "leads_to": [
 
       ],
@@ -22357,7 +22357,7 @@
       "decryption": 1,
       "research_cost": 1.6,
       "start_year": 1947,
-      "name": "future_decryption_2",
+      "name": "Mk-2 Decryption",
       "leads_to": [
 
       ],
@@ -22377,7 +22377,7 @@
       "encryption": 1,
       "research_cost": 1.1,
       "start_year": 1951,
-      "name": "future_encryption_3",
+      "name": "Mk-3 Encryption",
       "leads_to": [
 
       ],
@@ -22397,7 +22397,7 @@
       "decryption": 1,
       "research_cost": 1.6,
       "start_year": 1951,
-      "name": "future_decryption_3",
+      "name": "Mk-3 Decryption",
       "leads_to": [
 
       ],
@@ -22413,7 +22413,7 @@
       "research_cost": 1,
       "resistance_damage_to_garrison": -0.03,
       "start_year": 1939,
-      "name": "rdf1",
+      "name": "Radio Direction Finding\" #new",
       "leads_to": [
         "rdf2"
       ],
@@ -22429,7 +22429,7 @@
       "research_cost": 1,
       "resistance_damage_to_garrison": -0.05,
       "start_year": 1941,
-      "name": "rdf2",
+      "name": "Improved Radio Direction Finding\" #new",
       "leads_to": [
         "rdf3"
       ],
@@ -22445,7 +22445,7 @@
       "research_cost": 1,
       "resistance_damage_to_garrison": -0.07,
       "start_year": 1943,
-      "name": "rdf3",
+      "name": "Advanced Radio Direction Finding\" #new",
       "leads_to": [
         "rdf4"
       ],
@@ -22461,7 +22461,7 @@
       "research_cost": 1.6,
       "resistance_damage_to_garrison": -0.09,
       "start_year": 1945,
-      "name": "rdf4",
+      "name": "Modern Radio Direction Finding\" #new",
       "leads_to": [
         "rdf5"
       ],
@@ -22477,7 +22477,7 @@
       "research_cost": 1.6,
       "resistance_damage_to_garrison": -0.11,
       "start_year": 1949,
-      "name": "rdf5",
+      "name": "1949 Radio Direction Finding\" #new",
       "leads_to": [
         "rdf6"
       ],
@@ -22493,7 +22493,7 @@
       "research_cost": 1.6,
       "resistance_damage_to_garrison": -0.13,
       "start_year": 1953,
-      "name": "rdf6",
+      "name": "1953 Radio Detection Finding\" #new",
       "leads_to": [
 
       ],
@@ -22506,7 +22506,7 @@
       ],
       "research_cost": 1.6,
       "start_year": 1951,
-      "name": "semi_modern_rocket_engines",
+      "name": "International Rocketry",
       "leads_to": [
         "modern_rocket_engines"
       ],
@@ -22535,7 +22535,7 @@
       "research_cost": 1.6,
       "show_equipment_icon": true,
       "start_year": 1957,
-      "name": "modern_rocket_engines",
+      "name": "Early ICBMs",
       "leads_to": [
         "nuke_rocket_engines"
       ],
@@ -22564,7 +22564,7 @@
       "research_cost": 1.6,
       "show_equipment_icon": true,
       "start_year": 1959,
-      "name": "nuke_rocket_engines",
+      "name": "Nuclear ICBM",
       "leads_to": [
 
       ],
@@ -23262,7 +23262,7 @@
       "production_speed_buildings_factor": 0.1,
       "research_cost": 3,
       "start_year": 1945,
-      "name": "construction_a",
+      "name": "Construction VI",
       "leads_to": [
         "excavation_a",
         "construction_b"
@@ -23278,7 +23278,7 @@
       "local_resources_factor": 0.1,
       "research_cost": 3,
       "start_year": 1945,
-      "name": "excavation_a",
+      "name": "Excavation VI",
       "leads_to": [
 
       ],
@@ -23294,7 +23294,7 @@
       "production_speed_buildings_factor": 0.1,
       "research_cost": 3,
       "start_year": 1948,
-      "name": "construction_b",
+      "name": "Construction VII",
       "leads_to": [
         "excavation_b",
         "construction_c"
@@ -23310,7 +23310,7 @@
       "local_resources_factor": 0.1,
       "research_cost": 3,
       "start_year": 1948,
-      "name": "excavation_b",
+      "name": "Excavation VII",
       "leads_to": [
 
       ],
@@ -23326,7 +23326,7 @@
       "production_speed_buildings_factor": 0.1,
       "research_cost": 3,
       "start_year": 1951,
-      "name": "construction_c",
+      "name": "Construction VIII",
       "leads_to": [
         "excavation_c",
         "construction_d"
@@ -23342,7 +23342,7 @@
       "local_resources_factor": 0.1,
       "research_cost": 3,
       "start_year": 1951,
-      "name": "excavation_c",
+      "name": "Excavation VIII",
       "leads_to": [
 
       ],
@@ -23358,7 +23358,7 @@
       "production_speed_buildings_factor": 0.1,
       "research_cost": 3,
       "start_year": 1954,
-      "name": "construction_d",
+      "name": "Construction IX",
       "leads_to": [
         "excavation_d"
       ],
@@ -23373,7 +23373,7 @@
       "local_resources_factor": 0.1,
       "research_cost": 3,
       "start_year": 1954,
-      "name": "excavation_d",
+      "name": "Excavation IX",
       "leads_to": [
 
       ],
@@ -23391,7 +23391,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1938,
-      "name": "rubber_plant_a",
+      "name": "Basic Rubber Plant",
       "leads_to": [
         "rubber_plant_b"
       ],
@@ -23406,7 +23406,7 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1941,
-      "name": "rubber_plant_b",
+      "name": "Improved Rubber Plant",
       "leads_to": [
         "rubber_plant_c"
       ],
@@ -23421,7 +23421,7 @@
       "research_cost": 1.6,
       "show_effect_as_desc": true,
       "start_year": 1945,
-      "name": "rubber_plant_c",
+      "name": "Advanced Rubber Plant",
       "leads_to": [
         "rubber_plant_d"
       ],
@@ -23436,7 +23436,7 @@
       "research_cost": 1.6,
       "show_effect_as_desc": true,
       "start_year": 1949,
-      "name": "rubber_plant_d",
+      "name": "Modern Rubber Plant",
       "leads_to": [
 
       ],
@@ -23451,7 +23451,7 @@
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2.6,
       "start_year": 1945,
-      "name": "flexible_line_a",
+      "name": "Flexible Line II",
       "leads_to": [
         "streamlined_line_b"
       ],
@@ -23466,7 +23466,7 @@
       "production_factory_max_efficiency_factor": 0.1,
       "research_cost": 2.6,
       "start_year": 1945,
-      "name": "streamlined_line_a",
+      "name": "Streamlined Line II",
       "leads_to": [
         "streamlined_line_b"
       ],
@@ -23481,7 +23481,7 @@
       "industrial_capacity_factory": 0.1,
       "research_cost": 2.6,
       "start_year": 1948,
-      "name": "streamlined_line_b",
+      "name": "Streamlined Manufacturing",
       "leads_to": [
         "streamlined_line_c"
       ],
@@ -23496,7 +23496,7 @@
       "industrial_capacity_factory": 0.1,
       "research_cost": 2.6,
       "start_year": 1951,
-      "name": "streamlined_line_c",
+      "name": "Semi-Modern Manufacturing",
       "leads_to": [
         "streamlined_line_d"
       ],
@@ -23511,7 +23511,7 @@
       "industrial_capacity_factory": 0.1,
       "research_cost": 2.6,
       "start_year": 1954,
-      "name": "streamlined_line_d",
+      "name": "Modern Manufacturing",
       "leads_to": [
 
       ],
@@ -23528,7 +23528,7 @@
       "industrial_capacity_factory": 0.15,
       "research_cost": 2.1,
       "start_year": 1945,
-      "name": "concentrated_industry_a",
+      "name": "Concentrated Industry VI",
       "leads_to": [
         "concentrated_industry_b"
       ],
@@ -23548,7 +23548,7 @@
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2.1,
       "start_year": 1945,
-      "name": "dispersed_industry_a",
+      "name": "Dispersed Industry VI",
       "leads_to": [
         "dispersed_industry_b"
       ],
@@ -23565,7 +23565,7 @@
       "industrial_capacity_factory": 0.15,
       "research_cost": 2.1,
       "start_year": 1948,
-      "name": "concentrated_industry_b",
+      "name": "Concentrated Industry VII",
       "leads_to": [
         "concentrated_industry_c"
       ],
@@ -23585,7 +23585,7 @@
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2.1,
       "start_year": 1948,
-      "name": "dispersed_industry_b",
+      "name": "Dispersed Industry VII",
       "leads_to": [
         "dispersed_industry_c"
       ],
@@ -23602,7 +23602,7 @@
       "industrial_capacity_factory": 0.15,
       "research_cost": 2.1,
       "start_year": 1951,
-      "name": "concentrated_industry_c",
+      "name": "Concentrated Industry VIII",
       "leads_to": [
         "concentrated_industry_d"
       ],
@@ -23622,7 +23622,7 @@
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2.1,
       "start_year": 1951,
-      "name": "dispersed_industry_c",
+      "name": "Dispersed Industry VIII",
       "leads_to": [
         "dispersed_industry_d"
       ],
@@ -23639,7 +23639,7 @@
       "industrial_capacity_factory": 0.15,
       "research_cost": 2.1,
       "start_year": 1954,
-      "name": "concentrated_industry_d",
+      "name": "Concentrated Industry IX",
       "leads_to": [
 
       ],
@@ -23659,7 +23659,7 @@
       "production_factory_start_efficiency_factor": 0.05,
       "research_cost": 2.1,
       "start_year": 1954,
-      "name": "dispersed_industry_d",
+      "name": "Dispersed Industry IX",
       "leads_to": [
 
       ],
@@ -23676,7 +23676,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1930,
-      "name": "steel_production_1",
+      "name": "Steel Production",
       "leads_to": [
         "steel_production_2",
         "aluminum_production_1"
@@ -23691,7 +23691,7 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1941,
-      "name": "steel_production_2",
+      "name": "Steel Production II",
       "leads_to": [
         "steel_production_3"
       ],
@@ -23705,7 +23705,7 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1948,
-      "name": "steel_production_3",
+      "name": "Steel Production III",
       "leads_to": [
         "steel_production_4"
       ],
@@ -23719,7 +23719,7 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1954,
-      "name": "steel_production_4",
+      "name": "Steel Production IV",
       "leads_to": [
 
       ],
@@ -23737,7 +23737,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "aluminum_production_1",
+      "name": "Aluminum Production",
       "leads_to": [
         "aluminum_production_2"
       ],
@@ -23752,7 +23752,7 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1945,
-      "name": "aluminum_production_2",
+      "name": "Aluminum Production II",
       "leads_to": [
         "aluminum_production_3"
       ],
@@ -23767,7 +23767,7 @@
       "research_cost": 1.5,
       "show_effect_as_desc": true,
       "start_year": 1951,
-      "name": "aluminum_production_3",
+      "name": "Aluminum Production III",
       "leads_to": [
 
       ],
@@ -23802,7 +23802,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1930,
-      "name": "flamethrower",
+      "name": "Flamethrower",
       "leads_to": [
         "flamethrower_2"
       ],
@@ -23822,7 +23822,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1930,
-      "name": "sniper_rifle",
+      "name": "Sniper Team",
       "leads_to": [
 
       ],
@@ -23859,7 +23859,7 @@
       ],
       "research_cost": 1.25,
       "start_year": 1936,
-      "name": "r56_anti_tank_kit",
+      "name": "Field Anti-Vehicle Kit",
       "leads_to": [
         "infantry_at"
       ],
@@ -23876,7 +23876,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1938,
-      "name": "Improved Infantry Equipment I",
+      "name": "Ammunition 38",
       "leads_to": [
         "improved_infantry_weapons"
       ],
@@ -23921,7 +23921,7 @@
       ],
       "research_cost": 2,
       "start_year": 1940,
-      "name": "Improved Infantry Equipment II",
+      "name": "Ammunition 40",
       "leads_to": [
         "advanced_infantry_weapons"
       ],
@@ -23950,7 +23950,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "Infantry Anti-Tank I",
+      "name": "Anti-Tank Rifle",
       "leads_to": [
         "infantry_at2"
       ],
@@ -23968,7 +23968,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1943,
-      "name": "Infantry Anti-Tank II",
+      "name": "Anti-Tank Rocket",
       "leads_to": [
         "infantry_at_a"
       ],
@@ -24001,7 +24001,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1943,
-      "name": "Improved Infantry Equipment III",
+      "name": "Ammunition 43",
       "leads_to": [
         "advanced_infantry_weapons_b"
       ],
@@ -24317,7 +24317,7 @@
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
       "start_year": 1950,
-      "name": "elite_forces_02",
+      "name": "Elite Forces II",
       "leads_to": [
         "elite_forces_03"
       ],
@@ -24339,7 +24339,7 @@
       "research_cost": 2,
       "special_forces_no_supply_grace": 48,
       "start_year": 1954,
-      "name": "elite_forces_03",
+      "name": "Elite Forces III",
       "leads_to": [
 
       ],
@@ -24450,7 +24450,7 @@
         "defense": 0.03
       },
       "start_year": 1918,
-      "name": "Support Weapons I",
+      "name": "Support 30",
       "leads_to": [
         "support_weapons2"
       ],
@@ -24515,7 +24515,7 @@
         "defense": 0.03
       },
       "start_year": 1938,
-      "name": "Support Weapons II",
+      "name": "Support 38",
       "leads_to": [
         "support_weapons3"
       ],
@@ -24580,7 +24580,7 @@
         "defense": 0.03
       },
       "start_year": 1940,
-      "name": "Support Weapons III",
+      "name": "Support 40",
       "leads_to": [
         "support_weapons4"
       ],
@@ -24645,7 +24645,7 @@
         "defense": 0.03
       },
       "start_year": 1942,
-      "name": "Support Weapons IV",
+      "name": "Support 42",
       "leads_to": [
         "support_weapons_a"
       ],
@@ -24722,7 +24722,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1949,
-      "name": "advanced_infantry_weapons_c",
+      "name": "Semi-Modern Infantry Equipment",
       "leads_to": [
         "advanced_infantry_weapons_f"
       ],
@@ -24750,7 +24750,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1953,
-      "name": "advanced_infantry_weapons_d",
+      "name": "Modern Infantry Equipment",
       "leads_to": [
         "advanced_infantry_weapons_g"
       ],
@@ -24811,7 +24811,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "infantry_at_a",
+      "name": "Infantry Anti-Tank III",
       "leads_to": [
         "infantry_at_b"
       ],
@@ -24829,7 +24829,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1953,
-      "name": "infantry_at_b",
+      "name": "Infantry Anti-Tank IV",
       "leads_to": [
         "infantry_at_c"
       ],
@@ -24847,7 +24847,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1945,
-      "name": "paratroopers_a",
+      "name": "Paratroopers IV",
       "leads_to": [
         "paratroopers_b"
       ],
@@ -24864,7 +24864,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1949,
-      "name": "paratroopers_b",
+      "name": "Paratroopers V",
       "leads_to": [
         "paratroopers_c"
       ],
@@ -24881,7 +24881,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1953,
-      "name": "paratroopers_c",
+      "name": "Paratroopers VI",
       "leads_to": [
 
       ],
@@ -24898,7 +24898,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1945,
-      "name": "marines_a",
+      "name": "Marines IV",
       "leads_to": [
         "marines_b"
       ],
@@ -24915,7 +24915,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1949,
-      "name": "marines_b",
+      "name": "Marines V",
       "leads_to": [
         "marines_c"
       ],
@@ -24932,7 +24932,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1953,
-      "name": "marines_c",
+      "name": "Marines VI",
       "leads_to": [
 
       ],
@@ -24950,7 +24950,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1945,
-      "name": "mountaineers_a",
+      "name": "Mountain Infantry IV",
       "leads_to": [
         "mountaineers_b"
       ],
@@ -24968,7 +24968,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1949,
-      "name": "mountaineers_b",
+      "name": "Mountain Infantry V",
       "leads_to": [
         "mountaineers_c"
       ],
@@ -24986,7 +24986,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1953,
-      "name": "mountaineers_c",
+      "name": "Mountain Infantry VI",
       "leads_to": [
 
       ],
@@ -25006,7 +25006,7 @@
       ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "jungletroops",
+      "name": "Jungle Infantry I",
       "leads_to": [
         "jungletroops2"
       ],
@@ -25020,7 +25020,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "jungletroops2",
+      "name": "Jungle Infantry II",
       "leads_to": [
         "jungletroops3"
       ],
@@ -25039,7 +25039,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1942,
-      "name": "jungletroops3",
+      "name": "Jungle Infantry III",
       "leads_to": [
         "jungletroops4"
       ],
@@ -25058,7 +25058,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1945,
-      "name": "jungletroops4",
+      "name": "Jungle Infantry IV",
       "leads_to": [
         "jungletroops5"
       ],
@@ -25077,7 +25077,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1949,
-      "name": "jungletroops5",
+      "name": "Jungle Infantry V",
       "leads_to": [
         "jungletroops6"
       ],
@@ -25096,7 +25096,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1953,
-      "name": "jungletroops6",
+      "name": "Jungle Infantry VI",
       "leads_to": [
 
       ],
@@ -25123,7 +25123,7 @@
       ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "shocktroops",
+      "name": "Shock Troops I",
       "leads_to": [
         "shocktroops2"
       ],
@@ -25145,7 +25145,7 @@
         "soft_attack": 0.05
       },
       "start_year": 1939,
-      "name": "shocktroops2",
+      "name": "Shock Troops II",
       "leads_to": [
         "shocktroops3"
       ],
@@ -25165,7 +25165,7 @@
         "max_organisation": 5
       },
       "start_year": 1942,
-      "name": "shocktroops3",
+      "name": "Shock Troops III",
       "leads_to": [
         "shocktroops4"
       ],
@@ -25185,7 +25185,7 @@
         "max_organisation": 5
       },
       "start_year": 1945,
-      "name": "shocktroops4",
+      "name": "Shock Troops IV",
       "leads_to": [
         "shocktroops5"
       ],
@@ -25204,7 +25204,7 @@
         "max_organisation": 5
       },
       "start_year": 1949,
-      "name": "shocktroops5",
+      "name": "Shock Troops V",
       "leads_to": [
         "shocktroops6"
       ],
@@ -25223,7 +25223,7 @@
         "max_organisation": 5
       },
       "start_year": 1953,
-      "name": "shocktroops6",
+      "name": "Shock Troops VI",
       "leads_to": [
 
       ],
@@ -25240,7 +25240,7 @@
         "defense": 0.03
       },
       "start_year": 1946,
-      "name": "support_weapons_a",
+      "name": "Support Weapons V",
       "leads_to": [
         "support_weapons_b"
       ],
@@ -25297,7 +25297,7 @@
         "defense": 0.03
       },
       "start_year": 1950,
-      "name": "support_weapons_b",
+      "name": "Support Weapons VI",
       "leads_to": [
         "support_weapons_c"
       ],
@@ -25351,7 +25351,7 @@
       "land_night_attack": 0.15,
       "research_cost": 2,
       "start_year": 1951,
-      "name": "night_vision_a",
+      "name": "Night Vision III",
       "leads_to": [
 
       ],
@@ -25368,7 +25368,7 @@
         "defense": 0.03
       },
       "start_year": 1954,
-      "name": "support_weapons_c",
+      "name": "Support Weapons VII",
       "leads_to": [
 
       ],
@@ -25441,7 +25441,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "winter_clothes_gw",
+      "name": "Winter Clothing",
       "leads_to": [
         "winter_clothes_1939",
         "jaegers"
@@ -25463,7 +25463,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1941,
-      "name": "winter_clothes_1939",
+      "name": "Improved Winter Clothing",
       "leads_to": [
         "winter_clothes_1941"
       ],
@@ -25484,7 +25484,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1947,
-      "name": "winter_clothes_1941",
+      "name": "Advanced Winter Clothing",
       "leads_to": [
         "winter_clothes_1944"
       ],
@@ -25505,7 +25505,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "winter_clothes_1944",
+      "name": "Modern Winter Clothing",
       "leads_to": [
 
       ],
@@ -25526,7 +25526,7 @@
       ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "jaegers",
+      "name": "Jaeger Infantry I",
       "leads_to": [
         "jaegers2"
       ],
@@ -25540,7 +25540,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "jaegers2",
+      "name": "Jaeger Infantry II",
       "leads_to": [
         "jaegers3"
       ],
@@ -25559,7 +25559,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1942,
-      "name": "jaegers3",
+      "name": "Jaeger Infantry III",
       "leads_to": [
         "jaegers4"
       ],
@@ -25578,7 +25578,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1945,
-      "name": "jaegers4",
+      "name": "Jaeger Infantry IV",
       "leads_to": [
         "jaegers5"
       ],
@@ -25597,7 +25597,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1949,
-      "name": "jaegers5",
+      "name": "Jaeger Infantry V",
       "leads_to": [
         "jaegers6"
       ],
@@ -25616,7 +25616,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1953,
-      "name": "jaegers6",
+      "name": "Jaeger Infantry VI",
       "leads_to": [
 
       ],
@@ -25638,7 +25638,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "jngdst_clothes_gw",
+      "name": "Desert & Jungle Clothing\" #new",
       "leads_to": [
         "jngdst_clothes_1939",
         "desertinfantry_at",
@@ -25661,7 +25661,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1941,
-      "name": "jngdst_clothes_1939",
+      "name": "Improved Desert & Jungle Clothing\" #new",
       "leads_to": [
         "jngdst_clothes_1941"
       ],
@@ -25682,7 +25682,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1947,
-      "name": "jngdst_clothes_1941",
+      "name": "Advanced Desert & Jungle Clothing\" #new",
       "leads_to": [
         "jngdst_clothes_1944"
       ],
@@ -25703,7 +25703,7 @@
       },
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "jngdst_clothes_1944",
+      "name": "Modern Desert & Jungle Clothing\" #new",
       "leads_to": [
 
       ],
@@ -25724,7 +25724,7 @@
       ],
       "research_cost": 2,
       "start_year": 1936,
-      "name": "desertinfantry_at",
+      "name": "Desert Infantry I",
       "leads_to": [
         "desertinfantry_at2"
       ],
@@ -25738,7 +25738,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1939,
-      "name": "desertinfantry_at2",
+      "name": "Desert Infantry II",
       "leads_to": [
         "desertinfantry_at3"
       ],
@@ -25757,7 +25757,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1942,
-      "name": "desertinfantry_at3",
+      "name": "Desert Infantry III",
       "leads_to": [
         "desertinfantry_at4"
       ],
@@ -25776,7 +25776,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1945,
-      "name": "desertinfantry_at4",
+      "name": "Desert Infantry IV",
       "leads_to": [
         "desertinfantry_at5"
       ],
@@ -25795,7 +25795,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1949,
-      "name": "desertinfantry_at5",
+      "name": "Desert Infantry V",
       "leads_to": [
         "desertinfantry_at6"
       ],
@@ -25814,7 +25814,7 @@
       ],
       "research_cost": 2.0,
       "start_year": 1953,
-      "name": "desertinfantry_at6",
+      "name": "Desert Infantry VI",
       "leads_to": [
 
       ],
@@ -25832,7 +25832,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1936,
-      "name": "camo",
+      "name": "Basic Uniforms",
       "leads_to": [
         "camo1942"
       ],
@@ -25855,7 +25855,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1941,
-      "name": "camo1942",
+      "name": "Advanced Camouflage Pattern",
       "leads_to": [
         "camo1948"
       ],
@@ -25878,7 +25878,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1947,
-      "name": "camo1948",
+      "name": "Semi-Modern Camouflage Pattern",
       "leads_to": [
         "camo1955"
       ],
@@ -25901,7 +25901,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "camo1955",
+      "name": "Modern Camouflage Pattern",
       "leads_to": [
 
       ],
@@ -26472,7 +26472,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "Volkssturm",
+      "name": "Strengthen the Volkssturm\" #Vanilla Overide",
       "leads_to": [
         "nd_conscription"
       ],
@@ -27649,7 +27649,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_guerilla_warfare",
+      "name": "Asymmetrical Warfare",
       "leads_to": [
         "r56_double_envelopment"
       ],
@@ -27669,7 +27669,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_double_envelopment",
+      "name": "Sudden Envelopment",
       "leads_to": [
         "r56_elastic_defence"
       ],
@@ -27688,7 +27688,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_elastic_defence",
+      "name": "Elastic Defense",
       "leads_to": [
         "r56_infiltration_assault",
         "r56_milita_formation"
@@ -27716,7 +27716,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_infiltration_assault",
+      "name": "Infiltration Assault",
       "leads_to": [
         "r56_infiltration_in_depth"
       ],
@@ -27737,7 +27737,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_infiltration_in_depth",
+      "name": "Deep Infiltration",
       "leads_to": [
         "r56_backhand_blow"
       ],
@@ -27760,7 +27760,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_backhand_blow",
+      "name": "Backhand Blow",
       "leads_to": [
         "r56_tactical_withdrawal"
       ],
@@ -27781,7 +27781,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_milita_formation",
+      "name": "Strengthened Militia",
       "leads_to": [
         "r56_nd_conscription"
       ],
@@ -27799,7 +27799,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_nd_conscription",
+      "name": "Non-Discriminatory Conscription",
       "leads_to": [
         "r56_peoples_army"
       ],
@@ -27819,7 +27819,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_peoples_army",
+      "name": "People's Army",
       "leads_to": [
         "r56_tactical_withdrawal"
       ],
@@ -27838,7 +27838,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_tactical_withdrawal",
+      "name": "Tactical Withdrawal",
       "leads_to": [
         "r56_prepared_defense",
         "r56_breakout"
@@ -27862,7 +27862,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_prepared_defense",
+      "name": "Prepared Defense",
       "leads_to": [
         "r56_pocket_defence"
       ],
@@ -27886,7 +27886,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_pocket_defence",
+      "name": "Pocket Defense",
       "leads_to": [
         "r56_last_stand"
       ],
@@ -27907,7 +27907,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_last_stand",
+      "name": "Last Stand",
       "leads_to": [
 
       ],
@@ -27929,7 +27929,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_breakout",
+      "name": "Breakout",
       "leads_to": [
         "r56_breakthrough_priority"
       ],
@@ -27951,7 +27951,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_breakthrough_priority",
+      "name": "Breakthrough Priority",
       "leads_to": [
         "r56_operational_concentration"
       ],
@@ -27973,7 +27973,7 @@
       "xp_research_bonus": 1.0,
       "xp_research_cost": 100,
       "xp_research_type": "army",
-      "name": "r56_operational_concentration",
+      "name": "Operational Concentration",
       "leads_to": [
 
       ],
@@ -30401,7 +30401,7 @@
         "militia"
       ],
       "research_cost": 1,
-      "name": "r56_militia_tech",
+      "name": "Militia",
       "leads_to": [
 
       ],
@@ -30415,7 +30415,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1918,
-      "name": "etax_doctrine",
+      "name": "Special Research Division",
       "leads_to": [
         "etax_the_means",
         "etax_the_ends",
@@ -30437,7 +30437,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1936,
-      "name": "etax_army_focus",
+      "name": "Army Focus",
       "leads_to": [
         "etax_army_firepower",
         "etax_army_defense"
@@ -30458,7 +30458,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1936,
-      "name": "etax_navy_focus",
+      "name": "Navy Focus",
       "leads_to": [
         "etax_navy_firepower",
         "etax_navy_defense"
@@ -30498,7 +30498,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1936,
-      "name": "etax_air_focus",
+      "name": "Air Focus",
       "leads_to": [
         "etax_air_firepower",
         "etax_air_defense"
@@ -30521,7 +30521,7 @@
       "xor": [
         "etax_army_defense"
       ],
-      "name": "etax_army_firepower",
+      "name": "Small Arms Firepower",
       "leads_to": [
         "etax_army_firepower_2"
       ],
@@ -30543,7 +30543,7 @@
       "max_planning": 0.05,
       "research_cost": 3.0,
       "start_year": 1941,
-      "name": "etax_army_firepower_2",
+      "name": "Heavy Firepower",
       "leads_to": [
 
       ],
@@ -30567,7 +30567,7 @@
       "xor": [
         "etax_army_firepower"
       ],
-      "name": "etax_army_defense",
+      "name": "Armored Army",
       "leads_to": [
         "etax_army_defense_2"
       ],
@@ -30589,7 +30589,7 @@
       "max_dig_in": 10,
       "research_cost": 3.0,
       "start_year": 1941,
-      "name": "etax_army_defense_2",
+      "name": "Extensive Fortification",
       "leads_to": [
 
       ],
@@ -30614,7 +30614,7 @@
       "xor": [
         "etax_navy_defense"
       ],
-      "name": "etax_navy_firepower",
+      "name": "Focused Targeting",
       "leads_to": [
         "etax_navy_firepower_2"
       ],
@@ -30635,7 +30635,7 @@
       "research_cost": 3.0,
       "sortie_efficiency": 0.1,
       "start_year": 1941,
-      "name": "etax_navy_firepower_2",
+      "name": "Strike Capability",
       "leads_to": [
         "etax_seashot"
       ],
@@ -30658,7 +30658,7 @@
       "xor": [
         "etax_navy_firepower"
       ],
-      "name": "etax_navy_defense",
+      "name": "Thick Hulls",
       "leads_to": [
         "etax_navy_defense_2"
       ],
@@ -30678,7 +30678,7 @@
       "research_cost": 3.0,
       "spotting_chance": 0.05,
       "start_year": 1941,
-      "name": "etax_navy_defense_2",
+      "name": "Regional Defense",
       "leads_to": [
         "etax_seashot"
       ],
@@ -30699,7 +30699,7 @@
       "xor": [
         "etax_air_defense"
       ],
-      "name": "etax_air_firepower",
+      "name": "Air Dominance",
       "leads_to": [
         "etax_air_firepower_2"
       ],
@@ -30717,7 +30717,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1941,
-      "name": "etax_air_firepower_2",
+      "name": "Bomber Offensive",
       "leads_to": [
         "etax_moonshot"
       ],
@@ -30739,7 +30739,7 @@
       "xor": [
         "etax_air_firepower"
       ],
-      "name": "etax_air_defense",
+      "name": "Layered Defense Zones",
       "leads_to": [
         "etax_air_defense_2"
       ],
@@ -30756,7 +30756,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1941,
-      "name": "etax_air_defense_2",
+      "name": "Agile Craft",
       "leads_to": [
         "etax_moonshot"
       ],
@@ -30781,7 +30781,7 @@
       "global_building_slots_factor": 0.1,
       "research_cost": 3.0,
       "start_year": 1936,
-      "name": "etax_the_ends",
+      "name": "The Ends",
       "leads_to": [
         "etax_business_interests",
         "etax_desperation"
@@ -30799,7 +30799,7 @@
       "xor": [
         "etax_desperation"
       ],
-      "name": "etax_business_interests",
+      "name": "Business Interests",
       "leads_to": [
         "etax_cost_plus"
       ],
@@ -30813,7 +30813,7 @@
       "industrial_capacity_factory": 0.1,
       "research_cost": 3.0,
       "start_year": 1940,
-      "name": "etax_cost_plus",
+      "name": "Cost Plus",
       "leads_to": [
         "etax_production_in_depth"
       ],
@@ -30827,7 +30827,7 @@
       "local_resources_factor": 0.1,
       "research_cost": 3.0,
       "start_year": 1941,
-      "name": "etax_production_in_depth",
+      "name": "Supply Chain",
       "leads_to": [
         "etax_practical_projects",
         "etax_grand_projects"
@@ -30847,7 +30847,7 @@
       "xor": [
         "etax_business_interests"
       ],
-      "name": "etax_desperation",
+      "name": "Sacrifice",
       "leads_to": [
         "etax_no_qa"
       ],
@@ -30861,7 +30861,7 @@
       "production_factory_start_efficiency_factor": 0.1,
       "research_cost": 3.0,
       "start_year": 1940,
-      "name": "etax_no_qa",
+      "name": "Rush Production",
       "leads_to": [
         "etax_expendable_labor"
       ],
@@ -30876,7 +30876,7 @@
       "production_speed_buildings_factor": 0.075,
       "research_cost": 3.0,
       "start_year": 1941,
-      "name": "etax_expendable_labor",
+      "name": "Expendable Labor",
       "leads_to": [
         "etax_practical_projects",
         "etax_grand_projects"
@@ -30895,7 +30895,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1936,
-      "name": "etax_the_means",
+      "name": "The Means",
       "leads_to": [
         "etax_unity",
         "etax_glory"
@@ -30920,7 +30920,7 @@
       "xor": [
         "etax_unity"
       ],
-      "name": "etax_glory",
+      "name": "Glory",
       "leads_to": [
         "etax_purity"
       ],
@@ -30946,7 +30946,7 @@
       "research_cost": 3.0,
       "start_year": 1940,
       "training_time_army_factor": 0.075,
-      "name": "etax_purity",
+      "name": "Selective Ranks",
       "leads_to": [
         "etax_great_leap"
       ],
@@ -30963,7 +30963,7 @@
       "research_cost": 3.0,
       "research_speed_factor": 0.05,
       "start_year": 1941,
-      "name": "etax_great_leap",
+      "name": "Super Science",
       "leads_to": [
         "etax_practical_projects",
         "etax_grand_projects"
@@ -30985,7 +30985,7 @@
       "xor": [
         "etax_glory"
       ],
-      "name": "etax_unity",
+      "name": "Common Cause",
       "leads_to": [
         "etax_broad_support"
       ],
@@ -31005,7 +31005,7 @@
       "land_reinforce_rate": 0.015,
       "research_cost": 3.0,
       "start_year": 1940,
-      "name": "etax_broad_support",
+      "name": "Integrated Populace",
       "leads_to": [
         "etax_inclusive_science"
       ],
@@ -31019,7 +31019,7 @@
       "research_cost": 3.0,
       "research_speed_factor": 0.05,
       "start_year": 1941,
-      "name": "etax_inclusive_science",
+      "name": "Scientific Community",
       "leads_to": [
         "etax_practical_projects",
         "etax_grand_projects"
@@ -31035,7 +31035,7 @@
       "production_speed_buildings_factor": 0.05,
       "research_cost": 3.0,
       "start_year": 1942,
-      "name": "etax_practical_projects",
+      "name": "Practical Engineering",
       "leads_to": [
         "etax_great_works",
         "etax_quality"
@@ -31054,7 +31054,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1942,
-      "name": "etax_grand_projects",
+      "name": "Specialized Engineering",
       "leads_to": [
         "etax_super_soldiers",
         "etax_the_bomb"
@@ -31084,7 +31084,7 @@
       "xor": [
         "etax_quality"
       ],
-      "name": "etax_great_works",
+      "name": "Great Works",
       "leads_to": [
 
       ],
@@ -31100,7 +31100,7 @@
       "xor": [
         "etax_great_works"
       ],
-      "name": "etax_quality",
+      "name": "Quality Manufacturing",
       "leads_to": [
 
       ],
@@ -31139,7 +31139,7 @@
       "xor": [
         "etax_super_soldiers"
       ],
-      "name": "etax_the_bomb",
+      "name": "The Project",
       "leads_to": [
 
       ],
@@ -31161,7 +31161,7 @@
       "xor": [
         "etax_the_bomb"
       ],
-      "name": "etax_super_soldiers",
+      "name": "Super Soldiers",
       "leads_to": [
 
       ],
@@ -31183,7 +31183,7 @@
       "doctrine": true,
       "research_cost": 3.0,
       "start_year": 1943,
-      "name": "etax_moonshot",
+      "name": "Future Airforce",
       "leads_to": [
 
       ],
@@ -31210,7 +31210,7 @@
       "navy_capital_ship_attack_factor": 0.1,
       "research_cost": 3.0,
       "start_year": 1943,
-      "name": "etax_seashot",
+      "name": "Future Navy",
       "leads_to": [
 
       ],
@@ -31772,7 +31772,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "tech_signal_company_a",
+      "name": "Signal Company V",
       "leads_to": [
         "tech_signal_company_b"
       ],
@@ -31790,7 +31790,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1951,
-      "name": "tech_signal_company_b",
+      "name": "Signal Company VI",
       "leads_to": [
         "tech_signal_company_c"
       ],
@@ -31807,7 +31807,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "tech_signal_company_c",
+      "name": "Signal Company VII",
       "leads_to": [
 
       ],
@@ -31824,7 +31824,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "tech_engineers_a",
+      "name": "Engineer Company V",
       "leads_to": [
         "tech_engineers_b"
       ],
@@ -31847,7 +31847,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1951,
-      "name": "tech_engineers_b",
+      "name": "Engineer Company VI",
       "leads_to": [
         "tech_engineers_c"
       ],
@@ -31870,7 +31870,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "tech_engineers_c",
+      "name": "Engineer Company VII",
       "leads_to": [
 
       ],
@@ -31893,7 +31893,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "tech_recon_a",
+      "name": "Recon Company V",
       "leads_to": [
         "tech_recon_b"
       ],
@@ -31910,7 +31910,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1951,
-      "name": "tech_recon_b",
+      "name": "Recon Company VI",
       "leads_to": [
         "tech_recon_c"
       ],
@@ -31927,7 +31927,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "tech_recon_c",
+      "name": "Recon Company VIII",
       "leads_to": [
 
       ],
@@ -31944,7 +31944,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "tech_military_police_a",
+      "name": "Military Police V",
       "leads_to": [
         "tech_military_police_b"
       ],
@@ -31961,7 +31961,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1951,
-      "name": "tech_military_police_b",
+      "name": "Military Police VI",
       "leads_to": [
         "tech_military_police_c"
       ],
@@ -31978,7 +31978,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "tech_military_police_c",
+      "name": "Military Police VII",
       "leads_to": [
 
       ],
@@ -31995,7 +31995,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "tech_maintenance_company_a",
+      "name": "Maintenance Company V",
       "leads_to": [
         "tech_maintenance_company_b"
       ],
@@ -32013,7 +32013,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1951,
-      "name": "tech_maintenance_company_b",
+      "name": "Maintenance Company VI",
       "leads_to": [
         "tech_maintenance_company_c"
       ],
@@ -32031,7 +32031,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "tech_maintenance_company_c",
+      "name": "Maintenance Company VII",
       "leads_to": [
 
       ],
@@ -32050,7 +32050,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "tech_field_hospital_a",
+      "name": "Field Hospital V",
       "leads_to": [
         "tech_field_hospital_b"
       ],
@@ -32069,7 +32069,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1951,
-      "name": "tech_field_hospital_b",
+      "name": "Field Hospital VI",
       "leads_to": [
         "tech_field_hospital_c"
       ],
@@ -32087,7 +32087,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "tech_field_hospital_c",
+      "name": "Field Hospital VII",
       "leads_to": [
 
       ],
@@ -32106,7 +32106,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1948,
-      "name": "tech_logistics_company_a",
+      "name": "Logistics Company V",
       "leads_to": [
         "tech_logistics_company_b"
       ],
@@ -32124,7 +32124,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1951,
-      "name": "tech_logistics_company_b",
+      "name": "Logistics Company VI",
       "leads_to": [
         "tech_logistics_company_c"
       ],
@@ -32142,7 +32142,7 @@
       ],
       "research_cost": 1.5,
       "start_year": 1954,
-      "name": "tech_logistics_company_c",
+      "name": "Logistics Company VII",
       "leads_to": [
 
       ],
@@ -32296,7 +32296,7 @@
       "human_wave_offensive",
       "guerilla_warfare"
     ],
-    "r56_guerilla_warfare / r56_infiltration_assault / r56_prepared_defense": [
+    "Asymmetrical Warfare / Infiltration Assault / Prepared Defense": [
       "r56_guerilla_warfare",
       "r56_double_envelopment",
       "r56_elastic_defence",
@@ -32308,7 +32308,7 @@
       "r56_pocket_defence",
       "r56_last_stand"
     ],
-    "r56_guerilla_warfare / r56_infiltration_assault / r56_breakout": [
+    "Asymmetrical Warfare / Infiltration Assault / Breakout": [
       "r56_guerilla_warfare",
       "r56_double_envelopment",
       "r56_elastic_defence",
@@ -32320,7 +32320,7 @@
       "r56_breakthrough_priority",
       "r56_operational_concentration"
     ],
-    "r56_guerilla_warfare / r56_milita_formation / r56_prepared_defense": [
+    "Asymmetrical Warfare / Strengthened Militia / Prepared Defense": [
       "r56_guerilla_warfare",
       "r56_double_envelopment",
       "r56_elastic_defence",
@@ -32332,7 +32332,7 @@
       "r56_pocket_defence",
       "r56_last_stand"
     ],
-    "r56_guerilla_warfare / r56_milita_formation / r56_breakout": [
+    "Asymmetrical Warfare / Strengthened Militia / Breakout": [
       "r56_guerilla_warfare",
       "r56_double_envelopment",
       "r56_elastic_defence",
@@ -32344,35 +32344,35 @@
       "r56_breakthrough_priority",
       "r56_operational_concentration"
     ],
-    "etax_army_focus / etax_army_firepower": [
+    "Army Focus / Small Arms Firepower": [
       "etax_army_focus",
       "etax_army_firepower",
       "etax_army_firepower_2"
     ],
-    "etax_army_focus / etax_army_defense": [
+    "Army Focus / Armored Army": [
       "etax_army_focus",
       "etax_army_defense",
       "etax_army_defense_2"
     ],
-    "etax_the_means / etax_unity": [
+    "The Means / Common Cause": [
       "etax_the_means",
       "etax_unity"
     ],
-    "etax_the_means / etax_glory": [
+    "The Means / Glory": [
       "etax_the_means",
       "etax_glory",
       "etax_purity",
       "etax_great_leap"
     ],
-    "etax_broad_support": [
+    "Integrated Populace": [
       "etax_broad_support",
       "etax_inclusive_science"
     ],
-    "etax_grand_projects / etax_super_soldiers": [
+    "Specialized Engineering / Super Soldiers": [
       "etax_grand_projects",
       "etax_super_soldiers"
     ],
-    "etax_grand_projects / etax_the_bomb": [
+    "Specialized Engineering / The Project": [
       "etax_grand_projects",
       "etax_the_bomb"
     ]
@@ -32658,14 +32658,14 @@
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "INF_reliability_upgrade"
+      "name": "Reliability"
     },
     "INF_SA_upgrade": {
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
       "soft_attack": 0.05,
-      "name": "INF_SA_upgrade"
+      "name": "Small Arms"
     },
     "INF_HA_upgrade": {
       "ap_attack": 0.1,
@@ -32673,7 +32673,7 @@
       "hard_attack": 0.1,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "INF_HA_upgrade"
+      "name": "AT Weapons"
     },
     "INF_defence_upgrade": {
       "breakthrough": 0.05,
@@ -32681,21 +32681,21 @@
       "defense": 0.05,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "INF_defence_upgrade"
+      "name": "Mortars"
     },
     "ART_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "ART_reliability_upgrade"
+      "name": "Reliability"
     },
     "ART_SA_upgrade": {
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
       "soft_attack": 0.05,
-      "name": "ART_SA_upgrade"
+      "name": "HE Shells"
     },
     "ART_HA_upgrade": {
       "ap_attack": 0.1,
@@ -32703,7 +32703,7 @@
       "hard_attack": 0.1,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "ART_HA_upgrade"
+      "name": "AP Shells"
     },
     "ART_defence_upgrade": {
       "breakthrough": 0.05,
@@ -32711,56 +32711,56 @@
       "defense": 0.05,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "ART_defence_upgrade"
+      "name": "Barrel"
     },
     "RART_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "RART_reliability_upgrade"
+      "name": "Reliability"
     },
     "RART_SA_upgrade": {
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
       "soft_attack": 0.05,
-      "name": "RART_SA_upgrade"
+      "name": "HE Shells"
     },
     "RART_BR_upgrade": {
       "breakthrough": 0.1,
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
-      "name": "RART_BR_upgrade"
+      "name": "Barrel"
     },
     "MRART_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "MRART_reliability_upgrade"
+      "name": "Reliability"
     },
     "MRART_speed_upgrade": {
       "cost": "land",
       "max_level": 5,
       "maximum_speed": 0.05,
       "reliability": -0.05,
-      "name": "MRART_speed_upgrade"
+      "name": "Engine"
     },
     "MRART_SA_upgrade": {
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
       "soft_attack": 0.05,
-      "name": "MRART_SA_upgrade"
+      "name": "HE Shells"
     },
     "MRART_BR_upgrade": {
       "breakthrough": 0.1,
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
-      "name": "MRART_BR_upgrade"
+      "name": "Barrel"
     },
     "MRART_armor_upgrade": {
       "armor_value": 0.05,
@@ -32768,49 +32768,49 @@
       "max_level": 5,
       "maximum_speed": -0.02,
       "reliability": -0.05,
-      "name": "MRART_armor_upgrade"
+      "name": "Armor"
     },
     "AT_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "AT_reliability_upgrade"
+      "name": "Reliability"
     },
     "AT_pierce_upgrade": {
       "ap_attack": 0.05,
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
-      "name": "AT_pierce_upgrade"
+      "name": "Optics"
     },
     "AT_HA_upgrade": {
       "cost": "land",
       "hard_attack": 0.1,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "AT_HA_upgrade"
+      "name": "AP Shells"
     },
     "AT_defence_upgrade": {
       "cost": "land",
       "defense": 0.1,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "AT_defence_upgrade"
+      "name": "Barrel"
     },
     "AA_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "AA_reliability_upgrade"
+      "name": "Reliability"
     },
     "AA_AA_upgrade": {
       "air_attack": 0.1,
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
-      "name": "AA_AA_upgrade"
+      "name": "Optics"
     },
     "AA_HA_upgrade": {
       "ap_attack": 0.1,
@@ -32818,7 +32818,7 @@
       "hard_attack": 0.1,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "AA_HA_upgrade"
+      "name": "AP Shells"
     },
     "AA_defence_upgrade": {
       "breakthrough": 0.1,
@@ -32827,21 +32827,21 @@
       "defense": 0.1,
       "max_level": 5,
       "reliability": -0.05,
-      "name": "AA_defence_upgrade"
+      "name": "Barrel"
     },
     "MOT_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "MOT_reliability_upgrade"
+      "name": "Reliability"
     },
     "MOT_speed_upgrade": {
       "cost": "land",
       "max_level": 5,
       "maximum_speed": 0.05,
       "reliability": -0.05,
-      "name": "MOT_speed_upgrade"
+      "name": "Engine"
     },
     "MOT_hardness_upgrade": {
       "armor_value": 0.05,
@@ -32849,21 +32849,21 @@
       "max_level": 5,
       "maximum_speed": -0.02,
       "reliability": -0.05,
-      "name": "MOT_hardness_upgrade"
+      "name": "Armor"
     },
     "MECH_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.1,
-      "name": "MECH_reliability_upgrade"
+      "name": "Reliability"
     },
     "MECH_speed_upgrade": {
       "cost": "land",
       "max_level": 5,
       "maximum_speed": 0.05,
       "reliability": -0.05,
-      "name": "MECH_speed_upgrade"
+      "name": "Engine"
     },
     "MECH_armor_upgrade": {
       "armor_value": 0.05,
@@ -32871,21 +32871,21 @@
       "max_level": 5,
       "maximum_speed": -0.02,
       "reliability": -0.05,
-      "name": "MECH_armor_upgrade"
+      "name": "Armor"
     },
     "MECH_attack_upgrade": {
       "ap_attack": 0.1,
       "cost": "land",
       "max_level": 5,
       "reliability": -0.05,
-      "name": "MECH_attack_upgrade"
+      "name": "Weapons"
     },
     "SUPP_reliability_upgrade": {
       "build_cost_ic": 0.02,
       "cost": "land",
       "max_level": 5,
       "reliability": 0.05,
-      "name": "SUPP_reliability_upgrade"
+      "name": "Reliability"
     },
     "ship_convoy_surface_visibility": {
       "build_cost_ic": 0.05,
