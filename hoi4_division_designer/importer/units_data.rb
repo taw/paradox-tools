@@ -52,6 +52,9 @@ class UnitsData
       raise "Duplicate name: #{name}" if result[name]
 
       unless unit["active"] or @game.technology.enabled_subunits.include?(name)
+        # This is known inactive unit
+        next if name == "fake_intel_unit"
+
         warn "Unit #{name} is #{@game.mod} is never enabled"
         next
       end

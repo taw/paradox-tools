@@ -45,6 +45,8 @@ class TechnologyData
       end
     elsif @game.mod == "millennium_dawn"
       tech["start_year"] ||= 1960
+    elsif @game.mod == "road_to_56"
+      tech["start_year"] ||= 1918
     end
 
     return if tech["start_year"]
