@@ -63,7 +63,9 @@ class CountryInformation < InformationTables
       when "division"
         add_division! unit
       when "navy"
-        add_navy! unit
+        add_navy! unit # old saves
+      when "fleet"
+        add_fleet! unit # new saves
       else
         binding.pry
       end
@@ -101,6 +103,20 @@ class CountryInformation < InformationTables
       @ships[ship["definition"]] += 1
       @ships["total"] += 1
       add_equipments! ship["equipment"]
+    end
+  end
+
+  def add_fleet!(unit)
+    unit.find_all("task_force").each do |tf|
+      add_task_force! tf
+    end
+  end
+
+  def add_task_force!(tf)
+    tf.find_all("ship").each do |ship|
+      @manpower["navy"] += ship["manpower"]
+      @ships[ship["definition"]] += 1
+      @ships["total"] += 1
     end
   end
 
