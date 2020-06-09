@@ -16398,7 +16398,7 @@
       "leads_to": [
         "damage_control_2"
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
       }
     },
@@ -16417,7 +16417,7 @@
       "leads_to": [
         "damage_control_3"
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
       }
     },
@@ -16436,7 +16436,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
       }
     },
@@ -16453,7 +16453,7 @@
       "leads_to": [
         "fire_control_methods_2"
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
         "battle_cruiser": {
           "hg_attack": 0.05,
@@ -16478,7 +16478,7 @@
       "leads_to": [
         "fire_control_methods_3"
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
         "battle_cruiser": {
           "hg_attack": 0.1,
@@ -16507,7 +16507,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
         "battle_cruiser": {
           "hg_attack": 0.15,
@@ -20584,7 +20584,7 @@
         "interwar_antitank",
         "interwar_antiair"
       ],
-      "start_year": 1918,
+      "start_year": 1934,
       "unit_bonuses": {
       }
     },
@@ -21568,7 +21568,7 @@
       "leads_to": [
         "radio_detection"
       ],
-      "start_year": 1918,
+      "start_year": 1936,
       "unit_bonuses": {
       }
     },
@@ -21587,7 +21587,7 @@
         "decimetric_radar",
         "rdf1"
       ],
-      "start_year": 1918,
+      "start_year": 1936,
       "unit_bonuses": {
       }
     },
@@ -21708,7 +21708,7 @@
         "computing_machine",
         "basic_fire_control_system"
       ],
-      "start_year": 1918,
+      "start_year": 1936,
       "unit_bonuses": {
       }
     },
@@ -21910,7 +21910,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
       }
     },
@@ -21931,7 +21931,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
       }
     },
@@ -21952,7 +21952,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1941,
       "unit_bonuses": {
       }
     },
@@ -22741,7 +22741,7 @@
       "leads_to": [
         "concentrated_industry2"
       ],
-      "start_year": 1918,
+      "start_year": 1936,
       "unit_bonuses": {
       }
     },
@@ -22833,7 +22833,7 @@
       "leads_to": [
         "dispersed_industry2"
       ],
-      "start_year": 1918,
+      "start_year": 1936,
       "unit_bonuses": {
       }
     },
@@ -23134,7 +23134,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1936,
       "unit_bonuses": {
       }
     },
@@ -29958,7 +29958,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1934,
       "unit_bonuses": {
       }
     },
@@ -29968,7 +29968,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1934,
       "unit_bonuses": {
         "category_light_infantry": {
           "ap_attack": 0.15,
@@ -29983,7 +29983,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1934,
       "unit_bonuses": {
         "category_all_infantry": {
           "casualty_trickleback": 0.001,
@@ -30424,7 +30424,7 @@
       "leads_to": [
 
       ],
-      "start_year": 1918,
+      "start_year": 1934,
       "unit_bonuses": {
       }
     },

@@ -33,7 +33,7 @@ class TechnologyData
     # Special non-researchable "techs"
     return if tech["allow"] == {"always"=>false}
 
-    if @game.mod == "vanilla" or @game.mod == "kaiserreich"
+    if @game.mod == "vanilla" or @game.mod == "kaiserreich" or @game.mod == "road_to_56"
       case name
       when "gw_artillery"
         tech["start_year"] ||= 1934
@@ -43,10 +43,13 @@ class TechnologyData
       when "damage_control_1", "damage_control_2", "damage_control_3", "fire_control_methods_1", "fire_control_methods_2", "fire_control_methods_3", "basic_fire_control_system", "improved_fire_control_system", "advanced_fire_control_system"
         tech["start_year"] ||= 1941
       end
+
+      if @game.mod == "road_to_56"
+        # Just doesn't matter
+        tech["start_year"] ||= 1934
+      end
     elsif @game.mod == "millennium_dawn"
       tech["start_year"] ||= 1960
-    elsif @game.mod == "road_to_56"
-      tech["start_year"] ||= 1918
     end
 
     return if tech["start_year"]
