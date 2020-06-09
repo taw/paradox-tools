@@ -73,6 +73,13 @@ class UnitsData
           # Skip
         when "need", "need_equipment"
           # 1.5 / 1.6 merge
+        when "combat_width"
+          # R56 bug
+          if value.is_a?(Array)
+            raise unless value.uniq.size == 1
+            value = value[0]
+          end
+          unit_data[renamed[key] || key] = value
         else
           unit_data[renamed[key] || key] = value
         end

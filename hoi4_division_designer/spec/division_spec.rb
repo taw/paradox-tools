@@ -486,6 +486,41 @@ describe Division do
     end
   end
 
+  describe "The Road To 56" do
+    let(:db) { Database.new("road_to_56") }
+    describe "10 jaeger, 1950 tech" do
+      let(:units) { {jaeger: 2} }
+      let(:tech_year) { 1950 }
+      it do
+        expect_stats division, {
+          speed: 4.3,
+          hp: 60.0,
+          org: 70.0,
+          suppression: 3.0,
+          weight: 1.0,
+          supply_use: 0.144,
+          soft_attack: 48.96,
+          hard_attack: 11.7,
+          defense: 114.08,
+          breakthrough: 18.41,
+          piercing: 84.4,
+          combat_width: 4,
+          manpower: 2000,
+          training_time: 120,
+          equipment: {"infantry_equipment_x_2"=>200, "support_equipment_1"=>10},
+          ic_cost: 220.0,
+          terrain_bonuses: {
+            "forest"=>{"attack"=>0.1, "defence"=>0.1, "movement"=>0.1},
+            "marsh"=>{"movement"=>0.1},
+            "mountain"=>{"movement"=>0.1},
+          },
+          recovery_rate: 0.585,
+          entrenchment: 15,
+        }
+      end
+    end
+  end
+
   describe "Warnings" do
     let(:tech_year) { 1945 }
     describe "No units" do
