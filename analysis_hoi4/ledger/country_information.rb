@@ -26,6 +26,7 @@ class CountryInformation < InformationTables
       # raise unless tech["level"] == 1
       if ledger.technology_cost[name]
         @research_cost += ledger.technology_cost[name]
+        @research_cost = @research_cost.round(6)
       else
         warn "Unknown tech: `#{name}' for #{@tag}"
       end
