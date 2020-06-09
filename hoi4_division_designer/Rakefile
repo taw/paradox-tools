@@ -17,3 +17,8 @@ desc "Run importer - Kaiserreich"
 task "import:kr" do
   sh "rescue ./bin/import_data kaiserreich ~/hoi4 ~/px/source/KR-1.9.1"
 end
+
+desc "Run importer - Road to 56"
+task "import:r56" do
+  sh "rescue ./bin/import_data road_to_56 ~/hoi4 ~/px/source/R56-1.9.3"
+end

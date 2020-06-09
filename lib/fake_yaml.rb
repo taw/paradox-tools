@@ -22,6 +22,8 @@ class FakeYaml
         .sub(/\s*\z/, "\n")
         .gsub(/^\s*#.*\n/, "")
         .sub(/\A\s*/, "")
+        .gsub("\u009D", "'") # stupid R56 crap
+        .gsub("\\T", "\\\\\\\\T") # stupid R56 crap
 
       # There's separate l_english: mid-file sometimes
       # ( hoi4 1.6 localisation/designer_l_english.yml )
@@ -42,9 +44,11 @@ class FakeYaml
         raise "Not a Hash" unless parsed.is_a?(Hash)
       end
     rescue
-      bad_line = (1..data.lines.size).bsearch{|x| !(YAML.load(data.lines[0,x].join) rescue false) }
+      lines = data.lines
+      bad_line_no = (1..data.lines.size).bsearch{|x| !(YAML.load(lines[0,x].join) rescue false) }
+      bad_line = lines[0,bad_line_no].last
       binding.pry
-      warn "#{path}:#{bad_line}: #{$!}"
+      warn "#{path}:#{bad_line_no}: #{$!}: #{bad_line.inspect}"
       {}
     end
 
