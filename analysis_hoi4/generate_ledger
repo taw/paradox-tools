@@ -31,7 +31,9 @@ class GenerateLedger < ParadoxGame
     @equipments = {}
     nodes = {}
     glob("common/units/equipment/*.txt").each do |path|
-      parse(path)["equipments"].each do |name, equipment|
+      node = parse(path)
+      next if node.empty?
+      node["equipments"].each do |name, equipment|
         nodes[name] = equipment
         next if equipment["is_archetype"]
         archetype_name = equipment["archetype"]
@@ -65,7 +67,9 @@ class GenerateLedger < ParadoxGame
   def setup_technology_mapping!
     @technology_cost = {}
     glob("common/technologies/*.txt").each do |path|
-      parse(path)["technologies"].each do |name, tech|
+      node = parse(path)
+      next if node.empty?
+      node["technologies"].each do |name, tech|
         next unless tech.is_a?(PropertyList)
         @technology_cost[name] = tech["research_cost"]
       end
