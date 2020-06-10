@@ -78,9 +78,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def everybody_can_can_claim_states!
-    patch_file!("common/government_reforms/00_government_reforms.txt") do |content|
-      content.gsub('icon "', 'icon = "')
-    end
     patch_mod_file!("common/government_reforms/00_government_reforms.txt") do |node|
       node["defaults_reform"]["claim_states"] = true
     end

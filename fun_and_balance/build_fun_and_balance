@@ -16,8 +16,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
     apply_modifications! FunAndBalanceGameModification,
                          ReligiousLeaguesGameModification,
                          NationCustomizerGameModification,
-                         ExtraFormableCountriesGameModification,
-                         ChangeGovernmentGameModification
+                         ExtraFormableCountriesGameModification
     create_mod_file! "descriptor.mod", PropertyList[
       "tags", [MagicString.new('"Balance"')],
       "name", "Fun and Balance",

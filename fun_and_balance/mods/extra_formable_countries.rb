@@ -20,23 +20,32 @@ class ExtraFormableCountriesGameModification < EU4GameModification
   def already_formable
     @already_formable ||= %W[
       ADU
+      ALA
       ALG
       ARB
       ARM
       AUS
+      BAV
       BHA
       BRZ
       BUK
       BYZ
+      CAL
       CAM
       CAN
       CHL
       COL
       CRO
+      CSC
+      CUB
+      DAL
       DEC
       DLH
+      DNZ
       EGY
       ENG
+      FKN
+      FLO
       FRA
       GBR
       GEO
@@ -49,6 +58,8 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       HIN
       HLR
       ICE
+      ILI
+      ILK
       INC
       IRE
       ITA
@@ -58,23 +69,27 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       KSD
       KUR
       LAP
+      LOT
       LOU
       MAM
       MAR
       MAY
       MCH
       MEX
+      MGE
       MOR
       MSA
       MUG
       NAG
       NED
       NPL
+      NZL
       ORI
       PER
       PEU
       PLC
       POL
+      POM
       PRG
       PRU
       PUN
@@ -85,22 +100,31 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       ROM
       RUM
       RUS
+      SAX
       SCA
       SCO
+      SIL
+      SNA
       SOK
       SPA
       SPI
       SST
+      SWA
+      SWI
+      TEX
       TIB
       TIM
       TRA
       TRP
+      TTS
       TUN
       TUS
       UKR
       USA
       VNZ
+      VRM
       WES
+      WSI
       YEM
       YUA
       ZUN
