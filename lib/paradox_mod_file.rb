@@ -60,15 +60,14 @@ class ParadoxModFile
   def tokenize!
     unless @tokens
       @tokens = []
-      s = StringScanner.new(
-        @data
-          .gsub("\r\n", "\n")
-          .sub(/\AEU4txt/, "")
-          .sub(/\AHOI4txt/, "")
-          .sub(/\ACK2txt(.*)\}\s*\z/m){$1} # CK2 saves have unbalanced {}s
-          .sub(/\ACK2txt(.*)\}\s*(checksum.*\s*)\z/m){$1 + "\n" + $2} # even worse at some point they added checksum after the broken }
-          .sub("map_area_data{", "map_area_data={") # EU4 1.23 save bugfix
-      )
+      str = @data
+        .gsub("\r\n", "\n")
+        .sub(/\AEU4txt/, "")
+        .sub(/\AHOI4txt/, "")
+        .sub(/\ACK2txt(.*)\}\s*\z/m){$1} # CK2 saves have unbalanced {}s
+        .sub(/\ACK2txt(.*)\}\s*(checksum.*\s*)\z/m){$1 + "\n" + $2} # even worse at some point they added checksum after the broken }
+        .sub("map_area_data{", "map_area_data={") # EU4 1.23 save bugfix
+      s = StringScanner.new(str)
       until s.eos?
         if s.scan(/(\p{Space})+|#.*$/)
           # pass
@@ -94,7 +93,7 @@ class ParadoxModFile
             ">=" => :ge,
             "==" => :eqeq,
           }[s[1]])
-        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\+|\$|\/|!|\p{Letter}|\p{Digit})+)/)
+        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\+|\$|\/|!|\p{Letter}|\p{Digit}|\u{FFFD})+)/)
           if s[1] == "yes"
             @tokens << true
           elsif s[1] == "no"
