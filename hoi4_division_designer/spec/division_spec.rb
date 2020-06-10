@@ -500,10 +500,10 @@ describe Division do
           weight: 1.0,
           supply_use: 0.144,
           soft_attack: 48.96,
-          hard_attack: 11.7,
+          hard_attack: 12.6,
           defense: 114.08,
-          breakthrough: 18.41,
-          piercing: 84.4,
+          breakthrough: 19.11,
+          piercing: 87.4,
           combat_width: 4,
           manpower: 2000,
           training_time: 120,
@@ -516,6 +516,8 @@ describe Division do
           },
           recovery_rate: 0.585,
           entrenchment: 15,
+          casualty_trickleback: 0.002,
+          experience_loss_factor: -0.03,
         }
       end
     end
