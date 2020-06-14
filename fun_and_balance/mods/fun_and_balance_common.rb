@@ -29,7 +29,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       # Make Punitive Wars into Take Capital
       node["cb_super_badboy"]["war_goal"] = "take_capital_punitive"
     end
-    # Imperial Ban CB adjust down
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       # Description doesn't match what it does
       node["take_capital_punitive"]["prov_desc"] = "ALL_CORES"
@@ -61,15 +60,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def double_corruption_slider!
-    soft_patch_defines_lua!("fun_and_balance_corruption",
-      ["NCountry.CORRUPTION_COST", 0.05, 0.10],
-    )
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["root_out_corruption"]["yearly_corruption"] = -2.0
-    end
-  end
-
   def double_tradition_gain_from_battles!
     soft_patch_defines_lua!("fun_and_balance_more_tradition_from_battles",
       ["NMilitary.TRADITION_GAIN_LAND", 20, 40],
@@ -80,13 +70,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def everybody_can_can_claim_states!
     patch_mod_file!("common/government_reforms/00_government_reforms.txt") do |node|
       node["defaults_reform"]["claim_states"] = true
-    end
-  end
-
-  def imperial_ban_cb_low_ae!
-    patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
-      modify_node! node,
-        ["take_province_ban", "badboy_factor", 1.0, 0.25]
     end
   end
 
@@ -123,14 +106,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def make_constantinople_capital_ignore_culture_and_religion!
+  def rebalance_ottomans_constantinople!
     # Because Orthodox Ottomans are a thing now
+    # And don't change culture/religion, that's both OP and not historical
     patch_mod_file!("decisions/Ottoman.txt") do |node|
       constantinople_decision = node["country_decisions"]["make_constantinople_capital"]
       constantinople_decision["allow"].delete! "primary_culture"
       constantinople_decision["allow"].delete! "religion_group"
-      constantinople_decision["effect"][151]["change_culture"] = "ROOT"
-      constantinople_decision["effect"][151]["change_religion"] = "ROOT"
+      constantinople_decision["effect"][151].delete!("change_culture")
+      constantinople_decision["effect"][151].delete!("change_religion")
     end
   end
 
@@ -155,22 +139,28 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def power_projection_tweaks!
     patch_mod_file!("common/powerprojection/00_static.txt") do |node|
       modify_node! node,
-        ["eclipsed_rival",            "power",         10,  30],
-        ["eclipsed_rival",            "max",           30, 100],
-        ["declared_war_at_rival",     "yearly_decay",   1, 0.5],
-        ["joined_war_against_rival",  "yearly_decay",   1, 0.5],
-        ["refused_war_against_rival", "yearly_decay",   1, 0.5],
-        ["vassalized_rival",          "yearly_decay",   1, 0.5],
-        ["took_province_from_rival",  "yearly_decay",   1, 0.5],
-        ["rival_lost_province",       "yearly_decay",   1, 0.5],
-        ["great_power_1",             "power",         25,  50],
-        ["great_power_2",             "power",         22,  46],
-        ["great_power_3",             "power",         20,  43],
-        ["great_power_4",             "power",         18,  39],
-        ["great_power_5",             "power",         16,  36],
-        ["great_power_6",             "power",         14,  32],
-        ["great_power_7",             "power",         12,  29],
-        ["great_power_8",             "power",         10,  25]
+        ["eclipsed_rival",               "power",         10,  30],
+        ["eclipsed_rival",               "max",           30, 100],
+        ["declared_war_at_rival",        "yearly_decay",   1, 0.5],
+        ["joined_war_against_rival",     "yearly_decay",   1, 0.5],
+        ["refused_war_against_rival",    "yearly_decay",   1, 0.5],
+        ["vassalized_rival",             "yearly_decay",   1, 0.5],
+        ["took_province_from_rival",     "yearly_decay",   1, 0.5],
+        ["rival_lost_province",          "yearly_decay",   1, 0.5],
+        ["great_power_1",                "power",         25,  40],
+        ["great_power_2",                "power",         22,  35],
+        ["great_power_3",                "power",         20,  32],
+        ["great_power_4",                "power",         18,  29],
+        ["great_power_5",                "power",         16,  26],
+        ["great_power_6",                "power",         14,  22],
+        ["great_power_7",                "power",         12,  19],
+        ["great_power_8",                "power",         10,  16],
+        ["warned_rival",                 "power",          0,   5],
+        ["guarantee_neighbour_of_rival", "power",          0,   5],
+        ["current_age_power_projection", "power",          3,   5],
+        ["last_age_power_projection",    "power",          3,   5],
+        ["current_age_power_projection", "max",           21,  35],
+        ["last_age_power_projection",    "max",           21,  35]
     end
   end
 
@@ -183,28 +173,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def rebalance_conversion_rates!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node! node,
-        ["base_values", "global_missionary_strength", 0.02, 0.01],
-        ["base_values", "global_heretic_missionary_strength", nil, 0.01]
-    end
-
-    patch_mod_file!("common/religions/00_religion.txt") do |node|
-      node.each do |group_name, group|
-        group.each do |name, religion|
-          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier", "ai_will_propagate_through_trade"].include?(name)
-          if group_name == "pagan"
-            religion["province"] ||= PropertyList[]
-            religion["province"]["local_missionary_strength"] = 0.03
-          else
-            religion["province"].delete!("local_missionary_strength") if religion["province"]
-          end
-        end
-      end
-    end
-  end
-
   def reduce_ai_cheats!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
@@ -212,10 +180,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def reduce_we_only_at_peace!
+  def rebalance_war_exhaustion!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
-        ["war", "war_exhaustion_cost", nil, 100]
+        ["war", "war_exhaustion_cost", nil, 1],
+        ["peace", "war_exhaustion", -0.1, -0.2]
     end
     soft_patch_defines_lua!("fun_and_balance_war_exhaustion",
         ["NAI.PEACE_WAR_EXHAUSTION_FACTOR", 1.0, 2.0],
@@ -243,7 +212,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           ],
           "effect", PropertyList[
             "change_religion", "capital",
-            "add_stability", -2,
+            "add_stability", -3,
             "add_country_modifier", PropertyList["name", "conversion_zeal", "duration", 3650],
           ],
           "ai_will_do", PropertyList["factor", 0],
@@ -280,14 +249,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   def subject_tweaks!
     soft_patch_defines_lua!("fun_and_balance_subject_tweaks",
-      # With state limit this made sense, but we no longer have that:
-      # ["NDiplomacy.ANNEX_DIP_COST_PER_DEVELOPMENT", 8, 4],
-
-      # This nerfs Japan real hard, and that's bad
-      # This also nerfs Timurids, and that's good
-      # So I'm undecided about it
-      # ["NDiplomacy.INTEGRATE_VASSAL_MIN_YEARS", 10, 20],
-
       ["NDiplomacy.VASSALIZE_BASE_DEVELOPMENT_CAP", 100, 300]
     )
 
@@ -305,15 +266,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         raise "Multiple declarations, wtf" if types[subject_type]
         types[subject_type] = subject
       end
-
-      # Reduced slightly to help vassal game
-      # This makes Timurids unbreakable, and that's bad
-      # types["vassal"]["liberty_desire_development_ratio"] = 0.2
-      # types["march"]["relative_power_class"] = 1
-
-      # A bit more
-      # 0.175 to 0.2 is barely worth the difference
-      # types["tributary_state"]["liberty_desire_development_ratio"] = 0.2
 
       # to balance LD from relative power (also tariffs, mercantilism etc.)
       types["colony"]["relative_power_class"] = 1
@@ -341,6 +293,47 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       node["humiliate_rotw"].delete! "allowed_provinces_are_eligible"
+    end
+  end
+
+  ###################################################################
+  ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
+  ### (only for ones I'm still evaluating)                        ###
+  ###################################################################
+
+  # Not needed 1.30+ as corruption from territories is gone
+  def double_corruption_slider!
+    warn "Disabled code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    soft_patch_defines_lua!("fun_and_balance_corruption",
+      ["NCountry.CORRUPTION_COST", 0.05, 0.10],
+    )
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["root_out_corruption"]["yearly_corruption"] = -2.0
+    end
+  end
+
+  # So many things changed, need to verify this still makes sense
+  # (also it makes F&B incompatible with too many things)
+  def rebalance_conversion_rates!
+    warn "Disabled code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["base_values", "global_missionary_strength", 0.02, 0.01],
+        ["base_values", "global_heretic_missionary_strength", nil, 0.01]
+    end
+
+    patch_mod_file!("common/religions/00_religion.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |name, religion|
+          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier", "ai_will_propagate_through_trade"].include?(name)
+          if group_name == "pagan"
+            religion["province"] ||= PropertyList[]
+            religion["province"]["local_missionary_strength"] = 0.03
+          else
+            religion["province"].delete!("local_missionary_strength") if religion["province"]
+          end
+        end
+      end
     end
   end
 

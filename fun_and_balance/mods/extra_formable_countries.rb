@@ -156,6 +156,13 @@ class ExtraFormableCountriesGameModification < EU4GameModification
             Property::NOT["exists", tag],
             "primary_culture", culture,
           ],
+          "provinces_to_highlight", PropertyList[
+            "culture", culture,
+            "OR", PropertyList[
+              "NOT", PropertyList["owned_by", "ROOT"],
+              "NOT", PropertyList["is_core", "ROOT"],
+            ],
+          ],
           "allow", PropertyList[
             "adm_tech", 10,
             "num_of_cities", 3,
@@ -187,6 +194,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
             "set_country_flag", "fun_and_balance.formed_#{tag}",
           ],
           "ai_will_do", PropertyList["factor", 1],
+          "ai_importance", 400,
         ],
       ]
 

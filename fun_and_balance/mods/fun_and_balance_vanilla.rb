@@ -9,28 +9,25 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     custom_nation_tweaks!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
-    double_corruption_slider!
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
-    # imperial_ban_cb_low_ae!
     increase_rival_distance!
     longer_cb_on_backstabbers!
     lower_defender_ae!
     lower_piracy_penalty!
     lower_culture_conversion_penalty!
-    make_constantinople_capital_ignore_culture_and_religion!
+    rebalance_ottomans_constantinople!
     more_base_relations!
     more_building_slots!
     no_naval_attrition!
     power_projection_tweaks!
     primary_greek_tag_is_byz!
-    rebalance_conversion_rates!
     reduce_ai_cheats!
-    reduce_we_only_at_peace!
+    rebalance_war_exhaustion!
     religious_shift_decision!
     subject_religious_cbs!
     subject_tweaks!
-    # trade_map_fixes! # 1.30 broke it, check what I need?
+    trade_map_fixes!
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
 
@@ -62,11 +59,13 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def trade_map_fixes!
     rewrite_trade_map! do |edges|
       edges - [
-        ["philippines", "panama"],
+        ["polynesia_node", "panama"],
+        ["philippines", "polynesia_node"],
         ["mexico", "panama"],
       ] + [
         ["panama", "mexico"],
-        ["patagonia", "lima"],
+        # ["patagonia", "lima"], # would be nice, but not working without drawing a path
+        ["polynesia_node", "philippines"],
       ]
     end
   end
