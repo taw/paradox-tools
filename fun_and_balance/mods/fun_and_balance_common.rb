@@ -296,6 +296,42 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # These changes look really extreme,
+  # but 1.30.2 Ming doesn't come even close to exploding
+  # even with very brutal looking values
+  def rebalance_ming_crisis!
+    # First, make sure crisis lasts at least 10 years, no cheating
+
+    patch_mod_file!("common/disasters/ming_crisis.txt") do |node|
+      crisis = node["ming_crisis"]
+      modify_node! crisis,
+        ["modifier", "global_unrest", 5, 10],
+        ["modifier", "land_morale", -0.15, -0.30]
+      crisis["can_end"]["custom_trigger_tooltip"] = PropertyList[
+        "tooltip", "disaster_active_for_10_years_tooltip",
+        "had_country_flag", PropertyList[
+          "flag", "had_ming_crisis",
+          "days", 3650,
+        ]
+      ]
+    end
+
+    patch_mod_file!("events/disaster_ming_crisis.txt") do |node|
+      event = node.to_a.find{|prop| prop.key == "country_event" and prop.val["id"] == "ming_crisis.1"}
+      event.val["immediate"].add! Property["set_country_flag", "had_ming_crisis"]
+    end
+
+    # Then make low mandate actually painful
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["negative_mandate", "global_unrest", 5, 10],
+        ["negative_mandate", "global_manpower_modifier", -0.5, -1.0],
+        ["negative_mandate", "mercenary_manpower", -0.5, -1.0],
+        ["negative_mandate", "fire_damage_received", 0.5, 1.0],
+        ["negative_mandate", "shock_damage_received", 0.5, 1.0]
+      end
+  end
+
   ###################################################################
   ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
   ### (only for ones I'm still evaluating)                        ###

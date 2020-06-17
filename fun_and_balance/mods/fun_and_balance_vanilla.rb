@@ -30,6 +30,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     trade_map_fixes!
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
+    rebalance_ming_crisis!
 
     # Experimental:
     # rebalance_unrest!
