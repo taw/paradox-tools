@@ -107,10 +107,10 @@ class ReligiousLeaguesGameModification < EU4GameModification
 
   def setup_on_action!
     patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
-      node["on_lock_hre_religion"]["events"] += ["religious_leagues.103", "religious_leagues.104", "religious_leagues.105", "religious_leagues.106"]
+      node["on_lock_hre_religion"]["events"] += ["religious_leagues.103", "religious_leagues.104", "religious_leagues.105", "religious_leagues.106", "religious_leagues.107"]
 
-      node["on_change_hre_religion"]["events"] = (1..6).map do |i|
-        (1..6).map do |j|
+      node["on_change_hre_religion"]["events"] = (1..7).map do |i|
+        (1..7).map do |j|
           "religious_leagues.3#{i}#{j}" unless i == j
         end
       end.flatten.compact
