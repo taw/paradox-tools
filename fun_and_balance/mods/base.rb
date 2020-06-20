@@ -1,4 +1,5 @@
 require_relative "../../lib/paradox_game_modification"
+require "pry"
 
 class EU4GameModification < ParadoxGameModification
   def modify_node!(node, *modifications)
