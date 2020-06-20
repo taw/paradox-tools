@@ -28,7 +28,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
 
   def create_other_trigerred_modifiers!
     node = PropertyList[]
-    ["reformed", "orthodox", "coptic", "hussite"].each do |religion|
+    ["orthodox", "coptic", "anglican", "hussite"].each do |religion|
       node.add! "hre_dominant_#{religion}", PropertyList[
         "potential", PropertyList[
           "capital_scope", PropertyList["continent", "europe"],
@@ -46,7 +46,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
       ]
     end
 
-    create_mod_file! "common/triggered_modifiers//99_fun_and_balance_religious_leagues.txt", node
+    create_mod_file! "common/triggered_modifiers/99_fun_and_balance_religious_leagues.txt", node
   end
 
   def setup_loc!
