@@ -1,22 +1,13 @@
 require_relative "base"
 
-class ReligiousLeaguesGameModification < EU4GameModification
+# This is the two stage system, it's probably too much
+
+class ReligiousLeaguesComplexGameModification < EU4GameModification
   # Event numbers:
-  # Vanilla:
-  #   1 - The Emperor Triumphant (Catholic)
-  #   2 - Victory of the Protestant League
-  #   3 - Victory of the Catholic League
-  #   4 - Peace of Westphalia
-  #   5 - The Evangelical Union
-  #   6 - The Imperial Diet (Catholic)
-  #   7 - The Imperial Diet (Protestant)
-  #   8 - The Emperor Triumphant (Protestant)
-  #
-  # Added:
-  # 10x - x emperor won (1 catholic, 8 protestant)
-  # 20x - x diet (6 catholic, 7 protestant)
-  # 3yx - x league victory over y (2 protestant-over-catholic, 3 catholic-over-protestant; we delete them)
-  # 40x - x league starts (5 protestant; we delete it)
+  # 10x - x emperor won
+  # 20x - x diet
+  # 3xy - victory in x-vs-y war
+  # 40x - x league starts
 
   RELIGION = {
     "catholic" => 1,
@@ -118,48 +109,47 @@ class ReligiousLeaguesGameModification < EU4GameModification
 
   def setup_on_action!
     patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
-      node["on_lock_hre_religion"]["events"] += (3..7).map{|i| "religious_leagues.10#{i}" }
-      # This needs to be extended if we ever do wars other than Catholcs vs X
-      node["on_change_hre_religion"]["events"] += (3..7).map{|i| "religious_leagues.31#{i}" }
+      node["on_lock_hre_religion"]["events"] += ["religious_leagues.103", "religious_leagues.104", "religious_leagues.105", "religious_leagues.106", "religious_leagues.107"]
+
+      node["on_change_hre_religion"]["events"] = (1..7).map do |i|
+        (1..7).map do |j|
+          "religious_leagues.3#{i}#{j}" unless i == j
+        end
+      end.flatten.compact
     end
   end
 
   def events_emperor_won!
     patch_mod_file!("events/ReligiousLeagues.txt") do |node|
-      RELIGION.each do |religion, i|
-        next if religion == "catholic" or religion == "protestant"
-        id = "10#{i}"
+      {"reformed" => 3, "orthodox" => 4, "coptic" => 5, "anglican" => 6, "hussite" => 7}.each do |religion, i|
         node.add! "country_event", PropertyList[
-            "id", "religious_leagues.#{id}",
-            "title", "religious_leagues.#{id}.t",
-            "desc", "religious_leagues.#{id}.d",
-            "picture", "RELIGIOUS_WARS_eventPicture",
-            "major", true,
-            "is_triggered_only", true,
-            "trigger", PropertyList[
-              "has_dlc", "Art of War",
-              "hre_religion", religion,
-            ],
-            "immediate", PropertyList["hidden_effect", PropertyList["set_hre_religion_locked", true]],
-            "option", PropertyList[
-              "name", "religious_leagues.#{id}.a",
-              "tooltip", PropertyList["set_hre_religion_locked", true],
-            ],
-          ]
+          "id", "religious_leagues.10#{i}",
+          "title", "religious_leagues.1.t",
+          "desc", "religious_leagues.1.d.#{religion}",
+          "picture", "RELIGIOUS_WARS_eventPicture",
+          "major", true,
+          "is_triggered_only", true,
+          "trigger", PropertyList[
+            "has_dlc", "Art of War",
+            "hre_religion", religion,
+          ],
+          "immediate", PropertyList["hidden_effect", PropertyList["set_hre_religion_locked", true]],
+          "option", PropertyList[
+            "name", "religious_leagues.1.a",
+            "tooltip", PropertyList["set_hre_religion_locked", true],
+          ],
+        ]
       end
     end
   end
 
-  # I don't think these happen anymore
   def events_diet!
     patch_mod_file!("events/ReligiousLeagues.txt") do |node|
-      RELIGION.each do |religion, i|
-        next if religion == "catholic" or religion == "protestant"
-        id = "20#{i}"
+      {"reformed" => 3, "orthodox" => 4, "coptic" => 5, "anglican" => 6, "hussite" => 7}.each do |religion, i|
         node.add! "country_event", PropertyList[
-          "id", "religious_leagues.#{id}",
-          "title", "religious_leagues.#{id}.t",
-          "desc", "religious_leagues.#{id}.d",
+          "id", "religious_leagues.20#{i}",
+          "title", "religious_leagues.6.t",
+          "desc", "religious_leagues.diet.#{religion}",
           "picture", "RELIGIOUS_WARS_eventPicture",
           "major", true,
           "fire_only_once", true,
@@ -181,9 +171,9 @@ class ReligiousLeaguesGameModification < EU4GameModification
                 ],
                 "NOT", PropertyList["any_known_country", PropertyList[
                   "is_elector", true,
-                  "NOT", PropertyList["religion", religion],
                   "is_league_enemy", "ROOT",
                   "truce_with", "ROOT",
+                  "NOT", PropertyList["religion", religion],
                 ]],
               ],
               "AND", PropertyList[
@@ -194,8 +184,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
           ],
           "mean_time_to_happen", PropertyList["months", 60],
           "option", PropertyList[
-            "name", "religious_leagues.#{id}.a",
-            "set_hre_heretic_religion", religion,
+            "name", "religious_leagues.6.a",
             "set_hre_religion_locked", true,
           ],
         ]
@@ -203,27 +192,32 @@ class ReligiousLeaguesGameModification < EU4GameModification
     end
   end
 
-  # This could be extended to every combination, but do only Catholic vs X for now
-  def events_league_victory!
+  def apply!
+    make_trigerred_modifiers_globally_visible!
+    setup_on_action!
+    setup_loc!
+    events_emperor_won!
+    events_diet!
+
     patch_mod_file!("events/ReligiousLeagues.txt") do |node|
       node.delete!{|prop| prop.key == "country_event" and prop.val["id"] == "religious_leagues.2"}
       node.delete!{|prop| prop.key == "country_event" and prop.val["id"] == "religious_leagues.3"}
 
-      RELIGION.each do |previous_religion, j|
-        RELIGION.each do |religion, i|
-          next if religion == previous_religion
-          id = "3#{j}#{i}"
+      RELIGION.each do |hre_religion, i|
+        RELIGION.each do |heretic_religion, j|
+          next if hre_religion == heretic_religion
+
           node.add! "country_event", PropertyList[
-            "id", "religious_leagues.#{id}",
-            "title", "religious_leagues.warwon.t.#{religion}",
-            "desc", "religious_leagues.warwon.d.#{religion}",
+            "id", "religious_leagues.3#{i}#{j}",
+            "title", "religious_leagues.warwon.t.#{hre_religion}",
+            "desc", "religious_leagues.warwon.d.#{hre_religion}",
             "picture", "RELIGIOUS_WARS_eventPicture",
             "major", true,
             "is_triggered_only", true,
             "trigger", PropertyList[
               "has_dlc", "Art of War",
-              "hre_religion", previous_religion,
-              "hre_heretic_religion", religion,
+              "hre_religion", heretic_religion,
+              "hre_heretic_religion", hre_religion,
               "OR", PropertyList[
                 "NOT", PropertyList["has_country_flag", "hre_religion_changed"],
                 "had_country_flag", PropertyList[
@@ -235,32 +229,25 @@ class ReligiousLeaguesGameModification < EU4GameModification
             "immediate", PropertyList[
               "set_country_flag", "hre_religion_changed",
               "hidden_effect", PropertyList[
-                "set_hre_heretic_religion", previous_religion,
-                "set_hre_religion", religion,
-                "set_hre_religion_locked", true,
+                "set_hre_heretic_religion", heretic_religion,
+                "set_hre_religion", hre_religion,
               ],
             ],
             "option", PropertyList[
-              "name", "religious_leagues.#{id}.a",
+              "name", "religious_leagues.2.a",
               "tooltip", PropertyList[
-                "set_hre_heretic_religion", previous_religion,
-                "set_hre_religion", religion,
-                "set_hre_religion_locked", true,
+                "set_hre_heretic_religion", heretic_religion,
+                "set_hre_religion", hre_religion,
               ],
             ],
           ]
         end
       end
-    end
-  end
 
-  def events_league_starts!
-    patch_mod_file!("events/ReligiousLeagues.txt") do |node|
-      node.delete!{|x| x.key == "country_event" and x.val["id"] == "religious_leagues.5"}
-      previous_religion = "catholic"
-      RELIGION.each do |religion, i|
-        next if religion == "catholic" or religion == "protestant"
-        id = "40#{i}"
+      protestant_league = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.5"}
+      protestant_league["option"].add! "set_hre_heretic_religion", "protestant"
+
+      {"reformed"=>403, "anglican"=>406}.each do |religion, id|
         node.add! "country_event", PropertyList[
           "id", "religious_leagues.#{id}",
           "title", "religious_leagues.#{id}.t",
@@ -275,26 +262,15 @@ class ReligiousLeaguesGameModification < EU4GameModification
             "hre_religion_locked", false,
             "hre_religion_treaty", false,
             "is_emperor", true,
-            "OR", PropertyList[
-              "AND", PropertyList[
-                "is_year", 1550,
-                "has_global_flag", "counter_reformation",
-              ],
-              "calc_true_if", PropertyList[
-                "all_elector", PropertyList[
-                  "religion", religion,
-                ],
-                "amount", 4,
-              ]
-            ],
-            "religion", previous_religion,
+            "is_year", 1550,
+            "religion", "catholic",
+            "has_global_flag", "counter_reformation",
             "any_known_country", PropertyList[
               "is_elector", true,
               "religion", religion,
               "is_free_or_tributary_trigger", true,
             ],
-            "NOT", PropertyList["hre_reform_passed", "erbkaisertum"],
-            "NOT", PropertyList["has_global_flag", "great_peasants_war_flag"],
+            "NOT", PropertyList["hre_reform_level", 6],
           ],
           "mean_time_to_happen", PropertyList[
             "months", 120,
@@ -306,43 +282,69 @@ class ReligiousLeaguesGameModification < EU4GameModification
               "factor", 0.1,
               "is_year", 1600,
             ],
-            "modifier", PropertyList[
-              "factor", 0.5,
-              "calc_true_if", PropertyList[
-                "all_elector", PropertyList[
-                  "religion", religion,
-                ],
-                "amount", 3,
-              ],
-            ],
-            "modifier", PropertyList[
-              "factor", 0.1,
-              "calc_true_if", PropertyList[
-                "all_elector", PropertyList[
-                  "religion", religion,
-                ],
-                "amount", 4,
-              ],
-            ],
           ],
           "option", PropertyList[
-            "name", "religious_leagues.#{id}.a",
+            "name", "religious_leagues.5.a",
             "enable_hre_leagues", true,
             "set_global_flag", "evangelical_union_happened",
             "set_hre_heretic_religion", religion,
           ],
         ]
       end
-    end
-  end
 
-  def apply!
-    make_trigerred_modifiers_globally_visible!
-    setup_on_action!
-    setup_loc!
-    events_emperor_won!
-    events_diet!
-    events_league_victory!
-    events_league_starts!
+      {"orthodox"=>404, "coptic"=>405, "hussite"=>407}.each do |religion, id|
+        # Does not depend on 1550 and counterreformation
+        node.add! "country_event", PropertyList[
+          "id", "religious_leagues.#{id}",
+          "title", "religious_leagues.#{id}.t",
+          "desc", "religious_leagues.#{id}.d",
+          "picture", "RELIGIOUS_WARS_eventPicture",
+          "major", true,
+          "fire_only_once", true,
+          "trigger", PropertyList[
+            "has_dlc", "Art of War",
+            "NOT", PropertyList["has_global_flag", "evangelical_union_happened"],
+            "hre_leagues_enabled", false,
+            "hre_religion_locked", false,
+            "hre_religion_treaty", false,
+            "is_emperor", true,
+            "religion", "catholic",
+            "any_known_country", PropertyList[
+              "is_elector", true,
+              "religion", religion,
+              "is_free_or_tributary_trigger", true,
+            ],
+            "NOT", PropertyList["hre_reform_level", 6],
+          ],
+          "mean_time_to_happen", PropertyList[
+            "months", 120,
+            "modifier", PropertyList[
+              "factor", 0.5,
+              "is_year", 1575,
+            ],
+            "modifier", PropertyList[
+              "factor", 0.1,
+              "is_year", 1600,
+            ],
+          ],
+          "option", PropertyList[
+            "name", "religious_leagues.5.a",
+            "enable_hre_leagues", true,
+            "set_global_flag", "evangelical_union_happened",
+            "set_hre_heretic_religion", religion,
+          ],
+        ]
+      end
+
+      # This code is seriously dumb and fragile
+      catholic_diet = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.7"}
+      catholic_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete! "religion"
+      catholic_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].add! "NOT", PropertyList["religion", "catholic"]
+      catholic_diet["desc"] = "religious_leagues.diet.catholic"
+      protestant_diet = node.find_all("country_event").find{|v| v["id"] == "religious_leagues.7"}
+      protestant_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].delete! "religion"
+      protestant_diet["trigger"]["OR"]["AND"]["NOT"]["any_known_country"].add! "NOT", PropertyList["religion", "protestant"]
+      protestant_diet["desc"] = "religious_leagues.diet.protestant"
+    end
   end
 end
