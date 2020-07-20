@@ -457,6 +457,17 @@ describe Division do
     end
   end
 
+  # They have 2 equipments for same year
+  describe "Armored Cars" do
+    let(:tech_year) { 1942 }
+    let(:units) { {
+      armored_car: 5,
+    } }
+    it do
+      expect(division.equipment).to eq("armored_car_equipment_3" => 300)
+    end
+  end
+
   describe "Kaiserreich" do
     let(:db) { Database.new("kaiserreich") }
     describe "2 militia, no tech" do

@@ -3,6 +3,7 @@ require "json"
 require "memoist"
 require_relative "../../lib/paradox_game"
 require_relative "equipment_data"
+require_relative "equipment_renames"
 require_relative "technology_data"
 require_relative "units_data"
 require_relative "doctrine_data"
@@ -104,4 +105,3 @@ class Importer < ParadoxGame
     "Importer"
   end
 end
-

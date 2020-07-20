@@ -5199,7 +5199,7 @@
       "archetype": "anti_tank_equipment",
       "parent": "anti_tank_equipment_3"
     },
-    "gw_armored_car_equipment": {
+    "armored_car_equipment_0": {
       "air_attack": 0,
       "ap_attack": 6,
       "armor_value": 3,
@@ -5286,7 +5286,7 @@
       "archetype": "armored_car_equipment",
       "parent": "armored_car_equipment_1"
     },
-    "armored_car_at_equipment": {
+    "armored_car_equipment_3": {
       "air_attack": 0,
       "ap_attack": 62,
       "armor_value": 20,
@@ -20496,7 +20496,7 @@
         "cat_light_armor"
       ],
       "enable_equipments": [
-        "gw_armored_car_equipment"
+        "armored_car_equipment_0"
       ],
       "enable_subunits": [
         "armored_car"
@@ -20555,7 +20555,7 @@
         "armor"
       ],
       "enable_equipments": [
-        "armored_car_at_equipment"
+        "armored_car_equipment_3"
       ],
       "research_cost": 1,
       "start_year": 1942,

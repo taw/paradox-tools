@@ -54,9 +54,8 @@ class Database
       .transform_values{|eq| Equipment.new(self, eq, {}) }
   end
 
-
   # // Using any of these results in invalid division, but it won't crash app
-  # // Pick oldest equipment for eacsh archetype
+  # // Pick oldest equipment for each archetype
   # calculateFallbackEquipmentMap() {
   #   let result = {};
   #   for(let name in this.equipment) {

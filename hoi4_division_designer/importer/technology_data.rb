@@ -20,7 +20,8 @@ class TechnologyData
   end
 
   memoize def enabled_equipments
-    raw_data.flat_map{|name, tech| tech["enable_equipments"] || []} & @game.equipment.equipment_names
+    raw_data.flat_map{|name, tech| tech["enable_equipments"] || []}.map{|k| EquipmentRenames[k] || k} &
+      @game.equipment.equipment_names
   end
 
   memoize def enabled_subunits
@@ -75,6 +76,7 @@ class TechnologyData
 
       if tech["enable_equipments"]
         tech["enable_equipments"] = [] if tech["enable_equipments"] == {}
+        tech["enable_equipments"] = tech["enable_equipments"].map{|k| EquipmentRenames[k] || k}
         tech["enable_equipments"] &= @game.equipment.equipment_names
       end
 

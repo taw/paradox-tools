@@ -29,7 +29,7 @@ class EquipmentData
   end
 
   memoize def equipment_names
-    raw_data.map(&:first)
+    raw_data.map(&:first).map{|k| EquipmentRenames[k] || k}
   end
 
   memoize def data
@@ -47,7 +47,8 @@ class EquipmentData
     ]
     result = {}
     archetypes = {}
-    raw_data.each do |name, equipment|
+    raw_data.each do |raw_name, equipment|
+      name = EquipmentRenames[raw_name] || raw_name
       equipment = equipment.to_h
       if equipment["is_archetype"]
         equipment.delete("is_archetype")
