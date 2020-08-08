@@ -4,42 +4,36 @@ class FunAndBalanceETGameModification < FunAndBalanceCommonGameModification
   def apply!
     anyone_can_form_byzantium!
     buff_awful_idea_groups!
-    can_convert_in_territories!
     cheaper_fort_maintenance!
     coalition_cb_defend_capital!
     custom_nation_tweaks!
-    disable_burgundy_inheritance!
     disable_call_for_peace!
     disable_end_game_tag_check_for_player!
-    double_corruption_slider!
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
-    fewer_mercs!
-    fix_adopt_secularism_decision!
-    imperial_ban_cb_low_ae!
     increase_rival_distance!
     longer_cb_on_backstabbers!
     lower_defender_ae!
     lower_piracy_penalty!
     lower_culture_conversion_penalty!
-    make_constantinople_capital_ignore_culture_and_religion!
-    merchant_republic_province_limit_remove!
+    rebalance_ottomans_constantinople!
     more_base_relations!
     more_building_slots!
     no_naval_attrition!
     power_projection_tweaks!
     primary_greek_tag_is_byz!
     reduce_ai_cheats!
-    reduce_we_only_at_peace!
+    rebalance_war_exhaustion!
     religious_shift_decision!
     subject_religious_cbs!
     subject_tweaks!
     trade_map_fixes!
-    # rebalance_unrest!
-    rebalance_hre!
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
-    unlimited_states!
+    rebalance_ming_crisis!
+
+    # ET specific
+    fix_adopt_secularism_decision!
 
     soft_patch_defines_lua!(
       "fun_and_balance",

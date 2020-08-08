@@ -7,8 +7,8 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/eu4-1.28.3",
-        "source/ExtendedTimeline 1.9.3/ExtendedTimeline.mod"
+        "source/eu4-1.30.3",
+        "source/ExtendedTimeline 1.11.2/ExtendedTimeline.mod"
       ),
       "output/fun_and_balance_et"
     )
@@ -17,14 +17,13 @@ class FunAndBalanceETModBuilder < ParadoxModBuilder
   def build_mod_files!
     apply_modifications! FunAndBalanceETGameModification,
                          ReligiousLeaguesGameModification,
-                         NationCustomizerGameModification,
-                         ChangeGovernmentGameModification
+                         NationCustomizerGameModification
     create_mod_descriptor!(
       # name starts with space to make sure it is alphabetically before "Extended Timeline"
       # space used to work, but Steam started stripping it
       name: "!Fun and Balance for Extended Timeline",
       path: "mod/fun_and_balance_et",
-      supported_version: "1.28",
+      supported_version: "1.30",
       picture: "fun_and_balance_et.jpg",
     )
   end
