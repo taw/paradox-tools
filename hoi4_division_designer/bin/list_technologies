@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/division_designer"
+require "set"
+
+class ListTechnologies
+  def initialize(*args)
+    mod = args.shift || "vanilla"
+    unless args.empty?
+      STDERR.puts "Usage: #{$0} mod_name"
+      STDERR.puts "   or: #{$0}"
+      exit 1
+    end
+    @db = Database.new(mod)
+  end
+
+  def technology_by_year
+    @technology_by_year ||= (
+      @db
+        .technology
+        .values
+        .group_by(&:start_year)
+        .sort_by{|x| x[0] || 0}
+        .to_h
+    )
+  end
+
+  def call
+    technology_by_year.each do |year, techs|
+      puts "" if year
+      puts "#{year || "No Year"}:"
+      techs.each do |tech|
+        leads_to = if !tech.leads_to.empty?
+          " (-> #{tech.leads_to.join(", ")})"
+        else
+          ""
+        end
+        puts "* #{tech.name}#{leads_to}"
+      end
+    end
+  end
+end
+
+ListTechnologies.new(*ARGV).call
