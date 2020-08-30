@@ -31,6 +31,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
     rebalance_ming_crisis!
+    fix_culture_groups!
 
     # Experimental:
     # rebalance_unrest!
@@ -69,5 +70,11 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
         ["polynesia_node", "philippines"],
       ]
     end
+  end
+
+  # Many decisions and events assume certain cultures are in certain groups,
+  # so any drastic changes might need extra work
+  def fix_culture_groups!
+    move_culture! "slovak", "carpathian", "west_slavic"
   end
 end

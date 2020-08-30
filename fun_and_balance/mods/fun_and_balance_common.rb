@@ -529,4 +529,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["propagate_religion"]["can_maintain"].delete! "religion_group"
     end
   end
+
+  # In principle this could move them between files
+  def move_culture!(culture, from_group, to_group)
+    patch_mod_file! "common/cultures/00_cultures.txt" do |node|
+      from_node = node[from_group] or raise "Can't find #{from_group}"
+      to_node = node[to_group] or raise "Can't find #{to_group}"
+      culture_node = from_node[culture] or raise "Can't find #{culture} in #{from_group}"
+      from_node.delete! culture
+      to_node.add! culture, culture_node
+    end
+  end
 end
