@@ -259,6 +259,14 @@ class Country
     @estimated_truce_time
   end
 
+  def loans
+    @node.find_all("loan")
+  end
+
+  def total_loans_amount
+    @total_loans_amount ||= loans.map{|l| l["amount"]}.sum
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
