@@ -244,6 +244,10 @@ class Country
     @truces ||= @node["active_relations"].to_a.select{|x| x.val["truce"]}.map(&:key).to_set
   end
 
+  def opinion_cache
+    @opinion_cache ||= @node["opinion_cache"]
+  end
+
   # This will be only approximate
   def estimated_truce_time
     unless @estimated_truce_time
@@ -412,6 +416,15 @@ class EU4Save
         .map{|tag, node| [tag, Country.new(tag, node)] }
         .to_h
     end
+  end
+
+  def country_index
+    @country_index ||= data["countries"].keys.map.with_index.to_h
+  end
+
+  def cached_opinion(tag1, tag2)
+    idx = country_index[tag2]
+    countries[tag1].opinion_cache[idx]
   end
 
   def provinces
