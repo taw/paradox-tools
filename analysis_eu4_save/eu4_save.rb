@@ -384,6 +384,14 @@ class Province
     @node["name"]
   end
 
+  def trade_company?
+    !!@node["active_trade_company"]
+  end
+
+  def territory?
+    !!@node["territorial_core"]
+  end
+
   def inspect
     "Province<#{@id};#{name}>"
   end
