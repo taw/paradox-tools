@@ -7,7 +7,7 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/hoi4-1.6.2",
+        "source/hoi4-1.9.3",
       ),
       "output/#{mod_name}"
     )
@@ -19,12 +19,33 @@ class BuildSimpleTerrainMapMod < ParadoxModBuilder
 
   def build_mod_files!
     apply_simple_terrain_map_mod!
+    create_mod_file! "descriptor.mod", PropertyList[
+      "version",MagicString.new('"1.9.3"'),
+      "tags", [MagicString.new('"Graphics"'), MagicString.new('"Map"')],
+      "name", "A Simple Terrain Map Mode",
+      "path", "mod/#{mod_name}",
+      "picture", MagicString.new('"a_simple_terrain_map_mode.png"'),
+      "remote_file_id", MagicString.new('"957111624"'),
+    ]
     create_mod_descriptor!(
+      version: MagicString.new('"1.9.3"'),
+      tags: [MagicString.new('"Graphics"'), MagicString.new('"Map"')],
       name: "A Simple Terrain Map Mode",
       path: "mod/#{mod_name}",
-      supported_version: "1.6.*",
-      picture: "a_simple_terrain_map_mode.png",
+      supported_version: MagicString.new('"1.9.*"'),
+      picture: MagicString.new('"picture.png"'),
+      remote_file_id: MagicString.new('"957111624"'),
     )
+  end
+
+  def mod_descriptor_name
+    "AVerySimpleTerrainMapMode"
+  end
+
+  def create_mod_descriptor!(dsc)
+    create_file! "picture.png", (Pathname("pictures") + "a_simple_terrain_map_mode.png").read
+    dsc[:picture] = MagicString.new('"picture.png"')
+    create_mod_file! "../#{mod_descriptor_name}.mod", PropertyList[*dsc.to_a.flatten(1)]
   end
 end
 
