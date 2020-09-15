@@ -409,7 +409,7 @@ describe Division do
         hp: 24.2,
         org: 9.2,
         recovery_rate: 0.252, # displayed 0.25
-        suppression: 40, # wiki is incorrect
+        suppression: 30,
         weight: 30.5,
         supply_use: 4.056, # displayed 4.05
         reliability_factor: 0.20,
