@@ -3254,7 +3254,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 0.75,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3323,7 +3323,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 0.8,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3395,7 +3395,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 0.75,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3467,7 +3467,7 @@
       "soft_attack": 0.5,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 0.75,
       "supply_use": 0.1,
       "fuel_consumption": 0,
       "active": true,
@@ -3611,7 +3611,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 1.25,
       "supply_use": 0.4,
       "fuel_consumption": 0,
       "active": true,
@@ -3680,7 +3680,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 1.5,
       "supply_use": 0.44,
       "fuel_consumption": 0,
       "active": true,
@@ -3752,7 +3752,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 1.5,
       "supply_use": 0.6,
       "fuel_consumption": 0,
       "active": true,
@@ -3824,7 +3824,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 1.25,
       "supply_use": 0.8,
       "fuel_consumption": 0,
       "active": true,
@@ -3896,7 +3896,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 2,
+      "suppression": 1.5,
       "supply_use": 0.5,
       "fuel_consumption": 0,
       "active": true,
@@ -4084,7 +4084,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 1.5,
+      "suppression": 1.0,
       "supply_use": 0.2,
       "fuel_consumption": 0,
       "active": true,
@@ -4154,7 +4154,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 1.5,
+      "suppression": 1.25,
       "supply_use": 0.22,
       "fuel_consumption": 0,
       "active": true,
@@ -4227,7 +4227,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 1.5,
+      "suppression": 1.25,
       "supply_use": 0.3,
       "fuel_consumption": 0,
       "active": true,
@@ -4303,7 +4303,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 1.25,
       "supply_use": 0.4,
       "fuel_consumption": 0,
       "active": true,
@@ -4379,7 +4379,7 @@
       "soft_attack": 0,
       "supply_consumption_factor": 0,
       "fuel_consumption_factor": 0,
-      "suppression": 0,
+      "suppression": 1.25,
       "supply_use": 0.25,
       "fuel_consumption": 0,
       "active": true,
@@ -5342,7 +5342,7 @@
       },
       "sub_attack": 0,
       "sub_detection": 5,
-      "surface_detection": 20,
+      "surface_detection": 26,
       "surface_visibility": 30,
       "torpedo_attack": 0,
       "type": "carrier",
@@ -5413,7 +5413,7 @@
       },
       "sub_attack": 0,
       "sub_detection": 5,
-      "surface_detection": 20,
+      "surface_detection": 26,
       "surface_visibility": 30,
       "torpedo_attack": 0,
       "type": "carrier",
@@ -5492,7 +5492,7 @@
       },
       "sub_attack": 0,
       "sub_detection": 5,
-      "surface_detection": 20,
+      "surface_detection": 26,
       "surface_visibility": 30,
       "torpedo_attack": 0,
       "type": "carrier",
@@ -5560,7 +5560,7 @@
       },
       "sub_attack": 0,
       "sub_detection": 5,
-      "surface_detection": 20,
+      "surface_detection": 26,
       "surface_visibility": 30,
       "torpedo_attack": 0,
       "type": "carrier",
@@ -5622,7 +5622,7 @@
       },
       "sub_attack": 0,
       "sub_detection": 5,
-      "surface_detection": 20,
+      "surface_detection": 26,
       "surface_visibility": 30,
       "torpedo_attack": 0,
       "type": "carrier",
@@ -12346,7 +12346,7 @@
       "enable_equipments": [
         "ship_hull_light_2"
       ],
-      "research_cost": 2,
+      "research_cost": 1.5,
       "start_year": 1936,
       "name": "basic_ship_hull_light",
       "leads_to": [
@@ -12366,7 +12366,7 @@
       "enable_equipments": [
         "ship_hull_light_3"
       ],
-      "research_cost": 2,
+      "research_cost": 1.5,
       "start_year": 1940,
       "name": "improved_ship_hull_light",
       "leads_to": [
@@ -12419,7 +12419,7 @@
       "enable_equipment_modules": [
         "ship_depth_charge_1"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1922,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12440,7 +12440,7 @@
       "enable_equipment_modules": [
         "ship_depth_charge_2"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1936,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12461,7 +12461,7 @@
       "enable_equipment_modules": [
         "ship_depth_charge_3"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1940,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12482,7 +12482,7 @@
       "enable_equipment_modules": [
         "ship_depth_charge_4"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1944,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12503,7 +12503,7 @@
       "enable_equipment_modules": [
         "ship_sonar_1"
       ],
-      "research_cost": 1,
+      "research_cost": 1.5,
       "start_year": 1922,
       "name": "Passive Sonar",
       "leads_to": [
@@ -12648,7 +12648,7 @@
       "enable_equipment_modules": [
         "ship_armor_cruiser_2"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1936,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12669,7 +12669,7 @@
       "enable_equipment_modules": [
         "ship_armor_cruiser_3"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1940,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12690,7 +12690,7 @@
       "enable_equipment_modules": [
         "ship_armor_cruiser_4"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1944,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12823,7 +12823,7 @@
         "ship_armor_bb_2",
         "ship_armor_bc_2"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1936,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -12845,9 +12845,9 @@
         "ship_armor_bb_3",
         "ship_armor_bc_3"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1940,
-      "xp_research_bonus": 1.5,
+      "xp_research_bonus": 1.25,
       "xp_research_cost": 50,
       "xp_research_type": "navy",
       "name": "All-or-Nothing Armor Scheme",
@@ -12947,7 +12947,7 @@
       "enable_equipment_modules": [
         "ship_torpedo_1"
       ],
-      "research_cost": 1,
+      "research_cost": 2.0,
       "start_year": 1922,
       "name": "Basic Torpedo",
       "leads_to": [
@@ -13039,7 +13039,7 @@
       "enable_equipment_modules": [
         "ship_torpedo_2"
       ],
-      "research_cost": 1,
+      "research_cost": 1.5,
       "start_year": 1936,
       "name": "Improved Ship Torpedo Launcher",
       "leads_to": [
@@ -13055,7 +13055,7 @@
       "enable_equipment_modules": [
         "ship_torpedo_3"
       ],
-      "research_cost": 1,
+      "research_cost": 1.5,
       "start_year": 1940,
       "name": "Advanced Ship Torpedo Launcher",
       "leads_to": [
@@ -13071,7 +13071,7 @@
       "enable_equipment_modules": [
         "ship_torpedo_4"
       ],
-      "research_cost": 1,
+      "research_cost": 1.5,
       "start_year": 1944,
       "name": "Modern Ship Torpedo Launcher",
       "leads_to": [
@@ -13092,7 +13092,7 @@
       "enable_equipments": [
         "ship_hull_submarine_1"
       ],
-      "research_cost": 1.25,
+      "research_cost": 1.5,
       "start_year": 1922,
       "name": "early_ship_hull_submarine",
       "leads_to": [
@@ -13113,7 +13113,7 @@
       "enable_equipments": [
         "ship_hull_submarine_2"
       ],
-      "research_cost": 1.25,
+      "research_cost": 1.5,
       "start_year": 1936,
       "name": "basic_ship_hull_submarine",
       "leads_to": [
@@ -13135,7 +13135,7 @@
       "enable_equipments": [
         "ship_hull_submarine_3"
       ],
-      "research_cost": 1.25,
+      "research_cost": 2.0,
       "start_year": 1940,
       "name": "improved_ship_hull_submarine",
       "leads_to": [
@@ -13157,7 +13157,7 @@
       "enable_equipments": [
         "ship_hull_submarine_4"
       ],
-      "research_cost": 1.25,
+      "research_cost": 2.0,
       "start_year": 1944,
       "name": "advanced_ship_hull_submarine",
       "leads_to": [
@@ -13277,7 +13277,7 @@
       "categories": [
         "naval_equipment"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1936,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -13317,7 +13317,7 @@
       "categories": [
         "naval_equipment"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1942,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -13409,7 +13409,7 @@
       "categories": [
         "naval_equipment"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1936,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -13433,7 +13433,7 @@
       "categories": [
         "naval_equipment"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1942,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -13507,7 +13507,7 @@
       "categories": [
         "naval_equipment"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1938,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -13531,7 +13531,7 @@
       "categories": [
         "naval_equipment"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.5,
       "start_year": 1942,
       "xp_research_bonus": 1.5,
       "xp_research_cost": 50,
@@ -17033,7 +17033,7 @@
         "electronics"
       ],
       "land_reinforce_rate": 0.05,
-      "research_cost": 1.5,
+      "research_cost": 1.75,
       "name": "Radio",
       "leads_to": [
         "radio_detection"
@@ -17051,7 +17051,7 @@
         "building": "radar_station",
         "level": 1
       },
-      "research_cost": 1.5,
+      "research_cost": 1.75,
       "name": "Radio Detection",
       "leads_to": [
         "decimetric_radar"
@@ -17072,7 +17072,7 @@
       "enable_equipment_modules": [
         "ship_radar_1"
       ],
-      "research_cost": 1.5,
+      "research_cost": 1.25,
       "start_year": 1938,
       "name": "Decimetric Radar",
       "leads_to": [
@@ -17093,7 +17093,7 @@
       "enable_equipment_modules": [
         "ship_radar_2"
       ],
-      "research_cost": 2,
+      "research_cost": 1.25,
       "start_year": 1939,
       "name": "Improved Decimetric Radar",
       "leads_to": [
@@ -17114,7 +17114,7 @@
       "enable_equipment_modules": [
         "ship_radar_3"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1940,
       "static_anti_air_hit_chance_factor": 0.2,
       "name": "Centimetric Radar",
@@ -17133,7 +17133,7 @@
         "building": "radar_station",
         "level": 5
       },
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1941,
       "static_anti_air_hit_chance_factor": 0.2,
       "name": "Improved Centimetric Radar",
@@ -17155,7 +17155,7 @@
       "enable_equipment_modules": [
         "ship_radar_4"
       ],
-      "research_cost": 2.5,
+      "research_cost": 1.25,
       "start_year": 1942,
       "static_anti_air_hit_chance_factor": 0.2,
       "name": "Advanced Centimetric Radar",
