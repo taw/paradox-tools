@@ -36,7 +36,13 @@ class BestManufactoryPlaces < ParadoxGame
 
       # This is not from the save, we recalculate estimate
       autonomy = province.effective_autonomy
+      # pre-1.30
       autonomy = 0 if province.estate == "burghers"
+      # 1.30+
+      if province.trade_company?
+        autonomy /= 2
+      end
+
       usefulness = 1.0 - autonomy/100.0
       base_production_income = 1.0 * price / 12.0
       workshop_multiplier = 1.0
