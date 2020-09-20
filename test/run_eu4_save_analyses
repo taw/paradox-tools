@@ -13,7 +13,6 @@ output = Pathname(ARGV[1])
 game = ARGV[2]
 mods = ARGV[3..-1]
 
-# analysis_eu4/analyze_missions is known to only work up to 1.24
 list = %Q[
   analysis_eu4_save/aggressive_expansion $s $g
   analysis_eu4_save/analyze_autonomy $s $g
@@ -35,21 +34,6 @@ list = %Q[
   analysis_eu4_save/releasable_countries $s $g
   analysis_eu4_save/releasable_hre_countries $s $g
   analysis_eu4_save/world_conquest_progress $s $g
-  analysis_eu4/analyze_custom_idea_bonuses $g
-  analysis_eu4/analyze_custom_ideas $g
-  analysis_eu4/analyze_idea_groups $g
-  analysis_eu4/analyze_missions_countries $g
-  analysis_eu4/analyze_policies $g
-  analysis_eu4/analyze_static_modifiers $g
-  analysis_eu4/analyze_unit_pips $g
-  analysis_eu4/average_province $g
-  analysis_eu4/countries_by_date $g
-  analysis_eu4/country_cultures $g
-  analysis_eu4/find_cots_in_converted_campaign $g
-  analysis_eu4/list_converter_province_value $g
-  analysis_eu4/list_formable_countries $g
-  analysis_eu4/validate_trade_nodes $g
-  analysis_eu4/who_can_form_what $g
 ].lines.grep(/\S/).map(&:chomp).map(&:strip)
 
 root_dir = Pathname(__dir__).parent
