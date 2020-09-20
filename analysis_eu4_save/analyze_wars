@@ -1,39 +1,15 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeWars
-  def initialize(save_game)
-    @data = ParadoxModFile.new(path: save_game).parse!
-    @wars = []
-  end
-
-  # Old save games use String not real Date
-  def convert_date(date)
-    if date.is_a?(Date)
-      date
-    elsif date.is_a?(String) and date =~ /\A(\d+)\.(\d+)\.(\d+)\z/
-      Date.new($1.to_i, $2.to_i, $3.to_i)
-    else
-      raise "Expected Date or String, got `#{date.inspect}'"
-    end
-  end
-
-  def start_date
-    @start_date ||= convert_date(@data["start_date"])
-  end
-
+class AnalyzeWars < EU4SaveAnalysis
   def last_war_date
-    (@data.find_all("active_war") + @data.find_all("previous_war")).flat_map{|w| w["history"].keys.grep(Date)}.max
-  end
-
-  def current_date_from_save
-    @data["date"] && convert_date(@data["date"])
+    (@save.active_wars + @save.previous_wars).flat_map{|w| w["history"].keys.grep(Date)}.max
   end
 
   def current_date
     # New save format no longer stores this information in any convenient way
-    @current_date ||= current_date_from_save || last_war_date || start_date
+    @current_date ||= last_war_date || start_date
   end
 
   def add_war!(start_date, end_date=current_date)
@@ -52,26 +28,24 @@ class AnalyzeWars
   end
 
   def analyze_wars!
-    @data.find_all("active_war").each do |active_war|
+    @wars = []
+    @save.active_wars.each do |active_war|
       add_active_war! active_war
     end
-    @data.find_all("previous_war").each do |previous_war|
+    @save.previous_wars.each do |previous_war|
       add_previous_war! previous_war
     end
   end
 
   def call
     analyze_wars!
-    (start_date.year..current_date.year).each do |year|
+    (@save.start_date.year..current_date.year).each do |year|
       wars_count = @wars.count{|war_time| war_time.include?(year) }
       puts "#{year}\t#{wars_count}"
     end
   end
 end
 
-unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} save_game.eu4"
-  exit 1
+if $0 == __FILE__
+  AnalyzeWars.new_from_argv.call
 end
-
-AnalyzeWars.new(*ARGV).call

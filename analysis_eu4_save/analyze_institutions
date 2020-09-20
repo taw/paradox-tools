@@ -1,19 +1,14 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class Array
-  def average
-    sum / size
+module Enumerable
+  def avg
+    sum / size.to_f
   end
 end
 
-class AnalyzeInstitutions
-  def initialize(save_game)
-    @save = EU4Save.new(save_game)
-  end
-
+class AnalyzeInstitutions < EU4SaveAnalysis
   def total_penalty(country)
     country.institutions.zip(@save.institutions_penalties).map{|i,p| (1-i)*p}.inject(0, &:+)
   end
@@ -34,18 +29,19 @@ class AnalyzeInstitutions
   end
 
   def call
-    date = @save.date.to_s
     result = countries
              .group_by{|x| x[:tech_group]}
              .map{|t,r|
-               [t, r.map{|u| u[:penalty]}.average.round(6)]
+               [t, r.map{|u| u[:penalty]}.avg]
              }
              .sort_by(&:last)
              .to_h
-    p [date, result]
+    result.each do |group, penalty|
+      puts "* #{group} - #{penalty.round(3)}"
+    end
   end
 end
 
-ARGV.each do |path|
-  AnalyzeInstitutions.new(path).call
+if $0 == __FILE__
+  AnalyzeInstitutions.new_from_argv.call
 end

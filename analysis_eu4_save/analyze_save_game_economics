@@ -1,18 +1,15 @@
 #!/usr/bin/env ruby
 
 # This script runs some savegame analysis for better idea what's going on with
-# game economics. Primarily to calibrace bonus_scoring function
+# game economics. Primarily to calibrate bonus_scoring function
 
-# The lists change every patch
+# The lists change every patch, and is poorly maintained
 
 require_relative "../lib/paradox_game"
 
 module Enumerable
-  def sum
-    inject(0, &:+)
-  end
   def avg
-    sum/size.to_f
+    sum / size.to_f
   end
 end
 
@@ -30,14 +27,6 @@ class Country
 
   def exist?
     development > 0
-  end
-
-  def army
-    @node.find_all("army").map{|n| n.find_all("regiment")}.flatten(1).map{|r| [r["type"], r["mercenary"]]}
-  end
-
-  def navy
-    @node.find_all("navy").map{|n| n.find_all("ship")}.flatten(1).map{|s| s["type"]}
   end
 
   # FIXME: This is no longer correct as of 1.22, there's extra thing on the list
@@ -65,9 +54,9 @@ class Country
     ].zip(@node["ledger"]["lastyearincome"])]
   end
 
-      # trade production trade gold tariffs vassals
-      # harbor_fees subsidies war_reparations interest gift
-      # events spoils_of_war treasure_fleet siphon_income
+    # trade production trade gold tariffs vassals
+    # harbor_fees subsidies war_reparations interest gift
+    # events spoils_of_war treasure_fleet siphon_income
 
   def expense
     return nil unless @node["ledger"]["lastyearexpense"]
@@ -106,12 +95,11 @@ class Country
     ].zip(@node["ledger"]["lastyearexpense"])]
   end
 
-      # advisor_upkeep interest harbor_fees subsidies war_reparations
-      # army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
-      # army_build fleet_build fort_build buildings rebel_support
-      # repaid_loans gift advisor_recruit event peace
-      # vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
-
+  # advisor_upkeep interest harbor_fees subsidies war_reparations
+  # army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
+  # army_build fleet_build fort_build buildings rebel_support
+  # repaid_loans gift advisor_recruit event peace
+  # vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
 end
 
 class AnalyzeSaveGameEconomics
@@ -130,14 +118,6 @@ class AnalyzeSaveGameEconomics
   # so these are relevant comparison point
   def great_powers
     @great_powers ||= countries.keys.sort_by{|tag| -countries[tag].development}[0,25]
-  end
-
-  def total_development
-    @data["provinces"].values.map{|x| x["improve_count"] || 0}.sum
-  end
-
-  def average_base_development_cost
-    @data["provinces"].values.map{|x| x["improve_count"]||0 }.map{|i| (0...i).map{|x| 50+x*5} }.flatten.avg
   end
 
   def number_of_countries
@@ -179,8 +159,6 @@ class AnalyzeSaveGameEconomics
   end
 
   def call
-    puts "Total development: #{total_development}"
-    puts "Average base dev: #{average_base_development_cost.round(2)}"
     puts "Number of countries: #{number_of_countries}"
     report_great_powers_income!
     report_great_powers_expense!

@@ -470,10 +470,6 @@ class EU4Save
     @institutions_penalties ||= @data["institutions_penalties"] # => [0.5, 0.07, 0.0, 0.0, 0.0, 0.0, 0.0]
   end
 
-  def date
-    @data["date"]
-  end
-
   def player_tag
     @player_tag ||= @data["countries"].enum_for(:each).find{|k,v| v["human"]}.first
   end
@@ -541,6 +537,18 @@ class EU4Save
       end
       result
     end
+  end
+
+  def start_date
+    @start_date ||= @data["start_date"]
+  end
+
+  def active_wars
+    @active_wars ||= @data.find_all("active_war")
+  end
+
+  def previous_wars
+    @previous_wars ||= @data.find_all("previous_war")
   end
 
   def to_s

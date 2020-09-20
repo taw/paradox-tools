@@ -1,25 +1,19 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeTrust
-  def initialize(save_game)
-    @data = ParadoxModFile.new(path: save_game).parse!
-  end
-
+class AnalyzeTrust < EU4SaveAnalysis
   def call
-    @data["countries"].each do |tag1, data|
-      data["active_relations"].each do |tag2, relations|
-        trust = relations["trust_value"] || relations["trust"] || "-"
+    @save.countries.each do |tag1, country|
+      country.node["active_relations"].each do |tag2, relations|
+        trust = relations["trust_value"] || relations["trust"]
+        next unless trust
         puts [tag1, tag2, trust].join("\t")
       end
     end
   end
 end
 
-unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} save_game.eu4"
-  exit 1
+if $0 == __FILE__
+  AnalyzeTrust.new_from_argv.call
 end
-
-AnalyzeTrust.new(*ARGV).call

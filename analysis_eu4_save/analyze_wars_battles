@@ -1,30 +1,14 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeWarsBattles
-  def initialize(save_game)
-    @data = ParadoxModFile.new(path: save_game).parse!
-    @wars = []
-  end
-
-  # Old save games use String not real Date
-  def convert_date(date)
-    if date.is_a?(Date)
-      date
-    elsif date.is_a?(String) and date =~ /\A(\d+)\.(\d+)\.(\d+)\z/
-      Date.new($1.to_i, $2.to_i, $3.to_i)
-    else
-      raise "Expected Date or String, got `#{date.inspect}'"
-    end
-  end
-
-  def start_date
-    @start_date ||= convert_date(@data["start_date"])
+class AnalyzeWarsBattles < EU4SaveAnalysis
+  def last_war_date
+    (@save.active_wars + @save.previous_wars).flat_map{|w| w["history"].keys.grep(Date)}.max
   end
 
   def current_date
-    @current_date ||= convert_date(@data["date"])
+    @current_date ||= last_war_date || start_date
   end
 
   def battle_type(battle)
@@ -40,8 +24,8 @@ class AnalyzeWarsBattles
   end
 
   def ensure_attackers_defenders_match!(battle, attackers, defenders)
-    a = tag_to_country_name(battle["attacker"]["country"])
-    d = tag_to_country_name(battle["defender"]["country"])
+    a = country_name(battle["attacker"]["country"])
+    d = country_name(battle["defender"]["country"])
     return if attackers.include?(a) and defenders.include?(d)
     raise "Attackers / defenders for battle do not match ongoing war"
   end
@@ -60,9 +44,9 @@ class AnalyzeWarsBattles
       event.each do |event_type, event_details|
         case event_type
         when "add_attacker"
-          attackers << tag_to_country_name(event_details)
+          attackers << country_name(event_details)
         when "add_defender"
-          defenders << tag_to_country_name(event_details)
+          defenders << country_name(event_details)
         when "battle"
           type = battle_type(event_details)
           ensure_attackers_defenders_match!(event_details, attackers, defenders)
@@ -94,12 +78,6 @@ class AnalyzeWarsBattles
     }
   end
 
-  def tag_to_country_name(tag)
-    @data["countries"][tag]["name"] || @data["countries"][tag]["custom_name"] || tag
-  rescue
-    tag
-  end
-
   def add_active_war!(war)
     return if war["history"].empty?
     add_war! war,
@@ -114,10 +92,11 @@ class AnalyzeWarsBattles
   end
 
   def analyze_wars!
-    @data.find_all("active_war").each do |active_war|
+    @wars = []
+    @save.active_wars.each do |active_war|
       add_active_war! active_war
     end
-    @data.find_all("previous_war").each do |previous_war|
+    @save.previous_wars.each do |previous_war|
       add_previous_war! previous_war
     end
   end
@@ -131,9 +110,6 @@ class AnalyzeWarsBattles
   end
 end
 
-unless ARGV.size == 1
-  STDERR.puts "Usage: #{$0} save_game.eu4"
-  exit 1
+if $0 == __FILE__
+  AnalyzeWarsBattles.new_from_argv.call
 end
-
-AnalyzeWarsBattles.new(*ARGV).call

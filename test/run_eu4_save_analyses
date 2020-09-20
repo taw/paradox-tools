@@ -16,13 +16,13 @@ mods = ARGV[3..-1]
 list = %Q[
   analysis_eu4_save/aggressive_expansion $s $g
   analysis_eu4_save/analyze_autonomy $s $g
-  analysis_eu4_save/analyze_debt $s
-  analysis_eu4_save/analyze_institutions $s
+  analysis_eu4_save/analyze_debt $s $g
+  analysis_eu4_save/analyze_institutions $s $g
   analysis_eu4_save/analyze_save_game_economics $s
   analysis_eu4_save/analyze_trade $s $g
-  analysis_eu4_save/analyze_trust $s
-  analysis_eu4_save/analyze_wars $s
-  analysis_eu4_save/analyze_wars_battles $s
+  analysis_eu4_save/analyze_trust $s $g
+  analysis_eu4_save/analyze_wars $s $g
+  analysis_eu4_save/analyze_wars_battles $s $g
   analysis_eu4_save/best_courthouse_places $s $g
   analysis_eu4_save/best_manufactory_places $s $g
   analysis_eu4_save/buildings $s $g
@@ -30,6 +30,7 @@ list = %Q[
   analysis_eu4_save/cultures_by_country $s $g
   analysis_eu4_save/cultures_by_development $s $g
   analysis_eu4_save/hre_religions $s $g
+  analysis_eu4_save/idea_groups $s $g
   analysis_eu4_save/idea_group_totals $s $g
   analysis_eu4_save/releasable_countries $s $g
   analysis_eu4_save/releasable_hre_countries $s $g

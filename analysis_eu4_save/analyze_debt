@@ -1,27 +1,24 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeDebt
-  def initialize(save_game)
-    @save = EU4Save.new(save_game)
-  end
-
+class AnalyzeDebt < EU4SaveAnalysis
   def call
     results = []
+
     @save.countries.each do |tag, country|
       total = country.total_loans_amount
       next if total == 0
       name = country.name || tag
       results << [total, name]
     end
+
     results.sort.reverse.each do |total, name|
-      puts "* #{name} - #{total}"
+      puts "* #{country_name(name)} - #{total}"
     end
   end
 end
 
-ARGV.each do |path|
-  AnalyzeDebt.new(path).call
+if $0 == __FILE__
+  AnalyzeDebt.new_from_argv.call
 end
