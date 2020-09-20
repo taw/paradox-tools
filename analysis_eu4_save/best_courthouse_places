@@ -19,8 +19,16 @@ class BestCourthousePlaces < EU4SaveAnalysis
     @save.provinces.each do |id, province|
       next unless province.owner
 
-      # Could also include subjects
-      next unless province.owner == @save.player_tag
+      name = province.name
+
+      if province.owner == @save.player_tag
+        # OK
+      elsif @save.players_subject?(province.owner)
+        # OK
+        name += " [#{country_name(province.owner)}]"
+      else
+        next
+      end
 
       has_courthouse = province.buildings.include?("courthouse")
       has_town_hall = province.buildings.include?("town_tall")
@@ -32,14 +40,14 @@ class BestCourthousePlaces < EU4SaveAnalysis
 
       # Worth it everywhere
       unless has_courthouse
-        courthouses << [dev, province.name]
+        courthouses << [dev, name]
       end
 
       # Will hit cap for Town Hall
       next if province.territory? and not province.trade_company?
 
       unless province.buildings.include?("town_hall")
-        town_halls << [dev, province.name]
+        town_halls << [dev, name]
       end
     end
 

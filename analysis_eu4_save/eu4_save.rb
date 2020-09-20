@@ -551,6 +551,31 @@ class EU4Save
     @previous_wars ||= @data.find_all("previous_war")
   end
 
+  def subjects
+    unless @subjects
+      @subjects = {}
+      @data["diplomacy"].each do |type, relation|
+        next unless relation["subject_type"]
+        subject_type = relation["subject_type"]
+        overlord = relation["first"]
+        subject = relation["second"]
+        if @subjects[subject]
+          relation1 = "#{subject_type} of #{overlord}"
+          overlord2, subject_type2 = @subjects[subject]
+          relation2 = "#{subject_type2} of #{overlord2}"
+          warn "#{subject} is #{relation1} but it's #{relation2} already"
+          next
+        end
+        @subjects[subject] = [overlord, subject_type]
+      end
+    end
+    @subjects
+  end
+
+  def players_subject?(tag)
+    subject = subjects[tag] and subject[0] == player_tag
+  end
+
   def to_s
     "EU4Save<#{@path}>"
   end
