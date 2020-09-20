@@ -291,10 +291,11 @@ class Country
 end
 
 class Province
-  attr_reader :id, :node
-  def initialize(id, node)
+  attr_reader :id, :node, :save
+  def initialize(id, node, save)
     @id = id
     @node = node
+    @save = save
   end
 
   def city?
@@ -325,6 +326,20 @@ class Province
 
   def base_manpower
     @node["base_manpower"] || 0
+  end
+
+  def production_share_after_autonomy
+    # This is not from the save, we recalculate estimate
+    loss = effective_autonomy
+    # pre-1.30
+    loss = 0 if estate == "burghers"
+    # 1.30+
+    loss /= 2 if trade_company?
+    1.0 - loss/100.0
+  end
+
+  def base_production_income
+    1.0 * @save.trade_good_prices[trade_goods] / 12.0
   end
 
   def owner
@@ -457,7 +472,7 @@ class EU4Save
     @provinces ||= begin
       @data["provinces"]
         .enum_for(:each)
-        .map{|id, node| [-id, Province.new(-id, node)] }
+        .map{|id, node| [-id, Province.new(-id, node, self)] }
         .to_h
     end
   end

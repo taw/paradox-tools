@@ -3,6 +3,46 @@
 require_relative "./eu4_save_analysis"
 
 class BestManufactoryPlaces < EU4SaveAnalysis
+  def estimated_player_trade_value(province)
+    trade_goods = province.trade_goods
+    trade_node_name = province.trade_node_name
+    price = @save.trade_good_prices[trade_goods]
+    trade_node = @save.trade_network[trade_node_name]
+    player_trade_share = trade_node.total_collector_share[@save.player_tag]
+    (player_trade_share * price / 12.0).round(6)
+  end
+
+  def workshop_multiplier(province)
+    if province.buildings.include?("counting_house")
+      2.0
+    elsif province.buildings.include?("workshop")
+      1.5
+    else
+      1.0
+    end
+  end
+
+  def estimated_production_value(province)
+    # This is multiplied by a lot of things
+    # - goods produced
+    #   - prosperity +25%
+    #   - production leader +10%
+    #   - war exhaustion -X%
+    #   - nearby merchant companies +X%
+    #   - nearby trade companies +X%
+    #   - happy burgers 10%
+    #   - national ideas
+    #   - furnacess
+    #   - trading in coal
+    # - local production efficiency
+    #   - workshops [TAKEN INTO ACCOUNT]
+    # - production efficiency
+    #   - adm tech bonus 0% to 20%
+    #   - ahead of time adm bonus 20%
+    # and maybe others, for ballpark figure picking 1.50x
+    1.50 * province.base_production_income * workshop_multiplier(province) * province.production_share_after_autonomy
+  end
+
   # This just analyzes trade value, not producion value
   # Wiki says these are annual values, so converitng to monthly income
   def call
@@ -11,62 +51,31 @@ class BestManufactoryPlaces < EU4SaveAnalysis
       next unless province.owner
       next if province.has_manufactory?
 
-      # Could also include subjects
-      next unless province.owner == @save.player_tag
-
       trade_goods = province.trade_goods
       trade_node_name = province.trade_node_name
-      price = @save.trade_good_prices[trade_goods]
-      trade_node = @save.trade_network[trade_node_name]
-      owner_trade_share = trade_node.total_collector_share[province.owner]
-      owner_trade_value = (owner_trade_share * price / 12.0).round(6)
 
       # Can't build manufactory anyway
       next if trade_goods == "gold" or trade_goods == "unknown"
 
-      # This is not from the save, we recalculate estimate
-      autonomy = province.effective_autonomy
-      # pre-1.30
-      autonomy = 0 if province.estate == "burghers"
-      # 1.30+
-      if province.trade_company?
-        autonomy /= 2
+      # Could also include subjects
+      if province.owner == @save.player_tag
+        estimated_total_value = (estimated_player_trade_value(province) + estimated_production_value(province)).round(6)
+      elsif @save.players_subject?(province.owner)
+        estimated_total_value = estimated_player_trade_value(province).round(6)
+      else
+        # We could print non-subjects for conquest ideas  !
+        estimated_total_value = estimated_player_trade_value(province).round(6)
       end
 
-      usefulness = 1.0 - autonomy/100.0
-      base_production_income = 1.0 * price / 12.0
-      workshop_multiplier = 1.0
-      workshop_multiplier = 1.5 if province.buildings.include?("workshop")
-      workshop_multiplier = 2.0 if province.buildings.include?("counting_house")
+      next if estimated_total_value == 0
 
-      # This is multiplied by a lot of things
-      # - goods produced
-      #   - prosperity 25%
-      #   - production leader 10%
-      #   - war exhaustion -X%
-      #   - nearby merchant companies +X%
-      #   - nearby trade companies +X%
-      #   - happy burgers 10%
-      #   - national ideas
-      #   - furnacess
-      #   - trading in coal
-      # - local production efficiency
-      #   - workshops [TAKEN INTO ACCOUNT]
-      # - production efficiency
-      #   - adm tech bonus 0% to 20%
-      #   - ahead of time adm bonus 20%
-      # and maybe others, for ballpark figure picking 1.50x
-      estimated_production_value = (base_production_income * workshop_multiplier * usefulness)
-      estimated_production_value *= 1.50
-
-      estimated_total_value = (owner_trade_value + estimated_production_value).round(6)
-
-      results << [country_name(province.owner), estimated_total_value, trade_goods, id, province.name]
+      results << [estimated_total_value, province.name, country_name(province.owner), localization(trade_goods), "#{localization(trade_node_name)}"]
       results[-1] << "[construction in progress]" if province.construction_in_progress?
     end
-    results.sort_by{|t,v,g,i,pn| [t,-v,g,i,pn]}.each do |row|
-      puts row.join("\t")
-    end
+
+    results.sort_by{|v,n,| [-v,n]}.each do |row|
+      puts "%.6f %20s %20s %20s %30s" % row
+    end; nil
   end
 end
 
