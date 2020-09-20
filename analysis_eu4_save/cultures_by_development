@@ -1,34 +1,20 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_save_analysis"
 
-class CulturesByDevelopment < ParadoxGame
-  def initialize(save_game, *paths)
-    super(*paths)
-    @path = save_game
-    @data = ParadoxModFile.new(path: @path).parse!
-  end
-
+class CulturesByDevelopment < EU4SaveAnalysis
   def call
     totals = Hash.new(0)
-    @data["provinces"].each do |id, province|
-      next unless province["is_city"]
-      dev = (province["base_tax"] || 0) +
-            (province["base_production"] || 0) +
-            (province["base_manpower"] || 0)
-      raise if dev == 0
-      culture = province["culture"]
-      totals[culture] += dev
+    @save.provinces.each do |id, province|
+      next unless province.city?
+      totals[province.culture] += province.development
     end
     totals.sort_by(&:last).reverse.each do |name, dev|
-      puts "* #{localization(name)} - #{dev.round}"
+      puts "* #{localization(name) || "No culture"} - #{dev.round}"
     end
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  CulturesByDevelopment.new_from_argv.call
 end
-
-CulturesByDevelopment.new(*ARGV).call

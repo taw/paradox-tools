@@ -198,10 +198,15 @@ class TradeNetwork
 end
 
 class Country
-  attr_reader :tag, :node
-  def initialize(tag, node)
+  attr_reader :tag, :node, :save
+  def initialize(tag, node, save)
     @tag = tag
     @node = node
+    @save = save
+  end
+
+  def capital
+    @save.provinces[@node["capital"]]
   end
 
   def primary_culture
@@ -271,6 +276,14 @@ class Country
     @total_loans_amount ||= loans.map{|l| l["amount"]}.sum
   end
 
+  def on_map?
+    num_of_cities > 0
+  end
+
+  def hre?
+    capital.hre?
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
@@ -288,10 +301,18 @@ class Province
     @node["is_city"]
   end
 
+  def hre?
+    !!@node["hre"]
+  end
+
   def development
-    (@node["base_tax"] || 0) +
-    (@node["base_production"] || 0) +
-    (@node["base_manpower"] || 0)
+    @development ||= begin
+      dev = (@node["base_tax"] || 0) +
+            (@node["base_production"] || 0) +
+            (@node["base_manpower"] || 0)
+      dev = dev.to_i if dev == dev.to_i
+      dev
+    end
   end
 
   def base_tax
@@ -396,6 +417,11 @@ class Province
     !!@node["territorial_core"]
   end
 
+  # Old and new saves use different format
+  def cores
+    @cores ||= (@node["cores"] || []) + @node.find_all("core")
+  end
+
   def inspect
     "Province<#{@id};#{name}>"
   end
@@ -413,7 +439,7 @@ class EU4Save
     @countries ||= begin
       @data["countries"]
         .enum_for(:each)
-        .map{|tag, node| [tag, Country.new(tag, node)] }
+        .map{|tag, node| [tag, Country.new(tag, node, self)] }
         .to_h
     end
   end

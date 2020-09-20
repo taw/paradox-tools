@@ -1,26 +1,14 @@
 #!/usr/bin/env ruby
 
-require "set"
-require_relative "../lib/paradox"
+require_relative "./eu4_save_analysis"
 
-class ReleasableCountries < ParadoxGame
-  def country_name(tag)
-    @data["countries"][tag]&.[]("name") || localization(tag)
-  end
-
-  def initialize(save_game, *paths)
-    super(*paths)
-    @path = save_game
-    @data = ParadoxModFile.new(path: @path).parse!
-  end
-
+class ReleasableCountries < EU4SaveAnalysis
   def foreign_cores
     @foreign_cores ||= begin
       map = {}
-      @data["provinces"].each do |id, province|
-        # Old and new saves use different format
-        cores = province.find_all("core") + (province["cores"] || [])
-        owner = province["owner"]
+      @save.provinces.each do |id, province|
+        cores = province.cores
+        owner = province.owner
         cores.each do |core|
           next if core == owner
           map[core] ||= Hash.new(0)
@@ -32,21 +20,20 @@ class ReleasableCountries < ParadoxGame
   end
 
   def country_size(tag)
-    @data["countries"][tag]["num_of_cities"] || 0
+    @save.countries[tag].num_of_cities
   end
 
   def call
     foreign_cores.each do |country, foreigners|
       next if country_size(country) > 0
-      with_counts = foreigners.map{|tag,count| "#{country_name(tag)} (#{count})"}.join(", ")
+      with_counts = foreigners.map{|tag,count|
+        "#{country_name(tag)} (#{count})"
+      }.join(", ")
       puts "#{country_name(country)}: #{ with_counts }"
     end
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  ReleasableCountries.new_from_argv.call
 end
-
-ReleasableCountries.new(*ARGV).call

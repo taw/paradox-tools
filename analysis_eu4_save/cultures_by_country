@@ -1,33 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class CulturesByCountry < ParadoxGame
-  def country_name(tag)
-    @save.countries[tag]&.name || localization(tag)
-  end
-
-  def initialize(save_game, *paths)
-    super(*paths)
-    @save = EU4Save.new(save_game)
-  end
-
-  def culture_to_culture_group
-    @culture_to_culture_group ||= begin
-      map = {}
-      glob("common/cultures/*.txt").each do |path|
-        parse(path).each do |group_name, group|
-          group.each do |culture_name, culture|
-            next unless culture.is_a?(PropertyList)
-            map[culture_name] = group_name
-          end
-        end
-      end
-      map
-    end
-  end
-
+class CulturesByCountry < EU4SaveAnalysis
   def cultures_by_development
     @cultures_by_development ||= begin
       totals = Hash.new(0)
@@ -61,21 +36,6 @@ class CulturesByCountry < ParadoxGame
     culture_to_culture_group[a] == culture_to_culture_group[b]
   end
 
-  def country_sizes
-    @country_sizes ||= begin
-      totals = Hash.new(0)
-      @save.provinces.each do |id, province|
-        next unless province.city?
-        if province.development == 0
-          # warn "Zero development province #{province.id} #{province.name}"
-          next
-        end
-        totals[province.owner] += province.development
-      end
-      totals
-    end
-  end
-
   def culture_status(tag, culture)
     country = @save.countries[tag]
     return "primary" if culture == country.primary_culture
@@ -106,9 +66,6 @@ class CulturesByCountry < ParadoxGame
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  CulturesByCountry.new_from_argv.call
 end
-
-CulturesByCountry.new(*ARGV).call

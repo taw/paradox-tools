@@ -1,18 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeTrade < ParadoxGame
-  def country_name(tag)
-    @save.countries[tag]&.name || localization(tag)
-  end
-
-  def initialize(save_game, *roots)
-    super(*roots)
-    @save = EU4Save.new(save_game)
-  end
-
+class AnalyzeTrade < EU4SaveAnalysis
   def print_node_info(node_name, node)
     node
       .total_collector_share
@@ -31,9 +21,6 @@ class AnalyzeTrade < ParadoxGame
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  AnalyzeTrade.new_from_argv.call
 end
-
-AnalyzeTrade.new(*ARGV).call

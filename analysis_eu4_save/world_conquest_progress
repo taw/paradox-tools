@@ -1,28 +1,17 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
+require_relative "./eu4_save_analysis"
 
-class WorldConquestProgress < ParadoxGame
-  def country_name(tag)
-    @data["countries"][tag]&.[]("name") || localization(tag)
-  end
-
-  def initialize(save_game, *paths)
-    @data = ParadoxModFile.new(path: save_game).parse!
-    super(*paths)
-  end
-
+class WorldConquestProgress < EU4SaveAnalysis
   def provinces
     unless @provinces
       @provinces = {}
-      @data["provinces"].each do |id, province|
-        dev = (province["base_tax"] || 0) +
-              (province["base_production"] || 0) +
-              (province["base_manpower"] || 0)
+      @save.provinces.each do |id, province|
+        dev = province.development
         next if dev == 0
         # Fractional dev used to be the case for colonies, they removed it by now right?
         dev = dev.to_i if dev == dev.to_i
-        owner = province["owner"]
+        owner = province.owner
         @provinces[-id] = {dev: dev, owner: owner}
       end
     end
@@ -42,14 +31,13 @@ class WorldConquestProgress < ParadoxGame
   end
 
   def player_tag
-    # New compressed saves stopped recording this in player tag
-    @player_tag ||= @data["player"] || @data["countries"].keys.find{|tag| @data["countries"][tag]["human"]}
+    @save.player_tag
   end
 
   def subjects
     unless @subjects
       @subjects = {}
-      @data["diplomacy"].each do |type, relation|
+      @save.data["diplomacy"].each do |type, relation|
         next unless relation["subject_type"]
         subject_type = relation["subject_type"]
         overlord = relation["first"]
@@ -114,9 +102,6 @@ class WorldConquestProgress < ParadoxGame
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  WorldConquestProgress.new_from_argv.call
 end
-
-WorldConquestProgress.new(*ARGV).call

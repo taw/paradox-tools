@@ -1,15 +1,8 @@
 #!/usr/bin/env ruby
 
+require_relative "./eu4_save_analysis"
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
-
-class IdeaGroupTotals < ParadoxGame
-  def initialize(save_game, *roots)
-    super(*roots)
-    @save = EU4Save.new(save_game)
-  end
-
+class IdeaGroupTotals < EU4SaveAnalysis
   def valid_ideas
     %W[
       administrative_ideas
@@ -56,4 +49,6 @@ class IdeaGroupTotals < ParadoxGame
   end
 end
 
-IdeaGroupTotals.new(*ARGV).call
+if $0 == __FILE__
+  IdeaGroupTotals.new_from_argv.call
+end

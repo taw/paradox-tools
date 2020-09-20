@@ -1,18 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_save_analysis"
 
-class HREReligions < ParadoxGame
-  def initialize(save_game, *paths)
-    super(*paths)
-    @path = save_game
-    @data = ParadoxModFile.new(path: @path).parse!
-  end
-
-  def country_religion(tag)
-    @data["countries"][tag]["religion"]
-  end
-
+class HREReligions < EU4SaveAnalysis
   def capital_in_hre?(tag)
     capital = @data["countries"][tag]["capital"]
     return false if capital == nil or capital == 0
@@ -24,23 +14,17 @@ class HREReligions < ParadoxGame
   end
 
   def call
-    hre_members_religions = {}
-    @data["countries"].keys.each do |tag|
-      next unless capital_in_hre?(tag)
-      next unless country_on_map?(tag)
-      hre_members_religions[tag] = country_religion(tag)
+    hre_members_religions = []
+    @save.countries.each do |tag, country|
+      next unless country.on_map? and country.hre?
+      hre_members_religions << [country.religion, country_name(tag)]
     end
-    hre_members_religions.map{|tag, religion|
-      [religion, localization(tag)]
-    }.sort.each do |religion, country_name|
+    hre_members_religions.sort.each do |religion, country_name|
       puts "#{religion}: #{country_name}"
     end
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  HREReligions.new_from_argv.call
 end
-
-HREReligions.new(*ARGV).call

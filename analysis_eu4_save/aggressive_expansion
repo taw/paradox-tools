@@ -1,18 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeAE < ParadoxGame
-  def country_name(tag)
-    @save.countries[tag]&.name || localization(tag)
-  end
-
-  def initialize(save_game, *roots)
-    super(*roots)
-    @save = EU4Save.new(save_game)
-  end
-
+class AnalyzeAE < EU4SaveAnalysis
   def relation_name(rel)
     rel.split("_").map(&:capitalize).join(" ")
   end
@@ -66,4 +56,6 @@ class AnalyzeAE < ParadoxGame
   end
 end
 
-AnalyzeAE.new(*ARGV).call
+if $0 == __FILE__
+  AnalyzeAE.new_from_argv.call
+end

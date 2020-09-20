@@ -33,6 +33,7 @@ list = %Q[
   analysis_eu4_save/idea_group_totals $s $g
   analysis_eu4_save/releasable_countries $s $g
   analysis_eu4_save/releasable_hre_countries $s $g
+  analysis_eu4_save/religions_by_country $s $g
   analysis_eu4_save/world_conquest_progress $s $g
 ].lines.grep(/\S/).map(&:chomp).map(&:strip)
 

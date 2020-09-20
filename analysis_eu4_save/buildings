@@ -1,12 +1,10 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeBuildings < ParadoxGame
-  def initialize(save_game, *roots)
-    super(*roots)
-    @save = EU4Save.new(save_game)
+class Buildings < EU4SaveAnalysis
+  def building_name(building)
+    localization("building_#{building}")
   end
 
   def call
@@ -17,9 +15,11 @@ class AnalyzeBuildings < ParadoxGame
       end
     end
     totals.sort_by(&:last).reverse.each do |building, count|
-      puts "#{localization("building_#{building}")} - #{count}"
+      puts "#{building_name(building)} - #{count}"
     end
   end
 end
 
-AnalyzeBuildings.new(*ARGV).call
+if $0 == __FILE__
+  Buildings.new_from_argv.call
+end

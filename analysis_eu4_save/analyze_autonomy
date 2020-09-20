@@ -1,18 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class AnalyzeAutonomy < ParadoxGame
-  def country_name(tag)
-    @save.countries[tag]&.name || localization(tag)
-  end
-
-  def initialize(save_game, *roots)
-    super(*roots)
-    @save = EU4Save.new(save_game)
-  end
-
+class AnalyzeAutonomy < EU4SaveAnalysis
   def call
     countries = {}
     @save.provinces.each do |id, province|
@@ -32,4 +22,6 @@ class AnalyzeAutonomy < ParadoxGame
   end
 end
 
-AnalyzeAutonomy.new(*ARGV).call
+if $0 == __FILE__
+  AnalyzeAutonomy.new_from_argv.call
+end

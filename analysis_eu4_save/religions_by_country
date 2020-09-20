@@ -1,33 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class ReligionsByCountry < ParadoxGame
-  def country_name(tag)
-    @save.countries[tag]&.name || localization(tag)
-  end
-
-  def initialize(save_game, *paths)
-    super(*paths)
-    @save = EU4Save.new(save_game)
-  end
-
-  def religion_to_religion_group
-    @religion_to_religion_group ||= begin
-      map = {}
-      glob("common/religions/*.txt").each do |path|
-        parse(path).each do |group_name, group|
-          group.each do |religion_name, religion|
-            next unless religion.is_a?(PropertyList)
-            map[religion_name] = group_name
-          end
-        end
-      end
-      map
-    end
-  end
-
+class ReligionsByCountry < EU4SaveAnalysis
   def religions_by_country
     @religions_by_country ||= begin
       totals = {}
@@ -47,21 +22,6 @@ class ReligionsByCountry < ParadoxGame
 
   def same_religion_group?(a, b)
     religion_to_religion_group[a] == religion_to_religion_group[b]
-  end
-
-  def country_sizes
-    @country_sizes ||= begin
-      totals = Hash.new(0)
-      @save.provinces.each do |id, province|
-        next unless province.city?
-        if province.development == 0
-          # warn "Zero development province #{province.id} #{province.name}"
-          next
-        end
-        totals[province.owner] += province.development
-      end
-      totals
-    end
   end
 
   def religion_status(tag, religion)
@@ -88,9 +48,6 @@ class ReligionsByCountry < ParadoxGame
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  ReligionsByCountry.new_from_argv.call
 end
-
-ReligionsByCountry.new(*ARGV).call

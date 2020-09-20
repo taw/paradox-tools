@@ -1,18 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 
-class BestCourthousePlaces < ParadoxGame
-  def country_name(tag)
-    @save.countries[tag]&.name || localization(tag)
-  end
-
-  def initialize(save_game, *roots)
-    super(*roots)
-    @save = EU4Save.new(save_game)
-  end
-
+class BestCourthousePlaces < EU4SaveAnalysis
   def call
     courthouses = []
     town_halls = []
@@ -65,9 +55,6 @@ class BestCourthousePlaces < ParadoxGame
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  BestCourthousePlaces.new_from_argv.call
 end
-
-BestCourthousePlaces.new(*ARGV).call
