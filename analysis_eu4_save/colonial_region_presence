@@ -1,20 +1,10 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
-require_relative "eu4_save"
+require_relative "./eu4_save_analysis"
 require "memoist"
 
-class ColonialRegionPresence < ParadoxGame
+class ColonialRegionPresence < EU4SaveAnalysis
   extend Memoist
-
-  def country_name(tag)
-    @save.countries[tag]&.name || localization(tag)
-  end
-
-  def initialize(save_game, *paths)
-    super(*paths)
-    @save = EU4Save.new(save_game)
-  end
 
   memoize def colonial_regions
     result = {}
@@ -82,9 +72,6 @@ class ColonialRegionPresence < ParadoxGame
   end
 end
 
-unless ARGV.size >= 2
-  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
-  exit 1
+if $0 == __FILE__
+  ColonialRegionPresence.new_from_argv.call
 end
-
-ColonialRegionPresence.new(*ARGV).call

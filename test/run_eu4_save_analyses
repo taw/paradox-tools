@@ -27,11 +27,12 @@ list = %Q[
   analysis_eu4_save/best_manufactory_places $s $g
   analysis_eu4_save/buildings $s $g
   analysis_eu4_save/buildings_by_country $s $g
+  analysis_eu4_save/colonial_region_presence $s $g
   analysis_eu4_save/cultures_by_country $s $g
   analysis_eu4_save/cultures_by_development $s $g
   analysis_eu4_save/hre_religions $s $g
-  analysis_eu4_save/idea_groups $s $g
   analysis_eu4_save/idea_group_totals $s $g
+  analysis_eu4_save/idea_groups $s $g
   analysis_eu4_save/releasable_countries $s $g
   analysis_eu4_save/releasable_hre_countries $s $g
   analysis_eu4_save/religions_by_country $s $g
