@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+unless ARGV.size >= 3
+  STDERR.puts "Usage: #{$0} savegame outputdir gamepath [mod1] [mod2...]"
+  exit 1
+end
+
+save_path = ARGV[0]
+output = Pathname(ARGV[1])
+game = ARGV[2]
+mods = ARGV[3..-1]
+
+# Skips analyze_save_game_economics
+analyses = {
+  "aggressive_expansion"      => "AnalyzeAE",
+  "analyze_autonomy"          => "AnalyzeAutonomy",
+  "analyze_debt"              => "AnalyzeDebt",
+  "analyze_institutions"      => "AnalyzeInstitutions",
+  "analyze_trade"             => "AnalyzeTrade",
+  "analyze_trust"             => "AnalyzeTrust",
+  "analyze_wars"              => "AnalyzeWars",
+  "analyze_wars_battles"      => "AnalyzeWarsBattles",
+  "best_courthouse_places"    => "BestCourthousePlaces",
+  "best_manufactory_places"   => "BestManufactoryPlaces",
+  "buildings"                 => "Buildings",
+  "buildings_by_country"      => "BuildingsByCountry",
+  "colonial_region_presence"  => "ColonialRegionPresence",
+  "cultures_by_country"       => "CulturesByCountry",
+  "cultures_by_development"   => "CulturesByDevelopment",
+  "hre_religions"             => "HREReligions",
+  "idea_group_totals"         => "IdeaGroupTotals",
+  "idea_groups"               => "IdeaGroups",
+  "releasable_countries"      => "ReleasableCountries",
+  "releasable_hre_countries"  => "ReleasableHRECountries",
+  "religions_by_country"      => "ReligionsByCountry",
+  "world_conquest_progress"   => "WorldConquestProgress",
+}
+
+root_dir = Pathname(__dir__).parent
+
+analyses.each do |name, klass_name|
+  load "#{root_dir}/analysis_eu4_save/#{name}"
+end
+
+# Just in case it is still compressed, it will do nothing if already done
+system "bin/unpack_save", save_path
+
+save_stdout = $stdout
+output.mkpath
+save = EU4Save.new(save_path)
+analyses.each do |name, klass_name|
+  output_path = output + "#{name}.txt"
+  klass = Kernel.const_get(klass_name)
+  next if output_path.exist?
+
+  STDERR.puts "Running #{name}"
+  open(output_path, 'w') do |fh|
+    begin
+      $stdout = fh
+      klass.new(save, game, *mods).call
+    ensure
+      $stdout = save_stdout
+    end
+  end
+  STDERR.puts ""
+end

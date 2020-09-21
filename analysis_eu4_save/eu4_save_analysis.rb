@@ -4,7 +4,11 @@ require_relative "eu4_save"
 class EU4SaveAnalysis < ParadoxGame
   def initialize(save_game, *roots)
     super(*roots)
-    @save = EU4Save.new(save_game)
+    if save_game.is_a?(EU4Save)
+      @save = save_game
+    else
+      @save = EU4Save.new(save_game)
+    end
   end
 
   def country_name(tag)
