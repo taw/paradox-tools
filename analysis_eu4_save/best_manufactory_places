@@ -43,6 +43,39 @@ class BestManufactoryPlaces < EU4SaveAnalysis
     1.50 * province.base_production_income * workshop_multiplier(province) * province.production_share_after_autonomy
   end
 
+  def enabled_manufactories
+    unless @enabled_manufactories
+      @enabled_manufactories = Set[]
+      player_tech = @save.player_country.technology
+      # Hardcoded list, but could be parsed from common/buildings
+      if player_tech["adm_tech"] >= 6
+        @enabled_manufactories << "grain" << "livestock" << "wine"
+      end
+      if player_tech["adm_tech"] >= 11
+        @enabled_manufactories << "cloth" << "dyes" << "silk" << "wool"
+      end
+      if player_tech["dip_tech"] >= 11
+        @enabled_manufactories << "fish" << "naval_supplies" << "salt"
+      end
+      if player_tech["mil_tech"] >= 11
+        @enabled_manufactories << "copper" << "iron"
+      end
+      if player_tech["adm_tech"] >= 14
+        @enabled_manufactories << "cocoa" << "coffee" << "cotton" << "sugar" << "tea" << "tobacco"
+      end
+      if player_tech["dip_tech"] >= 14
+        @enabled_manufactories << "fur" << "incense" << "ivory" << "slaves" << "spices"
+      end
+      if player_tech["adm_tech"] >= 16
+        @enabled_manufactories << "chinaware" << "gems" << "glass" << "paper" << "tropical_wood"
+      end
+      if player_tech["adm_tech"] >= 21
+        @enabled_manufactories << "coal"
+      end
+    end
+    @enabled_manufactories
+  end
+
   # This just analyzes trade value, not producion value
   # Wiki says these are annual values, so converitng to monthly income
   def call
@@ -69,12 +102,15 @@ class BestManufactoryPlaces < EU4SaveAnalysis
 
       next if estimated_total_value == 0
 
-      results << [estimated_total_value, province.name, country_name(province.owner), localization(trade_goods), "#{localization(trade_node_name)}"]
-      results[-1] << "[construction in progress]" if province.construction_in_progress?
+      flags = ""
+      flags << "[construction in progress]" if province.construction_in_progress?
+      flags << "[no tech]" unless enabled_manufactories.include?(province.trade_goods)
+
+      results << [estimated_total_value, province.name, country_name(province.owner), localization(trade_goods), "#{localization(trade_node_name)}", flags]
     end
 
     results.sort_by{|v,n,| [-v,n]}.each do |row|
-      puts "%.6f %20s %20s %20s %30s" % row
+      puts "%.6f %20s %20s %20s %30s %30s" % row
     end; nil
   end
 end

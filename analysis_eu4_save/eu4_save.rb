@@ -287,6 +287,10 @@ class Country
   def to_s
     "Country<#{@tag}>"
   end
+
+  def technology
+    @technology ||= @node["technology"].to_h
+  end
   alias_method :to_s, :inspect
 end
 
@@ -457,6 +461,10 @@ class EU4Save
         .map{|tag, node| [tag, Country.new(tag, node, self)] }
         .to_h
     end
+  end
+
+  def player_country
+    @player_country ||= countries[player_tag]
   end
 
   def country_index
