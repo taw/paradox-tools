@@ -1783,6 +1783,81 @@
         }
       }
     },
+    "camelry": {
+      "air_attack": 0,
+      "breakthrough": 0,
+      "casualty_trickleback": 0,
+      "defense": 0,
+      "entrenchment": 0,
+      "equipment_capture_factor": 0,
+      "experience_loss_factor": 0,
+      "hard_attack": 0,
+      "initiative": 0,
+      "maximum_speed": 0.4,
+      "recon": 0,
+      "reliability_factor": 0,
+      "soft_attack": 0,
+      "supply_consumption_factor": 0,
+      "fuel_consumption_factor": 0,
+      "suppression": 2,
+      "supply_use": 0.1,
+      "fuel_consumption": 0,
+      "active": false,
+      "categories": [
+        "category_front_line",
+        "category_army"
+      ],
+      "cavalry": true,
+      "combat_width": 2,
+      "recovery_rate": 0.3,
+      "group": "mobile",
+      "manpower": 1000,
+      "org": 70,
+      "hp": 30,
+      "training_time": 160,
+      "type": [
+        "infantry"
+      ],
+      "weight": 0.6,
+      "name": "Camelry",
+      "equipment": {
+        "infantry_equipment": 150
+      },
+      "terrain_bonuses": {
+        "amphibious": {
+          "attack": -0.4
+        },
+        "desert": {
+          "attack": 0.05,
+          "defence": 0.05,
+          "movement": 0.1
+        },
+        "forest": {
+          "attack": -0.05
+        },
+        "hills": {
+          "attack": -0.05,
+          "movement": -0.05
+        },
+        "jungle": {
+          "attack": -0.1
+        },
+        "marsh": {
+          "movement": 0.05
+        },
+        "mountain": {
+          "attack": -0.1,
+          "movement": -0.05
+        },
+        "plains": {
+          "movement": 0.15
+        },
+        "urban": {
+          "attack": -0.05,
+          "movement": -0.05
+        }
+      }
+    },
     "destroyer": {
       "air_attack": 0,
       "breakthrough": 0,
@@ -4915,6 +4990,11 @@
     "guided_missile_equipment_1": {
       "air_map_icon_frame": 9,
       "build_cost_ic": 54,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "can_license": false,
       "fuel_consumption": 0,
       "naval_strike_attack": 1.5,
@@ -4938,6 +5018,11 @@
     "guided_missile_equipment_2": {
       "air_map_icon_frame": 9,
       "build_cost_ic": 54,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "can_license": false,
       "fuel_consumption": 0,
       "naval_strike_attack": 1.5,
@@ -4962,6 +5047,11 @@
     "guided_missile_equipment_3": {
       "air_map_icon_frame": 9,
       "build_cost_ic": 54,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "can_license": false,
       "fuel_consumption": 0,
       "naval_strike_attack": 1.5,
@@ -5159,6 +5249,11 @@
       "air_map_icon_frame": 11,
       "air_superiority": 0.01,
       "build_cost_ic": 60,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.8,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -5191,6 +5286,11 @@
       "air_map_icon_frame": 11,
       "air_superiority": 0.01,
       "build_cost_ic": 62,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.8,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -5224,6 +5324,11 @@
       "air_map_icon_frame": 11,
       "air_superiority": 0.01,
       "build_cost_ic": 64,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.8,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -5257,6 +5362,11 @@
       "air_map_icon_frame": 10,
       "air_superiority": 0.01,
       "build_cost_ic": 80,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 1.6,
       "interface_overview_category_index": 5,
       "is_convertable": true,
@@ -5315,6 +5425,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 2450,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "carrier_ship_engine_2"
       },
@@ -5361,6 +5476,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 2600,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "carrier_ship_engine_3",
         "front_1_custom_slot": "empty",
@@ -5432,6 +5552,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3250,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -5511,6 +5636,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 2700,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "heavy_ship_engine_1",
         "mid_1_custom_slot": "empty"
@@ -5578,6 +5708,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 2700,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "empty",
         "fixed_ship_deck_slot_1": "empty",
@@ -5640,6 +5775,11 @@
       "anti_air_attack": 0,
       "armor_value": 7,
       "build_cost_ic": 3750,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_deck_slot_1": "ship_deck_space",
@@ -5741,6 +5881,11 @@
       "anti_air_attack": 2,
       "armor_value": 9,
       "build_cost_ic": 4500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_deck_slot_1": "ship_deck_space",
@@ -5843,6 +5988,11 @@
       "anti_air_attack": 8,
       "armor_value": 11,
       "build_cost_ic": 5250,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_deck_slot_1": "ship_deck_space",
@@ -5896,6 +6046,11 @@
       "anti_air_attack": 10,
       "armor_value": 13,
       "build_cost_ic": 6000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_deck_slot_1": "ship_deck_space",
@@ -5950,6 +6105,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 1800,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "empty",
         "fixed_ship_battery_slot": "empty",
@@ -6003,6 +6163,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 1900,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "cruiser_ship_engine_2",
         "front_1_custom_slot": "empty"
@@ -6091,6 +6256,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 2000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "rear_1_custom_slot": "empty",
@@ -6190,6 +6360,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 2100,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "rear_1_custom_slot": "empty",
@@ -6279,6 +6454,11 @@
       "anti_air_attack": 0,
       "armor_value": 5,
       "build_cost_ic": 1800,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_1",
         "fixed_ship_battery_slot": "ship_light_medium_battery_1",
@@ -6344,6 +6524,11 @@
       "anti_air_attack": 0,
       "armor_value": 6,
       "build_cost_ic": 1650,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_3",
         "fixed_ship_battery_slot": "ship_light_medium_battery_2",
@@ -6401,6 +6586,11 @@
       "anti_air_attack": 0,
       "armor_value": 7,
       "build_cost_ic": 1700,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_3",
         "fixed_ship_battery_slot": "ship_light_medium_battery_3",
@@ -6461,6 +6651,11 @@
       "anti_air_attack": 0,
       "armor_value": 8,
       "build_cost_ic": 2000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_battery_slot": "ship_light_medium_battery_4",
@@ -6522,6 +6717,11 @@
       "anti_air_attack": 0,
       "armor_value": 9,
       "build_cost_ic": 2200,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_3",
         "fixed_ship_battery_slot": "ship_medium_battery_1",
@@ -6631,6 +6831,11 @@
       "anti_air_attack": 0,
       "armor_value": 11,
       "build_cost_ic": 2600,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_3",
         "fixed_ship_battery_slot": "ship_medium_battery_2",
@@ -6686,6 +6891,11 @@
       "anti_air_attack": 0,
       "armor_value": 12,
       "build_cost_ic": 3000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_battery_slot": "ship_medium_battery_3",
@@ -6742,6 +6952,11 @@
       "anti_air_attack": 0,
       "armor_value": 13,
       "build_cost_ic": 3400,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_battery_slot": "ship_medium_battery_4",
@@ -6800,6 +7015,11 @@
       "anti_air_attack": 0,
       "armor_value": 7,
       "build_cost_ic": 1700,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_1",
         "fixed_ship_battery_slot": "ship_light_medium_battery_1",
@@ -6915,6 +7135,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 1700,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_1",
         "fixed_ship_battery_slot": "ship_light_medium_battery_1",
@@ -7009,6 +7234,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_battery_slot": "ship_heavy_battery_1",
         "fixed_ship_secondaries_slot": "ship_secondaries_1",
@@ -7095,6 +7325,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_battery_slot": "empty",
         "fixed_ship_secondaries_slot": "empty",
@@ -7181,6 +7416,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -7258,6 +7498,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3300,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "empty",
         "fixed_ship_armor_slot": "ship_armor_bb_1",
@@ -7386,6 +7631,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3400,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "heavy_ship_engine_2",
         "rear_1_custom_slot": "empty"
@@ -7466,6 +7716,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "rear_1_custom_slot": "empty"
@@ -7546,6 +7801,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 3600,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "rear_1_custom_slot": "empty"
@@ -7627,6 +7887,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 5500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_armor_slot": "ship_armor_shbb",
         "fixed_ship_battery_slot": "empty",
@@ -7754,6 +8019,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 5600,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_1",
         "fixed_ship_armor_slot": "ship_armor_bb_1",
@@ -7874,6 +8144,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 5400,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bb_2",
@@ -7929,6 +8204,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 5200,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bb_3",
@@ -7984,6 +8264,11 @@
       "anti_air_attack": 0,
       "armor_value": 40,
       "build_cost_ic": 6000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bb_3",
@@ -8039,6 +8324,11 @@
       "anti_air_attack": 0,
       "armor_value": 47,
       "build_cost_ic": 8500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_shbb",
@@ -8172,6 +8462,11 @@
       "anti_air_attack": 0,
       "armor_value": 3,
       "build_cost_ic": 13000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_shbb",
@@ -8307,6 +8602,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 2500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bc_1",
@@ -8361,6 +8661,11 @@
       "anti_air_attack": 0,
       "armor_value": 30,
       "build_cost_ic": 4000,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_armor_slot": "ship_armor_bc_2",
@@ -8417,6 +8722,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 400,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "empty",
         "fixed_ship_battery_slot": "empty",
@@ -8476,6 +8786,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "light_ship_engine_2",
         "mid_1_custom_slot": "empty",
@@ -8550,6 +8865,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 550,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "light_ship_engine_3",
         "mid_1_custom_slot": "empty",
@@ -8642,6 +8962,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 600,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "empty",
         "fixed_ship_battery_slot": "empty",
@@ -8741,6 +9066,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 400,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_1",
         "fixed_ship_battery_slot": "ship_light_battery_1",
@@ -8800,6 +9130,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_2",
         "fixed_ship_battery_slot": "ship_light_battery_2",
@@ -8863,6 +9198,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_3",
         "fixed_ship_battery_slot": "ship_light_battery_3",
@@ -8926,6 +9266,11 @@
       "anti_air_attack": 5,
       "armor_value": 0,
       "build_cost_ic": 500,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_anti_air_slot": "ship_anti_air_4",
         "fixed_ship_battery_slot": "ship_light_battery_4",
@@ -8989,6 +9334,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 220,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_1",
         "fixed_ship_torpedo_slot": "empty",
@@ -9035,6 +9385,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 250,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_2",
         "rear_1_custom_slot": "empty"
@@ -9097,6 +9452,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 320,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -9164,6 +9524,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 450,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -9232,6 +9597,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 390,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "front_1_custom_slot": "empty",
         "mid_1_custom_slot": "empty",
@@ -9308,6 +9678,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 250,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_1",
         "fixed_ship_torpedo_slot": "ship_torpedo_sub_1",
@@ -9354,6 +9729,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 250,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_1",
         "fixed_ship_torpedo_slot": "ship_torpedo_sub_1",
@@ -9403,6 +9783,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 350,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_1",
         "fixed_ship_torpedo_slot": "ship_torpedo_sub_2",
@@ -9452,6 +9837,11 @@
       "anti_air_attack": 0,
       "armor_value": 0,
       "build_cost_ic": 400,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "default_modules": {
         "fixed_ship_engine_slot": "sub_ship_engine_1",
         "fixed_ship_torpedo_slot": "ship_torpedo_sub_2",
@@ -9502,6 +9892,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 22,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.21,
       "interface_overview_category_index": 1,
       "is_convertable": true,
@@ -9536,6 +9931,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 24,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.21,
       "interface_overview_category_index": 1,
       "is_convertable": true,
@@ -9571,6 +9971,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 26,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.21,
       "interface_overview_category_index": 1,
       "is_convertable": true,
@@ -9606,6 +10011,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 28,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.21,
       "interface_overview_category_index": 1,
       "is_convertable": true,
@@ -9641,6 +10051,11 @@
       "air_map_icon_frame": 4,
       "air_superiority": 1,
       "build_cost_ic": 30,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.42,
       "interface_overview_category_index": 1,
       "is_convertable": true,
@@ -9673,6 +10088,11 @@
       "air_map_icon_frame": 4,
       "air_superiority": 1,
       "build_cost_ic": 32,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.42,
       "interface_overview_category_index": 1,
       "is_convertable": true,
@@ -9706,6 +10126,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 26.4,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "default_carrier_composition_weight": 1,
       "fuel_consumption": 0.21,
@@ -9742,6 +10167,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 28.4,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "default_carrier_composition_weight": 1,
       "fuel_consumption": 0.21,
@@ -9779,6 +10209,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 30.4,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "default_carrier_composition_weight": 1,
       "fuel_consumption": 0.21,
@@ -9816,6 +10251,11 @@
       "air_map_icon_frame": 1,
       "air_superiority": 1,
       "build_cost_ic": 32.4,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "default_carrier_composition_weight": 1,
       "fuel_consumption": 0.21,
@@ -9854,6 +10294,11 @@
       "air_map_icon_frame": 2,
       "air_superiority": 1,
       "build_cost_ic": 22,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 0,
       "is_convertable": true,
@@ -9889,6 +10334,11 @@
       "air_map_icon_frame": 2,
       "air_superiority": 1,
       "build_cost_ic": 24,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 0,
       "is_convertable": true,
@@ -9925,6 +10375,11 @@
       "air_map_icon_frame": 2,
       "air_superiority": 1,
       "build_cost_ic": 26,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 0,
       "is_convertable": true,
@@ -9961,6 +10416,11 @@
       "air_map_icon_frame": 2,
       "air_superiority": 1,
       "build_cost_ic": 26.4,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 0,
@@ -9997,6 +10457,11 @@
       "air_map_icon_frame": 2,
       "air_superiority": 1,
       "build_cost_ic": 28.4,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 0,
@@ -10034,6 +10499,11 @@
       "air_map_icon_frame": 2,
       "air_superiority": 1,
       "build_cost_ic": 30.4,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 0,
@@ -10070,6 +10540,11 @@
       "air_map_icon_frame": 3,
       "air_superiority": 1,
       "build_cost_ic": 26,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.28,
       "interface_overview_category_index": 2,
       "is_convertable": true,
@@ -10101,6 +10576,11 @@
       "air_map_icon_frame": 3,
       "air_superiority": 1,
       "build_cost_ic": 28,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.28,
       "interface_overview_category_index": 2,
       "is_convertable": true,
@@ -10133,6 +10613,11 @@
       "air_map_icon_frame": 3,
       "air_superiority": 1,
       "build_cost_ic": 30,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.28,
       "interface_overview_category_index": 2,
       "is_convertable": true,
@@ -10165,6 +10650,11 @@
       "air_map_icon_frame": 3,
       "air_superiority": 1,
       "build_cost_ic": 31.2,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "default_carrier_composition_weight": 1,
       "fuel_consumption": 0.28,
@@ -10198,6 +10688,11 @@
       "air_map_icon_frame": 3,
       "air_superiority": 1,
       "build_cost_ic": 33.2,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "default_carrier_composition_weight": 1,
       "fuel_consumption": 0.28,
@@ -10232,6 +10727,11 @@
       "air_map_icon_frame": 3,
       "air_superiority": 1,
       "build_cost_ic": 35.2,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "carrier_capable": true,
       "default_carrier_composition_weight": 1,
       "fuel_consumption": 0.28,
@@ -10266,6 +10766,11 @@
       "air_map_icon_frame": 5,
       "air_superiority": 1,
       "build_cost_ic": 16,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "can_license": false,
       "is_convertable": true,
       "manpower": 5,
@@ -10297,6 +10802,11 @@
       "air_map_icon_frame": 5,
       "air_superiority": 1,
       "build_cost_ic": 18,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "can_license": false,
       "is_convertable": true,
       "manpower": 5,
@@ -10329,6 +10839,11 @@
       "air_map_icon_frame": 5,
       "air_superiority": 1,
       "build_cost_ic": 20,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "can_license": false,
       "is_convertable": true,
       "manpower": 5,
@@ -10405,6 +10920,11 @@
       "armor_value": 20,
       "breakthrough": 26,
       "build_cost_ic": 10,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "fuel_consumption": 4,
       "hard_attack": 4,
@@ -10433,6 +10953,11 @@
       "armor_value": 80,
       "breakthrough": 36,
       "build_cost_ic": 13,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 5,
       "fuel_consumption": 4,
       "hard_attack": 14,
@@ -10463,6 +10988,11 @@
       "armor_value": 70,
       "breakthrough": 36,
       "build_cost_ic": 25,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 6,
       "fuel_consumption": 4.4,
       "hard_attack": 12,
@@ -10492,6 +11022,11 @@
       "armor_value": 110,
       "breakthrough": 52,
       "build_cost_ic": 27,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 8,
       "fuel_consumption": 4.4,
       "hard_attack": 30,
@@ -10522,6 +11057,11 @@
       "armor_value": 130,
       "breakthrough": 67,
       "build_cost_ic": 30,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 9,
       "fuel_consumption": 4.4,
       "hard_attack": 40,
@@ -10552,6 +11092,11 @@
       "armor_value": 45,
       "breakthrough": 2,
       "build_cost_ic": 25,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "family": "heavy_tank_equipment_1",
       "fuel_consumption": 2.2,
@@ -10585,6 +11130,11 @@
       "armor_value": 68,
       "breakthrough": 3,
       "build_cost_ic": 27,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 6,
       "family": "heavy_tank_equipment_2",
       "fuel_consumption": 2.2,
@@ -10619,6 +11169,11 @@
       "armor_value": 90,
       "breakthrough": 3.5,
       "build_cost_ic": 30,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "heavy_tank_equipment_3",
       "fuel_consumption": 2.2,
@@ -10653,6 +11208,11 @@
       "armor_value": 70,
       "breakthrough": 1,
       "build_cost_ic": 25,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "family": "heavy_tank_equipment_1",
       "fuel_consumption": 2.2,
@@ -10686,6 +11246,11 @@
       "armor_value": 110,
       "breakthrough": 1.5,
       "build_cost_ic": 27,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 6,
       "family": "heavy_tank_equipment_2",
       "fuel_consumption": 2.2,
@@ -10720,6 +11285,11 @@
       "armor_value": 130,
       "breakthrough": 1.8,
       "build_cost_ic": 30,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "heavy_tank_equipment_3",
       "fuel_consumption": 2.2,
@@ -10754,6 +11324,11 @@
       "armor_value": 45,
       "breakthrough": 2,
       "build_cost_ic": 25,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 2,
       "family": "heavy_tank_equipment_1",
       "fuel_consumption": 1.1,
@@ -10787,6 +11362,11 @@
       "armor_value": 68,
       "breakthrough": 3,
       "build_cost_ic": 27,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 3,
       "family": "heavy_tank_equipment_2",
       "fuel_consumption": 1.1,
@@ -10821,6 +11401,11 @@
       "armor_value": 90,
       "breakthrough": 3.5,
       "build_cost_ic": 30,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 3.5,
       "family": "heavy_tank_equipment_3",
       "fuel_consumption": 1.1,
@@ -10855,6 +11440,11 @@
       "armor_value": 5,
       "breakthrough": 18,
       "build_cost_ic": 7,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "fuel_consumption": 1.0,
       "hard_attack": 4,
@@ -10879,6 +11469,11 @@
       "armor_value": 10,
       "breakthrough": 26,
       "build_cost_ic": 8,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "fuel_consumption": 2.4,
       "hard_attack": 4,
@@ -10908,6 +11503,11 @@
       "armor_value": 15,
       "breakthrough": 36,
       "build_cost_ic": 9,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 5,
       "fuel_consumption": 2.4,
       "hard_attack": 6,
@@ -10937,6 +11537,11 @@
       "armor_value": 30,
       "breakthrough": 46,
       "build_cost_ic": 10,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 6,
       "fuel_consumption": 2.4,
       "hard_attack": 9,
@@ -10966,6 +11571,11 @@
       "armor_value": 5,
       "breakthrough": 2,
       "build_cost_ic": 8,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "family": "light_tank_equipment_1",
       "fuel_consumption": 1.2,
@@ -10999,6 +11609,11 @@
       "armor_value": 10,
       "breakthrough": 2.5,
       "build_cost_ic": 9,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 5,
       "family": "light_tank_equipment_2",
       "fuel_consumption": 1.2,
@@ -11033,6 +11648,11 @@
       "armor_value": 25,
       "breakthrough": 3.5,
       "build_cost_ic": 10,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "light_tank_equipment_3",
       "fuel_consumption": 1.2,
@@ -11067,6 +11687,11 @@
       "armor_value": 10,
       "breakthrough": 1,
       "build_cost_ic": 8,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "family": "light_tank_equipment_1",
       "fuel_consumption": 1.2,
@@ -11100,6 +11725,11 @@
       "armor_value": 15,
       "breakthrough": 1.3,
       "build_cost_ic": 9,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 5,
       "family": "light_tank_equipment_2",
       "fuel_consumption": 1.2,
@@ -11134,6 +11764,11 @@
       "armor_value": 30,
       "breakthrough": 1.8,
       "build_cost_ic": 10,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "light_tank_equipment_3",
       "fuel_consumption": 1.2,
@@ -11168,6 +11803,11 @@
       "armor_value": 5,
       "breakthrough": 2,
       "build_cost_ic": 10,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 2,
       "family": "light_tank_equipment_1",
       "fuel_consumption": 0.6,
@@ -11200,6 +11840,11 @@
       "armor_value": 10,
       "breakthrough": 2.5,
       "build_cost_ic": 11,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 2.5,
       "family": "light_tank_equipment_2",
       "fuel_consumption": 0.6,
@@ -11233,6 +11878,11 @@
       "armor_value": 25,
       "breakthrough": 3.5,
       "build_cost_ic": 12,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 3.5,
       "family": "light_tank_equipment_3",
       "fuel_consumption": 0.6,
@@ -11266,6 +11916,11 @@
       "armor_value": 60,
       "breakthrough": 36,
       "build_cost_ic": 12,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 5,
       "fuel_consumption": 3.6,
       "hard_attack": 14,
@@ -11295,6 +11950,11 @@
       "armor_value": 80,
       "breakthrough": 51,
       "build_cost_ic": 13,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "fuel_consumption": 3.6,
       "hard_attack": 19,
@@ -11325,6 +11985,11 @@
       "armor_value": 90,
       "breakthrough": 66,
       "build_cost_ic": 14,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 9,
       "fuel_consumption": 3.6,
       "hard_attack": 24,
@@ -11355,6 +12020,11 @@
       "armor_value": 45,
       "breakthrough": 3,
       "build_cost_ic": 12,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 5,
       "family": "medium_tank_equipment_1",
       "fuel_consumption": 1.8,
@@ -11388,6 +12058,11 @@
       "armor_value": 50,
       "breakthrough": 3,
       "build_cost_ic": 13,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 6,
       "family": "medium_tank_equipment_2",
       "fuel_consumption": 1.8,
@@ -11422,6 +12097,11 @@
       "armor_value": 58,
       "breakthrough": 4,
       "build_cost_ic": 14,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "medium_tank_equipment_3",
       "fuel_consumption": 1.8,
@@ -11456,6 +12136,11 @@
       "armor_value": 60,
       "breakthrough": 1.3,
       "build_cost_ic": 12,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 5,
       "family": "medium_tank_equipment_1",
       "fuel_consumption": 1.8,
@@ -11489,6 +12174,11 @@
       "armor_value": 80,
       "breakthrough": 1.5,
       "build_cost_ic": 13,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 6,
       "family": "medium_tank_equipment_2",
       "fuel_consumption": 1.8,
@@ -11523,6 +12213,11 @@
       "armor_value": 90,
       "breakthrough": 1.8,
       "build_cost_ic": 14,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "medium_tank_equipment_3",
       "fuel_consumption": 1.8,
@@ -11557,6 +12252,11 @@
       "armor_value": 45,
       "breakthrough": 2.5,
       "build_cost_ic": 12,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 2.5,
       "family": "medium_tank_equipment_1",
       "fuel_consumption": 0.9,
@@ -11590,6 +12290,11 @@
       "armor_value": 50,
       "breakthrough": 3,
       "build_cost_ic": 13,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 3,
       "family": "medium_tank_equipment_2",
       "fuel_consumption": 0.9,
@@ -11624,6 +12329,11 @@
       "armor_value": 58,
       "breakthrough": 3.5,
       "build_cost_ic": 14,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 3.5,
       "family": "medium_tank_equipment_3",
       "fuel_consumption": 0.9,
@@ -11658,6 +12368,11 @@
       "armor_value": 130,
       "breakthrough": 84,
       "build_cost_ic": 28,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 10,
       "fuel_consumption": 5,
       "hard_attack": 32,
@@ -11687,6 +12402,11 @@
       "armor_value": 90,
       "breakthrough": 4,
       "build_cost_ic": 28,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 8,
       "family": "modern_tank_equipment",
       "fuel_consumption": 2.5,
@@ -11720,6 +12440,11 @@
       "armor_value": 130,
       "breakthrough": 2,
       "build_cost_ic": 28,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 8,
       "family": "modern_tank_equipment",
       "fuel_consumption": 2.5,
@@ -11753,6 +12478,11 @@
       "armor_value": 90,
       "breakthrough": 4,
       "build_cost_ic": 28,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 4,
       "family": "modern_tank_equipment",
       "fuel_consumption": 1.25,
@@ -11786,6 +12516,11 @@
       "armor_value": 145,
       "breakthrough": 74,
       "build_cost_ic": 100,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 10,
       "fuel_consumption": 10,
       "hard_attack": 45,
@@ -11815,6 +12550,11 @@
       "armor_value": 100,
       "breakthrough": 3.5,
       "build_cost_ic": 100,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "super_heavy_tank_equipment",
       "fuel_consumption": 5,
@@ -11848,6 +12588,11 @@
       "armor_value": 145,
       "breakthrough": 1.8,
       "build_cost_ic": 100,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 7,
       "family": "super_heavy_tank_equipment",
       "fuel_consumption": 5,
@@ -11881,6 +12626,11 @@
       "armor_value": 100,
       "breakthrough": 3.5,
       "build_cost_ic": 100,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "defense": 3.5,
       "family": "super_heavy_tank_equipment",
       "fuel_consumption": 2.5,
@@ -11912,6 +12662,11 @@
       "air_map_icon_frame": 6,
       "air_superiority": 1,
       "build_cost_ic": 35,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": [
         1,
         0.36
@@ -11950,6 +12705,11 @@
       "air_map_icon_frame": 6,
       "air_superiority": 1,
       "build_cost_ic": 37,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": [
         1,
         0.36
@@ -11989,6 +12749,11 @@
       "air_map_icon_frame": 6,
       "air_superiority": 1,
       "build_cost_ic": 39,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": [
         1,
         0.36
@@ -12028,6 +12793,11 @@
       "air_map_icon_frame": 6,
       "air_superiority": 1,
       "build_cost_ic": 41,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": [
         1,
         0.36
@@ -12067,6 +12837,11 @@
       "air_map_icon_frame": 7,
       "air_superiority": 1,
       "build_cost_ic": 45,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.72,
       "interface_overview_category_index": 4,
       "is_convertable": true,
@@ -12103,6 +12878,11 @@
       "air_map_icon_frame": 7,
       "air_superiority": 1,
       "build_cost_ic": 48,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.72,
       "interface_overview_category_index": 4,
       "is_convertable": true,
@@ -12140,6 +12920,11 @@
       "air_map_icon_frame": 8,
       "air_superiority": 1.25,
       "build_cost_ic": 28,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 3,
       "is_convertable": true,
@@ -12174,6 +12959,11 @@
       "air_map_icon_frame": 8,
       "air_superiority": 1.25,
       "build_cost_ic": 30,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 3,
       "is_convertable": true,
@@ -12209,6 +12999,11 @@
       "air_map_icon_frame": 8,
       "air_superiority": 1.25,
       "build_cost_ic": 32,
+      "can_be_produced": {
+        "NOT": {
+          "has_idea": "BUL_army_restrictions"
+        }
+      },
       "fuel_consumption": 0.26,
       "interface_overview_category_index": 3,
       "is_convertable": true,
@@ -18851,6 +19646,51 @@
         }
       }
     },
+    "mountain_warfare": {
+      "allow": {
+        "always": false
+      },
+      "research_cost": 1,
+      "name": "Mountain Warfare",
+      "leads_to": [
+
+      ],
+      "unit_bonuses": {
+        "infantry": {
+          "terrain_bonuses": {
+            "mountain": {
+              "defence": 0.05,
+              "movement": 0.05
+            }
+          }
+        },
+        "marine": {
+          "terrain_bonuses": {
+            "mountain": {
+              "attack": 0.05,
+              "movement": 0.1
+            }
+          }
+        },
+        "mountaineers": {
+          "terrain_bonuses": {
+            "mountain": {
+              "attack": 0.05,
+              "defence": 0.05,
+              "movement": 0.1
+            }
+          }
+        },
+        "paratrooper": {
+          "terrain_bonuses": {
+            "mountain": {
+              "attack": 0.05,
+              "movement": 0.1
+            }
+          }
+        }
+      }
+    },
     "night_vision": {
       "categories": [
         "night_vision"
@@ -19324,6 +20164,22 @@
       "research_cost": 1,
       "start_year": 1936,
       "name": "Bicycle Infantry",
+      "leads_to": [
+
+      ],
+      "unit_bonuses": {
+      }
+    },
+    "camelry": {
+      "allow": {
+        "always": false
+      },
+      "enable_subunits": [
+        "camelry"
+      ],
+      "research_cost": 1,
+      "start_year": 1936,
+      "name": "Camelry",
       "leads_to": [
 
       ],
