@@ -193,7 +193,7 @@ class ProtestantismGameModification < CK2GameModification
           "prestige", 8000,
         ],
         "effect", PropertyList[
-          "set_global_flag", "end_peace_of_westphalia",
+          "set_global_flag", "end_of_peace_of_westphalia",
         ],
         "revoke_allowed", PropertyList["always", false],
         "ai_will_do", PropertyList["factor", 1],
