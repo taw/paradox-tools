@@ -338,6 +338,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
 
   def apply!
     make_trigerred_modifiers_globally_visible!
+    create_other_trigerred_modifiers!
     setup_on_action!
     setup_loc!
     events_emperor_won!
