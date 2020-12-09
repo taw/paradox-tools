@@ -46,6 +46,7 @@ class BonusScoring
     :prestige_from_naval,
 
     # loans are basically irrelevant unless you go full florrynomics, and that's no longer possible
+    # (this is maybe a bit harsh)
     :interest,
 
     # unless you only own 1-2 ports, it's completely irrelevant
@@ -86,6 +87,19 @@ class BonusScoring
     :rr_royalists_influence,
     :rr_jacobins_influence,
     :pr_captains_influence,
+    :burghers_influence_modifier,
+
+    # 1.30 estate loyalty is trivial to handle and not worth anything
+    :brahmins_hindu_loyalty_modifier,
+    :brahmins_muslim_loyalty_modifier,
+    :burghers_loyalty_modifier,
+    :church_loyalty_modifier,
+    :dhimmi_loyalty_modifier,
+    :nobles_loyalty_modifier,
+    :vaisyas_loyalty_modifier,
+    :cossacks_loyalty_modifier,
+    :nomadic_tribes_loyalty_modifier,
+    :rajput_loyalty_modifier,
 
     # This could be a bit more exploitable, but it's still situational which direction you care about,
     :monthly_piety,
@@ -106,6 +120,9 @@ class BonusScoring
     :sunk_ship_morale_hit_recieved,
     :capture_ship_chance,
 
+    # Occasionally useful for Court and Country, not really otherwise
+    :autonomy_change_time,
+
     # Unless there are special events, this seems purely cosmetic
     :female_advisor_chance,
     :may_recruit_female_generals,
@@ -119,6 +136,10 @@ class BonusScoring
   # 6% land force limit
   def possible_mercenaries(v)
     land_forcelimit(12*v)
+  end
+
+  def mercenary_manpower(v)
+    # To first approximation, it's already pretty much limitless in base game
   end
 
   def may_explore(v)
@@ -149,6 +170,12 @@ class BonusScoring
     global_manpower_modifier -0.2*v
   end
 
+  # Approximate that 10% supply limit is like 10% attrition reduction
+  # This isn't really true, especially due to attrition cap, but close enough
+  def global_supply_limit_modifier(v)
+    land_attrition(-v)
+  end
+
   # Since conversion in territories, estimate 50% own, 10% heretic, 40% heathen
   def tolerance_own(v)
     global_revolt_risk -v * 0.50
@@ -177,7 +204,12 @@ class BonusScoring
     army_tradition(0.2 * v)
   end
   def naval_tradition_from_battle(v)
-    army_tradition(0.05 * v)
+    navy_tradition(0.05 * v)
+  end
+  # +2 for 100% of force limit as trading+pirate light ships
+  # generously assume 50% of force limit doing that, only really applicable to some countries
+  def naval_tradition_from_trade(v)
+    navy_tradition(1 * v)
   end
 
   # Assume 2 diplomats, and diplomats spending 25% of their time fabricating, 25% improving relations
@@ -481,9 +513,20 @@ class BonusScoring
     land_unit_power(0.46*v) # damage dealt
     land_unit_power(0.85*v) # damage received
   end
-  # Estimate 20% of infantry is mercs
+  def cavalry_discipline(v)
+    land_unit_power(0.18*v) # damage dealt
+    land_unit_power(0.085*v) # damage received
+  end
+  def artillery_discipline(v)
+    land_unit_power(0.36*v) # damage dealt
+    land_unit_power(0.065*v) # damage received
+  end
+
+  # Estimate 20% of infantry is mercs, 5% of cav, 5% of art
   def mercenary_discipline(v)
     infantry_discipline(0.2*v)
+    cavalry_discipline(0.2*v)
+    artillery_discipline(0.2*v)
   end
   def ship_durability(v)
     naval_unit_power(2*v)
@@ -711,6 +754,16 @@ class BonusScoring
   def same_culture_advisor_cost(v)
     advisor_cost(0.5*v)
   end
+  def adm_advisor_cost(v)
+    advisor_cost(v/3.0)
+  end
+  def dip_advisor_cost(v)
+    advisor_cost(v/3.0)
+  end
+  def mil_advisor_cost(v)
+    advisor_cost(v/3.0)
+  end
+
   def calculated_land_cost(v)
     money 0.25*-v
   end
@@ -726,9 +779,14 @@ class BonusScoring
   def state_maintenance_modifier(v)
     money 0.05*-v
   end
-  # This bonus applies to base cost, not full merc cost, so discount is proportional to how much of your inf is mercs
+  # This bonus applies to full cost now, not base cost like in previous patches
+  # so discount is proportional to how much of your inf is mercs
+  # (post 1.30 no way to avoid cav/art mercs)
+  # So assume 20% of your inf, 5% of cav, 5% of art are mercs
   def mercenary_cost(v)
-    infantry_cost 0.2*v
+    infantry_cost 2*0.2*v
+    cavalry_cost 2*0.05*v
+    artillery_cost 2*0.05*v
   end
   def merc_maintenance_modifier(v)
     # Since professionalism, mercs tend to be kept forever rather than disbanded when no longer needed
@@ -840,7 +898,7 @@ class BonusScoring
   end
 
   # Let's set base to B = 5 + 10 (empire) + 16 (level 20 tech, about halfway)
-  # Let's asy that you double that many non-state territories
+  # Let's say that you double that many non-state territories
   # So gaining V states, let's you increase your autonomy-weighted land from:
   # from: B * 1 + 2B * 0.25 to
   # to: B * 1 + V * 0.75 + 2B * 0.25
@@ -849,6 +907,43 @@ class BonusScoring
   def max_states(v)
     b = 5+10+16
     avg_autonomy_reduction = v / (2.0 * b)
+    global_manpower_modifier avg_autonomy_reduction
+    global_sailors_modifier avg_autonomy_reduction
+    global_tax_modifier avg_autonomy_reduction
+    production_efficiency avg_autonomy_reduction
+    global_trade_power 0.5*avg_autonomy_reduction
+    land_forcelimit_modifier avg_autonomy_reduction
+    naval_forcelimit_modifier avg_autonomy_reduction
+  end
+
+  # Assume 50% states, 25% territories, 25% trade companies
+  # early game it is meaningless, so this is mid/late game scoring
+  def min_autonomy_in_territories(v)
+    avg_autonomy_reduction = -0.5 * v
+    # territories and trade companies affected same way
+    global_manpower_modifier avg_autonomy_reduction
+    global_sailors_modifier avg_autonomy_reduction
+    global_tax_modifier avg_autonomy_reduction
+    land_forcelimit_modifier avg_autonomy_reduction
+    # only territories affected
+    naval_forcelimit_modifier avg_autonomy_reduction * 0.5
+    # territories affected 50%, trade companies not affected
+    global_trade_power avg_autonomy_reduction * 0.25
+    # trade companies affected half as much
+    production_efficiency avg_autonomy_reduction * 0.75
+  end
+
+  # Assume 50% states, 25% territories, 25% trade companies
+  # Assume territories get upgraded to states
+  # early game it is meaningless, so this is mid/late game scoring
+  #
+  # So like base costs: 500 states, 125 trade companies, 62.5 territories
+  # With 27% capacity increas:
+  # So like base costs: 750 states, 125 trade companies
+  #
+  # Discounns from buildings are linear so we don't need to consider them
+  def governing_capacity_modifier(v)
+    avg_autonomy_reduction = 0.9*v
     global_manpower_modifier avg_autonomy_reduction
     global_sailors_modifier avg_autonomy_reduction
     global_tax_modifier avg_autonomy_reduction
@@ -925,6 +1020,23 @@ class BonusScoring
     province_warscore_cost(v*0.6)
   end
 
+  def flagship_cost(v)
+    # it's a one off thing and really not worth scoring
+    # but let's assume 1% of naval recruitment spending is flagships
+    calculated_ship_cost 0.01 * v
+  end
+
+  # 20 year life expectancy, typically 0.5 admirals per country
+  def admiral_cost(v)
+    monthly_mil_points -v * 50 * 0.5 / 240.0
+  end
+
+  # 20 year life expectancy, typically 3 generals per country, but rerolls are common
+  # so doubling that to 6
+  def general_cost(v)
+    monthly_mil_points -v * 50 * 6.0 / 240.0
+  end
+
   def score
     total = 0
     @ht.each do |k,v|
@@ -992,6 +1104,9 @@ class BonusScoring
         total += 0.5 # true
       when :reduced_stab_impacts
         total += 0.5 # true
+      # How much is this worth, it's like really awful CB?
+      when :can_fabricate_for_vassals
+        total += 0.2
       when :extra_cbs
         # Tech group based CBs got nerfed
         # and good CBs are less important now that you'll get universal CBs late game
@@ -1049,6 +1164,12 @@ class BonusScoring
       when :center_of_trade_upgrade_cost
         # this is almost never worth it except for dev pushing institutions
         # or for completing missions
+      when :allowed_marine_fraction
+        # worthless right now
+      when :max_revolutionary_zeal
+        # extremely situational
+      when :drill_gain_modifier
+        # drill is so underpowered this is worthless
       else
         warn "#{k} not scored"
       end
