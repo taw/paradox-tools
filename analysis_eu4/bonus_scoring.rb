@@ -826,6 +826,9 @@ class BonusScoring
   def imperial_authority(v)
   end
 
+  def imperial_authority_value(v)
+  end
+
   def imperial_mandate(v)
   end
 
@@ -1028,7 +1031,7 @@ class BonusScoring
 
   # 20 year life expectancy, typically 0.5 admirals per country
   def admiral_cost(v)
-    monthly_mil_points -v * 50 * 0.5 / 240.0
+    monthly_dip_points -v * 50 * 0.5 / 240.0
   end
 
   # 20 year life expectancy, typically 3 generals per country, but rerolls are common
@@ -1074,6 +1077,7 @@ class BonusScoring
       when :global_revolt_risk
         total -= 0.75*v
       when :global_autonomy
+        # Monthly autonomy change
         total += -5.0*v
       when :province_warscore_cost
         # 20% discount would be worth 2 mp
