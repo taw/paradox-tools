@@ -328,14 +328,20 @@ class BonusScoring
     monthly_dip_points -v * 3 * 8.0 / 12
   end
 
-  # Based on simulations average AI country presses the button 28 times during the game
-  # and average base cost is 65 (= mean number of times it was used before on same province is 3)
-  # This means average monthly development spending is 0.4
+  # It's really unclear how much you're going to develop.
   #
-  # Big assumption is that humans are same as AI here
+  # Based on simulations (in old patch) average AI country presses the button
+  # 28 times during the game.
+  #
+  # For player, we could guess something like:
+  # 25 button presses each for 3 institutions
+  # 25 button presses each for 2 gold mines
+  # 50 button presses for various estate missions and assorted uses
+  #
+  # Modifier applies to base cost of 50
   def development_cost(v)
-    buttons_per_month = 28.0/(1820-1444)/12
-    monthly_mixed_monarch_points (buttons_per_month * 65 * -v)
+    buttons_per_month = 175.0/(1820-1444)/12
+    monthly_mixed_monarch_points (buttons_per_month * 50 * -v)
   end
 
   # Assumptions:
@@ -869,12 +875,12 @@ class BonusScoring
   end
 
   ### Higher level calculations ###
-  # Assume strength of the military is 80% army 20% navy.
+  # Assume strength of the military is 90% army 10% navy.
   def land_unit_power(v)
-    military_power 0.8*v
+    military_power 0.9*v
   end
   def naval_unit_power(v)
-    military_power 0.2*v
+    military_power 0.1*v
   end
 
   # These are ballpark estimates how good this is
