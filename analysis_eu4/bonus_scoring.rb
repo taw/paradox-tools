@@ -45,10 +45,6 @@ class BonusScoring
     :prestige_from_land,
     :prestige_from_naval,
 
-    # loans are basically irrelevant unless you go full florrynomics, and that's no longer possible
-    # (this is maybe a bit harsh)
-    :interest,
-
     # unless you only own 1-2 ports, it's completely irrelevant
     :global_ship_recruit_speed,
     :global_regiment_recruit_speed,
@@ -528,6 +524,14 @@ class BonusScoring
     land_unit_power(0.065*v) # damage received
   end
 
+  # Artillery fire is 2.4 from tech 16 (1609), until tech 22 (1687) when it coes to 4.4, eventually reaching 8.4 at tech 32
+  # Artillery shock is really low (2.5 at tech 16, up to 0.55 at tech 32)
+  # This is flat modifier so it makes a lot more difference early game
+  # Assume for this that artillery is 90% about fire, and base artillery fire is 3 throughout the game
+  def artillery_fire(v)
+    artillery_power 0.9 * (v / 3.0)
+  end
+
   # Estimate 20% of infantry is mercs, 5% of cav, 5% of art
   def mercenary_discipline(v)
     infantry_discipline(0.2*v)
@@ -720,7 +724,7 @@ class BonusScoring
   # before adding bonus
   #
   # For costs:
-  # 25% army, 5% state, 10% fort, 20% advisors, 5% navy, 35% balance (which I assume goes for 20% buildings, 5% embracement, 10% other stuff)
+  # 25% army, 5% state, 10% fort, 20% advisors, 5% navy, 35% balance (which I assume goes for 20% buildings+trade company, 5% embracement, 10% other stuff)
   # I'll assume of that army spending, 5% is mercs, 5% is reinforcement, 90% is regular maintenance
   #
   # This isn't really true, since incomes from simualion already come with many modifiers, mostly positive,
@@ -777,7 +781,27 @@ class BonusScoring
     money 0.05*-v
   end
   def build_cost(v)
-    money 0.20*-v
+    money 0.19*-v
+  end
+  # In trade company you'd spend:
+  # * 400 (goods produced; production efficiency)
+  # * 400 (trade power; production efficiency)
+  # * and one 1000 building per node
+  # With average of 5 states per node and 4 provinces per state, that's 250 gold per province
+  # Assume 25% of your provinces are trade company provinces.
+  #
+  # In normal province you'd normally spend, in order:
+  # * 500 manufactory
+  # * 200 town hall
+  # * 400 workshop
+  # * 300 cathedral or barracks
+  # * (and small number of forts marketplaces etc.)
+  # Or 1400.
+  #
+  # That means 20x more is spent on buildings as trade company investments
+
+  def trade_company_investment_cost(v)
+    money 0.01*-v
   end
   def embracement_cost(v)
     money 0.05*-v
@@ -785,6 +809,13 @@ class BonusScoring
   def state_maintenance_modifier(v)
     money 0.05*-v
   end
+  # Base interest is 4%
+  # Let's say 2% of your income goes to interest payments
+  # (this varies drastically by playstyle)
+  def interest(v)
+    money 0.02*(-v/4.0)
+  end
+
   # This bonus applies to full cost now, not base cost like in previous patches
   # so discount is proportional to how much of your inf is mercs
   # (post 1.30 no way to avoid cav/art mercs)
@@ -1046,6 +1077,84 @@ class BonusScoring
     monthly_mil_points -v * 50 * 6.0 / 240.0
   end
 
+  # Assume you'll get 10% innovativeness
+  # so +50% gain corresponds to 5% extra innovativeness
+  def innovativeness_gain(v)
+    innovativeness(v * 0.10)
+  end
+
+  def innovativeness(v)
+    all_power_costs -0.1 * v
+    navy_tradition_decay -1 * v
+    army_tradition_decay -1 * v
+  end
+
+  # Assume 12 each per month,
+  # that's about right by mid game
+  def all_power_costs(v)
+    monthly_adm_points 12 * -v
+    monthly_dip_points 12 * -v
+    monthly_mil_points 12 * -v
+  end
+
+  # Guestimate that for subjects where it matters,
+  # 25 of desire comes from development (that's 100dev)
+  def liberty_desire_from_subject_development(v)
+    reduced_liberty_desire(-25 * v)
+  end
+
+  # Assume on average you are at +5% PP from insults
+  # so +100% is equivalent to +5% PP
+  def power_projection_from_insults(v)
+    power_projection 0.05 * v
+  end
+
+  def power_projection(v)
+    # Linear
+    defensiveness 0.1 * v
+    global_trade_power 0.2 * v
+    prestige 0.5 * v
+    land_morale 0.1 * v
+    naval_morale 0.1 * v
+    legitimacy 0.5 * v
+    republican_tradition 0.2 * v
+    devotion 0.5 * v
+    horde_unity 0.5 * v
+    # Threshold 25, pretend it's linear
+    free_leader_pool 1 * v
+    # Threshold 50, pretend it's linear
+    monthly_adm_points 1 * v
+    monthly_dip_points 1 * v
+    monthly_mil_points 1 * v
+  end
+
+  # This is more flavor than anything else
+  # Treat is as 10% as useful as province cost discount
+  # but even that is generous (legitimately useful mostly in HRE)
+  def enforce_religion_cost(v)
+    province_warscore_cost 0.1*v
+  end
+
+  # Reelection costs −2.5 per year regardless of election cycle
+  # If we reelect 2/3 of the time,
+  # 10% discount is worth 10% * 2/3 * 2.5 RT
+  def reelection_cost(v)
+    republican_tradition(-2.5*v)
+  end
+
+  # Really don't know how to score it
+  # +1 bonus being equivalent to +10% naval power seems OK
+  # and let's see half the time you fight on own coast
+  def own_coast_naval_combat_bonus(v)
+    naval_unit_power 0.5 * 0.1 * v
+  end
+
+  # This seems extremely insignificant
+  # like +5 per merchant would be 1% trade power
+  def placed_merchant_power(v)
+    global_trade_power 0.01*v/5.0
+  end
+
   def score
     total = 0
     @ht.each do |k,v|
@@ -1112,6 +1221,9 @@ class BonusScoring
       # They aren't worth the same, but very conditional and hard to judge value
       when :may_perform_slave_raid
         total += 0.5 # true
+      when :may_perform_slave_raid_on_same_religion
+        # Most religions are small
+        total += 0.6 # true
       when :reduced_stab_impacts
         total += 0.5 # true
       # How much is this worth, it's like really awful CB?
@@ -1148,6 +1260,9 @@ class BonusScoring
         # It does nothing for all other uses of diplomatic reputation
         # For total assume 10% of relations you care about are subject LD
         total += v / 3.0 * 0.1
+      when :reform_progress_growth
+        # +100% progress worth 1 point
+        total += v
       when :yearly_absolutism
         # This is going to get capped really quickly
       when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :amount_of_banners, :monthly_fervor_increase, :yearly_harmony
@@ -1180,6 +1295,8 @@ class BonusScoring
         # extremely situational
       when :drill_gain_modifier
         # drill is so underpowered this is worthless
+      when :disengagement_chance
+        # naval combat model is very complex, it's not clear this does much at all
       else
         warn "#{k} not scored"
       end

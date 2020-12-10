@@ -7,6 +7,7 @@ class AnalyzeIdeaGroups < ParadoxGame
   def each_idea_group
     glob("common/ideas/*").each do |path|
       parse(path).each do |name, idea_group|
+        next if name == "compatibility_127"
         if @ideas == "national"
           next if idea_group["category"]
         elsif @ideas == "basic"
@@ -33,7 +34,7 @@ class AnalyzeIdeaGroups < ParadoxGame
         result[idea_name].send(k,v)
       end
     end
-    result    
+    result
   end
 
   def analyze_idea_groups!(show_details)
