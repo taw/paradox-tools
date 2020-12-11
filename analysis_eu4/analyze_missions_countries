@@ -6,14 +6,7 @@ require_relative "../lib/paradox"
 class AnalyzeMissionsCountries < ParadoxGame
   def each_mission_file(&block)
     glob("missions/*").each do |path|
-      # Stupid errors in files...
-      # if path.basename.to_s == "Bohemian_Missions.txt"
-      #   # code = resolve(path).read + "}"
-      #   node = ParadoxModFile.new(string: code, path: path).parse!
-      #   yield(node)
-      # else
-        yield parse(path)
-      # end
+      yield parse(path)
     end
   end
 
@@ -28,6 +21,7 @@ class AnalyzeMissionsCountries < ParadoxGame
       "Rights of Man",
       "Dharma",
       "Golden Century",
+      "Emperor",
     ]
     return if dlcs.any?{|dlc| potential.to_a.include? Property::NOT["has_dlc", dlc] }
     potential.delete!("has_dlc")
@@ -106,6 +100,31 @@ class AnalyzeMissionsCountries < ParadoxGame
       "High American" # (could be in Europe)
     when PropertyList["has_reform", "pirate_republic_reform"]
       "Pirate"
+    when PropertyList[
+        "has_reform", "pirate_republic_reform",
+        "capital_scope", PropertyList["colonial_region", "colonial_the_carribean"],
+      ]
+      "Carribean Pirate"
+    when PropertyList["OR", PropertyList[
+        "has_reform", "daimyo",
+        "has_reform", "shogunate",
+        "tag", "JAP",
+      ]]
+      "Japanese"
+    when PropertyList["OR", PropertyList[
+        "has_reform", "indep_daimyo",
+        "has_reform", "daimyo",
+        "has_reform", "shogunate",
+        "tag", "JAP",
+      ]]
+      "Japanese"
+    when PropertyList["OR", PropertyList[
+        "primary_culture", "mongol",
+        "primary_culture", "chahar",
+        "primary_culture", "khalkha",
+        "primary_culture", "oirats",
+      ]]
+      "Mongol"
     else
       puts potential
       # binding.pry

@@ -173,14 +173,26 @@ class BonusScoring
   end
 
   # Since conversion in territories, estimate 50% own, 10% heretic, 40% heathen
+  #
+  # For heretic/heathen there's a cap.
+  # For heretics it's -2 to +3
+  # For heathens it's -3 to +3
+  #
+  # But with legitimacy at +1 and Enforced Interfaith Dialog privilege for +2,
+  # you'll be hitting that cap often, so assume 50% chance capped for heretics
+  # and 30% for heathens.
+  # so assume there's 60% chance heretic tolerance is not capped (-2 to +3)
+  # and 70% for heathen tolerance (-3 to +3)
+  #
+  # Cap is easy to hit, as +1 legitimacy
   def tolerance_own(v)
     global_revolt_risk -v * 0.50
   end
   def tolerance_heretic(v)
-    global_revolt_risk -v * 0.10
+    global_revolt_risk -v * 0.10 * 0.50
   end
   def tolerance_heathen(v)
-    global_revolt_risk -v * 0.40
+    global_revolt_risk -v * 0.40 * 0.70
   end
   def global_unrest(v)
     global_revolt_risk v
