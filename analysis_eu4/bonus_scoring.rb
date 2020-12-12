@@ -542,6 +542,8 @@ class BonusScoring
   # Assume for this that artillery is 90% about fire, and base artillery fire is 3 throughout the game
   def artillery_fire(v)
     artillery_power 0.9 * (v / 3.0)
+    # https://forum.paradoxplaza.com/forum/threads/eu4-development-diary-13th-of-november-2018.1127813/
+    # FIXME: And it also affects naval combat, in all phases!
   end
 
   # Estimate 20% of infantry is mercs, 5% of cav, 5% of art
