@@ -44,6 +44,7 @@ class BonusScoring
     :prestige_decay,
     :prestige_from_land,
     :prestige_from_naval,
+    :prestige_per_development_from_conversion,
 
     # unless you only own 1-2 ports, it's completely irrelevant
     :global_ship_recruit_speed,
@@ -1091,6 +1092,11 @@ class BonusScoring
     monthly_mil_points -v * 50 * 6.0 / 240.0
   end
 
+  def leader_cost(v)
+    general_cost v
+    admiral_cost v
+  end
+
   # Assume you'll get 10% innovativeness
   # so +50% gain corresponds to 5% extra innovativeness
   def innovativeness_gain(v)
@@ -1311,6 +1317,12 @@ class BonusScoring
         # drill is so underpowered this is worthless
       when :disengagement_chance
         # naval combat model is very complex, it's not clear this does much at all
+      when :special_unit_forcelimit
+        # they're currently useless
+      when :mercantilism_cost
+        # this button is far from being worth pressing, even with discounts
+      when :monarch_lifespan
+        # this would arguably be good for republics, otherwise it's about neutral
       else
         warn "#{k} not scored"
       end
