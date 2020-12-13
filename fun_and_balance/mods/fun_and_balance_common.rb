@@ -326,7 +326,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       modify_node! node,
         ["negative_mandate", "global_unrest", 5, 10],
         ["negative_mandate", "global_manpower_modifier", -0.5, -1.0],
-        ["negative_mandate", "mercenary_manpower", -0.5, -1.0],
+        ["negative_mandate", "mercenary_manpower", -0.5, -2.0],
         ["negative_mandate", "fire_damage_received", 0.5, 1.0],
         ["negative_mandate", "shock_damage_received", 0.5, 1.0]
       end
@@ -528,6 +528,70 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       node["propagate_religion"]["can_select"].delete! "religion_group"
       node["propagate_religion"]["can_maintain"].delete! "religion_group"
     end
+  end
+
+  def buff_support_rebels!
+    soft_patch_defines_lua!("fun_and_balance_support_rebels",
+      ["NDiplomacy.SUPPORT_REBELS_EFFECT", 10, 50],
+      ["NDiplomacy.SUPPORT_REBELS_MONEY_FACTOR", 0.5, 0.1],
+    )
+  end
+
+  # EU4 crashes unless it has at least 1 strait
+  def remove_all_straits!
+    patch_file!("map/adjacencies.csv") do |file|
+      # Zeeland-Gent
+      file.b.lines.select{|x|
+        t = x.split(";")[2]
+        x =~ /Gent/ or (t != "sea" and t != "lake")
+      }.join
+    end
+  end
+
+  def buff_covert_actions!
+    # Keep spy costs where they are for now, just buff this one
+    buff_support_rebels!
+
+    # The rest can stay where they are
+    patch_mod_file!("common/technologies/dip.txt") do |node|
+      techs = node.find_all("technology")
+      techs.each do |t|
+        t.delete! Property["may_agitate_for_liberty", true]
+        t.delete! Property["may_infiltrate_administration", true]
+      end
+      techs[0].add! Property["may_agitate_for_liberty", true]
+      techs[0].add! Property["may_infiltrate_administration", true]
+    end
+  end
+
+  def enable_more_idea_groups!
+    soft_patch_defines_lua!("fun_and_balance_more_idea_groups",
+      ["NCountry.IDEA_TO_TECH", -0.02, -0.01],
+    )
+    patch_mod_file!("common/technologies/adm.txt") do |node|
+      techs = node.find_all("technology")
+      techs.each do |t|
+        t.delete! "allowed_idea_groups"
+      end
+      techs[4].add! Property["allowed_idea_groups", 18]
+    end
+  end
+
+  def increase_attrition_cap!
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["land_province", "max_attrition", 5, 10]
+    end
+  end
+
+  def major_idea_group_rebalance!
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    buff_support_rebels!
+    buff_covert_actions!
+    increase_attrition_cap!
+    enable_more_idea_groups!
+    remove_all_straits!
   end
 
   # In principle this could move them between files

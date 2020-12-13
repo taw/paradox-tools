@@ -34,6 +34,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     fix_culture_groups!
 
     # Experimental:
+    # major_idea_group_rebalance!
     # rebalance_unrest!
     # rebalance_unrest_experimental!
     # all_religions_propagate_by_trade!
