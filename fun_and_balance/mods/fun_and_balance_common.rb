@@ -301,7 +301,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   # even with very brutal looking values
   def rebalance_ming_crisis!
     # First, make sure crisis lasts at least 10 years, no cheating
-
     patch_mod_file!("common/disasters/ming_crisis.txt") do |node|
       crisis = node["ming_crisis"]
       modify_node! crisis,
@@ -316,20 +315,66 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       ]
     end
 
+    # Set flag to make sure it last 10 years (flag only for event above)
     patch_mod_file!("events/disaster_ming_crisis.txt") do |node|
       event = node.to_a.find{|prop| prop.key == "country_event" and prop.val["id"] == "ming_crisis.1"}
       event.val["immediate"].add! Property["set_country_flag", "had_ming_crisis"]
     end
 
     # Then make low mandate actually painful
+    # And losing mandate basically a death sentence
+    # -100% manpower sounds like BS, but there are enormous
+    # positive modifiers in 1.30 (especially estates) so it's de facto closer to -50%
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
         ["negative_mandate", "global_unrest", 5, 10],
-        ["negative_mandate", "global_manpower_modifier", -0.5, -1.0],
+        # ["negative_mandate", "global_manpower_modifier", -0.5, -0.5],
+        ["negative_mandate", "manpower_recovery_speed", nil, -0.5],
         ["negative_mandate", "mercenary_manpower", -0.5, -2.0],
         ["negative_mandate", "fire_damage_received", 0.5, 1.0],
-        ["negative_mandate", "shock_damage_received", 0.5, 1.0]
-      end
+        ["negative_mandate", "shock_damage_received", 0.5, 1.0],
+        # ["lost_mandate_of_heaven", "global_manpower_modifier", -0.5, -0.5],
+        ["lost_mandate_of_heaven", "manpower_recovery_speed", nil, -0.5],
+        ["lost_mandate_of_heaven", "mercenary_manpower", -0.5, -2.0],
+        ["lost_mandate_of_heaven", "fire_damage_received", 0.5, 1.0],
+        ["lost_mandate_of_heaven", "shock_damage_received", 0.5, 1.0]
+    end
+
+    # Make winning/losing mandate last 50 years
+    # from 20 (lost) / 25 (gained)
+    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
+      gain_mods = node["on_mandate_of_heaven_gained"].find_all("add_country_modifier")
+      loss_mods = node["on_mandate_of_heaven_lost"].find_all("add_country_modifier")
+
+      raise unless loss_mods == [PropertyList["name", "lost_mandate_of_heaven", "duration", 7300]]
+      raise unless gain_mods == [PropertyList["name", "new_mandate_holder", "duration", 9125]]
+
+      gain_mods[0]["duration"] = 365*50
+      loss_mods[0]["duration"] = 365*50
+    end
+
+    # Prevent kicking new Empire down too early
+    # It makes flavor sense, but kicking AI before it can establish itself
+    # just destroys any chance of new China emerging
+    patch_mod_file!("common/disasters/empire_of_china_culture.txt") do |node|
+      node["empire_of_china_in_name"]["potential"].add! Property::NOT["has_country_modifier", "new_mandate_holder"]
+      # Actually just disable it for AI for now
+    end
+
+    # Waging war for China helps more
+    patch_mod_files!("common/triggered_modifiers/00_triggered_modifiers.txt") do |node|
+      modify_node! node,
+        ["waging_war_for_china", "imperial_mandate", 0.05, 0.10]
+    end
+
+    # Buff mandate winners harder
+    # +0.10 barely counters not having 2/3 capitals,
+    # and new holder will often lack all 3
+    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
+      modify_node! node,
+        ["new_mandate_holder", "imperial_mandate", 0.05, 0.10],
+        ["new_mandate_holder", "global_unrest", nil, -5]
+    end
   end
 
   ###################################################################
@@ -573,10 +618,13 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       techs.each do |t|
         t.delete! "allowed_idea_groups"
       end
-      techs[4].add! Property["allowed_idea_groups", 18]
+      (1..18).each do |i|
+        techs[3+i].add! Property["allowed_idea_groups", i]
+      end
     end
   end
 
+  # This does nothing under new attrition formula
   def increase_attrition_cap!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node! node,
@@ -589,7 +637,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
     buff_support_rebels!
     buff_covert_actions!
-    increase_attrition_cap!
     enable_more_idea_groups!
     remove_all_straits!
   end
