@@ -64,6 +64,7 @@ class TechnologyData
       tech.delete "ai_research_weights"
       tech.delete "folder"
       tech.delete "on_research_complete"
+      tech.delete "on_research_complete_limit"
 
       paths = tech.delete("path") || []
       paths = [paths] unless paths.is_a?(Array)
