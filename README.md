@@ -29,6 +29,19 @@ $ ruby folder/scriptname
 $ jruby folder/scriptname
 ```
 
+Most scripts follow similar order of arguments, like:
+
+```
+$ folder/scriptname path/to/save/file path/to/game
+$ folder/scriptname path/to/save/file path/to/game path/to/mod1 path/to/mod2 ...
+$ folder/scriptname path/to/game
+$ folder/scriptname path/to/game path/to/mod1 path/to/mod2 ...
+```
+
+Save files must be text-based (not ironman), and not compressed.
+
+`bin/unpack_save` script can remove compression, but for removing ironman you'll need third party tools.
+
 Contents overview
 -----------------
 
@@ -61,50 +74,6 @@ Contents overview
 * `visualization_ck2` - map visualization scripts for CK2
 * `visualization_eu4` - map visualization scripts for EU4
 * `visualization_hoi4` - map visualization scripts for HOI4
-
-Contents
---------
-
-Tools:
-
-* `bin/diff_paradox` - normalize two Paradox mod files (or directories of them) and diff them
-* `bin/find_redundant_files` - check for files in mod directory which are same as in vanilla and can be removed
-* `bin/pry_paradox` - start pry session with Paradox game tree (possibly with mods) loaded
-* `bin/pry_savegame` - start pry session with save game (or other mod file; uncompressed only) loaded
-* `bin/recreate_baseline` - for each mod file, copy corresponding base game file into baseline directory (usually to compare and fix your mod with newly released game patch)
-* `bin/validate_syntax` - validate syntax of Paradox mod file
-
-Analysis scripts (EU4):
-
-* `analysis/analyze_idea_group` - score idea groups by value
-* `analysis/analyze_missions` - print some statistics about available missions
-* `analysis/analyze_policies` - print bonuses by policy
-* `analysis/analyze_static_modifier` - print bonuses by static modifier
-* `analysis/analyze_trust` - extract trust data from save game
-* `analysis/analyze_unit_pips` - analyze unit pips by tech group and tech level and save to CSV files
-* `analysis/analyze_wars` - extract wars statistics from save game (wars by year)
-* `analysis/analyze_wars_battles` - extract wars statistics from save game (battle loses)
-* `analysis/country_cultures` - print primary country tag for each culture
-* `analysis/validate_trade_nodes` - find provinces without trade node
-
-Analysis scripts (CK2):
-
-* `analysis_ck2/province_tech` - print tech by province from (uncompressed) CK2 save game
-* `analysis_ck2/tribal_development` - report how far feudalization has gone so far
-
-Debugging helper scripts:
-
-* `bin/compare_province_traits` - compare province traits between two mods
-* `bin/mission_debugger` - create trigerred modifier for every mission so you can easily see which are in the pool
-* `bin/parse_paradox` - parse and print Paradox mod file as Ruby object
-
-Other:
-
-* `lib/` - public API
-* `test/` - tests
-* `fun_and_balance/` - Fun & Balance mod automatic build system
-* `ck2tweaks/` - Small tweaks for Crusader Kings 2 (not even a coherent minimod)
-* `save_game_scripts/` - various script for analyzing and editing save game files not ported to new API
 
 Links
 -----
