@@ -521,7 +521,7 @@ describe Division do
           equipment: {"infantry_equipment_x_2"=>200, "support_equipment_1"=>10},
           ic_cost: 220.0,
           terrain_bonuses: {
-            "forest"=>{"attack"=>0.1, "defence"=>0.1, "movement"=>0.1},
+            "forest"=>{"attack"=>0.1, "defence"=>0.1, "movement"=>0.15},
             "marsh"=>{"movement"=>0.1},
             "mountain"=>{"movement"=>0.1},
           },
