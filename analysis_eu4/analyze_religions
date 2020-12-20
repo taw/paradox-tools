@@ -85,8 +85,20 @@ class Religion
     !!@node["fetishist_cult"]
   end
 
+  def aspects
+    @node["aspects"]
+  end
+
+  def uses_aspects?
+    !!aspects
+  end
+
   def blessings
     @node["blessings"]
+  end
+
+  def uses_blessings?
+    !!blessings
   end
 
   def deity_score(deity_name)
@@ -105,6 +117,9 @@ class Religion
     known_keys = %W[
       allowed_center_conversion
       allowed_conversion
+      aspects
+      aspects_name
+      blessings
       can_have_secondary_religion
       color
       country
@@ -117,6 +132,7 @@ class Religion
       hre_heretic_religion
       hre_religion
       icon
+      fetishist_cult
       misguided_heretic
       on_convert
       personal_deity
@@ -124,13 +140,16 @@ class Religion
       uses_isolationism
       uses_karma
       uses_piety
+      uses_anglican_power
+      uses_hussite_power
+      uses_church_power
       will_get_center
       holy_sites
     ]
     unknown_keys = @node.keys - known_keys
 
     unless unknown_keys.empty?
-      p unknown_keys
+      puts "#{name} - #{unknown_keys.join(", ")}"
     end
   end
 
@@ -159,6 +178,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     @karma = {}
     @piety = {}
     @cults = {}
+    @aspects = {}
   end
 
   def parse_static_bonuses
@@ -223,18 +243,23 @@ class AnalyzeIdeaGroups < EU4Analysis
     @piety["negative_piety"] = node["negative_piety"]
   end
 
+  # Anglican are one-off and are not scored!
+  def parse_aspects
+    glob("common/church_aspects/*.txt").each do |path|
+      parse(path).each do |aspect_name, aspect|
+        @aspects[aspect_name] = aspect["modifier"]
+      end
+    end
+  end
+
   def incomplete_religions
     %W[
-      anglican
       catholic
       confucianism
-      coptic
-      hussite
       inti
       mesoamerican_religion
       nahuatl
       orthodox
-      protestant
       reformed
       sikhism
     ]
@@ -302,6 +327,33 @@ class AnalyzeIdeaGroups < EU4Analysis
         next
       end
 
+      # Anglican (except it does nothing), Protestant, Hussite
+      if religion.uses_aspects?
+        available_aspects = religion.aspects.select{|a| @aspects[a]}
+        best_3 = available_aspects.map{|a| [bonus_score(@aspects[a]), a] }.sort.reverse.first(3)
+        best_3_score = best_3_score = best_3.map(&:first).sum
+        best_3_names = best_3.map(&:last).map{|n| " + #{localization(n)}" }.join
+        yield(
+          "#{localization(religion_name)}#{best_3_names}",
+          religion.primary_score + best_3_score
+        )
+        next
+      end
+
+      # Coptic
+      if religion.uses_blessings?
+        best_blessings = religion.blessings.map{|bn| [bonus_score(@aspects[bn]), bn] }.sort.reverse
+        (0..best_blessings.size).each do |i|
+          best_score = best_blessings[0, i].map(&:first).sum
+          best_names = best_blessings[0, i].map(&:last).map{|n| " + #{localization(n)}" }.join
+          yield(
+            "#{localization(religion_name)}#{best_names}",
+            religion.primary_score + best_score
+          )
+        end
+        next
+      end
+
       # Fetishism
       if religion.fetishist_cult?
         @cults.each do |cult_name, cult_bonus|
@@ -324,6 +376,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     parse_isolationism
     parse_static_modifiers
     parse_cults
+    parse_aspects
 
     results = []
     each_religion do |name, score|
@@ -333,7 +386,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     puts ""
     incomplete_list = incomplete_religions.map{|n| localization(n)}
     results.sort.reverse.each do |score, name|
-      puts("#{score.round(6)} - #{name}" + (incomplete_list.include?(name) ? " [INCOMPLETE]" : ""))
+      puts("#{"%.6f" % score.round(6)} - #{name}" + (incomplete_list.include?(name) ? " [INCOMPLETE]" : ""))
     end
   end
 end

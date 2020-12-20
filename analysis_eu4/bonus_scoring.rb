@@ -86,6 +86,8 @@ class BonusScoring
     :pr_captains_influence,
     :burghers_influence_modifier,
     :brahmins_hindu_influence_modifier,
+    :church_influence_modifier,
+    :nobles_influence_modifier,
 
     # 1.30 estate loyalty is trivial to handle and not worth anything
     :brahmins_hindu_loyalty_modifier,
@@ -260,6 +262,14 @@ class BonusScoring
   end
   def adm_tech_cost_modifier(v)
     monthly_adm_points 4 * -v
+  end
+
+  # This is Hussite power, and it's terrible.
+  # You'll declare war like every 2 years, and let's assume it costs 100 adm to undo this
+  # And you also generate AE from doing this (which is honestly the insane part)
+  def stability_cost_to_declare_war(v)
+    monthly_adm_points((-100.0/24) * v)
+    # FIXME: score AE
   end
 
   # Assuming +1 stab button / 15 years (base cost 100, mods apply to this not total)
