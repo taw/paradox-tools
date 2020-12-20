@@ -95,6 +95,10 @@ class Religion
     !!@node["authority"]
   end
 
+  def uses_papacy?
+    !!@node["papacy"]
+  end
+
   def fetishist_cult?
     !!@node["fetishist_cult"]
   end
@@ -139,29 +143,39 @@ class Religion
     !@reforms.empty?
   end
 
+  def orthodox_icons
+    @node["orthodox_icons"]
+  end
+
   def unknown_keys_warning!
     known_keys = %W[
       allowed_center_conversion
       allowed_conversion
       aspects
       aspects_name
+      authority
       blessings
       can_have_secondary_religion
       color
       country
       country_as_secondary
       date
+      declare_war_in_regency
+      doom
       fetishist_cult
       flag_emblem_index_range
       flags_with_emblem_percentage
-      declare_war_in_regency
       harmonized_modifier
+      has_patriarchs
       heretic
+      holy_sites
       hre_heretic_religion
       hre_religion
       icon
       misguided_heretic
       on_convert
+      orthodox_icons
+      papacy
       personal_deity
       province
       reform_tooltip
@@ -173,9 +187,6 @@ class Religion
       uses_karma
       uses_piety
       will_get_center
-      holy_sites
-      doom
-      authority
     ]
     unknown_keys = @node.keys - known_keys
 
@@ -186,9 +197,7 @@ class Religion
 
   def incomplete?
     %W[
-      catholic
       confucianism
-      orthodox
       reformed
       sikhism
     ].include?(name)
@@ -207,6 +216,18 @@ class Religion
       end
       yield(school_name, school_bonus)
     end
+  end
+
+  def each_icon
+    orthodox_icons.each do |icon_name, icon|
+      bonus = {}
+      icon.each do |k,v|
+        next if %W[allow ai_will_do].include?(k)
+        bonus[k] = v
+      end
+      yield(icon_name, bonus)
+    end
+    yield("No Icon", {})
   end
 
   def each_variant
@@ -310,29 +331,29 @@ class Religion
         if uses_doom?
           # Nahuatl
           yield(
-            "#{localization(name)} + 0 Doom #{best_names}",
+            "#{localization(name)} + 0% Doom #{best_names}",
             primary_score + best_score
           )
           yield(
-            "#{localization(name)} + 50 Doom #{best_names}",
+            "#{localization(name)} + 50% Doom #{best_names}",
             primary_score + best_score + bonus_score(@analysis.doom) * 0.5
           )
           yield(
-            "#{localization(name)} + 100 Doom #{best_names}",
+            "#{localization(name)} + 100% Doom #{best_names}",
             primary_score + best_score + bonus_score(@analysis.doom)
           )
         elsif uses_authority?
           # Inti
           yield(
-            "#{localization(name)} + 0 Authority #{best_names}",
+            "#{localization(name)} + 0% Authority #{best_names}",
             primary_score + best_score
           )
           yield(
-            "#{localization(name)} + 50 Authority #{best_names}",
+            "#{localization(name)} + 50% Authority #{best_names}",
             primary_score + best_score + bonus_score(@analysis.authority) * 0.5
           )
           yield(
-            "#{localization(name)} + 100 Authority #{best_names}",
+            "#{localization(name)} + 100% Authority #{best_names}",
             primary_score + best_score + bonus_score(@analysis.authority)
           )
         else
@@ -342,6 +363,39 @@ class Religion
             primary_score + best_score
           )
         end
+      end
+      return
+    end
+
+    # Catholic
+    # There are a bunch of extra mechanics, so this score is unfairly low
+    if uses_papacy?
+      yield(localization(name), primary_score)
+      yield(localization(name) + " + Curia Controller", primary_score + bonus_score(@analysis.curia_controller))
+      return
+    end
+
+    # Orthodox
+    # Assume orthodox_icons and has_patriarchs go together
+    # Also assume you get 100% global and 50% local bonus (your lands are 50% Orthodox)
+    if orthodox_icons
+      patriarch_score = 0.5 * bonus_score(@analysis.patriarch_authority_local) + bonus_score(@analysis.patriarch_authority_global)
+      each_icon do |icon_name, icon|
+        yield(
+          localization(name) + " 0% Patriarchy + #{localization(icon_name)}",
+          primary_score + bonus_score(icon)
+        )
+
+        yield(
+          localization(name) + " 50% Patriarchy + #{localization(icon_name)}",
+          primary_score + bonus_score(icon) + 0.5 * patriarch_score
+        )
+
+        yield(
+          localization(name) + " 100% Patriarchy + #{localization(icon_name)}",
+          primary_score + bonus_score(icon) + patriarch_score
+        )
+
       end
       return
     end
@@ -364,7 +418,19 @@ class Religion
 end
 
 class AnalyzeReligions < EU4Analysis
-  attr_reader :religions, :piety, :karma, :isolationism, :cults, :aspects, :doom, :authority
+  attr_reader(
+    :aspects,
+    :authority,
+    :cults,
+    :curia_controller,
+    :doom,
+    :isolationism,
+    :karma,
+    :patriarch_authority_global,
+    :patriarch_authority_local,
+    :piety,
+    :religions,
+  )
 
   def initialize(*)
     super
@@ -439,6 +505,9 @@ class AnalyzeReligions < EU4Analysis
     @piety["negative_piety"] = node["negative_piety"]
     @doom = node["doom"]
     @authority = node["authority"]
+    @curia_controller = node["curia_controller"]
+    @patriarch_authority_local = node["patriarch_authority_local"]
+    @patriarch_authority_global = node["patriarch_authority_global"]
   end
 
   # Anglican are one-off and are not scored!

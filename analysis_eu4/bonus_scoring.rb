@@ -202,6 +202,14 @@ class BonusScoring
     global_revolt_risk v
   end
 
+  # These are different names of same modifier depending on scope
+  def local_unrest(v)
+    global_unrest(v)
+  end
+  def local_manpower_modifier(v)
+    global_manpower_modifier(v)
+  end
+
   # For most countries army tradition will be much higher than navy tradition
   # Assume average 25% navy and 75% army tradition
   def navy_tradition_decay(v)
