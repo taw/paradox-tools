@@ -1,0 +1,27 @@
+#!/usr/bin/env ruby
+
+require "pathname"
+
+# I only added Usage: support at one point
+# so many old scripts don't use it
+
+files = `git ls`.lines.map(&:chomp)
+scripts = files.select{|x| Pathname(x).executable? }
+
+puts "Testing all scripts:"
+scripts.each do |s|
+  # They take no arguments
+  next if s =~ %r[/build_]
+  next if s =~ %r[validate_usage]
+  # They take STDIN as input
+  next if s =~ %r[eu4_trade_graph/validade_trade_graph]
+  next if s =~ %r[eu4_trade_graph/visualize_trade_graph]
+
+  print s, " "
+  output = `./#{s} 2>&1`
+  if output =~ /Usage/
+    print "[OK]\n"
+  else
+    print "[FAIL]\n"
+  end
+end
