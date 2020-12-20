@@ -43,8 +43,16 @@ class Religion
     !!@node["uses_isolationism"]
   end
 
+  def uses_karma?
+    !!@node["uses_karma"]
+  end
+
   def has_deities?
     !@deities.empty?
+  end
+
+  def fetishist_cult?
+    !!@node["fetishist_cult"]
   end
 
   def blessings
@@ -84,6 +92,7 @@ class Religion
       personal_deity
       province
       uses_isolationism
+      uses_karma
       will_get_center
       holy_sites
     ]
@@ -101,6 +110,8 @@ class AnalyzeIdeaGroups < EU4Analysis
     @groups = {}
     @religions = {}
     @isolationism = []
+    @karma = {}
+    @cults = {}
   end
 
   def parse_static_bonuses
@@ -143,6 +154,47 @@ class AnalyzeIdeaGroups < EU4Analysis
     end
   end
 
+  def parse_cults
+    glob("common/fetishist_cults/*.txt").each do |path|
+      parse(path).each do |cult_name, cult|
+        bonuses = {}
+        cult.each do |k, v|
+          next if %W[ai_will_do sprite allow].include?(k)
+          bonuses[k] = v
+        end
+        @cults[cult_name] = bonuses
+      end
+    end
+  end
+
+  def parse_karma
+    node = parse("common/static_modifiers/00_static_modifiers.txt")
+    @karma["karma_just_right"] = node["karma_just_right"]
+    @karma["karma_too_high"] = node["karma_too_high"]
+    @karma["karma_too_low"] = node["karma_too_low"]
+  end
+
+  def incomplete_religions
+    %W[
+      anglican
+      catholic
+      confucianism
+      coptic
+      hussite
+      ibadi
+      inti
+      mesoamerican_religion
+      nahuatl
+      orthodox
+      protestant
+      reformed
+      shamanism
+      shiite
+      sikhism
+      sunni
+    ]
+  end
+
   def each_religion
     @religions.each do |religion_name, religion|
       # Tengri
@@ -179,6 +231,28 @@ class AnalyzeIdeaGroups < EU4Analysis
         next
       end
 
+      # Buddhist variants
+      if religion.uses_karma?
+        @karma.each do |karma_name, karma_bonus|
+          yield(
+            "#{localization(religion_name)} + #{localization(karma_name)}",
+            religion.primary_score + bonus_score(karma_bonus)
+          )
+        end
+        next
+      end
+
+      # Fetishing
+      if religion.fetishist_cult?
+        @cults.each do |cult_name, cult_bonus|
+          yield(
+            "#{localization(religion_name)} + #{localization(cult_name)}",
+            religion.primary_score + bonus_score(cult_bonus)
+          )
+        next
+        end
+      end
+
       # Default - Jewish, Zoroastrian, Animist, Totemism
       yield(localization(religion_name), religion.primary_score)
     end
@@ -188,6 +262,8 @@ class AnalyzeIdeaGroups < EU4Analysis
     parse_static_bonuses
     parse_deity
     parse_isolationism
+    parse_karma
+    parse_cults
 
     results = []
     each_religion do |name, score|
@@ -195,45 +271,9 @@ class AnalyzeIdeaGroups < EU4Analysis
     end
 
     results.sort.each do |score, name|
-      puts "#{score.round(6)} - #{name}"
+      puts("#{score.round(6)} - #{name}")
     end
   end
 end
 
 AnalyzeIdeaGroups.new_from_argv.call
-
-__END__
-
-TODO:
-
-anglican
-buddhism
-catholic
-confucianism
-coptic
-hussite
-ibadi
-inti
-mahayana
-mesoamerican_religion
-nahuatl
-orthodox
-protestant
-reformed
-religious_schools
-shamanism
-shiite
-sikhism
-sunni
-vajrayana
-
-DONE:
-
-animism
-hinduism
-jewish
-norse_pagan_reformed
-shinto
-tengri_pagan_reformed
-totemism
-zoroastrian
