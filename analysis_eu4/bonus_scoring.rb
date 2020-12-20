@@ -1332,7 +1332,7 @@ class BonusScoring
         # worthless right now
       when :max_revolutionary_zeal
         # extremely situational
-      when :drill_gain_modifier
+      when :drill_gain_modifier, :drill_decay_modifier
         # drill is so underpowered this is worthless
       when :disengagement_chance
         # naval combat model is very complex, it's not clear this does much at all
@@ -1345,6 +1345,8 @@ class BonusScoring
       when :declare_war_in_regency
         # would have been pretty good back in EU3
         # especially since consort regencies, this is extremely rare, so not worth scoring
+      when :raze_power_gain
+        # extremely situational
       else
         warn "#{k} not scored"
       end

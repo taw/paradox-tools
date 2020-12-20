@@ -123,6 +123,10 @@ class Religion
     !!blessing_names
   end
 
+  def uses_fervor?
+    !!@node["fervor"]
+  end
+
   def blessings
     @blessings ||= blessing_names.map{|n| [n, @analysis.aspects[n]] }.to_h
   end
@@ -166,6 +170,7 @@ class Religion
       date
       declare_war_in_regency
       doom
+      fervor
       fetishist_cult
       flag_emblem_index_range
       flags_with_emblem_percentage
@@ -198,13 +203,6 @@ class Religion
     unless unknown_keys.empty?
       puts "#{name} - #{unknown_keys.join(", ")}"
     end
-  end
-
-  def incomplete?
-    %W[
-      reformed
-      sikhism
-    ].include?(name)
   end
 
   def each_school_bonus
@@ -421,6 +419,37 @@ class Religion
       return
     end
 
+    # Reformed
+    if uses_fervor?
+      @analysis.fervor.each do |fervor_name, fervor_bonus|
+        yield(
+          localization(name) + " + #{localization(fervor_name)}",
+          primary_score + bonus_score(fervor_bonus)
+        )
+      end
+
+      yield(
+        localization(name) + " + No Fervor",
+        primary_score
+      )
+      return
+    end
+
+    # Sikh
+    # these are event modifiers so we hardcode it
+    if name == "sikhism"
+      @analysis.gurus.each do |guru_name, guru_bonus|
+        yield(
+          localization(name) + " + #{localization(guru_name)}",
+          primary_score + bonus_score(guru_bonus)
+        )
+      end
+
+      yield(localization(name) + " + No Guru", primary_score)
+
+      return
+    end
+
     # Default - Jewish, Zoroastrian, Animist, Totemism
     yield(localization(name), primary_score)
   end
@@ -445,6 +474,7 @@ class AnalyzeReligions < EU4Analysis
     :cults,
     :curia_controller,
     :doom,
+    :fervor,
     :harmony,
     :isolationism,
     :karma,
@@ -452,6 +482,7 @@ class AnalyzeReligions < EU4Analysis
     :patriarch_authority_local,
     :piety,
     :religions,
+    :gurus,
   )
 
   def initialize(*)
@@ -464,6 +495,8 @@ class AnalyzeReligions < EU4Analysis
     @cults = {}
     @aspects = {}
     @harmony = {}
+    @fervor = {}
+    @gurus = {}
   end
 
   def parse_static_bonuses
@@ -558,10 +591,31 @@ class AnalyzeReligions < EU4Analysis
     end
   end
 
+  def parse_fervor
+    glob("common/fervor/*.txt").each do |path|
+      parse(path).each do |name, bonus|
+        @fervor[name] = bonus["effect"]
+      end
+    end
+  end
+
+  def parse_gurus
+    parse("common/event_modifiers/00_event_modifiers.txt").each do |name, bonus|
+      if name =~ /\Aguru_/
+        b = {}
+        bonus.each{|k,v|
+          next if k == "religion"
+          b[k] = v
+        }
+        @gurus[name] = b
+      end
+    end
+  end
+
   def each_religion_varinat
     @religions.each do |religion_name, religion|
       religion.each_variant do |variant_name, score|
-        yield(score, variant_name, religion.incomplete?)
+        yield(score, variant_name)
       end
     end
   end
@@ -574,15 +628,16 @@ class AnalyzeReligions < EU4Analysis
     parse_cults
     parse_aspects
     parse_religious_reforms
+    parse_fervor
+    parse_gurus
 
     results = []
-    each_religion_varinat do |score, name, incomplete|
-      results << [score, name, incomplete]
+    each_religion_varinat do |score, name|
+      results << [score, name]
     end
 
-    puts ""
-    results.sort.reverse.each do |score, name, incomplete|
-      puts("#{"%.6f" % score.round(6)} - #{name}" + (incomplete ? " [INCOMPLETE]" : ""))
+    results.sort.reverse.each do |score, name|
+      puts("#{"%.6f" % score.round(6)} - #{name}")
     end
   end
 end
