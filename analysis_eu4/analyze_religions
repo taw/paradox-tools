@@ -46,10 +46,11 @@ class ReligionGroup
 end
 
 class Religion
-  attr_reader :group, :name, :node
+  attr_reader :analysis, :group, :name, :node
   attr_accessor :deities
 
-  def initialize(group, name, node)
+  def initialize(analysis, group, name, node)
+    @analysis = analysis
     @group = group
     @name = name
     @node = node
@@ -85,20 +86,28 @@ class Religion
     !!@node["fetishist_cult"]
   end
 
-  def aspects
+  def aspect_names
     @node["aspects"]
   end
 
   def uses_aspects?
-    !!aspects
+    !!aspect_names
   end
 
-  def blessings
+  def aspects
+    @aspects ||= aspect_names.map{|n| [n, @analysis.aspects[n]] }.select{|k,v| v}.to_h
+  end
+
+  def blessing_names
     @node["blessings"]
   end
 
   def uses_blessings?
-    !!blessings
+    !!blessing_names
+  end
+
+  def blessings
+    @blessings ||= blessing_names.map{|n| [n, @analysis.aspects[n]] }.to_h
   end
 
   def deity_score(deity_name)
@@ -153,6 +162,19 @@ class Religion
     end
   end
 
+  def incomplete?
+    %W[
+      catholic
+      confucianism
+      inti
+      mesoamerican_religion
+      nahuatl
+      orthodox
+      reformed
+      sikhism
+    ].include?(name)
+  end
+
   def each_school_bonus
     # This is not directly in game files, just in event that lets you pick school when you change religion to Muslim
     sunni_schools = ["hanafi_school", "hanbali_school", "maliki_school", "shafii_school"]
@@ -167,9 +189,117 @@ class Religion
       yield(school_name, school_bonus)
     end
   end
+
+  def each_variant
+    # Tengri
+    if has_secondary?
+      @analysis.religions.each do |secondary_name, secondary_religion|
+        next if secondary_name == name
+        yield(
+          "#{localization(name)} + #{localization(secondary_name)}",
+          secondary_religion.secondary_score
+        )
+      end
+      return
+    end
+
+    # Hindu, Norse
+    if has_deities?
+      deities.each do |deity_name, deity|
+        yield(
+          "#{localization(name)} + #{localization(deity_name)}",
+          primary_score + deity_score(deity_name)
+        )
+      end
+      return
+    end
+
+    # Shinto
+    if uses_isolationism?
+      @analysis.isolationism.each do |level_name, level_number, bonus|
+        yield(
+          "#{localization(name)} + #{localization(level_name)} (#{level_number})",
+          primary_score + bonus_score(bonus)
+        )
+      end
+      return
+    end
+
+    # Buddhist variants
+    if uses_karma?
+      @analysis.karma.each do |karma_name, karma_bonus|
+        yield(
+          "#{localization(name)} + #{localization(karma_name)}",
+          primary_score + bonus_score(karma_bonus)
+        )
+      end
+      return
+    end
+
+    # Islam
+    # assume uses_piety and religious_schools belong together,
+    # otherwise I'd need to have complex recursion setup here
+    if uses_piety?
+      each_school_bonus do |school_name, school_bonus|
+        @analysis.piety.each do |piety_name, piety_bonus|
+          yield(
+            "#{localization(name)} + #{localization(school_name)} + #{localization(piety_name)}",
+            primary_score + bonus_score(school_bonus) + bonus_score(piety_bonus)
+          )
+        end
+      end
+      return
+    end
+
+    # Anglican (except it does nothing), Protestant, Hussite
+    if uses_aspects?
+      best_3 = aspects.map{|an,a| [bonus_score(a), an] }.sort.reverse.first(3)
+      best_3_score = best_3_score = best_3.map(&:first).sum
+      best_3_names = best_3.map(&:last).map{|n| " + #{localization(n)}" }.join
+      yield(
+        "#{localization(name)}#{best_3_names}",
+        primary_score + best_3_score
+      )
+      return
+    end
+
+    # Coptic
+    if uses_blessings?
+      best_blessings = blessings.map{|bn,b| [bonus_score(b), bn] }.sort.reverse
+      (0..best_blessings.size).each do |i|
+        best_score = best_blessings[0, i].map(&:first).sum
+        best_names = best_blessings[0, i].map(&:last).map{|n| " + #{localization(n)}" }.join
+        yield(
+          "#{localization(name)}#{best_names}",
+          primary_score + best_score
+        )
+      end
+      return
+    end
+
+    # Fetishism
+    if fetishist_cult?
+      @analysis.cults.each do |cult_name, cult_bonus|
+        yield(
+          "#{localization(name)} + #{localization(cult_name)}",
+          primary_score + bonus_score(cult_bonus)
+        )
+      end
+      return
+    end
+
+    # Default - Jewish, Zoroastrian, Animist, Totemism
+    yield(localization(name), primary_score)
+  end
+
+  def localization(q)
+    @analysis.localization(q)
+  end
 end
 
-class AnalyzeIdeaGroups < EU4Analysis
+class AnalyzeReligions < EU4Analysis
+  attr_reader :religions, :piety, :karma, :isolationism, :cults, :aspects
+
   def initialize(*)
     super
     @groups = {}
@@ -192,7 +322,7 @@ class AnalyzeIdeaGroups < EU4Analysis
           next
         end
 
-        @religions[religion_name] = Religion.new(group, religion_name, religion)
+        @religions[religion_name] = Religion.new(self, group, religion_name, religion)
       end
     end
   end
@@ -252,121 +382,11 @@ class AnalyzeIdeaGroups < EU4Analysis
     end
   end
 
-  def incomplete_religions
-    %W[
-      catholic
-      confucianism
-      inti
-      mesoamerican_religion
-      nahuatl
-      orthodox
-      reformed
-      sikhism
-    ]
-  end
-
-  def each_religion
+  def each_religion_varinat
     @religions.each do |religion_name, religion|
-      # Tengri
-      if religion.has_secondary?
-        @religions.each do |secondary_name, secondary_religion|
-          next if secondary_name == religion_name
-          yield(
-            "#{localization(religion_name)} + #{localization(secondary_name)}",
-            secondary_religion.secondary_score
-          )
-        end
-        next
+      religion.each_variant do |variant_name, score|
+        yield(score, variant_name, religion.incomplete?)
       end
-
-      # Hindu, Norse
-      if religion.has_deities?
-        religion.deities.each do |deity_name, deity|
-          yield(
-            "#{localization(religion_name)} + #{localization(deity_name)}",
-            religion.primary_score + religion.deity_score(deity_name)
-          )
-        end
-        next
-      end
-
-      # Shinto
-      if religion.uses_isolationism?
-        @isolationism.each do |level_name, level_number, bonus|
-          yield(
-            "#{localization(religion_name)} + #{localization(level_name)} (#{level_number})",
-            religion.primary_score + bonus_score(bonus)
-          )
-        end
-        next
-      end
-
-      # Buddhist variants
-      if religion.uses_karma?
-        @karma.each do |karma_name, karma_bonus|
-          yield(
-            "#{localization(religion_name)} + #{localization(karma_name)}",
-            religion.primary_score + bonus_score(karma_bonus)
-          )
-        end
-        next
-      end
-
-      # Islam
-      # assume uses_piety and religious_schools belong together,
-      # otherwise I'd need to have complex recursion setup here
-      if religion.uses_piety?
-        religion.each_school_bonus do |school_name, school_bonus|
-          @piety.each do |piety_name, piety_bonus|
-            yield(
-              "#{localization(religion_name)} + #{localization(school_name)} + #{localization(piety_name)}",
-              religion.primary_score + bonus_score(school_bonus) + bonus_score(piety_bonus)
-            )
-          end
-        end
-        next
-      end
-
-      # Anglican (except it does nothing), Protestant, Hussite
-      if religion.uses_aspects?
-        available_aspects = religion.aspects.select{|a| @aspects[a]}
-        best_3 = available_aspects.map{|a| [bonus_score(@aspects[a]), a] }.sort.reverse.first(3)
-        best_3_score = best_3_score = best_3.map(&:first).sum
-        best_3_names = best_3.map(&:last).map{|n| " + #{localization(n)}" }.join
-        yield(
-          "#{localization(religion_name)}#{best_3_names}",
-          religion.primary_score + best_3_score
-        )
-        next
-      end
-
-      # Coptic
-      if religion.uses_blessings?
-        best_blessings = religion.blessings.map{|bn| [bonus_score(@aspects[bn]), bn] }.sort.reverse
-        (0..best_blessings.size).each do |i|
-          best_score = best_blessings[0, i].map(&:first).sum
-          best_names = best_blessings[0, i].map(&:last).map{|n| " + #{localization(n)}" }.join
-          yield(
-            "#{localization(religion_name)}#{best_names}",
-            religion.primary_score + best_score
-          )
-        end
-        next
-      end
-
-      # Fetishism
-      if religion.fetishist_cult?
-        @cults.each do |cult_name, cult_bonus|
-          yield(
-            "#{localization(religion_name)} + #{localization(cult_name)}",
-            religion.primary_score + bonus_score(cult_bonus)
-          )
-        next
-        end
-      end
-
-      # Default - Jewish, Zoroastrian, Animist, Totemism
-      yield(localization(religion_name), religion.primary_score)
     end
   end
 
@@ -379,16 +399,15 @@ class AnalyzeIdeaGroups < EU4Analysis
     parse_aspects
 
     results = []
-    each_religion do |name, score|
-      results << [score, name]
+    each_religion_varinat do |score, name, incomplete|
+      results << [score, name, incomplete]
     end
 
     puts ""
-    incomplete_list = incomplete_religions.map{|n| localization(n)}
-    results.sort.reverse.each do |score, name|
-      puts("#{"%.6f" % score.round(6)} - #{name}" + (incomplete_list.include?(name) ? " [INCOMPLETE]" : ""))
+    results.sort.reverse.each do |score, name, incomplete|
+      puts("#{"%.6f" % score.round(6)} - #{name}" + (incomplete ? " [INCOMPLETE]" : ""))
     end
   end
 end
 
-AnalyzeIdeaGroups.new_from_argv.call
+AnalyzeReligions.new_from_argv.call
