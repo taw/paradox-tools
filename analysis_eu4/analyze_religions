@@ -3,19 +3,63 @@
 require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
-class AnalyzeIdeaGroups < EU4Analysis
-  def initialize(*)
-    super
-    @religions = Set[]
-    @religion_node = {}
-    @country = {}
-    @country_secondary = {}
+def bonus_score(bonuses)
+  score = BonusScoring.new
+  bonuses.each do |k,v|
+    score.send(k,v)
+  end
+  score.score
+end
+
+class ReligionGroup
+  attr_reader :name, :node
+  attr_accessor :religions, :religious_schools
+
+  def initialize(name, node)
+    @name = name
+    @node = node
+    @religions = []
     @religious_schools = nil
-    @has_deity = {}
-    @deity = {}
+  end
+end
+
+class Religion
+  attr_reader :group, :name, :node
+  attr_accessor :deities
+
+  def initialize(group, name, node)
+    @group = group
+    @name = name
+    @node = node
+    @deities = {}
+    unknown_keys_warning!
   end
 
-  def parse_static_bonuses
+  def has_secondary?
+    @node["can_have_secondary_religion"]
+  end
+
+  def has_deities?
+    !@deities.empty?
+  end
+
+  def blessings
+    @node["blessings"]
+  end
+
+  def deity_score(deity_name)
+    bonus_score @deities[deity_name]
+  end
+
+  def primary_score
+    bonus_score @node["country"]
+  end
+
+  def secondary_score
+    bonus_score @node["country_as_secondary"]
+  end
+
+  def unknown_keys_warning!
     known_keys = %W[
       allowed_center_conversion
       allowed_conversion
@@ -35,27 +79,40 @@ class AnalyzeIdeaGroups < EU4Analysis
       personal_deity
       province
       will_get_center
+      holy_sites
     ]
+    unknown_keys = @node.keys - known_keys
 
-    parse("common/religions/00_religion.txt").each do |group_name, group|
-      group.each do |religion_name, religion|
+    unless unknown_keys.empty?
+      p unknown_keys
+    end
+  end
+end
+
+class AnalyzeIdeaGroups < EU4Analysis
+  def initialize(*)
+    super
+    @groups = {}
+    @religions = {}
+    # @religion_node = {}
+    # @country = {}
+    # @country_secondary = {}
+    # @religious_schools = nil
+    # @deity = {}
+  end
+
+  def parse_static_bonuses
+    parse("common/religions/00_religion.txt").each do |group_name, group_node|
+      group = @groups[group_name] = ReligionGroup.new(group_name, group)
+
+      group_node.each do |religion_name, religion|
         next unless religion.is_a?(PropertyList)
         if religion_name == "religious_schools"
-          raise "Multiple religions with schools" if @religious_schools
-          @religious_schools = religion
+          group.religious_schools = religion
           next
         end
 
-        @religions << religion_name
-        @country[religion_name] = religion["country"]
-        @country_secondary[religion_name] = religion["country_as_secondary"]
-        @religion_node[religion_name] = religion
-        @has_deity[religion_name] = religion["personal_deity"] # we actually check if deities exist
-        unknown_keys = religion.keys - known_keys
-
-        unless unknown_keys.empty?
-          p unknown_keys
-        end
+        @religions[religion_name] = Religion.new(group, religion_name, religion)
       end
     end
   end
@@ -70,64 +127,39 @@ class AnalyzeIdeaGroups < EU4Analysis
         end
         deity["allow"].each do |k,v|
           raise unless k == "religion"
-          @deity[v] ||= {}
-          @deity[v][deity_name] = bonuses
+          @religions[v].deities[deity_name] = bonuses
         end
       end
     end
   end
 
-  def bonus_score(bonuses)
-    score = BonusScoring.new
-    bonuses.each do |k,v|
-      score.send(k,v)
-    end
-    score
-  end
-
-  def has_secondary?(religion_name)
-    @religion_node[religion_name]["can_have_secondary_religion"]
-  end
-
-  def primary_bonus_score(religion_name)
-    bonus_score(@country[religion_name]).score
-  end
-
-  def secondary_bonus_score(religion_name)
-    bonus_score(@country_secondary[religion_name]).score
-  end
-
-  def deity_bonus_score(religion_name, deity_name)
-    bonus_score(@deity[religion_name][deity_name]).score
-  end
-
   def each_religion
-    @religions.each do |religion_name|
+    @religions.each do |religion_name, religion|
       # Tengri
-      if has_secondary?(religion_name)
-        @religions.each do |secondary_name|
+      if religion.has_secondary?
+        @religions.each do |secondary_name, secondary_religion|
           next if secondary_name == religion_name
           yield(
             "#{localization(religion_name)} + #{localization(secondary_name)}",
-            secondary_bonus_score(secondary_name)
+            secondary_religion.secondary_score
           )
         end
         next
       end
 
       # Hindu, Norse
-      if @deity[religion_name]
-        @deity[religion_name].each do |deity_name, deity|
+      if religion.has_deities?
+        religion.deities.each do |deity_name, deity|
           yield(
             "#{localization(religion_name)} + #{localization(deity_name)}",
-            primary_bonus_score(religion_name) + deity_bonus_score(religion_name, deity_name)
+            religion.primary_score + religion.deity_score(deity_name)
           )
         end
         next
       end
 
       # Default - Jewish, Zoroastrian, Animist, Totemism
-      yield(localization(religion_name), primary_bonus_score(religion_name))
+      yield(localization(religion_name), religion.primary_score)
     end
   end
 
@@ -135,7 +167,12 @@ class AnalyzeIdeaGroups < EU4Analysis
     parse_static_bonuses
     parse_deity
 
+    results = []
     each_religion do |name, score|
+      results << [score, name]
+    end
+
+    results.sort.each do |score, name|
       puts "#{score.round(6)} - #{name}"
     end
   end
