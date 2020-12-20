@@ -47,7 +47,7 @@ end
 
 class Religion
   attr_reader :analysis, :group, :name, :node
-  attr_accessor :deities
+  attr_accessor :deities, :reforms
 
   def initialize(analysis, group, name, node)
     @analysis = analysis
@@ -55,6 +55,11 @@ class Religion
     @name = name
     @node = node
     @deities = {}
+    @reforms = {}
+    # It really belongs there
+    if @node["declare_war_in_regency"]
+      @node["country"].add! "declare_war_in_regency", true
+    end
     unknown_keys_warning!
   end
 
@@ -80,6 +85,14 @@ class Religion
 
   def has_deities?
     !@deities.empty?
+  end
+
+  def uses_doom?
+    !!@node["doom"]
+  end
+
+  def uses_authority?
+    !!@node["authority"]
   end
 
   def fetishist_cult?
@@ -122,6 +135,10 @@ class Religion
     bonus_score @node["country_as_secondary"]
   end
 
+  def has_reforms?
+    !@reforms.empty?
+  end
+
   def unknown_keys_warning!
     known_keys = %W[
       allowed_center_conversion
@@ -134,26 +151,31 @@ class Religion
       country
       country_as_secondary
       date
+      fetishist_cult
       flag_emblem_index_range
       flags_with_emblem_percentage
+      declare_war_in_regency
       harmonized_modifier
       heretic
       hre_heretic_religion
       hre_religion
       icon
-      fetishist_cult
       misguided_heretic
       on_convert
       personal_deity
       province
+      reform_tooltip
+      religious_reforms
+      uses_anglican_power
+      uses_church_power
+      uses_hussite_power
       uses_isolationism
       uses_karma
       uses_piety
-      uses_anglican_power
-      uses_hussite_power
-      uses_church_power
       will_get_center
       holy_sites
+      doom
+      authority
     ]
     unknown_keys = @node.keys - known_keys
 
@@ -166,9 +188,6 @@ class Religion
     %W[
       catholic
       confucianism
-      inti
-      mesoamerican_religion
-      nahuatl
       orthodox
       reformed
       sikhism
@@ -253,22 +272,18 @@ class Religion
 
     # Anglican (except it does nothing), Protestant, Hussite
     if uses_aspects?
-      best_3 = aspects.map{|an,a| [bonus_score(a), an] }.sort.reverse.first(3)
-      best_3_score = best_3_score = best_3.map(&:first).sum
-      best_3_names = best_3.map(&:last).map{|n| " + #{localization(n)}" }.join
+      best_score, best_names = choose_best_n_options(aspects, 3)
       yield(
-        "#{localization(name)}#{best_3_names}",
-        primary_score + best_3_score
+        "#{localization(name)}#{best_names}",
+        primary_score + best_score
       )
       return
     end
 
     # Coptic
     if uses_blessings?
-      best_blessings = blessings.map{|bn,b| [bonus_score(b), bn] }.sort.reverse
-      (0..best_blessings.size).each do |i|
-        best_score = best_blessings[0, i].map(&:first).sum
-        best_names = best_blessings[0, i].map(&:last).map{|n| " + #{localization(n)}" }.join
+      (0..blessings.size).each do |i|
+        best_score, best_names = choose_best_n_options(blessings, i)
         yield(
           "#{localization(name)}#{best_names}",
           primary_score + best_score
@@ -288,8 +303,59 @@ class Religion
       return
     end
 
+    # Maya, Inti, Nahuatl
+    if has_reforms?
+      (0..reforms.size).each do |i|
+        best_score, best_names = choose_best_n_options(reforms, i)
+        if uses_doom?
+          # Nahuatl
+          yield(
+            "#{localization(name)} + 0 Doom #{best_names}",
+            primary_score + best_score
+          )
+          yield(
+            "#{localization(name)} + 50 Doom #{best_names}",
+            primary_score + best_score + bonus_score(@analysis.doom) * 0.5
+          )
+          yield(
+            "#{localization(name)} + 100 Doom #{best_names}",
+            primary_score + best_score + bonus_score(@analysis.doom)
+          )
+        elsif uses_authority?
+          # Inti
+          yield(
+            "#{localization(name)} + 0 Authority #{best_names}",
+            primary_score + best_score
+          )
+          yield(
+            "#{localization(name)} + 50 Authority #{best_names}",
+            primary_score + best_score + bonus_score(@analysis.authority) * 0.5
+          )
+          yield(
+            "#{localization(name)} + 100 Authority #{best_names}",
+            primary_score + best_score + bonus_score(@analysis.authority)
+          )
+        else
+          # Maya
+          yield(
+            "#{localization(name)}#{best_names}",
+            primary_score + best_score
+          )
+        end
+      end
+      return
+    end
+
     # Default - Jewish, Zoroastrian, Animist, Totemism
     yield(localization(name), primary_score)
+  end
+
+  def choose_best_n_options(options, count)
+    ranked = options.map{|on,o| [bonus_score(o), on] }.sort.reverse
+    [
+      ranked[0, count].map(&:first).sum,
+      ranked[0, count].map(&:last).map{|n| " + #{localization(n)}" }.join,
+    ]
   end
 
   def localization(q)
@@ -298,7 +364,7 @@ class Religion
 end
 
 class AnalyzeReligions < EU4Analysis
-  attr_reader :religions, :piety, :karma, :isolationism, :cults, :aspects
+  attr_reader :religions, :piety, :karma, :isolationism, :cults, :aspects, :doom, :authority
 
   def initialize(*)
     super
@@ -371,6 +437,8 @@ class AnalyzeReligions < EU4Analysis
     @karma["karma_too_low"] = node["karma_too_low"]
     @piety["positive_piety"] = node["positive_piety"]
     @piety["negative_piety"] = node["negative_piety"]
+    @doom = node["doom"]
+    @authority = node["authority"]
   end
 
   # Anglican are one-off and are not scored!
@@ -378,6 +446,20 @@ class AnalyzeReligions < EU4Analysis
     glob("common/church_aspects/*.txt").each do |path|
       parse(path).each do |aspect_name, aspect|
         @aspects[aspect_name] = aspect["modifier"]
+      end
+    end
+  end
+
+  def parse_religious_reforms
+    glob("common/religious_reforms/*.txt").each do |path|
+      parse(path).each do |group_name, group|
+        group.each do |reform_name, reform|
+          next if %W[trigger can_buy_idea ai_will_do].include?(reform_name)
+          group["trigger"].each do |k,v|
+            raise unless k == "religion"
+            @religions[v].reforms[reform_name] = reform
+          end
+        end
       end
     end
   end
@@ -397,6 +479,7 @@ class AnalyzeReligions < EU4Analysis
     parse_static_modifiers
     parse_cults
     parse_aspects
+    parse_religious_reforms
 
     results = []
     each_religion_varinat do |score, name, incomplete|

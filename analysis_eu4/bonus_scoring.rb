@@ -1334,6 +1334,9 @@ class BonusScoring
         # this button is far from being worth pressing, even with discounts
       when :monarch_lifespan
         # this would arguably be good for republics, otherwise it's about neutral
+      when :declare_war_in_regency
+        # would have been pretty good back in EU3
+        # especially since consort regencies, this is extremely rare, so not worth scoring
       else
         warn "#{k} not scored"
       end
