@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
-class AnalyzePolicies < ParadoxGame
+class AnalyzePolicies < EU4Analysis
   def each_policy
     glob("common/policies/*").each do |path|
       parse(path).each do |name, policy|
@@ -34,4 +34,4 @@ class AnalyzePolicies < ParadoxGame
   end
 end
 
-AnalyzePolicies.new(*ARGV).call
+AnalyzePolicies.new_from_argv.call

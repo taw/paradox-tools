@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class IdeasNotAvailableForCustom < ParadoxGame
+class IdeasNotAvailableForCustom < EU4Analysis
   def bonuses_from_custom_ideas
     unless @bonuses_from_custom_ideas
       @bonuses_from_custom_ideas = {}
@@ -73,4 +73,4 @@ class IdeasNotAvailableForCustom < ParadoxGame
   end
 end
 
-IdeasNotAvailableForCustom.new(*ARGV).call
+IdeasNotAvailableForCustom.new_from_argv.call

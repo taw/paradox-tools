@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox_game"
+require_relative "./eu4_analysis"
 require "set"
 
-class CountriesByDate < ParadoxGame
+class CountriesByDate < EU4Analysis
   def year_one
     @year_one ||= Date.parse("0001.01.01")
   end
@@ -87,4 +87,4 @@ class CountriesByDate < ParadoxGame
   end
 end
 
-CountriesByDate.new(*ARGV).call
+CountriesByDate.new_from_argv.call

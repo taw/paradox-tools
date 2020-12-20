@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # This is for pre-1.25
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class AnalyzeMissions < ParadoxGame
+class AnalyzeMissions < EU4Analysis
   def initialize(*args)
     super
     @immediate = Set[]
@@ -44,7 +44,7 @@ class AnalyzeMissions < ParadoxGame
     }.compact
   end
 
-  def analyze_missions!
+  def call
     each_mission do |name, mission|
       @immediate += parse_effects(mission["immediate"])
       @effect += parse_effects(mission["effect"])
@@ -61,4 +61,4 @@ class AnalyzeMissions < ParadoxGame
   end
 end
 
-AnalyzeMissions.new(*ARGV).analyze_missions!
+AnalyzeMissions.new_from_argv.call

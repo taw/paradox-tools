@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 require "simplex"
 require "pp"
 
-class AnalyzeCustomIdeaBonuses < ParadoxGame
+class AnalyzeCustomIdeaBonuses < EU4Analysis
   def call
     print_scores!
     [0, 50, 100, 150, 200, 300, 400, 600].each do |max_cost|
@@ -121,4 +121,4 @@ class AnalyzeCustomIdeaBonuses < ParadoxGame
   end
 end
 
-AnalyzeCustomIdeaBonuses.new(*ARGV).call
+AnalyzeCustomIdeaBonuses.new_from_argv.call

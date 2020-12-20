@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
-class AnalyzeStaticModifiers < ParadoxGame
+class AnalyzeStaticModifiers < EU4Analysis
   # These make no sense on scoring function
   def province_modifiers
     %W[
@@ -32,4 +32,4 @@ class AnalyzeStaticModifiers < ParadoxGame
   end
 end
 
-AnalyzeStaticModifiers.new(*ARGV).call
+AnalyzeStaticModifiers.new_from_argv.call

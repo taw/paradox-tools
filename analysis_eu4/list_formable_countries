@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class ListFormableCountries < ParadoxGame
+class ListFormableCountries < EU4Analysis
   def each_change_tag(node, &blk)
     return unless node.is_a?(PropertyList)
     node.each do |key, val|
@@ -12,7 +12,7 @@ class ListFormableCountries < ParadoxGame
       each_change_tag(val, &blk)
     end
   end
-  
+
   def formable_countries
     tags = Set[]
     glob("{events,decisions}/*.txt").each do |path|
@@ -34,4 +34,4 @@ class ListFormableCountries < ParadoxGame
   end
 end
 
-ListFormableCountries.new(*ARGV).call
+ListFormableCountries.new_from_argv.call

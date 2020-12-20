@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
-class EvaluateCustomNation < ParadoxGame
+class EvaluateCustomNation < EU4Analysis
   # from common/defines.lua
   def default_custom_idea_costs
     [0, 5, 15, 30]
@@ -84,7 +84,7 @@ class EvaluateCustomNation < ParadoxGame
   end
 end
 
-EvaluateCustomNation.new(*ARGV).call(
+EvaluateCustomNation.new_from_argv.call(
   ["custom_idea_slave_raiders", 1],
   ["custom_idea_core_creation", 2],
   ["custom_global_trade_goods_size_modifier", 2],

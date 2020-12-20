@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
-class AnalyzeReforms < ParadoxGame
+class AnalyzeReforms < EU4Analysis
   def each_reform
     glob("common/government_reforms/*").each do |path|
       # syntax errors
@@ -59,4 +59,4 @@ class AnalyzeReforms < ParadoxGame
   end
 end
 
-AnalyzeReforms.new(*ARGV).call
+AnalyzeReforms.new_from_argv.call

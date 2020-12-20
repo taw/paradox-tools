@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # this is for EU4 1.25+
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class AnalyzeMissionsCountries < ParadoxGame
+class AnalyzeMissionsCountries < EU4Analysis
   def each_mission_file(&block)
     glob("missions/*").each do |path|
       yield parse(path)
@@ -147,4 +147,4 @@ class AnalyzeMissionsCountries < ParadoxGame
   end
 end
 
-AnalyzeMissionsCountries.new(*ARGV).call
+AnalyzeMissionsCountries.new_from_argv.call

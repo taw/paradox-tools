@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
-class AnalyzePersonalities < ParadoxGame
+class AnalyzePersonalities < EU4Analysis
   def each_personality
     glob("common/ruler_personalities/*.txt").each do |path|
       parse(path).each do |name, personality|
@@ -71,4 +71,4 @@ class AnalyzePersonalities < ParadoxGame
   end
 end
 
-AnalyzePersonalities.new(*ARGV).call
+AnalyzePersonalities.new_from_argv.call

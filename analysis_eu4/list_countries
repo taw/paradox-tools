@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
 class CountryHistory
   attr_reader :tag
@@ -69,7 +69,7 @@ class ProvinceHistory
   end
 end
 
-class ListCountries < ParadoxGame
+class ListCountries < EU4Analysis
   def date
     @date ||= Date.parse("1444.11.11")
   end
@@ -188,4 +188,4 @@ class ListCountries < ParadoxGame
   end
 end
 
-ListCountries.new(*ARGV).call
+ListCountries.new_from_argv.call

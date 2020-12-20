@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
 require "csv"
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class AnalyzeUnitPips < ParadoxGame
+class AnalyzeUnitPips < EU4Analysis
   def units
     unless @units
       @units = {}
@@ -39,6 +39,31 @@ class AnalyzeUnitPips < ParadoxGame
     }
   end
 
+  def generate_report_for_best_units(type)
+    relevant_tech_groups = [nil, *unit_tech_groups].select{|tg|
+      !!best_unit(999, type, tg)
+    }
+    CSV(STDOUT.dup) do |csv|
+      csv << [type.capitalize]
+      csv << ["Tech", *relevant_tech_groups]
+      mil_tech.each_with_index do |tech, i|
+        csv << [i,
+          *relevant_tech_groups.map{|tg|
+            unit = best_unit(i, type, tg)
+            unit && unit["total_pips"]
+          }
+        ]
+      end
+      csv << []
+    end
+  end
+
+  def call
+    generate_report_for_best_units "infantry"
+    generate_report_for_best_units "cavalry"
+    generate_report_for_best_units "artillery"
+  end
+
   private
 
   def parse_unit_file(path)
@@ -55,31 +80,4 @@ class AnalyzeUnitPips < ParadoxGame
   end
 end
 
-unless ARGV[0]
-  STDERR.puts "Usage: #{$0} /path/to/eu4"
-  exit 1
-end
-
-def generate_report_for_best_units(eu4, type)
-  relevant_tech_groups = [nil, *eu4.unit_tech_groups].select{|tg|
-    !!eu4.best_unit(999, type, tg)
-  }
-  CSV(STDOUT.dup) do |csv|
-    csv << [type.capitalize]
-    csv << ["Tech", *relevant_tech_groups]
-    eu4.mil_tech.each_with_index do |tech, i|
-      csv << [i,
-        *relevant_tech_groups.map{|tg|
-          unit = eu4.best_unit(i, type, tg)
-          unit && unit["total_pips"]
-        }
-      ]
-    end
-    csv << []
-  end
-end
-
-eu4 = AnalyzeUnitPips.new(*ARGV)
-generate_report_for_best_units eu4, "infantry"
-generate_report_for_best_units eu4, "cavalry"
-generate_report_for_best_units eu4, "artillery"
+AnalyzeUnitPips.new_from_argv.call

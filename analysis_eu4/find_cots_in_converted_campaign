@@ -3,9 +3,9 @@
 # This needs to be copied into converter mod to see localized names:
 # localisation/prov_names_l_english.yml
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class FindCotsInConvertedCampaign < ParadoxGame
+class FindCotsInConvertedCampaign < EU4Analysis
   def call
     cots = []
     glob("history/provinces/*.txt").each do |path|
@@ -25,4 +25,4 @@ class FindCotsInConvertedCampaign < ParadoxGame
   end
 end
 
-FindCotsInConvertedCampaign.new(*ARGV).call
+FindCotsInConvertedCampaign.new_from_argv.call

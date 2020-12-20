@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class CountryPrimaryCultures < ParadoxGame
+class CountryPrimaryCultures < EU4Analysis
   def each_country_primary_culture
     parse("common/cultures/00_cultures.txt").each do |group_name, group|
       group = group.to_h
@@ -16,8 +16,12 @@ class CountryPrimaryCultures < ParadoxGame
       end
     end
   end
+
+  def call
+    each_country_primary_culture do |culture_name, primary_tag|
+      puts [primary_tag, culture_name].join("\t")
+    end
+  end
 end
 
-CountryPrimaryCultures.new(*ARGV).each_country_primary_culture do |culture_name, primary_tag|
-  puts [primary_tag, culture_name].join("\t")
-end
+CountryPrimaryCultures.new_from_argv.call

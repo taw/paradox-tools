@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
 class TradeNode
   attr_reader :province_ids, :provinces, :outgoing
@@ -229,7 +229,7 @@ class Map
   end
 end
 
-class ListConverterProvinceValue < ParadoxGame
+class ListConverterProvinceValue < EU4Analysis
   def province_modifiers
     @province_modifiers ||= begin
       map = {}
@@ -305,4 +305,4 @@ class ListConverterProvinceValue < ParadoxGame
   end
 end
 
-ListConverterProvinceValue.new(*ARGV).call
+ListConverterProvinceValue.new_from_argv.call

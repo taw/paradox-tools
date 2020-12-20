@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
 class Array
   def count_by
@@ -117,7 +117,7 @@ class IdeaGroup
   end
 end
 
-class AnalyzeCustomIdeas < ParadoxGame
+class AnalyzeCustomIdeas < EU4Analysis
   def each_national_idea_group
     glob("common/ideas/*").each do |path|
       parse(path).each do |group_name, idea_group|
@@ -162,12 +162,11 @@ class AnalyzeCustomIdeas < ParadoxGame
     @custom_ideas
   end
 
-  def analyze!
+  def call
     each_national_idea_group do |group_name, idea_group|
       IdeaGroup.new(group_name, idea_group, self).analyze!
     end
   end
 end
 
-aci = AnalyzeCustomIdeas.new(*ARGV)
-aci.analyze!
+AnalyzeCustomIdeas.new_from_argv.call

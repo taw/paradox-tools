@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
-class AnalyzeIdeaGroups < ParadoxGame
+class AnalyzeIdeaGroups < EU4Analysis
   def each_idea_group
     glob("common/ideas/*").each do |path|
       parse(path).each do |name, idea_group|

@@ -1,8 +1,8 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
-class ValidateTradeNodes < ParadoxGame
+class ValidateTradeNodes < EU4Analysis
   def default_map
     @default_map ||= parse("map/default.map")
   end
@@ -61,4 +61,4 @@ class ValidateTradeNodes < ParadoxGame
   end
 end
 
-ValidateTradeNodes.new(*ARGV).call
+ValidateTradeNodes.new_from_argv.call

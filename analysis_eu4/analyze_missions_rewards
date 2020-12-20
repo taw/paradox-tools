@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative "../lib/paradox"
+require_relative "./eu4_analysis"
 
 class Mission
   attr_reader :node, :effect
@@ -142,7 +142,7 @@ class Mission
   end
 end
 
-class AnalyzeMissionRewards < ParadoxGame
+class AnalyzeMissionRewards < EU4Analysis
   def each_mission_file(&block)
     glob("missions/*").each do |path|
       yield parse(path)
@@ -180,4 +180,4 @@ class AnalyzeMissionRewards < ParadoxGame
   end
 end
 
-AnalyzeMissionRewards.new(*ARGV).call
+AnalyzeMissionRewards.new_from_argv.call
