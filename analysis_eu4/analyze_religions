@@ -39,6 +39,10 @@ class Religion
     @node["can_have_secondary_religion"]
   end
 
+  def uses_isolationism?
+    !!@node["uses_isolationism"]
+  end
+
   def has_deities?
     !@deities.empty?
   end
@@ -70,6 +74,7 @@ class Religion
       date
       flag_emblem_index_range
       flags_with_emblem_percentage
+      harmonized_modifier
       heretic
       hre_heretic_religion
       hre_religion
@@ -78,6 +83,7 @@ class Religion
       on_convert
       personal_deity
       province
+      uses_isolationism
       will_get_center
       holy_sites
     ]
@@ -94,11 +100,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     super
     @groups = {}
     @religions = {}
-    # @religion_node = {}
-    # @country = {}
-    # @country_secondary = {}
-    # @religious_schools = nil
-    # @deity = {}
+    @isolationism = []
   end
 
   def parse_static_bonuses
@@ -133,6 +135,14 @@ class AnalyzeIdeaGroups < EU4Analysis
     end
   end
 
+  def parse_isolationism
+    glob("common/isolationism/*.txt").each do |path|
+      parse(path).each do |level_name, level|
+        @isolationism << [level_name, level["isolation_value"], level["modifier"]]
+      end
+    end
+  end
+
   def each_religion
     @religions.each do |religion_name, religion|
       # Tengri
@@ -158,6 +168,17 @@ class AnalyzeIdeaGroups < EU4Analysis
         next
       end
 
+      # Shinto
+      if religion.uses_isolationism?
+        @isolationism.each do |level_name, level_number, bonus|
+          yield(
+            "#{localization(religion_name)} + #{localization(level_name)} (#{level_number})",
+            religion.primary_score + bonus_score(bonus)
+          )
+        end
+        next
+      end
+
       # Default - Jewish, Zoroastrian, Animist, Totemism
       yield(localization(religion_name), religion.primary_score)
     end
@@ -166,6 +187,7 @@ class AnalyzeIdeaGroups < EU4Analysis
   def call
     parse_static_bonuses
     parse_deity
+    parse_isolationism
 
     results = []
     each_religion do |name, score|
@@ -201,7 +223,6 @@ reformed
 religious_schools
 shamanism
 shiite
-shinto
 sikhism
 sunni
 vajrayana
@@ -212,6 +233,7 @@ animism
 hinduism
 jewish
 norse_pagan_reformed
+shinto
 tengri_pagan_reformed
 totemism
 zoroastrian
