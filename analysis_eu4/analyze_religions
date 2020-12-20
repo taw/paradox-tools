@@ -1,0 +1,134 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require_relative "bonus_scoring"
+
+class AnalyzeIdeaGroups < EU4Analysis
+  def initialize(*)
+    super
+    @religions = Set[]
+    @religion_node = {}
+    @country = {}
+    @country_secondary = {}
+    @religious_schools = nil
+  end
+
+  def parse_static_bonuses
+    known_keys = %W[
+      allowed_center_conversion
+      allowed_conversion
+      color
+      country
+      country_as_secondary
+      date
+      heretic
+      icon
+      on_convert
+      province
+      will_get_center
+    ]
+
+    parse("common/religions/00_religion.txt").each do |group_name, group|
+      group.each do |religion_name, religion|
+        next unless religion.is_a?(PropertyList)
+        if religion_name == "religious_schools"
+          raise "Multiple religions with schools" if @religious_schools
+          @religious_schools = religion
+          next
+        end
+
+        @religions << religion_name
+        @country[religion_name] = religion["country"]
+        @country_secondary[religion_name] = religion["country_as_secondary"]
+        @religion_node[religion_name] = religion
+        unknown_keys = religion.keys - known_keys
+
+        unless unknown_keys.empty?
+          p unknown_keys
+        end
+      end
+    end
+  end
+
+  def bonus_score(bonuses)
+    score = BonusScoring.new
+    bonuses.each do |k,v|
+      score.send(k,v)
+    end
+    score
+  end
+
+  def has_secondary?(religion_name)
+    @religion_node[religion_name]["can_have_secondary_religion"]
+  end
+
+  def primary_bonus_score(religion_name)
+    bonus_score(@country[religion_name]).score
+  end
+
+  def secondary_bonus_score(religion_name)
+    bonus_score(@country_secondary[religion_name]).score
+  end
+
+  def each_religion
+    @religions.each do |religion_name|
+      # Tengri
+      if has_secondary?(religion_name)
+        @religions.each do |secondary_name|
+          next if secondary_name == religion_name
+          yield("#{localization(religion_name)} + #{localization(secondary_name)}", secondary_bonus_score(secondary_name))
+        end
+        next
+      end
+
+      # Default - Jewish, Zoroastrian, Animist, Totemism
+      yield(localization(religion_name), primary_bonus_score(religion_name))
+    end
+  end
+
+
+  def call
+    parse_static_bonuses
+    each_religion do |name, score|
+      puts "* #{name} - #{score}"
+    end
+  end
+end
+
+AnalyzeIdeaGroups.new_from_argv.call
+
+__END__
+
+TODO:
+
+catholic
+anglican
+hussite
+protestant
+reformed
+orthodox
+coptic
+religious_schools
+sunni
+shiite
+ibadi
+buddhism
+vajrayana
+mahayana
+confucianism
+shinto
+hinduism
+sikhism
+shamanism
+inti
+nahuatl
+mesoamerican_religion
+norse_pagan_reformed
+
+DONE:
+
+animism
+totemism
+jewish
+zoroastrian
+tengri_pagan_reformed
