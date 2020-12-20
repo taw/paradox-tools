@@ -21,6 +21,28 @@ class ReligionGroup
     @religions = []
     @religious_schools = nil
   end
+
+  def uses_religious_schools?
+    !@religious_schools.empty?
+  end
+
+  # Not all are actually pickable, and most countries just start with one
+  def each_school_bonus
+    @religious_schools.each do |school_name, school|
+      bonuses = {}
+      school.each do |k, v|
+        next if %W[
+          potential_invite_scholar
+          can_invite_scholar
+          on_invite_scholar
+          invite_scholar_modifier_display
+          picture
+        ].include?(k)
+        bonuses[k] = v
+      end
+      yield school_name, bonuses
+    end
+  end
 end
 
 class Religion
@@ -33,6 +55,14 @@ class Religion
     @node = node
     @deities = {}
     unknown_keys_warning!
+  end
+
+  def has_religious_schools?
+    @group.uses_religious_schools?
+  end
+
+  def uses_piety?
+    !!@node["uses_piety"]
   end
 
   def has_secondary?
@@ -93,6 +123,7 @@ class Religion
       province
       uses_isolationism
       uses_karma
+      uses_piety
       will_get_center
       holy_sites
     ]
@@ -100,6 +131,21 @@ class Religion
 
     unless unknown_keys.empty?
       p unknown_keys
+    end
+  end
+
+  def each_school_bonus
+    # This is not directly in game files, just in event that lets you pick school when you change religion to Muslim
+    sunni_schools = ["hanafi_school", "hanbali_school", "maliki_school", "shafii_school"]
+    shiite_schools = ["ismaili_school", "jafari_school", "zaidi_school"]
+    group.each_school_bonus do |school_name, school_bonus|
+      if name == "sunni"
+        next unless sunni_schools.include?(school_name)
+      end
+      if name == "shiite"
+        next unless shiite_schools.include?(school_name)
+      end
+      yield(school_name, school_bonus)
     end
   end
 end
@@ -111,6 +157,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     @religions = {}
     @isolationism = []
     @karma = {}
+    @piety = {}
     @cults = {}
   end
 
@@ -167,11 +214,13 @@ class AnalyzeIdeaGroups < EU4Analysis
     end
   end
 
-  def parse_karma
+  def parse_static_modifiers
     node = parse("common/static_modifiers/00_static_modifiers.txt")
     @karma["karma_just_right"] = node["karma_just_right"]
     @karma["karma_too_high"] = node["karma_too_high"]
     @karma["karma_too_low"] = node["karma_too_low"]
+    @piety["positive_piety"] = node["positive_piety"]
+    @piety["negative_piety"] = node["negative_piety"]
   end
 
   def incomplete_religions
@@ -181,17 +230,13 @@ class AnalyzeIdeaGroups < EU4Analysis
       confucianism
       coptic
       hussite
-      ibadi
       inti
       mesoamerican_religion
       nahuatl
       orthodox
       protestant
       reformed
-      shamanism
-      shiite
       sikhism
-      sunni
     ]
   end
 
@@ -242,7 +287,22 @@ class AnalyzeIdeaGroups < EU4Analysis
         next
       end
 
-      # Fetishing
+      # Islam
+      # assume uses_piety and religious_schools belong together,
+      # otherwise I'd need to have complex recursion setup here
+      if religion.uses_piety?
+        religion.each_school_bonus do |school_name, school_bonus|
+          @piety.each do |piety_name, piety_bonus|
+            yield(
+              "#{localization(religion_name)} + #{localization(school_name)} + #{localization(piety_name)}",
+              religion.primary_score + bonus_score(school_bonus) + bonus_score(piety_bonus)
+            )
+          end
+        end
+        next
+      end
+
+      # Fetishism
       if religion.fetishist_cult?
         @cults.each do |cult_name, cult_bonus|
           yield(
@@ -262,7 +322,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     parse_static_bonuses
     parse_deity
     parse_isolationism
-    parse_karma
+    parse_static_modifiers
     parse_cults
 
     results = []
@@ -270,8 +330,10 @@ class AnalyzeIdeaGroups < EU4Analysis
       results << [score, name]
     end
 
-    results.sort.each do |score, name|
-      puts("#{score.round(6)} - #{name}")
+    puts ""
+    incomplete_list = incomplete_religions.map{|n| localization(n)}
+    results.sort.reverse.each do |score, name|
+      puts("#{score.round(6)} - #{name}" + (incomplete_list.include?(name) ? " [INCOMPLETE]" : ""))
     end
   end
 end
