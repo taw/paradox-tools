@@ -85,6 +85,7 @@ class BonusScoring
     :rr_jacobins_influence,
     :pr_captains_influence,
     :burghers_influence_modifier,
+    :brahmins_hindu_influence_modifier,
 
     # 1.30 estate loyalty is trivial to handle and not worth anything
     :brahmins_hindu_loyalty_modifier,

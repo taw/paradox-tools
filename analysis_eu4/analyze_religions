@@ -11,19 +11,28 @@ class AnalyzeIdeaGroups < EU4Analysis
     @country = {}
     @country_secondary = {}
     @religious_schools = nil
+    @has_deity = {}
+    @deity = {}
   end
 
   def parse_static_bonuses
     known_keys = %W[
       allowed_center_conversion
       allowed_conversion
+      can_have_secondary_religion
       color
       country
       country_as_secondary
       date
+      flag_emblem_index_range
+      flags_with_emblem_percentage
       heretic
+      hre_heretic_religion
+      hre_religion
       icon
+      misguided_heretic
       on_convert
+      personal_deity
       province
       will_get_center
     ]
@@ -41,10 +50,28 @@ class AnalyzeIdeaGroups < EU4Analysis
         @country[religion_name] = religion["country"]
         @country_secondary[religion_name] = religion["country_as_secondary"]
         @religion_node[religion_name] = religion
+        @has_deity[religion_name] = religion["personal_deity"] # we actually check if deities exist
         unknown_keys = religion.keys - known_keys
 
         unless unknown_keys.empty?
           p unknown_keys
+        end
+      end
+    end
+  end
+
+  def parse_deity
+    glob("common/personal_deities/*.txt").each do |path|
+      parse(path).each do |deity_name, deity|
+        bonuses = {}
+        deity.each do |k, v|
+          next if %W[ai_will_do sprite allow].include?(k)
+          bonuses[k] = v
+        end
+        deity["allow"].each do |k,v|
+          raise unless k == "religion"
+          @deity[v] ||= {}
+          @deity[v][deity_name] = bonuses
         end
       end
     end
@@ -70,13 +97,31 @@ class AnalyzeIdeaGroups < EU4Analysis
     bonus_score(@country_secondary[religion_name]).score
   end
 
+  def deity_bonus_score(religion_name, deity_name)
+    bonus_score(@deity[religion_name][deity_name]).score
+  end
+
   def each_religion
     @religions.each do |religion_name|
       # Tengri
       if has_secondary?(religion_name)
         @religions.each do |secondary_name|
           next if secondary_name == religion_name
-          yield("#{localization(religion_name)} + #{localization(secondary_name)}", secondary_bonus_score(secondary_name))
+          yield(
+            "#{localization(religion_name)} + #{localization(secondary_name)}",
+            secondary_bonus_score(secondary_name)
+          )
+        end
+        next
+      end
+
+      # Hindu, Norse
+      if @deity[religion_name]
+        @deity[religion_name].each do |deity_name, deity|
+          yield(
+            "#{localization(religion_name)} + #{localization(deity_name)}",
+            primary_bonus_score(religion_name) + deity_bonus_score(religion_name, deity_name)
+          )
         end
         next
       end
@@ -86,11 +131,12 @@ class AnalyzeIdeaGroups < EU4Analysis
     end
   end
 
-
   def call
     parse_static_bonuses
+    parse_deity
+
     each_religion do |name, score|
-      puts "* #{name} - #{score}"
+      puts "#{score.round(6)} - #{name}"
     end
   end
 end
@@ -101,34 +147,34 @@ __END__
 
 TODO:
 
-catholic
 anglican
+buddhism
+catholic
+confucianism
+coptic
 hussite
+ibadi
+inti
+mahayana
+mesoamerican_religion
+nahuatl
+orthodox
 protestant
 reformed
-orthodox
-coptic
 religious_schools
-sunni
-shiite
-ibadi
-buddhism
-vajrayana
-mahayana
-confucianism
-shinto
-hinduism
-sikhism
 shamanism
-inti
-nahuatl
-mesoamerican_religion
-norse_pagan_reformed
+shiite
+shinto
+sikhism
+sunni
+vajrayana
 
 DONE:
 
 animism
-totemism
+hinduism
 jewish
-zoroastrian
+norse_pagan_reformed
 tengri_pagan_reformed
+totemism
+zoroastrian
