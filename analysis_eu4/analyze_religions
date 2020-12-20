@@ -147,6 +147,10 @@ class Religion
     @node["orthodox_icons"]
   end
 
+  def uses_harmony?
+    !!@node["uses_harmony"]
+  end
+
   def unknown_keys_warning!
     known_keys = %W[
       allowed_center_conversion
@@ -182,6 +186,7 @@ class Religion
       religious_reforms
       uses_anglican_power
       uses_church_power
+      uses_harmony
       uses_hussite_power
       uses_isolationism
       uses_karma
@@ -197,7 +202,6 @@ class Religion
 
   def incomplete?
     %W[
-      confucianism
       reformed
       sikhism
     ].include?(name)
@@ -400,6 +404,23 @@ class Religion
       return
     end
 
+    # Confucian
+    if uses_harmony?
+      # Neutral harmony
+      yield(localization(name), primary_score)
+
+      yield(
+        localization(name) + " + High Harmony",
+        primary_score + bonus_score(@analysis.harmony["high_harmony"])
+      )
+
+      yield(
+        localization(name) + " + Low Harmony",
+        primary_score + bonus_score(@analysis.harmony["low_harmony"])
+      )
+      return
+    end
+
     # Default - Jewish, Zoroastrian, Animist, Totemism
     yield(localization(name), primary_score)
   end
@@ -424,6 +445,7 @@ class AnalyzeReligions < EU4Analysis
     :cults,
     :curia_controller,
     :doom,
+    :harmony,
     :isolationism,
     :karma,
     :patriarch_authority_global,
@@ -441,6 +463,7 @@ class AnalyzeReligions < EU4Analysis
     @piety = {}
     @cults = {}
     @aspects = {}
+    @harmony = {}
   end
 
   def parse_static_bonuses
@@ -503,6 +526,8 @@ class AnalyzeReligions < EU4Analysis
     @karma["karma_too_low"] = node["karma_too_low"]
     @piety["positive_piety"] = node["positive_piety"]
     @piety["negative_piety"] = node["negative_piety"]
+    @harmony["high_harmony"] = node["high_harmony"]
+    @harmony["low_harmony"] = node["low_harmony"]
     @doom = node["doom"]
     @authority = node["authority"]
     @curia_controller = node["curia_controller"]

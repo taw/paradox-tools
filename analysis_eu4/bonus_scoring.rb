@@ -1229,7 +1229,7 @@ class BonusScoring
       when :global_missionary_strength
         total += 50.0*v
       when :global_revolt_risk
-        total -= 0.75*v
+        total -= 0.5*v
       when :global_autonomy
         # Monthly autonomy change
         total += -5.0*v
