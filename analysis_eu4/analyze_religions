@@ -238,7 +238,7 @@ class Religion
       @analysis.religions.each do |secondary_name, secondary_religion|
         next if secondary_name == name
         yield(
-          "#{localization(name)} + #{localization(secondary_name)}",
+          localization(secondary_name),
           secondary_religion.secondary_score
         )
       end
@@ -249,7 +249,7 @@ class Religion
     if has_deities?
       deities.each do |deity_name, deity|
         yield(
-          "#{localization(name)} + #{localization(deity_name)}",
+          localization(deity_name),
           primary_score + deity_score(deity_name)
         )
       end
@@ -260,7 +260,7 @@ class Religion
     if uses_isolationism?
       @analysis.isolationism.each do |level_name, level_number, bonus|
         yield(
-          "#{localization(name)} + #{localization(level_name)} (#{level_number})",
+          "#{localization(level_name)} (#{level_number})",
           primary_score + bonus_score(bonus)
         )
       end
@@ -271,7 +271,7 @@ class Religion
     if uses_karma?
       @analysis.karma.each do |karma_name, karma_bonus|
         yield(
-          "#{localization(name)} + #{localization(karma_name)}",
+          localization(karma_name),
           primary_score + bonus_score(karma_bonus)
         )
       end
@@ -285,7 +285,7 @@ class Religion
       each_school_bonus do |school_name, school_bonus|
         @analysis.piety.each do |piety_name, piety_bonus|
           yield(
-            "#{localization(name)} + #{localization(school_name)} + #{localization(piety_name)}",
+            [localization(school_name), localization(piety_name)],
             primary_score + bonus_score(school_bonus) + bonus_score(piety_bonus)
           )
         end
@@ -297,7 +297,7 @@ class Religion
     if uses_aspects?
       best_score, best_names = choose_best_n_options(aspects, 3)
       yield(
-        "#{localization(name)}#{best_names}",
+        best_names,
         primary_score + best_score
       )
       return
@@ -308,7 +308,7 @@ class Religion
       (0..blessings.size).each do |i|
         best_score, best_names = choose_best_n_options(blessings, i)
         yield(
-          "#{localization(name)}#{best_names}",
+          best_names,
           primary_score + best_score
         )
       end
@@ -319,7 +319,7 @@ class Religion
     if fetishist_cult?
       @analysis.cults.each do |cult_name, cult_bonus|
         yield(
-          "#{localization(name)} + #{localization(cult_name)}",
+          localization(cult_name),
           primary_score + bonus_score(cult_bonus)
         )
       end
@@ -333,35 +333,35 @@ class Religion
         if uses_doom?
           # Nahuatl
           yield(
-            "#{localization(name)} + 0% Doom #{best_names}",
+            ["0% Doom", *best_names],
             primary_score + best_score
           )
           yield(
-            "#{localization(name)} + 50% Doom #{best_names}",
+            ["50% Doom", *best_names],
             primary_score + best_score + bonus_score(@analysis.doom) * 0.5
           )
           yield(
-            "#{localization(name)} + 100% Doom #{best_names}",
+            ["100% Doom", *best_names],
             primary_score + best_score + bonus_score(@analysis.doom)
           )
         elsif uses_authority?
           # Inti
           yield(
-            "#{localization(name)} + 0% Authority #{best_names}",
+            ["0% Authority", *best_names],
             primary_score + best_score
           )
           yield(
-            "#{localization(name)} + 50% Authority #{best_names}",
+            ["50% Authority", *best_names],
             primary_score + best_score + bonus_score(@analysis.authority) * 0.5
           )
           yield(
-            "#{localization(name)} + 100% Authority #{best_names}",
+            ["100% Authority", *best_names],
             primary_score + best_score + bonus_score(@analysis.authority)
           )
         else
           # Maya
           yield(
-            "#{localization(name)}#{best_names}",
+            best_names,
             primary_score + best_score
           )
         end
@@ -372,8 +372,8 @@ class Religion
     # Catholic
     # There are a bunch of extra mechanics, so this score is unfairly low
     if uses_papacy?
-      yield(localization(name), primary_score)
-      yield(localization(name) + " + Curia Controller", primary_score + bonus_score(@analysis.curia_controller))
+      yield(nil, primary_score)
+      yield("Curia Controller", primary_score + bonus_score(@analysis.curia_controller))
       return
     end
 
@@ -384,17 +384,17 @@ class Religion
       patriarch_score = 0.5 * bonus_score(@analysis.patriarch_authority_local) + bonus_score(@analysis.patriarch_authority_global)
       each_icon do |icon_name, icon|
         yield(
-          localization(name) + " 0% Patriarchy + #{localization(icon_name)}",
+          ["0% Patriarchy", localization(icon_name)],
           primary_score + bonus_score(icon)
         )
 
         yield(
-          localization(name) + " 50% Patriarchy + #{localization(icon_name)}",
+          ["50% Patriarchy", localization(icon_name)],
           primary_score + bonus_score(icon) + 0.5 * patriarch_score
         )
 
         yield(
-          localization(name) + " 100% Patriarchy + #{localization(icon_name)}",
+          ["100% Patriarchy", localization(icon_name)],
           primary_score + bonus_score(icon) + patriarch_score
         )
 
@@ -404,18 +404,25 @@ class Religion
 
     # Confucian
     if uses_harmony?
-      # Neutral harmony
-      yield(localization(name), primary_score)
+      harmonized_bonus = @analysis.harmonized.values.map{|h| bonus_score(h) }.sum
+      harmony = {
+        "High Harmony" => bonus_score(@analysis.harmony["high_harmony"]),
+        "Neutral Harmony" => 0,
+        "Low Harmony" => bonus_score(@analysis.harmony["low_harmony"]),
+      }
 
-      yield(
-        localization(name) + " + High Harmony",
-        primary_score + bonus_score(@analysis.harmony["high_harmony"])
-      )
+      harmony.each do |harmony_name, harmony_value|
+        yield(
+          [harmony_name, "All Harmony Bonuses"],
+          primary_score + harmony_value + harmonized_bonus
+        )
 
-      yield(
-        localization(name) + " + Low Harmony",
-        primary_score + bonus_score(@analysis.harmony["low_harmony"])
-      )
+        yield(
+          harmony_name,
+          primary_score + harmony_value
+        )
+      end
+
       return
     end
 
@@ -423,13 +430,13 @@ class Religion
     if uses_fervor?
       @analysis.fervor.each do |fervor_name, fervor_bonus|
         yield(
-          localization(name) + " + #{localization(fervor_name)}",
+          localization(fervor_name),
           primary_score + bonus_score(fervor_bonus)
         )
       end
 
       yield(
-        localization(name) + " + No Fervor",
+        "No Fervor",
         primary_score
       )
       return
@@ -440,25 +447,25 @@ class Religion
     if name == "sikhism"
       @analysis.gurus.each do |guru_name, guru_bonus|
         yield(
-          localization(name) + " + #{localization(guru_name)}",
+          "#{localization(guru_name)}",
           primary_score + bonus_score(guru_bonus)
         )
       end
 
-      yield(localization(name) + " + No Guru", primary_score)
+      yield("No Guru", primary_score)
 
       return
     end
 
     # Default - Jewish, Zoroastrian, Animist, Totemism
-    yield(localization(name), primary_score)
+    yield(nil, primary_score)
   end
 
   def choose_best_n_options(options, count)
     ranked = options.map{|on,o| [bonus_score(o), on] }.sort.reverse
     [
       ranked[0, count].map(&:first).sum,
-      ranked[0, count].map(&:last).map{|n| " + #{localization(n)}" }.join,
+      ranked[0, count].map(&:last).map{|n| localization(n) },
     ]
   end
 
@@ -476,6 +483,7 @@ class AnalyzeReligions < EU4Analysis
     :doom,
     :fervor,
     :harmony,
+    :harmonized,
     :isolationism,
     :karma,
     :patriarch_authority_global,
@@ -495,6 +503,7 @@ class AnalyzeReligions < EU4Analysis
     @cults = {}
     @aspects = {}
     @harmony = {}
+    @harmonized = {}
     @fervor = {}
     @gurus = {}
   end
@@ -599,7 +608,7 @@ class AnalyzeReligions < EU4Analysis
     end
   end
 
-  def parse_gurus
+  def parse_event_modifiers
     parse("common/event_modifiers/00_event_modifiers.txt").each do |name, bonus|
       if name =~ /\Aguru_/
         b = {}
@@ -608,14 +617,24 @@ class AnalyzeReligions < EU4Analysis
           b[k] = v
         }
         @gurus[name] = b
+      elsif name =~ /\Aharmonized_/
+        b = {}
+        bonus.each{|k,v|
+          next if k == "religion"
+          b[k] = v
+        }
+        @harmonized[name] = b
       end
     end
   end
 
-  def each_religion_varinat
+  def each_religion_variant
     @religions.each do |religion_name, religion|
       religion.each_variant do |variant_name, score|
-        yield(score, variant_name)
+        yield(
+          score,
+          [localization(religion_name), *variant_name].compact.join(" + ")
+        )
       end
     end
   end
@@ -629,10 +648,10 @@ class AnalyzeReligions < EU4Analysis
     parse_aspects
     parse_religious_reforms
     parse_fervor
-    parse_gurus
+    parse_event_modifiers
 
     results = []
-    each_religion_varinat do |score, name|
+    each_religion_variant do |score, name|
       results << [score, name]
     end
 
