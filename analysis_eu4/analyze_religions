@@ -2,6 +2,7 @@
 
 require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
+require "paint"
 
 def bonus_score(bonuses)
   score = BonusScoring.new
@@ -61,6 +62,10 @@ class Religion
       @node["country"].add! "declare_war_in_regency", true
     end
     unknown_keys_warning!
+  end
+
+  def color
+    @node["color"]
   end
 
   def has_religious_schools?
@@ -633,7 +638,10 @@ class AnalyzeReligions < EU4Analysis
       religion.each_variant do |variant_name, score|
         yield(
           score,
-          [localization(religion_name), *variant_name].compact.join(" + ")
+          [
+            Paint[localization(religion.name), religion.color],
+            *variant_name
+          ].compact.join(" + ")
         )
       end
     end
