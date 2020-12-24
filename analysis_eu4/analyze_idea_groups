@@ -37,7 +37,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     result
   end
 
-  def analyze_idea_groups!(show_details)
+  def call(show_details)
     output = []
     each_idea_group do |name, idea_group|
       bonuses = list_of_bonuses(idea_group)
@@ -70,4 +70,4 @@ while ARGV[0] =~ /\A--(.*)/
   ARGV.shift
 end
 
-AnalyzeIdeaGroups.new(ideas, *ARGV).analyze_idea_groups!(details)
+AnalyzeIdeaGroups.new(ideas, *ARGV).call(details)

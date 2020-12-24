@@ -74,32 +74,45 @@ class BonusScoring
     :naval_attrition,
 
     # Influence matters but we have no idea which direction you care about
+    :brahmins_hindu_influence_modifier,
+    :bureaucrats_influence,
+    :burghers_influence_modifier,
+    :church_influence_modifier,
+    :enuchs_influence,
+    :maratha_exclusive_influence_modifier,
+    :maratha_exclusive_loyalty_modifier,
+    :maratha_influence_modifier,
+    :maratha_loyalty_modifier,
+    :maratha_muslim_influence_modifier,
     :mr_aristocrats_influence,
     :mr_guilds_influence,
     :mr_traders_influence,
-    :bureaucrats_influence,
-    :enuchs_influence,
-    :temples_influence,
-    :rr_girondists_influence,
-    :rr_royalists_influence,
-    :rr_jacobins_influence,
-    :pr_captains_influence,
-    :burghers_influence_modifier,
-    :brahmins_hindu_influence_modifier,
-    :church_influence_modifier,
     :nobles_influence_modifier,
+    :pr_buccaneers_influence,
+    :pr_captains_influence,
+    :pr_smugglers_influence,
+    :rajput_exclusive_influence_modifier,
+    :rajput_exclusive_loyalty_modifier,
+    :rajput_influence_modifier,
+    :rajput_muslim_influence_modifier,
+    :rr_girondists_influence,
+    :rr_jacobins_influence,
+    :rr_royalists_influence,
+    :temples_influence,
+    :vaisyas_influence_modifier,
+    :vaisyas_non_muslim_influence_modifier,
 
     # 1.30 estate loyalty is trivial to handle and not worth anything
     :brahmins_hindu_loyalty_modifier,
     :brahmins_muslim_loyalty_modifier,
     :burghers_loyalty_modifier,
     :church_loyalty_modifier,
+    :cossacks_loyalty_modifier,
     :dhimmi_loyalty_modifier,
     :nobles_loyalty_modifier,
-    :vaisyas_loyalty_modifier,
-    :cossacks_loyalty_modifier,
     :nomadic_tribes_loyalty_modifier,
     :rajput_loyalty_modifier,
+    :vaisyas_loyalty_modifier,
 
     # This could be a bit more exploitable, but it's still situational which direction you care about,
     :monthly_piety,
@@ -1027,6 +1040,11 @@ class BonusScoring
     naval_forcelimit_modifier avg_autonomy_reduction
   end
 
+  # Assume late game value is 1000, so +100 is +10%
+  def governing_capacity(v)
+    governing_capacity_modifier(v / 1000.0)
+  end
+
   # This is multiplicative
   # Average AE is:
   #   first two eras: 0%
@@ -1072,6 +1090,17 @@ class BonusScoring
 
   def monarch_military_power(v)
     monthly_mil_points(v*15.0/16.0)
+  end
+
+  # Assume you get to use this 25% of the time
+  def local_heir_adm(v)
+    monarch_admin_power(v*0.25)
+  end
+  def local_heir_dip(v)
+    monarch_diplomatic_power(v*0.25)
+  end
+  def local_heir_mil(v)
+    monarch_military_power(v*0.25)
   end
 
   # This assumes you never take any policies beyond cap
@@ -1192,6 +1221,11 @@ class BonusScoring
   # like +5 per merchant would be 1% trade power
   def placed_merchant_power(v)
     global_trade_power 0.01*v/5.0
+  end
+
+  # It costs 100 and you'll press it about once every 50 years (so 7 button presses total)
+  def promote_culture_cost(v)
+    monthly_dip_points(-v*100/50/12.0)
   end
 
   def score

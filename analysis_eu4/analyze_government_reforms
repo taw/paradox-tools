@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require_relative "bonus_scoring"
+
+class AnalyzeGovernmentReforms < EU4Analysis
+  def each_government_reform
+    glob("common/government_reforms/*").each do |path|
+      parse(path).each do |name, reform|
+        next if name == "defaults_reform"
+        yield(name, reform)
+      end
+    end
+  end
+
+  def bonus_score(bonuses)
+    score = BonusScoring.new
+    bonuses.each do |k,v|
+      score.send(k,v)
+    end
+    score
+  end
+
+  def call(show_details)
+    output = []
+    each_government_reform do |name, reform|
+      modifiers = reform["modifiers"]
+      next unless modifiers # These are generally final level switching to something else
+      score = bonus_score(modifiers)
+      output << [score.score, localization(name), modifiers]
+    end
+    output.sort_by{|s,n| [-s,n]}.each do |score, name, details|
+      puts "• %.2f %s" % [score, name]
+      if show_details
+        details.each do |k, v|
+          puts "  • %.2f %s (%s)" % [bonus_score(k => v).score, k, v]
+        end
+      end
+    end
+  end
+end
+
+AnalyzeGovernmentReforms.new_from_argv.call(true)
