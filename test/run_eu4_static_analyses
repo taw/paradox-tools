@@ -16,6 +16,7 @@ mods = ARGV[2..-1]
 list = %Q[
   analysis_eu4/analyze_custom_idea_bonuses $g
   analysis_eu4/analyze_custom_ideas $g
+  analysis_eu4/analyze_government_reforms $g
   analysis_eu4/analyze_idea_groups $g
   analysis_eu4/analyze_missions_countries $g
   analysis_eu4/analyze_policies $g
