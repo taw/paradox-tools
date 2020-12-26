@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require "pathname"
+
 unless ARGV.size >= 3
   STDERR.puts "Usage: #{$0} savegame outputdir gamepath [mod1] [mod2...]"
   exit 1

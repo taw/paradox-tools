@@ -44,6 +44,9 @@ root_dir = Pathname(__dir__).parent
 s_str = save.shellescape
 g_str = [game, *mods].map(&:shellescape).join(" ")
 
+# Just in case it is still compressed, it will do nothing if already done
+system "bin/unpack_save", save_path
+
 output.mkpath
 list.each do |cmd|
   name = cmd.split.first.split("/").last
