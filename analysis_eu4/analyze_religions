@@ -237,6 +237,13 @@ class Religion
     yield("No Icon", {})
   end
 
+  def each_piety
+    @analysis.piety.each do |name, bonus|
+      yield(name, bonus)
+    end
+    yield("Neutral Piety", {})
+  end
+
   def each_variant
     # Tengri
     if has_secondary?
@@ -288,9 +295,9 @@ class Religion
     # otherwise I'd need to have complex recursion setup here
     if uses_piety?
       each_school_bonus do |school_name, school_bonus|
-        @analysis.piety.each do |piety_name, piety_bonus|
+        each_piety do |piety_name, piety_bonus|
           yield(
-            [localization(school_name), localization(piety_name)],
+            [localization(school_name), localization(piety_name)].compact,
             primary_score + bonus_score(school_bonus) + bonus_score(piety_bonus)
           )
         end
