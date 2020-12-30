@@ -45,11 +45,11 @@ class AnalyzeAE < EU4SaveAnalysis
         # opinion_of_them = @save.cached_opinion(tag, tag2)
         opinion_of_us = "%+d" % @save.cached_opinion(tag2, tag)
 
-        if rel
-          puts "* #{country_name(tag2)} #{ae} [#{opinion_of_us}] [#{rel}]"
-        else
-          puts "* #{country_name(tag2)} #{ae} [#{opinion_of_us}]"
-        end
+        line = "* #{country_name(tag2)} #{ae} [#{opinion_of_us}]"
+        line << " [#{rel}]" if rel
+        line << " [Coalition]" if @save.countries[tag2].coalition_target == tag
+
+        puts line
       end
       puts ""
     end

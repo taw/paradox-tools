@@ -253,6 +253,10 @@ class Country
     @opinion_cache ||= @node["opinion_cache"]
   end
 
+  def coalition_target
+    @node["coalition_target"]
+  end
+
   # This will be only approximate
   def estimated_truce_time
     unless @estimated_truce_time
