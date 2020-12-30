@@ -32,6 +32,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     holy_orders_for_all!
     rebalance_ming_crisis!
     fix_culture_groups!
+    improve_religious_rebels!
 
     # Experimental:
     # major_idea_group_rebalance!

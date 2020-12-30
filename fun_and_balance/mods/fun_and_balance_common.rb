@@ -418,6 +418,109 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # In principle this could move them between files, just assume it's all in same file
+  def move_culture!(culture, from_group, to_group)
+    patch_mod_file! "common/cultures/00_cultures.txt" do |node|
+      from_node = node[from_group] or raise "Can't find #{from_group}"
+      to_node = node[to_group] or raise "Can't find #{to_group}"
+      culture_node = from_node[culture] or raise "Can't find #{culture} in #{from_group}"
+      from_node.delete! culture
+      to_node.add! culture, culture_node
+    end
+  end
+
+  def prioritize_religious_rebels!
+    patch_mod_files!("common/rebel_types/*.txt") do |node|
+      node.each do |rebel_name, rebel|
+        religion = rebel["religion"]
+        next unless religion
+        binding.pry
+      end
+    end
+  end
+
+  def improve_religious_rebels!
+    enable_all_religious_rebels_flipping!
+    make_religious_rebels_more_likely_to_spawn!
+    make_religious_rebels_smarter!
+  end
+
+  def make_religious_rebels_more_likely_to_spawn!
+    patch_mod_files!("common/rebel_types/*.txt") do |node|
+      node.each do |rebel_name, rebel|
+        religion = rebel["religion"]
+        next unless religion
+
+        spawn = rebel["spawn_chance"]
+        spawn["factor"] = 10
+        spawn.find_all("modifier").find{|n| n["has_missionary"]}["factor"] = 20000
+      end
+    end
+  end
+
+  def make_religious_rebels_smarter!
+    patch_mod_files!("common/rebel_types/*.txt") do |node|
+      node.each do |rebel_name, rebel|
+        religion = rebel["religion"]
+        next unless religion
+
+        mov = rebel["movement_evaluation"]
+        mov["factor"] = 10 # Not sure it does anything
+        # Make them want to convert
+        mov.add! "modifier", PropertyList["factor", 10, "NOT", PropertyList["religion", religion]]
+        # Make them want to stop conversions a bit more
+        mov.find_all("modifier").find{|m| m["has_missionary"]}["factor"] = 10
+      end
+    end
+  end
+
+  def enable_all_religious_rebels_flipping!
+    patch_mod_files!("common/rebel_types/*.txt") do |node|
+      node.each do |rebel_name, rebel|
+        religion = rebel["religion"]
+        next unless religion
+        # This is nasty code, since we're editing code not data
+
+        # Always allow negotiations if dominant
+        if rebel["can_negotiate_trigger"].keys != ["OR"]
+          raise "Unexpected shape" unless rebel["can_negotiate_trigger"].keys == ["religion_group"]
+          rebel["can_negotiate_trigger"] = PropertyList["OR",
+            rebel["can_negotiate_trigger"].add!("dominant_religion", religion)
+          ]
+        end
+        # And make negotiations actually work
+        effect = rebel["demands_enforced_effect"]
+        convert_effect = (
+          effect.find_all("else_if").find{|e| e["force_converted"] } ||
+          effect.find_all("if").find{|e| e["force_converted"] }
+        )
+        good_convert_effect = PropertyList[
+          "limit", PropertyList[
+            "NOT", PropertyList["religion", religion],
+            "dominant_religion", religion,
+          ],
+          "change_religion", religion,
+          "force_converted", true,
+        ]
+        # Old World Pagans
+        if convert_effect and convert_effect["limit"]["religion_group"]
+          convert_effect["limit"].delete!("religion_group")
+          convert_effect.add! "dominant_religion", religion
+        end
+        # New World Pagans
+        unless convert_effect
+          list = effect.instance_eval{entries}
+          index = effect.instance_eval{entries}.index{|e| e.key=="else" and e.val == PropertyList["add_stability", -1]}
+          raise unless index
+          list[index,0] = Property[
+            "else_if",
+            good_convert_effect
+          ]
+        end
+      end
+    end
+  end
+
   ###################################################################
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
@@ -639,16 +742,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     buff_covert_actions!
     enable_more_idea_groups!
     remove_all_straits!
-  end
 
-  # In principle this could move them between files
-  def move_culture!(culture, from_group, to_group)
-    patch_mod_file! "common/cultures/00_cultures.txt" do |node|
-      from_node = node[from_group] or raise "Can't find #{from_group}"
-      to_node = node[to_group] or raise "Can't find #{to_group}"
-      culture_node = from_node[culture] or raise "Can't find #{culture} in #{from_group}"
-      from_node.delete! culture
-      to_node.add! culture, culture_node
-    end
+    # 5 in 1.30.3
+    # 4 in 1.30.4
+    soft_patch_defines_lua!("fun_and_balance_more_privileges",
+      ["NCountry.ESTATE_PRIVILEGES_MAX_CONCURRENT", 5, 10],
+    )
   end
 end
