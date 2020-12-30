@@ -35,6 +35,7 @@ class PropertyList
     else
       @entries << Property.new(key, val)
     end
+    self
   end
 
   def add_many!(*args)
@@ -49,6 +50,7 @@ class PropertyList
         add! args.shift, args.shift
       end
     end
+    self
   end
 
   def map!(&blk)
