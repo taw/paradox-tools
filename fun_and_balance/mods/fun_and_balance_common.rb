@@ -326,18 +326,26 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     # -100% manpower sounds like BS, but there are enormous
     # positive modifiers in 1.30 (especially estates) so it's de facto closer to -50%
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node! node,
-        ["negative_mandate", "global_unrest", 5, 10],
-        # ["negative_mandate", "global_manpower_modifier", -0.5, -0.5],
+      modify_node!(node,
+        ["negative_mandate", "global_unrest", 5, 15],
         ["negative_mandate", "manpower_recovery_speed", nil, -0.5],
         ["negative_mandate", "mercenary_manpower", -0.5, -2.0],
         ["negative_mandate", "fire_damage_received", 0.5, 1.0],
         ["negative_mandate", "shock_damage_received", 0.5, 1.0],
-        # ["lost_mandate_of_heaven", "global_manpower_modifier", -0.5, -0.5],
+        ["negative_mandate", "mercenary_discipline", nil, -1.0],
+        # ["negative_mandate", "reduced_liberty_desire", nil, -50],
+        ["negative_mandate", "diplomatic_reputation", nil, -5],
+        ["negative_mandate", "liberty_desire_from_subject_development", nil, 1.0],
+        ["lost_mandate_of_heaven", "global_unrest", 10, 15],
         ["lost_mandate_of_heaven", "manpower_recovery_speed", nil, -0.5],
         ["lost_mandate_of_heaven", "mercenary_manpower", -0.5, -2.0],
         ["lost_mandate_of_heaven", "fire_damage_received", 0.5, 1.0],
-        ["lost_mandate_of_heaven", "shock_damage_received", 0.5, 1.0]
+        ["lost_mandate_of_heaven", "shock_damage_received", 0.5, 1.0],
+        ["lost_mandate_of_heaven", "mercenary_discipline", nil, -1.0],
+        # ["lost_mandate_of_heaven", "reduced_liberty_desire", -50, -50]
+        ["lost_mandate_of_heaven", "diplomatic_reputation", nil, -5],
+        ["lost_mandate_of_heaven", "liberty_desire_from_subject_development", nil, 1.0],
+    )
     end
 
     # Make winning/losing mandate last 50 years
@@ -374,6 +382,26 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       modify_node! node,
         ["new_mandate_holder", "imperial_mandate", 0.05, 0.10],
         ["new_mandate_holder", "global_unrest", nil, -5]
+    end
+
+    # Fix bug that makes lost mandate holder not have proper rebels
+    # Code obviously tries to make them have nationalists, but code bug breaks it
+    # as country which lost mandate will also lose celestial_empire reform
+    patch_mod_files!("/Users/taw/eu4/common/rebel_types/nationalist.txt") do |node|
+      spawn_chance = node["nationalist_rebels"]["spawn_chance"]
+      lost_mandate = spawn_chance.find_all("modifier").find{|m| m["owner"] and m["owner"]["has_reform"] == "celestial_empire" and m["factor"] == 100 }
+      lost_mandate["owner"] = PropertyList[
+          "NOT", PropertyList["primary_culture", "ROOT"],
+          "OR", PropertyList[
+            "has_country_modifier", "the_mandate_of_heaven_lost",
+            "has_country_modifier", "lost_mandate_of_heaven",
+            "AND", PropertyList[
+              "has_reform", "celestial_empire",
+              "has_dlc", "Mandate of Heaven",
+              "NOT", PropertyList["imperial_mandate", 50],
+            ],
+          ],
+        ]
     end
   end
 
@@ -687,6 +715,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   # EU4 crashes unless it has at least 1 strait
   def remove_all_straits!
+    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
     patch_file!("map/adjacencies.csv") do |file|
       # Zeeland-Gent
       file.b.lines.select{|x|
@@ -741,7 +771,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     buff_support_rebels!
     buff_covert_actions!
     enable_more_idea_groups!
-    remove_all_straits!
 
     # 5 in 1.30.3
     # 4 in 1.30.4
