@@ -121,6 +121,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def more_building_slots!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       node["development"]["allowed_num_of_buildings"] = 0.2
+      node["city"]["allowed_num_of_buildings"] = 5
+      # To make out 12 is enough
+      # 12 is most that's possible I think:
+      # trade, gov, prod, tax, coast, 2x navy, 2x army, fort, manufactory, uni
+      # and uni adds its own slot
     end
   end
 
@@ -387,7 +392,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     # Fix bug that makes lost mandate holder not have proper rebels
     # Code obviously tries to make them have nationalists, but code bug breaks it
     # as country which lost mandate will also lose celestial_empire reform
-    patch_mod_files!("/Users/taw/eu4/common/rebel_types/nationalist.txt") do |node|
+    patch_mod_files!("common/rebel_types/nationalist.txt") do |node|
       spawn_chance = node["nationalist_rebels"]["spawn_chance"]
       lost_mandate = spawn_chance.find_all("modifier").find{|m| m["owner"] and m["owner"]["has_reform"] == "celestial_empire" and m["factor"] == 100 }
       lost_mandate["owner"] = PropertyList[
