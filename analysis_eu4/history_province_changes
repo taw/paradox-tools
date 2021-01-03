@@ -26,7 +26,9 @@ class HistoryProvinceChanges < EU4Analysis
         base_manpower = v["base_manpower"] if v["base_manpower"]
         if v["owner"]
           dev = base_tax + base_production + base_manpower
-          yield(id, k, owner, v["owner"], dev)
+          unless owner == "---" or v["owner"] == "---"
+            yield(id, k, owner, v["owner"], dev)
+          end
           owner = v["owner"]
         end
       end
@@ -45,24 +47,36 @@ class HistoryProvinceChanges < EU4Analysis
     end
 
     oe = {}
+    oed = {}
 
     changes.each do |owner, history|
       history.each do |year, sources|
         oe[owner] ||= {}
+        oed[owner] ||= {}
         (year..year+2).each do |y|
           oe[owner][y] ||= 0
           oe[owner][y] += sources.values.sum
+          oed[owner][y] ||= {}
+          sources.each do |k,v|
+            oed[owner][y][k] ||= 0
+            oed[owner][y][k] += v
+          end
         end
       end
     end
 
+    lines = []
+
     oe.each do |country, history|
       history.each do |year, level|
         if level >= 100
-          puts "#{year} #{country} #{level}%"
+          details = oed[country][year].map{|k,v| "#{localization(k)} #{v}%"}.sort.join(", ")
+          lines << "* #{localization(country)} #{year} - #{level}% - #{details}"
         end
       end
     end
+
+    puts *lines.sort
   end
 end
 
