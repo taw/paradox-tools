@@ -1,0 +1,69 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+
+# Ignores: reconquests etc.
+
+class HistoryProvinceChanges < EU4Analysis
+  def each_province
+    glob("history/provinces/*.txt").each do |path|
+      id = path.basename.to_s.to_i
+      node = parse(path)
+      yield(id, node)
+    end
+  end
+
+  def each_ownership_change
+    each_province do |id, node|
+      owner = node["owner"] || "---"
+      base_tax = node["base_tax"]
+      base_production = node["base_production"]
+      base_manpower = node["base_manpower"]
+      node.each do |k,v|
+        next unless k.is_a?(Date)
+        base_tax = v["base_tax"] if v["base_tax"]
+        base_production = v["base_production"] if v["base_production"]
+        base_manpower = v["base_manpower"] if v["base_manpower"]
+        if v["owner"]
+          dev = base_tax + base_production + base_manpower
+          yield(id, k, owner, v["owner"], dev)
+          owner = v["owner"]
+        end
+      end
+    end
+  end
+
+  def call
+    changes = {}
+
+    each_ownership_change do |id, date, owner1, owner2, dev|
+      year = date.year
+      changes[owner2] ||= {}
+      changes[owner2][year] ||= {}
+      changes[owner2][year][owner1] ||= 0
+      changes[owner2][year][owner1] += dev
+    end
+
+    oe = {}
+
+    changes.each do |owner, history|
+      history.each do |year, sources|
+        oe[owner] ||= {}
+        (year..year+2).each do |y|
+          oe[owner][y] ||= 0
+          oe[owner][y] += sources.values.sum
+        end
+      end
+    end
+
+    oe.each do |country, history|
+      history.each do |year, level|
+        if level >= 100
+          puts "#{year} #{country} #{level}%"
+        end
+      end
+    end
+  end
+end
+
+HistoryProvinceChanges.new_from_argv.call
