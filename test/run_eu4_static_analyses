@@ -27,6 +27,7 @@ list = %Q[
   analysis_eu4/countries_by_date $g
   analysis_eu4/country_cultures $g
   analysis_eu4/find_cots_in_converted_campaign $g
+  analysis_eu4/history_province_changes $g
   analysis_eu4/list_converter_province_value $g
   analysis_eu4/list_formable_countries $g
   analysis_eu4/validate_trade_nodes $g

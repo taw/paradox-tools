@@ -13,6 +13,32 @@ class HistoryProvinceChanges < EU4Analysis
     end
   end
 
+  def ignore_change?(owner1, owner2)
+    return true if owner1 == "---"
+    return true if owner2 == "---"
+    return true if owner1 == owner2
+    [
+      # Tag forming with annexation
+      ["CAS", "SPA"],
+      ["ARA", "SPA"],
+      ["POL", "PLC"],
+      ["LIT", "PLC"],
+      ["ENG", "GBR"],
+      ["SCO", "GBR"],
+      # Tag forming
+      ["BRA", "PRU"],
+      ["MCH", "QNG"],
+      ["MOS", "RUS"],
+      ["TIM", "MUG"],
+      # Colonial independence
+      ["GBR", "USA"],
+      ["SPA", "COL"],
+      ["SPA", "LAP"],
+      ["SPA", "MEX"],
+      ["SPA", "VNZ"],
+    ].include?([owner1, owner2])
+  end
+
   def each_ownership_change
     each_province do |id, node|
       owner = node["owner"] || "---"
@@ -26,7 +52,7 @@ class HistoryProvinceChanges < EU4Analysis
         base_manpower = v["base_manpower"] if v["base_manpower"]
         if v["owner"]
           dev = base_tax + base_production + base_manpower
-          unless owner == "---" or v["owner"] == "---"
+          unless ignore_change?(owner, v["owner"])
             yield(id, k, owner, v["owner"], dev)
           end
           owner = v["owner"]
@@ -77,6 +103,10 @@ class HistoryProvinceChanges < EU4Analysis
     end
 
     puts *lines.sort
+  end
+
+  def localization(x)
+    "#{super(x)} (#{x})"
   end
 end
 
