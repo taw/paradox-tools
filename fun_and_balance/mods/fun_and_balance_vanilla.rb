@@ -33,9 +33,10 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     rebalance_ming_crisis!
     fix_culture_groups!
     improve_religious_rebels!
+    buff_support_rebels!
+    buff_covert_actions!
 
     # Experimental:
-    # major_idea_group_rebalance!
     # rebalance_unrest!
     # rebalance_unrest_experimental!
     # all_religions_propagate_by_trade!

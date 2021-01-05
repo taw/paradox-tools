@@ -410,45 +410,32 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  ###################################################################
-  ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
-  ### (only for ones I'm still evaluating)                        ###
-  ###################################################################
-
-  # Not needed 1.30+ as corruption from territories is gone
-  def double_corruption_slider!
-    warn "Disabled code. Do not enable in release. #{__FILE__}:#{__LINE__}"
-    soft_patch_defines_lua!("fun_and_balance_corruption",
-      ["NCountry.CORRUPTION_COST", 0.05, 0.10],
+  def buff_support_rebels!
+    soft_patch_defines_lua!("fun_and_balance_support_rebels",
+      ["NDiplomacy.SUPPORT_REBELS_EFFECT", 10, 50],
+      ["NDiplomacy.SUPPORT_REBELS_MONEY_FACTOR", 0.5, 0.1],
+      ["NDiplomacy.SUPPORT_REBELS_COST", 60, 20],
     )
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["root_out_corruption"]["yearly_corruption"] = -2.0
-    end
   end
 
-  # So many things changed, need to verify this still makes sense
-  # (also it makes F&B incompatible with too many things)
-  def rebalance_conversion_rates!
-    warn "Disabled code. Do not enable in release. #{__FILE__}:#{__LINE__}"
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node! node,
-        ["base_values", "global_missionary_strength", 0.02, 0.01],
-        ["base_values", "global_heretic_missionary_strength", nil, 0.01]
+  def buff_covert_actions!
+    # The rest can stay where they are
+    patch_mod_file!("common/technologies/dip.txt") do |node|
+      techs = node.find_all("technology")
+      techs.each do |t|
+        t.delete! Property["may_agitate_for_liberty", true]
+        t.delete! Property["may_infiltrate_administration", true]
+      end
+      techs[0].add! Property["may_agitate_for_liberty", true]
+      techs[0].add! Property["may_infiltrate_administration", true]
     end
 
-    patch_mod_file!("common/religions/00_religion.txt") do |node|
-      node.each do |group_name, group|
-        group.each do |name, religion|
-          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier", "ai_will_propagate_through_trade"].include?(name)
-          if group_name == "pagan"
-            religion["province"] ||= PropertyList[]
-            religion["province"]["local_missionary_strength"] = 0.03
-          else
-            religion["province"].delete!("local_missionary_strength") if religion["province"]
-          end
-        end
-      end
-    end
+    soft_patch_defines_lua!("fun_and_balance_covert_actions",
+      ["NDiplomacy.STEAL_MAPS_COST", 50, 20],
+      ["NDiplomacy.INFILTRATE_ADMINISTRATION_COST", 40, 20],
+      ["NDiplomacy.AGITATE_FOR_LIBERTY_COST", 90, 50],
+      ["NDiplomacy.SLANDER_MERCHANTS_COST", 70, 20],
+    )
   end
 
   # In principle this could move them between files, just assume it's all in same file
@@ -459,16 +446,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       culture_node = from_node[culture] or raise "Can't find #{culture} in #{from_group}"
       from_node.delete! culture
       to_node.add! culture, culture_node
-    end
-  end
-
-  def prioritize_religious_rebels!
-    patch_mod_files!("common/rebel_types/*.txt") do |node|
-      node.each do |rebel_name, rebel|
-        religion = rebel["religion"]
-        next unless religion
-        binding.pry
-      end
     end
   end
 
@@ -555,11 +532,54 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   ###################################################################
+  ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
+  ### (only for ones I'm still evaluating)                        ###
+  ###################################################################
+
+  # Not needed 1.30+ as corruption from territories is gone
+  def double_corruption_slider!
+    warn "Disabled code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    soft_patch_defines_lua!("fun_and_balance_corruption",
+      ["NCountry.CORRUPTION_COST", 0.05, 0.10],
+    )
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["root_out_corruption"]["yearly_corruption"] = -2.0
+    end
+  end
+
+  # So many things changed, need to verify this still makes sense
+  # (also it makes F&B incompatible with too many things)
+  def rebalance_conversion_rates!
+    warn "Disabled code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node! node,
+        ["base_values", "global_missionary_strength", 0.02, 0.01],
+        ["base_values", "global_heretic_missionary_strength", nil, 0.01]
+    end
+
+    patch_mod_file!("common/religions/00_religion.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |name, religion|
+          next if ["crusade_name", "defender_of_faith", "can_form_personal_unions", "center_of_religion", "flags_with_emblem_percentage", "flag_emblem_index_range", "harmonized_modifier", "ai_will_propagate_through_trade"].include?(name)
+          if group_name == "pagan"
+            religion["province"] ||= PropertyList[]
+            religion["province"]["local_missionary_strength"] = 0.03
+          else
+            religion["province"].delete!("local_missionary_strength") if religion["province"]
+          end
+        end
+      end
+    end
+  end
+
+  ###################################################################
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
 
   def bring_tech_groups_back!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_mod_file!("common/institutions/00_Core.txt") do |node|
       node.each do |name, institution|
@@ -619,7 +639,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def rebalance_unrest!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       # node["prosperity"]["local_unrest"] = -2
@@ -671,7 +691,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def rebalance_unrest_experimental!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     # This is experimental code:
     create_mod_file! "common/triggered_modifiers/02_age_rebels.txt", PropertyList[
@@ -703,7 +723,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def all_religions_propagate_by_trade!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_mod_file!("common/trading_policies/00_trading_policies.txt") do |node|
       node["propagate_religion"]["can_select"].delete! "religion_group"
@@ -711,16 +731,10 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def buff_support_rebels!
-    soft_patch_defines_lua!("fun_and_balance_support_rebels",
-      ["NDiplomacy.SUPPORT_REBELS_EFFECT", 10, 50],
-      ["NDiplomacy.SUPPORT_REBELS_MONEY_FACTOR", 0.5, 0.1],
-    )
-  end
-
   # EU4 crashes unless it has at least 1 strait
+  # I think this is good change, but it changes the game a lot
   def remove_all_straits!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     patch_file!("map/adjacencies.csv") do |file|
       # Zeeland-Gent
@@ -731,23 +745,9 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def buff_covert_actions!
-    # Keep spy costs where they are for now, just buff this one
-    buff_support_rebels!
-
-    # The rest can stay where they are
-    patch_mod_file!("common/technologies/dip.txt") do |node|
-      techs = node.find_all("technology")
-      techs.each do |t|
-        t.delete! Property["may_agitate_for_liberty", true]
-        t.delete! Property["may_infiltrate_administration", true]
-      end
-      techs[0].add! Property["may_agitate_for_liberty", true]
-      techs[0].add! Property["may_infiltrate_administration", true]
-    end
-  end
-
   def enable_more_idea_groups!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
     soft_patch_defines_lua!("fun_and_balance_more_idea_groups",
       ["NCountry.IDEA_TO_TECH", -0.02, -0.01],
     )
@@ -762,20 +762,9 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  # This does nothing under new attrition formula
-  def increase_attrition_cap!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node! node,
-        ["land_province", "max_attrition", 5, 10]
-    end
-  end
-
-  def major_idea_group_rebalance!
-    warn "Experimental code. Do not enable in release. #{__FILE__}:#{__LINE__}"
-
-    buff_support_rebels!
-    buff_covert_actions!
-    enable_more_idea_groups!
+  # This is fine to go live, but it needs UI mod to work
+  def allow_more_estate_privileges!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     # 5 in 1.30.3
     # 4 in 1.30.4
