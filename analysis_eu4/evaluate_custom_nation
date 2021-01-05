@@ -64,10 +64,7 @@ class EvaluateCustomNation < EU4Analysis
     total = 0
     ideas.each_with_index do |(name, level), index|
       idea = custom_ideas.find{|x| x[0] == name} or raise "Cannot find idea: #{name}"
-      bonus = BonusScoring.new
-      idea[1].each do |k,v|
-        bonus.send(k,v)
-      end
+      bonus = BonusScoring.new(idea[1])
       value = (bonus.score * level)
       eu4_cost = idea[2][level-1] * multipliers[index]
       roi = 100 * value / eu4_cost

@@ -22,12 +22,9 @@ class AnalyzePolicies < EU4Analysis
       policy.delete("ai_will_do")
       requirements = policy.delete("allow").to_h["full_idea_group"].map{|i| i.sub("_ideas", "")}
 
-      bonuses = BonusScoring.new
+      bonuses = BonusScoring.new(policy)
       # Some are free, so biasing is no longer great idea
       # bonuses.send("monthly_#{point_type}_points", -1.0)
-      policy.each do |k,v|
-        bonuses.send(k,v)
-      end
       results << [bonuses.score, name, *requirements, point_type, policy.inspect]
     end
     puts results.sort.map{|r| r.join(" ")}

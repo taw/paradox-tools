@@ -61,10 +61,7 @@ class AnalyzePersonalities < EU4Analysis
         end
       end
 
-      bonuses = BonusScoring.new
-      personality.each do |k,v|
-        bonuses.send(k,v)
-      end
+      bonuses = BonusScoring.new(personality)
       results << [bonuses.score, localization(name), personality.inspect]
     end
     puts results.sort.reverse.map{|r| r.join(" ")}

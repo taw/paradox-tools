@@ -16,11 +16,7 @@ class AnalyzeGovernmentReforms < EU4Analysis
   end
 
   def bonus_score(bonuses)
-    score = BonusScoring.new
-    bonuses.each do |k,v|
-      score.send(k,v)
-    end
-    score
+    BonusScoring.new(bonuses)
   end
 
   def call(show_details)

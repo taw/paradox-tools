@@ -5,11 +5,7 @@ require_relative "bonus_scoring"
 require "paint"
 
 def bonus_score(bonuses)
-  score = BonusScoring.new
-  bonuses.each do |k,v|
-    score.send(k,v)
-  end
-  score.score
+  BonusScoring.new(bonuses).score
 end
 
 class ReligionGroup

@@ -1,0 +1,48 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require_relative "bonus_scoring"
+
+class AnalyzeHegemony < EU4Analysis
+  def each_hegemony
+    glob("common/hegemons/*").each do |path|
+      parse(path).each do |name, hegemony|
+        yield(localization(name), hegemony)
+      end
+    end
+  end
+
+  def bonus_for(mods)
+    BonusScoring.new(mods).score
+  end
+
+  def each_hegemony_variant
+    common = {
+      # opinion: -100,
+      power_projection: 0.25,
+    }
+
+    each_hegemony do |name, hegemony|
+      base = bonus_for(hegemony["base"]) + bonus_for(common)
+      scaled = bonus_for(hegemony["scale"])
+      max = bonus_for(hegemony["max"])
+      yield("#{name} 0%", base)
+      yield("#{name} 25%", base + 0.25 * scaled)
+      yield("#{name} 50%", base + 0.5 * scaled)
+      yield("#{name} 75%", base + 0.75 * scaled)
+      yield("#{name} 100%", base + scaled + max)
+    end
+  end
+
+  def call
+    results = []
+    each_hegemony_variant do |name, bonus|
+      results << [bonus.round(3), name]
+    end
+    results.sort.reverse.each do |r, n|
+      puts "%.3f %s" % [r, n]
+    end
+  end
+end
+
+AnalyzeHegemony.new_from_argv.call

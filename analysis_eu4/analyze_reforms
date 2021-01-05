@@ -49,10 +49,7 @@ class AnalyzeReforms < EU4Analysis
       end
       mods = reform.delete("modifiers") || {}
 
-      bonuses = BonusScoring.new
-      mods.each do |k,v|
-        bonuses.send(k,v)
-      end
+      bonuses = BonusScoring.new(mods)
       results << [bonuses.score, name, reform]
     end
     puts results.sort.map{|r| r.join(" ")}

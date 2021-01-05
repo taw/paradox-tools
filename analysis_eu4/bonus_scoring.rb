@@ -1,7 +1,10 @@
 # It starts with 139 different bonuses, need to filter them down to manageable levels
 class BonusScoring
-  def initialize
+  def initialize(mods={})
     @ht = Hash.new(0)
+    mods.each do |k,v|
+      send(k, v)
+    end
   end
 
   def round!
@@ -1245,7 +1248,22 @@ class BonusScoring
         total += v*0.7
       when :colonists
         # Definitely the most important agent type by huge margin
-        total += 3*v
+        # The first is easily worth like 3 points
+        # Colonists beyond that are a lot less good, at like 1.5
+        #
+        # First, for flexibility one is perfectly fine
+        # Second, your typical colony grow speed will be like:
+        #   N with colonist + M without colonist
+        # Where those without grow at about half speed
+        # Colony growth from second colonist based on your overflow:
+        # M=0, 1   to 2
+        # M=1, 1.5 to 2.5    (4=4 gold)
+        # M=2, 2   to 3      (4+10=14 gold) <- this seems like reasonable baseline
+        # M=3, 2.5 to 3.5    (4+10+20=34 gold)
+        # M=4, 3   to 4      (4+10+20+34=68 gold)
+        #
+        # For average total of (3+1.5+1.5)/3 = 2
+        total += 2*v
       when :diplomats
         # Everybody starts with 3 at kingdom tier, and 4th etc.
         # are not really a big deal
@@ -1326,13 +1344,13 @@ class BonusScoring
         # Especially when stacking, this can be amazing
         total -= 5*v
       when :diplomatic_reputation
-        # This is back to being good
-        total += v
+        # This is back to being fairly good
+        total += 0.5 * v
       when :reduced_liberty_desire
         # 3 points are as good as 1 point of diplomatic reputation when it comes to subjects
         # It does nothing for all other uses of diplomatic reputation
-        # For total assume 10% of relations you care about are subject LD
-        total += v / 3.0 * 0.1
+        # For total assume 5% of relations you care about are subject LD
+        total += v / 3.0 * 0.05
       when :reform_progress_growth
         # +100% progress worth 1 point
         total += v

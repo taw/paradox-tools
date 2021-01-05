@@ -20,6 +20,7 @@ list = %Q[
   analysis_eu4/analyze_idea_groups $g
   analysis_eu4/analyze_missions_countries $g
   analysis_eu4/analyze_policies $g
+  analysis_eu4/analyze_hegemony $g
   analysis_eu4/analyze_religions $g
   analysis_eu4/analyze_static_modifiers $g
   analysis_eu4/analyze_unit_pips $g
