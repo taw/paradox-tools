@@ -55,7 +55,7 @@ class DoctrineData
       "armored_spearhead" => "Blitzkrieg",
       "volkssturm" => "Desperate Defense",
       "firebrigades" => "Modern Blitzkrieg",
-      "concentrated_fire_plans" => "Airland Batle",
+      "concentrated_fire_plans" => "Airland Battle",
       "centralized_fire_control" => "Shock & Awe",
       "trench_warfare" => "Grand Battleplan",
       "grand_mechanized_offensive" => "Assault",
