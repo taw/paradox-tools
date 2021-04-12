@@ -6,7 +6,8 @@ require "shellwords"
 require "digest/sha1"
 gem "zip-zip"
 require "zip"
-# Zip.warn_invalid_date = false
+
+Zip.warn_invalid_date = false
 
 class Pathname
   def sha1
@@ -29,6 +30,7 @@ class ModCompatibility
     rel_path = rel_path.to_s
     return if rel_path == "descriptor.mod"
     return if rel_path == "Thumbs.db"
+    return if rel_path == "thumb.jpg"
     @files[rel_path] ||= Set[]
     @files[rel_path] << mod_name
   end
@@ -71,7 +73,7 @@ class ModCompatibility
     if (@path + mod).directory?
       (@path + mod + path).sha1
     else
-      Zip::File.open(@path + mod) do |zip|
+      Zip::File.open(@path + "#{mod}.zip") do |zip|
         file = zip.find{|e| e.name == path} or raise "Can't find `#{path}' in `#{mod}'"
         Digest::SHA1.hexdigest(file.get_input_stream.read)
       end
