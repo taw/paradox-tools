@@ -6,6 +6,7 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       parse(path).each do |group_name, group|
         group = group.to_h
         group.delete "graphical_culture"
+        group.delete "second_graphical_culture"
         group.delete "dynasty_names"
         group.each do |culture_name, details|
           next if details.is_a?(Array)
