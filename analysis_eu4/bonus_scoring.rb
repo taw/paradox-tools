@@ -624,6 +624,10 @@ class BonusScoring
     global_missionary_strength 0.25 * v
   end
 
+  def local_missionary_strength(v)
+    global_missionary_strength(v)
+  end
+
   # Assume 2% of your budget goes on missionary maintenance
   def missionary_maintenance_cost(v)
     money -0.02*v
@@ -1180,6 +1184,10 @@ class BonusScoring
     power_projection 0.05 * v
   end
 
+  def country_admin_power(v)
+    monthly_adm_points v
+  end
+
   def power_projection(v)
     # Linear
     defensiveness 0.1 * v
@@ -1399,6 +1407,12 @@ class BonusScoring
         # especially since consort regencies, this is extremely rare, so not worth scoring
       when :raze_power_gain
         # extremely situational
+      when :rival_change_cost
+        # like that ever happens
+      when :monthly_karma
+        # very situatonal (arguably useful if stacked)
+      when :curia_powers_cost
+        # too situational
       else
         warn "#{k} not scored"
       end

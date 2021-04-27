@@ -9,11 +9,40 @@ class AnalyzeGreatProjects < EU4Analysis
       parse(path).each do |name, project|
         province_number = project["start"]
         province_name = localization("PROV#{province_number}")
-        yield(name, province_name, 0, project["tier_0"])
-        yield(name, province_name, 1, project["tier_1"])
-        yield(name, province_name, 2, project["tier_2"])
-        yield(name, province_name, 3, project["tier_3"])
+
+        can_keep = project["keep_trigger"]
+        can_use = project["can_use_modifiers_trigger"]
+        can_upgrade = project["can_upgrade_trigger"]
+
+        raise unless can_keep.empty?
+        raise unless can_use == can_upgrade
+
+        yield(name, province_name, 0, project["tier_0"], parse_can_use(can_use))
+        yield(name, province_name, 1, project["tier_1"], parse_can_use(can_use))
+        yield(name, province_name, 2, project["tier_2"], parse_can_use(can_use))
+        yield(name, province_name, 3, project["tier_3"], parse_can_use(can_use))
       end
+    end
+  end
+
+  def parse_can_use(node)
+    return nil if node.empty?
+    if node.keys == ["OR"]
+      node["OR"].to_a.map{|prop| parse_rule(prop.key, prop.val)}.join("/")
+    elsif node.keys.size == 1
+      prop = node.to_a[0]
+      parse_rule(prop.key, prop.val)
+    else
+      binding.pry
+    end
+  end
+
+  def parse_rule(key, val)
+    case key
+    when "religion", "religion_group", "culture", "culture_group"
+      localization(val)
+    else
+      binding.pry
     end
   end
 
@@ -23,8 +52,8 @@ class AnalyzeGreatProjects < EU4Analysis
 
   def call(show_details)
     output = []
-    each_great_project do |project_name, province_name, tier, project|
-      name = "#{localization(project_name)} (#{province_name}; #{tier})"
+    each_great_project do |project_name, province_name, tier, project, can_use|
+      name = "#{localization(project_name)} (#{[province_name, tier, can_use].compact.join("; ")})"
 
       # Assuming province_modifiers and area_modidiers are irrelevant
       modifiers = project["country_modifiers"]
