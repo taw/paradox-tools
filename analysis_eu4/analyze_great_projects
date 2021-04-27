@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require_relative "bonus_scoring"
+
+class AnalyzeGreatProjects < EU4Analysis
+  def each_great_project
+    glob("common/great_projects/*").each do |path|
+      parse(path).each do |name, project|
+        province_number = project["start"]
+        province_name = localization("PROV#{province_number}")
+        yield(name, province_name, 0, project["tier_0"])
+        yield(name, province_name, 1, project["tier_1"])
+        yield(name, province_name, 2, project["tier_2"])
+        yield(name, province_name, 3, project["tier_3"])
+      end
+    end
+  end
+
+  def bonus_score(bonuses)
+    BonusScoring.new(bonuses)
+  end
+
+  def call(show_details)
+    output = []
+    each_great_project do |project_name, province_name, tier, project|
+      name = "#{localization(project_name)} (#{province_name}; #{tier})"
+
+      # Assuming province_modifiers and area_modidiers are irrelevant
+      modifiers = project["country_modifiers"]
+      next if modifiers.empty?
+      score = bonus_score(modifiers)
+      output << [score.score, name, modifiers]
+    end
+    output.sort_by{|s,n| [-s,n]}.each do |score, name, details|
+      puts "• %.2f %s" % [score, name]
+      if show_details
+        details.each do |k, v|
+          puts "  • %.2f %s (%s)" % [bonus_score(k => v).score, k, v]
+        end
+      end
+    end
+  end
+end
+
+AnalyzeGreatProjects.new_from_argv.call(true)
