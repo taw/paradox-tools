@@ -1409,10 +1409,14 @@ class BonusScoring
         # extremely situational
       when :rival_change_cost
         # like that ever happens
-      when :monthly_karma
+      when :monthly_karma, :yearly_karma_decay
         # very situatonal (arguably useful if stacked)
-      when :curia_powers_cost
+      when :curia_powers_cost, :curia_treasury_contribution, :appoint_cardinal_cost
         # too situational
+      when :war_taxes_cost_modifier
+        # nearly useless, unless -100%
+      when :yearly_patriarch_authority
+        # very nice if Orthodox, but does nothing for anyone else
       else
         warn "#{k} not scored"
       end

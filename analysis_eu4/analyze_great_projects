@@ -3,6 +3,20 @@
 require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 
+require_relative "../eu4/partial_evaluator"
+
+# Ignore trivial conditions
+class PartialEvaluatorGreatProjects < PartialEvaluator
+  def eval_property(node)
+    node = super(node)
+    case node.key
+    when "has_owner_religion", "has_owner_culture", "has_owner_accepted_culture"
+      return always_true if node.val == true
+    end
+    node
+  end
+end
+
 class AnalyzeGreatProjects < EU4Analysis
   def each_great_project
     glob("common/great_projects/*").each do |path|
@@ -27,6 +41,8 @@ class AnalyzeGreatProjects < EU4Analysis
 
   def parse_can_use(node)
     return nil if node.empty?
+    pe = PartialEvaluatorGreatProjects.new
+    node = pe.call(PropertyList["AND", node])
     if node.keys == ["OR"]
       node["OR"].to_a.map{|prop| parse_rule(prop.key, prop.val)}.join("/")
     elsif node.keys.size == 1
@@ -41,6 +57,8 @@ class AnalyzeGreatProjects < EU4Analysis
     case key
     when "religion", "religion_group", "culture", "culture_group"
       localization(val)
+    when "AND"
+      val.to_a.map{|prop| parse_can_use PropertyList[prop] }.map{|c| "(#{c})"}.join(" and ")
     else
       binding.pry
     end
