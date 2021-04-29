@@ -205,6 +205,11 @@ class ReligiousLeaguesGameModification < EU4GameModification
 
   # This could be extended to every combination, but do only Catholic vs X for now
   def events_league_victory!
+    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
+      node["on_change_hre_religion"]["events"].delete("religious_leagues.2")
+      node["on_change_hre_religion"]["events"].delete("religious_leagues.3")
+    end
+
     patch_mod_file!("events/ReligiousLeagues.txt") do |node|
       node.delete!{|prop| prop.key == "country_event" and prop.val["id"] == "religious_leagues.2"}
       node.delete!{|prop| prop.key == "country_event" and prop.val["id"] == "religious_leagues.3"}
