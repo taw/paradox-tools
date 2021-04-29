@@ -515,7 +515,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         # Old World Pagans
         if convert_effect and convert_effect["limit"]["religion_group"]
           convert_effect["limit"].delete!("religion_group")
-          convert_effect.add! "dominant_religion", religion
+          convert_effect["limit"].add! "dominant_religion", religion
         end
         # New World Pagans
         unless convert_effect

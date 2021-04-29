@@ -68,7 +68,7 @@ class PartialEvaluator
     when "has_dlc"
       always_true
     when "map_setup"
-      # This should go into suclass
+      # This should go into subclass
       if val == "map_setup_random"
         always_false
       else
