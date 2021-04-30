@@ -5,6 +5,20 @@ require_relative "bonus_scoring"
 require_relative "../eu4/partial_evaluator"
 require "paint"
 
+class PartialEvaluatorGreatProjects < PartialEvaluator
+  def eval_property(node)
+    return always_false if node.key == "AND" and node.val.keys.sort == ["culture", "has_owner_culture"]
+    node = super(node)
+    case node.key
+    when "has_owner_religion", "has_owner_accepted_culture"
+      return always_true if node.val == true
+    when "culture", "culture_group"
+      return always_true
+    end
+    node
+  end
+end
+
 # Ignore trivial conditions
 class PartialEvaluatorDeitiesAndCults < PartialEvaluator
   def eval_property(node)
@@ -57,7 +71,7 @@ end
 
 class Religion
   attr_reader :analysis, :group, :name, :node
-  attr_accessor :deities, :reforms, :cults
+  attr_accessor :deities, :reforms, :cults, :monuments
 
   def initialize(analysis, group, name, node)
     @analysis = analysis
@@ -67,6 +81,7 @@ class Religion
     @deities = {}
     @cults = {}
     @reforms = {}
+    @monuments = {}
     # It really belongs there
     if @node["declare_war_in_regency"]
       @node["country"].add! "declare_war_in_regency", true
@@ -559,6 +574,7 @@ class AnalyzeReligions < EU4Analysis
         end
 
         @religions[religion_name] = Religion.new(self, group, religion_name, religion)
+        @groups[group_name].religions << @religions[religion_name]
       end
     end
   end
@@ -751,6 +767,54 @@ class AnalyzeReligions < EU4Analysis
     end
   end
 
+  def religions_in_rule(node)
+    case node.key
+    when "OR"
+      node.val.to_a.flat_map{|n| religions_in_rule(n)}
+    when "religion"
+      [node.val]
+    when "religion_group"
+      # religion_group = catholic in 1.31.1 game code
+      if @groups[node.val]
+        @groups[node.val].religions.map(&:name)
+      else
+        [node.val]
+      end
+    else
+      raise
+    end
+  end
+
+  def religions_required_for_monument(node)
+    # We ignore all universal
+    return [] if node.empty?
+    pe = PartialEvaluatorGreatProjects.new
+    node = pe.call(PropertyList["AND", node])
+    return [] if node == PropertyList["always", true]
+    raise unless node.size == 1
+    religions_in_rule(node.to_a[0])
+  end
+
+  def parse_monuments
+    glob("common/great_projects/*").each do |path|
+      parse(path).each do |name, project|
+        can_keep = project["keep_trigger"]
+        can_use = project["can_use_modifiers_trigger"]
+        can_upgrade = project["can_upgrade_trigger"]
+
+        raise unless can_keep.empty?
+        raise unless can_use == can_upgrade
+
+        country_modifiers = project["tier_3"]["country_modifiers"]
+        next if country_modifiers.empty?
+
+        religions_required_for_monument(can_use).each do |religion|
+          @religions[religion].monuments[name] = country_modifiers
+        end
+      end
+    end
+  end
+
   def call
     parse_static_bonuses
 
@@ -763,6 +827,7 @@ class AnalyzeReligions < EU4Analysis
     parse_isolationism
     parse_religious_reforms
     parse_static_modifiers
+    parse_monuments
 
     results = []
     each_religion_variant do |score, name|
