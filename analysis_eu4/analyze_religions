@@ -2,7 +2,20 @@
 
 require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
+require_relative "../eu4/partial_evaluator"
 require "paint"
+
+# Ignore trivial conditions
+class PartialEvaluatorDeitiesAndCults < PartialEvaluator
+  def eval_property(node)
+    node = super(node)
+    case node.key
+    when "has_unlocked_cult", "mission_completed"
+      return always_true
+    end
+    node
+  end
+end
 
 def bonus_score(bonuses)
   BonusScoring.new(bonuses).score
@@ -44,7 +57,7 @@ end
 
 class Religion
   attr_reader :analysis, :group, :name, :node
-  attr_accessor :deities, :reforms
+  attr_accessor :deities, :reforms, :cults
 
   def initialize(analysis, group, name, node)
     @analysis = analysis
@@ -52,6 +65,7 @@ class Religion
     @name = name
     @node = node
     @deities = {}
+    @cults = {}
     @reforms = {}
     # It really belongs there
     if @node["declare_war_in_regency"]
@@ -323,9 +337,9 @@ class Religion
       return
     end
 
-    # Fetishism
+    # Fetishism / Alcheringa
     if fetishist_cult?
-      @analysis.cults.each do |cult_name, cult_bonus|
+      @cults.each do |cult_name, cult_bonus|
         yield(
           localization(cult_name),
           primary_score + bonus_score(cult_bonus)
@@ -486,7 +500,6 @@ class AnalyzeReligions < EU4Analysis
   attr_reader(
     :aspects,
     :authority,
-    :cults,
     :curia_controller,
     :doom,
     :fervor,
@@ -508,7 +521,6 @@ class AnalyzeReligions < EU4Analysis
     @isolationism = []
     @karma = {}
     @piety = {}
-    @cults = {}
     @aspects = {}
     @harmony = {}
     @harmonized = {}
@@ -540,11 +552,11 @@ class AnalyzeReligions < EU4Analysis
           next if %W[ai_will_do sprite allow].include?(k)
           bonuses[k] = v
         end
-        deity["allow"].each do |k,v|
+        pe = PartialEvaluatorDeitiesAndCults.new
+        allow = pe.call(PropertyList["AND", deity["allow"]])
+        allow.each do |k,v|
           if k == "religion"
             @religions[v].deities[deity_name] = bonuses
-          elsif k == "OR" and v.keys.uniq == ["mission_completed"]
-            # ignore, assume done
           else
             raise
           end
@@ -569,7 +581,19 @@ class AnalyzeReligions < EU4Analysis
           next if %W[ai_will_do sprite allow].include?(k)
           bonuses[k] = v
         end
-        @cults[cult_name] = bonuses
+        pe = PartialEvaluatorDeitiesAndCults.new
+        allow = pe.call(PropertyList["AND", cult["allow"]])
+        if allow == PropertyList["always", true]
+          # 1.30 had this
+          allowed_religion = "shamanism"
+        elsif allow.keys == ["religion"]
+          # 1.31+
+          allowed_religion = allow["religion"]
+        else
+          raise
+        end
+
+        @religions[allowed_religion].cults[cult_name] = bonuses
       end
     end
   end
