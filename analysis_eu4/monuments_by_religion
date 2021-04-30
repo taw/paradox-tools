@@ -1,0 +1,134 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require_relative "bonus_scoring"
+
+require_relative "../eu4/partial_evaluator"
+
+# Ignore trivial conditions
+class PartialEvaluatorGreatProjects < PartialEvaluator
+  def eval_property(node)
+    node = super(node)
+    case node.key
+    when "has_owner_religion", "has_owner_culture", "has_owner_accepted_culture"
+      return always_true if node.val == true
+    when "culture", "culture_group"
+      # It only checks province culture, which we can always keep
+      # (sometimes if it's accepted, which is no big deal)
+      return always_true
+    end
+    node
+  end
+end
+
+class AnalyzeGreatProjects < EU4Analysis
+  def each_great_project
+    glob("common/great_projects/*").each do |path|
+      parse(path).each do |name, project|
+        province_number = project["start"]
+        province_name = localization("PROV#{province_number}")
+
+        can_keep = project["keep_trigger"]
+        can_use = project["can_use_modifiers_trigger"]
+        can_upgrade = project["can_upgrade_trigger"]
+
+        raise unless can_keep.empty?
+        raise unless can_use == can_upgrade
+
+        country_modifiers = project["tier_3"]["country_modifiers"]
+        next if country_modifiers.empty?
+
+        yield(name, province_name, country_modifiers, parse_can_use(can_use))
+      end
+    end
+  end
+
+  def parse_can_use(node)
+    return nil if node.empty?
+    pe = PartialEvaluatorGreatProjects.new
+    node = pe.call(PropertyList["AND", node])
+    return nil if node == PropertyList["always", true]
+    if node.keys == ["OR"]
+      node["OR"].to_a.map{|prop| parse_rule(prop.key, prop.val)}.join("/")
+    elsif node.keys.size == 1
+      prop = node.to_a[0]
+      parse_rule(prop.key, prop.val)
+    else
+      binding.pry
+    end
+  end
+
+  def parse_rule(key, val)
+    case key
+    when "religion", "religion_group", "culture", "culture_group"
+      val
+    when "AND"
+      val.to_a.map{|prop| parse_can_use PropertyList[prop] }
+    else
+      binding.pry
+    end
+  end
+
+  def bonus_score(bonuses)
+    BonusScoring.new(bonuses)
+  end
+
+  def print_monument_list(output)
+    output.sort_by{|s,n| [-s,n]}.each do |score, name, details|
+      puts "  • %.2f %s" % [score, name]
+      # details.each do |k, v|
+      #   puts "    • %.2f %s (%s)" % [bonus_score(k => v).score, k, v]
+      # end
+    end
+  end
+
+  def each_religion
+    parse("common/religions/00_religion.txt").each do |group_name, group_node|
+      group_node.each do |religion_name, religion|
+        next unless religion.is_a?(PropertyList)
+        if religion_name == "religious_schools"
+          next
+        end
+
+        yield(group_name, religion_name)
+      end
+    end
+  end
+
+  def print_universal
+    output = []
+    each_great_project do |project_name, province_name, country_modifiers, can_use|
+      next if can_use
+      name = "#{localization(project_name)} (#{[province_name, can_use].compact.join("; ")})"
+      score = bonus_score(country_modifiers)
+      output << [score.score, name, country_modifiers]
+    end
+    puts "Universal (#{output.map(&:first).sum}):"
+    print_monument_list(output)
+  end
+
+  def call
+    print_universal
+
+    meta_output = []
+    each_religion do |group_name, religion_name|
+      output = []
+      each_great_project do |project_name, province_name, country_modifiers, can_use|
+        next unless can_use
+        next unless can_use.include?(group_name) or can_use.include?(religion_name)
+        name = "#{localization(project_name)} (#{[province_name, can_use].compact.join("; ")})"
+        score = bonus_score(country_modifiers)
+        output << [score.score, name, country_modifiers]
+      end
+      meta_output << [output.map(&:first).sum, localization(religion_name), output]
+    end
+
+    meta_output.sort_by{|s,n| [-s,n]}.each do |score, name, output|
+      puts ""
+      puts "#{name} (#{score}}:"
+      print_monument_list(output)
+    end
+  end
+end
+
+AnalyzeGreatProjects.new_from_argv.call
