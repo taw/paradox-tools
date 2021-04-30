@@ -1188,6 +1188,14 @@ class BonusScoring
     monthly_adm_points v
   end
 
+  def country_diplomatic_power(v)
+    monthly_dip_points v
+  end
+
+  def country_military_power(v)
+    monthly_mil_points v
+  end
+
   def power_projection(v)
     # Linear
     defensiveness 0.1 * v

@@ -541,8 +541,13 @@ class AnalyzeReligions < EU4Analysis
           bonuses[k] = v
         end
         deity["allow"].each do |k,v|
-          raise unless k == "religion"
-          @religions[v].deities[deity_name] = bonuses
+          if k == "religion"
+            @religions[v].deities[deity_name] = bonuses
+          elsif k == "OR" and v.keys.uniq == ["mission_completed"]
+            # ignore, assume done
+          else
+            raise
+          end
         end
       end
     end
