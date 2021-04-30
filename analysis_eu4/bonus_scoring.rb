@@ -767,6 +767,12 @@ class BonusScoring
     trade_efficiency (v/500.0)*0.2
   end
 
+  # This is incorrectly applied to Zoroastrian holy sites in 1.31.1
+  # and doesn't really work
+  def trade_goods_size_modifier(v)
+    global_trade_goods_size_modifier(v)
+  end
+
   # Numbers based on AI games, 1.12.0, typical medium-big countries, ~1625 or so.
   #
   # From a few simulations, ballpark figures for income of a typical medium-big country:

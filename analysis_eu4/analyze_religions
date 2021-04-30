@@ -498,34 +498,36 @@ end
 
 class AnalyzeReligions < EU4Analysis
   attr_reader(
+    :ancestors,
     :aspects,
     :authority,
     :curia_controller,
     :doom,
     :fervor,
-    :harmony,
+    :gurus,
     :harmonized,
+    :harmony,
     :isolationism,
     :karma,
     :patriarch_authority_global,
     :patriarch_authority_local,
     :piety,
     :religions,
-    :gurus,
   )
 
   def initialize(*)
     super
+    @ancestors = {}
+    @aspects = {}
+    @fervor = {}
     @groups = {}
-    @religions = {}
+    @gurus = {}
+    @harmonized = {}
+    @harmony = {}
     @isolationism = []
     @karma = {}
     @piety = {}
-    @aspects = {}
-    @harmony = {}
-    @harmonized = {}
-    @fervor = {}
-    @gurus = {}
+    @religions = {}
   end
 
   def parse_static_bonuses
@@ -679,16 +681,71 @@ class AnalyzeReligions < EU4Analysis
     end
   end
 
+  def parse_ancestors
+    glob("common/ancestor_personalities/*.txt").each do |path|
+      parse(path).each do |name, ancestor|
+        bonus = {}
+        ancestor.each do |k,v|
+          # There's a lot of AI stuff here
+          next if %W[
+            ai_pick_ancestor
+            alliance_acceptance
+            building_budget_multiplier
+            chance allow
+            consort_allow
+            custom_ai_explanation
+            different_religion_war_multiplier
+            easy_war_chance_multiplier
+            enemy_strength_multiplier
+            fair_fights
+            gift_chance
+            heathen_ally_acceptance
+            heir_allow
+            heretic_ally_acceptance
+            heretic_ally_acceptance
+            knowledge_sharing
+            level_factor
+            nation_designer_cost
+            other_ai_help_us_multiplier
+            other_ai_peace_term_bonus
+            other_ai_war_chance_multiplier
+            peace_desire
+            ruler_allow
+            story_factor
+            story_level
+            wants_avoid_debase
+            wants_avoid_loans
+            wants_colonies
+            wants_condottieri
+            wants_ecumenical_council
+            wants_excommunicate
+            wants_explorers
+            wants_gold
+            wants_heathen_land
+            wants_heretic_land
+            wants_land
+            war_chance_multiplier
+            war_priority
+          ].include?(k)
+          bonus[k] = v
+        end
+        @ancestors[name] = bonus
+      end
+    end
+  end
+
   def call
     parse_static_bonuses
-    parse_deity
-    parse_isolationism
-    parse_static_modifiers
-    parse_cults
+
+    parse_ancestors
     parse_aspects
-    parse_religious_reforms
-    parse_fervor
+    parse_cults
+    parse_deity
     parse_event_modifiers
+    parse_fervor
+    parse_isolationism
+    parse_religious_reforms
+    parse_static_modifiers
 
     results = []
     each_religion_variant do |score, name|
