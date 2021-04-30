@@ -82,6 +82,10 @@ class Religion
     @group.uses_religious_schools?
   end
 
+  def uses_ancestors?
+    !!@node["ancestors"]
+  end
+
   def uses_piety?
     !!@node["uses_piety"]
   end
@@ -174,6 +178,7 @@ class Religion
     known_keys = %W[
       allowed_center_conversion
       allowed_conversion
+      ancestors
       aspects
       aspects_name
       authority
@@ -325,7 +330,7 @@ class Religion
       return
     end
 
-    # Coptic
+    # Coptic, Zoroastrian
     if uses_blessings?
       (0..blessings.size).each do |i|
         best_score, best_names = choose_best_n_options(blessings, i)
@@ -337,7 +342,7 @@ class Religion
       return
     end
 
-    # Fetishism / Alcheringa
+    # Fetishism, Alcheringa
     if fetishist_cult?
       @cults.each do |cult_name, cult_bonus|
         yield(
@@ -464,7 +469,7 @@ class Religion
       return
     end
 
-    # Sikh
+    # Sikh (pre 1.31; 1.31 not implemented yet!)
     # these are event modifiers so we hardcode it
     if name == "sikhism"
       @analysis.gurus.each do |guru_name, guru_bonus|
@@ -479,7 +484,19 @@ class Religion
       return
     end
 
-    # Default - Jewish, Zoroastrian, Animist, Totemism
+    # Totemism
+    if uses_ancestors?
+      (0..10).each do |i|
+        best_score, best_names = choose_best_n_options(@analysis.ancestors, i)
+        yield(
+          best_names,
+          primary_score + best_score
+        )
+      end
+      return
+    end
+
+    # Default - Jewish, Animist
     yield(nil, primary_score)
   end
 
