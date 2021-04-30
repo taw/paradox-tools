@@ -274,7 +274,20 @@ class Religion
     yield("Neutral Piety", {})
   end
 
-  def each_variant
+  def each_variant(&blk)
+    monument_score, monument_names = choose_best_n_options(@monuments, @monuments.size)
+    each_variant_without_monuments do |secondary_name, secondary_score|
+      yield(secondary_name, secondary_score)
+      unless @monuments.empty?
+        yield(
+          ["Monuments (#{monument_names.join(", ")})", *secondary_name],
+          (secondary_score + monument_score).round(6)
+        )
+      end
+    end
+  end
+
+  def each_variant_without_monuments
     # Tengri
     if has_secondary?
       @analysis.religions.each do |secondary_name, secondary_religion|
