@@ -6,15 +6,18 @@ require_relative "bonus_scoring"
 require_relative "../eu4/partial_evaluator"
 
 # Ignore trivial conditions
+# For culture
+# - if it requires owner culture, then it's always false (just Pyramids)
+# - otherwise (local/accepted) culture, then it's always true
+# it's a bit unreliable check
 class PartialEvaluatorGreatProjects < PartialEvaluator
   def eval_property(node)
+    return always_false if node.key == "AND" and node.val.keys.sort == ["culture", "has_owner_culture"]
     node = super(node)
     case node.key
-    when "has_owner_religion", "has_owner_culture", "has_owner_accepted_culture"
+    when "has_owner_religion", "has_owner_accepted_culture"
       return always_true if node.val == true
     when "culture", "culture_group"
-      # It only checks province culture, which we can always keep
-      # (sometimes if it's accepted, which is no big deal)
       return always_true
     end
     node
@@ -47,6 +50,7 @@ class AnalyzeGreatProjects < EU4Analysis
     return nil if node.empty?
     pe = PartialEvaluatorGreatProjects.new
     node = pe.call(PropertyList["AND", node])
+
     return nil if node == PropertyList["always", true]
     if node.keys == ["OR"]
       node["OR"].to_a.map{|prop| parse_rule(prop.key, prop.val)}.join("/")
@@ -86,10 +90,7 @@ class AnalyzeGreatProjects < EU4Analysis
     parse("common/religions/00_religion.txt").each do |group_name, group_node|
       group_node.each do |religion_name, religion|
         next unless religion.is_a?(PropertyList)
-        if religion_name == "religious_schools"
-          next
-        end
-
+        next if religion_name == "religious_schools"
         yield(group_name, religion_name)
       end
     end
@@ -103,7 +104,7 @@ class AnalyzeGreatProjects < EU4Analysis
       score = bonus_score(country_modifiers)
       output << [score.score, name, country_modifiers]
     end
-    puts "Universal (#{output.map(&:first).sum}):"
+    puts "Universal (#{output.map(&:first).sum.round(6)}):"
     print_monument_list(output)
   end
 
@@ -120,12 +121,12 @@ class AnalyzeGreatProjects < EU4Analysis
         score = bonus_score(country_modifiers)
         output << [score.score, name, country_modifiers]
       end
-      meta_output << [output.map(&:first).sum, localization(religion_name), output]
+      meta_output << [output.map(&:first).sum.round(6), localization(religion_name), output]
     end
 
     meta_output.sort_by{|s,n| [-s,n]}.each do |score, name, output|
       puts ""
-      puts "#{name} (#{score}}:"
+      puts "#{name} (#{score}):"
       print_monument_list(output)
     end
   end

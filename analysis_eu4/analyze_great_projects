@@ -10,7 +10,7 @@ class PartialEvaluatorGreatProjects < PartialEvaluator
   def eval_property(node)
     node = super(node)
     case node.key
-    when "has_owner_religion", "has_owner_culture", "has_owner_accepted_culture"
+    when "has_owner_religion", "has_owner_accepted_culture"
       return always_true if node.val == true
     end
     node
@@ -58,7 +58,11 @@ class AnalyzeGreatProjects < EU4Analysis
     when "religion", "religion_group", "culture", "culture_group"
       localization(val)
     when "AND"
-      val.to_a.map{|prop| parse_can_use PropertyList[prop] }.map{|c| "(#{c})"}.join(" and ")
+      if val.keys.sort == ["culture", "has_owner_culture"]
+        localization(val["culture"])
+      else
+        val.to_a.map{|prop| parse_can_use PropertyList[prop] }.map{|c| "(#{c})"}.join(" and ")
+      end
     else
       binding.pry
     end
