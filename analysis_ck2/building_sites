@@ -36,7 +36,8 @@ class BuildingSitesAnalysis < CK2GameAndSaveAnalysis
           next unless type == ht
           next unless techs[tt] >= tlevel
           next if buildings.include?(building)
-          buildables << [realm, building, title_paths[name].reverse.join("/")]
+          full_path = title_paths[name]&.reverse
+          buildables << [realm, building, full_path ? full_path.join("/") : "???/#{name}"]
         end
       end
     end

@@ -30,11 +30,11 @@ class Character
   end
 
   def culture
-    @node["cul"] || dynasty.culture
+    @node["cul"] || dynasty&.culture
   end
 
   def religion
-    @node["rel"] || dynasty.religion
+    @node["rel"] || dynasty&.religion
   end
 
   def name
@@ -44,15 +44,15 @@ class Character
   def dynasty_name
     @dynasty.name
   end
-  
+
   def trait_ids
     @node["traits"] || []
   end
-  
+
   def dead?
-    !!@node["d_d"]  
+    !!@node["d_d"]
   end
-  
+
   def alive?
     !@node["d_d"]
   end
