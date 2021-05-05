@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require "shellwords"
+require "pathname"
+
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} outputdir gamepath [mod1] [mod2...]"
+  exit 1
+end
+
+output = Pathname(ARGV[0])
+game = ARGV[1]
+mods = ARGV[2..-1]
+
+# analysis_eu4/analyze_missions is known to only work up to 1.24
+list = %Q[
+  analysis_ck2/list_landed_titles $g
+  analysis_ck2/traits_translation_table $g
+].lines.grep(/\S/).map(&:chomp).map(&:strip)
+
+root_dir = Pathname(__dir__).parent
+
+g_str = [game, *mods].map(&:shellescape).join(" ")
+
+output.mkpath
+list.each do |cmd|
+  name = cmd.split.first.split("/").last
+  save_to = output + "#{name}.txt"
+  cmd = cmd.sub("$g", g_str) + " >#{save_to.to_s.shellescape}"
+  if save_to.exist?
+    # puts "#{name} already exists"
+  else
+    puts "Running #{name}"
+    puts cmd
+    system "#{root_dir}/#{cmd}"
+    puts ""
+  end
+end

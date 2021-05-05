@@ -37,9 +37,6 @@ list = %Q[
   analysis_ck2/traits_statistics $s $g
   analysis_ck2/tribal_development $s
   analysis_ck2/vassal_cultures $s
-
-  analysis_ck2/list_landed_titles $g
-  analysis_ck2/traits_translation_table $g
 ].lines.grep(/\S/).map(&:chomp).map(&:strip)
 
 root_dir = Pathname(__dir__).parent
