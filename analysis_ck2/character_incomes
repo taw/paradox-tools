@@ -1,0 +1,98 @@
+#!/usr/bin/env ruby
+
+require_relative "../ck2/ck2_analyses"
+
+class CharacterIncomes < CK2SaveAnalysis
+  def holders
+    unless @holders
+      @holders = {}
+      @data["title"].each do |name, title|
+        id = title["holder"] or next
+        @holders[id] ||= []
+        @holders[id] << name
+      end
+    end
+    @holders
+  end
+
+  def dynasties
+    unless @dynasties
+      @dynasties = {}
+      @data["dynasties"].each do |id, dynasty|
+        @dynasties[id] = dynasty
+      end
+    end
+    @dynasties
+  end
+
+  def dynasty_name(node)
+    dynasty_id = node["dnt"]
+    if dynasty_id
+      dynasties[dynasty_id]["name"] # a lot of unknowns here
+    else
+      nil
+    end
+  end
+
+  def best_titles(id)
+    result = holders[id] || []
+    e = result.grep(/\Ae_/)
+    return e unless e.empty?
+    k = result.grep(/\Ak_/)
+    return k unless k.empty?
+    d = result.grep(/\Ad_/)
+    return d unless d.empty?
+    c = result.grep(/\Ac_/)
+    return c unless c.empty?
+    return result
+  end
+
+  def call
+    # For debugging
+    player_id = @data["player"]["id"]
+
+    results = []
+    @data["character"].each do |id, character|
+      ledger = character["lgr"] or next
+      # Only count relevant parts, not one-off events:
+
+      # Incomes:
+      # 0 - demesne
+      # 1 - city tax
+      # 2 - feudal tax
+      # 3 - church tax
+      # 4 - tribal tax
+      # 8 - trade income
+      # 10 - nomadic tax
+      # 11 - tribute
+
+      # Expenses:
+      # 8 - liege tax (without liege levy upkeep)
+      # 9 - tribute
+      incomes = ledger["lastmonthincometable"] or next
+      expenses = ledger["lastmonthexpensetable"] || []
+
+      income = (12.0 * [
+        incomes[0],
+        incomes[1],
+        incomes[2],
+        incomes[3],
+        incomes[4],
+        incomes[8],
+        incomes[10],
+        incomes[11],
+        -(expenses[8] || 0),
+        -(expenses[9] || 0),
+      ].sum).round(6)
+
+      bn = character["bn"]
+      results << [income, [bn, dynasty_name(character)].compact.join(" "), best_titles(id).join("/")]
+    end
+
+    results.sort_by{|i,n,t| [-i,n]}.each do |row|
+      puts row.join("\t")
+    end
+  end
+end
+
+CharacterIncomes.new(*ARGV).call

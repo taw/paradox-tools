@@ -21,6 +21,7 @@ list = %Q[
   analysis_ck2/building_sites $s $g
   analysis_ck2/buildings $s
   analysis_ck2/buildings_by_realm $s $g
+  analysis_ck2/character_incomes $s
   analysis_ck2/cultures_by_realm $s $g
   analysis_ck2/empty_holdings $s
   analysis_ck2/independent_countries $s $g
