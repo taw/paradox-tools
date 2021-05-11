@@ -20,11 +20,51 @@ class ProvinceDevelopmentAnalysis < CK2GameAndSaveAnalysis
     end
   end
 
+  def wonder_stage_costs
+    @wonder_stage_costs ||= begin
+      map = Hash.new{|ht,k|
+        warn "Unknown wonder #{k}"
+        ht[k] = 0
+      }
+      glob("common/wonders/*.txt").each do |path|
+        parse(path).each do |wonder_type, wonder|
+          total_cost = 0
+          wonder.find_all("stage").each_with_index do |stage, index|
+            build_time = stage["build_time"] || 0
+            stage_cost = stage["gold_cost_flat"] + stage["gold_cost_ticking"] * build_time
+            total_cost += stage_cost
+            map[[wonder_type, index+1]] = total_cost
+          end
+        end
+      end
+      map
+    end
+  end
+
+  def wonder_upgrade_costs
+    @wonder_upgrade_costs ||= begin
+      map = Hash.new{|ht,k|
+        warn "Unknown upgrade #{k}"
+        ht[k] = 0
+      }
+      glob("common/wonder_upgrades/*.txt").each do |path|
+        parse(path).each do |upgrade_name, upgrade|
+          # Build time modifiers will affect cost, but it's not a huge deal
+          build_time = upgrade["build_time"] || 0
+          map[upgrade_name] = upgrade["gold_cost_flat"] + upgrade["gold_cost_ticking"] * build_time
+        end
+      end
+      map
+    end
+  end
+
   def call
     totals = Hash.new(0)
+
+    # Regular province buildings
     @data["provinces"].each do |id, province|
       next if province == []
-      holding_names = ["hospital", "trade_post", *valid_titles] & province.keys
+      holding_names = ["hospital", "trade_post", "fort", *valid_titles] & province.keys
       next if holding_names.empty?
 
       holding_names.each do |name|
@@ -37,11 +77,35 @@ class ProvinceDevelopmentAnalysis < CK2GameAndSaveAnalysis
       end
     end
 
+    # Wonders
+    wonder_locations = {}
+    @data["wonder"].each do |id, wonder|
+      province_id = wonder["province"]
+      type = wonder["type"]
+      stage = wonder["stage"]
+      wonder_locations[id] = province_id
+
+      totals[province_id] += wonder_stage_costs[[type, stage]]
+    end
+
+    # Wonder Upgrades
+    @data["wonder_upgrade"].each do |id, upgrade|
+      wonder_id = upgrade["wonder"]
+      province_id = wonder_locations[wonder_id]
+      type = upgrade["type"]
+      next unless type["completed"] # ignore in progress
+      cost = wonder_upgrade_costs[type]
+
+      totals[province_id] += cost
+    end
+
     totals.sort_by{|id,t| [-t,id]}.each do |id,t|
-      puts "#{t.round} #{localization("PROV#{id}")}"
+      province_name = localization("PROV#{id}")
+      realm_title = top_realm_by_id(id)
+      realm_name = @data["title"][realm_title]["name"] || localization(realm_title)
+      puts "#{t.round} - #{province_name} - #{realm_name}"
     end
   end
 end
-
 
 ProvinceDevelopmentAnalysis.new(*ARGV).call

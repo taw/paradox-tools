@@ -33,10 +33,21 @@ module Ck2Analyses
     @valid_titles ||= Set[*@data["title"].keys]
   end
 
-  def top_realm_by_title(title)
+  def top_realm_by_id(id)
+    titles = province_id_to_titles[id]
+    results = titles.map{|title| top_realm_by_title(title, true)}.compact.uniq
+    if results.uniq.size == 1
+      results[0]
+    else
+      warn "Cannot find realm for province #{id} - #{titles} - #{results}"
+      results[0]
+    end
+  end
+
+  def top_realm_by_title(title, ignore_warnings=false)
     title_data = @data["title"][title]
     unless title_data
-      warn "No such title `#{title}'"
+      warn "No such title `#{title}'" unless ignore_warnings
       return nil
     end
     liege = title_data["liege"]
@@ -112,6 +123,20 @@ module Ck2Analyses
           warn "Multiple titles for id #{id} - #{map[id]} #{title}"
         end
         map[id] = title
+      end
+      map
+    end
+  end
+
+  # Allows duplication, as game data is broken
+  def province_id_to_titles
+    @province_id_to_titles ||= begin
+      map = {}
+      glob("history/provinces/*.txt").each do |path|
+        id = path.basename.to_s.to_i
+        title = parse(path)["title"]
+        map[id] ||= []
+        map[id] << title
       end
       map
     end
