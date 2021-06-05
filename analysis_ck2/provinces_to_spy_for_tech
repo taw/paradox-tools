@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+
+require_relative "../ck2/ck2_analyses"
+
+class ProvincesToSpyForTech < CK2SaveAnalysis
+  def call
+    # Generate list of possible candidates for spying
+    candidates = province_tech_breakdown.sort_by{|t| -t[:total]}
+
+    # To avoid pointless O(n^2), filter out obviously weak ones
+    i = 0
+    while i < candidates.size
+      candidates = candidates.reject{|c| dominates? candidates[i], c }
+      i += 1
+    end
+
+    province_tech_breakdown.sort_by{|info| [-info[:total], info[:name]] }.each do |info|
+      best_targets = candidates.map{|c| [tech_advantage(c, info), c] }.sort_by{|a,b| [-a, b[:name]] }
+      province_realms = realms_for(info)
+      puts "#{info[:total]} #{info[:name]} #{province_realms}"
+      best_targets[0,3].each do |a,t|
+        target_realms = realms_for(t)
+        puts "  #{a} #{t[:name]} #{target_realms}"
+      end
+    end
+  end
+
+  def realms_for(info)
+    realms(info[:id]).map{|realm| realm_name(realm)}.join("/")
+  end
+
+  def tech_advantage(p1, p2)
+    p1[:tech].zip(p2[:tech])
+      .map{|a,b| [a - b, 0].max}
+      .sum
+      .round(3)
+  end
+
+  def dominates?(p1, p2)
+    return false if p1[:id] == p2[:id]
+    p1[:total] > p2[:total] and p1[:tech].zip(p2[:tech]).all?{|a,b| a >= b}
+  end
+end
+
+ProvincesToSpyForTech.new(*ARGV).call

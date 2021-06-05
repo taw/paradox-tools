@@ -69,7 +69,7 @@ module Ck2Analyses
         next if province == []
         name = province["name"]
         next unless name
-        total_tech = province["technology"]["tech_levels"].inject(&:+).round(3)
+        total_tech = province["technology"]["tech_levels"].sum.round(3)
         province_techs << {
           id: id,
           tech: total_tech,
@@ -77,6 +77,26 @@ module Ck2Analyses
         }
       end
       province_techs
+    end
+  end
+
+  def province_tech_breakdown
+    @province_tech_breakdown ||= begin
+      province_tech_breakdown = []
+      @data["provinces"].each do |id, province|
+        # Ocean provinces now have flags (like disease)
+        next if province == []
+        name = province["name"]
+        next unless name
+        techs = province["technology"]["tech_levels"]
+        province_tech_breakdown << {
+          id: id,
+          tech: techs,
+          total: techs.sum.round(3),
+          name: name,
+        }
+      end
+      province_tech_breakdown
     end
   end
 
