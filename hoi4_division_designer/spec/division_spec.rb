@@ -287,7 +287,7 @@ describe Division do
     let(:doctrine) { "Mobile Warfare / Mobile Infantry / Modern Blitzkrieg" }
     let(:units) { {motorized: 10} }
     it do
-      expect(division.speed).to eq 13.2
+      expect(division.speed).to eq 14.52
     end
   end
 

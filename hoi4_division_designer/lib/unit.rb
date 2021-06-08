@@ -154,6 +154,6 @@ class Unit
   def speed
     # Unclear what to do when multiply types are used. Mot uses mot(12)+inf(4)
     equipment_speed = @equipment.map{|eq, count| eq.maximum_speed}.compact.max || 4.0
-    equipment_speed * (1 + @unit_type.maximum_speed)
+    equipment_speed * (1 + @unit_type.maximum_speed + (@country_bonuses["maximum_speed"] || 0))
   end
 end
