@@ -1216,6 +1216,16 @@ class CK2TweaksGameModification < CK2GameModification
     end
   end
 
+  def reduce_unfun_laws!
+    patch_mod_file!("common/technology.txt") do |node|
+      legalism = node["TECH_GROUP_CULTURE"]["TECH_LEGALISM"]
+      legalism[3].delete! Property["add_decision", "out_of_realm_inheritance_law_1"]
+      legalism[6].add! Property["add_decision", "out_of_realm_inheritance_law_1"]
+      legalism[7].add! Property["add_decision", "vassal_wars_law_1"]
+      legalism[8].add! Property["add_decision", "vassal_wars_law_2"]
+    end
+  end
+
   def apply!
     ### Definitely still want:
     allow_everyone_river_access!
@@ -1238,6 +1248,7 @@ class CK2TweaksGameModification < CK2GameModification
     easier_seduction!
     change_focus_any_time!
     no_artifact_loss_on_succession!
+    reduce_unfun_laws!
 
     # TODO: de jure drift by title_decisions
 
