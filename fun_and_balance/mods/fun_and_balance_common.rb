@@ -332,25 +332,25 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     # positive modifiers in 1.30 (especially estates) so it's de facto closer to -50%
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
       modify_node!(node,
-        ["negative_mandate", "global_unrest", 5, 15],
+        ["negative_mandate", "global_unrest", 5, 10],
         ["negative_mandate", "manpower_recovery_speed", nil, -0.5],
         ["negative_mandate", "mercenary_manpower", -0.5, -2.0],
-        ["negative_mandate", "fire_damage_received", 0.5, 1.0],
-        ["negative_mandate", "shock_damage_received", 0.5, 1.0],
+        # ["negative_mandate", "fire_damage_received", 0.5, 1.0],
+        # ["negative_mandate", "shock_damage_received", 0.5, 1.0],
         ["negative_mandate", "mercenary_discipline", nil, -1.0],
         # ["negative_mandate", "reduced_liberty_desire", nil, -50],
         ["negative_mandate", "diplomatic_reputation", nil, -5],
         ["negative_mandate", "liberty_desire_from_subject_development", nil, 1.0],
-        ["lost_mandate_of_heaven", "global_unrest", 10, 15],
+        # ["lost_mandate_of_heaven", "global_unrest", 10, 10],
         ["lost_mandate_of_heaven", "manpower_recovery_speed", nil, -0.5],
         ["lost_mandate_of_heaven", "mercenary_manpower", -0.5, -2.0],
-        ["lost_mandate_of_heaven", "fire_damage_received", 0.5, 1.0],
-        ["lost_mandate_of_heaven", "shock_damage_received", 0.5, 1.0],
+        # ["lost_mandate_of_heaven", "fire_damage_received", 0.5, 1.0],
+        # ["lost_mandate_of_heaven", "shock_damage_received", 0.5, 1.0],
         ["lost_mandate_of_heaven", "mercenary_discipline", nil, -1.0],
         # ["lost_mandate_of_heaven", "reduced_liberty_desire", -50, -50]
         ["lost_mandate_of_heaven", "diplomatic_reputation", nil, -5],
         ["lost_mandate_of_heaven", "liberty_desire_from_subject_development", nil, 1.0],
-    )
+      )
     end
 
     # Make winning/losing mandate last 50 years
@@ -578,6 +578,35 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
 
+  def make_hegemony_achievable!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    # Economic goal - 1000 monthly income
+    # Military goal - 1000k army
+    # - costs 2% * [500*10 + 100*25 + 400*30] = 390 gold
+    # (and a lot of discounts)
+    # Naval goal - 250 heavies
+    # (increases with tech up to 100%)
+    # - costs 250 * 0.4 * 200% = 200
+
+    # Also naval bonuses are total trash in comparison to the other two
+
+    patch_mod_file!("common/hegemons/0_economic_hegemon.txt") do |node|
+      modify_node! node,
+        ["economic_hegemon", "allow", "monthly_income", 1000, 500]
+    end
+
+    patch_mod_file!("common/hegemons/1_naval_hegemon.txt") do |node|
+      modify_node! node,
+        ["naval_hegemon", "allow", "num_of_heavy_ship", 250, 50]
+    end
+
+    patch_mod_file!("common/hegemons/2_military_hegemon.txt") do |node|
+      modify_node! node,
+        ["military_hegemon", "allow", "army_size", 1000, 500]
+    end
+  end
+
   def bring_tech_groups_back!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
@@ -771,5 +800,132 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     soft_patch_defines_lua!("fun_and_balance_more_privileges",
       ["NCountry.ESTATE_PRIVILEGES_MAX_CONCURRENT", 5, 10],
     )
+  end
+
+  # lucky + vh
+  def super_lucky_nations!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    tags = [
+      "NOV", # Novgorod
+      "VEN", # Venice
+      "BOH", # Bohemia
+      "MAM", # Mamluks
+      "QAR", # Qara Koyunlu
+      "GOL", # Great Horde
+      "AYU", # Ayutthaya
+      "KOR", # Korea
+      "OIR", # Oirats
+      "MAJ", # Majapahit
+      "ETH", # Ethiopia
+      "ORI", # Orissa
+      "BYZ", # Rome
+      "ENG", # England
+    ]
+
+    create_mod_file! "common/triggered_modifiers/super_lucky.txt", PropertyList[
+      "super_lucky1", PropertyList[
+        "potential", PropertyList[
+          "always", true,
+        ],
+        "trigger", PropertyList[
+          "OR", PropertyList[
+            *tags.flat_map{|t| ["tag", t]}
+          ],
+        ],
+        # effects - luck
+        "global_missionary_strength", 0.01,
+        "stability_cost_modifier", -0.1,
+        "global_institution_spread", 0.1,
+        "monthly_splendor", 1,
+        "mercenary_cost", -0.2,
+        "embracement_cost", -0.2,
+        "advisor_cost", -0.2,
+        "interest", -1,
+        "missionary_maintenance_cost", -0.1,
+        "manpower_recovery_speed", 0.25,
+        "defensiveness", 0.1,
+        "siege_ability", 0.05,
+        "spy_offence", 0.1,
+        "improve_relation_modifier", 0.25,
+        "global_unrest", -1,
+        "republican_tradition", 0.5,
+        "legitimacy", 1,
+        "ae_impact", -0.25,
+      ],
+      "super_lucky2", PropertyList[
+        "potential", PropertyList[
+          "always", true,
+        ],
+        "trigger", PropertyList[
+          "OR", PropertyList[
+            *tags.flat_map{|t| ["tag", t]}
+          ],
+        ],
+        # effects - very hard AI bonuses
+        "manpower_recovery_speed", 0.5,
+        "global_manpower_modifier", 0.5,
+        "land_forcelimit_modifier", 0.5,
+        "naval_forcelimit_modifier", 0.5,
+        "global_regiment_cost", -0.33,
+        "global_ship_cost", -0.33,
+        "inflation_reduction", 0.05,
+        "global_unrest", -2,
+        "war_exhaustion", -0.05,
+        "core_creation", -0.25,
+        "idea_cost", -0.25,
+        "interest", -1,
+        "improve_relation_modifier", 0.5,
+        "development_cost", -0.2,
+        "build_cost", -0.25,
+        "ae_impact", -0.33,
+        "missionary_maintenance_cost", -0.3,
+      ],
+    ]
+  end
+
+  def super_unlucky_nations!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    tags = [
+      "FRA",
+      "HAB",
+      "TUR",
+      "MOS",
+      "MNG",
+    ]
+
+    create_mod_file! "common/triggered_modifiers/super_unlucky.txt", PropertyList[
+      "super_unlucky", PropertyList[
+        "potential", PropertyList[
+          "normal_or_historical_nations", true,
+        ],
+        "trigger", PropertyList[
+          "OR", PropertyList[
+            *tags.flat_map{|t| ["tag", t]}
+          ],
+        ],
+        # effects
+        # all estates hate you
+        "brahmins_hindu_loyalty_modifier", -0.25,
+        "brahmins_muslim_loyalty_modifier", -0.25,
+        "brahmins_other_loyalty_modifier", -0.25,
+        "church_loyalty_modifier", -0.25,
+        "maratha_loyalty_modifier", -0.25,
+        "nobles_loyalty_modifier", -0.25,
+        "burghers_loyalty_modifier", -0.25,
+        "vaisyas_loyalty_modifier", -0.25,
+        "cossacks_loyalty_modifier", -0.25,
+        "nomadic_tribes_loyalty_modifier", -0.25,
+        "dhimmi_loyalty_modifier", -0.25,
+        "jains_loyalty_modifier", -0.25,
+        "rajput_loyalty_modifier", -0.25,
+        # low heir chance - I highly doubt it does anything useful
+        "heir_chance", -0.75,
+        "reduced_liberty_desire", -25,
+        "diplomatic_reputation", -3,
+        "improve_relation_modifier", -0.5,
+      ],
+    ]
   end
 end

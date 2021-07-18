@@ -36,10 +36,18 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     buff_support_rebels!
     buff_covert_actions!
 
+    # Evaluating for reals:
+    # make_hegemony_achievable!
+
     # Experimental:
+    # remove_all_straits!
+    # allow_more_estate_privileges!
+    # enable_more_idea_groups!
     # rebalance_unrest!
     # rebalance_unrest_experimental!
     # all_religions_propagate_by_trade!
+    # super_lucky_nations!
+    # super_unlucky_nations!
 
     soft_patch_defines_lua!(
       "fun_and_balance",
