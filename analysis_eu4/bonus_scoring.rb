@@ -624,6 +624,10 @@ class BonusScoring
     global_missionary_strength 0.25 * v
   end
 
+  def global_heathen_missionary_strength(v)
+    global_missionary_strength 0.75 * v
+  end
+
   def local_missionary_strength(v)
     global_missionary_strength(v)
   end
@@ -1431,6 +1435,12 @@ class BonusScoring
         # nearly useless, unless -100%
       when :yearly_patriarch_authority
         # very nice if Orthodox, but does nothing for anyone else
+      when :yearly_doom_reduction
+        # only does anything if you're playing Nahuatl, but even then doom is not a real concern if you have any idea what you're doing
+      when :monthly_splendor
+        # this is arguably good, but very situational
+      when :treasure_fleet_income
+        # way too situational
       else
         warn "#{k} not scored"
       end

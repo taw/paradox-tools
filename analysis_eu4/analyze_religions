@@ -192,6 +192,7 @@ class Religion
   def unknown_keys_warning!
     known_keys = %W[
       allowed_center_conversion
+      allow_female_defenders_of_the_faith
       allowed_conversion
       ancestors
       aspects
@@ -793,8 +794,11 @@ class AnalyzeReligions < EU4Analysis
       else
         [node.val]
       end
+    when "owner"
+      raise unless node.val.keys == ["religion"]
+      religions_in_rule(node.val.to_a.first)
     else
-      raise
+      raise "Religion rule parse error"
     end
   end
 

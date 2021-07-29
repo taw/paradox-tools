@@ -63,6 +63,13 @@ class AnalyzeGreatProjects < EU4Analysis
       else
         val.to_a.map{|prop| parse_can_use PropertyList[prop] }.map{|c| "(#{c})"}.join(" and ")
       end
+    when "owner"
+      if val.keys == ["religion"]
+        # not quite same rule as others
+        localization(val.values[0])
+      else
+        binding.pry
+      end
     else
       binding.pry
     end

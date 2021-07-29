@@ -1,5 +1,6 @@
 require_relative "../lib/paradox_game"
 require "set"
+require "pry"
 
 class EU4Analysis < ParadoxGame
   def self.new_from_argv
