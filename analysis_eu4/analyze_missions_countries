@@ -36,6 +36,10 @@ class AnalyzeMissionsCountries < EU4Analysis
       return potential["OR"].to_a.map{|p| localization(p.val) }.join("/")
     end
 
+    if potential.keys == ["primary_culture"]
+      return localization(potential["primary_culture"]) + " culture"
+    end
+
     case potential
     when PropertyList["always", true]
       "generic"
@@ -49,6 +53,28 @@ class AnalyzeMissionsCountries < EU4Analysis
         "NOT", PropertyList["is_emperor", true],
       ]
       "hre minor"
+    when PropertyList[
+        "capital_scope", PropertyList["continent", "europe"],
+        "is_part_of_hre", true,
+        "NOT", PropertyList["is_emperor", true],
+        "government", "theocracy",
+      ]
+      "hre theocracy"
+    when PropertyList[
+        "capital_scope", PropertyList["continent", "europe"],
+        "is_part_of_hre", true,
+        "NOT", PropertyList["is_emperor", true],
+        "NOT", PropertyList["government", "theocracy"],
+        "NOT", PropertyList["government", "republic"],
+      ]
+      "hre monarchy"
+    when PropertyList[
+        "capital_scope", PropertyList["continent", "europe"],
+        "is_part_of_hre", true,
+        "NOT", PropertyList["is_emperor", true],
+        "government", "republic",
+      ]
+      "hre republic"
     when PropertyList["capital_scope", PropertyList["OR", PropertyList[
         "region", "sahel_region",
         "region", "niger_region",
@@ -125,9 +151,55 @@ class AnalyzeMissionsCountries < EU4Analysis
         "primary_culture", "oirats",
       ]]
       "Mongol"
+    when PropertyList["OR", PropertyList[
+        "tag", "CAS",
+        "AND", PropertyList[
+          "tag", "SPA",
+          "NOT", PropertyList["primary_culture", "aragonese"],
+          "NOT", PropertyList["primary_culture", "catalan"],
+        ],
+      ]]
+      "Castille (or formed Spain)"
+    when PropertyList["OR", PropertyList[
+        "tag", "ARA",
+        "tag", "CAT",
+        "tag", "VAL",
+        "AND", PropertyList[
+          "tag", "SPA",
+          "OR", PropertyList[
+            "primary_culture", "aragonese",
+            "primary_culture", "catalan",
+          ],
+        ],
+      ]]
+      "Aragon (of formed Spain)"
+    when PropertyList["OR", PropertyList[
+        "technology_group", "aboriginal_tech",
+        "technology_group", "polynesian_tech",
+      ]]
+      "Aborigine/Polynesian"
+    when PropertyList[
+        "capital_scope", PropertyList["OR", PropertyList[
+          "continent", "north_america",
+          "continent", "south_america",
+          "continent", "new_world",
+        ]],
+        "OR", PropertyList[
+          "technology_group", "andean",
+          "technology_group", "north_american",
+          "technology_group", "south_american",
+          "technology_group", "mesoamerican",
+        ],
+      ]
+      "American Native"
+    when PropertyList[
+      "technology_group", "chinese",
+      "culture_group", "malay",
+      "NOT", PropertyList["tag", "MAJ"],
+    ]
+      "Malay minor"
     else
-      puts potential
-      # binding.pry
+      # "Unknown #{potential.inspect}"
       "Unknown"
     end
   end
