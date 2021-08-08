@@ -59,7 +59,9 @@ class Mission
       e.val.to_a.map{|ee| categorize_effect(ee)}
     when "add_country_modifier"
       duration = e.val["duration"]
-      duration = duration.to_i if duration =~ /\A\d+\z/
+      if duration.is_a?(String) and duration =~ /\A\d+\z/
+        duration = duration.to_i
+      end
       if duration > 0
         duration /= 365.0
         if duration >= 5 and duration <= 100
@@ -125,6 +127,10 @@ class Mission
       "papal_influence"
     when "set_government_rank"
       "government rank"
+    when "add_accepted_culture"
+      "accepted culture"
+    when "change_government_reform_progress"
+      "reform progress"
     else
       p e
       # if e.inspect =~ /province_modifier/
