@@ -12,7 +12,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     increase_rival_distance!
-    longer_cb_on_backstabbers!
+    longer_cb_on_backstabbers! # this is meaningless anyway
     lower_defender_ae!
     lower_piracy_penalty!
     lower_culture_conversion_penalty!
@@ -41,7 +41,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
 
     # Experimental:
     # remove_all_straits!
-    # allow_more_estate_privileges!
+    # allow_more_estate_privileges! # needs UI mod to display more than 5
     # enable_more_idea_groups!
     # rebalance_unrest!
     # rebalance_unrest_experimental!

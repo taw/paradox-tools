@@ -798,7 +798,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     # 5 in 1.30.3
     # 4 in 1.30.4
     soft_patch_defines_lua!("fun_and_balance_more_privileges",
-      ["NCountry.ESTATE_PRIVILEGES_MAX_CONCURRENT", 5, 10],
+      ["NCountry.ESTATE_PRIVILEGES_MAX_CONCURRENT", 4, 8],
     )
   end
 

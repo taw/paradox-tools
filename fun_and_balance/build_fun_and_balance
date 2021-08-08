@@ -7,7 +7,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/eu4-1.31.3",
+        "source/eu4-1.31.5",
       ),
       "output/fun_and_balance",
     )
