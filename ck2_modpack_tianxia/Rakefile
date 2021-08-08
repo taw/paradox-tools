@@ -1,0 +1,269 @@
+require "pathname"
+require "pathname-glob"
+require "pry"
+require "shellwords"
+
+# Explicit include list
+@included_mods = [
+  # # UI only
+  # "!bigger_lists", # this is expected conflict with arumbamodpack but I don"t want to complicate things
+  # "animeportraits",
+  # "biggerinterface", # in arumbamodpack
+  "blueduke",
+  "colored buttons",
+  "interface_century_gothic", # in arumbamodpack
+  # "jk_meaningful_borders",
+  "orangeransom",
+  # "simple_terrain",
+  # "songs",
+  # "you_ain't_getting_anything_from_me",
+  "real father + visible health & fertility",
+
+  # # Other mods
+  # "aao",
+  # "advancedplottermod",
+  # "baptize grandchildren",
+  # "bastards",
+  "better forts",
+  "bringchild",
+  "canonize parents",
+  "childhood",
+  "claim_sayyid",
+  "cuckolddecision",
+  "destroy and convert settlement",
+  "easyheresy",
+  "fitna_fracture",
+  "goldforfavors",
+  # "gonzo republics mod",
+  "impossible_invitation_warning",
+  "mc01",
+  "mend the eastern schisms",
+  "mistress", # good idea, but this totally broken, needs overrides
+  "moreambitionsfindpurpose",
+  "morebuildablewonders",
+  "nicknames+++",
+  # "patron_deities",
+  "prisonermarriage",
+  "randomhordes",
+  "reformation_more_doctrines_six",
+  "release_vassal",
+  "take_artifacts_decisions",
+  "vhf", # better mod replaces this one, can I get it? (real fathers)
+  # "ws_warrior_societies",
+
+  "introduce_heir",
+]
+
+# These do not belong in any modpack (total conversions etc.)
+# or conflict with other mods
+@excluded_mods = [
+  # "culturalbonuses", # a lot of complexity for trivial bonuses ?
+  # "the_great_trade_league", # maybe too complicated?
+  # "advanced trade systems", # "This mod is currently undergoing a major overhaul."
+  # "arumbamodpack", # too old, doesn't work
+  # "assumethecaliphate", # not compatible with latest version, breaks CBs etc.
+  # "attribute", # cute idea but really complicated
+  "bibliophile", # too many error.log entries
+  "ck2tweaks", # that's my tweaks, will apply afterwards
+  # "court assistant", # CK2+
+  # "cow", # conflicts
+  # "feudal can join lodges", # ws_warrior_societies already does it?
+  # "fixed_smith_prices", # conflicts with aao
+  # "fotranytier", # too old
+  # "mnr ck2plus", # ck2+ submod
+  # "modern_flags.mod", # submod for modern_times, also weird name
+  # "modern_times", # total conversion
+  "no_artifact_losing", # already included
+  # "no_localized_ranks", # already included
+  "no_lowborn", # no idea what are implications of this
+  # "no_satan_masks_red_cloth", # animeportraits
+  # "paganwomengetconsorts", # too many conflicts
+  # "personal_castle", # great works system is basically same in vanilla
+  # "piousreformation", # vanilla system is fine I guess
+  # "realistic battles", # broken, need manual fix
+  # "reformationreform", # too big of a change unless playing campaign focused on this
+  # "relatable_borders", # feels too modern timesy?
+  "same succussion", # this sort of breaks the game in HRE, only good for modded enatic campaigns
+  "six_religious_doctrines", # got renamed to reformation_more_doctrines_six
+  "thickandthinborder", # outdated according to Steam Workshop comments
+  "unique_buildings", # CK2+ submod
+  "unlimited focus", # already included
+  # "way_of_play", # presumably outdated
+  # "world of ideologies", # modern times stuff
+]
+
+def fresh_dir(dir)
+  dir = Pathname(dir)
+  sh "trash", dir.to_s if dir.exist?
+  dir.mkpath
+end
+
+def what_to_do_with(mod)
+  @seen ||= {}
+  return :skip if @excluded_mods.include?(mod)
+  return :keep if @included_mods.include?(mod)
+  unless @seen[mod]
+    warn "What to do with #{mod}?"
+    @seen[mod] = true
+  end
+  :keep
+end
+
+def unpack_file(path)
+  dest_path = Pathname("mods_unpacked") + path.basename(".zip")
+  dest_path.mkpath
+  Dir.chdir(dest_path) do
+    # A lot of stupid shit here, multiple same name files:
+    sh "7za x -aoa ../../#{path.to_s.shellescape} >/dev/null"
+    # Steam weird stuff, two descriptors in same zip
+    # Actually we should kill all root level files
+    [
+      # Weird files
+      "thumb.jpg",
+      "Thumbs.db",
+      "descriptor.mod",
+      "descriptor_1.mod",
+      "changelog.txt",
+      # Weird dirs
+      "---- options ----",
+      "CK2PlusCulture",
+      "EMFCulture",
+      "IBLCulture",
+      "Look here for compatibility",
+      "SWMHCulture",
+      "backup",
+      "decisionsold",
+      "patches",
+      "interfaceold",
+    ].each do |bad_file|
+      if File.exist?(bad_file)
+        FileUtils.rm_rf bad_file
+      end
+    end
+    Dir["**/.DS_Store"].each do |bad_file|
+      FileUtils.rm_rf bad_file
+    end
+    Dir["**/Thumbs.db"].each do |bad_file|
+      FileUtils.rm_rf bad_file
+    end
+    Pathname(".")
+      .children
+      .select{|x| x.extname =~ /\A\.(jpg|jpeg|png|txt|mod)\z/i }
+      .each do |bad_file|
+        FileUtils.rm_rf bad_file
+      end
+  end
+end
+
+desc "Unpack Steam and mods"
+task "unpack:steam" do
+  Pathname("mods_unpacked").mkpath
+  Pathname("steam_mods").children.sort.each do |path|
+    if path.extname == ".mod"
+      bn = path.basename(".mod").basename(".mod").to_s
+      next if what_to_do_with(bn) == :skip
+      FileUtils.cp path, Pathname("mods_unpacked") + path.basename
+    elsif path.extname == ".zip"
+      bn = path.basename(".zip").to_s
+      next if what_to_do_with(bn) == :skip
+      unpack_file(path)
+    end
+  end
+end
+
+task "unpack" => ["clean", "unpack:steam", "unpack:gavelkind"]
+
+desc "Unpack mods from gavelkind"
+task "unpack:gavelkind" do
+  Pathname("gavelkind_mods").children.each do |path|
+    sh "cp -a #{path}/mod/* mods_unpacked/"
+  end
+end
+
+desc "Get mods from gavelkind"
+task "gavelkind:fetch" do
+  Pathname("gavelkind_mods").mkpath
+  Dir.chdir("gavelkind_mods") do
+    sh "git clone https://github.com/gavelkind/transfer_empty_province"
+    sh "git clone https://github.com/gavelkind/heir_traits"
+    # sh "git clone https://github.com/gavelkind/vassal_culture_alerts" # in retrospect super annoying
+    sh "git clone https://github.com/gavelkind/pact_traits"
+    # https://github.com/gavelkind/invitation_traits # in base game now?
+    # https://github.com/gavelkind/challenge_traits # don"t want
+    sh "git clone https://github.com/gavelkind/title_info"
+    # https://github.com/gavelkind/fitna_fracture # using Steam version
+    sh "git clone https://github.com/gavelkind/show_council"
+    sh "git clone https://github.com/gavelkind/notify_on_adulthood"
+    # https://github.com/gavelkind/elective_leagues # don"t want
+  end
+end
+
+desc "Show mod conflicts"
+task "conflicts" do
+  sh "../bin/check_mod_compatibility mods_unpacked"
+end
+
+desc "Clean up"
+task "clean" do
+  %w[
+    base
+    mods_unpacked
+    ck2tweaks
+    ck2tweaks_unmerged
+  ].each do |path|
+    sh "trash", path if Pathname(path).exist?
+  end
+end
+
+def copy_all_files(source_dir, target_dir)
+  source_dir.find do |source_file|
+    next if source_file.directory?
+    relpath = source_file.relative_path_from(source_dir)
+    target_file = target_dir + relpath
+    target_file.parent.mkpath
+    if target_file.exist?
+      warn "#{target_file} already exists"
+    end
+    FileUtils.cp source_file, target_file
+  end
+end
+
+desc "Create base modpack"
+task "base" do
+  fresh_dir("base")
+  Pathname("mods_unpacked").children.sort.reverse.each do |mod|
+    next unless mod.directory? # ignore .mod files
+    copy_all_files(mod, Pathname("base"))
+  end
+  Pathname("other_mods").children.sort.reverse.each do |mod|
+    next unless mod.directory? # ignore .mod files
+    copy_all_files(mod, Pathname("base"))
+  end
+  # This is silly and should get merged with ck2tweaks :-/
+  copy_all_files(Pathname("extra_files"), Pathname("base"))
+end
+
+desc "Create CK2 Tweaks for modpack"
+task "ck2tweaks_unmerged" do
+  sh "trash", "ck2tweaks_unmerged" if Pathname("ck2tweaks_unmerged").exist?
+  Dir.chdir("..") do
+    sh "rescue ./ck2_mods/build_ck2tweaks_for_modpack"
+  end
+end
+
+desc "Build full modpack"
+task "ck2tweaks" do
+  target_dir = Pathname("ck2tweaks")
+  fresh_dir target_dir
+  copy_all_files Pathname("base"), target_dir
+  copy_all_files Pathname("ck2tweaks_unmerged"), target_dir
+  FileUtils.cp "ck2tweaks_unmerged.mod", "ck2tweaks.mod"
+end
+
+desc "Build"
+task "build" => ["clean", "unpack", "base", "ck2tweaks_unmerged", "ck2tweaks"]
+
+desc "Upload"
+task "upload" do
+  sh "upload_ck2_mod ck2tweaks ck2tweaks.mod"
+end
