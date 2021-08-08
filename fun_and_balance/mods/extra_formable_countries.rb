@@ -170,11 +170,14 @@ class ExtraFormableCountriesGameModification < EU4GameModification
             "is_free_or_tributary_trigger", true,
             "is_at_war", false,
             "primary_culture", culture,
-            Property::NOT["any_province", PropertyList[
-              "culture", culture,
-              Property::NOT["owned_by", "ROOT"],
-              Property::NOT["is_core", "ROOT"],
-            ]],
+            "custom_trigger_tooltip", PropertyList[
+              "tooltip", "controls_all_#{culture}",
+              Property::NOT["any_province", PropertyList[
+                "culture", culture,
+                Property::NOT["owned_by", "ROOT"],
+                Property::NOT["is_core", "ROOT"],
+              ]]
+            ],
           ],
           "effect", PropertyList[
             "change_tag", tag,
@@ -203,7 +206,8 @@ class ExtraFormableCountriesGameModification < EU4GameModification
       loc_culture = localization(culture)
       localization! "extra_formable_countries",
         "extra_formable_form_#{tag}_title" => "Form #{loc_tag}",
-        "extra_formable_form_#{tag}_desc"  => "Our country is the one true home of #{loc_culture} people, let's call it #{loc_tag}!"
+        "extra_formable_form_#{tag}_desc"  => "Our country is the one true home of #{loc_culture} people, let's call it #{loc_tag}!",
+        "controls_all_#{culture}" => "Controls all #{loc_culture} provinces"
     end
     create_mod_file! "decisions/extra_formable_countries.txt", PropertyList[
       *decisions
