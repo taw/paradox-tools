@@ -30,7 +30,7 @@ class ListFormableCountries < EU4Analysis
   end
 
   def call
-    puts formable_countries.map{|tag| "#{tag} #{localization(tag)}"}
+    puts formable_countries.map{|tag| "#{tag} #{localization(tag)}"}.sort
   end
 end
 
