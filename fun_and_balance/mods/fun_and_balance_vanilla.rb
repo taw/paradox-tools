@@ -87,7 +87,8 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   # Many decisions and events assume certain cultures are in certain groups,
   # so any drastic changes might need extra work
   #
-  # But first, delete stupid Carpathian culture group
+  # * delete stupid Carpathian culture group, move everyone to West Slavic or Balkan
+  # * create separate Turkish group for Turks
   #
   # Other things that might need fixing:
   # * Finland/Sampi/Karelian/Estonian are split
@@ -107,6 +108,19 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
         "male_names", hun["male_names"],
         "female_names", hun["female_names"],
       ]
+
+      turkish = node["turko_semitic"]["turkish"]
+      node["turko_semitic"].delete! "turkish"
+      node.add! "turkish_g", PropertyList[
+        "graphical_culture", "muslimgfx",
+        "turkish", turkish,
+      ]
+    end
+
+    patch_mod_file!("missions/EMP_Hungarian_Missions.txt") do |node|
+      mission = node["emp_hun_bulwark_of_christianity_branch"]["emp_hun_bulwark_of_christianity"]
+      culture_check = mission["trigger"]["if"]["custom_trigger_tooltip"]["NOT"]["any_country"]["OR"]
+      culture_check.add! "culture", "turkish"
     end
 
     patch_mod_file!("common/government_reforms/01_government_reforms_monarchies.txt") do |node|
@@ -157,6 +171,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       "BYZ" => "East Rome",
       "BYZ_ADJ" => "East Roman",
       "BYZ_ADJ2" => "East Roman",
-      "south_slavic" => "Balkan"
+      "south_slavic" => "Balkan",
+      "turkish_g" => "Turkish"
   end
 end
