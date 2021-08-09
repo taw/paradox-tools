@@ -36,6 +36,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     buff_covert_actions!
     fix_culture_groups!
     fix_localization!
+    nerf_tribal_development!
 
     # Evaluating for reals:
     # make_hegemony_achievable!

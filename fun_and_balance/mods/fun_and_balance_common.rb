@@ -531,6 +531,64 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # Not sure how to fix this:
+  # * if I let it go negative, it goes to negative development
+  # * if not, it skyrockets into 100 Constantinoples
+  def nerf_tribal_development!
+    soft_patch_defines_lua!(
+      "fun_and_balance_nerf_tribal_dev",
+      # annual number, so 3*4/12 = 1 devastation per month initially
+      # there's 10% a year natural recovery
+      ["NCountry.MIGRATORY_TRIBE_DEVASTATION_BURN", 0.8, 4.0],
+      ["NCountry.MIGRATORY_TRIBE_DEVELOPMENT_PROGRESS", 0.02, 0.005],
+      ["NCountry.MIGRATORY_TRIBE_DEVELOPMENT_OTHER_BONUS", 0.08, 0.005],
+    )
+
+    patch_mod_file!("common/buildings/01_nativebuildings.txt") do |node|
+      modify_node! node,
+        ["native_irrigation", "modifier", "tribal_development_growth", 0.02, 0.005]
+    end
+
+    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
+      modify_node! node,
+        ["tot_dedicated_ruler", "tribal_development_growth", 0.02, 0.005],
+        ["primus_inter_pares_mod", "tribal_development_growth", 0.02, 0.005]
+    end
+
+    patch_mod_file!("common/federation_advancements/00_default.txt") do |node|
+      modify_node! node,
+        ["joint_grain_depots", "modifier", "tribal_development_growth", 0.02, 0.005]
+    end
+
+    patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node|
+      modify_node! node,
+        ["indigenous_ideas", "indigenous_bountiful_land", "tribal_development_growth", 0.05, 0.005]
+    end
+
+    patch_mod_file!("common/government_reforms/05_government_reforms_natives.txt") do |node|
+      modify_node! node,
+        ["native_chiefdom_reform", "modifiers", "tribal_development_growth", 0.02, 0.005],
+        ["native_seasonal_travel_reform", "modifiers", "tribal_development_growth", 0.02, 0.005]
+    end
+
+    # This is done so tribes don't grow on 100% devastated land
+    # (which would be totally ridiculous)
+    # patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+    #   modify_node! node,
+    #     ["base_values", "tribal_development_growth", nil, -0.02]
+    # end
+
+
+    # Target to get is 100+150+200+250=700 reform progress, or 58 years.
+    # This is stupidly fast.
+    # Slow it down to x4, so normal full reform target is year 1677 - but there are
+    # many ways to accelerate it to 1550s.
+    patch_mod_file!("common/government_reforms/05_government_reforms_natives.txt") do |node|
+      modify_node! node,
+        ["native_basic_reform", "modifiers", "monthly_reform_progress_modifier", nil, -0.75]
+    end
+  end
+
   ###################################################################
   ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
   ### (only for ones I'm still evaluating)                        ###
