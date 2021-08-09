@@ -31,10 +31,11 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
     rebalance_ming_crisis!
-    fix_culture_groups!
     improve_religious_rebels!
     buff_support_rebels!
     buff_covert_actions!
+    fix_culture_groups!
+    fix_localization!
 
     # Evaluating for reals:
     # make_hegemony_achievable!
@@ -85,7 +86,77 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
 
   # Many decisions and events assume certain cultures are in certain groups,
   # so any drastic changes might need extra work
+  #
+  # But first, delete stupid Carpathian culture group
+  #
+  # Other things that might need fixing:
+  # * Finland/Sampi/Karelian/Estonian are split
+  # * Greeks joining Balkan group?
   def fix_culture_groups!
     move_culture! "slovak", "carpathian", "west_slavic"
+    move_culture! "transylvanian", "carpathian", "south_slavic"
+    move_culture! "romanian", "carpathian", "south_slavic"
+    move_culture! "hungarian", "carpathian", "south_slavic"
+
+    patch_mod_file!("common/cultures/00_cultures.txt") do |node|
+      # Looks like I get million errors if I do this, so instead:
+      # node.delete! "carpathian"
+      hun = node["south_slavic"]["hungarian"]
+      node["carpathian"].add! "old_hungarian", PropertyList[
+        "dynasty_names", hun["dynasty_names"],
+        "male_names", hun["male_names"],
+        "female_names", hun["female_names"],
+      ]
+    end
+
+    patch_mod_file!("common/government_reforms/01_government_reforms_monarchies.txt") do |node|
+      bonuses = node["mughal_government"]["assimilation_cultures"]
+      raise unless bonuses["carpathian"] ==  PropertyList["mercenary_cost", -0.1]
+      bonuses.delete! "carpathian"
+      bonuses["south_slavic"]["mercenary_cost"] = -0.1
+    end
+
+    patch_mod_file!("common/government_names/00_government_names.txt") do |node|
+      ssm = node["south_slavic_monarchy"]["trigger"]
+      ssm.add! "NOT", PropertyList["culture", "transylvanian"]
+      ssm.add! "NOT", PropertyList["culture", "hungarian"]
+      ssm.add! "NOT", PropertyList["culture", "romanian"]
+
+      ssr = node["south_slavic_republic"]["trigger"]
+      ssr.add! "NOT", PropertyList["culture", "transylvanian"]
+      ssr.add! "NOT", PropertyList["culture", "hungarian"]
+      ssr.add! "NOT", PropertyList["culture", "romanian"]
+    end
+
+    # I don't care, but it generates endless errors
+    # Just keep them matching vanilla
+
+    patch_file!("customizable_localization/00_customizable_localization_FR.txt") do |node|
+      node.gsub("OR  {", " OR = {")
+    end
+
+    patch_mod_files! "customizable_localization/*.txt" do |node|
+      node.find_all("defined_text").each do |dt|
+        dt.find_all("text").each do |t|
+          if t["trigger"] ==  PropertyList["culture_group", "carpathian"]
+            t["trigger"] = PropertyList["OR", PropertyList[
+              "culture", "slovak",
+              "culture", "hungarian",
+              "culture", "transylvanian",
+              "culture", "romanian",
+            ]]
+          end
+          raise if t["trigger"].inspect =~ /carpathian/
+        end
+      end
+    end
+  end
+
+  def fix_localization!
+    localization! "replace/ZZZ_localization_fixes",
+      "BYZ" => "East Rome",
+      "BYZ_ADJ" => "East Roman",
+      "BYZ_ADJ2" => "East Roman",
+      "south_slavic" => "Balkan"
   end
 end
