@@ -51,6 +51,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def disable_end_game_tag_check_for_player!
+    warn "THIS IS BROKEN"
+    return
     patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
       node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
     end
@@ -309,7 +311,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/disasters/ming_crisis.txt") do |node|
       crisis = node["ming_crisis"]
       modify_node! crisis,
-        ["modifier", "global_unrest", 5, 10],
+        ["modifier", "global_unrest", 15, 15], # used to be 5->10 before 1.32
         ["modifier", "land_morale", -0.15, -0.30]
       crisis["can_end"]["custom_trigger_tooltip"] = PropertyList[
         "tooltip", "disaster_active_for_10_years_tooltip",
@@ -531,10 +533,50 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def remove_all_natives!
+    countries_to_remove = Set[]
+    glob("history/countries/*.txt").each do |path|
+      tag = path.basename.to_s[0, 3]
+      node = parse(path)
+      if node["government"] == "native"
+        countries_to_remove << tag
+      end
+      if node["add_government_reform"] == "siberian_tribe" and tag != "ANU"
+        countries_to_remove << tag
+      end
+    end
+
+    patch_mod_files!("history/provinces/*.txt") do |node|
+      # Remove "tribal ownership" completely
+      node.each do |key, val|
+        next unless key.is_a?(Date)
+        val.delete!{|prop| prop.key == "tribal_owner"}
+      end
+      node.delete!{|prop| prop.key.is_a?(Date) and prop.val.empty?}
+
+      # As well as real ownership by bullshit "countries"
+      if countries_to_remove.include?(node["controller"])
+        node.delete!{|prop| prop.key == "controller" }
+        node.delete!{|prop| prop.key == "owner" }
+        node.delete!{|prop| prop.key == "is_city" }
+        node.delete!{|prop| prop.key == "add_code" and countries_to_remove.include?(prop.val) }
+        node["trade_goods"] = "unknown"
+      end
+    end
+  end
+
+  ###################################################################
+  ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
+  ### (only for ones I'm still evaluating)                        ###
+  ###################################################################
+
+  # 1.31 specific
   # Not sure how to fix this:
   # * if I let it go negative, it goes to negative development
   # * if not, it skyrockets into 100 Constantinoples
   def nerf_tribal_development!
+    warn "Disabled code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
     soft_patch_defines_lua!(
       "fun_and_balance_nerf_tribal_dev",
       # annual number, so 3*4/12 = 1 devastation per month initially
@@ -588,11 +630,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         ["native_basic_reform", "modifiers", "monthly_reform_progress_modifier", nil, -0.75]
     end
   end
-
-  ###################################################################
-  ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
-  ### (only for ones I'm still evaluating)                        ###
-  ###################################################################
 
   # Not needed 1.30+ as corruption from territories is gone
   def double_corruption_slider!

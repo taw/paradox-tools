@@ -36,7 +36,8 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     buff_covert_actions!
     fix_culture_groups!
     fix_localization!
-    nerf_tribal_development!
+    # nerf_tribal_development! # 1.31, we no longer need it
+    remove_all_natives! # it's still fucked in 1.32
 
     # Evaluating for reals:
     # make_hegemony_achievable!
