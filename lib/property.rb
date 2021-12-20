@@ -108,4 +108,10 @@ class Property
       "=="
     end
   end
+
+  class SQDEF < SpecialValue
+    def op
+      "[]="
+    end
+  end
 end

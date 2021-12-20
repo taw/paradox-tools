@@ -93,6 +93,8 @@ class ParadoxModFile
             ">=" => :ge,
             "==" => :eqeq,
           }[s[1]])
+        elsif s.scan(/\[\[(\S+?)\]/)
+          @tokens << :sqdef << s[1]
         elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\+|\$|\/|!|\p{Letter}|\p{Digit}|\u{FFFD})+)/)
           if s[1] == "yes"
             @tokens << true
@@ -167,7 +169,7 @@ class ParadoxModFile
         @tokens.shift
       end
 
-      if [:eq, :lt, :le, :gt, :ge, :eqeq].include?(@tokens[1])
+      if [:eq, :lt, :le, :gt, :ge, :eqeq].include?(@tokens[1]) or @tokens[0] == :sqdef
         parse_obj.tap{
           parse_close
         }
@@ -232,6 +234,20 @@ class ParadoxModFile
       @tokens.shift
       val = parse_val
       [key, val]
+    elsif @tokens[0] == :sqdef
+      @tokens.shift
+      key = @tokens.shift
+      val = PropertyList.new
+      while true
+        if @tokens[0] == "]"
+          @tokens.shift
+          break
+        end
+        a = parse_attr
+        raise "Expected ]" unless a
+        val.add!(*a)
+      end
+      [key, Property::SQDEF[val]]
     else
       nil
     end

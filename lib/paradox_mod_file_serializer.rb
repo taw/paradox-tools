@@ -56,7 +56,7 @@ class ParadoxModFileSerializer
       "%d.%d.%d" % [key.year, key.month, key.day]
     when Symbol
       serialize_key(key.to_s)
-    when /\A[A-Za-z0-9\-_\.:@]+\z/
+    when /\A[A-Za-z0-9\-_\.:@\$]+\z/
       key
     when ""
       # CK2 saves have blocks like:
@@ -96,6 +96,12 @@ class ParadoxModFileSerializer
         end
       elsif primitive?(val)
         line! "#{key} = #{serialize_primitive(val)}"
+      elsif val.is_a?(Property::SQDEF)
+        line! "[[#{serialize_key(key)}]"
+        @indent += 1
+        print_property_list! val.val
+        @indent -= 1
+        line! "]"
       elsif val.is_a?(Property::SpecialValue)
         line! "#{key} #{val.op} #{val.val}"
       else
