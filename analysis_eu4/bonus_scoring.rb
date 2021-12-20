@@ -83,7 +83,6 @@ class BonusScoring
     :church_influence_modifier,
     :enuchs_influence,
     :maratha_exclusive_influence_modifier,
-    :maratha_exclusive_loyalty_modifier,
     :maratha_influence_modifier,
     :maratha_loyalty_modifier,
     :maratha_muslim_influence_modifier,
@@ -106,12 +105,14 @@ class BonusScoring
     :vaisyas_non_muslim_influence_modifier,
 
     # 1.30 estate loyalty is trivial to handle and not worth anything
+    :all_estate_loyalty_equilibrium,
     :brahmins_hindu_loyalty_modifier,
     :brahmins_muslim_loyalty_modifier,
     :burghers_loyalty_modifier,
     :church_loyalty_modifier,
     :cossacks_loyalty_modifier,
     :dhimmi_loyalty_modifier,
+    :maratha_exclusive_loyalty_modifier,
     :nobles_loyalty_modifier,
     :nomadic_tribes_loyalty_modifier,
     :rajput_loyalty_modifier,

@@ -638,6 +638,9 @@ class AnalyzeReligions < EU4Analysis
         elsif allow.keys == ["religion"]
           # 1.31+
           allowed_religion = allow["religion"]
+        elsif allow["AND"] and allow["AND"]["religion"]
+          # 1.32+
+          allowed_religion = allow["AND"]["religion"]
         else
           raise
         end
@@ -795,10 +798,24 @@ class AnalyzeReligions < EU4Analysis
         [node.val]
       end
     when "owner"
-      raise unless node.val.keys == ["religion"]
-      religions_in_rule(node.val.to_a.first)
+      if node.val.keys == ["religion"]
+        religions_in_rule(node.val.to_a.first)
+      elsif node.val.keys == ["has_reform"]
+        [] # China
+      elsif node.val.keys == ["OR"] and node.val["OR"].keys == ["is_former_colonial_nation", "tag"]
+        [] # USA
+      else
+        raise
+      end
+    when "province_is_buddhist_or_accepts_buddhism"
+      ["buddhism"] # or...
+    when "province_is_or_accepts_culture"
+      []
+    when "AND"
+      raise unless node.val["religion"]
+      node.val["religion"]
     else
-      raise "Religion rule parse error"
+      raise "Religion rule parse error: #{node.key}"
     end
   end
 

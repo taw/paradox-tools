@@ -67,9 +67,21 @@ class AnalyzeGreatProjects < EU4Analysis
       if val.keys == ["religion"]
         # not quite same rule as others
         localization(val.values[0])
+      elsif val == PropertyList["has_reform", "celestial_empire"]
+        "Celestial Empire"
+      elsif val == PropertyList["has_personal_deity", "buddha"]
+        "Deity Buddha"
+      elsif val == PropertyList["has_unlocked_cult", "buddhism_cult"]
+        "Buddhism Cult"
+      elsif val ==  PropertyList["OR", PropertyList["is_former_colonial_nation", true, "tag", "USA"]]
+        "Former colonial nation or USA"
       else
         binding.pry
       end
+    when "province_is_buddhist_or_accepts_buddhism"
+      "Buddhist (or accepted)"
+    when "province_is_or_accepts_culture"
+      "accepted culture"
     else
       binding.pry
     end
