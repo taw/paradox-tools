@@ -565,6 +565,19 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def declare_war_in_regency!
+    patch_mod_file!("common/religions/00_religion.txt") do |node|
+      node.each do |group_name, group|
+        group.each do |name, religion|
+          next unless religion.is_a?(PropertyList)
+          next if name == "religious_schools"
+          # puts "Pathing #{group_name} - #{name}"
+          religion["declare_war_in_regency"] = true
+        end
+      end
+    end
+  end
+
   ###################################################################
   ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
   ### (only for ones I'm still evaluating)                        ###

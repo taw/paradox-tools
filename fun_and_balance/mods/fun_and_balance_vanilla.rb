@@ -4,7 +4,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
     anyone_can_form_byzantium!
     buff_awful_idea_groups!
-    cheaper_fort_maintenance!
+    # cheaper_fort_maintenance! # not sure this is the right way tbh
     coalition_cb_defend_capital!
     custom_nation_tweaks!
     disable_call_for_peace!
@@ -12,7 +12,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     increase_rival_distance!
-    longer_cb_on_backstabbers! # this is meaningless anyway
+    # longer_cb_on_backstabbers! # this is meaningless anyway
     lower_defender_ae!
     lower_piracy_penalty!
     lower_culture_conversion_penalty!
@@ -38,12 +38,13 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     fix_localization!
     # nerf_tribal_development! # 1.31, we no longer need it
     remove_all_natives! # it's still fucked in 1.32
+    declare_war_in_regency!
 
     # Evaluating for reals:
     # make_hegemony_achievable!
 
     # Experimental:
-    # remove_all_straits!
+    remove_all_straits!
     # allow_more_estate_privileges! # needs UI mod to display more than 5
     # enable_more_idea_groups!
     # rebalance_unrest!
