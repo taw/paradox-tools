@@ -27,7 +27,7 @@ class AnalyzeWarsBattles < EU4SaveAnalysis
     a = country_name(battle["attacker"]["country"])
     d = country_name(battle["defender"]["country"])
     return if attackers.include?(a) and defenders.include?(d)
-    raise "Attackers / defenders for battle do not match ongoing war"
+    warn "Attackers / defenders for battle do not match ongoing war. Results might be inaccurate."
   end
 
   def add_war!(war, war_start, war_end=nil)

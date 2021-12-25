@@ -8,7 +8,7 @@ unless ARGV.size >= 3
   exit 1
 end
 
-save = ARGV[0]
+save_path = ARGV[0]
 output = Pathname(ARGV[1])
 game = ARGV[2]
 mods = ARGV[3..-1]
@@ -17,7 +17,6 @@ list = %Q[
   analysis_eu4_save/aggressive_expansion $s $g
   analysis_eu4_save/analyze_autonomy $s $g
   analysis_eu4_save/analyze_debt $s $g
-  analysis_eu4_save/analyze_institutions $s $g
   analysis_eu4_save/analyze_save_game_economics $s
   analysis_eu4_save/analyze_trade $s $g
   analysis_eu4_save/analyze_trust $s $g
@@ -41,7 +40,7 @@ list = %Q[
 
 root_dir = Pathname(__dir__).parent
 
-s_str = save.shellescape
+s_str = save_path.shellescape
 g_str = [game, *mods].map(&:shellescape).join(" ")
 
 # Just in case it is still compressed, it will do nothing if already done

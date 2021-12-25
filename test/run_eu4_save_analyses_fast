@@ -17,7 +17,6 @@ analyses = {
   "aggressive_expansion"      => "AnalyzeAE",
   "analyze_autonomy"          => "AnalyzeAutonomy",
   "analyze_debt"              => "AnalyzeDebt",
-  "analyze_institutions"      => "AnalyzeInstitutions",
   "analyze_trade"             => "AnalyzeTrade",
   "analyze_trust"             => "AnalyzeTrust",
   "analyze_wars"              => "AnalyzeWars",

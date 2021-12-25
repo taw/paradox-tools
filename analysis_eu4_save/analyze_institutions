@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# This is not a thing from 1.32 onwards. Script only kept for historical reasons.
+
 require_relative "./eu4_save_analysis"
 
 module Enumerable
