@@ -471,6 +471,10 @@ class EU4Save
     @player_country ||= countries[player_tag]
   end
 
+  def player_religion
+    @player_religion ||= player_country.religion
+  end
+
   def country_index
     @country_index ||= data["countries"].keys.map.with_index.to_h
   end
@@ -601,6 +605,13 @@ class EU4Save
 
   def players_subject?(tag)
     subject = subjects[tag] and subject[0] == player_tag
+  end
+
+  def great_projects
+    unless @great_projects
+      @great_projects = @data["great_projects"].to_a.map{|prop| [prop.key, prop.val["province"],  prop.val["development_tier"]] }
+    end
+    @great_projects
   end
 
   def to_s

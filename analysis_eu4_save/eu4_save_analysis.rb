@@ -1,5 +1,6 @@
 require_relative "../lib/paradox_game"
 require_relative "eu4_save"
+require "pry"
 
 class EU4SaveAnalysis < ParadoxGame
   def initialize(save_game, *roots)

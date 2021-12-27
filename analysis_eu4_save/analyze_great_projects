@@ -1,0 +1,147 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_save_analysis"
+require_relative "../eu4/partial_evaluator"
+
+# Ignore trivial conditions
+class GreatProjectPlayerPartialEval < PartialEvaluator
+  def initialize(analysis, save)
+    @analysis = analysis
+    @save = save
+  end
+
+  # Assume province is converted and its culture is accepted (generally worth it for monument)
+  def eval_property(node)
+    node = super(node)
+    case node.key
+    when "has_owner_religion", "has_owner_accepted_culture", "province_is_or_accepts_culture"
+      return always_true if node.val == true
+    when "religion"
+      if node.val == @save.player_religion
+        return always_true
+      else
+        return always_false
+      end
+    when "religion_group"
+      if node.val == @analysis.player_religion_group
+        return always_true
+      else
+        return always_false
+      end
+    when "province_is_buddhist_or_accepts_buddhism"
+      # Hinduism / Shamanism are conditional
+      if node.val == true
+        if ["buddhism", "vajrayana", "mahayana", "hinduism", "shamanism"].include?(@save.player_religion)
+          return always_true
+        else
+          return always_false
+        end
+      end
+    when "culture", "culture_group"
+      # This is about province, culture, so it's fine
+      return always_true
+    when "is_former_colonial_nation"
+      return always_false
+    when "tag"
+      if node.val == @save.player_tag
+        return always_true
+      else
+        return always_false
+      end
+    when "has_reform"
+      # Is China, just assume false
+      return always_false
+    when "owner"
+      return always_false if node.val == PropertyList[always_false]
+    end
+    node
+  end
+
+  def inspect
+    "#{self.class}"
+  end
+end
+
+class AnalyzeGreatProjects < EU4SaveAnalysis
+  def player_religion_group
+    @player_religion_group ||= religion_to_religion_group[@save.player_religion]
+  end
+
+  def each_great_project
+    glob("common/great_projects/*").each do |path|
+      parse(path).each do |name, project|
+        province_number = project["start"]
+        province_name = localization("PROV#{province_number}")
+
+        can_keep = project["keep_trigger"]
+        can_use = project["can_use_modifiers_trigger"]
+        can_upgrade = project["can_upgrade_trigger"]
+
+        raise unless can_keep.empty?
+        raise unless can_use == can_upgrade
+
+        yield(name, province_name, 0, project["tier_0"], can_use)
+        yield(name, province_name, 1, project["tier_1"], can_use)
+        yield(name, province_name, 2, project["tier_2"], can_use)
+        yield(name, province_name, 3, project["tier_3"], can_use)
+      end
+    end
+  end
+
+  def can_use_rules
+    unless @can_use_rules
+      @can_use_rules = {}
+      each_great_project do |project_name, province_name, tier, project, can_use|
+        @can_use_rules[project_name] ||= can_use
+        raise "Inconsistent can use rules" if @can_use_rules[project_name] != can_use
+      end
+    end
+    @can_use_rules
+  end
+
+  def call
+    pe = GreatProjectPlayerPartialEval.new(self, @save)
+
+    results = []
+
+    @save.great_projects.each do |name, provid, tier|
+      next unless provid # canals don't have province id
+      province = @save.provinces[provid]
+      owner = province.owner
+      can_use = can_use_rules[name]
+
+      # It's big AND
+      player_can_use = pe.call(PropertyList["AND", can_use])
+
+      if player_can_use == PropertyList["always", true]
+        player_can_use = true
+      elsif player_can_use == PropertyList["always", false]
+        player_can_use = false
+      else
+        # MAYBE
+        pp [name, can_use, player_can_use]
+      end
+
+      results << {
+        name: name,
+        tier: tier,
+        province_name: province.name,
+        owner: localization(owner) || "no owner",
+        player_can_use: player_can_use,
+      }
+    end
+
+    results.group_by{|r| r[:owner]}.sort_by(&:first).each do |owner, projects|
+      projects.sort_by{|p| p[:name]}.each do |project|
+        usability = "unknown (#{project[:player_can_use]})"
+        usability = "true" if project[:player_can_use] == true
+        usability = "false" if project[:player_can_use] == false
+        puts "#{owner} - #{localization(project[:name])} - #{project[:province_name]} - #{project[:tier]} - #{usability}"
+      end
+    end
+  end
+end
+
+if $0 == __FILE__
+  AnalyzeGreatProjects.new_from_argv.call
+end
