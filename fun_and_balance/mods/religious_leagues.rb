@@ -264,7 +264,7 @@ class ReligiousLeaguesGameModification < EU4GameModification
       node.delete!{|x| x.key == "country_event" and x.val["id"] == "religious_leagues.5"}
       previous_religion = "catholic"
       RELIGION.each do |religion, i|
-        next if religion == "catholic" or religion == "protestant"
+        next if religion == "catholic"
         id = "40#{i}"
         node.add! "country_event", PropertyList[
           "id", "religious_leagues.#{id}",
