@@ -99,27 +99,58 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
     @can_use_rules
   end
 
-  def call
-    pe = GreatProjectPlayerPartialEval.new(self, @save)
+  def monument_bonuses
+    unless @monument_bonuses
+      @monument_bonuses = {}
+      each_great_project do |project_name, province_name, tier, project, can_use|
+        @monument_bonuses[[project_name, tier]] = project["country_modifiers"]
+      end
+    end
+    @monument_bonuses
+  end
 
+  def calculate_player_can_use(name)
+    can_use = can_use_rules[name]
+
+    @pe ||= GreatProjectPlayerPartialEval.new(self, @save)
+    # It's big AND
+    player_can_use = @pe.call(PropertyList["AND", can_use])
+
+    if player_can_use == PropertyList["always", true]
+      true
+    elsif player_can_use == PropertyList["always", false]
+      false
+    else
+      # MAYBE
+      pp [name, can_use, player_can_use]
+      player_can_use
+    end
+  end
+
+  # WTF EVEN
+  # None of it even works properly, especially diplomatic reputation
+  def modifier_loc(key)
+    return "Diplomatic Reputation" if key == "diplomatic_reputation"
+    localization("MODIFIER_#{key.upcase}", nil) ||
+    localization(key.upcase.sub("GLOBAL_", "MODIFIER_"), nil) ||
+    localization(key.upcase, nil) ||
+    localization(key, nil) ||
+    key
+  end
+
+  def call
     results = []
+    player_monuments = []
 
     @save.great_projects.each do |name, provid, tier|
       next unless provid # canals don't have province id
+
       province = @save.provinces[provid]
+      player_can_use = calculate_player_can_use(name)
+
       owner = province.owner
-      can_use = can_use_rules[name]
-
-      # It's big AND
-      player_can_use = pe.call(PropertyList["AND", can_use])
-
-      if player_can_use == PropertyList["always", true]
-        player_can_use = true
-      elsif player_can_use == PropertyList["always", false]
-        player_can_use = false
-      else
-        # MAYBE
-        pp [name, can_use, player_can_use]
+      if owner == @save.player_tag and player_can_use
+        player_monuments << [name, province.name, tier]
       end
 
       results << {
@@ -131,12 +162,33 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
       }
     end
 
+    puts "Great projects:"
     results.group_by{|r| r[:owner]}.sort_by(&:first).each do |owner, projects|
       projects.sort_by{|p| p[:name]}.each do |project|
         usability = "unknown (#{project[:player_can_use]})"
         usability = "true" if project[:player_can_use] == true
         usability = "false" if project[:player_can_use] == false
         puts "#{owner} - #{localization(project[:name])} - #{project[:province_name]} - #{project[:tier]} - #{usability}"
+      end
+    end
+
+    puts ""
+    puts "Player bonuses:"
+    player_bonuses = {}
+
+    player_monuments.each do |name, province_name, tier|
+      monument_bonuses[[name, tier]].each do |key, val|
+        nkey = modifier_loc(key)
+        player_bonuses[nkey] ||= {total: 0, monuments: []}
+        player_bonuses[nkey][:total] += val
+        player_bonuses[nkey][:monuments] << "#{localization(name)} #{tier} in #{province_name}: #{val}"
+      end
+    end
+
+    player_bonuses.sort.each do |key, val|
+      puts "* #{key}: #{val[:total]}"
+      val[:monuments].sort.each do |monument|
+        puts "  * #{monument}"
       end
     end
   end
