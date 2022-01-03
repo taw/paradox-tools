@@ -131,11 +131,19 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
   # None of it even works properly, especially diplomatic reputation
   def modifier_loc(key)
     return "Diplomatic Reputation" if key == "diplomatic_reputation"
-    localization("MODIFIER_#{key.upcase}", nil) ||
+    return "Sailors" if key == "global_sailors_modifier"
+    return "Autonomy" if key == "global_autonomy"
+    return "Tariffs" if key == "global_tariffs"
+    return "Fabricate Claims Cost" if key == "fabricate_claims_cost"
+    result = localization("MODIFIER_#{key.upcase}", nil) ||
     localization(key.upcase.sub("GLOBAL_", "MODIFIER_"), nil) ||
     localization(key.upcase, nil) ||
     localization(key, nil) ||
     key
+    result
+      .gsub(/\[Country\.Get(.*?)Name\]/) { $1 }
+      .gsub("$DIRECTION$ $VALUE$ Missionaries.\n", "Missionaries")
+      .gsub("$DIRECTION$ $VALUE$ Merchants.\n", "Merchants")
   end
 
   def call
@@ -180,16 +188,13 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
       monument_bonuses[[name, tier]].each do |key, val|
         nkey = modifier_loc(key)
         player_bonuses[nkey] ||= {total: 0, monuments: []}
-        player_bonuses[nkey][:total] += val
-        player_bonuses[nkey][:monuments] << "#{localization(name)} #{tier} in #{province_name}: #{val}"
+        player_bonuses[nkey][:total] = (player_bonuses[nkey][:total] + val).round(6)
+        player_bonuses[nkey][:monuments] << "#{localization(name)} #{tier}" # " in #{province_name}: #{val}"
       end
     end
 
     player_bonuses.sort.each do |key, val|
-      puts "* #{key}: #{val[:total]}"
-      val[:monuments].sort.each do |monument|
-        puts "  * #{monument}"
-      end
+      puts "* #{key}: #{val[:total]} (#{val[:monuments].sort.join(", ")})"
     end
   end
 end
