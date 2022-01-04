@@ -39,6 +39,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     # nerf_tribal_development! # 1.31, we no longer need it
     remove_all_natives! # it's still fucked in 1.32
     declare_war_in_regency!
+    fix_roman_empire_decision!
 
     # Evaluating for reals:
     # make_hegemony_achievable!

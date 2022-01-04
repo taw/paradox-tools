@@ -571,8 +571,26 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         group.each do |name, religion|
           next unless religion.is_a?(PropertyList)
           next if name == "religious_schools"
-          # puts "Pathing #{group_name} - #{name}"
           religion["declare_war_in_regency"] = true
+        end
+      end
+    end
+  end
+
+  def fix_roman_empire_decision!
+    patch_mod_file!("decisions/RestoreRomanEmpire.txt") do |node|
+      decision = node["country_decisions"]["restore_roman_empire"]
+      allow = decision["allow"]
+
+      allow.map! do |x|
+        if x.key == "owns"
+          Property["owns_or_non_sovereign_subject_of", x.val]
+        elsif x.key.to_s =~ /_region/
+          x.val.delete! "owned_by"
+          x.val.add! "country_or_non_sovereign_subject_holds", "ROOT"
+          x
+        else
+          x
         end
       end
     end
