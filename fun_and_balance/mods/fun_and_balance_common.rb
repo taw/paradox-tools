@@ -93,18 +93,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     )
   end
 
-  def lower_piracy_penalty!
+  # A lot of them are stupidly high
+  def lower_opinion_penalties!
     patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
       modify_node! node,
-        ["pirated_us", "min", -100, -25]
-    end
-  end
-
-  def lower_culture_conversion_penalty!
-    patch_mod_file!("common/opinion_modifiers/00_opinion_modifiers.txt") do |node|
-      modify_node! node,
+        ["pirated_us", "min", -100, -25],
         ["converted_our_culture", "opinion", -30, -5],
-        ["converted_our_culture", "min", nil, -100]
+        ["converted_our_culture", "min", nil, -100],
+        ["violated_tordesillas", "min", nil, -50],
+        ["opinion_unlawful_territory", "min", nil, -50]
     end
   end
 

@@ -14,8 +14,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     increase_rival_distance!
     # longer_cb_on_backstabbers! # this is meaningless anyway
     lower_defender_ae!
-    lower_piracy_penalty!
-    lower_culture_conversion_penalty!
+    lower_opinion_penalties!
     rebalance_ottomans_constantinople!
     more_base_relations!
     more_building_slots!
