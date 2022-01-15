@@ -556,7 +556,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         node.delete!{|prop| prop.key == "controller" }
         node.delete!{|prop| prop.key == "owner" }
         node.delete!{|prop| prop.key == "is_city" }
-        node.delete!{|prop| prop.key == "add_code" and countries_to_remove.include?(prop.val) }
+        node.delete!{|prop| prop.key == "add_core" and countries_to_remove.include?(prop.val) }
         node["trade_goods"] = "unknown"
       end
     end
@@ -590,6 +590,18 @@ class FunAndBalanceCommonGameModification < EU4GameModification
           x
         end
       end
+    end
+  end
+
+  # EU4 crashes unless it has at least 1 strait
+  # I think this is good change, but it changes the game a lot
+  def remove_all_straits!
+    patch_file!("map/adjacencies.csv") do |file|
+      # Haida-Tlingit
+      file.b.lines.select{|x|
+        t = x.split(";")[2]
+        x =~ /Haida/ or (t != "sea" and t != "lake")
+      }.join
     end
   end
 
@@ -647,7 +659,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     #   modify_node! node,
     #     ["base_values", "tribal_development_growth", nil, -0.02]
     # end
-
 
     # Target to get is 100+150+200+250=700 reform progress, or 58 years.
     # This is stupidly fast.
@@ -880,20 +891,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     patch_mod_file!("common/trading_policies/00_trading_policies.txt") do |node|
       node["propagate_religion"]["can_select"].delete! "religion_group"
       node["propagate_religion"]["can_maintain"].delete! "religion_group"
-    end
-  end
-
-  # EU4 crashes unless it has at least 1 strait
-  # I think this is good change, but it changes the game a lot
-  def remove_all_straits!
-    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
-
-    patch_file!("map/adjacencies.csv") do |file|
-      # Zeeland-Gent
-      file.b.lines.select{|x|
-        t = x.split(";")[2]
-        x =~ /Gent/ or (t != "sea" and t != "lake")
-      }.join
     end
   end
 
