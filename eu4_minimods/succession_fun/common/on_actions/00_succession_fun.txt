@@ -1,0 +1,7 @@
+on_new_monarch = {
+	events = {
+		succession_fun.1
+		succession_fun.2
+    succession_fun.3
+	}
+}

@@ -1,0 +1,87 @@
+namespace = succession_fun
+
+# Pretenders
+country_event = {
+	id = succession_fun.1
+	title = succession_fun.1.t
+	desc = succession_fun.1.d
+	is_triggered_only = yes
+
+	trigger = {
+		government = monarchy
+	}
+
+	option = { # Fight them
+    ai_chance = { factor = 100 }
+		name = succession_fun.1.a
+		random_owned_province = {
+			spawn_rebels = {
+				type = pretender_rebels
+				size = 2
+			}
+		}
+		random_owned_province = {
+			spawn_rebels = {
+				type = pretender_rebels
+				size = 1
+			}
+		}
+  }
+}
+
+# Shia rebels
+country_event = {
+	id = succession_fun.2
+	title = succession_fun.2.t
+	desc = succession_fun.2.d
+	is_triggered_only = yes
+
+	trigger = {
+    any_owned_province = {
+      religion = shiite
+    }
+  	religion = sunni
+	}
+
+	option = { # Fight them
+    ai_chance = { factor = 100 }
+		name = succession_fun.2.a
+		random_owned_province = {
+      limit = { religion = shiite }
+			spawn_rebels = {
+				type = shiite_rebels
+				size = 2
+			}
+		}
+		random_owned_province = {
+      limit = { religion = shiite }
+			spawn_rebels = {
+				type = shiite_rebels
+				size = 2
+			}
+		}
+  }
+}
+
+# Peasants - fractions don't really work
+country_event = {
+	id = succession_fun.3
+	title = succession_fun.3.t
+	desc = succession_fun.3.d
+	is_triggered_only = yes
+
+	trigger = {
+		government = monarchy
+	}
+
+	option = { # Fight them
+    ai_chance = { factor = 100 }
+		name = succession_fun.3.a
+		every_owned_province = {
+			spawn_rebels = {
+				type = anti_tax_rebels
+				size = 0.2
+			}
+		}
+  }
+}
