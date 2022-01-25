@@ -39,12 +39,13 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     remove_all_natives! # it's still fucked in 1.32
     declare_war_in_regency!
     fix_roman_empire_decision!
+    remove_all_straits!
 
     # Evaluating for reals:
     # make_hegemony_achievable!
 
     # Experimental:
-    remove_all_straits!
+    # more_aggressive_ai!
     # allow_more_estate_privileges! # needs UI mod to display more than 5
     # enable_more_idea_groups!
     # rebalance_unrest!

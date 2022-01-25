@@ -712,6 +712,16 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
 
+  def more_aggressive_ai!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    # This is way over the top numerically, but barely makes any obervable difference in AI games
+    soft_patch_defines_lua!("fun_and_balance_ai_aggressiveness",
+      ["NAI.AGGRESSIVENESS", 200, 2000],
+      ["NAI.AGGRESSIVENESS_BONUS_EASY_WAR", 300, 3000],
+    )
+  end
+
   def make_hegemony_achievable!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
