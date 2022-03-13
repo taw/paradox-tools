@@ -303,6 +303,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   # These changes look really extreme,
   # but 1.30.2 Ming doesn't come even close to exploding
   # even with very brutal looking values
+  #
+  # not sure if needed 1.33+
   def rebalance_ming_crisis!
     # First, make sure crisis lasts at least 10 years, no cheating
     patch_mod_file!("common/disasters/ming_crisis.txt") do |node|

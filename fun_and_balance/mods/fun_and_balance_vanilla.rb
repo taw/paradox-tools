@@ -29,7 +29,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     trade_map_fixes!
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all!
-    rebalance_ming_crisis!
+    # rebalance_ming_crisis! # no longer needed in 1.33?
     improve_religious_rebels!
     buff_support_rebels!
     buff_covert_actions!

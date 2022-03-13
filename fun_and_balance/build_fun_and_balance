@@ -7,7 +7,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/eu4-1.32.2",
+        "source/eu4-1.33.2",
       ),
       "output/fun_and_balance",
     )
@@ -21,7 +21,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       "name", "Fun and Balance",
       "path", "mod/fun_and_balance",
       "tags", [MagicString.new('"Balance"')],
-      "supported_version", MagicString.new('"1.32.*.*"'),
+      "supported_version", MagicString.new('"1.33.*.*"'),
       "picture", MagicString.new('"fun_and_balance.jpg"'),
       "remote_file_id", MagicString.new('"444759856"'),
     ]
@@ -29,7 +29,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
       tags: [MagicString.new('"Balance"')],
-      supported_version: MagicString.new('"1.32.*.*"'),
+      supported_version: MagicString.new('"1.33.*.*"'),
       picture: "fun_and_balance.jpg",
       remote_file_id: MagicString.new('"444759856"'),
     )
