@@ -31,7 +31,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
       # Description doesn't match what it does
-      node["take_capital_punitive"]["prov_desc"] = "ALL_CORES"
+      node["take_capital_punitive"]["attacker"]["prov_desc"] = "ALL_CORES"
     end
   end
 
