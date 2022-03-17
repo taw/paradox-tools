@@ -51,8 +51,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   def disable_end_game_tag_check_for_player!
-
-
     patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
       node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
     end

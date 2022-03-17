@@ -10,10 +10,26 @@ class PartialEvaluatorGreatProjects < PartialEvaluator
     return always_false if node.key == "AND" and node.val.keys.sort == ["culture", "has_owner_culture"]
     node = super(node)
     case node.key
-    when "has_owner_religion", "has_owner_accepted_culture"
+    when "has_owner_religion", "has_owner_accepted_culture", "province_is_or_accepts_culture"
       return always_true if node.val == true
     when "culture", "culture_group"
       return always_true
+    when "secondary_religion"
+      return always_false
+    when "province_is_or_accepts_religion_group", "province_is_or_accepts_religion"
+      if node.val.size == 1
+        return node.val.to_a[0]
+      end
+    when "owner"
+      # Not religion specific
+      return always_false if node.val.include?(always_false)
+    when "custom_trigger_tooltip"
+      # Not religion specific, this could be much better
+      if node.val.keys.sort == ["OR", "tooltip"]
+        return node.val.to_a.find{|a| a.key == "OR"}
+      end
+    when "has_harmonized_with"
+      return always_false # this one might be always_true instead?
     end
     node
   end
