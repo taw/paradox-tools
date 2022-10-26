@@ -1,0 +1,107 @@
+country_decisions = {
+  develop_all = {
+    major = yes
+    potential = { ai = no }
+    allow = { always = yes }
+    effect = {
+      custom_tooltip = increase_development
+      hidden_effect = {
+        every_province = {
+          limit = {
+            is_city = yes
+          }
+        }
+        random_list = {
+          1 = { add_base_manpower = 1 }
+          1 = { add_base_tax = 1 }
+          1 = { add_base_production = 1 }
+        }
+      }
+    }
+    ai_will_do = { factor = 0 }
+  }
+
+  develop_until_55 = {
+    major = yes
+    potential = { ai = no }
+    allow = { always = yes }
+    effect = {
+      custom_tooltip = increase_development
+      hidden_effect = {
+        every_province = {
+          limit = {
+            is_city = yes
+            NOT = {
+              has_local_modifier_value = {
+                which = local_development_cost
+                value = 0.10
+              }
+            }
+          }
+          random_list = {
+            1 = { add_base_manpower = 1 }
+            1 = { add_base_tax = 1 }
+            1 = { add_base_production = 1 }
+          }
+        }
+      }
+    }
+    ai_will_do = { factor = 0 }
+  }
+
+  develop_until_75 = {
+    major = yes
+    potential = { ai = no }
+    allow = { always = yes }
+    effect = {
+      custom_tooltip = increase_development
+      hidden_effect = {
+        every_province = {
+          limit = {
+            is_city = yes
+            NOT = {
+              has_local_modifier_value = {
+                which = local_development_cost
+                value = 0.50
+              }
+            }
+          }
+          random_list = {
+            1 = { add_base_manpower = 1 }
+            1 = { add_base_tax = 1 }
+            1 = { add_base_production = 1 }
+          }
+        }
+      }
+    }
+    ai_will_do = { factor = 0 }
+  }
+
+  develop_until_100 = {
+    major = yes
+    potential = { ai = no }
+    allow = { always = yes }
+    effect = {
+      custom_tooltip = increase_development
+      hidden_effect = {
+        every_province = {
+          limit = {
+            is_city = yes
+            NOT = {
+              has_local_modifier_value = {
+                which = local_development_cost
+                value = 1.00
+              }
+            }
+          }
+          random_list = {
+            1 = { add_base_manpower = 1 }
+            1 = { add_base_tax = 1 }
+            1 = { add_base_production = 1 }
+          }
+        }
+      }
+    }
+    ai_will_do = { factor = 0 }
+  }
+}
