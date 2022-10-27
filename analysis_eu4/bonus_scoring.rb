@@ -117,9 +117,11 @@ class BonusScoring
     :nomadic_tribes_loyalty_modifier,
     :rajput_loyalty_modifier,
     :vaisyas_loyalty_modifier,
+    :jains_loyalty_modifier,
 
     # This could be a bit more exploitable, but it's still situational which direction you care about,
     :monthly_piety,
+    :monthly_piety_accelerator,
 
     # Far too conditional
     :devotion,
@@ -1442,6 +1444,16 @@ class BonusScoring
         # this is arguably good, but very situational
       when :treasure_fleet_income
         # way too situational
+      when :global_religious_conversion_resistance
+        # worthless
+      when :monthly_heir_claim_increase
+        # technically worth something, but too tiny to bother
+      when :free_city_imperial_authority
+        # too situational
+      when :overlord_naval_forcelimit_modifier
+        # too situational
+      when :tribal_development_growth
+        # too situational
       else
         warn "#{k} not scored"
       end

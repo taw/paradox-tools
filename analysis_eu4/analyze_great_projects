@@ -12,6 +12,10 @@ class PartialEvaluatorGreatProjects < PartialEvaluator
     case node.key
     when "has_owner_religion", "has_owner_accepted_culture"
       return always_true if node.val == true
+    when "custom_trigger_tooltip"
+      if node.val.keys == ["tooltip", "OR"]
+        return node.val.to_a[1]
+      end
     end
     node
   end
@@ -75,15 +79,36 @@ class AnalyzeGreatProjects < EU4Analysis
         "Buddhism Cult"
       elsif val ==  PropertyList["OR", PropertyList["is_former_colonial_nation", true, "tag", "USA"]]
         "Former colonial nation or USA"
+      elsif val == PropertyList["OR", PropertyList[
+        "secondary_religion", "orthodox",
+        "secondary_religion", "coptic",
+        "secondary_religion", "catholic",
+        "secondary_religion", "sunni",
+        "secondary_religion", "shiite",
+        "secondary_religion", "ibadi",
+      ]]
+        "secondary religion Muslim or Traditional Christian"
+      elsif val == PropertyList["has_harmonized_with", "shinto"]
+        "harmonized Shinto"
       else
-        binding.pry
+        # binding.pry
+        "UNKNOWN"
       end
     when "province_is_buddhist_or_accepts_buddhism"
-      "Buddhist (or accepted)"
+      "Buddhist or accepted"
+    when "province_is_buddhist_or_accepts_buddhism_or_is_dharmic"
+      "Buddhist or Dharmic or accepted"
     when "province_is_or_accepts_culture"
       "accepted culture"
+    when "province_is_or_accepts_religion_group", "province_is_or_accepts_religion"
+      raise unless val.to_a.size == 1
+      prop = val.to_a[0]
+      parse_rule(prop.key, prop.val)
+    when "OR"
+      "or(" + val.to_a.map{|prop| parse_rule(prop.key, prop.val) }.join(", ") + ")"
     else
-      binding.pry
+      # binding.pry
+      "UNKNOWN"
     end
   end
 
@@ -97,7 +122,7 @@ class AnalyzeGreatProjects < EU4Analysis
       name = "#{localization(project_name)} (#{[province_name, tier, can_use].compact.join("; ")})"
 
       # Assuming province_modifiers and area_modidiers are irrelevant
-      modifiers = project["country_modifiers"]
+      modifiers = project["country_modifiers"] || PropertyList[]
       next if modifiers.empty?
       score = bonus_score(modifiers)
       output << [score.score, name, modifiers]
