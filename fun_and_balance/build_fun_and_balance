@@ -7,12 +7,13 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
   def initialize
     super(
       ParadoxGame.new(
-        "source/eu4-1.33.2",
+        "source/eu4-1.34.4",
       ),
       "output/fun_and_balance",
     )
   end
   def build_mod_files!
+    fix_syntax_errors!
     apply_modifications! FunAndBalanceGameModification,
                          ReligiousLeaguesGameModification,
                          NationCustomizerGameModification,
@@ -21,7 +22,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       "name", "Fun and Balance",
       "path", "mod/fun_and_balance",
       "tags", [MagicString.new('"Balance"')],
-      "supported_version", MagicString.new('"1.33.*.*"'),
+      "supported_version", MagicString.new('"1.34.*.*"'),
       "picture", MagicString.new('"fun_and_balance.jpg"'),
       "remote_file_id", MagicString.new('"444759856"'),
     ]
@@ -29,10 +30,18 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       name: "Fun and Balance",
       path: "mod/fun_and_balance",
       tags: [MagicString.new('"Balance"')],
-      supported_version: MagicString.new('"1.33.*.*"'),
+      supported_version: MagicString.new('"1.34.*.*"'),
       picture: "fun_and_balance.jpg",
       remote_file_id: MagicString.new('"444759856"'),
     )
+  end
+  # Vanilla has many syntax errors
+  # Its parser is quite tolerant to them, but ours isn't
+  def fix_syntax_errors!
+    # 1.34
+    patch_file! "common/on_actions/00_on_actions.txt" do |content|
+      content.gsub(/(effect = )"(.*?)"/m){ $1 + "{" + $2 + "}"  }
+    end
   end
 end
 

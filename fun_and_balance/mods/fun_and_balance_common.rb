@@ -409,11 +409,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # 1.34 already buffed it from 60% cost to 30% cost
   def buff_support_rebels!
     soft_patch_defines_lua!("fun_and_balance_support_rebels",
       ["NDiplomacy.SUPPORT_REBELS_EFFECT", 10, 50],
       ["NDiplomacy.SUPPORT_REBELS_MONEY_FACTOR", 0.5, 0.1],
-      ["NDiplomacy.SUPPORT_REBELS_COST", 60, 20],
+      ["NDiplomacy.SUPPORT_REBELS_COST", 30, 20],
     )
   end
 

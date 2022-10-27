@@ -195,7 +195,7 @@ class BonusScoring
     land_attrition(-v)
   end
 
-  # Since conversion in territories, estimate 50% own, 10% heretic, 40% heathen
+  # Since conversion in territories, estimate 60% own, 10% heretic, 30% heathen
   #
   # For heretic/heathen there's a cap.
   # For heretics it's -2 to +3
@@ -209,16 +209,25 @@ class BonusScoring
   #
   # Cap is easy to hit, as +1 legitimacy
   def tolerance_own(v)
-    global_revolt_risk -v * 0.50
+    global_revolt_risk -v * 0.60
   end
   def tolerance_heretic(v)
     global_revolt_risk -v * 0.10 * 0.50
   end
   def tolerance_heathen(v)
-    global_revolt_risk -v * 0.40 * 0.70
+    global_revolt_risk -v * 0.30 * 0.70
   end
   def global_unrest(v)
     global_revolt_risk v
+  end
+
+  # 10% chance you're at the cap
+
+  def tolerance_of_heathens_capacity(v)
+    tolerance_heathen v * 0.10
+  end
+  def tolerance_of_heretics_capacity(v)
+    tolerance_heretic v * 0.10
   end
 
   # These are different names of same modifier depending on scope
@@ -227,6 +236,11 @@ class BonusScoring
   end
   def local_manpower_modifier(v)
     global_manpower_modifier(v)
+  end
+
+  # Assume 60% true faith
+  def manpower_in_true_faith_provinces(v)
+    global_manpower_modifier v * 0.6
   end
 
   # For most countries army tradition will be much higher than navy tradition
@@ -1454,6 +1468,8 @@ class BonusScoring
         # too situational
       when :tribal_development_growth
         # too situational
+      when :can_recruit_hussars
+        # special unit types are very situational
       else
         warn "#{k} not scored"
       end
