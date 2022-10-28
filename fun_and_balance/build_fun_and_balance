@@ -35,13 +35,12 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       remote_file_id: MagicString.new('"444759856"'),
     )
   end
-  # Vanilla has many syntax errors
-  # Its parser is quite tolerant to them, but ours isn't
+  # This is some crazy syntax, but apparently it's legit!
   def fix_syntax_errors!
     # 1.34
-    patch_file! "common/on_actions/00_on_actions.txt" do |content|
-      content.gsub(/(effect = )"(.*?)"/m){ $1 + "{" + $2 + "}"  }
-    end
+    # patch_file! "common/on_actions/00_on_actions.txt" do |content|
+    #   content.gsub(/(effect = )"(.*?)"/m){ $1 + "{" + $2 + "}"  }
+    # end
   end
 end
 
