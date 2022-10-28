@@ -171,6 +171,8 @@ class ExtraFormableCountriesGameModification < EU4GameModification
             Property::NOT["has_country_flag", "fun_and_balance.formed_#{tag}"],
             Property::NOT["exists", tag],
             "primary_culture", culture,
+            "was_never_end_game_tag_trigger", true,
+            Property::NOT["tag", "PAP"], # even as player, no conversion to Urbino and such
           ],
           "provinces_to_highlight", PropertyList[
             "culture", culture,
