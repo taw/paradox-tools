@@ -42,6 +42,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     remove_all_straits!
 
     # Evaluating for reals:
+    eurocentric_institutions!
     # make_hegemony_achievable!
 
     # Experimental:

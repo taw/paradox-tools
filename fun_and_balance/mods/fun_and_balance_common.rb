@@ -713,6 +713,92 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
 
+  # Inspired by (a few different) "Eurocentric Institutions" mods,
+  # but completely different rules
+  def eurocentric_institutions!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    # Nerf dev pushing just slightly, to prevent AI Ming/Korea spawning Renaissance really early
+    soft_patch_defines_lua!("fun_and_balance_ai_aggressiveness",
+      ["NCountry.INSTITUTION_BONUS_FROM_IMP_DEVELOPMENT", 5, 4],
+    )
+
+    # Free institutions for East Africa are not helping
+    # Remove it from tier-1
+    # Frontload global bonuses instead, so it's still useful
+    # Tier 2-3 same as before
+    patch_mod_file!("common/great_projects/01_monuments.txt") do |node|
+      node["harar_jugol"]["tier_1"]["province_modifiers"] = PropertyList[]
+      node["harar_jugol"]["tier_1"]["country_modifiers"] = PropertyList[
+        "stability_cost_modifier", -0.1,
+        "prestige_per_development_from_conversion", 0.2,
+      ]
+    end
+
+    # Now core institution list
+    patch_mod_file!("common/institutions/00_Core.txt") do |node|
+      factors = {}
+      node.each do |name, institution|
+        institution["embracement_speed"].each do |_, mod|
+          tooltip = mod["custom_trigger_tooltip"]&.[]("tooltip")
+          factors[[name, tooltip || rand]] = mod # if tooltip
+        end
+      end
+
+      # First, slow down all passive spread
+      [
+        ["feudalism", "FRIENDLY_NEIGHBOR_OR_COAST_PROVINCE_HAS_EMBRACED"],
+        ["feudalism", "NEIGHBOR_NOT_OWNED_IS_FEUDAL"],
+        ["feudalism", "tooltip_feudalism_embraced"],
+
+        ["renaissance", "tooltip_any_friendly_coast_border_province_has_embraced_renaissance"],
+        ["renaissance", "tooltip_any_neighbor_has_embraced_renaissance"],
+        ["renaissance", "tooltip_renaissance_embraced"],
+
+        ["new_world_i", "tooltip_any_friendly_coast_border_province_has_embraced_colonialism"],
+        ["new_world_i", "tooltip_neighbor_port_province_new_world"],
+        ["new_world_i", "tooltip_new_world_i_embraced"],
+
+        ["printing_press", "tooltip_any_friendly_coast_border_province_has_embraced_printing_press"],
+        ["printing_press", "tooltip_any_neighbor_has_embraced_printing_press"],
+        ["printing_press", "tooltip_printing_press_embraced"],
+
+        ["global_trade", "tooltip_neighbor_non_port_province_global_trade"],
+        ["global_trade", "tooltip_neighbor_port_province_global_trade"],
+        ["global_trade", "tooltip_global_trade_embraced"],
+        ["global_trade", "tooltip_global_trade_embraced_other_continent"],
+
+        ["manufactories", "tooltip_any_friendly_coast_border_province_has_embraced_manufactories"],
+        ["manufactories", "tooltip_any_neighbor_has_embraced_manufactories"],
+        ["manufactories", "tooltip_manufactories_embraced"],
+        ["manufactories", "tooltip_manufactories_embraced_other_continent"],
+
+        ["enlightenment", "tooltip_any_friendly_coast_border_province_has_embraced_enlightenment"],
+        ["enlightenment", "tooltip_any_neighbor_has_embraced_enlightenment"],
+        ["enlightenment", "tooltip_enlightenment_embraced"],
+        ["enlightenment", "tooltip_enlightenment_embraced_other_continent"],
+
+        ["industrialization", "tooltip_any_friendly_coast_border_province_has_embraced_industrialization"],
+        ["industrialization", "tooltip_any_neighbor_has_embraced_industrialization"],
+        ["industrialization", "tooltip_industrialization_embraced"],
+        ["industrialization", "tooltip_industrialization_embraced_other_continent"],
+      ].each do |key|
+        factors[key]["factor"] *= 0.5
+      end
+
+      # Colonialism - can only start in Europe
+      node["new_world_i"]["can_start"].add! Property["continent", "europe"]
+
+      # Gate every institution behind previous one, this prevents easy catch-up
+      node["new_world_i"]["can_embrace"] = PropertyList["owner", PropertyList["has_institution", "renaissance"]]
+      node["printing_press"]["can_embrace"] = PropertyList["owner", PropertyList["has_institution", "new_world_i"]]
+      node["global_trade"]["can_embrace"] = PropertyList["owner", PropertyList["has_institution", "printing_press"]]
+      node["manufactories"]["can_embrace"] = PropertyList["owner", PropertyList["has_institution", "global_trade"]]
+      node["enlightenment"]["can_embrace"] = PropertyList["owner", PropertyList["has_institution", "manufactories"]]
+      node["industrialization"]["can_embrace"] = PropertyList["owner", PropertyList["has_institution", "enlightenment"]]
+    end
+  end
+
   def more_aggressive_ai!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
