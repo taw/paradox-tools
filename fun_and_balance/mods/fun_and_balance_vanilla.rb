@@ -15,7 +15,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     lower_opinion_penalties!
     rebalance_ottomans_constantinople!
     more_base_relations!
-    more_building_slots! # less necessary in 1.34 as courthouse no longer takes a slot
+    more_building_slots!
     no_naval_attrition!
     power_projection_tweaks!
     primary_greek_tag_is_byz!

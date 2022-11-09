@@ -115,14 +115,38 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # Toned it down for 1.34, as gov building is now slot-free
+  #
+  # The most we'd normally want to build is 8, in a coastal provinces that needs a fort,
+  # if we're also desperate for both force limits:
+  # * manufactory
+  # * workshop
+  # * barracks
+  # * marketplace
+  # * church
+  # * naval force limit
+  # * army force limit
+  # * fort
+  #
+  # Nobody really needs these:
+  # * coastal defence
+  # * sailors
+  #
+  # And these don't cost any slots:
+  # * government
+  # * university
+  #
+  # To build 8, you need 3 base + 25dev, or 3 base + 1 terrain + 20dev
+  #
+  # But you could skip fort, force limit buildings, and then you just need 5 slots
+  # for max economic benefits: 3 base + 10dev, or 2 base + 1 terrain + 5dev
+  #
+  # So to build everything you want, you'll need at most a modest dev push
+
   def more_building_slots!
     patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      node["development"]["allowed_num_of_buildings"] = 0.2
-      node["city"]["allowed_num_of_buildings"] = 5
-      # To make out 12 is enough
-      # 12 is most that's possible I think:
-      # trade, gov, prod, tax, coast, 2x navy, 2x army, fort, manufactory, uni
-      # and uni adds its own slot
+      node["development"]["allowed_num_of_buildings"] = 0.2 # 0.1 in vanilla
+      node["city"]["allowed_num_of_buildings"] = 3 # 2 in vanilla
     end
   end
 
