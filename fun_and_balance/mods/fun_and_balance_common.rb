@@ -733,6 +733,18 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # Let anyone in Asia take mandate of heaven
+  def mandate_of_heavens_for_all_asians!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      req = node["cb_take_mandate"]["prerequisites"]
+      raise unless req["OR"] == PropertyList[
+        "religion_group", "pagan",
+        "religion_group", "eastern",
+      ]
+      req["OR"].add! "capital_scope", PropertyList["continent", "asia"]
+    end
+  end
+
   ###################################################################
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################

@@ -35,6 +35,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     declare_war_in_regency!
     fix_roman_empire_decision!
     remove_all_straits!
+    mandate_of_heavens_for_all_asians!
 
     # Evaluating for reals:
     eurocentric_institutions!
