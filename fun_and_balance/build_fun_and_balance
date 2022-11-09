@@ -35,6 +35,7 @@ class FunAndBalanceModBuilder < ParadoxModBuilder
       remote_file_id: MagicString.new('"444759856"'),
     )
   end
+
   # This is some crazy syntax, but apparently it's legit!
   def fix_syntax_errors!
     # 1.34

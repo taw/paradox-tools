@@ -4,7 +4,6 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
     anyone_can_form_byzantium!
     buff_awful_idea_groups!
-    # cheaper_fort_maintenance! # not sure this is the right way tbh
     coalition_cb_defend_capital!
     custom_nation_tweaks!
     disable_call_for_peace!
@@ -12,38 +11,34 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     increase_rival_distance!
-    # longer_cb_on_backstabbers! # this is meaningless anyway
     lower_defender_ae!
     lower_opinion_penalties!
     rebalance_ottomans_constantinople!
     more_base_relations!
-    more_building_slots!
+    more_building_slots! # less necessary in 1.34 as courthouse no longer takes a slot
     no_naval_attrition!
     power_projection_tweaks!
     primary_greek_tag_is_byz!
-    reduce_ai_cheats!
     rebalance_war_exhaustion!
     religious_shift_decision!
     subject_religious_cbs!
     subject_tweaks!
     trade_map_fixes!
     allow_peace_terms_for_all_cbs!
-    holy_orders_for_all!
-    # rebalance_ming_crisis! # no longer needed in 1.33?
+    holy_orders_for_all! # it's a minor feature
     improve_religious_rebels!
     buff_support_rebels!
     buff_covert_actions!
     fix_culture_groups!
     fix_localization!
-    # nerf_tribal_development! # 1.31, we no longer need it
-    remove_all_natives! # it's still fucked in 1.32
+    # remove_all_natives! # maybe 1.34 removed the need for it?
     declare_war_in_regency!
     fix_roman_empire_decision!
     remove_all_straits!
 
     # Evaluating for reals:
     eurocentric_institutions!
-    # make_hegemony_achievable!
+    reduce_ahead_of_time_penalty!
 
     # Experimental:
     # more_aggressive_ai!
@@ -54,6 +49,14 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     # all_religions_propagate_by_trade!
     # super_lucky_nations!
     # super_unlucky_nations!
+
+    # Obsolete
+    # cheaper_fort_maintenance! # not sure this is the right way tbh
+    # longer_cb_on_backstabbers! # this is meaningless anyway
+    # rebalance_ming_crisis! # no longer needed in 1.33?
+    # nerf_tribal_development! # 1.31, we no longer need it
+    # make_hegemony_achievable!
+    # reduce_ai_cheats! # at this point it was just free leader, and leaders are plentiful in recent patches anyway
 
     soft_patch_defines_lua!(
       "fun_and_balance",

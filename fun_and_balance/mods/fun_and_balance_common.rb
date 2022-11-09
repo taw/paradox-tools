@@ -799,6 +799,15 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # Second part of Eurocentric Institutions, let European push ahead of default limit
+  # They're still locked from going too far by institutions that didn't spawn yet
+  def reduce_ahead_of_time_penalty!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    soft_patch_defines_lua!("fun_and_balance_ahead_of_time",
+      ["NCountry.TECH_AHEAD_OF_TIME", 0.1, 0.01],
+    )
+  end
+
   def more_aggressive_ai!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
@@ -809,6 +818,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     )
   end
 
+  # This was arguably nice idea before 1.34, but looks like AI got better at it in 1.34
   def make_hegemony_achievable!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
@@ -838,6 +848,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # Eurocentric institutions are probably a nicer solution
   def bring_tech_groups_back!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
@@ -1009,6 +1020,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   end
 
   # This is fine to go live, but it needs UI mod to work
+  # Also 1.34 increased it from 4 to 6 so no longer needed
   def allow_more_estate_privileges!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
