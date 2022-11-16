@@ -318,7 +318,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
 
     patch_mod_file!("common/wargoal_types/00_wargoal_types.txt") do |node|
-      node["humiliate_rotw"].delete! "allowed_provinces_are_eligible"
+      node["humiliate_rotw"]["attacker"].delete! "allowed_provinces_are_eligible"
     end
   end
 
