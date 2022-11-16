@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require_relative "bonus_scoring"
+
+class AnalyzeAdvisors < EU4Analysis
+  def list_of_bonuses(advisor)
+    advisor = advisor.to_h
+    advisor.delete "monarch_power"
+    advisor.delete "allow_only_owner_religion"
+    advisor.delete "skill_scaled_modifier" # technically it's a bonus but I don't think EU4 uses that for vanilla countries
+    advisor.delete "chance"
+    advisor.delete "ai_will_do"
+
+    bonuses = {}
+    advisor.each do |k,v|
+      bonuses[k] = v
+    end
+    bonuses
+  end
+
+  def each_advisor
+    glob("common/advisortypes/00_advisortypes.txt").each do |path|
+      parse(path).each do |name, advisor|
+        loc_name = localization(name)
+        bonuses = list_of_bonuses(advisor)
+        bonus_name = bonuses.keys.map{|k| localization(k) }.join(", ")
+        full_name = "#{loc_name} (#{bonus_name})"
+        score = BonusScoring.new(bonuses).score
+        yield(full_name, score)
+      end
+    end
+  end
+
+  def call
+    results = []
+    each_advisor do |name, bonus|
+      results << [bonus.round(3), name]
+    end
+    results.sort.reverse.each do |r, n|
+      puts "%.3f %s" % [r, n]
+    end
+  end
+end
+
+AnalyzeAdvisors.new_from_argv.call

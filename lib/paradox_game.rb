@@ -118,4 +118,8 @@ class ParadoxGame
     end
     Hash[data.split("\n").grep(/\A[^#]/).map{|line| line.split(";")[0,2] }]
   end
+
+  def inspect
+    "#{self.class}"
+  end
 end
