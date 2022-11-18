@@ -37,6 +37,21 @@ class GreatProjectPlayerPartialEval < PartialEvaluator
           return always_false
         end
       end
+    when "province_is_buddhist_or_accepts_buddhism_or_is_dharmic"
+      if node.val == true
+        if ["buddhism", "vajrayana", "mahayana", "hinduism", "shamanism", "hinduism", "sikhism"].include?(@save.player_religion)
+          return always_true
+        else
+          return always_false
+        end
+      end
+    when "has_harmonized_with"
+      # Just assume it can be done
+      if @save.player_religion == "confucianism"
+        return always_true
+      else
+        return always_false
+      end
     when "culture", "culture_group"
       # This is about province, culture, so it's fine
       return always_true
@@ -53,6 +68,29 @@ class GreatProjectPlayerPartialEval < PartialEvaluator
       return always_false
     when "owner"
       return always_false if node.val == PropertyList[always_false]
+      return always_true if node.val == PropertyList[always_true]
+      # it's implicit AND
+      return always_false if node.val["always"] == false
+    when "custom_trigger_tooltip"
+      if node.val.keys == ["tooltip", "OR"]
+        return node.val.to_a[1]
+      elsif node.val.keys == ["tooltip", "always"]
+        return node.val.to_a[1]
+      end
+    when "province_is_or_accepts_religion_group", "province_is_or_accepts_religion"
+      raise unless node.val.to_a.size == 1
+      return node.val.to_a[0]
+    when "has_country_flag"
+      # So conditional it's unlikely
+      return always_false
+    when "if"
+      if node.val ==  PropertyList[
+          "limit", PropertyList["always", true],
+          "always", true,
+          "always", true,
+        ]
+        return always_true
+      end
     end
     node
   end
