@@ -65,7 +65,7 @@ class AnalyzeWarsBattles < EU4SaveAnalysis
       end
     end
 
-    @wars << {
+    @wars << OpenStruct.new(
       name: war["name"],
       start_date: war_start.to_s,
       end_date: war_end ? war_end.to_s : "ongoing",
@@ -75,7 +75,7 @@ class AnalyzeWarsBattles < EU4SaveAnalysis
       defender_troops: defender_losses,
       attacker_ships: attacker_losses_ships,
       defender_ships: defender_losses_ships,
-    }
+    )
   end
 
   def add_active_war!(war)
@@ -104,8 +104,7 @@ class AnalyzeWarsBattles < EU4SaveAnalysis
   def call
     analyze_wars!
     @wars.each do |war|
-      p war
-      # puts [war[:name], war[:start_date], war[:end_date], war[:attackers].join(","), war[:defenders].join(","), war[:attacker_losses], war[:defender_losses]].join("\t")
+      puts "#{war.name} (#{war.start_date}..#{war.end_date}): #{war.attackers.join(", ")} (#{war.attacker_troops} troops, #{war.attacker_ships} ships) vs #{war.defenders.join(", ")} (#{war.defender_troops} troops, #{war.defender_ships} ships)"
     end
   end
 end
