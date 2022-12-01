@@ -10,11 +10,12 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # I used to give naval extra leader, but in recent patches number of naval leaders
+  # went from 0 to basically ridiculous numbers, so it wouldn't make any difference
   def buff_awful_idea_groups!
     patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node|
       node["maritime_ideas"]["merchant_marine"]["merchants"] = 1
       node["maritime_ideas"]["bonus"]["global_ship_trade_power"] = 0.5
-      node["naval_ideas"]["boarding_parties"]["free_leader_pool"] = 1
     end
   end
 
