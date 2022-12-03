@@ -4,11 +4,16 @@ require "pathname"
 
 unless ARGV.size >= 3
   STDERR.puts "Usage: #{$0} savegame outputdir gamepath [mod1] [mod2...]"
+  STDERR.puts "       #{$0} savegame --auto gamepath [mod1] [mod2...]"
   exit 1
 end
 
 save_path = ARGV[0]
-output = Pathname(ARGV[1])
+if ARGV[1] == "--auto"
+  output = Pathname("output") + Pathname(save_path).basename(".eu4")
+else
+  output = Pathname(ARGV[1])
+end
 game = ARGV[2]
 mods = ARGV[3..-1]
 
