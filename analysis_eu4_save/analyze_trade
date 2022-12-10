@@ -14,10 +14,34 @@ class AnalyzeTrade < EU4SaveAnalysis
     puts ""
   end
 
-  def call
+  # This isn't really all that useful
+  def print_trade_by_node
     @save.trade_network.nodes.each do |name, node|
       print_node_info(name, node)
     end
+  end
+
+  def print_trade_by_country
+    by_country = {}
+    @save.trade_network.nodes.each do |node_tag, node|
+      node_name = localization(node_tag)
+      node.total_collector_share.each do |tag, share|
+        country_name = @save.countries[tag].name || localization(tag)
+        by_country[country_name] ||= []
+        by_country[country_name] << [node_name, share]
+      end
+    end
+    by_country.sort_by{|name, shares| [-shares.map(&:last).sum, name]}.each do |name, shares|
+      puts "#{name}:"
+      shares.sort_by{|name, share| [-share, name]}.each do |name, share|
+        puts "* #{name} - #{"%.6f" % share}"
+      end
+      puts ""
+    end
+  end
+
+  def call
+    print_trade_by_country
   end
 end
 
