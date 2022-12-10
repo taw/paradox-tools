@@ -415,9 +415,12 @@ class Province
     (@node["buildings"] || {}).keys
   end
 
+  # Includes various pseudo-manufactories
   def has_manufactory?
-    # furnace works differently
-    !(%W[farm_estate furnace mills plantations textile tradecompany weapons wharf] & buildings).empty?
+    !(%W[
+      farm_estate furnace mills plantations textile tradecompany weapons wharf
+      furnace ramparts soldier_households impressment_offices state_house
+    ] & buildings).empty?
   end
 
   def trade_node_name

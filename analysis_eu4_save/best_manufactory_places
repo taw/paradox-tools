@@ -96,7 +96,7 @@ class BestManufactoryPlaces < EU4SaveAnalysis
       elsif @save.players_subject?(province.owner)
         estimated_total_value = estimated_player_trade_value(province).round(6)
       else
-        # We could print non-subjects for conquest ideas  !
+        # We could print non-subjects for conquest ideas!
         estimated_total_value = estimated_player_trade_value(province).round(6)
       end
 
