@@ -19,6 +19,7 @@ class FakeYaml
         .gsub(/[ \t]*$/, "")
         .gsub(/^ +/, " ")
         .gsub(/\\"$/, '"') # MD \" at end
+        .gsub(/"\\$/, '"') # Europa Extended crap
         .sub(/\s*\z/, "\n")
         .gsub(/^\s*#.*\n/, "")
         .sub(/\A\s*/, "")

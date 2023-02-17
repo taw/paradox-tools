@@ -23,13 +23,26 @@ class PartialEvaluatorGreatProjects < PartialEvaluator
     when "owner"
       # Not religion specific
       return always_false if node.val.include?(always_false)
+      return always_true if node.val == PropertyList["always", true]
+      return node.val.to_a[0] if node.val.keys == ["OR"]
     when "custom_trigger_tooltip"
       # Not religion specific, this could be much better
       if node.val.keys.sort == ["OR", "tooltip"]
         return node.val.to_a.find{|a| a.key == "OR"}
       end
+      if node.val.keys.sort == ["always", "tooltip"]
+        return node.val.to_a.find{|a| a.key == "always"}
+      end
     when "has_harmonized_with"
       return always_false # this one might be always_true instead?
+    when "has_country_flag"
+      return always_false
+    when "if"
+      return always_true if node.val == PropertyList[
+        "limit", PropertyList["always", true],
+        "always", true,
+        "always", true,
+      ]
     end
     node
   end
@@ -821,17 +834,28 @@ class AnalyzeReligions < EU4Analysis
       elsif node.val.keys == ["OR"] and node.val["OR"].keys == ["is_former_colonial_nation", "tag"]
         [] # USA
       else
-        raise
+        warn "Religion rule parse error: #{node.key}"
+        []
       end
     when "province_is_buddhist_or_accepts_buddhism"
-      ["buddhism"] # or...
+      ["buddhism", "vajrayana", "mahayana"]
+    when "province_is_buddhist_or_accepts_buddhism_or_is_dharmic"
+      ["buddhism", "vajrayana", "mahayana", "hinduism", "sikhism"]
     when "province_is_or_accepts_culture"
       []
     when "AND"
-      raise unless node.val["religion"]
-      node.val["religion"]
+      if node.val["religion"]
+        node.val["religion"]
+      else
+        warn "Religion rule parse error: #{node.key}"
+        []
+      end
+    when "is_former_colonial_nation", "tag", "primary_culture"
+      # Europa Extended
+      []
     else
-      raise "Religion rule parse error: #{node.key}"
+      warn "Religion rule parse error: #{node.key}"
+      []
     end
   end
 
@@ -853,7 +877,9 @@ class AnalyzeReligions < EU4Analysis
         can_upgrade = project["can_upgrade_trigger"]
 
         raise unless can_keep.empty?
-        raise unless can_use == can_upgrade
+        unless can_use == can_upgrade
+          warn "can_upgrade for #{name} does not match can_use"
+        end
 
         country_modifiers = project["tier_3"]["country_modifiers"]
         next if country_modifiers.empty?

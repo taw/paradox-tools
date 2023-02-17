@@ -93,7 +93,7 @@ class AnalyzeCustomIdeaBonuses < EU4Analysis
   end
 
   def idea_score(idea)
-    BonusScoring.new.tap{|bs| bs.send(*idea.to_a.flatten) }.score
+    BonusScoring.new.tap{|bs| idea.each{|k,v| bs.send(k,v) }}.score
   end
 
   def custom_ideas

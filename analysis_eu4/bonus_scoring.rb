@@ -77,14 +77,16 @@ class BonusScoring
     :naval_attrition,
 
     # Influence matters but we have no idea which direction you care about
+    :all_estate_influence_modifier,
     :brahmins_hindu_influence_modifier,
     :bureaucrats_influence,
     :burghers_influence_modifier,
     :church_influence_modifier,
+    :dhimmi_influence_modifier,
     :enuchs_influence,
+    :jains_influence_modifier,
     :maratha_exclusive_influence_modifier,
     :maratha_influence_modifier,
-    :maratha_loyalty_modifier,
     :maratha_muslim_influence_modifier,
     :mr_aristocrats_influence,
     :mr_guilds_influence,
@@ -94,7 +96,6 @@ class BonusScoring
     :pr_captains_influence,
     :pr_smugglers_influence,
     :rajput_exclusive_influence_modifier,
-    :rajput_exclusive_loyalty_modifier,
     :rajput_influence_modifier,
     :rajput_muslim_influence_modifier,
     :rr_girondists_influence,
@@ -104,20 +105,23 @@ class BonusScoring
     :vaisyas_influence_modifier,
     :vaisyas_non_muslim_influence_modifier,
 
-    # 1.30 estate loyalty is trivial to handle and not worth anything
+    # 1.30+ estate loyalty is trivial to handle and not worth much
     :all_estate_loyalty_equilibrium,
     :brahmins_hindu_loyalty_modifier,
     :brahmins_muslim_loyalty_modifier,
+    :brahmins_other_loyalty_modifier,
     :burghers_loyalty_modifier,
     :church_loyalty_modifier,
     :cossacks_loyalty_modifier,
     :dhimmi_loyalty_modifier,
+    :jains_loyalty_modifier,
     :maratha_exclusive_loyalty_modifier,
+    :maratha_loyalty_modifier,
     :nobles_loyalty_modifier,
     :nomadic_tribes_loyalty_modifier,
+    :rajput_exclusive_loyalty_modifier,
     :rajput_loyalty_modifier,
     :vaisyas_loyalty_modifier,
-    :jains_loyalty_modifier,
 
     # This could be a bit more exploitable, but it's still situational which direction you care about,
     :monthly_piety,
@@ -1399,7 +1403,7 @@ class BonusScoring
         total += v
       when :yearly_absolutism
         # This is going to get capped really quickly
-      when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :amount_of_banners, :monthly_fervor_increase, :yearly_harmony
+      when :migration_cooldown, :horde_unity, :cav_to_inf_ratio, :monthly_fervor_increase, :yearly_harmony
         # Extremely situational
       when :native_assimilation, :native_uprising_chance
         # Not very meaningful since native policies are a thing
@@ -1468,8 +1472,10 @@ class BonusScoring
         # too situational
       when :tribal_development_growth
         # too situational
-      when :can_recruit_hussars
+      when :can_recruit_hussars, :amount_of_banners, :has_carolean, :amount_of_carolean, :amount_of_cawa
         # special unit types are very situational
+      when :years_to_integrate_personal_union
+        # too situational
       else
         warn "#{k} not scored"
       end

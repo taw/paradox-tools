@@ -36,7 +36,9 @@ class AnalyzeGreatProjects < EU4Analysis
         can_upgrade = project["can_upgrade_trigger"]
 
         raise unless can_keep.empty?
-        raise unless can_use == can_upgrade
+        unless can_use == can_upgrade
+          warn "can_upgrade for #{name} does not match can_use"
+        end
 
         country_modifiers = project["tier_3"]["country_modifiers"]
         next if country_modifiers.empty?

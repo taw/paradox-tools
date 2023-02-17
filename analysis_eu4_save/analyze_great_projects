@@ -116,7 +116,9 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
         can_upgrade = project["can_upgrade_trigger"]
 
         raise unless can_keep.empty?
-        raise unless can_use == can_upgrade
+        unless can_use == can_upgrade
+          warn "can_upgrade for #{name} does not match can_use"
+        end
 
         yield(name, province_name, 0, project["tier_0"], can_use)
         yield(name, province_name, 1, project["tier_1"], can_use)
