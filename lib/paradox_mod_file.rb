@@ -115,9 +115,9 @@ class ParadoxModFile
         elsif s.scan(/,/)
           # Seen in some array defintions, pass
         else
-          # require "pry"
-          # binding.pry
-          raise "Tokenizer error in #{path || 'passed string'} at #{s.pos}: `#{s.rest[0,20]}...'"
+          tok = s.scan(/\S+/)
+          warn "Irregular token in #{path || 'passed string'} at #{s.pos}: `#{tok.inspect}...'"
+          @tokens << tok
         end
       end
     end

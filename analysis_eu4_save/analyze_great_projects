@@ -151,6 +151,7 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
 
   def calculate_player_can_use(name)
     can_use = can_use_rules[name]
+    return true if can_use.nil? # mod issue?
 
     @pe ||= GreatProjectPlayerPartialEval.new(self, @save)
     # It's big AND
@@ -225,6 +226,7 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
     player_bonuses = {}
 
     player_monuments.each do |name, province_name, tier|
+      next unless monument_bonuses[[name, tier]] # mod issue
       monument_bonuses[[name, tier]].each do |key, val|
         nkey = modifier_loc(key)
         player_bonuses[nkey] ||= {total: 0, monuments: []}
