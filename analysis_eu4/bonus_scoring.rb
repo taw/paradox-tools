@@ -309,12 +309,23 @@ class BonusScoring
     monthly_adm_points 4 * -v
   end
 
+
+  # This is NOT symmetric
+  # For negative numbers, you don't gain stab by declaring war,
+  # it only affects no-CB wars which are basically irrelevant
+  # In a typical campaign you won't declare even one
+  #
   # This is Hussite power, and it's terrible.
   # You'll declare war like every 2 years, and let's assume it costs 100 adm to undo this
   # And you also generate AE from doing this (which is honestly the insane part)
   def stability_cost_to_declare_war(v)
-    monthly_adm_points((-100.0/24) * v)
-    # FIXME: score AE
+    if v > 0
+      monthly_adm_points((-100.0/24) * v)
+      # FIXME: score AE
+    else
+      # almost completely worthless
+      0
+    end
   end
 
   # Assuming +1 stab button / 15 years (base cost 100, mods apply to this not total)
