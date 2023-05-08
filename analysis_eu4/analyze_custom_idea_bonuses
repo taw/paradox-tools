@@ -8,7 +8,7 @@ require "pp"
 class AnalyzeCustomIdeaBonuses < EU4Analysis
   def call
     print_scores!
-    [0, 50, 100, 150, 200, 300, 400, 600].each do |max_cost|
+    [0, 50, 100, 150, 200, 300, 400, 600, 800].each do |max_cost|
       puts ""
       puts "Simplex for cost=#{max_cost}"
       run_simplex!(max_cost)

@@ -1220,6 +1220,13 @@ class BonusScoring
     reduced_liberty_desire(-25 * v)
   end
 
+  # Guestimate that half of relevant ones will be on same continent
+  # Early game it will be mostly same continent, late game mostly not
+  # -100 to +100 scale (not -1 to +1)
+  def reduced_liberty_desire_on_same_continent(v)
+    reduced_liberty_desire(-0.5 * v)
+  end
+
   # Assume on average you are at +5% PP from insults
   # so +100% is equivalent to +5% PP
   def power_projection_from_insults(v)
