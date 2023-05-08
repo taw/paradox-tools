@@ -737,7 +737,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   # Let anyone in Asia take mandate of heaven
   def mandate_of_heavens_for_all_asians!
     patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
-      req = node["cb_take_mandate"]["prerequisites"]
+      req = node["cb_take_mandate"]["prerequisites_self"]
+      # There is also second OR here, so this is very hacky!
       raise unless req["OR"] == PropertyList[
         "religion_group", "pagan",
         "religion_group", "eastern",

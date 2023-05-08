@@ -29,7 +29,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     improve_religious_rebels!
     buff_support_rebels!
     buff_covert_actions!
-    fix_culture_groups!
+    # fix_culture_groups! # disabled in 1.35 as vanilla fixed Slovaks, needs reevaluation for Turkish
     fix_localization!
     # remove_all_natives! # maybe 1.34 removed the need for it?
     declare_war_in_regency!
@@ -103,7 +103,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   # * Finland/Sampi/Karelian/Estonian are split
   # * Greeks joining Balkan group?
   def fix_culture_groups!
-    move_culture! "slovak", "carpathian", "west_slavic"
+    # move_culture! "slovak", "carpathian", "west_slavic" # This is done in 1.35
     move_culture! "transylvanian", "carpathian", "south_slavic"
     move_culture! "romanian", "carpathian", "south_slavic"
     move_culture! "hungarian", "carpathian", "south_slavic"
