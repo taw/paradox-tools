@@ -23,7 +23,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     religious_shift_decision!
     subject_religious_cbs!
     subject_tweaks!
-    trade_map_fixes!
+    # trade_map_fixes! # 1.35 fixed it?
     allow_peace_terms_for_all_cbs!
     holy_orders_for_all! # it's a minor feature
     improve_religious_rebels!
@@ -79,6 +79,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     end
   end
 
+  # 1.35 redid trade map?
   def trade_map_fixes!
     rewrite_trade_map! do |edges|
       edges - [

@@ -12,6 +12,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
 
   # I used to give naval extra leader, but in recent patches number of naval leaders
   # went from 0 to basically ridiculous numbers, so it wouldn't make any difference
+  #
+  # This barely does anything
   def buff_awful_idea_groups!
     patch_mod_file!("common/ideas/00_basic_ideas.txt") do |node|
       node["maritime_ideas"]["merchant_marine"]["merchants"] = 1
@@ -323,117 +325,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  # These changes look really extreme,
-  # but 1.30.2 Ming doesn't come even close to exploding
-  # even with very brutal looking values
-  #
-  # not sure if needed 1.33+
-  def rebalance_ming_crisis!
-    # First, make sure crisis lasts at least 10 years, no cheating
-    patch_mod_file!("common/disasters/ming_crisis.txt") do |node|
-      crisis = node["ming_crisis"]
-      modify_node! crisis,
-        ["modifier", "global_unrest", 15, 15], # used to be 5->10 before 1.32
-        ["modifier", "land_morale", -0.15, -0.30]
-      crisis["can_end"]["custom_trigger_tooltip"] = PropertyList[
-        "tooltip", "disaster_active_for_10_years_tooltip",
-        "had_country_flag", PropertyList[
-          "flag", "had_ming_crisis",
-          "days", 3650,
-        ]
-      ]
-    end
-
-    # Set flag to make sure it last 10 years (flag only for event above)
-    patch_mod_file!("events/disaster_ming_crisis.txt") do |node|
-      event = node.to_a.find{|prop| prop.key == "country_event" and prop.val["id"] == "ming_crisis.1"}
-      event.val["immediate"].add! Property["set_country_flag", "had_ming_crisis"]
-    end
-
-    # Then make low mandate actually painful
-    # And losing mandate basically a death sentence
-    # -100% manpower sounds like BS, but there are enormous
-    # positive modifiers in 1.30 (especially estates) so it's de facto closer to -50%
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node!(node,
-        ["negative_mandate", "global_unrest", 5, 10],
-        ["negative_mandate", "manpower_recovery_speed", nil, -0.5],
-        ["negative_mandate", "mercenary_manpower", -0.5, -2.0],
-        # ["negative_mandate", "fire_damage_received", 0.5, 1.0],
-        # ["negative_mandate", "shock_damage_received", 0.5, 1.0],
-        ["negative_mandate", "mercenary_discipline", nil, -1.0],
-        # ["negative_mandate", "reduced_liberty_desire", nil, -50],
-        ["negative_mandate", "diplomatic_reputation", nil, -5],
-        ["negative_mandate", "liberty_desire_from_subject_development", nil, 1.0],
-        # ["lost_mandate_of_heaven", "global_unrest", 10, 10],
-        ["lost_mandate_of_heaven", "manpower_recovery_speed", nil, -0.5],
-        ["lost_mandate_of_heaven", "mercenary_manpower", -0.5, -2.0],
-        # ["lost_mandate_of_heaven", "fire_damage_received", 0.5, 1.0],
-        # ["lost_mandate_of_heaven", "shock_damage_received", 0.5, 1.0],
-        ["lost_mandate_of_heaven", "mercenary_discipline", nil, -1.0],
-        # ["lost_mandate_of_heaven", "reduced_liberty_desire", -50, -50]
-        ["lost_mandate_of_heaven", "diplomatic_reputation", nil, -5],
-        ["lost_mandate_of_heaven", "liberty_desire_from_subject_development", nil, 1.0],
-      )
-    end
-
-    # Make winning/losing mandate last 50 years
-    # from 20 (lost) / 25 (gained)
-    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
-      gain_mods = node["on_mandate_of_heaven_gained"].find_all("add_country_modifier")
-      loss_mods = node["on_mandate_of_heaven_lost"].find_all("add_country_modifier")
-
-      raise unless loss_mods == [PropertyList["name", "lost_mandate_of_heaven", "duration", 7300]]
-      raise unless gain_mods == [PropertyList["name", "new_mandate_holder", "duration", 9125]]
-
-      gain_mods[0]["duration"] = 365*50
-      loss_mods[0]["duration"] = 365*50
-    end
-
-    # Prevent kicking new Empire down too early
-    # It makes flavor sense, but kicking AI before it can establish itself
-    # just destroys any chance of new China emerging
-    patch_mod_file!("common/disasters/empire_of_china_culture.txt") do |node|
-      node["empire_of_china_in_name"]["potential"].add! Property::NOT["has_country_modifier", "new_mandate_holder"]
-      # Actually just disable it for AI for now
-    end
-
-    # Waging war for China helps more
-    patch_mod_files!("common/triggered_modifiers/00_triggered_modifiers.txt") do |node|
-      modify_node! node,
-        ["waging_war_for_china", "imperial_mandate", 0.05, 0.10]
-    end
-
-    # Buff mandate winners harder
-    # +0.10 barely counters not having 2/3 capitals,
-    # and new holder will often lack all 3
-    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
-      modify_node! node,
-        ["new_mandate_holder", "imperial_mandate", 0.05, 0.10],
-        ["new_mandate_holder", "global_unrest", nil, -5]
-    end
-
-    # Fix bug that makes lost mandate holder not have proper rebels
-    # Code obviously tries to make them have nationalists, but code bug breaks it
-    # as country which lost mandate will also lose celestial_empire reform
-    patch_mod_files!("common/rebel_types/nationalist.txt") do |node|
-      spawn_chance = node["nationalist_rebels"]["spawn_chance"]
-      lost_mandate = spawn_chance.find_all("modifier").find{|m| m["owner"] and m["owner"]["has_reform"] == "celestial_empire" and m["factor"] == 100 }
-      lost_mandate["owner"] = PropertyList[
-          "NOT", PropertyList["primary_culture", "ROOT"],
-          "OR", PropertyList[
-            "has_country_modifier", "the_mandate_of_heaven_lost",
-            "has_country_modifier", "lost_mandate_of_heaven",
-            "AND", PropertyList[
-              "has_reform", "celestial_empire",
-              "has_dlc", "Mandate of Heaven",
-              "NOT", PropertyList["imperial_mandate", 50],
-            ],
-          ],
-        ]
-    end
-  end
-
   # 1.34 already buffed it from 60% cost to 30% cost
   def buff_support_rebels!
     soft_patch_defines_lua!("fun_and_balance_support_rebels",
@@ -631,6 +522,19 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # Let anyone in Asia take mandate of heaven
+  def mandate_of_heavens_for_all_asians!
+    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
+      req = node["cb_take_mandate"]["prerequisites_self"]
+      # There is also second OR here, so this is very hacky!
+      raise unless req["OR"] == PropertyList[
+        "religion_group", "pagan",
+        "religion_group", "eastern",
+      ]
+      req["OR"].add! "capital_scope", PropertyList["continent", "asia"]
+    end
+  end
+
   ###################################################################
   ### DISABLED STUFF, NOT ENABLED IN RELEASE                      ###
   ### (only for ones I'm still evaluating)                        ###
@@ -734,16 +638,115 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  # Let anyone in Asia take mandate of heaven
-  def mandate_of_heavens_for_all_asians!
-    patch_mod_file!("common/cb_types/00_cb_types.txt") do |node|
-      req = node["cb_take_mandate"]["prerequisites_self"]
-      # There is also second OR here, so this is very hacky!
-      raise unless req["OR"] == PropertyList[
-        "religion_group", "pagan",
-        "religion_group", "eastern",
+  # These changes look really extreme,
+  # but 1.30.2 Ming doesn't come even close to exploding
+  # even with very brutal looking values
+  #
+  # not sure if needed 1.33+
+  def rebalance_ming_crisis!
+    warn "Disabled code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    # First, make sure crisis lasts at least 10 years, no cheating
+    patch_mod_file!("common/disasters/ming_crisis.txt") do |node|
+      crisis = node["ming_crisis"]
+      modify_node! crisis,
+        ["modifier", "global_unrest", 15, 15], # used to be 5->10 before 1.32
+        ["modifier", "land_morale", -0.15, -0.30]
+      crisis["can_end"]["custom_trigger_tooltip"] = PropertyList[
+        "tooltip", "disaster_active_for_10_years_tooltip",
+        "had_country_flag", PropertyList[
+          "flag", "had_ming_crisis",
+          "days", 3650,
+        ]
       ]
-      req["OR"].add! "capital_scope", PropertyList["continent", "asia"]
+    end
+
+    # Set flag to make sure it last 10 years (flag only for event above)
+    patch_mod_file!("events/disaster_ming_crisis.txt") do |node|
+      event = node.to_a.find{|prop| prop.key == "country_event" and prop.val["id"] == "ming_crisis.1"}
+      event.val["immediate"].add! Property["set_country_flag", "had_ming_crisis"]
+    end
+
+    # Then make low mandate actually painful
+    # And losing mandate basically a death sentence
+    # -100% manpower sounds like BS, but there are enormous
+    # positive modifiers in 1.30 (especially estates) so it's de facto closer to -50%
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      modify_node!(node,
+        ["negative_mandate", "global_unrest", 5, 10],
+        ["negative_mandate", "manpower_recovery_speed", nil, -0.5],
+        ["negative_mandate", "mercenary_manpower", -0.5, -2.0],
+        # ["negative_mandate", "fire_damage_received", 0.5, 1.0],
+        # ["negative_mandate", "shock_damage_received", 0.5, 1.0],
+        ["negative_mandate", "mercenary_discipline", nil, -1.0],
+        # ["negative_mandate", "reduced_liberty_desire", nil, -50],
+        ["negative_mandate", "diplomatic_reputation", nil, -5],
+        ["negative_mandate", "liberty_desire_from_subject_development", nil, 1.0],
+        # ["lost_mandate_of_heaven", "global_unrest", 10, 10],
+        ["lost_mandate_of_heaven", "manpower_recovery_speed", nil, -0.5],
+        ["lost_mandate_of_heaven", "mercenary_manpower", -0.5, -2.0],
+        # ["lost_mandate_of_heaven", "fire_damage_received", 0.5, 1.0],
+        # ["lost_mandate_of_heaven", "shock_damage_received", 0.5, 1.0],
+        ["lost_mandate_of_heaven", "mercenary_discipline", nil, -1.0],
+        # ["lost_mandate_of_heaven", "reduced_liberty_desire", -50, -50]
+        ["lost_mandate_of_heaven", "diplomatic_reputation", nil, -5],
+        ["lost_mandate_of_heaven", "liberty_desire_from_subject_development", nil, 1.0],
+      )
+    end
+
+    # Make winning/losing mandate last 50 years
+    # from 20 (lost) / 25 (gained)
+    patch_mod_file!("common/on_actions/00_on_actions.txt") do |node|
+      gain_mods = node["on_mandate_of_heaven_gained"].find_all("add_country_modifier")
+      loss_mods = node["on_mandate_of_heaven_lost"].find_all("add_country_modifier")
+
+      raise unless loss_mods == [PropertyList["name", "lost_mandate_of_heaven", "duration", 7300]]
+      raise unless gain_mods == [PropertyList["name", "new_mandate_holder", "duration", 9125]]
+
+      gain_mods[0]["duration"] = 365*50
+      loss_mods[0]["duration"] = 365*50
+    end
+
+    # Prevent kicking new Empire down too early
+    # It makes flavor sense, but kicking AI before it can establish itself
+    # just destroys any chance of new China emerging
+    patch_mod_file!("common/disasters/empire_of_china_culture.txt") do |node|
+      node["empire_of_china_in_name"]["potential"].add! Property::NOT["has_country_modifier", "new_mandate_holder"]
+      # Actually just disable it for AI for now
+    end
+
+    # Waging war for China helps more
+    patch_mod_files!("common/triggered_modifiers/00_triggered_modifiers.txt") do |node|
+      modify_node! node,
+        ["waging_war_for_china", "imperial_mandate", 0.05, 0.10]
+    end
+
+    # Buff mandate winners harder
+    # +0.10 barely counters not having 2/3 capitals,
+    # and new holder will often lack all 3
+    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
+      modify_node! node,
+        ["new_mandate_holder", "imperial_mandate", 0.05, 0.10],
+        ["new_mandate_holder", "global_unrest", nil, -5]
+    end
+
+    # Fix bug that makes lost mandate holder not have proper rebels
+    # Code obviously tries to make them have nationalists, but code bug breaks it
+    # as country which lost mandate will also lose celestial_empire reform
+    patch_mod_files!("common/rebel_types/nationalist.txt") do |node|
+      spawn_chance = node["nationalist_rebels"]["spawn_chance"]
+      lost_mandate = spawn_chance.find_all("modifier").find{|m| m["owner"] and m["owner"]["has_reform"] == "celestial_empire" and m["factor"] == 100 }
+      lost_mandate["owner"] = PropertyList[
+          "NOT", PropertyList["primary_culture", "ROOT"],
+          "OR", PropertyList[
+            "has_country_modifier", "the_mandate_of_heaven_lost",
+            "has_country_modifier", "lost_mandate_of_heaven",
+            "AND", PropertyList[
+              "has_reform", "celestial_empire",
+              "has_dlc", "Mandate of Heaven",
+              "NOT", PropertyList["imperial_mandate", 50],
+            ],
+          ],
+        ]
     end
   end
 
@@ -757,8 +760,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     # Nerf dev pushing just slightly, to prevent AI Ming/Korea spawning Renaissance really early
+    # 5->4
+    #
+    # Even more experimentally, just turn it off lol
     soft_patch_defines_lua!("fun_and_balance_ai_aggressiveness",
-      ["NCountry.INSTITUTION_BONUS_FROM_IMP_DEVELOPMENT", 5, 4],
+      ["NCountry.INSTITUTION_BONUS_FROM_IMP_DEVELOPMENT", 5, 0],
     )
 
     # Free institutions for East Africa are not helping
@@ -771,6 +777,11 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         "stability_cost_modifier", -0.1,
         "prestige_per_development_from_conversion", 0.2,
       ]
+    end
+
+    # Korean Triptaka breaks the game too
+    patch_mod_file!("common/event_modifiers/00_event_modifiers.txt") do |node|
+      node["tripitaka_koreana"].delete! "institution_growth"
     end
 
     # Now core institution list
@@ -1055,18 +1066,6 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         techs[3+i].add! Property["allowed_idea_groups", i]
       end
     end
-  end
-
-  # This is fine to go live, but it needs UI mod to work
-  # Also 1.34 increased it from 4 to 6 so no longer needed
-  def allow_more_estate_privileges!
-    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
-
-    # 5 in 1.30.3
-    # 4 in 1.30.4
-    soft_patch_defines_lua!("fun_and_balance_more_privileges",
-      ["NCountry.ESTATE_PRIVILEGES_MAX_CONCURRENT", 4, 8],
-    )
   end
 
   # lucky + vh

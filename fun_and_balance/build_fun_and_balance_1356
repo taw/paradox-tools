@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+# This is obsolete code, it hasn't been maintained for many versions
+
 require_relative "../lib/paradox_mod_builder"
 Pathname(__dir__).glob("mods/*.rb").each{|rb| require_relative rb}
 
