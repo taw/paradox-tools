@@ -40,6 +40,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     # Evaluating for reals:
     eurocentric_institutions!
     reduce_ahead_of_time_penalty!
+    revanchism_is_bad!
 
     # Experimental:
     # more_aggressive_ai!

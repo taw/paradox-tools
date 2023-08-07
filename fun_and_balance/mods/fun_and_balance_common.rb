@@ -754,6 +754,30 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
 
+  # I'd prefer to zero out revanchism and remove the stupid feature that
+  # peace deal resets War Exhaustion, but that's not possible,
+  # so doing this instead
+  #
+  # They'll still be better off going 20WE 0REV -> 0WE 100REV
+  # but at least the suffering will continue a bit
+  def revanchism_is_bad!
+    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+
+    soft_patch_defines_lua!("fun_and_balance_revanchism",
+      ["NMilitary.REVANCHISM_DEVASTATION_IMPACT", -0.02, 0],
+    )
+
+    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+      node["recovery_motivation"] = PropertyList[
+        # that's still only half of what 20WE would do
+        "local_unrest", 10,
+        # this is fair
+        "army_tradition", 1,
+        "navy_tradition", 1,
+      ]
+    end
+  end
+
   # Inspired by (a few different) "Eurocentric Institutions" mods,
   # but completely different rules
   def eurocentric_institutions!
