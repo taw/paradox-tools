@@ -122,6 +122,16 @@ class BonusScoring
     :rajput_exclusive_loyalty_modifier,
     :rajput_loyalty_modifier,
     :vaisyas_loyalty_modifier,
+    :qizilbash_loyalty_modifier,
+    :janissaries_loyalty_modifier,
+    :ghulams_loyalty_modifier,
+    :eunuchs_loyalty_modifier,
+
+    # 6 slots is plenty, especially after monopoly nerfs
+    :cossacks_privilege_slots,
+    :qizilbash_privilege_slots,
+    :ghulams_privilege_slots,
+    :cossacks_privilege_slots,
 
     # This could be a bit more exploitable, but it's still situational which direction you care about,
     :monthly_piety,

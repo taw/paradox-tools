@@ -30,6 +30,7 @@ class AnalyzeIdeaGroups < EU4Analysis
     idea_group.each do |idea_name, idea|
       result[idea_name] = BonusScoring.new
       idea.each do |k,v|
+        next if k == "effect" # that's for effects of taking, it's not a bonus
         result["all"].send(k,v)
         result[idea_name].send(k,v)
       end
