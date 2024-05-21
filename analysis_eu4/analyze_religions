@@ -631,8 +631,10 @@ class AnalyzeReligions < EU4Analysis
           bonuses[k] = v
         end
         pe = PartialEvaluatorDeitiesAndCults.new
-        allow = pe.call(PropertyList["AND", deity["allow"]])
-        allow.each do |k,v|
+        allow = pe.call(PropertyList["AND", deity["allow"]]) if deity["allow"]
+        potential = pe.call(PropertyList["AND", deity["potential"]]) if deity["potential"]
+        raise if allow and potential
+        (allow || potential).each do |k,v|
           if k == "religion"
             @religions[v].deities[deity_name] = bonuses
           else
