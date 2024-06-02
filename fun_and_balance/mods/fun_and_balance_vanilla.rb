@@ -7,7 +7,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     coalition_cb_defend_capital!
     custom_nation_tweaks!
     disable_call_for_peace!
-    disable_end_game_tag_check_for_player!
+    # disable_end_game_tag_check_for_player! # already end game rule
     double_tradition_gain_from_battles!
     everybody_can_can_claim_states!
     increase_rival_distance!

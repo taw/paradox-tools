@@ -53,15 +53,16 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
-  def disable_end_game_tag_check_for_player!
-    patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
-      node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
-    end
-    # However, we reeable it for Mughals into Delhi
-    patch_mod_file!("decisions/DelhiNation.txt") do |node|
-      node["country_decisions"]["sultan_of_delhi"]["potential"].add! "NOT", PropertyList["tag", "MUG"]
-    end
-  end
+  # This is already a game rule so it's not needed anymore
+  # def disable_end_game_tag_check_for_player!
+  #   patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
+  #     node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
+  #   end
+  #   # However, we reeable it for Mughals into Delhi
+  #   patch_mod_file!("decisions/DelhiNation.txt") do |node|
+  #     node["country_decisions"]["sultan_of_delhi"]["potential"].add! "NOT", PropertyList["tag", "MUG"]
+  #   end
+  # end
 
   def double_tradition_gain_from_battles!
     soft_patch_defines_lua!("fun_and_balance_more_tradition_from_battles",
