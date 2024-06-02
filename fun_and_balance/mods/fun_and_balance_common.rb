@@ -751,6 +751,43 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  def rebalance_diplo_slots!
+    patch_mod_file!("common/subject_types/00_subject_types.txt") do |node|
+      node.each do |subject_type, subject_data|
+        next unless subject_data.is_a?(PropertyList)
+        if subject_data["takes_diplo_slot"]
+          subject_data["takes_diplo_slot"] = false
+        end
+      end
+    end
+
+    # No point giving away free diplo slots if they are all free anyway
+    patch_mod_file!("common/estate_privileges/02_noble_privileges.txt") do |node|
+      node["estate_nobles_strong_duchies"]["benefits"].delete!("diplomatic_upkeep")
+      node["estate_nobles_french_strong_duchies"]["benefits"].delete!("diplomatic_upkeep")
+    end
+  end
+
+  def color_subjects_as_overlord!
+    # based on "Vassal color same as overlords" mod
+    # I hope this adds to the list not overrides them?
+    create_mod_file! "common/on_actions/01_subject_colors.txt", PropertyList[
+      "on_startup", PropertyList["every_country", PropertyList[
+        "limit", PropertyList["AND", PropertyList[
+          "is_subject", true,
+          "NOT", PropertyList["is_subject_of_type", "daimyo_vassal"],
+        ]],
+        "change_country_color", PropertyList["country", "overlord"],
+      ]],
+      "on_dependency_gained", PropertyList[
+        "limit", PropertyList["FROM", PropertyList["NOT", PropertyList["is_subject_of_type", "daimyo_vassal"]]],
+        "FROM", PropertyList["change_country_color", PropertyList["country", "ROOT"]],
+      ],
+      "on_dependency_lost", PropertyList["FROM", PropertyList["restore_country_color", true]],
+      "on_create_vassal", PropertyList["ROOT", PropertyList["change_country_color", PropertyList["country", "FROM"]]],
+    ]
+  end
+
   ###################################################################
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
@@ -1218,5 +1255,30 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         "improve_relation_modifier", -0.5,
       ],
     ]
+  end
+
+  def alternative_varna_scenario!
+    bul = [4706, 159, 4704, 150, 2746, 1765, 4703, 3001, 4780, 2750]
+    byz = [149, 4779, 4705, 4702, 148, 1853, 144, 147]
+    alb = [143]
+    tag_map = (bul.map{ [_1, "BUL"] } + byz.map{ [_1, "BYZ"] } + alb.map{ [_1, "ALB"] }).to_h
+    glob("history/provinces/*.txt").each do |path|
+      id = path.basename.to_s.to_i
+      tag = tag_map[id]
+      next unless tag
+      patch_mod_file!(path) do |node|
+        min_date = node.keys.grep(Date).min
+        if min_date.nil? or min_date > Date.parse("1444.11.11")
+          node["owner"] = tag
+          node["controller"] = tag
+        else
+          node.add! Date.parse("1444.11.11"), PropertyList[
+            "owner", tag,
+            "controller", tag,
+          ]
+          # do I need to sort the dates?
+        end
+      end
+    end
   end
 end

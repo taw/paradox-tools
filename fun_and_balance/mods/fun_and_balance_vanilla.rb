@@ -14,7 +14,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     lower_defender_ae!
     lower_opinion_penalties!
     rebalance_ottomans_constantinople!
-    more_base_relations!
+    # more_base_relations!
     more_building_slots!
     no_naval_attrition!
     power_projection_tweaks!
@@ -36,6 +36,8 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     fix_roman_empire_decision!
     remove_all_straits!
     mandate_of_heavens_for_all_asians!
+    rebalance_diplo_slots!
+    color_subjects_as_overlord!
 
     # Evaluating for reals:
     eurocentric_institutions!
@@ -51,6 +53,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     # all_religions_propagate_by_trade!
     # super_lucky_nations!
     # super_unlucky_nations!
+    alternative_varna_scenario!
 
     # Obsolete
     # cheaper_fort_maintenance! # not sure this is the right way tbh
@@ -73,27 +76,27 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     )
   end
 
-  def more_base_relations!
-    patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
-      modify_node! node,
-        ["base_values", "diplomatic_upkeep", 4, 6]
-    end
-  end
+  # def more_base_relations!
+  #   patch_mod_file!("common/static_modifiers/00_static_modifiers.txt") do |node|
+  #     modify_node! node,
+  #       ["base_values", "diplomatic_upkeep", 4, 6]
+  #   end
+  # end
 
   # 1.35 redid trade map?
-  def trade_map_fixes!
-    rewrite_trade_map! do |edges|
-      edges - [
-        ["polynesia_node", "panama"],
-        ["philippines", "polynesia_node"],
-        ["mexico", "panama"],
-      ] + [
-        ["panama", "mexico"],
-        # ["patagonia", "lima"], # would be nice, but not working without drawing a path
-        ["polynesia_node", "philippines"],
-      ]
-    end
-  end
+  # def trade_map_fixes!
+  #   rewrite_trade_map! do |edges|
+  #     edges - [
+  #       ["polynesia_node", "panama"],
+  #       ["philippines", "polynesia_node"],
+  #       ["mexico", "panama"],
+  #     ] + [
+  #       ["panama", "mexico"],
+  #       # ["patagonia", "lima"], # would be nice, but not working without drawing a path
+  #       ["polynesia_node", "philippines"],
+  #     ]
+  #   end
+  # end
 
   # Many decisions and events assume certain cultures are in certain groups,
   # so any drastic changes might need extra work
