@@ -780,7 +780,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         "change_country_color", PropertyList["country", "overlord"],
       ]],
       "on_dependency_gained", PropertyList[
-        "limit", PropertyList["FROM", PropertyList["NOT", PropertyList["is_subject_of_type", "daimyo_vassal"]]],
+        # "limit", PropertyList["FROM", PropertyList["NOT", PropertyList["is_subject_of_type", "daimyo_vassal"]]],
         "FROM", PropertyList["change_country_color", PropertyList["country", "ROOT"]],
       ],
       "on_dependency_lost", PropertyList["FROM", PropertyList["restore_country_color", true]],
