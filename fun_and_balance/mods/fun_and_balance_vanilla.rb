@@ -3,7 +3,7 @@ require_relative "fun_and_balance_common"
 class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
   def apply!
     anyone_can_form_byzantium!
-    buff_awful_idea_groups!
+    # buff_awful_idea_groups! # not even worth the change, it's awful either way, so either rebalance properly or don't bother
     coalition_cb_defend_capital!
     custom_nation_tweaks!
     disable_call_for_peace!
