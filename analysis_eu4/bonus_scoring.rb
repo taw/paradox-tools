@@ -187,8 +187,9 @@ class BonusScoring
   def diplomatic_upkeep(v)
     monthly_dip_points 0.75 * v
   end
+  # These are given away so freely, assume used 25% of the time
   def free_leader_pool(v)
-    monthly_mil_points 0.75 * v
+    monthly_mil_points 0.25 * v
   end
 
   # This generated some monthly increase, just without cap increase
@@ -807,6 +808,14 @@ class BonusScoring
     trade_efficiency v*0.8
     production_efficiency v
   end
+
+  # Assume base is 3/3/3, so +1 means +5/3 prod and trade early game
+  # But post-manufactoris, it's just 8 to 13, so avearge out both scenarios
+  # This is a completely silly modifier relative to its custom cost
+  def global_trade_goods_size(v)
+    global_trade_goods_size_modifier(v * (5.0/3.0 + 5.0/8.0) * 0.5)
+  end
+
   # This is extremely hard. Inland nodes are often extremely competitive (HRE), so this bonus matter little
   # Assume total 500 trade power in node, and that node would increase your trade income by 20% if fully controlled
   def merchant_steering_to_inland(v)
@@ -1176,10 +1185,10 @@ class BonusScoring
     monthly_mixed_monarch_points 0.5 * 0.5 * v
   end
 
-  # Assume 60% the enemies are wrong religion
-  # It increases as game goes
+  # Assume 75% the enemies are wrong religion
+  # For Catholics and Sunni it starts quite low, but for everyone it increases as game goes
   def warscore_cost_vs_other_religion(v)
-    province_warscore_cost(v*0.6)
+    province_warscore_cost(v*0.75)
   end
 
   def flagship_cost(v)
@@ -1218,7 +1227,7 @@ class BonusScoring
 
   # Assume 12 each per month,
   # that's about right by mid game
-  def all_power_costs(v)
+  def all_power_cost(v)
     monthly_adm_points 12 * -v
     monthly_dip_points 12 * -v
     monthly_mil_points 12 * -v
