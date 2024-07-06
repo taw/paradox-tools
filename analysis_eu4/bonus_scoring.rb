@@ -175,8 +175,10 @@ class BonusScoring
     # To first approximation, it's already pretty much limitless in base game
   end
 
+  # This used to be good, but now you get free estate explorer with your first colonist
+  # so it's a lot worse
   def may_explore(v)
-    @ht[:may_explore] += 1.0
+    @ht[:may_explore] += 0.2
   end
   def auto_explore_adjacent_to_colony(v)
     # Very weak explore variant, might be good enough for some countries
@@ -1220,7 +1222,7 @@ class BonusScoring
   end
 
   def innovativeness(v)
-    all_power_costs -0.1 * v
+    all_power_cost -0.1 * v
     navy_tradition_decay -1 * v
     army_tradition_decay -1 * v
   end
@@ -1243,7 +1245,7 @@ class BonusScoring
   # Early game it will be mostly same continent, late game mostly not
   # -100 to +100 scale (not -1 to +1)
   def reduced_liberty_desire_on_same_continent(v)
-    reduced_liberty_desire(-0.5 * v)
+    reduced_liberty_desire(0.5 * v)
   end
 
   # Assume on average you are at +5% PP from insults
@@ -1509,10 +1511,12 @@ class BonusScoring
         # too situational
       when :tribal_development_growth
         # too situational
-      when :can_recruit_hussars, :amount_of_banners, :has_carolean, :amount_of_carolean, :amount_of_cawa
+      when :can_recruit_hussars, :amount_of_banners, :has_carolean, :amount_of_carolean, :amount_of_cawa, :amount_of_hussars
         # special unit types are very situational
-      when :years_to_integrate_personal_union
+      when :years_to_integrate_personal_union, :num_of_pronoiars, :may_refill_garrison, :colonial_type_change_cost_modifier, :colonial_subject_type_upgrade_cost_modifier
         # too situational
+      when :move_capital_cost_modifier
+        # it's so rare might as well not score it, usually 0 times per game
       else
         warn "#{k} not scored"
       end

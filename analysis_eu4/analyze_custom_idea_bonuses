@@ -3,10 +3,10 @@
 require_relative "./eu4_analysis"
 require_relative "bonus_scoring"
 require "simplex"
-require "pp"
 
 class AnalyzeCustomIdeaBonuses < EU4Analysis
   def call
+    print_best_free_ideas!
     print_scores!
     [0, 50, 100, 150, 200, 300, 400, 600, 800].each do |max_cost|
       puts ""
@@ -16,8 +16,18 @@ class AnalyzeCustomIdeaBonuses < EU4Analysis
   end
 
   def print_scores!
-    custom_ideas.each do |idea_name, idea, idea_score, levels|
-      puts [idea_score, idea.inspect, levels.inspect].join("\t")
+    custom_ideas.each do |idea_name, idea, idea_score, category, levels|
+      puts [idea_score, idea.inspect, category, levels.inspect].join("\t")
+    end
+  end
+
+  def print_best_free_ideas!
+    ["ADM", "DIP", "MIL"].each do |cat|
+      puts "Best free ideas in #{cat}:"
+      custom_ideas.select{ _5[0] == 0 and _4 == cat}.sort_by{ -_3 }.each do |idea_name, idea, idea_score, category, levels|
+        puts [idea_score, idea.inspect, category].join("\t")
+      end
+      puts ""
     end
   end
 
@@ -34,7 +44,7 @@ class AnalyzeCustomIdeaBonuses < EU4Analysis
     lhs = []
     rhs = []
 
-    ideas_to_consider.each do |idea_name, idea, idea_score, levels|
+    ideas_to_consider.each do |idea_name, idea, idea_score, category, levels|
       # Manually force max 1 diplomat as extra ones rapidly lose value
       if idea_name == "custom_idea_diplomats"
         levels = levels[0,1]
@@ -101,6 +111,7 @@ class AnalyzeCustomIdeaBonuses < EU4Analysis
       @custom_ideas = []
       glob("common/custom_ideas/*").each do |path|
         parse(path).each do |subnode_name, subnode|
+          category = subnode["category"]
           subnode.each do |idea_name, idea|
             next if idea_name == "category"
             idea = idea.to_h
@@ -111,7 +122,11 @@ class AnalyzeCustomIdeaBonuses < EU4Analysis
             levels = max_level.times.map do |i|
               idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
             end
-            @custom_ideas << [idea_name, idea, idea_score(idea), levels]
+            # Sometimes there are levels which are not reachable like custom_own_territory_dice_roll_bonus
+            (1..10).each do |i|
+              idea.delete("level_cost_#{i}")
+            end
+            @custom_ideas << [idea_name, idea, idea_score(idea), category, levels]
           end
         end
         @custom_ideas.sort_by!{|u| -u[2]}

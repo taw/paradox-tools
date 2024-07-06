@@ -1,0 +1,201 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require_relative "bonus_scoring"
+require "z3"
+
+# It was a fun idea but it this is just way too slow and takes forever
+class IdeasSolver
+  def initialize(ideas, cost_limit, score_target)
+    # @solver = Z3::Optimize.new
+    @solver = Z3::Solver.new
+    @ideas = ideas
+    @cost_limit = cost_limit
+    @score_target = score_target
+  end
+
+  def idea_var(i)
+    Z3.Int("idea#{i}")
+  end
+
+  def idea_vars
+    10.times.map{ idea_var(_1) }
+  end
+
+  def level_var(i)
+    Z3.Int("lvl#{i}")
+  end
+
+  def cost_var(i)
+    Z3.Int("cost#{i}")
+  end
+
+  def score_var(i)
+    Z3.Int("score#{i}")
+  end
+
+  def total_cost_var
+    Z3.Int("total_cost")
+  end
+
+  def total_score_var
+    Z3.Int("total_score")
+  end
+
+  def idea_at_level(i, j, k)
+    (idea_var(i) == j) & (level_var(i) == k)
+  end
+
+  def multiplier
+    [20, 20, 20, 18, 16, 14, 12, 10, 10, 10]
+  end
+
+  def max_level(j)
+    @ideas[j][4].size
+  end
+
+  def print_solution
+    @model = @solver.model
+    10.times do |i|
+      idea_i = @model[idea_var(i)].to_i
+      level_i = @model[level_var(i)].to_i
+      puts "* #{@ideas[idea_i][0]} - #{level_i} (#{@model[cost_var(i)]} at #{multiplier[i] / 10.0}x) worth #{@model[score_var(i)]}"
+    end
+    puts "Total cost: #{@model[total_cost_var]}"
+    puts "Total score: #{@model[total_score_var]}"
+  end
+
+  def setup_ideas
+    @solver.assert Z3.Distinct(*idea_vars)
+    10.times do |i|
+      @solver.assert idea_var(i) >= 0
+      @solver.assert idea_var(i) < @ideas.size
+    end
+  end
+
+  def setup_levels
+    10.times do |i|
+      @solver.assert level_var(i) >= 1
+      # max level for each idea
+      @ideas.each_with_index do |idea, j|
+        @solver.assert (idea_var(i) == j).implies(level_var(i) <= max_level(j))
+      end
+    end
+  end
+
+  def setup_cost
+    10.times do |i|
+      @ideas.each_with_index do |idea, j|
+        (1..max_level(j)).each do |k|
+          @solver.assert idea_at_level(i, j, k).implies(cost_var(i) == multiplier[i] * idea[4][k-1])
+        end
+      end
+    end
+  end
+
+  def setup_score
+    10.times do |i|
+      @ideas.each_with_index do |idea, j|
+        (1..max_level(j)).each do |k|
+          @solver.assert idea_at_level(i, j, k).implies(score_var(i) == k * (idea[2] * 1000).round)
+        end
+      end
+    end
+  end
+
+  def setup_totals
+    @solver.assert total_cost_var == Z3.Add(*10.times.map{ cost_var(_1) })
+    @solver.assert total_score_var == Z3.Add(*10.times.map{ score_var(_1) })
+    @solver.assert total_cost_var <= @cost_limit * 10
+  end
+
+  def inspect
+    "#{self.class}"
+  end
+
+  def call
+    setup_ideas
+    setup_levels
+    setup_cost
+    setup_score
+    setup_totals
+
+    @solver.assert total_score_var >= @score_target
+
+    # @solver.maximize(total_score_var)
+    if @solver.satisfiable?
+      print_solution
+    else
+      warn "No solution found"
+    end
+  end
+end
+
+class CustomNationSolver < EU4Analysis
+  def defines_lua
+    @defines_lua ||= resolve("common/defines.lua").read.gsub(/--.*/, "").scan(/^\s+([A-Z0-9_]+)\s*=\s*(.*?)(?:\s*,|\s*$)/).to_h
+  end
+
+  def default_max_level
+    @default_max_level ||= defines_lua["IDEAS_MAX_LEVEL"].to_i
+  end
+
+  def default_custom_idea_costs
+    @default_custom_idea_costs ||= (1..default_max_level).map{|i|
+      defines_lua["IDEAS_LEVEL_COST_#{i}"].to_i
+    }
+  end
+
+  def idea_score(idea)
+    BonusScoring.new.tap{|bs| idea.each{|k,v| bs.send(k,v) }}.score
+  end
+
+  def custom_ideas
+    unless @custom_ideas
+      @custom_ideas = []
+      glob("common/custom_ideas/*").each do |path|
+        parse(path).each do |subnode_name, subnode|
+          category = subnode["category"]
+          subnode.each do |idea_name, idea|
+            next if idea_name == "category"
+            idea = idea.to_h
+            idea.delete "default"
+            idea.delete "chance"
+            idea.delete "enabled"
+            max_level = idea.delete("max_level") || default_max_level
+            levels = max_level.times.map do |i|
+              idea.delete("level_cost_#{i+1}") || default_custom_idea_costs[i]
+            end
+            # Sometimes there are levels which are not reachable like custom_own_territory_dice_roll_bonus
+            (1..10).each do |i|
+              idea.delete("level_cost_#{i}")
+            end
+            @custom_ideas << [idea_name, idea, idea_score(idea), category, levels]
+          end
+        end
+        @custom_ideas.sort_by!{|u| -u[2]}
+      end
+    end
+    @custom_ideas
+  end
+
+  def print_scores!
+    custom_ideas.each do |idea_name, idea, idea_score, category, levels|
+      puts [idea_score, idea.inspect, category, levels.inspect].join("\t")
+    end
+  end
+
+  def usable_custom_ideas
+    @usable_custom_ideas ||= custom_ideas.select{ _3 > 0.0 }
+  end
+
+  def call
+    # print_scores!
+    IdeasSolver.new(usable_custom_ideas, 0, 4080).call # 4075+, 4500-, it finds 4108
+    IdeasSolver.new(usable_custom_ideas, 200, 22300).call # 22300+
+    IdeasSolver.new(usable_custom_ideas, 400, 27700).call # 27700+
+    IdeasSolver.new(usable_custom_ideas, 800, 35000).call # 35000+
+  end
+end
+
+CustomNationSolver.new_from_argv.call
