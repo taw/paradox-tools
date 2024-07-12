@@ -526,6 +526,52 @@ class BonusScoring
     land_unit_power v*0.50
   end
 
+  # Flat bonuses for infantry:
+  # At tech 3 - (0.85 + v) / 0.85
+  # At tech 32 - (5.25 + v) / 5.25 for pure infantry armies
+  # At tech 32 - (5.25 + v + 4.475) / (5.25 + 4.475) for inf+arm armies
+  # Assuming armies at tech 0-15 are all inf, and 16-32 are all inf/arm, totals are:
+  # [0.45, 0.65, 0.85, 0.85, 0.85, 1.0, 1.5, 1.5, 1.75, 1.75, 1.75, 1.95, 1.95, 1.95, 2.25, 2.25, 3.575, 3.575, 3.575, 3.575, 4.075, 4.575, 5.625, 5.625, 5.625, 6.675, 6.675, 7.175, 7.675, 7.675, 7.675, 8.675, 9.725]
+  # We could do base_army_power[3..].map{|u| v / u}.avg to accurately translate it into average army damage increate
+  # However earry game battel are a lot more important, so a weighted average where tech 3 counts for 4x as much as tech 32 seems a lot more reasonable
+  # Just ignore techs 0-2, as most of the world doesn't have them
+  def infantry_shock(v)
+    base_army_power = [0.45, 0.65, 0.85, 0.85, 0.85, 1.0, 1.5, 1.5, 1.75, 1.75, 1.75, 1.95, 1.95, 1.95, 2.25, 2.25, 3.575, 3.575, 3.575, 3.575, 4.075, 4.575, 5.625, 5.625, 5.625, 6.675, 6.675, 7.175, 7.675, 7.675, 7.675, 8.675, 9.725]
+    weights = [0,0,0] + (3..32).map{|i| 4.0 - 3.0 * (i-3)/(32-3) }
+    wsum = weights.sum
+    weights = weights.map{|w| w / wsum}
+    # And we get basically 0.5 here. Just use 0.5 for convenience below
+    flat_bonus_to_weighted_damage_increase = (0..32).map{|i| 1 / base_army_power[i] * weights[i] }.sum
+    land_unit_power 0.5 * v
+  end
+  def infantry_fire(v)
+    land_unit_power 0.5 * v
+  end
+  # This only makes sense if every country that has this bonus switches from inf and inf+art to pure cav and cav+art
+  def cavalry_shock(v)
+    land_unit_power 0.5 * v
+  end
+  def cavalry_fire(v)
+    land_unit_power 0.5 * v
+  end
+
+  # Assume you get absolutely nothing for techs 0-15, then backrow bonus (half the full bonus) techs 16+,
+  # with same weights as infantry
+  # Arguably if you do that, you'll probably use art earlier, or you could go full art frontrow + art backrow armies.
+  # But for a normal country, this is just realy underwhelming
+  def artillery_shock(v)
+    base_army_power = [0.45, 0.65, 0.85, 0.85, 0.85, 1.0, 1.5, 1.5, 1.75, 1.75, 1.75, 1.95, 1.95, 1.95, 2.25, 2.25, 3.575, 3.575, 3.575, 3.575, 4.075, 4.575, 5.625, 5.625, 5.625, 6.675, 6.675, 7.175, 7.675, 7.675, 7.675, 8.675, 9.725]
+    weights = [0,0,0] + (3..32).map{|i| 4.0 - 3.0 * (i-3)/(32-3) }
+    wsum = weights.sum
+    weights = weights.map{|w| w / wsum}
+    # This is just 0.042
+    flat_bonus_to_weighted_damage_increase = (16..32).map{|i| 0.5 / base_army_power[i] * weights[i] }.sum
+    land_unit_power 0.042 * v
+  end
+  def artillery_fire(v)
+    land_unit_power 0.042 * v
+  end
+
   def heavy_ship_cost(v) # not seen anywhere
     calculated_ship_cost 0.37 * v
   end
@@ -1332,6 +1378,22 @@ class BonusScoring
     monthly_dip_points(-v*100/50/12.0)
   end
 
+  def accept_vassalization_reasons(v)
+    # 3 points are as good as 1 point of diplomatic reputation when it comes to offering vassalization
+    # It does nothing for all other uses of diplomatic reputation
+    # For total assume 20% of relations you care about are diplovassalization
+    #
+    # This is really dependent on country situation, and stacking it up is potentially very powerful
+    diplomatic_reputation v / 3.0 * 0.20
+  end
+
+  def reduced_liberty_desire(v)
+    # 3 points are as good as 1 point of diplomatic reputation when it comes to subjects
+    # It does nothing for all other uses of diplomatic reputation
+    # For total assume 5% of relations you care about are subject LD
+    diplomatic_reputation v / 3.0 * 0.05
+  end
+
   def score
     total = 0
     @ht.each do |k,v|
@@ -1449,11 +1511,6 @@ class BonusScoring
       when :diplomatic_reputation
         # This is back to being fairly good
         total += 0.5 * v
-      when :reduced_liberty_desire
-        # 3 points are as good as 1 point of diplomatic reputation when it comes to subjects
-        # It does nothing for all other uses of diplomatic reputation
-        # For total assume 5% of relations you care about are subject LD
-        total += v / 3.0 * 0.05
       when :reform_progress_growth
         # +100% progress worth 1 point
         total += v
@@ -1528,11 +1585,11 @@ class BonusScoring
         # too situational
       when :tribal_development_growth
         # too situational
-      when :can_recruit_hussars, :amount_of_banners, :has_carolean, :amount_of_carolean, :amount_of_cawa, :amount_of_hussars
+      when :can_recruit_hussars, :amount_of_banners, :has_carolean, :amount_of_carolean, :amount_of_cawa, :amount_of_hussars, :has_geobukseon, :has_samurai, :allowed_samurai_fraction
         # special unit types are very situational
       when :years_to_integrate_personal_union, :num_of_pronoiars, :may_refill_garrison, :colonial_type_change_cost_modifier, :colonial_subject_type_upgrade_cost_modifier
         # too situational
-      when :move_capital_cost_modifier, :expand_infrastructure_cost_modifier, :expand_administration_cost, :monthly_persian_influence
+      when :move_capital_cost_modifier, :expand_infrastructure_cost_modifier, :expand_administration_cost, :monthly_persian_influence, :migration_cost
         # it's so rare might as well not score it, usually 0 times per game
       when :gold_depletion_chance_modifier
         # if you stack it really high, it lets you go ham on deving gold mines
@@ -1540,7 +1597,7 @@ class BonusScoring
         # by that time you'll usually have plenty of trade and other income sources
       when :all_estate_possible_privileges
         # usually not worth bothering, arguably would have been good back when limit was just 4, and monopolies were pre-nerf
-      when :merc_independent_from_trade_range
+      when :merc_independent_from_trade_range, :merc_leader_army_tradition, :allow_mercenary_drill
         # too situational
       else
         warn "#{k} not scored"

@@ -49,6 +49,9 @@ class AnalyzeCustomIdeaBonuses < EU4Analysis
       if idea_name == "custom_idea_diplomats"
         levels = levels[0,1]
       end
+      # It makes no sense totake both inf and cav bonus, so just take inf bonus
+      next if idea_name == "custom_cavalry_shock"
+      next if idea_name == "custom_cavalry_fire"
       index_ranges << (objective.size...objective.size + levels.size)
       levels.each_with_index do |level_cost, level_i|
         objective    << (idea_score * (level_i+1)).round(3)
