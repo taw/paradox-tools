@@ -1109,6 +1109,13 @@ class BonusScoring
     land_forcelimit_modifier avg_autonomy_reduction
     naval_forcelimit_modifier avg_autonomy_reduction
   end
+  def trade_company_governing_cost(v)
+    # this one is sort of questionable, as you can get it to 0 with buildings anyway
+    governing_capacity_modifier(-v * 0.25)
+  end
+  def state_governing_cost(v)
+    governing_capacity_modifier(-v * 0.50)
+  end
 
   # Assume late game value is 1000, so +100 is +10%
   def governing_capacity(v)
@@ -1186,6 +1193,11 @@ class BonusScoring
   def free_mil_policy(v)
     monthly_mixed_monarch_points 0.5 * 0.5 * v
   end
+  def free_policy(v)
+    free_adm_policy(v)
+    free_dip_policy(v)
+    free_mil_policy(v)
+  end
 
   # Assume 75% the enemies are wrong religion
   # For Catholics and Sunni it starts quite low, but for everyone it increases as game goes
@@ -1245,6 +1257,9 @@ class BonusScoring
   # Early game it will be mostly same continent, late game mostly not
   # -100 to +100 scale (not -1 to +1)
   def reduced_liberty_desire_on_same_continent(v)
+    reduced_liberty_desire(0.5 * v)
+  end
+  def reduced_liberty_desire_on_other_continent(v)
     reduced_liberty_desire(0.5 * v)
   end
 
@@ -1424,6 +1439,8 @@ class BonusScoring
       when :hostile_attrition
         # Because of 5% attrition cap this is very poor effect, even this is probably overvaluing it
         total += 0.1*v
+      when :max_hostile_attrition
+        # after so many formula changes, attrition is really minor, and it's hard to even reach the cap
       when :improve_relation_modifier
         total += 2*v
       when :ae_impact
@@ -1515,8 +1532,16 @@ class BonusScoring
         # special unit types are very situational
       when :years_to_integrate_personal_union, :num_of_pronoiars, :may_refill_garrison, :colonial_type_change_cost_modifier, :colonial_subject_type_upgrade_cost_modifier
         # too situational
-      when :move_capital_cost_modifier
+      when :move_capital_cost_modifier, :expand_infrastructure_cost_modifier, :expand_administration_cost, :monthly_persian_influence
         # it's so rare might as well not score it, usually 0 times per game
+      when :gold_depletion_chance_modifier
+        # if you stack it really high, it lets you go ham on deving gold mines
+        # normally it's not very impactful, as gold mines are very impactful early game, and if they deplete by mid game or not,
+        # by that time you'll usually have plenty of trade and other income sources
+      when :all_estate_possible_privileges
+        # usually not worth bothering, arguably would have been good back when limit was just 4, and monopolies were pre-nerf
+      when :merc_independent_from_trade_range
+        # too situational
       else
         warn "#{k} not scored"
       end
