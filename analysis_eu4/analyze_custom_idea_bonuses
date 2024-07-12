@@ -32,7 +32,7 @@ class AnalyzeCustomIdeaBonuses < EU4Analysis
   end
 
   def run_simplex!(max_cost)
-    ideas_to_consider = custom_ideas[0,30]
+    ideas_to_consider = custom_ideas[0,100]
     max_ideas = 10
 
     values  = []
