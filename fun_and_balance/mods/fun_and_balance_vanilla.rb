@@ -39,7 +39,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     rebalance_diplo_slots!
     color_subjects_as_overlord!
 
-    # Evaluating for reals:
+    # Some spicy changes to include in the final release:
     eurocentric_institutions!
     reduce_ahead_of_time_penalty!
     revanchism_is_bad!
@@ -53,7 +53,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     # all_religions_propagate_by_trade!
     # super_lucky_nations!
     # super_unlucky_nations!
-    alternative_varna_scenario!
+    # alternative_varna_scenario!
 
     # Obsolete
     # cheaper_fort_maintenance! # not sure this is the right way tbh

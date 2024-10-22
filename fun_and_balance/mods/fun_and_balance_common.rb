@@ -43,7 +43,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
       ["NNationDesigner.IDEAS_MAX_LEVEL", 4, 10],
       ["NNationDesigner.IDEAS_PERCENTAGE_LIMIT", 50, 100],
       ["NNationDesigner.MAX_DISTANCE_TO_OWNER_AREA", 400, 1000],
-      ["NNationDesigner.RULER_BASE_SKILL", 2, 3]
+      # ["NNationDesigner.RULER_BASE_SKILL", 2, 3] # 3/3/3 is arguably more fair, but it just improves 0/0/0 heir/spouse exploit
     )
   end
 
@@ -799,7 +799,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   # They'll still be better off going 20WE 0REV -> 0WE 100REV
   # but at least the suffering will continue a bit
   def revanchism_is_bad!
-    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    # warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     soft_patch_defines_lua!("fun_and_balance_revanchism",
       ["NMilitary.REVANCHISM_DEVASTATION_IMPACT", -0.02, 0],
@@ -819,14 +819,14 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   # Inspired by (a few different) "Eurocentric Institutions" mods,
   # but completely different rules
   def eurocentric_institutions!
-    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    # warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
     # Nerf dev pushing just slightly, to prevent AI Ming/Korea spawning Renaissance really early
     # 5->4
     #
     # Even more experimentally, just turn it off lol
     soft_patch_defines_lua!("fun_and_balance_ai_aggressiveness",
-      ["NCountry.INSTITUTION_BONUS_FROM_IMP_DEVELOPMENT", 5, 0],
+      ["NCountry.INSTITUTION_BONUS_FROM_IMP_DEVELOPMENT", 5, 4],
     )
 
     # Free institutions for East Africa are not helping
@@ -913,7 +913,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   # Second part of Eurocentric Institutions, let European push ahead of default limit
   # They're still locked from going too far by institutions that didn't spawn yet
   def reduce_ahead_of_time_penalty!
-    warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
+    # warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
     soft_patch_defines_lua!("fun_and_balance_ahead_of_time",
       ["NCountry.TECH_AHEAD_OF_TIME", 0.1, 0.01],
     )
