@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class MultiRangeTest < MiniTest::Test
+class MultiRangeTest < Minitest::Test
   def test_init
     assert_equal [], MultiRange.new().to_ranges
     assert_equal [], MultiRange.new(2..2).to_ranges

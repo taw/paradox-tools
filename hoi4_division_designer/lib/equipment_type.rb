@@ -1,3 +1,5 @@
+require "ostruct"
+
 class EquipmentType < OpenStruct
   def initialize(database, key, stats)
     @database = database

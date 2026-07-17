@@ -107,7 +107,7 @@ class PropertyList
 
   def self.[](*args)
     rv = PropertyList.new
-    rv.add_many! *args
+    rv.add_many!(*args)
     rv
   end
 

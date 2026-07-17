@@ -1,3 +1,5 @@
+require "ostruct"
+
 class UnitType < OpenStruct
   def initialize(key, stats)
     super(stats.merge("key" => key))

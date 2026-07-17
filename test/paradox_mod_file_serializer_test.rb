@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class ParadoxModFileSerializerTest < MiniTest::Test
+class ParadoxModFileSerializerTest < Minitest::Test
   def assert_reserialization(number, expected)
     parsed = ParadoxModFile.new(path: "#{__dir__}/sample_#{number}.txt").parse!
     serialized = ParadoxModFileSerializer.serialize(parsed)

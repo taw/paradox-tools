@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class MultiRangeTest < MiniTest::Test
+class FakeYamlTest < Minitest::Test
   def sample(name)
     "#{__dir__}/sample_yaml/#{name}.yml"
   end

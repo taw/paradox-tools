@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class PropeltyListTest < MiniTest::Test
+class PropeltyListTest < Minitest::Test
   def test_to_h
     str = ParadoxModFile.new(string: "
       government = merchant_republic
@@ -152,7 +152,7 @@ class PropeltyListTest < MiniTest::Test
     a = PropertyList["foo", "bar", "hello", "world", "foo", 123]
     assert_equal a["foo"], "bar"
     assert_equal a["hello"], "world"
-    assert_equal a["omg"], nil
+    assert_nil a["omg"]
   end
 
   def test_set

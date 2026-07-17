@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class ParadoxModFileTest < MiniTest::Test
+class ParadoxModFileTest < Minitest::Test
   def assert_parse_tree(number, expected)
     parsed = ParadoxModFile.new(path: "#{__dir__}/sample_#{number}.txt").parse!
     assert_equal parsed, expected

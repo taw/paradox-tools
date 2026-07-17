@@ -1,6 +1,6 @@
 require_relative "test_helper"
 
-class PropeltyTest < MiniTest::Test
+class PropeltyTest < Minitest::Test
   def test_eq
     a1 = Property["foo", "bar"]
     a2 = Property["foo", "bar"]
@@ -25,8 +25,8 @@ class PropeltyTest < MiniTest::Test
     assert_equal 123, h[a]
     assert_equal 123, h[b]
     assert_equal 456, h[c]
-    assert_equal nil, h[d]
-    assert_equal nil, h[e]
+    assert_nil h[d]
+    assert_nil h[e]
   end
 
   def test_special_value_hash
