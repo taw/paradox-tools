@@ -131,7 +131,6 @@ class BonusScoring
     :cossacks_privilege_slots,
     :qizilbash_privilege_slots,
     :ghulams_privilege_slots,
-    :cossacks_privilege_slots,
 
     # This could be a bit more exploitable, but it's still situational which direction you care about,
     :monthly_piety,
@@ -566,9 +565,6 @@ class BonusScoring
     weights = weights.map{|w| w / wsum}
     # This is just 0.042
     flat_bonus_to_weighted_damage_increase = (16..32).map{|i| 0.5 / base_army_power[i] * weights[i] }.sum
-    land_unit_power 0.042 * v
-  end
-  def artillery_fire(v)
     land_unit_power 0.042 * v
   end
 
