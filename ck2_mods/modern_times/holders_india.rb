@@ -27,7 +27,7 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     # This could be fixed I guess.
     "1916.6.6" => { name: "Yuanhong | Li", lived: "1864.10.19 - 1928.6.3" },
 
-    # Proper KMT governent
+    # Proper KMT government
     "1928.2.7" => { name: "Yankai | Tan", lived: "1880.1.25 - 1930.9.22" },
     "1928.10.10" => { name: "Kai-shek | Chiang", lived: "1887.10.31 - 1975.4.5" },
 
@@ -187,7 +187,7 @@ ModernTimesDatabase::HOLDERS_INDIA = {
       lived: "1821.3.9 - 1840.11.6",
       father: "Kharak 1",
     },
-    # Chand Kaur ruled as a regent for pregnant daugher, let's skip this stuff and backdate
+    # Chand Kaur ruled as a regent for pregnant daughter, let's skip this stuff and backdate
     "1840.11.6" => {
       name: "Sher Singh",
       lived: "1807.12.4 - 1843.9.15",

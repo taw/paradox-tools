@@ -146,7 +146,7 @@ module ModernTimesDatabase::Dates
     ireland_independence: "1921.12.6",
     annexation_georgia: "1921.3.17",
     egypt_independence: "1922.2.28",
-    silesian_uprising: "1922.5.15", # actually Geneva convension for Upper Silesia
+    silesian_uprising: "1922.5.15", # actually Geneva convention for Upper Silesia
     treaty_of_lausanne: "1923.7.24",
     mongolia_independence: "1924.11.26",
     hejaz_saudi: "1926.1.8",

@@ -49,7 +49,7 @@ Contents overview
 * `analysis_eu4` - script for analyses of EU4 game data
 * `analysis_eu4_save` - script for analyses of EU4 save games
 * `analysis_hoi4` - script for analyses of HOI4 game data and HOI4 save games
-* `bin` - various utilites that work with all games
+* `bin` - various utilities that work with all games
 * `ck2` - some CK2-specific code
 * `ck2_hacks` - some code snippets for CK2 that can go into mods to help with debugging
 * `ck2_modpack` - code to help me prepare CK2 modpack from many mods, and detect and fix issues

@@ -241,7 +241,7 @@ class ModernTimesGameModification < CK2GameModification
       # Regular baronies are under county
       node.add! reset_date, PropertyList["liege", county]
     else
-      # Baronies not belonging to counties like partician houses can be ignored
+      # Baronies not belonging to counties like patrician houses can be ignored
       node.add! reset_date, PropertyList["liege", 0]
     end
   end
@@ -1321,7 +1321,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def setup_china_flags!
     patch_mod_file!("history/offmap_powers/offmap_china.txt") do |node|
-      # We need to babysit the flags so they always match current situtation
+      # We need to babysit the flags so they always match current situation
 
       # Early Qing - closed / unrest
       node.add! Date.parse("1450.1.1"), PropertyList[
@@ -1352,7 +1352,7 @@ class ModernTimesGameModification < CK2GameModification
         "clr_offmap_flag", "china_had_unrest",
         "status", "china_stable",
       ]
-      # (arbitrarity from Xi) - golden age
+      # (arbitrarily from Xi) - golden age
       node.add! Date.parse("2012.11.15"), PropertyList[
         "status", "china_golden_age",
         "set_offmap_flag", "china_had_golden_age",

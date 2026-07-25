@@ -34,7 +34,7 @@ class CK2PlusTweaksGameModification < CK2TweaksGameModification
       "NEconomy.LOOT_PRESTIGE_MULT" => 1,
       "NEconomy.LOOT_EVERY_X_DAYS" => 4,
     )
-    # Forunately they removed naval attrition already
+    # Fortunately they removed naval attrition already
   end
 
   def terrain_bonus(icon, atk, defs)

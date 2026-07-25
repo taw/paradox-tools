@@ -57,7 +57,7 @@ def province_difference(a, b)
   [a_diff, b_diff]
 end
 
-# This is one-off scirpt for fixing scenarios
+# This is one-off script for fixing scenarios
 
 base = ParadoxGame.new("eu4")
 se   = ParadoxGame.new("eu4", "source/ShatteredEurope/ShatteredEurope", "output/fun_and_balance_shattered_europe")

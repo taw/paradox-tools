@@ -5,7 +5,7 @@ require_relative "localization"
 
 unless ARGV.size == 1 or ARGV.size == 2
   STDERR.puts "Usage: #{$0} <save_game_file> [<eu4_directory>]"
-  STDERR.puts "(default OSX EU4 directory used if ommitted)"
+  STDERR.puts "(default OSX EU4 directory used if omitted)"
   STDERR.puts "(if your mod overrited world map, try path to your mod instead)"
   exit 1
 end

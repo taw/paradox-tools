@@ -8,7 +8,7 @@ Validate to check that there are no problems. Game will crash if there are any l
   
     $ ruby ./validate_trade_graph trade_graph.txt
 
-If the sript gives you OK, you can import it back:
+If the script gives you OK, you can import it back:
 
     $ ruby ./import_trade_graph trade_graph.txt /path/to/eu4 > 00_tradenodes.txt
 

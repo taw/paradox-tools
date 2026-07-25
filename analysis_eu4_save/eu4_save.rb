@@ -40,8 +40,8 @@ class TradeNodeCountryInformation
 end
 
 # The algorithm can't handle empty nodes correctly
-# For example, since there's no information what happens when you add value to autralia node
-# it must assume it just dissapears, while actually it would flow into the network
+# For example, since there's no information what happens when you add value to australia node
+# it must assume it just disappears, while actually it would flow into the network
 
 class TradeNode
   attr_reader :incoming, :outgoing

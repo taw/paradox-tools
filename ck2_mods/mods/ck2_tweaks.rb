@@ -468,7 +468,7 @@ class CK2TweaksGameModification < CK2GameModification
   # Culture conversion has extremely strict restrictions,
   # enable it even when they're not met, at lower chance
   # This will increase total rate by a lot, as one silly province will bloke
-  # conversion futher down
+  # conversion further down
   def easier_culture_conversion!
     patch_mod_file!("events/culture_conversion_events.txt") do |node|
       node.find_all("province_event").each do |event|

@@ -237,7 +237,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   k_belarus: {
     # backdating from "1920.8.9"
     "1918.11.11" => { name: "Vilgelm Knorinsh", lived: "1890-1939" },
-    # noby has better than year date, even Belarussian wikipedia, just picking some shit up
+    # nobody has better than year date, even Belarussian wikipedia, just picking some shit up
     "1923.5.1" => { name: "Aleksandr Osatkin-Vladimirsky", lived: "1885-1937" },
     "1924.5.13" => { name: "Aleksandr Krinitsky", lived: "1894-1937" },
     # Spelled Nikolay on English wikipedia, use consistent spelling instead

@@ -113,7 +113,7 @@ class ParadoxModFile
           # \\ seen in windows paths in Steam-generated .mod files
           @tokens << s[1].gsub('\"', '"')
         elsif s.scan(/,/)
-          # Seen in some array defintions, pass
+          # Seen in some array definitions, pass
         else
           tok = s.scan(/\S+/)
           warn "Irregular token in #{path || 'passed string'} at #{s.pos}: `#{tok.inspect}...'"

@@ -19,7 +19,7 @@ class AnalyzePersonalities < EU4Analysis
       # There's a lot of AI modifiers here
       # We ignore them all
       #
-      # immortal is super important, but basically unscorables
+      # immortal is super important, but basically unscorable
       bad_keys = %W[
         alliance_acceptance
         allow

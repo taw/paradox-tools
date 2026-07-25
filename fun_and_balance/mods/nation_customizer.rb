@@ -25,7 +25,7 @@ class NationCustomizerGameModification < EU4GameModification
             when [nil, [2, 5], [3, 15], [4, 30]]
               # This is same as default, shouldn't even be explicitly stated
             when [nil, [2, 3], [3, 9], [4, 18]]
-              # 60% cost ideas, scole up to level 10
+              # 60% cost ideas, scale up to level 10
               idea.add! "level_cost_5", 30
               idea.add! "level_cost_6", 45
               idea.add! "level_cost_7", 63

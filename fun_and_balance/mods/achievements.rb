@@ -1,7 +1,7 @@
 require_relative "base"
 
 class AchievementsGameModification < EU4GameModification
-  # FIXME: ROOT is wrong in on_startup trigged, change to PREV or something
+  # FIXME: ROOT is wrong in on_startup triggered, change to PREV or something
   def apply!
     triggers = []
     init_script = PropertyList[]

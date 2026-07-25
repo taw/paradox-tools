@@ -15,7 +15,7 @@ class AnalyzeHandmadeCustomIdeaSets < EU4Analysis
   end
 
   def idea_details(idea_name, level)
-    data = custom_ideas_h.fetch(idea_name.to_s) # or raise "Unkown idea #{idea_name}"
+    data = custom_ideas_h.fetch(idea_name.to_s) # or raise "Unknown idea #{idea_name}"
     {
       bonus: data[1].to_h{|k,v| [k, v*level]},
       value: data[2] * level,

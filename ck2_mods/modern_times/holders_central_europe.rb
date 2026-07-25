@@ -232,7 +232,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1989.11.24" => {name: "Karel Urbánek", lived: "1941.3.22 -"},
 
     # Post-Communist since 1989;
-    # Chech Republic from 1993
+    # Czech Republic from 1993
     "1989.12.10" => {name: "Václav Havel", lived: "1936.10.5 - 2011.12.18"},
     "2003.3.7" => {name: "Václav Klaus", lived: "1941.6.19 -"},
     "2013.3.8" => {name: "Miloš Zeman", lived: "1944.9.28 -"},

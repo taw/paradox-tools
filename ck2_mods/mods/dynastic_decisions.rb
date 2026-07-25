@@ -128,7 +128,7 @@ class DynasticDecisionsGameModification < CK2GameModification
       "targetted_decisions", targetted_decisions,
     ]
     localization!("dynastic_decisions",
-      "switch_to_spouse_dynasty" => "Swich to spouse's dynasty",
+      "switch_to_spouse_dynasty" => "Switch to spouse's dynasty",
       "switch_to_spouse_dynasty_desc" => "Abandon your current family name, become part of spouse's dynasty",
       "make_marriage_regular" => "Make marriage regular",
       "make_marriage_regular_desc" => "All children will by of father's dynasty",

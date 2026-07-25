@@ -130,7 +130,7 @@ class AnalyzeMissionsCountries < EU4Analysis
         "has_reform", "pirate_republic_reform",
         "capital_scope", PropertyList["colonial_region", "colonial_the_carribean"],
       ]
-      "Carribean Pirate"
+      "Caribbean Pirate"
     when PropertyList["OR", PropertyList[
         "has_reform", "daimyo",
         "has_reform", "shogunate",

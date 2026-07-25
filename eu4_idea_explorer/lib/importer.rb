@@ -86,7 +86,7 @@ class Importer < ParadoxGame
 
   def parse_trigger(trigger)
     ensure_loc_plist(trigger)
-    # We cound pre-parse plist nodes here
+    # We could pre-parse plist nodes here
     trigger
   end
 

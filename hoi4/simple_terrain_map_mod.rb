@@ -174,7 +174,7 @@ module SimpleTerrainMapMod
         heightmap[x,y] = "q".b
       end
 
-      next if province_terrain == "unknown" # usually plains or forent, non special value here
+      next if province_terrain == "unknown" # usually plains or forest, non special value here
 
       # Terrain fix here...
       map = {

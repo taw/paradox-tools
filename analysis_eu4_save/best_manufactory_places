@@ -32,7 +32,7 @@ class BestManufactoryPlaces < EU4SaveAnalysis
     #   - nearby trade companies +X%
     #   - happy burgers 10%
     #   - national ideas
-    #   - furnacess
+    #   - furnaces
     #   - trading in coal
     # - local production efficiency
     #   - workshops [TAKEN INTO ACCOUNT]
@@ -76,8 +76,8 @@ class BestManufactoryPlaces < EU4SaveAnalysis
     @enabled_manufactories
   end
 
-  # This just analyzes trade value, not producion value
-  # Wiki says these are annual values, so converitng to monthly income
+  # This just analyzes trade value, not production value
+  # Wiki says these are annual values, so converting to monthly income
   def call
     results = []
     @save.provinces.each do |id, province|

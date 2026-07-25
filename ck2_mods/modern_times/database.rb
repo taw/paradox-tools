@@ -480,7 +480,7 @@ class ModernTimesDatabase
       [resolve_start_date($1), resolve_end_date($2)]
     when nil
       [nil, nil]
-    when "?" # This should be used when even Wikipedia doesn't htave any clue
+    when "?" # This should be used when even Wikipedia doesn't have any clue
       [nil, nil]
     else
       raise "Parse error for lived: #{lived.inspect}"

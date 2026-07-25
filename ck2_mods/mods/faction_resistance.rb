@@ -1,7 +1,7 @@
 require_relative "base"
 
 class FactionResistanceGameModification < CK2GameModification
-  # AI folds to all factions way too easily beacuse faction power calculations are just dumb
+  # AI folds to all factions way too easily because faction power calculations are just dumb
   # It would be nice to setup proper calculations, but it's better if AI just never folds
   def apply!
     patch_mod_file!("events/plot_events.txt") do |node|

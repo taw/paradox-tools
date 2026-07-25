@@ -68,7 +68,7 @@ class ParadoxBinarySaveFile
         @tokens << :close
       when 12, 20 # most likely one of them is signed and the other unsigned
         @tokens << get_u4
-      when 15, 23 # no idea why multiple typpes
+      when 15, 23 # no idea why multiple types
         @tokens << [:ascii, get_ascii]
       when 14
         @tokens << get_bool

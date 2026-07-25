@@ -143,7 +143,7 @@ class AdjustCharacterReligionGameModification < CK2GameModification
     religions = Hash.new(0)
     patch_mod_files!("history/characters/*.txt") do |node|
       node.each do |id, character|
-        # If we have nothing, just leave it as is. It's pobably semi-reasonable anyway
+        # If we have nothing, just leave it as is. It's probably semi-reasonable anyway
         if relation_based_character_religion[id]
           character["religion"] = relation_based_character_religion[id]
           character.each do |key, val|

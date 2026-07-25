@@ -380,7 +380,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
   },
   # Montenegro
   d_dioclea: {
-    # Not "independent" in our history, de facto independent undel Danilo already
+    # Not "independent" in our history, de facto independent under Danilo already
     # "1852.3.13 - 1860.8.13" => { name: "Danilo | Petrović-Njegoš", lived: "1826.5.25 - 1860.8.13" },
     # Danilo's nephew, ruling from 1860.8.13
     "1878.7.13 - 1918.12.1" => { name: "Nikola | Petrović-Njegoš", lived: "1841.10.7 – 1921.3.1" },

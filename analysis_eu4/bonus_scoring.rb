@@ -38,7 +38,7 @@ class BonusScoring
   ### Bonus conversions ###
 
   [
-    # This is probbaly a net negative, since you're less likely to get random same dynasty with another country
+    # This is probably a net negative, since you're less likely to get random same dynasty with another country
     :heir_chance,
 
     # Presitge is just so irrelevant let's not bother tracking it
@@ -268,7 +268,7 @@ class BonusScoring
     army_tradition -0.75*v
   end
 
-  # Guestimate resting ponts of 20% army and 5% navy tradition from typical amount of fighting
+  # Guestimate resting points of 20% army and 5% navy tradition from typical amount of fighting
   def army_tradition_from_battle(v)
     army_tradition(0.2 * v)
   end
@@ -531,8 +531,8 @@ class BonusScoring
   # At tech 32 - (5.25 + v + 4.475) / (5.25 + 4.475) for inf+arm armies
   # Assuming armies at tech 0-15 are all inf, and 16-32 are all inf/arm, totals are:
   # [0.45, 0.65, 0.85, 0.85, 0.85, 1.0, 1.5, 1.5, 1.75, 1.75, 1.75, 1.95, 1.95, 1.95, 2.25, 2.25, 3.575, 3.575, 3.575, 3.575, 4.075, 4.575, 5.625, 5.625, 5.625, 6.675, 6.675, 7.175, 7.675, 7.675, 7.675, 8.675, 9.725]
-  # We could do base_army_power[3..].map{|u| v / u}.avg to accurately translate it into average army damage increate
-  # However earry game battel are a lot more important, so a weighted average where tech 3 counts for 4x as much as tech 32 seems a lot more reasonable
+  # We could do base_army_power[3..].map{|u| v / u}.avg to accurately translate it into average army damage increase
+  # However early game battles are a lot more important, so a weighted average where tech 3 counts for 4x as much as tech 32 seems a lot more reasonable
   # Just ignore techs 0-2, as most of the world doesn't have them
   def infantry_shock(v)
     base_army_power = [0.45, 0.65, 0.85, 0.85, 0.85, 1.0, 1.5, 1.5, 1.75, 1.75, 1.75, 1.95, 1.95, 1.95, 2.25, 2.25, 3.575, 3.575, 3.575, 3.575, 4.075, 4.575, 5.625, 5.625, 5.625, 6.675, 6.675, 7.175, 7.675, 7.675, 7.675, 8.675, 9.725]
@@ -557,7 +557,7 @@ class BonusScoring
   # Assume you get absolutely nothing for techs 0-15, then backrow bonus (half the full bonus) techs 16+,
   # with same weights as infantry
   # Arguably if you do that, you'll probably use art earlier, or you could go full art frontrow + art backrow armies.
-  # But for a normal country, this is just realy underwhelming
+  # But for a normal country, this is just really underwhelming
   def artillery_shock(v)
     base_army_power = [0.45, 0.65, 0.85, 0.85, 0.85, 1.0, 1.5, 1.5, 1.75, 1.75, 1.75, 1.95, 1.95, 1.95, 2.25, 2.25, 3.575, 3.575, 3.575, 3.575, 4.075, 4.575, 5.625, 5.625, 5.625, 6.675, 6.675, 7.175, 7.675, 7.675, 7.675, 8.675, 9.725]
     weights = [0,0,0] + (3..32).map{|i| 4.0 - 3.0 * (i-3)/(32-3) }
@@ -725,14 +725,14 @@ class BonusScoring
   end
 
   # Extra pip speeds up siege by about 17%
-  # Asssume 80% of sieges have leaders
+  # Assume 80% of sieges have leaders
   def leader_siege(v)
     siege_ability v*0.17*0.80
   end
 
   # Extra pip speeds up siege by about 17%
   # It used to treat inland sieges as blockaded but they changed it
-  # Asssume 30% of sieges are coastal and blockaded
+  # Assume 30% of sieges are coastal and blockaded
   def siege_blockade_progress(v)
     siege_ability v*0.17*0.30
   end
@@ -854,7 +854,7 @@ class BonusScoring
   end
 
   # Assume base is 3/3/3, so +1 means +5/3 prod and trade early game
-  # But post-manufactoris, it's just 8 to 13, so avearge out both scenarios
+  # But post-manufactories, it's just 8 to 13, so average out both scenarios
   # This is a completely silly modifier relative to its custom cost
   def global_trade_goods_size(v)
     global_trade_goods_size_modifier(v * (5.0/3.0 + 5.0/8.0) * 0.5)
@@ -1049,7 +1049,7 @@ class BonusScoring
     global_revolt_risk -4*0.2
   end
 
-  # Assume it affects 5% of your provinces, and avearge -RR is -2
+  # Assume it affects 5% of your provinces, and average -RR is -2
   def years_of_nationalism(v)
     global_revolt_risk (2*0.05*v)
   end
@@ -1137,10 +1137,10 @@ class BonusScoring
   # early game it is meaningless, so this is mid/late game scoring
   #
   # So like base costs: 500 states, 125 trade companies, 62.5 territories
-  # With 27% capacity increas:
+  # With 27% capacity increase:
   # So like base costs: 750 states, 125 trade companies
   #
-  # Discounns from buildings are linear so we don't need to consider them
+  # Discounts from buildings are linear so we don't need to consider them
   def governing_capacity_modifier(v)
     avg_autonomy_reduction = 0.9*v
     global_manpower_modifier avg_autonomy_reduction
@@ -1180,7 +1180,7 @@ class BonusScoring
     ae_impact(-v/0.75)
   end
 
-  # Asssume cap is reachable 75% of the time
+  # Assume cap is reachable 75% of the time
   # After government reforms it's pretty much true
   def max_absolutism(v)
     absolutism 0.25 * v
@@ -1435,7 +1435,7 @@ class BonusScoring
       when :missionaries
         # Extra missionaries are really good.
         # Missionary strength is much easier to achieve than it used to be,
-        # so count +2% missionary strength as about equivalent to +1 misionary
+        # so count +2% missionary strength as about equivalent to +1 missionary
         total += 1*v
       when :global_missionary_strength
         total += 50.0*v
@@ -1558,7 +1558,7 @@ class BonusScoring
       when :rival_change_cost
         # like that ever happens
       when :monthly_karma, :yearly_karma_decay
-        # very situatonal (arguably useful if stacked)
+        # very situational (arguably useful if stacked)
       when :curia_powers_cost, :curia_treasury_contribution, :appoint_cardinal_cost
         # too situational
       when :war_taxes_cost_modifier

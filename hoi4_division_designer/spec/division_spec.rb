@@ -356,7 +356,7 @@ describe Division do
         recon: 4,
         suppression: 10.5,
         weight: 4.8,
-        supply_use: 0.981, # diplayed incorrectly as 1.09 in Division Designer, but correctly 0.98 in unit details
+        supply_use: 0.981, # displayed incorrectly as 1.09 in Division Designer, but correctly 0.98 in unit details
         soft_attack: 179.25,
         hard_attack: 17.35, # displayed 17.3
         defense: 328.8,
@@ -417,7 +417,7 @@ describe Division do
         experience_loss_factor: -0.40,
 
         soft_attack: 772.0,
-        hard_attack: 543.05, # displaed 543.0
+        hard_attack: 543.05, # displayed 543.0
         air_attack: 220.0,
         defense: 140.0,
         breakthrough: 422.9,

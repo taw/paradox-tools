@@ -2,7 +2,7 @@ require_relative "base"
 
 class CK2CustomScenarioGameModification < CK2GameModification
   def titles_to_clean_up
-    # Do not destory papacy/patriarchy as they are important for game to function
+    # Do not destroy papacy/patriarchy as they are important for game to function
     # Destroy caliphates as they are overly territorial and can be recreated quite easily
     @titles_to_clean_up ||= Set[*begin
       glob("history/titles/[ek]_*.txt").map{|path|

@@ -58,7 +58,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   #   patch_mod_file!("common/scripted_triggers/00_scripted_triggers.txt") do |node|
   #     node["was_never_end_game_tag_trigger"] = PropertyList["OR", PropertyList["ai", false, "AND", node["was_never_end_game_tag_trigger"]]]
   #   end
-  #   # However, we reeable it for Mughals into Delhi
+  #   # However, we re-enable it for Mughals into Delhi
   #   patch_mod_file!("decisions/DelhiNation.txt") do |node|
   #     node["country_decisions"]["sultan_of_delhi"]["potential"].add! "NOT", PropertyList["tag", "MUG"]
   #   end
@@ -922,7 +922,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def more_aggressive_ai!
     warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
 
-    # This is way over the top numerically, but barely makes any obervable difference in AI games
+    # This is way over the top numerically, but barely makes any observable difference in AI games
     soft_patch_defines_lua!("fun_and_balance_ai_aggressiveness",
       ["NAI.AGGRESSIVENESS", 200, 2000],
       ["NAI.AGGRESSIVENESS_BONUS_EASY_WAR", 300, 3000],

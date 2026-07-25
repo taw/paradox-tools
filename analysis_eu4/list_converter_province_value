@@ -58,7 +58,7 @@ class Province
 
   def goods_price
     @goods_price ||= if goods == nil
-      raise # water or wasetland
+      raise # water or wasteland
     elsif goods == "unknown"
       # Just guess some mid-tier good
       @game.prices["fur"]

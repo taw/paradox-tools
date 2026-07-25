@@ -5,7 +5,7 @@ ModernTimesDatabase::LAND = {
   #########################################
   # READY FOR 1600 BOOKMARK
 
-  # Level of actualy Ottoman control was fairly minor
+  # Level of actually Ottoman control was fairly minor
   d_sanaa: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
   d_taizz: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
   d_socotra: {times_immemorial: "e_arabia", aden_protectorate: "e_britannia", south_yemen_independence: "d_sanaa"},
