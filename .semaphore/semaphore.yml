@@ -11,6 +11,6 @@ blocks:
         - name: bundle install
           commands:
             - checkout
-            - sem-version ruby 3.2.2
+            - sem-version ruby 3.3.12
             - bundle install --path vendor/bundle
             - bundle exec rspec
