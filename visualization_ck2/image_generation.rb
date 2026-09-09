@@ -1,4 +1,4 @@
-require "RMagick"
+require "rmagick"
 
 module ImageGeneration
   def province_definitions

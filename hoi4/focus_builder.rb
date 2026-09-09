@@ -56,8 +56,8 @@ class FocusBuilder
     add_reward! Property["add_research_slot", 1]
   end
 
-  def research_bonus(*args)
-    add_reward! Property["add_tech_bonus", FocusResearchBonus.new(@name, *args).to_plist]
+  def research_bonus(*args, **kwargs)
+    add_reward! Property["add_tech_bonus", FocusResearchBonus.new(@name, *args, **kwargs).to_plist]
   end
 
   def bypass_if_has_tech(tech)

@@ -1,4 +1,4 @@
-require "RMagick"
+require "rmagick"
 require_relative "../visualization_hoi4/blob_midpoint"
 
 module ImageGeneration

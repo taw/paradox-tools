@@ -5,7 +5,7 @@ require "pathname"
 # I only added Usage: support at one point
 # so many old scripts don't use it
 
-files = `git ls`.lines.map(&:chomp)
+files = `git ls-files`.lines.map(&:chomp)
 scripts = files.select{|x| Pathname(x).executable? }
 
 puts "Testing all scripts:"

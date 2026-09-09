@@ -4,7 +4,6 @@ require "set"
 require "pathname"
 require "shellwords"
 require "digest/sha1"
-gem "zip-zip"
 require "zip"
 
 Zip.warn_invalid_date = false
@@ -45,7 +44,7 @@ class ModCompatibility
 
   def add_mod_pack!(mod_file)
     mod_name = mod_file.basename(".zip").to_s
-    `7za l -slt #{mod_file.shellescape}`.split(/\n\n/).grep(/^Path = /)[1..-1].each do |file_info|
+    `7zz l -slt #{mod_file.shellescape}`.split(/\n\n/).grep(/^Path = /)[1..-1].each do |file_info|
       file_path = file_info[/^Path = (.*)/, 1]
       next if file_info =~ /^Attributes = D/
       add_file! mod_name, file_path

@@ -1,5 +1,4 @@
 require "pathname"
-require "pathname-glob"
 require "pry"
 require "shellwords"
 
@@ -114,7 +113,7 @@ def unpack_file(path)
   dest_path.mkpath
   Dir.chdir(dest_path) do
     # A lot of stupid shit here, multiple same name files:
-    sh "7za x -aoa ../../#{path.to_s.shellescape} >/dev/null"
+    sh "7zz x -aoa ../../#{path.to_s.shellescape} >/dev/null"
     # Steam weird stuff, two descriptors in same zip
     # Actually we should kill all root level files
     [

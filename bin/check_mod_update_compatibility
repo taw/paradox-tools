@@ -35,7 +35,7 @@ class ModUpdateCompatibility
 
   def add_mod_pack!(mod_file)
     mod_name = mod_file.basename(".zip").to_s
-    `7za l -slt #{mod_file.shellescape}`.split(/\n\n/).grep(/^Path = /)[1..-1].each do |file_info|
+    `7zz l -slt #{mod_file.shellescape}`.split(/\n\n/).grep(/^Path = /)[1..-1].each do |file_info|
       file_path = file_info[/^Path = (.*)/, 1]
       next if file_info =~ /^Attributes = D/
       add_file! mod_name, file_path
@@ -101,7 +101,7 @@ end
 
 if ARGV.size != 3
   STDERR.puts "Usage: #{$0} path_to_game_version_1 path_to_game_version_2 path_to_mods_directory"
-  STRERR.puts "Checks if mod needs updating from game version 1 to version 2 "
+  STDERR.puts "Checks if mod needs updating from game version 1 to version 2 "
   exit 1
 end
 

@@ -71,7 +71,7 @@ class ExportMod
   def call
     if archive?
       export_data_path.mkpath
-      Dir.chdir(export_data_path){ sh *%W[7za x #{archive_path}] }
+      Dir.chdir(export_data_path){ sh *%W[7zz x #{archive_path}] }
     else
       export_data_path.parent.mkpath
       sh *%W[cp -a #{data_path} #{export_data_path}]

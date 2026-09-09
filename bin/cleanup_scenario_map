@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require_relative "../lib/paradox"
-require_relative "../visualization/world_history"
+require_relative "../visualization_eu4/world_history"
 
 class Hash
   def hzip(other)

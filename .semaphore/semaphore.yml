@@ -5,7 +5,7 @@ agent:
     type: f1-standard-2
     os_image: ubuntu2404
 blocks:
-  - name: bundle exec rspec
+  - name: rake test
     task:
       jobs:
         - name: bundle install
@@ -14,4 +14,4 @@ blocks:
             - sem-version ruby 3.3.12
             - bundle config set --local path vendor/bundle
             - bundle install
-            - bundle exec rspec
+            - bundle exec rake test

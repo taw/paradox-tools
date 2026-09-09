@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require "RMagick"
+require "rmagick"
 require "pp"
 require_relative "../lib/paradox"
 require_relative "image_generation"

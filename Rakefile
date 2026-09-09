@@ -1,3 +1,4 @@
+require "bundler"
 require "pathname"
 require "fileutils"
 require "date"
@@ -43,7 +44,7 @@ class ModBuilder
     trash build_dir, mod_descriptor
     system "./#{category}/build_#{name}" or raise "Build failed"
     Dir.chdir("output") do
-      system "7za a '../#{archive_name}' '#{name}'/ '#{name}'.mod >/dev/null"
+      system "7zz a '../#{archive_name}' '#{name}'/ '#{name}'.mod >/dev/null"
     end
   end
 end
@@ -200,8 +201,12 @@ task "default" => "test"
 desc "Run tests"
 task "test" do
   sh %q[ruby -e 'Dir["test/*.rb"].each{|x| require "./#{x}"}']
-  Dir.chdir("hoi4_division_designer") do
-    sh "bundle exec rspec"
+  # Subproject has its own Gemfile, so it needs its own bundle
+  Bundler.with_unbundled_env do
+    Dir.chdir("hoi4_division_designer") do
+      sh "bundle install"
+      sh "bundle exec rspec"
+    end
   end
 end
 

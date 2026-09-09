@@ -353,7 +353,7 @@ class ModernTimesGameModification < CK2GameModification
             id = @character_manager.lookup_character_id(holder[:use]).id
             @holders[title] << [date, id]
           else
-            id = @character_manager.add_ruler(holder.merge(key: {
+            id = @character_manager.add_ruler(**holder.merge(key: {
                                                              crowning: date,
                                                              title: title,
                                                            }))

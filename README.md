@@ -7,6 +7,18 @@ There are also source files for some of my mods including Modern Times for CK2, 
 
 If you have any questions, feel free to create a github issue.
 
+Requirements
+------------
+
+* Ruby 3.x (CI runs 3.3), then `bundle install` for the gems
+* `7zz` (7-Zip; `brew install sevenzip` or `apt install 7zip`) for the mod packaging rake tasks
+* ImageMagick, for the `visualization_*` scripts (rmagick)
+* GraphViz, for `eu4_trade_graph/visualize_trade_graph`
+* [z3](https://github.com/taw/z3) is only needed by `analysis_eu4/custom_nation_solver`
+  and `analysis_hoi4/analyze_doctrines`, so it is deliberately not in the Gemfile
+
+Run the tests with `bundle exec rake test`.
+
 Script usage
 ------------
 

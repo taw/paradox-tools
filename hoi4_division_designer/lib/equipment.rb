@@ -65,7 +65,7 @@ class Equipment
     end
   end
 
-  def method_missing(m, *args, &block)
-    @equipment_type.send(m, *args, &block)
+  def method_missing(m, *args, **kwargs, &block)
+    @equipment_type.send(m, *args, **kwargs, &block)
   end
 end
