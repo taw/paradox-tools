@@ -16,6 +16,7 @@ class MapManager
       id = path.basename.to_s.to_i
       node = @builder.parse(path)
       title = node["title"]
+      next unless title # Leftover province file blanked by SyntaxFixesGameModification
       @province_id_to_title[id] = title
       @title_to_province_id[title] = id
     end

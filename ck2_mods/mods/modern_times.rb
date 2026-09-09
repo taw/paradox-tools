@@ -706,6 +706,7 @@ class ModernTimesGameModification < CK2GameModification
   # Might get them back if we switch to a different system
   def setup_province_holdings!(node, path)
     title = node["title"]
+    return unless title # Leftover province file blanked by SyntaxFixesGameModification
     holdings = {}
     capital = nil
     node.each do |k, v|
@@ -801,6 +802,7 @@ class ModernTimesGameModification < CK2GameModification
   def setup_provinces_population!
     patch_mod_files!("history/provinces/*.txt") do |node, path|
       title = node["title"]
+      next unless title # Leftover province file blanked by SyntaxFixesGameModification
 
       unless map.landed_titles_lookup[title]
         Kernel::warn "FAIL: Invalid title #{title} in #{path}"
