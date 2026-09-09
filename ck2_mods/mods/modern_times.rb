@@ -259,6 +259,7 @@ class ModernTimesGameModification < CK2GameModification
 
     glob("history/titles/*.txt").each do |path|
       title = path.basename(".txt").to_s
+      next unless landed_titles[title] # Leftover blanked by SyntaxFixesGameModification
       patch_mod_file!(path) do |node|
         if title =~ /\Ab_/
           setup_barony!(title, node)
@@ -495,6 +496,7 @@ class ModernTimesGameModification < CK2GameModification
   def setup_title_laws!
     glob("history/titles/[dke]_*.txt").each do |path|
       title = path.basename(".txt").to_s
+      next unless landed_titles[title] # Leftover blanked by SyntaxFixesGameModification
       patch_mod_file!(path) do |node|
         laws = PropertyList[
           "vice_royalty", false,

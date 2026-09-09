@@ -45,7 +45,6 @@ ModernTimesDatabase::DE_JURE = {
   "d_the_isles" => "k_england",
 
   "k_belarus" => "e_wendish_empire",
-  "d_vitebsk" => "k_belarus",
   "d_minsk" => "k_belarus",
   "d_turov" => "k_belarus",
   "d_yatviags" => "k_belarus",

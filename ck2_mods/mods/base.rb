@@ -49,6 +49,23 @@ class CK2GameModification < ParadoxGameModification
     end
   end
 
+  # Every title landed titles defines. The mod adds titles of its own as it goes,
+  # so this is only accurate from the point it's first called.
+  def landed_titles
+    @landed_titles ||= begin
+      titles = {}
+      collect = lambda do |node|
+        node.each do |key, val|
+          next unless key.is_a?(String) and key =~ /\A[ekdcb]_/
+          titles[key] = true
+          collect.call(val) if val.is_a?(PropertyList)
+        end
+      end
+      glob("common/landed_titles/*.txt").each{|path| collect.call(parse(path)) }
+      titles
+    end
+  end
+
   def religion_groups
     @religion_groups ||= glob("common/religions/*.txt").map do |path|
       parse(path).keys

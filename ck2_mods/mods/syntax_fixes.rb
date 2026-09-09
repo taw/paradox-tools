@@ -42,6 +42,13 @@ class SyntaxFixesGameModification < CK2GameModification
     end
   end
 
+  # Same story as the province files, except title history files are keyed by their
+  # name rather than by anything inside them, so a leftover is simply one naming a
+  # title landed titles no longer has.
+  def leftover_title_files
+    glob("history/titles/*.txt").reject{|path| landed_titles[path.basename(".txt").to_s] }
+  end
+
   def apply!
     patch_by_regexp!("history/provinces/539 - Marmaros.txt", "895.1.1.", "895.1.1")
     patch_by_regexp!("history/titles/c_ragusa.txt", "936.1.1.", "936.1.1")
@@ -50,7 +57,7 @@ class SyntaxFixesGameModification < CK2GameModification
     patch_by_regexp!("history/titles/d_scholae_palatinae.txt", /\z/, "}")
     patch_by_regexp!("history/titles/d_varangian_guard.txt", /\z/, "}")
 
-    leftover_province_files.each do |path|
+    (leftover_province_files + leftover_title_files).each do |path|
       delete_file!(path)
     end
   end
