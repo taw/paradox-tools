@@ -87,8 +87,8 @@ ModernTimesDatabase::HOLDERS_INDIA = {
   },
   e_india: {
     third_maratha_war: { use_all: "e_britannia" },
-    "1947.8.15"   => {name: "Jawharlal | Nehru", lived: "1889 - 1964"},
-    "1964.6.9"    => {name: "Lal Bahadur | Shatri", lived: "1904 - 1966"},
+    "1947.8.15"   => {name: "Jawaharlal | Nehru", lived: "1889 - 1964"},
+    "1964.6.9"    => {name: "Lal Bahadur | Shastri", lived: "1904 - 1966"},
     "1966.1.24"   => {name: "Indira | Gandhi", lived: "1917 - 1984", female: true},
     "1977.3.24"   => {name: "Morarji | Desai", lived: "1896 - 1995"},
     "1979.7.28"   => {name: "Charan | Singh", lived: "1902 - 1987"},

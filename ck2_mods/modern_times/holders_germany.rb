@@ -156,7 +156,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       },
     },
     "1945.4.30" => {
-      name: "Karl | Doenitz", lived: "- 1980.12.24",
+      name: "Karl | Doenitz", lived: "1891.9.16 - 1980.12.24",
       religion: :protestant,
     },
     end_ww2: nil,

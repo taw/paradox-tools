@@ -78,7 +78,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
       lived: "1896.9.25 - 1990.2.24",
     },
     "1985.7.3" => {
-      name: "Francesco | Cosiga",
+      name: "Francesco | Cossiga",
       lived: "1928.7.26 - 2010.8.17",
     },
     "1992.5.28" => {

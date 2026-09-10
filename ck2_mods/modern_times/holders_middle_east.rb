@@ -152,7 +152,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
       lived: "1917.7.17 - 2015.5.9",
     },
     "1989.11.9" => {
-      name: "Torgut | Ozal",
+      name: "Turgut | Ozal",
       lived: "1927.10.13 - 1993.4.17",
     },
     # backdating

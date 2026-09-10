@@ -182,7 +182,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     "1917.10.9" => { name: "Ahmed Fuad | Muhammad Ali", lived: "1868.3.26 - 1936.4.28", father: "Isma'il 1" },
     "1936.4.28" => { name: "Farouk | Muhammad Ali", lived: "1920.2.11 - 1965.3.18", father: "Ahmed Fuad 1" }, # 1
     "1952.7.26" => { name: "Ahmed Fuad | Muhammad Ali", lived: "1952.1.16 -", father: "Farouk 1" },
-    # Peres"residents
+    # Presidents
     "1953.6.18"  => { name: "Muhammad Naguib", lived: "1901.2.20 - 1984.8.28" },
     "1954.11.14" => { name: "Gamal Abdel | Nasser", lived: "1918.1.15 - 1970.9.28" },
     "1970.9.28"  => { name: "Anwar Sadat", lived: "1948.12.25 - 1981.10.6" },
