@@ -1,3 +1,4 @@
+require "strscan"
 require "date"
 require "pathname"
 require_relative "property"

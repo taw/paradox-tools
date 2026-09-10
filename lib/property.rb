@@ -1,3 +1,6 @@
+require "json"
+require_relative "property_list"
+
 class Property
   attr_reader :key, :val
   def initialize(key, val)

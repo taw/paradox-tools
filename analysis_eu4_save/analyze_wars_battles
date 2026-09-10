@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+require "ostruct"
 require_relative "./eu4_save_analysis"
 
 class AnalyzeWarsBattles < EU4SaveAnalysis

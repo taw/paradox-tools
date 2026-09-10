@@ -1,3 +1,6 @@
+require "json"
+require_relative "property"
+
 class PropertyList
   def initialize
     @entries = []
