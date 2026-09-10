@@ -128,4 +128,9 @@ class DebugProvinceHistoryModBuilder < ParadoxModBuilder
   end
 end
 
+unless ARGV.empty?
+  STDERR.puts "Usage: #{$0} # no arguments, paths are hardcoded"
+  exit 1
+end
+
 DebugProvinceHistoryModBuilder.new.build!

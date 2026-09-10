@@ -71,4 +71,9 @@ while ARGV[0] =~ /\A--(.*)/
   ARGV.shift
 end
 
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} [--details] [--<idea_group>] <root> [<mod1> <mod2> ... ]"
+  exit 1
+end
+
 AnalyzeIdeaGroups.new(ideas, *ARGV).call(details)

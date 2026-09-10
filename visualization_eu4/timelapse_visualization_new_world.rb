@@ -57,5 +57,10 @@ class TimelapseVisualizationNewWorld < TimelapseVisualization
   end
 end
 
+unless ARGV.size >= 3
+  STDERR.puts "Usage: #{$0} <save.eu4> <new_world_base.png> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
 vis = TimelapseVisualizationNewWorld.new(*ARGV)
 vis.generate_maps!

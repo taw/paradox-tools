@@ -56,6 +56,11 @@ class MissionsDebugger < ParadoxModBuilder
 end
 
 
+unless ARGV.empty?
+  STDERR.puts "Usage: #{$0} # no arguments, paths are hardcoded"
+  exit 1
+end
+
 MissionsDebugger.new(
   ParadoxGame.new("source/eu4-1.11.1", "output/fun_and_balance"),
   "output/missions_debugger"

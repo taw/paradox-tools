@@ -42,6 +42,11 @@ class NewWorldMappingHelper < ParadoxModBuilder
   end
 end
 
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save.eu4> # non-compressed save only"
+  exit 1
+end
+
 save_game = ParadoxModFile.new(path: ARGV[0]).parse!
 nwmh = NewWorldMappingHelper.new(ParadoxGame.new("eu4"), "output/new_world_mapping_helper")
 nwmh.call(save_game)

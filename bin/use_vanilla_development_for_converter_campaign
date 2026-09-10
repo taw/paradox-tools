@@ -96,4 +96,9 @@ class UseVanillaDevelopmentForConverterCampaign
   end
 end
 
+unless ARGV.size == 3
+  STDERR.puts "Usage: #{$0} <game_path> <mod_source_path> <mod_destination_path>"
+  exit 1
+end
+
 UseVanillaDevelopmentForConverterCampaign.new(*ARGV).call

@@ -25,6 +25,11 @@ def unpack_save(path)
   end
 end
 
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <save1> ... # unpacks compressed saves in place"
+  exit 1
+end
+
 ARGV.each do |path|
   unpack_save(path)
 end

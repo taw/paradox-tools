@@ -16,4 +16,9 @@ class ExportTradeGraph < ParadoxGame
   end
 end
 
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <trade_graph.txt> <root> [<mod1> <mod2> ... ]"
+  exit 1
+end
+
 ExportTradeGraph.new(*ARGV).call

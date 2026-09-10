@@ -59,6 +59,11 @@ end
 
 # This is one-off script for fixing scenarios
 
+unless ARGV.empty?
+  STDERR.puts "Usage: #{$0} # no arguments, paths are hardcoded"
+  exit 1
+end
+
 base = ParadoxGame.new("eu4")
 se   = ParadoxGame.new("eu4", "source/ShatteredEurope/ShatteredEurope", "output/fun_and_balance_shattered_europe")
 

@@ -59,5 +59,13 @@ class TimelapseVisualization < ParadoxGame
   end
 end
 
-vis = TimelapseVisualization.new(*ARGV)
-vis.generate_maps!
+# Guarded so timelapse_visualization_new_world.rb can require this without running it
+if __FILE__ == $0
+  unless ARGV.size >= 2
+    STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+    exit 1
+  end
+
+  vis = TimelapseVisualization.new(*ARGV)
+  vis.generate_maps!
+end

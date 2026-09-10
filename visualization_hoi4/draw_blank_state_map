@@ -38,4 +38,9 @@ class DrawBlankStateMap < ParadoxGame
   end
 end
 
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <root> [<mod1> <mod2> ... ]"
+  exit 1
+end
+
 DrawBlankStateMap.new(*ARGV).call

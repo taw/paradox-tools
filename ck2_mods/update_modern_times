@@ -40,4 +40,9 @@ class UpdateModernTimes < ParadoxGame
   end
 end
 
+unless ARGV.empty?
+  STDERR.puts "Usage: #{$0} # no arguments, paths are hardcoded"
+  exit 1
+end
+
 UpdateModernTimes.new.call

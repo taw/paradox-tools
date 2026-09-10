@@ -3,5 +3,10 @@
 require "pry"
 require_relative "../lib/paradox"
 
+unless ARGV.size == 1
+  STDERR.puts "Usage: #{$0} <save> # non-compressed save only"
+  exit 1
+end
+
 $save = ParadoxModFile.new(path: ARGV[0]).parse!
 $save.instance_eval { binding.pry }

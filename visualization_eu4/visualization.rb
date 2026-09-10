@@ -37,6 +37,11 @@ class Visualization < ParadoxGame
   end
 end
 
+unless ARGV.size >= 1
+  STDERR.puts "Usage: #{$0} <root> [<mod1> <mod2> ... ]"
+  exit 1
+end
+
 vis = Visualization.new(*ARGV)
 vis.generate_map_by_continent!
 vis.generate_map_by_colonial_regions!

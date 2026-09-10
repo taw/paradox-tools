@@ -97,6 +97,11 @@ class WorldHistory
 end
 
 if __FILE__ == $0
+  unless ARGV.size == 1
+    STDERR.puts "Usage: #{$0} <save.eu4> # non-compressed save only"
+    exit 1
+  end
+
   wh = WorldHistory.new(*ARGV)
 
   wh.provinces.keys.map{|id|

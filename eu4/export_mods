@@ -114,4 +114,9 @@ class ExportMods
   end
 end
 
+unless ARGV.empty?
+  STDERR.puts "Usage: #{$0} # no arguments, override paths with STEAM_DIR / EU4_MOD_DIR"
+  exit 1
+end
+
 ExportMods.new.call

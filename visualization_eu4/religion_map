@@ -87,4 +87,9 @@ class ReligionMap < ParadoxGame
   end
 end
 
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.eu4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
 ReligionMap.new(*ARGV).call

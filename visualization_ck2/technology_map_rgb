@@ -53,4 +53,9 @@ class TechnologyMap < ParadoxGame
   end
 end
 
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.ck2> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
 TechnologyMap.new(*ARGV).call

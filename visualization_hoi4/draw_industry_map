@@ -106,4 +106,9 @@ class DrawIndustryMap < ParadoxGame
   end
 end
 
+unless ARGV.size >= 2
+  STDERR.puts "Usage: #{$0} <save.hoi4> <root> [<mod1> <mod2> ... ] # non-compressed save only"
+  exit 1
+end
+
 DrawIndustryMap.new(*ARGV).call
