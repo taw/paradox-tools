@@ -302,4 +302,15 @@ class ParadoxModFileTest < Minitest::Test
       ]]],
     ]]
   end
+
+  def test_sample_10_float_keys
+    assert_parse_tree 10, PropertyList["random_list", PropertyList[
+      100, PropertyList[
+        "trigger", PropertyList["has_injury_trigger", false],
+        "apply_random_minor_injury_effect", true,
+      ],
+      0.001, PropertyList[],
+      0.01, PropertyList["add_trait", "brave"],
+    ]]
+  end
 end

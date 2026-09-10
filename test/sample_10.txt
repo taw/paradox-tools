@@ -1,0 +1,13 @@
+# CK2 3.3.4 common/scripted_effects/00_scripted_effects.txt
+random_list = {
+	100 = {
+		trigger = {
+			has_injury_trigger = no
+		}
+		apply_random_minor_injury_effect = yes
+	}
+	0.001 = {
+		#fallback
+	}
+	0.01 = { add_trait = brave }
+}

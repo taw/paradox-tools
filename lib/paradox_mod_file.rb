@@ -185,7 +185,7 @@ class ParadoxModFile
   # Presumably every primitive can be a key
   def key_token_zero?
     case @tokens[0]
-    when String, Integer, Date, TrueClass, FalseClass
+    when String, Integer, Float, Date, TrueClass, FalseClass
       true
     else
       false

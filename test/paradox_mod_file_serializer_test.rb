@@ -140,4 +140,43 @@ has_completed_idea_group_of_category = {
 }
 EOF
   end
+
+  def test_sample_10_float_keys
+    assert_reserialization 10, <<EOF
+random_list = {
+  100 = {
+    trigger = {
+      has_injury_trigger = no
+    }
+    apply_random_minor_injury_effect = yes
+  }
+  0.001 = {
+  }
+  0.01 = {
+    add_trait = brave
+  }
+}
+EOF
+  end
+
+  # Keys used to be interpolated raw here, so `yes' came out as `true', which reparses
+  # as a String - unlike the nested block case, which always went through serialize_key
+  def test_boolean_keys
+    node = PropertyList[true, 5, false, PropertyList["a", 1], true, Property::GT[3]]
+    serialized = ParadoxModFileSerializer.serialize(node)
+    assert_equal serialized, <<EOF
+yes = 5
+no = {
+  a = 1
+}
+yes > 3
+EOF
+    assert_equal ParadoxModFile.new(string: serialized).parse!, node
+  end
+
+  def test_key_which_needs_quoting_raises
+    assert_raises(RuntimeError) do
+      ParadoxModFileSerializer.serialize(PropertyList["weird key!", 1])
+    end
+  end
 end

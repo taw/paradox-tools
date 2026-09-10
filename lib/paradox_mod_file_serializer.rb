@@ -95,7 +95,7 @@ class ParadoxModFileSerializer
           line! "}"
         end
       elsif primitive?(val)
-        line! "#{key} = #{serialize_primitive(val)}"
+        line! "#{serialize_key(key)} = #{serialize_primitive(val)}"
       elsif val.is_a?(Property::SQDEF)
         line! "[[#{serialize_key(key)}]"
         @indent += 1
@@ -103,7 +103,7 @@ class ParadoxModFileSerializer
         @indent -= 1
         line! "]"
       elsif val.is_a?(Property::SpecialValue)
-        line! "#{key} #{val.op} #{val.val}"
+        line! "#{serialize_key(key)} #{val.op} #{val.val}"
       else
         raise "Not sure how to serialize #{val.class}"
       end
