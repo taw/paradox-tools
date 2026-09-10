@@ -2,12 +2,6 @@ require "csv"
 require_relative "fake_yaml"
 require_relative "paradox_mod_file"
 
-class Pathname
-  def glob(pattern)
-    Dir.chdir(self){ Pathname::glob(pattern) }
-  end
-end
-
 class ParadoxGame
   # Root can be either directory or .mod file (with same name as directory in it)
   def initialize(*root_paths)
@@ -47,8 +41,11 @@ class ParadoxGame
     excludes = []
     found    = []
     @roots.each do |root|
-      root[:path].glob(pattern).each do |file|
-        next unless (root[:path]+file).file?
+      # Pathname#glob returns paths prefixed with the root; callers expect them
+      # relative to it, as that's what resolve/parse take
+      root[:path].glob(pattern).each do |path|
+        next unless path.file?
+        file = path.relative_path_from(root[:path])
         next if excludes.any?{|replace| match_replace_path?(replace, file) }
         found << file
       end

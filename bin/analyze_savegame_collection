@@ -3,12 +3,6 @@
 require "pathname"
 require "shellwords"
 
-class Pathname
-  def glob(pattern)
-    Dir.chdir(self.to_s) { Dir.glob(pattern).map{|m| self + m } }
-  end
-end
-
 class AnalyzeSavegameCollection
   def initialize(script, save_dir, out_dir, *arguments)
     @script = script

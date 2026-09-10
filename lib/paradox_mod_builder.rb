@@ -75,7 +75,12 @@ class ParadoxModBuilder
   # or more likely: - vanilla/foo.txt extended_timeline/Foo.txt target/foo.txt
   # we don't want to rely on knowing if @game returns foo.txt or Foo.txt
   def glob(pattern)
-    (@target.glob(pattern) + @game.glob(pattern)).uniq{|file| file.to_s.downcase}.sort
+    (target_glob(pattern) + @game.glob(pattern)).uniq{|file| file.to_s.downcase}.sort
+  end
+  # Pathname#glob returns paths prefixed with @target; @game.glob returns them relative,
+  # and so does everything downstream of here, so match that
+  def target_glob(pattern)
+    @target.glob(pattern).map{|path| path.relative_path_from(@target) }
   end
   # These is not game's parse/parse_csv as they will return modded file if it already exists
   def parse(path)
@@ -89,7 +94,7 @@ class ParadoxModBuilder
     (@target + name).write(content)
   end
   def patch_files!(pattern, **args, &blk)
-    matches = (@game.glob(pattern) | @target.glob(pattern))
+    matches = (@game.glob(pattern) | target_glob(pattern))
     raise "No matches found for `#{pattern}'" if matches.size == 0
     matches.each do |path|
       patch_file!(path, **args, &blk)
@@ -118,7 +123,7 @@ class ParadoxModBuilder
     create_file!(name, new_content) if orig_content != new_content or force_create
   end
   def patch_mod_files!(pattern, &blk)
-    matches = (@game.glob(pattern) | @target.glob(pattern))
+    matches = (@game.glob(pattern) | target_glob(pattern))
     raise "No matches found for `#{pattern}'" if matches.size == 0
     matches.each do |path|
       patch_mod_file!(path) do |node|
