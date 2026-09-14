@@ -184,7 +184,7 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "2008.5.25"  => { name: "Michel Suleiman", lived: "1948.11.21 -" },
     # Acting President
     "2014.5.25"  => { name: "Tammam Salam", lived: "1945.5.13 -" },
-    "2016.10.31" =>  {name: "Michel Aoun", lived: "1935.2.18 -"},
+    "2016.10.31" => {use: "Michel 1"}, # Michel Aoun, returning
   },
   c_bahrein: { # Qatar
     # Start count from independence, there were sheiks under British protectorate before that

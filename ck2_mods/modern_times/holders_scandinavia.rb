@@ -127,7 +127,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1859.7.8" => {
       name: "Charles | Bernadotte",
-      lived: "May 1826 - 1872.9.18",
+      lived: "1826.5.3 - 1872.9.18",
       culture: "frankish",
       father: "Oscar 1",
     },

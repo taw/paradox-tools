@@ -113,7 +113,7 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     third_maratha_war: nil,
   },
   e_deccan: { # Marathas
-    "11th December 1777" => {
+    "1777.12.11" => {
       name: "Shahu | Bhonsle",
       lived: "1763 - 1808.5.3",
     },

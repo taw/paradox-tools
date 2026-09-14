@@ -383,7 +383,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # Not "independent" in our history, de facto independent under Danilo already
     # "1852.3.13 - 1860.8.13" => { name: "Danilo | Petrović-Njegoš", lived: "1826.5.25 - 1860.8.13" },
     # Danilo's nephew, ruling from 1860.8.13
-    "1878.7.13 - 1918.12.1" => { name: "Nikola | Petrović-Njegoš", lived: "1841.10.7 – 1921.3.1" },
+    "1878.7.13" => { name: "Nikola | Petrović-Njegoš", lived: "1841.10.7 - 1921.3.1" },
     # deposed, annexed into Serbia / Yugoslavia
     "1918.12.1" => nil,
     "2006.6.3" => { name: "Filip Vujanović", lived: "1954.9.1 -" },

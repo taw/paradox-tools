@@ -308,7 +308,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1901.10.1" => { name: "Habibullah | Barakzai", lived: "1872.6.3 - 1919.2.20", father: "Abdur Rahman 1" },
     "1919.2.20" => { name: "Nasrullah | Barakzai", lived: "1874-1920", father: "Abdur Rahman 1" },
     # kings
-    "1919.2.28" => { name: "Amanullah | Barakzai", lived: "June 1892 - 1960.4.25", father: "Habibullah 1" },
+    "1919.2.28" => { name: "Amanullah | Barakzai", lived: "1892.6.1 - 1960.4.25", father: "Habibullah 1" },
     "1929.1.14" => { name: "Inayatullah | Barakzai", lived: "1888.10.20 - 1946.8.12", father: "Habibullah 1" },
     "1929.1.17" => { name: "Habibullah | Kalakani", lived: "1891.1.19 - 1929.11.1" }, # non-dynastic
     "1929.10.16" => { name: "Mohammed Nadir | Barakzai", lived: "1883.4.9 - 1933.11.8" },
@@ -319,10 +319,10 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1978.4.28" => { name: "Abdul Qadir", lived: "1944 - 2014.4.22" },
     "1978.4.30" => { name: "Nur Muhammad | Taraki", lived: "1917.7.15 - 1979.9.14" },
     "1979.9.14" => { name: "Hafizullah Amin", lived: "1929.8.1 - 1979.12.27" },
-    "1979.12.27" => { name: "Babrak Karmal", lived: "1929.1.6 - 1 or 3 December 1996" },
+    "1979.12.27" => { name: "Babrak Karmal", lived: "1929.1.6 - 1996.12.3" },
     "1986.11.24" => { name: "Haji Mohammad | Chamkani", lived: "1947 -" },
     # presidents
-    "1987.9.30" => { name: "Mohammad Najibullah", lived: "February 1947 - 1996.9.28" },
+    "1987.9.30" => { name: "Mohammad Najibullah", lived: "1947.8.6 - 1996.9.28" },
     "1992.4.16" => { name: "Abdul Rahim | Hatif", lived: "1926.5.20 - 2013.8.19" },
     # islamic state (Taliban)
     "1992.4.28" => { name: "Sibghatullah Mojaddedi", lived: "1926 -" },

@@ -333,7 +333,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1988.10.19" => { name: "Algirdas Mykolas | Brazauskas", lived: "1932.9.22 - 2010.6.26" },
     # First as Chairman of supreme soviet, then all post-Communist
     "1990.3.11" => {name: "Vytautas | Landsbergis", lived: "1932.10.8 -"},
-    "1993.2.25" => {name: "Algirdas | Brazauskas", lived: "1932.9.22 - 2010.6.26"},
+    "1993.2.25" => {use: "Algirdas Mykolas 1"}, # Algirdas Brazauskas, returning
     "1998.2.26" => {name: "Valdas | Adamkus", lived: "1926.11.3 -"},
     "2003.2.26" => {name: "Rolandas | Paksas", lived: "1956.6.10 -"},
     # backdated to skip acting president

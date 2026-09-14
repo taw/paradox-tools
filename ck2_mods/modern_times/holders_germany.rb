@@ -438,7 +438,8 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     # Anhalt-Dessau and Anhalt-Köthen from 1847
     # Anhalt-Dessau-Köthen from 1853
     # United Anhalt from 1863
-    # grandfather of previous
+    # grandson of previous (son of Friedrich, hereditary prince of Anhalt-Dessau,
+    # who predeceased his father Leopold 3 and never reigned)
     "1817.8.9" => {
       name: "Leopold | Askanier", # 4
       lived: "1794.10.1 - 1871.5.22",
