@@ -1242,7 +1242,9 @@ class ModernTimesGameModification < CK2GameModification
         "religion", "orthodox",
       ],
     ]
-    ["e_united_states", "e_canada", "e_brazil", "k_belarus"].each do |title|
+    # Flag of e_russia is vanilla e_russian_empire flag
+    # we could rewrite the mod to use that instead for Russia / Soviet Union
+    ["e_united_states", "e_canada", "e_brazil", "k_belarus", "e_russia"].each do |title|
       create_mod_file! "history/titles/#{title}.txt", PropertyList[
         Date.parse("0020.1.1"), PropertyList["active", false, "law", "succ_primogeniture"],
       ]
