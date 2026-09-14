@@ -44,6 +44,24 @@ class ParadoxModFileSerializer
     end
   end
 
+  def array_serializable?(val)
+    primitive?(val) || (val.is_a?(Array) && val.all? { |v| array_serializable?(v) })
+  end
+
+  def print_array_items!(arr)
+    arr.each do |v|
+      if v.is_a?(Array)
+        line! "{"
+        @indent += 1
+        print_array_items! v
+        @indent -= 1
+        line! "}"
+      else
+        line! serialize_primitive(v)
+      end
+    end
+  end
+
   def serialize_key(key)
     case key
     when TrueClass
@@ -85,14 +103,14 @@ class ParadoxModFileSerializer
         line! "}"
       elsif val.is_a?(Array)
         # Empty Array is indistinguishable from empty PropertyList
-        if val.all?{|v| primitive?(v)}
+        if val.all? { |v| array_serializable?(v) }
           line! "#{serialize_key(key)} = {"
           @indent += 1
-          val.each do |v|
-            line! serialize_primitive(v)
-          end
+          print_array_items! val
           @indent -= 1
           line! "}"
+        else
+          raise "Not sure how to serialize Array #{val.inspect}"
         end
       elsif primitive?(val)
         line! "#{serialize_key(key)} = #{serialize_primitive(val)}"

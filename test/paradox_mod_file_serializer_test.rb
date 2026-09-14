@@ -179,4 +179,31 @@ EOF
       ParadoxModFileSerializer.serialize(PropertyList["weird key!", 1])
     end
   end
+
+  # Regression test: an Array of Arrays (e.g. common/offmap_powers/00_offmap_powers.txt's
+  # temple_names, or interface/coat_of_arms/coats_of_arms.txt's color/banned_colors) used
+  # to serialize to nothing at all, silently dropping the property.
+  def test_array_of_arrays_round_trips
+    serialized = <<EOF
+attachments = {
+  {
+    1
+    2
+  }
+  {
+    3
+    4
+  }
+}
+EOF
+    node = ParadoxModFile.new(string: serialized).parse!
+    assert_equal ParadoxModFileSerializer.serialize(node), serialized
+    assert_equal ParadoxModFile.new(string: ParadoxModFileSerializer.serialize(node)).parse!, node
+  end
+
+  def test_array_with_unsupported_contents_raises
+    assert_raises(RuntimeError) do
+      ParadoxModFileSerializer.serialize(PropertyList["attachments", [1, PropertyList["a", 1]]])
+    end
+  end
 end
