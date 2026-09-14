@@ -129,7 +129,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
       culture: :ukrainian,
       lived: "1906.12.19 - 1982.11.10",
     },
-    "1982.10.12" => {
+    "1982.11.12" => {
       name: "Yuri | Andropov",
       lived: "1914.6.15 - 1984.2.9",
     },
@@ -344,7 +344,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1990.2.22" => {name: "Nursultan | Nazarbayev", lived: "1940.7.6-"},
   },
   k_khiva: { # Uzbekistan
-    "1989.6.23" => {name: "Islam | Karimov", lived: "1938.1.30-"},
+    "1989.6.23" => {name: "Islam | Karimov", lived: "1938.1.30-2016.9.2"},
   },
   d_khuttal: { # Tajikistan
     "1990.11.30" => { name: "Qahhor | Mahkamov", lived: "1932.4.16 - 2016.6.8"},
@@ -386,8 +386,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   d_livonia: { # Latvia
     end_ww1: { name: "Jānis Čakste", lived: "1859.9.14 - 1927.3.14" },
     "1927.3.14" => { name: "Gustavs Zemgals", lived: "1871.8.12 - 1939.1.6" },
-    "1930.9.4" => { name: "Alberts Kviesis", lived: "1881.12.22 - 1944.8.9" },
-    "1936.11.4" => { name:  "Kārlis Ulmanis", lived: "1877.9.4 - 1942.9.20" },
+    "1930.4.9" => { name: "Alberts Kviesis", lived: "1881.12.22 - 1944.8.9" },
+    "1936.4.11" => { name:  "Kārlis Ulmanis", lived: "1877.9.4 - 1942.9.20" },
     # Dates of both adjusted a bit so transition and occupation cooccur same day
     annexation_latvia: { name: "Augusts Kirhenšteins", lived: "1872.9.18 - 1963.11.3" },
     "1952.4.11" => { name: "Kārlis Ozoliņš", lived: "1905.8.31 - 1987.8.15" },

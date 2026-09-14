@@ -320,7 +320,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1964.3.6" => {
       name: "Konstantinos | Glücksburg",
       lived: "1940.6.2-",
-      father: "Pavlos 1",
+      father: "Pavlos 2",
     },
     # junta
     "1973.6.1" => {
@@ -342,7 +342,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       lived: "1899-1987",
     },
     "1980.5.10" => {
-      name: "Konstantinos Karamanlis", # 2
+      name: "Konstantinos Karamanlis", # 4
       lived: "1907-1998",
     },
     # backdating from 30 March 1985
@@ -350,9 +350,9 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       name: "Christos Sartzetakis",
       lived: "1929-",
     },
-    "1990.5.5" => {use: "Konstantinos 2"}, # Konstantinos Karamanlis
+    "1990.5.5" => {use: "Konstantinos 4"}, # Konstantinos Karamanlis
     "1995.3.10" => {
-      name: "Konstantinos Stephanopoulos", # 3
+      name: "Konstantinos Stephanopoulos", # 5
       lived: "1926-",
     },
     "2005.3.12" => {

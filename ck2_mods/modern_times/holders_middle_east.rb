@@ -208,7 +208,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
     "1984.9.13" => {
       name: "Shimon Peres",
-      lived: "1923-",
+      lived: "1923-2016.9.28",
     },
     "1986.10.20" => {use: "Yitzhak 2" }, # Shamir
     "1992.7.13" => {use: "Yitzhak 1"}, # Rabin
@@ -315,7 +315,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1933.11.8" => { name: "Mohammed Zahir | Barakzai", lived: "1914.10.15 - 2007.7.23", father: "Mohammed Nadir 1" },
     # republic
     # revolutionary council chairmen
-    "1973.7.7" => { name: "Mohammed Daoud", lived: "1909.7.18 - 1978.4.28" },
+    "1973.7.17" => { name: "Mohammed Daoud", lived: "1909.7.18 - 1978.4.28" },
     "1978.4.28" => { name: "Abdul Qadir", lived: "1944 - 2014.4.22" },
     "1978.4.30" => { name: "Nur Muhammad | Taraki", lived: "1917.7.15 - 1979.9.14" },
     "1979.9.14" => { name: "Hafizullah Amin", lived: "1929.8.1 - 1979.12.27" },

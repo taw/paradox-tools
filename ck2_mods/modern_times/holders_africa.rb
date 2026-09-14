@@ -44,7 +44,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Ignoring times when under foreign rule
     "1956.10.29" => { # 3
       name: "Mohammed | Alaouite",
-      lived: "1927.11.17 - 1961.2.26",
+      lived: "1909.8.10 - 1961.2.26",
     },
     "1961.2.26" => {
       name: "Hassan | Alaouite", # 2
@@ -185,7 +185,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Presidents
     "1953.6.18"  => { name: "Muhammad Naguib", lived: "1901.2.20 - 1984.8.28" },
     "1954.11.14" => { name: "Gamal Abdel | Nasser", lived: "1918.1.15 - 1970.9.28" },
-    "1970.9.28"  => { name: "Anwar Sadat", lived: "1948.12.25 - 1981.10.6" },
+    "1970.9.28"  => { name: "Anwar Sadat", lived: "1918.12.25 - 1981.10.6" },
     # backdating
     "1981.10.6" => { name: "Hosni Mubarak", lived: "1928.5.4 -" },
     "2012.6.30" => { name: "Mohamed Morsi", lived: "1951.8.8 -" },

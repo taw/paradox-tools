@@ -4,7 +4,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1835.3.2" => {name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29", father: "Franz 1"},
     # Can't find day date, just month
     "1848.12.1" => {name: "Franz Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21", health: 6},
-    "1916.11.21" => {name: "Karl | Habsburg", lived: "1911.10.21 - 1922.4.1"},
+    "1916.11.21" => {name: "Karl | Habsburg", lived: "1887.8.17 - 1922.4.1"},
     "1918.11.11" => nil,
   },
   k_hungary: {

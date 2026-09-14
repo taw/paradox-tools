@@ -80,9 +80,9 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
     "1826.3.10" => {name: "Pedro | Bragança", lived: "1798.10.12 - 1834.9.24", father: "João 3"},
     "1826.5.2" => {name: "Maria | Bragança", lived: "1819.4.4 - 1853.11.15", father: "Pedro 2", female: true},
     "1828.2.26" => {name: "Miguel | Bragança", lived: "1802.10.26 - 1866.11.14", father: "João 3"},
-    "1837.9.16"    => {use: "Maria 2"},
+    "1834.5.26"    => {use: "Maria 2"}, # restored, end of Liberal Wars (Concession of Evoramonte)
     "1853.11.15" => {name: "Pedro | Bragança", lived: "1837.9.16 - 1861.11.11", mother: "Maria 2"},
-    "1861.11.11" => {name: "Luís | Bragança", lived: "1838.10.31 - 1889.10.19", father: "Pedro 3"},
+    "1861.11.11" => {name: "Luís | Bragança", lived: "1838.10.31 - 1889.10.19", mother: "Maria 2"},
     "1889.10.19" => {name: "Carlos | Bragança", lived: "1863.9.28 - 1908.2.1", father: "Luís 1"},
     "1908.2.1" => {name: "Manuel | Bragança", lived: "1889.11.15 - 1932.7.2", father: "Carlos 1"},
     # Presidents

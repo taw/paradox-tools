@@ -193,6 +193,14 @@ class ModernTimesDatabase
             next_date = data[i + 1] && resolve_date(data[i + 1][0])
             @holders[holder_data[:use_all]].each do |copy_date, holder|
               break if next_date and copy_date >= next_date
+              # use_all only takes over the source title's holders from its own
+              # date onward. Without this, a later use_all in the same title
+              # (e.g. d_sicily's congress_of_vienna entry re-copying k_sicily)
+              # would also re-copy dates before its own start and clobber an
+              # explicit override placed earlier in this title's own history
+              # (Sicily staying with Ferdinando while Naples went to Bonaparte
+              # then Murat).
+              next if copy_date < date
               if holder[:use]
                 # Double reference, for PUs with returning holders (like Sicily)
                 @holders[title][copy_date] = {use: holder[:use]}

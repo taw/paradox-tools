@@ -261,7 +261,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     "1886.6.13" => {
       name: "Otto | Wittelsbach",
       lived: "1848.4.27 - 1916.10.11",
-      father: "Maximilian 2",
+      father: "Maximilian 3",
     },
     "1913.11.5" => {
       name: "Ludwig | Wittelsbach", # 3

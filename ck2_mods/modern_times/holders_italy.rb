@@ -4,7 +4,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
       name: "Vittorio Amadeo | Savoia",
       lived: "1726.6.26 - 1796.10.16",
     },
-    "1796.5.24" => {
+    "1796.10.16" => {
       name: "Carlo Emanuele | Savoia",
       lived: "1751.5.24 - 1819.10.6",
       father: "Vittorio Amadeo"
@@ -21,7 +21,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     "1831.4.27" => {
       name: "Carlo Alberto | Savoia",
-      lived: "1798.10.2 - 1849.3.23",
+      lived: "1798.10.2 - 1849.7.28", # abdicated 1849.3.23, died in exile 1849.7.28
     },
     "1849.3.23" => {
       name: "Vittorio Emanuele | Savoia",
@@ -87,7 +87,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     "1999.5.18" => {
       name: "Carlo Azeglio | Ciampi",
-      lived: "1920.12.9 -",
+      lived: "1920.12.9 - 2016.9.16",
     },
     "2006.5.15" => {
       name: "Giorgio | Napolitano",
@@ -137,7 +137,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
   },
   d_sicily: {
     "1734.6.2" => { use_all: "k_sicily" },
-    "1806.3.30" => { use: "k_sicily Ferdinand 1" },
+    "1806.3.30" => { use: "k_sicily Ferdinando 1" },
     congress_of_vienna: { use_all: "k_sicily" },
     italy_unification: nil,
   },
@@ -450,7 +450,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
   },
   d_toscana: {
-    "1801.3.21" => { name: "Lodovico | Bourbon", lived: "1769.5.6 - 1824.6.18", father: "c_parma Ferdinando" },
+    "1801.3.21" => { name: "Lodovico | Bourbon", lived: "1773.7.5 - 1803.5.27", father: "c_parma Ferdinando" },
     "1803.5.27" => { use: "c_lucca Carlo" },
     "1814.4.27" => { name: "Ferdinando | Habsburg", lived: "1769.5.6 - 1824.6.18" },
     "1824.6.18" => { name: "Leopoldo | Habsburg", lived: "1797.10.3 - 1870.1.29", father: "Ferdinando 1" },
