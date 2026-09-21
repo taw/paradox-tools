@@ -1,0 +1,19 @@
+succession_wars_mercenaries_gone = {
+	# This must overpower bonuses such as Army Professionalism, rather than
+	# merely reduce the base manpower by 100%.
+	mercenary_manpower = -100
+	mercenary_cost = 10
+}
+
+succession_wars_inward_focus = {
+	build_cost = -0.5
+	development_cost = -0.5
+	trade_company_investment_cost = -0.5
+	center_of_trade_upgrade_cost = -0.5
+	great_project_upgrade_cost = -0.5
+	province_warscore_cost = 0.5
+}
+
+succession_wars_diplomatic_breakdown = {
+	diplomatic_reputation = -5
+}

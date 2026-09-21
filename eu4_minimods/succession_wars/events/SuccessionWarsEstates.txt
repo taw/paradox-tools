@@ -1,0 +1,52 @@
+namespace = succession_wars
+
+country_event = {
+	id = succession_wars.20
+	title = succession_wars.20.t
+	desc = succession_wars.20.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = { has_estate = estate_nobles }
+	option = {
+		name = succession_wars.20.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] suffered a noble estate coup in [GetYear]."
+		add_estate_influence_modifier = { estate = estate_nobles influence = 50 duration = 3650 desc = succession_wars_estate_coup }
+		if = { limit = { has_estate = estate_church } add_estate_influence_modifier = { estate = estate_church influence = -20 duration = 3650 desc = succession_wars_estate_coup } }
+		if = { limit = { has_estate = estate_burghers } add_estate_influence_modifier = { estate = estate_burghers influence = -20 duration = 3650 desc = succession_wars_estate_coup } }
+	}
+}
+
+country_event = {
+	id = succession_wars.21
+	title = succession_wars.21.t
+	desc = succession_wars.21.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = { has_estate = estate_church }
+	option = {
+		name = succession_wars.21.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] suffered a clergy estate coup in [GetYear]."
+		add_estate_influence_modifier = { estate = estate_church influence = 50 duration = 3650 desc = succession_wars_estate_coup }
+		if = { limit = { has_estate = estate_nobles } add_estate_influence_modifier = { estate = estate_nobles influence = -20 duration = 3650 desc = succession_wars_estate_coup } }
+		if = { limit = { has_estate = estate_burghers } add_estate_influence_modifier = { estate = estate_burghers influence = -20 duration = 3650 desc = succession_wars_estate_coup } }
+	}
+}
+
+country_event = {
+	id = succession_wars.22
+	title = succession_wars.22.t
+	desc = succession_wars.22.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = { has_estate = estate_burghers }
+	option = {
+		name = succession_wars.22.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] suffered a burgher estate coup in [GetYear]."
+		add_estate_influence_modifier = { estate = estate_burghers influence = 50 duration = 3650 desc = succession_wars_estate_coup }
+		if = { limit = { has_estate = estate_nobles } add_estate_influence_modifier = { estate = estate_nobles influence = -20 duration = 3650 desc = succession_wars_estate_coup } }
+		if = { limit = { has_estate = estate_church } add_estate_influence_modifier = { estate = estate_church influence = -20 duration = 3650 desc = succession_wars_estate_coup } }
+	}
+}

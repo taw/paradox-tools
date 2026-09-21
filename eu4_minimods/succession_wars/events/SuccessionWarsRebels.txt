@@ -1,0 +1,42 @@
+namespace = succession_wars
+
+country_event = {
+	id = succession_wars.41
+	title = succession_wars.41.t
+	desc = succession_wars.41.d
+	picture = ANGRY_MOB_eventPicture
+	is_triggered_only = yes
+	option = {
+		name = succession_wars.41.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: peasants rose against [Root.GetName] in [GetYear]."
+		# One small stack per five provinces, capped at five stacks.
+		random_owned_province = { set_province_flag = succession_wars_peasant_rebels spawn_rebels = { type = anti_tax_rebels size = 1.5 } }
+		if = { limit = { num_of_owned_provinces_with = { value = 10 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_peasant_rebels } } set_province_flag = succession_wars_peasant_rebels spawn_rebels = { type = anti_tax_rebels size = 1.5 } } }
+		if = { limit = { num_of_owned_provinces_with = { value = 15 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_peasant_rebels } } set_province_flag = succession_wars_peasant_rebels spawn_rebels = { type = anti_tax_rebels size = 1.5 } } }
+		if = { limit = { num_of_owned_provinces_with = { value = 20 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_peasant_rebels } } set_province_flag = succession_wars_peasant_rebels spawn_rebels = { type = anti_tax_rebels size = 1.5 } } }
+		if = { limit = { num_of_owned_provinces_with = { value = 25 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_peasant_rebels } } set_province_flag = succession_wars_peasant_rebels spawn_rebels = { type = anti_tax_rebels size = 1.5 } } }
+		every_owned_province = { clr_province_flag = succession_wars_peasant_rebels }
+	}
+}
+
+country_event = {
+	id = succession_wars.42
+	title = succession_wars.42.t
+	desc = succession_wars.42.d
+	picture = RELIGION_eventPicture
+	is_triggered_only = yes
+	trigger = { any_owned_province = { NOT = { religion = ROOT } } }
+	option = {
+		name = succession_wars.42.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: religious minorities rose against [Root.GetName] in [GetYear]."
+		random_owned_province = { limit = { NOT = { religion = ROOT } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } }
+		# Extra stacks scale with the number of minority-religion provinces, not total size.
+		if = { limit = { num_of_owned_provinces_with = { value = 10 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
+		if = { limit = { num_of_owned_provinces_with = { value = 15 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
+		if = { limit = { num_of_owned_provinces_with = { value = 20 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
+		if = { limit = { num_of_owned_provinces_with = { value = 25 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
+		every_owned_province = { clr_province_flag = succession_wars_religious_rebels }
+	}
+}

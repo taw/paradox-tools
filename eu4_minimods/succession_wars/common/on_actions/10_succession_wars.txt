@@ -1,0 +1,28 @@
+# One weighted roll is made for every new monarch.  Entries whose event trigger
+# is false are ignored by random_events; 0 is the explicit "nothing happened" result.
+on_new_monarch = {
+	random_events = {
+		15 = 0
+		150 = succession_wars.10
+		20 = succession_wars.20
+		20 = succession_wars.21
+		20 = succession_wars.22
+		100 = succession_wars.30
+		100 = succession_wars.31
+		100 = succession_wars.32
+		100 = succession_wars.40
+		35 = succession_wars.41
+		50 = succession_wars.42
+		100 = succession_wars.50
+		100 = succession_wars.60
+		40 = succession_wars.61
+		40 = succession_wars.62
+		40 = succession_wars.70
+		40 = succession_wars.71
+		20 = succession_wars.72
+		5 = succession_wars.80
+		35 = succession_wars.81
+		5 = succession_wars.90
+		75 = succession_wars.91
+	}
+}

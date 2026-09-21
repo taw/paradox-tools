@@ -1,0 +1,5 @@
+succession_wars_disband_random_hired_mercenary = {
+	random_hired_mercenary_company = {
+		disband_mercenary_company = THIS
+	}
+}

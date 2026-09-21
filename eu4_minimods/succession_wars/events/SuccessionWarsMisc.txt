@@ -1,0 +1,154 @@
+namespace = succession_wars
+
+country_event = {
+	id = succession_wars.71
+	title = succession_wars.71.t
+	desc = succession_wars.71.d
+	picture = SCOTTISH_MERCENARIES_eventPicture
+	is_triggered_only = yes
+	trigger = { any_hired_mercenary_company = { always = yes } }
+	option = {
+		name = succession_wars.71.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: mercenaries deserted [Root.GetName] in [GetYear]."
+		# EU4 exposes a random hired-company scope but no all-company iterator.
+		# Repeating the sourced scope empties the entire currently hired list.
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		succession_wars_disband_random_hired_mercenary = yes
+		add_country_modifier = { name = succession_wars_mercenaries_gone duration = 3650 }
+	}
+}
+
+country_event = {
+	id = succession_wars.72
+	title = succession_wars.72.t
+	desc = succession_wars.72.d
+	picture = RELIGION_eventPicture
+	is_triggered_only = yes
+	trigger = { religion = catholic NOT = { tag = PAP } NOT = { is_excommunicated = yes } }
+	option = {
+		name = succession_wars.72.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] was excommunicated in [GetYear]."
+		PAP = { excommunicate = ROOT }
+	}
+}
+
+country_event = {
+	id = succession_wars.80
+	title = succession_wars.80.t
+	desc = succession_wars.80.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	option = {
+		name = succession_wars.80.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] received forgive and forget in [GetYear]."
+		every_country = {
+			remove_rival = ROOT
+			add_aggressive_expansion = { who = ROOT value = -25 apply_calc = no }
+		}
+		every_country = { ROOT = { remove_rival = PREV } }
+	}
+}
+
+country_event = {
+	id = succession_wars.81
+	title = succession_wars.81.t
+	desc = succession_wars.81.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = { any_ally = { always = yes } }
+	option = {
+		name = succession_wars.81.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] suffered a diplomatic breakdown in [GetYear]."
+		# Stock every_ally/break_alliance pattern; PREV is the iterated ally.
+		every_ally = { ROOT = { break_alliance = PREV } }
+		add_country_modifier = { name = succession_wars_diplomatic_breakdown duration = 3650 }
+	}
+}
+
+country_event = {
+	id = succession_wars.91
+	title = succession_wars.91.t
+	desc = succession_wars.91.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		is_subject = no
+		NOT = { religion_group = christian }
+		any_ally = {
+			is_subject = no
+			variable_arithmetic_trigger = {
+				export_to_variable = {
+					variable_name = succession_wars_protection_junior_development
+					value = total_development
+					who = ROOT
+				}
+				multiply_variable = { which = succession_wars_protection_junior_development value = 4 }
+				export_to_variable = { variable_name = succession_wars_protection_senior_development value = total_development }
+				check_variable = {
+					which = succession_wars_protection_senior_development
+					which = succession_wars_protection_junior_development
+				}
+			}
+		}
+	}
+	option = {
+		name = succession_wars.91.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] sought protection from a stronger ally in [GetYear]."
+		random_ally = {
+			limit = {
+				is_subject = no
+				variable_arithmetic_trigger = {
+					export_to_variable = {
+						variable_name = succession_wars_protection_junior_development
+						value = total_development
+						who = ROOT
+					}
+					multiply_variable = { which = succession_wars_protection_junior_development value = 4 }
+					export_to_variable = { variable_name = succession_wars_protection_senior_development value = total_development }
+					check_variable = {
+						which = succession_wars_protection_senior_development
+						which = succession_wars_protection_junior_development
+					}
+				}
+			}
+			vassalize = ROOT
+		}
+	}
+}
+
+country_event = {
+	id = succession_wars.90
+	title = succession_wars.90.t
+	desc = succession_wars.90.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	option = {
+		name = succession_wars.90.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] adopted an inward focus in [GetYear]."
+		add_country_modifier = { name = succession_wars_inward_focus duration = 3650 }
+	}
+}

@@ -1,0 +1,122 @@
+namespace = succession_wars
+
+country_event = {
+	id = succession_wars.50
+	title = succession_wars.50.t
+	desc = succession_wars.50.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		OR = { is_subject_of_type = vassal is_subject_of_type = march }
+	}
+	option = {
+		name = succession_wars.50.a
+		ai_chance = { factor = 100 }
+		overlord = { country_event = { id = succession_wars.51 } }
+	}
+}
+
+# This event runs in the overlord's scope. FROM is the former subject, so the
+# stock target form `who = ROOT` can verify the ten-year relationship safely.
+country_event = {
+	id = succession_wars.51
+	title = succession_wars.51.t
+	desc = succession_wars.51.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		FROM = {
+			OR = { is_subject_of_type = vassal is_subject_of_type = march }
+			years_in_vassalage_under = { who = ROOT years = 10 }
+		}
+	}
+	option = {
+		name = succession_wars.51.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] inherited [From.GetName] in [GetYear]."
+		inherit = FROM
+	}
+}
+
+country_event = {
+	id = succession_wars.60
+	title = succession_wars.60.t
+	desc = succession_wars.60.d
+	picture = BATTLE_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		NOT = { is_emperor = yes }
+		any_subject_country = {
+			is_subject_other_than_tributary_trigger = yes
+			NOT = { is_colonial_nation = yes }
+			NOT = { is_subject_of_type = daimyo_vassal }
+		}
+	}
+	option = {
+		name = succession_wars.60.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: all eligible subjects rebelled against [Root.GetName] in [GetYear]."
+		every_subject_country = {
+			limit = {
+				is_subject_other_than_tributary_trigger = yes
+				NOT = { is_colonial_nation = yes }
+				NOT = { is_subject_of_type = daimyo_vassal }
+			}
+			declare_war_with_cb = { who = ROOT casus_belli = cb_independence_war }
+		}
+	}
+}
+
+country_event = {
+	id = succession_wars.61
+	title = succession_wars.61.t
+	desc = succession_wars.61.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = { any_subject_country = { is_subject_of_type = tributary_state } }
+	option = {
+		name = succession_wars.61.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: tributaries became disloyal to [Root.GetName] in [GetYear]."
+		every_subject_country = {
+			limit = { is_subject_of_type = tributary_state }
+			add_liberty_desire = 50
+		}
+	}
+}
+
+country_event = {
+	id = succession_wars.62
+	title = succession_wars.62.t
+	desc = succession_wars.62.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = { any_subject_country = { is_subject_of_type = daimyo_vassal } }
+	option = {
+		name = succession_wars.62.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: daimyos became disloyal to [Root.GetName] in [GetYear]."
+		every_subject_country = {
+			limit = { is_subject_of_type = daimyo_vassal }
+			add_liberty_desire = 50
+		}
+	}
+}
+
+country_event = {
+	id = succession_wars.70
+	title = succession_wars.70.t
+	desc = succession_wars.70.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = { any_subject_country = { is_colonial_nation = yes } }
+	option = {
+		name = succession_wars.70.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: colonial nations became disloyal to [Root.GetName] in [GetYear]."
+		every_subject_country = {
+			limit = { is_colonial_nation = yes }
+			add_liberty_desire = 50
+		}
+	}
+}

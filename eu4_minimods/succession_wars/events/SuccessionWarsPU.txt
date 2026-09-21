@@ -1,0 +1,105 @@
+namespace = succession_wars
+
+# A random eligible Christian monarchy assumes the union.
+country_event = {
+	id = succession_wars.10
+	title = succession_wars.10.t
+	desc = succession_wars.10.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	trigger = {
+		is_subject = no
+		is_lesser_in_union = no
+		# A PU senior cannot also become a junior without creating an unsupported chain.
+		NOT = {
+			any_subject_country = {
+				OR = {
+					is_subject_of_type = personal_union
+					is_subject_of_type = integrated_personal_union
+				}
+			}
+		}
+		government = monarchy
+		religion_group = christian
+		NOT = { has_reform = elective_monarchy }
+		NOT = { has_government_attribute = has_dutch_election }
+		NOT = { is_emperor = yes }
+		any_country = {
+			is_subject = no
+			is_lesser_in_union = no
+			same_continent = ROOT
+			# Vanilla missions use variable_arithmetic_trigger for scaled development checks.
+			variable_arithmetic_trigger = {
+				export_to_variable = {
+					variable_name = succession_wars_junior_development
+					value = total_development
+					who = ROOT
+				}
+				multiply_variable = {
+					which = succession_wars_junior_development
+					value = 0.5
+				}
+				export_to_variable = {
+					variable_name = succession_wars_senior_development
+					value = total_development
+				}
+				check_variable = {
+					which = succession_wars_senior_development
+					which = succession_wars_junior_development
+				}
+			}
+			government = monarchy
+			religion_group = christian
+			NOT = { has_reform = elective_monarchy }
+			NOT = { has_government_attribute = has_dutch_election }
+			NOT = { is_emperor = yes }
+		}
+	}
+	option = {
+		name = succession_wars.10.a
+		ai_chance = { factor = 100 }
+		random_country = {
+			limit = {
+				is_subject = no
+				is_lesser_in_union = no
+				same_continent = ROOT
+				variable_arithmetic_trigger = {
+					export_to_variable = {
+						variable_name = succession_wars_junior_development
+						value = total_development
+						who = ROOT
+					}
+					multiply_variable = {
+						which = succession_wars_junior_development
+						value = 0.5
+					}
+					export_to_variable = {
+						variable_name = succession_wars_senior_development
+						value = total_development
+					}
+					check_variable = {
+						which = succession_wars_senior_development
+						which = succession_wars_junior_development
+					}
+				}
+				government = monarchy
+				religion_group = christian
+				NOT = { has_reform = elective_monarchy }
+				NOT = { has_government_attribute = has_dutch_election }
+				NOT = { is_emperor = yes }
+			}
+			save_event_target_as = succession_wars_new_overlord
+			create_union = ROOT
+			if = {
+				# Only report a union that the engine actually created.
+				# This is the stock Dynastic-event direction: senior scoped here,
+				# original event country in ROOT.
+				limit = { senior_union_with = ROOT }
+				log = "SuccessionWars: [Root.GetName] became junior partner under [This.GetName] in [GetYear]."
+			}
+			else = {
+				log = "SuccessionWars: FAILED foreign PU for [Root.GetName]; selected senior was [This.GetName] in [GetYear]."
+			}
+		}
+	}
+}

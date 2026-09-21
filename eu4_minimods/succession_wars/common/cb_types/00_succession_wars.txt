@@ -1,0 +1,8 @@
+# Used only by forced declarations in Succession Wars events.
+cb_succession_wars_holy_war = {
+	valid_for_subject = no
+	is_triggered_only = yes
+	months = 1
+	no_opinion_hit = yes
+	war_goal = superiority_crusade
+}
