@@ -8,14 +8,6 @@ country_event = {
 	desc = succession_wars.1.d
 	picture = none
 	is_triggered_only = yes
-	# Consecutive ruler replacements can otherwise produce several succession
-	# outcomes on the same country in a few days.
-	trigger = {
-		OR = {
-			NOT = { has_country_flag = succession_wars_recent_event }
-			had_country_flag = { flag = succession_wars_recent_event days = 365 }
-		}
-	}
 	option = {
 		name = succession_wars.1.a
 		ai_chance = { factor = 100 }
@@ -27,7 +19,6 @@ country_event = {
 		if = { limit = { has_country_flag = succession_wars_noble_coup_active } if = { limit = { has_estate = estate_nobles } add_estate_influence_modifier = { estate = estate_nobles influence = -50 duration = 1 desc = succession_wars_estate_coup } } if = { limit = { has_estate = estate_church } add_estate_influence_modifier = { estate = estate_church influence = 20 duration = 1 desc = succession_wars_estate_coup } } if = { limit = { has_estate = estate_burghers } add_estate_influence_modifier = { estate = estate_burghers influence = 20 duration = 1 desc = succession_wars_estate_coup } } clr_country_flag = succession_wars_noble_coup_active }
 		if = { limit = { has_country_flag = succession_wars_clergy_coup_active } if = { limit = { has_estate = estate_church } add_estate_influence_modifier = { estate = estate_church influence = -50 duration = 1 desc = succession_wars_estate_coup } } if = { limit = { has_estate = estate_nobles } add_estate_influence_modifier = { estate = estate_nobles influence = 20 duration = 1 desc = succession_wars_estate_coup } } if = { limit = { has_estate = estate_burghers } add_estate_influence_modifier = { estate = estate_burghers influence = 20 duration = 1 desc = succession_wars_estate_coup } } clr_country_flag = succession_wars_clergy_coup_active }
 		if = { limit = { has_country_flag = succession_wars_burgher_coup_active } if = { limit = { has_estate = estate_burghers } add_estate_influence_modifier = { estate = estate_burghers influence = -50 duration = 1 desc = succession_wars_estate_coup } } if = { limit = { has_estate = estate_nobles } add_estate_influence_modifier = { estate = estate_nobles influence = 20 duration = 1 desc = succession_wars_estate_coup } } if = { limit = { has_estate = estate_church } add_estate_influence_modifier = { estate = estate_church influence = 20 duration = 1 desc = succession_wars_estate_coup } } clr_country_flag = succession_wars_burgher_coup_active }
-		set_country_flag = succession_wars_recent_event
 		random_list = {
 			15 = { country_event = { id = succession_wars.0 } }
 			150 = {
@@ -146,6 +137,20 @@ country_event = {
 				country_event = { id = succession_wars.91 }
 			}
 		}
+	}
+}
+
+# Clear the per-country succession cooldown one year after it was applied.
+country_event = {
+	id = succession_wars.2
+	title = none
+	desc = none
+	picture = none
+	hidden = yes
+	is_triggered_only = yes
+	option = {
+		ai_chance = { factor = 100 }
+		clr_country_flag = succession_wars_recent_event
 	}
 }
 
@@ -296,6 +301,7 @@ country_event = {
 				}
 			}
 			vassalize = ROOT
+			ROOT = { add_liberty_desire = -50 }
 		}
 	}
 }

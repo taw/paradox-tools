@@ -97,6 +97,7 @@ country_event = {
 				# original event country in ROOT.
 				limit = { senior_union_with = ROOT }
 				log = "SuccessionWars: [Root.GetName] became junior partner under [This.GetName] in [GetYear]."
+				ROOT = { add_liberty_desire = -50 }
 			}
 			else = {
 				log = "SuccessionWars: FAILED foreign PU for [Root.GetName]; selected senior was [This.GetName] in [GetYear]."

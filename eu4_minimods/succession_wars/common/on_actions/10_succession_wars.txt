@@ -1,7 +1,12 @@
 # Invoke the dispatcher directly.  Keeping the weighted roll in an event makes
 # it possible to test the whole succession selection with `event succession_wars.1`.
 on_new_monarch = {
-	events = {
-		succession_wars.1
+	if = {
+		limit = { NOT = { has_country_flag = succession_wars_recent_event } }
+		# Lock before queuing the dispatcher: several ruler changes can occur
+		# before its visible debug option is resolved.
+		set_country_flag = succession_wars_recent_event
+		country_event = { id = succession_wars.2 days = 365 }
+		country_event = { id = succession_wars.1 }
 	}
 }
