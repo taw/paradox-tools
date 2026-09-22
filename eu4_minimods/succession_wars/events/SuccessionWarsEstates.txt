@@ -12,6 +12,8 @@ country_event = {
 		name = succession_wars.20.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: [Root.GetName] suffered a noble estate coup in [GetYear]."
+		set_country_flag = succession_wars_noble_coup_active
+		add_country_modifier = { name = succession_wars_noble_coup duration = 7300 }
 		add_estate_influence_modifier = { estate = estate_nobles influence = 50 duration = 7300 desc = succession_wars_estate_coup }
 		if = { limit = { has_estate = estate_church } add_estate_influence_modifier = { estate = estate_church influence = -20 duration = 7300 desc = succession_wars_estate_coup } }
 		if = { limit = { has_estate = estate_burghers } add_estate_influence_modifier = { estate = estate_burghers influence = -20 duration = 7300 desc = succession_wars_estate_coup } }
@@ -30,6 +32,8 @@ country_event = {
 		name = succession_wars.21.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: [Root.GetName] suffered a clergy estate coup in [GetYear]."
+		set_country_flag = succession_wars_clergy_coup_active
+		add_country_modifier = { name = succession_wars_clergy_coup duration = 7300 }
 		add_estate_influence_modifier = { estate = estate_church influence = 50 duration = 7300 desc = succession_wars_estate_coup }
 		if = { limit = { has_estate = estate_nobles } add_estate_influence_modifier = { estate = estate_nobles influence = -20 duration = 7300 desc = succession_wars_estate_coup } }
 		if = { limit = { has_estate = estate_burghers } add_estate_influence_modifier = { estate = estate_burghers influence = -20 duration = 7300 desc = succession_wars_estate_coup } }
@@ -48,6 +52,8 @@ country_event = {
 		name = succession_wars.22.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: [Root.GetName] suffered a burgher estate coup in [GetYear]."
+		set_country_flag = succession_wars_burgher_coup_active
+		add_country_modifier = { name = succession_wars_burgher_coup duration = 7300 }
 		add_estate_influence_modifier = { estate = estate_burghers influence = 50 duration = 7300 desc = succession_wars_estate_coup }
 		if = { limit = { has_estate = estate_nobles } add_estate_influence_modifier = { estate = estate_nobles influence = -20 duration = 7300 desc = succession_wars_estate_coup } }
 		if = { limit = { has_estate = estate_church } add_estate_influence_modifier = { estate = estate_church influence = -20 duration = 7300 desc = succession_wars_estate_coup } }

@@ -8,6 +8,7 @@ country_event = {
 	is_triggered_only = yes
 	mean_time_to_happen = { days = 1 }
 	trigger = {
+		ai = yes
 		OR = { is_subject_of_type = vassal is_subject_of_type = march }
 	}
 	option = {

@@ -13,3 +13,7 @@ succession_wars_inward_focus = {
 	great_project_upgrade_cost = -0.5
 	province_warscore_cost = 0.5
 }
+
+succession_wars_noble_coup = { diplomats = 1 }
+succession_wars_clergy_coup = { missionaries = 1 }
+succession_wars_burgher_coup = { merchants = 1 }
