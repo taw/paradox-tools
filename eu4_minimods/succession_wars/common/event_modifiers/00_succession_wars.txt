@@ -13,7 +13,3 @@ succession_wars_inward_focus = {
 	great_project_upgrade_cost = -0.5
 	province_warscore_cost = 0.5
 }
-
-succession_wars_diplomatic_breakdown = {
-	diplomatic_reputation = -5
-}

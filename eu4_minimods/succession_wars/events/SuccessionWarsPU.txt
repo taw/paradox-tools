@@ -7,6 +7,7 @@ country_event = {
 	desc = succession_wars.10.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		is_subject = no
 		is_lesser_in_union = no

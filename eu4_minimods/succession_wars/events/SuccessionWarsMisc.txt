@@ -1,12 +1,131 @@
 namespace = succession_wars
 
+# This is deliberately separate from the on_action so it can be invoked with
+# `event succession_wars.1` while testing.  It retains the former weights.
+country_event = {
+	id = succession_wars.1
+	title = succession_wars.1.t
+	desc = succession_wars.1.d
+	picture = none
+	is_triggered_only = yes
+	option = {
+		name = succession_wars.1.a
+		ai_chance = { factor = 100 }
+		random_list = {
+			15 = { country_event = { id = succession_wars.0 } }
+			150 = {
+				trigger = {
+					is_subject = no
+					is_lesser_in_union = no
+					NOT = { any_subject_country = { OR = { is_subject_of_type = personal_union is_subject_of_type = integrated_personal_union } } }
+					government = monarchy
+					religion_group = christian
+					NOT = { has_reform = elective_monarchy }
+					NOT = { has_government_attribute = has_dutch_election }
+					NOT = { is_emperor = yes }
+					any_country = {
+						is_subject = no
+						is_lesser_in_union = no
+						same_continent = ROOT
+						variable_arithmetic_trigger = {
+							export_to_variable = { variable_name = succession_wars_junior_development value = total_development who = ROOT }
+							multiply_variable = { which = succession_wars_junior_development value = 0.5 }
+							export_to_variable = { variable_name = succession_wars_senior_development value = total_development }
+							check_variable = { which = succession_wars_senior_development which = succession_wars_junior_development }
+						}
+						government = monarchy
+						religion_group = christian
+						NOT = { has_reform = elective_monarchy }
+						NOT = { has_government_attribute = has_dutch_election }
+						NOT = { is_emperor = yes }
+					}
+				}
+				country_event = { id = succession_wars.10 }
+			}
+			20 = { trigger = { has_estate = estate_nobles } country_event = { id = succession_wars.20 } }
+			20 = { trigger = { has_estate = estate_church } country_event = { id = succession_wars.21 } }
+			20 = { trigger = { has_estate = estate_burghers } country_event = { id = succession_wars.22 } }
+			100 = {
+				trigger = { is_subject = no NOT = { religion_group = christian } any_neighbor_country = { is_subject = no religion_group = christian NOT = { alliance_with = ROOT } } }
+				country_event = { id = succession_wars.30 }
+			}
+			100 = {
+				trigger = { is_subject = no NOT = { religion_group = muslim } any_neighbor_country = { is_subject = no religion_group = muslim NOT = { alliance_with = ROOT } } }
+				country_event = { id = succession_wars.31 }
+			}
+			100 = {
+				trigger = { is_subject = no religion_group = muslim any_neighbor_country = { is_subject = no OR = { religion = hinduism religion = sikhism } NOT = { alliance_with = ROOT } } }
+				country_event = { id = succession_wars.32 }
+			}
+			100 = {
+				trigger = { is_subject = no any_neighbor_country = { is_subject = no has_reform = steppe_horde NOT = { alliance_with = ROOT } } }
+				country_event = { id = succession_wars.40 }
+			}
+			35 = { country_event = { id = succession_wars.41 } }
+			50 = { trigger = { any_owned_province = { NOT = { religion = ROOT } } } country_event = { id = succession_wars.42 } }
+			100 = { trigger = { OR = { is_subject_of_type = vassal is_subject_of_type = march } } country_event = { id = succession_wars.50 } }
+			100 = {
+				trigger = {
+					NOT = { is_emperor = yes }
+					any_subject_country = {
+						is_subject_other_than_tributary_trigger = yes
+						NOT = { is_colonial_nation = yes }
+						NOT = { is_subject_of_type = daimyo_vassal }
+					}
+				}
+				country_event = { id = succession_wars.60 }
+			}
+			40 = { trigger = { any_subject_country = { is_subject_of_type = tributary_state } } country_event = { id = succession_wars.61 } }
+			40 = { trigger = { any_subject_country = { is_subject_of_type = daimyo_vassal } } country_event = { id = succession_wars.62 } }
+			40 = { trigger = { any_subject_country = { is_colonial_nation = yes } } country_event = { id = succession_wars.70 } }
+			40 = { trigger = { num_of_hired_mercenary_companies = 1 } country_event = { id = succession_wars.71 } }
+			20 = { trigger = { religion = catholic NOT = { tag = PAP } NOT = { is_excommunicated = yes } } country_event = { id = succession_wars.72 } }
+			35 = { country_event = { id = succession_wars.80 } }
+			5 = { country_event = { id = succession_wars.90 } }
+			75 = {
+				trigger = {
+					is_subject = no
+					NOT = { religion_group = christian }
+					any_ally = {
+						is_subject = no
+						variable_arithmetic_trigger = {
+							export_to_variable = { variable_name = succession_wars_protection_junior_development value = total_development who = ROOT }
+							multiply_variable = { which = succession_wars_protection_junior_development value = 4 }
+							export_to_variable = { variable_name = succession_wars_protection_senior_development value = total_development }
+							check_variable = { which = succession_wars_protection_senior_development which = succession_wars_protection_junior_development }
+						}
+					}
+				}
+				country_event = { id = succession_wars.91 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = succession_wars.0
+	title = none
+	desc = none
+	picture = none
+	hidden = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	option = {
+		log = "SuccessionWars: nothing happened to [Root.GetName] in [GetYear]."
+		ai_chance = { factor = 100 }
+	}
+}
+
 country_event = {
 	id = succession_wars.71
 	title = succession_wars.71.t
 	desc = succession_wars.71.d
 	picture = SCOTTISH_MERCENARIES_eventPicture
 	is_triggered_only = yes
-	trigger = { any_hired_mercenary_company = { always = yes } }
+	mean_time_to_happen = { days = 1 }
+	# This stock trigger is reliable; the any_hired_mercenary_company scope was
+	# never observed to make this event eligible.
+	trigger = { num_of_hired_mercenary_companies = 1 }
 	option = {
 		name = succession_wars.71.a
 		ai_chance = { factor = 100 }
@@ -43,6 +162,7 @@ country_event = {
 	desc = succession_wars.72.d
 	picture = RELIGION_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = { religion = catholic NOT = { tag = PAP } NOT = { is_excommunicated = yes } }
 	option = {
 		name = succession_wars.72.a
@@ -58,10 +178,13 @@ country_event = {
 	desc = succession_wars.80.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	option = {
 		name = succession_wars.80.a
 		ai_chance = { factor = 100 }
-		log = "SuccessionWars: [Root.GetName] received forgive and forget in [GetYear]."
+		log = "SuccessionWars: [Root.GetName] received a diplomatic reset in [GetYear]."
+		# Stock every_ally/break_alliance pattern; PREV is the iterated ally.
+		every_ally = { ROOT = { break_alliance = PREV } }
 		every_country = {
 			remove_rival = ROOT
 			add_aggressive_expansion = { who = ROOT value = -25 apply_calc = no }
@@ -71,28 +194,12 @@ country_event = {
 }
 
 country_event = {
-	id = succession_wars.81
-	title = succession_wars.81.t
-	desc = succession_wars.81.d
-	picture = DIPLOMACY_eventPicture
-	is_triggered_only = yes
-	trigger = { any_ally = { always = yes } }
-	option = {
-		name = succession_wars.81.a
-		ai_chance = { factor = 100 }
-		log = "SuccessionWars: [Root.GetName] suffered a diplomatic breakdown in [GetYear]."
-		# Stock every_ally/break_alliance pattern; PREV is the iterated ally.
-		every_ally = { ROOT = { break_alliance = PREV } }
-		add_country_modifier = { name = succession_wars_diplomatic_breakdown duration = 3650 }
-	}
-}
-
-country_event = {
 	id = succession_wars.91
 	title = succession_wars.91.t
 	desc = succession_wars.91.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		is_subject = no
 		NOT = { religion_group = christian }
@@ -145,6 +252,7 @@ country_event = {
 	desc = succession_wars.90.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	option = {
 		name = succession_wars.90.a
 		ai_chance = { factor = 100 }

@@ -6,6 +6,7 @@ country_event = {
 	desc = succession_wars.30.d
 	picture = RELIGION_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		is_subject = no
 		NOT = { religion_group = christian }
@@ -28,6 +29,7 @@ country_event = {
 	desc = succession_wars.31.d
 	picture = RELIGION_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		is_subject = no
 		NOT = { religion_group = muslim }
@@ -50,6 +52,7 @@ country_event = {
 	desc = succession_wars.32.d
 	picture = RELIGION_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		is_subject = no
 		religion_group = muslim
@@ -80,6 +83,7 @@ country_event = {
 	desc = succession_wars.40.d
 	picture = BATTLE_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		is_subject = no
 		any_neighbor_country = { is_subject = no has_reform = steppe_horde NOT = { alliance_with = ROOT } }

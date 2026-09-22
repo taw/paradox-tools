@@ -6,6 +6,7 @@ country_event = {
 	desc = succession_wars.50.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		OR = { is_subject_of_type = vassal is_subject_of_type = march }
 	}
@@ -44,6 +45,7 @@ country_event = {
 	desc = succession_wars.60.d
 	picture = BATTLE_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = {
 		NOT = { is_emperor = yes }
 		any_subject_country = {
@@ -73,6 +75,7 @@ country_event = {
 	desc = succession_wars.61.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = { any_subject_country = { is_subject_of_type = tributary_state } }
 	option = {
 		name = succession_wars.61.a
@@ -91,6 +94,7 @@ country_event = {
 	desc = succession_wars.62.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = { any_subject_country = { is_subject_of_type = daimyo_vassal } }
 	option = {
 		name = succession_wars.62.a
@@ -109,6 +113,7 @@ country_event = {
 	desc = succession_wars.70.d
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
 	trigger = { any_subject_country = { is_colonial_nation = yes } }
 	option = {
 		name = succession_wars.70.a
