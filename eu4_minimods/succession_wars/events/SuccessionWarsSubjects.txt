@@ -50,6 +50,7 @@ country_event = {
 		NOT = { is_emperor = yes }
 		any_subject_country = {
 			is_subject_other_than_tributary_trigger = yes
+			NOT = { is_lesser_in_union = yes }
 			NOT = { is_colonial_nation = yes }
 			NOT = { is_subject_of_type = daimyo_vassal }
 		}
@@ -61,6 +62,7 @@ country_event = {
 		every_subject_country = {
 			limit = {
 				is_subject_other_than_tributary_trigger = yes
+				NOT = { is_lesser_in_union = yes }
 				NOT = { is_colonial_nation = yes }
 				NOT = { is_subject_of_type = daimyo_vassal }
 			}

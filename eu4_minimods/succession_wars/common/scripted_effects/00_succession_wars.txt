@@ -3,3 +3,20 @@ succession_wars_disband_random_hired_mercenary = {
 		disband_mercenary_company = THIS
 	}
 }
+
+# Country effect. One stack plus one per three owned provinces in the selected
+# superregion, capped at ten. The temporary religion-specific flag spreads the
+# stacks across eligible provinces before it is cleared.
+succession_wars_spread_regional_religion = {
+	random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } }
+	if = { limit = { num_of_owned_provinces_with = { value = 3 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 6 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 9 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 12 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 15 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 18 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 21 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 24 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	if = { limit = { num_of_owned_provinces_with = { value = 27 superregion = $superregion$ } } random_owned_province = { limit = { superregion = $superregion$ NOT = { has_province_flag = succession_wars_spread_$religion$_rebels } } set_province_flag = succession_wars_spread_$religion$_rebels spawn_rebels = { type = $rebel_type$ religion = $religion$ size = 3 } } }
+	every_owned_province = { limit = { has_province_flag = succession_wars_spread_$religion$_rebels } clr_province_flag = succession_wars_spread_$religion$_rebels }
+}

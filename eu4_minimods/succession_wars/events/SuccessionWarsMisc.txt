@@ -8,9 +8,18 @@ country_event = {
 	desc = succession_wars.1.d
 	picture = none
 	is_triggered_only = yes
+	# Consecutive ruler replacements can otherwise produce several succession
+	# outcomes on the same country in a few days.
+	trigger = {
+		OR = {
+			NOT = { has_country_flag = succession_wars_recent_event }
+			had_country_flag = { flag = succession_wars_recent_event days = 365 }
+		}
+	}
 	option = {
 		name = succession_wars.1.a
 		ai_chance = { factor = 100 }
+		set_country_flag = succession_wars_recent_event
 		random_list = {
 			15 = { country_event = { id = succession_wars.0 } }
 			150 = {
@@ -42,9 +51,9 @@ country_event = {
 				}
 				country_event = { id = succession_wars.10 }
 			}
-			20 = { trigger = { has_estate = estate_nobles } country_event = { id = succession_wars.20 } }
-			20 = { trigger = { has_estate = estate_church } country_event = { id = succession_wars.21 } }
-			20 = { trigger = { has_estate = estate_burghers } country_event = { id = succession_wars.22 } }
+			5 = { trigger = { has_estate = estate_nobles } country_event = { id = succession_wars.20 } }
+			5 = { trigger = { has_estate = estate_church } country_event = { id = succession_wars.21 } }
+			5 = { trigger = { has_estate = estate_burghers } country_event = { id = succession_wars.22 } }
 			100 = {
 				trigger = { is_subject = no NOT = { religion_group = christian } any_neighbor_country = { is_subject = no religion_group = christian NOT = { alliance_with = ROOT } } }
 				country_event = { id = succession_wars.30 }
@@ -63,12 +72,33 @@ country_event = {
 			}
 			35 = { country_event = { id = succession_wars.41 } }
 			50 = { trigger = { any_owned_province = { NOT = { religion = ROOT } } } country_event = { id = succession_wars.42 } }
-			100 = { trigger = { OR = { is_subject_of_type = vassal is_subject_of_type = march } } country_event = { id = succession_wars.50 } }
+			5 = { trigger = { NOT = { religion = catholic } any_owned_province = { superregion = eastern_europe_superregion } } country_event = { id = succession_wars.100 } }
+			5 = { trigger = { NOT = { religion = orthodox } any_owned_province = { superregion = eastern_europe_superregion } } country_event = { id = succession_wars.101 } }
+			5 = { trigger = { NOT = { religion = sunni } any_owned_province = { superregion = near_east_superregion } } country_event = { id = succession_wars.102 } }
+			5 = { trigger = { NOT = { religion = shiite } any_owned_province = { superregion = near_east_superregion } } country_event = { id = succession_wars.103 } }
+			5 = { trigger = { NOT = { religion = coptic } any_owned_province = { superregion = near_east_superregion } } country_event = { id = succession_wars.104 } }
+			5 = { trigger = { NOT = { religion = jewish } any_owned_province = { superregion = near_east_superregion } } country_event = { id = succession_wars.105 } }
+			5 = { trigger = { NOT = { religion = sunni } any_owned_province = { superregion = persia_superregion } } country_event = { id = succession_wars.106 } }
+			5 = { trigger = { NOT = { religion = shiite } any_owned_province = { superregion = persia_superregion } } country_event = { id = succession_wars.107 } }
+			5 = { trigger = { NOT = { religion = zoroastrian } any_owned_province = { superregion = persia_superregion } } country_event = { id = succession_wars.108 } }
+			5 = { trigger = { NOT = { religion = sunni } any_owned_province = { superregion = africa_superregion } } country_event = { id = succession_wars.109 } }
+			5 = { trigger = { NOT = { religion = shiite } any_owned_province = { superregion = africa_superregion } } country_event = { id = succession_wars.110 } }
+			5 = { trigger = { NOT = { religion = coptic } any_owned_province = { superregion = africa_superregion } } country_event = { id = succession_wars.111 } }
+			5 = { trigger = { NOT = { religion = shamanism } any_owned_province = { superregion = africa_superregion } } country_event = { id = succession_wars.112 } }
+			5 = { trigger = { NOT = { religion = tengri_pagan_reformed } any_owned_province = { superregion = tartary_superregion } } country_event = { id = succession_wars.113 } }
+			5 = { trigger = { NOT = { religion = vajrayana } any_owned_province = { superregion = tartary_superregion } } country_event = { id = succession_wars.114 } }
+			5 = { trigger = { NOT = { religion = hinduism } any_owned_province = { superregion = india_superregion } } country_event = { id = succession_wars.115 } }
+			5 = { trigger = { NOT = { religion = theravada } any_owned_province = { superregion = india_superregion } } country_event = { id = succession_wars.116 } }
+			5 = { trigger = { NOT = { religion = sunni } any_owned_province = { superregion = east_indies_superregion } } country_event = { id = succession_wars.117 } }
+			5 = { trigger = { NOT = { religion = hinduism } any_owned_province = { superregion = east_indies_superregion } } country_event = { id = succession_wars.118 } }
+			5 = { trigger = { NOT = { religion = mahayana } any_owned_province = { superregion = east_indies_superregion } } country_event = { id = succession_wars.119 } }
+			250 = { trigger = { OR = { is_subject_of_type = vassal is_subject_of_type = march } } country_event = { id = succession_wars.50 } }
 			100 = {
 				trigger = {
 					NOT = { is_emperor = yes }
 					any_subject_country = {
 						is_subject_other_than_tributary_trigger = yes
+						NOT = { is_lesser_in_union = yes }
 						NOT = { is_colonial_nation = yes }
 						NOT = { is_subject_of_type = daimyo_vassal }
 					}
@@ -78,11 +108,11 @@ country_event = {
 			40 = { trigger = { any_subject_country = { is_subject_of_type = tributary_state } } country_event = { id = succession_wars.61 } }
 			40 = { trigger = { any_subject_country = { is_subject_of_type = daimyo_vassal } } country_event = { id = succession_wars.62 } }
 			40 = { trigger = { any_subject_country = { is_colonial_nation = yes } } country_event = { id = succession_wars.70 } }
-			40 = { trigger = { num_of_hired_mercenary_companies = 1 } country_event = { id = succession_wars.71 } }
-			20 = { trigger = { religion = catholic NOT = { tag = PAP } NOT = { is_excommunicated = yes } } country_event = { id = succession_wars.72 } }
+			100 = { trigger = { num_of_hired_mercenary_companies = 1 } country_event = { id = succession_wars.71 } }
+			20 = { trigger = { is_subject = no religion = catholic NOT = { tag = PAP } NOT = { is_excommunicated = yes } PAP = { NOT = { alliance_with = ROOT } } } country_event = { id = succession_wars.72 } }
 			35 = { country_event = { id = succession_wars.80 } }
-			5 = { country_event = { id = succession_wars.90 } }
-			75 = {
+			100 = { country_event = { id = succession_wars.90 } }
+			200 = {
 				trigger = {
 					is_subject = no
 					NOT = { religion_group = christian }
@@ -152,7 +182,7 @@ country_event = {
 		succession_wars_disband_random_hired_mercenary = yes
 		succession_wars_disband_random_hired_mercenary = yes
 		succession_wars_disband_random_hired_mercenary = yes
-		add_country_modifier = { name = succession_wars_mercenaries_gone duration = 3650 }
+		add_country_modifier = { name = succession_wars_mercenaries_gone duration = 7300 }
 	}
 }
 
@@ -163,7 +193,13 @@ country_event = {
 	picture = RELIGION_eventPicture
 	is_triggered_only = yes
 	mean_time_to_happen = { days = 1 }
-	trigger = { religion = catholic NOT = { tag = PAP } NOT = { is_excommunicated = yes } }
+	trigger = {
+		is_subject = no
+		religion = catholic
+		NOT = { tag = PAP }
+		NOT = { is_excommunicated = yes }
+		PAP = { NOT = { alliance_with = ROOT } }
+	}
 	option = {
 		name = succession_wars.72.a
 		ai_chance = { factor = 100 }
@@ -187,7 +223,7 @@ country_event = {
 		every_ally = { ROOT = { break_alliance = PREV } }
 		every_country = {
 			remove_rival = ROOT
-			add_aggressive_expansion = { who = ROOT value = -25 apply_calc = no }
+			add_aggressive_expansion = { who = ROOT value = -40 apply_calc = no }
 		}
 		every_country = { ROOT = { remove_rival = PREV } }
 	}
@@ -257,6 +293,6 @@ country_event = {
 		name = succession_wars.90.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: [Root.GetName] adopted an inward focus in [GetYear]."
-		add_country_modifier = { name = succession_wars_inward_focus duration = 3650 }
+		add_country_modifier = { name = succession_wars_inward_focus duration = 7300 }
 	}
 }
