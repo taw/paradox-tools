@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_save_analysis"
+
+class ListSubjects < EU4SaveAnalysis
+  def call
+    @save.subjects.map do |subject, (overlord, subject_type)|
+      [country_name(overlord), country_name(subject), subject_type]
+    end.sort.each do |row|
+      puts row.join("\t")
+    end
+  end
+end
+
+if $0 == __FILE__
+  ListSubjects.new_from_argv.call
+end
