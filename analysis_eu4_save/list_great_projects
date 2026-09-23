@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_save_analysis"
+
+class ListGreatProjects < EU4SaveAnalysis
+  def call
+    @save.great_projects.map do |name, provid, tier|
+      [tier, localization(name)]
+    end.sort_by{|tier, name| [-tier, name]}.each do |row|
+      puts row.join("\t")
+    end
+  end
+end
+
+if $0 == __FILE__
+  ListGreatProjects.new_from_argv.call
+end
