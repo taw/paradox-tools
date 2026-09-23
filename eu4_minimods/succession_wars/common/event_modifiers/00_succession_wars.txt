@@ -17,3 +17,7 @@ succession_wars_inward_focus = {
 succession_wars_noble_coup = { diplomats = 1 }
 succession_wars_clergy_coup = { missionaries = 1 }
 succession_wars_burgher_coup = { merchants = 1 }
+
+succession_wars_cultural_consolidation = {
+	culture_conversion_cost = -0.5
+}

@@ -25,7 +25,6 @@ country_event = {
 				trigger = {
 					is_subject = no
 					is_lesser_in_union = no
-					NOT = { any_subject_country = { OR = { is_subject_of_type = personal_union is_subject_of_type = integrated_personal_union } } }
 					government = monarchy
 					religion_group = christian
 					NOT = { has_reform = elective_monarchy }
@@ -115,14 +114,26 @@ country_event = {
 			}
 			40 = { trigger = { any_subject_country = { is_subject_of_type = tributary_state } } country_event = { id = succession_wars.61 } }
 			40 = { trigger = { any_subject_country = { is_subject_of_type = daimyo_vassal } } country_event = { id = succession_wars.62 } }
+			40 = { trigger = { any_subject_country = { OR = { is_subject_of_type = personal_union is_subject_of_type = integrated_personal_union } } } country_event = { id = succession_wars.63 } }
 			40 = { trigger = { any_subject_country = { is_colonial_nation = yes } } country_event = { id = succession_wars.70 } }
 			100 = { trigger = { num_of_hired_mercenary_companies = 1 } country_event = { id = succession_wars.71 } }
 			20 = { trigger = { is_subject = no religion = catholic NOT = { tag = PAP } NOT = { is_excommunicated = yes } PAP = { NOT = { alliance_with = ROOT } } } country_event = { id = succession_wars.72 } }
 			35 = { country_event = { id = succession_wars.80 } }
 			100 = { country_event = { id = succession_wars.90 } }
+			75 = {
+				trigger = {
+					any_owned_province = {
+						is_state = yes
+						NOT = { culture_group = ROOT }
+						NOT = { has_owner_accepted_culture = yes }
+					}
+				}
+				country_event = { id = succession_wars.92 }
+			}
 			200 = {
 				trigger = {
 					is_subject = no
+					NOT = { any_subject_country = { always = yes } }
 					NOT = { religion_group = christian }
 					any_ally = {
 						is_subject = no
@@ -303,6 +314,38 @@ country_event = {
 			vassalize = ROOT
 			ROOT = { add_liberty_desire = -50 }
 		}
+	}
+}
+
+# A contested succession encourages a centralized cultural response, while
+# communities outside the primary culture group resist the new court.
+country_event = {
+	id = succession_wars.92
+	title = succession_wars.92.t
+	desc = succession_wars.92.d
+	picture = CULTURE_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = {
+		any_owned_province = {
+			is_state = yes
+			NOT = { culture_group = ROOT }
+			NOT = { has_owner_accepted_culture = yes }
+		}
+	}
+	option = {
+		name = succession_wars.92.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: cultural conflicts erupted in [Root.GetName] in [GetYear]."
+		every_owned_province = {
+			limit = {
+				is_state = yes
+				NOT = { culture_group = ROOT }
+				NOT = { has_owner_accepted_culture = yes }
+			}
+			add_local_autonomy = 25
+		}
+		add_country_modifier = { name = succession_wars_cultural_consolidation duration = 7300 }
 	}
 }
 

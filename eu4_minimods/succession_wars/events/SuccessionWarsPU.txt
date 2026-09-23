@@ -11,15 +11,6 @@ country_event = {
 	trigger = {
 		is_subject = no
 		is_lesser_in_union = no
-		# A PU senior cannot also become a junior without creating an unsupported chain.
-		NOT = {
-			any_subject_country = {
-				OR = {
-					is_subject_of_type = personal_union
-					is_subject_of_type = integrated_personal_union
-				}
-			}
-		}
 		government = monarchy
 		religion_group = christian
 		NOT = { has_reform = elective_monarchy }
@@ -59,11 +50,24 @@ country_event = {
 	option = {
 		name = succession_wars.10.a
 		ai_chance = { factor = 100 }
+		# EU4 cannot form a normal nested PU.  Resolve the old senior's AI
+		# juniors first, as vanilla does for the Burgundian Inheritance.  Human
+		# subjects are intentionally never inherited by an event.
+		every_subject_country = {
+			limit = {
+				ai = yes
+				OR = {
+					is_subject_of_type = personal_union
+					is_subject_of_type = integrated_personal_union
+				}
+			}
+			ROOT = { inherit = PREV }
+		}
 		random_country = {
 			limit = {
-				is_subject = no
-				is_lesser_in_union = no
-				same_continent = ROOT
+			is_subject = no
+			is_lesser_in_union = no
+			same_continent = ROOT
 				variable_arithmetic_trigger = {
 					export_to_variable = {
 						variable_name = succession_wars_junior_development
@@ -97,7 +101,6 @@ country_event = {
 				# original event country in ROOT.
 				limit = { senior_union_with = ROOT }
 				log = "SuccessionWars: [Root.GetName] became junior partner under [This.GetName] in [GetYear]."
-				ROOT = { add_liberty_desire = -50 }
 			}
 			else = {
 				log = "SuccessionWars: FAILED foreign PU for [Root.GetName]; selected senior was [This.GetName] in [GetYear]."

@@ -111,6 +111,37 @@ country_event = {
 }
 
 country_event = {
+	id = succession_wars.63
+	title = succession_wars.63.t
+	desc = succession_wars.63.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = {
+		any_subject_country = {
+			OR = {
+				is_subject_of_type = personal_union
+				is_subject_of_type = integrated_personal_union
+			}
+		}
+	}
+	option = {
+		name = succession_wars.63.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: junior partners became disloyal to [Root.GetName] in [GetYear]."
+		every_subject_country = {
+			limit = {
+				OR = {
+					is_subject_of_type = personal_union
+					is_subject_of_type = integrated_personal_union
+				}
+			}
+			add_liberty_desire = 50
+		}
+	}
+}
+
+country_event = {
 	id = succession_wars.70
 	title = succession_wars.70.t
 	desc = succession_wars.70.d
