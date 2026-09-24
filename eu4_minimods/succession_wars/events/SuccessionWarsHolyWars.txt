@@ -1,5 +1,7 @@
 namespace = succession_wars
 
+# Holy-war declarations must respect truces and existing wars. Check both the
+# event trigger and declaration limit so no empty war-notification event fires.
 country_event = {
 	id = succession_wars.30
 	title = succession_wars.30.t
@@ -10,14 +12,14 @@ country_event = {
 	trigger = {
 		is_subject = no
 		NOT = { religion_group = christian }
-		any_neighbor_country = { is_subject = no religion_group = christian NOT = { alliance_with = ROOT } }
+		any_neighbor_country = { is_subject = no religion_group = christian NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 	}
 	option = {
 		name = succession_wars.30.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: a crusade was declared against [Root.GetName] in [GetYear]."
 		every_neighbor_country = {
-			limit = { is_subject = no religion_group = christian NOT = { alliance_with = ROOT } }
+			limit = { is_subject = no religion_group = christian NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 			declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war }
 		}
 	}
@@ -33,14 +35,14 @@ country_event = {
 	trigger = {
 		is_subject = no
 		NOT = { religion_group = muslim }
-		any_neighbor_country = { is_subject = no religion_group = muslim NOT = { alliance_with = ROOT } }
+		any_neighbor_country = { is_subject = no religion_group = muslim NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 	}
 	option = {
 		name = succession_wars.31.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: a jihad was declared against [Root.GetName] in [GetYear]."
 		every_neighbor_country = {
-			limit = { is_subject = no religion_group = muslim NOT = { alliance_with = ROOT } }
+			limit = { is_subject = no religion_group = muslim NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 			declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war }
 		}
 	}
@@ -56,22 +58,14 @@ country_event = {
 	trigger = {
 		is_subject = no
 		religion_group = muslim
-		any_neighbor_country = {
-			is_subject = no
-			OR = { religion = hinduism religion = sikhism }
-			NOT = { alliance_with = ROOT }
-		}
+		any_neighbor_country = { is_subject = no OR = { religion = hinduism religion = sikhism } NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 	}
 	option = {
 		name = succession_wars.32.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: a Dharmic holy war was declared against [Root.GetName] in [GetYear]."
 		every_neighbor_country = {
-			limit = {
-				is_subject = no
-				OR = { religion = hinduism religion = sikhism }
-				NOT = { alliance_with = ROOT }
-			}
+			limit = { is_subject = no OR = { religion = hinduism religion = sikhism } NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 			declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war }
 		}
 	}
@@ -86,14 +80,14 @@ country_event = {
 	mean_time_to_happen = { days = 1 }
 	trigger = {
 		is_subject = no
-		any_neighbor_country = { is_subject = no has_reform = steppe_horde NOT = { alliance_with = ROOT } }
+		any_neighbor_country = { is_subject = no has_reform = steppe_horde NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 	}
 	option = {
 		name = succession_wars.40.a
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: steppe hordes raided [Root.GetName] in [GetYear]."
 		every_neighbor_country = {
-			limit = { is_subject = no has_reform = steppe_horde NOT = { alliance_with = ROOT } }
+			limit = { is_subject = no has_reform = steppe_horde NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } }
 			declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war }
 		}
 	}
