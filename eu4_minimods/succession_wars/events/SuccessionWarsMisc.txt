@@ -49,13 +49,14 @@ country_event = {
 							multiply_variable = { which = succession_wars_junior_development value = 0.5 }
 							export_to_variable = { variable_name = succession_wars_senior_development value = total_development }
 							check_variable = { which = succession_wars_senior_development which = succession_wars_junior_development }
-						}
-						government = monarchy
-						religion_group = christian
-						NOT = { has_reform = elective_monarchy }
-						NOT = { has_government_attribute = has_dutch_election }
-						NOT = { is_emperor = yes }
 					}
+					government = monarchy
+					religion_group = christian
+					OR = {
+						alliance_with = ROOT
+						AND = { religion = ROOT is_neighbor_of = ROOT }
+					}
+				}
 				}
 				country_event = { id = succession_wars.10 }
 			}
@@ -64,6 +65,9 @@ country_event = {
 					is_subject = no
 					government = monarchy
 					religion_group = christian
+					NOT = { has_reform = elective_monarchy }
+					NOT = { has_reform = polish_elective_monarchy }
+					NOT = { has_government_attribute = has_dutch_election }
 					any_rival_country = { is_subject = no government = monarchy religion_group = christian }
 				}
 				country_event = { id = succession_wars.11 }

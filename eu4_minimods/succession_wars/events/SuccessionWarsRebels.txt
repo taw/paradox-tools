@@ -39,23 +39,18 @@ country_event = {
 		ai_chance = { factor = 100 }
 		log = "SuccessionWars: religious minorities rose against [Root.GetName] in [GetYear]."
 		random_owned_province = { limit = { NOT = { religion = ROOT } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } }
-		# Extra stacks scale with minority-religion provinces: one per three, up to ten.
+		# Extra stacks scale with minority-religion provinces: one per three, up to five.
 		if = { limit = { num_of_owned_provinces_with = { value = 3 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
 		if = { limit = { num_of_owned_provinces_with = { value = 6 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
 		if = { limit = { num_of_owned_provinces_with = { value = 9 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
 		if = { limit = { num_of_owned_provinces_with = { value = 12 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 15 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 18 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 21 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 24 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 27 NOT = { religion = ROOT } } } random_owned_province = { limit = { NOT = { religion = ROOT } NOT = { has_province_flag = succession_wars_religious_rebels } } set_province_flag = succession_wars_religious_rebels spawn_province_religious_rebels = { size = 3 } } }
 		every_owned_province = { clr_province_flag = succession_wars_religious_rebels }
 	}
 }
 
 # A junior partner's new ruler is especially vulnerable to rival claimants.
 # Half as many stacks as the peasant uprising, but each is twice as large:
-# one stack plus one per six provinces, capped at ten stacks.
+# one stack plus one per six provinces, capped at five stacks.
 country_event = {
 	id = succession_wars.43
 	title = succession_wars.43.t
@@ -73,11 +68,6 @@ country_event = {
 		if = { limit = { num_of_owned_provinces_with = { value = 12 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
 		if = { limit = { num_of_owned_provinces_with = { value = 18 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
 		if = { limit = { num_of_owned_provinces_with = { value = 24 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 30 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 36 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 42 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 48 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
-		if = { limit = { num_of_owned_provinces_with = { value = 54 } } random_owned_province = { limit = { NOT = { has_province_flag = succession_wars_pretender_rebels } } set_province_flag = succession_wars_pretender_rebels spawn_rebels = { type = pretender_rebels size = 3 } } }
 		every_owned_province = { clr_province_flag = succession_wars_pretender_rebels }
 	}
 }
