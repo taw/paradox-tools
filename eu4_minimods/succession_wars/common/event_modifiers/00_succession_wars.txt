@@ -21,3 +21,7 @@ succession_wars_burgher_coup = { merchants = 1 }
 succession_wars_cultural_consolidation = {
 	culture_conversion_cost = -0.5
 }
+
+succession_wars_cultural_unrest = {
+	local_unrest = 10
+}

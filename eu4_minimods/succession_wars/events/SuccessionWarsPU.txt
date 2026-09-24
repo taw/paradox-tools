@@ -11,9 +11,17 @@ country_event = {
 	trigger = {
 		is_subject = no
 		is_lesser_in_union = no
+		NOT = {
+			OR = {
+				personal_union = 2
+				integrated_personal_union = 2
+				AND = { personal_union = 1 integrated_personal_union = 1 }
+			}
+		}
 		government = monarchy
 		religion_group = christian
 		NOT = { has_reform = elective_monarchy }
+		NOT = { has_reform = polish_elective_monarchy }
 		NOT = { has_government_attribute = has_dutch_election }
 		NOT = { is_emperor = yes }
 		any_country = {
@@ -105,6 +113,32 @@ country_event = {
 			else = {
 				log = "SuccessionWars: FAILED foreign PU for [Root.GetName]; selected senior was [This.GetName] in [GetYear]."
 			}
+		}
+	}
+}
+
+# A succession crisis gives rival Christian monarchies a short-lived opening to
+# press their own dynastic claims.
+country_event = {
+	id = succession_wars.11
+	title = succession_wars.11.t
+	desc = succession_wars.11.d
+	picture = DIPLOMACY_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = {
+		is_subject = no
+		government = monarchy
+		religion_group = christian
+		any_rival_country = { is_subject = no government = monarchy religion_group = christian }
+	}
+	option = {
+		name = succession_wars.11.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: Christian rivals claimed the throne of [Root.GetName] in [GetYear]."
+		every_rival_country = {
+			limit = { is_subject = no government = monarchy religion_group = christian }
+			add_casus_belli = { target = ROOT type = cb_claim_throne months = 240 }
 		}
 	}
 }

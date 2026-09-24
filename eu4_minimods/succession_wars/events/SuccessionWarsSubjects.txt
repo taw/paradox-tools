@@ -141,6 +141,36 @@ country_event = {
 	}
 }
 
+# Disloyal junior partners often have sufficient supporters but never choose to
+# press the independence button.  Force one qualifying junior into its own war.
+country_event = {
+	id = succession_wars.64
+	title = succession_wars.64.t
+	desc = succession_wars.64.d
+	picture = BATTLE_eventPicture
+	hidden = yes
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = {
+		any_subject_country = {
+			is_lesser_in_union = yes
+			liberty_desire = 100
+		}
+	}
+	option = {
+		name = succession_wars.64.a
+		ai_chance = { factor = 100 }
+		random_subject_country = {
+			limit = {
+				is_lesser_in_union = yes
+				liberty_desire = 100
+			}
+			log = "SuccessionWars: [This.GetName] declared independence from [Root.GetName] in [GetYear]."
+			declare_war_with_cb = { who = ROOT casus_belli = cb_independence_war }
+		}
+	}
+}
+
 country_event = {
 	id = succession_wars.70
 	title = succession_wars.70.t
