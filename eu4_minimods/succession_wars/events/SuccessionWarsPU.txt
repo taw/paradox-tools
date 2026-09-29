@@ -121,8 +121,8 @@ country_event = {
 	}
 }
 
-# A succession crisis gives rival Christian monarchies a short-lived opening to
-# press their own dynastic claims.
+# A succession crisis gives rival Christian monarchies a twenty-year opening to
+# restore a union by force.
 country_event = {
 	id = succession_wars.11
 	title = succession_wars.11.t
@@ -145,7 +145,7 @@ country_event = {
 		log = "SuccessionWars: Christian rivals claimed the throne of [Root.GetName] in [GetYear]."
 		every_rival_country = {
 			limit = { is_subject = no government = monarchy religion_group = christian }
-			add_casus_belli = { target = ROOT type = cb_claim_throne months = 240 }
+			add_casus_belli = { target = ROOT type = cb_restore_personal_union months = 240 }
 		}
 	}
 }
