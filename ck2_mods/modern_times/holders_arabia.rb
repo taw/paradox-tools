@@ -15,11 +15,15 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "2015.1.23" => {name: "Salman | Saud", father: "d_nefoud Abdulaziz 1", lived: "1935.12.31 -"},
   },
   c_kuwait: {
-    kuwait_independence: {name: "Abdullah Salem Al-Mubarak | Al-Sabah", lived: "1895 - 1965"},
-    "1965.11.24" => {name: "Sabah Salem Al-Mubarak | Al-Sabah", lived: "1913 - 1977"},
-    "1977.12.31" => {name: "Jaber Al-Ahmad Al-Jaber | Al-Sabah", lived: "1926 - 2006"},
-    "2006.1.15" => {name: "Saad Abdullah Al-Salem | Al-Sabah", lived: "1930 - 2008"},
-    "2006.1.29" => {name: "Sabah Al-Ahmad Al-Jaber | Al-Sabah", lived: "1929 -"},
+    kuwait_independence: {name: "Abdullah Salem Al-Mubarak | Al-Sabah", lived: "1895 - 1965.11.24"},
+    "1965.11.24" => {name: "Sabah Salem Al-Mubarak | Al-Sabah", lived: "1913.4.12 - 1977.12.31"},
+    "1977.12.31" => {name: "Jaber Al-Ahmad Al-Jaber | Al-Sabah", lived: "1926.6.29 - 2006.1.15"},
+    "2006.1.15" => {name: "Saad Abdullah Al-Salem | Al-Sabah", lived: "1930.5.13 - 2008.5.13"},
+    "2006.1.29" => {name: "Sabah Al-Ahmad Al-Jaber | Al-Sabah", lived: "1929.6.16 - 2020.9.29"},
+    # brother of previous
+    "2020.9.29" => {name: "Nawaf Al-Ahmad Al-Jaber | Al-Sabah", lived: "1937.6.25 - 2023.12.16"},
+    # brother of previous
+    "2023.12.16" => {name: "Mishal Al-Ahmad Al-Jaber | Al-Sabah", lived: "1940.9.27 -"},
   },
   d_arabia_felix: {
     #  Mutawakkilite Kingdom of Yemen, imams
@@ -44,19 +48,21 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "1974.6.13" => { name: "Ibrahim al-Hamdi", lived: "1943 - 1977.10.11" },
     "1977.10.11"=> { name: "Ahmad al-Ghashmi", lived: "1938 - 1978.6.24" },
     "1978.6.24" => { name: "Abdul Karim Abdullah | al-Arashi", lived: "1934.12.1 - 2006.6.10" },
-    "1978.7.18" => { name: "Ali Abdullah | Saleh", lived: "1942.3.21 -" },
+    "1978.7.18" => { name: "Ali Abdullah | Saleh", lived: "1947.3.21 - 2017.12.4" },
     "1990.5.22" => nil,
   },
   d_sanaa: {
     "1967.11.30" => { name: "Qahtan Muhammad | al-Shaabi", lived: "1920-1981" },
     "1969.6.23"  => { name: "Salim Rubai | Ali", lived: "1935 - 1978.6.26" },
-    "1978.6.26"  => { name: "Ali Nasir | Muhammad", lived: "1939 -" },
+    "1978.6.26"  => { name: "Ali Nasir | Muhammad", lived: "1939.12.31 -" },
     "1978.12.27" => { name: "Abdul Fattah | Ismail", lived: "1939 - 1986.1.13" },
     "1980.4.26"  => { use: "Ali Nasir 1" },
     "1986.1.24"  => { name: "Haidar Abu Bakr | al-Attas", lived: "1939.4.5 -" },
     # Unification
     "1990.5.22" => { use: "d_arabia_felix Ali Abdullah 1" },
     "2012.2.27" => { name: "Abd Rabbuh Mansur | Hadi", lived: "1945.9.1 -" },
+    # Chairman of the Presidential Leadership Council
+    "2022.4.7" => { name: "Rashad | al-Alimi", lived: "1954.1.15 -" },
   },
   d_oman: {
     "1806.9.14" => { name: "Said | al Said", lived: "1797.6.5 - 1856.10.19" },
@@ -68,7 +74,9 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "1888.6.4"  => { name: "Faisal | al Said", lived: "1864 - 1913.10.4", father: "Turki 1" },
     "1892.3.13" => nil,
     # from "1970.7.23", initially under UK
-    "1971.12.2" => { name: "Qaboos | al Said", lived: "1940.11.18 -" },
+    "1971.12.2" => { name: "Qaboos | al Said", lived: "1940.11.18 - 2020.1.10" },
+    # cousin of previous, backdating from 2020.1.11
+    "2020.1.10" => { name: "Haitham | al Said", lived: "1955.10.11 -" },
   },
   d_medina: {
     "1918.11.11" => {
@@ -139,8 +147,10 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "1968.7.17" => {name: "Ahmed Hassan | al-Bakr", lived: "1914.7.1 - 1982.10.4"},
     "1979.7.16" => {name: "Saddam | Hussein", lived: "1937.4.28 - 2006.12.30", traits: ["cynical", "paranoid"], health: 6},
     # Backdating hard
-    "2003.4.9" => {name: "Jalal | Talabani", lived: "1933.11.12-"},
-    "2014.7.24" => {name: "Fuad | Masum", lived: "1938.1.1-"},
+    "2003.4.9" => {name: "Jalal | Talabani", lived: "1933 - 2017.10.3"},
+    "2014.7.24" => {name: "Fuad | Masum", lived: "1938.7.1 -"},
+    "2018.10.2" => {name: "Barham | Salih", lived: "1960.9.8 -"},
+    "2022.10.17" => {name: "Abdul Latif | Rashid", lived: "1944.8.10 -"},
   },
   k_syria: {
     # a lot of one-day rulers, skipping them
@@ -160,6 +170,8 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     "1970.11.18" => { name: "Ahmad al-Khatib", lived: "1933-1982" },
     "1971.2.22"  => { name: "Hafez | al-Assad", lived: "1930.10.6 - 2000.6.10"},
     "2000.6.10"  => { name: "Bashar | al-Assad", lived: "1965.9.11-", father: "Hafez 1"},
+    # Fall of the Assad regime, de facto leader, formally President from 2025.1.29
+    "2024.12.8"  => { name: "Ahmed | al-Sharaa", lived: "1982.10.29 -" },
   },
   d_galilee: {
     # Ignore all before independence
@@ -177,14 +189,17 @@ ModernTimesDatabase::HOLDERS_ARABIA = {
     # Ignoring Selim Hoss conflict here
     "1988.9.22"  => { name: "Michel Aoun", lived: "1935.2.18 -" },
     "1989.11.5"  => { name: "René Moawad", lived: "1925.4.17 - 1989.11.22" },
-    "1989.11.22" => { name: "Selim Hoss", lived: "1929.12.20 -" },
+    "1989.11.22" => { name: "Selim Hoss", lived: "1929.12.20 - 2024.8.25" },
     "1989.11.24" => { name: "Elias Hrawi", lived: "1926.9.4 - 2006.7.7" },
     "1998.11.24" => { name: "Émile Lahoud", lived: "1936.1.12 -" },
-    "2007.11.24" => { name: "Fouad Siniora", lived: "1943.11.22 -" },
+    "2007.11.24" => { name: "Fouad Siniora", lived: "1943.7.19 -" },
     "2008.5.25"  => { name: "Michel Suleiman", lived: "1948.11.21 -" },
     # Acting President
     "2014.5.25"  => { name: "Tammam Salam", lived: "1945.5.13 -" },
     "2016.10.31" => {use: "Michel 1"}, # Michel Aoun, returning
+    # Acting President (caretaker cabinet), presidential vacancy
+    "2022.10.31" => { name: "Najib Mikati", lived: "1955.11.24 -" },
+    "2025.1.9"   => { name: "Joseph Aoun", lived: "1964.1.10 -" },
   },
   c_bahrein: { # Qatar
     # Start count from independence, there were sheiks under British protectorate before that

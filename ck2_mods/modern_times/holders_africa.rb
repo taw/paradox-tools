@@ -69,15 +69,15 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Claimant crowned himself much earlier, but counting from assassination
     "2011.10.20" => {
       name: "Mustafa Abdul-Jalil",
-      lived: "1952-",
+      lived: "1952.11.6 -",
     },
     "2012.8.9" => {
       name: "Mohammed Magariaf",
-      lived: "1940-",
+      lived: "1940.5.9 -",
     },
     "2013.6.25" => {
       name: "Nouri Abusahmai",
-      lived: "?", # wikipedia doesn't even know birth yeah...
+      lived: "1956 -",
     },
     "2014.8.5" => {
       name: "Aguila Saleh | Issa",
@@ -85,7 +85,12 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     },
     "2016.3.30" => {
       name: "Fayez | al-Sarraj",
-      lived: "1960-",
+      lived: "1960.2.20 -",
+    },
+    # Chairman of the Presidential Council (Government of National Unity)
+    "2021.3.15" => {
+      name: "Mohamed | al-Menfi",
+      lived: "1976.3.3 -",
     },
   },
   d_tunis: {
@@ -96,7 +101,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     },
     "1987.11.7" => {
       name: "Zine El Abidine | Ben Ali",
-      lived: "1936.9.3 -",
+      lived: "1936.9.3 - 2019.9.19",
     },
     # Backdating
     "2011.1.14" => {
@@ -105,7 +110,16 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     },
     "2014.12.31" => {
       name: "Beji Caid | Essebsi",
-      lived: "1926.11.29-",
+      lived: "1926.11.29 - 2019.7.25",
+    },
+    # Acting
+    "2019.7.25" => {
+      name: "Mohamed Ennaceur",
+      lived: "1934.3.21 -",
+    },
+    "2019.10.23" => {
+      name: "Kais Saied",
+      lived: "1958.2.22 -",
     },
   },
   d_alger: {
@@ -138,7 +152,7 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Not sure there's a point including these one
     "1992.1.11" => {
       name: "Abdelmalek Benhabyles",
-      lived: "1921.4.27-",
+      lived: "1921.4.27 - 2018.12.28",
     },
     "1992.1.14" => {
       name: "Mohamed Boudiaf",
@@ -155,7 +169,16 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     },
     "1999.4.27" => { # Official #5
       name: "Abdelaziz Bouteflika",
-      lived: "1937.3.2-",
+      lived: "1937.3.2 - 2021.9.17",
+    },
+    # Acting, backdating from 2019.4.9
+    "2019.4.2" => {
+      name: "Abdelkader Bensalah",
+      lived: "1941.11.24 - 2021.9.22",
+    },
+    "2019.12.19" => { # Official #6
+      name: "Abdelmadjid Tebboune",
+      lived: "1945.11.17 -",
     },
   },
   k_nubia: { # Sudan
@@ -164,9 +187,12 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     "1964.11.16" => { name: "Sirr Al-Khatim | Al-Khalifa", lived: "1919.1.1 - 2006.2.18" },
     "1964.12.3"  => { name: "Ismail al-Azhari", lived: "1900.10.20 - 1969.8.26" },
     "1969.5.25"  => { name: "Gaafar Nimeiry", lived: "1930.1.1 - 2009.5.30" },
-    "1985.4.6"   => { name: "Abdel Rahman Swar | al-Dahab", lived: "1934 -" },
+    "1985.4.6"   => { name: "Abdel Rahman Swar | al-Dahab", lived: "1934 - 2018.10.18" },
     "1986.5.6"   => { name: "Ahmad Ali | Al-Mirghani", lived: "1941.8.16 - 2008.11.2" },
     "1989.6.30"  => { name: "Omar al-Bashir", lived: "1944.1.1 -" },
+    # Transitional Military Council, then Sovereignty Council
+    "2019.4.11"  => { name: "Ahmed Awad | Ibn Auf", lived: "1956 -" },
+    "2019.4.12"  => { name: "Abdel Fattah | al-Burhan", lived: "1960.7.11 -" },
   },
   k_egypt: {
     "1805.6.18"  => { name: "Muhammad Ali | Muhammad Ali", lived: "1769.3.4 - 1849.8.2" },
@@ -187,8 +213,8 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     "1954.11.14" => { name: "Gamal Abdel | Nasser", lived: "1918.1.15 - 1970.9.28" },
     "1970.9.28"  => { name: "Anwar Sadat", lived: "1918.12.25 - 1981.10.6" },
     # backdating
-    "1981.10.6" => { name: "Hosni Mubarak", lived: "1928.5.4 -" },
-    "2012.6.30" => { name: "Mohamed Morsi", lived: "1951.8.8 -" },
+    "1981.10.6" => { name: "Hosni Mubarak", lived: "1928.5.4 - 2020.2.25" },
+    "2012.6.30" => { name: "Mohamed Morsi", lived: "1951.8.8 - 2019.6.17" },
     # backdating
     "2013.7.3" => { name: "Abdel Fattah | el-Sisi", lived: "1954.11.19 -" },
   },
@@ -201,18 +227,22 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     "1993.4.16" => { name: "Mahamane Ousmane", lived: "1950.1.20 -" },
     "1996.1.27" => { name: "Ibrahim Baré | Maïnassara", lived: "1949.5.9 - 1999.4.9" },
     "1999.4.9" => { name: "Daouda Malam | Wanké", lived: "1946.5.6 - 2004.9.15" },
-    "1999.12.22" => { name: "Mamadou Tandja", lived: "1938 -" },
+    "1999.12.22" => { name: "Mamadou Tandja", lived: "1938 - 2020.11.24" },
     "2010.2.18" => { name: "Salou Djibo", lived: "1965.4.15 -" },
     "2011.4.7" => { name: "Mahamadou Issoufou", lived: "1952 -" },
+    "2021.4.2" => { name: "Mohamed Bazoum", lived: "1960.1.1 -" },
+    # coup on 2023.7.26, officially proclaimed 2023.7.28
+    "2023.7.26" => { name: "Abdourahamane Tiani", lived: "1964 -" },
   },
   k_kanem: { # Chad
     "1960.8.11" => { name: "François Tombalbaye", lived: "1918.6.15 – 1975.4.13" },
     "1975.4.13" => { name: "Félix Malloum", lived: "1932.9.10 – 2009.6.12" },
     "1979.3.23" => { name: "Goukouni Oueddei", lived: "1944 -" },
-    "1979.4.29" => { name: "Lol Mahamat | Choua", lived: "1939.6.15 -" },
+    "1979.4.29" => { name: "Lol Mahamat | Choua", lived: "1939.6.15 - 2019.9.15" },
     "1979.9.3" => { use: "Goukouni 1" },
-    "1982.6.7" => { name: "Hissène Habré", lived: "1942.9.13 -" },
-    "1990.12.2" => { name: "Idriss Déby", lived: "1952.6.18 -" },
+    "1982.6.7" => { name: "Hissène Habré", lived: "1942.8.13 - 2021.8.24" },
+    "1990.12.2" => { name: "Idriss Déby", lived: "1952.6.18 - 2021.4.20" },
+    "2021.4.20" => { name: "Mahamat Déby", lived: "1984.4.4 -", father: "Idriss 1" },
   },
   k_abyssinia: { # Ethiopia
     # Ethiopian history before 1855 is total mess
@@ -230,11 +260,12 @@ ModernTimesDatabase::HOLDERS_AFRICA = {
     # Which one is given vs family name ???
     "1975.3.21" => { name: "Tafari Benti", lived: "October 1921 – 1977.2.3" },
     "1977.2.3" => { name: "Mengistu Haile | Mariam", lived: "1937.5.21 -" },
-    "1991.5.21" => { name: "Tesfaye Gebre | Kidan", lived: "1935 – 2004.6.2" },
+    "1991.5.21" => { name: "Tesfaye Gebre | Kidan", lived: "1935 – 2004.6.4" },
     "1991.5.27" => { name: "Meles Zenawi", lived: "1955.5.9 – 2012.8.20" },
-    "1995.8.22" => { name: "Negasso Gidada", lived: "1943.9.3 -" },
+    "1995.8.22" => { name: "Negasso Gidada", lived: "1943.9.8 - 2019.4.27" },
     "2001.10.8" => { name: "Girma Wolde-Giorgis", lived: "1924.12.28 – 2018.12.15" },
     "2013.10.7" => { name: "Mulatu Teshome", lived: "1957 -" },
-    "2018.10.25" => { name: "Sahle-Work Zewde", lived: "1950.2.21 -" },
+    "2018.10.25" => { name: "Sahle-Work Zewde", lived: "1950.2.21 -", female: true },
+    "2024.10.7" => { name: "Taye Atske | Selassie", lived: "1956.1.13 -" },
   },
 }

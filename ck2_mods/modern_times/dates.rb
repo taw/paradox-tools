@@ -11,7 +11,7 @@ module ModernTimesDatabase::Dates
     game_end: "2999.12.31",
 
     times_immemorial: "1600.1.1",
-    title_holders_until: "2020.12.31", # how far to generate title holders
+    title_holders_until: "2025.12.31", # how far to generate title holders
 
     ### Special tags that need killing
     forever_ago: "1700.1.1", # Few plans to go back earlier than this

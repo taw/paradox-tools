@@ -32,11 +32,11 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
     # 5th Republic
     "1959.1.8" => {name: "Charles | de Gaulle", lived: "1890 - 1970"},
     "1969.6.20" => {name: "Georges | Pompidou", lived: "1911 - 1974"},
-    "1974.5.27" => {name: "Valéry Giscard | d'Estaing", lived: "1926 -"},
+    "1974.5.27" => {name: "Valéry Giscard | d'Estaing", lived: "1926.2.2 - 2020.12.2"},
     "1981.5.21" => {name: "François | Mitterrand", lived: "1916 - 1996"},
-    "1995.5.17" => {name: "Jacques | Chirac", lived: "1932 -"},
-    "2007.5.16" => {name: "Nicolas | Sarkozy", lived: "1955 -"},
-    "2012.5.15" => {name: "François | Hollande", lived: "1954 -"},
+    "1995.5.17" => {name: "Jacques | Chirac", lived: "1932.11.29 - 2019.9.26"},
+    "2007.5.16" => {name: "Nicolas | Sarkozy", lived: "1955.1.28 -"},
+    "2012.5.15" => {name: "François | Hollande", lived: "1954.8.12 -"},
     "2017.5.14" => {name: "Emmanuel Macron", lived: "1977.12.21 -"},
   },
   e_spain: {
@@ -144,7 +144,7 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
       name: "Mário | Soares", lived: "1924.12.7 - 2017.1.7",
     },
     "1996.3.9" => {
-      name: "Jorge | Sampaio", lived: "1939.9.18 -",
+      name: "Jorge | Sampaio", lived: "1939.9.18 - 2021.9.10",
     },
     "2006.3.9" => {
       name: "Aníbal Cavaco | Silva", lived: "1939.7.15 -",
@@ -206,6 +206,12 @@ ModernTimesDatabase::HOLDERS_WESTERN_EUROPE = {
       name: "Henri | Nassau-Weilburg",
       lived: "1955.4.16 -",
       father: "Jean",
+      religion: "catholic",
+    },
+    "2025.10.3" => {
+      name: "Guillaume | Nassau-Weilburg",
+      lived: "1981.11.11 -",
+      father: "Henri",
       religion: "catholic",
     },
   },

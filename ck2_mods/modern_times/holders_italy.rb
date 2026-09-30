@@ -91,7 +91,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     "2006.5.15" => {
       name: "Giorgio | Napolitano",
-      lived: "1925.6.29 -",
+      lived: "1925.6.29 - 2023.9.22",
     },
     "2015.2.3" => {
       name: "Sergio | Mattarella",
@@ -403,14 +403,22 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     "2005.4.2" => {
       name: "Benedictus | Ratzinger",
       culture: :german,
-      lived: "1927.4.16 -", # Popes, abdicating? WTF is this?
+      lived: "1927.4.16 - 2022.12.31", # Popes, abdicating? WTF is this?
       traits: ["mastermind_theologian"],
       events: { crowning: PropertyList["piety", 500] },
     },
     "2013.2.28" => {
       name: "Franciscus | Bergoglio",
       culture: :castillan,
-      lived: "1936.12.17 -",
+      lived: "1936.12.17 - 2025.4.21",
+      traits: ["mastermind_theologian"],
+      events: { crowning: PropertyList["piety", 500] },
+    },
+    # Elected 2025.5.8, backdated
+    "2025.4.21" => {
+      name: "Leo | Prevost",
+      culture: :american,
+      lived: "1955.9.14 -",
       traits: ["mastermind_theologian"],
       events: { crowning: PropertyList["piety", 500] },
     },
@@ -429,7 +437,7 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     },
     "1984.12.22" => {
       name: "Karmenu | Mifsud Bonnici",
-      lived: "1933.7.17-",
+      lived: "1933.7.17 - 2022.11.5",
     },
     "1987.5.12" => {
       name: "Edward | Fenech Adami",
@@ -447,6 +455,10 @@ ModernTimesDatabase::HOLDERS_ITALY = {
     "2013.3.11" => {
       name: "Joseph Muscat",
       lived: "1974.1.22-",
+    },
+    "2020.1.13" => {
+      name: "Robert Abela",
+      lived: "1977.12.7-",
     },
   },
   d_toscana: {

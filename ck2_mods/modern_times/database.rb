@@ -420,8 +420,8 @@ class ModernTimesDatabase
         # This validator is problematic as actual numbers are random, used to be 35 and 90
         birth = c[:birth] || (d0 << 12 * 35) # actual number is random 25-40
         death = c[:death] || (birth >> 12 * 80) # actual number is random 80-90
-        death = Date.parse("2020.1.1") if death == :never
-        d1 ||= Date.parse("2020.1.1")
+        death = Date.parse("2026.1.1") if death == :never
+        d1 ||= Date.parse("2026.1.1")
 
         # Correct
         # birth < d0 < d1 <= death
@@ -538,7 +538,7 @@ class ModernTimesDatabase
 
   def cleanup_unicode(name)
     # Remove "CK2-unsafe" characters
-    cleaned_up = name.tr("đćűőșăčīķēņāČĐïņãŠĆć", "dcuosacikenaCDinaSCc")
+    cleaned_up = name.tr("đćűőșăčīķēņāČĐïņãŠĆćė", "dcuosacikenaCDinaSCce")
     # Guessing "safe" characters
     Kernel::warn "Still unicode left in #{name}" if cleaned_up =~ /[^\000-\177ÉáüöäèéÁóðçšåýÓí]/
     cleaned_up

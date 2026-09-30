@@ -103,33 +103,47 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
       },
     },
     "1952.2.6" => {
-      lived: "1926.4.21 -",
+      lived: "1926.4.21 - 2022.9.8",
       name: "Elizabeth | Windsor",
       female: true,
       father: "George 6",
+    },
+    "2022.9.8" => {
+      lived: "1948.11.14 -",
+      name: "Charles | Windsor",
+      mother: "Elizabeth 1",
     },
   },
   k_scotland: {
     "1999.5.7" => {
       name: "Donald | Dewar",
-      lived: "1937-2000",
+      lived: "1937.8.21 - 2000.10.11",
     },
-    "2000.10.27" => {
+    # backdating from 2000.10.27, Jim Wallace was acting First Minister in between
+    "2000.10.11" => {
       name: "Henry | McLeish",
-      lived: "1948-",
+      lived: "1948.6.15 -",
     },
     "2001.11.22" => {
       name: "Jack | McConnell",
-      lived: "1960-",
+      lived: "1960.6.30 -",
     },
     "2007.5.16" => {
       name: "Alex | Salmond",
-      lived: "1954-",
+      lived: "1954.12.31 - 2024.10.12",
     },
     "2014.11.20" => {
       name: "Nicola | Sturgeon",
-      lived: "1970-",
+      lived: "1970.7.19 -",
       female: true,
+    },
+    "2023.3.29" => {
+      name: "Humza | Yousaf",
+      lived: "1985.4.7 -",
+    },
+    "2024.5.8" => {
+      name: "John | Swinney",
+      lived: "1964.4.13 -",
     },
   },
   k_wales: {
@@ -144,6 +158,19 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
     "2009.12.9" => {
       name: "Carwyn | Jones",
       lived: "1967.3.21-",
+    },
+    "2018.12.13" => {
+      name: "Mark | Drakeford",
+      lived: "1954.9.19-",
+    },
+    "2024.3.20" => {
+      name: "Vaughan | Gething",
+      lived: "1974.3.15-",
+    },
+    "2024.8.6" => {
+      name: "Eluned | Morgan",
+      lived: "1967.2.16-",
+      female: true,
     },
   },
   k_ireland: {
@@ -178,7 +205,7 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
     },
     "1973.3.14" => {
       name: "Liam Cosgrave",
-      lived: "1920-",
+      lived: "1920.4.13 - 2017.10.4",
     },
     "1977.7.5" => {use: "Jack 1"},
     "1979.12.11" => {
@@ -198,23 +225,33 @@ ModernTimesDatabase::HOLDERS_BRITAIN = {
     },
     "1994.12.15" => {
       name: "John Bruton",
-      lived: "1947-",
+      lived: "1947.5.18 - 2024.2.6",
     },
     "1997.6.26" => {
       name: "Bertie Ahern",
-      lived: "1951-",
+      lived: "1951.9.12 -",
     },
     "2008.5.7" => {
       name: "Brian Cowen",
-      lived: "1960-",
+      lived: "1960.1.10 -",
     },
     "2011.3.9" => {
       name: "Enda Kenny",
-      lived: "1951-",
+      lived: "1951.4.24 -",
     },
     "2017.6.14" => {
       name: "Leo Varadkar",
       lived: "1979.1.18 -",
-    }
+    },
+    "2020.6.27" => {
+      name: "Micheál Martin",
+      lived: "1960.8.16 -",
+    },
+    "2022.12.17" => {use: "Leo 1"},
+    "2024.4.9" => {
+      name: "Simon Harris",
+      lived: "1986.10.17 -",
+    },
+    "2025.1.23" => {use: "Micheál 1"},
   },
 }

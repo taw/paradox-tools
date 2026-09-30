@@ -44,7 +44,7 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
     },
     "1989.10.18" => {
       name: "Egon | Krenz",
-      lived: "1937-",
+      lived: "1937.3.19 -",
     },
     german_reunification: nil,
   },
@@ -171,6 +171,16 @@ ModernTimesDatabase::HOLDERS_GERMANY = {
       lived: "1954.7.17 -",
       female: true,
       religion: :protestant,
+    },
+    "2021.12.8" => {
+      name: "Olaf | Scholz",
+      lived: "1958.6.14 -",
+      religion: :protestant,
+    },
+    "2025.5.6" => {
+      name: "Friedrich | Merz",
+      lived: "1955.11.11 -",
+      religion: :catholic,
     },
   },
   k_germany: {

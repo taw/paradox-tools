@@ -30,6 +30,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
       name: "Borut | Pahor",
       lived: "1963.11.2 -",
     },
+    "2022.12.23" => {
+      name: "Nataša | Pirc Musar",
+      lived: "1968.5.9 -",
+      female: true,
+    },
   },
   k_croatia: {
     croatia_independence: {name: "Franjo | Tuđman", lived: "1922.5.14 - 1999.12.10"},
@@ -37,6 +42,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1999.12.10" => {name: "Stjepan | Mesić", lived: "1934.12.24-" },
     "2010.2.19" => {name: "Ivo | Josipović", lived: "1957.8.28-" },
     "2015.2.19" => {name: "Kolinda | Grabar-Kitarović", female: true, lived: "1968.4.29-"},
+    "2020.2.19" => {name: "Zoran | Milanović", lived: "1966.10.30 -"},
   },
   # Serbia/Yugoslavia. There was a lot of silliness about rulers of Serbia vs "Yugoslavia" or "Serbia and Montenegro"
   # Just a simplified view here
@@ -120,12 +126,12 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1989.5.15"  => {use: "d_carinthia Janez"},
     "1990.5.15" => {
       name: "Borisav Jović",
-      lived: "1928.10.19-",
+      lived: "1928.10.19 - 2021.9.13",
     },
     "1991.6.30"  => {use: "k_croatia Stjepan"},
     "1991.12.5" => {
       name: "Branko Kostić",
-      lived: "1939.8.28-",
+      lived: "1939.8.28 - 2020.8.20",
     },
     "1992.6.15" => {
       name: "Dobrica Ćosić",
@@ -150,11 +156,11 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "2006.6.3" => {
       name: "Boris Tadić",
-      lived: "1958-",
+      lived: "1958.1.15 -",
     },
     "2012.5.31" => {
       name: "Tomislav Nikolić",
-      lived: "1952-",
+      lived: "1952.2.15 -",
     },
     "2017.5.31" =>  {
       name: "Aleksandar Vučić",
@@ -171,27 +177,31 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "1977.8.3" => {
       name: "Spyros Kyprianou",
-      lived: "1932-2002",
+      lived: "1932.10.28 - 2002.3.12",
     },
     "1988.2.28" => {
       name: "Georgios Vasiliou",
-      lived: "1931-",
+      lived: "1931.5.20 -",
     },
     "1993.2.28" => {
       name: "Glafkos Klirides",
-      lived: "1919-2013",
+      lived: "1919.4.24 - 2013.11.15",
     },
     "2003.2.28" => {
       name: "Tassos Papadopoulos",
-      lived: "1934-2008",
+      lived: "1934.1.7 - 2008.12.12",
     },
     "2008.2.28" => {
       name: "Dimitris Khristophias",
-      lived: "1946-",
+      lived: "1946.8.29 - 2019.6.21",
     },
     "2013.2.28" => {
       name: "Nikos Anastasiadis",
-      lived: "1946-",
+      lived: "1946.9.27 -",
+    },
+    "2023.2.28" => {
+      name: "Nikos Christodoulides",
+      lived: "1973.12.6 -",
     },
   },
   k_bulgaria: {
@@ -225,32 +235,32 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "1949.7.2" => {
       name: "Vulko Chervenkov",
-      lived: "1900-1980",
+      lived: "1900.9.6 - 1980.10.21",
     },
     "1954.3.4" => {
       name: "Todor Zhivkov",
-      lived: "1911-1998",
+      lived: "1911.9.7 - 1998.8.5",
     },
     "1989.11.10" => {
       name: "Petar Mladenov",
-      lived: "1936-2000",
+      lived: "1936.8.22 - 2000.5.31",
     },
     # Post-Communist, backdating
     "1990.2.2" => {
       name: "Zhelyu Zhelev",
-      lived: "1935-2015",
+      lived: "1935.3.3 - 2015.1.30",
     },
     "1997.1.22" => {
       name: "Petar Stoyanov",
-      lived: "1952-",
+      lived: "1952.5.25 -",
     },
     "2002.1.22" => {
       name: "Georgi Parvanov",
-      lived: "1957-",
+      lived: "1957.6.28 -",
     },
     "2012.1.22" => {
       name: "Rosen Plevneliev",
-      lived: "1964-",
+      lived: "1964.5.14 -",
     },
     "2017.1.22" => {
       name: "Rumen Radev",
@@ -295,18 +305,18 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     # second hellenic republic
     "1924.3.25" => {
       name: "Pavlos Kountouriotis",
-      lived: "1855-1935",
+      lived: "1855.4.9 - 1935.8.22",
     },
     "1926.4.6" => {
       name: "Theodoros Pangalos",
-      lived: "1878-1952",
+      lived: "1878.1.11 - 1952.2.26",
     },
     "1926.8.22" => {
       use: "Pavlos 1",
     },
     "1929.12.10" => {
       name: "Alexandros Zaimis",
-      lived: "1855-1936",
+      lived: "1855.11.9 - 1936.9.15",
     },
     # restored monarchy
     "1935.11.25" => {
@@ -319,7 +329,7 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "1964.3.6" => {
       name: "Konstantinos | Glücksburg",
-      lived: "1940.6.2-",
+      lived: "1940.6.2 - 2023.1.10",
       father: "Pavlos 2",
     },
     # junta
@@ -339,29 +349,38 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     },
     "1975.7.19" => {
       name: "Konstantinos Tsatsos",
-      lived: "1899-1987",
+      lived: "1899.7.1 - 1987.10.8",
     },
     "1980.5.10" => {
       name: "Konstantinos Karamanlis", # 4
-      lived: "1907-1998",
+      lived: "1907.3.8 - 1998.4.23",
     },
     # backdating from 30 March 1985
     "1985.3.10" => {
       name: "Christos Sartzetakis",
-      lived: "1929-",
+      lived: "1929.4.6 - 2022.2.3",
     },
     "1990.5.5" => {use: "Konstantinos 4"}, # Konstantinos Karamanlis
     "1995.3.10" => {
       name: "Konstantinos Stephanopoulos", # 5
-      lived: "1926-",
+      lived: "1926.8.15 - 2016.11.20",
     },
     "2005.3.12" => {
       name: "Karolos Papoulias",
-      lived: "1929-",
+      lived: "1929.6.4 - 2021.12.26",
     },
     "2015.3.13" => {
       name: "Prokopis Pavlopoulos",
-      lived: "1950-",
+      lived: "1950.7.10 -",
+    },
+    "2020.3.13" => {
+      name: "Katerina Sakellaropoulou",
+      lived: "1956.5.30 -",
+      female: true,
+    },
+    "2025.3.13" => {
+      name: "Konstantinos Tasoulas", # 6
+      lived: "1959.7.17 -",
     },
   },
   d_bosnia: {
@@ -377,6 +396,8 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "2007.7.1"  => { name: "Miroslav Lajčák", lived: "1963.3.20 -", culture: :croatian, religion: :catholic },
     # Austrian Slovene
     "2009.3.1"  => { name: "Valentin Inzko", lived: "1949.5.22 -", culture: :carantanian, religion: :catholic },
+    # Lutheran
+    "2021.8.1"  => { name: "Christian Schmidt", lived: "1957.8.26 -", culture: :german, religion: :protestant },
   },
   # Montenegro
   d_dioclea: {
@@ -388,17 +409,20 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1918.12.1" => nil,
     "2006.6.3" => { name: "Filip Vujanović", lived: "1954.9.1 -" },
     "2018.5.20" => { name: "Milo Đukanović", lived: "1962.2.15 -" },
+    "2023.5.20" => { name: "Jakov Milatović", lived: "1986.12.7 -" },
   },
   # Macedonia
   d_strymon:  {
     "1991.9.8"  => { name: "Kiro Gligorov", lived: "1917.5.3 - 2012.1.1" },
-    "1995.10.4"  => { name: "Stojan Andov", lived: "1935.11.30 -" },
+    "1995.10.4"  => { name: "Stojan Andov", lived: "1935.11.30 - 2024.6.18" },
     "1995.11.17" => { use: "Kiro 1" },
-    "1999.11.19" => { name: "Savo Klimovski", lived: "1947-" },
+    "1999.11.19" => { name: "Savo Klimovski", lived: "1947.6.13 -" },
     "1999.12.15" => { name: "Boris Trajkovski", lived: "1956.6.25 - 2004.2.26" },
     "2004.2.26"  => { name: "Ljupčo Jordanovski", lived: "1953.2.13 - 2010.10.7" },
     "2004.5.12"  => { name: "Branko Crvenkovski", lived: "1962.10.2 -" },
     "2009.5.12"  => { name: "Gjorge Ivanov", lived: "1960.5.2 -" },
+    "2019.5.12"  => { name: "Stevo Pendarovski", lived: "1963.4.3 -" },
+    "2024.5.12"  => { name: "Gordana Siljanovska-Davkova", lived: "1953.5.11 -", female: true },
   },
   # Albania
   d_dyrrachion: {
@@ -420,6 +444,8 @@ ModernTimesDatabase::HOLDERS_BALKANS = {
     "1997.7.24" => { name: "Rexhep Meidani", lived: "1944.8.17 -" },
     "2002.7.24" => { name: "Alfred Moisiu", lived: "1929.12.1 -" },
     "2007.7.24" => { name: "Bamir Topi", lived: "1957.4.24 -" },
-    "2012.7.24" => { name: "Bujar Nishani", lived: "1966.9.29 -" },
+    "2012.7.24" => { name: "Bujar Nishani", lived: "1966.9.29 - 2022.5.28" },
+    "2017.7.24" => { name: "Ilir Meta", lived: "1969.3.24 -" },
+    "2022.7.24" => { name: "Bajram Begaj", lived: "1967.3.20 -" },
   },
 }

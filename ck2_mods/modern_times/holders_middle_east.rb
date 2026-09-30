@@ -59,7 +59,7 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
     "1989.6.3" => {
       name: "Ali | Khamenei",
-      lived: "1939.7.17 -",
+      lived: "1939.4.19 -",
       traits: ["zealous"],
     },
   },
@@ -215,11 +215,11 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1995.11.22" => {use: "Shimon 1"},
     "1996.6.18" => {
       name: "Benjamin Netanyahu",
-      lived: "1949-",
+      lived: "1949.10.21 -",
     },
     "1999.7.6" => {
       name: "Ehud Barak",
-      lived: "1942-",
+      lived: "1942.2.12 -",
     },
     "2001.3.7" => {
       name: "Ariel Sharon",
@@ -227,16 +227,25 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     },
     "2006.4.14" => {
       name: "Ehud Olmert",
-      lived: "1945-",
+      lived: "1945.9.30 -",
     },
     "2009.3.31" => {use: "Benjamin 1"},
+    "2021.6.13" => {
+      name: "Naftali Bennett",
+      lived: "1972.3.25 -",
+    },
+    "2022.7.1" => {
+      name: "Yair Lapid",
+      lived: "1963.11.5 -",
+    },
+    "2022.12.29" => {use: "Benjamin 1"},
   },
   d_sunni: {
     "1695.2.6" => { use_all: "e_arabia" },
     "1922.11.1" => nil,
     caliphate_reborn: {
       name: "Abu Bakr | al-Baghdadi",
-      lived: "1971.7.28-",
+      lived: "1971.7.28 - 2019.10.27",
       traits: ["cruel", "zealous"],
       events: {
         caliphate_reborn: PropertyList[
@@ -320,17 +329,20 @@ ModernTimesDatabase::HOLDERS_MIDDLE_EAST = {
     "1978.4.30" => { name: "Nur Muhammad | Taraki", lived: "1917.7.15 - 1979.9.14" },
     "1979.9.14" => { name: "Hafizullah Amin", lived: "1929.8.1 - 1979.12.27" },
     "1979.12.27" => { name: "Babrak Karmal", lived: "1929.1.6 - 1996.12.3" },
-    "1986.11.24" => { name: "Haji Mohammad | Chamkani", lived: "1947 -" },
+    "1986.11.24" => { name: "Haji Mohammad | Chamkani", lived: "1919 - 2012" },
     # presidents
     "1987.9.30" => { name: "Mohammad Najibullah", lived: "1947.8.6 - 1996.9.28" },
     "1992.4.16" => { name: "Abdul Rahim | Hatif", lived: "1926.5.20 - 2013.8.19" },
     # islamic state (Taliban)
-    "1992.4.28" => { name: "Sibghatullah Mojaddedi", lived: "1926 -" },
+    "1992.4.28" => { name: "Sibghatullah Mojaddedi", lived: "1926.9.27 - 2019.2.11" },
     "1992.6.28" => { name: "Burhanuddin Rabbani", lived: "1940.9.20 - 2011.9.20" },
     "1996.9.27" => { name: "Mohammed Omar", lived: "1962 - 2013.4.23" },
     # transitional islamic state (non-Taliban)
     "2001.11.13" => { use: "Burhanuddin 1" },
     "2001.12.22" => { name: "Hamid Karzai", lived: "1957.12.24 -" },
-    "2014.9.29" => { name: "Mohammad Ashraf | Ghani", lived: "1949 -" },
+    "2014.9.29" => { name: "Mohammad Ashraf | Ghani", lived: "1949.5.19 -" },
+    # Taliban takeover, Supreme Leader of the Islamic Emirate
+    # birth date disputed (1959-1961 per some sources), using Taliban/ICC date
+    "2021.8.15" => { name: "Hibatullah | Akhundzada", lived: "1967.10.19 -" },
   },
 }

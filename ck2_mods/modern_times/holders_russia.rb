@@ -142,7 +142,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # backdating one day
     "1985.3.10" => {
       name: "Mikhail | Gorbachyov",
-      lived: "1931.3.2-",
+      lived: "1931.3.2 - 2022.8.30",
     },
     "1991.12.25" => {
       name: "Boris | Yeltsin",
@@ -181,7 +181,7 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
   k_ruthenia: {
     fall_soviet_union: {
       name: "Leonid | Kravchuk",
-      lived: "1934.1.10 -",
+      lived: "1934.1.10 - 2022.5.10",
     },
     "1994.7.19" => {
       name: "Leonid | Kuchma",
@@ -260,12 +260,12 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # backdating from 1980.10.15
     "1980.10.4" => { name: "Tikhon Kiselyov", lived: "1917.8.12 - 1983.1.11" },
     # backdating from 1983.1.13
-    "1983.1.11" => { name: "Nikolay Slyunkov", lived: "1929-" },
-    "1987.2.6" => { name: "Yefrem Sokolov", lived: "1926.4.26-" },
-    "1990.11.30" => { name: "Anatoly Malofeyev", lived: "1933.5.14 -" },
+    "1983.1.11" => { name: "Nikolay Slyunkov", lived: "1929.4.26 - 2022.8.9" },
+    "1987.2.6" => { name: "Yefrem Sokolov", lived: "1926.4.25 - 2022.4.3" },
+    "1990.11.30" => { name: "Anatoly Malofeyev", lived: "1933.5.14 - 2022.1.19" },
     "1991.8.15" => {
       name: "Stanislav | Shushkevich",
-      lived: "1934.12.15 -",
+      lived: "1934.12.15 - 2022.5.3",
     },
     # Skipping two acting chairmen of supreme soviet, not backdating
     "1994.7.20" => {
@@ -277,7 +277,10 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # A lot of backdating
     fall_soviet_union: {name: "Eduard | Shevardnadze", lived: "1928.1.25 - 2014.7.7"},
     "2003.11.23" => {name: "Mikheil | Saakashvili", lived: "1967.12.21 -"},
-    "2013.11.17" => {name: "Giorgi | Margvelashvili", lived: "1969.9.4-"}
+    "2013.11.17" => {name: "Giorgi | Margvelashvili", lived: "1969.9.4-"},
+    "2018.12.16" => {name: "Salome | Zourabichvili", lived: "1952.3.18 -", female: true},
+    # Legitimacy disputed by Zourabichvili and the opposition, but he is de facto president
+    "2024.12.29" => {name: "Mikheil | Kavelashvili", lived: "1971.7.22 -"},
   },
   d_azerbaijan: {
     # actually 28 May 1918
@@ -300,8 +303,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
 
     "1969.7.14" => { name: "Heydar | Aliyev", lived: "1923.5.10 - 2003.12.12" },
     "1982.12.3" => {name: "Kamran Baghirov", lived: "1933.1.24 - 2000.10.25" },
-    "1988.5.21" => {name: "Abdurrahman Vazirov", lived: "1930.5.26 -" },
-    "1990.1.25" => {name: "Ayaz Mutallibov", lived: "1938.5.12 -" },
+    "1988.5.21" => {name: "Abdurrahman Vazirov", lived: "1930.5.26 - 2022.1.10" },
+    "1990.1.25" => {name: "Ayaz Mutallibov", lived: "1938.5.12 - 2022.3.27" },
     # After Communism (but still same people mostly)
     "1992.6.16" => { name: "Abulfaz Elchibey", lived: "1938.6.24 - 2000.8.22"},
     "1993.10.3" => {use: "Heydar 1"},
@@ -314,9 +317,10 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
 
     # 6 October 1992, backdating
     fall_soviet_union: {name: "Lennart Georg | Meri", lived: "1929.3.29 - 2006.3.14"},
-    "2001.10.8" => {name: "Arnold | Rüütel", lived: "1928.5.10 -"},
+    "2001.10.8" => {name: "Arnold | Rüütel", lived: "1928.5.10 - 2024.12.31"},
     "2006.10.9" => {name: "Toomas Hendrik | Ilves", lived: "1953.12.26 -"},
     "2016.10.10" => {name: "Kersti Kaljulaid", female: true, lived: "1969.12.30 -"},
+    "2021.10.11" => {name: "Alar Karis", lived: "1958.3.26 -"},
   },
   d_lithuanians: {
     # Presidents
@@ -329,22 +333,26 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     # Communist First Secretaries, backdating
     "1940.6.15" => { name: "Antanas Sniečkus", lived: "1903.1.7 - 1974.1.22" },
     "January 22 1974" => { name: "Petras Griškevičius", lived: "1924.7.19 - 1987.11.14" },
-    "November 14 1987" => { name: "Ringaudas Bronislovas | Songaila", lived: "1929.3.20 -" },
+    "November 14 1987" => { name: "Ringaudas Bronislovas | Songaila", lived: "1929.4.20 - 2019.6.25" },
     "1988.10.19" => { name: "Algirdas Mykolas | Brazauskas", lived: "1932.9.22 - 2010.6.26" },
     # First as Chairman of supreme soviet, then all post-Communist
-    "1990.3.11" => {name: "Vytautas | Landsbergis", lived: "1932.10.8 -"},
+    "1990.3.11" => {name: "Vytautas | Landsbergis", lived: "1932.10.18 -"},
     "1993.2.25" => {use: "Algirdas Mykolas 1"}, # Algirdas Brazauskas, returning
     "1998.2.26" => {name: "Valdas | Adamkus", lived: "1926.11.3 -"},
     "2003.2.26" => {name: "Rolandas | Paksas", lived: "1956.6.10 -"},
     # backdated to skip acting president
     "2004.4.6" => {use: "Valdas 1"},
     "2009.7.12" => {name: "Dalia | Grybauskaite", female: true, lived: "1956.3.1 -"},
+    "2019.7.12" => {name: "Gitanas | Nausėda", lived: "1964.5.19 -"},
   },
   k_cuman: {
     "1990.2.22" => {name: "Nursultan | Nazarbayev", lived: "1940.7.6-"},
+    "2019.3.20" => {name: "Kassym-Jomart | Tokayev", lived: "1953.5.17 -"},
   },
   k_khiva: { # Uzbekistan
     "1989.6.23" => {name: "Islam | Karimov", lived: "1938.1.30-2016.9.2"},
+    # backdating from 2016.9.8 (acting), elected 2016.12.4, inaugurated 2016.12.14
+    "2016.9.2" => {name: "Shavkat | Mirziyoyev", lived: "1957.7.24 -"},
   },
   d_khuttal: { # Tajikistan
     "1990.11.30" => { name: "Qahhor | Mahkamov", lived: "1932.4.16 - 2016.6.8"},
@@ -357,6 +365,8 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2010.4.7"  => {name: "Roza Otunbayeva", lived: "1950.8.23 -", female: true},
     "2011.12.1" => {name: "Almazbek Atambayev", lived: "1956.9.17 -"},
     "2017.11.24" => {name: "Sooronbay Jeenbekov", lived: "1958.11.16 -"},
+    # Acting from 2020.10.15, skipping acting Talant Mamytov (2020.11.14 - 2021.1.28), elected 2021.1.28
+    "2020.10.15" => {name: "Sadyr Japarov", lived: "1968.12.6 -"},
   },
   d_dihistan: { # Turkmenistan
     "1958.12.14" => { name: "Dzhuma Durdy | Karayev", lived: "1910-1960.5.4" },
@@ -365,9 +375,10 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1969.12.24" => { name: "Muhammetnazar Gapurow", lived: "1922.2.15 - 1999.7.13" },
     "1985.12.21" => { name: "Saparmurat | Niyazov", lived: "1940.2.19 - 2006.12.21"},
     "2006.12.21" => { name: "Gurbanguly | Berdimuhamedow", lived: "1957.6.29-"},
+    "2022.3.19" => { name: "Serdar | Berdimuhamedow", lived: "1981.9.22 -", father: "Gurbanguly 1"},
   },
   d_moldau: { # Moldova
-    "1990.4.27" => { name: "Mircea Snegur", lived: "1940.1.17 -" },
+    "1990.4.27" => { name: "Mircea Snegur", lived: "1940.1.17 - 2023.9.13" },
     "1997.1.15" => { name: "Petru Lucinschi", lived: "1940.1.27 -" },
     "2001.4.7"  => { name: "Vladimir Voronin", lived: "1941.5.25 -" },
     # 3 acting presidents
@@ -376,12 +387,17 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "2010.12.30" => { name: "Marian Lupu", lived: "1966.6.20 -" },
     "2012.3.23" => { name: "Nicolae Timofti", lived: "1948.12.22 -" },
     "2016.12.27" => {name: "Igor Dodon", lived: "1975.2.18 -"},
+    "2020.12.24" => {name: "Maia Sandu", lived: "1972.5.24 -", female: true},
   },
   d_armenia: {
     # From 11 November 1991 presidents
     "1990.8.4" => { name: "Levon Ter-Petrossyan", lived: "1945.1.9 -" },
     "1998.2.4" => { name: "Robert Kocharyan", lived: "1954.8.31 -" },
     "2008.4.9" => { name: "Serzh Sargsyan", lived: "1954.6.30 -" },
+    # Since 2018 constitutional change presidency is ceremonial, real power is with Prime Minister (Nikol Pashinyan)
+    "2018.4.9" => { name: "Armen Sarkissian", lived: "1953.6.23 -" },
+    # backdating from 2022.3.13 to skip acting president Alen Simonyan
+    "2022.2.1" => { name: "Vahagn Khachaturyan", lived: "1959.4.22 -" },
   },
   d_livonia: { # Latvia
     end_ww1: { name: "Jānis Čakste", lived: "1859.9.14 - 1927.3.14" },
@@ -394,13 +410,15 @@ ModernTimesDatabase::HOLDERS_RUSSIA = {
     "1959.11.27"=> { name: "Jānis Kalnbērziņš", lived: "1893.9.17 - 1986.2.4" },
     "1970.5.5" => { name: "Vitālijs Rubenis", lived: "1914.2.26 - 1994.1.2" },
     "1974.8.20" => { name: "Pēteris Strautmanis", lived: "1919.4.24 - 2007.6.27" },
-    "1985.6.22" => { name: "Jānis Vagris", lived: "1930.10.17 -" },
+    "1985.6.22" => { name: "Jānis Vagris", lived: "1930.10.17 - 2023.1.6" },
     "1988.10.6" => { name: "Anatolijs Gorbunovs", lived: "1942.2.10 -" },
     "1993.7.8" => { name: "Guntis Ulmanis", lived: "1939.9.13 -" },
     "1999.7.8" => { name: "Vaira Vīķe-Freiberga", lived: "1937.12.1 -", female: true },
     "2007.7.8" => { name: "Valdis Zatlers", lived: "1955.3.22 -" },
     "2011.7.8" => { name: "Andris Bērziņš", lived: "1944.12.10 -" },
     "2015.7.8" => { name: "Raimonds Vējonis", lived: "1966.6.15 -" },
+    "2019.7.8" => { name: "Egils Levits", lived: "1955.6.30 -" },
+    "2023.7.8" => { name: "Edgars Rinkēvičs", lived: "1973.9.21 -" },
   },
   d_abkhazia: { # Circassia
     # There weren't any real rulers, so just pick someone up instead of generating fully random one

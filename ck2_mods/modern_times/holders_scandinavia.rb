@@ -65,7 +65,12 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
       female: true,
       lived: "1940.4.16 -",
       father: "Frederik 6",
-    }
+    },
+    "2024.1.14" => {
+      name: "Frederik | Schleswig-Holstein-Sonderburg-Glücksburg", # 7, actually 10
+      lived: "1968.5.26 -",
+      mother: "Margrethe 1",
+    },
   },
   # Wikipedia uses these spellings, however inconsistent they are
   k_sweden: {
@@ -193,6 +198,11 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
       name: "Guðni Thorlacius | Jóhannesson",
       lived: "1968.6.26 -",
     },
+    "2024.8.1" => {
+      name: "Halla Tómasdóttir",
+      lived: "1968.10.11 -",
+      female: true,
+    },
   },
   k_finland: {
     # Backdating from "1919.7.26"
@@ -224,7 +234,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1946.3.11" => {
       name: "Juho Kusti | Paasikivi",
-      lived: " 27 November 1870 - 1956.12.14",
+      lived: "1870.11.27 - 1956.12.14",
     },
     "1956.3.1" => {
       name: "Urho Kekkonen",
@@ -236,7 +246,7 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     },
     "1994.3.1" => {
       name: "Martti Ahtisaari",
-      lived: "1937.6.23-",
+      lived: "1937.6.23 - 2023.10.16",
     },
     "2000.3.1" => {
       name: "Tarja Halonen",
@@ -246,6 +256,10 @@ ModernTimesDatabase::HOLDERS_SCANDINAVIA = {
     "2012.3.1" => {
       name: "Sauli Niinistö",
       lived: "1948.8.24-",
+    },
+    "2024.3.1" => {
+      name: "Alexander Stubb",
+      lived: "1968.4.1-",
     },
   },
 }

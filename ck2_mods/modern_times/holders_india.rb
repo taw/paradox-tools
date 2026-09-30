@@ -37,7 +37,7 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "1949.10.1" => { name: "Zedong | Mao", lived: "1893.12.26 - 1976.9.9" },
     "1976.9.9" => { name: "Guofeng | Hua", lived: "1921.2.16 - 2008.8.20" },
     "1978.12.22" => { name: "Xiaoping | Deng", lived: "1904.8.22 - 1997.2.19" },
-    "1992.10.19" => { name: "Zemin | Jiang", lived: "1926.8.17 -" },
+    "1992.10.19" => { name: "Zemin | Jiang", lived: "1926.8.17 - 2022.11.30" },
     "2002.11.15" => { name: "Jintao | Hu", lived: "1942.12.21 -" },
     "2012.11.15" => { name: "Jinping | Xi", lived: "1953.6.15 -" },
   },
@@ -77,6 +77,7 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     # end of monarchy, backdating presidents to fill the gap
     "2008.5.28"  => { name: "Ram Baran | Yadav", lived: "1948.2.4 -" },
     "2015.10.29" => { name: "Bidhya Devi | Bhandari", lived: "1961.6.19 -", female: true },
+    "2023.3.13"  => { name: "Ram Chandra | Paudel", lived: "1944.10.6 -" },
   },
   d_bhutan: {
     "1907.12.17" => { name: "Ugyen | Wangchuck", lived: "1862 - 1926.8.21" },
@@ -97,12 +98,12 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "1989.12.2"   => {name: "Vishwanath Pratap | Singh", lived: "1931.6.25 - 2008.11.27"},
     "1990.11.10"  => {name: "Chandra | Shekhar", lived: "1927 - 2007"},
     "1991.6.21"   => {name: "Pamulaparti Venkata Narasimha | Rao", lived: "1921 - 2004"},
-    "1996.5.16"   => {name: "Atal Bihari | Vajpayee", lived: "1924 -"},
+    "1996.5.16"   => {name: "Atal Bihari | Vajpayee", lived: "1924.12.25 - 2018.8.16"},
     "1996.6.1"    => {name: "Haradanahalli Doddegowda Deve | Gowda", lived: "1933.5.18 -"},
     "1997.4.21"   => {name: "Inder Kumar | Gujral", lived: "1919.12.4 - 2012.11.30"},
     "1998.3.19"   => {use: "Atal Bihari 1"},
-    "2004.5.22"   => {name: "Manmohan | Singh", lived: "1932 -"},
-    "2014.5.26"   => {name: "Narendra | Modi", lived: "1950 -"},
+    "2004.5.22"   => {name: "Manmohan | Singh", lived: "1932.9.26 - 2024.12.26"},
+    "2014.5.26"   => {name: "Narendra | Modi", lived: "1950.9.17 -"},
   },
   e_rajastan: { # Mughals
     "1806.11.19" => {
@@ -144,6 +145,10 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "1994.11.12" => {name: "Chandrika | Kumaratunga", lived: "1945-", female: true },
     "2005.11.19" => {name: "Mahinda | Rajapaksa", lived: "1945-" },
     "2015.1.9" => {name: "Maithripala | Sirisena", lived: "1951-" },
+    "2019.11.18" => {name: "Gotabaya | Rajapaksa", lived: "1949.6.20 -" },
+    # acting from 2022.7.14, elected by parliament 2022.7.20
+    "2022.7.14" => {name: "Ranil | Wickremesinghe", lived: "1949.3.24 -" },
+    "2024.9.23" => {name: "Anura Kumara | Dissanayake", lived: "1968.11.24 -" },
   },
   c_maldives: {
     # 1953+ presidents and sultans under Britain
@@ -170,6 +175,14 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "2013.11.17" => {
       name: "Abdulla | Yameen",
       lived: "1959-",
+    },
+    "2018.11.17" => {
+      name: "Ibrahim Mohamed | Solih",
+      lived: "1964.5.4 -",
+    },
+    "2023.11.17" => {
+      name: "Mohamed | Muizzu",
+      lived: "1978.6.15 -",
     },
   },
   k_punjab: {
@@ -217,10 +230,12 @@ ModernTimesDatabase::HOLDERS_INDIA = {
     "1993.7.18"  => { name: "Wasim Sajjad", lived: "1941.3.30 -" },
     "1993.11.14" => { name: "Farooq Leghari", lived: "1940.5.29 - 2010.10.20" },
     "1997.12.2"  => { use: "Wasim 1" },
-    "1998.1.1"   => { name: "Muhammad Rafiq | Tarar", lived: "1929.11.2 -" },
-    "2001.6.20"  => { name: "Pervez Musharraf", lived: "1943.8.11 -" },
+    "1998.1.1"   => { name: "Muhammad Rafiq | Tarar", lived: "1929.11.2 - 2022.3.7" },
+    "2001.6.20"  => { name: "Pervez Musharraf", lived: "1943.8.11 - 2023.2.5" },
     "2008.8.18"  => { name: "Muhammad Mian | Soomro", lived: "1950.8.19 -" },
     "2008.9.9"   => { name: "Asif Ali | Zardari", lived: "1955.7.26 -" },
-    "2013.9.9"   => { name: "Mamnoon Hussain", lived: "1940.12.23 -" },
+    "2013.9.9"   => { name: "Mamnoon Hussain", lived: "1940.12.23 - 2021.7.14" },
+    "2018.9.9"   => { name: "Arif Alvi", lived: "1949.7.29 -" },
+    "2024.3.10"  => { use: "Asif Ali 1" },
   },
 }

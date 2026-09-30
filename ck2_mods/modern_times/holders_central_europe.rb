@@ -11,61 +11,71 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # Backdating hard
     end_ww1: {
       name: "Miklós Horthy",
-      lived: "1868-1957",
+      lived: "1868.6.18 - 1957.2.9",
     },
     # Government of National Unity all time
     "1944.10.15" => {
       name: "Ferenc Szálasi",
-      lived: "1897-1946",
+      lived: "1897.1.6 - 1946.3.12",
     },
     # Communist,
     # General Secretary since February, but only count after Ferenc Szálasi is gone
     "1945.3.28" => {
       name: "Mátyás Rákosi",
-      lived: "1892-1971",
+      lived: "1892.3.9 - 1971.2.5",
     },
     "1956.7.18" => {
       name: "Ernő Gerő",
-      lived: "1898-1980",
+      lived: "1898.7.8 - 1980.3.12",
     },
     "1956.10.25" => {
       name: "János Kádár",
-      lived: "1912-1989",
+      lived: "1912.5.26 - 1989.7.6",
     },
     "1988.5.27" => {
       name: "Károly Grósz",
-      lived: "1930-1996",
+      lived: "1930.8.1 - 1996.1.7",
     },
     "1989.6.26" => {
       name: "Rezső Nyers",
-      lived: "1923-",
+      lived: "1923.3.21 - 2018.6.22",
     },
     # Post-Communist
     # Provisional, backdated
     "1989.10.7" => {
       name: "Mátyás Szűrös",
-      lived: "1933-",
+      lived: "1933.9.11 -",
     },
     "1990.5.2" => {
       name: "Árpád Göncz",
-      lived: "1922-2015",
+      lived: "1922.2.10 - 2015.10.6",
     },
     "2000.8.4" => {
       name: "Ferenc Mádl",
-      lived: "1931-2011",
+      lived: "1931.1.29 - 2011.5.29",
     },
     "2005.8.5" => {
       name: "László Sólyom",
-      lived: "1942-",
+      lived: "1942.1.3 - 2023.10.8",
     },
     "2010.8.6" => {
       name: "Pál Schmitt",
-      lived: "1942-",
+      lived: "1942.5.13 -",
     },
     # backdating from 10 April 2012
     "2012.4.2" => {
       name: "János Áder",
-      lived: "1959-",
+      lived: "1959.5.9 -",
+    },
+    "2022.5.10" => {
+      name: "Katalin Novák",
+      lived: "1977.9.6 -",
+      female: true,
+    },
+    # backdating from 5 March 2024, skipping acting president László Kövér
+    "2024.2.26" => {
+      name: "Tamás Sulyok",
+      lived: "1956.3.24 -",
     },
   },
   d_nyitra: {
@@ -76,11 +86,13 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     },
     "1945.5.8" => nil,
     # 2 March 1993, backdating
-    "1993.1.1" => {name: "Michal | Kovac", lived: "1930.8.5 -"},
+    "1993.1.1" => {name: "Michal | Kovac", lived: "1930.8.5 - 2016.10.5"},
     # 15 June 1999, backdating
     "1998.3.2" => {name: "Rudolf | Schuster", lived: "1934.1.4 -"},
     "2004.6.15" => {name: "Ivan | Gasparovic", lived: "1941.3.27 -"},
     "2014.6.15" => {name: "Andrej | Kiska", lived: "1963.2.2 -"},
+    "2019.6.15" => {name: "Zuzana | Caputova", lived: "1973.6.21 -", female: true},
+    "2024.6.15" => {name: "Peter | Pellegrini", lived: "1975.10.6 -"},
   },
   k_poland: {
     duchy_warsaw: {use_all: "d_lausitz"},
@@ -101,7 +113,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1956.3.12" => {name: "Edward | Ochab", lived: "1906.8.16 - 1989.5.1"},
     "1956.10.21" => {name: "Wladyslaw | Gomulka", lived: "1905.2.6 - 1982.9.1"},
     "1970.12.20" => {name: "Edward | Gierek", lived: "1913.1.6 - 2001.7.29"},
-    "1980.9.6" => {name: "Stanislaw | Kania", lived: "1927.3.8 -"},
+    "1980.9.6" => {name: "Stanislaw | Kania", lived: "1927.3.8 - 2020.3.3"},
     "1981.10.18" => {name: "Wojciech | Jaruzelski", lived: "1923.7.6 - 2014.5.25"},
     "1990.12.22" => {name: "Lech | Walesa", lived: "1943.9.29 -", health: 6},
     "1995.12.23" => {name: "Aleksander | Kwasniewski", lived: "1954.11.15 -"},
@@ -109,6 +121,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # acting, then actual, skipping other acting presidents
     "2010.4.10" => {name: "Bronislaw | Komorowski", lived: "1952.6.4 -"},
     "2015.8.6" => {name: "Andrzej | Duda", lived: "1972.5.16 -"},
+    "2025.8.6" => {name: "Karol | Nawrocki", lived: "1983.3.3 -"},
   },
   c_krakowskie: {
     congress_of_vienna: {name: "Stanislaw | Wodzicki", lived: "1764.7.27 - 1843.3.14"},
@@ -198,7 +211,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     # Backdating from 1989.12.26
     "1989.12.22" => {
       name: "Ion Iliescu",
-      lived: "1930.3.3-",
+      lived: "1930.3.3 - 2025.8.5",
     },
     "1996.11.29" => {
       name: "Emil Constantinescu",
@@ -214,6 +227,15 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
       name: "Klaus Iohannis",
       lived: "1959.6.13-",
     },
+    # Acting after Iohannis resigned
+    "2025.2.12" => {
+      name: "Ilie Bolojan",
+      lived: "1969.3.17 -",
+    },
+    "2025.5.26" => {
+      name: "Nicușor Dan",
+      lived: "1969.12.20 -",
+    },
   },
   k_bohemia: {
     # backdating from "1918.11.14"
@@ -228,7 +250,7 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1953.3.14" => {name: "Antonín Novotný", lived: "1904.12.10 - 1975.1.28"},
     "1968.1.5" => {name: "Alexander Dubček", lived: "1921.11.27 - 1992.11.7"},
     "1969.4.17" => {name: "Gustáv Husák", lived: "1913.1.10 - 1991.11.18"},
-    "1987.12.17" => {name: "Miloš Jakeš", lived: "1922.8.12 -"},
+    "1987.12.17" => {name: "Miloš Jakeš", lived: "1922.8.12 - 2020.7.10"},
     "1989.11.24" => {name: "Karel Urbánek", lived: "1941.3.22 -"},
 
     # Post-Communist since 1989;
@@ -236,5 +258,6 @@ ModernTimesDatabase::HOLDERS_CENTRAL_EUROPE = {
     "1989.12.10" => {name: "Václav Havel", lived: "1936.10.5 - 2011.12.18"},
     "2003.3.7" => {name: "Václav Klaus", lived: "1941.6.19 -"},
     "2013.3.8" => {name: "Miloš Zeman", lived: "1944.9.28 -"},
+    "2023.3.9" => {name: "Petr Pavel", lived: "1961.11.1 -"},
   },
 }
