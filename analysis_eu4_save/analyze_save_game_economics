@@ -29,10 +29,13 @@ class Country
     development > 0
   end
 
-  # FIXME: This is no longer correct as of 1.22, there's extra thing on the list
+  # Ledger layout as of 1.35-1.37 (19 income slots, 38 expense slots).
+  # Verified by checking that transfers between countries balance in saves
+  # (e.g. gifts, vassal fees, subsidies, reparations, blockades, looting),
+  # and cross-checked against rakaly/jomini eu4save/src/query.rs.
+  # Slots named ?N are always zero in saves checked, or unidentified.
   def income
     return nil unless @node["ledger"]["lastyearincome"]
-    # 15 vs 16
     Hash[%W[
       taxation
       production
@@ -40,23 +43,21 @@ class Country
       gold
       tariffs
       vassals
-      ?6
+      harbor_fees
       subsidies
       war_reparations
-      interest
-      gift
+      loans
+      gifts
       events
       spoils_of_war
-      ?13
-      ?14
-      ?15
+      treasure_fleet
+      siphon_income
+      condottieri
       knowledge_sharing
+      blockading_foreign_ports
+      looting_foreign_cities
     ].zip(@node["ledger"]["lastyearincome"])]
   end
-
-    # trade production trade gold tariffs vassals
-    # harbor_fees subsidies war_reparations interest gift
-    # events spoils_of_war treasure_fleet siphon_income
 
   def expense
     return nil unless @node["ledger"]["lastyearexpense"]
@@ -69,8 +70,8 @@ class Country
       war_reparations
       army_maint
       fleet_maint
-      fort_maitnt
-      colonies
+      fort_maint
+      colonists
       missionaries
       army_build
       fleet_build
@@ -78,28 +79,29 @@ class Country
       buildings
       ?15
       repaid_loans
-      gift
+      gifts
       advisor_hire
       events
       peace
       vassal_fee
       outgoing_tariffs
-      ?23
+      support_loyalists
       ?24
       ?25
-      ?26
+      condottieri
       root_out_corruption
       embrace_institutions
-      great_power_actions
+      ?29
       knowledge_sharing
+      trade_company_investments
+      ?32
+      ports_blockaded
+      cities_looted
+      monuments
+      cot_upgrades
+      colony_changes
     ].zip(@node["ledger"]["lastyearexpense"])]
   end
-
-  # advisor_upkeep interest harbor_fees subsidies war_reparations
-  # army_upkeep fleet_upkeep fort_upkeep colony_upkeep missionary_upkeep
-  # army_build fleet_build fort_build buildings rebel_support
-  # repaid_loans gift advisor_recruit event peace
-  # vassal_fee outgoing_tariff support_loyalists send_officers siphoned_by_overlord
 end
 
 class AnalyzeSaveGameEconomics
