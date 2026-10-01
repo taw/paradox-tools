@@ -68,8 +68,16 @@ class WorldHistory
     @player ||= @data["player"]
   end
 
-  def country_color(tag)
-    (@data["countries"][tag] || {})["map_color"]
+  # Color at the end if date is nil
+  # Despite its name, changed_country_mapcolor_from in history is the color set at that date
+  # If date is before any recorded change, return nil so caller falls back to game default
+  def country_color(tag, date=nil)
+    if date and (changes = country_color_changes[tag])
+      change = changes.reverse_each.find{|change_date, _| change_date <= date }
+      return change && change[1]
+    end
+    country = @data["countries"][tag] or return
+    (country["colors"] && country["colors"]["map_color"]) || country["map_color"]
   end
 
   # State at the end if date is nil
@@ -86,6 +94,23 @@ class WorldHistory
   end
 
   private
+
+  def country_color_changes
+    @country_color_changes ||= begin
+      changes = {}
+      @countries.each do |tag, history|
+        list = []
+        history.each do |key, val|
+          next unless key.is_a?(Date)
+          val.each do |cmd, arg|
+            list << [key, arg] if cmd == "changed_country_mapcolor_from"
+          end
+        end
+        changes[tag] = list.each_with_index.sort_by{|(d, _), i| [d, i] }.map(&:first) unless list.empty?
+      end
+      changes
+    end
+  end
 
   def analyze!
     @provinces = {}

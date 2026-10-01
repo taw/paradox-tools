@@ -50,7 +50,7 @@ class TimelapseVisualizationNewWorld < TimelapseVisualization
     province_map = Hash[
       land_province_ids.map{|id|
         owner = @world.province_state(id, date)["owner"]
-        [id, country_color_for(owner)]
+        [id, country_color_for(owner, date)]
       }
     ]
     generate_map_image(build_color_map_new_world(province_map)).write("campaign/countries-#{date.year}-#{date.month}-#{date.day}.png")
