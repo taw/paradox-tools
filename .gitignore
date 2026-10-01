@@ -12,3 +12,4 @@ coverage
 /ledger
 /*.png
 /tmp
+/campaign

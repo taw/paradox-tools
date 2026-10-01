@@ -51,7 +51,7 @@ module GameMap
       glob("common/religions/*.txt").each do |path|
         parse(path).each do |group_name, group|
           group.each do |name, religion|
-            next if name == "defender_of_faith" or name == "crusade_name"
+            next unless religion.is_a?(PropertyList) and religion["color"]
             colors[name] = religion["color"]
           end
         end

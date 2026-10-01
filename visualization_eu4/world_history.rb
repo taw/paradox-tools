@@ -52,11 +52,16 @@ class WorldHistory
   end
 
   def start_date
-    @start_date ||= Date.new(*@data["start_date"].split(".").map(&:to_i), Date::JULIAN)
+    @start_date ||= parse_date(@data["start_date"])
   end
 
   def current_date
-    @current_date ||= Date.new(*@data["date"].split(".").map(&:to_i), Date::JULIAN)
+    @current_date ||= parse_date(@data["date"])
+  end
+
+  def parse_date(date)
+    return date if date.is_a?(Date)
+    Date.new(*date.split(".").map(&:to_i), Date::JULIAN)
   end
 
   def player

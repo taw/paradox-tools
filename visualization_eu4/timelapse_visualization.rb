@@ -2,6 +2,7 @@
 
 require "rmagick"
 require "pp"
+require "fileutils"
 require_relative "../lib/paradox"
 require_relative "image_generation"
 require_relative "game_map"
@@ -53,6 +54,7 @@ class TimelapseVisualization < ParadoxGame
   end
 
   def generate_maps!
+    FileUtils.mkdir_p("campaign")
     dates_to_generate.each do |date|
       generate_maps_for_date!(date)
     end
