@@ -26,6 +26,61 @@ class CountryColors < EU4Analysis
     end
   end
 
+  WIDTH = 4000
+  HEIGHT = 2500
+  MARGIN = 60
+  GREY_STRIP = 200
+
+  # Hue in degrees, HSL lightness 0..1, and whether it's grey (hue mostly noise then)
+  def hue_and_lightness(r, g, b)
+    max, min = [r, g, b].max, [r, g, b].min
+    chroma = max - min
+    lightness = (max + min) / 510.0
+    return [0, lightness, true] if chroma == 0
+    hue = if max == r
+      ((g - b).to_f / chroma) % 6
+    elsif max == g
+      (b - r).to_f / chroma + 2
+    else
+      (r - g).to_f / chroma + 4
+    end
+    [hue * 60, lightness, chroma < 16]
+  end
+
+  def position(r, g, b)
+    hue, lightness, grey = hue_and_lightness(r, g, b)
+    plot_width = WIDTH - 2 * MARGIN - GREY_STRIP
+    # Greys still get spread across their strip by hue, just so labels don't all stack up
+    x = if grey
+      WIDTH - MARGIN - GREY_STRIP + (10 + hue / 360.0 * (GREY_STRIP - 80))
+    else
+      MARGIN + hue / 360.0 * plot_width
+    end
+    y = MARGIN + (1 - lightness) * (HEIGHT - 2 * MARGIN)
+    [x.round(1), y.round(1)]
+  end
+
+  def axes
+    plot_width = WIDTH - 2 * MARGIN - GREY_STRIP
+    grey_x = WIDTH - MARGIN - GREY_STRIP
+    result = []
+    (0..360).step(30) do |hue|
+      x = MARGIN + hue / 360.0 * plot_width
+      result << %(<line x1="#{x}" y1="#{MARGIN}" x2="#{x}" y2="#{HEIGHT - MARGIN}" class="grid"/>)
+      result << %(<text x="#{x}" y="#{HEIGHT - MARGIN + 20}" class="axis">#{hue}°</text>)
+    end
+    (0..100).step(10) do |lightness|
+      y = MARGIN + (1 - lightness / 100.0) * (HEIGHT - 2 * MARGIN)
+      result << %(<line x1="#{MARGIN}" y1="#{y}" x2="#{WIDTH - MARGIN}" y2="#{y}" class="grid"/>)
+      result << %(<text x="#{MARGIN - 8}" y="#{y + 4}" class="axis" text-anchor="end">#{lightness}%</text>)
+    end
+    result << %(<rect x="#{grey_x}" y="#{MARGIN}" width="#{GREY_STRIP}" height="#{HEIGHT - 2 * MARGIN}" class="greys"/>)
+    result << %(<text x="#{grey_x + GREY_STRIP / 2}" y="#{HEIGHT - MARGIN + 20}" class="axis">greys</text>)
+    result << %(<text x="#{(MARGIN + grey_x) / 2}" y="#{HEIGHT - 15}" class="axis">hue</text>)
+    result << %(<text x="20" y="#{HEIGHT / 2}" class="axis" transform="rotate(-90 20 #{HEIGHT / 2})">lightness</text>)
+    result
+  end
+
   def call
     rows = []
     each_country_color do |tag, name, (r, g, b)|
@@ -40,19 +95,25 @@ class CountryColors < EU4Analysis
       <meta charset="utf-8">
       <title>EU4 Country Colors</title>
       <style>
-      body { font-family: sans-serif; }
-      td { padding: 2px 8px; }
-      .flag { width: 48px; height: 32px; border: 1px solid #888; }
+      body { font-family: sans-serif; margin: 0; background: #fff; }
+      .grid { stroke: #eee; }
+      .greys { fill: #f8f8f8; stroke: #ddd; }
+      .axis { font-size: 14px; fill: #666; text-anchor: middle; }
+      .dot { stroke: #555; stroke-width: 0.5; }
+      .label { font-size: 9px; fill: #333; }
       </style>
       </head>
       <body>
-      <table>
+      <svg xmlns="http://www.w3.org/2000/svg" width="#{WIDTH}" height="#{HEIGHT}">
     HTML
+    puts axes
     rows.each do |name, tag, r, g, b|
-      puts %(<tr><td><div class="flag" style="background: rgb(#{r},#{g},#{b})"></div></td><td>#{CGI.escapeHTML(name)}</td></tr>)
+      x, y = position(r, g, b)
+      label = CGI.escapeHTML(name)
+      puts %(<g><title>#{label} (#{tag}) rgb(#{r}, #{g}, #{b})</title><circle cx="#{x}" cy="#{y}" r="5" class="dot" fill="rgb(#{r},#{g},#{b})"/><text x="#{x + 7}" y="#{y + 3}" class="label">#{label}</text></g>)
     end
     puts <<~HTML
-      </table>
+      </svg>
       </body>
       </html>
     HTML
