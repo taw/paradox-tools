@@ -1,0 +1,210 @@
+#!/usr/bin/env ruby
+
+require "strscan"
+require_relative "../lib/paradox"
+require_relative "../lib/paradox_mod_file_serializer"
+
+# Very basic jq-like query tool for Paradox files
+#
+# Every step implicitly iterates, as keys are not unique.
+#
+# Supported:
+#   .foo .["foo bar"] ."foo bar" .1444.11.11 .-151   key lookup (matches regardless of key type)
+#   .[]                                              all children
+#   .[N]                                             Array index
+#   ..                                               recursive descent
+#   a | b                                            pipe
+#   keys values length count uniq                    builtins (count/uniq work on whole stream)
+class QueryParadox
+  Item = Struct.new(:key, :val)
+
+  def initialize(query)
+    @stages = split_pipes(query).map { |stage| compile_stage(stage.strip) }
+  end
+
+  def call(root)
+    @stages.reduce([Item[nil, root]]) { |items, stage| stage.(items) }
+  end
+
+  private
+
+  def split_pipes(query)
+    stages = [+""]
+    in_quotes = false
+    depth = 0
+    query.each_char do |c|
+      if c == '"'
+        in_quotes = !in_quotes
+      elsif !in_quotes and (c == "[" or c == "(")
+        depth += 1
+      elsif !in_quotes and (c == "]" or c == ")")
+        depth -= 1
+      elsif !in_quotes and depth == 0 and c == "|"
+        stages << +""
+        next
+      end
+      stages[-1] << c
+    end
+    stages
+  end
+
+  def each_item(&blk)
+    ->(items) { items.flat_map(&blk) }
+  end
+
+  def compile_stage(stage)
+    case stage
+    when "keys"
+      each_item { |it| it.val.is_a?(PropertyList) ? it.val.keys.map { |k| Item[nil, k] } : [] }
+    when "values"
+      each_item { |it| children(it) }
+    when "length"
+      each_item { |it| [Item[nil, it.val.respond_to?(:size) ? it.val.size : 1]] }
+    when "count"
+      ->(items) { [Item[nil, items.size]] }
+    when "uniq"
+      ->(items) { items.uniq }
+    when "", "."
+      ->(items) { items }
+    else
+      steps = compile_path(stage)
+      ->(items) { steps.reduce(items) { |acc, step| acc.flat_map(&step) } }
+    end
+  end
+
+  def compile_path(path)
+    s = StringScanner.new(path)
+    steps = []
+    until s.eos?
+      if s.scan(/\.\./)
+        steps << method(:recurse)
+      elsif s.scan(/\.?\[\]/)
+        steps << method(:children)
+      elsif s.scan(/\.?\[(-?\d+)\]/)
+        idx = s[1].to_i
+        steps << ->(it) { it.val.is_a?(Array) && it.val[idx] != nil ? [Item[nil, it.val[idx]]] : [] }
+      elsif s.scan(/\.?\["((?:[^"\\]|\\.)*)"\]/) or s.scan(/\."((?:[^"\\]|\\.)*)"/)
+        steps << key_step(s[1].gsub(/\\(.)/, '\1'))
+      elsif s.scan(/\.(-?\d+\.\d+\.\d+)(?![\w])/)
+        steps << key_step(s[1])
+      elsif s.scan(/\.(-?\d+(?:\.\d+)?)(?![\w])/)
+        steps << key_step(s[1])
+      elsif s.scan(/\.([^.\[\]"\s|]+)/)
+        steps << key_step(s[1])
+      elsif s.scan(/\s+/)
+        # pass
+      else
+        raise "Can't parse query at: #{s.rest.inspect}"
+      end
+    end
+    steps
+  end
+
+  def children(it)
+    case it.val
+    when PropertyList
+      it.val.to_a.map { |prop| Item[prop.key, prop.val] }
+    when Array
+      it.val.map { |v| Item[nil, v] }
+    else
+      []
+    end
+  end
+
+  def recurse(it)
+    [it] + children(it).flat_map { |child| recurse(child) }
+  end
+
+  def key_step(seg)
+    ->(it) {
+      next [] unless it.val.is_a?(PropertyList)
+      it.val.to_a.select { |prop| key_match?(prop.key, seg) }.map { |prop| Item[prop.key, prop.val] }
+    }
+  end
+
+  # Compare by what the key would look like in the file, so "1444.11.11" matches Date,
+  # "151" matches Integer, "yes" matches true etc.
+  # Also compare parsed value, so "1.0" and "1.000" match Float key.
+  def key_match?(key, seg)
+    @key_match_cache ||= {}
+    parsed = (@key_match_cache[seg] ||= parse_primitive(seg))
+    return true if key == parsed
+    return true if key.is_a?(String) and key == seg
+    serializer.serialize_key(key) == seg
+  rescue
+    false
+  end
+
+  def parse_primitive(seg)
+    tokens = ParadoxModFile.new(string: seg).tap { |f| f.send(:tokenize!) }.instance_variable_get(:@tokens)
+    tokens.size == 1 ? tokens[0] : seg
+  end
+
+  def serializer
+    @serializer ||= ParadoxModFileSerializer.new
+  end
+end
+
+# Shared serializer refuses keys that would need quoting, which is fine for mods,
+# but query output should still print them
+class QueryParadoxSerializer < ParadoxModFileSerializer
+  def serialize_key(key)
+    super
+  rescue RuntimeError
+    key.is_a?(String) ? '"' + key.gsub('"', '\\"') + '"' : raise
+  end
+
+  def self.serialize(node)
+    s = new
+    s.print_property_list!(node)
+    s.output
+  end
+end
+
+class QueryParadoxPrinter
+  def initialize
+    @serializer = QueryParadoxSerializer.new
+  end
+
+  def print(items)
+    items.each do |it|
+      if it.key.nil?
+        print_value(it.val)
+      else
+        puts QueryParadoxSerializer.serialize(PropertyList[it.key, it.val])
+      end
+    end
+  end
+
+  private
+
+  def print_value(val)
+    case val
+    when PropertyList
+      puts "{"
+      puts QueryParadoxSerializer.serialize(val).gsub(/^/, "  ")
+      puts "}"
+    when Array
+      puts "{"
+      puts val.map { |v| "  " + @serializer.serialize_primitive(v) }
+      puts "}"
+    when Property::SpecialValue
+      puts "#{val.op} #{val.val}"
+    else
+      puts @serializer.serialize_primitive(val)
+    end
+  end
+end
+
+if __FILE__ == $0
+  unless ARGV.size == 2
+    STDERR.puts "Usage: #{$0} <file> <query> # non-compressed files only"
+    STDERR.puts %Q[Example: #{$0} save.eu4 '.countries.ARA.history.1444.11.11 | keys']
+    exit 1
+  end
+
+  path, query = ARGV
+  query = QueryParadox.new(query)
+  root = ParadoxModFile.new(path: path).parse!
+  QueryParadoxPrinter.new.print(query.call(root))
+end
