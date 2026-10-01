@@ -69,58 +69,142 @@ class ParadoxModFile
         .sub(/\ACK2txt(.*)\}\s*(checksum.*\s*)\z/m){$1 + "\n" + $2} # even worse at some point they added checksum after the broken }
         .sub("map_area_data{", "map_area_data={") # EU4 1.23 save bugfix
       s = StringScanner.new(str)
+      date_cache = {}
+      # Dispatch on first byte for common cases, as trying every regexp in turn is slow
+      # Small integer case/when compiles to a jump table, so it's faster than using ranges
       until s.eos?
-        if s.scan(/(\p{Space})+|#.*$/)
-          # pass
-        elsif s.scan(/(\d+)\.(\d+)\.(\d+)\b\.?/)
-          # That extra "." in some CK2 province history files
-          begin
-            @tokens << Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
-          rescue ArgumentError
-            @tokens << s[0]
+        case BYTE_CLASS[s.peek_byte]
+        when 1 # ASCII whitespace
+          s.skip(ASCII_SPACE_RE)
+        when 2 # {
+          s.scan_byte
+          @tokens << :open
+        when 3 # }
+          s.scan_byte
+          @tokens << :close
+        when 4 # =
+          s.scan_byte
+          if s.peek_byte == 61
+            s.scan_byte
+            @tokens << :eqeq
+          else
+            @tokens << :eq
           end
-        elsif s.scan(/([\-\+]?\d+\.\d+)(?![^}=\s])/)
-          @tokens << s[1].to_f
-        elsif s.scan(/([\-\+]?\d+)(?![^}=\s])/)
-          @tokens << s[1].to_i
-        elsif s.scan(/(>=|<=|==|[=\{\}<>])/)
-          @tokens << ({
-            "{" => :open,
-            "}" => :close,
-            "=" => :eq,
-            ">" => :gt,
-            "<" => :lt,
-            "<=" => :le,
-            ">=" => :ge,
-            "==" => :eqeq,
-          }[s[1]])
-        elsif s.scan(/\[\[(\S+?)\]/)
-          @tokens << :sqdef << s[1]
-        elsif s.scan(/((?:_|\.|\-|\–|'|’|\[|\]|:|@|\?|\+|\$|\/|!|\p{Letter}|\p{Digit}|\u{FFFD})+)/)
-          if s[1] == "yes"
+        when 5 # a-z A-Z _
+          str = s.scan(IDENTIFIER_RE)
+          if str == "yes"
             @tokens << true
-          elsif s[1] == "no"
+          elsif str == "no"
             @tokens << false
           else
-            @tokens << s[1]
+            @tokens << str
           end
-        elsif s.scan(/"((?:[^"\\]|\\n)*)"/)
-          # Is there ever any weird escaping here?
-          # EU4 saves have some "Italian Aristocracy: §G+25.0%§!\n"
-          @tokens << s[1]
-        elsif s.scan(/"(([^"\\]|\\"|\\\\)*)"/)
-          # There is some escaping
-          # \" seen in some modded HOI4 saves
-          # \\ seen in windows paths in Steam-generated .mod files
-          @tokens << s[1].gsub('\"', '"')
-        elsif s.scan(/,/)
-          # Seen in some array definitions, pass
+        when 6 # 0-9 -
+          # Same result as trying date, float, integer in order, as lookaheads exclude following "."
+          if (str = s.scan(INTEGER_FAST_RE))
+            @tokens << str.to_i
+          elsif (str = s.scan(FLOAT_FAST_RE))
+            @tokens << str.to_f
+          elsif s.scan(DATE_RE)
+            tokenize_date!(s, date_cache)
+          else
+            tokenize_slow!(s, date_cache)
+          end
+        when 7 # "
+          if s.scan(QUOTED_STRING_RE)
+            @tokens << s[1]
+          else
+            tokenize_slow!(s, date_cache)
+          end
         else
-          tok = s.scan(/\S+/)
-          warn "Irregular token in #{path || 'passed string'} at #{s.pos}: `#{tok.inspect}...'"
-          @tokens << tok
+          tokenize_slow!(s, date_cache)
         end
       end
+    end
+  end
+
+  BYTE_CLASS = Array.new(256, 0).tap do |table|
+    [32, 9, 10, 13].each{|b| table[b] = 1 }
+    table[123] = 2
+    table[125] = 3
+    table[61] = 4
+    [*97..122, *65..90, 95].each{|b| table[b] = 5 }
+    [*48..57, 45].each{|b| table[b] = 6 }
+    table[34] = 7
+  end.freeze
+
+  SPACE_RE = /(\p{Space})+|#.*$/
+  QUOTED_STRING_RE = /"((?:[^"\\]|\\n)*)"/
+  ASCII_SPACE_RE = /[ \t\r\n]+/
+  DATE_RE = /(\d+)\.(\d+)\.(\d+)\b\.?/
+  FLOAT_RE = /([\-\+]?\d+\.\d+)(?![^}=\s])/
+  INTEGER_RE = /([\-\+]?\d+)(?![^}=\s])/
+  FLOAT_FAST_RE = /[\-\+]?\d+\.\d+(?![^}=\s])/
+  INTEGER_FAST_RE = /[\-\+]?\d+(?![^}=\s])/
+  OPERATOR_RE = /(>=|<=|==|[=\{\}<>])/
+  IDENTIFIER_RE = /([_.\-–'’\[\]:@?+$\/!\p{Letter}\p{Digit}\u{FFFD}]+)/
+  OPERATORS = {
+    "{" => :open,
+    "}" => :close,
+    "=" => :eq,
+    ">" => :gt,
+    "<" => :lt,
+    "<=" => :le,
+    ">=" => :ge,
+    "==" => :eqeq,
+  }.freeze
+
+  def tokenize_identifier!(str)
+    if str == "yes"
+      @tokens << true
+    elsif str == "no"
+      @tokens << false
+    else
+      @tokens << str
+    end
+  end
+
+  # That extra "." in some CK2 province history files
+  # Date objects are immutable, so they can be shared
+  def tokenize_date!(s, date_cache)
+    date = date_cache[s.matched] ||= begin
+      Date.new(s[1].to_i, s[2].to_i, s[3].to_i, Date::JULIAN)
+    rescue ArgumentError
+      nil
+    end
+    @tokens << (date || s.matched)
+  end
+
+  def tokenize_slow!(s, date_cache)
+    if s.skip(SPACE_RE)
+      # pass
+    elsif s.scan(DATE_RE)
+      tokenize_date!(s, date_cache)
+    elsif s.scan(FLOAT_RE)
+      @tokens << s[1].to_f
+    elsif s.scan(INTEGER_RE)
+      @tokens << s[1].to_i
+    elsif s.scan(OPERATOR_RE)
+      @tokens << OPERATORS[s[1]]
+    elsif s.scan(/\[\[(\S+?)\]/)
+      @tokens << :sqdef << s[1]
+    elsif s.scan(IDENTIFIER_RE)
+      tokenize_identifier!(s[1])
+    elsif s.scan(QUOTED_STRING_RE)
+      # Is there ever any weird escaping here?
+      # EU4 saves have some "Italian Aristocracy: §G+25.0%§!\n"
+      @tokens << s[1]
+    elsif s.scan(/"(([^"\\]|\\"|\\\\)*)"/)
+      # There is some escaping
+      # \" seen in some modded HOI4 saves
+      # \\ seen in windows paths in Steam-generated .mod files
+      @tokens << s[1].gsub('\\"', '"')
+    elsif s.scan(/,/)
+      # Seen in some array definitions, pass
+    else
+      tok = s.scan(/\S+/)
+      warn "Irregular token in #{path || 'passed string'} at #{s.pos}: `#{tok.inspect}...'"
+      @tokens << tok
     end
   end
 
@@ -134,13 +218,13 @@ class ParadoxModFile
   end
 
   def parse_close
-    parse_error! unless @tokens[0] == :close
+    parse_error! unless :close == @tokens[0]
     @tokens.shift
   end
 
   def parse_array
     rv = []
-    while @tokens[0] != :close
+    until :close == @tokens[0]
       case @tokens[0]
       when Integer, Float, String, Date, TrueClass, FalseClass
         rv << @tokens.shift
@@ -161,16 +245,16 @@ class ParadoxModFile
   end
 
   def parse_val
-    if @tokens[0] == :open
+    if :open == @tokens[0]
       @tokens.shift
-      if @tokens[0] == :open and @tokens[1] == :close
+      if :open == @tokens[0] and :close == @tokens[1]
         # Nonsense from CK2 saves
         # warn "{} found in wrong context"
         @tokens.shift
         @tokens.shift
       end
 
-      if [:eq, :lt, :le, :gt, :ge, :eqeq].include?(@tokens[1]) or @tokens[0] == :sqdef
+      if [:eq, :lt, :le, :gt, :ge, :eqeq].include?(@tokens[1]) or :sqdef == @tokens[0]
         parse_obj.tap{
           parse_close
         }
@@ -192,55 +276,45 @@ class ParadoxModFile
     end
   end
 
+  SPECIAL_OPERATORS = {
+    gt: Property::GT,
+    lt: Property::LT,
+    le: Property::LE,
+    ge: Property::GE,
+    eqeq: Property::EQEQ,
+  }.freeze
+
   def parse_attr
     # WTF is this? It happens in save files but it makes no sense. For now I'm skipping it, but that's probably invalid
-    while @tokens[0] == :open and @tokens[1] == :close
+    while :open == @tokens[0] and :close == @tokens[1]
       @tokens.shift
       @tokens.shift
     end
 
-    if key_token_zero? and @tokens[1] == :eq
+    op = @tokens[1]
+    # Symbol on the left, as Date#== is slow
+    if :eq == op and key_token_zero?
       key = @tokens.shift
       @tokens.shift
       val = parse_val
       [key, val]
-    elsif key_token_zero? and @tokens[1] == :gt
+    elsif op.is_a?(Symbol) and SPECIAL_OPERATORS.key?(op) and key_token_zero?
       key = @tokens.shift
       @tokens.shift
       val = parse_val
-      [key, Property::GT[val]]
-    elsif key_token_zero? and @tokens[1] == :lt
-      key = @tokens.shift
-      @tokens.shift
-      val = parse_val
-      [key, Property::LT[val]]
-    elsif key_token_zero? and @tokens[1] == :le
-      key = @tokens.shift
-      @tokens.shift
-      val = parse_val
-      [key, Property::LE[val]]
-    elsif key_token_zero? and @tokens[1] == :ge
-      key = @tokens.shift
-      @tokens.shift
-      val = parse_val
-      [key, Property::GE[val]]
-    elsif key_token_zero? and @tokens[1] == :eqeq
-      key = @tokens.shift
-      @tokens.shift
-      val = parse_val
-      [key, Property::EQEQ[val]]
-    elsif @tokens[0] == :eq
+      [key, SPECIAL_OPERATORS[op][val]]
+    elsif :eq == @tokens[0]
       # This is stupid thing found in ck2 saves
       key = ""
       @tokens.shift
       val = parse_val
       [key, val]
-    elsif @tokens[0] == :sqdef
+    elsif :sqdef == @tokens[0]
       @tokens.shift
       key = @tokens.shift
       val = PropertyList.new
       while true
-        if @tokens[0] == "]"
+        if "]" == @tokens[0]
           @tokens.shift
           break
         end

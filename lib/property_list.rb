@@ -31,9 +31,10 @@ class PropertyList
   end
 
   def add!(key, val=nil)
-    if key.is_a?(Property) and val == nil
+    if val.nil?
+      raise ArgumentError, "Wrong use of #add! interface" unless key.is_a?(Property)
       @entries << key
-    elsif key == nil or val == nil or key.is_a?(Property) or val.is_a?(Property)
+    elsif key.nil? or key.is_a?(Property) or val.is_a?(Property)
       raise ArgumentError, "Wrong use of #add! interface"
     else
       @entries << Property.new(key, val)
