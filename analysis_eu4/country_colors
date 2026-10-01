@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_analysis"
+require "cgi"
+
+class CountryColors < EU4Analysis
+  def tags_by_path
+    unless @tags_by_path
+      @tags_by_path = {}
+      glob("common/country_tags/*.txt").each do |path|
+        parse(path).each do |tag, country_path|
+          @tags_by_path[country_path.downcase] = tag
+        end
+      end
+    end
+    @tags_by_path
+  end
+
+  def each_country_color
+    glob("common/countries/*.txt").each do |path|
+      color = parse(path)["color"]
+      next unless color
+      tag = tags_by_path["countries/#{path.basename}".downcase]
+      name = tag ? localization(tag, path.basename(".txt").to_s) : path.basename(".txt").to_s
+      yield tag, name, color
+    end
+  end
+
+  def call
+    rows = []
+    each_country_color do |tag, name, (r, g, b)|
+      rows << [name, tag, r, g, b]
+    end
+    rows.sort_by!{|name, tag, *| [name.downcase, tag.to_s] }
+
+    puts <<~HTML
+      <!DOCTYPE html>
+      <html>
+      <head>
+      <meta charset="utf-8">
+      <title>EU4 Country Colors</title>
+      <style>
+      body { font-family: sans-serif; }
+      td { padding: 2px 8px; }
+      .flag { width: 48px; height: 32px; border: 1px solid #888; }
+      </style>
+      </head>
+      <body>
+      <table>
+    HTML
+    rows.each do |name, tag, r, g, b|
+      puts %(<tr><td><div class="flag" style="background: rgb(#{r},#{g},#{b})"></div></td><td>#{CGI.escapeHTML(name)}</td></tr>)
+    end
+    puts <<~HTML
+      </table>
+      </body>
+      </html>
+    HTML
+  end
+end
+
+CountryColors.new_from_argv.call
