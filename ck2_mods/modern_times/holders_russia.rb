@@ -133,7 +133,8 @@ ModernTimesDatabase::Holders.define do
       name: "Leonid | Brezhnev",
       culture: :ukrainian,
       lived: "1906.12.19 - 1982.11.10"
-    ruler "1982.11.12",
+    # backdating from 1982.11.12
+    ruler "1982.11.10",
       name: "Yuri | Andropov",
       lived: "1914.6.15 - 1984.2.9"
     # backdating from 1984.2.13

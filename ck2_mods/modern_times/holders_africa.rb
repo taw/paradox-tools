@@ -222,7 +222,8 @@ ModernTimesDatabase::Holders.define do
   title "k_abyssinia" do # Ethiopia
     # Ethiopian history before 1855 is total mess
     ruler "1855.2.11", name: "Tewodros | Solomonid", lived: "1818 - 1868.4.13"
-    ruler "1868.6.11", name: "Tekle Giyorgis | Zagwe", lived: "- 1873"
+    # backdating from 1868.6.11
+    ruler "1868.4.13", name: "Tekle Giyorgis | Zagwe", lived: "- 1873"
     ruler "1871.7.11", name: "Yohannes | Solomonid", lived: "1837.7.11 - 1889.3.10"
     ruler "1889.3.10", name: "Menelik | Solomonid", lived: "1844.8.17 - 1913.12.12"
     # Weakly sourced dates, only Wikidata

@@ -84,7 +84,8 @@ ModernTimesDatabase::Holders.define do
       name: "Karl | Wittelsbach",
       lived: "1682.6.17 - 1718.11.30",
       father: "Karl 1"
-    ruler "1718.12.5",
+    # backdating from 1718.12.5
+    ruler "1718.11.30",
       name: "Ulrika Eleonora | Wittelsbach",
       female: true,
       father: "Karl 1",
@@ -164,7 +165,8 @@ ModernTimesDatabase::Holders.define do
     ruler "1944.6.17",
       name: "Sveinn Björnsson",
       lived: "1881.2.27 - 1952.1.25"
-    ruler "1952.8.1",
+    # backdating from 1952.8.1
+    ruler "1952.1.25",
       name: "Ásgeir Ásgeirsson",
       lived: "1894.5.13 - 1972.9.15"
     ruler "1968.8.1",
