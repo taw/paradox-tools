@@ -141,9 +141,10 @@ ModernTimesDatabase::Holders.define do
     ruler "1989.1.2", name: "Ranasinghe | Premadasa", lived: "1924 - 1993"
     ruler "1993.5.1", name: "Dingiri Banda | Wijetunga", lived: "1916 - 2008"
     ruler "1994.11.12", name: "Chandrika | Kumaratunga", lived: "1945 -", female: true
-    ruler "2005.11.19", name: "Mahinda | Rajapaksa", lived: "1945 -"
+    character "D. A. Rajapaksa", name: "Don Alwin | Rajapaksa", lived: "1905.11.5 - 1967.11.7"
+    ruler "2005.11.19", name: "Mahinda | Rajapaksa", lived: "1945 -", father: "D. A. Rajapaksa"
     ruler "2015.1.9", name: "Maithripala | Sirisena", lived: "1951 -"
-    ruler "2019.11.18", name: "Gotabaya | Rajapaksa", lived: "1949.6.20 -"
+    ruler "2019.11.18", name: "Gotabaya | Rajapaksa", lived: "1949.6.20 -", father: "D. A. Rajapaksa"
     # acting from 2022.7.14, elected by parliament 2022.7.20
     ruler "2022.7.14", name: "Ranil | Wickremesinghe", lived: "1949.3.24 -"
     ruler "2024.9.23", name: "Anura Kumara | Dissanayake", lived: "1968.11.24 -"

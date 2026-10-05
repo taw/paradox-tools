@@ -15,15 +15,20 @@ ModernTimesDatabase::Holders.define do
     ruler "2015.1.23", name: "Salman | Saud", father: "d_nefoud Abdulaziz 1", lived: "1935.12.31 -"
   end
   title "c_kuwait" do
-    ruler :kuwait_independence, name: "Abdullah Salem Al-Mubarak | Al-Sabah", lived: "1895 - 1965.11.24"
-    ruler "1965.11.24", name: "Sabah Salem Al-Mubarak | Al-Sabah", lived: "1913.4.12 - 1977.12.31"
-    ruler "1977.12.31", name: "Jaber Al-Ahmad Al-Jaber | Al-Sabah", lived: "1926.6.29 - 2006.1.15"
+    # Emirs before independence
+    character "Mubarak the Great", name: "Mubarak | Al-Sabah", lived: "1837 - 1915.11.28" # birth year approximate
+    character "Jaber II", name: "Jaber | Al-Sabah", lived: "1860 - 1917.2.5", father: "Mubarak the Great"
+    character "Salim Al-Mubarak", name: "Salim | Al-Sabah", lived: "1864 - 1921.2.23", father: "Mubarak the Great"
+    character "Ahmad Al-Jaber", name: "Ahmad | Al-Sabah", lived: "1885 - 1950.1.29", father: "Jaber II"
+    ruler :kuwait_independence, name: "Abdullah Salem Al-Mubarak | Al-Sabah", lived: "1895 - 1965.11.24", father: "Salim Al-Mubarak"
+    ruler "1965.11.24", name: "Sabah Salem Al-Mubarak | Al-Sabah", lived: "1913.4.12 - 1977.12.31", father: "Salim Al-Mubarak"
+    ruler "1977.12.31", name: "Jaber Al-Ahmad Al-Jaber | Al-Sabah", lived: "1926.6.29 - 2006.1.15", father: "Ahmad Al-Jaber"
     ruler "2006.1.15", name: "Saad Abdullah Al-Salem | Al-Sabah", lived: "1930.5.13 - 2008.5.13", father: "Abdullah Salem Al-Mubarak 1"
-    ruler "2006.1.29", name: "Sabah Al-Ahmad Al-Jaber | Al-Sabah", lived: "1929.6.16 - 2020.9.29"
+    ruler "2006.1.29", name: "Sabah Al-Ahmad Al-Jaber | Al-Sabah", lived: "1929.6.16 - 2020.9.29", father: "Ahmad Al-Jaber"
     # brother of previous
-    ruler "2020.9.29", name: "Nawaf Al-Ahmad Al-Jaber | Al-Sabah", lived: "1937.6.25 - 2023.12.16"
+    ruler "2020.9.29", name: "Nawaf Al-Ahmad Al-Jaber | Al-Sabah", lived: "1937.6.25 - 2023.12.16", father: "Ahmad Al-Jaber"
     # brother of previous
-    ruler "2023.12.16", name: "Mishal Al-Ahmad Al-Jaber | Al-Sabah", lived: "1940.9.27 -"
+    ruler "2023.12.16", name: "Mishal Al-Ahmad Al-Jaber | Al-Sabah", lived: "1940.9.27 -", father: "Ahmad Al-Jaber"
   end
   title "d_arabia_felix" do
     #  Mutawakkilite Kingdom of Yemen, imams
@@ -174,10 +179,11 @@ ModernTimesDatabase::Holders.define do
     ruler "1964.9.23", name: "Charles Helou", lived: "1913.9.25 - 2001.1.7"
     ruler "1970.9.23", name: "Suleiman Frangieh", lived: "1910.6.15 - 1992.7.23"
     ruler "1976.9.23", name: "Elias Sarkis", lived: "1924.7.20 - 1985.6.27"
-    ruler "1982.8.23", name: "Bachir Gemayel", lived: "1947.11.10 - 1982.9.14"
+    character "Pierre Gemayel", name: "Pierre Gemayel", lived: "1905.11.6 - 1984.8.29"
+    ruler "1982.8.23", name: "Bachir Gemayel", lived: "1947.11.10 - 1982.9.14", father: "Pierre Gemayel"
     # backdating from 1982.9.23
     # brother of Bachir Gemayel
-    ruler "1982.9.14", name: "Amine Gemayel", lived: "1942.1.22 -"
+    ruler "1982.9.14", name: "Amine Gemayel", lived: "1942.1.22 -", father: "Pierre Gemayel"
     # Ignoring Selim Hoss conflict here
     ruler "1988.9.22", name: "Michel Aoun", lived: "1935.2.18 -"
     ruler "1989.11.5", name: "René Moawad", lived: "1925.4.17 - 1989.11.22"
@@ -195,8 +201,12 @@ ModernTimesDatabase::Holders.define do
   end
   title "c_bahrein" do # Qatar
     # Start count from independence, there were sheiks under British protectorate before that
-    ruler "1971.9.1", name: "Ahmad | Al Thani", lived: "1920 - 1977.11.25"
-    ruler "1972.2.22", name: "Khalifa | Al Thani", lived: "1932.9.17 - 2016.10.23"
+    # Emirs before independence
+    character "Abdullah bin Jassim", name: "Abdullah | Al Thani", lived: "1880.2.11 - 1957.4.25"
+    character "Ali bin Abdullah", name: "Ali | Al Thani", lived: "1895.6.5 - 1974.8.31", father: "Abdullah bin Jassim"
+    character "Hamad bin Abdullah", name: "Hamad | Al Thani", lived: "1896 - 1948.5.27", father: "Abdullah bin Jassim"
+    ruler "1971.9.1", name: "Ahmad | Al Thani", lived: "1920 - 1977.11.25", father: "Ali bin Abdullah"
+    ruler "1972.2.22", name: "Khalifa | Al Thani", lived: "1932.9.17 - 2016.10.23", father: "Hamad bin Abdullah"
     ruler "1995.6.27", name: "Hamad | Al Thani", lived: "1952.1.1 -", father: "Khalifa"
     ruler "2013.6.25", name: "Tamim | Al Thani", lived: "1980.6.3 -", father: "Hamad"
   end

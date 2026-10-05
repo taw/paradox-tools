@@ -225,12 +225,18 @@ ModernTimesDatabase::Holders.define do
     # backdating from 1868.6.11
     ruler "1868.4.13", name: "Tekle Giyorgis | Zagwe", lived: "- 1873"
     ruler "1871.7.11", name: "Yohannes | Solomonid", lived: "1837.7.11 - 1889.3.10"
-    ruler "1889.3.10", name: "Menelik | Solomonid", lived: "1844.8.17 - 1913.12.12"
+    # King of Shewa, common ancestor of Menelik and Haile Selassie
+    character "Sahle Selassie", name: "Sahle Selassie | Solomonid", lived: "1795 - 1847.10.22"
+    character "Haile Melekot", name: "Haile Melekot | Solomonid", lived: "1824 - 1855.10.22", father: "Sahle Selassie"
+    ruler "1889.3.10", name: "Menelik | Solomonid", lived: "1844.8.17 - 1913.12.12", father: "Haile Melekot"
     # Weakly sourced dates, only Wikidata
     character "Shewarega Menelik", name: "Shewarega | Solomonid", lived: "1867 - 1897.7.20", female: true, father: "Menelik 1"
     ruler "1913.12.12", name: "Iyasu | Solomonid", lived: "1895.2.4 - 1935.11.25", mother: "Shewarega Menelik"
     ruler "1916.9.27", name: "Zewditu | Solomonid", lived: "1876.4.29 - 1930.4.2", female: true, father: "Menelik 1"
-    ruler "1930.4.2", name: "Haile Selassie | Solomonid", lived: "1892.7.23 - 1975.8.27"
+    # Relation well sourced, but Tenagnework's dates only from genealogy sites, birth approximate
+    character "Tenagnework Sahle Selassie", name: "Tenagnework | Solomonid", lived: "1825 - 1887.8.28", female: true, father: "Sahle Selassie"
+    character "Ras Makonnen", name: "Makonnen | Solomonid", lived: "1852.5.8 - 1906.3.21", mother: "Tenagnework Sahle Selassie"
+    ruler "1930.4.2", name: "Haile Selassie | Solomonid", lived: "1892.7.23 - 1975.8.27", father: "Ras Makonnen"
     ruler "1936.5.9", use: "e_italy Vittorio Emanuele 1"
     ruler "1941.5.5", use: "Haile Selassie 1"
     ruler "1974.9.12", name: "Amha Selassie | Solomonid", lived: "1916.7.27 - 1997.2.17", father: "Haile Selassie 1"

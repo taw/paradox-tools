@@ -10,12 +10,21 @@ ModernTimesDatabase::Holders.define do
       name: "Lotf Ali | Zand",
       lived: "1769 - 1794.3.20",
       father: "Jafar"
+    character "Mohammad Hasan Khan",
+      name: "Mohammad Hasan | Qajar",
+      lived: "1715 - 1759.2.13"
+    character "Hossein Qoli Khan",
+      name: "Hossein Qoli | Qajar",
+      lived: "1751 - 1777", # death year approximate
+      father: "Mohammad Hasan Khan"
     ruler "1794.3.20",
       name: "Mohammad | Qajar",
-      lived: "1742 - 1797.6.17"
+      lived: "1742 - 1797.6.17",
+      father: "Mohammad Hasan Khan"
     ruler "1797.6.17",
       name: "Fat'h Ali | Qajar",
-      lived: "1772.9.5 - 1834.10.23"
+      lived: "1772.9.5 - 1834.10.23",
+      father: "Hossein Qoli Khan"
     character "Abbas Mirza",
       name: "Abbas | Qajar",
       lived: "1789.8.26 - 1833.10.25",
@@ -58,11 +67,12 @@ ModernTimesDatabase::Holders.define do
       traits: ["zealous"]
   end
   title "e_arabia" do
+    character "Mehmed IV", name: "Mehmed | Ottoman", lived: "1642.1.2 - 1693.1.6"
     ruler "1695.2.6", # 1 (actually 2)
-      name: "Mustafa | Ottoman", lived: "1664.2.6 - 1703.12.30", #  father: "Mehmed",
+      name: "Mustafa | Ottoman", lived: "1664.2.6 - 1703.12.30", father: "Mehmed IV",
       events: { "1700.1.1" => PropertyList["decadence", 10]} # 25 -> 35
     ruler "1703.8.22",
-      name: "Ahmed | Ottoman", lived: "1673.12.31 - 1736.7.1" # father: "Mehmed",
+      name: "Ahmed | Ottoman", lived: "1673.12.31 - 1736.7.1", father: "Mehmed IV"
     ruler "1730.10.2", # 1
       name: "Mahmud | Ottoman", lived: "1696.8.2 - 1754.12.13", father: "Mustafa 1",
       events: { "1750.1.1" => PropertyList["decadence", 10]} # 35 -> 45
