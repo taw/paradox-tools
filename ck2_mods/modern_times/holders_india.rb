@@ -65,10 +65,11 @@ ModernTimesDatabase::Holders.define do
     ruler "1816.11.20", name: "Rajendra | Shah", lived: "1813.12.3 - 1881.7.10", father: "Girvan Yuddha"
     ruler "1847.5.12", name: "Surendra | Shah", lived: "1829.10.20 - 1881.5.17", father: "Rajendra"
     # grandson of Surendra Bikram
-    ruler "1881.5.17", name: "Prithvi | Shah", lived: "1875.8.18 - 1911.12.11"
+    character "Crown Prince Trailokya", name: "Trailokya | Shah", lived: "1847.11.30 - 1878.3.30", father: "Surendra"
+    ruler "1881.5.17", name: "Prithvi | Shah", lived: "1875.8.18 - 1911.12.11", father: "Crown Prince Trailokya"
     ruler "1911.12.11", name: "Tribhuvan | Shah", lived: "1906.6.30 - 1955.3.13", father: "Prithvi"
     # grandson of Tribhuvan
-    ruler "1950.11.7", name: "Gyanendra | Shah", lived: "1947.7.7 -"
+    ruler "1950.11.7", name: "Gyanendra | Shah", lived: "1947.7.7 -", father: "Mahendra"
     ruler "1951.1.7", use: "Tribhuvan"
     ruler "1955.3.14", name: "Mahendra | Shah", lived: "1920.6.11 - 1972.1.31", father: "Tribhuvan"
     ruler "1972.1.31", name: "Birendra | Shah", lived: "1945.12.28 - 2001.6.1", father: "Mahendra"
@@ -94,7 +95,7 @@ ModernTimesDatabase::Holders.define do
     ruler "1977.3.24", name: "Morarji | Desai", lived: "1896 - 1995"
     ruler "1979.7.28", name: "Charan | Singh", lived: "1902 - 1987"
     ruler "1980.1.14", use: "Indira 1"
-    ruler "1984.10.31", name: "Rajiv | Gandhi", lived: "1944 - 1991"
+    ruler "1984.10.31", name: "Rajiv | Gandhi", lived: "1944 - 1991", mother: "Indira"
     ruler "1989.12.2", name: "Vishwanath Pratap | Singh", lived: "1931.6.25 - 2008.11.27"
     ruler "1990.11.10", name: "Chandra | Shekhar", lived: "1927 - 2007"
     ruler "1991.6.21", name: "Pamulaparti Venkata Narasimha | Rao", lived: "1921 - 2004"
@@ -126,7 +127,7 @@ ModernTimesDatabase::Holders.define do
     # Prime Ministers
     # Supposedly started 1947.9.24, postdating to 1948.2.4
     ruler :sri_lanka_independence, name: "Don Stephen | Senanayake", lived: "1884 - 1952"
-    ruler "1952.3.26", name: "Dudley | Senanayake", lived: "1911 - 1973"
+    ruler "1952.3.26", name: "Dudley | Senanayake", lived: "1911 - 1973", father: "Don Stephen"
     ruler "1953.10.12", name: "John | Kotelawala", lived: "1897 - 1980"
     ruler "1956.4.12", name: "Solomon | Bandaranaike", lived: "1899 - 1959"
     ruler "1959.9.26", name: "Wijeyananda | Dahanayake", lived: "1902 - 1997"

@@ -33,6 +33,12 @@ class Character
     result
   end
 
+  # Historical parents are specified as historical ids until all characters exist
+  def resolve_parents!
+    @father = yield(@father) if @father.is_a?(String)
+    @mother = yield(@mother) if @mother.is_a?(String)
+  end
+
   private
 
   attr_writer :id, :historical_id, :name, :female, :birth, :death, :health,

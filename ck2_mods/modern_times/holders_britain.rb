@@ -16,9 +16,13 @@ ModernTimesDatabase::Holders.define do
       name: "George | Windsor",
       father: "George 1",
       lived: "1683.10.30 - 1760.10.25"
+    character "Frederick Prince of Wales",
+      name: "Frederick | Windsor",
+      lived: "1707.1.31 - 1751.3.31",
+      father: "George 2"
     ruler "1760.10.25",
       name: "George | Windsor",
-      # grandfather: "George 2",
+      father: "Frederick Prince of Wales",
       lived: "1738.6.4 - 1820.1.29",
       events: {
         crowning: PropertyList[
@@ -43,10 +47,15 @@ ModernTimesDatabase::Holders.define do
           "prestige", 2000,
         ],
       }
+    character "Edward Duke of Kent",
+      name: "Edward | Windsor",
+      lived: "1767.11.2 - 1820.1.23",
+      father: "George 3"
     ruler "1837.6.20",
       lived: "1819.5.24 - 1901.1.22",
       name: "Victoria | Windsor",
       female: true,
+      father: "Edward Duke of Kent",
       health: 7,
       events: {
         crowning: PropertyList[
@@ -172,7 +181,8 @@ ModernTimesDatabase::Holders.define do
       lived: "1917 - 1999"
     ruler "1973.3.14",
       name: "Liam Cosgrave",
-      lived: "1920.4.13 - 2017.10.4"
+      lived: "1920.4.13 - 2017.10.4",
+      father: "William Thomas 1"
     ruler "1977.7.5", use: "Jack 1"
     ruler "1979.12.11",
       name: "Charles Haughey",

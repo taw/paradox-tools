@@ -125,7 +125,7 @@ ModernTimesDatabase::Holders.define do
     ruler "1824.3.13",
       name: "Carlo | Bourbon",
       lived: "1799.12.22 - 1883.4.16",
-      # father: "d_toscana Lodovico 1", # doesn't work? FIXME
+      father: "d_toscana Lodovico 1",
       mother: "Maria Luisa 1"
     # Actually deposed two months earlier ???
     vacant "1847.12.17"
@@ -138,7 +138,8 @@ ModernTimesDatabase::Holders.define do
       lived: "1720.3.15 - 1765.7.18"
     ruler "1765.7.18",
       name: "Ferdinando | Bourbon",
-      lived: "1751.1.20 - 1802.10.9"
+      lived: "1751.1.20 - 1802.10.9",
+      father: "Felipe"
     vacant "1802.10.9"
     ruler "1814.4.11",
       name: "Marie Louise | Habsburg",

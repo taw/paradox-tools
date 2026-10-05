@@ -1,6 +1,8 @@
 class ModernTimesDatabase
   # Title => list of [date, holder_data] in order of definition
   HOLDERS = {}
+  # Title => list of [nickname, character_data] for non-ruler characters
+  CHARACTERS = {}
 
   # DSL for holders_*.rb files:
   #
@@ -13,6 +15,11 @@ class ModernTimesDatabase
   #       vacant "1912.3.30"
   #       ruler "1979.9.3", use: "Goukouni 1"
   #       copy_rulers :congress_of_vienna, from: "k_sicily"
+  #       # Non-ruler characters, referenced by nickname in father:/mother:
+  #       character "Ali father of Abd al-Rahman",
+  #         name: "Ali | Alaouite",
+  #         lived: "1740 - 1790",
+  #         father: "Mohammed 1"
   #     end
   #   end
   class Holders
@@ -25,10 +32,18 @@ class ModernTimesDatabase
       raise "Duplicate holders for #{title}" if HOLDERS[title]
       @title = title
       @rulers = {}
+      @characters = {}
       instance_eval(&block)
       HOLDERS[title] = @rulers.to_a
+      CHARACTERS[title] = @characters.to_a unless @characters.empty?
     ensure
-      @title = @rulers = nil
+      @title = @rulers = @characters = nil
+    end
+
+    def character(nickname, **data)
+      raise "Characters must be defined inside title block" unless @characters
+      raise "Duplicate character #{nickname} for #{@title}" if @characters.key?(nickname)
+      @characters[nickname] = data
     end
 
     def ruler(date, **data)

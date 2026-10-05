@@ -5,6 +5,8 @@ ModernTimesDatabase::Holders.define do
     ruler "1815.6.9", name: "Louis | Bourbon", lived: "1755.11.17 - 1824.9.16"
     ruler "1824.9.16", name: "Charles | Bourbon", lived: "1757.10.9 - 1836.11.6" # younger brother of previous
     ruler "1830.8.9", name: "Louis Philippe | Orléans", lived: "1773.10.6 - 1850.8.26"
+    # Mother of Ferdinand of Bulgaria
+    character "Clementine of Orleans", name: "Clémentine | Orléans", lived: "1817.6.3 - 1907.2.16", female: true, father: "Louis Philippe"
     # Second republic, second Empire from 1852.12.2
     ruler "1848.2.24", name: "Napoleon | Bonaparte", lived: "1808.4.20 - 1873.1.9"
     # 3rd Republic
@@ -52,7 +54,7 @@ ModernTimesDatabase::Holders.define do
     ruler "1808.6.6", name: "Joseph | Bonaparte", culture: "frankish", lived: "1768.1.7 - 1844.7.28"
     ruler "1813.12.11", use: "Fernando 2"
     ruler "1833.9.29", name: "Isabel | Bourbon", female: true, father: "Fernando 2", lived: "1830.10.10 - 1904.4.10"
-    ruler "1870.11.16", name: "Amadeo | Savoia", lived: "1845.5.30 - 1890.1.18"
+    ruler "1870.11.16", name: "Amadeo | Savoia", lived: "1845.5.30 - 1890.1.18", father: "k_italy Vittorio Emanuele 2"
     #First Republic
     ruler "1873.2.12", name: "Estanislau | Figueras", culture: "catalan", lived: "1819.11.13 - 1882.11.11"
     ruler "1873.6.11", name: "Francesc | Pi i Margall", culture: "catalan", lived: "1824.4.29 - 1901.11.29"
@@ -66,7 +68,8 @@ ModernTimesDatabase::Holders.define do
     # Simplify republic
     ruler "1931.4.14", name: "Niceto | Alcalá-Zamora", lived: "1877.7.6 - 1949.2.18"
     ruler "1936.10.1", name: "Francisco | Franco", lived: "1892.12.4 - 1975.11.20"
-    ruler "1975.11.20", name: "Juan Carlos | Bourbon", lived: "1938.1.5 -"
+    character "Juan Count of Barcelona", name: "Juan | Bourbon", father: "Alfonso 2", lived: "1913.6.20 - 1993.4.1"
+    ruler "1975.11.20", name: "Juan Carlos | Bourbon", father: "Juan Count of Barcelona", lived: "1938.1.5 -"
     ruler "2014.6.19", name: "Felipe | Bourbon", father: "Juan Carlos", lived: "1968.1.30 -"
   end
   title "k_portugal" do
@@ -144,7 +147,8 @@ ModernTimesDatabase::Holders.define do
     ruler :belgium_independence, name: "Leopold | Sachsen-Coburg und Gotha", lived: "1790.12.16 - 1865.12.10"
     ruler "1865.12.10", name: "Leopold | Sachsen-Coburg und Gotha", father: "Leopold 1", lived: "1835.4.9 - 1909.12.17"
     # nephew of Leopold 2, can't model that yet
-    ruler "1909.12.17", name: "Albert | Sachsen-Coburg und Gotha", lived: "1875.4.8 - 1934.2.17"
+    character "Philippe Count of Flanders", name: "Philippe | Sachsen-Coburg und Gotha", father: "Leopold 1", lived: "1837.3.24 - 1905.11.17"
+    ruler "1909.12.17", name: "Albert | Sachsen-Coburg und Gotha", father: "Philippe Count of Flanders", lived: "1875.4.8 - 1934.2.17"
     ruler "1934.2.17", name: "Leopold | Sachsen-Coburg und Gotha", father: "Albert 1", lived: "1901.11.3 - 1983.9.25"
     ruler "1951.7.17", name: "Baudouin | Sachsen-Coburg und Gotha", father: "Leopold 3", lived: "1930.9.7 - 1993.7.31"
     ruler "1993.7.31", name: "Albert | Sachsen-Coburg und Gotha", father: "Leopold 3", lived: "1934.6.6 -"
@@ -164,11 +168,13 @@ ModernTimesDatabase::Holders.define do
       name: "Marie-Adelaide | Nassau-Weilburg",
       lived: "1894.6.14 - 1924.1.24",
       religion: "catholic",
+      father: "Guillaume 1",
       female: true
     ruler "1919.1.14",
       name: "Charlotte | Nassau-Weilburg",
       lived: "1896.1.23 - 1985.7.9",
       religion: "catholic",
+      father: "Guillaume 1",
       female: true
     ruler "1964.11.12",
       name: "Jean | Nassau-Weilburg",

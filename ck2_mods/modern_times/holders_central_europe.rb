@@ -3,8 +3,11 @@ ModernTimesDatabase::Holders.define do
     ruler "1804.8.11", name: "Franz | Habsburg", lived: "1768.2.12 - 1835.3.2"
     ruler "1835.3.2", name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29", father: "Franz 1"
     # Can't find day date, just month
-    ruler "1848.12.1", name: "Franz Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21", health: 6
-    ruler "1916.11.21", name: "Karl | Habsburg", lived: "1887.8.17 - 1922.4.1"
+    character "Archduke Franz Karl", name: "Franz Karl | Habsburg", lived: "1802.12.17 - 1878.3.8", father: "Franz 1"
+    ruler "1848.12.1", name: "Franz Joseph | Habsburg", lived: "1830.8.18 - 1916.11.21", health: 6, father: "Archduke Franz Karl"
+    character "Archduke Karl Ludwig", name: "Karl Ludwig | Habsburg", lived: "1833.7.30 - 1896.5.19", father: "Archduke Franz Karl"
+    character "Archduke Otto", name: "Otto | Habsburg", lived: "1865.4.21 - 1906.11.1", father: "Archduke Karl Ludwig"
+    ruler "1916.11.21", name: "Karl | Habsburg", lived: "1887.8.17 - 1922.4.1", father: "Archduke Otto"
     vacant "1918.11.11"
   end
   title "k_hungary" do
@@ -147,8 +150,8 @@ ModernTimesDatabase::Holders.define do
     ruler "1927.7.20",
       name: "Michael | Hohenzollern-Sigmaringen",
       culture: "german",
-      lived: "1921.10.25 - 2017.12.5"
-    # father: "Carol 2",
+      lived: "1921.10.25 - 2017.12.5",
+      father: "Karl 2"
     ruler "1930.6.8",
       name: "Karl | Hohenzollern-Sigmaringen",
       culture: "german",

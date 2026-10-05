@@ -18,7 +18,7 @@ ModernTimesDatabase::Holders.define do
     ruler :kuwait_independence, name: "Abdullah Salem Al-Mubarak | Al-Sabah", lived: "1895 - 1965.11.24"
     ruler "1965.11.24", name: "Sabah Salem Al-Mubarak | Al-Sabah", lived: "1913.4.12 - 1977.12.31"
     ruler "1977.12.31", name: "Jaber Al-Ahmad Al-Jaber | Al-Sabah", lived: "1926.6.29 - 2006.1.15"
-    ruler "2006.1.15", name: "Saad Abdullah Al-Salem | Al-Sabah", lived: "1930.5.13 - 2008.5.13"
+    ruler "2006.1.15", name: "Saad Abdullah Al-Salem | Al-Sabah", lived: "1930.5.13 - 2008.5.13", father: "Abdullah Salem Al-Mubarak 1"
     ruler "2006.1.29", name: "Sabah Al-Ahmad Al-Jaber | Al-Sabah", lived: "1929.6.16 - 2020.9.29"
     # brother of previous
     ruler "2020.9.29", name: "Nawaf Al-Ahmad Al-Jaber | Al-Sabah", lived: "1937.6.25 - 2023.12.16"
@@ -71,9 +71,13 @@ ModernTimesDatabase::Holders.define do
     ruler "1888.6.4", name: "Faisal | al Said", lived: "1864 - 1913.10.4", father: "Turki 1"
     vacant "1892.3.13"
     # from "1970.7.23", initially under UK
-    ruler "1971.12.2", name: "Qaboos | al Said", lived: "1940.11.18 - 2020.1.10"
+    # Sultans 1913-1932 and 1932-1970
+    character "Taimur bin Feisal", name: "Taimur | al Said", lived: "1886 - 1965.1.28", father: "Faisal 1"
+    character "Said bin Taimur", name: "Said | al Said", lived: "1910.8.13 - 1972.10.19", father: "Taimur bin Feisal"
+    character "Tariq bin Taimur", name: "Tariq | al Said", lived: "1921.6.30 - 1980.12.28", father: "Taimur bin Feisal"
+    ruler "1971.12.2", name: "Qaboos | al Said", lived: "1940.11.18 - 2020.1.10", father: "Said bin Taimur"
     # cousin of previous, backdating from 2020.1.11
-    ruler "2020.1.10", name: "Haitham | al Said", lived: "1955.10.11 -"
+    ruler "2020.1.10", name: "Haitham | al Said", lived: "1955.10.11 -", father: "Tariq bin Taimur"
   end
   title "d_medina" do
     ruler "1918.11.11",
@@ -201,19 +205,26 @@ ModernTimesDatabase::Holders.define do
     # Wikipedia has only year dates and very little extra info
     # death dates totally fictional
     ruler "1783.1.1", name: "Ahmed | Al Khalifa", lived: "- 1796.1.1"
-    ruler "1796.1.1", name: "Abdullah | Al Khalifa", lived: "- 1843.1.1"
-    ruler "1843.1.1", name: "Muhammad | Al Khalifa", lived: "- 1868.1.1"
+    ruler "1796.1.1", name: "Abdullah | Al Khalifa", lived: "- 1843.1.1", father: "Ahmed 1"
+    # Co-rulers with Abdullah, birth year estimated, died before 1821.9.28 (or 1825)
+    character "Salman bin Ahmad", name: "Salman | Al Khalifa", lived: "1770 - 1821", father: "Ahmed 1"
+    character "Khalifa bin Salman", name: "Khalifa | Al Khalifa", lived: "1795 - 1834.5.31", father: "Salman bin Ahmad" # birth year approximate
+    ruler "1843.1.1", name: "Muhammad | Al Khalifa", lived: "- 1868.1.1", father: "Khalifa bin Salman"
     # No idea what happened with these 2 short rulers, Wikipedia got nothing
-    ruler "1868.1.1", name: "Ali | Al Khalifa", lived: "- 1869.9.1"
-    ruler "1869.9.1", name: "Muhammad | Al Khalifa", lived: "- 1869.12.1"
+    ruler "1868.1.1", name: "Ali | Al Khalifa", lived: "- 1869.9.1", father: "Khalifa bin Salman"
+    ruler "1869.9.1", name: "Muhammad | Al Khalifa", lived: "- 1869.12.1", father: "Abdullah 1"
     # real dates at least...
-    ruler "1869.12.1", name: "Isa | Al Khalifa", lived: "1848 - 1932.12.9"
+    ruler "1869.12.1", name: "Isa | Al Khalifa", lived: "1848 - 1932.12.9", father: "Ali 1"
     # British protectorate
     vacant "1880.12.22"
     # From "1961.11.2" sheik under Britain
+    # Hakims 1932-1942 and 1942-1961
+    character "Hamad bin Isa", name: "Hamad | Al Khalifa", lived: "1872.2.6 - 1942.2.20", father: "Isa 1"
+    character "Salman bin Hamad", name: "Salman | Al Khalifa", lived: "1894.10.10 - 1961.11.2", father: "Hamad bin Isa"
     ruler "1971.8.15",
       name: "Isa | Al Khalifa",
-      lived: "1933.6.3 - 1999.3.6"
+      lived: "1933.6.3 - 1999.3.6",
+      father: "Salman bin Hamad"
     # From 2002 as king
     ruler "1999.3.6",
       name: "Hamad | Al Khalifa",

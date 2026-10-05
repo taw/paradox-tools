@@ -11,10 +11,16 @@ ModernTimesDatabase::Holders.define do
       name: "Slimane | Alaouite",
       lived: "1760 - 1822.11.28",
       father: "Mohammed 1"
+    character "Moulay Hisham",
+      name: "Hisham | Alaouite",
+      # rival sultan 1792-1797, died 1798.7 or 1799 depending on source
+      lived: "1748 - 1799",
+      father: "Mohammed 1"
     ruler "1822.11.28",
       name: "Abd al-Rahman | Alaouite",
-      lived: "1778 - 1859.8.24"
+      lived: "1778 - 1859.8.24",
       # nephew of previous ruler
+      father: "Moulay Hisham"
     ruler "1859.8.24",
       name: "Mohammed | Alaouite", # 2
       lived: "1802 - 1873.9.16",
@@ -33,10 +39,16 @@ ModernTimesDatabase::Holders.define do
       father: "Hassan 1"
     # French protectorate, but royal line still formally active
     vacant "1912.3.30"
+    # Sultan 1912-1927 under French protectorate
+    character "Sultan Yusef",
+      name: "Yusef | Alaouite",
+      lived: "1882 - 1927.11.17", # 1881 according to some sources
+      father: "Hassan 1"
     # Ignoring times when under foreign rule
     ruler "1956.10.29", # 3
       name: "Mohammed | Alaouite",
-      lived: "1909.8.10 - 1961.2.26"
+      lived: "1909.8.10 - 1961.2.26",
+      father: "Sultan Yusef"
     ruler "1961.2.26",
       name: "Hassan | Alaouite", # 2
       lived: "1929.7.9 - 1999.7.23",
@@ -160,7 +172,8 @@ ModernTimesDatabase::Holders.define do
     ruler "1805.6.18", name: "Muhammad Ali | Muhammad Ali", lived: "1769.3.4 - 1849.8.2"
     # Wikipedia lists Ibrahim as "presumed son" of Muhammad Ali
     ruler "1848.7.20", name: "Ibrahim | Muhammad Ali", lived: "1789 - 1848.11.10", father: "Muhammad Ali 1"
-    ruler "1848.11.10", name: "Abbas Helmi | Muhammad Ali", lived: "1812.7.1 - 1854.7.13" # father: Tusun
+    character "Tusun Pasha", name: "Tusun | Muhammad Ali", lived: "1794 - 1816.9.28", father: "Muhammad Ali 1"
+    ruler "1848.11.10", name: "Abbas Helmi | Muhammad Ali", lived: "1812.7.1 - 1854.7.13", father: "Tusun Pasha"
     ruler "1854.7.13", name: "Muhammad Sa'id | Muhammad Ali", lived: "1822.3.17 - 1863.1.18", father: "Muhammad Ali 1"
     ruler "1863.1.18", name: "Isma'il | Muhammad Ali", lived: "1830.12.31 - 1895.3.2", father: "Ibrahim 1"
     ruler "1879.6.26", name: "Muhammad Tawfiq | Muhammad Ali", lived: "1852.11.15 - 1892.1.7", father: "Isma'il 1"
@@ -212,7 +225,9 @@ ModernTimesDatabase::Holders.define do
     ruler "1868.6.11", name: "Tekle Giyorgis | Zagwe", lived: "- 1873"
     ruler "1871.7.11", name: "Yohannes | Solomonid", lived: "1837.7.11 - 1889.3.10"
     ruler "1889.3.10", name: "Menelik | Solomonid", lived: "1844.8.17 - 1913.12.12"
-    ruler "1913.12.12", name: "Iyasu | Solomonid", lived: "1895.2.4 - 1935.11.25"
+    # Weakly sourced dates, only Wikidata
+    character "Shewarega Menelik", name: "Shewarega | Solomonid", lived: "1867 - 1897.7.20", female: true, father: "Menelik 1"
+    ruler "1913.12.12", name: "Iyasu | Solomonid", lived: "1895.2.4 - 1935.11.25", mother: "Shewarega Menelik"
     ruler "1916.9.27", name: "Zewditu | Solomonid", lived: "1876.4.29 - 1930.4.2", female: true, father: "Menelik 1"
     ruler "1930.4.2", name: "Haile Selassie | Solomonid", lived: "1892.7.23 - 1975.8.27"
     ruler "1936.5.9", use: "e_italy Vittorio Emanuele 1"

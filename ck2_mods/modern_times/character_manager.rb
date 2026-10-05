@@ -88,8 +88,9 @@ class CharacterManager
       dynasty = @builder.cultures.random_dynasty(culture, rng)
     end
 
-    father = args[:father] && lookup_character_id(args[:father])
-    mother = args[:mother] && lookup_character_id(args[:mother])
+    # Parents are resolved lazily, as they might not be created yet
+    father = args[:father]
+    mother = args[:mother]
 
     add_character! Character.new(
       name: args[:name] || @builder.cultures.random_name(culture, female, rng),
@@ -104,6 +105,26 @@ class CharacterManager
       birth: birth,
       events: args[:events],
       death: death,
+      id: id,
+      historical_id: args[:historical_id],
+    )
+  end
+
+  # Non-ruler historical character, all data must be specified
+  def add_historical_character(**args)
+    id, rng = allocate_id("character-#{args[:historical_id]}")
+    add_character! Character.new(
+      name: args[:name],
+      religion: args[:religion],
+      culture: args[:culture],
+      dynasty: @builder.new_dynasty(args[:dynasty], args[:culture]),
+      female: args[:female],
+      father: args[:father],
+      mother: args[:mother],
+      health: args[:health],
+      traits: args[:traits],
+      birth: args[:birth],
+      death: args[:death],
       id: id,
       historical_id: args[:historical_id],
     )
@@ -137,6 +158,7 @@ class CharacterManager
   end
 
   def main_plist
+    resolve_parents!
     result = PropertyList[]
     @characters.sort.each do |k,v|
       result.add! k, v.to_plist if k >= @main_namespace
@@ -145,6 +167,12 @@ class CharacterManager
   end
 
 private
+
+  def resolve_parents!
+    @characters.each_value do |character|
+      character.resolve_parents! { |ref| lookup_character_id(ref) } if character.is_a?(Character)
+    end
+  end
 
   def add_child!(parent_id, birth)
     parent = @characters.fetch(parent_id)

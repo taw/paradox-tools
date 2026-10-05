@@ -363,6 +363,11 @@ class ModernTimesGameModification < CK2GameModification
           end
         end
       end
+      @db.characters.each_value do |characters|
+        characters.each do |character|
+          @character_manager.add_historical_character(**character)
+        end
+      end
     end
     @holders
   end

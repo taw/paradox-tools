@@ -4,7 +4,8 @@ ModernTimesDatabase::Holders.define do
     ruler "1898.12.13",
       # He's a royal but it was High Commissioner post
       name: "Georg | Schleswig-Holstein-Sonderburg-Glücksburg",
-      lived: "1869.6.24 - 1957.11.25"
+      lived: "1869.6.24 - 1957.11.25",
+      father: "k_byzantium Georg 1"
     ruler "1906.10.1",
       name: "Alexandros | Zaimis",
       lived: "1855.11.9 - 1936.9.15"
@@ -173,7 +174,8 @@ ModernTimesDatabase::Holders.define do
     ruler "1886.9.7",
       name: "Ferdinand | Sachsen-Coburg und Gotha",
       culture: "german",
-      lived: "1861.2.26 - 1948.9.10"
+      lived: "1861.2.26 - 1948.9.10",
+      mother: "e_france Clementine of Orleans"
     ruler "1918.10.3",
       name: "Boris | Sachsen-Coburg und Gotha",
       lived: "1894.1.30 - 1943.8.28",
@@ -218,7 +220,7 @@ ModernTimesDatabase::Holders.define do
     ruler "1832.5.7",
       name: "Otto | Wittelsbach",
       culture: "german",
-      # father: "d_bavaria Ludwig 1", # FIXME, doesn't work ?
+      father: "d_bavaria Ludwig 1",
       lived: "1815.6.1 - 1867.7.26"
     # backdating, actually 30 March 1863
     ruler "1862.10.23",

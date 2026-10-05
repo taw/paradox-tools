@@ -32,10 +32,22 @@ ModernTimesDatabase::Holders.define do
       name: "Frederik | Oldenburg", # 4, actually 7
       lived: "1808.10.6 - 1863.11.15",
       father: "Christian 4"
+    character "Louise of Denmark",
+      name: "Louise | Oldenburg",
+      lived: "1750.1.30 - 1831.1.12",
+      female: true,
+      father: "Frederik 2"
+    character "Louise Caroline of Hesse-Kassel",
+      name: "Louise Caroline | Hessen",
+      culture: "german",
+      lived: "1789.9.28 - 1867.3.13",
+      female: true,
+      mother: "Louise of Denmark"
     ruler "1863.11.15",
       name: "Christian | Schleswig-Holstein-Sonderburg-Glücksburg", # 5, actually 9
       culture: "german",
-      lived: "1818.4.8 - 1906.1.29"
+      lived: "1818.4.8 - 1906.1.29",
+      mother: "Louise Caroline of Hesse-Kassel"
     ruler "1906.1.29",
       name: "Frederik | Schleswig-Holstein-Sonderburg-Glücksburg", # 5, actually 8
       lived: "1843.6.3 - 1912.5.14",
@@ -70,7 +82,8 @@ ModernTimesDatabase::Holders.define do
       lived: "1655.11.24 - 1697.4.5"
     ruler "1697.4.5",
       name: "Karl | Wittelsbach",
-      lived: "1682.6.17 - 1718.11.30"
+      lived: "1682.6.17 - 1718.11.30",
+      father: "Karl 1"
     ruler "1718.12.5",
       name: "Ulrika Eleonora | Wittelsbach",
       female: true,
@@ -122,9 +135,14 @@ ModernTimesDatabase::Holders.define do
       name: "Gustaf Adolf | Bernadotte",
       lived: "1882.11.11 - 1973.9.15",
       father: "Gustaf"
+    character "Gustaf Adolf Duke of Vasterbotten",
+      name: "Gustaf Adolf | Bernadotte",
+      lived: "1906.4.22 - 1947.1.26",
+      father: "Gustaf Adolf 1"
     ruler "1973.9.15",
       name: "Karl Gustaf | Bernadotte",
-      lived: "1946.4.30 -"
+      lived: "1946.4.30 -",
+      father: "Gustaf Adolf Duke of Vasterbotten"
   end
   title "k_norway" do
     ruler "1670.2.9", use: "k_denmark Christian 1"
@@ -138,7 +156,7 @@ ModernTimesDatabase::Holders.define do
     ruler "1844.3.8", use: "k_sweden Oscar 1"
     ruler "1859.7.8", use: "k_sweden Charles 2"
     ruler "1872.9.18", use: "k_sweden Oscar 2"
-    ruler "1905.6.7", name: "Haakon | Schleswig-Holstein-Sonderburg-Glücksburg", culture: "danish", lived: "1872.8.3 - 1957.9.21"
+    ruler "1905.6.7", name: "Haakon | Schleswig-Holstein-Sonderburg-Glücksburg", culture: "danish", lived: "1872.8.3 - 1957.9.21", father: "k_denmark Frederik 5"
     ruler "1957.9.21", name: "Olav | Schleswig-Holstein-Sonderburg-Glücksburg", father: "Haakon 1", lived: "1903.7.2 - 1991.1.17"
     ruler "1991.1.17", name: "Harald | Schleswig-Holstein-Sonderburg-Glücksburg", father: "Olav 1", lived: "1937.2.21 -"
   end

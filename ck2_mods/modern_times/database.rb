@@ -212,8 +212,22 @@ class ModernTimesDatabase
       end
       validate_holders!
       validate_holders_dynasties!
+      validate_parents!
     end
     @holders
+  end
+
+  # Historical non-ruler characters, mostly to connect families
+  def characters
+    unless @characters
+      @characters = {}
+      ModernTimesDatabase::CHARACTERS.each do |title, data|
+        @characters[title] = data.map do |nickname, character_data|
+          parse_character_data(nickname, character_data, title)
+        end
+      end
+    end
+    @characters
   end
 
   def de_jure
@@ -278,6 +292,9 @@ class ModernTimesDatabase
   # FIXME: This system is nearly as awful a previous one...
   def fully_quality_reference(title, desc)
     return nil if desc.nil?
+    # Non-ruler characters are referenced by exact nickname
+    qualified = cleanup_unicode(desc =~ /\A[bcdke]_/ ? desc : "#{title} #{desc}")
+    return qualified if character_ids.include?(qualified)
     desc = "#{desc} 1" unless desc =~ /\d+\z/
     desc = "#{title} #{desc}" unless desc =~ /\A[bcdke]_/
     cleanup_unicode(desc)
@@ -441,7 +458,7 @@ class ModernTimesDatabase
   end
 
   def validate_holders_dynasties!
-    all_characters = @holders.values.flat_map(&:values).grep(Hash).reject{|c| c[:use]}
+    all_characters = @holders.values.flat_map(&:values).grep(Hash).reject{|c| c[:use]} + characters.values.flatten
     by_dynasty = all_characters.group_by{|c| c[:dynasty] }.select{|dn, cs| cs.size > 1}
     total = 0
     by_dynasty.each do |dynasty_name, characters|
@@ -453,6 +470,33 @@ class ModernTimesDatabase
       end
     end
     warn "Total number of characters who should get parents: #{total}"
+  end
+
+  # Every parent reference must resolve, and parents must be plausibly older
+  def validate_parents!
+    rulers = @holders.values.flat_map(&:values).grep(Hash).reject { |c| c[:use] }
+    by_id = {}
+    (rulers + characters.values.flatten).each do |c|
+      raise "Duplicate historical id #{c[:historical_id]}" if by_id[c[:historical_id]]
+      by_id[c[:historical_id]] = c
+    end
+    by_id.each_value do |c|
+      %i[father mother].each do |rel|
+        next unless c[rel]
+        parent = by_id[c[rel]]
+        unless parent
+          warn "Character #{c[:historical_id]} has unknown #{rel} #{c[rel]}"
+          next
+        end
+        if parent[:female] != (rel == :mother)
+          warn "Character #{c[:historical_id]} #{rel} #{c[rel]} has wrong gender"
+        end
+        next unless c[:birth] and parent[:birth]
+        unless (parent[:birth] >> (12 * 13)) < c[:birth]
+          warn "Character #{c[:historical_id]} born #{c[:birth]} too soon after #{rel} #{c[rel]} born #{parent[:birth]}"
+        end
+      end
+    end
   end
 
   def resolve_start_date(date)
@@ -499,6 +543,34 @@ class ModernTimesDatabase
     words = name.split(/\s+/)
     return words if words.size == 2
     raise "No dynasty for #{name}"
+  end
+
+  def character_ids
+    @character_ids ||= ModernTimesDatabase::CHARACTERS.flat_map { |title, data|
+      data.map { |nickname, _| cleanup_unicode("#{title} #{nickname}") }
+    }.to_set
+  end
+
+  def parse_character_data(nickname, data, title)
+    extra_keys = data.keys - %i[name lived female father mother traits culture religion health]
+    raise "Extra keys: #{extra_keys}" unless extra_keys.empty?
+    name, dynasty = parse_name(data[:name])
+    character = {
+      name: name,
+      dynasty: dynasty,
+      health: data[:health],
+      traits: data[:traits],
+      culture: (data[:culture] || titles[title][:culture]).to_s,
+      religion: (data[:religion] || titles[title][:religion]).to_s,
+      female: !!data[:female],
+      mother: fully_quality_reference(title, data[:mother]),
+      father: fully_quality_reference(title, data[:father]),
+      historical_id: cleanup_unicode("#{title} #{nickname}"),
+    }
+    character[:birth], character[:death] = parse_lived(data[:lived])
+    raise "Characters need lived specified: #{character[:historical_id]}" unless character[:birth] and character[:death]
+    raise "Characters must be dead: #{character[:historical_id]}" if character[:death] == :never
+    character
   end
 
   def parse_holder_data(crowning_date, holder_data, title)

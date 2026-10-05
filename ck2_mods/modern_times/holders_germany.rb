@@ -76,12 +76,22 @@ ModernTimesDatabase::Holders.define do
       name: "Friedrich | Mecklenburg",
       lived: "1717.11.9 - 1785.4.24",
       father: "Christian Ludwig 1"
+    character "Hereditary Prince Ludwig",
+      name: "Ludwig | Mecklenburg",
+      lived: "1725.8.6 - 1778.9.12",
+      father: "Christian Ludwig 1"
     ruler "1785.4.24",
       name: "Friedrich Franz | Mecklenburg", # 1
-      lived: "1756.12.10 - 1837.2.1"
+      lived: "1756.12.10 - 1837.2.1",
+      father: "Hereditary Prince Ludwig"
+    character "Hereditary Grand Duke Friedrich Ludwig",
+      name: "Friedrich Ludwig | Mecklenburg",
+      lived: "1778.6.13 - 1819.11.29",
+      father: "Friedrich Franz 1"
     ruler "1837.2.1",
       name: "Paul Friedrich | Mecklenburg",
-      lived: "1800.9.15 - 1842.3.7"
+      lived: "1800.9.15 - 1842.3.7",
+      father: "Hereditary Grand Duke Friedrich Ludwig"
     ruler "1842.3.7",
       name: "Friedrich Franz | Mecklenburg", # 2
       lived: "1823.2.28 - 1883.4.15",
@@ -224,10 +234,16 @@ ModernTimesDatabase::Holders.define do
       name: "Otto | Wittelsbach",
       lived: "1848.4.27 - 1916.10.11",
       father: "Maximilian 3"
+    # Regent 1886-1912
+    character "Prince Regent Luitpold",
+      name: "Luitpold | Wittelsbach",
+      lived: "1821.3.12 - 1912.12.12",
+      father: "Ludwig 1"
     ruler "1913.11.5",
       name: "Ludwig | Wittelsbach", # 3
-      lived: "1845.1.7 - 1921.10.18"
+      lived: "1845.1.7 - 1921.10.18",
       # grandson of Ludwig 1
+      father: "Prince Regent Luitpold"
     vacant :end_ww1
   end
   title "d_lausitz" do
@@ -236,7 +252,8 @@ ModernTimesDatabase::Holders.define do
       lived: "1670.5.12 - 1733.2.1"
     ruler "1733.2.1",
       name: "August | Wettin", #2
-      lived: "1696.10.17 - 1763.10.5"
+      lived: "1696.10.17 - 1763.10.5",
+      father: "August 1"
     ruler "1763.10.5",
       name: "Friedrich Christian | Wettin",
       lived: "1722.9.5 - 1763.12.17",
@@ -250,13 +267,19 @@ ModernTimesDatabase::Holders.define do
       lived: "1755.12.27 - 1836.6.6",
       father: "Friedrich Christian"
     # brother of previous
+    character "Prince Maximilian",
+      name: "Maximilian | Wettin",
+      lived: "1759.4.13 - 1838.1.3",
+      father: "Friedrich Christian"
     ruler "1836.6.6",
       name: "Friedrich August | Wettin", #2
-      lived: "1797.5.18 - 1854.8.9"
+      lived: "1797.5.18 - 1854.8.9",
+      father: "Prince Maximilian"
     # nephew of previous
     ruler "1854.8.9",
       name: "Johann | Wettin", #1
-      lived: "1801.12.12 - 1873.10.29"
+      lived: "1801.12.12 - 1873.10.29",
+      father: "Prince Maximilian"
     # brother of previous
     ruler "1873.10.29",
       name: "Albert | Wettin",
@@ -342,15 +365,31 @@ ModernTimesDatabase::Holders.define do
       name: "Karl | Württemberg",
       lived: "1823.3.6 - 1891.10.6",
       father: "Wilhelm 1"
+    character "Prince Paul",
+      name: "Paul | Württemberg",
+      lived: "1785.1.19 - 1852.4.16",
+      father: "Friedrich 1"
+    character "Prince Friedrich",
+      name: "Friedrich | Württemberg",
+      lived: "1808.2.21 - 1870.5.9",
+      father: "Prince Paul"
+    character "Princess Katharina",
+      name: "Katharina | Württemberg",
+      lived: "1821.8.24 - 1898.12.6",
+      female: true,
+      father: "Wilhelm 1"
     ruler "1891.10.6",
       name: "Wilhelm | Württemberg", # 2
-      lived: "1848.2.25 - 1921.10.2"
+      lived: "1848.2.25 - 1921.10.2",
+      father: "Prince Friedrich",
+      mother: "Princess Katharina"
     # nephew of previous
     vacant :end_ww1
   end
   title "d_baden" do
     ruler "1738.5.12", name: "Karl Friedrich | Zähringen", lived: "1728.11.22 - 1811.6.10"
-    ruler "1811.6.10", name: "Karl | Zähringen", lived: "1786.7.8 - 1818.12.8"
+    character "Hereditary Prince Karl Ludwig", name: "Karl Ludwig | Zähringen", lived: "1755.2.14 - 1801.12.16", father: "Karl Friedrich 1"
+    ruler "1811.6.10", name: "Karl | Zähringen", lived: "1786.7.8 - 1818.12.8", father: "Hereditary Prince Karl Ludwig"
     ruler "1818.12.8", name: "Ludwig | Zähringen", lived: "1763.2.9 - 1830.3.30", father: "Karl Friedrich 1"
     ruler "1830.3.30", name: "Leopold | Zähringen", lived: "1790.8.29 - 1852.4.24", father: "Karl Friedrich 1"
     ruler "1852.4.24", name: "Ludwig | Zähringen", lived: "1824.8.15 - 1858.1.22", father: "Leopold 1"
@@ -374,11 +413,15 @@ ModernTimesDatabase::Holders.define do
     # Anhalt-Dessau and Anhalt-Köthen from 1847
     # Anhalt-Dessau-Köthen from 1853
     # United Anhalt from 1863
-    # grandson of previous (son of Friedrich, hereditary prince of Anhalt-Dessau,
-    # who predeceased his father Leopold 3 and never reigned)
+    # Predeceased his father Leopold 3 and never reigned
+    character "Hereditary Prince Friedrich",
+      name: "Friedrich | Askanier",
+      lived: "1769.12.27 - 1814.5.27",
+      father: "Leopold 3"
     ruler "1817.8.9",
       name: "Leopold | Askanier", # 4
-      lived: "1794.10.1 - 1871.5.22"
+      lived: "1794.10.1 - 1871.5.22",
+      father: "Hereditary Prince Friedrich"
     vacant :german_unification
   end
   title "c_oldenburg" do

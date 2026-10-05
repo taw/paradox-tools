@@ -20,30 +20,56 @@ ModernTimesDatabase::Holders.define do
       lived: "1684.4.15 - 1727.5.17",
       female: true
       # Wife of Pyotr I, Skowroński not Romanov
+    character "Tsarevich Alexei",
+      name: "Aleksey | Romanov",
+      lived: "1690.2.28 - 1718.7.7",
+      father: "Pyotr 1"
     ruler "1727.5.17",
       name: "Pyotr | Romanov", #2
-      lived: "1715.10.23 - 1730.1.30"
+      lived: "1715.10.23 - 1730.1.30",
       # Grandson of Pyotr I via the murdered Tsesarevich Alexei. Last of the direct male Romanov line.
+      father: "Tsarevich Alexei"
     ruler "1730.1.30",
       name: "Anna | Romanov",
       lived: "1693.2.7 - 1740.10.28",
       female: true,
       father: "Ivan 1"
       # Daughter of Ivan V
+    character "Catherine Ivanovna",
+      name: "Yekaterina | Romanov",
+      lived: "1691.11.8 - 1733.6.25",
+      female: true,
+      father: "Ivan 1"
+    character "Anna Leopoldovna",
+      name: "Anna | Mecklenburg",
+      culture: "german",
+      lived: "1718.12.18 - 1746.3.19",
+      female: true,
+      father: "d_mecklemburg Karl Leopold 1",
+      mother: "Catherine Ivanovna"
     ruler "1740.10.28",
       name: "Ivan | Romanov", # 6
-      lived: "1740.8.23 - 1764.7.16"
+      lived: "1740.8.23 - 1764.7.16",
       # Great-grandson of Ivan V
+      mother: "Anna Leopoldovna"
     ruler "1741.12.6",
       name: "Yelizaveta | Romanov",
       lived: "1709.12.29 - 1762.1.5",
       female: true,
       father: "Pyotr 1",
       mother: "Yekaterina 1"
+    character "Anna Petrovna",
+      name: "Anna | Romanov",
+      # Sources disagree, 1728.3.15 according to some
+      lived: "1708.2.7 - 1728.5.15",
+      female: true,
+      father: "Pyotr 1",
+      mother: "Yekaterina 1"
     ruler "1762.1.5",
       name: "Pyotr | Romanov",
-      lived: "1728.2.21 - 1762.7.17"
+      lived: "1728.2.21 - 1762.7.17",
       # grandson of Peter 1
+      mother: "Anna Petrovna"
     ruler "1762.7.9",
       name: "Katharina | Romanov",
       lived: "1729.5.2 - 1796.11.17",
@@ -78,7 +104,8 @@ ModernTimesDatabase::Holders.define do
     # Not really ruling ever, but alternative is interregnum
     ruler "1917.3.15",
       name: "Michail | Romanov",
-      lived: "1878.10.22 - 1918.6.12"
+      lived: "1878.10.22 - 1918.6.12",
+      father: "Aleksandr 3"
     # Backdating
     ruler "1918.6.12",
       name: "Vladimir | Lenin", lived: "1870.4.22 - 1924.1.21",

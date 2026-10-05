@@ -8,19 +8,26 @@ ModernTimesDatabase::Holders.define do
       lived: "- 1789.5.10" # wikipedia has no birth
     ruler "1789.5.10",
       name: "Lotf Ali | Zand",
-      lived: "1769 - 1794.3.20"
+      lived: "1769 - 1794.3.20",
+      father: "Jafar"
     ruler "1794.3.20",
       name: "Mohammad | Qajar",
       lived: "1742 - 1797.6.17"
     ruler "1797.6.17",
       name: "Fat'h Ali | Qajar",
       lived: "1772.9.5 - 1834.10.23"
+    character "Abbas Mirza",
+      name: "Abbas | Qajar",
+      lived: "1789.8.26 - 1833.10.25",
+      father: "Fat'h Ali"
     ruler "1834.10.23",
       name: "Mohammad | Qajar",
-      lived: "1808.1.5 - 1848.9.5"
+      lived: "1808.1.5 - 1848.9.5",
+      father: "Abbas Mirza"
     ruler "1848.9.5",
       name: "Naser al-Din | Qajar",
-      lived: "1831.7.16 - 1896.5.1"
+      lived: "1831.7.16 - 1896.5.1",
+      father: "Mohammad 2"
     ruler "1896.5.1",
       name: "Mozaffar al-Din | Qajar",
       lived: "1853.3.23 - 1907.1.3",
@@ -38,7 +45,8 @@ ModernTimesDatabase::Holders.define do
       lived: "1878.3.15 - 1944.7.26"
     ruler "1941.9.16",
       name: "Mohammad Reza | Pahlavi",
-      lived: "1919.10.26 - 1980.7.27"
+      lived: "1919.10.26 - 1980.7.27",
+      father: "Reza"
     ruler "1979.2.11",
       name: "Ruhollah | Khomeini",
       lived: "1902.9.22 - 1989.6.3",
