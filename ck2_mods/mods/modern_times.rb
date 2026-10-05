@@ -15,6 +15,37 @@ class ModernTimesGameModification < CK2GameModification
     @reset_date ||= @db.resolve_date(:reset_date)
   end
 
+  # Reuse vanilla dynasties (with their coats of arms) instead of creating duplicates
+  # Only for the same house, not just same surname. Cadet branches with their own names stay separate.
+  VANILLA_DYNASTIES = {
+    "Askanier" => ["Askanien", 226],
+    "Bourbon" => ["de Bourbon", 329],
+    "Bragança" => ["de Braganza", 100188],
+    "Braganza" => ["de Braganza", 100188],
+    "Borghese" => ["Borghese", 13008],
+    "Chigi" => ["de Chigi", 20068],
+    "de' Medici" => ["de Medici", 13030],
+    "di Conti" => ["di Conti", 8790],
+    "Habsburg" => ["von Habsburg", 51],
+    "Hashemite" => ["Hashimid", 7296],
+    "Hessen" => ["von Hessen", 101895],
+    "Hohenzollern" => ["von Hohenzollern", 12476],
+    "Mecklenburg" => ["Niklotid", 101893],
+    "Oldenburg" => ["von Oldenburg", 224],
+    "Orsini" => ["Orsini", 2],
+    "Ottoman" => ["Ottoman", 7],
+    "Rassid" => ["Rassid", 576],
+    "Romanov" => ["Romanov", 100397],
+    "Savoia" => ["de Savoie", 240],
+    "Solomonid" => ["Solomonid", 7246],
+    "Timurid" => ["Timurid", 800],
+    "Wettin" => ["Wettin", 528],
+    "Wittelsbach" => ["von Wittelsbach", 217],
+    "Württemberg" => ["von Württemberg", 12446],
+    "Zagwe" => ["Zagwe", 101793],
+    "Zähringen" => ["von Zähringen", 261],
+  }
+
   def new_dynasty(name, culture)
     # Cultural overrides, many European royal dynasties were cross-cultural
     # I'm not even sure if it does anything
@@ -44,7 +75,10 @@ class ModernTimesGameModification < CK2GameModification
       culture = "russian"
     end
 
-    if @dynasties[name]
+    if VANILLA_DYNASTIES[name] and not @dynasties[name]
+      vanilla_name, id = VANILLA_DYNASTIES[name]
+      @dynasties[name] = {name: vanilla_name, culture: culture, id: id, vanilla: true}
+    elsif @dynasties[name]
       existing_culture = @dynasties[name][:culture]
       if culture != existing_culture
         warn "Dynasty `#{name}' has multiple cultures #{culture}, #{existing_culture}"
@@ -863,7 +897,7 @@ class ModernTimesGameModification < CK2GameModification
 
   def save_dynasties!
     create_mod_file!("common/dynasties/01_modern_times.txt", PropertyList[
-      *@dynasties.values.map { |d|
+      *@dynasties.values.reject { |d| d[:vanilla] }.map { |d|
         Property[d[:id], PropertyList["name", d[:name], "culture", d[:culture]]]
       }.sort
     ])
@@ -891,7 +925,7 @@ class ModernTimesGameModification < CK2GameModification
     title_name = localized_title_name(title, date)
     character_name = [
       character_info["name"],
-      @dynasties.keys.find { |k| @dynasties[k][:id] == character_info["dynasty"] },
+      @dynasties.values.find { |d| d[:id] == character_info["dynasty"] }&.[](:name),
     ].compact.join(" ")
     loc = "Play as #{character_name} of #{title_name}"
     # Strip Unicode diacritical characters
