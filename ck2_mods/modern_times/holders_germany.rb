@@ -63,15 +63,21 @@ ModernTimesDatabase::Holders.define do
     vacant :german_unification
   end
   title "d_mecklemburg" do
+    character "Friedrich of Grabow",
+      name: "Friedrich | Mecklenburg",
+      lived: "1638.2.13 - 1688.4.28"
     ruler "1692.6.21",
       name: "Friedrich Wilhelm | Mecklenburg",
-      lived: "1675.3.28 - 1713.7.31"
+      lived: "1675.3.28 - 1713.7.31",
+      father: "Friedrich of Grabow"
     ruler "1713.7.31",
       name: "Karl Leopold | Mecklenburg",
-      lived: "1678.11.26 - 1747.11.28"
+      lived: "1678.11.26 - 1747.11.28",
+      father: "Friedrich of Grabow"
     ruler "1728.1.1", # Amazingly whole internet doesn't know better than year date :-/
       name: "Christian Ludwig | Mecklenburg",
-      lived: "1683.11.15 - 1756.5.30"
+      lived: "1683.11.15 - 1756.5.30", # 1683.5.15 according to some sources
+      father: "Friedrich of Grabow"
     ruler "1756.5.30",
       name: "Friedrich | Mecklenburg",
       lived: "1717.11.9 - 1785.4.24",
@@ -297,9 +303,21 @@ ModernTimesDatabase::Holders.define do
   end
   # There was actually Hessen-Kassel and Hessen-Darmstadt
   title "d_franconia" do
+    character "Landgrave Karl",
+      name: "Karl | Hessen",
+      lived: "1654.8.3 - 1730.3.23"
+    character "Landgrave Wilhelm VIII",
+      name: "Wilhelm | Hessen",
+      lived: "1682.3.10 - 1760.2.1",
+      father: "Landgrave Karl"
+    character "Landgrave Friedrich II",
+      name: "Friedrich | Hessen",
+      lived: "1720.8.14 - 1785.10.31",
+      father: "Landgrave Wilhelm VIII"
     ruler "1813.10.30",
       name: "Wilhelm | Hessen",
-      lived: "1743.6.3 - 1821.2.27"
+      lived: "1743.6.3 - 1821.2.27",
+      father: "Landgrave Friedrich II"
     ruler "1821.2.27",
       name: "Wilhelm | Hessen", #2
       lived: "1777.7.28 - 1847.11.20",
@@ -426,13 +444,26 @@ ModernTimesDatabase::Holders.define do
   end
   title "c_oldenburg" do
     # 1810-1813 under France
+    character "Christian August",
+      name: "Christian August | Holstein-Gottorp",
+      lived: "1673.1.11 - 1726.4.24"
+    character "Friedrich August",
+      name: "Friedrich August | Holstein-Gottorp",
+      lived: "1711.9.20 - 1785.7.6",
+      father: "Christian August"
+    character "Georg Ludwig",
+      name: "Georg Ludwig | Holstein-Gottorp",
+      lived: "1719.3.16 - 1763.9.7",
+      father: "Christian August"
     ruler :congress_of_vienna,
       name: "Wilhelm | Holstein-Gottorp",
-      lived: "1754.1.3 - 1823.7.2"
+      lived: "1754.1.3 - 1823.7.2",
+      father: "Friedrich August"
     ruler "1823.7.2",
       # cousin of previous, nephew of prevprev
       name: "Peter | Holstein-Gottorp", #1
-      lived: "1755.1.17 - 1829.5.21"
+      lived: "1755.1.17 - 1829.5.21",
+      father: "Georg Ludwig"
     ruler "1829.5.21",
       name: "August | Holstein-Gottorp",
       lived: "1783.7.13 - 1853.2.27",

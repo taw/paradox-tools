@@ -93,10 +93,12 @@ ModernTimesDatabase::Holders.define do
     ruler "1720.3.24",
       name: "Friedrich | Hessen",
       culture: "german",
-      lived: "1676.4.23 - 1751.3.25"
+      lived: "1676.4.23 - 1751.3.25",
+      father: "d_franconia Landgrave Karl"
     ruler "1751.3.25",
       name: "Adolf Fredrik | Holstein-Gottorp",
-      lived: "1710.5.14 - 1771.2.12"
+      lived: "1710.5.14 - 1771.2.12",
+      father: "c_oldenburg Christian August"
     ruler "1771.2.12",
       name: "Gustav | Holstein-Gottorp",
       lived: "1746.1.24 - 1792.3.29",

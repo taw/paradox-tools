@@ -1,14 +1,20 @@
 ModernTimesDatabase::Holders.define do
   title "e_france" do
-    ruler "1799.11.10", name: "Napoleon | Bonaparte", lived: "1769.8.15 - 1821.5.5"
+    character "Carlo Buonaparte", name: "Carlo | Bonaparte", lived: "1746.3.27 - 1785.2.24"
+    ruler "1799.11.10", name: "Napoleon | Bonaparte", lived: "1769.8.15 - 1821.5.5", father: "Carlo Buonaparte"
     # 7 July 1815, backdating to Congress of Vienna
-    ruler "1815.6.9", name: "Louis | Bourbon", lived: "1755.11.17 - 1824.9.16"
-    ruler "1824.9.16", name: "Charles | Bourbon", lived: "1757.10.9 - 1836.11.6" # younger brother of previous
+    character "Grand Dauphin", name: "Louis | Bourbon", lived: "1661.11.1 - 1711.4.14"
+    character "Duke of Burgundy", name: "Louis | Bourbon", lived: "1682.8.16 - 1712.2.18", father: "Grand Dauphin"
+    character "Louis XV", name: "Louis | Bourbon", lived: "1710.2.15 - 1774.5.10", father: "Duke of Burgundy"
+    character "Dauphin Louis", name: "Louis | Bourbon", lived: "1729.9.4 - 1765.12.20", father: "Louis XV"
+    ruler "1815.6.9", name: "Louis | Bourbon", lived: "1755.11.17 - 1824.9.16", father: "Dauphin Louis"
+    ruler "1824.9.16", name: "Charles | Bourbon", lived: "1757.10.9 - 1836.11.6", father: "Dauphin Louis" # younger brother of previous
     ruler "1830.8.9", name: "Louis Philippe | Orléans", lived: "1773.10.6 - 1850.8.26"
     # Mother of Ferdinand of Bulgaria
     character "Clementine of Orleans", name: "Clémentine | Orléans", lived: "1817.6.3 - 1907.2.16", female: true, father: "Louis Philippe"
     # Second republic, second Empire from 1852.12.2
-    ruler "1848.2.24", name: "Napoleon | Bonaparte", lived: "1808.4.20 - 1873.1.9"
+    character "Louis King of Holland", name: "Louis | Bonaparte", lived: "1778.9.2 - 1846.7.25", father: "Carlo Buonaparte"
+    ruler "1848.2.24", name: "Napoleon | Bonaparte", lived: "1808.4.20 - 1873.1.9", father: "Louis King of Holland"
     # 3rd Republic
     # Backdated, really 1871.8.31
     ruler "1870.9.4", name: "Adolphe | Thiers", lived: "1797 - 1877"
@@ -43,7 +49,7 @@ ModernTimesDatabase::Holders.define do
   end
   title "e_spain" do
     ruler "1665.9.17", name: "Carlos | Habsburg", lived: "1661.11.6 - 1700.11.1"
-    ruler "1700.11.1", name: "Felipe | Bourbon", lived: "1683.12.19 - 1746.7.9"
+    ruler "1700.11.1", name: "Felipe | Bourbon", lived: "1683.12.19 - 1746.7.9", father: "e_france Grand Dauphin"
     ruler "1724.1.14", name: "Luis | Bourbon", father: "Felipe 1", lived: "1707.8.25 - 1724.8.31"
     # backdating
     ruler "1724.8.31", use: "Felipe 1"
@@ -51,7 +57,7 @@ ModernTimesDatabase::Holders.define do
     ruler "1759.8.10", name: "Carlos | Bourbon", father: "Felipe 1", lived: "1716.1.20 - 1788.12.14"
     ruler "1788.12.14", name: "Carlos | Bourbon", father: "Carlos 2", lived: "1748.11.11 - 1819.1.20"
     ruler "1808.3.19", name: "Fernando | Bourbon", father: "Carlos 3", lived: "1784.10.14 - 1833.9.29"
-    ruler "1808.6.6", name: "Joseph | Bonaparte", culture: "frankish", lived: "1768.1.7 - 1844.7.28"
+    ruler "1808.6.6", name: "Joseph | Bonaparte", culture: "frankish", lived: "1768.1.7 - 1844.7.28", father: "e_france Carlo Buonaparte"
     ruler "1813.12.11", use: "Fernando 2"
     ruler "1833.9.29", name: "Isabel | Bourbon", female: true, father: "Fernando 2", lived: "1830.10.10 - 1904.4.10"
     ruler "1870.11.16", name: "Amadeo | Savoia", lived: "1845.5.30 - 1890.1.18", father: "k_italy Vittorio Emanuele 2"

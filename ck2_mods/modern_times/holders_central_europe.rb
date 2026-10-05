@@ -1,6 +1,7 @@
 ModernTimesDatabase::Holders.define do
   title "e_carpathia" do
-    ruler "1804.8.11", name: "Franz | Habsburg", lived: "1768.2.12 - 1835.3.2"
+    character "Emperor Leopold II", name: "Leopold | Habsburg", lived: "1747.5.5 - 1792.3.1"
+    ruler "1804.8.11", name: "Franz | Habsburg", lived: "1768.2.12 - 1835.3.2", father: "Emperor Leopold II"
     ruler "1835.3.2", name: "Ferdinand | Habsburg", lived: "1793.4.19 - 1875.6.29", father: "Franz 1"
     # Can't find day date, just month
     character "Archduke Franz Karl", name: "Franz Karl | Habsburg", lived: "1802.12.17 - 1878.3.8", father: "Franz 1"
@@ -135,15 +136,26 @@ ModernTimesDatabase::Holders.define do
   end
   title "k_dacia" do
     # actually "1866.4.20", ignore until he gets independent
+    character "Karl Anton",
+      name: "Karl Anton | Hohenzollern-Sigmaringen",
+      culture: "german",
+      lived: "1811.9.7 - 1885.6.2"
     ruler :treaty_of_berlin,
       name: "Karl | Hohenzollern-Sigmaringen",
       culture: "german",
-      lived: "1839.4.20 - 1914.10.10"
+      lived: "1839.4.20 - 1914.10.10",
+      father: "Karl Anton"
+    character "Prince Leopold",
+      name: "Leopold | Hohenzollern-Sigmaringen",
+      culture: "german",
+      lived: "1835.9.22 - 1905.6.8",
+      father: "Karl Anton"
     # nephew of Carol 1
     ruler "1914.10.10",
       name: "Ferdinand | Hohenzollern-Sigmaringen",
       culture: "german",
-      lived: "1865.8.24 - 1927.7.20"
+      lived: "1865.8.24 - 1927.7.20",
+      father: "Prince Leopold"
     # This is just dumb, Ferdinand's son Carol renounced right to throne
     # in favour of his son Michael, then decided to go back on it
     # DSL can't currently support this

@@ -1,14 +1,29 @@
 ModernTimesDatabase::Holders.define do
   # Dynasty changed names twice, but whatever
   title "e_britannia" do
+    # Old Style dates for Stuarts
+    character "Charles I",
+      name: "Charles | Stuart",
+      lived: "1600.11.19 - 1649.1.30"
+    character "Mary Princess Royal",
+      name: "Mary | Stuart",
+      lived: "1631.11.4 - 1660.12.24",
+      female: true,
+      father: "Charles I"
+    character "James II",
+      name: "James | Stuart",
+      lived: "1633.10.14 - 1701.9.5",
+      father: "Charles I"
     ruler "1689.2.13",
       name: "William | Stuart",
-      lived: "1650.11.4 - 1702.3.8"
+      lived: "1650.11.4 - 1702.3.8",
+      mother: "Mary Princess Royal"
     # From 1 May 1707 as UK, but let's not pretend Scotland mattered before
     ruler "1702.3.8",
       name: "Anne | Stuart",
       lived: "1665.2.6 - 1714.8.1",
-      female: true
+      female: true,
+      father: "James II"
     ruler "1714.8.1",
       name: "George | Windsor",
       lived: "1660.5.28 - 1727.6.11"

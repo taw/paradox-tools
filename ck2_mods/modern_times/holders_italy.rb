@@ -86,7 +86,8 @@ ModernTimesDatabase::Holders.define do
     ruler "1806.3.30",
       name: "Joseph | Bonaparte",
       culture: "frankish",
-      lived: "1768.1.7 - 1844.7.28"
+      lived: "1768.1.7 - 1844.7.28",
+      father: "e_france Carlo Buonaparte"
     ruler "1808.8.1",
       name: "Joachim | Murat",
       culture: "frankish",
@@ -384,7 +385,7 @@ ModernTimesDatabase::Holders.define do
   title "d_toscana" do
     ruler "1801.3.21", name: "Lodovico | Bourbon", lived: "1773.7.5 - 1803.5.27", father: "c_parma Ferdinando"
     ruler "1803.5.27", use: "c_lucca Carlo"
-    ruler "1814.4.27", name: "Ferdinando | Habsburg", lived: "1769.5.6 - 1824.6.18"
+    ruler "1814.4.27", name: "Ferdinando | Habsburg", lived: "1769.5.6 - 1824.6.18", father: "e_carpathia Emperor Leopold II"
     ruler "1824.6.18", name: "Leopoldo | Habsburg", lived: "1797.10.3 - 1870.1.29", father: "Ferdinando 1"
     ruler "1859.7.21", name: "Ferdinando | Habsburg", lived: "1835.6.10 - 1908.1.17", father: "Leopoldo 1"
     vacant "1859.11.10"
