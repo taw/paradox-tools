@@ -1,451 +1,373 @@
-ModernTimesDatabase::HOLDERS_BALKANS = {
-  d_krete: {
+ModernTimesDatabase::Holders.define do
+  title "d_krete" do
     # 21 December 1898, backdating to foundation
-    "1898.12.13" => {
+    ruler "1898.12.13",
       # He's a royal but it was High Commissioner post
       name: "Georg | Schleswig-Holstein-Sonderburg-Glücksburg",
-      lived: "1869.6.24 - 1957.11.25",
-    },
-    "1906.10.1" => {
+      lived: "1869.6.24 - 1957.11.25"
+    ruler "1906.10.1",
       name: "Alexandros | Zaimis",
-      lived: "1855.11.9 - 1936.9.15",
-    },
-    "1913.5.30" => nil,
-  },
-  d_carinthia: {
+      lived: "1855.11.9 - 1936.9.15"
+    vacant "1913.5.30"
+  end
+  title "d_carinthia" do
     # Backdating, actually 23 December 1991
-    "1991.7.7" => {
+    ruler "1991.7.7",
       name: "Milan | Kučan",
-      lived: "1941.1.14 -",
-    },
-    "2002.12.22" => {
+      lived: "1941.1.14 -"
+    ruler "2002.12.22",
       name: "Janez | Drnovšek",
-      lived: "1950.5.17 - 2008.2.23",
-    },
-    "2007.12.23" => {
+      lived: "1950.5.17 - 2008.2.23"
+    ruler "2007.12.23",
       name: "Danilo | Türk",
-      lived: "1952.2.19 -",
-    },
-    "2012.12.22" => {
+      lived: "1952.2.19 -"
+    ruler "2012.12.22",
       name: "Borut | Pahor",
-      lived: "1963.11.2 -",
-    },
-    "2022.12.23" => {
+      lived: "1963.11.2 -"
+    ruler "2022.12.23",
       name: "Nataša | Pirc Musar",
       lived: "1968.5.9 -",
-      female: true,
-    },
-  },
-  k_croatia: {
-    croatia_independence: {name: "Franjo | Tuđman", lived: "1922.5.14 - 1999.12.10"},
+      female: true
+  end
+  title "k_croatia" do
+    ruler :croatia_independence, name: "Franjo | Tuđman", lived: "1922.5.14 - 1999.12.10"
     # Backdated from 18 February 2000, skipping two active presidents
-    "1999.12.10" => {name: "Stjepan | Mesić", lived: "1934.12.24-" },
-    "2010.2.19" => {name: "Ivo | Josipović", lived: "1957.8.28-" },
-    "2015.2.19" => {name: "Kolinda | Grabar-Kitarović", female: true, lived: "1968.4.29-"},
-    "2020.2.19" => {name: "Zoran | Milanović", lived: "1966.10.30 -"},
-  },
+    ruler "1999.12.10", name: "Stjepan | Mesić", lived: "1934.12.24 -"
+    ruler "2010.2.19", name: "Ivo | Josipović", lived: "1957.8.28 -"
+    ruler "2015.2.19", name: "Kolinda | Grabar-Kitarović", female: true, lived: "1968.4.29 -"
+    ruler "2020.2.19", name: "Zoran | Milanović", lived: "1966.10.30 -"
+  end
   # Serbia/Yugoslavia. There was a lot of silliness about rulers of Serbia vs "Yugoslavia" or "Serbia and Montenegro"
   # Just a simplified view here
   #
   # Pretty much all data here is crap quality
-  k_serbia: {
-    "1878.7.13" => {
+  title "k_serbia" do
+    ruler "1878.7.13",
       name: "Milan | Obrenović",
-      lived: "1854.8.22 - 1901.2.11",
-    },
-    "1889.3.6" => {
+      lived: "1854.8.22 - 1901.2.11"
+    ruler "1889.3.6",
       name: "Aleksandar | Obrenović",
       lived: "1876.8.14 - 1903.6.11",
-      father: "Milan 1",
-    },
-    "1903.6.11" => {
+      father: "Milan 1"
+    ruler "1903.6.11",
       name: "Petar | Karađorđević",
-      lived: "1844.6.29 - 1921.8.16",
-    },
-    "1921.8.16" => {
+      lived: "1844.6.29 - 1921.8.16"
+    ruler "1921.8.16",
       name: "Aleksandar | Karađorđević",
       lived: "1888.12.16 - 1934.10.9",
-      father: "Petar 1",
-    },
-    "1934.10.9" => {
+      father: "Petar 1"
+    ruler "1934.10.9",
       name: "Petar | Karađorđević",
       lived: "1923.9.6 - 1970.11.3",
-      father: "Aleksandar 2",
-    },
-    end_ww2: {
+      father: "Aleksandar 2"
+    ruler :end_ww2,
       name: "Josip Broz | Tito",
-      lived: "1892.5.7 - 1980.5.4",
-    },
-    "1980.5.4" => {
+      lived: "1892.5.7 - 1980.5.4"
+    ruler "1980.5.4",
       name: "Lazar Koliševski",
       culture: "bulgarian",
-      lived: "1914.2.12 - 2000.7.6",
-    },
-    "1980.5.15" => {
+      lived: "1914.2.12 - 2000.7.6"
+    ruler "1980.5.15",
       name: "Cvijetin Mijatović",
       culture: "bosnian",
-      lived: "1913.1.8 - 1993.11.15",
-    },
-    "1981.5.15" => {
+      lived: "1913.1.8 - 1993.11.15"
+    ruler "1981.5.15",
       name: "Sergej Kraigher",
       culture: "carantanian",
-      lived: "1914.5.30 - 2001.1.17",
-    },
-    "1982.5.15" => {
+      lived: "1914.5.30 - 2001.1.17"
+    ruler "1982.5.15",
       name: "Petar Stambolić",
-      lived: "1912.7.12 - 2007.9.21",
-    },
-    "1983.5.15" => {
+      lived: "1912.7.12 - 2007.9.21"
+    ruler "1983.5.15",
       name: "Mika Špiljak",
       culture: "croatian",
-      lived: "1916.11.28 - 2007.5.18",
-    },
-    "1984.5.15" => {
+      lived: "1916.11.28 - 2007.5.18"
+    ruler "1984.5.15",
       name: "Veselin Đuranović",
-      lived: "1925.5.17 - 1997.8.30",
-    },
-    "1985.5.15" => {
+      lived: "1925.5.17 - 1997.8.30"
+    ruler "1985.5.15",
       name: "Radovan Vlajković",
-      lived: "1924.11.8 - 2001.11.12",
-    },
-    "1986.5.15" => {
+      lived: "1924.11.8 - 2001.11.12"
+    ruler "1986.5.15",
       name: "Sinan Hasani",
       culture: "arberian",
-      lived: "1922.5.14 - 2010.8.28",
-    },
-    "1987.5.15" => {
+      lived: "1922.5.14 - 2010.8.28"
+    ruler "1987.5.15",
       name: "Lazar Mojsov",
       culture: "bulgarian",
-      lived: "1920.12.19 - 2011.8.25",
-    },
-    "1988.5.15" => {
+      lived: "1920.12.19 - 2011.8.25"
+    ruler "1988.5.15",
       name: "Raif Dizdarević",
       culture: "bosnian",
-      lived: "1926.12.9-",
-    },
-    "1989.5.15"  => {use: "d_carinthia Janez"},
-    "1990.5.15" => {
+      lived: "1926.12.9 -"
+    ruler "1989.5.15", use: "d_carinthia Janez"
+    ruler "1990.5.15",
       name: "Borisav Jović",
-      lived: "1928.10.19 - 2021.9.13",
-    },
-    "1991.6.30"  => {use: "k_croatia Stjepan"},
-    "1991.12.5" => {
+      lived: "1928.10.19 - 2021.9.13"
+    ruler "1991.6.30", use: "k_croatia Stjepan"
+    ruler "1991.12.5",
       name: "Branko Kostić",
-      lived: "1939.8.28 - 2020.8.20",
-    },
-    "1992.6.15" => {
+      lived: "1939.8.28 - 2020.8.20"
+    ruler "1992.6.15",
       name: "Dobrica Ćosić",
-      lived: "1921.12.29 - 2014.5.18",
-    },
-    "1993.6.25" => {
+      lived: "1921.12.29 - 2014.5.18"
+    ruler "1993.6.25",
       name: "Zoran Lilić",
-      lived: "1953.8.27-",
-    },
-    "1997.7.23" => {
+      lived: "1953.8.27 -"
+    ruler "1997.7.23",
     # Reasonably true from "1989.5.8" onwards
       name: "Slobodan Milošević",
-      lived: "1941.8.20 - 2006.3.11",
-    },
-    "2000.10.7" => {
+      lived: "1941.8.20 - 2006.3.11"
+    ruler "2000.10.7",
       name: "Vojislav Koštunica",
-      lived: "1944.3.24-",
-    },
-    "2003.3.7" => {
+      lived: "1944.3.24 -"
+    ruler "2003.3.7",
       name: "Svetozar Marović",
-      lived: "1955.3.31 -",
-    },
-    "2006.6.3" => {
+      lived: "1955.3.31 -"
+    ruler "2006.6.3",
       name: "Boris Tadić",
-      lived: "1958.1.15 -",
-    },
-    "2012.5.31" => {
+      lived: "1958.1.15 -"
+    ruler "2012.5.31",
       name: "Tomislav Nikolić",
-      lived: "1952.2.15 -",
-    },
-    "2017.5.31" =>  {
+      lived: "1952.2.15 -"
+    ruler "2017.5.31",
       name: "Aleksandar Vučić",
-      lived: "1970.3.5 -",
-    },
-  },
-  d_cyprus: {
+      lived: "1970.3.5 -"
+  end
+  title "d_cyprus" do
     # Actually "1960.8.16"
     # skipping coup attempt etc.
     # Makarios was archbishop, but can't play as such until theocracy DLC
-    cyprus_independence: {
+    ruler :cyprus_independence,
       name: "Makarios | Mouskos",
-      lived: "1913.8.13 - 1977.8.3",
-    },
-    "1977.8.3" => {
+      lived: "1913.8.13 - 1977.8.3"
+    ruler "1977.8.3",
       name: "Spyros Kyprianou",
-      lived: "1932.10.28 - 2002.3.12",
-    },
-    "1988.2.28" => {
+      lived: "1932.10.28 - 2002.3.12"
+    ruler "1988.2.28",
       name: "Georgios Vasiliou",
-      lived: "1931.5.20 -",
-    },
-    "1993.2.28" => {
+      lived: "1931.5.20 -"
+    ruler "1993.2.28",
       name: "Glafkos Klirides",
-      lived: "1919.4.24 - 2013.11.15",
-    },
-    "2003.2.28" => {
+      lived: "1919.4.24 - 2013.11.15"
+    ruler "2003.2.28",
       name: "Tassos Papadopoulos",
-      lived: "1934.1.7 - 2008.12.12",
-    },
-    "2008.2.28" => {
+      lived: "1934.1.7 - 2008.12.12"
+    ruler "2008.2.28",
       name: "Dimitris Khristophias",
-      lived: "1946.8.29 - 2019.6.21",
-    },
-    "2013.2.28" => {
+      lived: "1946.8.29 - 2019.6.21"
+    ruler "2013.2.28",
       name: "Nikos Anastasiadis",
-      lived: "1946.9.27 -",
-    },
-    "2023.2.28" => {
+      lived: "1946.9.27 -"
+    ruler "2023.2.28",
       name: "Nikos Christodoulides",
-      lived: "1973.12.6 -",
-    },
-  },
-  k_bulgaria: {
+      lived: "1973.12.6 -"
+  end
+  title "k_bulgaria" do
     # backdating
-    "1878.7.13" => {
+    ruler "1878.7.13",
       name: "Alexander | Battenberg",
       culture: "german",
-      lived: "1857.4.5 - 1893.10.23",
-    },
+      lived: "1857.4.5 - 1893.10.23"
     # backdating
-    "1886.9.7" => {
+    ruler "1886.9.7",
       name: "Ferdinand | Sachsen-Coburg und Gotha",
       culture: "german",
-      lived: "1861.2.26 - 1948.9.10",
-    },
-    "1918.10.3" => {
+      lived: "1861.2.26 - 1948.9.10"
+    ruler "1918.10.3",
       name: "Boris | Sachsen-Coburg und Gotha",
       lived: "1894.1.30 - 1943.8.28",
-      father: "Ferdinand 1",
-    },
-    "1943.8.28" => {
+      father: "Ferdinand 1"
+    ruler "1943.8.28",
       name: "Simeon | Sachsen-Coburg und Gotha",
-      lived: "1937.6.16-",
-      father: "Boris 1",
-    },
+      lived: "1937.6.16 -",
+      father: "Boris 1"
     # Communists abolished monarchy, listing general secretaries
     # backdating from december
-    "1946.9.15" => {
+    ruler "1946.9.15",
       name: "Georgi Dimitrov",
-      lived: "1882.6.18 - 1949.7.2",
-    },
-    "1949.7.2" => {
+      lived: "1882.6.18 - 1949.7.2"
+    ruler "1949.7.2",
       name: "Vulko Chervenkov",
-      lived: "1900.9.6 - 1980.10.21",
-    },
-    "1954.3.4" => {
+      lived: "1900.9.6 - 1980.10.21"
+    ruler "1954.3.4",
       name: "Todor Zhivkov",
-      lived: "1911.9.7 - 1998.8.5",
-    },
-    "1989.11.10" => {
+      lived: "1911.9.7 - 1998.8.5"
+    ruler "1989.11.10",
       name: "Petar Mladenov",
-      lived: "1936.8.22 - 2000.5.31",
-    },
+      lived: "1936.8.22 - 2000.5.31"
     # Post-Communist, backdating
-    "1990.2.2" => {
+    ruler "1990.2.2",
       name: "Zhelyu Zhelev",
-      lived: "1935.3.3 - 2015.1.30",
-    },
-    "1997.1.22" => {
+      lived: "1935.3.3 - 2015.1.30"
+    ruler "1997.1.22",
       name: "Petar Stoyanov",
-      lived: "1952.5.25 -",
-    },
-    "2002.1.22" => {
+      lived: "1952.5.25 -"
+    ruler "2002.1.22",
       name: "Georgi Parvanov",
-      lived: "1957.6.28 -",
-    },
-    "2012.1.22" => {
+      lived: "1957.6.28 -"
+    ruler "2012.1.22",
       name: "Rosen Plevneliev",
-      lived: "1964.5.14 -",
-    },
-    "2017.1.22" => {
+      lived: "1964.5.14 -"
+    ruler "2017.1.22",
       name: "Rumen Radev",
-      lived: "1963.6.18 -",
-    }
-  },
-  k_byzantium: {
+      lived: "1963.6.18 -"
+  end
+  title "k_byzantium" do
     # backdating
-    "1832.5.7" => {
+    ruler "1832.5.7",
       name: "Otto | Wittelsbach",
       culture: "german",
       # father: "d_bavaria Ludwig 1", # FIXME, doesn't work ?
-      lived: "1815.6.1 - 1867.7.26",
-    },
+      lived: "1815.6.1 - 1867.7.26"
     # backdating, actually 30 March 1863
-    "1862.10.23" => {
+    ruler "1862.10.23",
       name: "Georg | Glücksburg",
       father: "k_denmark Christian 5",
       culture: "danish",
       religion: "protestant",
-      lived: "1845.12.24 - 1913.3.18",
-    },
-    "1913.3.18" => {
+      lived: "1845.12.24 - 1913.3.18"
+    ruler "1913.3.18",
       name: "Konstantinos | Glücksburg",
       religion: "orthodox",
-      lived: "1868.8.2 - 1923.1.11",
-    },
-    "1917.6.11" => {
+      lived: "1868.8.2 - 1923.1.11"
+    ruler "1917.6.11",
       name: "Alexandros | Glücksburg",
       lived: "1893.8.1 - 1920.10.25",
-      father: "Konstantinos 1",
-    },
+      father: "Konstantinos 1"
     # Backdating restoration
-    "1920.10.25" => {
-      use: "Konstantinos 1",
-    },
-    "1922.9.27" => {
+    ruler "1920.10.25",
+      use: "Konstantinos 1"
+    ruler "1922.9.27",
       name: "Georgios | Glücksburg",
       lived: "1890.7.19 - 1947.4.1",
-      father: "Konstantinos 1",
-    },
+      father: "Konstantinos 1"
     # second hellenic republic
-    "1924.3.25" => {
+    ruler "1924.3.25",
       name: "Pavlos Kountouriotis",
-      lived: "1855.4.9 - 1935.8.22",
-    },
-    "1926.4.6" => {
+      lived: "1855.4.9 - 1935.8.22"
+    ruler "1926.4.6",
       name: "Theodoros Pangalos",
-      lived: "1878.1.11 - 1952.2.26",
-    },
-    "1926.8.22" => {
-      use: "Pavlos 1",
-    },
-    "1929.12.10" => {
+      lived: "1878.1.11 - 1952.2.26"
+    ruler "1926.8.22",
+      use: "Pavlos 1"
+    ruler "1929.12.10",
       name: "Alexandros Zaimis",
-      lived: "1855.11.9 - 1936.9.15",
-    },
+      lived: "1855.11.9 - 1936.9.15"
     # restored monarchy
-    "1935.11.25" => {
-      use: "Georgios", # king restored
-    },
-    "1947.4.1" => {
+    ruler "1935.11.25",
+      use: "Georgios" # king restored
+    ruler "1947.4.1",
       name: "Pavlos | Glücksburg",
       lived: "1901.12.14 - 1964.3.6",
-      father: "Konstantinos 1",
-    },
-    "1964.3.6" => {
+      father: "Konstantinos 1"
+    ruler "1964.3.6",
       name: "Konstantinos | Glücksburg",
       lived: "1940.6.2 - 2023.1.10",
-      father: "Pavlos 2",
-    },
+      father: "Pavlos 2"
     # junta
-    "1973.6.1" => {
+    ruler "1973.6.1",
       name: "Georgios Papadopoulos",
-      lived: "1919.5.5 - 1999.6.27",
-    },
-    "1973.11.25" => {
+      lived: "1919.5.5 - 1999.6.27"
+    ruler "1973.11.25",
       name: "Phaedon Gizikis",
-      lived: "1917.6.16 - 1999.7.27",
-    },
+      lived: "1917.6.16 - 1999.7.27"
     # post-junta
     # provisional
-    "1974.12.18" => {
+    ruler "1974.12.18",
       name: "Michail Stasinopoulos",
-      lived: "1903.7.27 - 2002.10.31",
-    },
-    "1975.7.19" => {
+      lived: "1903.7.27 - 2002.10.31"
+    ruler "1975.7.19",
       name: "Konstantinos Tsatsos",
-      lived: "1899.7.1 - 1987.10.8",
-    },
-    "1980.5.10" => {
+      lived: "1899.7.1 - 1987.10.8"
+    ruler "1980.5.10",
       name: "Konstantinos Karamanlis", # 4
-      lived: "1907.3.8 - 1998.4.23",
-    },
+      lived: "1907.3.8 - 1998.4.23"
     # backdating from 30 March 1985
-    "1985.3.10" => {
+    ruler "1985.3.10",
       name: "Christos Sartzetakis",
-      lived: "1929.4.6 - 2022.2.3",
-    },
-    "1990.5.5" => {use: "Konstantinos 4"}, # Konstantinos Karamanlis
-    "1995.3.10" => {
+      lived: "1929.4.6 - 2022.2.3"
+    ruler "1990.5.5", use: "Konstantinos 4" # Konstantinos Karamanlis
+    ruler "1995.3.10",
       name: "Konstantinos Stephanopoulos", # 5
-      lived: "1926.8.15 - 2016.11.20",
-    },
-    "2005.3.12" => {
+      lived: "1926.8.15 - 2016.11.20"
+    ruler "2005.3.12",
       name: "Karolos Papoulias",
-      lived: "1929.6.4 - 2021.12.26",
-    },
-    "2015.3.13" => {
+      lived: "1929.6.4 - 2021.12.26"
+    ruler "2015.3.13",
       name: "Prokopis Pavlopoulos",
-      lived: "1950.7.10 -",
-    },
-    "2020.3.13" => {
+      lived: "1950.7.10 -"
+    ruler "2020.3.13",
       name: "Katerina Sakellaropoulou",
       lived: "1956.5.30 -",
-      female: true,
-    },
-    "2025.3.13" => {
+      female: true
+    ruler "2025.3.13",
       name: "Konstantinos Tasoulas", # 6
-      lived: "1959.7.17 -",
-    },
-  },
-  d_bosnia: {
+      lived: "1959.7.17 -"
+  end
+  title "d_bosnia" do
     # President
-    "1993.3.3"  => { name: "Alija Izetbegović", lived: "1925.8.8 - 2003.10.19" },
+    ruler "1993.3.3", name: "Alija Izetbegović", lived: "1925.8.8 - 2003.10.19"
     # High Representatives - religion not really documented, so base on nationality
-    "1995.12.14" => { name: "Carl Bildt", lived: "1949.7.15 -", culture: :swedish, religion: :protestant },
-    "1997.6.18" => { name: "Carlos Westendorp", lived: "1937.1.7 -", culture: :castillan, religion: :catholic },
+    ruler "1995.12.14", name: "Carl Bildt", lived: "1949.7.15 -", culture: :swedish, religion: :protestant
+    ruler "1997.6.18", name: "Carlos Westendorp", lived: "1937.1.7 -", culture: :castillan, religion: :catholic
     # Austrian Slovene
-    "1999.8.18" => { name: "Wolfgang Petritsch", lived: "1947.8.26 -", culture: :carantanian, religion: :catholic },
-    "2002.5.27" => { name: "Paddy Ashdown", lived: "1941.2.27 - 2018.12.22", culture: :english, religion: :protestant },
-    "2006.2.1"  => { name: "Christian Schwarz-Schilling", lived: "1930.11.19 -", culture: :german, religion: :catholic },
-    "2007.7.1"  => { name: "Miroslav Lajčák", lived: "1963.3.20 -", culture: :croatian, religion: :catholic },
+    ruler "1999.8.18", name: "Wolfgang Petritsch", lived: "1947.8.26 -", culture: :carantanian, religion: :catholic
+    ruler "2002.5.27", name: "Paddy Ashdown", lived: "1941.2.27 - 2018.12.22", culture: :english, religion: :protestant
+    ruler "2006.2.1", name: "Christian Schwarz-Schilling", lived: "1930.11.19 -", culture: :german, religion: :catholic
+    ruler "2007.7.1", name: "Miroslav Lajčák", lived: "1963.3.20 -", culture: :croatian, religion: :catholic
     # Austrian Slovene
-    "2009.3.1"  => { name: "Valentin Inzko", lived: "1949.5.22 -", culture: :carantanian, religion: :catholic },
+    ruler "2009.3.1", name: "Valentin Inzko", lived: "1949.5.22 -", culture: :carantanian, religion: :catholic
     # Lutheran
-    "2021.8.1"  => { name: "Christian Schmidt", lived: "1957.8.26 -", culture: :german, religion: :protestant },
-  },
+    ruler "2021.8.1", name: "Christian Schmidt", lived: "1957.8.26 -", culture: :german, religion: :protestant
+  end
   # Montenegro
-  d_dioclea: {
+  title "d_dioclea" do
     # Not "independent" in our history, de facto independent under Danilo already
     # "1852.3.13 - 1860.8.13" => { name: "Danilo | Petrović-Njegoš", lived: "1826.5.25 - 1860.8.13" },
     # Danilo's nephew, ruling from 1860.8.13
-    "1878.7.13" => { name: "Nikola | Petrović-Njegoš", lived: "1841.10.7 - 1921.3.1" },
+    ruler "1878.7.13", name: "Nikola | Petrović-Njegoš", lived: "1841.10.7 - 1921.3.1"
     # deposed, annexed into Serbia / Yugoslavia
-    "1918.12.1" => nil,
-    "2006.6.3" => { name: "Filip Vujanović", lived: "1954.9.1 -" },
-    "2018.5.20" => { name: "Milo Đukanović", lived: "1962.2.15 -" },
-    "2023.5.20" => { name: "Jakov Milatović", lived: "1986.12.7 -" },
-  },
+    vacant "1918.12.1"
+    ruler "2006.6.3", name: "Filip Vujanović", lived: "1954.9.1 -"
+    ruler "2018.5.20", name: "Milo Đukanović", lived: "1962.2.15 -"
+    ruler "2023.5.20", name: "Jakov Milatović", lived: "1986.12.7 -"
+  end
   # Macedonia
-  d_strymon:  {
-    "1991.9.8"  => { name: "Kiro Gligorov", lived: "1917.5.3 - 2012.1.1" },
-    "1995.10.4"  => { name: "Stojan Andov", lived: "1935.11.30 - 2024.6.18" },
-    "1995.11.17" => { use: "Kiro 1" },
-    "1999.11.19" => { name: "Savo Klimovski", lived: "1947.6.13 -" },
-    "1999.12.15" => { name: "Boris Trajkovski", lived: "1956.6.25 - 2004.2.26" },
-    "2004.2.26"  => { name: "Ljupčo Jordanovski", lived: "1953.2.13 - 2010.10.7" },
-    "2004.5.12"  => { name: "Branko Crvenkovski", lived: "1962.10.2 -" },
-    "2009.5.12"  => { name: "Gjorge Ivanov", lived: "1960.5.2 -" },
-    "2019.5.12"  => { name: "Stevo Pendarovski", lived: "1963.4.3 -" },
-    "2024.5.12"  => { name: "Gordana Siljanovska-Davkova", lived: "1953.5.11 -", female: true },
-  },
+  title "d_strymon" do
+    ruler "1991.9.8", name: "Kiro Gligorov", lived: "1917.5.3 - 2012.1.1"
+    ruler "1995.10.4", name: "Stojan Andov", lived: "1935.11.30 - 2024.6.18"
+    ruler "1995.11.17", use: "Kiro 1"
+    ruler "1999.11.19", name: "Savo Klimovski", lived: "1947.6.13 -"
+    ruler "1999.12.15", name: "Boris Trajkovski", lived: "1956.6.25 - 2004.2.26"
+    ruler "2004.2.26", name: "Ljupčo Jordanovski", lived: "1953.2.13 - 2010.10.7"
+    ruler "2004.5.12", name: "Branko Crvenkovski", lived: "1962.10.2 -"
+    ruler "2009.5.12", name: "Gjorge Ivanov", lived: "1960.5.2 -"
+    ruler "2019.5.12", name: "Stevo Pendarovski", lived: "1963.4.3 -"
+    ruler "2024.5.12", name: "Gordana Siljanovska-Davkova", lived: "1953.5.11 -", female: true
+  end
   # Albania
-  d_dyrrachion: {
+  title "d_dyrrachion" do
     # Chairmen of provisional/central government
-    "1913.5.30" => { name: "Ismail Qemali", lived: "1844.1.16 - 1919.1.24" },
-    "1914.1.22" => { name: "Fejzi Alizoti", lived: "1874.9.22 - 1945.4.14" },
+    ruler "1913.5.30", name: "Ismail Qemali", lived: "1844.1.16 - 1919.1.24"
+    ruler "1914.1.22", name: "Fejzi Alizoti", lived: "1874.9.22 - 1945.4.14"
     # Prince, had pretty much zero power, and was in exile due to war and civil war most of the time,
     # but whatever
-    "1914.3.7" => { name: "Vidi | Wied", lived: "1876.3.26 - 1945.4.18" },
+    ruler "1914.3.7", name: "Vidi | Wied", lived: "1876.3.26 - 1945.4.18"
     # President, then king
-    "1925.2.1" => { name: "Zog | Zogu", lived: "1895.10.8 - 1961.4.9" },
+    ruler "1925.2.1", name: "Zog | Zogu", lived: "1895.10.8 - 1961.4.9"
     # PU under Italy
-    "1939.4.12" => nil,
+    vacant "1939.4.12"
     # Communist First Secretaries after WW2
-    "1945.5.8" => { name: "Enver Hoxha", lived: "1908.10.16 - 1985.4.11" },
-    "1985.4.11" => { name: "Ramiz Alia", lived: "1925.10.18 - 2011.10.7" },
+    ruler "1945.5.8", name: "Enver Hoxha", lived: "1908.10.16 - 1985.4.11"
+    ruler "1985.4.11", name: "Ramiz Alia", lived: "1925.10.18 - 2011.10.7"
     # Post-Communist
-    "1992.4.9" => { name: "Sali Berisha", lived: "1944.10.15 -" },
-    "1997.7.24" => { name: "Rexhep Meidani", lived: "1944.8.17 -" },
-    "2002.7.24" => { name: "Alfred Moisiu", lived: "1929.12.1 -" },
-    "2007.7.24" => { name: "Bamir Topi", lived: "1957.4.24 -" },
-    "2012.7.24" => { name: "Bujar Nishani", lived: "1966.9.29 - 2022.5.28" },
-    "2017.7.24" => { name: "Ilir Meta", lived: "1969.3.24 -" },
-    "2022.7.24" => { name: "Bajram Begaj", lived: "1967.3.20 -" },
-  },
-}
+    ruler "1992.4.9", name: "Sali Berisha", lived: "1944.10.15 -"
+    ruler "1997.7.24", name: "Rexhep Meidani", lived: "1944.8.17 -"
+    ruler "2002.7.24", name: "Alfred Moisiu", lived: "1929.12.1 -"
+    ruler "2007.7.24", name: "Bamir Topi", lived: "1957.4.24 -"
+    ruler "2012.7.24", name: "Bujar Nishani", lived: "1966.9.29 - 2022.5.28"
+    ruler "2017.7.24", name: "Ilir Meta", lived: "1969.3.24 -"
+    ruler "2022.7.24", name: "Bajram Begaj", lived: "1967.3.20 -"
+  end
+end

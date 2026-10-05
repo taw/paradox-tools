@@ -1,271 +1,233 @@
-ModernTimesDatabase::HOLDERS_AFRICA = {
-  k_mauretania: {
-    "1757.11.10" => {
+ModernTimesDatabase::Holders.define do
+  title "k_mauretania" do
+    ruler "1757.11.10",
       name: "Mohammed | Alaouite", # 1
-      lived: "1710 - 1790.4.9",
-    },
-    "1790.4.9" => {
+      lived: "1710 - 1790.4.9"
+    ruler "1790.4.9",
       name: "Yazid | Alaouite",
       lived: "1750 - 1792.2.23",
-      father: "Mohammed 1",
-    },
-    "1792.2.23" => {
+      father: "Mohammed 1"
+    ruler "1792.2.23",
       name: "Slimane | Alaouite",
       lived: "1760 - 1822.11.28",
-      father: "Mohammed 1",
-    },
-    "1822.11.28" => {
+      father: "Mohammed 1"
+    ruler "1822.11.28",
       name: "Abd al-Rahman | Alaouite",
-      lived: "1778 - 1859.8.24",
+      lived: "1778 - 1859.8.24"
       # nephew of previous ruler
-    },
-    "1859.8.24" => {
+    ruler "1859.8.24",
       name: "Mohammed | Alaouite", # 2
       lived: "1802 - 1873.9.16",
-      father: "Abd al-Rahman 1",
-    },
-    "1873.9.16" => {
+      father: "Abd al-Rahman 1"
+    ruler "1873.9.16",
       name: "Hassan | Alaouite", # 1
       lived: "1836 - 1894.6.7",
-      father: "Mohammed 2",
-    },
-    "1894.6.7" => {
+      father: "Mohammed 2"
+    ruler "1894.6.7",
       name: "Abdelaziz | Alaouite",
       lived: "1878.2.24 - 1943.6.10",
-      father: "Hassan 1",
-    },
-    "1908.1.4" => {
+      father: "Hassan 1"
+    ruler "1908.1.4",
       name: "Abdelhafid | Alaouite",
       lived: "1876.2.24 - 1937.4.4",
-      father: "Hassan 1",
-    },
+      father: "Hassan 1"
     # French protectorate, but royal line still formally active
-    "1912.3.30" => nil,
+    vacant "1912.3.30"
     # Ignoring times when under foreign rule
-    "1956.10.29" => { # 3
+    ruler "1956.10.29", # 3
       name: "Mohammed | Alaouite",
-      lived: "1909.8.10 - 1961.2.26",
-    },
-    "1961.2.26" => {
+      lived: "1909.8.10 - 1961.2.26"
+    ruler "1961.2.26",
       name: "Hassan | Alaouite", # 2
       lived: "1929.7.9 - 1999.7.23",
       father: "Mohammed 3"
-    },
-    "1999.7.23" => { # 4
+    ruler "1999.7.23", # 4
       name: "Mohammed | Alaouite",
-      lived: "1963.8.21 - ",
-      father: "Hassan 2",
-    },
-  },
-  d_tripolitania: {
-    "1951.12.24" => {
+      lived: "1963.8.21 -",
+      father: "Hassan 2"
+  end
+  title "d_tripolitania" do
+    ruler "1951.12.24",
       name: "Idris | Senussi",
-      lived: "1889.3.12 - 1983.5.25",
-    },
-    "1969.9.1" => {
+      lived: "1889.3.12 - 1983.5.25"
+    ruler "1969.9.1",
       name: "Muammar Gaddafi",
-      lived: "1942 - 2011.10.20",
-    },
+      lived: "1942 - 2011.10.20"
     # Claimant crowned himself much earlier, but counting from assassination
-    "2011.10.20" => {
+    ruler "2011.10.20",
       name: "Mustafa Abdul-Jalil",
-      lived: "1952.11.6 -",
-    },
-    "2012.8.9" => {
+      lived: "1952.11.6 -"
+    ruler "2012.8.9",
       name: "Mohammed Magariaf",
-      lived: "1940.5.9 -",
-    },
-    "2013.6.25" => {
+      lived: "1940.5.9 -"
+    ruler "2013.6.25",
       name: "Nouri Abusahmai",
-      lived: "1956 -",
-    },
-    "2014.8.5" => {
+      lived: "1956 -"
+    ruler "2014.8.5",
       name: "Aguila Saleh | Issa",
-      lived: "1944-",
-    },
-    "2016.3.30" => {
+      lived: "1944 -"
+    ruler "2016.3.30",
       name: "Fayez | al-Sarraj",
-      lived: "1960.2.20 -",
-    },
+      lived: "1960.2.20 -"
     # Chairman of the Presidential Council (Government of National Unity)
-    "2021.3.15" => {
+    ruler "2021.3.15",
       name: "Mohamed | al-Menfi",
-      lived: "1976.3.3 -",
-    },
-  },
-  d_tunis: {
+      lived: "1976.3.3 -"
+  end
+  title "d_tunis" do
     # Backdating
-    "1956.3.20" => {
+    ruler "1956.3.20",
       name: "Habib Bourguiba",
-      lived: "1903.8.3 - 2000.4.6",
-    },
-    "1987.11.7" => {
+      lived: "1903.8.3 - 2000.4.6"
+    ruler "1987.11.7",
       name: "Zine El Abidine | Ben Ali",
-      lived: "1936.9.3 - 2019.9.19",
-    },
+      lived: "1936.9.3 - 2019.9.19"
     # Backdating
-    "2011.1.14" => {
+    ruler "2011.1.14",
       name: "Moncef Marzouki",
-      lived: "1945.7.7-",
-    },
-    "2014.12.31" => {
+      lived: "1945.7.7 -"
+    ruler "2014.12.31",
       name: "Beji Caid | Essebsi",
-      lived: "1926.11.29 - 2019.7.25",
-    },
+      lived: "1926.11.29 - 2019.7.25"
     # Acting
-    "2019.7.25" => {
+    ruler "2019.7.25",
       name: "Mohamed Ennaceur",
-      lived: "1934.3.21 -",
-    },
-    "2019.10.23" => {
+      lived: "1934.3.21 -"
+    ruler "2019.10.23",
       name: "Kais Saied",
-      lived: "1958.2.22 -",
-    },
-  },
-  d_alger: {
+      lived: "1958.2.22 -"
+  end
+  title "d_alger" do
     # Because there's coups and silliness, acting/provisional ones included too
     # Backdating
-    "1962.4.8" => {
+    ruler "1962.4.8",
       name: "Abderrahmane Farès",
-      lived: "1911.1.30 - 1991.5.13",
-    },
-    "1962.9.25" => {
+      lived: "1911.1.30 - 1991.5.13"
+    ruler "1962.9.25",
       name: "Ferhat Abbas",
-      lived: "1899.10.24 - 1985.12.24",
-    },
-    "1963.9.15" => { # Official #1
+      lived: "1899.10.24 - 1985.12.24"
+    ruler "1963.9.15", # Official #1
       name: "Ahmed | Ben Bella",
-      lived: "1916.12.25 - 2012.4.11",
-    },
-    "1965.6.19" => { # Official #2
+      lived: "1916.12.25 - 2012.4.11"
+    ruler "1965.6.19", # Official #2
       name: "Houari Boumediene",
-      lived: "1932.8.23 - 1978.12.27",
-    },
-    "1978.12.27" => {
+      lived: "1932.8.23 - 1978.12.27"
+    ruler "1978.12.27",
       name: "Rabah Bitat",
-      lived: "1925.12.19 - 2000.4.10",
-    },
-    "1979.2.9" => { # Official #3
+      lived: "1925.12.19 - 2000.4.10"
+    ruler "1979.2.9", # Official #3
       name: "Chadli Bendjedid",
-      lived: "1929.4.14 - 2012.10.6",
-    },
+      lived: "1929.4.14 - 2012.10.6"
     # Not sure there's a point including these one
-    "1992.1.11" => {
+    ruler "1992.1.11",
       name: "Abdelmalek Benhabyles",
-      lived: "1921.4.27 - 2018.12.28",
-    },
-    "1992.1.14" => {
+      lived: "1921.4.27 - 2018.12.28"
+    ruler "1992.1.14",
       name: "Mohamed Boudiaf",
-      lived: "1919.6.23 - 1992.6.29",
-    },
+      lived: "1919.6.23 - 1992.6.29"
     # backdating
-    "1992.6.29" => {
+    ruler "1992.6.29",
       name: "Ali Kafi",
-      lived: "1928.10.7 - 2013.4.16",
-    },
-    "1994.1.31" => { # Official #4
+      lived: "1928.10.7 - 2013.4.16"
+    ruler "1994.1.31", # Official #4
       name: "Liamine Zéroual",
-      lived: "1941.7.3-",
-    },
-    "1999.4.27" => { # Official #5
+      lived: "1941.7.3 -"
+    ruler "1999.4.27", # Official #5
       name: "Abdelaziz Bouteflika",
-      lived: "1937.3.2 - 2021.9.17",
-    },
+      lived: "1937.3.2 - 2021.9.17"
     # Acting, backdating from 2019.4.9
-    "2019.4.2" => {
+    ruler "2019.4.2",
       name: "Abdelkader Bensalah",
-      lived: "1941.11.24 - 2021.9.22",
-    },
-    "2019.12.19" => { # Official #6
+      lived: "1941.11.24 - 2021.9.22"
+    ruler "2019.12.19", # Official #6
       name: "Abdelmadjid Tebboune",
-      lived: "1945.11.17 -",
-    },
-  },
-  k_nubia: { # Sudan
+      lived: "1945.11.17 -"
+  end
+  title "k_nubia" do # Sudan
     # Simplifying Sovereignty Council situation
-    "1956.1.1"   => { name: "Ibrahim Abboud", lived: "1900.10.26 - 1983.9.8" },
-    "1964.11.16" => { name: "Sirr Al-Khatim | Al-Khalifa", lived: "1919.1.1 - 2006.2.18" },
-    "1964.12.3"  => { name: "Ismail al-Azhari", lived: "1900.10.20 - 1969.8.26" },
-    "1969.5.25"  => { name: "Gaafar Nimeiry", lived: "1930.1.1 - 2009.5.30" },
-    "1985.4.6"   => { name: "Abdel Rahman Swar | al-Dahab", lived: "1934 - 2018.10.18" },
-    "1986.5.6"   => { name: "Ahmad Ali | Al-Mirghani", lived: "1941.8.16 - 2008.11.2" },
-    "1989.6.30"  => { name: "Omar al-Bashir", lived: "1944.1.1 -" },
+    ruler "1956.1.1", name: "Ibrahim Abboud", lived: "1900.10.26 - 1983.9.8"
+    ruler "1964.11.16", name: "Sirr Al-Khatim | Al-Khalifa", lived: "1919.1.1 - 2006.2.18"
+    ruler "1964.12.3", name: "Ismail al-Azhari", lived: "1900.10.20 - 1969.8.26"
+    ruler "1969.5.25", name: "Gaafar Nimeiry", lived: "1930.1.1 - 2009.5.30"
+    ruler "1985.4.6", name: "Abdel Rahman Swar | al-Dahab", lived: "1934 - 2018.10.18"
+    ruler "1986.5.6", name: "Ahmad Ali | Al-Mirghani", lived: "1941.8.16 - 2008.11.2"
+    ruler "1989.6.30", name: "Omar al-Bashir", lived: "1944.1.1 -"
     # Transitional Military Council, then Sovereignty Council
-    "2019.4.11"  => { name: "Ahmed Awad | Ibn Auf", lived: "1956 -" },
-    "2019.4.12"  => { name: "Abdel Fattah | al-Burhan", lived: "1960.7.11 -" },
-  },
-  k_egypt: {
-    "1805.6.18"  => { name: "Muhammad Ali | Muhammad Ali", lived: "1769.3.4 - 1849.8.2" },
+    ruler "2019.4.11", name: "Ahmed Awad | Ibn Auf", lived: "1956 -"
+    ruler "2019.4.12", name: "Abdel Fattah | al-Burhan", lived: "1960.7.11 -"
+  end
+  title "k_egypt" do
+    ruler "1805.6.18", name: "Muhammad Ali | Muhammad Ali", lived: "1769.3.4 - 1849.8.2"
     # Wikipedia lists Ibrahim as "presumed son" of Muhammad Ali
-    "1848.7.20"  => { name: "Ibrahim | Muhammad Ali", lived: "1789 - 1848.11.10", father: "Muhammad Ali 1" },
-    "1848.11.10"  => { name: "Abbas Helmi | Muhammad Ali", lived: "1812.7.1 - 1854.7.13" }, # father: Tusun
-    "1854.7.13"  => { name: "Muhammad Sa'id | Muhammad Ali", lived: "1822.3.17 - 1863.1.18", father: "Muhammad Ali 1" },
-    "1863.1.18"   => { name: "Isma'il | Muhammad Ali", lived: "1830.12.31 - 1895.3.2", father: "Ibrahim 1" },
-    "1879.6.26"  => { name: "Muhammad Tawfiq | Muhammad Ali", lived: "1852.11.15 - 1892.1.7", father: "Isma'il 1" },
-    "1892.1.7"   => { name: "Abbas Helmi | Muhammad Ali", lived: "1874.7.14 - 1944.12.19", father: "Muhammad Tawfiq 1" },
-    "1914.12.19" => { name: "Hussein Kamel | Muhammad Ali", lived: "November 1853 - 1917.10.9", father: "Isma'il 1" },
+    ruler "1848.7.20", name: "Ibrahim | Muhammad Ali", lived: "1789 - 1848.11.10", father: "Muhammad Ali 1"
+    ruler "1848.11.10", name: "Abbas Helmi | Muhammad Ali", lived: "1812.7.1 - 1854.7.13" # father: Tusun
+    ruler "1854.7.13", name: "Muhammad Sa'id | Muhammad Ali", lived: "1822.3.17 - 1863.1.18", father: "Muhammad Ali 1"
+    ruler "1863.1.18", name: "Isma'il | Muhammad Ali", lived: "1830.12.31 - 1895.3.2", father: "Ibrahim 1"
+    ruler "1879.6.26", name: "Muhammad Tawfiq | Muhammad Ali", lived: "1852.11.15 - 1892.1.7", father: "Isma'il 1"
+    ruler "1892.1.7", name: "Abbas Helmi | Muhammad Ali", lived: "1874.7.14 - 1944.12.19", father: "Muhammad Tawfiq 1"
+    ruler "1914.12.19", name: "Hussein Kamel | Muhammad Ali", lived: "1853.11.1 - 1917.10.9", father: "Isma'il 1" # birth day unknown
     # Kings
-    "1917.10.9" => { name: "Ahmed Fuad | Muhammad Ali", lived: "1868.3.26 - 1936.4.28", father: "Isma'il 1" },
-    "1936.4.28" => { name: "Farouk | Muhammad Ali", lived: "1920.2.11 - 1965.3.18", father: "Ahmed Fuad 1" }, # 1
-    "1952.7.26" => { name: "Ahmed Fuad | Muhammad Ali", lived: "1952.1.16 -", father: "Farouk 1" },
+    ruler "1917.10.9", name: "Ahmed Fuad | Muhammad Ali", lived: "1868.3.26 - 1936.4.28", father: "Isma'il 1"
+    ruler "1936.4.28", name: "Farouk | Muhammad Ali", lived: "1920.2.11 - 1965.3.18", father: "Ahmed Fuad 1" # 1
+    ruler "1952.7.26", name: "Ahmed Fuad | Muhammad Ali", lived: "1952.1.16 -", father: "Farouk 1"
     # Presidents
-    "1953.6.18"  => { name: "Muhammad Naguib", lived: "1901.2.20 - 1984.8.28" },
-    "1954.11.14" => { name: "Gamal Abdel | Nasser", lived: "1918.1.15 - 1970.9.28" },
-    "1970.9.28"  => { name: "Anwar Sadat", lived: "1918.12.25 - 1981.10.6" },
+    ruler "1953.6.18", name: "Muhammad Naguib", lived: "1901.2.20 - 1984.8.28"
+    ruler "1954.11.14", name: "Gamal Abdel | Nasser", lived: "1918.1.15 - 1970.9.28"
+    ruler "1970.9.28", name: "Anwar Sadat", lived: "1918.12.25 - 1981.10.6"
     # backdating
-    "1981.10.6" => { name: "Hosni Mubarak", lived: "1928.5.4 - 2020.2.25" },
-    "2012.6.30" => { name: "Mohamed Morsi", lived: "1951.8.8 - 2019.6.17" },
+    ruler "1981.10.6", name: "Hosni Mubarak", lived: "1928.5.4 - 2020.2.25"
+    ruler "2012.6.30", name: "Mohamed Morsi", lived: "1951.8.8 - 2019.6.17"
     # backdating
-    "2013.7.3" => { name: "Abdel Fattah | el-Sisi", lived: "1954.11.19 -" },
-  },
+    ruler "2013.7.3", name: "Abdel Fattah | el-Sisi", lived: "1954.11.19 -"
+  end
   # Many dackdated a few days to fill gaps
-  k_hausaland: { # Niger
+  title "k_hausaland" do # Niger
     # backdating from 1960.11.10
-    "1960.8.3" => { name: "Hamani Diori", lived: "1916.6.6 - 1989.4.23" },
-    "1974.4.15" => { name: "Seyni Kountché", lived: "1931.7.1 - 1987.11.10" },
-    "1987.11.10" => { name: "Ali Saibou", lived: "1940.6.17 - 2011.10.31" },
-    "1993.4.16" => { name: "Mahamane Ousmane", lived: "1950.1.20 -" },
-    "1996.1.27" => { name: "Ibrahim Baré | Maïnassara", lived: "1949.5.9 - 1999.4.9" },
-    "1999.4.9" => { name: "Daouda Malam | Wanké", lived: "1946.5.6 - 2004.9.15" },
-    "1999.12.22" => { name: "Mamadou Tandja", lived: "1938 - 2020.11.24" },
-    "2010.2.18" => { name: "Salou Djibo", lived: "1965.4.15 -" },
-    "2011.4.7" => { name: "Mahamadou Issoufou", lived: "1952 -" },
-    "2021.4.2" => { name: "Mohamed Bazoum", lived: "1960.1.1 -" },
+    ruler "1960.8.3", name: "Hamani Diori", lived: "1916.6.6 - 1989.4.23"
+    ruler "1974.4.15", name: "Seyni Kountché", lived: "1931.7.1 - 1987.11.10"
+    ruler "1987.11.10", name: "Ali Saibou", lived: "1940.6.17 - 2011.10.31"
+    ruler "1993.4.16", name: "Mahamane Ousmane", lived: "1950.1.20 -"
+    ruler "1996.1.27", name: "Ibrahim Baré | Maïnassara", lived: "1949.5.9 - 1999.4.9"
+    ruler "1999.4.9", name: "Daouda Malam | Wanké", lived: "1946.5.6 - 2004.9.15"
+    ruler "1999.12.22", name: "Mamadou Tandja", lived: "1938 - 2020.11.24"
+    ruler "2010.2.18", name: "Salou Djibo", lived: "1965.4.15 -"
+    ruler "2011.4.7", name: "Mahamadou Issoufou", lived: "1952 -"
+    ruler "2021.4.2", name: "Mohamed Bazoum", lived: "1960.1.1 -"
     # coup on 2023.7.26, officially proclaimed 2023.7.28
-    "2023.7.26" => { name: "Abdourahamane Tiani", lived: "1964 -" },
-  },
-  k_kanem: { # Chad
-    "1960.8.11" => { name: "François Tombalbaye", lived: "1918.6.15 – 1975.4.13" },
-    "1975.4.13" => { name: "Félix Malloum", lived: "1932.9.10 – 2009.6.12" },
-    "1979.3.23" => { name: "Goukouni Oueddei", lived: "1944 -" },
-    "1979.4.29" => { name: "Lol Mahamat | Choua", lived: "1939.6.15 - 2019.9.15" },
-    "1979.9.3" => { use: "Goukouni 1" },
-    "1982.6.7" => { name: "Hissène Habré", lived: "1942.8.13 - 2021.8.24" },
-    "1990.12.2" => { name: "Idriss Déby", lived: "1952.6.18 - 2021.4.20" },
-    "2021.4.20" => { name: "Mahamat Déby", lived: "1984.4.4 -", father: "Idriss 1" },
-  },
-  k_abyssinia: { # Ethiopia
+    ruler "2023.7.26", name: "Abdourahamane Tiani", lived: "1964 -"
+  end
+  title "k_kanem" do # Chad
+    ruler "1960.8.11", name: "François Tombalbaye", lived: "1918.6.15 - 1975.4.13"
+    ruler "1975.4.13", name: "Félix Malloum", lived: "1932.9.10 - 2009.6.12"
+    ruler "1979.3.23", name: "Goukouni Oueddei", lived: "1944 -"
+    ruler "1979.4.29", name: "Lol Mahamat | Choua", lived: "1939.6.15 - 2019.9.15"
+    ruler "1979.9.3", use: "Goukouni 1"
+    ruler "1982.6.7", name: "Hissène Habré", lived: "1942.8.13 - 2021.8.24"
+    ruler "1990.12.2", name: "Idriss Déby", lived: "1952.6.18 - 2021.4.20"
+    ruler "2021.4.20", name: "Mahamat Déby", lived: "1984.4.4 -", father: "Idriss 1"
+  end
+  title "k_abyssinia" do # Ethiopia
     # Ethiopian history before 1855 is total mess
-    "1855.2.11" => { name: "Tewodros | Solomonid", lived: "1818 – 1868.4.13" },
-    "1868.6.11" => { name: "Tekle Giyorgis | Zagwe", lived: "- 1873" },
-    "1871.7.11" => { name: "Yohannes | Solomonid", lived: "1837.7.11 – 1889.3.10" },
-    "1889.3.10" => { name: "Menelik | Solomonid", lived: "1844.8.17 – 1913.12.12" },
-    "1913.12.12" => { name: "Iyasu | Solomonid", lived: "1895.2.4 – 1935.11.25" },
-    "1916.9.27" => { name: "Zewditu | Solomonid", lived: "1876.4.29 – 1930.4.2", female: true, father: "Menelik 1" },
-    "1930.4.2" => { name: "Haile Selassie | Solomonid", lived: "1892.7.23 – 1975.8.27" },
-    "1936.5.9" => { use: "e_italy Vittorio Emanuele 1" },
-    "1941.5.5" => { use: "Haile Selassie 1" },
-    "1974.9.12" => { name: "Amha Selassie | Solomonid", lived: "1916.7.27 – 1997.2.17", father: "Haile Selassie 1" },
+    ruler "1855.2.11", name: "Tewodros | Solomonid", lived: "1818 - 1868.4.13"
+    ruler "1868.6.11", name: "Tekle Giyorgis | Zagwe", lived: "- 1873"
+    ruler "1871.7.11", name: "Yohannes | Solomonid", lived: "1837.7.11 - 1889.3.10"
+    ruler "1889.3.10", name: "Menelik | Solomonid", lived: "1844.8.17 - 1913.12.12"
+    ruler "1913.12.12", name: "Iyasu | Solomonid", lived: "1895.2.4 - 1935.11.25"
+    ruler "1916.9.27", name: "Zewditu | Solomonid", lived: "1876.4.29 - 1930.4.2", female: true, father: "Menelik 1"
+    ruler "1930.4.2", name: "Haile Selassie | Solomonid", lived: "1892.7.23 - 1975.8.27"
+    ruler "1936.5.9", use: "e_italy Vittorio Emanuele 1"
+    ruler "1941.5.5", use: "Haile Selassie 1"
+    ruler "1974.9.12", name: "Amha Selassie | Solomonid", lived: "1916.7.27 - 1997.2.17", father: "Haile Selassie 1"
     # There's some interim/transitional mess, cleaned up view here
     # Which one is given vs family name ???
-    "1975.3.21" => { name: "Tafari Benti", lived: "October 1921 – 1977.2.3" },
-    "1977.2.3" => { name: "Mengistu Haile | Mariam", lived: "1937.5.21 -" },
-    "1991.5.21" => { name: "Tesfaye Gebre | Kidan", lived: "1935 – 2004.6.4" },
-    "1991.5.27" => { name: "Meles Zenawi", lived: "1955.5.9 – 2012.8.20" },
-    "1995.8.22" => { name: "Negasso Gidada", lived: "1943.9.8 - 2019.4.27" },
-    "2001.10.8" => { name: "Girma Wolde-Giorgis", lived: "1924.12.28 – 2018.12.15" },
-    "2013.10.7" => { name: "Mulatu Teshome", lived: "1957 -" },
-    "2018.10.25" => { name: "Sahle-Work Zewde", lived: "1950.2.21 -", female: true },
-    "2024.10.7" => { name: "Taye Atske | Selassie", lived: "1956.1.13 -" },
-  },
-}
+    ruler "1975.3.21", name: "Tafari Benti", lived: "1921.10.1 - 1977.2.3" # birth day unknown
+    ruler "1977.2.3", name: "Mengistu Haile | Mariam", lived: "1937.5.21 -"
+    ruler "1991.5.21", name: "Tesfaye Gebre | Kidan", lived: "1935 - 2004.6.4"
+    ruler "1991.5.27", name: "Meles Zenawi", lived: "1955.5.9 - 2012.8.20"
+    ruler "1995.8.22", name: "Negasso Gidada", lived: "1943.9.8 - 2019.4.27"
+    ruler "2001.10.8", name: "Girma Wolde-Giorgis", lived: "1924.12.28 - 2018.12.15"
+    ruler "2013.10.7", name: "Mulatu Teshome", lived: "1957 -"
+    ruler "2018.10.25", name: "Sahle-Work Zewde", lived: "1950.2.21 -", female: true
+    ruler "2024.10.7", name: "Taye Atske | Selassie", lived: "1956.1.13 -"
+  end
+end

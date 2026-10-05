@@ -169,11 +169,8 @@ class ModernTimesDatabase
   # in a way which allows order-independent data
   private def holders_raw_data
     results = {}
-    ModernTimesDatabase.constants.grep(/\AHOLDERS_/).each do |holder_group_key|
-      ModernTimesDatabase.const_get(holder_group_key).each do |title, data|
-        raise if results[title]
-        results[title.to_s] = data.map { |date, holder_data| [resolve_date(date), holder_data] }
-      end
+    ModernTimesDatabase::HOLDERS.each do |title, data|
+      results[title] = data.map { |date, holder_data| [resolve_date(date), holder_data] }
     end
     order = titles.keys
     results.sort_by { |k, v| order.index(k) }
