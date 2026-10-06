@@ -325,7 +325,7 @@ ModernTimesDatabase::TITLES = {
     demesne: [], # 5 counties is enough
   },
   d_nyitra: {
-    culture: :bohemian,
+    culture: :slovieni,
     religion: :catholic,
     capital: :c_pressburg,
     name: "Slovakia / Slovak",
