@@ -32,6 +32,8 @@ class ModernTimesModBuilder < ParadoxModBuilder
       name: "Modern Times",
       path: "mod/modern_times",
       picture: "modern_times.png",
+      # id is necessary so mod gets updated on Steam Workshop instead of creating new mod with the same name
+      remote_file_id: "510964906",
     )
   end
 end
