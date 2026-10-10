@@ -71,6 +71,73 @@ country_event = {
 	}
 }
 
+# Sunni/Shia conflicts deliberately exclude Ibadi countries.
+country_event = {
+	id = succession_wars.33
+	title = succession_wars.33.t
+	desc = succession_wars.33.d
+	picture = RELIGION_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = { is_subject = no religion = sunni any_neighbor_country = { is_subject = no religion = shiite NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } }
+	option = {
+		name = succession_wars.33.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: Shia neighbors declared war on Sunni [Root.GetName] in [GetYear]."
+		every_neighbor_country = { limit = { is_subject = no religion = shiite NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war } }
+	}
+}
+
+country_event = {
+	id = succession_wars.34
+	title = succession_wars.34.t
+	desc = succession_wars.34.d
+	picture = RELIGION_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = { is_subject = no religion = shiite any_neighbor_country = { is_subject = no religion = sunni NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } }
+	option = {
+		name = succession_wars.34.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: Sunni neighbors declared war on Shia [Root.GetName] in [GetYear]."
+		every_neighbor_country = { limit = { is_subject = no religion = sunni NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war } }
+	}
+}
+
+# These Reformation wars exclude the HRE on both sides, and never match two
+# Protestant denominations against one another.
+country_event = {
+	id = succession_wars.35
+	title = succession_wars.35.t
+	desc = succession_wars.35.d
+	picture = RELIGION_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = { is_subject = no NOT = { is_part_of_hre = yes } religion = catholic any_neighbor_country = { is_subject = no NOT = { is_part_of_hre = yes } OR = { religion = protestant religion = reformed religion = hussite religion = anglican } NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } }
+	option = {
+		name = succession_wars.35.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: Reformation neighbors declared war on Catholic [Root.GetName] in [GetYear]."
+		every_neighbor_country = { limit = { is_subject = no NOT = { is_part_of_hre = yes } OR = { religion = protestant religion = reformed religion = hussite religion = anglican } NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war } }
+	}
+}
+
+country_event = {
+	id = succession_wars.36
+	title = succession_wars.36.t
+	desc = succession_wars.36.d
+	picture = RELIGION_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = { is_subject = no NOT = { is_part_of_hre = yes } OR = { religion = protestant religion = reformed religion = hussite religion = anglican } any_neighbor_country = { is_subject = no NOT = { is_part_of_hre = yes } religion = catholic NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } }
+	option = {
+		name = succession_wars.36.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: Catholic neighbors declared war on Reformation [Root.GetName] in [GetYear]."
+		every_neighbor_country = { limit = { is_subject = no NOT = { is_part_of_hre = yes } religion = catholic NOT = { alliance_with = ROOT } NOT = { truce_with = ROOT } NOT = { war_with = ROOT } } declare_war_with_cb = { who = ROOT casus_belli = cb_succession_wars_holy_war } }
+	}
+}
+
 country_event = {
 	id = succession_wars.40
 	title = succession_wars.40.t

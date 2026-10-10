@@ -6,13 +6,16 @@ succession_wars_mercenaries_gone = {
 }
 
 succession_wars_inward_focus = {
-	build_cost = -0.5
+	build_cost = -0.4
 	development_cost = -0.25
 	trade_company_investment_cost = -0.5
 	center_of_trade_upgrade_cost = -0.5
 	great_project_upgrade_cost = -0.5
-	province_warscore_cost = 0.5
+	province_warscore_cost = 0.75
 }
+
+succession_wars_trade_reform = { global_trade_power = -0.5 }
+succession_wars_army_reform = { land_morale = -0.2 }
 
 succession_wars_noble_coup = { diplomats = 1 }
 succession_wars_clergy_coup = { missionaries = 1 }

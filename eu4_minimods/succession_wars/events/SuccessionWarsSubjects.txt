@@ -10,11 +10,39 @@ country_event = {
 	trigger = {
 		ai = yes
 		OR = { is_subject_of_type = vassal is_subject_of_type = march }
+		religion = overlord
 	}
 	option = {
 		name = succession_wars.50.a
 		ai_chance = { factor = 100 }
 		overlord = { country_event = { id = succession_wars.51 } }
+	}
+}
+
+# Unlike annexation, this outcome is available to players. PAP must be excluded
+# explicitly because the Papal State cannot change religion.
+country_event = {
+	id = succession_wars.52
+	title = succession_wars.52.t
+	desc = succession_wars.52.d
+	picture = RELIGION_eventPicture
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = {
+		NOT = { tag = PAP }
+		OR = { is_subject_of_type = vassal is_subject_of_type = march }
+		NOT = { religion = overlord }
+	}
+	option = {
+		name = succession_wars.52.a
+		ai_chance = { factor = 100 }
+		log = "SuccessionWars: [Root.GetName] adopted [Overlord.GetName]'s religion in [GetYear]."
+		# In capital_scope, `overlord` is not a valid religion source and resolves
+		# to no religion. Preserve the overlord as a country target instead.
+		overlord = { save_event_target_as = succession_wars_conversion_overlord }
+		change_religion = overlord
+		set_ruler_religion = overlord
+		capital_scope = { change_religion = event_target:succession_wars_conversion_overlord }
 	}
 }
 
