@@ -36,10 +36,10 @@ country_event = {
 	option = {
 		name = succession_wars.52.a
 		ai_chance = { factor = 100 }
-		log = "SuccessionWars: [Root.GetName] adopted [Overlord.GetName]'s religion in [GetYear]."
 		# In capital_scope, `overlord` is not a valid religion source and resolves
 		# to no religion. Preserve the overlord as a country target instead.
 		overlord = { save_event_target_as = succession_wars_conversion_overlord }
+		log = "SuccessionWars: [Root.GetName] adopted [succession_wars_conversion_overlord.GetName]'s religion in [GetYear]."
 		change_religion = overlord
 		set_ruler_religion = overlord
 		capital_scope = { change_religion = event_target:succession_wars_conversion_overlord }
