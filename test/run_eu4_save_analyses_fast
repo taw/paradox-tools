@@ -40,6 +40,7 @@ analyses = {
   "releasable_countries"      => "ReleasableCountries",
   "releasable_hre_countries"  => "ReleasableHRECountries",
   "religions_by_country"      => "ReligionsByCountry",
+  "roman_restoration_progress"=> "RomanRestorationProgress",
   "world_conquest_progress"   => "WorldConquestProgress",
 }
 
