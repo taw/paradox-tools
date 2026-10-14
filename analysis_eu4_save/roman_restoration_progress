@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_save_analysis"
+
+class RomanRestorationProgress < EU4SaveAnalysis
+  def regions_to_areas
+    @regions_to_areas ||= parse("map/region.txt").to_h.transform_values do |region|
+      region["areas"]
+    end
+  end
+
+  def areas_to_provinces
+    @areas_to_provinces ||= begin
+      path = resolve("map/area.txt")
+      data = path.read.gsub(/^\s*color\s*=\s*\{[^{}]*\}\s*$/, "")
+      ParadoxModFile.new(string: data, path: path).parse!.to_h.transform_values do |provinces|
+        provinces.is_a?(PropertyList) ? [] : provinces
+      end
+    end
+  end
+
+  def roman_empire_trigger
+    @roman_empire_trigger ||= parse("common/scripted_triggers/02_scripted_triggers_for_mission_conditions.txt")["BYZ_roman_empire_decision_trigger"]
+  end
+
+  def roman_provinces
+    @roman_provinces ||= begin
+      regions = roman_empire_trigger["OR"].find_all("region")
+      areas = roman_empire_trigger["OR"].find_all("area") + regions.flat_map{ regions_to_areas[_1] }
+      provinces = roman_empire_trigger["OR"].find_all("province_id") + areas.flat_map{ areas_to_provinces[_1] }
+      remove_provinces = roman_empire_trigger.find_all("NOT").flat_map{|prop| areas_to_provinces[prop["area"]]}
+      (provinces - remove_provinces).to_set
+    end
+  end
+
+  def roman_provinces_by_owner
+    unless @roman_provinces_by_owner
+      @roman_provinces_by_owner = Hash.new(0)
+      @save.provinces.each do |id, province|
+        next unless roman_provinces.include?(id)
+        @roman_provinces_by_owner[province.owner] += 1
+      end
+    end
+    @roman_provinces_by_owner
+  end
+
+  def call
+    roman_provinces_by_owner.map{|tag,count| [count, country_name(tag)] }.sort_by{|count,name| [-count,name] }.each do |count, name|
+      puts "#{name}: #{count}"
+    end
+  end
+end
+
+if $0 == __FILE__
+  RomanRestorationProgress.new_from_argv.call
+end
