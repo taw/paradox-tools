@@ -10,7 +10,7 @@ country_event = {
 	trigger = {
 		ai = yes
 		OR = { is_subject_of_type = vassal is_subject_of_type = march }
-		religion = overlord
+		overlord = { religion = ROOT }
 	}
 	option = {
 		name = succession_wars.50.a
@@ -31,7 +31,7 @@ country_event = {
 	trigger = {
 		NOT = { tag = PAP }
 		OR = { is_subject_of_type = vassal is_subject_of_type = march }
-		NOT = { religion = overlord }
+		overlord = { NOT = { religion = ROOT } }
 	}
 	option = {
 		name = succession_wars.52.a

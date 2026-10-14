@@ -127,8 +127,8 @@ country_event = {
 			10 = { trigger = { NOT = { religion = confucianism } capital_scope = { superregion = china_superregion } any_owned_province = { superregion = china_superregion } } country_event = { id = succession_wars.126 } }
 			10 = { trigger = { NOT = { religion = mahayana } capital_scope = { superregion = china_superregion } any_owned_province = { superregion = china_superregion } } country_event = { id = succession_wars.127 } }
 			10 = { trigger = { NOT = { religion = vajrayana } capital_scope = { superregion = china_superregion } any_owned_province = { superregion = china_superregion } } country_event = { id = succession_wars.128 } }
-			250 = { trigger = { ai = yes OR = { is_subject_of_type = vassal is_subject_of_type = march } religion = overlord } country_event = { id = succession_wars.50 } }
-			250 = { trigger = { NOT = { tag = PAP } OR = { is_subject_of_type = vassal is_subject_of_type = march } NOT = { religion = overlord } } country_event = { id = succession_wars.52 } }
+			250 = { trigger = { ai = yes OR = { is_subject_of_type = vassal is_subject_of_type = march } overlord = { religion = ROOT } } country_event = { id = succession_wars.50 } }
+			250 = { trigger = { NOT = { tag = PAP } OR = { is_subject_of_type = vassal is_subject_of_type = march } overlord = { NOT = { religion = ROOT } } } country_event = { id = succession_wars.52 } }
 			100 = {
 				trigger = {
 					NOT = { is_emperor = yes }
