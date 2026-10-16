@@ -2,21 +2,11 @@
 
 require_relative "./eu4_save_analysis"
 
+# It used to be possible to calculate it, but min_autonomy is now quite complex
+# Just take data from save, it's probably good enough
 class AnalyzeAutonomy < EU4SaveAnalysis
   def call
-    countries = {}
-    @save.provinces.each do |id, province|
-      next unless province.owner and province.development
-      countries[province.owner] ||= []
-      countries[province.owner] << [province.development, province.effective_autonomy]
-    end
-
-    countries.map do |tag, data|
-      max_dev = data.map{|dev,_| dev}.sum
-      lost_dev = data.map{|dev,a| dev*(a/100.0) }.sum
-      avg_autonomy = 100.0 * lost_dev / max_dev
-      [country_name(tag), avg_autonomy.round(2)]
-    end.sort.each do |name, avg_autonomy|
+     @save.countries.values.select(&:on_map?).map{|c| [country_name(c.tag), c.average_autonomy] }.sort.each do |name, avg_autonomy|
       puts "#{name}\t#{avg_autonomy}"
     end
   end

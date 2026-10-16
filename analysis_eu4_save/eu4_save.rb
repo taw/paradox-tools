@@ -288,6 +288,10 @@ class Country
     capital.hre?
   end
 
+  def average_autonomy
+    @node["average_autonomy"]
+  end
+
   def to_s
     "Country<#{@tag}>"
   end
@@ -391,16 +395,11 @@ class Province
   end
 
   # This is no longer in the saves :-/
+  #
   def min_autonomy
     @min_autonomy ||= begin
-      if trade_company?
-        0.0
-      elsif territorial_core?
-        75.0
-      elsif estate == "tribes"
-        50.0
-      elsif estate
-        25.0
+      if trade_company? || territorial_core?
+        90.0
       else
         @node["min_autonomy"] || 0
       end
