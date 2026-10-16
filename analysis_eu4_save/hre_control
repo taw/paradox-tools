@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_save_analysis"
+
+class HREControl < EU4SaveAnalysis
+  # A subject's land is credited only to the top-level overlord, rather than to
+  # each country along a subject chain.
+  def ultimate_overlord(tag)
+    seen = Set.new
+    while (subject = @save.subjects[tag]) && !seen.include?(tag)
+      seen << tag
+      tag = subject[0]
+    end
+    tag
+  end
+
+  def hre_provinces_by_owner
+    unless @hre_provinces_by_owner
+      @hre_provinces_by_owner = Hash.new(0)
+      @save.provinces.each do |id, province|
+        next unless province.hre?
+        @hre_provinces_by_owner[province.owner] += 1
+      end
+    end
+    @hre_provinces_by_owner
+  end
+
+  def hre_provinces_by_top_level_overlord
+    @hre_provinces_by_top_level_overlord ||= begin
+      totals = Hash.new(0)
+      hre_provinces_by_owner.each do |tag, count|
+        totals[ultimate_overlord(tag)] += count
+      end
+      totals
+    end
+  end
+
+  def call
+    base_counts = hre_provinces_by_owner
+    total_counts = hre_provinces_by_top_level_overlord
+    (base_counts.keys | total_counts.keys).map do |tag|
+      total_count = total_counts.key?(tag) ? total_counts[tag] : base_counts[tag]
+      [base_counts[tag], total_count, country_name(tag)]
+    end.sort_by{|base_count, total_count, name| [-total_count, -base_count, name] }.each do |base_count, total_count, name|
+      count = total_count == base_count ? base_count : "#{base_count} (#{total_count})"
+      puts "#{name}: #{count}"
+    end
+  end
+end
+
+if $0 == __FILE__
+  HREControl.new_from_argv.call
+end

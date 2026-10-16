@@ -34,6 +34,7 @@ analyses = {
   "colonial_region_presence"  => "ColonialRegionPresence",
   "cultures_by_country"       => "CulturesByCountry",
   "cultures_by_development"   => "CulturesByDevelopment",
+  "hre_control"               => "HREControl",
   "hre_religions"             => "HREReligions",
   "idea_group_totals"         => "IdeaGroupTotals",
   "idea_groups"               => "IdeaGroups",
