@@ -10,6 +10,7 @@ country_event = {
 	trigger = {
 		ai = yes
 		is_elector = no
+		NOT = { tag = PAP }
 		OR = { is_subject_of_type = vassal is_subject_of_type = march }
 		overlord = { religion = ROOT }
 	}
