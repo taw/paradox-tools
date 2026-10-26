@@ -7,6 +7,7 @@ class IdeaGroups < EU4SaveAnalysis
     %W[
       administrative_ideas
       aristocracy_ideas
+      court_ideas
       defensive_ideas
       diplomatic_ideas
       economic_ideas
@@ -14,8 +15,10 @@ class IdeaGroups < EU4SaveAnalysis
       exploration_ideas
       humanist_ideas
       influence_ideas
+      infrastructure_ideas
       innovativeness_ideas
       maritime_ideas
+      mercenary_ideas
       naval_ideas
       offensive_ideas
       plutocracy_ideas
