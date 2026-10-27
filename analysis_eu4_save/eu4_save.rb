@@ -2,11 +2,12 @@ require "set"
 
 class TradeNodeCountryInformation
   attr_reader :tag, :attrs
-  def initialize(tag, node)
+  def initialize(tag, node, trade_node)
     @tag = tag
     @attrs = node.to_h
     @attrs.delete("max_demand") # Unclear what it even is
     @attrs.delete("trading_policy_date") # Totally uninteresting
+    @trade_node = trade_node
   end
 
   def empty?
@@ -32,6 +33,26 @@ class TradeNodeCountryInformation
   def collection_multiplier
     return nil unless total and money
     (money / total).round(6)
+  end
+
+  def has_capital?
+    !!@attrs["has_capital"]
+  end
+
+  def has_trader?
+    !!@attrs["has_trader"]
+  end
+
+  # steer_power=0 is not listed, so absence can be either no steering or steering to first one
+  # trade info is also recalculated on monthly tick, so if merchant changed but monthly tick didn't recalculate
+  # we could have inconsistent information here
+  def steer_destination
+    return nil if collects?
+    return nil unless has_trader?
+    # inconsistent: merchant arrived in end node, but didn't recalculate yet; treat them as collecting 0
+    return nil if @trade_node.outgoing_info.empty?
+    index = @attrs["steer_power"] || 0
+    @trade_node.outgoing_info[index][:to]
   end
 
   def inspect
@@ -121,6 +142,18 @@ class TradeNode
     end
   end
 
+  def merchant_actions
+    @merchant_actions ||= begin
+      country_info.transform_values do |node|
+        if node.collects?
+          :collect
+        else
+          node.steer_destination
+        end
+      end.compact
+    end
+  end
+
   def initialize(network, name, node)
     @network = network
     @name = name
@@ -132,7 +165,7 @@ class TradeNode
     node.each do |key, value|
       if value.is_a?(PropertyList) and value["max_demand"]
         raise if @country_info[key]
-        ci = TradeNodeCountryInformation.new(key, value)
+        ci = TradeNodeCountryInformation.new(key, value, self)
         next if ci.empty?
         @country_info[key] = ci
       elsif key == "incoming"

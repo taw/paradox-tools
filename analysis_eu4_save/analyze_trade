@@ -28,13 +28,23 @@ class AnalyzeTrade < EU4SaveAnalysis
       node.total_collector_share.each do |tag, share|
         country_name = @save.countries[tag].name || localization(tag)
         by_country[country_name] ||= []
-        by_country[country_name] << [node_name, share]
+        by_country[country_name] << [node_name, share, node.merchant_actions[tag]]
       end
+
+      # puts node_name
+      # pp node.merchant_actions
     end
-    by_country.sort_by{|name, shares| [-shares.map(&:last).sum, name]}.each do |name, shares|
+    by_country.sort_by{|name, shares, action| [-shares.map{|x|x[1]}.sum, name]}.each do |name, shares|
       puts "#{name}:"
-      shares.sort_by{|name, share| [-share, name]}.each do |name, share|
-        puts "* #{name} - #{"%.6f" % share}"
+      shares.sort_by{|name, share| [-share, name]}.each do |name, share, action|
+        if action
+          if action == :collect
+            action_fmt = " - collect"
+          else
+            action_fmt = " - #{localization(action)}"
+          end
+        end
+        puts "* #{name} - #{"%.6f" % share}#{action_fmt}"
       end
       puts ""
     end
