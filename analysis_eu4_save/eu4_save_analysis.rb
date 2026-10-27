@@ -10,6 +10,7 @@ class EU4SaveAnalysis < ParadoxGame
     else
       @save = EU4Save.new(save_game)
     end
+    @save.game = self
   end
 
   def country_name(tag)
@@ -73,6 +74,18 @@ class EU4SaveAnalysis < ParadoxGame
           else
             warn "No cost for building: #{name}"
           end
+        end
+      end
+      map
+    end
+  end
+
+  def trade_node_graph
+    @trade_node_graph ||= begin
+      map = {}
+      glob("common/tradenodes/*.txt").each do |path|
+        parse(path).each do |node_tag, node|
+          map[node_tag] = node.find_all("outgoing").map{|x| x["name"] }
         end
       end
       map

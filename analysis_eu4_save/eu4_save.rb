@@ -2,12 +2,12 @@ require "set"
 
 class TradeNodeCountryInformation
   attr_reader :tag, :attrs
-  def initialize(tag, node, trade_node)
+  def initialize(tag, node, outgoing_connections)
     @tag = tag
     @attrs = node.to_h
     @attrs.delete("max_demand") # Unclear what it even is
     @attrs.delete("trading_policy_date") # Totally uninteresting
-    @trade_node = trade_node
+    @outgoing_connections = outgoing_connections
   end
 
   def empty?
@@ -50,9 +50,9 @@ class TradeNodeCountryInformation
     return nil if collects?
     return nil unless has_trader?
     # inconsistent: merchant arrived in end node, but didn't recalculate yet; treat them as collecting 0
-    return nil if @trade_node.outgoing_info.empty?
+    return nil if @outgoing_connections.empty?
     index = @attrs["steer_power"] || 0
-    @trade_node.outgoing_info[index][:to]
+    @outgoing_connections[index]
   end
 
   def inspect
@@ -156,6 +156,7 @@ class TradeNode
 
   def initialize(network, name, node)
     @network = network
+    outgoing_connections = @network.save.game.trade_node_graph[name]
     @name = name
     @country_info = {}
     @incoming_info = []
@@ -165,7 +166,7 @@ class TradeNode
     node.each do |key, value|
       if value.is_a?(PropertyList) and value["max_demand"]
         raise if @country_info[key]
-        ci = TradeNodeCountryInformation.new(key, value, self)
+        ci = TradeNodeCountryInformation.new(key, value, outgoing_connections)
         next if ci.empty?
         @country_info[key] = ci
       elsif key == "incoming"
@@ -186,14 +187,15 @@ class TradeNode
 end
 
 class TradeNetwork
-  attr_reader :nodes
+  attr_reader :nodes, :save
 
   def inspect
     "TradeNetwork"
   end
   alias_method :to_s, :inspect
 
-  def initialize(node)
+  def initialize(node, save)
+    @save = save
     @nodes = {}
     @indexes_to_names = {}
 
@@ -488,6 +490,9 @@ end
 
 class EU4Save
   attr_reader :path, :data
+  # set by analysis so we have access to localization, trade_node_graph etc.
+  # read/write because run_eu4_save_analyses_fast wants to reuse this
+  attr_accessor :game
   def initialize(path)
     @path = path
     @data = ParadoxModFile.new(path: @path).parse!
@@ -592,7 +597,7 @@ class EU4Save
   end
 
   def trade_network
-    @trade_network ||= TradeNetwork.new(@data["trade"])
+    @trade_network ||= TradeNetwork.new(@data["trade"], self)
   end
 
   def trade_good_prices
