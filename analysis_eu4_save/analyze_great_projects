@@ -229,8 +229,13 @@ class AnalyzeGreatProjects < EU4SaveAnalysis
       next unless monument_bonuses[[name, tier]] # mod issue
       monument_bonuses[[name, tier]].each do |key, val|
         nkey = modifier_loc(key)
-        player_bonuses[nkey] ||= {total: 0, monuments: []}
-        player_bonuses[nkey][:total] = (player_bonuses[nkey][:total] + val).round(6)
+        if val == true
+          raise if player_bonuses[nkey]
+          player_bonuses[nkey] = {total: true, monuments: []}
+        else
+          player_bonuses[nkey] ||= {total: 0, monuments: []}
+          player_bonuses[nkey][:total] = (player_bonuses[nkey][:total] + val).round(6)
+        end
         player_bonuses[nkey][:monuments] << "#{localization(name)} #{tier}" # " in #{province_name}: #{val}"
       end
     end
