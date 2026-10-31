@@ -915,7 +915,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def reduce_ahead_of_time_penalty!
     # warn "Experimental code #{__method__}. Do not enable in release. #{__FILE__}:#{__LINE__}"
     soft_patch_defines_lua!("fun_and_balance_ahead_of_time",
-      ["NCountry.TECH_AHEAD_OF_TIME", 0.1, 0.01],
+      ["NCountry.TECH_AHEAD_OF_TIME", 0.1, 0.02],
     )
   end
 
