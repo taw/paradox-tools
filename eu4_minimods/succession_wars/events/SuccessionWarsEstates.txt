@@ -7,7 +7,10 @@ country_event = {
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
 	mean_time_to_happen = { days = 1 }
-	trigger = { has_estate = estate_nobles }
+	trigger = {
+		has_estate = estate_nobles
+		estate_influence = { estate = estate_nobles influence = 30 }
+	}
 	option = {
 		name = succession_wars.20.a
 		ai_chance = { factor = 100 }
@@ -27,7 +30,10 @@ country_event = {
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
 	mean_time_to_happen = { days = 1 }
-	trigger = { has_estate = estate_church }
+	trigger = {
+		has_estate = estate_church
+		estate_influence = { estate = estate_church influence = 30 }
+	}
 	option = {
 		name = succession_wars.21.a
 		ai_chance = { factor = 100 }
@@ -47,7 +53,10 @@ country_event = {
 	picture = DIPLOMACY_eventPicture
 	is_triggered_only = yes
 	mean_time_to_happen = { days = 1 }
-	trigger = { has_estate = estate_burghers }
+	trigger = {
+		has_estate = estate_burghers
+		estate_influence = { estate = estate_burghers influence = 30 }
+	}
 	option = {
 		name = succession_wars.22.a
 		ai_chance = { factor = 100 }
