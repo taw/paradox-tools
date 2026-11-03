@@ -3,6 +3,12 @@
 require_relative "./eu4_save_analysis"
 
 class AnalyzeTrade < EU4SaveAnalysis
+  def best_outgoing_node_for(tag, node_tag)
+    @save.game.trade_node_graph[node_tag].max_by do |outgoing_node_tag|
+      @save.trade_network.nodes[outgoing_node_tag].total_collector_share[tag] || 0.0
+    end
+  end
+
   def print_node_info(node_name, node)
     node
       .total_collector_share
@@ -43,15 +49,16 @@ class AnalyzeTrade < EU4SaveAnalysis
           else
             action_fmt = " - #{localization(action)}"
             outgoing_nodes = @save.game.trade_node_graph[node_tag]
-            best_node = outgoing_nodes.max_by do |outgoing_node_tag|
-              @save.trade_network.nodes[outgoing_node_tag].total_collector_share[tag] || 0.0
-            end
+            best_node = best_outgoing_node_for(tag, node_tag)
             selected_share = @save.trade_network.nodes[action].total_collector_share[tag] || 0.0
             best_share = @save.trade_network.nodes[best_node].total_collector_share[tag] || 0.0
             if best_share > selected_share
               action_fmt += " (better: #{localization(best_node)})"
             end
           end
+        elsif (outgoing_nodes = @save.game.trade_node_graph[node_tag]).size > 1
+          best_node = best_outgoing_node_for(tag, node_tag)
+          action_fmt = " (best: #{localization(best_node)})"
         end
         puts "* #{name} - #{"%.6f" % share}#{action_fmt}"
       end
