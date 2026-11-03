@@ -647,6 +647,13 @@ class EU4Save
     subject = subjects[tag] and subject[0] == player_tag
   end
 
+  def colonial_nation?(tag)
+    subject = subjects[tag]
+    return false unless subject
+    return true if ["colony", "crown_colony", "private_enterprise", "self_governing_colony", "european_colony"].include?(subject[1])
+    false
+  end
+
   def great_projects
     unless @great_projects
       @great_projects = @data["great_projects"].to_a.map{|prop| [prop.key, prop.val["province"],  prop.val["development_tier"]] }

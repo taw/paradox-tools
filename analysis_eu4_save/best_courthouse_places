@@ -2,6 +2,9 @@
 
 require_relative "./eu4_save_analysis"
 
+# Macro builder in game is doing a good job with it
+# about the only excption is colonial nations vs other subjects - you want to spam them in non-CN subjects as they'll get annexed eventually
+# but there's no point in spamming them in CNs
 class BestCourthousePlaces < EU4SaveAnalysis
   def call
     courthouses = []
@@ -24,6 +27,7 @@ class BestCourthousePlaces < EU4SaveAnalysis
       if province.owner == @save.player_tag
         # OK
       elsif @save.players_subject?(province.owner)
+        next if @save.colonial_nation?(province.owner)
         # OK
         name += " [#{country_name(province.owner)}]"
       else
@@ -31,7 +35,7 @@ class BestCourthousePlaces < EU4SaveAnalysis
       end
 
       has_courthouse = province.buildings.include?("courthouse")
-      has_town_hall = province.buildings.include?("town_tall")
+      has_town_hall = province.buildings.include?("town_hall")
       dev = province.development
       dev = dev.to_i if dev == dev.to_i
 
