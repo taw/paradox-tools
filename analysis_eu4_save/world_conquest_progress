@@ -73,14 +73,17 @@ class WorldConquestProgress < EU4SaveAnalysis
   end
 
   def call
+    total_development = development_by_type.values.sum
     development_by_type.each do |type, dev|
-      puts "#{type}: #{dev}"
+      perc = "%.2f" % (dev.to_f / total_development * 100)
+      puts "#{type}: #{dev} (#{perc}%)"
     end
     puts ""
     development_by_independent_country
       .sort_by{|tag,dev| [-dev, tag]}
       .each do |tag, dev|
-      puts "#{country_name(tag)}: #{dev}"
+      perc = "%.2f" % (dev.to_f / total_development * 100)
+      puts "#{country_name(tag)}: #{dev} (#{perc}%)"
     end
   end
 end
