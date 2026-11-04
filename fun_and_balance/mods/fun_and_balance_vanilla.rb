@@ -70,6 +70,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_CHANGE_CULTURE", 10, 5],
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
+      ["NCountry.MAXIMUM_ADVISOR_SKILL", 5, 10],
       ["NAI.SUPPORT_INDEPENDENCE_DESIRE_TOO_MANY_RELATIONS", -20, 0],
       ["NDiplomacy.MIN_RELATIONS_TO_SUPPORT_INDEPENDENCE", -25, -50],
       ["NDiplomacy.PEACE_COST_GOLD_MAX", 5, 10],
