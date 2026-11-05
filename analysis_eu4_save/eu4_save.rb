@@ -614,6 +614,10 @@ class EU4Save
     @start_date ||= @data["start_date"]
   end
 
+  def current_date
+    @current_date ||= @data["date"]
+  end
+
   def active_wars
     @active_wars ||= @data.find_all("active_war")
   end

@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+require_relative "./eu4_save_analysis"
+
+class OneFaithProgress < EU4SaveAnalysis
+  def player_religion
+    @save.player_religion
+  end
+
+  def current_date
+    @save.current_date
+  end
+
+  def campaign_end_date
+    @campaign_end_date ||= Date.parse("1821-01-03")
+  end
+
+  # EU4 doesn't have leap years, so this isn't completely accurate
+  def time_remaining
+    (campaign_end_date.jd - current_date.jd) / 365
+  end
+
+  # counting uncolonized too
+  # no_religion is valid for uncolonized zero population provinces
+  def provinces_by_religion
+    unless @provinces_by_religion
+      @provinces_by_religion = Hash.new(0)
+      @save.provinces.each do |id, province|
+        next if province.development == 0
+        @provinces_by_religion[province.religion || "noreligion"] += 1
+      end
+    end
+    @provinces_by_religion
+  end
+
+  def remaining_to_convert
+    @remaining_to_convert ||= provinces_by_religion.select{|r,c| r != player_religion}.values.sum
+  end
+
+  def conversions_per_year
+    @conversions_per_year ||= remaining_to_convert / time_remaining.to_f
+  end
+
+  def call
+    puts "Religions"
+    provinces_by_religion.map{|rn, c| [localization(rn), c]}.sort_by{|rn, c| [-c, rn]}.each do |rn, c|
+      puts "* #{c} #{rn}"
+    end
+
+    puts ""
+
+    puts "Remaining to convert: #{remaining_to_convert}, #{conversions_per_year.round(2)} per year"
+    (1..10).each do |missionary_count|
+      time_per_province = missionary_count * 12 / conversions_per_year
+      puts "* #{missionary_count} #{missionary_count == 1 ? "missionary" : "missionaries"} - #{time_per_province.round(2)} months"
+    end
+  end
+end
+
+if $0 == __FILE__
+  OneFaithProgress.new_from_argv.call
+end

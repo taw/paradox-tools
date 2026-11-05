@@ -33,6 +33,7 @@ list = %Q[
   analysis_eu4_save/hre_religions $s $g
   analysis_eu4_save/idea_group_totals $s $g
   analysis_eu4_save/idea_groups $s $g
+  analysis_eu4_save/one_faith_progress $s $g
   analysis_eu4_save/releasable_countries $s $g
   analysis_eu4_save/releasable_hre_countries $s $g
   analysis_eu4_save/religions_by_country $s $g

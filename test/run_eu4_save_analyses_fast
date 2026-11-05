@@ -38,6 +38,7 @@ analyses = {
   "hre_religions"             => "HREReligions",
   "idea_group_totals"         => "IdeaGroupTotals",
   "idea_groups"               => "IdeaGroups",
+  "one_faith_progress"        => "OneFaithProgress",
   "releasable_countries"      => "ReleasableCountries",
   "releasable_hre_countries"  => "ReleasableHRECountries",
   "religions_by_country"      => "ReligionsByCountry",
