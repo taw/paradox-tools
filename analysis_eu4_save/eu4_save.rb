@@ -334,6 +334,11 @@ class Country
   def technology
     @technology ||= @node["technology"].to_h
   end
+
+  def capital_province_id
+    @node["capital"]
+  end
+
   alias_method :to_s, :inspect
 end
 
@@ -505,6 +510,21 @@ class EU4Save
         .map{|tag, node| [tag, Country.new(tag, node, self)] }
         .to_h
     end
+  end
+
+  def country_states
+    unless @country_states
+      @country_states = {}
+      @data["map_area_data"].each do |area_name, area_data|
+        next unless area_data["state"]
+        countries = area_data["state"].find_all("country_state").map{|x| x["country"]}
+        countries.each do |country|
+          @country_states[country] ||= []
+          @country_states[country] << area_name
+        end
+      end
+    end
+    @country_states
   end
 
   def player_country

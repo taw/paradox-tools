@@ -2,11 +2,11 @@
 
 require_relative "./eu4_save_analysis"
 
-# Macro builder in game is doing a good job with it
-# about the only excption is colonial nations vs other subjects - you want to spam them in non-CN subjects as they'll get annexed eventually
-# but there's no point in spamming them in CNs
 class BestCourthousePlaces < EU4SaveAnalysis
-  def call
+  # Macro builder in game is doing a good job with it
+  # about the only excption is colonial nations vs other subjects - you want to spam them in non-CN subjects as they'll get annexed eventually
+  # but there's no point in spamming them in CNs
+  def report_court_houses_and_town_halls
     courthouses = []
     town_halls = []
 
@@ -64,6 +64,65 @@ class BestCourthousePlaces < EU4SaveAnalysis
     town_halls.sort_by{|d,n| [-d,n]}.each do |row|
       puts row.join("\t")
     end
+  end
+
+  def provinces_to_areas
+    unless @provinces_to_areas
+      @provinces_to_areas = {}
+      path = resolve("map/area.txt")
+      data = path.read.gsub(/^\s*color\s*=\s*\{[^{}]*\}\s*$/, "")
+      ParadoxModFile.new(string: data, path: path).parse!.each do |area_name, province_ids|
+        province_ids.each do |province_id|
+          @provinces_to_areas[province_id] = area_name
+        end
+      end
+    end
+    @provinces_to_areas
+  end
+
+  # Assume every owner province in state is full cored
+  # (if it's recently conquered, it might not be yet, but we're optimizing for final situation)
+  # don't include unowned provinces
+  def each_player_state
+    player_state_names = @save.country_states[@save.player_tag].to_set
+    player_states = {}
+
+    @save.provinces.each do |id, province|
+      next unless province.owner == @save.player_tag
+      area_name = provinces_to_areas[id]
+      next unless player_state_names.include?(area_name)
+      player_states[area_name] ||= []
+      player_states[area_name] << province
+    end
+
+    player_states.each do |state_name, provinces|
+      yield(state_name, provinces)
+    end
+  end
+
+  def report_state_houses
+    state_house_bonus_goods = %w[paper glass gems]
+    capital_province_id = @save.player_country.capital_province_id
+
+    each_player_state do |state_name, provinces|
+      # capital state always costs 0 gov cap
+      next if provinces.any?{|x| x.id == capital_province_id}
+
+      # there could be valid reasons to build more than one (like with 2 gold mines in same province)
+      # but let's keep this simple
+      next if provinces.any?{|p| p.buildings.include?("state_house") }
+
+      # Fully stated, assume town halls are build everywhere already (if not, build them first before doing state houses)
+      current_gov_cap_cost = provinces.map(&:development).sum * 0.50
+
+      # Now that we have list of states, we need to actually do calculations
+      p [state_name, provinces, current_gov_cap_cost]
+    end
+  end
+
+  def call
+    report_court_houses_and_town_halls
+    report_state_houses
   end
 end
 
