@@ -43,6 +43,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     eurocentric_institutions!
     reduce_ahead_of_time_penalty!
     revanchism_is_bad!
+    adjust_high_tier_advisor_cost!
 
     # Experimental:
     # more_aggressive_ai!
@@ -71,6 +72,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
       ["NCountry.PS_MOVE_CAPITAL", 200, 100],
       ["NCountry.PS_MOVE_TRADE_PORT", 200, 100],
       ["NCountry.MAXIMUM_ADVISOR_SKILL", 5, 10],
+      ["NCountry.ADVISOR_COST_INCREASE_PER_YEAR", 0.005, 0.01],
       ["NAI.SUPPORT_INDEPENDENCE_DESIRE_TOO_MANY_RELATIONS", -20, 0],
       ["NDiplomacy.MIN_RELATIONS_TO_SUPPORT_INDEPENDENCE", -25, -50],
       ["NDiplomacy.PEACE_COST_GOLD_MAX", 5, 10],

@@ -792,6 +792,41 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   ### EXPERIMENTAL STUFF, NOT ENABLED IN RELEASE                  ###
   ###################################################################
 
+  def adjust_high_tier_advisor_cost!
+    node = PropertyList[]
+    ["adm", "dip", "mil"].each do |type|
+      (6..10).each do |level|
+        if level == 10
+          cond = PropertyList[
+            "has_advisor_of_type_and_level", PropertyList[
+              "type", type,
+              "level", level,
+            ]
+          ]
+        else
+          cond = PropertyList[
+            "has_advisor_of_type_and_level", PropertyList[
+              "type", type,
+              "level", level,
+            ],
+            "NOT", PropertyList[
+                "has_advisor_of_type_and_level", PropertyList[
+                "type", type,
+                "level", level + 1,
+              ]
+            ],
+          ]
+        end
+        node.add! "#{type}_advisor_level_#{level}", PropertyList[
+          "potential", cond,
+          "trigger", cond,
+          "#{type}_advisor_cost", 0.5 * (level - 5),
+        ]
+      end
+    end
+    create_mod_file! "common/triggered_modifiers/10_high_level_advisors.txt", node
+  end
+
   # I'd prefer to zero out revanchism and remove the stupid feature that
   # peace deal resets War Exhaustion, but that's not possible,
   # so doing this instead
