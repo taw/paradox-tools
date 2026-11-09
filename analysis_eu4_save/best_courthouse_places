@@ -104,6 +104,8 @@ class BestCourthousePlaces < EU4SaveAnalysis
     state_house_bonus_goods = %w[paper glass gems]
     capital_province_id = @save.player_country.capital_province_id
 
+    province_build_values = []
+
     each_player_state do |state_name, provinces|
       # capital state always costs 0 gov cap
       next if provinces.any?{|x| x.id == capital_province_id}
@@ -113,10 +115,31 @@ class BestCourthousePlaces < EU4SaveAnalysis
       next if provinces.any?{|p| p.buildings.include?("state_house") }
 
       # Fully stated, assume town halls are build everywhere already (if not, build them first before doing state houses)
-      current_gov_cap_cost = provinces.map(&:development).sum * 0.50
+      state_development = provinces.map(&:development).sum
 
       # Now that we have list of states, we need to actually do calculations
-      p [state_name, provinces, current_gov_cap_cost]
+      provinces.each do |province|
+        has_bonus = state_house_bonus_goods.include?(province.trade_goods)
+        rest_of_state_development = state_development - province.development
+
+        if has_bonus
+          # -70% - 20 for province, so it always caps at 0 anyway (town house -50% is a given)
+          # -40% for everything else
+          saved = province.development * 0.50 + rest_of_state_development * 0.40
+        else
+          # -35% - 10 for province
+          # -20% for everything else
+          province_cost = [province.development * 0.15 - 10, 0].max
+          saved = (province.development * 0.50 - province_cost) + rest_of_state_development * 0.20
+        end
+
+        province_build_values << [saved.round(2), province.name, localization(state_name)]
+      end
+    end
+
+    puts "", "State Houses to build:"
+    province_build_values.sort_by{|v,pn,sn| [-v, pn, sn]}.each do |saved, province_name, state_name|
+      puts "#{saved}\t#{state_name}\t#{province_name}"
     end
   end
 
