@@ -1,0 +1,6 @@
+﻿l_english:
+ warscore_rebalance_great_power: "Great Power Province"
+ warscore_rebalance_great_power_desc: "Province warscore cost: §G-20%§!"
+ warscore_rebalance_independent_non_great_power: "Independent Non-Great Power Province"
+ warscore_rebalance_independent_non_great_power_desc: "Province warscore cost: §R+20%§!"
+ warscore_rebalance_refreshed_monthly_desc: "This modifier is refreshed monthly according to the province owner's status."

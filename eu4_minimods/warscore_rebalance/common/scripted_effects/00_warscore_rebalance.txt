@@ -1,0 +1,32 @@
+# Country scope. Remove and reapply the permanent province modifier so changes
+# to great-power and subject status are reflected at the next monthly pulse.
+warscore_rebalance_refresh_owned_provinces = {
+	every_owned_province = {
+		remove_province_modifier = warscore_rebalance_great_power
+		remove_province_modifier = warscore_rebalance_independent_non_great_power
+
+		if = {
+			limit = {
+				owner = { is_great_power = yes }
+			}
+			add_province_modifier = {
+				name = warscore_rebalance_great_power
+				duration = -1
+				desc = warscore_rebalance_refreshed_monthly_desc
+			}
+		}
+		else_if = {
+			limit = {
+				owner = {
+					is_subject = no
+					is_great_power = no
+				}
+			}
+			add_province_modifier = {
+				name = warscore_rebalance_independent_non_great_power
+				duration = -1
+				desc = warscore_rebalance_refreshed_monthly_desc
+			}
+		}
+	}
+}

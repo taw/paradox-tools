@@ -1,0 +1,9 @@
+# Both on-actions run in country scope. Startup populates existing provinces;
+# the monthly pulse refreshes ownership-status changes and newly acquired land.
+on_startup = {
+	warscore_rebalance_refresh_owned_provinces = yes
+}
+
+on_monthly_pulse = {
+	warscore_rebalance_refresh_owned_provinces = yes
+}

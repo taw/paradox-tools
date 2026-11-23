@@ -1,0 +1,7 @@
+warscore_rebalance_great_power = {
+	local_warscore_cost_modifier = -0.5
+}
+
+warscore_rebalance_independent_non_great_power = {
+	local_warscore_cost_modifier = 0.5
+}
