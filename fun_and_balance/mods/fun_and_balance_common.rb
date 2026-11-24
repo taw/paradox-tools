@@ -795,8 +795,8 @@ class FunAndBalanceCommonGameModification < EU4GameModification
   def adjust_high_tier_advisor_cost!
     node = PropertyList[]
     ["adm", "dip", "mil"].each do |type|
-      (6..10).each do |level|
-        if level == 10
+      (6..8).each do |level|
+        if level == 8
           cond = PropertyList[
             "has_advisor_of_type_and_level", PropertyList[
               "type", type,
@@ -820,7 +820,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
         node.add! "#{type}_advisor_level_#{level}", PropertyList[
           "potential", cond,
           "trigger", cond,
-          "#{type}_advisor_cost", 0.5 * (level - 5),
+          "#{type}_advisor_cost", 1.0 * (level - 5),
         ]
       end
     end
