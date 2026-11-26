@@ -25,7 +25,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     subject_tweaks!
     # trade_map_fixes! # 1.35 fixed it?
     allow_peace_terms_for_all_cbs!
-    holy_orders_for_all! # it's a minor feature
+    # holy_orders_for_all! # it's a minor feature
     improve_religious_rebels!
     buff_support_rebels!
     buff_covert_actions!
@@ -33,7 +33,7 @@ class FunAndBalanceGameModification < FunAndBalanceCommonGameModification
     fix_localization!
     # remove_all_natives! # maybe 1.34 removed the need for it?
     declare_war_in_regency!
-    fix_roman_empire_decision!
+    # fix_roman_empire_decision!
     remove_all_straits!
     mandate_of_heavens_for_all_asians!
     rebalance_diplo_slots!

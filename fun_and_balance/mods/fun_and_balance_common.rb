@@ -2,11 +2,10 @@ require_relative "base"
 require_relative "../../eu4_trade_graph/trade_graph"
 
 class FunAndBalanceCommonGameModification < EU4GameModification
+  # enable Ottomans to Byz
   def anyone_can_form_byzantium!
     patch_mod_file!("decisions/RestoreByzantineEmpire.txt") do |node|
-      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! do |prop|
-        prop.key == "NOT" and (prop.val == PropertyList["tag", "HLR"] or prop.val == PropertyList["tag", "TUR"] or prop.val == PropertyList["tag", "ROM"])
-      end
+      node["country_decisions"]["restore_byzantine_empire"]["potential"].delete! Property["NOT", PropertyList["tag", "TUR"]]
     end
   end
 
@@ -166,27 +165,30 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # I went too far buffing them as GP #1 often had no available rivals
+  # so it was stuck at low power projection, but with hegemonies and
+  # pp for age objectives it's not really needed.
   def power_projection_tweaks!
     patch_mod_file!("common/powerprojection/00_static.txt") do |node|
       modify_node! node,
-        ["eclipsed_rival",               "power",         10,  30],
-        ["eclipsed_rival",               "max",           30, 100],
+        # ["eclipsed_rival",               "power",         10,  10],
+        # ["eclipsed_rival",               "max",           30,  50],
         ["declared_war_at_rival",        "yearly_decay",   1, 0.5],
         ["joined_war_against_rival",     "yearly_decay",   1, 0.5],
         ["refused_war_against_rival",    "yearly_decay",   1, 0.5],
         ["vassalized_rival",             "yearly_decay",   1, 0.5],
         ["took_province_from_rival",     "yearly_decay",   1, 0.5],
         ["rival_lost_province",          "yearly_decay",   1, 0.5],
-        ["great_power_1",                "power",         25,  40],
-        ["great_power_2",                "power",         22,  35],
-        ["great_power_3",                "power",         20,  32],
-        ["great_power_4",                "power",         18,  29],
-        ["great_power_5",                "power",         16,  26],
-        ["great_power_6",                "power",         14,  22],
-        ["great_power_7",                "power",         12,  19],
-        ["great_power_8",                "power",         10,  16],
-        ["warned_rival",                 "power",          0,   5],
-        ["guarantee_neighbour_of_rival", "power",          0,   5],
+        # ["great_power_1",                "power",         25,  40],
+        # ["great_power_2",                "power",         22,  35],
+        # ["great_power_3",                "power",         20,  32],
+        # ["great_power_4",                "power",         18,  29],
+        # ["great_power_5",                "power",         16,  26],
+        # ["great_power_6",                "power",         14,  22],
+        # ["great_power_7",                "power",         12,  19],
+        # ["great_power_8",                "power",         10,  16],
+        # ["warned_rival",                 "power",          0,   5],
+        # ["guarantee_neighbour_of_rival", "power",          0,   5],
         ["current_age_power_projection", "power",          3,   5],
         ["last_age_power_projection",    "power",          3,   5],
         ["current_age_power_projection", "max",           21,  35],
@@ -492,6 +494,7 @@ class FunAndBalanceCommonGameModification < EU4GameModification
     end
   end
 
+  # They replaced the old decision, it's less necessary now
   def fix_roman_empire_decision!
     patch_mod_file!("decisions/RestoreRomanEmpire.txt") do |node|
       decision = node["country_decisions"]["restore_roman_empire"]
